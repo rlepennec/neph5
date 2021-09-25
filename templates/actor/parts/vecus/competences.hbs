@@ -1,0 +1,71 @@
+<ol class="item-list">
+
+    <li class="item-list-header">
+
+        <div class="item-name">
+            <span>{{localize "ITEM.TypeCompetence"}}</span>
+        </div>
+
+        <div class="item-integer">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+    </li>
+
+    <div style="column-count:3">
+
+        {{#each (getVecus data.id) as |vecu|}}
+        <li class="item" data-item-id="{{vecu.refid}}" data-item-type="vecu">
+
+            <div class="item-name tooltip" style="font-weight: bold;">
+                <span>{{name}}</span>
+                <span class="tooltiptext">{{contexte}}</span>
+            </div>
+
+            <label class="item-integer">{{vecu.degre}}</label>
+
+            <div class="item-control">
+                <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+            </div>
+
+            <div class="item-control">
+                <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            </div>
+
+        </li>
+        {{/each}}
+
+        {{#each (getCompetences data.id) as |competence|}}
+        <li class="item" data-item-id="{{competence.refid}}" data-item-type="competence">
+
+            <div class="item-name tooltip">
+                <span>{{competence.name}}</span>
+                <span class="tooltiptext">{{competence.sum}}/{{competence.next}} ps</span>
+            </div>
+
+            <div class="item-integer">
+                <span>{{competence.degre}}</span>
+            </div>
+
+            <div class="item-control">
+                <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+            </div>
+
+            <div class="item-control">
+                <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            </div>
+
+        </li>
+        {{/each}}
+
+    </div>
+
+</ol>

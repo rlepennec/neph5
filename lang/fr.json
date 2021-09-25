@@ -1,0 +1,294 @@
+{
+    "ITEM.TypeAlchimie":     "Voie alchimique",
+    "ITEM.TypeAppel":        "Appel",
+    "ITEM.TypeAspect":       "Aspect",
+    "ITEM.TypeArcane":       "Quête d'Arcane",
+    "ITEM.TypeCatalyseur":   "Catalyseur",
+    "ITEM.TypeCompetence":   "Compétence",
+    "ITEM.TypeMagie":        "Voie magique",
+    "ITEM.TypeMateriae":     "Materiae Primae",
+    "ITEM.TypeMetamorphe":   "Métamorphe",
+    "ITEM.TypeOrdonnance":   "Ordonnance de Kabbale",
+    "ITEM.TypePeriode":      "Période",
+    "ITEM.TypeQuete":        "Quête ésotérique",
+    "ITEM.TypeRite":         "Rite",
+    "ITEM.TypeSavoir":       "Savoir ésotérique",
+    "ITEM.TypeScience":      "Science occulte",
+    "ITEM.TypeSort":         "Sort",
+    "ITEM.TypeVecu":         "Vécu",
+    "ITEM.TypeChute":        "Chute",
+    
+    "ITEM.TypeInvocation":   "Invocation",
+    "ITEM.TypeFormule":      "Formule",
+
+    "ACTOR.TypeFigure":      "Figure",
+    "ACTOR.TypeFigurant":    "Figurant",
+    "ACTOR.TypeSimulacre":   "Simulacre",
+
+    "NEPH5E": {
+
+        "akasha":          "Akasha",
+        "nef":             "Nef akashique",
+        "activation":      "Activation",
+        "boussole":        "Boussole",
+        "barge":           "Barge",
+        "caracteristique": "Caracteristique",
+        "compas":          "Compas",
+        "controle":        "Contrôle",
+        "construction":    "Construction",
+        "cout":            "Coût",
+        "description":     "Description",
+        "figure":          "Figure",
+        "direction":       "Direction",
+        "dommages":        "Dommages",
+        "entropie":        "Entropie",
+        "resume":          "Résumé",
+        "metamorphoses":   "Métamorphoses",
+        "nom":             "Nom",
+        "options":         "Options",
+        "protection":      "Protection",
+        "incarnations":    "Incarnations",
+        "extrait":         "Extrait",
+        "nephilim":        "Nephilim",
+        "notes":           "Notes",
+        "figurant":        "Figurant",
+        "selenim":         "Selenim",
+        "humain":          "Humain",
+        "soleil":          "Soleil",
+        "vecus":           "Vécus",
+        "tab":             "Onglet",
+        "tenebre":         "Art ténébreux",
+        "menace":          "Menace",
+        "ka":              "Ka",
+        "air":             "Air",
+        "eau":             "Eau",
+        "feu":             "Feu",
+        "terre":           "Terre",
+        "lune":            "Lune",
+        "luneNoire":       "Lune Noire",
+
+        "anamorphose": {
+            "science": "Anamorphose",
+            "nom":  "Nom de l'aspect"
+        },
+        "necromancie": {
+            "science": "Nécromancie",
+            "nom":  "Nom du rite",
+            "rite": "Rite",
+            "cercles": {
+                "fossoyeur":     "Fossoyeur",
+                "embaumeur":     "Embaumeur",
+                "imputrescible": "Imputrescible"
+            },
+            "desmos": {
+                "nom":           "Desmos",
+                "spiritisme":    "Spiritisme",
+                "apaisement":    "Apaisement",
+                "claivoyance":   "Claivoyance",
+                "animation" :    "Animation",
+                "possession" :   "Possession",
+                "audela" :       "Au-delà",
+                "corruption" :   "Corruption"
+            }
+        },
+        "conjuration": {
+            "science": "Conjuration",
+            "nom":  "Nom de l'appel",
+            "appel": "Appel",
+            "cercles": {
+                "charmeur": "Charmeur",
+                "dresseur": "Dresseur",
+                "demiurge": "Demiurge"
+            },
+            "appels": {
+                "nom":          "Appel",
+                "pacifiste":    "Pacifiste",
+                "savant":       "Savant",
+                "tortionnaire": "Tortionnaire",
+                "familier":     "Familier",
+                "voyageur":     "Voyageur",
+                "drogué":       "Droggué",
+                "soldat":       "Soldat",
+                "fou" :         "Fou",
+                "annihilateur": "Annihilateur",
+                "guide":        "Guide",
+                "malfaisant":   "Malfaisant",
+                "chasseur":     "Chasseur"
+            }
+        },
+        "alchimie": {
+            "active": "Activé",
+            "science": "Alchimie",
+            "effets": "Formules",
+            "cercles": {
+                "oeuvreAuNoir":  "Oeuvre au noir",
+                "oeuvreAuBlanc": "Oeuvre au blanc",
+                "oeuvreAuRouge": "Oeuvre au rouge"
+            },
+            "construct": "Construct",
+            "constructs": {
+                "athanor": "Athanor",
+                "creuset": "Creuset",
+                "cornue":  "Cornue",
+                "alambic": "Alambic",
+                "aludel":  "Aludel"
+            },
+            "enonce":    "Enoncé",
+            "laboratoire": "Laboratoire",
+            "nom":       "Nom de la formule",
+            "substance": "Substance",
+            "substances": {
+                "poudre":  "Poudre",
+                "metal":   "Métal",
+                "ambre":   "Ambre",
+                "liqueur": "Liqueur",
+                "vapeur":  "Vapeur"
+            },
+            "vaisseau": "Vaisseau",
+            "vaisseaux": {
+                "cartouche": "Cartouche",
+                "pyxide":    "Pyxide",
+                "ampoule":   "Ampoule",
+                "fiole":     "Fiole",
+                "flacon":    "Flacon"
+            },
+            "variante": "Variante",
+            "voie":     "La voie alchimique",
+            "voies": {
+                "breve":    "La voie brève",
+                "seche":    "La voie sèche",
+                "humide":   "La voie humide",
+                "royale":   "La voie royale",
+                "spagyrie": "La voie de la Spagyrie"
+            }
+        },
+
+        "aire":        "Aire d'effet",
+        "cercle":      "Cercle",
+        "debut":       "Début",
+        "fin":         "Fin",
+        "date":        "Date",
+        "degre":       "Degré",
+        "enonce":      "Enoncé",
+        "difficulte":  "Difficulté",
+        "duree":       "Durée",
+        "effet":       "Effet",
+        "element":     "Elément",
+        "elements":    "Eléments",
+        "lieu":        "Lieu",
+        "monde":       "Monde",
+        "portee":      "Portée",
+        "stase":       "Stase",
+        "variantes":   "Variantes",
+        "visibilite":  "Visibilité",
+        "noyau":       "Noyau",
+        "reserve":     "Reserve",
+        "sapience":    "Sapience",
+
+        "kabbale" : {
+            "science": "Kabbale",
+            "effets": "Invocations",
+            "cercles": {
+                "sceaux":    "Sceaux",
+                "pentacles": "Pentacles",
+                "cles":      "Clés"
+            },
+            "nom":          "Nom de l'invocation",
+            "monde":        "Monde",
+            "mondes": {
+                "aresh":    "Aresh",
+                "meborack": "Meborack",
+                "pachad":   "Pachad",
+                "sohar":    "Sohar",
+                "zakai":    "Zakai"
+            },
+            "ordonnance":   "Ordonnance",
+            "sephirah":     "Sephirah",
+            "sephiroth": {
+                "malkut":    "Malkut",
+                "yesod":     "Yesod",
+                "hod":       "Hod",
+                "netzach":   "Netzach",
+                "tiphereth": "Tiphereth",
+                "chesed":    "Chesed",
+                "geburah":   "Geburah",
+                "binah":     "Binah",
+                "chokmah":   "Chokmah",
+                "kether":    "Kether"
+            }
+        },
+
+        "magie" : {
+            "science": "Magie",
+            "effets": "Sorts",
+            "cercles": {
+                "basseMagie":  "Basse Magie",
+                "hauteMagie":  "Haute Magie",
+                "grandSecret": "Grand Secret"
+            },
+            "etapes": {
+                "porche":    "Le porche",
+                "carrefour": "Le carrefour",
+                "coeur":     "Le coeur",
+                "fil":       "Le fil",
+                "epreuve":   "L'épreuve"
+            },
+            "nom":            "Nom du sort",
+            "voie":           "La voie initiatique",
+            "voies": {
+                "sentier":    "La voie du sentier sinueux",
+                "spirale":    "La voie de la spirale d'élévation",
+                "principes":  "La voie des principes égarants",
+                "labyrinthe": "La voie du labyrinthe schématique",
+                "dedale":     "La voie du dédale de l'âme",
+                "dragon":     "La voie du secret du Dragon"
+            }
+        },
+
+        "pentacle" : {
+            "nom" : "Pentacle",
+            "elements": {
+                "air":   "Air",
+                "eau":   "Eau",
+                "feu":   "Feu",
+                "lune":  "Lune",
+                "terre": "Terre"
+            }
+        },
+
+        "simulacre": {
+            "nom": "Simulacre",
+            "agile": "Agile",
+            "endurant": "Endurant",
+            "fort": "Fort",
+            "intelligent": "Intelligent",
+            "seduisant": "Séduisant",
+            "fortune": "Fortuné",
+            "savant": "Savant",
+            "sociable": "Sociable",
+            "inne": {
+                "agile": "Agile",
+                "endurant": "Endurant",
+                "fort": "Fort",
+                "intelligent": "Intelligent",
+                "seduisant": "Séduisant",
+                "fortune": "Fortuné",
+                "savant": "Savant",
+                "sociable": "Sociable"
+            }
+        },
+
+        "ere": "Ere",
+        "eres" : {
+            "sentierOr":           "Le Sentier d'or",
+            "guerresElementaires": "Les Guerres élémentaires",
+            "compactsSecrets":     "Les Compacts secrets",
+            "ageHermetisme":       "L'Age de l'Hermétisme",
+            "guerresSecretes":     "Les Guerres secrètes",
+            "nouveauxMondes":      "Les nouveaux Mondes",
+            "grandReveil":         "Le Grand Réveil"
+        }
+
+    }
+
+}

@@ -1,0 +1,354 @@
+{
+    "Actor": {
+        "types": [
+            "figure",
+            "figurant",
+            "simulacre"
+        ],
+        "figurant": {
+            "id": "",
+            "menace": 0,
+            "ka": 0
+        },
+        "simulacre": {
+            "id": "",
+            "agile": 0,
+            "endurant": 0,
+            "fort": 0,
+            "intelligent": 0,
+            "seduisant": 0,
+            "soleil": 0,
+            "fortune": 0,
+            "savant": 0,
+            "sociable": 0,
+            "vecu": {
+                "refid": null,
+                "degre": 0
+            },
+            "description": ""
+        },
+        "figure": {
+            "id": "",
+            "description": "",
+            "sapience": 0,
+            "ka" : {
+                "air": 0,
+                "brume": 0,
+                "eau": 0,
+                "feu": 0,
+                "lune": 0,
+                "noyau": 0,
+                "orichalque": 0,
+                "reserve": 0,
+                "reserveCourante": 0,
+                "soleil": 0,
+                "tenebre": 0,
+                "terre": 0
+            },
+            "simulacre": {
+                "refid": null
+            },
+            "periodes": [],
+            "stase": {
+                "description": "",
+                "air": 0,
+                "eau": 0,
+                "feu": 0,
+                "lune": 0,
+                "terre": 0
+            },
+            "metamorphe": {
+                "refid": null,
+                "metamorphoses": [false, false, false, false, false, false, false, false, false, false]
+            },
+            "magie": {
+                "sorts": [],
+                "voie": {
+                    "refid": null
+                }
+            },
+            "kabbale": {
+                "invocations": [],
+                "voie": {
+                    "ordonnances": []
+                }
+            },
+            "alchimie": {
+                "formules": [],
+                "voie": {
+                    "refid": null
+                },
+                "constructs": {
+                    "cornue": {
+                        "active": false,
+                        "degre": "",
+                        "air": 0,
+                        "eau": 0,
+                        "feu": 0,
+                        "lune": 0,
+                        "terre": 0
+                    },
+                    "creuset": {
+                        "active": false,
+                        "degre": "",
+                        "air": 0,
+                        "eau": 0,
+                        "feu": 0,
+                        "lune": 0,
+                        "terre": 0
+                    },
+                    "athanor": {
+                        "active": false,
+                        "degre": "",
+                        "air": 0,
+                        "eau": 0,
+                        "feu": 0,
+                        "lune": 0,
+                        "terre": 0
+                    },
+                    "aludel": {
+                        "active": false,
+                        "degre": "",
+                        "air": 0,
+                        "eau": 0,
+                        "feu": 0,
+                        "lune": 0,
+                        "terre": 0
+                    },
+                    "alambic": {
+                        "active": false,
+                        "degre": "",
+                        "air": 0,
+                        "eau": 0,
+                        "feu": 0,
+                        "lune": 0,
+                        "terre": 0
+                    }
+                },
+                "akasha": {
+                    "nef": {
+                        "active": false
+                    },
+                    "boussole": {
+                        "septentrion": 0,
+                        "orient": 0,
+                        "midi": 0,
+                        "occident": 0,
+                        "zenith": 0,
+                        "nadir": 0
+                    },
+                    "barge": {
+                        "active": false
+                    },
+                    "compas": {
+                        "septentrion": 0,
+                        "orient": 0,
+                        "midi": 0,
+                        "occident": 0,
+                        "zenith": 0,
+                        "nadir": 0
+                    }
+                },
+                "catalyseurs": [],
+                "materiae": [],
+                "primae": {
+                    "air": {
+                        "quantite": 0,
+                        "max": 0
+                    },
+                    "eau": {
+                        "quantite": 0,
+                        "max": 0
+                    },
+                    "feu": {
+                        "quantite": 0,
+                        "max": 0
+                    },
+                    "lune": {
+                        "quantite": 0,
+                        "max": 0
+                    },
+                    "terre": {
+                        "quantite": 0,
+                        "max": 0
+                    }
+                }
+            },
+            "imago": {
+                "aspects": [],
+                "description": ""
+            },
+            "necromancie": {
+                "rites": []
+            },
+            "conjuration": {
+                "appels": []
+            },
+            "options": {
+                "alchimie": true,
+                "anamorphose": true,
+                "conjuration": true,
+                "description": true,
+                "simulacre": true,
+                "incarnations": true,
+                "kabbale": true,
+                "magie": true,
+                "necromancie": true,
+                "nephilim": true,
+                "vecus": true,
+                "selenim": true,
+                "akasha": true,
+                "boussole": true,
+                "compas": true
+            }
+        }
+    },
+    "Item": {
+        "types": [
+            "alchimie",
+            "appel",
+            "arcane",
+            "aspect",
+            "catalyseur",
+            "chute",
+            "competence",
+            "formule",
+            "invocation",
+            "magie",
+            "materiae",
+            "metamorphe",
+            "ordonnance",
+            "periode",
+            "quete",
+            "rite",
+            "savoir",
+            "science",
+            "sort",
+            "vecu"
+        ],
+        "alchimie": {
+            "id": "",
+            "description": ""
+        },
+        "appel": {
+            "id": "",
+            "appel": "pacifiste",
+            "degre": 0,
+            "controle": false,
+            "visibilite": "Non",
+            "entropie": "0",
+            "dommages": "0",
+            "protection": "0",
+            "description": ""
+        },
+        "arcane": {
+            "id": "",
+            "description": ""
+        },
+        "aspect": {
+            "id": "",
+            "degre": 0,
+            "activation": 1,
+            "duree": "",
+            "description": ""
+        },
+        "catalyseur": {
+            "id": "",
+            "description": ""
+        },
+        "chute": {
+            "id": "",
+            "description": ""
+        },
+        "competence": {
+            "id": "",
+            "inne": "agile",
+            "description": ""
+        },
+        "formule": {
+            "id": "",
+            "cercle": "oeuvreAuNoir",
+            "enonce": "",
+            "substance": "poudre",
+            "elements": ["air", "eau"],
+            "degre": 1,
+            "aire": "",
+            "duree": "Instantanée",
+            "catalyseurs": [],
+            "variantes": [],
+            "description": ""
+        },
+        "invocation": {
+            "id": "",
+            "sephirah": "malkut",
+            "monde": "aresh",
+            "element": "air",
+            "degre": 1,
+            "portee": "Personnelle",
+            "duree": "Instantanée",
+            "visibilite": "Non",
+            "description": ""
+        },
+        "magie": {
+            "id": "",
+            "description": ""
+        },
+        "materiae": {
+            "id": "",
+            "element": "air",
+            "description": ""
+        },
+        "metamorphe": {
+            "id": "",
+            "element": "air",
+            "metamorphoses": ["", "", "", "", "", "", "", "", "", ""],
+            "description": ""
+        },
+        "ordonnance": {
+            "id": "",
+            "monde": "",
+            "description": ""
+        },
+        "periode": {
+            "id": "",
+            "aube": 0,
+            "contexte": "",
+            "vecus": [],
+            "description": ""
+        },
+        "quete": {
+            "id": "",
+            "description": ""
+        },
+        "rite": {
+            "id": "",
+            "desmos": "desmos",
+            "degre": 0,
+            "duree": "",
+            "description": ""
+        },
+        "savoir": {
+            "id": "",
+            "description": ""
+        },
+        "science": {
+            "id": "",
+            "ref": ""
+        },
+        "sort": {
+            "id": "",
+            "cercle": "basseMagie",
+            "element": "air",
+            "voies": [],
+            "degre": 1,
+            "portee": "Personnelle",
+            "duree": "Instantanée",
+            "description": ""
+        },
+        "vecu": {
+            "id": "",
+            "competences": [],
+            "description": ""
+        }
+    }
+}

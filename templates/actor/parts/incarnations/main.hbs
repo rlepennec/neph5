@@ -1,0 +1,314 @@
+<input
+    name="data.page.incarnations"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<div class="cercles">
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.sapience"}}</label>
+        <label class="cercle-tag"/>
+        <input
+            class="cercle-value"
+            name="data.sapience"
+            type="text"
+            value="{{data.sapience}}"
+            data-dtype="Number"/>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">Agartha</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScore data.id}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "ITEM.TypePeriode"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getCount data.periodes}}</label>
+    </div>
+
+</div>
+
+{{#unless data.periodes}}
+<ol class="item-list">
+    <li class="item-list-header">
+        <div class="item-name">
+            <span>Ajouter des {{localize "ITEM.TypePeriode"}}</span>
+        </div>
+    </li>
+</ol>
+{{/unless}}
+
+{{#each data.periodes as |periode|}}
+<ol class="item-list">
+    
+    <li class="item-list-header" data-item-id="{{periode.refid}}" data-item-type="periode">
+
+        <input
+            name="data.periodes.[{{refid}}].refid"
+            type="hidden"
+            value="{{periode.refid}}"
+            data-dtype="String"/>
+
+        <input
+            class="item-checkbox"
+            type="checkbox"
+            name="data.periodes.[{{refid}}].active"
+            {{checked periode.active}}
+            data-dtype="Boolean"/>
+
+        {{#with (getItem periode.refid)}}
+        <div class="item-name">
+            <span>{{name}}: {{data.data.contexte}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-integer">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-lock"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+
+    {{#each periode.vecus as |vecu|}}
+    <li class="item" data-item-id="{{vecu.refid}}" data-item-type="vecu" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].vecus.[{{refid}}].refid"
+            type="hidden"
+            value="{{vecu.refid}}"
+            data-dtype="String"/>
+
+        {{#with (getItem vecu.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].vecus.[{{refid}}].degre"
+            type="text"
+            value="{{vecu.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
+    {{#each periode.savoirs as |savoir|}}
+    <li class="item" data-item-id="{{savoir.refid}}" data-item-type="savoir" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].savoirs.[{{refid}}].refid"
+            type="hidden"
+            value="{{savoir.refid}}"
+            data-dtype="String"/>
+
+        {{#with (getItem savoir.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].savoirs.[{{refid}}].degre"
+            type="text"
+            value="{{savoir.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
+    {{#each periode.quetes as |quete|}}
+    <li class="item" data-item-id="{{quete.refid}}" data-item-type="quete" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].quetes.[{{refid}}].refid"
+            type="hidden"
+            value="{{quete.refid}}"
+            data-dtype="String"/>
+
+        {{#with (getItem quete.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].quetes.[{{refid}}].degre"
+            type="text"
+            value="{{quete.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
+    {{#each periode.arcanes as |arcane|}}
+    <li class="item" data-item-id="{{arcane.refid}}" data-item-type="arcane" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].arcanes.[{{refid}}].refid"
+            type="hidden"
+            value="{{arcane.refid}}"
+            data-dtype="String"/>
+
+        {{#with (getItem arcane.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].arcanes.[{{refid}}].degre"
+            type="text"
+            value="{{arcane.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
+    {{#each periode.chutes as |chute|}}
+    <li class="item" data-item-id="{{chute.refid}}" data-item-type="chute" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].chutes.[{{refid}}].refid"
+            type="hidden"
+            value="{{chute.refid}}"
+            data-dtype="String"/>
+
+        {{#with (getItem chute.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].chutes.[{{refid}}].degre"
+            type="text"
+            value="{{chute.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
+    {{#each periode.sciences as |science|}}
+    <li class="item" data-item-id="{{science.refid}}" data-item-type="science" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].sciences.[{{refid}}].refid"
+            type="hidden"
+            value="{{science.refid}}"
+            data-dtype="String"/>
+
+        <input
+            name="data.periodes.[{{../refid}}].sciences.[{{refid}}].ref"
+            type="hidden"
+            value="{{science.ref}}"
+            data-dtype="String"/>
+
+        {{#with (getItem science.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].sciences.[{{refid}}].degre"
+            type="text"
+            value="{{science.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
+</ol>
+{{/each}}
+
+
+

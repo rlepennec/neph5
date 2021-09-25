@@ -1,0 +1,221 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+
+            <span class="type">{{localize "NEPH5E.alchimie.nom"}}</span>
+
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+
+            <br>
+
+            <input
+                name="data.id"
+                type="text"
+                value="{{data.id}}"
+                data-dtype="String"/>
+
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+            <div class="header formule">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.cercle"}}</label>
+                    <select class="property-value" name="data.cercle">
+                    {{#select data.cercle}}
+                        {{#each cercles as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.alchimie.substance"}}</label>
+                    <select class="property-value" name="data.substance">
+                    {{#select data.substance}}
+                        {{#each substances as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.element"}}</label>
+                    <select class="property-value" name="data.elements.[0]">
+                    {{#select data.elements.[0]}}
+                        {{#each elements as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.degre"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.degre"
+                        type="text"
+                        value="{{data.degre}}"
+                        data-dtype="Number"/>
+                </div>
+
+            </div>
+
+            <div class="property-list">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.enonce"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.enonce"
+                        type="text"
+                        value="{{data.enonce}}"
+                        data-dtype="String"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.aire"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.aire"
+                        type="text"
+                        value="{{data.aire}}"
+                        data-dtype="String"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.duree"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.duree"
+                        type="text"
+                        value="{{data.duree}}"
+                        data-dtype="String"/>
+                </div>
+
+                {{#if (eq data.cercle "oeuvreAuBlanc")}}
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.element"}} secondaire</label>
+                    <select class="property-value" name="data.elements.[1]">
+                    {{#select data.elements.[1]}}
+                        {{#each elements as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+                {{/if}}
+
+
+            </div>
+
+            <ol class="item-list">
+
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "NEPH5E.alchimie.variante"}}</span>
+                    </div>
+                
+                    <div class="item-control">
+                        <span/>
+                    </div>
+                
+                </li>
+
+                {{#each data.variantes as |variante|}}
+                <li class="item" data-item-type="variante" data-item-id="{{variante.refid}}">
+
+                    <input
+                        name="data.variantes.[{{@index}}].refid"
+                        type="hidden"
+                        value="{{variante.refid}}"
+                        data-dtype="String"/>
+
+                    {{#with (getItem variante.refid)}}
+                    <div class="item-name">
+                        <span data-item-id="{{variante.refid}}">{{name}}</span>
+                    </div>
+                    {{/with}}
+
+                    <div class="item-control">
+                        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+
+                {{/each}}
+                </li>
+
+            </ol>
+
+            <ol class="item-list">
+
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "ITEM.TypeCatalyseur"}}</span>
+                    </div>
+                
+                    <div class="item-control">
+                        <span/>
+                    </div>
+                
+                </li>
+
+                {{#each data.catalyseurs as |catalyseur|}}
+                <li class="item" data-item-type="catalyseur" data-item-id="{{catalyseur.refid}}">
+
+                    <input
+                        name="data.catalyseurs.[{{@index}}].refid"
+                        type="hidden"
+                        value="{{catalyseur.refid}}"
+                        data-dtype="String"/>
+
+                    {{#with (getItem catalyseur.refid)}}
+                    <div class="item-name">
+                        <span data-item-id="{{catalyseur.refid}}">{{name}}</span>
+                    </div>
+                    {{/with}}
+
+                    <div class="item-control">
+                        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+
+                {{/each}}
+                </li>
+
+            </ol>
+
+            <div class="part-header">
+                <div class="part-name">
+                    <span>{{localize "NEPH5E.effet"}}</span>
+                </div>
+            </div>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+        </div>
+
+    </section>
+        
+</form>

@@ -1,0 +1,63 @@
+<input
+    name="data.page.alchimie"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<div class="cercles">
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.alchimie.cercles.oeuvreAuNoir"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "oeuvreAuNoir"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.alchimie.cercles.oeuvreAuBlanc"}}</label>
+        {{#with (getItem data.alchimie.voie.refid)}}
+        <label class="cercle-tag">{{name}}</label>
+        {{/with}}
+        <label class="cercle-value">{{getScience data.id "oeuvreAuBlanc"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.alchimie.cercles.oeuvreAuRouge"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "oeuvreAuRouge"}}</label>
+    </div>
+
+</div>
+
+<ol class="item-list">
+
+    {{> "systems/neph5e/templates/actor/parts/alchimie/header.hbs" cercle="Oeuvre au noir"}}
+
+    {{#each data.alchimie.formules as |formule|}}
+        {{#with (getItem formule.refid)}}
+            {{#if (eq data.data.cercle "oeuvreAuNoir")}}
+                {{> "systems/neph5e/templates/actor/parts/alchimie/formule.hbs" formule=formule}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/alchimie/header.hbs" cercle="Oeuvre au blanc"}}
+
+    {{#each data.alchimie.formules as |formule|}}
+        {{#with (getItem formule.refid)}}
+            {{#if (eq data.data.cercle "oeuvreAuBlanc")}}
+                {{> "systems/neph5e/templates/actor/parts/alchimie/formule.hbs" formule=formule}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/alchimie/header.hbs" cercle="Oeuvre au rouge"}}
+
+    {{#each data.alchimie.formules as |formule|}}
+        {{#with (getItem formule.refid)}}
+            {{#if (eq data.data.cercle "oeuvreAuRouge")}}
+                {{> "systems/neph5e/templates/actor/parts/alchimie/formule.hbs" formule=formule}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+</ol>

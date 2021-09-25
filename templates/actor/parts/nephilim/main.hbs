@@ -1,0 +1,473 @@
+<input
+    name="data.page.nephilim"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<div class="columns">
+
+    <div class="column">
+
+        <ol class="item-list">
+            
+            <li class="item-list-header">
+
+                <div class="item-name">
+                    <span>{{localize "NEPH5E.pentacle.nom"}}</span>
+                </div>
+
+                <div class="item-control">
+                    <span/>
+                </div>
+
+                <div class="item-integer">
+                    <span/>
+                </div>
+
+            </li>
+
+            <li class="item" data-item-id="air">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.air"}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <input
+                    class="item-integer"
+                    name="data.ka.air"
+                    type="text"
+                    value="{{data.ka.air}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item" data-item-id="eau">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.eau"}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <input
+                    class="item-integer"
+                    name="data.ka.eau"
+                    type="text"
+                    value="{{data.ka.eau}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item" data-item-id="feu">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.feu"}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <input
+                    class="item-integer"
+                    name="data.ka.feu"
+                    type="text"
+                    value="{{data.ka.feu}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item" data-item-id="lune">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.lune"}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <input
+                    class="item-integer"
+                    name="data.ka.lune"
+                    type="text"
+                    value="{{data.ka.lune}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item" data-item-id="terre">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.terre"}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <input
+                    class="item-integer"
+                    name="data.ka.terre"
+                    type="text"
+                    value="{{data.ka.terre}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+        </ol>
+
+        <ol class="item-list">
+            
+            <li class="item-list-header">
+
+                <div class="item-short-string-left">
+                    <span>{{localize "NEPH5E.stase"}}</span>
+                </div>
+
+                <div class="item-string-right">
+                    <input
+                        style="border: none"
+                        name="data.stase.description"
+                        type="text"
+                        value="{{data.stase.description}}"
+                        data-dtype="String"/>
+                </div>
+
+            </li>
+
+            <li class="item">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.air"}}</label>
+
+                <input
+                    class="item-integer"
+                    name="data.stase.air"
+                    type="text"
+                    value="{{data.stase.air}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.eau"}}</label>
+
+                <input
+                    class="item-integer"
+                    name="data.stase.eau"
+                    type="text"
+                    value="{{data.stase.eau}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.feu"}}</label>
+
+                <input
+                    class="item-integer"
+                    name="data.stase.feu"
+                    type="text"
+                    value="{{data.stase.feu}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.lune"}}</label>
+
+                <input
+                    class="item-integer"
+                    name="data.stase.lune"
+                    type="text"
+                    value="{{data.stase.lune}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+            <li class="item">
+
+                <label class="item-name">{{localize "NEPH5E.pentacle.elements.terre"}}</label>
+
+                <input
+                    class="item-integer"
+                    name="data.stase.terre"
+                    type="text"
+                    value="{{data.stase.terre}}"
+                    data-dtype="Number"/>
+
+            </li>
+
+        </ol>
+        
+        <ol class="item-list">
+            
+            <li class="item-list-header">
+
+                <div class="item-name">
+                    <span>{{localize "ITEM.TypeArcane"}}</span>
+                </div>
+
+                <div class="item-integer">
+                    <span/>
+                </div>
+
+                <div class="item-control">
+                    <span/>
+                </div>
+
+                <div class="item-control">
+                    <span/>
+                </div>
+
+            </li>
+
+            {{#each (getLevels data.id 'arcanes') as |arcane|}}
+            <li class="item" data-item-id="{{arcane.refid}}" data-item-type="arcane">
+
+                {{#with (getItem arcane.refid)}}
+                <div class="item-name">
+                    <span data-item-id="{{arcane.refid}}">{{name}}</span>
+                </div>
+                {{/with}}
+
+                <label class="item-integer">{{arcane.degre}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <div class="item-control">
+                    <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                </div>
+
+            {{/each}}
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div class="column">
+
+        <ol class="item-list">
+
+            <li class="item-list-header">
+
+                <div class="item-name">
+                    {{#if data.metamorphe.refid}}
+                        {{#with (getItem data.metamorphe.refid)}}
+                        <span>{{name}}</span>
+                        {{/with}}
+                    {{else}}
+                        <span>{{localize "ITEM.TypeMetamorphe"}}</span>
+                    {{/if}}
+                </div>
+
+                <div class="item-checkbox">
+                    <span/>
+                </div>
+
+            </li>
+
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[0].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[0]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[0]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[1].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[1]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[1]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[2].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[2]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[2]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[3].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[3]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[3]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[4].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[4]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[4]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[5].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[5]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[5]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[6].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[6]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[6]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[7].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[7]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[7]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[8].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[8]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[8]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+            <li class="item">
+
+                {{#with (getItem data.metamorphe.refid)}}
+                <label class="item-name">{{data.data.metamorphoses.[9].name}}</label>
+                {{/with}}
+
+                <input
+                    class="item-checkbox" 
+                    name="data.metamorphoses.[9]"
+                    type="checkbox"
+                    {{checked data.metamorphe.metamorphoses.[9]}}
+                    data-dtype="Boolean"/>
+
+            </li>
+
+        </ol>
+
+        <ol class="item-list">
+            
+            <li class="item-list-header">
+
+                <div class="item-name">
+                    <span>{{localize "ITEM.TypeChute"}}</span>
+                </div>
+
+                <div class="item-integer">
+                    <span/>
+                </div>
+
+                <div class="item-control">
+                    <span/>
+                </div>
+
+                <div class="item-control">
+                    <span/>
+                </div>
+
+            </li>
+
+            {{#each (getLevels data.id 'chutes') as |chute|}}
+            <li class="item" data-item-id="{{chute.refid}}" data-item-type="chute">
+
+                {{#with (getItem chute.refid)}}
+                <div class="item-name">
+                    <span data-item-id="{{chute.refid}}">{{name}}</span>
+                </div>
+                {{/with}}
+
+                <label class="item-integer">{{chute.degre}}</label>
+
+                <div class="item-control">
+                    <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <div class="item-control">
+                    <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                </div>
+
+            {{/each}}
+            </li>
+
+        </ol>
+
+    </div>
+
+</div>

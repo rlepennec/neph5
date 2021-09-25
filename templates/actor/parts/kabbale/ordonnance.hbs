@@ -1,0 +1,23 @@
+<li class="item" data-item-id="{{ordonnance.refid}}" data-item-type="ordonnance">
+
+    <input
+        name="data.kabbale.voie.ordonnances.[{{@index}}].refid"
+        type="hidden"
+        value="{{ordonnance.refid}}"
+        data-dtype="String"/>
+
+    {{#with (getItem ordonnance.refid)}}
+    <div class="item-name">
+        <span data-item-id="{{ordonnance.refid}}">{{name}}</span>
+    </div>
+    {{/with}}
+
+    <div class="item-control">
+        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+    </div>
+    
+    <div class="item-control">
+        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+    </div>
+
+</li>

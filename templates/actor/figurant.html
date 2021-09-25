@@ -1,0 +1,106 @@
+<form class="{{cssClass}}" autocomplete="off">
+    
+    
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+
+        <div class="title">
+            <span class="type">{{localize "NEPH5E.figurant"}}</span>
+            <input class="name" name="name" type="text" value="{{actor.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab simulacre" data-group="primary" data-tab="description">
+
+            <ol class="item-list">
+
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "NEPH5E.caracteristique"}}</span>
+                    </div>
+
+                    <div class="item-control">
+                        <span/>
+                    </div>
+
+                    <div class="item-integer">
+                        <span/>
+                    </div>
+
+                </li>
+
+                <li class="item">
+
+                    <label class="item-name">{{localize "NEPH5E.menace"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <input
+                        class="item-integer"
+                        name="data.menace"
+                        type="text"
+                        value="{{data.menace}}"
+                        data-dtype="Number"/>
+
+                </li>
+
+                <li class="item">
+
+                    <label class="item-name">{{localize "NEPH5E.ka"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <input
+                        class="item-integer"
+                        name="data.ka"
+                        type="text"
+                        value="{{data.ka}}"
+                        data-dtype="Number"/>
+
+                </li>
+
+            </ol>
+
+            <ol class="item-list">
+
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "NEPH5E.description"}}</span>
+                    </div>
+
+                </li>
+
+            </ol>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+        </div>
+
+    </section>
+
+</form>

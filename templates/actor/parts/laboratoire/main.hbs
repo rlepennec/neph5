@@ -1,0 +1,69 @@
+<input
+    name="data.page.laboratoire"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+{{> "systems/neph5e/templates/actor/parts/laboratoire/constructs.hbs"}}
+
+{{> "systems/neph5e/templates/actor/parts/laboratoire/primae.hbs"}}
+
+<ol class="item-list">
+
+    <li class="item-list-header">
+
+        <div class="item-name">
+            <span>{{localize "ITEM.TypeMateriae"}}</span>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.element"}}</span>
+        </div>
+
+        <div class="item-integer">
+            <span>Qté</span>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+    </li>
+
+    {{#each data.alchimie.materiae as |materiae|}}
+        {{#with (getItem materiae.refid)}}
+            {{> "systems/neph5e/templates/actor/parts/laboratoire/materiae.hbs" materiae=materiae}}
+        {{/with}}
+    {{/each}}
+
+</ol>
+
+<ol class="item-list">
+
+    <li class="item-list-header">
+
+        <div class="item-name">
+            <span>{{localize "ITEM.TypeCatalyseur"}}</span>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+    </li>
+
+    {{#each data.alchimie.catalyseurs as |catalyseur|}}
+        {{#with (getItem catalyseur.refid)}}
+            {{> "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs" catalyseur=catalyseur}}
+        {{/with}}
+    {{/each}}
+
+</ol>

@@ -1,0 +1,197 @@
+<input
+    name="data.page.kabbale"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<div class="cercles" style="column-count: 5">
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.malkut"}}</label>
+        <label class="cercle-value">{{getScience data.id "malkut"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.yesod"}}</label>
+        <label class="cercle-value">{{getScience data.id "yesod"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.hod"}}</label>
+        <label class="cercle-value">{{getScience data.id "hod"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.netzach"}}</label>
+        <label class="cercle-value">{{getScience data.id "netzach"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.tiphereth"}}</label>
+        <label class="cercle-value">{{getScience data.id "tiphereth"}}</label>
+    </div>
+
+    <!--
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.chesed"}}</label>
+        <label class="cercle-value">{{getScience data.id "chesed"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.geburah"}}</label>
+        <label class="cercle-value">{{getScience data.id "geburah"}}</label>
+    </div>
+
+        <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.binah"}}</label>
+        <label class="cercle-value">{{getScience data.id "binah"}}</label>
+    </div>
+
+        <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.chokmah"}}</label>
+        <label class="cercle-value">{{getScience data.id "chokmah"}}</label>
+    </div>
+
+        <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.kabbale.sephiroth.kether"}}</label>
+        <label class="cercle-value">{{getScience data.id "kether"}}</label>
+    </div>
+
+    -->
+
+</div>
+
+<ol class="item-list">
+
+    <li class="item-list-header">
+
+        <div class="item-name">
+            <span>{{localize "NEPH5E.kabbale.ordonnance"}}</span>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+    </li>
+
+    {{#each data.kabbale.voie.ordonnances as |ordonnance|}}
+        {{#with (getItem ordonnance.refid)}}
+            {{> "systems/neph5e/templates/actor/parts/kabbale/ordonnance.hbs" ordonnance=ordonnance}}
+        {{/with}}
+    {{/each}}
+
+</ol>
+
+<ol class="item-list">
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Malkut"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "malkut")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Yesod"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "yesod")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Hod"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "hod")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Netzah"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "netzach")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Tipheret"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "tiphereth")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    <!--
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Geburah"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "geburah")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Chesed"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "chesed")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Binah"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "binah")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Chokmah"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "chokmah")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Kether"}}
+
+    {{#each data.kabbale.invocations as |invocation|}}
+        {{#with (getItem invocation.refid)}}
+            {{#if (eq data.data.sephirah "kether")}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    -->
+
+</ol>

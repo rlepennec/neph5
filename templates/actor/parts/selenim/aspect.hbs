@@ -1,0 +1,37 @@
+<li class="item" data-item-id="{{aspect.refid}}">
+
+    <input
+        name="data.imago.aspects.[{{@index}}].refid"
+        type="hidden"
+        value="{{aspect.refid}}"
+        data-dtype="String"/>
+
+    {{#with (getItem aspect.refid)}}
+    <div class="item-name">
+        <span data-item-id="{{aspect.refid}}">{{name}}</span>
+    </div>
+    {{/with}}
+
+    {{#with (getItem aspect.refid)}}
+    <div class="item-integer">
+        <span>{{data.data.activation}}</span>
+    </div>
+    {{/with}}
+
+    <div class="item-checkbox">
+        <input
+            type="checkbox"
+            name="data.imago.aspects.[{{@index}}].active"
+            {{checked aspect.active}}
+            data-dtype="Boolean"/>
+    </div>
+
+    <div class="item-control">
+        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+    </div>
+    
+    <div class="item-control">
+        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+    </div>
+
+</li>

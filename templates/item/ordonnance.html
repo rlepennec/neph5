@@ -1,0 +1,61 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+
+            <span class="type">{{localize "ITEM.TypeOrdonnance"}}</span>
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active " data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab" data-group="primary" data-tab="description">
+
+            <div class="header materiae">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.kabbale.monde"}}</label>
+                    <select class="property-value" name="data.monde">
+                    {{#select data.monde}}
+                        {{#each mondes as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="part-header">
+                <div class="part-name">
+                    <span>{{localize "NEPH5E.description"}}</span>
+                </div>
+            </div>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+        </div>
+
+    </section>
+
+</form>

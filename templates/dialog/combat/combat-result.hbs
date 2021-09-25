@@ -1,0 +1,38 @@
+<div class="chat">
+
+    <div class="chat-body">
+
+        <div class="chat-description">
+
+            {{#if result.roll}}
+            <span>{{actor.data.name}} {{result.roll}}</span><br>
+            {{/if}}
+
+            {{#if result.wound}}
+            {{#if (eq action.type 'defense')}}
+            <span>{{actor.data.name}} {{result.wound}}</span><br>
+            {{#each result.effects as |effect|}}
+            <span>{{effect}}</span><br>
+            {{/each}}
+            {{else}}
+            <span>{{action.target.name}} {{result.wound}}</span><br>
+            {{/if}}
+            {{/if}}
+
+        </div>
+
+        <br>
+
+        <div class="chat-details">
+
+            {{#if (eq action.type 'defense')}}
+            <span>Dommages: {{result.damages}}, Defense: {{result.reduction}}, Protection: {{result.protection}}</span>
+            {{else}}
+            <span>Impact: {{action.impact}}, Protection: {{result.protection}}</span>
+            {{/if}}
+
+        </div>
+
+    </div>
+
+</div>

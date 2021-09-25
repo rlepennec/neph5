@@ -1,0 +1,173 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+
+        <div class="title">
+            <span class="type">{{localize "NEPH5E.figure"}}</span>
+            <input class="name" name="name" type="text" value="{{actor.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        {{#if (eq data.options.nephilim true)}}
+        <a class="sheet-navigation-tab" data-tab="nephilim">{{localize "NEPH5E.nephilim"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.selenim true)}}
+        <a class="sheet-navigation-tab" data-tab="selenim">{{localize "NEPH5E.selenim"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.vecus true)}}
+        <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.vecus"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.magie true)}}
+        <a class="sheet-navigation-tab" data-tab="magie">{{localize "NEPH5E.magie.science"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.kabbale true)}}
+        <a class="sheet-navigation-tab" data-tab="kabbale">{{localize "NEPH5E.kabbale.science"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.alchimie true)}}
+        <a class="sheet-navigation-tab" data-tab="alchimie">{{localize "NEPH5E.alchimie.science"}}</a>
+        <a class="sheet-navigation-tab" data-tab="laboratoire">{{localize "NEPH5E.alchimie.laboratoire"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.necromancie true)}}
+        <a class="sheet-navigation-tab" data-tab="necromancie">{{localize "NEPH5E.necromancie.science"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.conjuration true)}}
+        <a class="sheet-navigation-tab" data-tab="conjuration">{{localize "NEPH5E.conjuration.science"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.akasha true)}}
+        <a class="sheet-navigation-tab" data-tab="akasha">{{localize "NEPH5E.akasha"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.incarnations true)}}
+        <a class="sheet-navigation-tab" data-tab="incarnations">{{localize "NEPH5E.incarnations"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.simulacre true)}}
+        <a class="sheet-navigation-tab" data-tab="simulacre">
+            {{#if data.simulacre.refid}}
+                {{#with (getActor data.simulacre.refid)}}
+                {{data.name}}
+                {{/with}}
+            {{else}}
+                {{localize "NEPH5E.simulacre.nom"}}
+            {{/if}}
+        </a>
+        {{/if}}
+
+        {{#if (eq data.options.description true)}}
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.notes"}}</a>
+        {{/if}}
+
+        {{#canEditItem}}
+        <a class="sheet-navigation-tab" data-tab="options">{{localize "NEPH5E.options"}}</a>
+        {{/canEditItem}}
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{#if (eq data.options.description true)}}
+        <div class="tab description" data-group="primary" data-tab="description">
+            {{> "systems/neph5e/templates/actor/parts/description/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.vecus true)}}
+        <div class="tab vecus" data-group="primary" data-tab="vecus">
+            {{> "systems/neph5e/templates/actor/parts/vecus/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.simulacre true)}}
+        <div class="tab simulacre" data-group="primary" data-tab="simulacre">
+            {{> "systems/neph5e/templates/actor/parts/simulacre/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.nephilim true)}}
+        <div class="tab nephilim" data-group="primary" data-tab="nephilim">
+            {{> "systems/neph5e/templates/actor/parts/nephilim/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.magie true)}}
+        <div class="tab magie" data-group="primary" data-tab="magie">
+            {{> "systems/neph5e/templates/actor/parts/magie/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.kabbale true)}}
+        <div class="tab kabbale" data-group="primary" data-tab="kabbale">
+            {{> "systems/neph5e/templates/actor/parts/kabbale/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.alchimie true)}}
+        <div class="tab alchimie" data-group="primary" data-tab="alchimie">
+            {{> "systems/neph5e/templates/actor/parts/alchimie/main.hbs"}}
+        </div>
+        <div class="tab laboratoire" data-group="primary" data-tab="laboratoire">
+            {{> "systems/neph5e/templates/actor/parts/laboratoire/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.akasha true)}}
+        <div class="tab akasha" data-group="primary" data-tab="akasha">
+            {{> "systems/neph5e/templates/actor/parts/akasha/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.selenim true)}}
+        <div class="tab selenim" data-group="primary" data-tab="selenim">
+            {{> "systems/neph5e/templates/actor/parts/selenim/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.necromancie true)}}
+        <div class="tab necromancie" data-group="primary" data-tab="necromancie">
+            {{> "systems/neph5e/templates/actor/parts/necromancie/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.conjuration true)}}
+        <div class="tab conjuration" data-group="primary" data-tab="conjuration">
+            {{> "systems/neph5e/templates/actor/parts/conjuration/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.incarnations true)}}
+        <div class="tab incarnations" data-group="primary" data-tab="incarnations">
+            {{> "systems/neph5e/templates/actor/parts/incarnations/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#canEditItem}}
+        <div class="tab options" data-group="primary" data-tab="options">
+            {{> "systems/neph5e/templates/actor/parts/options/main.hbs"}}
+        </div>
+        {{/canEditItem}}
+
+    </section>
+
+</form>

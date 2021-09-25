@@ -1,0 +1,63 @@
+<input
+    name="data.page.magie"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<div class="cercles">
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.magie.cercles.basseMagie"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "basseMagie"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.magie.cercles.hauteMagie"}}</label>
+        {{#with (getItem data.magie.voie.refid)}}
+        <label class="cercle-tag">{{name}}</label>
+        {{/with}}
+        <label class="cercle-value">{{getScience data.id "hauteMagie"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.magie.cercles.grandSecret"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "grandSecret"}}</label>
+    </div>
+
+</div>
+
+<ol class="item-list">
+
+    {{> "systems/neph5e/templates/actor/parts/magie/header.hbs" cercle="Basse Magie"}}
+
+    {{#each data.magie.sorts as |sort|}}
+        {{#with (getItem sort.refid)}}
+            {{#if (eq data.data.cercle "basseMagie")}}
+                {{> "systems/neph5e/templates/actor/parts/magie/sort.hbs" sort=sort}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/magie/header.hbs" cercle="Haute Magie"}}
+
+    {{#each data.magie.sorts as |sort|}}
+        {{#with (getItem sort.refid)}}
+            {{#if (eq data.data.cercle "hauteMagie")}}
+                {{> "systems/neph5e/templates/actor/parts/magie/sort.hbs" sort=sort}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/magie/header.hbs" cercle="Grand Secret"}}
+
+    {{#each data.magie.sorts as |sort|}}
+        {{#with (getItem sort.refid)}}
+            {{#if (eq data.data.cercle "grandSecret")}}
+                {{> "systems/neph5e/templates/actor/parts/magie/sort.hbs" sort=sort}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+</ol>

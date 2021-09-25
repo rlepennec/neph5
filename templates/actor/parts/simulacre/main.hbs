@@ -1,0 +1,201 @@
+<input
+    name="data.page.simulacre"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+
+{{#if data.simulacre.refid}}
+
+{{#with (getActor data.simulacre.refid)}}
+
+    <div class="columns">
+
+        <div class="column">
+
+            <ol class="item-list">
+                
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "NEPH5E.caracteristique"}}</span>
+                    </div>
+
+                    <div class="item-control">
+                        <span/>
+                    </div>
+
+                    <div class="item-integer">
+                        <span/>
+                    </div>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="agile">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.agile"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.agile}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="endurant">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.endurant"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.endurant}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="fort">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.fort"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.fort}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="intelligent">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.intelligent"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.intelligent}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="seduisant">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.seduisant"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.seduisant}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="soleil">
+
+                    <label class="item-name">Ka {{localize "NEPH5E.soleil"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.soleil}}</label>
+
+                </li>
+
+            </ol>
+
+        </div>
+
+        <div class="column">
+
+            <ol class="item-list">
+
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "ITEM.TypeVecu"}}</span>
+                    </div>
+
+                    <div class="item-control">
+                        <span/>
+                    </div>
+
+                    <div class="item-integer">
+                        <span/>
+                    </div>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="savant">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.savant"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.savant}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="sociable">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.sociable"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.sociable}}</label>
+
+                </li>
+
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="fortune">
+
+                    <label class="item-name">{{localize "NEPH5E.simulacre.fortune"}}</label>
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.fortune}}</label>
+
+                </li>
+
+                {{#if data.data.vecu.refid}}
+                <li class="item" data-item-id="{{data.data.id}}" data-item-type="vecu">
+
+                    {{#with (getItem data.data.vecu.refid)}}
+                    <div class="item-name tooltip">
+                        <span>{{name}}</span>
+                    </div>
+                    {{/with}}
+
+                    <div class="item-control">
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
+                    <label class="item-integer">{{data.data.vecu.degre}}</label>
+
+                </li>
+                {{/if}}
+
+            </ol>
+
+        </div>
+
+    </div>
+
+{{/with}}
+{{else}}
+    <ol class="item-list">
+        <li class="item-list-header">
+            <div class="item-name">
+                <span>Déposer un simulacre</span>
+            </div>
+        </li>
+    </ol>
+{{/if}}
+
+

@@ -1,0 +1,215 @@
+<input
+    name="data.page.akasha"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+{{#if (eq data.options.boussole true)}}
+<ol class="item-list">
+    
+    <li class="item-list-header">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.nef"}}</span>
+        </div>
+        <div class="item-checkbox">
+            <span>Activé</span>
+        </div>
+    </li>
+
+    <li class="item">
+        <input
+            class="item-checkbox"
+            type="checkbox"
+            name="data.akasha.nef.active"
+            {{checked data.akasha.nef.active}}
+            data-dtype="Boolean"/>
+    </li>
+
+    <li class="item-list-header">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.boussole"}}</span>
+        </div>
+        <div class="item-integer">
+            <span/>
+        </div>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Septentrion</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.boussole.septentrion"
+            type="text"
+            value="{{data.akasha.boussole.septentrion}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Orient</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.boussole.orient"
+            type="text"
+            value="{{data.akasha.boussole.orient}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Midi</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.boussole.midi"
+            type="text"
+            value="{{data.akasha.boussole.midi}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Occident</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.boussole.occident"
+            type="text"
+            value="{{data.akasha.boussole.occident}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Zenith</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.boussole.zenith"
+            type="text"
+            value="{{data.akasha.boussole.zenith}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Nadir</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.boussole.nadir"
+            type="text"
+            value="{{data.akasha.boussole.nadir}}"
+            data-dtype="Number"/>
+    </li>
+
+</ol>
+{{/if}}
+
+{{#if (eq data.options.compas true)}}
+<ol class="item-list">
+    
+    <li class="item-list-header">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.barge"}}</span>
+        </div>
+        <div class="item-checkbox">
+            <span>Activé</span>
+        </div>
+    </li>
+
+    <li class="item">
+        <input
+            class="item-checkbox"
+            type="checkbox"
+            name="data.akasha.barge.active"
+            {{checked data.akasha.barge.active}}
+            data-dtype="Boolean"/>
+    </li>
+
+    <li class="item-list-header">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.compas"}}</span>
+        </div>
+        <div class="item-integer">
+            <span/>
+        </div>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Septentrion</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.compas.septentrion"
+            type="text"
+            value="{{data.akasha.compas.septentrion}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Orient</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.compas.orient"
+            type="text"
+            value="{{data.akasha.compas.orient}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Midi</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.compas.midi"
+            type="text"
+            value="{{data.akasha.compas.midi}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Occident</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.compas.occident"
+            type="text"
+            value="{{data.akasha.compas.occident}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Zenith</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.compas.zenith"
+            type="text"
+            value="{{data.akasha.compas.zenith}}"
+            data-dtype="Number"/>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>Nadir</span>
+        </div>
+        <input
+            class="item-integer"
+            name="data.akasha.compas.nadir"
+            type="text"
+            value="{{data.akasha.compas.nadir}}"
+            data-dtype="Number"/>
+    </li>
+
+</ol>
+{{/if}}

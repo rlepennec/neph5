@@ -1,0 +1,115 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+            <span class="type">{{localize "ITEM.TypePeriode"}}</span>
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+            <div class="property-list">
+
+                <div class="property">
+                    <label class="property-name">Aube</label>
+                    <input
+                        class="property-value"
+                        name="data.aube"
+                        type="text"
+                        value="{{data.aube}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">Contexte</label>
+                    <input
+                        class="property-value"
+                        name="data.contexte"
+                        type="text"
+                        value="{{data.contexte}}"
+                        data-dtype="String"/>
+                </div>
+
+            </div>
+
+            <ol class="item-list">
+
+                <li class="item-list-header">
+
+                    <div class="item-name">
+                        <span>{{localize "ITEM.TypeVecu"}}</span>
+                    </div>
+                
+                    <div class="item-control">
+                        <span/>
+                    </div>
+
+                    <div class="item-control">
+                        <span/>
+                    </div>
+                
+                </li>
+
+                {{#each data.vecus as |vecu|}}
+                <li class="item" data-item-id="{{vecu.refid}}">
+
+                    <input
+                        name="data.vecus.[{{@index}}].refid"
+                        type="hidden"
+                        value="{{vecu.refid}}"
+                        data-dtype="String"/>
+                
+                    {{#with (getItem vecu.refid)}}
+                    <div class="item-name">
+                        <span data-item-id="{{vecu.refid}}">{{name}}</span>
+                    </div>
+                    {{/with}}
+
+                    <div class="item-control">
+                        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                    </div>
+
+                    <div class="item-control">
+                        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+
+                {{/each}}
+                </li>
+
+            </ol>
+
+            <div class="part-header">
+                <div class="part-name">
+                    <span>{{localize "NEPH5E.description"}}</span>
+                </div>
+            </div>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+        </div>
+
+    </section>
+        
+</form>

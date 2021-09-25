@@ -1,0 +1,83 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+            <span class="type">{{localize "NEPH5E.anamorphose.nom"}}</span>
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+            <div class="header aspect">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.construction"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.degre"
+                        type="text"
+                        value="{{data.degre}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.activation"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.activation"
+                        type="text"
+                        value="{{data.activation}}"
+                        data-dtype="Number"
+                    />
+                </div>
+
+            </div>
+
+            <div class="property-list">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.duree"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.duree"
+                        type="text"
+                        value="{{data.duree}}"
+                        data-dtype="String"
+                    />
+                </div>
+
+            </div>
+
+            <div class="part-header">
+                <div class="part-name">
+                    <span>{{localize "NEPH5E.effet"}}</span>
+                </div>
+            </div>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+    </section>
+        
+</form>

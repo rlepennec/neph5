@@ -1,0 +1,23 @@
+<li class="item" data-item-id="{{catalyseur.refid}}" data-item-type="catalyseur">
+
+    <input
+        name="data.alchimie.catalyseurs.[{{@index}}].refid"
+        type="hidden"
+        value="{{catalyseur.refid}}"
+        data-dtype="String"/>
+
+    {{#with (getItem catalyseur.refid)}}
+    <div class="item-name">
+        <span data-item-id="{{catalyseur.refid}}">{{name}}</span>
+    </div>
+    {{/with}}
+
+    <div class="item-control">
+        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+    </div>
+    
+    <div class="item-control">
+        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+    </div>
+
+</li>

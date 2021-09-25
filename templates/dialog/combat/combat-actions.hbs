@@ -1,0 +1,109 @@
+<form>
+
+    <div style="display:flex; flex-direction: column; width:400px">
+
+        {{#if (eq id 'fire')}}
+        <span style="font-weight: bold;">Visée: {{ranged.state.visee}}/3 rounds</span>
+        <span style="font-weight: bold;">Munitions: {{ranged.state.chargeur}}/{{ranged.weapon.munitions}}</span>
+        <span style="font-weight: bold;">Rechargement: {{ranged.state.reload}}/{{ranged.weapon.vitesse}}</span>
+        <br>
+        {{/if}}
+
+        {{#if (eq id 'fire')}}
+        {{#if (gt counters.ranged 0)}}
+            <span style="font-weight: bold;">{{ranged.weapon.description}}</span>
+            {{#each actions as |action|}}
+                {{#if (eq action.type 'ranged')}}
+                <div class="item-name tooltip hoverable">
+                    <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+                    <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0% - Impact: {{action.impact}}</label>
+                    <span class="tooltiptext">{{action.tooltip}}</span>
+                </div>
+                {{/if}}
+            {{/each}}
+            <br>
+        {{/if}}
+        {{/if}}
+
+        {{#if (eq id 'strike')}}
+        {{#if (gt counters.melee 0)}}
+                <span style="font-weight: bold;">{{melee.weapon.description}}</span>
+                {{#each actions as |action|}}
+                    {{#if (eq action.type 'melee')}}
+                    <div class="item-name tooltip hoverable">
+                        <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+                        <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0% - Impact: {{action.impact}}</label>
+                        <span class="tooltiptext">{{action.tooltip}}</span>
+                    </div>
+                    {{/if}}
+                {{/each}}
+                <br>
+            {{/if}}
+        {{/if}}
+
+        {{#if (eq id 'defense')}}
+        {{#if (gt counters.defense 0)}}
+                <span style="font-weight: bold;">Défense</span>
+                {{#each actions as |action|}}
+                    {{#if (eq action.type 'defense')}}
+                    <div class="item-name tooltip hoverable">
+                        <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+                        <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0%</label>
+                        <span class="tooltiptext">{{action.tooltip}}</span>
+                    </div>
+                    {{/if}}
+                {{/each}}
+                <br>
+            {{/if}}
+        {{/if}}
+
+        {{#if (ne id 'defense')}}
+        {{#if (gt counters.maneuver 0)}}
+            <span style="font-weight: bold;">Manoeuvre</span>
+            {{#each actions as |action|}}
+                {{#if (eq action.type 'maneuver')}}
+                    {{#if (eq action.id 'liberer')}}
+                    <div class="item-name tooltip hoverable">
+                        <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+                        <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0%</label>
+                        <span class="tooltiptext">{{action.tooltip}}</span>
+                    </div>
+                    {{else}}
+                    <div class="item-name tooltip hoverable">
+                        <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+                        <label for="{{action.id}}">{{action.name}}</label>
+                        <span class="tooltiptext">{{action.tooltip}}</span>
+                    </div>
+                    {{/if}}
+                {{/if}}
+            {{/each}}
+            <br>
+        {{/if}}
+        {{/if}}
+
+        {{#if (ne id 'defense')}}
+        {{#if (gt counters.unarmed 0)}}
+            <span style="font-weight: bold;">Mains nues</span>
+            {{#each actions as |action|}}
+                {{#if (eq action.type 'unarmed')}}
+                <div class="item-name tooltip hoverable">
+                    <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+                    {{#if (eq action.id 'frappe')}}
+                    <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0% - Impact: {{action.impact}}</label>
+                    {{else}}
+                    <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0%</label>
+                    {{/if}}
+                    <span class="tooltiptext">{{action.tooltip}}</span>
+                </div>
+                {{/if}}
+            {{/each}}
+            <br>
+        {{/if}}
+        {{/if}}
+
+        <span style="font-weight: bold;">Modificateur (%)
+            <input id="modifier" type="Number" value="0"/>
+        </span>
+        <br>
+
+</form>

@@ -1,0 +1,35 @@
+<li class="item" data-item-id="{{appel.refid}}" data-item-type="appel">
+
+    <input
+        name="data.conjuration.appels.[{{@index}}].refid"
+        type="hidden"
+        value="{{appel.refid}}"
+        data-dtype="String"/>
+
+    {{#with (getItem appel.refid)}}
+    <div class="item-name">
+        <span data-item-id="{{appel.refid}}">{{name}}</span>
+    </div>
+    {{/with}}
+
+    <div class="item-checkbox">
+        <input
+            type="checkbox"
+            name="data.conjuration.appels.[{{@index}}].appris"
+            {{checked appel.appris}}
+            data-dtype="Boolean"/>
+    </div>
+
+    <div class="item-control">
+        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+    </div>
+
+    <div class="item-control">
+        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+    </div>
+    
+    <div class="item-control">
+        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+    </div>
+
+</li>

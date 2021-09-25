@@ -1,0 +1,54 @@
+<form>
+    <div style="display:flex; flex-direction: column; width:300px">
+
+        <span style="font-weight: bold;">Spécial</span>
+
+        <div>
+            <input type="checkbox" id="desoriente" name="desoriente" {{checked effects.desoriente}}>
+            <label for="desoriente">Désorienté</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="immobilise" name="immobilise" {{checked effects.immobilise}}>
+            <label for="immobilise">Immobilisé</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="projete" name="projete" {{checked effects.projete}}>
+            <label for="projete">A terre</label>
+        </div>
+
+        <br>
+
+        <span style="font-weight: bold;">Blessures</span>
+
+        <div>
+            <input type="checkbox" id="mortelle" name="blessure" {{checked wounds.mortelle}}>
+            <label for="mortelle">Blessure mortelle</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="grave" name="blessure" {{checked wounds.grave}}>
+            <label for="grave">Blessure grave</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="serieuse" name="blessure" {{checked wounds.serieuse}}>
+            <label for="serieuse">Blessure sérieuse</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="legere" name="blessure" {{checked wounds.legere}}>
+            <label for="legere">Blessure légère</label>
+        </div>
+
+        <br>
+
+        <span style="font-weight: bold;">Choc:
+            <input id="choc" type="Number" value="{{wounds.choc}}"/>
+        </span>
+        <br>
+
+    </div>
+
+</form>
