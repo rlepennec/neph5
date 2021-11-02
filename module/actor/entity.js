@@ -277,6 +277,7 @@ export class NephilimActor extends Actor {
    *   savoirs,
    *   arcanes,
    *   chutes
+   *   passes
    * @param item The item for which to get the sum of the levels.
    * @returns the sum of the levels.
    */
@@ -300,7 +301,8 @@ export class NephilimActor extends Actor {
    *   quetes,
    *   savoirs,
    *   arcanes,
-   *   chutes
+   *   chutes,
+   *   passes
    * @returns the array of the ordered items.
    */
   getLevelsFrom(items) {
@@ -502,10 +504,14 @@ export class NephilimActor extends Actor {
    */ 
   async rollKa(element) {
     const ka = element === 'noyau' ? 'Noyau'
-     : element === 'tenebre' ? 'Art ténébreux'
+     : element === 'pavane' ? 'Pavane'
      : element === 'ka' ? 'Ka'
      : ('Ka ' + element);
-    const filename = element === 'noyau' ? 'noyau.jpg' : 'ka.jpg';
+    const filename = element === 'noyau' ? 'noyau.jpg'
+      : element === 'pavane' ? 'noyau.jpg'
+      : 'ka.jpg';
+    const sentence = element === 'pavane' ? 'écoute la Pavane'
+      : 'utilise son ' + ka;
     return await Rolls.check(
       this,
       {img: 'systems/neph5e/icons/' + filename},
@@ -514,7 +520,7 @@ export class NephilimActor extends Actor {
         ...this.data,
         owner: this.id,
         difficulty: this.getKa(element),
-        sentence: "utilise son " + ka
+        sentence: sentence
       });
   }
 

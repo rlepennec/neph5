@@ -4,112 +4,55 @@
     value="true"
     data-dtype="Boolean"/>
 
-<div class="cercles" style="column-count: 7">
+<div class="cercles">
 
     <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.spiritisme"}}</label>
-        <label class="cercle-value">{{getScience data.id "spiritisme"}}</label>
+        <label class="cercle-name">{{localize "NEPH5E.necromancie.cercles.fossoyeur"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "fossoyeur"}}</label>
     </div>
 
     <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.apaisement"}}</label>
-        <label class="cercle-value">{{getScience data.id "apaisement"}}</label>
+        <label class="cercle-name">{{localize "NEPH5E.necromancie.cercles.embaumeur"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "embaumeur"}}</label>
     </div>
 
     <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.claivoyance"}}</label>
-        <label class="cercle-value">{{getScience data.id "claivoyance"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.animation"}}</label>
-        <label class="cercle-value">{{getScience data.id "animation"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.possession"}}</label>
-        <label class="cercle-value">{{getScience data.id "possession"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.audela"}}</label>
-        <label class="cercle-value">{{getScience data.id "audela"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.desmos.corruption"}}</label>
-        <label class="cercle-value">{{getScience data.id "corruption"}}</label>
+        <label class="cercle-name">{{localize "NEPH5E.necromancie.cercles.imputrescible"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "imputrescible"}}</label>
     </div>
 
 </div>
 
 <ol class="item-list">
 
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Spiritisme"}}
+    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Fossoyeur"}}
 
     {{#each data.necromancie.rites as |rite|}}
         {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "spiritisme")}}
+            {{#if (eq data.data.cercle "fossoyeur")}}
                 {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
             {{/if}}
         {{/with}}
     {{/each}}
 
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Apaisement"}}
+    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Embaumeur"}}
 
     {{#each data.necromancie.rites as |rite|}}
         {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "apaisement")}}
+            {{#if (eq data.data.cercle "embaumeur")}}
                 {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
             {{/if}}
         {{/with}}
     {{/each}}
 
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Claivoyance"}}
+    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Imputrescible"}}
 
     {{#each data.necromancie.rites as |rite|}}
         {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "claivoyance")}}
-                {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Animation"}}
-
-    {{#each data.necromancie.rites as |rite|}}
-        {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "animation")}}
-                {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Possession"}}
-
-    {{#each data.necromancie.rites as |rite|}}
-        {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "possession")}}
-                {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Au-dela"}}
-
-    {{#each data.necromancie.rites as |rite|}}
-        {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "audela")}}
-                {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" desmos="Corruption"}}
-
-    {{#each data.necromancie.rites as |rite|}}
-        {{#with (getItem rite.refid)}}
-            {{#if (eq data.data.desmos "corruption")}}
+            {{#if (eq data.data.cercle "imputrescible")}}
                 {{> "systems/neph5e/templates/actor/parts/necromancie/rite.hbs" rite=rite}}
             {{/if}}
         {{/with}}

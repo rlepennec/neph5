@@ -5,13 +5,48 @@
             "figurant",
             "simulacre"
         ],
+        "templates": {
+            "id": {
+                "id": ""
+            },
+            "combat": {
+                "dommage": {
+                    "physique": {
+                        "cases": 3,
+                        "choc": 0,
+                        "mineure": false,
+                        "serieuse": false,
+                        "grave": false,
+                        "mortelle": false
+                    },
+                    "magique": {
+                        "cases": 3,
+                        "choc": 0,
+                        "mineure": false,
+                        "serieuse": false,
+                        "grave": false,
+                        "mortelle": false
+                    }
+                },
+                "bonus": {
+                    "mouvement": 0,
+                    "initiative": 0,
+                    "dommage": 0,
+                    "protection": 0
+                }
+            }
+        },
         "figurant": {
-            "id": "",
+            "templates": [
+                "id", "combat"
+            ],
             "menace": 0,
             "ka": 0
         },
         "simulacre": {
-            "id": "",
+            "templates": [
+                "id", "combat"
+            ],
             "agile": 0,
             "endurant": 0,
             "fort": 0,
@@ -28,7 +63,9 @@
             "description": ""
         },
         "figure": {
-            "id": "",
+            "templates": [
+                "id", "combat"
+            ],
             "description": "",
             "sapience": 0,
             "ka" : {
@@ -39,10 +76,10 @@
                 "lune": 0,
                 "noyau": 0,
                 "orichalque": 0,
+                "pavane": 0,
                 "reserve": 0,
                 "reserveCourante": 0,
                 "soleil": 0,
-                "tenebre": 0,
                 "terre": 0
             },
             "simulacre": {
@@ -218,6 +255,7 @@
             "materiae",
             "metamorphe",
             "ordonnance",
+            "passe",
             "periode",
             "quete",
             "rite",
@@ -309,6 +347,10 @@
             "monde": "",
             "description": ""
         },
+        "passe": {
+            "id": "",
+            "description": ""
+        },
         "periode": {
             "id": "",
             "aube": 0,
@@ -322,7 +364,8 @@
         },
         "rite": {
             "id": "",
-            "desmos": "desmos",
+            "cercle": "fossoyeur",
+            "voie": "",
             "degre": 0,
             "duree": "",
             "description": ""

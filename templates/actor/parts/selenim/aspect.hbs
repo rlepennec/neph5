@@ -1,4 +1,4 @@
-<li class="item" data-item-id="{{aspect.refid}}">
+<li class="item" data-item-id="{{aspect.refid}}" data-item-type="aspect">
 
     <input
         name="data.imago.aspects.[{{@index}}].refid"
@@ -13,7 +13,13 @@
     {{/with}}
 
     {{#with (getItem aspect.refid)}}
-    <div class="item-integer">
+    <div class="item-integer" style="width:100px;text-align:center;">
+        <span>{{data.data.degre}}</span>
+    </div>
+    {{/with}}
+
+    {{#with (getItem aspect.refid)}}
+    <div class="item-integer" style="width:100px;text-align:center;">
         <span>{{data.data.activation}}</span>
     </div>
     {{/with}}

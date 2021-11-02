@@ -15,7 +15,7 @@ export class NephilimItem extends Item {
     if (this.data.data.id === "") {
       this.data.data.id = UUID();
     }
-    if (this.data.img === 'icons/svg/mystery-man.svg') {
+    if (this.data.img === 'icons/svg/item-bag.svg') {
       switch (this.data.type) {
         case 'alchimie':
           this.data.img = "systems/neph5e/icons/voie.jpg";
@@ -55,6 +55,9 @@ export class NephilimItem extends Item {
           break;
         case 'ordonnance':
           this.data.img = "systems/neph5e/icons/voie.jpg";
+          break;
+        case 'passe':
+          this.data.img = "systems/neph5e/icons/passe.webp";
           break;
         case 'periode':
           this.data.img = "systems/neph5e/icons/periode.jpg";
@@ -114,6 +117,10 @@ export class NephilimItem extends Item {
         this.filterActorsBy('chutes', 'refid', this.data.data.id, 'chutes')
           .forEach(async actor => deleteItemOf(actor, "chutes", "refid", this.data.data.id));
         break;
+      case 'passe':
+        this.filterActorsBy('passes', 'refid', this.data.data.id, 'passes')
+          .forEach(async actor => deleteItemOf(actor, "passes", "refid", this.data.data.id));
+        break;
       case 'sort':
         this.filterActorsBy('magie', 'refid', this.data.data.id, 'magie.sorts')
           .forEach(async actor => deleteItemOf(actor, "magie", "refid", this.data.data.id, "sorts"));
@@ -161,9 +168,7 @@ export class NephilimItem extends Item {
     switch (this.type) {
       case 'sort':
         if (this.data.data.element === "luneNoire") {
-          const tenebre = actor.getKa("tenebre");
-          const noyau = actor.getKa("noyau");
-          return actor.getScience(this.data.data.cercle) + Math.min(tenebre, noyau) - this.data.data.degre;
+          return actor.getScience(this.data.data.cercle) + actor.getKa("noyau") - this.data.data.degre;
         } else {
           return actor.getScience(this.data.data.cercle) + actor.getKa(this.data.data.element) - this.data.data.degre;
         }
@@ -172,9 +177,9 @@ export class NephilimItem extends Item {
       case 'formule':
         return actor.getScience(this.data.data.cercle) + actor.getKaOfConstruct(this.data.data.substance, this.data.data.elements) - this.data.data.degre;
       case 'appel':
-        return actor.getScience(this.data.data.appel);
+        return actor.getScience(this.data.data.cercle);
       case 'rite':
-        return actor.getScience(this.data.data.desmos);
+        return actor.getScience(this.data.data.cercle);
       case 'competence':
         const attribute = actor.getAttribute(this.data.data.inne);
         return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0);
@@ -184,6 +189,8 @@ export class NephilimItem extends Item {
         return actor.getSumFrom('quetes', this);
       case 'savoir':
         return actor.getSumFrom('savoirs', this);
+      case 'passe':
+        return actor.getSumFrom('passes', this);
       case 'chute':
         return actor.getSumFrom('chutes', this);
       case 'arcane':
@@ -218,6 +225,8 @@ export class NephilimItem extends Item {
         return "mobilise son savoir occulte sur " + this.data.name;
       case 'chute':
         return "contrôle sa chute de " + this.data.name;
+      case 'passe':
+        return "fait appel à son passé " + this.data.name;
       case 'arcane':
         return "mobilise sa sapience sur l'arcane " + this.data.name;
       default:

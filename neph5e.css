@@ -99,6 +99,7 @@
   outline: none;
 }
 .actor .sheet-body .cercles .cercle .cercle-tag {
+  margin: 1px;
   font-size: 14px;
   height: 30px;
 }
@@ -304,10 +305,10 @@
   column-count: 2;
 }
 .item .sheet-body .header.appel {
-  column-count: 2;
+  column-count: 3;
 }
 .item .sheet-body .header.rite {
-  column-count: 2;
+  column-count: 3;
 }
 .item .sheet-body .property-list {
   display: flex;

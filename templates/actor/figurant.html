@@ -22,7 +22,7 @@
     {{!-- Sheet Navigation --}}
     <nav class="sheet-navigation tabs" data-group="primary">
 
-        <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
+        <a class="sheet-navigation-tab active" data-tab="description"></a>
 
     </nav>
 
@@ -84,6 +84,8 @@
                 </li>
 
             </ol>
+
+            {{> "systems/neph5e/templates/actor/parts/combat/main.hbs"}}
 
             <ol class="item-list">
 

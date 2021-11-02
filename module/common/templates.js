@@ -12,6 +12,7 @@ export const preloadTemplates = async function() {
     "systems/neph5e/templates/actor/parts/necromancie/main.hbs",
     "systems/neph5e/templates/actor/parts/necromancie/header.hbs",
     "systems/neph5e/templates/actor/parts/necromancie/rite.hbs",
+    "systems/neph5e/templates/actor/parts/combat/main.hbs",
     "systems/neph5e/templates/actor/parts/description/main.hbs",
     "systems/neph5e/templates/actor/parts/simulacre/main.hbs",
     "systems/neph5e/templates/actor/parts/vecus/main.hbs",
@@ -37,6 +38,7 @@ export const preloadTemplates = async function() {
     "systems/neph5e/templates/actor/parts/incarnations/main.hbs",
     "systems/neph5e/templates/actor/parts/options/main.hbs",
     "systems/neph5e/templates/actor/parts/selenim/main.hbs",
-    "systems/neph5e/templates/actor/parts/selenim/aspect.hbs"
+    "systems/neph5e/templates/actor/parts/selenim/aspect.hbs",
+    "systems/neph5e/templates/actor/parts/selenim/passe.hbs"
   ]);
 };

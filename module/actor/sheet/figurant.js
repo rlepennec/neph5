@@ -23,8 +23,8 @@ export class FigurantSheet extends ActorSheet {
      */
 	static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 400,
+            width: 700,
+            height: 800,
             classes: ["nephilim", "sheet", "actor"],
             resizable: true,
             scrollY: [

@@ -16,6 +16,7 @@ export class RiteSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
+        data.cercles = Game.necromancie.cercles;
         data.desmos = Game.necromancie.desmos;
         return data;
     }

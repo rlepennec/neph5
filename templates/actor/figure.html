@@ -33,6 +33,10 @@
         <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.vecus"}}</a>
         {{/if}}
 
+        {{#if (eq data.options.combat true)}}
+        <a class="sheet-navigation-tab active" data-tab="combat">{{localize "NEPH5E.combat"}}</a>
+        {{/if}}
+
         {{#if (eq data.options.magie true)}}
         <a class="sheet-navigation-tab" data-tab="magie">{{localize "NEPH5E.magie.science"}}</a>
         {{/if}}
@@ -63,15 +67,7 @@
         {{/if}}
 
         {{#if (eq data.options.simulacre true)}}
-        <a class="sheet-navigation-tab" data-tab="simulacre">
-            {{#if data.simulacre.refid}}
-                {{#with (getActor data.simulacre.refid)}}
-                {{data.name}}
-                {{/with}}
-            {{else}}
-                {{localize "NEPH5E.simulacre.nom"}}
-            {{/if}}
-        </a>
+        <a class="sheet-navigation-tab" data-tab="simulacre">{{localize "NEPH5E.simulacre.nom"}}</a>
         {{/if}}
 
         {{#if (eq data.options.description true)}}
@@ -90,6 +86,12 @@
         {{#if (eq data.options.description true)}}
         <div class="tab description" data-group="primary" data-tab="description">
             {{> "systems/neph5e/templates/actor/parts/description/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.combat true)}}
+        <div class="tab combat" data-group="primary" data-tab="combat">
+            {{> "systems/neph5e/templates/actor/parts/combat/main.hbs"}}
         </div>
         {{/if}}
 

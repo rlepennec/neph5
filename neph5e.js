@@ -21,6 +21,7 @@ import { MagieSheet} from "./module/item/sheet/magie.js";
 import { MateriaeSheet} from "./module/item/sheet/materiae.js";
 import { MetamorpheSheet} from "./module/item/sheet/metamorphe.js";
 import { OrdonnanceSheet} from "./module/item/sheet/ordonnance.js";
+import { PasseSheet} from "./module/item/sheet/passe.js";
 import { PeriodeSheet} from "./module/item/sheet/periode.js";
 import { QueteSheet} from "./module/item/sheet/quete.js";
 import { RiteSheet} from "./module/item/sheet/rite.js";
@@ -30,7 +31,6 @@ import { SortSheet} from "./module/item/sheet/sort.js";
 import { VecuSheet} from "./module/item/sheet/vecu.js";
 
 import { NephilimCombatant } from "./module/common/combatant.js";
-import { Status } from "./module/combat/data/status.js";
 import { Messages } from "./module/combat/data/messages.js";
 
 Hooks.once("init", function() {
@@ -51,6 +51,7 @@ Hooks.once("init", function() {
         getScience: CustomHandlebarsHelpers.getScience,
         getCount: CustomHandlebarsHelpers.getCount,
         getScore: CustomHandlebarsHelpers.getScore,
+        loop: CustomHandlebarsHelpers.loop,
         log: CustomHandlebarsHelpers.log
     });
 
@@ -69,6 +70,7 @@ Hooks.once("init", function() {
     Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
     Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
     Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
+    Items.registerSheet('nephilim', PasseSheet, { types: ['passe'], makeDefault: true });
     Items.registerSheet('nephilim', PeriodeSheet, { types: ['periode'], makeDefault: true });
     Items.registerSheet('nephilim', QueteSheet, { types: ['quete'], makeDefault: true });
     Items.registerSheet('nephilim', MagieSheet, { types: ['magie'], makeDefault: true });

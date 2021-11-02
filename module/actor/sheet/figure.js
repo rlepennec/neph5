@@ -2,7 +2,6 @@ import { droppedActor } from "../../item/tools.js";
 import { droppedItem } from "../../item/tools.js";
 import { deleteItemOf } from "../tools.js";
 import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
-import { Rolls } from "../../common/rolls.js";
 import { getByPath } from "../../common/tools.js";
 import { UUID } from "../../common/tools.js";
 import { Game } from "../../common/game.js";
@@ -66,7 +65,8 @@ export class FigureSheet extends ActorSheet {
             actor: baseData.actor,
             data: baseData.actor.data.data,
             metamorphes: game.items.filter(item  => item.data.type === 'metamorphe'),
-            cercles: Game.alchimie.cercles
+            cercles: Game.alchimie.cercles,
+            currentPeriode: this.current != null ? this.current.data.data.id : null
         }
         return sheetData;
     }
@@ -179,11 +179,11 @@ export class FigureSheet extends ActorSheet {
                         quetes: [],
                         arcanes: [],
                         chutes: [],
+                        passes: [],
                         sciences: [] };
                     periodes.push(periode);
                 }
                 await this.actor.update({['data.periodes']: periodes});
-                this.lock();
             }
 
             // The vecu has been dropped:
@@ -212,7 +212,6 @@ export class FigureSheet extends ActorSheet {
                                 }
                                 periodes[index].vecus.push(vecu);
                                 await this.actor.update({['data.periodes']: periodes});
-                                this.lock();
                             }
                         }
                     }
@@ -236,7 +235,6 @@ export class FigureSheet extends ActorSheet {
                             }
                             periodes[index].savoirs.push(savoir);
                             await this.actor.update({['data.periodes']: periodes});
-                            this.lock();
                         }
                     }
                 }
@@ -258,7 +256,6 @@ export class FigureSheet extends ActorSheet {
                             }
                             periodes[index].quetes.push(quete);
                             await this.actor.update({['data.periodes']: periodes});
-                            this.lock();
                         }
                     }
                 }
@@ -280,7 +277,6 @@ export class FigureSheet extends ActorSheet {
                             }
                             periodes[index].arcanes.push(arcane);
                             await this.actor.update({['data.periodes']: periodes});
-                            this.lock();
                         }
                     }
                 }
@@ -302,7 +298,27 @@ export class FigureSheet extends ActorSheet {
                             }
                             periodes[index].chutes.push(chute);
                             await this.actor.update({['data.periodes']: periodes});
-                            this.lock();
+                        }
+                    }
+                }
+            }
+
+            // The passe has been dropped:
+            //   - Add the passe if added
+            //   - Delete the passes
+            if (item.data.type === "passe") {
+                if (this.current) {
+                    const periodes = duplicate(this.actor.data.data.periodes);
+                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
+                    if (index != -1) {
+                        const defined = periodes[index].passes.findIndex(passe => (passe.refid === item.data.data.id));
+                        if (defined === -1) {
+                            const passe = {
+                                refid: item.data.data.id,
+                                degre: 0
+                            }
+                            periodes[index].passes.push(passe);
+                            await this.actor.update({['data.periodes']: periodes});
                         }
                     }
                 }
@@ -324,7 +340,6 @@ export class FigureSheet extends ActorSheet {
                             }
                             periodes[index].sciences.push(science);
                             await this.actor.update({['data.periodes']: periodes});
-                            this.lock();
                         }
                     }
                 }
@@ -510,19 +525,6 @@ export class FigureSheet extends ActorSheet {
 
     }
 
-    lock() {
-        this.current = null;
-        this.current_i = null;
-    }
-
-    async _refreshLock(li) {;
-        console.log(li.find(".fa-lock"));
-        console.log(li.find(".fa-unlock"));
-        let i = li.find(".fa-lock");
-        i.removeClass("fa-lock");
-        i.addClass("fa-unlock");
-    }
-
     /**
      * @override
      */
@@ -635,6 +637,21 @@ export class FigureSheet extends ActorSheet {
                     delete formData[chuteName + ".degre"];
                 }
 
+                // Initialize the passes of the current periode of the actor
+                // For each passe of the periode of the actor
+                // -----------------------------------------
+                const passes = [];
+                for (let v of p.passes) {
+
+                    // Retrieve the passe defined in the formData
+                    const passeName = periodeName + ".passes.[" + v.refid + "]";
+                    passes.push({
+                        refid: formData[passeName + ".refid"],
+                        degre: formData[passeName + ".degre"] });
+                    delete formData[passeName + ".refid"];
+                    delete formData[passeName + ".degre"];
+                }
+
                 // Initialize the sciences of the current periode of the actor
                 // For each science of the periode of the actor
                 // -----------------------------------------
@@ -660,6 +677,7 @@ export class FigureSheet extends ActorSheet {
                     quetes: quetes,
                     arcanes: arcanes,
                     chutes: chutes,
+                    passes: passes,
                     sciences: sciences
                 });
 
@@ -935,7 +953,8 @@ export class FigureSheet extends ActorSheet {
                     const item = CustomHandlebarsHelpers.getItem(id);
                     if (item === this.current) {
                         deleteItemOf(this.actor, "periodes", "refid", id);
-                        this.lock();
+                        this.current = null;
+                        this.current_i = null;
                     }
                 }
             } else {
@@ -957,10 +976,11 @@ export class FigureSheet extends ActorSheet {
                         await this.deleteItemOfIncarnations(index, "arcanes", id);
                     } else if (type == "chute") {
                         await this.deleteItemOfIncarnations(index, "chutes", id);
+                    } else if (type == "passe") {
+                        await this.deleteItemOfIncarnations(index, "passes", id);
                     } else if (type == "science") {
                         await this.deleteItemOfIncarnations(index, "sciences", id);
                     }
-                    this.lock();
                 }
             }
         }
@@ -988,7 +1008,9 @@ export class FigureSheet extends ActorSheet {
     async _onSelenimRoll(event) {
         const li = $(event.currentTarget).parents(".cercle");
         const id = li.data("item-id");
-        if (id === 'noyau' || id === 'tenebre') {
+        if (type === 'passe') {
+            return await this._onItemRoll(event);
+        } else if (id === 'noyau' || id === 'pavane') {
             return await this.actor.rollKa(id);
         }
     }
@@ -1015,6 +1037,9 @@ export class FigureSheet extends ActorSheet {
         item.sheet.render(true);
     }
 
+    /**
+     * This method is used to lock/unlock the current periode.
+     */
     async _onEditIncarnations(event) {
         event.preventDefault();
         let li = $(event.currentTarget).parents(".item");
@@ -1036,33 +1061,21 @@ export class FigureSheet extends ActorSheet {
                         i.removeClass("fa-lock");
                         i.addClass("fa-unlock");
 
-                    // A periode is unlocked
+                    // The periode must be locked
                     } else {
-
-                        // Lock the current
-                        this.current_i.removeClass("fa-unlock");
-                        this.current_i.addClass("fa-lock");
-
-                        // All locked
-                        if (this.current === item) {
+                        const old_pid = this.current.data.data.id;
+                        const pid = item.data.data.id;
+                        if (old_pid === pid) {
                             this.current = null;
                             this.current_i = null;
-
-                        // Unlocked new current
-                        } else {
-                            this.current = item;
-                            this.current_i = i;
-                            i.removeClass("fa-lock");
-                            i.addClass("fa-unlock");
+                            i.removeClass("fa-unlock");
+                            i.addClass("fa-lock");
                         }
-
                     }
-
                 }
             } else {
                 const type = li.data("item-type");
-                const item = CustomHandlebarsHelpers.getItem(id);
-                if (type == "vecu" || type == "savoir" || type == "quete" || type == "arcane" || type === "chute") {
+                if (type == "vecu" || type == "savoir" || type == "quete" || type == "arcane" || type === "chute" || type === "passe") {
                     await this._onEditItem(event);
                 }
             }
@@ -1164,24 +1177,38 @@ export class FigureSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const type = li.data("item-type");
-        if (type != 'aspect') {
-            return;
+        if (type === 'aspect') {
+            if ( li.hasClass("expanded") ) {
+                let summary = li.next(".item-summary");
+                summary.slideUp(200, () => summary.remove());
+            } else {
+                const item = CustomHandlebarsHelpers.getItem(id);
+                let summary = $(`<li class="item-summary"/>`);
+                let properties = $(`<ol/>`);
+                properties.append(this._property(item.data.data.degre, 'NEPH5E.construction'));
+                properties.append(this._property(item.data.data.activation, 'NEPH5E.cout'));
+                properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
+                properties.append(this._property(item.data.data.description));
+                summary.append(properties);
+                li.after(summary.hide());
+                summary.slideDown(200);
+            }
+            li.toggleClass("expanded");
+        } else if (type === 'passe') {
+            if ( li.hasClass("expanded") ) {
+                let summary = li.next(".item-summary");
+                summary.slideUp(200, () => summary.remove());
+            } else {
+                const item = CustomHandlebarsHelpers.getItem(id);
+                let summary = $(`<li class="item-summary"/>`);
+                let properties = $(`<ol/>`);
+                properties.append(this._property(item.data.data.description));
+                summary.append(properties);
+                li.after(summary.hide());
+                summary.slideDown(200);
+            }
+            li.toggleClass("expanded");
         }
-        if ( li.hasClass("expanded") ) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-          } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-           li.after(summary.hide());
-           summary.slideDown(200);
-          }
-          li.toggleClass("expanded");
-
     }
 
     async _onShowRite(event) {
@@ -1195,20 +1222,20 @@ export class FigureSheet extends ActorSheet {
         if ( li.hasClass("expanded") ) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
-          } else {
+        } else {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
+            properties.append(this._property(this._localizeDesmos(item.data.data.desmos), 'NEPH5E.necromancie.desmos.nom'));
+            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.cout'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
            li.after(summary.hide());
            summary.slideDown(200);
-          }
-          li.toggleClass("expanded");
-
+        }
+        li.toggleClass("expanded");
     }
 
     async _onShowAppel(event) {
@@ -1226,8 +1253,14 @@ export class FigureSheet extends ActorSheet {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
+            properties.append(this._property(this._localizeAppel(item.data.data.appel), 'NEPH5E.conjuration.appel'));
+            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
+            properties.append(this._property((item.data.data.controle?"Oui":"Non"), 'NEPH5E.controle'));
+            properties.append(this._property(item.data.data.visibilite, 'NEPH5E.visibilite'));
+            properties.append(this._property(item.data.data.entropie, 'NEPH5E.entropie'));
+            properties.append(this._property(item.data.data.dommages, 'NEPH5E.dommages'));
+            properties.append(this._property(item.data.data.protection, 'NEPH5E.protection'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
            li.after(summary.hide());
@@ -1264,6 +1297,16 @@ export class FigureSheet extends ActorSheet {
 
     _localizeMonde(monde) {
         const name = 'NEPH5E.kabbale.mondes.' + monde;
+        return game.i18n.localize(name);
+    }
+
+    _localizeDesmos(desmos) {
+        const name = 'NEPH5E.necromancie.desmos.' + desmos;
+        return game.i18n.localize(name);
+    }
+
+    _localizeAppel(appel) {
+        const name = 'NEPH5E.conjuration.appels.' + appel;
         return game.i18n.localize(name);
     }
 

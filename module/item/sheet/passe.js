@@ -1,7 +1,6 @@
 import { NephilimItemSheet } from "./base.js";
-import { Game } from "../../common/game.js";
 
-export class AppelSheet extends NephilimItemSheet {
+export class PasseSheet extends NephilimItemSheet {
 
     /**
      * @constructor
@@ -14,20 +13,10 @@ export class AppelSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-     getData() {
-        const data = super.getData();
-        data.cercles = Game.conjuration.cercles;
-        data.appels = Game.conjuration.appels;
-        return data;
-    }
-
-    /** 
-     * @override
-     */
 	static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 700,
+            height: 400,
             classes: ["nephilim", "sheet", "item"],
             resizable: true,
             scrollY: [".tab.description"],

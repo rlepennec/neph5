@@ -17,7 +17,7 @@
         <label class="cercle-tag"/>
 
         <input
-            class="cercle-namer"
+            class="cercle-name"
             name="data.ka.noyau"
             type="text"
             value="{{data.ka.noyau}}"
@@ -25,9 +25,9 @@
 
     </div>
 
-    <div class="cercle" data-item-id="tenebre">
+    <div class="cercle" data-item-id="pavane">
 
-        <label class="cercle-name">{{localize "NEPH5E.tenebre"}}
+        <label class="cercle-name">{{localize "NEPH5E.pavane"}}
             <div class="item-control">
                 <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
             </div>
@@ -36,10 +36,10 @@
         <label class="cercle-tag"/>
 
         <input
-            class="cercle-namer"
-            name="data.ka.tenebre"
+            class="cercle-name"
+            name="data.ka.pavane"
             type="text"
-            value="{{data.ka.tenebre}}"
+            value="{{data.ka.pavane}}"
             data-dtype="Number"/>
 
     </div>
@@ -50,28 +50,29 @@
 
         <label class="cercle-tag"/>
 
-        <div style="column-count: 2; display: flex; flex-direction: row;">
+        <div style="column-count:2;display:flex;flex-direction:row;height:30px;">
             
             <input
                 class="item-integer"
                 name="data.ka.reserveCourante"
                 type="text"
                 value="{{data.ka.reserveCourante}}"
-                data-dtype="Number"/>
+                data-dtype="Number"
+                style="height:30px;font-style: bold;font-size: 20px;"/>
 
-            <label style="text-align: center; font-size: 16px; width: 50px;">/</label>
+            <label style="text-align: center; font-size: 16px; width: 50px; height:30px; font-style: bold;font-size: 20px;">/</label>
 
             <input
                 class="item-integer"
                 name="data.ka.reserve"
                 type="text"
                 value="{{data.ka.reserve}}"
-                data-dtype="Number"/>
+                data-dtype="Number"
+                style="height:30px;font-style: bold;font-size: 20px;"/>
 
         </div>
 
     </div>
-
 
 </div>
 
@@ -84,8 +85,12 @@
             <span>{{localize "ITEM.TypeAspect"}}</span>
         </div>
 
-        <div class="item-integer">
-            <span>Coût</span>
+        <div class="item-integer" style="width:100px;text-align:center;">
+            <span>Construction</span>
+        </div>
+
+        <div class="item-integer" style="width:100px;text-align:center;">
+            <span>Activation</span>
         </div>
 
         <div class="item-checkbox">
@@ -108,6 +113,35 @@
         {{/with}}
     {{/each}}
 
-
 </ol>
 {{/if}}
+
+<ol class="item-list">
+
+    <li class="item-list-header">
+
+        <div class="item-name">
+            <span>{{localize "NEPH5E.passe"}}</span>
+        </div>
+
+        <div class="item-integer">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+    </li>
+
+    {{#each (getLevels data.id 'passes') as |passe|}}
+        {{#with (getItem passe.refid)}}
+            {{> "systems/neph5e/templates/actor/parts/selenim/passe.hbs" passe=passe}}
+        {{/with}}
+    {{/each}}
+
+</ol>

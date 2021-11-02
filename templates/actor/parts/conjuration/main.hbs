@@ -4,121 +4,58 @@
     value="true"
     data-dtype="Boolean"/>
 
-<div class="cercles" style="column-count: 4">
+<div class="cercles">
 
     <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.pacifiste"}}</label>
-        <label class="cercle-value">{{getScience data.id "pacifiste"}}</label>
+        <label class="cercle-name">{{localize "NEPH5E.conjuration.cercles.charmeur"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "charmeur"}}</label>
     </div>
 
     <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.savant"}}</label>
-        <label class="cercle-value">{{getScience data.id "savant"}}</label>
+        <label class="cercle-name">{{localize "NEPH5E.conjuration.cercles.dresseur"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "dresseur"}}</label>
     </div>
 
     <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.tortionnaire"}}</label>
-        <label class="cercle-value">{{getScience data.id "tortionnaire"}}</label>
+        <label class="cercle-name">{{localize "NEPH5E.conjuration.cercles.demiurge"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "demiurge"}}</label>
     </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.voyageur"}}</label>
-        <label class="cercle-value">{{getScience data.id "voyageur"}}</label>
-    </div>
-
-    <!--
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.soldat"}}</label>
-        <label class="cercle-value">{{getScience data.id "soldat"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.fou"}}</label>
-        <label class="cercle-value">{{getScience data.id "fou"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.conjuration.appels.annihilateur"}}</label>
-        <label class="cercle-value">{{getScience data.id "annihilateur"}}</label>
-    </div>
-    -->
 
 </div>
 
 <ol class="item-list">
 
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Pacifiste"}}
+    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" cercle="Charmeur"}}
 
     {{#each data.conjuration.appels as |appel|}}
         {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "pacifiste")}}
+            {{#if (eq data.data.cercle "charmeur")}}
                 {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
             {{/if}}
         {{/with}}
     {{/each}}
 
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Savant"}}
+    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" cercle="Dresseur"}}
 
     {{#each data.conjuration.appels as |appel|}}
         {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "savant")}}
+            {{#if (eq data.data.cercle "dresseur")}}
                 {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
             {{/if}}
         {{/with}}
     {{/each}}
 
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Tortionnaire"}}
+    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" cercle="Démiurge"}}
 
     {{#each data.conjuration.appels as |appel|}}
         {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "tortionnaire")}}
+            {{#if (eq data.data.cercle "demiurge")}}
                 {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
             {{/if}}
         {{/with}}
     {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Voyageur"}}
-
-    {{#each data.conjuration.appels as |appel|}}
-        {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "voyageur")}}
-                {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    <!--
-
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Soldat"}}
-
-    {{#each data.conjuration.appels as |appel|}}
-        {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "soldat")}}
-                {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Fou"}}
-
-    {{#each data.conjuration.appels as |appel|}}
-        {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "fou")}}
-                {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/templates/actor/parts/conjuration/header.hbs" appel="Annihilateur"}}
-
-    {{#each data.conjuration.appels as |appel|}}
-        {{#with (getItem appel.refid)}}
-            {{#if (eq data.data.appel "annihilateur")}}
-                {{> "systems/neph5e/templates/actor/parts/conjuration/appel.hbs" appel=appel}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    -->
 
 </ol>

@@ -38,6 +38,17 @@
             <div class="header rite">
 
                 <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.cercle"}}</label>
+                    <select class="property-value" name="data.cercle">
+                    {{#select data.cercle}}
+                        {{#each cercles as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+                <div class="property">
                     <label class="property-name">{{localize "NEPH5E.necromancie.desmos.nom"}}</label>
                     <select class="property-value" name="data.desmos">
                     {{#select data.desmos}}

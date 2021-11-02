@@ -43,7 +43,7 @@
 
 {{#each data.periodes as |periode|}}
 <ol class="item-list">
-    
+
     <li class="item-list-header" data-item-id="{{periode.refid}}" data-item-type="periode">
 
         <input
@@ -70,7 +70,13 @@
         </div>
 
         <div class="item-control">
-            <a class="item-edit" title="Edit Item"><i class="fas fa-lock"></i></a>
+            <a class="item-edit" title="Edit Item">
+                {{#if (eq ../currentPeriode periode.refid)}}
+                <i class="fas fa-unlock"></i>
+                {{else}}
+                <i class="fas fa-lock"></i>
+                {{/if}}
+            </a>
         </div>
         
         <div class="item-control">
@@ -264,6 +270,43 @@
     </li>
     {{/each}}
 
+    {{#each periode.passes as |passe|}}
+    <li class="item" data-item-id="{{passe.refid}}" data-item-type="passe" data-periode-id="{{../refid}}">
+
+        <input
+            name="data.periodes.[{{../refid}}].passes.[{{refid}}].refid"
+            type="hidden"
+            value="{{passe.refid}}"
+            data-dtype="String"/>
+
+        {{#with (getItem passe.refid)}}
+        <div class="item-name">
+            <span>{{name}}</span>
+        </div>
+        {{/with}}
+
+        <div class="item-checkbox">
+            <span/>
+        </div>
+
+        <input
+            class="item-integer"
+            name="data.periodes.[{{../refid}}].passes.[{{refid}}].degre"
+            type="text"
+            value="{{passe.degre}}"
+            data-dtype="Number"/>
+
+        <div class="item-control">
+            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        </div>
+        
+        <div class="item-control">
+            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </li>
+    {{/each}}
+
     {{#each periode.sciences as |science|}}
     <li class="item" data-item-id="{{science.refid}}" data-item-type="science" data-periode-id="{{../refid}}">
 
@@ -309,6 +352,3 @@
 
 </ol>
 {{/each}}
-
-
-

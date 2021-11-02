@@ -80,7 +80,7 @@ Game.conjuration = {
     cercles: {
         charmeur:      "NEPH5E.conjuration.cercles.charmeur",
         dresseur:      "NEPH5E.conjuration.cercles.dresseur",
-        demiurge:      "NEPH5E.conjuration.cercles.démiurge"
+        demiurge:      "NEPH5E.conjuration.cercles.demiurge"
     },
     appels: {
         pacifiste:     "NEPH5E.conjuration.appels.pacifiste",

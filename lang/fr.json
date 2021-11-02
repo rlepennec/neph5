@@ -1,7 +1,7 @@
 {
     "ITEM.TypeAlchimie":     "Voie alchimique",
     "ITEM.TypeAppel":        "Appel",
-    "ITEM.TypeAspect":       "Aspect",
+    "ITEM.TypeAspect":       "Aspects de l'Imago",
     "ITEM.TypeArcane":       "Quête d'Arcane",
     "ITEM.TypeCatalyseur":   "Catalyseur",
     "ITEM.TypeCompetence":   "Compétence",
@@ -9,6 +9,7 @@
     "ITEM.TypeMateriae":     "Materiae Primae",
     "ITEM.TypeMetamorphe":   "Métamorphe",
     "ITEM.TypeOrdonnance":   "Ordonnance de Kabbale",
+    "ITEM.TypePasse":        "Passe",
     "ITEM.TypePeriode":      "Période",
     "ITEM.TypeQuete":        "Quête ésotérique",
     "ITEM.TypeRite":         "Rite",
@@ -34,6 +35,7 @@
         "barge":           "Barge",
         "caracteristique": "Caracteristique",
         "compas":          "Compas",
+        "combat":          "Combat",
         "controle":        "Contrôle",
         "construction":    "Construction",
         "cout":            "Coût",
@@ -51,13 +53,14 @@
         "extrait":         "Extrait",
         "nephilim":        "Nephilim",
         "notes":           "Notes",
+        "passe":           "Passés",
+        "pavane":          "Pavane",
         "figurant":        "Figurant",
         "selenim":         "Selenim",
         "humain":          "Humain",
         "soleil":          "Soleil",
         "vecus":           "Vécus",
         "tab":             "Onglet",
-        "tenebre":         "Art ténébreux",
         "menace":          "Menace",
         "ka":              "Ka",
         "air":             "Air",
@@ -98,7 +101,7 @@
             "cercles": {
                 "charmeur": "Charmeur",
                 "dresseur": "Dresseur",
-                "demiurge": "Demiurge"
+                "demiurge": "Démiurge"
             },
             "appels": {
                 "nom":          "Appel",
@@ -107,7 +110,7 @@
                 "tortionnaire": "Tortionnaire",
                 "familier":     "Familier",
                 "voyageur":     "Voyageur",
-                "drogué":       "Droggué",
+                "drogué":       "Drogué",
                 "soldat":       "Soldat",
                 "fou" :         "Fou",
                 "annihilateur": "Annihilateur",

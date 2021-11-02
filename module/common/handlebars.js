@@ -98,7 +98,8 @@ u
      *   quetes,
      *   savoirs,
      *   arcanes,
-     *   chutes
+     *   chutes,
+     *   passes
      * @returns the competences to display in the character sheet.
      */
     static getLevels(actor, items) {
@@ -131,6 +132,20 @@ u
      */
     static log(value) {
         console.log(value);
+    }
+
+    /**
+     * Loop each times.
+     * @param {*} from  The intitial index.
+     * @param {*} to    The final index.
+     * @param {*} incr  The step between indexes.
+     * @param {*} block The block to add.
+     */
+    static loop(from, to, incr, block) {
+        var accum = '';
+        for(var i = from; i < to; i += incr)
+            accum += block.fn(i);
+        return accum;
     }
 
 }
