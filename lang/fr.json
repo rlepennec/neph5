@@ -26,6 +26,9 @@
     "ACTOR.TypeFigurant":    "Figurant",
     "ACTOR.TypeSimulacre":   "Simulacre",
 
+    "SETTINGS.useV3":        "Utilisation de règles V3",
+    "SETTINGS.useV3Desc":    "Permet d'utiliser des règles de la V3 comme les caractéristiques des simulacres",
+
     "NEPH5E": {
 
         "akasha":          "Akasha",

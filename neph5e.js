@@ -84,6 +84,7 @@ Hooks.once("init", function() {
     Items.registerSheet('nephilim', VecuSheet, { types: ['vecu'], makeDefault: true });
 
     preloadTemplates();
+    registerSystemSettings();
 
     // Handle message deletion
     // Unregister the message event for all token of the current scene
@@ -173,6 +174,17 @@ Hooks.once("init", function() {
         // Returns the result
         return initialized
 
+    }
+
+    function registerSystemSettings() {
+        game.settings.register('neph5e', 'useV3', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.useV3'),
+            hint: game.i18n.localize('SETTINGS.useV3Desc'),
+            type: Boolean,
+            default: false
+        })
     }
 
 });

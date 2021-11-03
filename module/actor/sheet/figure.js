@@ -66,7 +66,8 @@ export class FigureSheet extends ActorSheet {
             data: baseData.actor.data.data,
             metamorphes: game.items.filter(item  => item.data.type === 'metamorphe'),
             cercles: Game.alchimie.cercles,
-            currentPeriode: this.current != null ? this.current.data.data.id : null
+            currentPeriode: this.current != null ? this.current.data.data.id : null,
+            useV3: game.settings.get('neph5e', 'useV3')
         }
         return sheetData;
     }
@@ -1019,7 +1020,7 @@ export class FigureSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const type = li.data("item-type");
-        return await this.actor.rollSimulacre(id, type);
+        return await this.actor.rollSimulacre(id, false, type);
     }
 
     async _onItemRoll(event) {

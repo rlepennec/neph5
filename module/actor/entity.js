@@ -526,10 +526,12 @@ export class NephilimActor extends Actor {
 
   /**
    * Rolls the specified character attribute.
-   * @param uuid      The uuid of the actor for which to roll dices. 
+   * Cette methode appele pour les jets depuis les fiches figures, figurants et simulacres
+   * @param uuid      The uuid of the actor for which to roll dices.
+   * @param self      True if the actor is not the simulacre of a nephilim. 
    * @param attribute The name of the attribute roll.
    */
-  async rollSimulacre(uuid, attribute) {
+  async rollSimulacre(uuid, self, attribute) {
 
     const simulacre = CustomHandlebarsHelpers.getActor(uuid);
     let sentence = "";
@@ -538,43 +540,51 @@ export class NephilimActor extends Actor {
     switch (attribute) {
       case 'agile':
         difficulty = simulacre.data.data.agile;
-        sentence = "fait appel à son agilité";
+        sentence = self ? " fait appel à son agilité" : "fait appel à l'agilité de son simulacre";
         break;
       case 'endurant':
         difficulty = simulacre.data.data.endurant;
-        sentence = "fait appel à son endurance";
+        sentence = self ? " fait appel à son endurance" : "fait appel à l'endurance de son simulacre";
         break;
       case 'fort':
         difficulty = simulacre.data.data.fort;
-        sentence = "fait appel à sa force";
+        sentence = self ? " fait appel à sa force" : "fait appel à la force de son simulacre";
         break;
       case 'intelligent':
         difficulty = simulacre.data.data.intelligent;
-        sentence = "fait appel à son intelligence";
+        sentence = self ? "fait appel à son intelligence" : "fait appel à l'intelligence de son simulacre";
         break;
       case 'seduisant':
         difficulty = simulacre.data.data.seduisant;
-        sentence = "fait appel à son charisme";
+        sentence = self ? "fait appel à son charisme" : "fait appel au charisme de son simulacre";
         break;
       case 'soleil':
         difficulty = simulacre.data.data.soleil;
-        sentence = "fait appel à sa volonté";
+        sentence = self ? "fait appel à sa volonté" : "fait appel à la volonté de son simulacre";
         break;
       case 'savant':
         difficulty = simulacre.data.data.savant;
-        sentence = "fait appel à son savoir";
+        sentence = self ? "fait appel à son savoir" : "fait appel au savoir de son simulacre";
         break;
       case 'sociable':
         difficulty = simulacre.data.data.sociable;
-        sentence = "fait appel à ses relations";
+        sentence = self ? "fait appel à ses relations" : "fait appel à aux relations de son simulacre";
         break;
       case 'fortune':
         difficulty = simulacre.data.data.fortune;
-        sentence = "utilise sa fortune";
+        sentence = self ? "fait appel à sa fortune" : "utilise la fortune de son simulacre";
         break;
       case 'vecu':
         difficulty = simulacre.data.data.vecu.degre;
-        sentence = "utilise l'expérience de son simulacre";
+        sentence = self ? "utilise son vécu" : "utilise le vécu de son simulacre";
+        break;
+      case 'menace':
+        difficulty = simulacre.data.data.menace;
+        sentence = "fait appel à ses compétences";
+        break;
+      case 'ka':
+        difficulty = simulacre.data.data.ka;
+        sentence = "fait appel à son ka";
         break;
     }
 

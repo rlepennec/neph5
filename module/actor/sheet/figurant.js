@@ -42,9 +42,22 @@ export class FigurantSheet extends ActorSheet {
             owner: this.actor.isOwner,
             editable: this.isEditable,
             actor: baseData.actor,
-            data: baseData.actor.data.data
+            data: baseData.actor.data.data,
+            useV3: game.settings.get('neph5e', 'useV3')
         }
         return sheetData;
+    }
+
+    activateListeners(html) {
+        super.activateListeners(html);
+        html.find('div[data-tab="description"] .item-roll').click(this._onRoll.bind(this));
+    }
+
+    async _onRoll(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        return await this.actor.rollSimulacre(id, true, type);
     }
 
     /**

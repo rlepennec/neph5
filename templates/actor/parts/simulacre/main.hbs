@@ -20,7 +20,11 @@
         </div>
     </div>
     
-    <div class="columns">
+    {{#if ../useV3}}
+    <div class="columns" style="column-count:2">
+    {{else}}
+    <div class="columns" style="column-count:1">
+    {{/if}}
 
         <div class="column">
 
@@ -96,6 +100,7 @@
 
         </div>
 
+        {{#if ../useV3}}
         <div class="column">
 
             <ol class="item-list">
@@ -215,6 +220,7 @@
             </ol>
 
         </div>
+        {{/if}}
 
     </div>
 

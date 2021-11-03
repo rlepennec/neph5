@@ -56,12 +56,24 @@ export class Rolls {
         });
         chatData.roll = true;
 
+
+        const rollMode = game.settings.get('core', 'rollMode');
+        //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
+        if (['gmroll', 'blindroll'].includes(rollMode))
+            chatData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+        if (rollMode === 'selfroll')
+            chatData.whisper = [game.user.id];
+        if (rollMode === 'blindroll')
+            chatData.blind = true;
+
         const theChatMessage = await ChatMessage.create(chatData);
+        /*
         const whisper = theChatMessage.data.whisper;
         let blind  = false;
         if (theChatMessage.data.blind) {
             blind = true;
         }
+        */
 
         const roll1 = new Roll("1d100", {});
         const theRoll = roll1.roll();
@@ -136,11 +148,17 @@ export class Rolls {
             speaker: ChatMessage.getSpeaker(),
             actor: actor,
             roll: theRoll,
-            result: result,
-            whisper: whisper,
-            blind: blind
+            result: result
         }
         lastData.content = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-result.html", lastData);
+        //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
+        if (['gmroll', 'blindroll'].includes(rollMode))
+            lastData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+        if (rollMode === 'selfroll')
+            lastData.whisper = [game.user.id];
+        if (rollMode === 'blindroll')
+            lastData.blind = true;
+
         await ChatMessage.create(lastData);
 
     }

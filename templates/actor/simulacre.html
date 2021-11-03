@@ -43,7 +43,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="soleil">
             
                     <label class="item-name">Ka {{localize "NEPH5E.soleil"}}</label>
             
@@ -60,7 +60,7 @@
             
                 </li>
 
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="vecu">
             
                     {{#if data.vecu.refid}}
                         {{#with (getItem data.vecu.refid) as |vecu|}}
@@ -105,6 +105,7 @@
             
             </ol>
             
+            {{#if useV3}}
             <ol class="item-list">
     
                 <li class="item-list-header">
@@ -123,7 +124,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="agile">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.agile"}}</label>
             
@@ -140,7 +141,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="endurant">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.endurant"}}</label>
             
@@ -157,7 +158,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="fort">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.fort"}}</label>
             
@@ -174,7 +175,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="intelligent">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.intelligent"}}</label>
             
@@ -191,7 +192,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="seduisant">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.seduisant"}}</label>
             
@@ -208,7 +209,7 @@
             
                 </li>
                        
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="savant">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.savant"}}</label>
             
@@ -225,7 +226,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="sociable">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.sociable"}}</label>
             
@@ -242,7 +243,7 @@
             
                 </li>
             
-                <li class="item">
+                <li class="item" data-item-id="{{data.id}}" data-item-type="fortune">
             
                     <label class="item-name">{{localize "NEPH5E.simulacre.fortune"}}</label>
             
@@ -260,6 +261,7 @@
                 </li>
             
             </ol>
+            {{/if}}
 
             <ol class="item-list">
                 

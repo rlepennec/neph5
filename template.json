@@ -40,22 +40,22 @@
             "templates": [
                 "id", "combat"
             ],
-            "menace": 0,
-            "ka": 0
+            "menace": 3,
+            "ka": 3
         },
         "simulacre": {
             "templates": [
                 "id", "combat"
             ],
-            "agile": 0,
-            "endurant": 0,
-            "fort": 0,
-            "intelligent": 0,
-            "seduisant": 0,
-            "soleil": 0,
-            "fortune": 0,
-            "savant": 0,
-            "sociable": 0,
+            "agile": 3,
+            "endurant": 3,
+            "fort": 3,
+            "intelligent": 3,
+            "seduisant": 3,
+            "soleil": 3,
+            "fortune": 3,
+            "savant": 3,
+            "sociable": 3,
             "vecu": {
                 "refid": null,
                 "degre": 0

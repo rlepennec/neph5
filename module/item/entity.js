@@ -181,8 +181,13 @@ export class NephilimItem extends Item {
       case 'rite':
         return actor.getScience(this.data.data.cercle);
       case 'competence':
-        const attribute = actor.getAttribute(this.data.data.inne);
-        return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0);
+        const useV3 = game.settings.get('neph5e', 'useV3');
+        if (useV3 === true) {
+          const attribute = actor.getAttribute(this.data.data.inne);
+          return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0);
+        } else {
+          return actor.getCompetence(this);
+        }
       case 'vecu':
         return actor.getLevelFrom('vecus', this);
       case 'quete':
