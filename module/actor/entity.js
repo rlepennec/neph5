@@ -630,4 +630,17 @@ export class NephilimActor extends Actor {
     }
   }
 
+  getWoundModifier(type) {
+      let modifier = 0;
+      const dommages = type === 'physique' ? this.data.data.dommage.physique : dommages = type === 'magique' ? this.data.data.dommage.magique : null;
+      for (const w in Game.wounds) {
+          const wound = Game.wounds[w];
+          if (dommages[w]) {
+              modifier = modifier + wound.modifier;
+          }
+      }
+      return modifier;
+  }
+
+
 }

@@ -90,6 +90,54 @@ export async function droppedItem(event) {
 
 }
 
+export async function droppedItem2(event) {
+
+    // Retrieve the dropped data id and type from the event
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData('text/plain'));
+    } catch (err) {
+      return false;
+    }
+
+    let dataType = "";
+    if (data.type === "Item") {
+        let itemData = {};
+        // Case 1 - Import from a Compendium pack
+        if (data.pack) {
+            dataType = "compendium";
+            const pack = game.packs.find(p => p.collection === data.pack);
+            const packItem = await pack.getEntity(data.id);
+            if (packItem != null) itemData = packItem.data;
+        }
+
+        // Case 2 - Data explicitly provided
+        else if (data.data) {
+            let sameActor = data.actorId === actor._id;
+            if (sameActor && actor.isToken) sameActor = data.tokenId === actor.token.id;
+            if (sameActor) return this._onSortItem(event, data.data); // Sort existing items
+
+            dataType = "data";
+            itemData = data.data;
+        }
+
+        // Case 3 - Import from World entity
+        else {
+            dataType = "world";
+            itemData = game.items.get(data.id).data;
+        }
+
+        return { from: dataType, data:  itemData };
+
+    } else {
+
+        return null;
+    }
+
+}
+
+
+
 /**
  * Updates the list of referenced items by adding the specified item.
  * Reset the degre to 0 if dropped again.

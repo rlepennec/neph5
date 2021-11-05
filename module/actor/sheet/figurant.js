@@ -1,4 +1,6 @@
 import { UUID } from "../../common/tools.js";
+import { droppedItem2 } from "../../item/tools.js";
+import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 
 export class FigurantSheet extends ActorSheet {
 
@@ -50,7 +52,26 @@ export class FigurantSheet extends ActorSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+        html.find('div[data-tab="description"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="description"] .item-edit').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="description"] .item-delete').click(this._onDeleteItem.bind(this));
         html.find('div[data-tab="description"] .item-roll').click(this._onRoll.bind(this));
+    }
+
+    async _onEditItem(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        const toto = this.getArme('trait');
+        item.sheet.render(true);
+    }
+
+    async _onDeleteItem(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
     }
 
     async _onRoll(event) {
@@ -68,6 +89,51 @@ export class FigurantSheet extends ActorSheet {
             formData['data.id'] = UUID();
         }
         super._updateObject(event, formData);
+    }
+
+    getArme(skill) {
+        if (skill === 'trait' || skill === 'feu' || skill === 'lourde') {
+            return this.getDistance();
+        } else if (skill == 'melee') {
+            return this.getMelee();
+        } else {
+            return null;
+        }
+    }
+
+    getDistance() {
+        for (const item of this.actor.items.values()) {
+            if (item.data.type === 'arme' && (item.data.data.skill === 'trait' || item.data.data.skill === 'feu' || item.data.data.skill === 'lourde')) {
+                return item;
+            }
+        };
+        return null;
+    }
+
+    getMelee() {
+        for (const item of this.actor.items.values()) {
+            if (item.data.type === 'arme' && (item.data.data.skill === 'melee')) {
+                return item;
+            }
+        };
+        return null;
+    }
+
+    /**
+     * This function catches the drop
+     * @param {*} event 
+     */
+    async _onDrop(event) {
+        //
+        event.preventDefault();
+        const item = await droppedItem2(event);
+        if (item != null && item.hasOwnProperty('data')) {
+            if (item.data.type === "arme") {
+                await super._onDrop(event);
+            } else if (item.data.type === "armure") {
+                await super._onDrop(event);
+            }
+        }
     }
 
 }

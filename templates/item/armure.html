@@ -1,0 +1,91 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+            <span class="type">{{localize "NEPH5E.armure"}}</span>
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+            <div class="property-list">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armures.contact"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.contact"
+                        type="text"
+                        value="{{data.contact}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armures.trait"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.trait"
+                        type="text"
+                        value="{{data.trait}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armures.feu"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.feu"
+                        type="text"
+                        value="{{data.feu}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armures.magique"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.magique"
+                        type="text"
+                        value="{{data.magique}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armures.bouclier"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.bouclier"
+                        type="checkbox"
+                        {{checked data.bouclier}}
+                        data-dtype="Boolean"/>
+                </div>
+
+            </div>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+    </section>
+        
+</form>

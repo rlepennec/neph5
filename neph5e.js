@@ -11,6 +11,8 @@ import { SimulacreSheet} from "./module/actor/sheet/simulacre.js";
 import { AlchimieSheet} from "./module/item/sheet/alchimie.js";
 import { AppelSheet} from "./module/item/sheet/appel.js";
 import { ArcaneSheet} from "./module/item/sheet/arcane.js";
+import { ArmeSheet} from "./module/item/sheet/arme.js";
+import { ArmureSheet} from "./module/item/sheet/armure.js";
 import { AspectSheet} from "./module/item/sheet/aspect.js";
 import { CatalyseurSheet} from "./module/item/sheet/catalyseur.js";
 import { ChuteSheet} from "./module/item/sheet/chute.js";
@@ -49,6 +51,8 @@ Hooks.once("init", function() {
         getCompetences: CustomHandlebarsHelpers.getCompetences,
         getVecus: CustomHandlebarsHelpers.getVecus,
         getScience: CustomHandlebarsHelpers.getScience,
+        isRanged: CustomHandlebarsHelpers.isRanged,
+        isMelee: CustomHandlebarsHelpers.isMelee,
         getCount: CustomHandlebarsHelpers.getCount,
         getScore: CustomHandlebarsHelpers.getScore,
         loop: CustomHandlebarsHelpers.loop,
@@ -64,6 +68,8 @@ Hooks.once("init", function() {
     Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
     Items.registerSheet('nephilim', AppelSheet, { types: ['appel'], makeDefault: true });
     Items.registerSheet('nephilim', ArcaneSheet, { types: ['arcane'], makeDefault: true });
+    Items.registerSheet('nephilim', ArmeSheet, { types: ['arme'], makeDefault: true });
+    Items.registerSheet('nephilim', ArmureSheet, { types: ['armure'], makeDefault: true });
     Items.registerSheet('nephilim', AspectSheet, { types: ['aspect'], makeDefault: true });
     Items.registerSheet('nephilim', CatalyseurSheet, { types: ['catalyseur'], makeDefault: true });
     Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });

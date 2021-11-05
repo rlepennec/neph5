@@ -245,6 +245,8 @@
             "alchimie",
             "appel",
             "arcane",
+            "arme",
+            "armure",
             "aspect",
             "catalyseur",
             "chute",
@@ -282,6 +284,38 @@
         "arcane": {
             "id": "",
             "description": ""
+        },
+        "arme": {
+            "id": "",
+            "description": "",
+            "skill": "melee",
+            "damages": 0,
+            "attack": 0,
+            "magique": false,
+            "melee": {
+                "defense": 0,
+                "blocage": false
+            },
+            "ranged": {
+                "ammunition": "",
+                "munitions": 1,
+                "perce": 0,
+                "vitesse": 1,
+                "actions": {
+                    "tirer": true,
+                    "salve": false,
+                    "rafale": false
+                }
+            }
+        },
+        "armure": {
+            "id": "",
+            "description": "",
+            "contact": 0,
+            "trait": 0,
+            "feu": 0,
+            "magique": 0,
+            "bouclier": false
         },
         "aspect": {
             "id": "",

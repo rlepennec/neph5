@@ -91,6 +91,11 @@
 
         {{#if (eq data.options.combat true)}}
         <div class="tab combat" data-group="primary" data-tab="combat">
+            <input
+                name="data.page.combat"
+                type="hidden"
+                value="true"
+                data-dtype="Boolean"/>
             {{> "systems/neph5e/templates/actor/parts/combat/main.hbs"}}
         </div>
         {{/if}}

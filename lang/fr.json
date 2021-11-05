@@ -1,6 +1,8 @@
 {
     "ITEM.TypeAlchimie":     "Voie alchimique",
     "ITEM.TypeAppel":        "Appel",
+    "ITEM.TypeArme":         "Arme",
+    "ITEM.TypeArmure":       "Armure",
     "ITEM.TypeAspect":       "Aspects de l'Imago",
     "ITEM.TypeArcane":       "Quête d'Arcane",
     "ITEM.TypeCatalyseur":   "Catalyseur",
@@ -32,6 +34,9 @@
     "NEPH5E": {
 
         "akasha":          "Akasha",
+        "arme":            "Arme",
+        "armure":          "Armure",
+        "impact":          "Impact",
         "nef":             "Nef akashique",
         "activation":      "Activation",
         "boussole":        "Boussole",
@@ -72,6 +77,37 @@
         "terre":           "Terre",
         "lune":            "Lune",
         "luneNoire":       "Lune Noire",
+
+        "armes": {
+            "nom":        "Armes",
+            "type":       "Type",
+            "damages":    "Dommages",
+            "attack":     "Attaque",
+            "magique":    "Magique",
+            "defense":    "Défense",
+            "blocage":    "Blocage",
+            "ammunition": "Munitions",
+            "munitions":  "Chargeur",
+            "perce":      "Perce",
+            "vitesse":    "Vitesse",
+            "tirer":      "Tirer",
+            "salve":      "Salve",
+            "rafale":     "Rafale",
+            "martial":    "Arme naturelle",
+            "melee":      "Arme de melée",
+            "trait":      "Arme de trait",
+            "feu":        "Arme à feu",
+            "lourde":     "Arme lourde"
+        },
+
+        "armures": {
+            "nom":        "Armures",
+            "contact":    "Contact",
+            "trait":      "De trait",
+            "feu":        "A feu",
+            "magique":    "Magique",
+            "bouclier":   "Bouclier"
+        },
 
         "anamorphose": {
             "science": "Anamorphose",

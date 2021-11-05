@@ -79,7 +79,6 @@ u
         const competences = [];
         const a = CustomHandlebarsHelpers.getActor(actor);
         for (let c of CustomHandlebarsHelpers.getItems('competence')) {
-            let degre = a.getCompetence(c);
             competences.push({
                 refid: c.data.data.id,
                 name: c.data.name,
@@ -104,6 +103,14 @@ u
      */
     static getLevels(actor, items) {
         return CustomHandlebarsHelpers.getActor(actor).getLevelsFrom(items);
+    }
+
+    static isRanged(skill) {
+        return skill === 'trait' || skill === 'feu' || skill == 'lourde';
+    }
+
+    static isMelee(skill) {
+        return skill === 'martial' || skill === 'melee';
     }
 
     /**

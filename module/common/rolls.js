@@ -66,14 +66,7 @@ export class Rolls {
         if (rollMode === 'blindroll')
             chatData.blind = true;
 
-        const theChatMessage = await ChatMessage.create(chatData);
-        /*
-        const whisper = theChatMessage.data.whisper;
-        let blind  = false;
-        if (theChatMessage.data.blind) {
-            blind = true;
-        }
-        */
+        await ChatMessage.create(chatData);
 
         const roll1 = new Roll("1d100", {});
         const theRoll = roll1.roll();
@@ -103,7 +96,6 @@ export class Rolls {
         // Result
         let result = "";
         const diffpc = cardData.difficulty * 10;
-
 
         if (theRoll._total === 100 || theRoll._total > diffpc) {
             if (theRoll._total === 1) {
@@ -152,14 +144,19 @@ export class Rolls {
         }
         lastData.content = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-result.html", lastData);
         //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
-        if (['gmroll', 'blindroll'].includes(rollMode))
+        if (['gmroll', 'blindroll'].includes(rollMode)) {
             lastData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-        if (rollMode === 'selfroll')
+        }
+        if (rollMode === 'selfroll') {
             lastData.whisper = [game.user.id];
-        if (rollMode === 'blindroll')
+        }
+        if (rollMode === 'blindroll') {
             lastData.blind = true;
+        }
 
-        await ChatMessage.create(lastData);
+        if (rollMode !== 'blindroll') {
+            await ChatMessage.create(lastData);
+        }
 
     }
 

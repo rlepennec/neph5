@@ -286,6 +286,9 @@
 .item .sheet-body .header .property .property-value:focus {
   outline: none;
 }
+.item .sheet-body .header.arme {
+  column-count: 4;
+}
 .item .sheet-body .header.sort {
   column-count: 3;
 }

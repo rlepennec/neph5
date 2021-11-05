@@ -1,0 +1,44 @@
+<div class="columns" style="column-count:1">
+    <div class="column" style="height: auto;">
+        <ol class="item-list">
+
+            <li class="item-list-header">
+                <div class="item-name">
+                    <span>Equipement</span>
+                </div>
+                <div class="item-control">
+                    </span>
+                </div>
+                <div class="item-control">
+                    </span>
+                </div>
+                <div class="item-control">
+                    </span>
+                </div>
+            </li>
+
+            {{#each actor.items as |item id|}}
+            {{log item}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.data.data.type}}">
+                <div class="item-name">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+                <div class="item-control">
+                    {{#if (eq item.data.type 'arme')}}
+                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    {{else}}
+                        </span>
+                    {{/if}}
+                </div>
+                <div class="item-control">
+                    <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                </div>
+                <div class="item-control">
+                    <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                </div>
+            </li>
+            {{/each}}
+
+        </ol>
+    </div>
+</div>

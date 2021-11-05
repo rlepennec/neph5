@@ -170,8 +170,8 @@ Game.wounds = {
         sentence: "quelques blessures superficielles",
         modifier: 0
     },
-    legere: {
-        id: "legere",
+    mineure: {
+        id: "mineure",
         sentence: "une blessure légère",
         modifier: -2
     },
@@ -259,6 +259,16 @@ Game.effects = {
             label: "EFFECT.StatusDead"
         },
         modifier: null
+    }
+}
+
+Game.weapon = {
+    skills: {
+        martial: "NEPH5E.armes.martial",
+        melee:   "NEPH5E.armes.melee",
+        trait:   "NEPH5E.armes.trait",
+        feu:     "NEPH5E.armes.feu",
+        lourde:  "NEPH5E.armes.lourde",
     }
 }
 

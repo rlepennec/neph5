@@ -1,0 +1,182 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <input
+            name="data.id"
+            type="hidden"
+            value="{{data.id}}"
+            data-dtype="String"/>
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+            <span class="type">{{localize "NEPH5E.arme"}}</span>
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+            <div class="header arme">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armes.type"}}</label>
+                    <select class="property-value" name="data.skill">
+                    {{#select data.skill}}
+                        {{#each skills as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armes.damages"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.damages"
+                        type="text"
+                        value="{{data.damages}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armes.attack"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.attack"
+                        type="text"
+                        value="{{data.attack}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.armes.magique"}}</label>
+                    <input
+                        class="property-value"
+                        name="data.magique"
+                        type="checkbox"
+                        {{checked data.magique}}
+                        data-dtype="Boolean"/>
+                </div>
+
+            </div>
+
+            <div class="property-list">
+
+                {{#if (isMelee data.skill)}}
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.defense"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.defense"
+                            type="text"
+                            value="{{data.defense}}"
+                            data-dtype="Number"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.blocage"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.blocage"
+                            type="checkbox"
+                            {{checked data.blocage}}
+                            data-dtype="Boolean"/>
+                    </div>
+
+                {{else}}
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.ammunition"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.ammunition"
+                            type="text"
+                            value="{{data.ammunition}}"
+                            data-dtype="String"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.munitions"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.munitions"
+                            type="text"
+                            value="{{data.munitions}}"
+                            data-dtype="Number"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.perce"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.perce"
+                            type="text"
+                            value="{{data.perce}}"
+                            data-dtype="Number"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.vitesse"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.vitesse"
+                            type="text"
+                            value="{{data.vitesse}}"
+                            data-dtype="Number"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.tirer"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.action.tirer"
+                            type="checkbox"
+                            {{checked data.action.tirer}}
+                            data-dtype="Boolean"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.salve"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.action.salve"
+                            type="checkbox"
+                            {{checked data.action.salve}}
+                            data-dtype="Boolean"/>
+                    </div>
+
+                    <div class="property">
+                        <label class="property-name">{{localize "NEPH5E.armes.rafale"}}</label>
+                        <input
+                            class="property-value"
+                            name="data.action.rafale"
+                            type="checkbox"
+                            {{checked data.action.rafale}}
+                            data-dtype="Boolean"/>
+                    </div>
+
+                {{/if}}
+
+            </div>
+
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+
+    </section>
+        
+</form>

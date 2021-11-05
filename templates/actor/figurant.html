@@ -1,6 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
     
-    
     {{!-- Sheet Header --}}
     <header class="sheet-header">
 
@@ -84,23 +83,19 @@
                 </li>
 
             </ol>
-
+            
             {{> "systems/neph5e/templates/actor/parts/combat/main.hbs"}}
 
             <ol class="item-list">
-
                 <li class="item-list-header">
-
                     <div class="item-name">
                         <span>{{localize "NEPH5E.description"}}</span>
                     </div>
-
                 </li>
-
             </ol>
 
             {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-
+        
         </div>
 
     </section>

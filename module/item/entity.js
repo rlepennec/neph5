@@ -26,6 +26,12 @@ export class NephilimItem extends Item {
         case 'arcane':
           this.data.img = "systems/neph5e/icons/arcane.jpg";
           break;
+        case 'arme':
+          this.data.img = "systems/neph5e/icons/arme.webp";
+          break;
+        case 'armure':
+          this.data.img = "systems/neph5e/icons/armure.webp";
+          break;
         case 'aspect':
           this.data.img = "systems/neph5e/icons/aspect.jpg";
           break;
