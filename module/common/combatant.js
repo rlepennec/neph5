@@ -2,8 +2,9 @@ import { Status } from "../combat/data/status.js";
 
 export class NephilimCombatant extends Combatant {
 
-
-    // @Override
+    /**
+     * @override
+     */
     async _onCreate(data,options,user) {
         await super._onCreate(data, options, user);
         await this.setFlag("world", "combat", Status.create());

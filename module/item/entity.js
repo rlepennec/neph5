@@ -171,41 +171,43 @@ export class NephilimItem extends Item {
    * @returns the difficulty.
    */
   difficulty(actor) {
+    const physicalWoundModifier = actor.getWoundModifier('physique');
+    const magicalWoundModifier = actor.getWoundModifier('magique');
     switch (this.type) {
       case 'sort':
         if (this.data.data.element === "luneNoire") {
-          return actor.getScience(this.data.data.cercle) + actor.getKa("noyau") - this.data.data.degre;
+          return actor.getScience(this.data.data.cercle) + actor.getKa("noyau") - this.data.data.degre + magicalWoundModifier;
         } else {
-          return actor.getScience(this.data.data.cercle) + actor.getKa(this.data.data.element) - this.data.data.degre;
+          return actor.getScience(this.data.data.cercle) + actor.getKa(this.data.data.element) - this.data.data.degre + magicalWoundModifier;
         }
       case 'invocation':
-        return actor.getScience(this.data.data.sephirah) + actor.getKa(this.data.data.element) - this.data.data.degre;
+        return actor.getScience(this.data.data.sephirah) + actor.getKa(this.data.data.element) - this.data.data.degre + magicalWoundModifier;
       case 'formule':
-        return actor.getScience(this.data.data.cercle) + actor.getKaOfConstruct(this.data.data.substance, this.data.data.elements) - this.data.data.degre;
+        return actor.getScience(this.data.data.cercle) + actor.getKaOfConstruct(this.data.data.substance, this.data.data.elements) - this.data.data.degre + magicalWoundModifier;
       case 'appel':
-        return actor.getScience(this.data.data.cercle);
+        return actor.getScience(this.data.data.cercle) + magicalWoundModifier;
       case 'rite':
-        return actor.getScience(this.data.data.cercle);
+        return actor.getScience(this.data.data.cercle) + magicalWoundModifier;
       case 'competence':
         const useV3 = game.settings.get('neph5e', 'useV3');
         if (useV3 === true) {
           const attribute = actor.getAttribute(this.data.data.inne);
-          return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0);
+          return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0) + physicalWoundModifier;
         } else {
-          return actor.getCompetence(this);
+          return actor.getCompetence(this) + physicalWoundModifier;
         }
       case 'vecu':
-        return actor.getLevelFrom('vecus', this);
+        return actor.getLevelFrom('vecus', this) + physicalWoundModifier;
       case 'quete':
-        return actor.getSumFrom('quetes', this);
+        return actor.getSumFrom('quetes', this) + magicalWoundModifier;
       case 'savoir':
-        return actor.getSumFrom('savoirs', this);
+        return actor.getSumFrom('savoirs', this) + magicalWoundModifier;
       case 'passe':
-        return actor.getSumFrom('passes', this);
+        return actor.getSumFrom('passes', this) + physicalWoundModifier;
       case 'chute':
-        return actor.getSumFrom('chutes', this);
+        return actor.getSumFrom('chutes', this) + magicalWoundModifier;
       case 'arcane':
-        return actor.getSumFrom('arcanes', this);
+        return actor.getSumFrom('arcanes', this) + magicalWoundModifier;
       default:
         return 0;
     }
