@@ -63,7 +63,6 @@ export class FigurantSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const item = this.actor.getEmbeddedDocument('Item', id);
-        const toto = this.getArme('trait');
         item.sheet.render(true);
     }
 

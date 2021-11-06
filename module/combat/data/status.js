@@ -33,7 +33,6 @@ export class Status {
         return {
             improvements: Improvements.create(),
             effects: Effects.create(),
-            wounds: Wounds.create(),
             protection: Protection.create(),
             unarmed: Unarmed.create(),
             melee: Melee.create(),
@@ -50,11 +49,11 @@ export class Status {
         return {
             improvements: this.improvements.getRenderData(),
             effects: this.effects.getRenderData(),
-            wounds: this.wounds.getRenderData(),
             protections: this.protection.getRenderData(),
             unarmed: this.unarmed.getRenderData(),
             melee: this.melee.getRenderData(),
             ranged: this.ranged.getRenderData(),
+            wounds: this.wounds.getRenderData(),
         }
     }
 

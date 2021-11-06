@@ -32,11 +32,13 @@ export class State {
                 await status.effects.set(Game.effects.projete, $('#projete').is(":checked"));
                 await status.effects.set(Game.effects.desoriente, $('#desoriente').is(":checked"));
 
-                await status.wounds.set(Game.wounds.choc, parseInt(data.find("#choc")[0].value));
-                await status.wounds.set(Game.wounds.legere, $('#legere').is(":checked"));
-                await status.wounds.set(Game.wounds.serieuse, $('#serieuse').is(":checked"));
-                await status.wounds.set(Game.wounds.grave, $('#grave').is(":checked"));
-                await status.wounds.set(Game.wounds.mortelle, $('#mortelle').is(":checked"));
+                const choc = parseInt(data.find("#choc")[0].value);
+                const mineure = $('#mineure').is(":checked");
+                const serieuse = $('#serieuse').is(":checked");
+                const grave = $('#grave').is(":checked");
+                const mortelle = $('#mortelle').is(":checked");
+
+                await status.wounds.setAll(choc, mineure, serieuse, grave, mortelle);
 
         }).render();
 

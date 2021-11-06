@@ -12,25 +12,12 @@ export class Wounds {
     }
 
     /**
-     * @returns the initial wounds token property.
-     */
-    static create() {
-        return {
-            choc: 0,
-            legere: false,
-            serieuse: false,
-            grave: false,
-            mortelle: false
-        };
-    }
-
-    /**
      * @returns the json data object used to render templates.
      */
-    getRenderData() {
+     getRenderData() {
         return {
             choc: this.get(Game.wounds.choc),
-            legere: this.get(Game.wounds.legere),
+            mineure: this.get(Game.wounds.mineure),
             serieuse: this.get(Game.wounds.serieuse),
             grave: this.get(Game.wounds.grave),
             mortelle: this.get(Game.wounds.mortelle)
@@ -43,17 +30,29 @@ export class Wounds {
      * @returns the wound value.
      */
     get(wound) {
-        return this.getOf(this.combatant.data.flags, wound);
+        return this.combatant.actor.data.data.dommage.physique[wound.id];
     }
 
     /**
-     * Gets the specified wound value for the specified flags.
-     * @param flags The flags to check.
-     * @param wound The wound to set. 
-     * @returns the wound value.
+     * Sets the specified wound value.
+     * @param wound The wound to set.
+     * @param value The value to set. 
+     * @returns the instance.
      */
-    getOf(flags, wound) {
-        return flags.world.combat.wounds[wound.id];
+     async setAll(choc, mineure, serieuse, grave, mortelle) {
+
+        const physique = duplicate(this.combatant.actor.data.data.dommage.physique);
+        const old_mortelle = physique[Game.wounds.mortelle.id];
+        physique[Game.wounds.choc.id] = choc;
+        physique[Game.wounds.mineure.id] = mineure;
+        physique[Game.wounds.serieuse.id] = serieuse;
+        physique[Game.wounds.grave.id] = grave;
+        physique[Game.wounds.mortelle.id] = mortelle;
+        await this.combatant.actor.update({['data.dommage.physique']: physique});
+        if (mortelle != old_mortelle) {
+            await this.applyMortal();
+        }
+        return this;
     }
 
     /**
@@ -63,10 +62,11 @@ export class Wounds {
      * @returns the instance.
      */
     async set(wound, value) {
-        const flags = duplicate(this.combatant.data.flags);
-        const mortelle = flags.world.combat.wounds[Game.wounds.mortelle.id];
-        flags.world.combat.wounds[wound.id] = value;
-        await this.combatant.update({['flags']: flags});
+
+        const physique = duplicate(this.combatant.actor.data.data.dommage.physique);
+        const mortelle = physique[Game.wounds.mortelle.id];
+        physique[wound.id] = value;
+        await this.combatant.actor.update({['data.dommage.physique']: physique});
         if (wound === Game.wounds.mortelle && mortelle != value) {
             await this.applyMortal();
         }
@@ -114,12 +114,12 @@ export class Wounds {
             }
         } 
 
-        // Apply damages to blessure legere
-        if (currentDamages > 0 && !this.get(Game.wounds.legere)) {
-            await this.set(Game.wounds.legere, true);
+        // Apply damages to blessure mineure
+        if (currentDamages > 0 && !this.get(Game.wounds.mineure)) {
+            await this.set(Game.wounds.mineure, true);
             currentDamages = Math.max(0, currentDamages - 2);
             if (currentDamages === 0) {
-                return Game.wounds.legere;
+                return Game.wounds.mineure;
             }
         }
 

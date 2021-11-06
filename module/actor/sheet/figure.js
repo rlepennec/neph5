@@ -78,6 +78,12 @@ export class FigureSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
 
+        // Combat
+        html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="combat"] .item-edit').click(this._onEditEquipement.bind(this));
+        html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEquipement.bind(this));
+        html.find('div[data-tab="combat"] .item-roll').click(this._onCombatRoll.bind(this));
+
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="simulacre"] .item-roll').click(this._onSimulacreRoll.bind(this));
@@ -153,7 +159,25 @@ export class FigureSheet extends ActorSheet {
         // Catch and retrieve the dropped item
         event.preventDefault();
         const item = await droppedItem(event);
-        if (item != null && item.hasOwnProperty('data')) {
+        if (item === null) {
+            if (event.dataTransfer != undefined) {
+                try {
+                  const _data = JSON.parse(event.dataTransfer.getData('text/plain'));
+                  const _item = await Item.implementation.fromDropData(_data);
+
+                  if (_item.data.type === "arme") {
+                    await super._onDrop(event);
+
+                  } else if (_item.data.type === "armure") {
+                    await super._onDrop(event);
+                  }
+
+                } catch (err) {
+                  return;
+                }
+            }
+
+        } else if (item.hasOwnProperty('data')) {
 
             // The metamorphe has been dropped:
             //   - Update the reference of the metamorphe
@@ -903,6 +927,21 @@ export class FigureSheet extends ActorSheet {
         deleteItemOf(this.actor, "necromancie", "refid", id, "rites");
     }
 
+    async _onDeleteEquipement(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
+    }
+
+    async _onEditEquipement(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        item.sheet.render(true);
+    }
+
     async _onDeleteMagie(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
@@ -1016,6 +1055,16 @@ export class FigureSheet extends ActorSheet {
         }
     }
 
+    async _onCombatRoll(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = this.actor.items.get(id);
+        const skill = item.data.data.skill;
+        const weaponSkill = Game.skills[skill];
+        const weaponSkillItem = CustomHandlebarsHelpers.getItem(weaponSkill.uuid);
+        return await weaponSkillItem.roll(this.actor);
+    }
+ 
     async _onSimulacreRoll(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -1106,8 +1155,6 @@ export class FigureSheet extends ActorSheet {
            summary.slideDown(200);
           }
           li.toggleClass("expanded");
-
-
     }
 
     async _onShowInvocation(event) {
@@ -1169,8 +1216,6 @@ export class FigureSheet extends ActorSheet {
            summary.slideDown(200);
           }
           li.toggleClass("expanded");
-
-
     }
 
     async _onShowAspect(event) {
