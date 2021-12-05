@@ -1,4 +1,5 @@
 import { preloadTemplates } from "./module/common/templates.js";
+import { migrateWorld } from "./module/common/migration.js";
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 
 import { NephilimActor } from "./module/actor/entity.js";
@@ -14,6 +15,7 @@ import { ArcaneSheet} from "./module/item/sheet/arcane.js";
 import { ArmeSheet} from "./module/item/sheet/arme.js";
 import { ArmureSheet} from "./module/item/sheet/armure.js";
 import { AspectSheet} from "./module/item/sheet/aspect.js";
+import { CapaciteSheet} from "./module/item/sheet/capacite.js";
 import { CatalyseurSheet} from "./module/item/sheet/catalyseur.js";
 import { ChuteSheet} from "./module/item/sheet/chute.js";
 import { CompetenceSheet} from "./module/item/sheet/competence.js";
@@ -25,11 +27,15 @@ import { MetamorpheSheet} from "./module/item/sheet/metamorphe.js";
 import { OrdonnanceSheet} from "./module/item/sheet/ordonnance.js";
 import { PasseSheet} from "./module/item/sheet/passe.js";
 import { PeriodeSheet} from "./module/item/sheet/periode.js";
+import { PratiqueSheet} from "./module/item/sheet/pratique.js";
 import { QueteSheet} from "./module/item/sheet/quete.js";
 import { RiteSheet} from "./module/item/sheet/rite.js";
+import { RituelSheet} from "./module/item/sheet/rituel.js";
 import { SavoirSheet} from "./module/item/sheet/savoir.js";
 import { ScienceSheet} from "./module/item/sheet/science.js";
 import { SortSheet} from "./module/item/sheet/sort.js";
+import { TechniqueSheet} from "./module/item/sheet/technique.js";
+import { TekhneSheet} from "./module/item/sheet/tekhne.js";
 import { VecuSheet} from "./module/item/sheet/vecu.js";
 
 import { NephilimCombatant } from "./module/common/combatant.js";
@@ -51,6 +57,7 @@ Hooks.once("init", function() {
         getCompetences: CustomHandlebarsHelpers.getCompetences,
         getVecus: CustomHandlebarsHelpers.getVecus,
         getScience: CustomHandlebarsHelpers.getScience,
+        getLevel: CustomHandlebarsHelpers.getLevel,
         isRanged: CustomHandlebarsHelpers.isRanged,
         isMelee: CustomHandlebarsHelpers.isMelee,
         getCount: CustomHandlebarsHelpers.getCount,
@@ -71,6 +78,7 @@ Hooks.once("init", function() {
     Items.registerSheet('nephilim', ArmeSheet, { types: ['arme'], makeDefault: true });
     Items.registerSheet('nephilim', ArmureSheet, { types: ['armure'], makeDefault: true });
     Items.registerSheet('nephilim', AspectSheet, { types: ['aspect'], makeDefault: true });
+    Items.registerSheet('nephilim', CapaciteSheet, { types: ['capacite'], makeDefault: true });    
     Items.registerSheet('nephilim', CatalyseurSheet, { types: ['catalyseur'], makeDefault: true });
     Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
     Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
@@ -78,19 +86,29 @@ Hooks.once("init", function() {
     Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
     Items.registerSheet('nephilim', PasseSheet, { types: ['passe'], makeDefault: true });
     Items.registerSheet('nephilim', PeriodeSheet, { types: ['periode'], makeDefault: true });
+    Items.registerSheet('nephilim', PratiqueSheet, { types: ['pratique'], makeDefault: true });
     Items.registerSheet('nephilim', QueteSheet, { types: ['quete'], makeDefault: true });
     Items.registerSheet('nephilim', MagieSheet, { types: ['magie'], makeDefault: true });
     Items.registerSheet('nephilim', MateriaeSheet, { types: ['materiae'], makeDefault: true });
     Items.registerSheet('nephilim', MetamorpheSheet, { types: ['metamorphe'], makeDefault: true });
     Items.registerSheet('nephilim', OrdonnanceSheet, { types: ['ordonnance'], makeDefault: true });
     Items.registerSheet('nephilim', RiteSheet, { types: ['rite'], makeDefault: true });
+    Items.registerSheet('nephilim', RituelSheet, { types: ['rituel'], makeDefault: true });
     Items.registerSheet('nephilim', SavoirSheet, { types: ['savoir'], makeDefault: true });
     Items.registerSheet('nephilim', ScienceSheet, { types: ['science'], makeDefault: true });
     Items.registerSheet('nephilim', SortSheet, { types: ['sort'], makeDefault: true });
+    Items.registerSheet('nephilim', TechniqueSheet, { types: ['technique'], makeDefault: true });
+    Items.registerSheet('nephilim', TekhneSheet, { types: ['tekhne'], makeDefault: true });
     Items.registerSheet('nephilim', VecuSheet, { types: ['vecu'], makeDefault: true });
 
     preloadTemplates();
     registerSystemSettings();
+
+    /*
+    Hooks.once('ready', async () => {
+        await migrateWorld();
+    });
+    */
 
     // Handle message deletion
     // Unregister the message event for all token of the current scene
@@ -190,7 +208,17 @@ Hooks.once("init", function() {
             hint: game.i18n.localize('SETTINGS.useV3Desc'),
             type: Boolean,
             default: false
-        })
+        });
+        /*
+        game.settings.register('neph5e', 'worldTemplateVersion', {
+            name: 'World Template Version',
+            hint: 'Used to automatically upgrade worlds data when the template is upgraded.',
+            scope: 'world',
+            config: false,
+            default: 0,
+            type: Number,
+          });
+          */
     }
 
 });

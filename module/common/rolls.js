@@ -1,4 +1,35 @@
+import { Game } from "./game.js";
+import { NephilimItem } from "../item/entity.js";
+
 export class Rolls {
+
+    static blessureOf(type) {
+        switch (type) {
+            case 'Noyau':
+            case 'Pavane':
+            case 'soleil':
+            case 'ka':
+            case 'Ka air':
+            case 'Ka eau':
+            case 'Ka feu':
+            case 'Ka lune':
+            case 'Ka terre':
+                return 'magique';
+
+            case 'agile':
+            case 'endurant':
+            case 'fort':
+            case 'intelligent':
+            case 'seduisant':
+            case 'soleil':
+            case 'savant':
+            case 'sociable':
+            case 'fortune':
+            case 'menace':
+            case 'vecu':
+                return 'physique';
+        }
+    }
 
     /**
      * Rolls dices for 
@@ -9,13 +40,28 @@ export class Rolls {
      */
     static async check(actor, item, type, data) {
 
+        let selectElement = false;
+        let blessure = 0;
+        const isItem = item instanceof NephilimItem;
+        if (isItem) {
+            selectElement = item.type === 'invocation' && item.data.data.element === 'choix';
+            blessure = actor.getWoundModifier(item.blessure());
+        } else {
+            selectElement = false;
+            const typeOfBlessure = Rolls.blessureOf(type);
+            blessure = actor.getWoundModifier(typeOfBlessure);
+        }
+
         // Create the action panel to display
         const html = await renderTemplate(
             "systems/neph5e/templates/dialog/basic/basic-action.html",
             {
                 actor: actor,
                 item: item,
-                action: data
+                action: data,
+                blessure: blessure,
+                selectElement: selectElement,
+                elements: Game.pentacle.elements
             });
 
         // Display the action panel
@@ -28,7 +74,15 @@ export class Rolls {
                     label: game.i18n.localize("Lancer"),
                     callback: async (html) => {
                         const modifier = parseInt(Math.floor(parseInt(html.find("#modifier")[0].value)/10));
-                        data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier);
+                        const skipBlessure = html.find("#skipBlessure")[0].checked;
+                        
+                        let additionalKa = 0;
+                        if (selectElement) {
+                            const selectedKa = $("#element").val()
+                            additionalKa = actor.getKa(selectedKa);
+                        }
+
+                        data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipBlessure ? 0 : blessure) + additionalKa;
                         await Rolls.displayRoll(actor, item, data);
                     },
                 },

@@ -69,7 +69,7 @@ export class Strike extends Actions {
                 weapon: new Status(this.token.combatant).ranged.weapon(),
                 state: {
                     visee: this.token.combatant.data.flags.world.combat.ranged.visee,
-                    chargeur: this.token.combatant.data.flags.world.combat.ranged.chargeur,
+                    utilise: this.token.combatant.data.flags.world.combat.ranged.utilise,
                     reload: this.token.combatant.data.flags.world.combat.ranged.reload,
                 }
             }

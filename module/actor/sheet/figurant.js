@@ -56,6 +56,7 @@ export class FigurantSheet extends ActorSheet {
         html.find('div[data-tab="description"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="description"] .item-delete').click(this._onDeleteItem.bind(this));
         html.find('div[data-tab="description"] .item-roll').click(this._onRoll.bind(this));
+        html.find('div[data-tab="description"] .item-attack').click(this._onAttack.bind(this));
     }
 
     async _onEditItem(event) {
@@ -77,7 +78,29 @@ export class FigurantSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const type = li.data("item-type");
-        return await this.actor.rollSimulacre(id, true, type);
+        if (type === "") {
+            return await this.actor.rollSimulacre(this.actor.data.data.id, true, "menace");
+        } else {
+            return await this.actor.rollSimulacre(id, true, type);
+        }
+    }
+
+    async _onAttack(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const arme = this.actor.items.get(id);
+        switch (arme.data.data.skill) {
+        case 'melee':
+            console.log("ATTAQUE DE MELEE avec ");
+            console.log(arme);
+            break;
+        case 'trait':
+        case 'feu':
+        case 'lourde':
+            console.log("ATTAQUE A DISTANCE avec ");
+            console.log(arme);
+            break;
+        }
     }
 
     /**

@@ -12,75 +12,61 @@ export class Wounds {
     }
 
     /**
-     * @returns the json data object used to render templates.
-     */
-     getRenderData() {
-        return {
-            choc: this.get(Game.wounds.choc),
-            mineure: this.get(Game.wounds.mineure),
-            serieuse: this.get(Game.wounds.serieuse),
-            grave: this.get(Game.wounds.grave),
-            mortelle: this.get(Game.wounds.mortelle)
-        }
-    }
-
-    /**
      * Gets the specified wound value.
-     * @param wound The wound to set. 
+     * @param wound The wound to set.
+     * @param type  'physique' or 'magique'
      * @returns the wound value.
      */
-    get(wound) {
-        return this.combatant.actor.data.data.dommage.physique[wound.id];
+    get(wound, type) {
+        if (type === 'physique') {
+            return this.combatant.actor.data.data.dommage.physique[wound.id];
+        }
+        if (type === 'magique') {
+            return this.combatant.actor.data.data.dommage.magique[wound.id];
+        }
+        return null;
     }
 
     /**
      * Sets the specified wound value.
      * @param wound The wound to set.
-     * @param value The value to set. 
+     * @param value The value to set.
+     * @param type  'physique' or 'magique'
      * @returns the instance.
      */
-     async setAll(choc, mineure, serieuse, grave, mortelle) {
+    async set(wound, value, type) {
 
-        const physique = duplicate(this.combatant.actor.data.data.dommage.physique);
-        const old_mortelle = physique[Game.wounds.mortelle.id];
-        physique[Game.wounds.choc.id] = choc;
-        physique[Game.wounds.mineure.id] = mineure;
-        physique[Game.wounds.serieuse.id] = serieuse;
-        physique[Game.wounds.grave.id] = grave;
-        physique[Game.wounds.mortelle.id] = mortelle;
-        await this.combatant.actor.update({['data.dommage.physique']: physique});
-        if (mortelle != old_mortelle) {
-            await this.applyMortal();
+        if (type === 'physique') {
+            const physique = duplicate(this.combatant.actor.data.data.dommage.physique);
+            const mortelle = physique[Game.wounds.mortelle.id];
+            physique[wound.id] = value;
+            await this.combatant.actor.update({['data.dommage.physique']: physique});
+            if (wound === Game.wounds.mortelle && mortelle != value) {
+                await this.applyMortal();
+            }
+        } 
+
+        if (type === 'magique') {
+            const magique = duplicate(this.combatant.actor.data.data.dommage.magique);
+            const mortelle = magique[Game.wounds.mortelle.id];
+            magique[wound.id] = value;
+            await this.combatant.actor.update({['data.dommage.magique']: magique});
+            if (wound === Game.wounds.mortelle && mortelle != value) {
+                //await this.applyMortal();
+            }
         }
-        return this;
-    }
 
-    /**
-     * Sets the specified wound value.
-     * @param wound The wound to set.
-     * @param value The value to set. 
-     * @returns the instance.
-     */
-    async set(wound, value) {
-
-        const physique = duplicate(this.combatant.actor.data.data.dommage.physique);
-        const mortelle = physique[Game.wounds.mortelle.id];
-        physique[wound.id] = value;
-        await this.combatant.actor.update({['data.dommage.physique']: physique});
-        if (wound === Game.wounds.mortelle && mortelle != value) {
-            await this.applyMortal();
-        }
         return this;
     }
 
     /**
      * @returns the wounds modifier.
      */
-    getModifier() {
+    getModifier(type) {
         let modifier = 0;
         for (const w in Game.wounds) {
             const wound = Game.wounds[w];
-            if (this.get(wound)) {
+            if (this.get(wound, type)) {
                 modifier = modifier + wound.modifier;
             }
         }
@@ -90,12 +76,14 @@ export class Wounds {
     /**
      * Applies the specified amount of damages.
      * @param damages The damages to apply.
+     * @param type    'physique' or 'magique'
      * @returns the most serious injury.
      */
-    async applyDamages(damages) {
+    async applyDamages(damages, type) {
 
         // Initialization
         let currentDamages = damages;
+        let baseDommage = type === 'physique' ? this.combatant.actor.data.data.dommage.physique : this.combatant.actor.data.data.dommage.magique;
 
         // No damages to apply
         if (damages === 0) {
@@ -103,20 +91,30 @@ export class Wounds {
         }
 
         // Apply damages to choc
-        const status = new Status(this.combatant);
-        const currentChoc = this.get(Game.wounds.choc);
-        const availableChoc = 3 + status.improvements.get(Game.improvements.choc) - currentChoc;
+        // Quand 3 cases, encaisse 1, 4 encaisse 2, etc...
+        const chocEncaissable = baseDommage.cases - 2;
+
+        const currentChoc = this.get(Game.wounds.choc, type);
+        const availableChoc = baseDommage.cases - currentChoc;
         if (currentDamages > 0 && availableChoc > 0) {
-            await this.set(Game.improvements.choc, currentChoc + 1);
-            currentDamages = Math.max(0, currentDamages - 1);
+
+            // Dommage a appliquer: se base sur 
+            // - chocEncaissable qui est le max de cases encaissable
+            // - availableChoc qui est le nombre de cases courante
+            // - currentDamages impact
+            // chocEncaisse = Min(chocEncaissable, availableChoc)
+            const chocEncaisse = Math.min(currentDamages, chocEncaissable, availableChoc);
+
+            await this.set(Game.wounds.choc, currentChoc + chocEncaisse, type);
+            currentDamages = Math.max(0, currentDamages - chocEncaisse);
             if (currentDamages === 0) {
                 return Game.wounds.choc;
             }
         } 
 
         // Apply damages to blessure mineure
-        if (currentDamages > 0 && !this.get(Game.wounds.mineure)) {
-            await this.set(Game.wounds.mineure, true);
+        if (currentDamages > 0 && !this.get(Game.wounds.mineure, type)) {
+            await this.set(Game.wounds.mineure, true, type);
             currentDamages = Math.max(0, currentDamages - 2);
             if (currentDamages === 0) {
                 return Game.wounds.mineure;
@@ -124,8 +122,8 @@ export class Wounds {
         }
 
         // Apply damages to blessure serieuse
-        if (currentDamages > 0 && !this.get(Game.wounds.serieuse)) {
-            await this.set(Game.wounds.serieuse, true);
+        if (currentDamages > 0 && !this.get(Game.wounds.serieuse, type)) {
+            await this.set(Game.wounds.serieuse, true, type);
             currentDamages = Math.max(0, currentDamages - 4);
             if (currentDamages === 0) {
                 return Game.wounds.serieuse;
@@ -133,8 +131,8 @@ export class Wounds {
         }
 
         // Apply damages to blessure grave
-        if (currentDamages > 0 && !this.get(Game.wounds.grave)) {
-            await this.set(Game.wounds.grave, true);
+        if (currentDamages > 0 && !this.get(Game.wounds.grave, type)) {
+            await this.set(Game.wounds.grave, true, type);
             currentDamages = Math.max(0, currentDamages - 6);
             if (currentDamages === 0) {
                 return Game.wounds.grave;
@@ -142,10 +140,10 @@ export class Wounds {
         }
 
         // Apply damages to blessure mortelle
-        if (!this.get(Game.wounds.mortelle)) {
-            await this.set(Game.wounds.mortelle, true);
+        if (!this.get(Game.wounds.mortelle, type)) {
+            await this.set(Game.wounds.mortelle, true, type);
         }
-        await this.set(Game.wounds.mortelle, true);
+        await this.set(Game.wounds.mortelle, true, type);
         return Game.wounds.mortelle;
 
     }

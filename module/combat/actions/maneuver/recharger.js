@@ -70,8 +70,8 @@ export class Recharger extends Maneuver {
     return this.status.history.allowed(this) &&
            this.immobilized() === false &&
            this.status.ranged.isArmed() &&
-           this.token.combatant.data.flags.world.combat.ranged.chargeur < weapon.munitions &&
-           weapon.vitesse > 0;
+           this.token.combatant.data.flags.world.combat.ranged.utilise > 0 &&
+           weapon.data.data.ranged.vitesse > 0;
 
   }
 
@@ -96,15 +96,15 @@ export class Recharger extends Maneuver {
     // Increase the number of round or reload
     const flags = duplicate(this.token.combatant.data.flags);
     flags.world.combat.ranged.reload = flags.world.combat.ranged.reload + 1;
-    await this.token.update({['flags']: flags});
+    await this.token.combatant.update({['flags']: flags});
 
     // Increases the number of ammunitions at the end of the reloading
     const weapon = this.status.ranged.weapon();
-    if (weapon.vitesse <= flags.world.combat.ranged.reload) {
+    if (weapon.data.data.ranged.vitesse <= flags.world.combat.ranged.reload) {
       const flags = duplicate(this.token.combatant.data.flags);
-      flags.world.combat.ranged.chargeur = weapon.munitions;
+      flags.world.combat.ranged.utilise = 0;
       flags.world.combat.ranged.reload = 0;
-      await this.token.update({['flags']: flags});
+      await this.token.combatant.update({['flags']: flags});
     }
 
     return this;

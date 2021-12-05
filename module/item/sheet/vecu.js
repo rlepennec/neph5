@@ -5,14 +5,6 @@ import { deleteRefs2 } from "../tools.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-
     /** 
      * @override
      */

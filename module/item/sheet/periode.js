@@ -5,14 +5,6 @@ import { deleteRefs2 } from "../tools.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-
     /** 
      * @override
      */

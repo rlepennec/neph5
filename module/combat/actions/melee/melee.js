@@ -28,7 +28,7 @@ export class Melee extends Action {
     let difficulty = this.status.melee.difficulty() + this.constructor.attack;
 
     // Apply the wounds modifier
-    difficulty = difficulty + this.status.wounds.getModifier();
+    difficulty = difficulty + this.status.wounds.getModifier('physique');
 
     // Apply malus if disoriented
     if (this.disoriented()) {
@@ -59,7 +59,10 @@ export class Melee extends Action {
    * @Override
    */
   impact() {
-    return this.constructor.impact === null ? 0 : this.weapon().damages + this.constructor.impact + this.status.improvements.get(Game.improvements.damages);
+    return this.constructor.impact === null ? 0 : 
+      this.weapon().data.data.damages + 
+      this.constructor.impact + 
+      this.actor.data.data.bonus.dommage;
   }
 
   /**
@@ -134,7 +137,7 @@ export class Melee extends Action {
         action: action,
         result: {
           roll: this.attackResult(action.roll),
-          protection: protection.getProtectionOf(this.target.flags, weapon)
+          protection: protection.getProtectionOf(this.target, weapon.data)
         }
       })
       .withFlags(flags)

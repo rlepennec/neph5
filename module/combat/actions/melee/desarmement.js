@@ -55,7 +55,7 @@ export class Desarmement extends Melee {
    * @Override
    */
   sentence() {
-    return "désarme " + this.target.name + " avec " + this.status.melee.weapon().description;
+    return "désarme " + this.target.name + " avec " + this.status.melee.weapon().data.name;
   } 
 
 }

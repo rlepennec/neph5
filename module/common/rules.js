@@ -1,121 +1,77 @@
-import { Effects } from "../combat/data/effects.js";
-import { Game } from "./game.js";
-
 export class Rules {
 
   /**
-   * Applies the impact to the specified token. The weapon used
-   * to strike defines the type of armor to use. The protection must
-   * be usable for the striken manoeuver.
-   * @param token   The token of the character which receives the strike.
-   * @param weapon  The weapon used to strike.
-   * @param impact  The impact of the strike.
+   * ********** The sapience managment ********** 
    */
-  static applyProtection(token, weapon, impact) {
-    const protection = this.getProtection(token, weapon);
-    return Math.max(impact - protection, 0);
+
+  /**
+   * Gets the number points of sapience to spend to reach a skill level from 0 to the specified degre.
+   * @param {Integer} degre The level to reach which must be in [0.. +[.
+   * @returns the number of points of sapience.
+   */
+  static getCostTo(degre) {
+    const costs = [0, 1, 3, 6, 10, 15, 25, 40, 60, 90];
+    return degre < 10 ? costs[degre] : 90 + degre * 100;
   }
 
   /**
-   * Gets the protection used versus the specified weapon.
-   * @param token  The token of the character which receive the strike.
-   * @param weapon The weapon used to strike.
-   * @returns the value of the protection against the strike.
+   * Gets the number points of sapience to spend to reach a skill level to one degre.
+   * @param {Integer} degre The level to reach which must be in [0.. +[.
+   * @returns the number of points of sapience.
    */
-  static getProtection(token, weapon) {
-
-    if (weapon.skill === 'martial') {
-      return token.combatant.data.flags.combat.protection.contact;
-    }
-
-    if (weapon.skill === 'melee') {
-      return token.combatant.data.flags.combat.protection.contact;
-    }
-
-    if (weapon.skill === 'trait') {
-      return token.combatant.data.flags.combat.protection.trait;
-    }
-
-    if (weapon.skill === 'feu') {
-      return token.combatant.data.flags.combat.protection.feu;
-    }
-
-    if (weapon.skill === 'lourde') {
-      return token.combatant.data.flags.combat.protection.feu;
-    }
-
+  static getNextCost(degre) {
+    const costs = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 100];
+    return costs[degre];
   }
 
   /**
-   * Converts the specified result to damages.
-   * @param token      The token of the defenser.
-   * @param action     The action of the attacker.
-   * @param manoeuvre  The manoeuvre of the attacker.
-   * @param result     The defense result to interpret.
-   * @param impact     The damage of the attack.
-   * @param defense    The type of defense.
-   * @param protection The protection to apply.
-   * @return the damages.
-   */ 
-  static damagesOf(token, action, manoeuvre, result, impact, defense, weapon) {
-
-    // No damage for the first round of immobilisation
-    if (action === 'contact' && manoeuvre === 'immobilisation') {
-      return 0;
+   * Converts the specified number points of sapience to skill level.
+   * @param {Integer} sapience The number points of sapience to convert.
+   * @returns the degre of the skill level.
+   */
+  static toDegre(sapience) {
+    let degre = 0;
+    let cost = 0;
+    while (cost <= sapience) {
+      degre = degre + 1;
+      cost = Rules.getCostTo(degre);
     }
-
-    // Projection ignore armure
-    if (action === 'contact' && manoeuvre === 'projection') {
-      if (result.success === false) {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
-
-    // The multiplier to apply if a critical roll occurs
-    let multiplier = 1;
-    if (result.critical === true) {
-      multiplier = 2;
-    }
-
-    // The modifier to apply
-    let modifier = 0;
-    if (result.success === true) {
-      modifier = Game.defense[defense].success;
-    } else {
-      modifier = Game.defense[defense].fail;
-    }
-
-    // Returns the final damages
-    const protection = Rules.getProtection(token, weapon);
-    return Math.max(impact + (multiplier * modifier) - protection, 0);
-
+    return degre - 1;
   }
 
   /**
-   * Converts the specified result to string.
-   * @param result The result to interpret.
-   * @return the interpreted result.
+   * ********** The roll managment ********** 
    */
-  static resultToString(result) {
-    let string = "";    
-    if (result.success === true) {
-      string = "réussit";
-      if (result.critical) {
-        string = string + " de façon spectaculaire";
-      }
-      if (result.margin > 0) {
-        string = string + " avec une marge de réussite de " + result.margin.toString();
-      }
-    } else {
-      string = "échoue";
-      if (result.critical) {
-        string = string + " de façon lamentable";
-      }
+
+  static getSentence(quality, self) {
+    switch(quality) {
+      case 'agile':
+        return self ? " fait appel à son agilité" : "fait appel à l'agilité de son simulacre";
+      case 'endurant':
+        return self ? " fait appel à son endurance" : "fait appel à l'endurance de son simulacre";
+      case 'fort':
+        return self ? " fait appel à sa force" : "fait appel à la force de son simulacre";
+      case 'intelligent':
+        return self ? "fait appel à son intelligence" : "fait appel à l'intelligence de son simulacre";
+      case 'seduisant':
+        return self ? "fait appel à son charisme" : "fait appel au charisme de son simulacre";
+      case 'soleil':
+        return self ? "fait appel à sa volonté" : "fait appel à la volonté de son simulacre";
+      case 'savant':
+        return self ? "fait appel à son savoir" : "fait appel au savoir de son simulacre";
+      case 'sociable':
+        return self ? "fait appel à ses relations" : "fait appel à aux relations de son simulacre";
+      case 'fortune':
+        return self ? "fait appel à sa fortune" : "utilise la fortune de son simulacre";
+      case 'vecu':
+        return self ? "utilise son vécu" : "utilise le vécu de son simulacre";
+      case 'menace':
+        return "fait appel à ses compétences martiales";
+      case 'ka':
+        return "fait appel à son ka";
     }
-    return string;
   }
+
 
   /**
    * Interprets the specified roll for the specified difficulty.
@@ -131,15 +87,15 @@ export class Rules {
         margin: 0
       }
 
-    // 100 is always a fail
+      // 100 is always a fail
     } else if (roll.result === 100) {
       return {
         success: false,
         critical: difficulty === 0,
         margin: 0
       }
-    
-    // Success if the roll is lesser than the difficulty
+
+      // Success if the roll is lesser than the difficulty
     } else {
       return {
         success: roll.result <= (difficulty * 10),
@@ -148,58 +104,6 @@ export class Rules {
       }
 
     }
-
-  }
-
-  /**
-   * Interprets the specified roll for the specified difficulty.
-   * @returns the interpretation of the roll.
-   */
-   static compareResult(attaque, defense) {
-
-      const A = 'attaque';
-      const N = 'aucun';
-      const D = 'defense';
-
-      if (attaque.success === false && attaque.critical === true) {           // Attaque Maladresse
-        if (defense.success === false && defense.critical === true) {         // Defense Maladresse
-          return N;
-        }
-        return D;
-      }
-
-      if (attaque.success === false && attaque.critical === false) {            // Attaque Echec
-        if (defense.success === true) {                                         // Defense succes/+
-          return D;
-        }
-        if (defense.success === false && defense.critical === true) {   // Defense maladresse
-          return A;
-        }                                                                // Defense echec
-        return N;
-      }
-
-      if (attaque.success === true && attaque.critical === false) {             // Attaque success
-        if (defense.success === true &&  defense.critical === true) {           // Defense critique
-          return 'defenseur';
-        }
-        if (defense.success === false) {                                // Defense echec/+
-          return A;
-        }
-      }
-
-      if (attaque.success === true && attaque.critical === true) {
-        if (defense.success === false || defense.critical === false) {
-          return A;
-        }
-      }
-
-      if (attaque.margin > defense.margin) {
-        return A;
-      }
-      if (attaque.margin < defense.margin) {
-        return D;
-      }
-      return N;
 
   }
 
@@ -213,7 +117,7 @@ export class Rules {
     await roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker(),
       content: content
-    }, { async:true });
+    }, { async: true });
     await new Promise(r => setTimeout(r, 2000));
     const v = parseInt(roll.result, 10);
     return {
@@ -229,33 +133,7 @@ export class Rules {
    * @return true if the roll is a double.
    */
   static isDouble(v) {
-    return v === 11 || v === 22 || v === 33 || v === 44 || v === 55 || v === 66 || v === 77 || v === 88 || v === 99; 
-  }
-
-  /**
-   * Indicates if the specified defense is usdable for the specified character against
-   * the specified attack.
-   * @param token The token of the defenser.
-   * @param attaque The attaque to check.
-   * @param defense The defense to check.
-   * @returns true if the defense is possible.
-   */
-  static isUsable(token, attaque, defense) {
-
-    if (attaque === 'immobilisation') {
-      return defense === 'standard' || defense === 'fuite';
-    }
-
-    if (attaque === 'projection') {
-      return defense === 'standard' || defense === 'fuite';
-    }
-
-    if (attaque === 'frappe') {
-      return defense === 'standard' || defense === 'fuite';
-    }
-
-    // Frappe a main nue ou coup d'arme
-    return token.combatant.data.flags.combat.bouclier || token.combatant.data.flags.combat.contact.blocage;
+    return v === 11 || v === 22 || v === 33 || v === 44 || v === 55 || v === 66 || v === 77 || v === 88 || v === 99;
   }
 
 }

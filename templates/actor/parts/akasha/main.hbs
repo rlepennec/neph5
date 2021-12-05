@@ -8,15 +8,15 @@
 <ol class="item-list">
     
     <li class="item-list-header">
+        <div class="item-integer">
+            <span/>
+        </div>
         <div class="item-name">
+            <span>{{localize "NEPH5E.boussole"}}</span>
+        </div>
+        <div class="item-integer">
             <span>{{localize "NEPH5E.nef"}}</span>
         </div>
-        <div class="item-checkbox">
-            <span>Activé</span>
-        </div>
-    </li>
-
-    <li class="item">
         <input
             class="item-checkbox"
             type="checkbox"
@@ -25,16 +25,8 @@
             data-dtype="Boolean"/>
     </li>
 
-    <li class="item-list-header">
-        <div class="item-name">
-            <span>{{localize "NEPH5E.boussole"}}</span>
-        </div>
-        <div class="item-integer">
-            <span/>
-        </div>
-    </li>
-
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.boussole.septentrion}}</label>
         <div class="item-name">
             <span>Septentrion</span>
         </div>
@@ -47,6 +39,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.boussole.orient}}</label>
         <div class="item-name">
             <span>Orient</span>
         </div>
@@ -59,6 +52,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.boussole.midi}}</label>
         <div class="item-name">
             <span>Midi</span>
         </div>
@@ -71,6 +65,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.boussole.occident}}</label>
         <div class="item-name">
             <span>Occident</span>
         </div>
@@ -83,6 +78,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.boussole.zenith}}</label>
         <div class="item-name">
             <span>Zenith</span>
         </div>
@@ -95,6 +91,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.boussole.nadir}}</label>
         <div class="item-name">
             <span>Nadir</span>
         </div>
@@ -113,15 +110,15 @@
 <ol class="item-list">
     
     <li class="item-list-header">
+        <div class="item-integer">
+            <span/>
+        </div>
         <div class="item-name">
+            <span>{{localize "NEPH5E.compas"}}</span>
+        </div>
+        <div class="item-integer">
             <span>{{localize "NEPH5E.barge"}}</span>
         </div>
-        <div class="item-checkbox">
-            <span>Activé</span>
-        </div>
-    </li>
-
-    <li class="item">
         <input
             class="item-checkbox"
             type="checkbox"
@@ -130,16 +127,8 @@
             data-dtype="Boolean"/>
     </li>
 
-    <li class="item-list-header">
-        <div class="item-name">
-            <span>{{localize "NEPH5E.compas"}}</span>
-        </div>
-        <div class="item-integer">
-            <span/>
-        </div>
-    </li>
-
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.compas.septentrion}}</label>
         <div class="item-name">
             <span>Septentrion</span>
         </div>
@@ -152,6 +141,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.compas.orient}}</label>
         <div class="item-name">
             <span>Orient</span>
         </div>
@@ -164,6 +154,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.compas.midi}}</label>
         <div class="item-name">
             <span>Midi</span>
         </div>
@@ -176,6 +167,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.compas.occident}}</label>
         <div class="item-name">
             <span>Occident</span>
         </div>
@@ -188,6 +180,7 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.compas.zenith}}</label>
         <div class="item-name">
             <span>Zenith</span>
         </div>
@@ -200,9 +193,10 @@
     </li>
 
     <li class="item">
+        <label class="item-integer">+{{getLevel data.akasha.compas.nadir}}</label>
         <div class="item-name">
             <span>Nadir</span>
-        </div>
+        </div>      
         <input
             class="item-integer"
             name="data.akasha.compas.nadir"

@@ -42,6 +42,7 @@
 
 </ol>
 
+{{#if useV3}}
 <ol class="item-list">
 
     <li class="item-list-header">
@@ -62,8 +63,18 @@
 
     {{#each data.alchimie.catalyseurs as |catalyseur|}}
         {{#with (getItem catalyseur.refid)}}
-            {{> "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs" catalyseur=catalyseur}}
+            {{> "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs" catalyseur=catalyseur useV3=../../useV3}}
         {{/with}}
     {{/each}}
 
 </ol>
+
+{{else}}
+
+    {{#each data.alchimie.catalyseurs as |catalyseur|}}
+        {{#with (getItem catalyseur.refid)}}
+            {{> "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs" catalyseur=catalyseur useV3=../../useV3}}
+        {{/with}}
+    {{/each}}
+
+{{/if}}

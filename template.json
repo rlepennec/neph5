@@ -221,6 +221,18 @@
             "conjuration": {
                 "appels": []
             },
+            "baton": {
+                "techniques": []
+            },
+            "coupe": {
+                "tekhnes": []
+            },
+            "denier": {
+                "pratiques": []
+            },
+            "epee": {
+                "rituels": []
+            },
             "options": {
                 "alchimie": true,
                 "anamorphose": true,
@@ -236,35 +248,44 @@
                 "selenim": true,
                 "akasha": true,
                 "boussole": true,
-                "compas": true
+                "compas": true,
+                "baton": false,
+                "coupe": false,
+                "denier": false,
+                "epee": false
             }
         }
     },
     "Item": {
         "types": [
-            "alchimie",
-            "appel",
-            "arcane",
             "arme",
             "armure",
+            "appel",
             "aspect",
+            "capacite",
             "catalyseur",
             "chute",
             "competence",
             "formule",
             "invocation",
-            "magie",
             "materiae",
             "metamorphe",
             "ordonnance",
             "passe",
             "periode",
+            "pratique",
+            "arcane",
             "quete",
             "rite",
+            "rituel",
             "savoir",
             "science",
             "sort",
-            "vecu"
+            "tekhne",
+            "technique",
+            "vecu",
+            "alchimie",
+            "magie"
         ],
         "alchimie": {
             "id": "",
@@ -322,6 +343,10 @@
             "degre": 0,
             "activation": 1,
             "duree": "",
+            "description": ""
+        },
+        "capacite": {
+            "id": "",
             "description": ""
         },
         "catalyseur": {
@@ -392,6 +417,12 @@
             "vecus": [],
             "description": ""
         },
+        "pratique": {
+            "id": "",
+            "axe": "architecte",
+            "degre": 0,
+            "description": ""
+        },
         "quete": {
             "id": "",
             "description": ""
@@ -402,6 +433,11 @@
             "voie": "",
             "degre": 0,
             "duree": "",
+            "description": ""
+        },
+        "rituel": {
+            "id": "",
+            "degre": 0,
             "description": ""
         },
         "savoir": {
@@ -420,6 +456,16 @@
             "degre": 1,
             "portee": "Personnelle",
             "duree": "Instantanée",
+            "description": ""
+        },
+        "technique": {
+            "id": "",
+            "degre": 0,
+            "description": ""
+        },
+        "tekhne": {
+            "id": "",
+            "degre": 0,
             "description": ""
         },
         "vecu": {

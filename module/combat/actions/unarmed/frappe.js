@@ -1,5 +1,4 @@
 import { Unarmed } from "./unarmed.js";
-import { Game } from "../../../common/game.js";
 
 export class Frappe extends Unarmed {
 
@@ -59,7 +58,7 @@ export class Frappe extends Unarmed {
    * @Override
    */
   impact() {
-    return this.status.unarmed.weapon().damages + this.constructor.impact + this.status.improvements.get(Game.improvements.damages);
+    return 1 + this.constructor.impact + this.actor.data.data.bonus.dommage;
   }
 
   /**
@@ -70,12 +69,10 @@ export class Frappe extends Unarmed {
    *  - Exactly one target has been selected
    *  - The token is not immobilized
    */
-   allowed() {
-
+  allowed() {
     return this.status.history.allowed(this) &&
            this.target != null &&
            this.immobilized() === false;
-
   }
 
 }

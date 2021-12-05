@@ -1,0 +1,17 @@
+<input
+    name="data.page.baton"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<ol class="item-list">
+
+    {{> "systems/neph5e/templates/actor/parts/baton/header.hbs" }}
+
+    {{#each data.baton.techniques as |technique|}}
+        {{#with (getItem technique.refid)}}
+            {{> "systems/neph5e/templates/actor/parts/baton/technique.hbs" technique=technique}}
+        {{/with}}
+    {{/each}}
+
+</ol>

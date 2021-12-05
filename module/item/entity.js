@@ -35,6 +35,9 @@ export class NephilimItem extends Item {
         case 'aspect':
           this.data.img = "systems/neph5e/icons/aspect.jpg";
           break;
+        case 'capacite':
+          this.data.img = "systems/neph5e/icons/capacite.webp";
+          break;
         case 'catalyseur':
           this.data.img = "systems/neph5e/icons/catalyseur.jpg";
           break;
@@ -68,11 +71,17 @@ export class NephilimItem extends Item {
         case 'periode':
           this.data.img = "systems/neph5e/icons/periode.jpg";
           break;
+        case 'pratique':
+          this.data.img = "systems/neph5e/icons/denier.webp";
+          break;
         case 'quete':
           this.data.img = "systems/neph5e/icons/quete.jpg";
           break;
         case 'rite':
           this.data.img = "systems/neph5e/icons/rite.jpg";
+          break;
+        case 'rituel':
+          this.data.img = "systems/neph5e/icons/epee.webp";
           break;
         case 'savoir':
           this.data.img = "systems/neph5e/icons/savoir.jpg";
@@ -82,6 +91,12 @@ export class NephilimItem extends Item {
           break;
         case 'sort':
           this.data.img = "systems/neph5e/icons/sort.jpg";
+          break;
+        case 'technique':
+          this.data.img = "systems/neph5e/icons/baton.webp";
+          break;
+        case 'tekhne':
+          this.data.img = "systems/neph5e/icons/coupe.webp";
           break;
         case 'vecu':
           this.data.img = "systems/neph5e/icons/vecu.jpg";
@@ -159,6 +174,22 @@ export class NephilimItem extends Item {
         this.filterActorsBy('necromancie', 'refid', this.data.data.id, 'necromancie.rites')
           .forEach(async actor => deleteItemOf(actor, "necromancie", "refid", this.data.data.id, "rites"));
         break;
+      case 'pratique':
+        this.filterActorsBy('denier', 'refid', this.data.data.id, 'denier.pratiques')
+          .forEach(async actor => deleteItemOf(actor, "denier", "refid", this.data.data.id, "pratiques"));
+        break;
+      case 'technique':
+        this.filterActorsBy('baton', 'refid', this.data.data.id, 'baton.techniques')
+          .forEach(async actor => deleteItemOf(actor, "baton", "refid", this.data.data.id, "techniques"));
+        break;
+      case 'tekhne':
+        this.filterActorsBy('coupe', 'refid', this.data.data.id, 'coupe.tekhnes')
+          .forEach(async actor => deleteItemOf(actor, "coupe", "refid", this.data.data.id, "tekhnes"));
+        break;
+      case 'rituel':
+        this.filterActorsBy('epee', 'refid', this.data.data.id, 'epee.rituels')
+          .forEach(async actor => deleteItemOf(actor, "epee", "refid", this.data.data.id, "rituels"));
+        break;
     }
 
     super._onDelete(options, userId);
@@ -176,38 +207,46 @@ export class NephilimItem extends Item {
     switch (this.type) {
       case 'sort':
         if (this.data.data.element === "luneNoire") {
-          return actor.getScience(this.data.data.cercle) + actor.getKa("noyau") - this.data.data.degre + magicalWoundModifier;
+          return actor.getScience(this.data.data.cercle) + actor.getKa("noyau") - this.data.data.degre;
         } else {
-          return actor.getScience(this.data.data.cercle) + actor.getKa(this.data.data.element) - this.data.data.degre + magicalWoundModifier;
+          return actor.getScience(this.data.data.cercle) + actor.getKa(this.data.data.element) - this.data.data.degre;
         }
       case 'invocation':
-        return actor.getScience(this.data.data.sephirah) + actor.getKa(this.data.data.element) - this.data.data.degre + magicalWoundModifier;
+        return actor.getScience(this.data.data.sephirah) + actor.getKa(this.data.data.element) - this.data.data.degre;
       case 'formule':
-        return actor.getScience(this.data.data.cercle) + actor.getKaOfConstruct(this.data.data.substance, this.data.data.elements) - this.data.data.degre + magicalWoundModifier;
+        return actor.getScience(this.data.data.cercle) + actor.getKaOfConstruct(this.data.data.substance, this.data.data.elements) - this.data.data.degre;
       case 'appel':
-        return actor.getScience(this.data.data.cercle) + magicalWoundModifier;
+        return actor.getScience(this.data.data.cercle);
       case 'rite':
-        return actor.getScience(this.data.data.cercle) + magicalWoundModifier;
+        return actor.getScience(this.data.data.cercle);
       case 'competence':
         const useV3 = game.settings.get('neph5e', 'useV3');
         if (useV3 === true) {
           const attribute = actor.getAttribute(this.data.data.inne);
-          return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0) + physicalWoundModifier;
+          return actor.getCompetence(this) + (attribute != -1 ? attribute - 3 : 0);
         } else {
-          return actor.getCompetence(this) + physicalWoundModifier;
+          return actor.getCompetence(this);
         }
+      case "pratique":
+        return actor.getScience(this.data.data.cercle);
+      case "technique":
+        return actor.getScience(this.data.data.cercle);
+      case "tekhne":
+        return actor.getScience(this.data.data.cercle);
+      case "rituel":
+          return actor.getScience(this.data.data.cercle);
       case 'vecu':
-        return actor.getLevelFrom('vecus', this) + physicalWoundModifier;
+        return actor.getLevelFrom('vecus', this);
       case 'quete':
-        return actor.getSumFrom('quetes', this) + magicalWoundModifier;
+        return actor.getSumFrom('quetes', this);
       case 'savoir':
-        return actor.getSumFrom('savoirs', this) + magicalWoundModifier;
+        return actor.getSumFrom('savoirs', this);
       case 'passe':
-        return actor.getSumFrom('passes', this) + physicalWoundModifier;
+        return actor.getSumFrom('passes', this);
       case 'chute':
-        return actor.getSumFrom('chutes', this) + magicalWoundModifier;
+        return actor.getSumFrom('chutes', this);
       case 'arcane':
-        return actor.getSumFrom('arcanes', this) + magicalWoundModifier;
+        return actor.getSumFrom('arcanes', this);
       default:
         return 0;
     }
@@ -242,8 +281,56 @@ export class NephilimItem extends Item {
         return "fait appel à son passé " + this.data.name;
       case 'arcane':
         return "mobilise sa sapience sur l'arcane " + this.data.name;
+      case 'pratique':
+        return "utilise la pratique " + this.data.name;
+      case 'technique':
+        return "utilise la technique " + this.data.name;
+      case 'tekhne':
+        return "utilise la tekhne " + this.data.name;
+      case 'rituel':
+        return "pratique le rituel " + this.data.name;
       default:
         return 0;
+    }
+  }
+
+  // Donen le type de blessure pour appliquer des modificateurs
+  blessure() {
+    switch (this.type) {
+      case 'sort':
+        return 'magique';
+      case 'invocation':
+        return 'magique';
+      case 'formule':
+        return 'magique';
+      case 'appel':
+        return 'magique';
+      case 'rite':
+        return 'magique';
+      case 'competence':
+        return 'physique';
+      case 'vecu':
+        return 'physique';
+      case 'quete':
+        return 'magique';
+      case 'savoir':
+        return 'magique';
+      case 'chute':
+        return 'aucune';
+      case 'passe':
+        return 'aucune';
+      case 'arcane':
+        return 'magique';
+      case 'pratique':
+        return 'magique';
+      case 'technique':
+        return 'magique';
+      case 'tekhne':
+        return 'magique';
+      case 'rituel':
+        return 'magique';
+      default:
+        return 'aucune';
     }
   }
 

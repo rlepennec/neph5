@@ -93,9 +93,10 @@
     {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Malkut"}}
 
     {{#each data.kabbale.invocations as |invocation|}}
+   
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "malkut")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -105,7 +106,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "yesod")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -115,7 +116,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "hod")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -125,7 +126,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "netzach")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -135,7 +136,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "tiphereth")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -147,7 +148,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "geburah")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -157,7 +158,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "chesed")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -167,7 +168,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "binah")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -177,7 +178,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "chokmah")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}
@@ -187,7 +188,7 @@
     {{#each data.kabbale.invocations as |invocation|}}
         {{#with (getItem invocation.refid)}}
             {{#if (eq data.data.sephirah "kether")}}
-                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation}}
+                {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
             {{/if}}
         {{/with}}
     {{/each}}

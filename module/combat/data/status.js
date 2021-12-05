@@ -1,4 +1,3 @@
-import { Improvements } from "./improvements.js";
 import { Effects } from "./effects.js";
 import { Wounds } from "./wounds.js";
 import { Protection } from "./protection.js";
@@ -15,7 +14,6 @@ export class Status {
      * @param combatant The combatant for which to manage the status.
      */
     constructor(combatant) {
-        this.improvements = new Improvements(combatant);
         this.effects = new Effects(combatant);
         this.wounds = new Wounds(combatant);
         this.protection = new Protection(combatant);
@@ -31,11 +29,7 @@ export class Status {
      */
     static create() {
         return {
-            improvements: Improvements.create(),
             effects: Effects.create(),
-            protection: Protection.create(),
-            unarmed: Unarmed.create(),
-            melee: Melee.create(),
             ranged: Ranged.create(),
             messages: Messages.create(),
             history: History.create()
@@ -47,13 +41,7 @@ export class Status {
      */
     getData() {
         return {
-            improvements: this.improvements.getRenderData(),
-            effects: this.effects.getRenderData(),
-            protections: this.protection.getRenderData(),
-            unarmed: this.unarmed.getRenderData(),
-            melee: this.melee.getRenderData(),
-            ranged: this.ranged.getRenderData(),
-            wounds: this.wounds.getRenderData(),
+            effects: this.effects.getRenderData()
         }
     }
 

@@ -1,0 +1,21 @@
+{
+  "name": "less",
+  "version": "1.0.0",
+  "description": "Generate css file for Nephilim",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rlepennec",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "latest",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-less": "^5.0.0",
+    "gulp-load-plugins": "latest",
+    "gulp-rename": "latest"
+  }
+}

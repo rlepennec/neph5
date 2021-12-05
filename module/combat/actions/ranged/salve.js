@@ -66,7 +66,7 @@ export class Salve extends Ranged {
    * @Override
    */
   sentence() {
-    return "tire en salve sur " + this.target.name + " avec " + this.status.ranged.weapon().description;
+    return "tire en salve sur " + this.target.name + " avec " + this.status.ranged.weapon().data.name;
   }
 
 }

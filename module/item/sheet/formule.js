@@ -6,14 +6,6 @@ import { Game } from "../../common/game.js";
 
 export class FormuleSheet extends NephilimItemSheet {
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-
     /** 
      * @override
      */

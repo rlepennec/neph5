@@ -95,7 +95,7 @@ export class Viser extends Maneuver {
     // Increase the number of round
     const flags = duplicate(this.token.combatant.data.flags);
     flags.world.combat.ranged.visee = flags.world.combat.ranged.visee + 1;
-    await this.token.update({['flags']: flags});
+    await this.token.combatant.update({['flags']: flags});
     return this;
 
   }

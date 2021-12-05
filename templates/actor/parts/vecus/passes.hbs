@@ -1,0 +1,47 @@
+<ol class="item-list">
+    
+    <li class="item-list-header">
+
+        <div class="item-name">
+            <span>{{localize "NEPH5E.passe"}}</span>
+        </div>
+
+        <div class="item-integer">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+        <div class="item-control">
+            <span/>
+        </div>
+
+    </li>
+
+    <div style="column-count:3">
+
+        {{#each (getLevels data.id 'passes') as |passe|}}
+        <li class="item" data-item-id="{{passe.refid}}" data-item-type="passe">
+
+            <div class="item-name tooltip">
+                <span data-item-id="{{passe.refid}}">{{passe.name}}</span>
+            </div>
+
+            <label class="item-integer">{{passe.degre}}</label>
+
+            <div class="item-control">
+                <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+            </div>
+
+            <div class="item-control">
+                <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            </div>
+
+        </li>
+        {{/each}}
+
+    </div>
+
+</ol>

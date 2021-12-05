@@ -21,6 +21,14 @@ Game.kabbale = {
         pentacles:     "NEPH5E.kabbale.cercles.pentacles",
         cles:          "NEPH5E.kabbale.cercles.cles"
     },
+    elements: {
+        air:           "NEPH5E.pentacle.elements.air",
+        eau:           "NEPH5E.pentacle.elements.eau",
+        feu:           "NEPH5E.pentacle.elements.feu",
+        lune:          "NEPH5E.pentacle.elements.lune",
+        terre:         "NEPH5E.pentacle.elements.terre",
+        choix:         "NEPH5E.choix"
+    },
     sephiroth: {
         binah:         "NEPH5E.kabbale.sephiroth.binah",
         chesed:        "NEPH5E.kabbale.sephiroth.chesed",
@@ -115,6 +123,18 @@ Game.necromancie = {
     }
 }
 
+Game.denier = {
+    axes: {
+        architecte:    "NEPH5E.denier.architecte",
+        guide:         "NEPH5E.denier.guide",
+        mage:          "NEPH5E.denier.mage",
+        ouvrier:       "NEPH5E.denier.ouvrier",
+        roi:           "NEPH5E.denier.roi",
+        sage:          "NEPH5E.denier.sage"
+
+    }
+}
+
 Game.simulacre = {
     innes: {
         agile:         "NEPH5E.simulacre.inne.agile",
@@ -152,42 +172,35 @@ Game.skills = {
     }
 }
 
-Game.improvements = {
-    initiative: {
-        id: "initiative"
-    },
-    choc: {
-        id: "choc"
-    },
-    damages: {
-        id: "damages"
-    }
-}
-
 Game.wounds = {
     choc: {
         id: "choc",
         sentence: "quelques blessures superficielles",
+        magique: "quelques blessures magiques superficielles",
         modifier: 0
     },
     mineure: {
         id: "mineure",
         sentence: "une blessure légère",
+        magique: "une blessure magique légère",
         modifier: -2
     },
     serieuse: {
         id: "serieuse",
         sentence: "une blessure sérieuse",
+        magique: "une blessure magique sérieuse",
         modifier: -4
     },
     grave: {
         id: "grave",
         sentence: "une blessure grave",
+        magique: "une blessure magique grave",
         modifier: -6
     },
     mortelle: {
         id: "mortelle",
         sentence: "une blessure mortelle",
+        magique: "une blessure magique mortelle",
         modifier: -20
     }
 }
@@ -271,294 +284,3 @@ Game.weapon = {
         lourde:  "NEPH5E.armes.lourde",
     }
 }
-
-Game.weapons = {
-
-    unarmed: [
-        {
-            id: "none",
-            description: "Mains nues",
-            skill: 'martial',
-            damages: 1,
-            attack: 0,
-            defense: 0,
-            blocage: false,
-            magique: false
-        },
-        {
-            id: "membre.embrase",
-            description: "Membre embrasé",
-            skill: 'martial',
-            damages: 3,
-            attack: 0,
-            defense: 0,
-            blocage: false,
-            magique: false
-        },
-    ],
-
-    melee: [
-        {
-            id: "none-melee",
-            description: "Aucune",
-        },
-        {
-            id: "courte",
-            description: "Arme courte",
-            skill: 'melee',
-            damages: 1,
-            attack: 0,
-            defense: 0,
-            blocage: true,
-            magique: false
-        },
-        {
-            id: "1m",
-            description: "Arme à une main",
-            skill: 'melee',
-            damages: 2,
-            attack: 0,
-            defense: 0,
-            blocage: true,
-            magique: false
-        },
-        {
-            id: "2m",
-            description: "Arme à deux mains",
-            skill: 'melee',
-            damages: 3,
-            attack: 0,
-            defense: 0,
-            blocage: true,
-            magique: false
-        },
-        {
-            id: "glaive.elementaire",
-            description: "Glaive élémentaire",
-            skill: 'melee',
-            damages: 3,
-            attack: 0,
-            defense: 0,
-            blocage: true,
-            magique: true
-        }
-    ],
-
-    ranged: [
-        {
-            id: "none-ranged",
-            description: "Aucune",
-        },
-        {
-            id: "fronde",
-            description: "Fronde",
-            ammunition: "une bille",
-            skill: 'trait',
-            damages: 1,
-            attack: 0,
-            magique: false,
-            munitions: 1,
-            perce: 0,
-            vitesse: 1,
-            actions: ['tirer']
-        },
-        {
-            id: "arc",
-            description: "Arc",
-            ammunition: "une flèche",
-            skill: 'trait',
-            damages: 2,
-            attack: 0,
-            magique: false,
-            munitions: 1,
-            perce: 0,
-            vitesse: 0,
-            actions: ['tirer']
-        },
-        {
-            id: "arbalete",
-            description: "Arbalete",
-            ammunition: "un carreau",
-            skill: 'trait',
-            damages: 3,
-            attack: 0,
-            magique: false,
-            munitions: 1,
-            perce: 0,
-            vitesse: 1,
-            actions: ['tirer']
-        },
-        {
-            id: "poudre",
-            description: "Arme à poudre",
-            ammunition: "une balle",
-            skill: 'feu',
-            damages: 3,
-            attack: -1,
-            magique: false,
-            munitions: 1,
-            perce: 0,
-            vitesse: 2,
-            actions: ['tirer']
-        },
-        {
-            id: "poing",
-            description: "Arme de poing",
-            ammunition: "une balle",
-            skill: 'feu',
-            damages: 2,
-            attack: 0,
-            magique: false,
-            munitions: 15,
-            perce: 0,
-            vitesse: 1,
-            actions: ['tirer']
-        },
-        {
-            id: "fusil",
-            description: "Fusil",
-            ammunition: "une balle",
-            skill: 'feu',
-            damages: 4,
-            attack: 0,
-            magique: false,
-            munitions: 8,
-            perce: 0,
-            vitesse: 1,
-            actions: ['tirer']
-        },
-        {
-            id: "automatique",
-            description: "Arme automatique",
-            ammunition: "une balle",
-            skill: 'feu',
-            damages: 4,
-            attack: 0,
-            magique: false,
-            munitions: 30,
-            perce: 1,
-            vitesse: 1,
-            actions: ['tirer', 'salve', 'rafale']
-        },
-        {
-            id: "guerre",
-            description: "Arme de guerre",
-            ammunition: "une balle",
-            skill: 'feu',
-            damages: 8,
-            attack: 0,
-            magique: false,
-            munitions: 30,
-            perce: 1,
-            vitesse: 1,
-            actions: ['tirer', 'salve', 'rafale']
-        },
-        {
-            id: "flechette.technologique",
-            description: "Lance flechettes high-tech",
-            ammunition: "une fléchette",
-            skill: 'lourde',
-            damages: 1,
-            attack: 6,
-            magique: true,
-            munitions: 8,
-            perce: 1,
-            vitesse: 1,
-            actions: ['tirer']
-        }
-    ]
-
-}
-
-Game.protections = [
-    {
-        id: "none-protection",
-        description: "Aucune",
-        contact: 0,
-        trait: 0,
-        feu: 0,
-        magique: 0,
-        bouclier: false
-    },
-    {
-        id: "cuir",
-        description: "Armure de cuir",
-        contact: 1,
-        trait: 1,
-        feu: 0,
-        magique: 0,
-        bouclier: false
-    },
-    {
-        id: "maille",
-        description: "Armure de mailles",
-        contact: 2,
-        trait: 2,
-        feu: 0,
-        magique: 0,
-        bouclier: true
-    },
-    {
-        id: "plaque",
-        description: "Armure de plaques",
-        contact: 3,
-        trait: 3,
-        feu: 0,
-        magique: 0,
-        bouclier: true
-    },
-    {
-        id: "gilet.pare.balle",
-        description: "Gilet pare-balle",
-        contact: 2,
-        trait: 2,
-        feu: 2,
-        magique: 0,
-        bouclier: false
-    },
-    {
-        id: "gilet.pare.balle.integral",
-        description: "Gilet pare-balle integral",
-        contact: 3,
-        trait: 3,
-        feu: 3,
-        magique: 0,
-        bouclier: true
-    },
-    {
-        id: "militaire",
-        description: "Protection militaire",
-        contact: 4,
-        trait: 4,
-        feu: 3,
-        magique: 0,
-        bouclier: false
-    },
-    {
-        id: "militaire.integrale",
-        description: "Protection militaire integrale",
-        contact: 4,
-        trait: 4,
-        feu: 4,
-        magique: 0,
-        bouclier: false
-    },
-    {
-        id: "manteau.elementaire",
-        description: "Manteau élémentaire",
-        contact: 3,
-        trait: 3,
-        feu: 3,
-        magique: 3,
-        bouclier: false
-    },
-    {
-        id: "armure.avalon",
-        description: "Armure d'Avalon",
-        contact: 4,
-        trait: 4,
-        feu: 4,
-        magique: 4,
-        bouclier: true
-    }
-]

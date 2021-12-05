@@ -15,7 +15,7 @@ export class NephilimCombatant extends Combatant {
      */
     _getInitiativeFormula() {
         let modifier = this.actor.getWoundModifier('physique') + this.actor.data.data.bonus.initiative;
-        return "1d4+" + modifier.toString();
+        return "1d6+" + modifier.toString();
     }
 
 }

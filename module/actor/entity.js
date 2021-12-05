@@ -1,11 +1,11 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Rolls } from "../common/rolls.js";
 import { Game } from "../common/game.js";
+import { Rules } from "../common/rules.js";
 import { getByPath } from "../common/tools.js";
 import { Strike } from "../combat/actions/strike.js";
 import { Fire } from "../combat/actions/fire.js";
 import { Defend } from "../combat/actions/defend.js";
-import { Equipment } from "../combat/actions/equipment.js";
 import { State } from "../combat/actions/state.js";
 
 export class NephilimActor extends Actor {
@@ -59,25 +59,6 @@ export class NephilimActor extends Actor {
    * Executes the related macro.
    * @param token The token for which to execute the macro.
    */
-  async equipement(token) {
-    if (game.combat === null) {
-      ui.notifications.warn("Aucun combat !");
-      return;
-    }
-    if (token.combatant === null) {
-      ui.notifications.warn("Vous n'êtes pas en combat !");
-      return;
-    }
-    if (this.unlocked()) {
-      this.lock();
-      await new Equipment(this, token.combatant).doit();
-    }
-  }
-
-  /**
-   * Executes the related macro.
-   * @param token The token for which to execute the macro.
-   */
   async frapper(token) {
     if (game.combat === null) {
       ui.notifications.warn("Aucun combat !");
@@ -123,7 +104,7 @@ export class NephilimActor extends Actor {
   /**
    * Executes the pentacle macro.
    */
-   async ka() {
+  async ka() {
     if (this.unlocked()) {
       await this.rollKa(this.getMajorKa());
     }
@@ -195,7 +176,7 @@ export class NephilimActor extends Actor {
       case 'poudre':
         return this.data.data.alchimie.constructs.athanor;
       case 'vapeur':
-        return this.data.data.alchimie.constructs.aludel;  
+        return this.data.data.alchimie.constructs.aludel;
     }
   }
 
@@ -220,7 +201,7 @@ export class NephilimActor extends Actor {
       case 'figurant':
         return 'ka';
       case 'simulacre':
-        return 'soleil';      
+        return 'soleil';
     }
   }
 
@@ -248,7 +229,7 @@ export class NephilimActor extends Actor {
       case 'simulacre':
         return this.data.data.soleil;
     }
-    
+
   }
 
   /**
@@ -316,16 +297,16 @@ export class NephilimActor extends Actor {
               refid: item.refid,
               name: CustomHandlebarsHelpers.getItem(item.refid).data.name,
               degre: item.degre,
-              next: this.getNextCost(item.degre+1)
+              next: Rules.getNextCost(item.degre + 1)
             });
           } else {
             sums[index].degre = sums[index].degre + item.degre;
-            sums[index].next = this.getNextCost(sums[index].degre+1);
+            sums[index].next = Rules.getNextCost(sums[index].degre + 1);
           }
         }
       }
     }
-    sums.sort((fst,snd) => (fst.name > snd.name) ? 1 : ((snd.name > fst.name) ? -1 : 0));
+    sums.sort((fst, snd) => (fst.name > snd.name) ? 1 : ((snd.name > fst.name) ? -1 : 0));
     return sums;
   }
 
@@ -352,9 +333,8 @@ export class NephilimActor extends Actor {
 
   /**
    * Gets the level of the specified items for the first active periodes.
-     @param items The items of the periodes in which to find. The allowed items are:
-   *   vecus
-     @param item The item for which to get the level.
+   * @param items The items of the periodes in which to find. The allowed items are: vecus
+   * @param item The item for which to get the level.
    * @returns 
    */
   getLevelFrom(items, item) {
@@ -401,120 +381,50 @@ export class NephilimActor extends Actor {
    * @returns the level.
    */
   getCompetence(competence) {
-
-    // Retrieve the cost for each vecu
-    let sum = this.getCompetenceSum(competence);
-
-    // Retrieve the degre from the total cost
-    let degre = 0;
-    let cost = 0;
-    while (cost <= sum) {
-      degre = degre + 1;
-      cost = this.getCostTo(degre);
-    }
-
-    return degre-1;
-
+    const sapience = this.getCompetenceSum(competence);
+    return Rules.toDegre(sapience);
   }
 
   /**
-   * Gets the sum of the sapience points
-   * @param competence 
-   * @returns the sum of the points
+   * Gets the number of points of sapience for the specified competence. The number of
+   * points is calculated by iterating on each active vecu.
+   * @param {Object} competence The competence for which to get the number of sapience.
+   * @returns the number of points of sapience.
    */
   getCompetenceSum(competence) {
-    let sum = 0;
-    for (let periode of this.data.data.periodes) {
-      if (periode.active === true) {
-        for (let v of periode.vecus) {
+    let sapience = 0;
+    for (let p of this.data.data.periodes) {
+      if (p.active === true) {
+        for (let v of p.vecus) {
           const vecu = CustomHandlebarsHelpers.getItem(v.refid);
-          for (let refCompetence of vecu.data.data.competences) {
-            if (refCompetence.refid === competence.data.data.id) {
-              sum = sum + this.getCostTo(v.degre);
+          for (let r of vecu.data.data.competences) {
+            if (r.refid === competence.data.data.id) {
+              sapience = sapience + Rules.getCostTo(v.degre);
             }
           }
         }
       }
     }
-    return sum;
-  }
-
-  /**
-   * Gets the sapience points used to rise the degre of skill from 0 to degre.
-   * @param degre The final degre of the skill.
-   * @returns the necessary sapience points.
-   */
-  getCostTo(degre) {
-    switch (degre) {
-      case 0:
-        return 0;
-      case 1:
-        return 1;
-      case 2:
-        return 3; //1+2
-      case 3:
-        return 6; //1+2+3
-      case 4:
-        return 10; //1+2+3+4
-      case 5:
-        return 15; //1+2+3+4+5
-      case 6:
-        return 25; //1+2+3+4+5+10
-      case 7:
-        return 40; //1+2+3+4+5+10+15
-      case 8:
-        return 60; //1+2+3+4+5+10+15+20
-      case 9:
-        return 90; //1+2+3+4+5+10+15+20+30
-      default:
-        return 1+2+3+4+5+10+15+20+30+(degre-9)*100; //90+n*100
-    }
-  }
-
-  getNextCost(degre) {
-    switch (degre) {
-      case 0:
-        return 0;
-      case 1:
-        return 1;
-      case 2:
-        return 2;
-      case 3:
-        return 3;
-      case 4:
-        return 4;
-      case 5:
-        return 5;
-      case 6:
-        return 10;
-      case 7:
-        return 15;
-      case 8:
-        return 20;
-      case 9:
-        return 30;
-      default:
-        return 100;
-    }
+    return sapience;
   }
 
   /**
    * Rolls the specified character ka.
    * @param element The element for which to roll.
-   */ 
+   */
   async rollKa(element) {
     const ka = element === 'noyau' ? 'Noyau'
-     : element === 'pavane' ? 'Pavane'
-     : element === 'ka' ? 'Ka'
-     : ('Ka ' + element);
+      : element === 'pavane' ? 'Pavane'
+        : element === 'ka' ? 'Ka'
+          : ('Ka ' + element);
     const filename = element === 'noyau' ? 'noyau.jpg'
       : element === 'pavane' ? 'noyau.jpg'
-      : 'ka.jpg';
+        : 'ka.jpg';
     const sentence = element === 'pavane' ? 'écoute la Pavane'
       : 'utilise son ' + ka;
     return await Rolls.check(
       this,
-      {img: 'systems/neph5e/icons/' + filename},
+      { img: 'systems/neph5e/icons/' + filename },
       ka,
       {
         ...this.data,
@@ -534,63 +444,33 @@ export class NephilimActor extends Actor {
   async rollSimulacre(uuid, self, attribute) {
 
     const simulacre = CustomHandlebarsHelpers.getActor(uuid);
-    let sentence = "";
-    let difficulty = 0;
+    const sentence = Rules.getSentence(attribute, self);
 
+    let difficulty = 0;
     switch (attribute) {
       case 'agile':
-        difficulty = simulacre.data.data.agile;
-        sentence = self ? " fait appel à son agilité" : "fait appel à l'agilité de son simulacre";
-        break;
       case 'endurant':
-        difficulty = simulacre.data.data.endurant;
-        sentence = self ? " fait appel à son endurance" : "fait appel à l'endurance de son simulacre";
-        break;
       case 'fort':
-        difficulty = simulacre.data.data.fort;
-        sentence = self ? " fait appel à sa force" : "fait appel à la force de son simulacre";
-        break;
       case 'intelligent':
-        difficulty = simulacre.data.data.intelligent;
-        sentence = self ? "fait appel à son intelligence" : "fait appel à l'intelligence de son simulacre";
-        break;
       case 'seduisant':
-        difficulty = simulacre.data.data.seduisant;
-        sentence = self ? "fait appel à son charisme" : "fait appel au charisme de son simulacre";
-        break;
       case 'soleil':
-        difficulty = simulacre.data.data.soleil;
-        sentence = self ? "fait appel à sa volonté" : "fait appel à la volonté de son simulacre";
-        break;
       case 'savant':
-        difficulty = simulacre.data.data.savant;
-        sentence = self ? "fait appel à son savoir" : "fait appel au savoir de son simulacre";
-        break;
       case 'sociable':
-        difficulty = simulacre.data.data.sociable;
-        sentence = self ? "fait appel à ses relations" : "fait appel à aux relations de son simulacre";
-        break;
       case 'fortune':
-        difficulty = simulacre.data.data.fortune;
-        sentence = self ? "fait appel à sa fortune" : "utilise la fortune de son simulacre";
+      case 'menace':
+      case 'ka':
+        difficulty = simulacre.data.data[attribute];
         break;
+
       case 'vecu':
         difficulty = simulacre.data.data.vecu.degre;
-        sentence = self ? "utilise son vécu" : "utilise le vécu de son simulacre";
         break;
-      case 'menace':
-        difficulty = simulacre.data.data.menace;
-        sentence = "fait appel à ses compétences";
-        break;
-      case 'ka':
-        difficulty = simulacre.data.data.ka;
-        sentence = "fait appel à son ka";
-        break;
+
     }
 
     return await Rolls.check(
-      this, 
-      {img: 'systems/neph5e/icons/caracteristique.jpg'},
+      this,
+      { img: 'systems/neph5e/icons/caracteristique.jpg' },
       attribute,
       {
         ...this.data,
@@ -626,21 +506,31 @@ export class NephilimActor extends Actor {
       case 'lourde':
         return this.getCompetenceById(Game.skills.lourde.uuid);
       default:
-        return 0;      
+        return 0;
     }
   }
 
   getWoundModifier(type) {
-      let modifier = 0;
-      const dommages = type === 'physique' ? this.data.data.dommage.physique : type === 'magique' ? this.data.data.dommage.magique : null;
+    let modifier = 0;
+    const dommages = type === 'physique' ? this.data.data.dommage.physique : type === 'magique' ? this.data.data.dommage.magique : null;
+    if (dommages !== null) {
       for (const w in Game.wounds) {
-          const wound = Game.wounds[w];
-          if (dommages[w]) {
-              modifier = modifier + wound.modifier;
-          }
+        const wound = Game.wounds[w];
+        if (dommages[w]) {
+          modifier = modifier + wound.modifier;
+        }
       }
-      return modifier;
+    }
+    return modifier;
   }
 
+  getWeapon(skill) {
+    for (let item of this.items.values()) {
+      if (item.type === "arme" && item.data.data.skill === skill) {
+        return item;
+      }
+    }
+    return undefined;
+  }
 
 }

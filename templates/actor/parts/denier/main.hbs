@@ -1,0 +1,109 @@
+<input
+    name="data.page.denier"
+    type="hidden"
+    value="true"
+    data-dtype="Boolean"/>
+
+<div class="cercles" style="column-count: 6">
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.denier.architecte"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "architecte"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.denier.guide"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "guide"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.denier.mage"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "mage"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.denier.ouvrier"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "ouvrier"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.denier.roi"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "roi"}}</label>
+    </div>
+
+    <div class="cercle">
+        <label class="cercle-name">{{localize "NEPH5E.denier.sage"}}</label>
+        <label class="cercle-tag"/>
+        <label class="cercle-value">{{getScience data.id "sage"}}</label>
+    </div>
+
+</div>
+
+<ol class="item-list">
+
+    {{> "systems/neph5e/templates/actor/parts/denier/header.hbs" axe="Architecte"}}
+
+    {{#each data.denier.pratiques as |pratique|}}
+        {{#with (getItem pratique.refid)}}
+            {{#if (eq data.data.axe "architecte")}}
+                {{> "systems/neph5e/templates/actor/parts/denier/pratique.hbs" pratique=pratique}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/denier/header.hbs" axe="Guide"}}
+
+    {{#each data.denier.pratiques as |pratique|}}
+        {{#with (getItem pratique.refid)}}
+            {{#if (eq data.data.axe "guide")}}
+                {{> "systems/neph5e/templates/actor/parts/denier/pratique.hbs" pratique=pratique}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/denier/header.hbs" axe="Mage"}}
+
+    {{#each data.denier.pratiques as |pratique|}}
+        {{#with (getItem pratique.refid)}}
+            {{#if (eq data.data.axe "mage")}}
+                {{> "systems/neph5e/templates/actor/parts/denier/pratique.hbs" pratique=pratique}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/denier/header.hbs" axe="Ouvrier"}}
+
+    {{#each data.denier.pratiques as |pratique|}}
+        {{#with (getItem pratique.refid)}}
+            {{#if (eq data.data.axe "ouvrier")}}
+                {{> "systems/neph5e/templates/actor/parts/denier/pratique.hbs" pratique=pratique}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/denier/header.hbs" axe="Roi"}}
+
+    {{#each data.denier.pratiques as |pratique|}}
+        {{#with (getItem pratique.refid)}}
+            {{#if (eq data.data.axe "roi")}}
+                {{> "systems/neph5e/templates/actor/parts/denier/pratique.hbs" pratique=pratique}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+    {{> "systems/neph5e/templates/actor/parts/denier/header.hbs" axe="Sage"}}
+
+    {{#each data.denier.pratiques as |pratique|}}
+        {{#with (getItem pratique.refid)}}
+            {{#if (eq data.data.axe "sage")}}
+                {{> "systems/neph5e/templates/actor/parts/denier/pratique.hbs" pratique=pratique}}
+            {{/if}}
+        {{/with}}
+    {{/each}}
+
+</ol>

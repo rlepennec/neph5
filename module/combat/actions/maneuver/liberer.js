@@ -115,7 +115,7 @@ export class Liberer extends Maneuver {
     effects.push(this.actor.data.name + Game.effects.immobilise.sentence);
 
     // Apply the damages
-    let wound = await this.status.wounds.applyDamages(1);
+    let wound = await this.status.wounds.applyDamages(1, 'physique');
 
     // Display the result
     await new NephilimChat(this.actor)

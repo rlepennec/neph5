@@ -51,6 +51,7 @@ export class Fire extends Actions {
         new Rafale(this.actor, this.token).register(actions);
 
         // Returns all the data
+        const rangedWeapon = new Status(this.token.combatant).ranged.weapon();
         return {
             id: this.constructor.id,
             actions: actions,
@@ -59,10 +60,11 @@ export class Fire extends Actions {
                 weapon: new Status(this.token.combatant).melee.weapon()
             },
             ranged: {
-                weapon: new Status(this.token.combatant).ranged.weapon(),
+                armed: rangedWeapon !== undefined && rangedWeapon !== null,
+                weapon: rangedWeapon,
                 state: {
                     visee: this.token.combatant.data.flags.world.combat.ranged.visee,
-                    chargeur: this.token.combatant.data.flags.world.combat.ranged.chargeur,
+                    utilise: this.token.combatant.data.flags.world.combat.ranged.utilise,
                     reload: this.token.combatant.data.flags.world.combat.ranged.reload,
                 }
             }

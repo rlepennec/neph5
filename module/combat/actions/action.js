@@ -52,7 +52,7 @@ export class Action {
         return target != undefined ? {
             id: target.id,
             name: target.name,
-            img: target.combatant.data.img,
+            img: target.data.img,
             flags: target.combatant.data.flags,
             dodge: target.actor.getSkill('esquive'),
             token: target
@@ -219,7 +219,7 @@ export class Action {
     async resetVisee() {
         const flags = duplicate(this.token.combatant.data.flags);
         flags.world.combat.ranged.visee = 0;
-        await this.token.update({['flags']: flags});
+        await this.token.combatant.update({['flags']: flags});
         return this;
     }
   
@@ -230,7 +230,7 @@ export class Action {
     async resetReload() {
         const flags = duplicate(this.token.combatant.data.flags);
         flags.world.combat.ranged.reload = 0;
-        await this.token.update({['flags']: flags});
+        await this.token.combatant.update({['flags']: flags});
         return this;
     }
 

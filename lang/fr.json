@@ -1,28 +1,32 @@
 {
     "ITEM.TypeAlchimie":     "Voie alchimique",
-    "ITEM.TypeAppel":        "Appel",
+    "ITEM.TypeAppel":        "Appel de Kabbale Noire",
     "ITEM.TypeArme":         "Arme",
     "ITEM.TypeArmure":       "Armure",
-    "ITEM.TypeAspect":       "Aspects de l'Imago",
+    "ITEM.TypeAspect":       "Aspect",
     "ITEM.TypeArcane":       "Quête d'Arcane",
+    "ITEM.TypeCapacite":     "Capacité",
     "ITEM.TypeCatalyseur":   "Catalyseur",
     "ITEM.TypeCompetence":   "Compétence",
     "ITEM.TypeMagie":        "Voie magique",
     "ITEM.TypeMateriae":     "Materiae Primae",
     "ITEM.TypeMetamorphe":   "Métamorphe",
-    "ITEM.TypeOrdonnance":   "Ordonnance de Kabbale",
-    "ITEM.TypePasse":        "Passe",
+    "ITEM.TypeOrdonnance":   "Ordonnance",
+    "ITEM.TypePasse":        "Passé",
     "ITEM.TypePeriode":      "Période",
+    "ITEM.TypePratique":     "Pratique Synarque",
     "ITEM.TypeQuete":        "Quête ésotérique",
-    "ITEM.TypeRite":         "Rite",
+    "ITEM.TypeRite":         "Rite Nécromantique",
+    "ITEM.TypeRituel":       "Rituel Myste",
     "ITEM.TypeSavoir":       "Savoir ésotérique",
     "ITEM.TypeScience":      "Science occulte",
-    "ITEM.TypeSort":         "Sort",
+    "ITEM.TypeSort":         "Sort Magique",
+    "ITEM.TypeTechnique":    "Technique Templière",
+    "ITEM.TypeTekhne":       "Tekhne Rosicruxienne",
     "ITEM.TypeVecu":         "Vécu",
     "ITEM.TypeChute":        "Chute",
-    
-    "ITEM.TypeInvocation":   "Invocation",
-    "ITEM.TypeFormule":      "Formule",
+    "ITEM.TypeInvocation":   "Invocation de Kabbale",
+    "ITEM.TypeFormule":      "Formule Alchimique",
 
     "ACTOR.TypeFigure":      "Figure",
     "ACTOR.TypeFigurant":    "Figurant",
@@ -37,7 +41,7 @@
         "arme":            "Arme",
         "armure":          "Armure",
         "impact":          "Impact",
-        "nef":             "Nef akashique",
+        "nef":             "Nef",
         "activation":      "Activation",
         "boussole":        "Boussole",
         "barge":           "Barge",
@@ -77,6 +81,7 @@
         "terre":           "Terre",
         "lune":            "Lune",
         "luneNoire":       "Lune Noire",
+        "choix":           "Au choix",
 
         "armes": {
             "nom":        "Armes",
@@ -107,6 +112,33 @@
             "feu":        "A feu",
             "magique":    "Magique",
             "bouclier":   "Bouclier"
+        },
+
+        "baton": {
+            "baton":      "Baton",
+            "technique":  "Technique"
+        },
+
+        "coupe": {
+            "coupe":      "Coupe",
+            "tekhne":     "Tekhne"
+        },
+
+        "denier": {
+            "architecte":    "Architecte",
+            "axe":           "Axe",
+            "denier":        "Denier",
+            "guide":         "Guide",
+            "mage":          "Mage",
+            "ouvrier":       "Ouvrier",
+            "pratique":      "Pratique",
+            "roi":           "Roi",
+            "sage":          "Sage"
+        },
+
+        "epee": {
+            "epee":          "Epee",
+            "rituel":        "Rituel"
         },
 
         "anamorphose": {

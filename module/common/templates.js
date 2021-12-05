@@ -21,6 +21,7 @@ export const preloadTemplates = async function() {
     "systems/neph5e/templates/actor/parts/vecus/main.hbs",
     "systems/neph5e/templates/actor/parts/vecus/savoirs.hbs",
     "systems/neph5e/templates/actor/parts/vecus/quetes.hbs",
+    "systems/neph5e/templates/actor/parts/vecus/passes.hbs",
     "systems/neph5e/templates/actor/parts/vecus/competences.hbs",
     "systems/neph5e/templates/actor/parts/magie/main.hbs",
     "systems/neph5e/templates/actor/parts/magie/header.hbs",
@@ -42,6 +43,17 @@ export const preloadTemplates = async function() {
     "systems/neph5e/templates/actor/parts/options/main.hbs",
     "systems/neph5e/templates/actor/parts/selenim/main.hbs",
     "systems/neph5e/templates/actor/parts/selenim/aspect.hbs",
-    "systems/neph5e/templates/actor/parts/selenim/passe.hbs"
+    "systems/neph5e/templates/actor/parts/baton/main.hbs",
+    "systems/neph5e/templates/actor/parts/baton/header.hbs",
+    "systems/neph5e/templates/actor/parts/baton/technique.hbs",
+    "systems/neph5e/templates/actor/parts/coupe/main.hbs",
+    "systems/neph5e/templates/actor/parts/coupe/header.hbs",
+    "systems/neph5e/templates/actor/parts/coupe/tekhne.hbs",
+    "systems/neph5e/templates/actor/parts/denier/main.hbs",
+    "systems/neph5e/templates/actor/parts/denier/header.hbs",
+    "systems/neph5e/templates/actor/parts/denier/pratique.hbs",
+    "systems/neph5e/templates/actor/parts/epee/main.hbs",
+    "systems/neph5e/templates/actor/parts/epee/header.hbs",
+    "systems/neph5e/templates/actor/parts/epee/rituel.hbs"
   ]);
 };

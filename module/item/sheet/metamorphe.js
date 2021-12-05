@@ -3,15 +3,6 @@ import { Game } from "../../common/game.js";
 
 export class MetamorpheSheet extends NephilimItemSheet {
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-
-    }
-
     /** 
      * @override
      */
@@ -33,13 +24,6 @@ export class MetamorpheSheet extends NephilimItemSheet {
             scrollY: [".tab.description"],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
       });
-    }
-
-    /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
     }
 
         /**

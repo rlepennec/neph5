@@ -48,13 +48,6 @@ export class NephilimItemSheet extends ItemSheet {
     }
 
     /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-    }
-
-    /**
      * Edits the specified referenced item.
      */
     async onEdit(event) {

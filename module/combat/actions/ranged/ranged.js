@@ -1,7 +1,6 @@
 import { Action } from "../action.js";
 import { Effects } from "../../data/effects.js";
 import { Protection } from "../../data/protection.js";
-import { Wounds } from "../../data/wounds.js";
 import { Game } from "../../../common/game.js";
 import { NephilimChat } from "../../../common/chat.js";
 
@@ -29,7 +28,7 @@ export class Ranged extends Action {
     let difficulty = this.status.ranged.difficulty() + this.constructor.attack;
 
     // Apply the wounds modifier
-    difficulty = difficulty + this.status.wounds.getModifier();
+    difficulty = difficulty + this.status.wounds.getModifier('physique');
 
     // Apply malus if disoriented
     if (this.status.effects.isActive(Game.effects.desoriente)) {
@@ -63,7 +62,7 @@ export class Ranged extends Action {
    * @Override
    */
   impact() {
-    return this.weapon().damages + this.constructor.impact;
+    return this.weapon().data.data.damages + this.constructor.impact;
   }
 
   /**
@@ -79,12 +78,16 @@ export class Ranged extends Action {
    *  - The token is not hidden
    */
    allowed() {
-
-    return this.status.history.allowed(this) &&
-           this.target != null &&
-           this.immobilized() === false &&
-           this.status.ranged.support(this) &&
-           this.constructor.required <= this.token.combatant.data.flags.world.combat.ranged.chargeur;
+     const wp = this.weapon();
+     if (wp === null || wp === undefined) {
+       return false;
+     }
+      const reste = wp.data.data.ranged.munitions - this.token.combatant.data.flags.world.combat.ranged.utilise;
+      return this.status.history.allowed(this) &&
+            this.target != null &&
+            this.immobilized() === false &&
+            this.status.ranged.support(this) &&
+            this.constructor.required <= reste;
 
   }
 
@@ -145,7 +148,7 @@ export class Ranged extends Action {
         action: action,
         result: {
           roll: this.attackResult(action.roll),
-          protection: protection.getProtectionOf(this.target.flags, weapon)
+          protection: protection.getProtectionOf(this.target, weapon.data)
         }
       })
       .withFlags(flags)
@@ -161,10 +164,10 @@ export class Ranged extends Action {
    */
   async decreaseAmmunitions() {
     const weapon = this.weapon();
-    if (weapon.vitesse > 0) {
+    if (weapon.data.data.ranged.vitesse > 0) {
       const flags = duplicate(this.token.combatant.data.flags);
-      flags.world.combat.ranged.chargeur = Math.max(0, flags.world.combat.ranged.chargeur - this.constructor.used);
-      await this.token.update({['flags']: flags}); 
+      flags.world.combat.ranged.utilise = Math.min(weapon.data.data.ranged.munitions, flags.world.combat.ranged.utilise + this.constructor.used);
+      await this.token.combatant.update({['flags']: flags}); 
     }
     return this;
   }

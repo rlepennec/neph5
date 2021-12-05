@@ -58,6 +58,22 @@
         <a class="sheet-navigation-tab" data-tab="conjuration">{{localize "NEPH5E.conjuration.science"}}</a>
         {{/if}}
 
+        {{#if (eq data.options.baton true)}}
+        <a class="sheet-navigation-tab" data-tab="baton">{{localize "NEPH5E.baton.baton"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.coupe true)}}
+        <a class="sheet-navigation-tab" data-tab="coupe">{{localize "NEPH5E.coupe.coupe"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.denier true)}}
+        <a class="sheet-navigation-tab" data-tab="denier">{{localize "NEPH5E.denier.denier"}}</a>
+        {{/if}}
+
+        {{#if (eq data.options.epee true)}}
+        <a class="sheet-navigation-tab" data-tab="epee">{{localize "NEPH5E.epee.epee"}}</a>
+        {{/if}}
+
         {{#if (eq data.options.akasha true)}}
         <a class="sheet-navigation-tab" data-tab="akasha">{{localize "NEPH5E.akasha"}}</a>
         {{/if}}
@@ -160,6 +176,30 @@
         {{#if (eq data.options.conjuration true)}}
         <div class="tab conjuration" data-group="primary" data-tab="conjuration">
             {{> "systems/neph5e/templates/actor/parts/conjuration/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.baton true)}}
+        <div class="tab baton" data-group="primary" data-tab="baton">
+            {{> "systems/neph5e/templates/actor/parts/baton/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.coupe true)}}
+        <div class="tab coupe" data-group="primary" data-tab="coupe">
+            {{> "systems/neph5e/templates/actor/parts/coupe/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.denier true)}}
+        <div class="tab denier" data-group="primary" data-tab="denier">
+            {{> "systems/neph5e/templates/actor/parts/denier/main.hbs"}}
+        </div>
+        {{/if}}
+
+        {{#if (eq data.options.epee true)}}
+        <div class="tab epee" data-group="primary" data-tab="epee">
+            {{> "systems/neph5e/templates/actor/parts/epee/main.hbs"}}
         </div>
         {{/if}}
 

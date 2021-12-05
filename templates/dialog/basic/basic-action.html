@@ -8,21 +8,49 @@
 
   <div class="basic-body">
 
-    <div class="basic-title">
-      <span>Difficulté: </span>
+    <div class="basic-sort">
+      <a><i class="fas fa-dice-d20"></i></a>
     </div>
 
     <div class="basic-difficulty">
       <span>{{action.difficulty}}0%</span>
     </div>
   
+    <label class="heart-checkbox">
+      <input
+        id="skipBlessure"
+        type="checkbox"
+        name="skipBlessure"
+        data-dtype="Boolean"/>
+      <i class="fas fa-heart unchecked"></i>
+      <i class="far fa-heart checked"></i>
+    </label>
+
+    <div class="basic-difficulty">
+      <span>{{blessure}}0%</span>
+    </div>
+
     <div class="basic-sort">
       <a><i class="fas fa-sort"></i></a>
     </div>
-
+    
     <div class="basic-modifier">
       <input id="modifier" type="Number" value="0"/>
     </div>
+
+    {{#if selectElement}}
+    <div class="basic-sort">
+      <a><i class="fas fa-sun"></i></a>
+    </div>
+
+    <div class="basic-difficulty">
+      <select id="element" name="element">
+          {{#each elements as |name label|}}
+          <option value="{{label}}">{{localize name}}</option>
+          {{/each}}
+        </select>
+    </div>
+    {{/if}}
 
   </div>
 

@@ -28,7 +28,7 @@ export class Unarmed extends Action {
     let difficulty = this.status.unarmed.difficulty() + this.constructor.attack;
 
     // Apply the wounds modifier
-    difficulty = difficulty + this.status.wounds.getModifier();
+    difficulty = difficulty + this.status.wounds.getModifier('physique');
 
     // Apply malus if disoriented
     if (this.status.effects.isActive(Game.effects.desoriente)) {
@@ -57,13 +57,6 @@ export class Unarmed extends Action {
 
   /**
    * @Override
-   */
-  weapon() {
-    return this.status.unarmed.weapon();
-  }
-
-  /**
-   * @Override
    * 
    * To be allowed an unarmed action must validate the following assertions:
    *  - The history of the round allows this action
@@ -71,11 +64,9 @@ export class Unarmed extends Action {
    *  - The token is not immobilized
    */
   allowed() {
-
     return this.status.history.allowed(this) &&
            this.target != null &&
            this.immobilized() === false;
-
   }
 
   /**
@@ -104,7 +95,6 @@ export class Unarmed extends Action {
     await this.updateRoll(action);
 
     // Fetches the some datas to perform actions
-    const weapon = this.weapon();
     const protection = new Protection(this.target.token);
 
     // Increases impact if critical success
@@ -125,7 +115,7 @@ export class Unarmed extends Action {
         action: action,
         result: {
           roll: this.attackResult(action.roll),
-          protection: protection.getProtectionOf(this.target.flags, weapon)
+          protection: protection.getProtectionOf(this.target, null)
         }
       })
       .withFlags(flags)
@@ -133,6 +123,13 @@ export class Unarmed extends Action {
 
     return this;
 
+  }
+
+  /**
+   * @returns the natural weapon.
+   */
+  weapon() {
+      return null;
   }
 
 }

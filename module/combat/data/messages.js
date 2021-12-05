@@ -43,7 +43,7 @@ export class Messages {
      */
     async delete(event) {
         const flags = duplicate(this.combatant.data.flags);
-        if (flags.world.combat.messages.includes(event)) {
+        if (flags.world !== undefined && flags.world.combat.messages.includes(event)) {
             const pos = flags.world.combat.messages.indexOf(event.id);
             flags.world.combat.messages.splice(pos, 1);
             await this.combatant.update({['flags']: flags});

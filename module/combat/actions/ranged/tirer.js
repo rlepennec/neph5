@@ -61,7 +61,7 @@ export class Tirer extends Ranged {
    * @Override
    */
   sentence() {
-    return "tire sur " + this.target.name + " avec " + this.status.ranged.weapon().description;
+    return "tire sur " + this.target.name + " avec " + this.status.ranged.weapon().data.name;
   } 
 
 }

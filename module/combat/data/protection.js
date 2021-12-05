@@ -3,11 +3,6 @@ import { Game } from "../../common/game.js";
 export class Protection {
 
     /**
-     * Unprotected.
-     */
-    static none = 'none-protection';
-
-    /**
      * Constructor.
      * @param combatant The combatant for which to manage the protection.
      */
@@ -16,53 +11,17 @@ export class Protection {
     }
 
     /**
-     * @returns the initial protection combatant property.
-     */
-    static create() {
-        return {
-            refid: Protection.none
-        };
-    }
-
-    /**
-     * @returns the json data object used to render templates.
-     */
-    getRenderData() {
-        const refid = this.combatant.data.flags.world.combat.protection.refid;
-        const protections = duplicate(Game.protections);
-        protections.forEach(function(p, index, array) {
-            p.used = (p.id === refid);
-        });
-        return protections;
-    }
-
-    /**
-     * @returns the current protection.
-     */
-    get() {
-        return this.getOf(this.combatant.data.flags);
-    }
-
-    /**
      * Gets the current protection of the specified combatant.
-     * @param flags The flags to check.
+     * @param actor The actor to check.
      * @returns the current protection.
      */
-    getOf(flags) {
-        const refid = flags.world.combat.protection.refid;
-        return Game.protections.find(p => p.id === refid);
-    }
-
-    /**
-     * Sets the specified protection.
-     * @param id The identifier of the protection to set.
-     * @returns the instance.
-     */
-    async set(id) {
-        const flags = duplicate(this.combatant.data.flags);
-        flags.world.combat.protection.refid = id;
-        await this.combatant.update({['flags']: flags});
-        return this;
+    getOf(actor) {
+        for (let item of actor.items.values()) {
+            if (item.type === "armure") {
+                return item;
+            }
+        }
+        return undefined;
     }
 
     /**
@@ -71,36 +30,39 @@ export class Protection {
      * @returns the value of the protection against the strike.
      */
     getProtection(weapon) {
-        const protection = this.get();
-        switch (weapon.skill) {
-            case Game.skills.melee.id:
-            case Game.skills.martial.id:
-                return protection.contact;
-            case Game.skills.trait.id:
-                return protection.trait;
-            case Game.skills.feu.id:
-            case Game.skills.lourde.id:
-                return protection.feu;
-        }
+        const armor = this.getOf(this.combatant.actor);
+        return this.getProtectionVersusArmor(weapon, armor);
     }
 
     /**
      * Gets the protection value used versus the specified weapon for the specified combatant.
-     * @param flags  The flags to watch.
+     * @param target The target which receives the dommages to watch.
      * @param weapon The weapon used to strike.
      * @returns the value of the protection against the strike.
      */
-    getProtectionOf(flags, weapon) {
-        const protection = this.getOf(flags);
-        switch (weapon.skill) {
+    getProtectionOf(target, weapon) {
+        const armor = this.getOf(target.token.combatant.actor);
+        return this.getProtectionVersusArmor(weapon, armor);
+    }
+
+    getProtectionVersusArmor(weapon, armor) {
+        if (armor === undefined) {
+            return 0;
+        }
+        if (weapon === null) {
+            return armor.data.data.contact;
+        }
+        if (weapon.data.magique) {
+            return armor.data.data.magique;
+        }
+        switch (weapon.data.skill) {
             case Game.skills.melee.id:
-            case Game.skills.martial.id:
-                return protection.contact;
+                return armor.data.data.contact;
             case Game.skills.trait.id:
-                return protection.trait;
+                return armor.data.data.trait;
             case Game.skills.feu.id:
             case Game.skills.lourde.id:
-                return protection.feu;
+                return armor.data.data.feu;
         }
     }
 

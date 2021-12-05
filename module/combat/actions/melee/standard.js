@@ -51,7 +51,7 @@ export class Standard extends Melee {
    * @Override
    */
   sentence() {
-    return "porte une attaque standard sur " + this.target.name + " avec " + this.status.melee.weapon().description;
+    return "porte une attaque standard sur " + this.target.name + " avec " + this.status.melee.weapon().data.name;
   } 
 
 }

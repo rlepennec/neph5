@@ -1,3 +1,4 @@
+{{#if useV3}}
 <li class="item" data-item-id="{{catalyseur.refid}}" data-item-type="catalyseur">
 
     <input
@@ -21,3 +22,12 @@
     </div>
 
 </li>
+{{else}}
+
+<input
+    name="data.alchimie.catalyseurs.[{{@index}}].refid"
+    type="hidden"
+    value="{{catalyseur.refid}}"
+    data-dtype="String"/>
+
+{{/if}}

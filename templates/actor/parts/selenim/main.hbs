@@ -115,33 +115,3 @@
 
 </ol>
 {{/if}}
-
-<ol class="item-list">
-
-    <li class="item-list-header">
-
-        <div class="item-name">
-            <span>{{localize "NEPH5E.passe"}}</span>
-        </div>
-
-        <div class="item-integer">
-            <span/>
-        </div>
-
-        <div class="item-control">
-            <span/>
-        </div>
-
-        <div class="item-control">
-            <span/>
-        </div>
-
-    </li>
-
-    {{#each (getLevels data.id 'passes') as |passe|}}
-        {{#with (getItem passe.refid)}}
-            {{> "systems/neph5e/templates/actor/parts/selenim/passe.hbs" passe=passe}}
-        {{/with}}
-    {{/each}}
-
-</ol>

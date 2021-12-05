@@ -48,6 +48,10 @@ export class FigureSheet extends ActorSheet {
                 ".tab.selenim",
                 ".tab.necromancie",
                 ".tab.conjuration",
+                ".tab.baton",
+                ".tab.coupe",
+                ".tab.denier",
+                ".tab.epee",
                 ".tab.incarnations",
                 ".tab.options"],
             tabs: [
@@ -83,6 +87,7 @@ export class FigureSheet extends ActorSheet {
         html.find('div[data-tab="combat"] .item-edit').click(this._onEditEquipement.bind(this));
         html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEquipement.bind(this));
         html.find('div[data-tab="combat"] .item-roll').click(this._onCombatRoll.bind(this));
+        html.find('div[data-tab="combat"] .item-attack').click(this._onAttack.bind(this));
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -148,6 +153,33 @@ export class FigureSheet extends ActorSheet {
         html.find('div[data-tab="necromancie"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="necromancie"] .item-delete').click(this._onDeleteNecromancie.bind(this));
 
+        // Baton
+        html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="baton"] .item-name').click(this._onShowTechnique.bind(this));
+        html.find('div[data-tab="baton"] .item-roll').click(this._onItemRoll.bind(this));
+        html.find('div[data-tab="baton"] .item-edit').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteTechnique.bind(this));
+
+        // Coupe
+        html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="coupe"] .item-name').click(this._onShowTekhne.bind(this));
+        html.find('div[data-tab="coupe"] .item-roll').click(this._onItemRoll.bind(this));
+        html.find('div[data-tab="coupe"] .item-edit').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteTekhne.bind(this));
+
+        // Denier
+        html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="denier"] .item-name').click(this._onShowPratique.bind(this));
+        html.find('div[data-tab="denier"] .item-roll').click(this._onItemRoll.bind(this));
+        html.find('div[data-tab="denier"] .item-edit').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="denier"] .item-delete').click(this._onDeletePratique.bind(this));
+
+        // Epee
+        html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="epee"] .item-name').click(this._onShowRituel.bind(this));
+        html.find('div[data-tab="epee"] .item-roll').click(this._onItemRoll.bind(this));
+        html.find('div[data-tab="epee"] .item-edit').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteRituel.bind(this));
     }
 
     /**
@@ -175,6 +207,22 @@ export class FigureSheet extends ActorSheet {
                 } catch (err) {
                   return;
                 }
+            } else {
+
+                // Catch and retrieve the dropped actor
+                const actor = await droppedActor(event);
+                if (actor != null && actor.hasOwnProperty('data')) {
+
+                    // The metamorphe has been dropped:
+                    //   - Update the reference of the metamorphe
+                    //   - Delete the metamorphoses
+                    if (actor.data.type === "simulacre" && actor.data.data.id != "") {
+                        const simulacre = duplicate(this.actor.data.data.simulacre);
+                        simulacre.refid = actor.data.data.id;
+                        await this.actor.update({['data.simulacre']: simulacre});
+                    }
+                }
+
             }
 
         } else if (item.hasOwnProperty('data')) {
@@ -187,12 +235,11 @@ export class FigureSheet extends ActorSheet {
                 metamorphe.refid = item.data.data.id;
                 metamorphe.metamorphoses = [false, false, false, false, false, false, false, false, false, false];
                 await this.actor.update({['data.metamorphe']: metamorphe});
-            }
 
             // The periode has been dropped:
             //   - Add the periode if added
             //   - Delete the periodes
-            if (item.data.type === "periode") {
+            } else if (item.data.type === "periode") {
                 const periodes = duplicate(this.actor.data.data.periodes);
                 const index = periodes.findIndex(periode => (periode.refid === item.data.data.id));
                 if (index === -1) {
@@ -209,224 +256,11 @@ export class FigureSheet extends ActorSheet {
                     periodes.push(periode);
                 }
                 await this.actor.update({['data.periodes']: periodes});
-            }
-
-            // The vecu has been dropped:
-            //   - Add the vecu if added
-            //   - Delete the vecus
-            if (item.data.type === "vecu") {
-                const tab = event.currentTarget.className;
-
-                if (tab.includes("simulacre")) {
-                    const simulacre = duplicate(this.actor.data.data.simulacre);
-                    simulacre.vecu.refid = item.data.data.id;
-                    simulacre.vecu.degre = 0;
-                    await this.actor.update({['data.simulacre']: simulacre});
-
-                } else if (tab.includes("incarnations")) {
-                    const periode = this.periodeOf(item.data.data.id);
-                    if (this.current && periode != undefined && this.current.data.data.id === periode.data.data.id) {
-                        const periodes = duplicate(this.actor.data.data.periodes);
-                        const index = periodes.findIndex(p => (p.refid === periode.data.data.id));
-                        if (index != -1) {
-                            const defined = periodes[index].vecus.findIndex(vecu => (vecu.refid === item.data.data.id));
-                            if (defined === -1) {
-                                const vecu = {
-                                    refid: item.data.data.id,
-                                    degre: 0
-                                }
-                                periodes[index].vecus.push(vecu);
-                                await this.actor.update({['data.periodes']: periodes});
-                            }
-                        }
-                    }
-                }
-
-            }
-
-            // The savoir has been dropped:
-            //   - Add the savoir if added
-            //   - Delete the savoirs
-            if (item.data.type === "savoir") {
-                if (this.current) {
-                    const periodes = duplicate(this.actor.data.data.periodes);
-                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
-                    if (index != -1) {
-                        const defined = periodes[index].savoirs.findIndex(savoir => (savoir.refid === item.data.data.id));
-                        if (defined === -1) {
-                            const savoir = {
-                                refid: item.data.data.id,
-                                degre: 0
-                            }
-                            periodes[index].savoirs.push(savoir);
-                            await this.actor.update({['data.periodes']: periodes});
-                        }
-                    }
-                }
-            }
-
-            // The quete has been dropped:
-            //   - Add the quete if added
-            //   - Delete the quetes
-            if (item.data.type === "quete") {
-                if (this.current) {
-                    const periodes = duplicate(this.actor.data.data.periodes);
-                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
-                    if (index != -1) {
-                        const defined = periodes[index].quetes.findIndex(quete => (quete.refid === item.data.data.id));
-                        if (defined === -1) {
-                            const quete = {
-                                refid: item.data.data.id,
-                                degre: 0
-                            }
-                            periodes[index].quetes.push(quete);
-                            await this.actor.update({['data.periodes']: periodes});
-                        }
-                    }
-                }
-            }
-
-            // The arcane has been dropped:
-            //   - Add the arcane if added
-            //   - Delete the arcane
-            if (item.data.type === "arcane") {
-                if (this.current) {
-                    const periodes = duplicate(this.actor.data.data.periodes);
-                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
-                    if (index != -1) {
-                        const defined = periodes[index].arcanes.findIndex(arcane => (arcane.refid === item.data.data.id));
-                        if (defined === -1) {
-                            const arcane = {
-                                refid: item.data.data.id,
-                                degre: 0
-                            }
-                            periodes[index].arcanes.push(arcane);
-                            await this.actor.update({['data.periodes']: periodes});
-                        }
-                    }
-                }
-            }
-
-            // The chute has been dropped:
-            //   - Add the chute if added
-            //   - Delete the chutes
-            if (item.data.type === "chute") {
-                if (this.current) {
-                    const periodes = duplicate(this.actor.data.data.periodes);
-                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
-                    if (index != -1) {
-                        const defined = periodes[index].chutes.findIndex(chute => (chute.refid === item.data.data.id));
-                        if (defined === -1) {
-                            const chute = {
-                                refid: item.data.data.id,
-                                degre: 0
-                            }
-                            periodes[index].chutes.push(chute);
-                            await this.actor.update({['data.periodes']: periodes});
-                        }
-                    }
-                }
-            }
-
-            // The passe has been dropped:
-            //   - Add the passe if added
-            //   - Delete the passes
-            if (item.data.type === "passe") {
-                if (this.current) {
-                    const periodes = duplicate(this.actor.data.data.periodes);
-                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
-                    if (index != -1) {
-                        const defined = periodes[index].passes.findIndex(passe => (passe.refid === item.data.data.id));
-                        if (defined === -1) {
-                            const passe = {
-                                refid: item.data.data.id,
-                                degre: 0
-                            }
-                            periodes[index].passes.push(passe);
-                            await this.actor.update({['data.periodes']: periodes});
-                        }
-                    }
-                }
-            }
-
-            // The science occulte has been dropped
-            //   - Add the science if added
-            //   - Delete the sciences
-            if (item.data.type === "science") {
-                if (this.current) {
-                    const periodes = duplicate(this.actor.data.data.periodes);
-                    const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
-                    if (index != -1) {
-                        if (periodes[index].sciences.findIndex(science => (science.refid === item.data.data.id)) == -1) {
-                            const science = {
-                                refid: item.data.data.id,
-                                ref: item.data.data.ref,
-                                degre: 0
-                            }
-                            periodes[index].sciences.push(science);
-                            await this.actor.update({['data.periodes']: periodes});
-                        }
-                    }
-                }
-            }
-
-            // The sort has been dropped:
-            //   - Add the sort if added
-            //   - Delete the sorts
-            if (item.data.type === "sort") {
-                const magie = duplicate(this.actor.data.data.magie);
-                const index = magie.sorts.findIndex(sort => (sort.refid === item.data.data.id));
-                if (index === -1) {
-                    const sort = {
-                        refid: item.data.data.id,
-                        appris: false,
-                        tatoue: false };
-                    magie.sorts.push(sort);
-                }
-                await this.actor.update({['data.magie']: magie});
-            }
-
-            // The invocation has been dropped:
-            //   - Add the invocation if added
-            //   - Delete the invocations
-            if (item.data.type === "invocation") {
-                const kabbale = duplicate(this.actor.data.data.kabbale);
-                const index = kabbale.invocations.findIndex(invocation => (invocation.refid === item.data.data.id));
-                if (index === -1) {
-                    const invocation = { 
-                        refid: item.data.data.id,
-                        appris: false,
-                        tatoue: false,
-                        pacte: false,
-                        feal: 0,
-                        allie: 0 };
-                    kabbale.invocations.push(invocation);
-                }
-                await this.actor.update({['data.kabbale']: kabbale});
-            }
-
-            // The formule has been dropped:
-            //   - Add the formule if added
-            //   - Delete the formules
-            if (item.data.type === "formule") {
-                const alchimie = duplicate(this.actor.data.data.alchimie);
-                const index = alchimie.formules.findIndex(formule => (formule.refid === item.data.data.id));
-                if (index === -1) {
-                    const formule = {
-                        refid: item.data.data.id,
-                        appris: false,
-                        tatoue: false,
-                        quantite: 0,
-                        transporte: 0 };
-                    alchimie.formules.push(formule);
-                }
-                await this.actor.update({['data.alchimie']: alchimie});
-            }
 
             // The ordonnance has been dropped:
             //   - Add the ordonnance if added
             //   - Delete the ordonnances
-            if (item.data.type === "ordonnance") {
+            } else if (item.data.type === "ordonnance") {
                 const kabbale = duplicate(this.actor.data.data.kabbale);
                 const index = kabbale.voie.ordonnances.findIndex(ordonnance => (ordonnance.refid === item.data.data.id));
                 if (index === -1) {
@@ -435,119 +269,142 @@ export class FigureSheet extends ActorSheet {
                     kabbale.voie.ordonnances.push(ordonnance);
                 }
                 await this.actor.update({['data.kabbale']: kabbale});
-            }
 
             // The voie initiatique has been dropped:
             //   - Update the reference of the magie
             //   - Delete the magie
-            if (item.data.type === "magie") {
+            } else if (item.data.type === "magie") {
                 const magie = duplicate(this.actor.data.data.magie);
                 magie.voie.refid = item.data.data.id;
                 await this.actor.update({['data.magie']: magie});
-            }
 
             // The voie alchimique has been dropped:
             //   - Update the reference of the alchimie
             //   - Delete the alchimie
-            if (item.data.type === "alchimie") {
+            } else if (item.data.type === "alchimie") {
                 const alchimie = duplicate(this.actor.data.data.alchimie);
                 alchimie.voie.refid = item.data.data.id;
                 await this.actor.update({['data.alchimie']: alchimie});
-            }
 
-            // The materiae primae has been dropped:
-            //   - Add the materiae if added
-            //   - Delete the materiaes
-            if (item.data.type === "materiae") {
-                const alchimie = duplicate(this.actor.data.data.alchimie);
-                const index = alchimie.materiae.findIndex(materiae => (materiae.refid === item.data.data.id));
-                if (index === -1) {
-                    const materiae = {
-                        refid: item.data.data.id,
-                        quantite: 0 };
-                    alchimie.materiae.push(materiae);
+            } else {
+
+                switch (item.data.type) {
+                    case 'vecu':
+                        const tab = event.currentTarget.className;
+                        if (tab.includes("simulacre")) {
+                            const simulacre = duplicate(this.actor.data.data.simulacre);
+                            simulacre.vecu.refid = item.data.data.id;
+                            simulacre.vecu.degre = 0;
+                            await this.actor.update({['data.simulacre']: simulacre});
+                        } else if (tab.includes("incarnations")) {
+                            await this._onDropInPeriode(item, 'vecus', {});
+                        }
+                        break;
+                    case 'savoir':
+                        await this._onDropInPeriode(item, 'savoirs', {});
+                        break;
+                    case 'quete':
+                        await this._onDropInPeriode(item, 'quetes', {});
+                        break;
+                    case 'arcane':
+                        await this._onDropInPeriode(item, 'arcanes', {});
+                        break;
+                    case 'chute':
+                        await this._onDropInPeriode(item, 'chutes', {});
+                        break;
+                    case 'passe':
+                        await this._onDropInPeriode(item, 'passes', {});
+                        break;
+                    case 'science':
+                        await this._onDropInPeriode(item, 'sciences', { ref: item.data.data.ref });
+                        break;
+                    case 'sort':
+                        await this._onDropSort(item, 'magie', 'sorts', { appris: false, tatoue: false });
+                        break;
+                    case 'invocation':
+                        await this._onDropSort(item, 'kabbale', 'invocations', { appris: false, tatoue: false, pacte: false, feal: 0, allie: 0 });
+                        break;
+                    case 'formule':
+                        await this._onDropSort(item, 'alchimie', 'formules', { appris: false, tatoue: false, quantite: 0, transporte: 0 });
+                        break;
+                    case 'materiae':
+                        await this._onDropSort(item, 'alchimie', 'materiae', { quantite: 0 });
+                        break;
+                    case 'catalyseur':
+                        await this._onDropSort(item, 'alchimie', 'catalyseurs', {});
+                        break;
+                    case 'aspect':
+                        await this._onDropSort(item, 'imago', 'aspects', {});
+                        break;
+                    case 'appel':
+                        await this._onDropSort(item, 'conjuration', 'appels', {});
+                        break;
+                    case 'rite':
+                        await this._onDropSort(item, 'necromancie', 'rites', {});
+                        break;
+                    case 'pratique':
+                        await this._onDropSort(item, 'denier', 'pratiques', {});
+                        break;
+                    case 'technique':
+                        await this._onDropSort(item, 'baton', 'techniques', {});
+                        break;
+                    case 'tekhne':
+                        await this._onDropSort(item, 'coupe', 'tekhnes', {});
+                        break;
+                    case 'rituel':
+                        await this._onDropSort(item, 'epee', 'rituels', {});
+                        break;
+
                 }
-                await this.actor.update({['data.alchimie']: alchimie});
-            }
 
-            // The catalyseur has been dropped:
-            //   - Add the catalyseur if added
-            //   - Delete the catalyseurs
-            if (item.data.type === "catalyseur") {
-                const alchimie = duplicate(this.actor.data.data.alchimie);
-                const index = alchimie.catalyseurs.findIndex(catalyseur => (catalyseur.refid === item.data.data.id));
-                if (index === -1) {
-                    const catalyseur = {
-                        refid: item.data.data.id
-                    };
-                    alchimie.catalyseurs.push(catalyseur);
-                }
-                await this.actor.update({['data.alchimie']: alchimie});
-            }
-
-            // The aspect has been dropped:
-            //   - Add the aspect if added
-            //   - Delete the aspects
-            if (item.data.type === "aspect") {
-                const imago = duplicate(this.actor.data.data.imago);
-                const index = imago.aspects.findIndex(aspect => (aspect.refid === item.data.data.id));
-                if (index === -1) {
-                    const aspect = {
-                        refid: item.data.data.id,
-                        active: false };
-                    imago.aspects.push(aspect);
-                }
-                await this.actor.update({['data.imago']: imago});
-            }
-
-            // The appel has been dropped:
-            //   - Add the appel if added
-            //   - Delete the appels
-            if (item.data.type === "appel") {
-                const conjuration = duplicate(this.actor.data.data.conjuration);
-                const index = conjuration.appels.findIndex(appel => (appel.refid === item.data.data.id));
-                if (index === -1) {
-                    const appel = {
-                        refid: item.data.data.id,
-                        appris: false };
-                    conjuration.appels.push(appel);
-                }
-                await this.actor.update({['data.conjuration']: conjuration});
-            }
-
-            // The rite has been dropped:
-            //   - Add the rite if added
-            //   - Delete the rites
-            if (item.data.type === "rite") {
-                const necromancie = duplicate(this.actor.data.data.necromancie);
-                const index = necromancie.rites.findIndex(rite => (rite.refid === item.data.data.id));
-                if (index === -1) {
-                    const rite = {
-                        refid: item.data.data.id,
-                        appris: false };
-                    necromancie.rites.push(rite);
-                }
-                await this.actor.update({['data.necromancie']: necromancie});
-            }
-
-        } else {
-
-            // Catch and retrieve the dropped actor
-            const actor = await droppedActor(event);
-            if (actor != null && actor.hasOwnProperty('data')) {
-
-                // The metamorphe has been dropped:
-                //   - Update the reference of the metamorphe
-                //   - Delete the metamorphoses
-                if (actor.data.type === "simulacre" && actor.data.data.id != "") {
-                    const simulacre = duplicate(this.actor.data.data.simulacre);
-                    simulacre.refid = actor.data.data.id;
-                    await this.actor.update({['data.simulacre']: simulacre});
-                }
             }
 
         }
 
+    }
+
+    /**
+     * Add the specified item in the specified periode.
+     * @param {*} item             The sort to add.
+     * @param {*} collection       The collection of items in which to add the item.
+     *  @param {Object} properties The properties to add to the item before adding.
+     */
+    async _onDropInPeriode(item, collection, properties) {
+        if (this.current) {
+            const periodes = duplicate(this.actor.data.data.periodes);
+            const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
+            if (index != -1) {
+                if (periodes[index][collection].findIndex(i => (i.refid === item.data.data.id)) == -1) {
+                    const i = {
+                        refid: item.data.data.id,
+                        degre: 0
+                    }
+                    Object.assign(i, properties);
+                    periodes[index][collection].push(i);
+                    await this.actor.update({['data.periodes']: periodes});
+                }
+            }
+        }
+    }
+
+    /**
+     * Add the specified item in the specified grimoire.
+     * @param {*} item            The sort to add.
+     * @param {*} science         The science occulte of the sort.
+     * @param {*} grimoire        The collection of sort in which to add the item.
+     * @param {Object} properties The properties to add to the sort before adding.
+     */
+    async _onDropSort(item, science, grimoire, properties) {
+        const so = duplicate(this.actor.data.data[science]);
+        const index = so[grimoire].findIndex(s => (s.refid === item.data.data.id));
+        if (index === -1) {
+            let s = {
+                refid: item.data.data.id,
+            };
+            Object.assign(s, properties);
+            so[grimoire].push(s);
+        }
+        await this.actor.update({['data.' + science]: so});
     }
 
     /**
@@ -584,115 +441,13 @@ export class FigureSheet extends ActorSheet {
                 // Retrieve the name and the id of the periode
                 const periodeName = "data.periodes.[" + p.refid + "]";
 
-                // Initialize the vecus of the current periode of the actor
-                // For each vecu of the periode of the actor
-                // -----------------------------------------
-                const vecus = [];
-                for (let v of p.vecus) {
-
-                    // Retrieve the vecu defined in the formData
-                    const vecuName = periodeName + ".vecus.[" + v.refid + "]";
-                    vecus.push({
-                        refid: formData[vecuName + ".refid"],
-                        degre: formData[vecuName + ".degre"] });
-
-                    delete formData[vecuName + ".refid"];
-                    delete formData[vecuName + ".degre"];
-
-                }
-
-                // Initialize the vecus of the current periode of the actor
-                // For each savoir of the periode of the actor
-                // -----------------------------------------
-                const savoirs = [];
-                for (let v of p.savoirs) {
-
-                    // Retrieve the savoir defined in the formData
-                    const savoirName = periodeName + ".savoirs.[" + v.refid + "]";
-                    savoirs.push({
-                        refid: formData[savoirName + ".refid"],
-                        degre: formData[savoirName + ".degre"] });
-                    delete formData[savoirName + ".refid"];
-                    delete formData[savoirName + ".degre"];
-
-                }
-
-                // Initialize the quetes of the current periode of the actor
-                // For each quete of the periode of the actor
-                // -----------------------------------------
-                const quetes = [];
-                for (let v of p.quetes) {
-
-                    // Retrieve the savoir defined in the formData
-                    const queteName = periodeName + ".quetes.[" + v.refid + "]";
-                    quetes.push({
-                        refid: formData[queteName + ".refid"],
-                        degre: formData[queteName + ".degre"] });
-                    delete formData[queteName + ".refid"];
-                    delete formData[queteName + ".degre"];
-                }
-
-                // Initialize the arcanes of the current periode of the actor
-                // For each arcane of the periode of the actor
-                // -----------------------------------------
-                const arcanes = [];
-                for (let v of p.arcanes) {
-
-                    // Retrieve the savoir defined in the formData
-                    const arcaneName = periodeName + ".arcanes.[" + v.refid + "]";
-                    arcanes.push({
-                        refid: formData[arcaneName + ".refid"],
-                        degre: formData[arcaneName + ".degre"] });
-                    delete formData[arcaneName + ".refid"];
-                    delete formData[arcaneName + ".degre"];
-                }
-
-                // Initialize the chutes of the current periode of the actor
-                // For each chute of the periode of the actor
-                // -----------------------------------------
-                const chutes = [];
-                for (let v of p.chutes) {
-
-                    // Retrieve the savoir defined in the formData
-                    const chuteName = periodeName + ".chutes.[" + v.refid + "]";
-                    chutes.push({
-                        refid: formData[chuteName + ".refid"],
-                        degre: formData[chuteName + ".degre"] });
-                    delete formData[chuteName + ".refid"];
-                    delete formData[chuteName + ".degre"];
-                }
-
-                // Initialize the passes of the current periode of the actor
-                // For each passe of the periode of the actor
-                // -----------------------------------------
-                const passes = [];
-                for (let v of p.passes) {
-
-                    // Retrieve the passe defined in the formData
-                    const passeName = periodeName + ".passes.[" + v.refid + "]";
-                    passes.push({
-                        refid: formData[passeName + ".refid"],
-                        degre: formData[passeName + ".degre"] });
-                    delete formData[passeName + ".refid"];
-                    delete formData[passeName + ".degre"];
-                }
-
-                // Initialize the sciences of the current periode of the actor
-                // For each science of the periode of the actor
-                // -----------------------------------------
-                const sciences = [];
-                for (let s of p.sciences) {
-
-                    // Retrieve the science defined in the formData
-                    const scienceName = periodeName + ".sciences.[" + s.refid + "]";
-                    sciences.push({
-                        refid: formData[scienceName + ".refid"],
-                        ref: formData[scienceName + ".ref"],
-                        degre: formData[scienceName + ".degre"] });
-                    delete formData[scienceName + ".refid"];
-                    delete formData[scienceName + ".ref"];
-                    delete formData[scienceName + ".degre"];
-                }
+                const vecus = this._updatePeriode(p, 'vecus', formData, ['degre']);
+                const savoirs = this._updatePeriode(p, 'savoirs', formData, ['degre']);
+                const quetes = this._updatePeriode(p, 'quetes', formData, ['degre']);
+                const arcanes = this._updatePeriode(p, 'arcanes', formData, ['degre']);
+                const chutes = this._updatePeriode(p, 'chutes', formData, ['degre']);
+                const passes = this._updatePeriode(p, 'passes', formData, ['degre']);
+                const sciences = this._updatePeriode(p, 'sciences', formData, ['ref', 'degre']);
 
                 periodes.push({
                     refid: formData[periodeName + ".refid"],
@@ -715,186 +470,19 @@ export class FigureSheet extends ActorSheet {
         }
         formData["data.periodes"] = periodes;
 
-        // Sorts
-        // --------------------------------------------------------------------
-        let size = this.actor.data.data.magie.sorts.length;
-        let sorts = [];
-        if (formData.hasOwnProperty("data.page.magie")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.magie.sorts.[" + index + "]";
-                sorts.push({
-                    refid: formData[name + ".refid"],
-                    appris: formData[name + ".appris"],
-                    tatoue: formData[name + ".tatoue"] });
-                delete formData[name + ".refid"];
-                delete formData[name + ".appris"];
-                delete formData[name + ".tatoue"];
-            }
-        } else {
-            sorts = this.actor.data.data.magie.sorts;
-        }
-        formData["data.magie.sorts"] = sorts;
-
-        // Invocations
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.kabbale.invocations.length;
-        let invocations = [];
-        if (formData.hasOwnProperty("data.page.kabbale")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.kabbale.invocations.[" + index + "]";
-                invocations.push({
-                    refid:  formData[name + ".refid"],
-                    appris: formData[name + ".appris"],
-                    tatoue: formData[name + ".tatoue"],
-                    pacte:  formData[name + ".pacte"],
-                    feal:   formData[name + ".feal"],
-                    allie:  formData[name + ".allie"]
-                });
-                delete formData[name + ".refid"];
-                delete formData[name + ".appris"];
-                delete formData[name + ".tatoue"];
-                delete formData[name + ".pacte"];
-                delete formData[name + ".feal"];
-                delete formData[name + ".allie"];
-            }
-        } else {
-            invocations = this.actor.data.data.kabbale.invocations;
-        }
-        formData["data.kabbale.invocations"] = invocations;
-
-        // Formules
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.alchimie.formules.length;
-        let formules = [];
-        if (formData.hasOwnProperty("data.page.alchimie")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.alchimie.formules.[" + index + "]";
-                formules.push({
-                    refid:      formData[name + ".refid"],
-                    appris:     formData[name + ".appris"],
-                    tatoue:     formData[name + ".tatoue"],
-                    quantite:   formData[name + ".quantite"],
-                    transporte: formData[name + ".transporte"]
-                });
-                delete formData[name + ".refid"];
-                delete formData[name + ".appris"];
-                delete formData[name + ".tatoue"];
-                delete formData[name + ".quantite"];
-                delete formData[name + ".transporte"];
-            }
-        } else {
-            formules = this.actor.data.data.alchimie.formules;
-        }
-        formData["data.alchimie.formules"] = formules;
-
-        // Ordonnance
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.kabbale.voie.ordonnances.length;
-        let ordonnances = [];
-        if (formData.hasOwnProperty("data.page.kabbale")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.kabbale.voie.ordonnances.[" + index + "]";
-                ordonnances.push({ 
-                    refid: formData[name + ".refid"],
-                    suivi: formData[name + ".suivi"]
-                });
-                delete formData[name + ".refid"];
-                delete formData[name + ".suivi"];
-            }
-        } else {
-            ordonnances = this.actor.data.data.kabbale.voie.ordonnances;
-        }
-        formData["data.kabbale.voie.ordonnances"] = ordonnances;
-
-        // Materiae Primae
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.alchimie.materiae.length;
-        let materiae = [];
-        if (formData.hasOwnProperty("data.page.laboratoire")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.alchimie.materiae.[" + index + "]";
-                materiae.push({ 
-                    refid: formData[name + ".refid"],
-                    quantite: formData[name + ".quantite"]
-                });
-                delete formData[name + ".refid"];
-                delete formData[name + ".quantite"];
-            }
-        } else {
-            materiae = this.actor.data.data.alchimie.materiae;
-        }
-        formData["data.alchimie.materiae"] = materiae;
-
-        // Catalyseur
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.alchimie.catalyseurs.length;
-        let catalyseurs = [];
-        if (formData.hasOwnProperty("data.page.laboratoire")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.alchimie.catalyseurs.[" + index + "]";
-                catalyseurs.push({ 
-                    refid: formData[name + ".refid"]
-                });
-                delete formData[name + ".refid"];
-            }
-        } else {
-            catalyseurs = this.actor.data.data.alchimie.catalyseurs;
-        }
-        formData["data.alchimie.catalyseurs"] = catalyseurs;
-
-        // Aspects
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.imago.aspects.length;
-        let aspects = [];
-        if (formData.hasOwnProperty("data.page.selenim")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.imago.aspects.[" + index + "]";
-                aspects.push({
-                    refid: formData[name + ".refid"],
-                    active: formData[name + ".active"] });
-                delete formData[name + ".refid"];
-                delete formData[name + ".active"];
-            }
-        } else {
-            aspects = this.actor.data.data.imago.aspects;
-        }
-        formData["data.imago.aspects"] = aspects;
-
-        // Appels
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.conjuration.appels.length;
-        let appels = [];
-        if (formData.hasOwnProperty("data.page.conjuration")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.conjuration.appels.[" + index + "]";
-                appels.push({
-                    refid: formData[name + ".refid"],
-                    appris: formData[name + ".appris"] });
-                delete formData[name + ".refid"];
-                delete formData[name + ".appris"];
-            }
-        } else {
-            appels = this.actor.data.data.conjuration.appels;
-        }
-        formData["data.conjuration.appels"] = appels;
-
-        // Rites
-        // --------------------------------------------------------------------
-        size = this.actor.data.data.necromancie.rites.length;
-        let rites = [];
-        if (formData.hasOwnProperty("data.page.necromancie")) {
-            for (let index = 0; index < size; index++) {
-                const name = "data.necromancie.rites.[" + index + "]";
-                rites.push({
-                    refid: formData[name + ".refid"],
-                    appris: formData[name + ".appris"] });
-                delete formData[name + ".refid"];
-                delete formData[name + ".appris"];
-            }
-        } else {
-            rites = this.actor.data.data.necromancie.rites;
-        }
-        formData["data.necromancie.rites"] = rites;
+        this._update('magie', 'magie.sorts', formData, ['appris', 'tatoue']);
+        this._update('kabbale', 'kabbale.invocations', formData, ['appris', 'tatoue', 'pacte', 'feal', 'allie']);
+        this._update('alchimie', 'alchimie.formules', formData, ['appris', 'tatoue', 'quantite', 'transporte']);
+        this._update('kabbale', 'kabbale.voie.ordonnances', formData, ['suivi']);
+        this._update('laboratoire', 'alchimie.materiae', formData, ['quantite']);
+        this._update('laboratoire', 'alchimie.catalyseurs', formData, []);
+        this._update('selenim', 'imago.aspects', formData, ['active']);
+        this._update('conjuration', 'conjuration.appels', formData, ['appris']);
+        this._update('necromancie', 'necromancie.rites', formData, ['appris']);
+        this._update('baton', 'baton.techniques', formData, []);
+        this._update('coupe', 'coupe.tekhnes', formData, []);
+        this._update('denier', 'denier.pratiques', formData, []);
+        this._update('epee', 'epee.rituels', formData, []);
 
         // Update
         // --------------------------------------------------------------------
@@ -902,29 +490,94 @@ export class FigureSheet extends ActorSheet {
 
     }
 
+    _updatePeriode(periode, collection, formData, properties) {
+        const items = [];
+        for (let i of periode[collection]) {
+            const name = "data.periodes.[" + periode.refid + "]" + "." + collection + ".[" + i.refid + "]";
+            const atts = properties;
+            atts.push('refid');
+            let item = {};
+            for (let att of atts) {
+                item[att] = formData[name + "." + att]
+            }
+            items.push(item);
+            for (let att of atts) {
+                delete formData[name + "." + att];
+            }
+        }
+        return items;
+    }
+
+    _update(page, collection, formData, properties) {
+        const items = getByPath(this.actor.data.data, collection);
+        const size = items.length;
+        let updated = [];
+        if (formData.hasOwnProperty("data.page." + page)) {
+            for (let index = 0; index < size; index++) {
+                const name = "data." + collection + ".[" + index + "]";
+                const atts = properties;
+                atts.push('refid');
+                let item = {};
+                for (let p of atts) {
+                    item[p] = formData[name + "." + p]
+                }
+                updated.push(item);
+                for (let p of atts) {
+                    delete formData[name + "." + p];
+                }
+                
+            }
+        } else {
+            updated = items;
+        }
+        formData["data." + collection] = updated;
+    }
+
     /**
      * This function catches the deletion of a ordonnance from the list of materiae primae.
      */
 
-     async _onDeleteImago(event) {
+    async _onDelete(event, science, collection) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
-        deleteItemOf(this.actor, "imago", "refid", id, "aspects");
+        await deleteItemOf(this.actor, science, "refid", id, collection);
+    }
+
+    async _onDeleteImago(event) {
+        await this._onDelete(event, 'imago', 'aspects');
     }
 
     async _onDeleteConjuration(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        deleteItemOf(this.actor, "conjuration", "refid", id, "appels");
+        await this._onDelete(event, 'conjuration', 'appels');
     }
 
     async _onDeleteNecromancie(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        deleteItemOf(this.actor, "necromancie", "refid", id, "rites");
+        await this._onDelete(event, 'necromancie', 'rites');
+    }
+
+    async _onDeleteTechnique(event) {
+        await this._onDelete(event, 'baton', 'techniques');
+    }
+
+    async _onDeleteTekhne(event) {
+        await this._onDelete(event, 'coupe', 'tekhnes');
+    }
+
+    async _onDeletePratique(event) {
+        await this._onDelete(event, 'denier', 'pratiques');
+    }
+
+    async _onDeleteRituel(event) {
+        await this._onDelete(event, 'epee', 'rituels');
+    }
+
+    async _onDeleteMagie(event) {
+        await this._onDelete(event, 'magie', 'sorts');
+    }
+
+    async _onDeleteAlchimie(event) {
+        await this._onDelete(event, 'alchimie', 'formules');
     }
 
     async _onDeleteEquipement(event) {
@@ -942,13 +595,6 @@ export class FigureSheet extends ActorSheet {
         item.sheet.render(true);
     }
 
-    async _onDeleteMagie(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        deleteItemOf(this.actor, "magie", "refid", id, "sorts");
-    }
-
     async _onDeleteKabbale(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
@@ -959,13 +605,6 @@ export class FigureSheet extends ActorSheet {
         } else if (type === 'ordonnance') {
             deleteItemOf(this.actor, "kabbale", "refid", id, "voie.ordonnances")
         }
-    }
-
-    async _onDeleteAlchimie(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        deleteItemOf(this.actor, "alchimie", "refid", id, "formules");
     }
 
     async _onDeleteLaboratoire(event) {
@@ -1048,9 +687,7 @@ export class FigureSheet extends ActorSheet {
     async _onSelenimRoll(event) {
         const li = $(event.currentTarget).parents(".cercle");
         const id = li.data("item-id");
-        if (type === 'passe') {
-            return await this._onItemRoll(event);
-        } else if (id === 'noyau' || id === 'pavane') {
+        if (id === 'noyau' || id === 'pavane') {
             return await this.actor.rollKa(id);
         }
     }
@@ -1065,6 +702,24 @@ export class FigureSheet extends ActorSheet {
         return await weaponSkillItem.roll(this.actor);
     }
  
+    async _onAttack(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const arme = this.actor.items.get(id);
+        switch (arme.data.data.skill) {
+        case 'melee':
+            console.log("ATTAQUE DE MELEE avec ");
+            console.log(arme);
+            break;
+        case 'trait':
+        case 'feu':
+        case 'lourde':
+            console.log("ATTAQUE A DISTANCE avec ");
+            console.log(arme);
+            break;
+        }
+    }
+
     async _onSimulacreRoll(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -1314,6 +969,107 @@ export class FigureSheet extends ActorSheet {
           }
           li.toggleClass("expanded");
 
+    }
+
+    async _onShowTechnique(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        if (type != 'technique') {
+            return;
+        }
+        if ( li.hasClass("expanded") ) {
+            let summary = li.next(".item-summary");
+            summary.slideUp(200, () => summary.remove());
+        } else {
+            const item = CustomHandlebarsHelpers.getItem(id);
+            let summary = $(`<li class="item-summary"/>`);
+            let properties = $(`<ol/>`);
+             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
+            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
+            properties.append(this._property(item.data.data.description));
+            summary.append(properties);
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
+    }
+
+    async _onShowTekhne(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        if (type != 'tekhne') {
+            return;
+        }
+        if ( li.hasClass("expanded") ) {
+            let summary = li.next(".item-summary");
+            summary.slideUp(200, () => summary.remove());
+        } else {
+            const item = CustomHandlebarsHelpers.getItem(id);
+            let summary = $(`<li class="item-summary"/>`);
+            let properties = $(`<ol/>`);
+            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
+            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
+            properties.append(this._property(item.data.data.description));
+            summary.append(properties);
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
+    }
+
+    async _onShowRituel(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        if (type != 'rituel') {
+            return;
+        }
+        if ( li.hasClass("expanded") ) {
+            let summary = li.next(".item-summary");
+            summary.slideUp(200, () => summary.remove());
+        } else {
+            const item = CustomHandlebarsHelpers.getItem(id);
+            let summary = $(`<li class="item-summary"/>`);
+            let properties = $(`<ol/>`);
+            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
+            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
+            properties.append(this._property(item.data.data.description));
+            summary.append(properties);
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
+    }
+
+    async _onShowPratique(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        if (type != 'pratique') {
+            return;
+        }
+        if ( li.hasClass("expanded") ) {
+            let summary = li.next(".item-summary");
+            summary.slideUp(200, () => summary.remove());
+        } else {
+            const item = CustomHandlebarsHelpers.getItem(id);
+            let summary = $(`<li class="item-summary"/>`);
+            let properties = $(`<ol/>`);
+            properties.append(this._property(this._localizeDesmos(item.data.data.axe), 'NEPH5E.denier.axe'));
+            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
+            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
+            properties.append(this._property(item.data.data.description));
+            summary.append(properties);
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
     }
 
     _localizeElement(element) {

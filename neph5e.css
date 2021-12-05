@@ -313,6 +313,18 @@
 .item .sheet-body .header.rite {
   column-count: 3;
 }
+.item .sheet-body .header.pratique {
+  column-count: 2;
+}
+.item .sheet-body .header.rituel {
+  column-count: 1;
+}
+.item .sheet-body .header.technique {
+  column-count: 1;
+}
+.item .sheet-body .header.tekhne {
+  column-count: 1;
+}
 .item .sheet-body .property-list {
   display: flex;
   flex-direction: column;
@@ -524,4 +536,20 @@
   margin-left: 10px;
   margin-right: 10px;
   width: 60px;
+}
+.basic .basic-body .heart-checkbox {
+  font-style: italic;
+  margin-left: 10px;
+}
+.basic .basic-body .heart-checkbox input[type="checkbox"] {
+  display: none;
+}
+.basic .basic-body .heart-checkbox .checked {
+  display: none;
+}
+.basic .basic-body .heart-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.basic .basic-body .heart-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
 }

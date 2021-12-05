@@ -1,3 +1,5 @@
+import { Rules } from "./rules.js";
+
 export class CustomHandlebarsHelpers {
 
     /**
@@ -8,7 +10,7 @@ export class CustomHandlebarsHelpers {
      static getActor(uuid) {
         return game.actors.find(a => a.data.data.id === uuid);
     }
-u
+
     /**
      * Gets the specified item.
      * @param uuid The uuid of the item to get.
@@ -42,8 +44,18 @@ u
      * @param science The name of the science.
      * @returns the level of the science.
      */
-     static getScience(actor, science) {
+    static getScience(actor, science) {
         return CustomHandlebarsHelpers.getActor(actor).getScience(science);
+    }
+
+    static getLevel(ps) {
+        let degre = 0;
+        let cost = 0;
+        while (cost <= ps) {
+          degre = degre + 1;
+          cost = Rules.getCostTo(degre);
+        }
+        return degre-1;
     }
 
     /**
@@ -70,7 +82,7 @@ u
         return vecus;
     }
 
-   /**
+    /**
      * Gets the competences according to the specified character and the active periodes.
      * @param actor The uuid of the actor for which to create the competences. 
      * @returns the competences to display in the character sheet.
@@ -84,13 +96,13 @@ u
                 name: c.data.name,
                 degre: a.getCompetence(c),
                 sum: a.getCompetenceSum(c),
-                next: a.getCostTo(a.getCompetence(c) + 1)
+                next: Rules.getCostTo(a.getCompetence(c) + 1)
             });
         }
         return competences;
     }
 
-   /**
+    /**
      * Gets the items according to the specified character and the active periodes.
      * @param actor The uuid of the actor for which to create the competences.
      * @param items The items to get. Allowed items are:

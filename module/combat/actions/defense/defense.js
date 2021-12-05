@@ -33,7 +33,7 @@ export class Defense extends Action {
     difficulty = difficulty + this.attack.defense;
 
     // Apply the wounds modifier
-    difficulty = difficulty + this.status.wounds.getModifier();
+    difficulty = difficulty + this.status.wounds.getModifier('physique');
 
     // Apply malus if disoriented
     if (this.status.effects.isActive(Game.effects.desoriente)) {
@@ -101,20 +101,35 @@ export class Defense extends Action {
     // Fetches the damage modification
     const reduction = this.reduction(action);
 
-    // Fetches some data to perform the action
-    const weapon = this.attack.actor.weapon;
-
     // Fetches the data protection
-    const protection = this.status.protection.getProtection(weapon);
+    const protection = this.status.protection.getProtection(this.attack.actor.weapon);
+
+    // Fetches the impact of the weapon
+    const weaponImpact = this.attack.actor.weapon === null ? 1 : this.attack.actor.weapon.data.damages;
 
     // Gets the damages according to the effects, tha attack, the protection and the defense roll
-    const damages = this.damages(action.roll.success, this.attack.impact - protection + reduction);
+    const damages = this.damages(action.roll.success, this.attack.impact - protection + reduction, weaponImpact);
 
-    // Apply the effects
-    const effects = await this.effects(action.roll);
+    // Retrieve if weapon is magic [TBD: if creature magique]
+    const isMagicalWeapon = this.attack.actor.weapon === null ? false : this.attack.actor.weapon.data.magique;
+
+    // Apply the effects (if physical effects)
+    const effects = isMagicalWeapon ? [] : await this.effects(action.roll);
 
     // Apply the damages
-    let wound = await this.status.wounds.applyDamages(damages);
+    let woundPhysique = await this.status.wounds.applyDamages(damages, 'physique');
+    let woundMagique = isMagicalWeapon ? await this.status.wounds.applyDamages(damages, 'magique') : null;
+
+    let woundSentence = null;
+    if (woundMagique === null && woundPhysique === null) {
+      woundSentence = "ne reçoit aucune blessure";
+    } else if (woundMagique === null && woundPhysique !== null) {
+      woundSentence = "reçoit " + woundPhysique.sentence;
+    } else if (woundMagique !== null && woundPhysique === null) {
+      woundSentence = "reçoit " + woundMagique.magique;
+    } else {
+      woundSentence = "reçoit " + woundPhysique.sentence + " et " + woundMagique.magique;
+    }
 
     // Display the result
     await new NephilimChat(this.actor)
@@ -127,7 +142,7 @@ export class Defense extends Action {
           reduction: -reduction,
           protection: protection,
           damages: damages,
-          wound: wound === null ? "ne reçoit aucune blessure" : ("reçoit " + wound.sentence),
+          wound: woundSentence,
           effects: effects
         }
       })
@@ -173,20 +188,35 @@ export class Defense extends Action {
     // Resets the bonus of 'hidden'
     await this.resetHidden();
 
-    // Fetches some data
-    const weapon = this.attack.actor.weapon;
-
     // Fetches the data protection
-    const protection = this.status.protection.getProtection(weapon);
+    const protection = this.status.protection.getProtection(this.attack.actor.weapon);
+
+    // Fetches the impact of the weapon
+    const weaponImpact = this.attack.actor.weapon === null ? 1 : this.attack.actor.weapon.data.damages;
 
     // Gets the damages according to the effects, tha attack and the protection
-    const damages = this.damages(false, this.attack.impact - protection);
+    const damages = this.damages(false, this.attack.impact - protection, weaponImpact);
 
-    // Apply the effects
-    const effects = await this.effects();
+    // Retrieve if weapon is magic [TBD: if creature magique]
+    const isMagicalWeapon = this.attack.actor.weapon === null ? false : this.attack.actor.weapon.data.magique;
+
+    // Apply the effects (if physical effects)
+    const effects = isMagicalWeapon ? [] : await this.effects();
 
     // Apply the damages
-    let wound = await this.status.wounds.applyDamages(damages);
+    let woundPhysique = await this.status.wounds.applyDamages(damages, 'physique');
+    let woundMagique = isMagicalWeapon ? await this.status.wounds.applyDamages(damages, 'magique') : null;
+
+    let woundSentence = null;
+    if (woundMagique === null && woundPhysique === null) {
+      woundSentence = "ne reçoit aucune blessure";
+    } else if (woundMagique === null && woundPhysique !== null) {
+      woundSentence = "reçoit " + woundPhysique.sentence;
+    } else if (woundMagique !== null && woundPhysique === null) {
+      woundSentence = "reçoit " + woundMagique.magique;
+    } else {
+      woundSentence = "reçoit " + woundPhysique.sentence + " et " + woundMagique.magique;
+    }
 
     // Display the result
     await new NephilimChat(this.actor)
@@ -202,7 +232,7 @@ export class Defense extends Action {
           reduction: 0,
           impact: this.attack.impact,
           damages: damages,
-          wound: wound === null ? "ne reçoit aucune blessure" : ("reçoit " + wound.sentence),
+          wound: woundSentence,
           effects: effects
         }
       })
@@ -255,24 +285,26 @@ export class Defense extends Action {
   /**
    * Gets the damages according to the final impact and the effects.
    * @param defended Indicates if the defense roll is successful.
-   * @param impact The final impact.
+   * @param impact The final impact. (impact - protection)
+   * @param weaponImpact The impact of the weapon. If 2+ and stopped by armor then 1
    * @returns the damages.
    */
-  damages(defended, impact) {
+  damages(defended, impact, weaponImpact) {
     for (let e of this.attack.effects) {
       const effect = Game.effects[e.id];
       if (effect != undefined && effect.damages != undefined) {
         return defended ? 0 : effect.damages;
       }
     }
-    return Math.max(0, impact);
+    const impact_final = impact < 1 && weaponImpact > 1 ? 1 : impact;
+    return Math.max(0, impact_final);
   }
 
   /**
    * Gets the modifier to apply if unarmed versus melee attack.
    */
   weaponsModifier() {
-    const opponent = this.attack.actor.weapon.skill === Game.skills.melee.id;
+    const opponent = this.attack.actor.weapon != null;
     const me = this.status.melee.isArmed();
     if (opponent && !me) {
       return -4;

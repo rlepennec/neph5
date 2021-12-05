@@ -2,14 +2,6 @@ import { NephilimItemSheet } from "./base.js";
 
 export class ArmureSheet extends NephilimItemSheet {
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-
     /** 
      * @override
      */
@@ -22,13 +14,6 @@ export class ArmureSheet extends NephilimItemSheet {
             scrollY: [".tab.description"],
             tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
       });
-    }
-
-    /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
     }
 
 }

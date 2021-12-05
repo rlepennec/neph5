@@ -61,7 +61,7 @@ export class Rafale extends Ranged {
    * @Override
    */
   sentence() {
-    return "tire en rafale sur " + this.target.name + " avec " + this.status.ranged.weapon().description;
+    return "tire en rafale sur " + this.target.name + " avec " + this.status.ranged.weapon().data.name;
   }
 
 }

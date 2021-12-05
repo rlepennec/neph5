@@ -20,6 +20,7 @@
             data-dtype="Boolean"/>
     </div>
 
+    {{#if useV3}}
     <div class="item-integer">
         <input
             name="data.kabbale.invocations.[{{@index}}].feal"
@@ -27,7 +28,6 @@
             value="{{invocation.feal}}"
             data-dtype="Number"/>
     </div>
-
     <div class="item-integer">
         <input
             name="data.kabbale.invocations.[{{@index}}].allie"
@@ -35,6 +35,18 @@
             value="{{invocation.allie}}"
             data-dtype="Number"/>
     </div>
+    {{else}}
+    <input
+        name="data.kabbale.invocations.[{{@index}}].feal"
+        type="hidden"
+        value="{{invocation.feal}}"
+        data-dtype="Number"/>
+    <input
+        name="data.kabbale.invocations.[{{@index}}].allie"
+        type="hidden"
+        value="{{invocation.allie}}"
+        data-dtype="Number"/>
+    {{/if}}
 
     <div class="item-checkbox">
         <input
