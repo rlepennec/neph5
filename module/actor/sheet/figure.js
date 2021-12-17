@@ -5,8 +5,9 @@ import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { getByPath } from "../../common/tools.js";
 import { UUID } from "../../common/tools.js";
 import { Game } from "../../common/game.js";
+import { BaseSheet } from "./base.js";
 
-export class FigureSheet extends ActorSheet {
+export class FigureSheet extends BaseSheet {
 
     /**
      * @constructor
@@ -14,7 +15,6 @@ export class FigureSheet extends ActorSheet {
      */
     constructor(...args) {
         super(...args);
-        this.options.submitOnClose = true;
         this.current = null; // The current editable periode
         this.current_i = null;
     }
@@ -29,7 +29,7 @@ export class FigureSheet extends ActorSheet {
     /**
      * @override
      */
-	static get defaultOptions() {
+    static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 900,
             height: 800,
@@ -55,10 +55,12 @@ export class FigureSheet extends ActorSheet {
                 ".tab.incarnations",
                 ".tab.options"],
             tabs: [
-                { navSelector: ".tabs",
-                  contentSelector: ".sheet-body",
-                  initial: "vecus" }]
-      });
+                {
+                    navSelector: ".tabs",
+                    contentSelector: ".sheet-body",
+                    initial: "vecus"
+                }]
+        });
     }
 
     getData() {
@@ -68,10 +70,11 @@ export class FigureSheet extends ActorSheet {
             editable: this.isEditable,
             actor: baseData.actor,
             data: baseData.actor.data.data,
-            metamorphes: game.items.filter(item  => item.data.type === 'metamorphe'),
+            metamorphes: game.items.filter(item => item.data.type === 'metamorphe'),
             cercles: Game.alchimie.cercles,
             currentPeriode: this.current != null ? this.current.data.data.id : null,
-            useV3: game.settings.get('neph5e', 'useV3')
+            useV3: game.settings.get('neph5e', 'useV3'),
+            useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
         }
         return sheetData;
     }
@@ -86,8 +89,12 @@ export class FigureSheet extends ActorSheet {
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="combat"] .item-edit').click(this._onEditEquipement.bind(this));
         html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEquipement.bind(this));
-        html.find('div[data-tab="combat"] .item-roll').click(this._onCombatRoll.bind(this));
+        html.find('div[data-tab="combat"] .item-roll').click(this._onRoll.bind(this));
         html.find('div[data-tab="combat"] .item-attack').click(this._onAttack.bind(this));
+        html.find('div[data-tab="combat"] .item-wrestle').click(this._onWrestle.bind(this));
+        html.find('div[data-tab="combat"] .item-move').click(this._onMove.bind(this));
+        html.find('div[data-tab="combat"] .item-use').click(this._onUseItem.bind(this));
+
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -96,7 +103,7 @@ export class FigureSheet extends ActorSheet {
         // Nephilim
         html.find('div[data-tab="nephilim"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="nephilim"] .item-roll').click(this._onNephilimRoll.bind(this));
-    
+
         // Vecus
         html.find('div[data-tab="vecus"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="vecus"] .item-roll').click(this._onItemRoll.bind(this));
@@ -194,18 +201,16 @@ export class FigureSheet extends ActorSheet {
         if (item === null) {
             if (event.dataTransfer != undefined) {
                 try {
-                  const _data = JSON.parse(event.dataTransfer.getData('text/plain'));
-                  const _item = await Item.implementation.fromDropData(_data);
-
-                  if (_item.data.type === "arme") {
-                    await super._onDrop(event);
-
-                  } else if (_item.data.type === "armure") {
-                    await super._onDrop(event);
-                  }
-
+                    const _data = JSON.parse(event.dataTransfer.getData('text/plain'));
+                    const _item = await Item.implementation.fromDropData(_data);
+                    switch (_item.data.type) {
+                        case 'arme':
+                        case 'armure':
+                            await super._onDrop(event);
+                            break;
+                    }
                 } catch (err) {
-                  return;
+                    return;
                 }
             } else {
 
@@ -219,7 +224,7 @@ export class FigureSheet extends ActorSheet {
                     if (actor.data.type === "simulacre" && actor.data.data.id != "") {
                         const simulacre = duplicate(this.actor.data.data.simulacre);
                         simulacre.refid = actor.data.data.id;
-                        await this.actor.update({['data.simulacre']: simulacre});
+                        await this.actor.update({ ['data.simulacre']: simulacre });
                     }
                 }
 
@@ -234,11 +239,11 @@ export class FigureSheet extends ActorSheet {
                 const metamorphe = duplicate(this.actor.data.data.metamorphe);
                 metamorphe.refid = item.data.data.id;
                 metamorphe.metamorphoses = [false, false, false, false, false, false, false, false, false, false];
-                await this.actor.update({['data.metamorphe']: metamorphe});
+                await this.actor.update({ ['data.metamorphe']: metamorphe });
 
-            // The periode has been dropped:
-            //   - Add the periode if added
-            //   - Delete the periodes
+                // The periode has been dropped:
+                //   - Add the periode if added
+                //   - Delete the periodes
             } else if (item.data.type === "periode") {
                 const periodes = duplicate(this.actor.data.data.periodes);
                 const index = periodes.findIndex(periode => (periode.refid === item.data.data.id));
@@ -252,39 +257,41 @@ export class FigureSheet extends ActorSheet {
                         arcanes: [],
                         chutes: [],
                         passes: [],
-                        sciences: [] };
+                        sciences: []
+                    };
                     periodes.push(periode);
                 }
-                await this.actor.update({['data.periodes']: periodes});
+                await this.actor.update({ ['data.periodes']: periodes });
 
-            // The ordonnance has been dropped:
-            //   - Add the ordonnance if added
-            //   - Delete the ordonnances
+                // The ordonnance has been dropped:
+                //   - Add the ordonnance if added
+                //   - Delete the ordonnances
             } else if (item.data.type === "ordonnance") {
                 const kabbale = duplicate(this.actor.data.data.kabbale);
                 const index = kabbale.voie.ordonnances.findIndex(ordonnance => (ordonnance.refid === item.data.data.id));
                 if (index === -1) {
                     const ordonnance = {
-                        refid: item.data.data.id };
+                        refid: item.data.data.id
+                    };
                     kabbale.voie.ordonnances.push(ordonnance);
                 }
-                await this.actor.update({['data.kabbale']: kabbale});
+                await this.actor.update({ ['data.kabbale']: kabbale });
 
-            // The voie initiatique has been dropped:
-            //   - Update the reference of the magie
-            //   - Delete the magie
+                // The voie initiatique has been dropped:
+                //   - Update the reference of the magie
+                //   - Delete the magie
             } else if (item.data.type === "magie") {
                 const magie = duplicate(this.actor.data.data.magie);
                 magie.voie.refid = item.data.data.id;
-                await this.actor.update({['data.magie']: magie});
+                await this.actor.update({ ['data.magie']: magie });
 
-            // The voie alchimique has been dropped:
-            //   - Update the reference of the alchimie
-            //   - Delete the alchimie
+                // The voie alchimique has been dropped:
+                //   - Update the reference of the alchimie
+                //   - Delete the alchimie
             } else if (item.data.type === "alchimie") {
                 const alchimie = duplicate(this.actor.data.data.alchimie);
                 alchimie.voie.refid = item.data.data.id;
-                await this.actor.update({['data.alchimie']: alchimie});
+                await this.actor.update({ ['data.alchimie']: alchimie });
 
             } else {
 
@@ -295,25 +302,17 @@ export class FigureSheet extends ActorSheet {
                             const simulacre = duplicate(this.actor.data.data.simulacre);
                             simulacre.vecu.refid = item.data.data.id;
                             simulacre.vecu.degre = 0;
-                            await this.actor.update({['data.simulacre']: simulacre});
+                            await this.actor.update({ ['data.simulacre']: simulacre });
                         } else if (tab.includes("incarnations")) {
                             await this._onDropInPeriode(item, 'vecus', {});
                         }
                         break;
                     case 'savoir':
-                        await this._onDropInPeriode(item, 'savoirs', {});
-                        break;
                     case 'quete':
-                        await this._onDropInPeriode(item, 'quetes', {});
-                        break;
                     case 'arcane':
-                        await this._onDropInPeriode(item, 'arcanes', {});
-                        break;
                     case 'chute':
-                        await this._onDropInPeriode(item, 'chutes', {});
-                        break;
                     case 'passe':
-                        await this._onDropInPeriode(item, 'passes', {});
+                        await this._onDropInPeriode(item, item.data.type + 's', {});
                         break;
                     case 'science':
                         await this._onDropInPeriode(item, 'sciences', { ref: item.data.data.ref });
@@ -381,7 +380,7 @@ export class FigureSheet extends ActorSheet {
                     }
                     Object.assign(i, properties);
                     periodes[index][collection].push(i);
-                    await this.actor.update({['data.periodes']: periodes});
+                    await this.actor.update({ ['data.periodes']: periodes });
                 }
             }
         }
@@ -404,7 +403,7 @@ export class FigureSheet extends ActorSheet {
             Object.assign(s, properties);
             so[grimoire].push(s);
         }
-        await this.actor.update({['data.' + science]: so});
+        await this.actor.update({ ['data.' + science]: so });
     }
 
     /**
@@ -437,7 +436,7 @@ export class FigureSheet extends ActorSheet {
 
             // For each periode of the actor
             for (let p of this.actor.data.data.periodes) {
-                
+
                 // Retrieve the name and the id of the periode
                 const periodeName = "data.periodes.[" + p.refid + "]";
 
@@ -525,7 +524,7 @@ export class FigureSheet extends ActorSheet {
                 for (let p of atts) {
                     delete formData[name + "." + p];
                 }
-                
+
             }
         } else {
             updated = items;
@@ -642,35 +641,34 @@ export class FigureSheet extends ActorSheet {
                 if (this.current && item.data.data.id === this.current.data.data.id) {
                     const type = li.data("item-type");
                     const index = this.actor.data.data.periodes.findIndex(p => (p.refid === periodeId));
-                    if (type == "vecu") {
-                        const data = this.actor.data.data.periodes;
-                        const i = data[index].vecus.findIndex(i => (i.refid === id));
-                        data[index].vecus.splice(i, 1);
-                        await this.actor.update({['data.periodes']: data});
-                    } else if (type == "savoir") {
-                        await this.deleteItemOfIncarnations(index, "savoirs", id);
-                    } else if (type == "quete") {
-                        await this.deleteItemOfIncarnations(index, "quetes", id);
-                    } else if (type == "arcane") {
-                        await this.deleteItemOfIncarnations(index, "arcanes", id);
-                    } else if (type == "chute") {
-                        await this.deleteItemOfIncarnations(index, "chutes", id);
-                    } else if (type == "passe") {
-                        await this.deleteItemOfIncarnations(index, "passes", id);
-                    } else if (type == "science") {
-                        await this.deleteItemOfIncarnations(index, "sciences", id);
+                    switch (type) {
+                        case 'vecu':
+                            const data = this.actor.data.data.periodes;
+                            const i = data[index].vecus.findIndex(i => (i.refid === id));
+                            data[index].vecus.splice(i, 1);
+                            await this.actor.update({ ['data.periodes']: data });
+                            break;
+                        case 'savoir':
+                        case 'quete':
+                        case 'arcane':
+                        case 'chute':
+                        case 'passe':
+                        case 'science':
+                            await this.deleteItemOfIncarnations(index, type + 's', id);
+                            break;
+
                     }
                 }
             }
         }
     }
 
-    async deleteItemOfIncarnations(periodeIndex, collection,  id) {
+    async deleteItemOfIncarnations(periodeIndex, collection, id) {
         const data = duplicate(this.actor.data.data.periodes);
         const subdata = getByPath(data[periodeIndex], collection);
         const index = subdata.findIndex(a => a.refid === id);
         getByPath(data[periodeIndex], collection).splice(index, 1);
-        await this.actor.update({["data.periodes"]: data});
+        await this.actor.update({ ["data.periodes"]: data });
     }
 
     async _onNephilimRoll(event) {
@@ -689,34 +687,6 @@ export class FigureSheet extends ActorSheet {
         const id = li.data("item-id");
         if (id === 'noyau' || id === 'pavane') {
             return await this.actor.rollKa(id);
-        }
-    }
-
-    async _onCombatRoll(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = this.actor.items.get(id);
-        const skill = item.data.data.skill;
-        const weaponSkill = Game.skills[skill];
-        const weaponSkillItem = CustomHandlebarsHelpers.getItem(weaponSkill.uuid);
-        return await weaponSkillItem.roll(this.actor);
-    }
- 
-    async _onAttack(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const arme = this.actor.items.get(id);
-        switch (arme.data.data.skill) {
-        case 'melee':
-            console.log("ATTAQUE DE MELEE avec ");
-            console.log(arme);
-            break;
-        case 'trait':
-        case 'feu':
-        case 'lourde':
-            console.log("ATTAQUE A DISTANCE avec ");
-            console.log(arme);
-            break;
         }
     }
 
@@ -740,6 +710,16 @@ export class FigureSheet extends ActorSheet {
         const id = li.data("item-id");
         const item = CustomHandlebarsHelpers.getItem(id);
         item.sheet.render(true);
+    }
+
+    async _onRoll(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = this.actor.items.get(id);
+        const skillName = item.data.data.skill;
+        const uuid = Game.skills[skillName].uuid;
+        const skill = CustomHandlebarsHelpers.getItem(uuid);
+        return await skill.roll(this.actor);
     }
 
     /**
@@ -766,7 +746,7 @@ export class FigureSheet extends ActorSheet {
                         i.removeClass("fa-lock");
                         i.addClass("fa-unlock");
 
-                    // The periode must be locked
+                        // The periode must be locked
                     } else {
                         const old_pid = this.current.data.data.id;
                         const pid = item.data.data.id;
@@ -780,8 +760,15 @@ export class FigureSheet extends ActorSheet {
                 }
             } else {
                 const type = li.data("item-type");
-                if (type == "vecu" || type == "savoir" || type == "quete" || type == "arcane" || type === "chute" || type === "passe") {
-                    await this._onEditItem(event);
+                switch (type) {
+                    case 'vecu':
+                    case 'savoir':
+                    case 'quete':
+                    case 'arcane':
+                    case 'chute':
+                    case 'passe':
+                        await this._onEditItem(event);
+                        break;
                 }
             }
         }
@@ -792,24 +779,24 @@ export class FigureSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
 
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
-          } else {
+        } else {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
-            properties.append(this._property(this._localizeElement(item.data.data.element), 'NEPH5E.element'));
+            properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
-           li.after(summary.hide());
-           summary.slideDown(200);
-          }
-          li.toggleClass("expanded");
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
     }
 
     async _onShowInvocation(event) {
@@ -821,14 +808,14 @@ export class FigureSheet extends ActorSheet {
             return;
         }
 
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
-          } else {
+        } else {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
-            properties.append(this._property(this._localizeElement(item.data.data.element), 'NEPH5E.element'));
+            properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
             properties.append(this._property(this._localizeMonde(item.data.data.monde), 'NEPH5E.kabbale.monde'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
@@ -836,10 +823,10 @@ export class FigureSheet extends ActorSheet {
             properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
-           li.after(summary.hide());
-           summary.slideDown(200);
-          }
-          li.toggleClass("expanded");
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
 
     }
 
@@ -848,17 +835,17 @@ export class FigureSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
 
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
-          } else {
+        } else {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
             properties.append(this._property(item.data.data.enonce, 'NEPH5E.alchimie.enonce'));
-            properties.append(this._property(this._localizeElement(item.data.data.elements[0]), 'NEPH5E.element'));
+            properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.elements[0]), 'NEPH5E.element'));
             if (item.data.data.cercle === 'oeuvreAuBlanc') {
-                properties.append(this._property(this._localizeElement(item.data.data.elements[1]), 'NEPH5E.element'));
+                properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.elements[1]), 'NEPH5E.element'));
             }
             properties.append(this._property(this._localizeSubstance(item.data.data.substance), 'NEPH5E.alchimie.substance'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
@@ -867,10 +854,10 @@ export class FigureSheet extends ActorSheet {
             properties.append(this._property(item.data.data.aire, 'NEPH5E.aire'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
-           li.after(summary.hide());
-           summary.slideDown(200);
-          }
-          li.toggleClass("expanded");
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
     }
 
     async _onShowAspect(event) {
@@ -879,7 +866,7 @@ export class FigureSheet extends ActorSheet {
         const id = li.data("item-id");
         const type = li.data("item-type");
         if (type === 'aspect') {
-            if ( li.hasClass("expanded") ) {
+            if (li.hasClass("expanded")) {
                 let summary = li.next(".item-summary");
                 summary.slideUp(200, () => summary.remove());
             } else {
@@ -896,7 +883,7 @@ export class FigureSheet extends ActorSheet {
             }
             li.toggleClass("expanded");
         } else if (type === 'passe') {
-            if ( li.hasClass("expanded") ) {
+            if (li.hasClass("expanded")) {
                 let summary = li.next(".item-summary");
                 summary.slideUp(200, () => summary.remove());
             } else {
@@ -920,7 +907,7 @@ export class FigureSheet extends ActorSheet {
         if (type != 'rite') {
             return;
         }
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
         } else {
@@ -933,8 +920,8 @@ export class FigureSheet extends ActorSheet {
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
-           li.after(summary.hide());
-           summary.slideDown(200);
+            li.after(summary.hide());
+            summary.slideDown(200);
         }
         li.toggleClass("expanded");
     }
@@ -947,27 +934,27 @@ export class FigureSheet extends ActorSheet {
         if (type != 'appel') {
             return;
         }
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
-          } else {
+        } else {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
             properties.append(this._property(this._localizeAppel(item.data.data.appel), 'NEPH5E.conjuration.appel'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property((item.data.data.controle?"Oui":"Non"), 'NEPH5E.controle'));
+            properties.append(this._property((item.data.data.controle ? "Oui" : "Non"), 'NEPH5E.controle'));
             properties.append(this._property(item.data.data.visibilite, 'NEPH5E.visibilite'));
             properties.append(this._property(item.data.data.entropie, 'NEPH5E.entropie'));
             properties.append(this._property(item.data.data.dommages, 'NEPH5E.dommages'));
             properties.append(this._property(item.data.data.protection, 'NEPH5E.protection'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
-           li.after(summary.hide());
-           summary.slideDown(200);
-          }
-          li.toggleClass("expanded");
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
 
     }
 
@@ -979,14 +966,14 @@ export class FigureSheet extends ActorSheet {
         if (type != 'technique') {
             return;
         }
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
         } else {
             const item = CustomHandlebarsHelpers.getItem(id);
             let summary = $(`<li class="item-summary"/>`);
             let properties = $(`<ol/>`);
-             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
+            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.data.data.description));
             summary.append(properties);
@@ -1004,7 +991,7 @@ export class FigureSheet extends ActorSheet {
         if (type != 'tekhne') {
             return;
         }
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
         } else {
@@ -1029,7 +1016,7 @@ export class FigureSheet extends ActorSheet {
         if (type != 'rituel') {
             return;
         }
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
         } else {
@@ -1054,7 +1041,7 @@ export class FigureSheet extends ActorSheet {
         if (type != 'pratique') {
             return;
         }
-        if ( li.hasClass("expanded") ) {
+        if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
         } else {
@@ -1070,11 +1057,6 @@ export class FigureSheet extends ActorSheet {
             summary.slideDown(200);
         }
         li.toggleClass("expanded");
-    }
-
-    _localizeElement(element) {
-        const name = 'NEPH5E.' + element;
-        return game.i18n.localize(name);
     }
 
     _localizeMagie(cercle) {
@@ -1119,31 +1101,6 @@ export class FigureSheet extends ActorSheet {
         }
         property.append($(`<span class="item-property-value">` + value + `</span>`));
         return property;
-    }
-
-    /**
-     * @return the periode of the specified vecu.
-     */
-    periodeOf(id) {
-        return game.items.find(function (item) {
-            return item.data.type === 'periode' && item.data.data.vecus.findIndex(vecu => (vecu.refid === id)) != -1;
-        });
-    }
-
-    /**
-     * Periode: item
-     * Vecu: id
-     */
-    hasVecu(periode, id) {
-        return periode.data.data.vecus.findIndex(vecu => (vecu.refid === id)) != -1;
-    }
-
-    numberOfVecu() {
-        let size = 0;
-        for (let periode of this.actor.data.data.periodes) {
-            size = size + periode.vecus.length;
-        }
-        return size;
     }
 
     getItem(id) {

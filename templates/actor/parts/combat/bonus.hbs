@@ -1,18 +1,23 @@
-<div class="columns" style="column-count:1">
+<div>
+    <ol class="item-list">
+        <li class="item-list-header">
+            <div class="item-name">
+                <span>Bonus</span>
+            </div>
+            <div class="item-integer">
+                <span/>
+            </div>
+        </li>
 
-    <div class="column" style="height: auto;">
+    </ol>
+</div> 
+
+<div style="display:flex;flex-direction:row;">
+
+    <div style="flex:auto;margin-right:10px">
 
         <ol class="item-list">
             
-            <li class="item-list-header">
-                <div class="item-name">
-                    <span>Bonus</span>
-                </div>
-                <div class="item-integer">
-                    <span/>
-                </div>
-            </li>
-
             <li class="item" data-item-id="mouvement">
                 <label class="item-name">Mouvement</label>
                 <input
@@ -32,6 +37,14 @@
                     value="{{data.bonus.initiative}}"
                     data-dtype="Number"/>
             </li>
+
+        </ol>
+
+    </div>
+
+    <div style="flex:auto;margin-right:10px">
+
+        <ol class="item-list">
 
             <li class="item" data-item-id="dommage">
                 <label class="item-name">Dommage</label>

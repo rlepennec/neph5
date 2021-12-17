@@ -37,7 +37,7 @@ export class CancellableDialog {
      * @param data The data of the file template to set.
      * @returns the instance.
      */
-     withData(data) {
+    withData(data) {
         this.data = data;
         return this;
     }
@@ -47,7 +47,7 @@ export class CancellableDialog {
      * @param callback The callback function to set.
      * @returns the instance.
      */
-     withCallback(callback) {
+    withCallback(callback) {
         this.callback = callback;
         return this;
     }
@@ -70,7 +70,7 @@ export class CancellableDialog {
                 cancel: {
                     icon: '<i class="fas fa-times"></i>',
                     label: game.i18n.localize("Abandonner"),
-                    callback: () => {}
+                    callback: () => { }
                 }
             },
             default: "roll",

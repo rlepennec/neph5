@@ -7,7 +7,7 @@ export class CustomHandlebarsHelpers {
      * @param uuid The uuid of the actor to get.
      * @returns the actor or undefined if not found.
      */
-     static getActor(uuid) {
+    static getActor(uuid) {
         return game.actors.find(a => a.data.data.id === uuid);
     }
 
@@ -52,10 +52,10 @@ export class CustomHandlebarsHelpers {
         let degre = 0;
         let cost = 0;
         while (cost <= ps) {
-          degre = degre + 1;
-          cost = Rules.getCostTo(degre);
+            degre = degre + 1;
+            cost = Rules.getCostTo(degre);
         }
-        return degre-1;
+        return degre - 1;
     }
 
     /**
@@ -63,7 +63,7 @@ export class CustomHandlebarsHelpers {
      * @param actor The uuid of the actor for which to create the vecus. 
      * @returns the vecus to display in the character sheet.
      */
-     static getVecus(actor) {
+    static getVecus(actor) {
         const vecus = [];
         for (let p of CustomHandlebarsHelpers.getActor(actor).data.data.periodes) {
             if (p.active === true) {
@@ -162,9 +162,12 @@ export class CustomHandlebarsHelpers {
      */
     static loop(from, to, incr, block) {
         var accum = '';
-        for(var i = from; i < to; i += incr)
+        for (var i = from; i < to; i += incr)
             accum += block.fn(i);
         return accum;
     }
+
+
+
 
 }

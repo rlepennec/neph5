@@ -193,6 +193,23 @@
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }
+.actor .sheet-body .item-list .item .hand-checkbox {
+  font-style: italic;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.actor .sheet-body .item-list .item .hand-checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor .sheet-body .item-list .item .hand-checkbox .checked {
+  display: none;
+}
+.actor .sheet-body .item-list .item .hand-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor .sheet-body .item-list .item .hand-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
 .actor .sheet-body .item-list .item-summary {
   display: flex;
   flex-direction: column;
@@ -324,6 +341,9 @@
 }
 .item .sheet-body .header.tekhne {
   column-count: 1;
+}
+.item .sheet-body .header.arme {
+  column-count: 3;
 }
 .item .sheet-body .property-list {
   display: flex;
@@ -551,5 +571,21 @@
   display: inline-block;
 }
 .basic .basic-body .heart-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
+.basic .basic-body .opposite-checkbox {
+  font-style: italic;
+  margin-left: 10px;
+}
+.basic .basic-body .opposite-checkbox input[type="checkbox"] {
+  display: none;
+}
+.basic .basic-body .opposite-checkbox .checked {
+  display: none;
+}
+.basic .basic-body .opposite-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.basic .basic-body .opposite-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }

@@ -6,10 +6,10 @@ export const migrateWorld = async () => {
     //let templateVersion = game.data.system.data.templateVersion;
     let templateVersion = 2;
     let worldTemplateVersion;
-    try{
+    try {
         worldTemplateVersion = Number(game.settings.get("neph5e", "worldTemplateVersion"))
     }
-    catch(e){
+    catch (e) {
         console.error(e);
         worldTemplateVersion = 1;
         console.log("No template version detected... Default to 1")
@@ -19,7 +19,7 @@ export const migrateWorld = async () => {
         if (worldTemplateVersion < 2) {
             const htmlTemplate = await renderTemplate("systems/neph5e/templates/dialog/migration-warning.html");
             new Dialog({
-                title: "WARNING", 
+                title: "WARNING",
                 content: htmlTemplate,
                 buttons: {
                     close: {
@@ -32,7 +32,7 @@ export const migrateWorld = async () => {
             try {
                 const update = migrateActorData(actor.data, worldTemplateVersion);
                 if (!isObjectEmpty(update)) {
-                    await actor.update(update, {enforceTypes: false});
+                    await actor.update(update, { enforceTypes: false });
                 }
             } catch (e) {
                 console.error(e);
@@ -42,7 +42,7 @@ export const migrateWorld = async () => {
             try {
                 const update = migrateItemData(item.data, worldTemplateVersion);
                 if (!isObjectEmpty(update)) {
-                    await item.update(update, {enforceTypes: false});
+                    await item.update(update, { enforceTypes: false });
                 }
             } catch (e) {
                 console.error(e);
@@ -52,7 +52,7 @@ export const migrateWorld = async () => {
             try {
                 const update = migrateSceneData(scene.data, worldTemplateVersion);
                 if (!isObjectEmpty(update)) {
-                    await scene.update(update, {enforceTypes: false});
+                    await scene.update(update, { enforceTypes: false });
                 }
             } catch (err) {
                 console.error(err);
@@ -72,14 +72,14 @@ const migrateActorData = (actor, worldTemplateVersion) => {
         if (actor.type === "figure") {
             //update = setValueIfNotExists(update, actor, "data.data.baton.techniques", []);
         }
-	};
-		
+    };
+
     let itemsChanged = false;
     const items = actor.items.map((item) => {
         const itemUpdate = migrateItemData(item, worldTemplateVersion);
         if (!isObjectEmpty(itemUpdate)) {
             itemsChanged = true;
-            return mergeObject(item, itemUpdate, {enforceTypes: false, inplace: false});
+            return mergeObject(item, itemUpdate, { enforceTypes: false, inplace: false });
         }
         return item;
     });
@@ -150,8 +150,8 @@ export const migrateCompendium = async function (pack, worldTemplateVersion) {
 };
 
 const setValueIfNotExists = (update, object, property, newValue) => {
-    if (typeof(getProperty(object,property)) === 'undefined'){
+    if (typeof (getProperty(object, property)) === 'undefined') {
         update[property] = newValue;
     }
-    return(update)
+    return (update)
 }

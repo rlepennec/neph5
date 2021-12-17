@@ -113,6 +113,7 @@ export async function droppedItem2(event) {
 
         // Case 2 - Data explicitly provided
         else if (data.data) {
+            if (!actor) return null;
             let sameActor = data.actorId === actor._id;
             if (sameActor && actor.isToken) sameActor = data.tokenId === actor.token.id;
             if (sameActor) return this._onSortItem(event, data.data); // Sort existing items

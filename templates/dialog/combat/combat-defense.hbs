@@ -1,0 +1,20 @@
+<form>
+
+    <div style="display:flex; flex-direction: column; width:400px">
+
+        <span style="font-weight: bold;">Défense</span>
+        {{#each actions as |action|}}
+        <div class="item-name tooltip hoverable">
+            <input type="radio" id="{{action.id}}" name="action" value="{{action.id}}" checked>
+            <label for="{{action.id}}">{{action.name}}: {{action.difficulty}}0%</label>
+            <span class="tooltiptext">{{action.tooltip}}</span>
+        </div>
+        {{/each}}
+        <br>
+
+        <span style="font-weight: bold;">Modificateur (%)
+            <input id="modifier" type="Number" value="0" />
+        </span>
+        <br>
+
+</form>

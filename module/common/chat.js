@@ -55,7 +55,7 @@ export class NephilimChat {
      * @param data The data of the file template to set.
      * @returns the instance.
      */
-     withData(data) {
+    withData(data) {
         this.data = data;
         return this;
     }
@@ -65,7 +65,7 @@ export class NephilimChat {
      * @param flags The flags parameter to set.
      * @returns the instance.
      */
-     withFlags(flags) {
+    withFlags(flags) {
         this.flags = flags;
         return this;
     }

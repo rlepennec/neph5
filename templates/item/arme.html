@@ -9,6 +9,12 @@
             value="{{data.id}}"
             data-dtype="String"/>
 
+        <input
+            name="data.used"
+            type="hidden"
+            value="{{data.used}}"
+            data-dtype="String"/>
+
         <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
 
         <div class="title">
@@ -63,6 +69,10 @@
                         data-dtype="Number"/>
                 </div>
 
+            </div>
+
+            <div class="property-list">
+
                 <div class="property">
                     <label class="property-name">{{localize "NEPH5E.armes.magique"}}</label>
                     <input
@@ -73,12 +83,8 @@
                         data-dtype="Boolean"/>
                 </div>
 
-            </div>
-
-            <div class="property-list">
-
                 {{#if (isMelee data.skill)}}
-
+               
                     <div class="property">
                         <label class="property-name">{{localize "NEPH5E.armes.defense"}}</label>
                         <input

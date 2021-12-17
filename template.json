@@ -309,6 +309,7 @@
         "arme": {
             "id": "",
             "description": "",
+            "used": false,
             "skill": "melee",
             "damages": 0,
             "attack": 0,
@@ -326,12 +327,16 @@
                     "tirer": true,
                     "salve": false,
                     "rafale": false
-                }
+                },
+                "utilise": 0,
+                "reload": 0,
+                "visee": 0
             }
         },
         "armure": {
             "id": "",
             "description": "",
+            "used": false,
             "contact": 0,
             "trait": 0,
             "feu": 0,

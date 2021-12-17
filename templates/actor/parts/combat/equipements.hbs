@@ -1,10 +1,22 @@
-<div class="columns" style="column-count:1">
-    <div class="column" style="height: auto;">
+<div style="display:flex;flex-direction:row;">
+
+    <div style="flex:auto;margin-right:10px">
         <ol class="item-list">
 
-            <li class="item-list-header">
+            <li class="item-list-header" style="margin-bottom:10px">
                 <div class="item-name">
                     <span>Equipement</span>
+                </div>
+                {{#if ../useCombatSystem}}
+                <div class="item-control">
+                    </span>
+                </div>
+                <div class="item-control">
+                    </span>
+                </div>
+                {{/if}}
+                <div class="item-control">
+                    </span>
                 </div>
                 <div class="item-control">
                     </span>
@@ -22,32 +34,104 @@
 
             {{#each actor.items as |item id|}}
             <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.data.data.type}}">
+
                 <div class="item-name">
                     <span data-item-id="{{item.id}}">{{item.name}}</span>
                 </div>
-                <div class="item-control">
+
+                {{#if ../useCombatSystem}}
+                <div class="item-control tooltip">
                     {{#if (eq item.data.type 'arme')}}
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        {{#if (eq item.data.data.skill 'melee')}}
+                        </span>
+                        {{else}}
+                        <a class="item-reload" title="Reload"><i class="fas fa-spinner"></i></a>
+                        <span class="tooltiptext">{{item.data.data.ranged.utilise}} / {{item.data.data.ranged.munitions}}</span>
+                        {{/if}}
                     {{else}}
                         </span>
                     {{/if}}
                 </div>
-                <div class="item-control">
+
+                <div class="item-control tooltip">
                     {{#if (eq item.data.type 'arme')}}
-                        <a class="item-attack" title="Attaque"><i class="fas fa-khanda"></i></a>
+                        {{#if (eq item.data.data.skill 'melee')}}
+                        </span>
+                        {{else}}
+                        <a class="item-aim" title="Aim"><i class="fas fa-crosshairs"></i></a>
+                        <span class="tooltiptext">{{item.data.data.ranged.visee}} / 3</span>
+                        {{/if}}
                     {{else}}
                         </span>
                     {{/if}}
                 </div>
+                {{/if}}
+
                 <div class="item-control">
-                    <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                {{#if item.data.data.used}}
+                    <i class="fas fa-hand-paper item-use"></i>
+                {{else}}
+                    <i class="far fa-hand-paper item-use"></i>
+                {{/if}}
                 </div>
+
                 <div class="item-control">
-                    <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    {{#if (eq item.data.type 'arme')}}
+                        {{#if ../useCombatSystem}}
+                        <a class="item-attack" title="Attaquer"><i class="fas fa-dice-d20"></i></a>
+                        {{else}}
+                        <a class="item-roll" title="Attaquer"><i class="fas fa-dice-d20"></i></a>
+                        {{/if}}
+                    {{else}}
+                        </span>
+                    {{/if}}
                 </div>
+
+                <div class="item-control">
+                    <a class="item-edit" title="Editer"><i class="fas fa-edit"></i></a>
+                </div>
+
+                <div class="item-control">
+                    <a class="item-delete" title="Supprimer"><i class="fas fa-trash"></i></a>
+                </div>
+
             </li>
             {{/each}}
 
         </ol>
     </div>
+
+    {{#if useCombatSystem}}
+    <div style="flex: auto;margin-right:10px">
+
+        <ol class="item-list">
+            <li class="item-list-header" style="margin-bottom:10px">
+                <div class="item-name">
+                    <span>Actions</span>
+                </div>
+                <div class="item-control">
+                    </span>
+                </div>
+            </li>
+            <li class="item">
+                <div class="item-name">
+                    <span>Manoeuvres</span>
+                </div>
+                 <div class="item-control">
+                    <a class="item-move" title="Manoeuvrer"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </li>
+            <li class="item">
+                <div class="item-name">
+                    <span>Mains nues</span>
+                </div>
+                 <div class="item-control">
+                    <a class="item-wrestle" title="Attaquer"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </li>
+        </ol>
+    
+    </div>
+    {{/if}}
+
 </div>

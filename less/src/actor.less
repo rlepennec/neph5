@@ -188,6 +188,29 @@
                     color: #2C606D;
                 }
 
+                .hand-checkbox {
+                    font-style: italic;
+                    margin-left: 10px;
+                    margin-right: 10px;
+        
+                    input[type="checkbox"] {
+                        display:none;
+                    }
+        
+                    .checked {
+                        display: none;
+                    }
+        
+                    input[type="checkbox"]:checked ~ .checked {
+                        display: inline-block;
+                    }
+                     
+                    input[type="checkbox"]:checked ~ .unchecked {
+                        display: none;
+                    }
+        
+                }
+
             }
 
             .item-summary {

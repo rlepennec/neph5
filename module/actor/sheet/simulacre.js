@@ -1,7 +1,8 @@
 import { droppedItem } from "../../item/tools.js";;
 import { UUID } from "../../common/tools.js";
+import { BaseSheet } from "./base.js";
 
-export class SimulacreSheet extends ActorSheet {
+export class SimulacreSheet extends BaseSheet {
 
     /**
      * @constructor
@@ -9,7 +10,6 @@ export class SimulacreSheet extends ActorSheet {
      */
     constructor(...args) {
         super(...args);
-        this.options.submitOnClose = true;
     }
 
     /**
@@ -55,13 +55,6 @@ export class SimulacreSheet extends ActorSheet {
         html.find('div[data-tab="description"] .item-roll').click(this._onRoll.bind(this));
     }
 
-    async _onRoll(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        return await this.actor.rollSimulacre(id, true, type);
-    }
-
     async _onDrop(event) {
         event.preventDefault();
         const item = await droppedItem(event);
@@ -84,6 +77,17 @@ export class SimulacreSheet extends ActorSheet {
             formData['data.id'] = UUID();
         }
         super._updateObject(event, formData);
+    }
+
+    async _onRoll(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        if (type === "") {
+            return await this.actor.rollSimulacre(this.actor.data.data.id, true, "menace");
+        } else {
+            return await this.actor.rollSimulacre(id, true, type);
+        }
     }
 
 }
