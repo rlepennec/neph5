@@ -156,8 +156,8 @@ export class Rolls {
         const selectElement = item instanceof NephilimItem && item.type === 'invocation' && item.data.data.element === 'choix';
 
         // Retrieve if the action must be resolved as a opposite action. The following opposite actions are:
-        //   - invocations
-        const oppositeAction = item instanceof NephilimItem && item.type === 'invocation';
+        //   - invocation without pacte
+        const oppositeAction = item instanceof NephilimItem && item.type === 'invocation' && !actor.hasPactWith(item);
 
         // Retrieve if action must be resolved as an alone action. The following alone actions are:
         // - 

@@ -514,6 +514,15 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * Indicates if a pact has been done with the specified invocation.
+     * @param {*item} The invocation to check.
+     * @returns true if a pact is active.
+     */
+    hasPactWith(invocation) {
+        return this.type === 'figure' ? this.data.data.kabbale.invocations.find(i => i.refid === invocation.data.data.id && i.pacte === true) : false;
+    }
+
+    /**
      * @param {*} weapon 
      * @returns the number of impact points getted by the armor against the specified weapon. 
      */

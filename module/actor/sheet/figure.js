@@ -774,174 +774,96 @@ export class FigureSheet extends BaseSheet {
         }
     }
 
-    async _onShowSort(event) {
+    async _onShowSomething(event, createProperties) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
-
         if (li.hasClass("expanded")) {
             let summary = li.next(".item-summary");
             summary.slideUp(200, () => summary.remove());
         } else {
             const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
+            const summary = $(`<li class="item-summary"/>`);
+            const properties = createProperties(item);
+            summary.append(properties);
+            li.after(summary.hide());
+            summary.slideDown(200);
+        }
+        li.toggleClass("expanded");
+    }
+
+    async _onShowSort(event) {
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
             properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
+            return properties;
+        });
     }
 
     async _onShowInvocation(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'invocation') {
-            return;
-        }
-
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
             properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
-            properties.append(this._property(this._localizeMonde(item.data.data.monde), 'NEPH5E.kabbale.monde'));
+            properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
-
+            return properties;
+        });
     }
 
     async _onShowFormule(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
             properties.append(this._property(item.data.data.enonce, 'NEPH5E.alchimie.enonce'));
             properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.elements[0]), 'NEPH5E.element'));
             if (item.data.data.cercle === 'oeuvreAuBlanc') {
                 properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.elements[1]), 'NEPH5E.element'));
             }
-            properties.append(this._property(this._localizeSubstance(item.data.data.substance), 'NEPH5E.alchimie.substance'));
+            properties.append(this._property(game.i18n.localize('NEPH5E.alchimie.substances.' + item.data.data.substance), 'NEPH5E.alchimie.substance'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.aire, 'NEPH5E.aire'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
+            return properties;
+        });
     }
 
     async _onShowAspect(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type === 'aspect') {
-            if (li.hasClass("expanded")) {
-                let summary = li.next(".item-summary");
-                summary.slideUp(200, () => summary.remove());
-            } else {
-                const item = CustomHandlebarsHelpers.getItem(id);
-                let summary = $(`<li class="item-summary"/>`);
-                let properties = $(`<ol/>`);
-                properties.append(this._property(item.data.data.degre, 'NEPH5E.construction'));
-                properties.append(this._property(item.data.data.activation, 'NEPH5E.cout'));
-                properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-                properties.append(this._property(item.data.data.description));
-                summary.append(properties);
-                li.after(summary.hide());
-                summary.slideDown(200);
-            }
-            li.toggleClass("expanded");
-        } else if (type === 'passe') {
-            if (li.hasClass("expanded")) {
-                let summary = li.next(".item-summary");
-                summary.slideUp(200, () => summary.remove());
-            } else {
-                const item = CustomHandlebarsHelpers.getItem(id);
-                let summary = $(`<li class="item-summary"/>`);
-                let properties = $(`<ol/>`);
-                properties.append(this._property(item.data.data.description));
-                summary.append(properties);
-                li.after(summary.hide());
-                summary.slideDown(200);
-            }
-            li.toggleClass("expanded");
-        }
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
+            properties.append(this._property(item.data.data.degre, 'NEPH5E.construction'));
+            properties.append(this._property(item.data.data.activation, 'NEPH5E.cout'));
+            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
+            properties.append(this._property(item.data.data.description));
+            return properties;
+        });
     }
 
     async _onShowRite(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'rite') {
-            return;
-        }
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
-            properties.append(this._property(this._localizeDesmos(item.data.data.desmos), 'NEPH5E.necromancie.desmos.nom'));
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
+            properties.append(this._property(game.i18n.localize('NEPH5E.necromancie.desmos.' + item.data.data.desmos), 'NEPH5E.necromancie.desmos.nom'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.cout'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
+            return properties;
+        });
     }
 
     async _onShowAppel(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'appel') {
-            return;
-        }
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
-            properties.append(this._property(this._localizeAppel(item.data.data.appel), 'NEPH5E.conjuration.appel'));
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
+            properties.append(this._property(game.i18n.localize('NEPH5E.conjuration.appels.' + item.data.data.appel), 'NEPH5E.conjuration.appel'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property((item.data.data.controle ? "Oui" : "Non"), 'NEPH5E.controle'));
@@ -950,148 +872,49 @@ export class FigureSheet extends BaseSheet {
             properties.append(this._property(item.data.data.dommages, 'NEPH5E.dommages'));
             properties.append(this._property(item.data.data.protection, 'NEPH5E.protection'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
-
+            return properties;
+        });
     }
 
     async _onShowTechnique(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'technique') {
-            return;
-        }
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
+            return properties;
+        });
     }
 
     async _onShowTekhne(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'tekhne') {
-            return;
-        }
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
+            return properties;
+        });
     }
 
     async _onShowRituel(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'rituel') {
-            return;
-        }
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
+            return properties;
+        });
     }
 
     async _onShowPratique(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type != 'pratique') {
-            return;
-        }
-        if (li.hasClass("expanded")) {
-            let summary = li.next(".item-summary");
-            summary.slideUp(200, () => summary.remove());
-        } else {
-            const item = CustomHandlebarsHelpers.getItem(id);
-            let summary = $(`<li class="item-summary"/>`);
-            let properties = $(`<ol/>`);
-            properties.append(this._property(this._localizeDesmos(item.data.data.axe), 'NEPH5E.denier.axe'));
+        await this._onShowSomething(event, (item) => {
+            const properties = $(`<ol/>`);
+            properties.append(this._property(game.i18n.localize('NEPH5E.denier.' + item.data.data.axe), 'NEPH5E.denier.axe'));
             properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
             properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
             properties.append(this._property(item.data.data.description));
-            summary.append(properties);
-            li.after(summary.hide());
-            summary.slideDown(200);
-        }
-        li.toggleClass("expanded");
-    }
-
-    _localizeMagie(cercle) {
-        const name = 'NEPH5E.magie.cercles.' + cercle;
-        return game.i18n.localize(name);
-    }
-
-    _localizeAlchimie(cercle) {
-        const name = 'NEPH5E.alchimie.cercles.' + cercle;
-        return game.i18n.localize(name);
-    }
-
-    _localizeSubstance(substance) {
-        const name = 'NEPH5E.alchimie.substances.' + substance;
-        return game.i18n.localize(name);
-    }
-
-    _localizeSephirah(sephirah) {
-        const name = 'NEPH5E.kabbale.sephiroth.' + sephirah;
-        return game.i18n.localize(name);
-    }
-
-    _localizeMonde(monde) {
-        const name = 'NEPH5E.kabbale.mondes.' + monde;
-        return game.i18n.localize(name);
-    }
-
-    _localizeDesmos(desmos) {
-        const name = 'NEPH5E.necromancie.desmos.' + desmos;
-        return game.i18n.localize(name);
-    }
-
-    _localizeAppel(appel) {
-        const name = 'NEPH5E.conjuration.appels.' + appel;
-        return game.i18n.localize(name);
+            return properties;
+        });
     }
 
     _property(value, name = null) {
