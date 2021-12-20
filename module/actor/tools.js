@@ -41,7 +41,8 @@ export async function setItemOf(actor, root, value, key = null) {
     metamorphe.metamorphoses = [false, false, false, false, false, false, false, false, false, false];
     if (key) {
         const data = duplicate(getByPath(actor.data.data, root));
-        getByPath(data, key) = value;
+        getByPath(data, key);
+        value = data;
         const name = "data." + root;
         await actor.update({ [name]: data });
     } else {

@@ -114,7 +114,7 @@ export class Rules {
      */
     static async roll(content) {
         const roll = new Roll("1d100", {});
-        await roll.roll().toMessage({
+        await roll.roll({async:false}).toMessage({
             speaker: ChatMessage.getSpeaker(),
             content: content
         }, { async: true });

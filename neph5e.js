@@ -249,8 +249,13 @@ Hooks.once("init", function () {
             return;
         }
 
+        // If not GM, If opposite action, flags.action undefined
+        if (flags.action === undefined) {
+            return;
+        }
+
         // Gets the target token
-        const token = canvas.tokens.objects.children.find((token) => token.data._id === flags.action.target.id);
+        const token = canvas.tokens.objects.children.find((t) => t.data._id === flags.action.target.id);
 
         // Dispatches the message if:
         // - The token is managed by the current user

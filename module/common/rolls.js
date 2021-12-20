@@ -256,7 +256,7 @@ export class Rolls {
         await ChatMessage.create(chatData);
 
         const roll1 = new Roll("1d100", {});
-        const theRoll = roll1.roll();
+        const theRoll = roll1.roll({async:false});
         await theRoll.toMessage({
             speaker: ChatMessage.getSpeaker()
         }, { async: true });
@@ -438,7 +438,7 @@ export class Rolls {
         await ChatMessage.create(chatData);
 
         const roll1 = new Roll("1d100", {});
-        const theRoll = roll1.roll();
+        const theRoll = roll1.roll({async:false});
         await theRoll.toMessage({
             speaker: ChatMessage.getSpeaker()
         }, { async: true });
