@@ -1,6 +1,7 @@
 import { preloadTemplates } from "./module/common/templates.js";
 import { migrateWorld } from "./module/common/migration.js";
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
+import { UUID } from "./module/common/tools.js";
 
 import { NephilimActor } from "./module/actor/entity.js";
 import { NephilimItem } from "./module/item/entity.js";
@@ -63,7 +64,8 @@ Hooks.once("init", function () {
         getCount: CustomHandlebarsHelpers.getCount,
         getScore: CustomHandlebarsHelpers.getScore,
         loop: CustomHandlebarsHelpers.loop,
-        log: CustomHandlebarsHelpers.log
+        log: CustomHandlebarsHelpers.log,
+        html: CustomHandlebarsHelpers.html
     });
 
     Handlebars.registerHelper('switch', function (value, options) {
@@ -128,6 +130,74 @@ Hooks.once("init", function () {
         await migrateWorld();
     });
     */
+
+    // TBD
+    // Pour hooker dans la barre de macro
+    // Hooks.on("hotbarDrop", async (bar, data, slot) => console.log(data));
+    //
+
+    // Pour hooker pre creation d'objet
+    Hooks.on("preCreateItem", (item, data, options, user) => {
+
+
+        // Si duplication
+        if (item.link.startsWith("@Item[null]{") && item.link.endsWith(" (Copy)}")) {
+            console.log("Duplicate item");
+            const uuid = UUID();
+            item.data.data.id = uuid;
+            data.data.id = uuid;
+            item.data._source.data.id = uuid;
+            return true;
+        }
+
+        // Si copie dans un acteur
+        if (item.actor !== null) {
+            console.log("Copy item in actor");
+            return true;
+        }
+
+        // Si copie dans un compendium
+        if (item.compendium !== undefined) {
+            console.log("Add item from world in compendium");
+
+            const compendiumName = item.compendium.collection;
+            const pack = game.packs.get(compendiumName);
+            const compendiumItem = pack.find(i => i.data.data.id === item.data.data.id) ;
+            const exists = compendiumItem !== undefined;
+            if (exists) {
+                console.log("Update item from world in compendium");
+                /*
+                const newData = duplicate(data.data);
+                newData.id = worldItem.data.data.id;
+                worldItem.update({['data']: newData});
+                */
+                return true;
+    
+            } else {
+                console.log("Add item from world in compendium");
+                return true;
+    
+            }
+        }
+
+        // Copie dans monde depuis compendium. Peut etre autre chose.
+        const worldItem = game.items.find(i => i.data.data.id === item.data.data.id) ;
+        const alreadyExists = worldItem !== undefined;
+        if (alreadyExists) {
+            console.log("Update item from compendium in world");
+            const newData = duplicate(data.data);
+            newData.id = worldItem.data.data.id;
+            worldItem.update({['data']: newData});
+            return false;
+
+        } else {
+            console.log("Add item from compendium in world");
+            return true;
+
+        }
+
+    });
+
 
     // Handle message deletion
     // Unregister the message event for all token of the current scene

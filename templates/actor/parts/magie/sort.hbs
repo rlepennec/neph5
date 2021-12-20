@@ -15,6 +15,14 @@
     <div class="item-checkbox">
         <input
             type="checkbox"
+            name="data.magie.sorts.[{{@index}}].focus"
+            {{checked sort.focus}}
+            data-dtype="Boolean"/>
+    </div>
+
+    <div class="item-checkbox">
+        <input
+            type="checkbox"
             name="data.magie.sorts.[{{@index}}].appris"
             {{checked sort.appris}}
             data-dtype="Boolean"/>

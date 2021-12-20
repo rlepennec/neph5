@@ -31,6 +31,14 @@
     <div class="item-checkbox"> 
         <input
             type="checkbox"
+            name="data.alchimie.formules.[{{@index}}].focus"
+            {{checked formule.focus}}
+            data-dtype="Boolean"/>
+    </div>
+
+    <div class="item-checkbox"> 
+        <input
+            type="checkbox"
             name="data.alchimie.formules.[{{@index}}].appris"
             {{checked formule.appris}}
             data-dtype="Boolean"/>

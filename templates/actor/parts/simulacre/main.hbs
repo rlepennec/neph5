@@ -6,8 +6,7 @@
 
 {{#if data.simulacre.refid}}
 
-{{#with (getActor data.simulacre.refid)}}
-
+    {{#with (getActor data.simulacre.refid)}}
     <div style="display:flex;flex-direction:column">
 
         <div class="column" style="height: 62px; text-align: center; font-size: 20px;">
@@ -212,19 +211,11 @@
 
         </div>
 
-        <ol class="item-list">
-            <li class="item-list-header">
-                <div class="item-name">
-                    <span>{{localize "NEPH5E.description"}}</span>
-                </div>
-            </li>
-        </ol>
-
-        {{editor content=data.data.description target="data.data.description" button=true owner=owner editable=editable}}
+        {{html data.data.description}}
 
     </div>
+    {{/with}}
 
-{{/with}}
 {{else}}
     <ol class="item-list">
         <li class="item-list-header">

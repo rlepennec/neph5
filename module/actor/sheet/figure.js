@@ -318,13 +318,13 @@ export class FigureSheet extends BaseSheet {
                         await this._onDropInPeriode(item, 'sciences', { ref: item.data.data.ref });
                         break;
                     case 'sort':
-                        await this._onDropSort(item, 'magie', 'sorts', { appris: false, tatoue: false });
+                        await this._onDropSort(item, 'magie', 'sorts', { focus: true, appris: false, tatoue: false });
                         break;
                     case 'invocation':
-                        await this._onDropSort(item, 'kabbale', 'invocations', { appris: false, tatoue: false, pacte: false, feal: 0, allie: 0 });
+                        await this._onDropSort(item, 'kabbale', 'invocations', { focus: true, appris: false, tatoue: false, pacte: false, feal: 0, allie: 0 });
                         break;
                     case 'formule':
-                        await this._onDropSort(item, 'alchimie', 'formules', { appris: false, tatoue: false, quantite: 0, transporte: 0 });
+                        await this._onDropSort(item, 'alchimie', 'formules', { focus: true, appris: false, tatoue: false, quantite: 0, transporte: 0 });
                         break;
                     case 'materiae':
                         await this._onDropSort(item, 'alchimie', 'materiae', { quantite: 0 });
@@ -469,9 +469,9 @@ export class FigureSheet extends BaseSheet {
         }
         formData["data.periodes"] = periodes;
 
-        this._update('magie', 'magie.sorts', formData, ['appris', 'tatoue']);
-        this._update('kabbale', 'kabbale.invocations', formData, ['appris', 'tatoue', 'pacte', 'feal', 'allie']);
-        this._update('alchimie', 'alchimie.formules', formData, ['appris', 'tatoue', 'quantite', 'transporte']);
+        this._update('magie', 'magie.sorts', formData, ['focus', 'appris', 'tatoue']);
+        this._update('kabbale', 'kabbale.invocations', formData, ['focus', 'appris', 'tatoue', 'pacte', 'feal', 'allie']);
+        this._update('alchimie', 'alchimie.formules', formData, ['focus', 'appris', 'tatoue', 'quantite', 'transporte']);
         this._update('kabbale', 'kabbale.voie.ordonnances', formData, ['suivi']);
         this._update('laboratoire', 'alchimie.materiae', formData, ['quantite']);
         this._update('laboratoire', 'alchimie.catalyseurs', formData, []);

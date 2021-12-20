@@ -167,7 +167,13 @@ export class CustomHandlebarsHelpers {
         return accum;
     }
 
-
-
+    /**
+     * Interprets the specified string as HTML content.
+     * @param {} html 
+     * @returns 
+     */
+    static html(html) {
+        return new Handlebars.SafeString(html);
+    }
 
 }

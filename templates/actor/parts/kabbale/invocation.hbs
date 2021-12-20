@@ -51,6 +51,14 @@
     <div class="item-checkbox">
         <input
             type="checkbox"
+            name="data.kabbale.invocations.[{{@index}}].focus"
+            {{checked invocation.focus}}
+            data-dtype="Boolean"/>
+    </div>
+
+    <div class="item-checkbox">
+        <input
+            type="checkbox"
             name="data.kabbale.invocations.[{{@index}}].appris"
             {{checked invocation.appris}}
             data-dtype="Boolean"/>

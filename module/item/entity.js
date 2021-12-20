@@ -310,6 +310,37 @@ export class NephilimItem extends Item {
      * @param actor The actor for which to roll the dices.
      */
     async roll(actor) {
+
+        if (this.type === 'sort') {
+            const s = actor.data.data.magie.sorts.find(i => i.refid === this.data.data.id);
+            if (s !== undefined) {
+                if (s.focus !== true && s.appris !== true && s.tatoue !== true) {
+                    ui.notifications.warn("Vous ne possédez pas le focus de ce sort");
+                    return;
+                }
+            }
+        }
+
+        if (this.type === 'invocation') {
+            const s = actor.data.data.kabbale.invocations.find(i => i.refid === this.data.data.id);
+            if (s !== undefined) {
+                if (s.focus !== true && s.appris !== true && s.tatoue !== true) {
+                    ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
+                    return;
+                }
+            }
+        }
+
+        if (this.type === 'formule') {
+            const s = actor.data.data.alchimie.formules.find(i => i.refid === this.data.data.id);
+            if (s !== undefined) {
+                if (s.focus !== true && s.appris !== true && s.tatoue !== true) {
+                    ui.notifications.warn("Vous ne possédez pas le focus de cette formule");
+                    return;
+                }
+            }
+        }
+
         return Rolls.check(
             actor,
             this,
