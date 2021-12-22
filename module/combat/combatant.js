@@ -9,7 +9,6 @@ export class NephilimCombatant extends Combatant {
     async _onCreate(data, options, user) {
         const status = {
             effects: [],
-            messages: [],
             history: {
                 round: null,
                 attacks: [],
@@ -30,37 +29,6 @@ export class NephilimCombatant extends Combatant {
         let bonus = this.actor.data.data.bonus.initiative;
         let eau = this.actor.data.data.ka.eau === undefined ? 0 : this.actor.data.data.ka.eau;
         return "1d6" + (malus === 0 ? "" : malus.toString()) + (bonus === 0 ? "" : "+" + bonus.toString()) + (eau === 0 ? "" : "+" + eau.toString());
-    }
-
-    /**
-     * @param {*} event The identifier of the chat message.
-     * @return true if the event has been processed.
-     */
-    hasBeenProcessed(event) {
-        return this.data.flags.world.combat.messages.includes(event);
-    }
-
-    /**
-     * Sets the specified event has processed.
-     * @param {*} event The identifier of the chat message.
-     */
-    async setAsProcessed(event) {
-        const flags = duplicate(this.data.flags);
-        flags.world.combat.messages.push(event);
-        await this.update({ ['flags']: flags });
-    }
-
-    /**
-     * Unregisters the specified event.
-     * @param {*} event The identifier of the chat message.
-     */
-    async unregisterEvent(event) {
-        const flags = duplicate(this.data.flags);
-        if (flags.world !== undefined && flags.world.combat.messages.includes(event)) {
-            const pos = flags.world.combat.messages.indexOf(event.id);
-            flags.world.combat.messages.splice(pos, 1);
-            await this.update({ ['flags']: flags });
-        }
     }
 
     /**

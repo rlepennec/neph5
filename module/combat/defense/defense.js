@@ -126,17 +126,7 @@ export class Defense extends Action {
         // Apply the damages
         let woundPhysique = await this.token.combatant.applyDamages(damages, 'physique');
         let woundMagique = isMagicalWeapon ? await this.token.combatant.applyDamages(damages, 'magique') : null;
-
-        let woundSentence = null;
-        if (woundMagique === null && woundPhysique === null) {
-            woundSentence = "ne reçoit aucune blessure";
-        } else if (woundMagique === null && woundPhysique !== null) {
-            woundSentence = "reçoit " + woundPhysique.sentence;
-        } else if (woundMagique !== null && woundPhysique === null) {
-            woundSentence = "reçoit " + woundMagique.magique;
-        } else {
-            woundSentence = "reçoit " + woundPhysique.sentence + " et " + woundMagique.magique;
-        }
+        let woundSentence = this.getWoundSentence(woundPhysique, woundMagique);
 
         // Display the result
         await new NephilimChat(this.actor)
@@ -151,6 +141,13 @@ export class Defense extends Action {
                     damages: damages,
                     wound: woundSentence,
                     effects: effects
+                }
+            })
+            .withFlags({
+                neph5e: {
+                    defense: {
+                        attackEventId: this.attack.attackEventId
+                    }
                 }
             })
             .create();
@@ -218,17 +215,7 @@ export class Defense extends Action {
         // Apply the damages
         let woundPhysique = await this.token.combatant.applyDamages(damages, 'physique');
         let woundMagique = isMagicalWeapon ? await this.token.combatant.applyDamages(damages, 'magique') : null;
-
-        let woundSentence = null;
-        if (woundMagique === null && woundPhysique === null) {
-            woundSentence = "ne reçoit aucune blessure";
-        } else if (woundMagique === null && woundPhysique !== null) {
-            woundSentence = "reçoit " + woundPhysique.sentence;
-        } else if (woundMagique !== null && woundPhysique === null) {
-            woundSentence = "reçoit " + woundMagique.magique;
-        } else {
-            woundSentence = "reçoit " + woundPhysique.sentence + " et " + woundMagique.magique;
-        }
+        let woundSentence = this.getWoundSentence(woundPhysique, woundMagique);
 
         // Display the result
         await new NephilimChat(this.actor)
@@ -248,10 +235,29 @@ export class Defense extends Action {
                     effects: effects
                 }
             })
+            .withFlags({
+                neph5e: {
+                    defense: {
+                        attackEventId:this.attack.attackEventId
+                    }
+                }
+            })
             .create();
 
         return this;
 
+    }
+
+    getWoundSentence(woundPhysique, woundMagique) {
+        if (woundMagique === null && woundPhysique === null) {
+            return "ne reçoit aucune blessure";
+        } else if (woundMagique === null && woundPhysique !== null) {
+            return "reçoit " + woundPhysique.sentence;
+        } else if (woundMagique !== null && woundPhysique === null) {
+            return "reçoit " + woundMagique.magique;
+        } else {
+            return "reçoit " + woundPhysique.sentence + " et " + woundMagique.magique;
+        }
     }
 
     /**

@@ -111,7 +111,7 @@ export class Ranged extends Action {
         const flags = action.roll.success ?
             {
                 neph5e: {
-                    action: action
+                    attack: action
                 }
             } : {};
 

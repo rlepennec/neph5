@@ -32,6 +32,7 @@ export class Defend extends Actions {
             false);
         this.event = event;
         this.attack = attack;
+        this.attack.attackEventId = event;
     }
 
     /**
@@ -50,9 +51,6 @@ export class Defend extends Actions {
         if (this.attack.type === Action.Types.ranged.id) {
             return await new Defense(this.actor, this.token, this.attack).suffer();
         }
-
-        // Registers the source message as processed
-        await this.token.combatant.setAsProcessed(this.event)
 
         // Process the action
         return await super.doit();

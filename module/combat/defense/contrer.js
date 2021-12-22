@@ -108,7 +108,7 @@ export class Contrer extends Defense {
         const weapon = this.getFirstMeleeWeapon();
         const strike = this.imArmed() ? new Standard(this.actor, this.token, weapon, target) : new Frappe(this.actor, this.token, weapon, target);
         const data = strike.data();
-        data.difficulty = data.difficulty + action.modgitifier;
+        data.difficulty = data.difficulty + action.modifier;
         return await strike.doit(data);
     }
 

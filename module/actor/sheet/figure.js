@@ -95,7 +95,6 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .item-move').click(this._onMove.bind(this));
         html.find('div[data-tab="combat"] .item-use').click(this._onUseItem.bind(this));
 
-
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="simulacre"] .item-roll').click(this._onSimulacreRoll.bind(this));
@@ -107,6 +106,7 @@ export class FigureSheet extends BaseSheet {
         // Vecus
         html.find('div[data-tab="vecus"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="vecus"] .item-roll').click(this._onItemRoll.bind(this));
+        html.find('div[data-tab="vecus"] .item-rolls').click(this._onSimulacreOfRoll.bind(this));
 
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
@@ -239,6 +239,7 @@ export class FigureSheet extends BaseSheet {
                 const metamorphe = duplicate(this.actor.data.data.metamorphe);
                 metamorphe.refid = item.data.data.id;
                 metamorphe.metamorphoses = [false, false, false, false, false, false, false, false, false, false];
+                metamorphe.manifested = [false, false, false, false, false, false, false, false, false, false];
                 await this.actor.update({ ['data.metamorphe']: metamorphe });
 
                 // The periode has been dropped:
@@ -419,14 +420,22 @@ export class FigureSheet extends BaseSheet {
         // --------------------------------------------------------------------
         if (formData.hasOwnProperty("data.page.nephilim")) {
             const metamorphoses = [];
+            const manifested = [];
             for (let index = 0; index < 10; index++) {
                 const name = "data.metamorphoses.[" + index + "]";
                 metamorphoses.push(formData[name]);
                 delete formData[name];
             }
+            for (let index = 0; index < 10; index++) {
+                const name = "data.manifested.[" + index + "]";
+                manifested.push(formData[name]);
+                delete formData[name];
+            }
             formData["data.metamorphe.metamorphoses"] = metamorphoses;
+            formData["data.metamorphe.manifested"] = manifested;
         } else {
             formData["data.metamorphe.metamorphoses"] = this.actor.data.data.metamorphe.metamorphoses;
+            formData["data.metamorphe.manifested"] = this.actor.data.data.metamorphe.manifested;
         }
 
         // Initialize the periodes of the actor
@@ -693,6 +702,13 @@ export class FigureSheet extends BaseSheet {
     async _onSimulacreRoll(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
+        const type = li.data("item-type");
+        return await this.actor.rollSimulacre(id, false, type);
+    }
+
+    async _onSimulacreOfRoll(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = this.actor.data.data.simulacre.refid;
         const type = li.data("item-type");
         return await this.actor.rollSimulacre(id, false, type);
     }

@@ -10,7 +10,7 @@
 
         <ol class="item-list">
             
-            <li class="item-list-header">
+            <li class="item-list-header" style="margin-bottom:10px">
 
                 <div class="item-name">
                     <span>{{localize "NEPH5E.pentacle.nom"}}</span>
@@ -115,7 +115,7 @@
 
         <ol class="item-list">
             
-            <li class="item-list-header">
+            <li class="item-list-header" style="margin-bottom:10px">
 
                 <div class="item-short-string-left">
                     <span>{{localize "NEPH5E.stase"}}</span>
@@ -201,7 +201,7 @@
         
         <ol class="item-list">
             
-            <li class="item-list-header">
+            <li class="item-list-header" style="margin-bottom:10px">
 
                 <div class="item-name">
                     <span>{{localize "ITEM.TypeArcane"}}</span>
@@ -251,7 +251,7 @@
 
         <ol class="item-list">
 
-            <li class="item-list-header">
+            <li class="item-list-header" style="margin-bottom:10px">
 
                 <div class="item-name">
                     {{#if data.metamorphe.refid}}
@@ -267,6 +267,10 @@
                     <span/>
                 </div>
 
+                <div class="item-checkbox">
+                    <span/>
+                </div>
+
             </li>
 
 
@@ -276,12 +280,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[0].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[0]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[0]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[0]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[0]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[0]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[0]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -291,12 +310,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[1].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[1]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[1]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[1]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[1]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[1]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[1]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -306,12 +340,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[2].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[2]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[2]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[2]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[2]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[2]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[2]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -321,12 +370,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[3].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[3]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[3]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[3]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[3]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[3]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[3]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -336,12 +400,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[4].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[4]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[4]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[4]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[4]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[4]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[4]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -351,12 +430,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[5].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[5]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[5]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[5]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[5]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[5]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[5]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -366,13 +460,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[6].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[6]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[6]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[6]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[6]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
 
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[6]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[6]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
             </li>
 
             <li class="item">
@@ -381,12 +489,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[7].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[7]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[7]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[7]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[7]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[7]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[7]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -396,12 +519,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[8].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[8]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[8]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[8]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[8]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[8]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[8]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -411,12 +549,27 @@
                 <label class="item-name">{{data.data.metamorphoses.[9].name}}</label>
                 {{/with}}
 
-                <input
-                    class="item-checkbox" 
-                    name="data.metamorphoses.[9]"
-                    type="checkbox"
-                    {{checked data.metamorphe.metamorphoses.[9]}}
-                    data-dtype="Boolean"/>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.metamorphoses.[9]"
+                        type="checkbox"
+                        {{checked data.metamorphe.metamorphoses.[9]}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.manifested.[9]"
+                        type="checkbox"
+                        {{checked data.metamorphe.manifested.[9]}}
+                        data-dtype="Boolean"/>
+                    <i class="fas fa-eye-slash unchecked"></i>
+                    <i class="fas fa-eye checked"></i>
+                </label>
 
             </li>
 
@@ -424,7 +577,7 @@
 
         <ol class="item-list">
             
-            <li class="item-list-header">
+            <li class="item-list-header" style="margin-bottom:10px">
 
                 <div class="item-name">
                     <span>{{localize "ITEM.TypeChute"}}</span>

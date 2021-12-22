@@ -96,7 +96,8 @@
             },
             "metamorphe": {
                 "refid": null,
-                "metamorphoses": [false, false, false, false, false, false, false, false, false, false]
+                "metamorphoses": [false, false, false, false, false, false, false, false, false, false],
+                "manifested": [false, false, false, false, false, false, false, false, false, false]
             },
             "magie": {
                 "sorts": [],

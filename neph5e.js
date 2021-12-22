@@ -198,70 +198,56 @@ Hooks.once("init", function () {
 
     });
 
-
-    // Handle message deletion
-    // Unregister the message event for all token of the current scene
-    /**
-     * Event is the chat message
-     */
-    Hooks.on('deleteChatMessage', async (event) => {
-        if (game.user.isGM) {
-            for (let token of canvas.tokens.placeables) {
-                if (isManaged(token) && token.combatant !== undefined && token.combatant !== null) {
-                    await token.combatant.unregisterEvent(event.id);
-                }
-            }
-        }
-    });
-
     // Handle chat message for combat system
     Hooks.on("renderChatMessage", async (app, html, data) => {
 
-        // Hook combat message which allows a reaction such as a defense
-        // Hoolk opposite action
-        // All needs flags
+        // Hook messages ussing flags with the system identifier allows
+        //   - To resolve opposite actions
+        //   - To react against some attacks
         const flags = data?.message?.flags[game.system.id];
         if (flags === undefined) {
             return;
         }
 
-        // Handle opposite actions.
-        if (game.user.isGM) {
-            if (flags.hasOwnProperty('oppositeActionResolved')) {
-                if (flags.oppositeActionResolved === false) {
-
-                    // Process the opposition
-                    await Rolls.resolveOppositeRoll(flags);
-
-                    // Flags the action as resolved
-                    const message = game.messages.get(data.message._id);
-                    const newFlags = duplicate(message.data.flags);
-                    newFlags.neph5e.oppositeActionResolved = true;
-                    return await message.update({ ['flags']: newFlags });
-                } else {
-                    return;
-                } 
+        // Players and GM can perform an opposite action.
+        // Only GM can handle opposite actions.
+        if (flags.hasOwnProperty('opposite')) {
+            if (game.user.isGM) {
+                await Rolls.resolveOppositeRoll(flags);
+                await game.messages.get(data.message._id).unsetFlag(game.system.id, 'opposite');
             }
-        }
-
-        // Check tokens on the canvas
-        if (!canvas?.tokens?.objects?.children) {
             return;
         }
 
-        // If not GM, If opposite action, flags.action undefined
-        if (flags.action === undefined) {
+        // Players and GM can perform an attack.
+        // Only defender can handle attack to defend.
+        if (flags.hasOwnProperty('attack')) {
+
+            // Check tokens on the canvas
+            if (!canvas?.tokens?.objects?.children) {
+                return;
+            }
+
+            // Gets the target token and dispatches the message if:
+            // - The token is managed by the current user
+            // - The message has not been proccessed by the combatant yet
+            const token = canvas.tokens.objects.children.find((t) => t.data._id === flags.attack.target.id);
+            if (isManaged(token)) {
+                await token.actor.react(token, data.message._id, flags.attack);
+            }
+
             return;
         }
 
-        // Gets the target token
-        const token = canvas.tokens.objects.children.find((t) => t.data._id === flags.action.target.id);
-
-        // Dispatches the message if:
-        // - The token is managed by the current user
-        // - The message has not been proccessed by the combatant yet
-        if (isManaged(token) && !token.combatant.hasBeenProcessed(data.message._id)) {
-            await token.actor.react(token, data.message._id, flags.action);
+        // Players and GM can perform a defense against an attack.
+        // Only the GM can handle defense to unset flags from defense and intial attack.
+        if (flags.hasOwnProperty('defense')) {
+            if (game.user.isGM) {
+                const attackEventId = flags.defense.attackEventId;
+                await game.messages.get(attackEventId).unsetFlag(game.system.id, 'attack');
+                await game.messages.get(data.message._id).unsetFlag(game.system.id, 'defense');
+            }
+            return;
         }
 
     });

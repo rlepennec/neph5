@@ -279,11 +279,12 @@ export class Rolls {
         if (cardData.oppositeAction) {
             const flags = {
                 neph5e: {
-                    oppositeActionResolved: false,
-                    item: item,
-                    rollResult: rollResult,
-                    initialActorImg: actor.img,
-                    initialActorName: actor.name,
+                    opposite: {
+                        item: item,
+                        rollResult: rollResult,
+                        initialActorImg: actor.img,
+                        initialActorName: actor.name
+                    }
                  }
             }
             lastData.flags = flags;
@@ -312,7 +313,9 @@ export class Rolls {
      * @param {*} intialActionFlags    The actor which performs the action.
      * @param {*} item     The purpose of the action, that is the item, the attribute or the ka. 
      */
-    static async resolveOppositeRoll(intialActionFlags) {
+    static async resolveOppositeRoll(flags) {
+
+        const intialActionFlags = flags.opposite;
 
         // Create action panel
         let htmlData = null;

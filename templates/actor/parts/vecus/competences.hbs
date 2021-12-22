@@ -1,6 +1,6 @@
 <ol class="item-list">
 
-    <li class="item-list-header">
+    <li class="item-list-header" style="margin-bottom:10px">
 
         <div class="item-name">
             <span>{{localize "ITEM.TypeCompetence"}}</span>
@@ -21,6 +21,31 @@
     </li>
 
     <div style="column-count:3">
+
+        {{#if data.simulacre.refid}}
+            {{#with (getActor data.simulacre.refid)}}
+             <li class="item" data-item-id="{{.}}" data-item-type="vecu">
+
+                {{#with (getItem data.data.vecu.refid)}}
+                <div class="item-name tooltip" style="font-weight: bold;">
+                    <span>{{name}}</span>
+                    <span class="tooltiptext">Vécu du simulacre</span>
+                </div>
+                {{/with}}
+
+                <label class="item-integer">{{data.data.vecu.degre}}</label>
+                
+                <div class="item-control">
+                    <a class="item-rolls" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+                <div class="item-control">
+                    <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                </div>
+
+            </li>
+            {{/with}}
+        {{/if}}
 
         {{#each (getVecus data.id) as |vecu|}}
         <li class="item" data-item-id="{{vecu.refid}}" data-item-type="vecu">
