@@ -492,6 +492,7 @@ export class Rolls {
      * @param {*} content  The content of the message.
      * @param {*} roll     TBD.
      */
+    /*
      static async createChatMessage(template, data) {
 
         const data = {
@@ -517,5 +518,6 @@ export class Rolls {
         await ChatMessage.create(data);
 
     }
+    */
 
 }
