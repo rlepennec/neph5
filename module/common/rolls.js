@@ -485,4 +485,37 @@ export class Rolls {
 
     }
 
+    /**
+     * Creates a chat message according to the specified data. The scope of this message
+     * is determinated according to the current roll mode setting.
+     * @param {*} template The template used to display the message.
+     * @param {*} content  The content of the message.
+     * @param {*} roll     TBD.
+     */
+     static async createChatMessage(template, data) {
+
+        const data = {
+            user: game.user.id,
+            speaker: ChatMessage.getSpeaker(),
+            content: await renderTemplate(template, data),
+            roll: roll
+        }
+
+        switch(game.settings.get('core', 'rollMode')) {
+            case 'gmroll':
+                data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                break;
+            case 'blindroll':
+                data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                data.blind = true;
+                break;
+            case 'selfroll':
+                data.whisper = [game.user.id];
+                break;
+        }
+
+        await ChatMessage.create(data);
+
+    }
+
 }
