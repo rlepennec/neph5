@@ -1,4 +1,4 @@
-import { Rules } from "./rules.js";
+import { NephilimActor } from "../actor/entity.js";
 
 export class CustomHandlebarsHelpers {
 
@@ -53,7 +53,7 @@ export class CustomHandlebarsHelpers {
         let cost = 0;
         while (cost <= ps) {
             degre = degre + 1;
-            cost = Rules.getCostTo(degre);
+            cost = NephilimActor.getCostTo(degre);
         }
         return degre - 1;
     }
@@ -96,7 +96,7 @@ export class CustomHandlebarsHelpers {
                 name: c.data.name,
                 degre: a.getCompetence(c),
                 sum: a.getCompetenceSum(c),
-                next: Rules.getCostTo(a.getCompetence(c) + 1)
+                next: NephilimActor.getCostTo(a.getCompetence(c) + 1)
             });
         }
         return competences;
@@ -115,10 +115,6 @@ export class CustomHandlebarsHelpers {
      */
     static getLevels(actor, items) {
         return CustomHandlebarsHelpers.getActor(actor).getLevelsFrom(items);
-    }
-
-    static isRanged(skill) {
-        return skill === 'trait' || skill === 'feu' || skill == 'lourde';
     }
 
     static isMelee(skill) {

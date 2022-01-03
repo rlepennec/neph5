@@ -1,7 +1,7 @@
 import { NephilimItemSheet } from "./base.js";
-import { droppedItem } from "../tools.js";
-import { updateRefs } from "../tools.js";
-import { deleteRefs2 } from "../tools.js";
+import { droppedItem } from "../../common/tools.js";
+import { updateItemRefs } from "../../common/tools.js";
+import { deleteItemRefs } from "../../common/tools.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
@@ -37,7 +37,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         event.preventDefault();
         const drop = await droppedItem(event);
         if (drop.data.type === "vecu") {
-            await updateRefs(this.item, drop.data, this.item.data.data.vecus, "data.vecus", false);
+            await updateItemRefs(this.item, drop.data, this.item.data.data.vecus, "data.vecus", false);
         }
     }
 
@@ -52,7 +52,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         const id = li.data("item-id");
 
         if (type == "vecu") {
-            await deleteRefs2(this.item, event, this.item.data.data.vecus, "data.vecus");
+            await deleteItemRefs(this.item, event, this.item.data.data.vecus, "data.vecus");
         }
 
     }

@@ -573,19 +573,19 @@
 .basic .basic-body .heart-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.basic .basic-body .opposite-checkbox {
+.basic .basic-body .opposed-checkbox {
   font-style: italic;
   margin-left: 10px;
 }
-.basic .basic-body .opposite-checkbox input[type="checkbox"] {
+.basic .basic-body .opposed-checkbox input[type="checkbox"] {
   display: none;
 }
-.basic .basic-body .opposite-checkbox .checked {
+.basic .basic-body .opposed-checkbox .checked {
   display: none;
 }
-.basic .basic-body .opposite-checkbox input[type="checkbox"]:checked ~ .checked {
+.basic .basic-body .opposed-checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.basic .basic-body .opposite-checkbox input[type="checkbox"]:checked ~ .unchecked {
+.basic .basic-body .opposed-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }

@@ -83,6 +83,7 @@ export class Melee extends Action {
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/templates/dialog/combat/combat-action.hbs")
             .withData({
+                actor: this.actor,
                 action: action
             })
             .create();
@@ -114,6 +115,7 @@ export class Melee extends Action {
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/templates/dialog/combat/combat-result.hbs")
             .withData({
+                actor: this.actor,
                 action: action,
                 result: {
                     roll: this.attackResult(action.roll),

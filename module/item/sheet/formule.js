@@ -1,7 +1,7 @@
 import { NephilimItemSheet } from "./base.js";
-import { droppedItem } from "../tools.js";
-import { updateRefs } from "../tools.js";
-import { deleteRefs2 } from "../tools.js";
+import { droppedItem } from "../../common/tools.js";
+import { updateItemRefs } from "../../common/tools.js";
+import { deleteItemRefs } from "../../common/tools.js";
 import { Game } from "../../common/game.js";
 
 export class FormuleSheet extends NephilimItemSheet {
@@ -48,10 +48,10 @@ export class FormuleSheet extends NephilimItemSheet {
         event.preventDefault();
         const drop = await droppedItem(event);
         if (drop.data.type === "formule") {
-            await updateRefs(this.item, drop.data, this.item.data.data.variantes, "data.variantes", false);
+            await updateItemRefs(this.item, drop.data, this.item.data.data.variantes, "data.variantes", false);
         }
         if (drop.data.type === "catalyseur") {
-            await updateRefs(this.item, drop.data, this.item.data.data.catalyseurs, "data.catalyseurs", false);
+            await updateItemRefs(this.item, drop.data, this.item.data.data.catalyseurs, "data.catalyseurs", false);
         }
     }
 
@@ -66,11 +66,11 @@ export class FormuleSheet extends NephilimItemSheet {
         const id = li.data("item-id");
 
         if (type == "catalyseur") {
-            await deleteRefs2(this.item, event, this.item.data.data.catalyseurs, "data.catalyseurs");
+            await deleteItemRefs(this.item, event, this.item.data.data.catalyseurs, "data.catalyseurs");
         }
 
         if (type == "variante") {
-            await deleteRefs2(this.item, event, this.item.data.data.variantes, "data.variantes");
+            await deleteItemRefs(this.item, event, this.item.data.data.variantes, "data.variantes");
         }
 
     }

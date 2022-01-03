@@ -145,33 +145,6 @@ Game.simulacre = {
     }
 }
 
-Game.skills = {
-    melee: {
-        id: 'melee',
-        uuid: '8b2b8da6-b8cddff0-bfcd50b6-48cec162'
-    },
-    esquive: {
-        id: 'esquive',
-        uuid: '456ea358-8ce41469-677e0602-4c5fddcd'
-    },
-    martial: {
-        id: 'martial',
-        uuid: 'd36beb62-017415a5-325fb05e-de7fd714'
-    },
-    trait: {
-        id: 'trait',
-        uuid: 'bd18f1cc-2e108eb2-988cec32-3727ed1b'
-    },
-    feu: {
-        id: 'feu',
-        uuid: 'f82328b3-7ac00919-d54625c1-c1a5e138'
-    },
-    lourde: {
-        id: 'lourde',
-        uuid: '146b1eaf-9d2d1038-b6d1534c-d8a7cc98'
-    }
-}
-
 Game.wounds = {
     choc: {
         id: "choc",

@@ -1,5 +1,6 @@
 <form class="{{cssClass}}" autocomplete="off">
 
+    {{#if (eq owner true)}}
     {{!-- Sheet Header --}}
     <header class="sheet-header">
 
@@ -216,5 +217,14 @@
         {{/canEditItem}}
 
     </section>
+    {{else}}
+
+        <div style="margin: auto; width: 200px; margin-bottom: 20px;">
+            <img src="{{actor.img}}"/>
+        </div>
+
+        {{html data.description}}
+
+    {{/if}}
 
 </form>

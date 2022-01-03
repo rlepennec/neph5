@@ -1,5 +1,5 @@
 import { Game } from "../common/game.js";
-import { Rules } from "../common/rules.js";
+import { Rolls } from "../common/rolls.js";
 
 /**
  * This abstract class must be used to define token action.
@@ -204,8 +204,8 @@ export class Action {
      * @returns the instance.
      */
     async updateRoll(action) {
-        const roll = await Rules.roll(action.content);
-        action.roll = Rules.resultOf(roll, action.difficulty);
+        const result = await Rolls.getRollResult(ChatMessage.getSpeaker(), action.difficulty);
+        action.roll = result;
         return this;
     }
 

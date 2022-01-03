@@ -2,6 +2,7 @@ import { preloadTemplates } from "./module/common/templates.js";
 import { migrateWorld } from "./module/common/migration.js";
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 import { UUID } from "./module/common/tools.js";
+import { createMacro } from "./module/common/macros.js";
 
 import { NephilimActor } from "./module/actor/entity.js";
 import { NephilimItem } from "./module/item/entity.js";
@@ -59,7 +60,6 @@ Hooks.once("init", function () {
         getVecus: CustomHandlebarsHelpers.getVecus,
         getScience: CustomHandlebarsHelpers.getScience,
         getLevel: CustomHandlebarsHelpers.getLevel,
-        isRanged: CustomHandlebarsHelpers.isRanged,
         isMelee: CustomHandlebarsHelpers.isMelee,
         getCount: CustomHandlebarsHelpers.getCount,
         getScore: CustomHandlebarsHelpers.getScore,
@@ -131,18 +131,15 @@ Hooks.once("init", function () {
     });
     */
 
-    // TBD
-    // Pour hooker dans la barre de macro
-    // Hooks.on("hotbarDrop", async (bar, data, slot) => console.log(data));
-    //
+    // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
+    Hooks.on("hotbarDrop", async (bar, data, slot) => createMacro(bar, data, slot));
 
-    // Pour hooker pre creation d'objet
+    // The hook to pre-create item.
     Hooks.on("preCreateItem", (item, data, options, user) => {
 
 
         // Si duplication
         if (item.link.startsWith("@Item[null]{") && item.link.endsWith(" (Copy)}")) {
-            console.log("Duplicate item");
             const uuid = UUID();
             item.data.data.id = uuid;
             data.data.id = uuid;
@@ -152,7 +149,6 @@ Hooks.once("init", function () {
 
         // Si copie dans un acteur
         if (item.actor !== null) {
-            console.log("Copy item in actor");
             return true;
         }
 
@@ -202,19 +198,19 @@ Hooks.once("init", function () {
     Hooks.on("renderChatMessage", async (app, html, data) => {
 
         // Hook messages ussing flags with the system identifier allows
-        //   - To resolve opposite actions
+        //   - To resolve opposed actions
         //   - To react against some attacks
         const flags = data?.message?.flags[game.system.id];
         if (flags === undefined) {
             return;
         }
 
-        // Players and GM can perform an opposite action.
-        // Only GM can handle opposite actions.
-        if (flags.hasOwnProperty('opposite')) {
+        // Players and GM can perform an opposed action.
+        // Only GM can handle opposed actions.
+        if (flags.hasOwnProperty(Rolls.OPPOSED)) {
             if (game.user.isGM) {
-                await Rolls.resolveOppositeRoll(flags);
-                await game.messages.get(data.message._id).unsetFlag(game.system.id, 'opposite');
+                await Rolls.resolveOpposedRoll(flags);
+                await game.messages.get(data.message._id).unsetFlag(game.system.id, Rolls.OPPOSED);
             }
             return;
         }
@@ -321,6 +317,55 @@ Hooks.once("init", function () {
             type: Boolean,
             default: false
         });
+        game.settings.register('neph5e', 'uuidMelee', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.uuidMelee'),
+            hint: game.i18n.localize('SETTINGS.uuidMeleeDesc'),
+            type: String,
+            default: '8b2b8da6-b8cddff0-bfcd50b6-48cec162'
+        });
+        game.settings.register('neph5e', 'uuidDodge', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.uuidDodge'),
+            hint: game.i18n.localize('SETTINGS.uuidDodgeDesc'),
+            type: String,
+            default: '456ea358-8ce41469-677e0602-4c5fddcd'
+        });
+        game.settings.register('neph5e', 'uuidHand', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.uuidHand'),
+            hint: game.i18n.localize('SETTINGS.uuidHandDesc'),
+            type: String,
+            default: 'd36beb62-017415a5-325fb05e-de7fd714'
+        });
+        game.settings.register('neph5e', 'uuidDraft', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.uuidDraft'),
+            hint: game.i18n.localize('SETTINGS.uuidDraftDesc'),
+            type: String,
+            default: 'bd18f1cc-2e108eb2-988cec32-3727ed1b'
+        });
+        game.settings.register('neph5e', 'uuidFire', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.uuidFire'),
+            hint: game.i18n.localize('SETTINGS.uuidFireDesc'),
+            type: String,
+            default: 'f82328b3-7ac00919-d54625c1-c1a5e138'
+        });
+        game.settings.register('neph5e', 'uuidHeavy', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.uuidHeavy'),
+            hint: game.i18n.localize('SETTINGS.uuidHeavyDesc'),
+            type: String,
+            default: '146b1eaf-9d2d1038-b6d1534c-d8a7cc98'
+        });
+
         /*
         game.settings.register('neph5e', 'worldTemplateVersion', {
             name: 'World Template Version',

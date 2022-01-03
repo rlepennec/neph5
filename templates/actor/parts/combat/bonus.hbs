@@ -1,23 +1,15 @@
-<div>
-    <ol class="item-list">
-        <li class="item-list-header">
-            <div class="item-name">
-                <span>Bonus</span>
-            </div>
-            <div class="item-integer">
-                <span/>
-            </div>
-        </li>
-
-    </ol>
-</div> 
-
 <div style="display:flex;flex-direction:row;">
 
     <div style="flex:auto;margin-right:10px">
-
         <ol class="item-list">
-            
+            <li class="item-list-header" style="margin-bottom:10px">
+                <div class="item-name">
+                    <span>Bonus</span>
+                </div>
+                <div class="item-integer">
+                    <span/>
+                </div>
+            </li>
             <li class="item" data-item-id="mouvement">
                 <label class="item-name">Mouvement</label>
                 <input
@@ -27,7 +19,6 @@
                     value="{{data.bonus.mouvement}}"
                     data-dtype="Number"/>
             </li>
-
             <li class="item" data-item-id="initiative">
                 <label class="item-name">Initiative</label>
                 <input
@@ -37,15 +28,6 @@
                     value="{{data.bonus.initiative}}"
                     data-dtype="Number"/>
             </li>
-
-        </ol>
-
-    </div>
-
-    <div style="flex:auto;margin-right:10px">
-
-        <ol class="item-list">
-
             <li class="item" data-item-id="dommage">
                 <label class="item-name">Dommage</label>
                 <input
@@ -55,7 +37,6 @@
                     value="{{data.bonus.dommage}}"
                     data-dtype="Number"/>
             </li>
-
             <li class="item" data-item-id="protection">
                 <label class="item-name">Protection</label>
                 <input
@@ -65,9 +46,68 @@
                     value="{{data.bonus.protection}}"
                     data-dtype="Number"/>
             </li>
-
         </ol>
+    </div>
 
+    <div style="flex:auto;margin-right:10px">
+        <ol class="item-list">
+            <li class="item-list-header" style="margin-bottom:10px;height:27px">
+                <div class="item-name">
+                    <span>Etats</span>
+                </div>
+                <div class="item-checkbox">
+                    <span/>
+                </div>
+            </li>
+            <li class="item" style="height:27px">
+                <div class="item-name">
+                    <span>Désorienté</span>
+                </div>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox"
+                        id="desoriente"
+                        name="desoriente"
+                        type="checkbox"
+                        {{checked effects.desoriente}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+            </li>
+            <li class="item" style="height:27px">
+                <div class="item-name">
+                    <span>Entravé</span>
+                </div>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox"
+                        id="immobilise" 
+                        name="immobilise"
+                        type="checkbox"
+                        {{checked effects.immobilise}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+            </li>
+            <li class="item" style="height:27px">
+                <div class="item-name">
+                    <span>A terre</span>
+                </div>
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox"
+                        id="projete"
+                        name="projete"
+                        type="checkbox"
+                        {{checked effects.projete}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+            </li>
+        </ol>
     </div>
 
 </div>

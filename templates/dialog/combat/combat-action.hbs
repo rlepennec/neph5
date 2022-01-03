@@ -2,9 +2,11 @@
 
     <div class="chat-header">
 
-        <img class="chat-image" src="{{action.actor.img}}"/>
+{{log .}}
 
-        <span class="chat-title">{{action.actor.name}} {{action.sentence}}</span>
+        <img class="chat-image" src="{{actor.token.img}}"/>
+
+        <span class="chat-title">{{actor.name}} {{action.sentence}}</span>
 
         {{#if action.target}}
         <img class="chat-image" src="{{action.target.img}}"/>

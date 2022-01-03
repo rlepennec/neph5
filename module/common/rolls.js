@@ -1,112 +1,138 @@
 import { Game } from "./game.js";
+import { NephilimChat } from "./chat.js";
 import { NephilimItem } from "../item/entity.js";
 
 export class Rolls {
 
-    static isDouble(n) {
-        return n === 100 || n === 11 || n === 22 ||n === 33 || n === 44 || n === 55 || n === 66 || n === 77 || n === 88 || n === 99;
+    static get ACTIVE() {
+        return 'active';
+    }
+
+    static get PASSIVE() {
+        return 'passive';
+    }
+
+    static get NONE() {
+        return 'none';
+    }
+
+    static get SIMPLE() {
+        return 'simple';
+    }
+
+    static get OPPOSED() {
+        return 'opposed';
     }
 
     /**
-     * 
-     * @param {*} roll            The roll result is 1d100
-     * @param {*} difficultyLevel The difficulty level
+     * @param {*} n The number to evaluate.
+     * @returns true if a double has been rolled.
      */
-    static getRollResult(roll, difficultyLevel) {
-        const fail = roll === 100 || ( roll > (difficultyLevel * 10) && roll !== 1);
-        const isFumble = Rolls.isDouble(roll) && fail;
-        const isCritical = Rolls.isDouble(roll) && !fail;
-        const successMargin = fail ? 0 : Math.floor(roll / 10) + (difficultyLevel > 10 ? difficultyLevel  - 10 : 0);
+    static isDouble(n) {
+        return n === 100 || n === 11 || n === 22 || n === 33 || n === 44 || n === 55 || n === 66 || n === 77 || n === 88 || n === 99;
+    }
+
+    /**
+     * @param {*} roll  The roll value is 1d100.
+     * @param {*} level The difficulty level, multiply by 10 to get %.
+     * @return the roll result according to the difficulty level.
+     */
+    static getResult(roll, level) {
+        const fail = roll === 100 || (roll > (level * 10) && roll !== 1);
+        const fumble = Rolls.isDouble(roll) && fail;
+        const critical = Rolls.isDouble(roll) && !fail;
+        const margin = fail ? 0 : Math.floor(roll / 10) + (level > 10 ? level - 10 : 0);
         return {
-            isSuccess: !fail,
-            isFumble: isFumble,
-            isCritical: isCritical,
-            successMargin: successMargin
+            success: !fail,
+            fumble: fumble,
+            critical: critical,
+            margin: margin
         }
     }
 
-    static getResultSentence(rollResult) {
-        const margin = rollResult.successMargin === 0 ? "" : " avec une marge de réussite de " + rollResult.successMargin;
-        if (rollResult.isCritical) {
-            return "réussit de façon spectaculaire" + margin;
-        } else if (rollResult.isFumble) {
-            return "échoue de façon désastreuse";
-        } else if (rollResult.isSuccess) {
+    /**
+     * @param {*} result  The roll result to evaluate.
+     * @returns the sentence according to the roll result.
+     */
+    static getSentence(result) {
+        if (result.success) {
+            const margin = result.margin === 0 ? "" : " avec une marge de réussite de " + result.margin;
+            if (result.critical) {
+                return "réussit de façon spectaculaire" + margin;
+            }
             return "réussit" + margin;
-        } else {
-            return "échoue";
+        }
+        if (result.fumble) {
+            return "échoue de façon désastreuse";
+        }
+        return "échoue";
+    }
+
+    static getOpposedSentence(winner, type) {
+        switch (type) {
+            case 'invocation':
+                switch (winner) {
+                    case this.ACTIVE:
+                        return " parvient à établir un pacte avec la créature";
+                    case this.PASSIVE:
+                    case this.NONE:
+                        return " ne parvient pas à établir un pacte avec la créature";
+                }
+            default:
+                switch (winner) {
+                    case this.ACTIVE:
+                        return " parvient à ses fins";
+                    case this.PASSIVE:
+                    case this.NONE:
+                        return " ne parvient pas à ses fins";
+                }
         }
     }
 
     static getBest(active, passive) {
-        const ACTIVE = 'active';
-        const PASSIVE = 'passive';
-        const NONE = 'none';
-        if (active.successMargin > passive.successMargin) {
-            return ACTIVE;
-        } else if (passive.successMargin > active.successMargin) {
-            return PASSIVE;
+        if (active.margin > passive.margin) {
+            return this.ACTIVE;
+        } else if (passive.margin > active.margin) {
+            return this.PASSIVE;
         } else {
-            return NONE;
+            return this.NONE;
         }
     }
 
-    static getOppositeResult(active, passive) {
-        const ACTIVE = 'active';
-        const PASSIVE = 'passive';
-        const NONE = 'none';
-        if (active.isCritical) {
-            if (passive.isCritical) {
+    /**
+     * @param {*} active  The active roll result. 
+     * @param {*} passive The passive roll result.
+     * @returns  the winner or none if equality.
+     */
+    static getWinner(active, passive) {
+        if (active.critical) {
+            if (passive.critical) {
                 return Rolls.getBest(active, passive);
             } else {
-                return ACTIVE;
+                return this.ACTIVE;
             }
-        } else if (active.isFumble) {
-            if (passive.isFumble) {
-                return NONE;
+        } else if (active.fumble) {
+            if (passive.fumble) {
+                return this.NONE;
             } else {
-                return PASSIVE;
+                return this.PASSIVE;
             }
-        } else if (active.isSuccess) {
-            if (passive.isCritical) {
-                return PASSIVE;
-            } else if (passive.isSuccess) {
+        } else if (active.success) {
+            if (passive.critical) {
+                return this.PASSIVE;
+            } else if (passive.success) {
                 return Rolls.getBest(active, passive);
             } else {
-                return ACTIVE;
+                return this.ACTIVE;
             }
         } else {
-            if (passive.isSuccess) {
-                return PASSIVE;
-            } else if (passive.isFumble) {
-                return ACTIVE;
+            if (passive.success) {
+                return this.PASSIVE;
+            } else if (passive.fumble) {
+                return this.ACTIVE;
             } else {
-                return NONE;
+                return this.NONE;
             }
-        }
-    }
-
-    static getOppositeSentence(result, type) {
-        const ACTIVE = 'active';
-        const PASSIVE = 'passive';
-        const NONE = 'none';
-        switch(type) {
-            case 'invocation':
-                switch(result) {
-                    case ACTIVE:
-                        return " parvient à controler la créature";
-                    case PASSIVE:
-                    case NONE:
-                        return " ne parvient pas à contrôler la créature";
-                }
-            default:
-                switch(result) {
-                    case ACTIVE:
-                        return " parvient à ses fins";
-                    case PASSIVE:
-                    case NONE:
-                        return " ne parvient pas à ses fins";
-                }
         }
     }
 
@@ -155,19 +181,19 @@ export class Rolls {
         // Used for specific invocations where the choice of the element must be done during the cast of the spell.
         const selectElement = item instanceof NephilimItem && item.type === 'invocation' && item.data.data.element === 'choix';
 
-        // Retrieve if the action must be resolved as a opposite action. The following opposite actions are:
+        // Retrieve if the action must be resolved as a opposed action. The following opposed actions are:
         //   - invocation without pacte
-        const oppositeAction = item instanceof NephilimItem && item.type === 'invocation' && !actor.hasPactWith(item);
+        const opposed = item instanceof NephilimItem && item.type === 'invocation' && !actor.hasPactWith(item);
 
-        // Retrieve if action must be resolved as an alone action. The following alone actions are:
+        // Retrieve if action must be resolved as an simple action. The following simple actions are:
         // - 
-        const aloneAction = item instanceof NephilimItem && (item.type === 'sort' || item.type === 'formule');
+        const simple = item instanceof NephilimItem && (item.type === 'sort' || item.type === 'formule');
 
-        let rollType = 'none';
-        if (oppositeAction) {
-            rollType = 'opposite';
-        } else if (aloneAction) {
-            rollType = 'alone';
+        let rollType = this.NONE;
+        if (opposed) {
+            rollType = this.OPPOSED;
+        } else if (simple) {
+            rollType = this.SIMPLE;
         }
 
         // Create the dialog panel to display.
@@ -205,8 +231,8 @@ export class Rolls {
                         // Calculate the final difficulty
                         data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa;
 
-                        // Indicates if the action is an opposite one
-                        data.oppositeAction = oppositeAction ? true : aloneAction ? false : html.find("#opposite")[0].checked;;
+                        // Indicates if the action is an opposed one
+                        data.opposed = opposed ? true : simple ? false : html.find("#opposed")[0].checked;;
 
                         // Process to the roll
                         await Rolls.displayRoll(actor, item, data);
@@ -229,136 +255,86 @@ export class Rolls {
      * This method is used to display a roll result.
      * @param {*} actor    The actor which performs the action.
      * @param {*} item     The purpose of the action, that is the item, the attribute or the ka. 
-     * @param {*} cardData 
+     * @param {*} data 
      */
-    static async displayRoll(actor, item, cardData) {
+    static async displayRoll(actor, item, data) {
 
-        const chatData = {
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker()
-        }
-        chatData.content = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-chat.html", {
-            actor: actor,
-            item: item,
-            action: cardData
-        });
-        chatData.roll = true;
+        // Display the roll action
+        await new NephilimChat(actor)
+            .withTemplate("systems/neph5e/templates/dialog/basic/basic-chat.html")
+            .withData({
+                actor: actor,
+                item: item,
+                sentence: data.sentence,
+                difficulty: data.difficulty
+            })
+            .withRoll(true)
+            .create();
 
-        const rollMode = game.settings.get('core', 'rollMode');
-        //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
-        if (['gmroll', 'blindroll'].includes(rollMode))
-            chatData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-        if (rollMode === 'selfroll')
-            chatData.whisper = [game.user.id];
-        if (rollMode === 'blindroll')
-            chatData.blind = true;
+        // Roll the dice
+        const result = await Rolls.getRollResult({
+            actor: actor.id,
+            alias: actor.name,
+            scene: null,
+            token: null,
+        }, data.difficulty);
+        const sentence = Rolls.getSentence(result) + (data.opposed ? " mais..." : "");
 
-        await ChatMessage.create(chatData);
-
-        const roll1 = new Roll("1d100", {});
-        const theRoll = roll1.roll({async:false});
-        await theRoll.toMessage({
-            speaker: ChatMessage.getSpeaker()
-        }, { async: true });
-
-
-        // Wait for the 3D dices
-        await new Promise(r => setTimeout(r, 2000));
-
-        const rollResult = Rolls.getRollResult(theRoll._total, cardData.difficulty);
-        const result = Rolls.getResultSentence(rollResult) + (cardData.oppositeAction ? " mais..." : "");
-
-        const lastData = {
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker(),
-            actor: actor,
-            roll: theRoll,
-            result: result
-        }
-        lastData.content = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-result.html", lastData);
-        if (cardData.oppositeAction) {
-            const flags = {
-                neph5e: {
-                    opposite: {
-                        item: item,
-                        rollResult: rollResult,
-                        initialActorImg: actor.img,
-                        initialActorName: actor.name
+        // Display the roll result and dispatch the event to the GM if an opposed roll
+        if (game.settings.get('core', 'rollMode') !== 'blindroll') {
+            await new NephilimChat(actor)
+                .withTemplate("systems/neph5e/templates/dialog/basic/basic-result.html")
+                .withData({
+                    actor: actor,
+                    sentence: sentence
+                })
+                .withFlags(data.opposed ? {
+                    neph5e: {
+                        opposed: {
+                            actor: actor,
+                            item: item,
+                            result: result
+                        }
                     }
-                 }
-            }
-            lastData.flags = flags;
-        }
-
-        //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
-        if (['gmroll', 'blindroll'].includes(rollMode)) {
-            lastData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-        }
-        if (rollMode === 'selfroll') {
-            lastData.whisper = [game.user.id];
-        }
-        if (rollMode === 'blindroll') {
-            lastData.blind = true;
-        }
-
-        if (rollMode !== 'blindroll') {
-            await ChatMessage.create(lastData);
+                } : {})
+                .withRoll(true)
+                .create();
         }
 
     }
 
-
     /**
      * This method is used to display a roll result.
-     * @param {*} intialActionFlags    The actor which performs the action.
-     * @param {*} item     The purpose of the action, that is the item, the attribute or the ka. 
+     * @param {*} flags    The actor which performs the action.
      */
-    static async resolveOppositeRoll(flags) {
-
-        const intialActionFlags = flags.opposite;
+    static async resolveOpposedRoll(flags) {
 
         // Create action panel
-        let htmlData = null;
-        if (intialActionFlags.item.type === 'invocation') {
-            htmlData =
-                {
-                    actor: {
-                        name: intialActionFlags.item.name + " s'oppose à l'invocation",
-                        sentence: " s'oppose à l'invocation",
-                        img: intialActionFlags.item.img
-                    },
-                    action: {
-                        difficulty: intialActionFlags.item.data.degre
-                    },
-                    item: {
-                        img: intialActionFlags.initialActorImg
-                    },
-                    blessure: 0,
-                    selectElement: false,
-                    elements: {}
-                };
+        const data = {
+            actor: flags.opposed.item.type === 'invocation' ? {
+                name: flags.opposed.item.name + " s'oppose à l'invocateur",
+                sentence: " s'oppose à l'invocateur",
+                img: flags.opposed.item.img
+            } : {
+                name: "La situation n'est pas si simple",
+                sentence: "La situation n'est pas si simple",
+                img: "systems/neph5e/icons/opposition.webp"
+            },
+            action: flags.opposed.item.type === 'invocation' ? {
+                difficulty: flags.opposed.item.data.degre
+            } : {
+                difficulty: 0
+            },
+            item: {
+                img: flags.opposed.actor.img
+            },
+            blessure: 0,
+            selectElement: false,
+            elements: {}
+        };
 
-        } else {
-            htmlData =
-                {
-                    actor: {
-                        name: "La situation n'est pas si simple",
-                        sentence: "La situation n'est pas si simple",
-                        img: "systems/neph5e/icons/opposition.webp"
-                    },
-                    action: {
-                        difficulty: 0
-                    },
-                    item: {
-                        img: intialActionFlags.initialActorImg
-                    },
-                    blessure: 0,
-                    selectElement: false,
-                    elements: {}
-                };
-        }
 
-        const html = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-action.html", htmlData);
+        const html = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-action.html", data);
 
         // Display the action panel
         await new Dialog({
@@ -370,8 +346,8 @@ export class Rolls {
                     label: game.i18n.localize("Lancer"),
                     callback: async (html) => {
                         const modifier = parseInt(Math.floor(parseInt(html.find("#modifier")[0].value) / 10));
-                        const difficulty = parseInt(htmlData.action.difficulty)  + (isNaN(modifier) ? 0 : modifier);
-                        await Rolls.displayOppositeRoll(intialActionFlags, difficulty);
+                        const difficulty = parseInt(data.action.difficulty) + (isNaN(modifier) ? 0 : modifier);
+                        await Rolls.displayOpposedRoll(flags.opposed, difficulty);
                     },
                 },
                 cancel: {
@@ -387,137 +363,52 @@ export class Rolls {
 
     }
 
-    static async displayOppositeRoll(intialActionFlags, difficulty) {
+    static async displayOpposedRoll(flags, difficulty) {
 
-        const chatData = {
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker()
-        }
-
-        let charContentData = null;
-        if (intialActionFlags.item.type === 'invocation') {
-            charContentData = {
-                actor: {
-                    name: intialActionFlags.item.name + " s'oppose à l'invocation",
-                    sentence: " s'oppose à l'invocation",
-                    img: intialActionFlags.item.img
-                },
-                item: {
-                    img: intialActionFlags.initialActorImg
-                },
-                action: {
-                    difficulty: difficulty
-                },
-            }
-        } else {
-            charContentData = {
-                actor: {
+        await new NephilimChat(flags.actor)
+            .withTemplate("systems/neph5e/templates/dialog/basic/basic-chat.html")
+            .withData({
+                actor: flags.item.type === 'invocation' ? {
+                    name: flags.item.name + " s'oppose à l'invocateur",
+                    img: flags.item.img
+                } : {
                     name: "La situation n'est pas si simple",
-                    sentence: "La situation n'est pas si simple",
                     img: "systems/neph5e/icons/opposition.webp"
                 },
                 item: {
-                    img: intialActionFlags.initialActorImg
+                    img: flags.actor.img
                 },
-                action: {
-                    difficulty: difficulty
-                },
-            } 
-        }
+                sentence: flags.item.type === 'invocation' ? " s'oppose à l'invocateur" : "La situation n'est pas si simple",
+                difficulty: difficulty
+            })
+            .withRoll(true)
+            .create();
 
+        const result = await this.getRollResult(ChatMessage.getSpeaker(), difficulty);
+        const winner = Rolls.getWinner(flags.result, result);
+        const sentence = Rolls.getOpposedSentence(winner, flags.item.type);
 
-        chatData.content = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-chat.html", charContentData);
-        chatData.roll = true;
-
-        const rollMode = game.settings.get('core', 'rollMode');
-        //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
-        if (['gmroll', 'blindroll'].includes(rollMode))
-            chatData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-        if (rollMode === 'selfroll')
-            chatData.whisper = [game.user.id];
-        if (rollMode === 'blindroll')
-            chatData.blind = true;
-
-        await ChatMessage.create(chatData);
-
-        const roll1 = new Roll("1d100", {});
-        const theRoll = roll1.roll({async:false});
-        await theRoll.toMessage({
-            speaker: ChatMessage.getSpeaker()
-        }, { async: true });
-
-
-        // Wait for the 3D dices
-        await new Promise(r => setTimeout(r, 2000));
-
-        const oppositeRollResult = Rolls.getRollResult(theRoll._total, difficulty);
-        const result = Rolls.getOppositeResult(intialActionFlags.rollResult ,oppositeRollResult);
-        const resultSentence = Rolls.getOppositeSentence(result, intialActionFlags.item.type);
-
-        const lastData = {
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker(),
-            actor: {
-                data: {
-                    name: intialActionFlags.initialActorName,
-                },
-                img: intialActionFlags.initialActorImg
-            },
-            roll: theRoll,
-            result: resultSentence
-        }
-        lastData.content = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-result.html", lastData);
-
-        //blindroll (aveugle), roll (public), gmroll (cache), selfroll (prive)
-        if (['gmroll', 'blindroll'].includes(rollMode)) {
-            lastData.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-        }
-        if (rollMode === 'selfroll') {
-            lastData.whisper = [game.user.id];
-        }
-        if (rollMode === 'blindroll') {
-            lastData.blind = true;
-        }
-
-        if (rollMode !== 'blindroll') {
-            await ChatMessage.create(lastData);
-        }
+        await new NephilimChat(flags.actor)
+            .withTemplate("systems/neph5e/templates/dialog/basic/basic-result.html")
+            .withData({
+                actor: flags.actor,
+                sentence: sentence
+            })
+            .create();
 
     }
 
     /**
-     * Creates a chat message according to the specified data. The scope of this message
-     * is determinated according to the current roll mode setting.
-     * @param {*} template The template used to display the message.
-     * @param {*} content  The content of the message.
-     * @param {*} roll     TBD.
+     * Rolls 1d100, displays the specified message and returns the result.
+     * @param {*} speaker 
+     * @param {*} difficulty 
+     * @returns the roll result. 
      */
-    /*
-     static async createChatMessage(template, data) {
-
-        const data = {
-            user: game.user.id,
-            speaker: ChatMessage.getSpeaker(),
-            content: await renderTemplate(template, data),
-            roll: roll
-        }
-
-        switch(game.settings.get('core', 'rollMode')) {
-            case 'gmroll':
-                data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-                break;
-            case 'blindroll':
-                data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-                data.blind = true;
-                break;
-            case 'selfroll':
-                data.whisper = [game.user.id];
-                break;
-        }
-
-        await ChatMessage.create(data);
-
+    static async getRollResult(speaker, difficulty) {
+        const roll = new Roll("1d100", {}).roll({ async: false });
+        await roll.toMessage({ speaker: speaker }, { async: true });
+        await new Promise(r => setTimeout(r, 2000));
+        return Rolls.getResult(roll._total, difficulty);
     }
-    */
 
 }

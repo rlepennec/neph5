@@ -81,6 +81,7 @@ export class Aim extends Maneuver {
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/templates/dialog/combat/combat-action.hbs")
             .withData({
+                actor: this.actor,
                 action: action
             })
             .create();
@@ -91,9 +92,10 @@ export class Aim extends Maneuver {
         // Resets the bonus of 'hidden'
         await this.resetHidden();
 
-        // Increase the number of round
-        const visee = this.weapon.data.data.ranged.visee + 1;
+        // Increase the number of round if same target
+        const visee = this.weapon.data.data.ranged.target === this.target.id ? this.weapon.data.data.ranged.visee + 1 : 1;
         await this.weapon.update({ ['data.ranged.visee']: visee });
+        await this.weapon.update({ ['data.ranged.target']: this.target.id });
 
         return this;
 

@@ -1,5 +1,6 @@
 import { UUID } from "../../common/tools.js";
-import { droppedItem2 } from "../../item/tools.js";
+import { Game } from "../../common/game.js";
+import { droppedItem } from "../../common/tools.js";
 import { BaseSheet } from "./base.js";
 
 export class FigurantSheet extends BaseSheet {
@@ -47,7 +48,12 @@ export class FigurantSheet extends BaseSheet {
             actor: baseData.actor,
             data: baseData.actor.data.data,
             useV3: game.settings.get('neph5e', 'useV3'),
-            useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
+            useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
+            effects: {
+                desoriente: this?.token?.combatant?.effectIsActive(Game.effects.desoriente),
+                immobilise: this?.token?.combatant?.effectIsActive(Game.effects.immobilise),
+                projete: this?.token?.combatant?.effectIsActive(Game.effects.projete)
+            }
         }
         return sheetData;
     }
@@ -62,6 +68,9 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="description"] .item-wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="description"] .item-move').click(this._onMove.bind(this));
         html.find('div[data-tab="description"] .item-use').click(this._onUseItem.bind(this));
+        html.find('div[data-tab="description"] #desoriente').click(this._onDesoriente.bind(this));
+        html.find('div[data-tab="description"] #immobilise').click(this._onImmobilise.bind(this));
+        html.find('div[data-tab="description"] #projete').click(this._onProjete.bind(this));
     }
 
     async _onEditItem(event) {
@@ -96,8 +105,8 @@ export class FigurantSheet extends BaseSheet {
     async _onDrop(event) {
         //
         event.preventDefault();
-        const item = await droppedItem2(event);
-        if (item != null && item.hasOwnProperty('data')) {
+        const item = await droppedItem(event);
+        if (item !== null && item.hasOwnProperty('data')) {
             if (item.data.type === "arme") {
                 await super._onDrop(event);
             } else if (item.data.type === "armure") {

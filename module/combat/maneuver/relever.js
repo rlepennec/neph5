@@ -80,6 +80,7 @@ export class Relever extends Maneuver {
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/templates/dialog/combat/combat-action.hbs")
             .withData({
+                actor: this.actor,
                 action: action
             })
             .create();

@@ -47,7 +47,9 @@ export class Ranged extends Action {
         }
 
         // Apply bonus for each round of 'aim'
-        difficulty = difficulty + 2 * this.weapon.data.data.ranged.visee;
+        if (this.weapon.data.data.ranged.target === this.target.id) {
+            difficulty = difficulty + 2 * this.weapon.data.data.ranged.visee;
+        }
 
         // Returns the difficulty of the action
         return difficulty;
@@ -86,6 +88,7 @@ export class Ranged extends Action {
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/templates/dialog/combat/combat-action.hbs")
             .withData({
+                actor: this.actor,
                 action: action
             })
             .create();
@@ -119,6 +122,7 @@ export class Ranged extends Action {
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/templates/dialog/combat/combat-result.hbs")
             .withData({
+                actor: this.actor,
                 action: action,
                 result: {
                     roll: this.attackResult(action.roll),

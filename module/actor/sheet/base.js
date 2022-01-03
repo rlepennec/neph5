@@ -1,3 +1,5 @@
+import { Game } from "../../common/game.js";
+
 export class BaseSheet extends ActorSheet {
 
     /**
@@ -75,6 +77,27 @@ export class BaseSheet extends ActorSheet {
         } else {
             ui.notifications.warn("Veuillez selectionner un token");
         }
+    }
+
+    async _onState(event, effect) {
+        if (this?.token?.combatant !== undefined && this?.token?.combatant !== null) {
+            const active = $(event.currentTarget).is(":checked");
+            await this.token.combatant.setEffect(effect, active);
+        } else {
+            ui.notifications.warn("Veuillez selectionner un token en combat");
+        }
+    }
+
+    async _onDesoriente(event) {
+        return await this._onState(event, Game.effects.desoriente);
+    }
+
+    async _onImmobilise(event) {
+        return await this._onState(event, Game.effects.immobilise);
+    }
+
+    async _onProjete(event) {
+        return await this._onState(event, Game.effects.projete);
     }
 
 }

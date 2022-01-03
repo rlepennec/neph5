@@ -1,10 +1,10 @@
-import { droppedActor } from "../../item/tools.js";
-import { droppedItem } from "../../item/tools.js";
-import { deleteItemOf } from "../tools.js";
+import { droppedItem } from "../../common/tools.js";
 import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { getByPath } from "../../common/tools.js";
 import { UUID } from "../../common/tools.js";
 import { Game } from "../../common/game.js";
+import { deleteItemOf } from "../../common/tools.js";
+import { droppedActor } from "../../common/tools.js";
 import { BaseSheet } from "./base.js";
 
 export class FigureSheet extends BaseSheet {
@@ -74,7 +74,17 @@ export class FigureSheet extends BaseSheet {
             cercles: Game.alchimie.cercles,
             currentPeriode: this.current != null ? this.current.data.data.id : null,
             useV3: game.settings.get('neph5e', 'useV3'),
-            useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
+            useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
+            effects: {
+                desoriente: this?.token?.combatant?.effectIsActive(Game.effects.desoriente),
+                immobilise: this?.token?.combatant?.effectIsActive(Game.effects.immobilise),
+                projete: this?.token?.combatant?.effectIsActive(Game.effects.projete)
+            },
+            initiative: baseData.actor.data.data.ka.eau * 2,
+            bonusDommage: Math.floor(baseData.actor.data.data.ka.feu / 5),
+            perspicacite: 11 - baseData.actor.data.data.ka.air,
+            recuperation: 11 - baseData.actor.data.data.ka.terre,
+            voile: Math.floor(baseData.actor.data.data.ka.lune / 5)
         }
         return sheetData;
     }
@@ -94,6 +104,9 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .item-wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="combat"] .item-move').click(this._onMove.bind(this));
         html.find('div[data-tab="combat"] .item-use').click(this._onUseItem.bind(this));
+        html.find('div[data-tab="combat"] #desoriente').click(this._onDesoriente.bind(this));
+        html.find('div[data-tab="combat"] #immobilise').click(this._onImmobilise.bind(this));
+        html.find('div[data-tab="combat"] #projete').click(this._onProjete.bind(this));
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -113,26 +126,26 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="magie"] .item-name').click(this._onShowSort.bind(this));
         html.find('div[data-tab="magie"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="magie"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteMagie.bind(this));
+        html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Kabbale
         html.find('div[data-tab="kabbale"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="kabbale"] .item-name').click(this._onShowInvocation.bind(this));
         html.find('div[data-tab="kabbale"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="kabbale"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="kabbale"] .item-delete').click(this._onDeleteKabbale.bind(this));
+        html.find('div[data-tab="kabbale"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Alchimie
         html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="alchimie"] .item-name').click(this._onShowFormule.bind(this));
         html.find('div[data-tab="alchimie"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="alchimie"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="alchimie"] .item-delete').click(this._onDeleteAlchimie.bind(this));
+        html.find('div[data-tab="alchimie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Laboratoire
         html.find('div[data-tab="laboratoire"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="laboratoire"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="laboratoire"] .item-delete').click(this._onDeleteLaboratoire.bind(this));
+        html.find('div[data-tab="laboratoire"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Incarnations
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
@@ -144,49 +157,49 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="selenim"] .item-roll').click(this._onSelenimRoll.bind(this));
         html.find('div[data-tab="selenim"] .item-name').click(this._onShowAspect.bind(this));
         html.find('div[data-tab="selenim"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteImago.bind(this));
+        html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Conjuration
         html.find('div[data-tab="conjuration"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="conjuration"] .item-name').click(this._onShowAppel.bind(this));
         html.find('div[data-tab="conjuration"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="conjuration"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="conjuration"] .item-delete').click(this._onDeleteConjuration.bind(this));
+        html.find('div[data-tab="conjuration"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Necromancie
         html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="necromancie"] .item-name').click(this._onShowRite.bind(this));
         html.find('div[data-tab="necromancie"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="necromancie"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="necromancie"] .item-delete').click(this._onDeleteNecromancie.bind(this));
+        html.find('div[data-tab="necromancie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Baton
         html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="baton"] .item-name').click(this._onShowTechnique.bind(this));
         html.find('div[data-tab="baton"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="baton"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteTechnique.bind(this));
+        html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Coupe
         html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="coupe"] .item-name').click(this._onShowTekhne.bind(this));
         html.find('div[data-tab="coupe"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="coupe"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteTekhne.bind(this));
+        html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Denier
         html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="denier"] .item-name').click(this._onShowPratique.bind(this));
         html.find('div[data-tab="denier"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="denier"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="denier"] .item-delete').click(this._onDeletePratique.bind(this));
+        html.find('div[data-tab="denier"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Epee
         html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="epee"] .item-name').click(this._onShowRituel.bind(this));
         html.find('div[data-tab="epee"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="epee"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteRituel.bind(this));
+        html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteItem.bind(this));
     }
 
     /**
@@ -199,43 +212,31 @@ export class FigureSheet extends BaseSheet {
         event.preventDefault();
         const item = await droppedItem(event);
         if (item === null) {
-            if (event.dataTransfer != undefined) {
-                try {
-                    const _data = JSON.parse(event.dataTransfer.getData('text/plain'));
-                    const _item = await Item.implementation.fromDropData(_data);
-                    switch (_item.data.type) {
-                        case 'arme':
-                        case 'armure':
-                            await super._onDrop(event);
-                            break;
-                    }
-                } catch (err) {
-                    return;
+
+            // Catch and retrieve the dropped actor
+            const actor = await droppedActor(event);
+            if (actor !== null && actor.hasOwnProperty('data')) {
+
+                // The metamorphe has been dropped:
+                //   - Update the reference of the metamorphe
+                //   - Delete the metamorphoses
+                if (actor.data.type === "simulacre" && actor.data.data.id != "") {
+                    const simulacre = duplicate(this.actor.data.data.simulacre);
+                    simulacre.refid = actor.data.data.id;
+                    await this.actor.update({ ['data.simulacre']: simulacre });
                 }
-            } else {
-
-                // Catch and retrieve the dropped actor
-                const actor = await droppedActor(event);
-                if (actor != null && actor.hasOwnProperty('data')) {
-
-                    // The metamorphe has been dropped:
-                    //   - Update the reference of the metamorphe
-                    //   - Delete the metamorphoses
-                    if (actor.data.type === "simulacre" && actor.data.data.id != "") {
-                        const simulacre = duplicate(this.actor.data.data.simulacre);
-                        simulacre.refid = actor.data.data.id;
-                        await this.actor.update({ ['data.simulacre']: simulacre });
-                    }
-                }
-
             }
 
         } else if (item.hasOwnProperty('data')) {
 
-            // The metamorphe has been dropped:
-            //   - Update the reference of the metamorphe
-            //   - Delete the metamorphoses
-            if (item.data.type === "metamorphe") {
+            // The armure or armure has been dropped:
+            if (item.data.type === "arme" || item.data.type === "armure") {
+                await super._onDrop(event);
+
+                // The metamorphe has been dropped:
+                //   - Update the reference of the metamorphe
+                //   - Delete the metamorphoses
+            } else if (item.data.type === "metamorphe") {
                 const metamorphe = duplicate(this.actor.data.data.metamorphe);
                 metamorphe.refid = item.data.data.id;
                 metamorphe.metamorphoses = [false, false, false, false, false, false, false, false, false, false];
@@ -545,47 +546,13 @@ export class FigureSheet extends BaseSheet {
      * This function catches the deletion of a ordonnance from the list of materiae primae.
      */
 
-    async _onDelete(event, science, collection) {
+    async _onDeleteItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
+        const science = li.data("item-science");
+        const collection = li.data("item-collection");
         await deleteItemOf(this.actor, science, "refid", id, collection);
-    }
-
-    async _onDeleteImago(event) {
-        await this._onDelete(event, 'imago', 'aspects');
-    }
-
-    async _onDeleteConjuration(event) {
-        await this._onDelete(event, 'conjuration', 'appels');
-    }
-
-    async _onDeleteNecromancie(event) {
-        await this._onDelete(event, 'necromancie', 'rites');
-    }
-
-    async _onDeleteTechnique(event) {
-        await this._onDelete(event, 'baton', 'techniques');
-    }
-
-    async _onDeleteTekhne(event) {
-        await this._onDelete(event, 'coupe', 'tekhnes');
-    }
-
-    async _onDeletePratique(event) {
-        await this._onDelete(event, 'denier', 'pratiques');
-    }
-
-    async _onDeleteRituel(event) {
-        await this._onDelete(event, 'epee', 'rituels');
-    }
-
-    async _onDeleteMagie(event) {
-        await this._onDelete(event, 'magie', 'sorts');
-    }
-
-    async _onDeleteAlchimie(event) {
-        await this._onDelete(event, 'alchimie', 'formules');
     }
 
     async _onDeleteEquipement(event) {
@@ -601,30 +568,6 @@ export class FigureSheet extends BaseSheet {
         const id = li.data("item-id");
         const item = this.actor.getEmbeddedDocument('Item', id);
         item.sheet.render(true);
-    }
-
-    async _onDeleteKabbale(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type === 'invocation') {
-            deleteItemOf(this.actor, "kabbale", "refid", id, "invocations");
-        } else if (type === 'ordonnance') {
-            deleteItemOf(this.actor, "kabbale", "refid", id, "voie.ordonnances")
-        }
-    }
-
-    async _onDeleteLaboratoire(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type === 'materiae') {
-            deleteItemOf(this.actor, "alchimie", "refid", id, "materiae")
-        } else if (type === 'catalyseur') {
-            deleteItemOf(this.actor, "alchimie", "refid", id, "catalyseurs")
-        }
     }
 
     async _onDeleteIncarnations(event) {
@@ -733,9 +676,26 @@ export class FigureSheet extends BaseSheet {
         const id = li.data("item-id");
         const item = this.actor.items.get(id);
         const skillName = item.data.data.skill;
-        const uuid = Game.skills[skillName].uuid;
+        const uuid = this.getCombatSkillsUUID(skillName);
         const skill = CustomHandlebarsHelpers.getItem(uuid);
         return await skill.roll(this.actor);
+    }
+
+    getCombatSkillsUUID(skill) {
+        switch(skill) {
+            case 'melee':
+                return game.settings.get('neph5e', 'uuidMelee');
+            case 'esquive':
+                return game.settings.get('neph5e', 'uuidDodge');
+            case 'martial':
+                return game.settings.get('neph5e', 'uuidHand');
+            case 'trait':
+                return game.settings.get('neph5e', 'uuidDraft');
+            case 'feu':
+                return game.settings.get('neph5e', 'uuidFire');
+            case 'lourde':
+                return game.settings.get('neph5e', 'uuidHeavy');
+        }
     }
 
     /**
@@ -823,15 +783,17 @@ export class FigureSheet extends BaseSheet {
 
     async _onShowInvocation(event) {
         await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
-            properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
+            if (item.data.type === 'ordonnance') {
+                const properties = $(`<ol/>`);
+                properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
+                properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
+                properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
+                properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
+                properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
+                properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
+                properties.append(this._property(item.data.data.description));
+                return properties;
+            }
         });
     }
 

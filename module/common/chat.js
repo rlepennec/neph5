@@ -12,22 +12,6 @@ export class NephilimChat {
         this.data = null;
         this.flags = null;
         this.roll = null;
-        this.whisper = null;
-        this.blind = null;
-    }
-
-    /**
-     * @returns the whisper attribute of the last created message or null if it doesn't exist.
-     */
-    getWhisper() {
-        return this.chat?.data?.whisper ?? null;
-    }
-
-    /**
-     * @returns the blind attribute of the last created message or null if it doesn't exist.
-     */
-    getBlind() {
-        return this.chat?.data?.blind ?? null;
     }
 
     /**
@@ -81,26 +65,6 @@ export class NephilimChat {
     }
 
     /**
-     * Sets the whisper parameter.
-     * @param whisper The whisper parameter to set.
-     * @returns the instance.
-     */
-    withWhisper(whisper) {
-        this.whisper = whisper;
-        return this;
-    }
-
-    /**
-     * Sets the blind parameter.
-     * @param blind The blind parameter to set.
-     * @returns the instance.
-     */
-    withBlind(blind) {
-        this.blind = blind;
-        return this;
-    }
-
-    /**
      * Creates the chat message.
      * @return this instance.
      */
@@ -119,7 +83,12 @@ export class NephilimChat {
         // Create the chat data
         const d = {
             user: game.user.id,
-            speaker: ChatMessage.getSpeaker(),
+            speaker: {
+                actor: this.actor.id,
+                alias: this.actor.name,
+                scene: null,
+                token: null,
+            },
             content: this.content
         }
 
@@ -128,19 +97,23 @@ export class NephilimChat {
             d.roll = this.roll;
         }
 
-        // Set the whisper parameter if necessary
-        if (this.whisper) {
-            d.whisper = this.whisper;
-        }
-
-        // Set the blind parameter if necessary
-        if (this.blind) {
-            d.blind = this.blind;
-        }
-
         // Set the flags parameter if necessary
         if (this.flags) {
             d.flags = this.flags;
+        }
+
+        // Set the whisper and blind parameters according to the player roll mode settings
+        switch (game.settings.get('core', 'rollMode')) {
+            case 'gmroll':
+                d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                break;
+            case 'blindroll':
+                d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                d.blind = true;
+                break;
+            case 'selfroll':
+                d.whisper = [game.user.id];
+                break;
         }
 
         // Create the chat
@@ -157,7 +130,6 @@ export class NephilimChat {
 
         // Update the data to provide to the template
         const d = duplicate(this.data);
-        d.actor = this.actor;
         d.owner = this.actor.id;
 
         // Call the template renderer.

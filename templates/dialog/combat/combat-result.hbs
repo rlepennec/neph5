@@ -5,12 +5,12 @@
         <div class="chat-description">
 
             {{#if result.roll}}
-            <span>{{actor.data.name}} {{result.roll}}</span><br>
+            <span>{{actor.name}} {{result.roll}}</span><br>
             {{/if}}
 
             {{#if result.wound}}
             {{#if (eq action.type 'defense')}}
-            <span>{{actor.data.name}} {{result.wound}}</span><br>
+            <span>{{actor.name}} {{result.wound}}</span><br>
             {{#each result.effects as |effect|}}
             <span>{{effect}}</span><br>
             {{/each}}

@@ -2,10 +2,10 @@
     "name":"neph5e",
     "title": "Nephilim Legende",
     "description": "A system for playing Nephilim Legende games.",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "author": "Kartaj",
     "minimumCoreVersion": "0.8.9",
-    "compatibleCoreVersion": "0.8.9",
+    "compatibleCoreVersion": "9.0.0",
     "esmodules": [
         "neph5e.js"
     ],
@@ -13,13 +13,6 @@
         "neph5e.css"
     ],
     "packs": [
-        {
-			"name": "systeme",
-			"label": "Système",
-			"system": "neph5e",
-			"path": "./packs/systeme.db",
-			"entity": "Macro"
-		}
     ],
     "languages": [
         {

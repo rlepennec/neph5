@@ -54,17 +54,17 @@
 
     {{#switch rollType}}
     {{#case 'none'}}
-    <label class="opposite-checkbox">
+    <label class="opposed-checkbox">
         <input
-          id="opposite"
+          id="opposed"
           type="checkbox"
-          name="opposite"
+          name="opposed"
           data-dtype="Boolean"/>
         <i class="fas fa-male unchecked"></i>
         <i class="fas fa-people-arrows checked"></i>
     </label>{{/case}}
-    {{#case 'alone'}}<i class="fas fa-male"></i>{{/case}}
-    {{#case 'opposite'}}<i class="fas fa-people-arrows"></i>{{/case}}
+    {{#case 'simple'}}<i class="fas fa-male"></i>{{/case}}
+    {{#case 'opposed'}}<i class="fas fa-people-arrows"></i>{{/case}}
     {{/switch}}
 
   </div>

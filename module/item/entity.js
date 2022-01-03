@@ -1,9 +1,9 @@
-import { deleteReferences } from "./tools.js";
+import { deleteItemReferences } from "../common/tools.js";
 import { UUID } from "../common/tools.js";
-import { deleteItemOf } from "../actor/tools.js";
-import { setItemOf } from "../actor/tools.js";
+import { setItemOf } from "../common/tools.js";
 import { Rolls } from "../common/rolls.js";
 import { getByPath } from "../common/tools.js";
+import { deleteItemOf } from "../common/tools.js";
 
 export class NephilimItem extends Item {
 
@@ -112,21 +112,21 @@ export class NephilimItem extends Item {
 
         switch (this.data.type) {
             case 'competence':
-                deleteReferences(this.data, "vecu", "competences");
+                deleteItemReferences(this.data, "vecu", "competences");
                 break;
             case 'vecu':
-                deleteReferences(this.data, "periode", "vecus");
+                deleteItemReferences(this.data, "periode", "vecus");
                 break;
             case 'magie':
-                deleteReferences(this.data, "sort", "voies");
+                deleteItemReferences(this.data, "sort", "voies");
                 this.filterActorsBy("magie", "magie.voie.refid", this.data.data.id)
                     .forEach(async actor => setItemOf(actor, "magie", null, "voie.refid"));
                 break;
             case 'catalyseur':
-                deleteReferences(this.data, "formule", "catalyseurs");
+                deleteItemReferences(this.data, "formule", "catalyseurs");
                 break;
             case 'formule':
-                deleteReferences(this.data, "formule", "variantes");
+                deleteItemReferences(this.data, "formule", "variantes");
                 this.filterActorsBy("alchimie", "refid", this.data.data.id, "alchimie.formules")
                     .forEach(async actor => deleteItemOf(actor, "alchimie", "refid", this.data.data.id, "formules"));
                 break;

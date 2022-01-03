@@ -2,7 +2,7 @@
 
     <div style="flex:auto;margin-right:10px">
         <ol class="item-list">
-            <li class="item-list-header" style="margin-bottom:10px">
+            <li class="item-list-header" style="margin-bottom:10px;height:27px">
                 <div class="item-name">
                     <span>Dommages physiques</span>
                 </div>
@@ -16,7 +16,7 @@
                     <span/>
                 </div>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Choc</span>
                 </div>
@@ -36,7 +36,7 @@
                     value="{{data.dommage.physique.cases}}"
                     data-dtype="Number"/>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Mineure -2</span>
                 </div>
@@ -46,16 +46,18 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.physique.mineure"
                         type="checkbox"
                         {{checked data.dommage.physique.mineure}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Sérieuse -4</span>
                 </div>
@@ -65,16 +67,18 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.physique.serieuse"
                         type="checkbox"
                         {{checked data.dommage.physique.serieuse}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Grave -6</span>
                 </div>
@@ -84,16 +88,18 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.physique.grave"
                         type="checkbox"
                         {{checked data.dommage.physique.grave}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Mortelle</span>
                 </div>
@@ -103,21 +109,23 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.physique.mortelle"
                         type="checkbox"
                         {{checked data.dommage.physique.mortelle}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
         </ol>
     </div>
 
     <div style="flex:auto;margin-right:10px">
         <ol class="item-list">
-            <li class="item-list-header" style="margin-bottom:10px">
+            <li class="item-list-header" style="margin-bottom:10px;height:27px">
                 <div class="item-name">
                     <span>Dommages magiques</span>
                 </div>
@@ -131,7 +139,7 @@
                     <span/>
                 </div>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Choc</span>
                 </div>
@@ -151,7 +159,7 @@
                     value="{{data.dommage.magique.cases}}"
                     data-dtype="Number"/>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Mineure -2</span>
                 </div>
@@ -161,16 +169,18 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.magique.mineure"
                         type="checkbox"
                         {{checked data.dommage.magique.mineure}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Sérieuse -4</span>
                 </div>
@@ -180,16 +190,18 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.magique.serieuse"
                         type="checkbox"
                         {{checked data.dommage.magique.serieuse}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Grave -6</span>
                 </div>
@@ -199,16 +211,18 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.magique.grave"
                         type="checkbox"
                         {{checked data.dommage.magique.grave}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
-            <li class="item">
+            <li class="item" style="height:27px">
                 <div class="item-name">
                     <span>Mortelle</span>
                 </div>
@@ -218,14 +232,16 @@
                 <div class="item-control">
                     <span/>
                 </div>
-                <div class="item-checkbox">
+                <label class="hand-checkbox">
                     <input
                         class="item-checkbox" 
                         name="data.dommage.magique.mortelle"
                         type="checkbox"
                         {{checked data.dommage.magique.mortelle}}
                         data-dtype="Boolean"/>
-                </div>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
             </li>
         </ol>
     </div>

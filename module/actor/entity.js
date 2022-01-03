@@ -1,14 +1,12 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Rolls } from "../common/rolls.js";
 import { Game } from "../common/game.js";
-import { Rules } from "../common/rules.js";
 import { getByPath } from "../common/tools.js";
 import { Strike } from "../combat/melee/strike.js";
 import { Fire } from "../combat/ranged/fire.js";
 import { Move } from "../combat/maneuver/move.js";
 import { Wrestle } from "../combat/unarmed/wrestle.js";
 import { Defend } from "../combat/defense/defend.js";
-import { State } from "../combat/state.js";
 
 export class NephilimActor extends Actor {
 
@@ -33,25 +31,6 @@ export class NephilimActor extends Actor {
      */
     unlock() {
         this.locked = false;
-    }
-
-    /**
-     * Executes the related macro.
-     * @param token The token for which to execute the macro.
-     */
-    async etat(token) {
-        if (game.combat === null) {
-            ui.notifications.warn("Aucun combat !");
-            return;
-        }
-        if (token.combatant === null) {
-            ui.notifications.warn("Vous n'êtes pas en combat !");
-            return;
-        }
-        if (this.unlocked()) {
-            this.lock();
-            await new State(this, token).doit();
-        }
     }
 
     /**
@@ -298,16 +277,26 @@ export class NephilimActor extends Actor {
                         refid: item.refid,
                         name: CustomHandlebarsHelpers.getItem(item.refid).data.name,
                         degre: item.degre,
-                        next: Rules.getNextCost(item.degre + 1)
+                        next: NephilimActor.getNextCost(item.degre + 1)
                     });
                 } else {
                     sums[index].degre = sums[index].degre + item.degre;
-                    sums[index].next = Rules.getNextCost(sums[index].degre + 1);
+                    sums[index].next = NephilimActor.getNextCost(sums[index].degre + 1);
                 }
             }
         }
         sums.sort((fst, snd) => (fst.name > snd.name) ? 1 : ((snd.name > fst.name) ? -1 : 0));
         return sums;
+    }
+
+    /**
+     * Gets the number points of sapience to spend to reach a skill level to one degre.
+     * @param {Integer} degre The level to reach which must be in [0.. +[.
+     * @returns the number of points of sapience.
+     */
+    static getNextCost(degre) {
+        const costs = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 100];
+        return costs[degre];
     }
 
     /**
@@ -373,7 +362,13 @@ export class NephilimActor extends Actor {
      */
     getCompetence(competence) {
         const sapience = this.getCompetenceSum(competence);
-        return Rules.toDegre(sapience);
+        let degre = 0;
+        let cost = 0;
+        while (cost <= sapience) {
+            degre = degre + 1;
+            cost = NephilimActor.getCostTo(degre);
+        }
+        return degre - 1;
     }
 
     /**
@@ -388,11 +383,21 @@ export class NephilimActor extends Actor {
             for (let v of p.vecus) {
                 const vecu = CustomHandlebarsHelpers.getItem(v.refid);
                 for (let r of vecu.data.data.competences.filter(i => i.refid === competence.data.data.id)) {
-                    sapience = sapience + Rules.getCostTo(v.degre);
+                    sapience = sapience + NephilimActor.getCostTo(v.degre);
                 }
             }
         }
         return sapience;
+    }
+
+    /**
+     * Gets the number points of sapience to spend to reach a skill level from 0 to the specified degre.
+     * @param {Integer} degre The level to reach which must be in [0.. +[.
+     * @returns the number of points of sapience.
+     */
+    static getCostTo(degre) {
+        const costs = [0, 1, 3, 6, 10, 15, 25, 40, 60, 90];
+        return degre < 10 ? costs[degre] : 90 + degre * 100;
     }
 
     /**
@@ -431,7 +436,7 @@ export class NephilimActor extends Actor {
     async rollSimulacre(uuid, self, attribute) {
 
         const simulacre = CustomHandlebarsHelpers.getActor(uuid);
-        const sentence = Rules.getSentence(attribute, self);
+        const sentence = this.getSentence(attribute, self);
 
         let difficulty = 0;
         switch (attribute) {
@@ -477,22 +482,22 @@ export class NephilimActor extends Actor {
     getSkill(name) {
         switch (name) {
             case 'melee':
-                return this.getCompetenceById(Game.skills.melee.uuid);
+                return this.getCompetenceById(game.settings.get('neph5e', 'uuidMelee'));
             case 'esquive':
-                return this.getCompetenceById(Game.skills.esquive.uuid);
+                return this.getCompetenceById(game.settings.get('neph5e', 'uuidDodge'));
             case 'martial':
-                return this.getCompetenceById(Game.skills.martial.uuid);
+                return this.getCompetenceById(game.settings.get('neph5e', 'uuidHand'));
             case 'best.of.esquive.melee.martial':
-                const melee = this.getCompetenceById(Game.skills.melee.uuid);
-                const esquive = this.getCompetenceById(Game.skills.esquive.uuid);
-                const martial = this.getCompetenceById(Game.skills.martial.uuid);
+                const melee = this.getCompetenceById(game.settings.get('neph5e', 'uuidMelee'));
+                const esquive = this.getCompetenceById(game.settings.get('neph5e', 'uuidDodge'));
+                const martial = this.getCompetenceById(game.settings.get('neph5e', 'uuidHand'));
                 return Math.max(melee, esquive, martial);
             case 'trait':
-                return this.getCompetenceById(Game.skills.trait.uuid);
+                return this.getCompetenceById(game.settings.get('neph5e', 'uuidDraft'));
             case 'feu':
-                return this.getCompetenceById(Game.skills.feu.uuid);
+                return this.getCompetenceById(game.settings.get('neph5e', 'uuidFire'));
             case 'lourde':
-                return this.getCompetenceById(Game.skills.lourde.uuid);
+                return this.getCompetenceById(game.settings.get('neph5e', 'uuidHeavy'));
             default:
                 return 0;
         }
@@ -538,13 +543,42 @@ export class NephilimActor extends Actor {
             return armor.data.data.magique;
         }
         switch (weapon.data.skill) {
-            case Game.skills.melee.id:
+            case 'melee':
                 return armor.data.data.contact;
-            case Game.skills.trait.id:
+            case 'trait':
                 return armor.data.data.trait;
-            case Game.skills.feu.id:
-            case Game.skills.lourde.id:
+            case 'feu':
+            case 'lourde':
                 return armor.data.data.feu;
+        }
+    }
+
+    getSentence(quality, self) {
+        switch (quality) {
+            case 'agile':
+                return self ? " fait appel à son agilité" : "fait appel à l'agilité de son simulacre";
+            case 'endurant':
+                return self ? " fait appel à son endurance" : "fait appel à l'endurance de son simulacre";
+            case 'fort':
+                return self ? " fait appel à sa force" : "fait appel à la force de son simulacre";
+            case 'intelligent':
+                return self ? "fait appel à son intelligence" : "fait appel à l'intelligence de son simulacre";
+            case 'seduisant':
+                return self ? "fait appel à son charisme" : "fait appel au charisme de son simulacre";
+            case 'soleil':
+                return self ? "fait appel à sa volonté" : "fait appel à la volonté de son simulacre";
+            case 'savant':
+                return self ? "fait appel à son savoir" : "fait appel au savoir de son simulacre";
+            case 'sociable':
+                return self ? "fait appel à ses relations" : "fait appel à aux relations de son simulacre";
+            case 'fortune':
+                return self ? "fait appel à sa fortune" : "utilise la fortune de son simulacre";
+            case 'vecu':
+                return self ? "utilise son vécu" : "utilise le vécu de son simulacre";
+            case 'menace':
+                return "fait appel à ses compétences martiales";
+            case 'ka':
+                return "fait appel à son ka";
         }
     }
 

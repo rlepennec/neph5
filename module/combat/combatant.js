@@ -27,8 +27,29 @@ export class NephilimCombatant extends Combatant {
         if (!this.actor) return "1d6";
         let malus = this.getWoundsModifier('physique');
         let bonus = this.actor.data.data.bonus.initiative;
-        let eau = this.actor.data.data.ka.eau === undefined ? 0 : this.actor.data.data.ka.eau;
-        return "1d6" + (malus === 0 ? "" : malus.toString()) + (bonus === 0 ? "" : "+" + bonus.toString()) + (eau === 0 ? "" : "+" + eau.toString());
+        let ka = undefined;
+        if (this.actor.data.data.ka.noyau !== undefined) {
+            ka = this.actor.data.data.ka.noyau;
+        } else if (this.actor.data.data.ka.eau !== undefined) {
+            ka = 2 * this.actor.data.data.ka.eau;
+        } else {
+            for (let elt of ['soleil', 'orichalque', 'brume', 'air', 'feu', 'lune', 'terre']) {
+                const val = this.actor.data.data.ka[elt];
+                if (val !== undefined) {
+                    ka = val;
+                    break;
+                }
+            }
+        }
+        if (ka === undefined) {
+            ka = 0;
+        }
+        let menace = this.actor.data.data.menace === undefined ? 0 : this.actor.data.data.menace;
+        return "1d6" + 
+            (malus === 0 ? "" : malus.toString()) +
+            (bonus === 0 ? "" : "+" + bonus.toString()) +
+            (ka === 0 ? "" : "+" + ka.toString()) +
+            (menace === 0 ? "" : "+" + menace.toString());
     }
 
     /**
@@ -212,7 +233,8 @@ export class NephilimCombatant extends Combatant {
         const flags = duplicate(this.data.flags);
         const current = flags.world.combat.effects.find(e => e.id === effect.id);
         const now = game.combat.current.round;
-        if (current === undefined) {
+        const toggle = current === undefined;
+        if (toggle) {
 
             // Update the combatant flags
             flags.world.combat.effects.push({
@@ -220,12 +242,6 @@ export class NephilimCombatant extends Combatant {
                 start: now,
                 duration: duration
             });
-
-            // Update the status icon of the token
-            if (effect.status != undefined) {
-                const token = game.canvas.tokens.get(this.data.tokenId);
-                await token.toggleEffect(effect.status, { overlay: false });
-            }
 
         } else {
 
@@ -235,7 +251,17 @@ export class NephilimCombatant extends Combatant {
 
         }
 
+        // Update the flags first
         await this.update({ ['flags']: flags });
+
+        // Update the status icon of the token
+        if (toggle) {
+            if (effect.status != undefined) {
+                const token = game.canvas.tokens.get(this.data.tokenId);
+                await token.toggleEffect(effect.status, { overlay: false });
+            }
+        }
+
         return this;
 
     }
