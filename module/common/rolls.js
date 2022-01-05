@@ -206,7 +206,9 @@ export class Rolls {
                 blessure: woundModifier,
                 selectElement: selectElement,
                 elements: Game.pentacle.elements,
-                rollType: rollType
+                rollType: rollType,
+                selectApproche: item.type === 'vecu' || item.type === 'competence',
+                approches: actor.getApproches()
             });
 
         // Display the action panel
@@ -228,8 +230,12 @@ export class Rolls {
                         // Add the optional ka element, used for specified invocation
                         const additionalKa = selectElement ? actor.getKa($("#element").val()) : 0;
 
+                        // Add the optional approche
+                        const app = $("#approche").val();
+                        const approche = app === 'none' ? 0 : actor.getKa(app);
+
                         // Calculate the final difficulty
-                        data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa;
+                        data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa + approche;
 
                         // Indicates if the action is an opposed one
                         data.opposed = opposed ? true : simple ? false : html.find("#opposed")[0].checked;;
@@ -330,9 +336,10 @@ export class Rolls {
             },
             blessure: 0,
             selectElement: false,
-            elements: {}
+            elements: {},
+            selectApproche: false,
+            approches: {}
         };
-
 
         const html = await renderTemplate("systems/neph5e/templates/dialog/basic/basic-action.html", data);
 

@@ -191,6 +191,35 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * @returns the allowed approches with the name of the element and the value if > 0.
+     */
+    getApproches() {
+        const approches = {};
+        approches['none'] = 'NEPH5E.none';
+        switch (this.data.type) {
+            case 'figure':
+                if (this.data.data.ka.noyau > 0) {
+                    approches['noyau'] = 'NEPH5E.luneNoire';
+                } else {
+                    for (let elt of ['air', 'eau', 'feu', 'lune', 'terre', 'soleil', 'orichalque', 'brume']) {
+                        const value = this.data.data.ka[elt];
+                        if (value > 0) {
+                            approches[elt] = 'NEPH5E.pentacle.elements.' + elt;
+                        }
+                    }
+                }
+                break;
+            case 'figurant':
+                approches['ka'] = 'NEPH5E.ka';
+                break;
+            case 'simulacre':
+                approches['soleil'] = 'NEPH5E.soleil';
+                break;
+        }
+        return approches;
+    }
+
+    /**
      * Gets the level of the specified ka.
      * @param element The element of the ka to get. Allowed ka are:
      *   air,

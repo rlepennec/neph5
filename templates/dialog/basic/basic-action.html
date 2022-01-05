@@ -52,6 +52,20 @@
     </div>
     {{/if}}
 
+    {{#if selectApproche}}
+    <div class="basic-sort">
+        <a><i class="fas fa-fire"></i></a>
+      </div>
+
+    <div class="basic-difficulty">
+        <select id="approche" name="approche">
+            {{#each approches as |name label|}}
+            <option value="{{label}}">{{localize name}}</option>
+            {{/each}}
+        </select>
+    </div>
+    {{/if}}
+
     {{#switch rollType}}
     {{#case 'none'}}
     <label class="opposed-checkbox">

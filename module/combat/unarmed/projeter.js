@@ -11,7 +11,7 @@ export class Projeter extends Unarmed {
     /**
      * The name of the action.
      */
-    static name = 'Projeter';
+    static name = 'Faire tomber';
 
     /**
      * The tooltip of the action.

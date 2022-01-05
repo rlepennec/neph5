@@ -48,6 +48,7 @@
     "SETTINGS.uuidHeavyDesc": "Identifiant de l'objet permettant d'utiliser les armes lourdes",
 
     "NEPH5E": {
+        "none": "Aucune",
         "attributs": "Attributs",
         "initiative": "Initiative",
         "perspicacite": "Perspicacité",
@@ -57,7 +58,7 @@
         "reload": "Recharger",
         "aim": "Viser",
         "hit": "Frapper",
-        "throw": "Projeter",
+        "throw": "Faire tomber",
         "lock": "Immobiliser",
         "hardCover": "Se cacher",
         "softCover": "Se mettre à couvert",

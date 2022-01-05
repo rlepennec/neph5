@@ -28,9 +28,9 @@ export class NephilimCombatant extends Combatant {
         let malus = this.getWoundsModifier('physique');
         let bonus = this.actor.data.data.bonus.initiative;
         let ka = undefined;
-        if (this.actor.data.data.ka.noyau !== undefined) {
+        if (this.actor.data.data.ka.noyau > 0) {
             ka = this.actor.data.data.ka.noyau;
-        } else if (this.actor.data.data.ka.eau !== undefined) {
+        } else if (this.actor.data.data.ka.eau > 0) {
             ka = 2 * this.actor.data.data.ka.eau;
         } else {
             for (let elt of ['soleil', 'orichalque', 'brume', 'air', 'feu', 'lune', 'terre']) {

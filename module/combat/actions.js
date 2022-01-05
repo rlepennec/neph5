@@ -153,9 +153,13 @@ export class Actions {
                         const choice = $('input[name=action]:checked').val();
                         const action = data.actions.find(a => a.id === choice);
                         const modifier = parseInt(Math.floor(parseInt(content.find("#modifier")[0].value) / 10));
+                        const modifierDommage = parseInt(parseInt(content.find("#modifierDommage")[0].value));
                         action.modifier = (isNaN(modifier) ? 0 : modifier);
                         if (action.difficulty != undefined) {
                             action.difficulty = Math.max(0, action.difficulty + action.modifier);
+                        }
+                        if (modifierDommage !== undefined) {
+                            action.impact = Math.max(0, action.impact + modifierDommage);
                         }
 
                         // Performs the choosen action
