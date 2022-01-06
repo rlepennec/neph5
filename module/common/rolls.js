@@ -207,7 +207,7 @@ export class Rolls {
                 selectElement: selectElement,
                 elements: Game.pentacle.elements,
                 rollType: rollType,
-                selectApproche: item.type === 'vecu' || item.type === 'competence',
+                selectApproche: item.type === 'vecu' || item.type === 'competence' || type === 'vecu',
                 approches: actor.getApproches()
             });
 
