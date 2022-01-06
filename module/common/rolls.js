@@ -164,6 +164,29 @@ export class Rolls {
         }
     }
 
+    static approcheOf(name) {
+        switch (name) {
+            case 'noyau':
+                return "de " + game.i18n.localize('NEPH5E.luneNoire');
+            case 'ka':
+                return "de " +  game.i18n.localize('NEPH5E.ka');
+            case 'soleil':
+                return "de " + game.i18n.localize('NEPH5E.soleil');
+            case 'air':
+                return "d'" + game.i18n.localize('NEPH5E.pentacle.elements.' + name);
+            case 'eau':
+                return "d'" + game.i18n.localize('NEPH5E.pentacle.elements.' + name);
+            case 'feu':
+                return "de " + game.i18n.localize('NEPH5E.pentacle.elements.' + name);
+            case 'lune':
+                return "de " + game.i18n.localize('NEPH5E.pentacle.elements.' + name);
+            case 'terre':
+                return "de " + game.i18n.localize('NEPH5E.pentacle.elements.' + name);
+            default:
+                return null;
+        }
+    }
+
     /**
      * Rolls dices for 
      * @param actor The actor which performs the action.
@@ -207,7 +230,7 @@ export class Rolls {
                 selectElement: selectElement,
                 elements: Game.pentacle.elements,
                 rollType: rollType,
-                selectApproche: item.type === 'vecu' || item.type === 'competence' || type === 'vecu',
+                selectApproche: item.type === 'vecu' || item.type === 'competence' || type === 'vecu' || type === 'menace',
                 approches: actor.getApproches()
             });
 
@@ -233,6 +256,7 @@ export class Rolls {
                         // Add the optional approche
                         const app = $("#approche").val();
                         const approche = app === 'none' ? 0 : actor.getKa(app);
+                        data.app = app;
 
                         // Calculate the final difficulty
                         data.difficulty = parseInt(data.difficulty) + (isNaN(modifier) ? 0 : modifier) + (skipWoundModifier ? 0 : woundModifier) + additionalKa + approche;
@@ -266,12 +290,13 @@ export class Rolls {
     static async displayRoll(actor, item, data) {
 
         // Display the roll action
+        const approche = Rolls.approcheOf(data.app);
         await new NephilimChat(actor)
             .withTemplate("systems/neph5e/templates/dialog/basic/basic-chat.html")
             .withData({
                 actor: actor,
                 item: item,
-                sentence: data.sentence,
+                sentence: data.sentence + (approche ===  null ? "" : " avec une approche " + approche),
                 difficulty: data.difficulty
             })
             .withRoll(true)
@@ -284,6 +309,7 @@ export class Rolls {
             scene: null,
             token: null,
         }, data.difficulty);
+
         const sentence = Rolls.getSentence(result) + (data.opposed ? " mais..." : "");
 
         // Display the roll result and dispatch the event to the GM if an opposed roll

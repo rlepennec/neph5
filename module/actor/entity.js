@@ -201,7 +201,7 @@ export class NephilimActor extends Actor {
                 if (this.data.data.ka.noyau > 0) {
                     approches['noyau'] = 'NEPH5E.luneNoire';
                 } else {
-                    for (let elt of ['air', 'eau', 'feu', 'lune', 'terre', 'soleil', 'orichalque', 'brume']) {
+                    for (let elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
                         const value = this.data.data.ka[elt];
                         if (value > 0) {
                             approches[elt] = 'NEPH5E.pentacle.elements.' + elt;
