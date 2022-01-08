@@ -10,11 +10,6 @@ export class Liberer extends Maneuver {
     static id = 'liberer';
 
     /**
-     * The name of the action.
-     */
-    static name = 'se libérer';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Supprime l'effet immobilisé";

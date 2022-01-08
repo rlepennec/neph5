@@ -8,11 +8,6 @@ export class Desarmement extends Melee {
     static id = 'desarmement';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Désarmement';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Désarme l'adversaire";

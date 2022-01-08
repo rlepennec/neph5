@@ -10,11 +10,6 @@ export class Relever extends Maneuver {
     static id = 'relever';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Se relever';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Supprime l'effet à terre";

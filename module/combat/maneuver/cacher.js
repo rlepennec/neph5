@@ -10,11 +10,6 @@ export class Cacher extends Maneuver {
     static id = 'cacher';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Se cacher';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Esquive + 100% comme malus";

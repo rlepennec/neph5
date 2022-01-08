@@ -8,11 +8,6 @@ export class Tirer extends Ranged {
     static id = 'tirer';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Tirer';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Utilise 1 munition";

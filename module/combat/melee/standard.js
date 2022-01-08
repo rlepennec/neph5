@@ -8,11 +8,6 @@ export class Standard extends Melee {
     static id = 'standard';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Standard';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Une attaque standard";

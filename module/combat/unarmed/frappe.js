@@ -8,11 +8,6 @@ export class Frappe extends Unarmed {
     static id = 'frappe';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Frappe';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Une frappe à main nue";

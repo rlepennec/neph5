@@ -9,11 +9,6 @@ export class Desarmer extends Defense {
     static id = 'desarmer';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Désarmer';
-
-    /**
      * The type of the action.
      */
     static type = Defense.type;

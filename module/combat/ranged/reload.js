@@ -9,11 +9,6 @@ export class Reload extends Maneuver {
     static id = 'reload';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Reload';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Recharge toutes les munitions de son arme";

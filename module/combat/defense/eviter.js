@@ -8,11 +8,6 @@ export class Eviter extends Defense {
     static id = 'eviter';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Eviter';
-
-    /**
      * The type of the action.
      */
     static type = Defense.type;

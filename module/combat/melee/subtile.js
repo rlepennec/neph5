@@ -8,11 +8,6 @@ export class Subtile extends Melee {
     static id = 'subtile';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Subtile';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "-40% à la défense adverse";

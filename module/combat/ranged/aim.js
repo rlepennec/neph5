@@ -9,11 +9,6 @@ export class Aim extends Maneuver {
     static id = 'aim';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Aim';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "+20% par round";

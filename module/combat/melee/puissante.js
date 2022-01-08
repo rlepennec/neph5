@@ -8,11 +8,6 @@ export class Puissante extends Melee {
     static id = 'puissante';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Puissante';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "+2 dommages";

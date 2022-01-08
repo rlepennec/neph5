@@ -8,11 +8,6 @@ export class Force extends Melee {
     static id = 'force';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Force';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Pas de défense";

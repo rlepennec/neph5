@@ -9,11 +9,6 @@ export class Immobiliser extends Unarmed {
     static id = 'immobiliser';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Immobiliser';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "1 dommage par round d'immobilisation";

@@ -8,11 +8,6 @@ export class Bloquer extends Defense {
     static id = 'bloquer';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Bloquer';
-
-    /**
      * The type of the action.
      */
     static type = Defense.type;

@@ -8,11 +8,6 @@ export class Rafale extends Ranged {
     static id = 'rafale';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Rafale';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Utilise 5 munitions et peut vider son chargeur";

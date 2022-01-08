@@ -10,7 +10,7 @@ export class Parer extends Defense {
     /**
      * The name of the action.
      */
-    static name = 'Parer';
+    // = 'Parer';
 
     /**
      * The type of the action.

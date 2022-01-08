@@ -251,10 +251,10 @@ export class Rolls {
                         const skipWoundModifier = html.find("#skipBlessure")[0].checked;
 
                         // Add the optional ka element, used for specified invocation
-                        const additionalKa = selectElement ? actor.getKa($("#element").val()) : 0;
+                        const additionalKa = selectElement ? actor.getKa(html.find("#element").val()) : 0;
 
                         // Add the optional approche
-                        const app = $("#approche").val();
+                        const app = html.find("#approche").val();
                         const approche = app === 'none' ? 0 : actor.getKa(app);
                         data.app = app;
 

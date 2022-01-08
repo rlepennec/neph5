@@ -8,11 +8,6 @@ export class Rapide extends Melee {
     static id = 'rapide';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Rapide';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Deux attaques";

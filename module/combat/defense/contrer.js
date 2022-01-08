@@ -10,11 +10,6 @@ export class Contrer extends Defense {
     static id = 'contrer';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Contrer';
-
-    /**
      * The type of the action.
      */
     static type = Defense.type;

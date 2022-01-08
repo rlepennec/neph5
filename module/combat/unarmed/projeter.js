@@ -9,11 +9,6 @@ export class Projeter extends Unarmed {
     static id = 'projeter';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Faire tomber';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "A terre, 1 dommage en ignorant les protections";

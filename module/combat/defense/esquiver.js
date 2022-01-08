@@ -8,11 +8,6 @@ export class Esquiver extends Defense {
     static id = 'esquiver';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Esquiver';
-
-    /**
      * The type of the action.
      */
     static type = Defense.type;

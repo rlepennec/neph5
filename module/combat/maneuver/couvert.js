@@ -10,11 +10,6 @@ export class Couvert extends Maneuver {
     static id = 'couvert';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Se mettre à couvert';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Esquive +30% comme malus";

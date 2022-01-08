@@ -8,11 +8,6 @@ export class Etrange extends Melee {
     static id = 'etrange';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Etrange';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "-20% à toutes les actions de l'adversaire au prochain round";

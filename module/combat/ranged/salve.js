@@ -8,11 +8,6 @@ export class Salve extends Ranged {
     static id = 'salve';
 
     /**
-     * The name of the action.
-     */
-    static name = 'Salve';
-
-    /**
      * The tooltip of the action.
      */
     static tooltip = "Utilise 3 munitions";
