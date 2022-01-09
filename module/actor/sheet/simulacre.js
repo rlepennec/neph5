@@ -60,7 +60,6 @@ export class SimulacreSheet extends BaseSheet {
         const item = await droppedItem(event);
         if (item != null && item.hasOwnProperty('data')) {
             if (item.data.type === "vecu") {
-                const tab = event.currentTarget.className;
                 const vecu = duplicate(this.actor.data.data.vecu);
                 vecu.refid = item.data.data.id;
                 vecu.degre = 0;

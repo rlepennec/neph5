@@ -266,15 +266,9 @@ export class Action {
      * @return the instance.
      */
     async resetProgress() {
-
-        // Resets the bonus of 'visee'
         await this.resetVisee();
-
-        // Resets the bonus of 'reload'
         await this.resetReload();
-
         return this;
-
     }
 
     /**
@@ -309,7 +303,7 @@ export class Action {
     }
 
     /**
-     * Getsthe score of the specified roll.
+     * Gets the score of the specified roll.
      *   - If fumble   : -2
      *   - If fail     : -1
      *   - If success  : the margin

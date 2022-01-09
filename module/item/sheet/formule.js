@@ -46,7 +46,7 @@ export class FormuleSheet extends NephilimItemSheet {
      */
     async _onDrop(event) {
         event.preventDefault();
-        const drop = await droppedItem(event);
+        const drop = await droppedItem(event.originalEvent);
         if (drop.data.type === "formule") {
             await updateItemRefs(this.item, drop.data, this.item.data.data.variantes, "data.variantes", false);
         }

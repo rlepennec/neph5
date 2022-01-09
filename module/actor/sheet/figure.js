@@ -299,13 +299,7 @@ export class FigureSheet extends BaseSheet {
 
                 switch (item.data.type) {
                     case 'vecu':
-                        const tab = event.currentTarget.className;
-                        if (tab.includes("simulacre")) {
-                            const simulacre = duplicate(this.actor.data.data.simulacre);
-                            simulacre.vecu.refid = item.data.data.id;
-                            simulacre.vecu.degre = 0;
-                            await this.actor.update({ ['data.simulacre']: simulacre });
-                        } else if (tab.includes("incarnations")) {
+                        if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1) {
                             await this._onDropInPeriode(item, 'vecus', {});
                         }
                         break;

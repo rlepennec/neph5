@@ -78,7 +78,7 @@ export class FigurantSheet extends BaseSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const item = this.actor.getEmbeddedDocument('Item', id);
-        item.sheet.render(true);
+        await item.sheet.render(true);
     }
 
     async _onDeleteItem(event) {
@@ -129,7 +129,7 @@ export class FigurantSheet extends BaseSheet {
         if (selected[0].actor.data._id !== actor.data._id) {
             return null;
         }
-        return (selected[0])
+        return (selected[0]);
     }
 
     async _onRoll(event) {

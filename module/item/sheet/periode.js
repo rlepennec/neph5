@@ -35,7 +35,7 @@ export class PeriodeSheet extends NephilimItemSheet {
      */
     async _onDrop(event) {
         event.preventDefault();
-        const drop = await droppedItem(event);
+        const drop = await droppedItem(event.originalEvent);
         if (drop.data.type === "vecu") {
             await updateItemRefs(this.item, drop.data, this.item.data.data.vecus, "data.vecus", false);
         }

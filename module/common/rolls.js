@@ -29,7 +29,7 @@ export class Rolls {
      * @returns true if a double has been rolled.
      */
     static isDouble(n) {
-        return n === 100 || n === 11 || n === 22 || n === 33 || n === 44 || n === 55 || n === 66 || n === 77 || n === 88 || n === 99;
+        return n === 11 || n === 22 || n === 33 || n === 44 || n === 55 || n === 66 || n === 77 || n === 88 || n === 99 || n === 100;
     }
 
     /**
