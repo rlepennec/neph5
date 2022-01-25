@@ -3,6 +3,14 @@ import { NephilimActor } from "../actor/entity.js";
 export class CustomHandlebarsHelpers {
 
     /**
+     * @param {*} str 
+     * @returns true if the specified string is null or only made of whitespaces.
+     */
+    static isEmptyString(str) {
+        return str === undefined || str === null || str.trim() === '';
+    }
+
+    /**
      * Gets the specified actor.
      * @param uuid The uuid of the actor to get.
      * @returns the actor or undefined if not found.
@@ -18,6 +26,13 @@ export class CustomHandlebarsHelpers {
      */
     static getItem(uuid) {
         return game.items.find(i => i.data.data.id === uuid);
+    }
+
+    /**
+     * @returns the specified item embedded in actor.
+     */
+    static getEmbeddedItem(actor, id) {
+        return actor.items.get(id);
     }
 
     /**
@@ -65,19 +80,15 @@ export class CustomHandlebarsHelpers {
      */
     static getVecus(actor) {
         const vecus = [];
-        for (let p of CustomHandlebarsHelpers.getActor(actor).data.data.periodes) {
-            if (p.active === true) {
-                for (let v of p.vecus) {
-                    const periode = CustomHandlebarsHelpers.getItem(p.refid);
-                    const vecu = CustomHandlebarsHelpers.getItem(v.refid);
-                    vecus.push({
-                        refid: v.refid,
-                        name: vecu.data.name,
-                        degre: v.degre,
-                        contexte: periode.data.data.contexte
-                    });
-                }
-            }
+        for (let v of  CustomHandlebarsHelpers.getActor(actor).items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
+            const periode = CustomHandlebarsHelpers.getItem(v.data.data.periode);
+            vecus.push({
+                id: v.id,
+                refid: v.data.data.id,
+                name: v.name,
+                degre: v.data.data.degre,
+                contexte: periode === undefined ? "Aucune période" : periode.data.data.contexte
+            });
         }
         return vecus;
     }
@@ -90,10 +101,10 @@ export class CustomHandlebarsHelpers {
     static getCompetences(actor) {
         const competences = [];
         const a = CustomHandlebarsHelpers.getActor(actor);
-        for (let c of CustomHandlebarsHelpers.getItems('competence')) {
+        for (let c of CustomHandlebarsHelpers.getItems('competence').sort((a,b)=> (a.name > b.name ? 1 : -1))) {
             competences.push({
                 refid: c.data.data.id,
-                name: c.data.name,
+                name: c.name,
                 degre: a.getCompetence(c),
                 sum: a.getCompetenceSum(c),
                 next: NephilimActor.getCostTo(a.getCompetence(c) + 1)
@@ -119,15 +130,6 @@ export class CustomHandlebarsHelpers {
 
     static isMelee(skill) {
         return skill === 'martial' || skill === 'melee';
-    }
-
-    /**
-     * Gets the score of the specified actor.
-     * @param actor The uuid of the actor for which to create the score.
-     * @returns the score.
-     */
-    static getScore(actor) {
-        return 0;
     }
 
     /**

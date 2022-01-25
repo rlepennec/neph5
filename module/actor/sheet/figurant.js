@@ -84,7 +84,6 @@ export class FigurantSheet extends BaseSheet {
     async _onDeleteItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
         return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
     }
 

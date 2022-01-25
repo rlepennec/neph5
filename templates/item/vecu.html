@@ -1,96 +1,125 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
-        <div class="title">
-
-            <span class="type">{{localize "ITEM.TypeVecu"}}</span>
-
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
-
-            <br>
-
-            <input
-                name="data.id"
-                type="text"
-                value="{{data.id}}"
-                data-dtype="String"/>
-
+    <div class="tbd" style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-vecu.webp" title="{{localize 'ITEM.TypeVecu'}}"/>
         </div>
 
-    </header>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
+            <input
+                name="data.id"
+                type="hidden"
+                value="{{data.id}}"
+                data-dtype="String"/>
+            {{/if}}
 
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+            <div style="display: flex; flex-direction: row; height: 60px;">
 
-    </nav>
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
+            </div>
 
-        <div class="tab description" data-group="primary" data-tab="description">
+            <div style="display: flex; flex-direction: row; margin-top: 10px;">
 
-            <ol class="item-list">
+                <div class="edit-periode" style="width: 100%; text-align: center; margin-bottom: 10px;">
+                    {{#with (getItem data.periode)}}
+                    <span style="margin-top: 15px; margin-left: 10px; vertical-align: middle; width: 100%; font-family: Calibri; font-style: italic; font-size: 20px; text-align: center;">{{name}}</span>
+                    {{/with}}
+                </div>
 
-                <li class="item-list-header">
+                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                    <select name="data.element">
+                    {{#select data.element}}
+                        {{#each elements as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
 
-                    <div class="item-name">
-                        <span>{{localize "ITEM.TypeCompetence"}}</span>
-                    </div>
-                
-                    <div class="item-control">
-                        <span/>
-                    </div>
+            </div>
 
-                    <div class="item-control">
-                        <span/>
-                    </div>
-                
-                </li>
+            <ol style="column-count: 2;">
 
                 {{#each data.competences as |competence|}}
-                <li class="item" data-item-id="{{competence.refid}}">
+                <li class="item" data-item-id="{{competence.refid}}" style="display: flex; flex-direction: row;">
 
                     <input
                         name="data.competences.[{{@index}}].refid"
                         type="hidden"
                         value="{{competence.refid}}"
                         data-dtype="String"/>
-                
+
+                    <div style="margin-right: 10px;" >
+                        <a><i class="delete-competence fas fa-trash"></i></a>
+                    </div>
+
                     {{#with (getItem competence.refid)}}
-                    <div class="item-name">
+                    <div class="edit-competence">
                         <span data-item-id="{{competence.refid}}">{{name}}</span>
                     </div>
                     {{/with}}
 
-                    <div class="item-control">
-                        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                    </div>
-
-                    <div class="item-control">
-                        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-
-                {{/each}}
                 </li>
+                {{/each}}
 
             </ol>
 
-            <div class="part-header">
-                <div class="part-name">
-                    <span>{{localize "NEPH5E.description"}}</span>
-                </div>
-            </div>
+            {{#if item.isEmbedded}}
+            <ol style="margin-top: 10px;">
 
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+                {{#each data.mnemos as |mnemos|}}
+                <li class="item" data-item-id="{{@index}}" style="display: flex; flex-direction: row;">
+
+                    <div style="margin-right: 10px;" >
+                        <a><i class="delete-mnemos fas fa-trash"></i></a>
+                    </div>
+
+                    <input
+                        style="border: 0; background: transparent;"
+                        name="data.mnemos.[{{@index}}]"
+                        type="text"
+                        value="{{mnemos}}"
+                        data-dtype="String"/>
+
+                </li>
+                {{/each}}
+
+                <li style="display: flex; flex-direction: row;">
+
+                    <div style="margin-right: 10px;" >
+                        <a><i class="add-mnemos fas fa-plus"></i></a>
+                    </div>
+
+                    <span>{{localize 'NEPH5E.mnemos'}}</span>
+
+                </li>
+
+            </ol>
+            {{/if}}
+
+            <div style="border-width: 2px; margin-top: 10px">
+                {{#if (isEmptyString data.description)}}
+                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
 
         </div>
 
-    </section>
-        
+    </div>
+
 </form>

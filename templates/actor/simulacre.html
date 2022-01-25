@@ -13,7 +13,7 @@
         <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
 
         <div class="title">
-            <span class="type">{{localize "NEPH5E.simulacre.nom"}}</span>
+            <span class="type">{{localize "NEPH5E.simulacre"}}</span>
             <input class="name" name="name" type="text" value="{{actor.name}}"/>
         </div>
 
@@ -40,7 +40,7 @@
                 <li class="item" data-item-id="{{data.id}}" data-item-type="soleil">
                     <label class="item-name">Ka {{localize "NEPH5E.soleil"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="soleil" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -50,53 +50,46 @@
                         data-dtype="Number"/>
                 </li>
 
-                <li class="item" data-item-id="{{data.id}}" data-item-type="vecu">
-            
-                    {{#if data.vecu.refid}}
-                        {{#with (getItem data.vecu.refid) as |vecu|}}
-                        <label class="item-name">{{name}}</label>
-                        {{/with}}
-                    {{else}}
-                        <label class="item-name">{{localize "ITEM.TypeVecu"}}</label>
-                    {{/if}}
-            
-                    <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                {{#each actor.items as |item id|}}
+                {{#if (eq item.type 'vecu')}}
+                <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-simulacre-uuid="{{../data.id}}">
+
+                    <div class="item-name">
+                        <span>{{item.name}}</span>
                     </div>
-            
+
+                    <div class="item-checkbox">
+                        <span/>
+                    </div>
+
+                    <div class="item-control">
+                        <a class="edit-vecu" title="Edit Item"><i class="fas fa-edit"></i></a>
+                    </div>
+
+                    <div class="item-control">
+                        <a class="delete-vecu" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+
+                    <div class="item-control">
+                        <a class="roll-vecu" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+
                     <input
-                        class="item-integer"
-                        name="data.vecu.degre"
+                        class="item-integer degre-vecu"
+                        name="item.data.data.degre"
                         type="text"
-                        value="{{data.vecu.degre}}"
+                        value="{{item.data.data.degre}}"
                         data-dtype="Number"/>
-            
+
                 </li>
-            
-                {{#if data.vecu.refid}}
-                    {{#with (getItem data.vecu.refid) as |vecu|}}
-                    {{#each vecu.data.data.competences as |competence|}}
-                        <li class="item">
-            
-                            {{#with (getItem competence.refid)}}
-                            <div class="item-name" style="font-style: italic;margin-left: 20px;">
-                                <span>{{name}}</span>
-                            </div>
-                            {{/with}}
-            
-                            <div class="item-control"/>
-                            <div class="item-integer"/>
-            
-                        </li>
-                    {{/each}}
-                    {{/with}}
                 {{/if}}
-            
+                {{/each}}
+
             </ol>
-            
+
             {{#if useV3}}
             <ol class="item-list">
-    
+
                 <li class="item-list-header">
                     <div class="item-name">
                         <span>{{localize "NEPH5E.caracteristique"}}</span>
@@ -110,9 +103,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="agile">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.agile"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.agile"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="agile" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -123,9 +116,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="endurant">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.endurant"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.endurant"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="endurant" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -136,9 +129,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="fort">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.fort"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.fort"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="fort" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -149,9 +142,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="intelligent">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.intelligent"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.intelligent"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="intelligent" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -162,9 +155,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="seduisant">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.seduisant"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.seduisant"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="seduisant" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -175,9 +168,9 @@
                 </li>
                        
                 <li class="item" data-item-id="{{data.id}}" data-item-type="savant">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.savant"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.savant"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="savant" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -188,9 +181,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="sociable">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.sociable"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.sociable"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="sociable" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"
@@ -201,9 +194,9 @@
                 </li>
             
                 <li class="item" data-item-id="{{data.id}}" data-item-type="fortune">
-                    <label class="item-name">{{localize "NEPH5E.simulacre.fortune"}}</label>
+                    <label class="item-name">{{localize "NEPH5E.fortune"}}</label>
                     <div class="item-control">
-                        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                        <a class="roll-attribute" data-attribute="fortune" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
                     </div>
                     <input
                         class="item-integer"

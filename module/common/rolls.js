@@ -255,7 +255,7 @@ export class Rolls {
 
                         // Add the optional approche
                         const app = html.find("#approche").val();
-                        const approche = app === 'none' ? 0 : actor.getKa(app);
+                        const approche = app === 'none' || app === undefined ? 0 : actor.getKa(app);
                         data.app = app;
 
                         // Calculate the final difficulty

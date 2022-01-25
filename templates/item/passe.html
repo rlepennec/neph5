@@ -1,37 +1,46 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-
-        <input
-            name="data.id"
-            type="hidden"
-            value="{{data.id}}"
-            data-dtype="String"/>
-
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
-        <div class="title">
-            <span class="type">{{localize "ITEM.TypePasse"}}</span>
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-passe.webp" title="{{localize 'ITEM.TypePasse'}}"/>
         </div>
 
-    </header>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
+            <input
+                name="data.id"
+                type="hidden"
+                value="{{data.id}}"
+                data-dtype="String"/>
+            {{/if}}
 
-        <a class="sheet-navigation-tab active " data-tab="description">{{localize "NEPH5E.description"}}</a>
+            <div style="display: flex; flex-direction: row; height: 60px;">
 
-    </nav>
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
+            </div>
 
-        <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            <div style="border-width: 2px; margin-top: 10px">
+                {{#if (isEmptyString data.description)}}
+                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+
         </div>
 
-    </section>
+    </div>
 
 </form>

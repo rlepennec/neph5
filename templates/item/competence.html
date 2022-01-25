@@ -1,47 +1,45 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
-        <div class="title">
-
-            <span class="type">{{localize "ITEM.TypeCompetence"}}</span>
-
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
-
-            <br>
-
-            <input
-                name="data.id"
-                type="text"
-                value="{{data.id}}"
-                data-dtype="String"/>
-
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-competence.webp" title="{{localize 'ITEM.TypeCompetence'}}"/>
         </div>
 
-    </header>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
+            <input
+                name="data.id"
+                type="hidden"
+                value="{{data.id}}"
+                data-dtype="String"/>
+            {{/if}}
 
-        <a class="sheet-navigation-tab active " data-tab="description">{{localize "NEPH5E.description"}}</a>
+            <div style="display: flex; flex-direction: row; height: 60px;">
 
-    </nav>
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
+            </div>
 
-        <div class="tab" data-group="primary" data-tab="description">
+            <div style="display: flex; flex-direction: row; margin-top: 10px;">
 
-            <div class="header competence">
+                <div style="width: 100%; text-align: center; vertical-align: middle;"></div>
 
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.caracteristique"}}</label>
-                    <select class="property-value" name="data.inne">
-                    {{#select data.inne}}
-                        {{#each innes as |name label|}}
+                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                    <select name="data.element">
+                    {{#select data.element}}
+                        {{#each elements as |name label|}}
                         <option value="{{label}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}}
@@ -50,16 +48,15 @@
 
             </div>
 
-            <div class="part-header">
-                <div class="part-name">
-                    <span>{{localize "NEPH5E.description"}}</span>
-                </div>
+            <div style="border-width: 2px; margin-top: 10px">
+                {{#if (isEmptyString data.description)}}
+                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
             </div>
-
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
 
         </div>
 
-    </section>
+    </div>
 
 </form>

@@ -1,5 +1,5 @@
 import { preloadTemplates } from "./module/common/templates.js";
-import { migrateWorld } from "./module/common/migration.js";
+import { MigrationTools } from "./module/common/migration.js";
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 import { UUID } from "./module/common/tools.js";
 import { createMacro } from "./module/common/macros.js";
@@ -53,6 +53,7 @@ Hooks.once("init", function () {
     Handlebars.registerHelper({
         getActor: CustomHandlebarsHelpers.getActor,
         getItem: CustomHandlebarsHelpers.getItem,
+        getEmbeddedItem: CustomHandlebarsHelpers.getEmbeddedItem,
         getItems: CustomHandlebarsHelpers.getItems,
         canEditItem: CustomHandlebarsHelpers.canEditItem,
         getLevels: CustomHandlebarsHelpers.getLevels,
@@ -60,9 +61,9 @@ Hooks.once("init", function () {
         getVecus: CustomHandlebarsHelpers.getVecus,
         getScience: CustomHandlebarsHelpers.getScience,
         getLevel: CustomHandlebarsHelpers.getLevel,
+        isEmptyString: CustomHandlebarsHelpers.isEmptyString,
         isMelee: CustomHandlebarsHelpers.isMelee,
         getCount: CustomHandlebarsHelpers.getCount,
-        getScore: CustomHandlebarsHelpers.getScore,
         loop: CustomHandlebarsHelpers.loop,
         log: CustomHandlebarsHelpers.log,
         html: CustomHandlebarsHelpers.html
@@ -125,12 +126,10 @@ Hooks.once("init", function () {
     preloadTemplates();
     registerSystemSettings();
 
-    /*
     Hooks.once('ready', async () => {
-        await migrateWorld();
+        await MigrationTools.migrate();
     });
-    */
-
+    
     // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
     Hooks.on("hotbarDrop", async (bar, data, slot) => createMacro(bar, data, slot));
 
@@ -301,6 +300,14 @@ Hooks.once("init", function () {
     }
 
     function registerSystemSettings() {
+        game.settings.register('neph5e', 'debug', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.debug'),
+            hint: game.i18n.localize('SETTINGS.debugDesc'),
+            type: Boolean,
+            default: false
+        });
         game.settings.register('neph5e', 'useV3', {
             config: true,
             scope: 'world',
@@ -365,17 +372,14 @@ Hooks.once("init", function () {
             type: String,
             default: '146b1eaf-9d2d1038-b6d1534c-d8a7cc98'
         });
-
-        /*
         game.settings.register('neph5e', 'worldTemplateVersion', {
             name: 'World Template Version',
             hint: 'Used to automatically upgrade worlds data when the template is upgraded.',
             scope: 'world',
             config: false,
-            default: 0,
-            type: Number,
-          });
-          */
+            default: "1.0.0",
+            type: String,
+        });
     }
 
 });

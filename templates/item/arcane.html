@@ -1,46 +1,46 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-arcane.webp" title="{{localize 'ITEM.TypeArcane'}}"/>
+        </div>
 
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
 
-        <div class="title">
-
-            <span class="type">{{localize "ITEM.TypeArcane"}}</span>
-
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
-
-            <br>
-
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
             <input
                 name="data.id"
-                type="text"
+                type="hidden"
                 value="{{data.id}}"
                 data-dtype="String"/>
+            {{/if}}
 
-        </div>
+            <div style="display: flex; flex-direction: row; height: 60px;">
 
-    </header>
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
-
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
-
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        <div class="part-header">
-            <div class="part-name">
-                <span>{{localize "NEPH5E.description"}}</span>
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
             </div>
+
+            <div style="border-width: 2px; margin-top: 10px">
+                {{#if (isEmptyString data.description)}}
+                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+
         </div>
 
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-
-    </section>
+    </div>
 
 </form>

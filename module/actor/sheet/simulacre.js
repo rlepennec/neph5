@@ -1,4 +1,4 @@
-import { droppedItem } from "../../common/tools.js";;
+import { Rolls } from "../../common/rolls.js";
 import { UUID } from "../../common/tools.js";
 import { BaseSheet } from "./base.js";
 
@@ -52,20 +52,10 @@ export class SimulacreSheet extends BaseSheet {
     activateListeners(html) {
         super.activateListeners(html);
         html.find('div[data-tab="description"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="description"] .item-roll').click(this._onRoll.bind(this));
-    }
-
-    async _onDrop(event) {
-        event.preventDefault();
-        const item = await droppedItem(event);
-        if (item != null && item.hasOwnProperty('data')) {
-            if (item.data.type === "vecu") {
-                const vecu = duplicate(this.actor.data.data.vecu);
-                vecu.refid = item.data.data.id;
-                vecu.degre = 0;
-                await this.actor.update({['data.vecu']: vecu});
-            }
-        }
+        html.find('div[data-tab="description"] .roll-attribute').click(this._onRollAttribute.bind(this));
+        html.find('div[data-tab="description"] .roll-vecu').click(this._onRollVecu.bind(this));
+        html.find('div[data-tab="description"] .delete-vecu').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="description"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
     }
 
     /**
@@ -78,15 +68,66 @@ export class SimulacreSheet extends BaseSheet {
         super._updateObject(event, formData);
     }
 
-    async _onRoll(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const type = li.data("item-type");
-        if (type === "") {
-            return await this.actor.rollSimulacre(this.actor.data.data.id, true, "menace");
-        } else {
-            return await this.actor.rollSimulacre(id, true, type);
+    async _onRollAttribute(event) {
+        const attribute = $(event.currentTarget).data("attribute");
+        let sentence = "";
+        switch (attribute) {
+            case 'soleil':
+                sentence = "fait appel à son Ka Soleil";
+                break;
+            case 'agile':
+                sentence = "fait appel à son agilité";
+                break;
+            case 'endurant':
+                sentence = "fait appel à son endurance";
+                break;
+            case 'fort':
+                sentence = "fait appel à sa force";
+                break;
+            case 'intelligent':
+                sentence = "fait appel à son intelligence";
+                break;
+            case 'seduisant':
+                sentence = "fait appel à son charisme";
+                break;
+            case 'savant':
+                sentence = "fait appel à sa culture";
+                break;
+            case 'sociable':
+                sentence = "fait appel à sa sociabilité";
+                break;
+            case 'fortune':
+                sentence = "fait appel à sa fortune";
+                break;
         }
+        return Rolls.check(
+            this.actor,
+            { img: 'systems/neph5e/icons/caracteristique.jpg' },
+            attribute,
+            {
+                ...this.actor.data,
+                owner: this.actor.id,
+                difficulty: this.actor.data.data[attribute],
+                sentence: sentence
+            }
+        );
+    }
+
+    async _onRollVecu(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const actor = this.actor;
+        const item = actor.items.get(li.data("item-id"));
+        return Rolls.check(
+            actor,
+            item,
+            item.type,
+            {
+                ...item.data,
+                owner: actor.id,
+                difficulty: item.data.data.degre,
+                sentence: "fait appel à son vécu de " + item.name
+            }
+        );
     }
 
 }

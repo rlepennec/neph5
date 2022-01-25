@@ -135,16 +135,6 @@ Game.denier = {
     }
 }
 
-Game.simulacre = {
-    innes: {
-        agile:         "NEPH5E.simulacre.inne.agile",
-        endurant:      "NEPH5E.simulacre.inne.endurant",
-        fort:          "NEPH5E.simulacre.inne.fort",
-        intelligent:   "NEPH5E.simulacre.inne.intelligent",
-        seduisant:     "NEPH5E.simulacre.inne.seduisant"
-    }
-}
-
 Game.wounds = {
     choc: {
         id: "choc",

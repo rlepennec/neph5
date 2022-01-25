@@ -1,9 +1,6 @@
-import { deleteItemReferences } from "../common/tools.js";
 import { UUID } from "../common/tools.js";
-import { setItemOf } from "../common/tools.js";
 import { Rolls } from "../common/rolls.js";
 import { getByPath } from "../common/tools.js";
-import { deleteItemOf } from "../common/tools.js";
 
 export class NephilimItem extends Item {
 
@@ -105,96 +102,7 @@ export class NephilimItem extends Item {
         }
     }
 
-    /**
-     * @Override
-     */
-    async _onDelete(options, userId) {
 
-        switch (this.data.type) {
-            case 'competence':
-                deleteItemReferences(this.data, "vecu", "competences");
-                break;
-            case 'vecu':
-                deleteItemReferences(this.data, "periode", "vecus");
-                break;
-            case 'magie':
-                deleteItemReferences(this.data, "sort", "voies");
-                this.filterActorsBy("magie", "magie.voie.refid", this.data.data.id)
-                    .forEach(async actor => setItemOf(actor, "magie", null, "voie.refid"));
-                break;
-            case 'catalyseur':
-                deleteItemReferences(this.data, "formule", "catalyseurs");
-                break;
-            case 'formule':
-                deleteItemReferences(this.data, "formule", "variantes");
-                this.filterActorsBy("alchimie", "refid", this.data.data.id, "alchimie.formules")
-                    .forEach(async actor => deleteItemOf(actor, "alchimie", "refid", this.data.data.id, "formules"));
-                break;
-            case 'metamorphe':
-                this.filterActorsBy("metamorphe", "metamorphe.refid", this.data.data.id)
-                    .forEach(async actor => setItemOf(actor, "metamorphe", { refid: null, metamorphoses: [false, false, false, false, false, false, false, false, false, false] }));
-                break;
-            case 'chute':
-                this.filterActorsBy('chutes', 'refid', this.data.data.id, 'chutes')
-                    .forEach(async actor => deleteItemOf(actor, "chutes", "refid", this.data.data.id));
-                break;
-            case 'passe':
-                this.filterActorsBy('passes', 'refid', this.data.data.id, 'passes')
-                    .forEach(async actor => deleteItemOf(actor, "passes", "refid", this.data.data.id));
-                break;
-            case 'sort':
-                this.filterActorsBy('magie', 'refid', this.data.data.id, 'magie.sorts')
-                    .forEach(async actor => deleteItemOf(actor, "magie", "refid", this.data.data.id, "sorts"));
-                break;
-            case 'invocation':
-                this.filterActorsBy('kabbale', 'refid', this.data.data.id, 'kabbale.invocations')
-                    .forEach(async actor => deleteItemOf(actor, "kabbale", "refid", this.data.data.id, "invocations"));
-                break;
-            case 'ordonnance':
-                this.filterActorsBy('kabbale', 'refid', this.data.data.id, 'kabbale.voie.ordonnances')
-                    .forEach(async actor => deleteItemOf(actor, "kabbale", "refid", this.data.data.id, "voie.ordonnances"));
-                break;
-            case 'alchimie':
-                this.filterActorsBy("alchimie", "alchimie.voie.refid", this.data.data.id)
-                    .forEach(async actor => setItemOf(actor, "alchimie", null, "voie.refid"));
-                break;
-            case 'materiae':
-                this.filterActorsBy('alchimie', 'refid', this.data.data.id, 'alchimie.materiae')
-                    .forEach(async actor => deleteItemOf(actor, "alchimie", "refid", this.data.data.id, "materiae"));
-                break;
-            case 'aspect':
-                this.filterActorsBy('imago', 'refid', this.data.data.id, 'imago.aspects')
-                    .forEach(async actor => deleteItemOf(actor, "imago", "refid", this.data.data.id, "aspects"));
-                break;
-            case 'appel':
-                this.filterActorsBy('conjuration', 'refid', this.data.data.id, 'conjuration.appels')
-                    .forEach(async actor => deleteItemOf(actor, "conjuration", "refid", this.data.data.id, "appels"));
-                break;
-            case 'rite':
-                this.filterActorsBy('necromancie', 'refid', this.data.data.id, 'necromancie.rites')
-                    .forEach(async actor => deleteItemOf(actor, "necromancie", "refid", this.data.data.id, "rites"));
-                break;
-            case 'pratique':
-                this.filterActorsBy('denier', 'refid', this.data.data.id, 'denier.pratiques')
-                    .forEach(async actor => deleteItemOf(actor, "denier", "refid", this.data.data.id, "pratiques"));
-                break;
-            case 'technique':
-                this.filterActorsBy('baton', 'refid', this.data.data.id, 'baton.techniques')
-                    .forEach(async actor => deleteItemOf(actor, "baton", "refid", this.data.data.id, "techniques"));
-                break;
-            case 'tekhne':
-                this.filterActorsBy('coupe', 'refid', this.data.data.id, 'coupe.tekhnes')
-                    .forEach(async actor => deleteItemOf(actor, "coupe", "refid", this.data.data.id, "tekhnes"));
-                break;
-            case 'rituel':
-                this.filterActorsBy('epee', 'refid', this.data.data.id, 'epee.rituels')
-                    .forEach(async actor => deleteItemOf(actor, "epee", "refid", this.data.data.id, "rituels"));
-                break;
-        }
-
-        super._onDelete(options, userId);
-
-    }
 
     /**
      * Gets the difficulty of the roll for the specified actor.
@@ -212,7 +120,25 @@ export class NephilimItem extends Item {
             case 'competence':
                 let base = actor.getCompetence(this);
                 if (game.settings.get('neph5e', 'useV3')) {
-                    const attribute = actor.getAttribute(this.data.data.inne);
+                    let attribute = 0;
+                    const elt = this.data.data.element;
+                    switch (elt) {
+                        case 'air':
+                            attribute = actor.getAttribute('intelligent');
+                            break;
+                        case 'eau':
+                            attribute = actor.getAttribute('agile');
+                            break;
+                        case 'feu':
+                            attribute = actor.getAttribute('fort');
+                            break;
+                        case 'lune':
+                            attribute = actor.getAttribute('seduisant');
+                            break;
+                        case 'terre':
+                            attribute = actor.getAttribute('endurant');
+                            break;
+                    }
                     base = base + (attribute != -1 ? attribute - 3 : 0);
                 }
                 return base;
@@ -224,7 +150,7 @@ export class NephilimItem extends Item {
             case "rituel":
                 return actor.getScience(this.data.data.cercle);
             case 'vecu':
-                return actor.getLevelFrom('vecus', this);
+                return this.data.data.degre;
             case 'quete':
             case 'savoir':
             case 'passe':
@@ -382,6 +308,311 @@ export class NephilimItem extends Item {
                 .filter(actor =>
                     actor.data.data.hasOwnProperty(root) &&
                     getByPath(actor.data.data, collection).findIndex(item => (getByPath(item, key) === value)) != -1);
+        }
+    }
+
+
+    /**            CLEAN             */
+    /******************************* */
+
+    /**
+     * @Override
+     */
+     async _onDelete(options, userId) {
+
+        switch (this.type) {
+
+            case 'alchimie':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteAlchimie(this);
+                }
+
+                break;
+
+            case 'arcane':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteArcane(this);
+                }
+
+                break;
+
+            case 'appel':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteAppel(this);
+                }
+
+                break;
+
+            case 'aspect':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteAspect(this);
+                }
+
+                break;
+
+            case 'catalyseur':
+
+                // Delete from all formules of the world
+                for (let item of game.items.filter(i => i.type === "formule")) {
+                    await item.deleteCatalyseur(this);
+                }
+
+                break;
+
+            case 'chute':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteChute(this);
+                }
+
+                break;
+
+            case 'competence':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure' || a.type === 'simulacre')) {
+                    await actor.deleteCompetence(this);
+                }
+
+                // Delete from all vecus of the world
+                for (let item of game.items.filter(i => i.type === "vecu")) {
+                    await item.deleteCompetence(this);
+                }
+
+                break;
+
+            case 'formule':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteFormule(this);
+                }
+
+                // Delete from all formules of the world
+                for (let item of game.items.filter(i => i.type === "formule")) {
+                    await item.deleteVariante(this);
+                }
+
+                break;
+
+            case 'invocation':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteInvocation(this);
+                }
+                
+                break;
+
+            case 'magie':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteMagie(this);
+                }
+
+                // Delete from all sorts of the world
+                for (let item of game.items.filter(i => i.type === "sort")) {
+                    await item.deleteMagie(this);
+                }
+
+                break;
+
+            case 'materiae':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteMateriae(this);
+                }
+
+                break;
+
+            case 'metamorphe':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteMetamorphe(this);
+                }
+
+                break;
+
+            case 'ordonnance':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteOrdonnance(this);
+                }
+
+                break;
+
+            case 'passe':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deletePasse(this);
+                }
+
+                break;
+
+            case 'periode':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure' || a.type === 'simulacre')) {
+                    await actor.deletePeriode(this);
+                }
+
+                // Delete all vecus items of the world
+                for (let item of game.items.filter(i => i.type === 'vecu' && i.data.data.periode === this.data.data.id)) {
+                    await item.delete();
+                }
+
+                break;
+
+            case 'pratique':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deletePratique(this);
+                }
+
+                break;
+
+            case 'quete':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteQuete(this);
+                }
+
+                break;
+
+            case 'rite':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteRite(this);
+                }
+
+                break;
+
+            case 'rituel':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteRituel(this);
+                }
+
+                break;
+
+            case 'savoir':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteSavoir(this);
+                }
+
+                break;
+
+            case 'science':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteScience(this);
+                }
+
+                break;
+
+            case 'sort':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteSort(this);
+                }
+
+                break;
+
+            case 'technique':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteTechnique(this);
+                }
+
+                break;
+
+            case 'tekhne':
+
+                // Update each actor
+                for (let actor of game.actors.filter(a => a.type === 'figure')) {
+                    await actor.deleteTekhne(this);
+                }
+
+                break;
+
+        }
+
+        await super._onDelete(options, userId);
+
+    }
+
+    /**
+     * Deletes the specified catalyseur.
+     * @param {*} item The item to delete.
+     */
+     async deleteCatalyseur(item) {
+        const data = duplicate(this.data.data.catalyseurs);
+        const i = data.findIndex(o => item.data.data.id === o.refid);
+        if (i !== -1) {
+            data.splice(i, 1);
+            await this.update({ ["data.catalyseurs"]: data });
+        }
+    }
+
+    /**
+     * Deletes the specified competence.
+     * @param {*} item The item to delete.
+     */
+     async deleteCompetence(item) {
+        const data = duplicate(this.data.data.competences);
+        const i = data.findIndex(o => item.data.data.id === o.refid);
+        if (i !== -1) {
+            data.splice(i, 1);
+            await this.update({ ["data.competences"]: data });
+        }
+    }
+
+    /**
+     * Deletes the specified magie.
+     * @param {*} item The item to delete.
+     */
+     async deleteMagie(item) {
+        const data = duplicate(this.data.data.voies);
+        const i = data.findIndex(o => item.data.data.id === o.refid);
+        if (i !== -1) {
+            data.splice(i, 1);
+            await this.update({ ["data.voies"]: data });
+        }
+    }
+
+    /**
+     * Deletes the specified variante.
+     * @param {*} item The item to delete.
+     */
+     async deleteVariante(item) {
+        const data = duplicate(this.data.data.variantes);
+        const i = data.findIndex(o => item.data.data.id === o.refid);
+        if (i !== -1) {
+            data.splice(i, 1);
+            await this.update({ ["data.variantes"]: data });
         }
     }
 

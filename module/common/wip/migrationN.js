@@ -1,5 +1,5 @@
 import { NephilimItem } from "../item/entity.js";
-import { CustomHandlebarsHelpers } from "./handlebars.js";
+import { CustomHandlebarsHelpers } from "./handlebars.js.js";
 
 export class MigrationTools {
 
@@ -65,62 +65,6 @@ export class MigrationTools {
             await item.update({ ['data.-=inne']: null });
         }
 
-        ui.notifications.info("Mise à jour des objects du monde effectuée");
-
-        // Update items of compendium
-        for (let pack of game.packs.filter(p => p.documentName === 'Item')) {
-
-            const wasLocked = pack.locked;
-            await pack.configure({ locked: false });
-            await pack.migrate();
-            const documents = await pack.getDocuments();
-
-            // Update vecu
-            for (let item of documents.filter(i => i.type === 'vecu' && i.data.data.periode === '')) {
-                for (let periode of documents.filter(p => p.type === 'periode')) {
-                    if (periode.data.data.vecus.filter(i => i.refid === item.data.data.id).length > 0) {
-                        await item.update({ ['data.periode']: periode.data.data.id });
-                        break;
-                    }
-                }
-            }
-
-            // Update periode
-            for (let item of documents.filter(i => i.type === 'periode')) {
-                await item.update({ ['data.-=vecus']: null });
-            }
-
-            // Update competence
-            for (let item of documents.filter(i => i.type === 'competence')) {
-                const data = duplicate(item.data.data);
-                switch (data.inne) {
-                    case 'agile':
-                        data.element = 'eau';
-                        break;
-                    case 'endurant':
-                        data.element = 'terre';
-                        break;
-                    case 'fort':
-                        data.element = 'feu';
-                        break;
-                    case 'intelligent':
-                        data.element = 'air';
-                        break;
-                    case 'seduisant':
-                        data.element = 'lune';
-                        break;
-                }
-                await item.update({ ['data']: data })
-                await item.update({ ['data.-=inne']: null });
-            }
-
-            // Apply the original locked status for the pack
-            await pack.configure({ locked: wasLocked });
-
-            ui.notifications.info("Mise à jour des objects du pack " + pack.name + " effectuée");
-
-        }
-
         // Update each figure
         for (let actor of game.actors.filter(a => a.type === 'figure')) {
 
@@ -175,8 +119,95 @@ export class MigrationTools {
 
         }
 
-        ui.notifications.info("Mise à jour des acteurs du monde effectuée");
-
     }
+
+
+
+    /*
+    static async migrate_world_items(version, types) {
+        for (let i of game.items) {
+            try {
+                const data = migrateItemData(i.toObject(), migrationData);
+                if (!foundry.utils.isObjectEmpty(updateData)) {
+                    console.log(`Migrating Item document ${i.name}`);
+                    await i.update(updateData, { enforceTypes: false });
+                }
+            } catch (err) {
+                err.message = `Failed dnd5e system migration for Item ${i.name}: ${err.message}`;
+                console.error(err);
+            }
+        }
+    }*/
+
+    /**
+     * Migrates the specified item.
+     * @param {*} version The target version of the template.
+     * @param {*} item    The item to update.
+     * @param {*} items   The collection which contains the item to update.
+     * @param {*} data    The data to update.
+     * @returns the updated data.
+     */
+    /*
+    static async migrate_world_items(version, items, type) {
+        for (let item of items.filter(item.type === type)) {
+            let data = null;
+            switch(item.type) {
+                case 'vecu':
+                    data = MigrationTools.migrate_vecu(version, item, items, data);
+                    break;
+                case 'periode':
+                    data = MigrationTools.migrate_periode(version, item, items, data);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }*/
+
+    /**
+     * Migrates the specified item.
+     * @param {*} version The target version of the template.
+     * @param {*} item    The item to update.
+     * @param {*} items   The collection which contains the item to update.
+     * @param {*} data    The data to update.
+     * @returns the updated data.
+     */
+    /*
+    static async migrate_vecu(version, item, items, data) {
+        switch (version) {
+            case '1.0.1':
+                for (let periode of items.filter(p => p.type === 'periode' && p.data.data.vecus.filter(v => v.refid === item.data.data.id).length > 0)) {
+                    data["data.periode"] = periode.data.data.id;
+                    continue;
+                }
+                break;
+            default:
+                data = null;
+                break;
+        }
+        return data;
+    }*/
+
+    /**
+     * Migrates the specified item.
+     * @param {*} version The target version of the template.
+     * @param {*} item    The item to update.
+     * @param {*} items   The collection which contains the item to update.
+     * @param {*} data    The data to update.
+     * @returns the updated data.
+     */
+    /*
+    static async migrate_periode(version, item, items, data) {
+        switch (version) {
+            case '1.0.1':
+                data["data.-=vecus"] = null;
+                break;
+            default:
+                data = null;
+                break;
+        }
+        return data;
+    }*/
 
 }

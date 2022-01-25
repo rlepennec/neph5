@@ -1,115 +1,88 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-
-        <input
-            name="data.id"
-            type="hidden"
-            value="{{data.id}}"
-            data-dtype="String"/>
-
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
-        <div class="title">
-            <span class="type">{{localize "ITEM.TypePeriode"}}</span>
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
+    <div class="tbd" style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-periode.webp" title="{{localize 'ITEM.TypePeriode'}}"/>
         </div>
 
-    </header>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
+            <input
+                name="data.id"
+                type="hidden"
+                value="{{data.id}}"
+                data-dtype="String"/>
+            {{/if}}
 
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+            <div style="display: flex; flex-direction: row; height: 60px;">
 
-    </nav>
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
+            </div>
 
-        <div class="tab description" data-group="primary" data-tab="description">
+            <div style="display: flex; flex-direction: row; margin-top: 10px;">
 
-            <div class="property-list">
-
-                <div class="property">
-                    <label class="property-name">Aube</label>
+                <div class="edit-contexte" style="width: 100%; text-align: center; margin-bottom: 10px;">
                     <input
-                        class="property-value"
-                        name="data.aube"
-                        type="text"
-                        value="{{data.aube}}"
-                        data-dtype="Number"/>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">Contexte</label>
-                    <input
-                        class="property-value"
+                        style="border: 0; background: transparent; vertical-align: middle; font-family: Calibri; font-style: italic; font-size: 20px;"
                         name="data.contexte"
                         type="text"
                         value="{{data.contexte}}"
                         data-dtype="String"/>
                 </div>
 
+                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px; width: 60px; text-align: center;">
+                    <input
+                        style="border: 0; background: transparent;"
+                        name="data.aube"
+                        type="text"
+                        value="{{data.aube}}"
+                        data-dtype="Number"/>
+                </div>
+
             </div>
 
-            <ol class="item-list">
+            <ol style="column-count: 2;">
 
-                <li class="item-list-header">
+                {{#each vecus as |vecu|}}
+                <li class="item" data-item-id="{{vecu}}" style="display: flex; flex-direction: row;">
 
-                    <div class="item-name">
-                        <span>{{localize "ITEM.TypeVecu"}}</span>
-                    </div>
-                
-                    <div class="item-control">
-                        <span/>
+                    <div style="margin-right: 10px;" >
+                        <a><i class="delete-vecu fas fa-trash"></i></a>
                     </div>
 
-                    <div class="item-control">
-                        <span/>
-                    </div>
-                
-                </li>
-
-                {{#each data.vecus as |vecu|}}
-                <li class="item" data-item-id="{{vecu.refid}}">
-
-                    <input
-                        name="data.vecus.[{{@index}}].refid"
-                        type="hidden"
-                        value="{{vecu.refid}}"
-                        data-dtype="String"/>
-                
-                    {{#with (getItem vecu.refid)}}
-                    <div class="item-name">
-                        <span data-item-id="{{vecu.refid}}">{{name}}</span>
+                    {{#with (getItem vecu)}}
+                    <div class="edit-vecu">
+                        <span data-item-id="{{vecu}}">{{name}}</span>
                     </div>
                     {{/with}}
 
-                    <div class="item-control">
-                        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                    </div>
-
-                    <div class="item-control">
-                        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-
-                {{/each}}
                 </li>
+                {{/each}}
 
             </ol>
 
-            <div class="part-header">
-                <div class="part-name">
-                    <span>{{localize "NEPH5E.description"}}</span>
-                </div>
+            <div style="border-width: 2px; margin-top: 10px">
+                {{#if (isEmptyString data.description)}}
+                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
             </div>
-
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
 
         </div>
 
-    </section>
-        
+    </div>
+
 </form>

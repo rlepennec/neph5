@@ -4,7 +4,7 @@
     value="true"
     data-dtype="Boolean"/>
 
-<div class="cercles">
+<div class="cercles" style="column-count: 2;">
 
     <div class="cercle">
         <label class="cercle-name">{{localize "NEPH5E.sapience"}}</label>
@@ -15,12 +15,6 @@
             type="text"
             value="{{data.sapience}}"
             data-dtype="Number"/>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">Agartha</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{getScore data.id}}</label>
     </div>
 
     <div class="cercle">
@@ -53,7 +47,7 @@
             data-dtype="String"/>
 
         <input
-            class="item-checkbox"
+            class="item-checkbox periode-active"
             type="checkbox"
             name="data.periodes.[{{refid}}].active"
             {{checked periode.active}}
@@ -85,41 +79,37 @@
 
     </li>
 
-    {{#each periode.vecus as |vecu|}}
-    <li class="item" data-item-id="{{vecu.refid}}" data-item-type="vecu" data-periode-id="{{../refid}}">
+    {{#each ../actor.items as |item id|}}
+    {{#if (eq item.type 'vecu')}}
+    {{#if (eq item.data.data.periode ../refid)}}
+    <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-periode-id="{{../refid}}">
 
-        <input
-            name="data.periodes.[{{../refid}}].vecus.[{{refid}}].refid"
-            type="hidden"
-            value="{{vecu.refid}}"
-            data-dtype="String"/>
-
-        {{#with (getItem vecu.refid)}}
         <div class="item-name">
-            <span>{{name}}</span>
+            <span>{{item.name}}</span>
         </div>
-        {{/with}}
 
         <div class="item-checkbox">
             <span/>
         </div>
 
         <input
-            class="item-integer"
-            name="data.periodes.[{{../refid}}].vecus.[{{refid}}].degre"
+            class="item-integer degre-vecu"
+            name="item.data.data.degre"
             type="text"
-            value="{{vecu.degre}}"
+            value="{{item.data.data.degre}}"
             data-dtype="Number"/>
 
         <div class="item-control">
-            <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+            <a class="edit-vecu" title="Edit Item"><i class="fas fa-edit"></i></a>
         </div>
-        
+
         <div class="item-control">
-            <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+            <a class="delete-vecu" title="Delete Item"><i class="fas fa-trash"></i></a>
         </div>
 
     </li>
+    {{/if}}
+    {{/if}}
     {{/each}}
 
     {{#each periode.savoirs as |savoir|}}
@@ -151,7 +141,7 @@
         <div class="item-control">
             <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
         </div>
-        
+
         <div class="item-control">
             <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
         </div>

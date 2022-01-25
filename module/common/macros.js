@@ -33,13 +33,3 @@ export async function createMacro(bar, data, slot) {
     }
 
 }
-
-/*
-( async () => {
-    if (actor) {
-      await actor.ka();
-    } else if (token) {
-      await token.actor.ka();
-    }
-  })()
-  */

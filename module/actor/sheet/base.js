@@ -100,4 +100,19 @@ export class BaseSheet extends ActorSheet {
         return await this._onState(event, Game.effects.projete);
     }
 
+    async _onDeleteEmbeddedItem(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        await this.actor.deleteEmbeddedDocuments('Item', [id]);
+    }
+
+    async _onEditEmbeddedItem(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = this.actor.getEmbeddedDocument('Item', li.data("item-id"));
+        item.sheet.render(true);
+    }
+
 }

@@ -1,5 +1,89 @@
 <form class="{{cssClass}}" autocomplete="off">
 
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-metamorphe.webp" title="{{localize 'ITEM.TypeMetamorphe'}}"/>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
+
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
+            <input
+                name="data.id"
+                type="hidden"
+                value="{{data.id}}"
+                data-dtype="String"/>
+            {{/if}}
+
+            <div style="display: flex; flex-direction: row; height: 60px;">
+
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
+
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
+            </div>
+
+            <div style="display: flex; flex-direction: row; margin-top: 10px;">
+
+                <div style="width: 100%; text-align: center; vertical-align: middle;"></div>
+
+                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                    <select name="data.element">
+                    {{#select data.element}}
+                        {{#each elements as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+            </div>
+
+            <ol style="margin-top: 10px;">
+
+                {{#each data.metamorphoses as |metamorphose|}}
+                <li class="item" data-item-id="{{@index}}" style="display: flex; flex-direction: row;">
+
+                    <div style="margin-right: 10px;" >
+                        <a><i class="delete-mnemos fas fa-feather-alt"></i></a>
+                    </div>
+
+                    <input
+                        style="border: 0; background: transparent;"
+                        name="data.metamorphoses.[{{@index}}].name"
+                        type="text"
+                        value="{{metamorphose.name}}"
+                        data-dtype="String"/>
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+            <div style="border-width: 2px; margin-top: 10px">
+                {{#if (isEmptyString data.description)}}
+                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+<!--
+    form class="{{cssClass}}" autocomplete="off">
+
     {{!-- Sheet Header --}}
     <header class="sheet-header">
 
@@ -79,3 +163,4 @@
     </section>
 
 </form>
+-->

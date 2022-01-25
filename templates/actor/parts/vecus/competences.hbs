@@ -24,45 +24,45 @@
 
         {{#if data.simulacre.refid}}
             {{#with (getActor data.simulacre.refid)}}
-             <li class="item" data-item-id="{{.}}" data-item-type="vecu">
+                {{#each (getVecus data.data.id) as |vecu|}}
+                <li class="item" data-item-id="{{vecu.id}}" data-item-type="vecu">
 
-                {{#with (getItem data.data.vecu.refid)}}
-                <div class="item-name tooltip" style="font-weight: bold;">
-                    <span>{{name}}</span>
-                    <span class="tooltiptext">Vécu du simulacre</span>
-                </div>
-                {{/with}}
+                    <div class="item-name tooltip" style="font-weight: bold;">
+                        <span>{{name}}</span>
+                        <span class="tooltiptext">{{contexte}}</span>
+                    </div>
 
-                <label class="item-integer">{{data.data.vecu.degre}}</label>
-                
-                <div class="item-control">
-                    <a class="item-rolls" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
-                </div>
+                    <label class="item-integer">{{vecu.degre}}</label>
 
-                <div class="item-control">
-                    <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                </div>
+                    <div class="item-control">
+                        <a class="roll-vecu-simulacre" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                    </div>
 
-            </li>
+                    <div class="item-control">
+                        <a class="edit-vecu-simulacre" title="Edit Item"><i class="fas fa-edit"></i></a>
+                    </div>
+
+                </li>
+                {{/each}}
             {{/with}}
         {{/if}}
 
-        {{#each (getVecus data.id) as |vecu|}}
-        <li class="item" data-item-id="{{vecu.refid}}" data-item-type="vecu">
+        {{#each (getVecus data.id) as |item|}}
+        <li class="item" data-item-id="{{id}}" data-item-type="vecu">
 
             <div class="item-name tooltip" style="font-weight: bold;">
                 <span>{{name}}</span>
                 <span class="tooltiptext">{{contexte}}</span>
             </div>
 
-            <label class="item-integer">{{vecu.degre}}</label>
+            <label class="item-integer">{{item.degre}}</label>
 
             <div class="item-control">
-                <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+                <a class="item-roll-vecu" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
             </div>
 
             <div class="item-control">
-                <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="edit-vecu" title="Edit Item"><i class="fas fa-edit"></i></a>
             </div>
 
         </li>

@@ -5,15 +5,21 @@ export class QueteSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-	static get defaultOptions() {
+     getData() {
+        const data = super.getData();
+        data.debug = game.settings.get('neph5e', 'debug');
+        return data;
+    }
+
+    /** 
+     * @override
+     */
+     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
     }
 
 }

@@ -3,6 +3,7 @@ import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { getByPath } from "../../common/tools.js";
 import { UUID } from "../../common/tools.js";
 import { Game } from "../../common/game.js";
+import { Rolls } from "../../common/rolls.js";
 import { deleteItemOf } from "../../common/tools.js";
 import { droppedActor } from "../../common/tools.js";
 import { BaseSheet } from "./base.js";
@@ -97,8 +98,8 @@ export class FigureSheet extends BaseSheet {
 
         // Combat
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="combat"] .item-edit').click(this._onEditEquipement.bind(this));
-        html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEquipement.bind(this));
+        html.find('div[data-tab="combat"] .item-edit').click(this._onEditEmbeddedItem.bind(this));
+        html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .item-roll').click(this._onRoll.bind(this));
         html.find('div[data-tab="combat"] .item-attack').click(this._onAttack.bind(this));
         html.find('div[data-tab="combat"] .item-wrestle').click(this._onWrestle.bind(this));
@@ -110,7 +111,8 @@ export class FigureSheet extends BaseSheet {
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="simulacre"] .item-roll').click(this._onSimulacreRoll.bind(this));
+        html.find('div[data-tab="simulacre"] .roll-attribute').click(this._onRollSimulacreAttribute.bind(this));
+        html.find('div[data-tab="simulacre"] .roll-vecu').click(this._onRollVecuSimulacre.bind(this));
 
         // Nephilim
         html.find('div[data-tab="nephilim"]').on("drop", this._onDrop.bind(this));
@@ -119,7 +121,10 @@ export class FigureSheet extends BaseSheet {
         // Vecus
         html.find('div[data-tab="vecus"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="vecus"] .item-roll').click(this._onItemRoll.bind(this));
-        html.find('div[data-tab="vecus"] .item-rolls').click(this._onSimulacreOfRoll.bind(this));
+        html.find('div[data-tab="vecus"] .roll-vecu-simulacre').click(this._onRollVecuSimulacre.bind(this));
+        html.find('div[data-tab="vecus"] .item-roll-vecu').click(this._onRollVecu.bind(this));
+        html.find('div[data-tab="vecus"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
+        html.find('div[data-tab="vecus"] .edit-vecu-simulacre').click(this._onEditVecuSimulacre.bind(this));
 
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
@@ -151,6 +156,10 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="incarnations"] .item-edit').click(this._onEditIncarnations.bind(this));
         html.find('div[data-tab="incarnations"] .item-delete').click(this._onDeleteIncarnations.bind(this));
+        html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .delete-vecu').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .degre-vecu').change(this._onDegreVecu.bind(this));
+        html.find('div[data-tab="incarnations"] .periode-active').change(this._onPeriodeActive.bind(this));
 
         // Selenim
         html.find('div[data-tab="selenim"]').on("drop", this._onDrop.bind(this));
@@ -225,6 +234,7 @@ export class FigureSheet extends BaseSheet {
                     simulacre.refid = actor.data.data.id;
                     await this.actor.update({ ['data.simulacre']: simulacre });
                 }
+
             }
 
         } else if (item.hasOwnProperty('data')) {
@@ -232,10 +242,17 @@ export class FigureSheet extends BaseSheet {
             // The armure or armure has been dropped:
             if (item.data.type === "arme" || item.data.type === "armure") {
                 await super._onDrop(event);
+            
+            // The vecu has been droppped
+            } else if (item.data.type === "vecu") {
+                if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1) {
+                    const items = await super._onDrop(event);
+                    await items[0].update({ ['data.periode']: this.current.data.data.id });
+                }
 
-                // The metamorphe has been dropped:
-                //   - Update the reference of the metamorphe
-                //   - Delete the metamorphoses
+            // The metamorphe has been dropped:
+            //   - Update the reference of the metamorphe
+            //   - Delete the metamorphoses
             } else if (item.data.type === "metamorphe") {
                 const metamorphe = duplicate(this.actor.data.data.metamorphe);
                 metamorphe.refid = item.data.data.id;
@@ -253,7 +270,6 @@ export class FigureSheet extends BaseSheet {
                     const periode = {
                         refid: item.data.data.id,
                         active: true,
-                        vecus: [],
                         savoirs: [],
                         quetes: [],
                         arcanes: [],
@@ -298,11 +314,6 @@ export class FigureSheet extends BaseSheet {
             } else {
 
                 switch (item.data.type) {
-                    case 'vecu':
-                        if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1) {
-                            await this._onDropInPeriode(item, 'vecus', {});
-                        }
-                        break;
                     case 'savoir':
                     case 'quete':
                     case 'arcane':
@@ -443,8 +454,6 @@ export class FigureSheet extends BaseSheet {
 
                 // Retrieve the name and the id of the periode
                 const periodeName = "data.periodes.[" + p.refid + "]";
-
-                const vecus = this._updatePeriode(p, 'vecus', formData, ['degre']);
                 const savoirs = this._updatePeriode(p, 'savoirs', formData, ['degre']);
                 const quetes = this._updatePeriode(p, 'quetes', formData, ['degre']);
                 const arcanes = this._updatePeriode(p, 'arcanes', formData, ['degre']);
@@ -455,7 +464,6 @@ export class FigureSheet extends BaseSheet {
                 periodes.push({
                     refid: formData[periodeName + ".refid"],
                     active: formData[periodeName + ".active"],
-                    vecus: vecus,
                     savoirs: savoirs,
                     quetes: quetes,
                     arcanes: arcanes,
@@ -486,6 +494,10 @@ export class FigureSheet extends BaseSheet {
         this._update('coupe', 'coupe.tekhnes', formData, []);
         this._update('denier', 'denier.pratiques', formData, []);
         this._update('epee', 'epee.rituels', formData, []);
+
+        // Clean the lock
+        this.current = null; // The current editable periode
+        this.current_i = null;
 
         // Update
         // --------------------------------------------------------------------
@@ -536,6 +548,23 @@ export class FigureSheet extends BaseSheet {
         formData["data." + collection] = updated;
     }
 
+    async _onDegreVecu(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const degre = parseInt(event.currentTarget.value);
+        const item = this.actor.items.get(id);
+        await item.update({"data.degre": degre});
+    }
+
+    async _onPeriodeActive(event) {
+        const li = $(event.currentTarget).parents(".item-list-header");
+        const id = li.data("item-id");
+        const actif = event.currentTarget.checked;
+        for (let item of this.actor.items.filter(i => i.type === 'vecu' && i.data.data.periode === id)) {
+            await item.update({ ['data.actif']: actif });
+        }
+    }
+
     /**
      * This function catches the deletion of a ordonnance from the list of materiae primae.
      */
@@ -549,14 +578,14 @@ export class FigureSheet extends BaseSheet {
         await deleteItemOf(this.actor, science, "refid", id, collection);
     }
 
-    async _onDeleteEquipement(event) {
+    async _onDeleteEmbeddedItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
     }
 
-    async _onEditEquipement(event) {
+    async _onEditEmbeddedItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -570,51 +599,53 @@ export class FigureSheet extends BaseSheet {
         if (li != undefined) {
             const id = li.data("item-id");
             if (id === undefined) {
+                // Delete the periode
                 li = $(event.currentTarget).parents(".item-list-header");
                 const id = li.data("item-id");
                 const type = li.data("item-type");
                 if (type == "periode") {
-                    const item = CustomHandlebarsHelpers.getItem(id);
-                    if (item === this.current) {
-                        deleteItemOf(this.actor, "periodes", "refid", id);
+                    const periode = CustomHandlebarsHelpers.getItem(id);
+                    await this.actor.deletePeriode(periode);
+                    if (periode === this.current) {
                         this.current = null;
                         this.current_i = null;
                     }
                 }
             } else {
-                const periodeId = li.data("periode-id");
-                const item = CustomHandlebarsHelpers.getItem(periodeId);
-                if (this.current && item.data.data.id === this.current.data.data.id) {
+                // Delete item in periode except vecus which are embbeded
+                const periode = CustomHandlebarsHelpers.getItem(li.data("periode-id"));
+                if (this.current && periode.data.data.id === this.current.data.data.id) {
                     const type = li.data("item-type");
-                    const index = this.actor.data.data.periodes.findIndex(p => (p.refid === periodeId));
                     switch (type) {
-                        case 'vecu':
-                            const data = this.actor.data.data.periodes;
-                            const i = data[index].vecus.findIndex(i => (i.refid === id));
-                            data[index].vecus.splice(i, 1);
-                            await this.actor.update({ ['data.periodes']: data });
-                            break;
-                        case 'savoir':
-                        case 'quete':
+
                         case 'arcane':
+                            await this.actor.deleteArcane(CustomHandlebarsHelpers.getItem(id), periode);
+                            break;
+
                         case 'chute':
+                            await this.actor.deleteChute(CustomHandlebarsHelpers.getItem(id), periode);
+                            break;
+                        
                         case 'passe':
+                            await this.actor.deletePasse(CustomHandlebarsHelpers.getItem(id), periode);
+                            break;
+
+                        case 'quete':
+                            await this.actor.deleteQuete(CustomHandlebarsHelpers.getItem(id), periode);
+                            break;
+
+                        case 'savoir':
+                            await this.actor.deleteSavoir(CustomHandlebarsHelpers.getItem(id), periode);
+                            break;
+
                         case 'science':
-                            await this.deleteItemOfIncarnations(index, type + 's', id);
+                            await this.actor.deleteScience(CustomHandlebarsHelpers.getItem(id), periode);
                             break;
 
                     }
                 }
             }
         }
-    }
-
-    async deleteItemOfIncarnations(periodeIndex, collection, id) {
-        const data = duplicate(this.actor.data.data.periodes);
-        const subdata = getByPath(data[periodeIndex], collection);
-        const index = subdata.findIndex(a => a.refid === id);
-        getByPath(data[periodeIndex], collection).splice(index, 1);
-        await this.actor.update({ ["data.periodes"]: data });
     }
 
     async _onNephilimRoll(event) {
@@ -640,14 +671,8 @@ export class FigureSheet extends BaseSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const type = li.data("item-type");
-        return await this.actor.rollSimulacre(id, false, type);
-    }
-
-    async _onSimulacreOfRoll(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = this.actor.data.data.simulacre.refid;
-        const type = li.data("item-type");
-        return await this.actor.rollSimulacre(id, false, type);
+        const vecuId = li.data("vecu-id");
+        return await this.actor.rollSimulacre(id, true, (type === 'vecu' ? vecuId : type));
     }
 
     async _onItemRoll(event) {
@@ -673,6 +698,94 @@ export class FigureSheet extends BaseSheet {
         const uuid = this.getCombatSkillsUUID(skillName);
         const skill = CustomHandlebarsHelpers.getItem(uuid);
         return await skill.roll(this.actor);
+    }
+
+    async _onRollVecu(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const actor = this.actor;
+        const item = actor.items.get(li.data("item-id"));
+        return Rolls.check(
+            actor,
+            item,
+            item.type,
+            {
+                ...item.data,
+                owner: actor.id,
+                difficulty: item.data.data.degre,
+                sentence: "fait appel à son vécu de " + item.name
+            }
+        );
+    }
+
+    async _onRollVecuSimulacre(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const actor = CustomHandlebarsHelpers.getActor(this.actor.data.data.simulacre.refid)
+        const item = actor.items.get(li.data("item-id"));
+        return Rolls.check(
+            actor,
+            item,
+            item.type,
+            {
+                ...item.data,
+                owner: actor.id,
+                difficulty: item.data.data.degre,
+                sentence: "fait appel au vécu de " + item.name + " de son simulacre"
+            }
+        );
+    }
+
+    async _onRollSimulacreAttribute(event) {
+        const actor = CustomHandlebarsHelpers.getActor(this.actor.data.data.simulacre.refid);
+        const attribute = $(event.currentTarget).data("attribute");
+        let sentence = "";
+        switch (attribute) {
+            case 'soleil':
+                sentence = "fait appel au Ka Soleil de son simulacre";
+                break;
+            case 'agile':
+                sentence = "fait appel à l'agilité de son simulacre";
+                break;
+            case 'endurant':
+                sentence = "fait appel à l'endurance de son simulacre";
+                break;
+            case 'fort':
+                sentence = "fait appel à la force de son simulacre";
+                break;
+            case 'intelligent':
+                sentence = "fait appel à l'intelligence de son simulacre";
+                break;
+            case 'seduisant':
+                sentence = "fait appel à au charisme de son simulacre";
+                break;
+            case 'savant':
+                sentence = "fait appel à la culture de son simulacre";
+                break;
+            case 'sociable':
+                sentence = "fait appel à la sociabilité de son simulacre";
+                break;
+            case 'fortune':
+                sentence = "fait appel à la fortune de son simulacre";
+                break;
+        }
+        return Rolls.check(
+            actor,
+            { img: 'systems/neph5e/icons/caracteristique.jpg' },
+            "soleil",
+            {
+                ...actor.data,
+                owner: actor.id,
+                difficulty: actor.data.data[attribute],
+                sentence: sentence
+            }
+        );
+    }
+
+    async _onEditVecuSimulacre(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const actor = CustomHandlebarsHelpers.getActor(this.actor.data.data.simulacre.refid)
+        const item = actor.items.get(li.data("item-id"));
+        item.sheet.render(true);
     }
 
     getCombatSkillsUUID(skill) {
@@ -731,7 +844,6 @@ export class FigureSheet extends BaseSheet {
             } else {
                 const type = li.data("item-type");
                 switch (type) {
-                    case 'vecu':
                     case 'savoir':
                     case 'quete':
                     case 'arcane':
@@ -777,7 +889,7 @@ export class FigureSheet extends BaseSheet {
 
     async _onShowInvocation(event) {
         await this._onShowSomething(event, (item) => {
-            if (item.data.type === 'ordonnance') {
+            if (item.data.type === 'invocation') {
                 const properties = $(`<ol/>`);
                 properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
                 properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
@@ -785,6 +897,12 @@ export class FigureSheet extends BaseSheet {
                 properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
                 properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
                 properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
+                properties.append(this._property(item.data.data.description));
+                return properties;
+            }
+            if (item.data.type === 'ordonnance') {
+                const properties = $(`<ol/>`);
+                properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
                 properties.append(this._property(item.data.data.description));
                 return properties;
             }

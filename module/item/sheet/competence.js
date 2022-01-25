@@ -8,7 +8,8 @@ export class CompetenceSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.innes = Game.simulacre.innes;
+        data.debug = game.settings.get('neph5e', 'debug');
+        data.elements = Game.pentacle.elements;
         return data;
     }
 
@@ -18,11 +19,8 @@ export class CompetenceSheet extends NephilimItemSheet {
 	static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
       });
     }
 

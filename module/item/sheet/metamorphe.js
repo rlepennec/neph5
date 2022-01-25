@@ -6,8 +6,9 @@ export class MetamorpheSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
+     getData() {
         const data = super.getData();
+        data.debug = game.settings.get('neph5e', 'debug');
         data.elements = Game.pentacle.elements;
         return data;
     }
@@ -18,11 +19,8 @@ export class MetamorpheSheet extends NephilimItemSheet {
 	static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
+            height: 650,
+            classes: ["nephilim", "sheet", "item"]
       });
     }
 

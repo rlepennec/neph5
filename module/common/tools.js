@@ -39,25 +39,6 @@ export function UUID() {
 }
 
 /**
- * Resets the metamorphe of the specified actor.
- * The metamorphe property must be defined for this actor. 
- * @param {*} actor 
- */
-export async function setItemOf(actor, root, value, key = null) {
-    if (key) {
-        const data = duplicate(getByPath(actor.data.data, root));
-        getByPath(data, key);
-        value = data;
-        const name = "data." + root;
-        await actor.update({ [name]: data });
-    } else {
-        const name = "data." + root;
-        await actor.update({ [name]: value });
-    }
-
-}
-
-/**
  * Deletes the specified item from the specified actor collection.
  * Example:
  * root=magie, collection="sorts", key="refid"
@@ -245,45 +226,5 @@ export async function deleteItemRefs(item, event, references, name) {
 
     // Update the references of the item
     await item.update({ [name]: refs });
-
-}
-
-/**
- * Deletes the references of the specified item for the specified type of items.
- * 
- * data.references = [
- *    {refid: ...,
- *     value: ...},
- *    {refid: ...,
- *     value: ...}
- * ]
- * 
- * @param type The type of item for which to delete the references.
- * @param name The name of the data for which to delete references.
- */
-export function deleteItemReferences(data, type, name) {
-
-    // For each item of the specified type
-    Array
-        .from(game.items.values())
-        .filter(item => item.data.type === type)
-        .forEach(async item => {
-
-            // Retrieve the referenced data to process
-            const references = duplicate(item.data.data[name]);
-
-            // Retrieve the reference to the current object and delete it if it exists
-            const index = Array
-                .from(references)
-                .findIndex(reference => (reference.refid === data.data.id));
-
-            if (index != -1) {
-                references.splice(index, 1);
-                const newData = {};
-                newData["data." + name] = references;
-                await item.update(newData);
-            }
-
-        });
 
 }

@@ -1,22 +1,28 @@
 import { NephilimItemSheet } from "./base.js";
 import { droppedItem } from "../../common/tools.js";
-import { updateItemRefs } from "../../common/tools.js";
-import { deleteItemRefs } from "../../common/tools.js";
+import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
     /** 
      * @override
      */
-	static get defaultOptions() {
+     getData() {
+        const data = super.getData();
+        data.debug = game.settings.get('neph5e', 'debug');
+        data.vecus = this._getVecus(data.data.id);
+        return data;
+    }
+
+    /** 
+     * @override
+     */
+     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
     }
 
     /**
@@ -24,9 +30,9 @@ export class PeriodeSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('div[data-tab="description"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="description"] .item-edit').click(this.onEdit.bind(this));
-        html.find('div[data-tab="description"] .item-delete').click(this._onDelete.bind(this));
+        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.edit-vecu').click(this.onEdit.bind(this));
+        html.find('.delete-vecu').click(this._onDeleteVecu.bind(this));
     }
 
     /**
@@ -36,44 +42,36 @@ export class PeriodeSheet extends NephilimItemSheet {
     async _onDrop(event) {
         event.preventDefault();
         const drop = await droppedItem(event.originalEvent);
-        if (drop.data.type === "vecu") {
-            await updateItemRefs(this.item, drop.data, this.item.data.data.vecus, "data.vecus", false);
+        if (drop?.data?.type === "vecu") {
+            const vecu = CustomHandlebarsHelpers.getItem(drop.data.data.id);
+            await vecu.update({ ['data.periode']: this.item.data.data.id });
+            await this.render(true);
         }
     }
 
     /**
      * This function catches the deletion of a vecu from the list of vecus.
      */
-    async _onDelete(event) {
-
-        // Retrieve the id of the reference to delete
+    async _onDeleteVecu(event) {
+        event.preventDefault();
         const li = $(event.currentTarget).closest(".item");
-        const type = li.data("item-type");
         const id = li.data("item-id");
-
-        if (type == "vecu") {
-            await deleteItemRefs(this.item, event, this.item.data.data.vecus, "data.vecus");
-        }
-
+        const vecu = CustomHandlebarsHelpers.getItem(id);
+        await vecu.update({ ['data.periode']: "" });
+        await this.render(true);
     }
 
     /**
-     * @override
+     * Gets the vecus of the specified periode.
+     * @param {} Periode The uuid of the periode.
+     * @return the array of the uuid od the vecus.
      */
-    _updateObject(event, formData) {
-
-        // Update vecus
-        let size = this.item.data.data.vecus.length;
+    _getVecus(periode) {
         const vecus = [];
-        for (let index = 0; index < size; index++) {
-            const name = "data.vecus.[" + index + "]";
-            vecus.push({ refid: formData[name + ".refid"] });
-            delete formData[name + ".refid"];
+        for (let vecu of game.items.filter(i => i.type === 'vecu' && i.data.data.periode === periode)) {
+            vecus.push(vecu.data.data.id);
         }
-        formData["data.vecus"] = vecus;
-
-        // Update object
-        super._updateObject(event, formData);
+        return vecus;
     }
 
 }

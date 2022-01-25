@@ -56,10 +56,6 @@
             "fortune": 3,
             "savant": 3,
             "sociable": 3,
-            "vecu": {
-                "refid": null,
-                "degre": 0
-            },
             "description": ""
         },
         "figure": {
@@ -163,30 +159,6 @@
                         "terre": 0
                     }
                 },
-                "akasha": {
-                    "nef": {
-                        "active": false
-                    },
-                    "boussole": {
-                        "septentrion": 0,
-                        "orient": 0,
-                        "midi": 0,
-                        "occident": 0,
-                        "zenith": 0,
-                        "nadir": 0
-                    },
-                    "barge": {
-                        "active": false
-                    },
-                    "compas": {
-                        "septentrion": 0,
-                        "orient": 0,
-                        "midi": 0,
-                        "occident": 0,
-                        "zenith": 0,
-                        "nadir": 0
-                    }
-                },
                 "catalyseurs": [],
                 "materiae": [],
                 "primae": {
@@ -221,6 +193,30 @@
             },
             "conjuration": {
                 "appels": []
+            },
+            "akasha": {
+                "nef": {
+                    "active": false
+                },
+                "boussole": {
+                    "septentrion": 0,
+                    "orient": 0,
+                    "midi": 0,
+                    "occident": 0,
+                    "zenith": 0,
+                    "nadir": 0
+                },
+                "barge": {
+                    "active": false
+                },
+                "compas": {
+                    "septentrion": 0,
+                    "orient": 0,
+                    "midi": 0,
+                    "occident": 0,
+                    "zenith": 0,
+                    "nadir": 0
+                }
             },
             "baton": {
                 "techniques": []
@@ -288,28 +284,32 @@
             "alchimie",
             "magie"
         ],
+        "templates": {
+            "base": {
+                "id": "",
+                "description": ""
+            },
+            "withLevel": {
+                "degre": 0
+            }
+        },
         "alchimie": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "appel": {
-            "id": "",
+            "templates": ["base", "withLevel"],
             "appel": "pacifiste",
-            "degre": 0,
             "controle": false,
             "visibilite": "Non",
             "entropie": "0",
             "dommages": "0",
-            "protection": "0",
-            "description": ""
+            "protection": "0"
         },
         "arcane": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "arme": {
-            "id": "",
-            "description": "",
+            "templates": ["base"],
             "used": false,
             "skill": "melee",
             "damages": 0,
@@ -336,8 +336,7 @@
             }
         },
         "armure": {
-            "id": "",
-            "description": "",
+            "templates": ["base"],
             "used": false,
             "contact": 0,
             "trait": 0,
@@ -346,31 +345,27 @@
             "bouclier": false
         },
         "aspect": {
-            "id": "",
-            "degre": 0,
+            "templates": ["base", "withLevel"],
             "activation": 1,
-            "duree": "",
-            "description": ""
+            "duree": ""
         },
         "capacite": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "catalyseur": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "chute": {
-            "id": "",
-            "description": ""
+            "templates": ["base"],
+            "actif": true,
+            "periode": ""
         },
         "competence": {
-            "id": "",
-            "inne": "agile",
-            "description": ""
+            "templates": ["base"],
+            "element": "air"
         },
         "formule": {
-            "id": "",
+            "templates": ["base"],
             "cercle": "oeuvreAuNoir",
             "enonce": "",
             "substance": "poudre",
@@ -379,106 +374,90 @@
             "aire": "",
             "duree": "Instantanée",
             "catalyseurs": [],
-            "variantes": [],
-            "description": ""
+            "variantes": []
         },
         "invocation": {
-            "id": "",
+            "templates": ["base"],
             "sephirah": "malkut",
             "monde": "aresh",
             "element": "air",
             "degre": 1,
             "portee": "Personnelle",
             "duree": "Instantanée",
-            "visibilite": "Non",
-            "description": ""
+            "visibilite": "Non"
         },
         "magie": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "materiae": {
-            "id": "",
-            "element": "air",
-            "description": ""
+            "templates": ["base"],
+            "element": "air"
         },
         "metamorphe": {
-            "id": "",
+            "templates": ["base"],
             "element": "air",
-            "metamorphoses": ["", "", "", "", "", "", "", "", "", ""],
-            "description": ""
+            "metamorphoses": ["", "", "", "", "", "", "", "", "", ""]
         },
         "ordonnance": {
-            "id": "",
-            "monde": "",
-            "description": ""
+            "templates": ["base"],
+            "monde": ""
         },
         "passe": {
-            "id": "",
-            "description": ""
+            "templates": ["base"],
+            "actif": true,
+            "periode": ""
         },
         "periode": {
-            "id": "",
+            "templates": ["base"],
             "aube": 0,
-            "contexte": "",
-            "vecus": [],
-            "description": ""
+            "contexte": ""
         },
         "pratique": {
-            "id": "",
-            "axe": "architecte",
-            "degre": 0,
-            "description": ""
+            "templates": ["base", "withLevel"],
+            "axe": "architecte"
         },
         "quete": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "rite": {
-            "id": "",
+            "templates": ["base", "withLevel"],
             "cercle": "fossoyeur",
             "voie": "",
-            "degre": 0,
-            "duree": "",
-            "description": ""
+            "duree": ""
         },
         "rituel": {
-            "id": "",
-            "degre": 0,
-            "description": ""
+            "templates": ["base", "withLevel"]
         },
         "savoir": {
-            "id": "",
-            "description": ""
+            "templates": ["base"]
         },
         "science": {
             "id": "",
             "ref": ""
         },
         "sort": {
-            "id": "",
+            "templates": ["base"],
             "cercle": "basseMagie",
             "element": "air",
             "voies": [],
             "degre": 1,
             "portee": "Personnelle",
-            "duree": "Instantanée",
-            "description": ""
+            "duree": "Instantanée"
         },
         "technique": {
-            "id": "",
-            "degre": 0,
-            "description": ""
+            "templates": ["base", "withLevel"]
         },
         "tekhne": {
-            "id": "",
-            "degre": 0,
-            "description": ""
+            "templates": ["base", "withLevel"]
         },
         "vecu": {
-            "id": "",
+            "templates": ["base"],
+            "actif": true,
             "competences": [],
-            "description": ""
+            "degre": 0,
+            "element": "air",
+            "mnemos": [],
+            "periode": ""
         }
     }
 }

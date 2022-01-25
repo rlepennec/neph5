@@ -346,21 +346,6 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * Gets the level of the specified items for the first active periodes.
-     * @param items The items of the periodes in which to find. The allowed items are: vecus
-     * @param item The item for which to get the level.
-     * @returns 
-     */
-    getLevelFrom(items, item) {
-        for (let periode of this.data.data.periodes.filter(p => p.active)) {
-            for (let it of periode[items].filter(i => i.refid === item.data.data.id)) {
-                return it.degre;
-            }
-        }
-        return 0;
-    }
-
-    /**
      * @returns the level of the combat skill of the character.
      */
     getCompetenceOfFigurant() {
@@ -373,6 +358,7 @@ export class NephilimActor extends Actor {
      * @returns the level.
      */
     getCompetenceOfSimulacre(competence) {
+        /*
         const vecu = CustomHandlebarsHelpers.getItem(this.data.data.vecu.refid);
         if (vecu != undefined) {
             const item = vecu.data.data.competences.find(c => c.refid === competence.data.data.id);
@@ -380,7 +366,16 @@ export class NephilimActor extends Actor {
                 return this.data.data.vecu.degre;
             }
         }
-        return 0;
+        return 0;*/
+
+        let sapience = 0;
+        for (let v of this.items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
+            for (let c of v.data.data.competences.filter(c => c.refid === competence.data.data.id)) {
+                sapience = sapience + NephilimActor.getCostTo(v.data.data.degre);
+            }
+        }
+        return sapience;
+
     }
 
     /**
@@ -408,12 +403,9 @@ export class NephilimActor extends Actor {
      */
     getCompetenceSum(competence) {
         let sapience = 0;
-        for (let p of this.data.data.periodes.filter(p => p.active)) {
-            for (let v of p.vecus) {
-                const vecu = CustomHandlebarsHelpers.getItem(v.refid);
-                for (let r of vecu.data.data.competences.filter(i => i.refid === competence.data.data.id)) {
-                    sapience = sapience + NephilimActor.getCostTo(v.degre);
-                }
+        for (let v of this.items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
+            for (let c of v.data.data.competences.filter(c => c.refid === competence.data.data.id)) {
+                sapience = sapience + NephilimActor.getCostTo(v.data.data.degre);
             }
         }
         return sapience;
@@ -460,12 +452,12 @@ export class NephilimActor extends Actor {
      * Cette methode appele pour les jets depuis les fiches figures, figurants et simulacres
      * @param uuid      The uuid of the actor for which to roll dices.
      * @param self      True if the actor is not the simulacre of a nephilim. 
-     * @param attribute The name of the attribute roll.
+     * @param attribute The name of the attribute roll or the id of the vecu item.
      */
     async rollSimulacre(uuid, self, attribute) {
 
         const simulacre = CustomHandlebarsHelpers.getActor(uuid);
-        const sentence = this.getSentence(attribute, self);
+        let sentence = "";
 
         let difficulty = 0;
         switch (attribute) {
@@ -482,10 +474,13 @@ export class NephilimActor extends Actor {
             case 'menace':
             case 'ka':
                 difficulty = simulacre.data.data[attribute];
+                sentence = this.getSentence(attribute, self);
                 break;
 
-            case 'vecu':
-                difficulty = simulacre.data.data.vecu.degre;
+            default:
+                const vecu = simulacre.items.get(attribute);
+                difficulty = vecu.data.data.degre;
+                sentence = this.getSentence('vecu', self);
                 break;
 
         }
@@ -609,6 +604,410 @@ export class NephilimActor extends Actor {
             case 'ka':
                 return "fait appel à son ka";
         }
+    }
+
+    /**                     CLEAN                   */
+    /********************************************** */
+
+    /**
+     * Deletes the specified alchimie.
+     * @param {*} item The item to delete.
+     */
+    async deleteAlchimie(item) {
+
+        // Update actor data
+        await this.update({ ["data.alchimie.voie.refid"]: null });
+
+    }
+
+    /**
+     * Deletes the specified appel.
+     * @param {*} item The item to delete.
+     */
+    async deleteAppel(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.conjuration);
+        const i = data.appels.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.appels.splice(i, 1);
+        }
+        await this.update({ ["data.conjuration"]: data });
+
+    }
+
+    /**
+     * Deletes the specified arcane.
+     * @param {*} item The item to delete.
+     * @param {*} from The optional period item from which to delete the item.
+     */
+     async deleteArcane(item, from) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.periodes);
+        this.data.data.periodes.forEach((p, ip) => {
+            if ( from === undefined || from.data.data.id === p.refid ) {
+                const i = p.arcanes.findIndex(o => o.refid === item.data.data.id);
+                if (i !== -1) {
+                    data[ip].arcanes.splice(i, 1);
+                }
+            }
+        });
+        await this.update({ ["data.periodes"]: data });
+
+    }
+
+    /**
+     * Deletes the specified aspect.
+     * @param {*} item The item to delete.
+     */
+    async deleteAspect(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.imago);
+        const i = data.aspects.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.aspects.splice(i, 1);
+        }
+        await this.update({ ["data.imago"]: data });
+
+    }
+
+    /**
+     * Deletes the specified chute.
+     * @param {*} item The item to delete.
+     * @param {*} from The optional period item from which to delete the item.
+     */
+    async deleteChute(item, from) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.periodes);
+        this.data.data.periodes.forEach((p, ip) => {
+            if ( from === undefined || from.data.data.id === p.refid ) {
+                const i = p.chutes.findIndex(o => o.refid === item.data.data.id);
+                if (i !== -1) {
+                    data[ip].chutes.splice(i, 1);
+                }
+            }
+        });
+        await this.update({ ["data.periodes"]: data });
+
+    }
+
+    /**
+     * Deletes the specified competence.
+     * @param {*} item The item to delete.
+     */
+    async deleteCompetence(item) {
+
+        // Update embedded items
+        for (let o of this.items.filter(i => i.type === 'vecu')) {
+            const data = o.data.data.competences.filter(i => i.refid !== item.data.data.id);
+            await o.update({ ['data.competences']: data });
+        }
+
+    }
+
+    /**
+     * Deletes the specified formule.
+     * @param {*} item The item to delete.
+     */
+    async deleteFormule(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.alchimie);
+        const i = data.formules.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.formules.splice(i, 1);
+        }
+        await this.update({ ["data.alchimie"]: data });
+
+    }
+
+    /**
+     * Deletes the specified invocation.
+     * @param {*} item The item to delete.
+     */
+    async deleteInvocation(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.kabbale);
+        const i = data.invocations.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.invocations.splice(i, 1);
+        }
+        await this.update({ ["data.kabbale"]: data });
+
+    }
+
+    /**
+     * Deletes the specified magie.
+     * @param {*} item The item to delete.
+     */
+    async deleteMagie(item) {
+
+        // Update actor data
+        await this.update({ ["data.magie.voie.refid"]: null });
+
+    }
+
+    /**
+     * Deletes the specified materiae primae.
+     * @param {*} item The item to delete.
+     */
+    async deleteMateriae(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.alchimie);
+        const i = data.materiae.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.materiae.splice(i, 1);
+        }
+        await this.update({ ["data.alchimie"]: data });
+
+    }
+
+    /**
+     * Deletes the specified metamorphe.
+     * @param {*} item The item to delete.
+     */
+    async deleteMetamorphe(item) {
+
+        // Update actor data
+        await this.update({ ["data.metamorphe"]: { refid: null, metamorphoses: [false, false, false, false, false, false, false, false, false, false] } });
+
+    }
+
+    /**
+     * Deletes the specified ordonnance.
+     * @param {*} item The item to delete.
+     */
+    async deleteOrdonnance(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.kabbale.voie);
+        const i = data.ordonnances.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.ordonnances.splice(i, 1);
+        }
+        await this.update({ ["data.kabbale.voie"]: data });    
+
+    }
+
+    /**
+     * Deletes the specified passe.
+     * @param {*} item The item to delete.
+     * @param {*} from The optional period item from which to delete the item.
+     */
+    async deletePasse(item, from) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.periodes);
+        this.data.data.periodes.forEach((p, ip) => {
+            if ( from === undefined || from.data.data.id === p.refid ) {
+                const i = p.passes.findIndex(o => o.refid === item.data.data.id);
+                if (i !== -1) {
+                    data[ip].passes.splice(i, 1);
+                }
+            }
+        });
+        await this.update({ ["data.periodes"]: data });
+
+    }
+
+    /**
+     * Deletes the specified periode.
+     * @param {*} item The item to delete.
+     */
+    async deletePeriode(item) {
+
+        // Update actor data
+        if (this.type === 'figure') {
+            const data = duplicate(this.data.data.periodes);
+            const i = data.findIndex(o => o.refid === item.data.data.id);
+            if (i !== -1) {
+                data.splice(i, 1);
+            }
+            await this.update({ ["data.periodes"]: data });
+        }
+
+        // Update embedded items
+        for (let vecu of this.items.filter(i => i.type === 'vecu' && i.data.data.periode === item.data.data.id)) {
+            await this.deleteEmbeddedDocuments('Item', [vecu.id]);
+        }
+
+    }
+
+    /**
+     * Deletes the specified pratique.
+     * @param {*} item The item to delete.
+     */
+    async deletePratique(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.denier);
+        const i = data.pratiques.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.pratiques.splice(i, 1);
+        }
+        await this.update({ ["data.denier"]: data });
+
+    }
+
+    /**
+     * Deletes the specified quete.
+     * @param {*} item The item to delete.
+     * @param {*} from The optional period item from which to delete the item.
+     */
+    async deleteQuete(item, from) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.periodes);
+        this.data.data.periodes.forEach((p, ip) => {
+            if ( from === undefined || from.data.data.id === p.refid ) {
+                const i = p.quetes.findIndex(o => o.refid === item.data.data.id);
+                if (i !== -1) {
+                    data[ip].quetes.splice(i, 1);
+                }
+            }
+        });
+        await this.update({ ["data.periodes"]: data });
+
+    }
+
+    /**
+     * Deletes the specified rite.
+     * @param {*} item The item to delete.
+     */
+    async deleteRite(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.necromancie);
+        const i = data.rites.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.rites.splice(i, 1);
+        }
+        await this.update({ ["data.necromancie"]: data });
+
+    }
+
+    /**
+     * Deletes the specified rituel.
+     * @param {*} item The item to delete.
+     */
+    async deleteRituel(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.epee);
+        const i = data.rituels.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.rituels.splice(i, 1);
+        }
+        await this.update({ ["data.epee"]: data });
+
+    }
+
+    /**
+     * Deletes the specified savoir.
+     * @param {*} item The item to delete.
+     * @param {*} from The optional period item from which to delete the item.
+     */
+    async deleteSavoir(item, from) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.periodes);
+        this.data.data.periodes.forEach((p, ip) => {
+            if ( from === undefined || from.data.data.id === p.refid ) {
+                const i = p.savoirs.findIndex(o => o.refid === item.data.data.id);
+                if (i !== -1) {
+                    data[ip].savoirs.splice(i, 1);
+                }
+            }
+        });
+        await this.update({ ["data.periodes"]: data });
+
+    }
+
+    /**
+     * Deletes the specified science.
+     * @param {*} item The item to delete.
+     * @param {*} from The optional period item from which to delete the item.
+     */
+     async deleteScience(item, from) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.periodes);
+        this.data.data.periodes.forEach((p, ip) => {
+            if ( from === undefined || from.data.data.id === p.refid ) {
+                const i = p.sciences.findIndex(o => o.refid === item.data.data.id);
+                if (i !== -1) {
+                    data[ip].sciences.splice(i, 1);
+                }
+            }
+        });
+        await this.update({ ["data.periodes"]: data });
+
+    }
+
+    /**
+     * Deletes the specified sort.
+     * @param {*} item The item to delete.
+     */
+    async deleteSort(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.magie);
+        const i = data.sorts.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.sorts.splice(i, 1);
+        }
+        await this.update({ ["data.magie"]: data });
+
+    }
+
+    /**
+     * Deletes the specified technique.
+     * @param {*} item The item to delete.
+     */
+    async deleteTechnique(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.baton);
+        const i = data.techniques.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.techniques.splice(i, 1);
+        }
+        await this.update({ ["data.baton"]: data });
+
+    }
+
+    /**
+     * Deletes the specified tekhne.
+     * @param {*} item The item to delete.
+     */
+    async deleteTekhne(item) {
+
+        // Update actor data
+        const data = duplicate(this.data.data.coupe);
+        const i = data.tekhnes.findIndex(o => o.refid === item.data.data.id);
+        if (i !== -1) {
+            data.tekhnes.splice(i, 1);
+        }
+        await this.update({ ["data.coupe"]: data });
+
+    }
+
+    /**
+     * Deletes the specified periode.
+     * @param {*} item The item to delete.
+     */
+     async deleteVecu(item) {
+
+        // Update embedded items
+        for (let v of this.items.filter(o => o.type === 'vecu' && o.data.data.periode === item.data.data.periode)) {
+            await this.deleteEmbeddedDocuments('Item', [v.id]);
+        }
+
     }
 
 }
