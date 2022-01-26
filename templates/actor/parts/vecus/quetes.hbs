@@ -25,9 +25,8 @@
         {{#each (getLevels data.id 'quetes') as |quete|}}
         <li class="item" data-item-id="{{quete.refid}}" data-item-type="quete">
 
-            <div class="item-name tooltip">
+            <div class="item-name">
                 <span data-item-id="{{quete.refid}}">{{quete.name}}</span>
-                <span class="tooltiptext">{{quete.next}} ps</span>
             </div>
 
             <label class="item-integer">{{quete.degre}}</label>
@@ -37,7 +36,7 @@
             </div>
 
             <div class="item-control">
-                <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="edit-quete" title="Edit Item"><i class="fas fa-edit"></i></a>
             </div>
 
         </li>

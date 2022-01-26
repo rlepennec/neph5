@@ -71,9 +71,8 @@
         {{#each (getCompetences data.id) as |competence|}}
         <li class="item" data-item-id="{{competence.refid}}" data-item-type="competence">
 
-            <div class="item-name tooltip">
+            <div class="item-name">
                 <span>{{competence.name}}</span>
-                <span class="tooltiptext">{{competence.sum}}/{{competence.next}} ps</span>
             </div>
 
             <div class="item-integer">
@@ -85,7 +84,7 @@
             </div>
 
             <div class="item-control">
-                <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                <a class="edit-competence" title="Edit Item"><i class="fas fa-edit"></i></a>
             </div>
 
         </li>

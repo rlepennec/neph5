@@ -7,6 +7,7 @@ import { Rolls } from "../../common/rolls.js";
 import { deleteItemOf } from "../../common/tools.js";
 import { droppedActor } from "../../common/tools.js";
 import { BaseSheet } from "./base.js";
+import { NephilimActor } from "../entity.js";
 
 export class FigureSheet extends BaseSheet {
 
@@ -120,6 +121,9 @@ export class FigureSheet extends BaseSheet {
 
         // Vecus
         html.find('div[data-tab="vecus"] .item-edit').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditCompetence.bind(this));
+        html.find('div[data-tab="vecus"] .edit-savoir').click(this._onEditSavoir.bind(this));
+        html.find('div[data-tab="vecus"] .edit-quete').click(this._onEditQuete.bind(this));
         html.find('div[data-tab="vecus"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="vecus"] .roll-vecu-simulacre').click(this._onRollVecuSimulacre.bind(this));
         html.find('div[data-tab="vecus"] .item-roll-vecu').click(this._onRollVecu.bind(this));
@@ -688,6 +692,152 @@ export class FigureSheet extends BaseSheet {
         const id = li.data("item-id");
         const item = CustomHandlebarsHelpers.getItem(id);
         item.sheet.render(true);
+    }
+
+
+    async _onEditCompetence(event) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        const vecus = [];
+        for (let vecu of this.actor.items.filter(i => i.type === 'vecu')) {
+            for (let c of vecu.data.data.competences) {
+                if (c.refid === id) {
+                    vecus.push(vecu);
+                    break;
+                }
+            }
+        }
+
+        const degre = this.actor.getCompetence(item);
+        const sapience = this.actor.getCompetenceSum(item);
+        const next = NephilimActor.getCostTo(degre + 1);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/actor/parts/vecus/competence.html", {
+            item: item,
+            vecus: vecus,
+            degre: degre,
+            sapience: sapience,
+            next: next
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: "Competence",
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 560,
+            height: 500
+        }).render(true);
+
+    }
+
+    async _onEditSavoir(event) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        const periodes = [];
+        for (let periode of this.actor.data.data.periodes.filter(p => p.active === true)) {
+            for (let savoir of periode.savoirs.filter(s => s.refid === id)) {
+                if (savoir.refid === id) {
+                    const periodeItem = CustomHandlebarsHelpers.getItem(periode.refid);
+                    periodes.push({name: periodeItem?.name, degre: savoir.degre});
+                    break;
+                }
+            }
+        }
+
+        let degre = 0;
+        for (let p of periodes) {
+            degre = degre + p.degre;
+        }
+
+        const sapience = NephilimActor.getCostTo(degre);
+        const next = NephilimActor.getCostTo(degre + 1);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/actor/parts/vecus/savoir.html", {
+            item: item,
+            periodes: periodes,
+            degre: degre,
+            sapience: sapience,
+            next: next
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: "Savoir ésotérique",
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 560,
+            height: 500
+        }).render(true);
+
+    }
+
+    async _onEditQuete(event) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        const periodes = [];
+        for (let periode of this.actor.data.data.periodes.filter(p => p.active === true)) {
+            for (let quete of periode.quetes.filter(s => s.refid === id)) {
+                if (quete.refid === id) {
+                    const periodeItem = CustomHandlebarsHelpers.getItem(periode.refid);
+                    periodes.push({name: periodeItem?.name, degre: quete.degre});
+                    break;
+                }
+            }
+        }
+
+        let degre = 0;
+        for (let p of periodes) {
+            degre = degre + p.degre;
+        }
+
+        const sapience = NephilimActor.getCostTo(degre);
+        const next = NephilimActor.getCostTo(degre + 1);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/actor/parts/vecus/quete.html", {
+            item: item,
+            periodes: periodes,
+            degre: degre,
+            sapience: sapience,
+            next: next
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: "Quête ésotérique",
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 560,
+            height: 500
+        }).render(true);
+
     }
 
     async _onRoll(event) {

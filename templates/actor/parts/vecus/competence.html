@@ -1,0 +1,49 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-competence.webp" title="{{localize 'ITEM.TypeCompetence'}}"/>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
+
+            <div style="display: flex; flex-direction: row; height: 60px;">
+
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
+
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+
+            </div>
+
+            <table style="margin-top: 10px;">
+                <tr>
+                    <th>Vécu</th>
+                    <th>Degré</th>
+                    <th>Sapience</th>
+                </tr>
+                {{#each vecus as |item|}}
+                {{#if (eq item.data.data.actif true)}}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td style="text-align: center;">{{item.data.data.degre}}</td>
+                    <td style="text-align: center;">{{getSapiences item.data.data.degre}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; font-weight: bold;">{{degre}}</td>
+                    <td style="text-align: center; font-weight: bold;">{{next}}</td>
+                </tr>
+            </table>
+
+            <div style="border-width: 2px; margin-top: 10px">
+                {{html item.data.data.description}}
+            </div>
+
+        </div>
+
+    </div>
+
+</form>

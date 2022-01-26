@@ -57,6 +57,7 @@ Hooks.once("init", function () {
         getItems: CustomHandlebarsHelpers.getItems,
         canEditItem: CustomHandlebarsHelpers.canEditItem,
         getLevels: CustomHandlebarsHelpers.getLevels,
+        getSapiences: CustomHandlebarsHelpers.getSapiences,
         getCompetences: CustomHandlebarsHelpers.getCompetences,
         getVecus: CustomHandlebarsHelpers.getVecus,
         getScience: CustomHandlebarsHelpers.getScience,

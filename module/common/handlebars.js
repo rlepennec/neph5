@@ -73,6 +73,10 @@ export class CustomHandlebarsHelpers {
         return degre - 1;
     }
 
+    static getSapiences(degre) {
+        return NephilimActor.getCostTo(degre);
+    }
+
     /**
      * Gets the vecus according to the specified character and the active periodes.
      * @param actor The uuid of the actor for which to create the vecus. 
