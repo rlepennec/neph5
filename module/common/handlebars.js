@@ -1,6 +1,12 @@
-import { NephilimActor } from "../actor/entity.js";
-
 export class CustomHandlebarsHelpers {
+
+    /**
+     * @param {*} value 
+     * @returns true if the specified value is defined.
+     */
+    static defined(value) {
+        return value !== undefined;
+    }
 
     /**
      * @param {*} str 
@@ -68,13 +74,29 @@ export class CustomHandlebarsHelpers {
         let cost = 0;
         while (cost <= ps) {
             degre = degre + 1;
-            cost = NephilimActor.getCostTo(degre);
+            cost = CustomHandlebarsHelpers.getSapiences(degre);
         }
         return degre - 1;
     }
 
+    /**
+     * Gets the total sapience point to reach the specified level.
+     * @param {*} degre The level to reach.
+     * @returns the number of sapience points.
+     */
     static getSapiences(degre) {
-        return NephilimActor.getCostTo(degre);
+        const costs = [0, 1, 3, 6, 10, 15, 25, 40, 60, 90];
+        return degre < 10 ? costs[degre] : 90 + degre * 100;
+    }
+
+    /**
+     * Gets the number points of sapience to spend to reach a skill level to one degre.
+     * @param {Integer} degre The level to reach which must be in [0.. +[.
+     * @returns the number of points of sapience.
+     */
+    static getNextCost(degre) {
+        const costs = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 100];
+        return costs[degre];
     }
 
     /**
@@ -84,7 +106,7 @@ export class CustomHandlebarsHelpers {
      */
     static getVecus(actor) {
         const vecus = [];
-        for (let v of  CustomHandlebarsHelpers.getActor(actor).items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
+        for (let v of CustomHandlebarsHelpers.getActor(actor).items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
             const periode = CustomHandlebarsHelpers.getItem(v.data.data.periode);
             vecus.push({
                 id: v.id,
@@ -105,13 +127,13 @@ export class CustomHandlebarsHelpers {
     static getCompetences(actor) {
         const competences = [];
         const a = CustomHandlebarsHelpers.getActor(actor);
-        for (let c of CustomHandlebarsHelpers.getItems('competence').sort((a,b)=> (a.name > b.name ? 1 : -1))) {
+        for (let c of CustomHandlebarsHelpers.getItems('competence').sort((a, b) => (a.name > b.name ? 1 : -1))) {
             competences.push({
                 refid: c.data.data.id,
                 name: c.name,
                 degre: a.getCompetence(c),
                 sum: a.getCompetenceSum(c),
-                next: NephilimActor.getCostTo(a.getCompetence(c) + 1)
+                next: CustomHandlebarsHelpers.getSapiences(a.getCompetence(c) + 1)
             });
         }
         return competences;

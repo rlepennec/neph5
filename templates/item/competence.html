@@ -37,7 +37,11 @@
                 <div style="width: 100%; text-align: center; vertical-align: middle;"></div>
 
                 <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                    {{#if (defined degre)}}
+                    <select name="data.element" disabled>
+                    {{else}}
                     <select name="data.element">
+                    {{/if}}
                     {{#select data.element}}
                         {{#each elements as |name label|}}
                         <option value="{{label}}">{{localize name}}</option>
@@ -48,11 +52,44 @@
 
             </div>
 
+            {{#if (defined degre)}}
+            <table style="margin-top: 10px;">
+                <tr>
+                    <th>{{localize 'NEPH5E.vecu'}}</th>
+                    <th>{{localize 'NEPH5E.degre'}}</th>
+                    <th>{{localize 'NEPH5E.sapience'}}</th>
+                </tr>
+                {{#each vecus as |item|}}
+                {{#if (eq item.data.data.actif true)}}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td style="text-align: center;">{{item.data.data.degre}}</td>
+                    <td style="text-align: center;">{{getSapiences item.data.data.degre}}</td>
+                </tr>
+                {{/if}}
+                {{/each}}
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; font-weight: bold;">{{degre}}</td>
+                    <td style="text-align: center; font-weight: bold;">{{next}}</td>
+                </tr>
+            </table>
+            {{/if}}
+
             <div style="border-width: 2px; margin-top: 10px">
+            {{#if (defined degre)}}
+                {{html item.data.data.description}}
+            {{else}}
                 {{#if (isEmptyString data.description)}}
-                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                <div style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-plus"></i></a>
+                    </div>
+                    <span>{{localize 'NEPH5E.description'}}</span>
+                </div>
                 {{/if}}
                 {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{/if}}
             </div>
 
         </div>

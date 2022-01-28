@@ -1,100 +1,105 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
+    <div class="tbd" style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-rite.webp" title="{{localize 'ITEM.TypeRite'}}"/>
+        </div>
 
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
 
-        <div class="title">
-
-            <span class="type">{{localize "NEPH5E.necromancie.rite"}}</span>
-
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
-
-            <br>
-
+            {{#if debug}}
+            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
+                <input
+                    name="data.id"
+                    type="text"
+                    value="{{data.id}}"
+                    data-dtype="String"/>
+            </div>
+            {{else}}
             <input
                 name="data.id"
-                type="text"
+                type="hidden"
                 value="{{data.id}}"
                 data-dtype="String"/>
+            {{/if}}
+
+            <div style="display: flex; flex-direction: row; height: 60px;">
+
+                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
+
+                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
+  
+            </div>
+
+            <div style="margin-top: 10px; display: flex; flex-direction: row;">
+
+                <div style="width: 50%; display: flex; flex-direction: row;">
+
+                    <div style="padding-top: 5px; font-weight: bold;">{{localize "NEPH5E.cercle"}} :</div>
+
+                    <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                        {{#if (defined difficulty)}}
+                        <select name="data.cercle" disabled>
+                        {{else}}
+                        <select name="data.cercle">
+                        {{/if}}
+                        {{#select data.cercle}}
+                            {{#each cercles as |name label|}}
+                            <option value="{{label}}">{{localize name}}</option>
+                            {{/each}}
+                        {{/select}}
+                        </select>
+                    </div>
+
+                </div>
+
+                <div style="width: 50%; display: flex; flex-direction: row; flex-direction: row-reverse;">
+
+                    <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                        {{#if (defined difficulty)}}
+                        <select name="data.desmos" disabled>
+                        {{else}}
+                        <select name="data.desmos">
+                        {{/if}}  
+                        {{#select data.desmos}}
+                            {{#each desmos as |name label|}}
+                            <option value="{{label}}">{{localize name}}</option>
+                            {{/each}}
+                        {{/select}}
+                        </select>
+                    </div>
+
+                    <div style="padding-top: 5px; font-weight: bold;">{{localize "NEPH5E.desmos"}} :</div>
+
+                </div>
+
+            </div>
+
+            {{#if (defined difficulty)}}
+            <div style="margin-top: 10px; display: flex; flex-direction: row;">
+                <span style="font-weight: bold;">Difficulté : </span><span style="margin-left:5px;">{{difficulty}}0%</span>
+            </div>
+            {{/if}}
+        
+            <div style="border-width: 2px;">
+            {{#if (defined difficulty)}}
+                {{html item.data.data.description}}
+            {{else}}
+                {{#if (isEmptyString data.description)}}
+                <div style="display: flex; flex-direction: row; margin-top: 10px;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-plus"></i></a>
+                    </div>
+                    <span>{{localize 'NEPH5E.description'}}</span>
+                </div>
+                {{/if}}
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{/if}}
+            </div>
 
         </div>
 
-    </header>
+    </div>
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
-
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
-
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        <div class="tab description" data-group="primary" data-tab="description">
-
-            <div class="header rite">
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.cercle"}}</label>
-                    <select class="property-value" name="data.cercle">
-                    {{#select data.cercle}}
-                        {{#each cercles as |name label|}}
-                        <option value="{{label}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                    </select>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.necromancie.desmos.nom"}}</label>
-                    <select class="property-value" name="data.desmos">
-                    {{#select data.desmos}}
-                        {{#each desmos as |name label|}}
-                        <option value="{{label}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                    </select>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.cout"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.degre"
-                        type="text"
-                        value="{{data.degre}}"
-                        data-dtype="Number"
-                    />
-                </div>
-
-            </div>
-
-            <div class="property-list">
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.duree"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.duree"
-                        type="text"
-                        value="{{data.duree}}"
-                        data-dtype="String"
-                    />
-                </div>
-
-            </div>
-
-            <div class="part-header">
-                <div class="part-name">
-                    <span>{{localize "NEPH5E.effet"}}</span>
-                </div>
-            </div>
-
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-
-    </section>
-        
 </form>

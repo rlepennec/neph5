@@ -306,26 +306,16 @@ export class NephilimActor extends Actor {
                         refid: item.refid,
                         name: CustomHandlebarsHelpers.getItem(item.refid).data.name,
                         degre: item.degre,
-                        next: NephilimActor.getNextCost(item.degre + 1)
+                        next: CustomHandlebarsHelpers.getNextCost(item.degre + 1)
                     });
                 } else {
                     sums[index].degre = sums[index].degre + item.degre;
-                    sums[index].next = NephilimActor.getNextCost(sums[index].degre + 1);
+                    sums[index].next = CustomHandlebarsHelpers.getNextCost(sums[index].degre + 1);
                 }
             }
         }
         sums.sort((fst, snd) => (fst.name > snd.name) ? 1 : ((snd.name > fst.name) ? -1 : 0));
         return sums;
-    }
-
-    /**
-     * Gets the number points of sapience to spend to reach a skill level to one degre.
-     * @param {Integer} degre The level to reach which must be in [0.. +[.
-     * @returns the number of points of sapience.
-     */
-    static getNextCost(degre) {
-        const costs = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 100];
-        return costs[degre];
     }
 
     /**
@@ -358,20 +348,11 @@ export class NephilimActor extends Actor {
      * @returns the level.
      */
     getCompetenceOfSimulacre(competence) {
-        /*
-        const vecu = CustomHandlebarsHelpers.getItem(this.data.data.vecu.refid);
-        if (vecu != undefined) {
-            const item = vecu.data.data.competences.find(c => c.refid === competence.data.data.id);
-            if (item != undefined) {
-                return this.data.data.vecu.degre;
-            }
-        }
-        return 0;*/
 
         let sapience = 0;
         for (let v of this.items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
             for (let c of v.data.data.competences.filter(c => c.refid === competence.data.data.id)) {
-                sapience = sapience + NephilimActor.getCostTo(v.data.data.degre);
+                sapience = sapience + CustomHandlebarsHelpers.getSapiences(v.data.data.degre);
             }
         }
         return sapience;
@@ -390,7 +371,7 @@ export class NephilimActor extends Actor {
         let cost = 0;
         while (cost <= sapience) {
             degre = degre + 1;
-            cost = NephilimActor.getCostTo(degre);
+            cost = CustomHandlebarsHelpers.getSapiences(degre);
         }
         return degre - 1;
     }
@@ -405,20 +386,10 @@ export class NephilimActor extends Actor {
         let sapience = 0;
         for (let v of this.items.filter(v => v.type === 'vecu' && v.data.data.actif === true)) {
             for (let c of v.data.data.competences.filter(c => c.refid === competence.data.data.id)) {
-                sapience = sapience + NephilimActor.getCostTo(v.data.data.degre);
+                sapience = sapience + CustomHandlebarsHelpers.getSapiences(v.data.data.degre);
             }
         }
         return sapience;
-    }
-
-    /**
-     * Gets the number points of sapience to spend to reach a skill level from 0 to the specified degre.
-     * @param {Integer} degre The level to reach which must be in [0.. +[.
-     * @returns the number of points of sapience.
-     */
-    static getCostTo(degre) {
-        const costs = [0, 1, 3, 6, 10, 15, 25, 40, 60, 90];
-        return degre < 10 ? costs[degre] : 90 + degre * 100;
     }
 
     /**

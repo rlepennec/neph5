@@ -10,10 +10,17 @@ export class MigrationTools {
         const worldTemplateVersion = game.settings.get("neph5e", "worldTemplateVersion");
 
         if (isNewerVersion('1.0.1', worldTemplateVersion)) {
-            ui.notifications.info("Mise à jour des données...");
+            ui.notifications.info("Mise à jour des données vers 1.0.1 ...");
             await MigrationTools.migrate_1_0_1();
             game.settings.set("neph5e", "worldTemplateVersion", '1.0.1');
-            ui.notifications.info("Mise à jour effectuée");
+            ui.notifications.info("Mise à jour vers 1.0.1 effectuée");
+        }
+
+        if (isNewerVersion('1.0.2', worldTemplateVersion)) {
+            ui.notifications.info("Mise à jour des données vers 1.0.2 ...");
+            await MigrationTools.migrate_1_0_2();
+            game.settings.set("neph5e", "worldTemplateVersion", '1.0.2');
+            ui.notifications.info("Mise à jour vers 1.0.2 effectuée");
         }
 
     }
@@ -176,6 +183,42 @@ export class MigrationTools {
         }
 
         ui.notifications.info("Mise à jour des acteurs du monde effectuée");
+
+    }
+
+    /**
+     * Miragtion to template version 1.0.2
+     *   - Update each rite
+     */
+     static async migrate_1_0_2() {
+
+        // Delete some properties of each rite
+        for (let item of game.items.filter(i => i.type === 'rite')) {
+            await item.update({ ['data.-=voie']: null });
+            await item.update({ ['data.-=duree']: null });
+            await item.update({ ['data.-=degre']: null });
+        }
+
+        ui.notifications.info("Mise à jour des objects du monde effectuée");
+
+        // Update items of compendium
+        for (let pack of game.packs.filter(p => p.documentName === 'Item')) {
+
+            const wasLocked = pack.locked;
+            await pack.configure({ locked: false });
+            await pack.migrate();
+            const documents = await pack.getDocuments();
+
+            // Update rite
+            for (let item of documents.filter(i => i.type === 'rite')) {
+                await item.update({ ['data.-=voie']: null });
+                await item.update({ ['data.-=duree']: null });
+                await item.update({ ['data.-=degre']: null });
+            }
+
+            ui.notifications.info("Mise à jour des objects du pack " + pack.name + " effectuée");
+
+        }
 
     }
 

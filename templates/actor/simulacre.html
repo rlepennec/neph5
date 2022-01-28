@@ -85,6 +85,16 @@
                 {{/if}}
                 {{/each}}
 
+                {{#each (getCompetences actor.data.data.id) as |competence|}}
+                {{#if (ne competence.degre 0)}}
+                <li class="item">
+                    <div class="item-name">
+                        <span>{{competence.name}}</span>
+                    </div>
+                </li>
+                {{/if}}
+                {{/each}}
+
             </ol>
 
             {{#if useV3}}

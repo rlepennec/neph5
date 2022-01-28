@@ -56,6 +56,7 @@ export class SimulacreSheet extends BaseSheet {
         html.find('div[data-tab="description"] .roll-vecu').click(this._onRollVecu.bind(this));
         html.find('div[data-tab="description"] .delete-vecu').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="description"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
+        html.find('div[data-tab="description"] .degre-vecu').change(this._onDegreVecu.bind(this));
     }
 
     /**
@@ -66,6 +67,14 @@ export class SimulacreSheet extends BaseSheet {
             formData['data.id'] = UUID();
         }
         super._updateObject(event, formData);
+    }
+
+    async _onDegreVecu(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const degre = parseInt(event.currentTarget.value);
+        const item = this.actor.items.get(id);
+        await item.update({"data.degre": degre});
     }
 
     async _onRollAttribute(event) {

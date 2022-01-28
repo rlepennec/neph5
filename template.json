@@ -420,10 +420,9 @@
             "templates": ["base"]
         },
         "rite": {
-            "templates": ["base", "withLevel"],
+            "templates": ["base"],
             "cercle": "fossoyeur",
-            "voie": "",
-            "duree": ""
+            "desmos": "spiritisme"
         },
         "rituel": {
             "templates": ["base", "withLevel"]

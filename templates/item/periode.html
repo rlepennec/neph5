@@ -57,7 +57,7 @@
             <ol style="column-count: 2;">
 
                 {{#each vecus as |vecu|}}
-                <li class="item" data-item-id="{{vecu}}" style="display: flex; flex-direction: row;">
+                <li class="item hoverable" data-item-id="{{vecu}}" style="display: flex; flex-direction: row;">
 
                     <div style="margin-right: 10px;" >
                         <a><i class="delete-vecu fas fa-trash"></i></a>
@@ -76,7 +76,12 @@
 
             <div style="border-width: 2px; margin-top: 10px">
                 {{#if (isEmptyString data.description)}}
-                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                <div style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-plus"></i></a>
+                    </div>
+                    <span>{{localize 'NEPH5E.description'}}</span>
+                </div>
                 {{/if}}
                 {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
             </div>

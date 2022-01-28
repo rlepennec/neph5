@@ -4,31 +4,11 @@
     value="true"
     data-dtype="Boolean"/>
 
-<div class="cercles">
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.cercles.fossoyeur"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{getScience data.id "fossoyeur"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.cercles.embaumeur"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{getScience data.id "embaumeur"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.necromancie.cercles.imputrescible"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{getScience data.id "imputrescible"}}</label>
-    </div>
-
-</div>
-
 <ol class="item-list">
 
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Fossoyeur"}}
+    {{#with (getScience data.id "fossoyeur") as |degre|}}
+    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Fossoyeur" degre=degre useV3=../useV3}}
+    {{/with}}
 
     {{#each data.necromancie.rites as |rite|}}
         {{#with (getItem rite.refid)}}
@@ -38,7 +18,9 @@
         {{/with}}
     {{/each}}
 
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Embaumeur"}}
+    {{#with (getScience data.id "embaumeur") as |degre|}}
+    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Embaumeur" degre=degre useV3=../useV3}}
+    {{/with}}
 
     {{#each data.necromancie.rites as |rite|}}
         {{#with (getItem rite.refid)}}
@@ -48,7 +30,9 @@
         {{/with}}
     {{/each}}
 
-    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Imputrescible"}}
+    {{#with (getScience data.id "imputrescible") as |degre|}}
+    {{> "systems/neph5e/templates/actor/parts/necromancie/header.hbs" cercle="Imputrescible" degre=degre useV3=../useV3}}
+    {{/with}}
 
     {{#each data.necromancie.rites as |rite|}}
         {{#with (getItem rite.refid)}}

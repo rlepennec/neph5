@@ -181,9 +181,8 @@ export class FigureSheet extends BaseSheet {
 
         // Necromancie
         html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="necromancie"] .item-name').click(this._onShowRite.bind(this));
+        html.find('div[data-tab="necromancie"] .edit-rite').click(this._onEditRite.bind(this));
         html.find('div[data-tab="necromancie"] .item-roll').click(this._onItemRoll.bind(this));
-        html.find('div[data-tab="necromancie"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="necromancie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Baton
@@ -714,20 +713,22 @@ export class FigureSheet extends BaseSheet {
 
         const degre = this.actor.getCompetence(item);
         const sapience = this.actor.getCompetenceSum(item);
-        const next = NephilimActor.getCostTo(degre + 1);
+        const next = CustomHandlebarsHelpers.getSapiences(degre + 1);
 
         // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/actor/parts/vecus/competence.html", {
+        const html = await renderTemplate("systems/neph5e/templates/item/competence.html", {
             item: item,
+            debug: game.settings.get('neph5e', 'debug'),
             vecus: vecus,
             degre: degre,
             sapience: sapience,
-            next: next
+            next: next,
+            elements: Game.pentacle.elements
         });
 
         // Display the action panel
         await new Dialog({
-            title: "Competence",
+            title: game.i18n.localize('ITEM.TypeCompetence'),
             content: html,
             buttons: {},
             default: null,
@@ -763,12 +764,13 @@ export class FigureSheet extends BaseSheet {
             degre = degre + p.degre;
         }
 
-        const sapience = NephilimActor.getCostTo(degre);
-        const next = NephilimActor.getCostTo(degre + 1);
+        const sapience = CustomHandlebarsHelpers.getSapiences(degre);
+        const next = CustomHandlebarsHelpers.getSapiences(degre + 1);
 
         // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/actor/parts/vecus/savoir.html", {
+        const html = await renderTemplate("systems/neph5e/templates/item/savoir.html", {
             item: item,
+            debug: game.settings.get('neph5e', 'debug'),
             periodes: periodes,
             degre: degre,
             sapience: sapience,
@@ -777,7 +779,7 @@ export class FigureSheet extends BaseSheet {
 
         // Display the action panel
         await new Dialog({
-            title: "Savoir ésotérique",
+            title: game.i18n.localize('ITEM.TypeSavoir'),
             content: html,
             buttons: {},
             default: null,
@@ -813,12 +815,13 @@ export class FigureSheet extends BaseSheet {
             degre = degre + p.degre;
         }
 
-        const sapience = NephilimActor.getCostTo(degre);
-        const next = NephilimActor.getCostTo(degre + 1);
+        const sapience = CustomHandlebarsHelpers.getSapiences(degre);
+        const next = CustomHandlebarsHelpers.getSapiences(degre + 1);
 
         // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/actor/parts/vecus/quete.html", {
+        const html = await renderTemplate("systems/neph5e/templates/item/quete.html", {
             item: item,
+            debug: game.settings.get('neph5e', 'debug'),
             periodes: periodes,
             degre: degre,
             sapience: sapience,
@@ -827,7 +830,38 @@ export class FigureSheet extends BaseSheet {
 
         // Display the action panel
         await new Dialog({
-            title: "Quête ésotérique",
+            title: game.i18n.localize('ITEM.TypeQuete'),
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 560,
+            height: 500
+        }).render(true);
+
+    }
+
+    async _onEditRite(event) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/item/rite.html", {
+            item: item,
+            debug: game.settings.get('neph5e', 'debug'),
+            cercles: Game.necromancie.cercles,
+            desmos:Game.necromancie.desmos,
+            difficulty: item.difficulty(this.actor)
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: game.i18n.localize('ITEM.TypeRite'),
             content: html,
             buttons: {},
             default: null,
@@ -1082,18 +1116,6 @@ export class FigureSheet extends BaseSheet {
             const properties = $(`<ol/>`);
             properties.append(this._property(item.data.data.degre, 'NEPH5E.construction'));
             properties.append(this._property(item.data.data.activation, 'NEPH5E.cout'));
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowRite(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(game.i18n.localize('NEPH5E.necromancie.desmos.' + item.data.data.desmos), 'NEPH5E.necromancie.desmos.nom'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.cout'));
             properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
             properties.append(this._property(item.data.data.description));
             return properties;

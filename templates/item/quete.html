@@ -32,11 +32,42 @@
   
             </div>
 
+            {{#if (defined degre)}}
+            <table style="margin-top: 10px;">
+                <tr>
+                    <th>{{localize 'NEPH5E.periode'}}</th>
+                    <th>{{localize 'NEPH5E.degre'}}</th>
+                    <th>{{localize 'NEPH5E.sapience'}}</th>
+                </tr>
+                {{#each periodes as |item|}}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td style="text-align: center;">{{item.degre}}</td>
+                    <td style="text-align: center;">-</td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td></td>
+                    <td style="text-align: center; font-weight: bold;">{{degre}}</td>
+                    <td style="text-align: center; font-weight: bold;">{{next}}</td>
+                </tr>
+            </table>
+            {{/if}}
+
             <div style="border-width: 2px; margin-top: 10px">
+            {{#if (defined degre)}}
+                {{html item.data.data.description}}
+            {{else}}
                 {{#if (isEmptyString data.description)}}
-                <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                <div style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-plus"></i></a>
+                    </div>
+                    <span>{{localize 'NEPH5E.description'}}</span>
+                </div>
                 {{/if}}
                 {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{/if}}
             </div>
 
         </div>

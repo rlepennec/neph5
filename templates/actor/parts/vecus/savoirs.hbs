@@ -25,9 +25,8 @@
         {{#each (getLevels data.id 'savoirs') as |savoir|}}
         <li class="item" data-item-id="{{savoir.refid}}" data-item-type="savoir">
 
-            <div class="item-name tooltip">
+            <div class="item-name">
                 <span data-item-id="{{savoir.refid}}">{{savoir.name}}</span>
-                <span class="tooltiptext">{{savoir.next}} ps</span>
             </div>
 
             <label class="item-integer">{{savoir.degre}}</label>
