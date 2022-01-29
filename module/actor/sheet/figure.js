@@ -124,6 +124,7 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditCompetence.bind(this));
         html.find('div[data-tab="vecus"] .edit-savoir').click(this._onEditSavoir.bind(this));
         html.find('div[data-tab="vecus"] .edit-quete').click(this._onEditQuete.bind(this));
+        html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditPasse.bind(this));
         html.find('div[data-tab="vecus"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="vecus"] .roll-vecu-simulacre').click(this._onRollVecuSimulacre.bind(this));
         html.find('div[data-tab="vecus"] .item-roll-vecu').click(this._onRollVecu.bind(this));
@@ -161,7 +162,7 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="incarnations"] .item-edit').click(this._onEditIncarnations.bind(this));
         html.find('div[data-tab="incarnations"] .item-delete').click(this._onDeleteIncarnations.bind(this));
         html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
-        html.find('div[data-tab="incarnations"] .delete-vecu').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .delete-vecu').click(this._onDeleteVecu.bind(this));
         html.find('div[data-tab="incarnations"] .degre-vecu').change(this._onDegreVecu.bind(this));
         html.find('div[data-tab="incarnations"] .periode-active').change(this._onPeriodeActive.bind(this));
 
@@ -588,6 +589,15 @@ export class FigureSheet extends BaseSheet {
         return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
     }
 
+    async _onDeleteVecu(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const periode = CustomHandlebarsHelpers.getItem(li.data("periode-id"));
+        if (this.current && periode.data.data.id === this.current.data.data.id) {
+            return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
+        }
+    }
+
     async _onEditEmbeddedItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
@@ -872,6 +882,10 @@ export class FigureSheet extends BaseSheet {
             height: 500
         }).render(true);
 
+    }
+
+    async _onEditPasse(event) {
+        await this._onEditItem(event);
     }
 
     async _onRoll(event) {

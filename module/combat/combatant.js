@@ -6,23 +6,6 @@ export class NephilimCombatant extends Combatant {
     /**
      * @override
      */
-    async _onCreate(data, options, user) {
-        const status = {
-            effects: [],
-            history: {
-                round: null,
-                attacks: [],
-                defenses: [],
-                exclusive: null
-            }
-        }
-        await super._onCreate(data, options, user);
-        await this.setFlag("world", "combat", status);
-    }
-
-    /**
-     * @override
-     */
     _getInitiativeFormula() {
         if (!this.actor) return "1d6";
         let malus = this.getWoundsModifier('physique');

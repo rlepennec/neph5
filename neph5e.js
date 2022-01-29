@@ -133,13 +133,28 @@ Hooks.once("init", function () {
     Hooks.once('ready', async () => {
         await MigrationTools.migrate();
     });
-    
+
+    Hooks.on("createCombatant", async (combat, data) => {
+
+        if (!game.user.isGM) return;
+
+        const status = {
+            effects: [],
+            history: {
+                round: null,
+                attacks: [],
+                defenses: [],
+                exclusive: null
+            }
+        }
+        await combat.setFlag("world", "combat", status);
+    })
+
     // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
     Hooks.on("hotbarDrop", async (bar, data, slot) => createMacro(bar, data, slot));
 
     // The hook to pre-create item.
     Hooks.on("preCreateItem", (item, data, options, user) => {
-
 
         // Si duplication
         if (item.link.startsWith("@Item[null]{") && item.link.endsWith(" (Copy)}")) {
