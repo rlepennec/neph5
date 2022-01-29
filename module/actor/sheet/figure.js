@@ -713,7 +713,7 @@ export class FigureSheet extends BaseSheet {
 
         const degre = this.actor.getCompetence(item);
         const sapience = this.actor.getCompetenceSum(item);
-        const next = CustomHandlebarsHelpers.getSapiences(degre + 1);
+        const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
 
         // Create the dialog panel to display.
         const html = await renderTemplate("systems/neph5e/templates/item/competence.html", {
@@ -765,7 +765,7 @@ export class FigureSheet extends BaseSheet {
         }
 
         const sapience = CustomHandlebarsHelpers.getSapiences(degre);
-        const next = CustomHandlebarsHelpers.getSapiences(degre + 1);
+        const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
 
         // Create the dialog panel to display.
         const html = await renderTemplate("systems/neph5e/templates/item/savoir.html", {
@@ -816,7 +816,7 @@ export class FigureSheet extends BaseSheet {
         }
 
         const sapience = CustomHandlebarsHelpers.getSapiences(degre);
-        const next = CustomHandlebarsHelpers.getSapiences(degre + 1);
+        const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
 
         // Create the dialog panel to display.
         const html = await renderTemplate("systems/neph5e/templates/item/quete.html", {

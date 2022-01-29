@@ -37,8 +37,10 @@ export class MigrationTools {
         // Add the periode property to each vecu item
         for (let item of game.items.filter(i => i.type === 'vecu' && i.data.data.periode === '')) {
             for (let periode of game.items.filter(p => p.type === 'periode')) {
-                if (periode.data.data.vecus.filter(i => i.refid === item.data.data.id).length > 0) {
-                    await item.update({ ['data.periode']: periode.data.data.id });
+                if (periode.data.data.hasOwnProperty('vecus')) {
+                    if (periode.data.data.vecus.filter(i => i.refid === item.data.data.id).length > 0) {
+                        await item.update({ ['data.periode']: periode.data.data.id });
+                    }
                 }
             }
         }
@@ -85,9 +87,11 @@ export class MigrationTools {
             // Update vecu
             for (let item of documents.filter(i => i.type === 'vecu' && i.data.data.periode === '')) {
                 for (let periode of documents.filter(p => p.type === 'periode')) {
-                    if (periode.data.data.vecus.filter(i => i.refid === item.data.data.id).length > 0) {
-                        await item.update({ ['data.periode']: periode.data.data.id });
-                        break;
+                    if (periode.data.data.hasOwnProperty('vecus')) {
+                        if (periode.data.data.vecus.filter(i => i.refid === item.data.data.id).length > 0) {
+                            await item.update({ ['data.periode']: periode.data.data.id });
+                            break;
+                        }
                     }
                 }
             }
@@ -133,16 +137,21 @@ export class MigrationTools {
 
             // Add vecu items
             for (let periode of actor.data.data.periodes) {
-                for (let vecu of periode.vecus) {
-                    if (!actor.items.find(i => i.data.data.id === vecu.refid)) {
-                        const item = await NephilimItem.fromDropData({
-                            id: CustomHandlebarsHelpers.getItem(vecu.refid).id,
-                            type: "Item"
-                        });
-                        let itemData = item.toObject();
-                        itemData.data.degre = vecu.degre;
-                        itemData = itemData instanceof Array ? itemData : [itemData];
-                        actor.createEmbeddedDocuments("Item", itemData)
+                if (periode.hasOwnProperty('vecus')) {
+                    for (let vecu of periode.vecus) {
+                        if (!actor.items.find(i => i.data.data.id === vecu.refid)) {
+                            const v = CustomHandlebarsHelpers.getItem(vecu.refid);
+                            if (v !== undefined) {
+                                const item = await NephilimItem.fromDropData({
+                                    id: v.id,
+                                    type: "Item"
+                                });
+                                let itemData = item.toObject();
+                                itemData.data.degre = vecu.degre;
+                                itemData = itemData instanceof Array ? itemData : [itemData];
+                                actor.createEmbeddedDocuments("Item", itemData);
+                            }
+                        }
                     }
                 }
             }
@@ -167,14 +176,17 @@ export class MigrationTools {
 
             // Add vecu items
             if (!actor.items.find(i => i.data.data.id === actor.data.data.vecu.refid)) {
-                const item = await NephilimItem.fromDropData({
-                    id: CustomHandlebarsHelpers.getItem(actor.data.data.vecu.refid).id,
-                    type: "Item"
-                });
-                let itemData = item.toObject();
-                itemData.data.degre = actor.data.data.vecu.degre;
-                itemData = itemData instanceof Array ? itemData : [itemData];
-                actor.createEmbeddedDocuments("Item", itemData);
+                const v = CustomHandlebarsHelpers.getItem(actor.data.data.vecu.refid);
+                if (v !== undefined) {
+                    const item = await NephilimItem.fromDropData({
+                        id: v.id,
+                        type: "Item"
+                    });
+                    let itemData = item.toObject();
+                    itemData.data.degre = actor.data.data.vecu.degre;
+                    itemData = itemData instanceof Array ? itemData : [itemData];
+                    actor.createEmbeddedDocuments("Item", itemData);
+                }
             }
 
             // Delete the vecu property

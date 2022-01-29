@@ -85,8 +85,8 @@ export class CustomHandlebarsHelpers {
      * @returns the number of sapience points.
      */
     static getSapiences(degre) {
-        const costs = [0, 1, 3, 6, 10, 15, 25, 40, 60, 90];
-        return degre < 10 ? costs[degre] : 90 + degre * 100;
+        const costs = [0, 1, 3, 6, 10, 15, 25, 40, 60, 90, 140];
+        return degre < 11 ? costs[degre] : 140 + (degre-10) * 100;
     }
 
     /**
