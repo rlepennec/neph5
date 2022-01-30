@@ -299,18 +299,20 @@ export class NephilimActor extends Actor {
     getLevelsFrom(items) {
         const sums = [];
         for (let periode of this.data.data.periodes.filter(p => p.active)) {
-            for (let item of getByPath(periode, items)) {
-                const index = sums.findIndex(i => (i.refid === item.refid));
-                if (index === -1) {
-                    sums.push({
-                        refid: item.refid,
-                        name: CustomHandlebarsHelpers.getItem(item.refid).data.name,
-                        degre: item.degre,
-                        next: CustomHandlebarsHelpers.getNextCost(item.degre + 1)
-                    });
-                } else {
-                    sums[index].degre = sums[index].degre + item.degre;
-                    sums[index].next = CustomHandlebarsHelpers.getNextCost(sums[index].degre + 1);
+            if (periode.hasOwnProperty(items)) {
+                for (let item of getByPath(periode, items)) {
+                    const index = sums.findIndex(i => (i.refid === item.refid));
+                    if (index === -1) {
+                        sums.push({
+                            refid: item.refid,
+                            name: CustomHandlebarsHelpers.getItem(item.refid).data.name,
+                            degre: item.degre,
+                            next: CustomHandlebarsHelpers.getNextCost(item.degre + 1)
+                        });
+                    } else {
+                        sums[index].degre = sums[index].degre + item.degre;
+                        sums[index].next = CustomHandlebarsHelpers.getNextCost(sums[index].degre + 1);
+                    }
                 }
             }
         }
@@ -495,6 +497,25 @@ export class NephilimActor extends Actor {
                 return this.getCompetenceById(game.settings.get('neph5e', 'uuidHeavy'));
             default:
                 return 0;
+        }
+    }
+
+    static getCompetenceUUID(name) {
+        switch (name) {
+            case 'melee':
+                return game.settings.get('neph5e', 'uuidMelee');
+            case 'esquive':
+                return game.settings.get('neph5e', 'uuidDodge');
+            case 'martial':
+                return game.settings.get('neph5e', 'uuidHand');
+            case 'trait':
+                return game.settings.get('neph5e', 'uuidDraft');
+            case 'feu':
+                return game.settings.get('neph5e', 'uuidFire');
+            case 'lourde':
+                return game.settings.get('neph5e', 'uuidHeavy');
+            default:
+                return null;
         }
     }
 
