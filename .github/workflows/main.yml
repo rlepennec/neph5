@@ -22,13 +22,13 @@ jobs:
       with:
         files: 'system.json'
       env:
-        version: ${{steps.get_version.outputs.version}}
+        version: ${{steps.get_version.outputs.version-without-v}}
         url: https://github.com/${{github.repository}}
         manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
-        download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/master.zip
+        download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
 
     # Create a zip file with all files required by the system to add to the release
-    - run: zip -r ./master.zip system.json template.json neph5e.js neph5e.css assets/ icons/ lang/ module/ templates/
+    - run: zip -r ./system.zip system.json template.json neph5e.js neph5e.css assets/ icons/ lang/ module/ templates/
 
     # Create a release for this specific version
     - name: Update Release with Files
@@ -40,6 +40,6 @@ jobs:
         draft: ${{ github.event.release.unpublished }}
         prerelease: ${{ github.event.release.prerelease }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './system.json, ./master.zip'
+        artifacts: './system.json, ./system.zip'
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
