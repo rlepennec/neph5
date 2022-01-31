@@ -920,12 +920,12 @@ export class FigureSheet extends BaseSheet {
         const actor = CustomHandlebarsHelpers.getActor(this.actor.data.data.simulacre.refid)
         const item = actor.items.get(li.data("item-id"));
         return Rolls.check(
-            actor,
+            this.actor,
             item,
             item.type,
             {
                 ...item.data,
-                owner: actor.id,
+                owner: this.actor.id,
                 difficulty: item.data.data.degre,
                 sentence: "fait appel au vécu de " + item.name + " de son simulacre"
             }
@@ -1095,6 +1095,7 @@ export class FigureSheet extends BaseSheet {
                 properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
                 properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
                 properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
+                properties.append(this._property(item.data.data.visibilite, 'NEPH5E.visibilite'));
                 properties.append(this._property(item.data.data.description));
                 return properties;
             }

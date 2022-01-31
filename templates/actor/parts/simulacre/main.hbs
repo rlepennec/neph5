@@ -44,7 +44,7 @@
                 </li>
 
                 {{#each (getVecus data.data.id) as |vecu|}}
-                <li class="item">
+                <li class="item" data-item-id="{{vecu.id}}" data-item-type="vecu">
                     <div class="item-name">
                         <span>{{name}}</span>
                     </div>
