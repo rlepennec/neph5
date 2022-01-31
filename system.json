@@ -23,6 +23,6 @@
     ],
     "url": "https://github.com/rlepennec/neph5",
     "manifest": "https://github.com/rlepennec/neph5/releases/latest/download/system.json",
-    "download": "https://github.com/rlepennec/neph5/releases/latest/download/master.zip",
+    "download": "https://github.com/rlepennec/neph5/releases/download/1.1.13/master.zip",
     "license": "license.txt"
 }
