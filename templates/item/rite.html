@@ -8,95 +8,21 @@
 
         <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
 
-            {{#if debug}}
-            <div style="width: 100%; text-align: center; margin-bottom: 10px;">
-                <input
-                    name="data.id"
-                    type="text"
-                    value="{{data.id}}"
-                    data-dtype="String"/>
-            </div>
-            {{else}}
-            <input
-                name="data.id"
-                type="hidden"
-                value="{{data.id}}"
-                data-dtype="String"/>
-            {{/if}}
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div style="display: flex; flex-direction: row; height: 60px;">
+            <div style="margin-top: 10px; display: flex; flex-direction: row; column-count: 2; justify-content: space-between;">
 
-                <input name="name" type="text" value="{{item.name}}" style="font-size: 25px; text-align: center; margin-bottom: 10px; height: 100%; width: 100%; font-family: Calibri;"/>
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" title="NEPH5E.cercle" collection=cercles name="data.cercle" value=data.cercle}}
 
-                <img src="{{item.img}}" title="{{item.name}}" data-edit="img" style="flex: 0 0 auto; margin-left: 10px"/>
-  
-            </div>
-
-            <div style="margin-top: 10px; display: flex; flex-direction: row;">
-
-                <div style="width: 50%; display: flex; flex-direction: row;">
-
-                    <div style="padding-top: 5px; font-weight: bold;">{{localize "NEPH5E.cercle"}} :</div>
-
-                    <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
-                        {{#if (defined difficulty)}}
-                        <select name="data.cercle" disabled>
-                        {{else}}
-                        <select name="data.cercle">
-                        {{/if}}
-                        {{#select data.cercle}}
-                            {{#each cercles as |name label|}}
-                            <option value="{{label}}">{{localize name}}</option>
-                            {{/each}}
-                        {{/select}}
-                        </select>
-                    </div>
-
-                </div>
-
-                <div style="width: 50%; display: flex; flex-direction: row; flex-direction: row-reverse;">
-
-                    <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
-                        {{#if (defined difficulty)}}
-                        <select name="data.desmos" disabled>
-                        {{else}}
-                        <select name="data.desmos">
-                        {{/if}}  
-                        {{#select data.desmos}}
-                            {{#each desmos as |name label|}}
-                            <option value="{{label}}">{{localize name}}</option>
-                            {{/each}}
-                        {{/select}}
-                        </select>
-                    </div>
-
-                    <div style="padding-top: 5px; font-weight: bold;">{{localize "NEPH5E.desmos"}} :</div>
-
-                </div>
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" title="NEPH5E.desmos" collection=desmos name="data.desmos" value=data.desmos}}
 
             </div>
 
-            {{#if (defined difficulty)}}
-            <div style="margin-top: 10px; display: flex; flex-direction: row;">
-                <span style="font-weight: bold;">Difficulté : </span><span style="margin-left:5px;">{{difficulty}}0%</span>
-            </div>
-            {{/if}}
+            <hr>
+
+            {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
         
-            <div style="border-width: 2px;">
-            {{#if (defined difficulty)}}
-                {{html item.data.data.description}}
-            {{else}}
-                {{#if (isEmptyString data.description)}}
-                <div style="display: flex; flex-direction: row; margin-top: 10px;">
-                    <div style="margin-right: 10px;" >
-                        <a><i class="fas fa-plus"></i></a>
-                    </div>
-                    <span>{{localize 'NEPH5E.description'}}</span>
-                </div>
-                {{/if}}
-                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-            {{/if}}
-            </div>
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

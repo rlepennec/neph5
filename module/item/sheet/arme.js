@@ -6,7 +6,7 @@ export class ArmeSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-     getData() {
+    getData() {
         const data = super.getData();
         data.skills = Game.weapon.skills;
         return data;
@@ -15,15 +15,12 @@ export class ArmeSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-	static get defaultOptions() {
+    static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 600,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
     }
 
 }

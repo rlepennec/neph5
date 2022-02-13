@@ -5,15 +5,12 @@ export class ArmureSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-	static get defaultOptions() {
+    static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 600,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
     }
 
 }

@@ -4,114 +4,20 @@
     value="true"
     data-dtype="Boolean"/>
 
-<div class="cercles" style="column-count: 3">
+<div style="display:flex;flex-direction:row;padding-top:20px;">
 
-    <div class="cercle" data-item-id="noyau">
+    <div style="display:flex;flex-direction:column;width:50%;padding-top:20px;">
 
-        <label class="cercle-name">{{localize "NEPH5E.noyau"}}
-            <div class="item-control">
-                <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
-            </div>
-        </label>
-
-        <label class="cercle-tag"/>
-
-        <input
-            class="cercle-name"
-            name="data.ka.noyau"
-            type="text"
-            value="{{data.ka.noyau}}"
-            data-dtype="Number"/>
+        {{> "systems/neph5e/templates/actor/parts/selenim/noyau.hbs"}}
 
     </div>
 
-    <div class="cercle" data-item-id="pavane">
+    <div style="display:flex;flex-direction:column;width:50%">
 
-        <label class="cercle-name">{{localize "NEPH5E.pavane"}}
-            <div class="item-control">
-                <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
-            </div>
-        </label>
-
-        <label class="cercle-tag"/>
-
-        <input
-            class="cercle-name"
-            name="data.ka.pavane"
-            type="text"
-            value="{{data.ka.pavane}}"
-            data-dtype="Number"/>
-
-    </div>
-
-    <div class="cercle">
-
-        <label class="cercle-name">{{localize "NEPH5E.reserve"}}</label>
-
-        <label class="cercle-tag"/>
-
-        <div style="column-count:2;display:flex;flex-direction:row;height:30px;">
-            
-            <input
-                class="item-integer"
-                name="data.ka.reserveCourante"
-                type="text"
-                value="{{data.ka.reserveCourante}}"
-                data-dtype="Number"
-                style="height:30px;font-style: bold;font-size: 20px;"/>
-
-            <label style="text-align: center; font-size: 16px; width: 50px; height:30px; font-style: bold;font-size: 20px;">/</label>
-
-            <input
-                class="item-integer"
-                name="data.ka.reserve"
-                type="text"
-                value="{{data.ka.reserve}}"
-                data-dtype="Number"
-                style="height:30px;font-style: bold;font-size: 20px;"/>
-
-        </div>
+        {{#if (eq data.options.anamorphose true)}}
+        {{> "systems/neph5e/templates/actor/parts/selenim/aspect.hbs"}}
+        {{/if}}
 
     </div>
 
 </div>
-
-{{#if (eq data.options.anamorphose true)}}
-<ol class="item-list">
-
-    <li class="item-list-header">
-
-        <div class="item-name">
-            <span>{{localize "ITEM.TypeAspect"}}</span>
-        </div>
-
-        <div class="item-integer" style="width:100px;text-align:center;">
-            <span>Construction</span>
-        </div>
-
-        <div class="item-integer" style="width:100px;text-align:center;">
-            <span>Activation</span>
-        </div>
-
-        <div class="item-checkbox">
-            <span>Activé</span>
-        </div>
-
-        <div class="item-control">
-            <span/>
-        </div>
-
-        <div class="item-control">
-            <span/>
-        </div>
-
-    </li>
-
-    {{#each data.imago.aspects as |aspect|}}
-        {{#with (getItem aspect.refid)}}
-            {{> "systems/neph5e/templates/actor/parts/selenim/aspect.hbs" aspect=aspect}}
-        {{/with}}
-    {{/each}}
-
-</ol>
-{{/if}}

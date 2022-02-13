@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "./base.js";
+import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { droppedItem } from "../../common/tools.js";
 import { updateItemRefs } from "../../common/tools.js";
 import { deleteItemRefs } from "../../common/tools.js";
@@ -20,15 +21,12 @@ export class FormuleSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-	static get defaultOptions() {
+     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 600,
-            height: 600,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            width: 650,
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
     }
 
     /**
@@ -36,8 +34,9 @@ export class FormuleSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('div[data-tab="description"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="description"] .item-delete').click(this._onDelete.bind(this));
+        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.delete-variante').click(this._onDeleteVariante.bind(this));
+        html.find('.delete-catalyseur').click(this._onDeleteCatalyseur.bind(this));
     }
 
     /**
@@ -58,21 +57,20 @@ export class FormuleSheet extends NephilimItemSheet {
     /**
      * This function catches the deletion of a catalyseur or a variante.
      */
-    async _onDelete(event) {
+     async _onDeleteCatalyseur(event) {
+        const li = $(event.currentTarget).closest(".item");
+        const id = li.data("item-id");
+       await deleteItemRefs(this.item, event, this.item.data.data.catalyseurs, "data.catalyseurs");
+    }
 
-        // Retrieve the id of the reference to delete
+    /**
+     * This function catches the deletion of a catalyseur or a variante.
+     */
+    async _onDeleteVariante(event) {
         const li = $(event.currentTarget).closest(".item");
         const type = li.data("item-type");
         const id = li.data("item-id");
-
-        if (type == "catalyseur") {
-            await deleteItemRefs(this.item, event, this.item.data.data.catalyseurs, "data.catalyseurs");
-        }
-
-        if (type == "variante") {
-            await deleteItemRefs(this.item, event, this.item.data.data.variantes, "data.variantes");
-        }
-
+        await deleteItemRefs(this.item, event, this.item.data.data.variantes, "data.variantes");
     }
 
     /**
@@ -116,4 +114,36 @@ export class FormuleSheet extends NephilimItemSheet {
         super._updateObject(event, formData);
     }
 
+    static async onEdit(event, actor) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/item/formule.html", {
+            item: item,
+            data: item.data.data,
+            debug: game.settings.get('neph5e', 'debug'),
+            elements: Game.pentacle.elements,
+            cercles: Game.alchimie.cercles,
+            substances: Game.alchimie.substances,
+            difficulty: item.difficulty(actor)
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: game.i18n.localize('ITEM.TypeFormule'),
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 600,
+            height: 500
+        }).render(true);
+
+    }
 }

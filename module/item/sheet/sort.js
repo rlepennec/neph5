@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "./base.js";
+import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { droppedItem } from "../../common/tools.js";
 import { updateItemRefs } from "../../common/tools.js";
 import { deleteItemRefs } from "../../common/tools.js";
@@ -19,15 +20,12 @@ export class SortSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-	static get defaultOptions() {
+    static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
     }
 
     /**
@@ -35,8 +33,8 @@ export class SortSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('div[data-tab="description"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="description"] .item-delete').click(this._onDelete.bind(this));
+        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.delete-voie').click(this._onDelete.bind(this));
     }
 
     /**
@@ -79,6 +77,38 @@ export class SortSheet extends NephilimItemSheet {
 
         // Update object
         super._updateObject(event, formData);
+    }
+
+    static async onEdit(event, actor) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/item/sort.html", {
+            item: item,
+            data: item.data.data,
+            debug: game.settings.get('neph5e', 'debug'),
+            elements: Game.elements,
+            cercles: Game.magie.cercles,
+            difficulty: item.difficulty(actor)
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: game.i18n.localize('ITEM.TypeSort'),
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 560,
+            height: 500
+        }).render(true);
+
     }
 
 }

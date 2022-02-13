@@ -1,143 +1,43 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
+    <div class="tbd" style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-appel.webp" title="{{localize 'ITEM.TypeAppel'}}"/>
+        </div>
 
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
 
-        <div class="title">
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <span class="type">{{localize "NEPH5E.conjuration.nom"}}</span>
+            <div style="margin-top: 10px; display: flex; flex-direction: row; column-count: 3; justify-content: space-between;">
 
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" title="NEPH5E.cercle" collection=cercles name="data.cercle" value=data.cercle}}
 
-            <br>
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" title="NEPH5E.appel" collection=appels name="data.appel" value=data.appel}}
 
-            <input
-                name="data.id"
-                type="text"
-                value="{{data.id}}"
-                data-dtype="String"/>
+                {{> "systems/neph5e/templates/item/parts/header/input.hbs" title="NEPH5E.degre" name="data.degre" value=data.degre type="Number"}}
+
+            </div>
+
+            <hr>
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.controle" name="data.controle" value=data.controle type="Boolean"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.visibilite" name="data.visibilite" value=data.visibilite type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.entropie" name="data.entropie" value=data.entropie type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.dommages" name="data.dommages" value=data.dommages type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.protection" name="data.protection" value=data.protection type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 
-    </header>
+    </div>
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
-
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
-
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        <div class="tab description" data-group="primary" data-tab="description">
-
-            <div class="header appel">
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.cercle"}}</label>
-                    <select class="property-value" name="data.cercle">
-                    {{#select data.cercle}}
-                        {{#each cercles as |name label|}}
-                        <option value="{{label}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                    </select>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.conjuration.appels.nom"}}</label>
-                    <select class="property-value" name="data.appel">
-                    {{#select data.appel}}
-                        {{#each appels as |name label|}}
-                        <option value="{{label}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                    </select>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.degre"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.degre"
-                        type="text"
-                        value="{{data.degre}}"
-                        data-dtype="Number"
-                    />
-                </div>
-
-            </div>
-
-            <div class="property-list">
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.controle"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.controle"
-                        type="checkbox"
-                        {{checked data.controle}}
-                        data-dtype="Boolean"/>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.visibilite"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.visibilite"
-                        type="text"
-                        value="{{data.visibilite}}"
-                        data-dtype="String"
-                    />
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.entropie"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.entropie"
-                        type="text"
-                        value="{{data.entropie}}"
-                        data-dtype="String"
-                    />
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.dommages"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.dommages"
-                        type="text"
-                        value="{{data.dommages}}"
-                        data-dtype="String"
-                    />
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.protection"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.protection"
-                        type="text"
-                        value="{{data.protection}}"
-                        data-dtype="String"
-                    />
-                </div>
-
-            </div>
-
-            <div class="part-header">
-                <div class="part-name">
-                    <span>{{localize "NEPH5E.effet"}}</span>
-                </div>
-            </div>
-
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-
-    </section>
-        
 </form>

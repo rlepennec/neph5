@@ -41,6 +41,16 @@
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }
+.selector-disabled {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  font-weight: normal;
+}
+.selector-disabled:disabled {
+  color: var(--color-text-dark-primary);
+}
 .actor .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;

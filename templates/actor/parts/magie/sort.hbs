@@ -7,7 +7,7 @@
         data-dtype="String"/>
 
     {{#with (getItem sort.refid)}}
-    <div class="item-name">
+    <div class="item-name edit-sort">
         <span data-item-id="{{sort.refid}}">{{name}}</span>
     </div>
     {{/with}}
@@ -37,15 +37,11 @@
     </div>
 
     <div class="item-control">
-        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
-    </div>
-
-    <div class="item-control">
-        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+        <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
     </div>
     
     <div class="item-control">
-        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
     </div>
 
 </li>

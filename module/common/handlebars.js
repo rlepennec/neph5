@@ -16,6 +16,10 @@ export class CustomHandlebarsHelpers {
         return str === undefined || str === null || str.trim() === '';
     }
 
+    static isEmptyCollection(collection) {
+        return collection.length === 0;
+    }
+
     /**
      * Gets the specified actor.
      * @param uuid The uuid of the actor to get.
@@ -198,6 +202,17 @@ export class CustomHandlebarsHelpers {
      */
     static html(html) {
         return new Handlebars.SafeString(html);
+    }
+
+    /**
+     * 
+     * @param {*} fst 
+     * @param {*} snd 
+     * @returns 
+     */
+    static concat(...str) {
+        str.pop();
+        return str.join('');
     }
 
 }

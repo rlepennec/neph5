@@ -1,0 +1,35 @@
+<div style="display: flex; flex-direction: column; margin-top: 4px;">
+
+    <span style="font-weight: bold; height: 26px;">{{localize title}} : </span>
+
+    {{#unless (isEmptyCollection values)}}
+    <ol>
+
+        {{#each values as |item|}}
+        <li class="item" data-item-id="{{item.refid}}" style="display: flex; flex-direction: row; height: 20px;">
+
+            <input
+                name="{{../names}}.[{{@index}}].refid"
+                type="hidden"
+                value="{{item.refid}}"
+                data-dtype="String"/>
+
+            {{#with (concat ../delete " fas fa-trash") as |class|}}
+            <div style="margin-right: 10px;" >
+                <a><i class="{{class}}"></i></a>
+            </div>
+            {{/with}}
+
+            {{#with (getItem item.refid)}}
+            <div>
+                <span class="hoverable" data-item-id="{{item.refid}}">{{name}}</span>
+            </div>
+            {{/with}}
+
+        </li>
+        {{/each}}
+
+    </ol>
+    {{/unless}}
+
+</div>

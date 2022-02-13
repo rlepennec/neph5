@@ -7,7 +7,15 @@ import { Rolls } from "../../common/rolls.js";
 import { deleteItemOf } from "../../common/tools.js";
 import { droppedActor } from "../../common/tools.js";
 import { BaseSheet } from "./base.js";
-import { NephilimActor } from "../entity.js";
+import { AppelSheet } from "../../item/sheet/appel.js";
+import { AspectSheet } from "../../item/sheet/aspect.js";
+import { CompetenceSheet } from "../../item/sheet/competence.js";
+import { FormuleSheet } from "../../item/sheet/formule.js";
+import { InvocationSheet } from "../../item/sheet/invocation.js";
+import { QueteSheet } from "../../item/sheet/quete.js";
+import { RiteSheet } from "../../item/sheet/rite.js";
+import { SavoirSheet } from "../../item/sheet/savoir.js";
+import { SortSheet } from "../../item/sheet/sort.js";
 
 export class FigureSheet extends BaseSheet {
 
@@ -99,7 +107,8 @@ export class FigureSheet extends BaseSheet {
 
         // Combat
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="combat"] .item-edit').click(this._onEditEmbeddedItem.bind(this));
+        html.find('div[data-tab="combat"] .edit-arme').click(this._onEditEmbeddedItem.bind(this));
+        html.find('div[data-tab="combat"] .edit-armure').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .item-roll').click(this._onRoll.bind(this));
         html.find('div[data-tab="combat"] .item-attack').click(this._onAttack.bind(this));
@@ -118,6 +127,9 @@ export class FigureSheet extends BaseSheet {
         // Nephilim
         html.find('div[data-tab="nephilim"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="nephilim"] .item-roll').click(this._onNephilimRoll.bind(this));
+        html.find('div[data-tab="nephilim"] .roll-ka').click(this._onRollPentacle.bind(this));
+        html.find('div[data-tab="nephilim"] .show-arcane').click(this._onEditItem.bind(this));
+        html.find('div[data-tab="nephilim"] .show-chute').click(this._onEditItem.bind(this));
 
         // Vecus
         html.find('div[data-tab="vecus"] .item-edit').click(this._onEditItem.bind(this));
@@ -133,23 +145,20 @@ export class FigureSheet extends BaseSheet {
 
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="magie"] .item-name').click(this._onShowSort.bind(this));
+        html.find('div[data-tab="magie"] .edit-sort').click(this._onEditSort.bind(this));
         html.find('div[data-tab="magie"] .item-roll').click(this._onItemRoll.bind(this));
-        html.find('div[data-tab="magie"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Kabbale
         html.find('div[data-tab="kabbale"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="kabbale"] .item-name').click(this._onShowInvocation.bind(this));
+        html.find('div[data-tab="kabbale"] .edit-invocation').click(this._onEditInvocation.bind(this));
         html.find('div[data-tab="kabbale"] .item-roll').click(this._onItemRoll.bind(this));
-        html.find('div[data-tab="kabbale"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="kabbale"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Alchimie
         html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="alchimie"] .item-name').click(this._onShowFormule.bind(this));
+        html.find('div[data-tab="alchimie"] .item-name').click(this._onEditFormule.bind(this));
         html.find('div[data-tab="alchimie"] .item-roll').click(this._onItemRoll.bind(this));
-        html.find('div[data-tab="alchimie"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="alchimie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Laboratoire
@@ -168,16 +177,15 @@ export class FigureSheet extends BaseSheet {
 
         // Selenim
         html.find('div[data-tab="selenim"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="selenim"] .edit-aspect').click(this._onEditAspect.bind(this));
+        html.find('div[data-tab="selenim"] .roll-ka').click(this._onRollNoyau.bind(this));
         html.find('div[data-tab="selenim"] .item-roll').click(this._onSelenimRoll.bind(this));
-        html.find('div[data-tab="selenim"] .item-name').click(this._onShowAspect.bind(this));
-        html.find('div[data-tab="selenim"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Conjuration
         html.find('div[data-tab="conjuration"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="conjuration"] .item-name').click(this._onShowAppel.bind(this));
+        html.find('div[data-tab="conjuration"] .edit-appel').click(this._onEditAppel.bind(this));
         html.find('div[data-tab="conjuration"] .item-roll').click(this._onItemRoll.bind(this));
-        html.find('div[data-tab="conjuration"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="conjuration"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Necromancie
@@ -188,28 +196,24 @@ export class FigureSheet extends BaseSheet {
 
         // Baton
         html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="baton"] .item-name').click(this._onShowTechnique.bind(this));
         html.find('div[data-tab="baton"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="baton"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Coupe
         html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="coupe"] .item-name').click(this._onShowTekhne.bind(this));
         html.find('div[data-tab="coupe"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="coupe"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Denier
         html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="denier"] .item-name').click(this._onShowPratique.bind(this));
         html.find('div[data-tab="denier"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="denier"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="denier"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Epee
         html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="epee"] .item-name').click(this._onShowRituel.bind(this));
         html.find('div[data-tab="epee"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="epee"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteItem.bind(this));
@@ -249,7 +253,7 @@ export class FigureSheet extends BaseSheet {
             
             // The vecu has been droppped
             } else if (item.data.type === "vecu") {
-                if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1) {
+                if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1 && this.current !== null) {
                     const items = await super._onDrop(event);
                     await items[0].update({ ['data.periode']: this.current.data.data.id });
                 }
@@ -661,6 +665,16 @@ export class FigureSheet extends BaseSheet {
         }
     }
 
+    async _onRollPentacle(event) {
+        const elt = $(event.currentTarget).closest(".roll-ka").data("element");
+        return await this.actor.rollKa(elt);
+    }
+
+    async _onRollNoyau(event) {
+        const elt = $(event.currentTarget).closest(".roll-ka").data("element");
+        return await this.actor.rollKa(elt);
+    }
+
     async _onNephilimRoll(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -703,185 +717,42 @@ export class FigureSheet extends BaseSheet {
         item.sheet.render(true);
     }
 
+    // -------------------------------------> Item edition
 
     async _onEditCompetence(event) {
-
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-
-        const vecus = [];
-        for (let vecu of this.actor.items.filter(i => i.type === 'vecu')) {
-            for (let c of vecu.data.data.competences) {
-                if (c.refid === id) {
-                    vecus.push(vecu);
-                    break;
-                }
-            }
-        }
-
-        const degre = this.actor.getCompetence(item);
-        const sapience = this.actor.getCompetenceSum(item);
-        const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/item/competence.html", {
-            item: item,
-            debug: game.settings.get('neph5e', 'debug'),
-            vecus: vecus,
-            degre: degre,
-            sapience: sapience,
-            next: next,
-            elements: Game.pentacle.elements
-        });
-
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize('ITEM.TypeCompetence'),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
-
-        }, {
-            width: 560,
-            height: 500
-        }).render(true);
-
+        await CompetenceSheet.onEdit(event, this.actor);
     }
 
     async _onEditSavoir(event) {
-
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-
-        const periodes = [];
-        for (let periode of this.actor.data.data.periodes.filter(p => p.active === true)) {
-            for (let savoir of periode.savoirs.filter(s => s.refid === id)) {
-                if (savoir.refid === id) {
-                    const periodeItem = CustomHandlebarsHelpers.getItem(periode.refid);
-                    periodes.push({name: periodeItem?.name, degre: savoir.degre});
-                    break;
-                }
-            }
-        }
-
-        let degre = 0;
-        for (let p of periodes) {
-            degre = degre + p.degre;
-        }
-
-        const sapience = CustomHandlebarsHelpers.getSapiences(degre);
-        const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/item/savoir.html", {
-            item: item,
-            debug: game.settings.get('neph5e', 'debug'),
-            periodes: periodes,
-            degre: degre,
-            sapience: sapience,
-            next: next
-        });
-
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize('ITEM.TypeSavoir'),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
-
-        }, {
-            width: 560,
-            height: 500
-        }).render(true);
-
+        await SavoirSheet.onEdit(event, this.actor);
     }
 
     async _onEditQuete(event) {
-
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-
-        const periodes = [];
-        for (let periode of this.actor.data.data.periodes.filter(p => p.active === true)) {
-            for (let quete of periode.quetes.filter(s => s.refid === id)) {
-                if (quete.refid === id) {
-                    const periodeItem = CustomHandlebarsHelpers.getItem(periode.refid);
-                    periodes.push({name: periodeItem?.name, degre: quete.degre});
-                    break;
-                }
-            }
-        }
-
-        let degre = 0;
-        for (let p of periodes) {
-            degre = degre + p.degre;
-        }
-
-        const sapience = CustomHandlebarsHelpers.getSapiences(degre);
-        const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/item/quete.html", {
-            item: item,
-            debug: game.settings.get('neph5e', 'debug'),
-            periodes: periodes,
-            degre: degre,
-            sapience: sapience,
-            next: next
-        });
-
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize('ITEM.TypeQuete'),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
-
-        }, {
-            width: 560,
-            height: 500
-        }).render(true);
-
+        await QueteSheet.onEdit(event, this.actor);
     }
 
     async _onEditRite(event) {
+        await RiteSheet.onEdit(event, this.actor);
+    }
 
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
+    async _onEditSort(event) {
+        await SortSheet.onEdit(event, this.actor);
+    }
 
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/item/rite.html", {
-            item: item,
-            debug: game.settings.get('neph5e', 'debug'),
-            cercles: Game.necromancie.cercles,
-            desmos:Game.necromancie.desmos,
-            difficulty: item.difficulty(this.actor)
-        });
+    async _onEditInvocation(event) {
+        await InvocationSheet.onEdit(event, this.actor);
+    }
 
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize('ITEM.TypeRite'),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
+    async _onEditFormule(event) {
+        await FormuleSheet.onEdit(event, this.actor);
+    }
 
-        }, {
-            width: 560,
-            height: 500
-        }).render(true);
+    async _onEditAppel(event) {
+        await AppelSheet.onEdit(event, this.actor);
+    }
 
+    async _onEditAspect(event) {
+        await AspectSheet.onEdit(event);
     }
 
     async _onEditPasse(event) {
@@ -1070,128 +941,6 @@ export class FigureSheet extends BaseSheet {
             summary.slideDown(200);
         }
         li.toggleClass("expanded");
-    }
-
-    async _onShowSort(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowInvocation(event) {
-        await this._onShowSomething(event, (item) => {
-            if (item.data.type === 'invocation') {
-                const properties = $(`<ol/>`);
-                properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.element), 'NEPH5E.element'));
-                properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
-                properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-                properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-                properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-                properties.append(this._property(item.data.data.portee, 'NEPH5E.portee'));
-                properties.append(this._property(item.data.data.visibilite, 'NEPH5E.visibilite'));
-                properties.append(this._property(item.data.data.description));
-                return properties;
-            }
-            if (item.data.type === 'ordonnance') {
-                const properties = $(`<ol/>`);
-                properties.append(this._property(game.i18n.localize('NEPH5E.kabbale.mondes.' + item.data.data.monde), 'NEPH5E.kabbale.monde'));
-                properties.append(this._property(item.data.data.description));
-                return properties;
-            }
-        });
-    }
-
-    async _onShowFormule(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(item.data.data.enonce, 'NEPH5E.alchimie.enonce'));
-            properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.elements[0]), 'NEPH5E.element'));
-            if (item.data.data.cercle === 'oeuvreAuBlanc') {
-                properties.append(this._property(game.i18n.localize('NEPH5E.' + item.data.data.elements[1]), 'NEPH5E.element'));
-            }
-            properties.append(this._property(game.i18n.localize('NEPH5E.alchimie.substances.' + item.data.data.substance), 'NEPH5E.alchimie.substance'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.data.data.aire, 'NEPH5E.aire'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowAspect(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.construction'));
-            properties.append(this._property(item.data.data.activation, 'NEPH5E.cout'));
-            properties.append(this._property(item.data.data.duree, 'NEPH5E.duree'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowAppel(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(game.i18n.localize('NEPH5E.conjuration.appels.' + item.data.data.appel), 'NEPH5E.conjuration.appel'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property((item.data.data.controle ? "Oui" : "Non"), 'NEPH5E.controle'));
-            properties.append(this._property(item.data.data.visibilite, 'NEPH5E.visibilite'));
-            properties.append(this._property(item.data.data.entropie, 'NEPH5E.entropie'));
-            properties.append(this._property(item.data.data.dommages, 'NEPH5E.dommages'));
-            properties.append(this._property(item.data.data.protection, 'NEPH5E.protection'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowTechnique(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowTekhne(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowRituel(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
-    }
-
-    async _onShowPratique(event) {
-        await this._onShowSomething(event, (item) => {
-            const properties = $(`<ol/>`);
-            properties.append(this._property(game.i18n.localize('NEPH5E.denier.' + item.data.data.axe), 'NEPH5E.denier.axe'));
-            properties.append(this._property(item.difficulty(this.actor) + '0%', 'NEPH5E.difficulte'));
-            properties.append(this._property(item.data.data.degre, 'NEPH5E.degre'));
-            properties.append(this._property(item.data.data.description));
-            return properties;
-        });
     }
 
     _property(value, name = null) {

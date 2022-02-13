@@ -1,0 +1,25 @@
+<ol class="item-list">
+
+    <div style="text-align:center;font-size:x-large;">
+        {{localize "ITEM.TypeArcane"}}
+    </div>
+
+    {{#each (getLevels data.id 'arcanes') as |arcane|}}
+    <li class="item" data-item-id="{{arcane.refid}}" data-item-type="arcane">
+
+        {{#with (getItem arcane.refid)}}
+        <div class="item-name show-arcane">
+            <span data-item-id="{{arcane.refid}}">{{name}}</span>
+        </div>
+        {{/with}}
+
+        <label class="item-integer">{{arcane.degre}}</label>
+
+        <div class="item-control">
+            <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
+        </div>
+
+    {{/each}}
+    </li>
+
+</ol>

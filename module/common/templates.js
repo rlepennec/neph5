@@ -4,8 +4,16 @@
  * @return {Promise}
  */
 export const preloadTemplates = async function () {
+
     return loadTemplates([
+
+        "systems/neph5e/templates/actor/parts/nephilim/arcane.hbs",
+        "systems/neph5e/templates/actor/parts/nephilim/attributs.hbs",
+        "systems/neph5e/templates/actor/parts/nephilim/chutes.hbs",
         "systems/neph5e/templates/actor/parts/nephilim/main.hbs",
+        "systems/neph5e/templates/actor/parts/nephilim/pentacle.hbs",
+        "systems/neph5e/templates/actor/parts/nephilim/metamorphe.hbs",
+        "systems/neph5e/templates/actor/parts/nephilim/stase.hbs",
         "systems/neph5e/templates/actor/parts/conjuration/main.hbs",
         "systems/neph5e/templates/actor/parts/conjuration/header.hbs",
         "systems/neph5e/templates/actor/parts/conjuration/appel.hbs",
@@ -42,6 +50,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/actor/parts/incarnations/main.hbs",
         "systems/neph5e/templates/actor/parts/options/main.hbs",
         "systems/neph5e/templates/actor/parts/selenim/main.hbs",
+        "systems/neph5e/templates/actor/parts/selenim/noyau.hbs",
         "systems/neph5e/templates/actor/parts/selenim/aspect.hbs",
         "systems/neph5e/templates/actor/parts/baton/main.hbs",
         "systems/neph5e/templates/actor/parts/baton/header.hbs",
@@ -54,6 +63,17 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/actor/parts/denier/pratique.hbs",
         "systems/neph5e/templates/actor/parts/epee/main.hbs",
         "systems/neph5e/templates/actor/parts/epee/header.hbs",
-        "systems/neph5e/templates/actor/parts/epee/rituel.hbs"
+        "systems/neph5e/templates/actor/parts/epee/rituel.hbs",
+
+        "systems/neph5e/templates/item/parts/header/header.hbs",
+        "systems/neph5e/templates/item/parts/header/input.hbs",
+        "systems/neph5e/templates/item/parts/header/select.hbs",
+
+        "systems/neph5e/templates/item/parts/body/description.hbs",
+        "systems/neph5e/templates/item/parts/body/difficulte.hbs",
+        "systems/neph5e/templates/item/parts/body/input.hbs",
+        "systems/neph5e/templates/item/parts/body/list.hbs"
+
     ]);
+
 };

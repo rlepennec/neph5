@@ -1,188 +1,61 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
+    <div class="tbd" style="display: flex; flex-direction: row;">
 
-        <input
-            name="data.id"
-            type="hidden"
-            value="{{data.id}}"
-            data-dtype="String"/>
-
-        <input
-            name="data.used"
-            type="hidden"
-            value="{{data.used}}"
-            data-dtype="String"/>
-
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
-        <div class="title">
-            <span class="type">{{localize "NEPH5E.arme"}}</span>
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/side-arme.webp" title="{{localize 'ITEM.TypeArme'}}"/>
         </div>
 
-    </header>
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+            <div style="margin-top: 10px; display: flex; flex-direction: row; column-count: 3; justify-content: space-between;">
 
-    </nav>
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" title="NEPH5E.arme" collection=skills name="data.skill" value=data.skill}}
 
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
+                {{> "systems/neph5e/templates/item/parts/header/input.hbs" title="NEPH5E.dommages" name="data.damages" value=data.damages type="Number"}}
 
-        <div class="tab description" data-group="primary" data-tab="description">
-
-            <div class="header arme">
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.armes.type"}}</label>
-                    <select class="property-value" name="data.skill">
-                    {{#select data.skill}}
-                        {{#each skills as |name label|}}
-                        <option value="{{label}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                    </select>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.armes.damages"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.damages"
-                        type="text"
-                        value="{{data.damages}}"
-                        data-dtype="Number"/>
-                </div>
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.armes.attack"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.attack"
-                        type="text"
-                        value="{{data.attack}}"
-                        data-dtype="Number"/>
-                </div>
+                {{> "systems/neph5e/templates/item/parts/header/input.hbs" title="NEPH5E.attaque" name="data.attack" value=data.attack type="Number"}}
 
             </div>
 
-            <div class="property-list">
+            <hr>
 
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.armes.magique"}}</label>
-                    <input
-                        class="property-value"
-                        name="data.magique"
-                        type="checkbox"
-                        {{checked data.magique}}
-                        data-dtype="Boolean"/>
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.magique" name="data.magique" value=data.magique type="Boolean"}}
+
+            {{#if (isMelee data.skill)}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.defense" name="data.defense" value=data.defense type="Number"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.blocage" name="data.blocage" value=data.blocage type="Boolean"}}
+
+            {{else}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.munitions" name="data.ranged.ammunition" value=data.ranged.ammunition type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.chargeur" name="data.ranged.munitions" value=data.ranged.munitions type="Number"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.penetration" name="data.ranged.perce" value=data.ranged.perce type="Number"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.vitesse" name="data.ranged.vitesse" value=data.ranged.vitesse type="Number"}}
+
+                <div style="display: flex; flex-direction: row; height: 26px; vertical-align: middle;">
+
+                    {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.tirer" name="data.ranged.actions.tirer" value=data.ranged.actions.tirer type="Boolean"}}
+
+                    {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.salve" name="data.ranged.actions.salve" value=data.ranged.actions.salve type="Boolean"}}
+
+                    {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.rafale" name="data.ranged.actions.rafale" value=data.ranged.actions.rafale type="Boolean"}}
+
                 </div>
 
-                {{#if (isMelee data.skill)}}
-               
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.defense"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.defense"
-                            type="text"
-                            value="{{data.defense}}"
-                            data-dtype="Number"/>
-                    </div>
+            {{/if}}
 
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.blocage"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.blocage"
-                            type="checkbox"
-                            {{checked data.blocage}}
-                            data-dtype="Boolean"/>
-                    </div>
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
-                {{else}}
+        </div>
 
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.ammunition"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.ammunition"
-                            type="text"
-                            value="{{data.ranged.ammunition}}"
-                            data-dtype="String"/>
-                    </div>
+    </div>
 
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.munitions"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.munitions"
-                            type="text"
-                            value="{{data.ranged.munitions}}"
-                            data-dtype="Number"/>
-                    </div>
-
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.perce"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.perce"
-                            type="text"
-                            value="{{data.ranged.perce}}"
-                            data-dtype="Number"/>
-                    </div>
-
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.vitesse"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.vitesse"
-                            type="text"
-                            value="{{data.ranged.vitesse}}"
-                            data-dtype="Number"/>
-                    </div>
-
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.tirer"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.actions.tirer"
-                            type="checkbox"
-                            {{checked data.ranged.actions.tirer}}
-                            data-dtype="Boolean"/>
-                    </div>
-
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.salve"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.actions.salve"
-                            type="checkbox"
-                            {{checked data.ranged.actions.salve}}
-                            data-dtype="Boolean"/>
-                    </div>
-
-                    <div class="property">
-                        <label class="property-name">{{localize "NEPH5E.armes.rafale"}}</label>
-                        <input
-                            class="property-value"
-                            name="data.ranged.actions.rafale"
-                            type="checkbox"
-                            {{checked data.ranged.actions.rafale}}
-                            data-dtype="Boolean"/>
-                    </div>
-
-                {{/if}}
-
-            </div>
-
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-
-    </section>
-        
 </form>

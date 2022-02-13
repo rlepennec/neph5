@@ -1,43 +1,53 @@
-<li class="item" data-item-id="{{aspect.refid}}" data-item-science="imago" data-item-collection="aspects">
+<ol class="item-list">
 
-    <input
-        name="data.imago.aspects.[{{@index}}].refid"
-        type="hidden"
-        value="{{aspect.refid}}"
-        data-dtype="String"/>
-
-    {{#with (getItem aspect.refid)}}
-    <div class="item-name">
-        <span data-item-id="{{aspect.refid}}">{{name}}</span>
-    </div>
-    {{/with}}
-
-    {{#with (getItem aspect.refid)}}
-    <div class="item-integer" style="width:100px;text-align:center;">
-        <span>{{data.data.degre}}</span>
-    </div>
-    {{/with}}
-
-    {{#with (getItem aspect.refid)}}
-    <div class="item-integer" style="width:100px;text-align:center;">
-        <span>{{data.data.activation}}</span>
-    </div>
-    {{/with}}
-
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
-            name="data.imago.aspects.[{{@index}}].active"
-            {{checked aspect.active}}
-            data-dtype="Boolean"/>
+    <div style="text-align:center;font-size:x-large;">
+        <span>{{localize "NEPH5E.imago"}}</span>
     </div>
 
-    <div class="item-control">
-        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-    </div>
-    
-    <div class="item-control">
-        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-    </div>
+    <hr>
 
-</li>
+    {{#each data.imago.aspects as |aspect|}}
+        {{#with (getItem aspect.refid)}}
+        <li class="item" data-item-id="{{aspect.refid}}" data-item-science="imago" data-item-collection="aspects">
+
+            <input
+                name="data.imago.aspects.[{{@index}}].refid"
+                type="hidden"
+                value="{{aspect.refid}}"
+                data-dtype="String"/>
+
+            {{#with (getItem aspect.refid)}}
+            <div class="item-name edit-aspect">
+                <span data-item-id="{{aspect.refid}}">{{name}}</span>
+            </div>
+            {{/with}}
+
+            <label class="hand-checkbox">
+                <input
+                    class="item-checkbox" 
+                    name="data.imago.aspects.[{{@index}}].active"
+                    type="checkbox"
+                    {{checked aspect.active}}
+                    data-dtype="Boolean"/>
+                <i class="fas fa-eye-slash unchecked"></i>
+                <i class="fas fa-eye checked"></i>
+            </label>
+    <!--
+            <div class="item-checkbox">
+                <input
+                    type="checkbox"
+                    name="data.imago.aspects.[{{@index}}].active"
+                    {{checked aspect.active}}
+                    data-dtype="Boolean"/>
+            </div>-->
+            
+            <div class="item-control">
+                <a class="item-delete"><i class="fas fa-trash"></i></a>
+            </div>
+
+        </li>
+        {{/with}}
+    {{/each}}
+
+</ol>
+

@@ -51,6 +51,7 @@ Hooks.once("init", function () {
     CONFIG.Combatant.documentClass = NephilimCombatant;
 
     Handlebars.registerHelper({
+        concat: CustomHandlebarsHelpers.concat,
         defined: CustomHandlebarsHelpers.defined,
         getActor: CustomHandlebarsHelpers.getActor,
         getItem: CustomHandlebarsHelpers.getItem,
@@ -65,6 +66,7 @@ Hooks.once("init", function () {
         getLevel: CustomHandlebarsHelpers.getLevel,
         getSapiences: CustomHandlebarsHelpers.getSapiences,
         getNextCost: CustomHandlebarsHelpers.getNextCost,
+        isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
         isEmptyString: CustomHandlebarsHelpers.isEmptyString,
         isMelee: CustomHandlebarsHelpers.isMelee,
         getCount: CustomHandlebarsHelpers.getCount,

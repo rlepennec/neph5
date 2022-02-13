@@ -1,0 +1,25 @@
+<ol class="item-list">
+    
+    <div style="text-align:center;font-size:x-large;">
+        {{localize "ITEM.TypeChute"}}
+    </div>
+
+    {{#each (getLevels data.id 'chutes') as |chute|}}
+    <li class="item" data-item-id="{{chute.refid}}" data-item-type="chute">
+
+        {{#with (getItem chute.refid)}}
+        <div class="item-name show-chute">
+            <span data-item-id="{{chute.refid}}">{{name}}</span>
+        </div>
+        {{/with}}
+
+        <label class="item-integer">{{chute.degre}}</label>
+
+        <div class="item-control">
+            <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
+        </div>
+
+    {{/each}}
+    </li>
+
+</ol>

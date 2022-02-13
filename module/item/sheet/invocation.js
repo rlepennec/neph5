@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "./base.js";
+import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { Game } from "../../common/game.js";
 
 export class InvocationSheet extends NephilimItemSheet {
@@ -18,15 +19,46 @@ export class InvocationSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-	static get defaultOptions() {
+    static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 600,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
-      });
+            height: 500,
+            classes: ["nephilim", "sheet", "item"]
+        });
+    }
+
+    static async onEdit(event, actor) {
+
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+
+        // Create the dialog panel to display.
+        const html = await renderTemplate("systems/neph5e/templates/item/invocation.html", {
+            item: item,
+            data: item.data.data,
+            debug: game.settings.get('neph5e', 'debug'),
+            elements: Game.kabbale.elements,
+            cercles: Game.kabbale.cercles,
+            mondes: Game.kabbale.mondes,
+            sephiroth: Game.kabbale.sephiroth,
+            difficulty: item.difficulty(actor)
+        });
+
+        // Display the action panel
+        await new Dialog({
+            title: game.i18n.localize('ITEM.TypeInvocation'),
+            content: html,
+            buttons: {},
+            default: null,
+            close: () => {}
+
+        }, {
+            width: 560,
+            height: 500
+        }).render(true);
+
     }
 
 }
