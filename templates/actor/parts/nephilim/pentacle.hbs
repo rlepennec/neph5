@@ -1,75 +1,80 @@
-<div style="position: relative; text-align: center;">
+<div style="position: relative; text-align: center;margin-left:40px;">
 
-    <img src="systems/neph5e/assets/pentacle.png" style="border: 0px;"/>
+    <img src="systems/neph5e/assets/pentacle.png" style="border: 0px;width:380px;height:378px"/>
 
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(170px, -55px);">
-        <input
-            style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
-            class="item-integer"
-            name="data.ka.air"
-            type="text"
-            value="{{data.ka.air}}"
-            data-dtype="Number"/>
+    <div title="{{localize "NEPH5E.air"}}">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(150px, -85px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="data.ka.air"
+                type="text"
+                value="{{data.ka.air}}"
+                data-dtype="Number"/>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(140px, -80px);">
+            <a class="roll-ka" data-element="air"><i class="fas fa-dice-d20"></i></a>
+        </div>
     </div>
 
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(160px, -50px);">
-        <a class="roll-ka" data-element="air"><i class="fas fa-dice-d20"></i></a>
+    <div title="{{localize "NEPH5E.eau"}}">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(120px, 140px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="data.ka.eau"
+                type="text"
+                value="{{data.ka.eau}}"
+                data-dtype="Number"/>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(110px, 145px);">
+            <a class="roll-ka" data-element="eau"><i class="fas fa-dice-d20"></i></a>
+        </div>
     </div>
 
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(120px, 140px);">
-        <input
-            style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
-            class="item-integer"
-            name="data.ka.eau"
-            type="text"
-            value="{{data.ka.eau}}"
-            data-dtype="Number"/>
+    <div title="{{localize "NEPH5E.feu"}}">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-60px, -180px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="data.ka.feu"
+                type="text"
+                value="{{data.ka.feu}}"
+                data-dtype="Number"/>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-70px, -175px);">
+            <a class="roll-ka" data-element="feu"><i class="fas fa-dice-d20"></i></a>
+        </div>
     </div>
 
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(110px, 145px);">
-        <a class="roll-ka" data-element="eau"><i class="fas fa-dice-d20"></i></a>
+    <div title="{{localize "NEPH5E.lune"}}">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-130px, 150px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="data.ka.lune"
+                type="text"
+                value="{{data.ka.lune}}"
+                data-dtype="Number"/>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-140px, 155px);">
+            <a class="roll-ka" data-element="lune"><i class="fas fa-dice-d20"></i></a>
+        </div>
     </div>
 
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-60px, -180px);">
-        <input
-            style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
-            class="item-integer"
-            name="data.ka.feu"
-            type="text"
-            value="{{data.ka.feu}}"
-            data-dtype="Number"/>
-    </div>
-
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-70px, -175px);">
-        <a class="roll-ka" data-element="feu"><i class="fas fa-dice-d20"></i></a>
-    </div>
-
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-130px, 150px);">
-        <input
-            style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
-            class="item-integer"
-            name="data.ka.lune"
-            type="text"
-            value="{{data.ka.lune}}"
-            data-dtype="Number"/>
-    </div>
-
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-140px, 155px);">
-        <a class="roll-ka" data-element="lune"><i class="fas fa-dice-d20"></i></a>
-    </div>
-
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-210px, -20px);">
-        <input
-            style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
-            class="item-integer"
-            name="data.ka.terre"
-            type="text"
-            value="{{data.ka.terre}}"
-            data-dtype="Number"/>
-    </div>
-
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-220px, -15px);">
-        <a class="roll-ka" data-element="terre"><i class="fas fa-dice-d20"></i></a>
+    <div title="{{localize "NEPH5E.terre"}}">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-210px, -20px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="data.ka.terre"
+                type="text"
+                value="{{data.ka.terre}}"
+                data-dtype="Number"/>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-220px, -15px);">
+            <a class="roll-ka" data-element="terre"><i class="fas fa-dice-d20"></i></a>
+        </div>
     </div>
 
 </div>

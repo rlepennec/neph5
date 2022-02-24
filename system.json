@@ -2,7 +2,7 @@
     "name":"neph5e",
     "title": "Nephilim Legende",
     "description": "A system for playing Nephilim Legende games.",
-    "version": "1.1.15",
+    "version": "1.1.16",
     "author": "Kartaj",
     "minimumCoreVersion": "0.8.9",
     "compatibleCoreVersion": "9.249",
@@ -23,6 +23,6 @@
     ],
     "url": "https://github.com/rlepennec/neph5",
     "manifest": "https://github.com/rlepennec/neph5/releases/latest/download/system.json",
-    "download": "https://github.com/rlepennec/neph5/releases/download/v1.1.15/system.zip",
+    "download": "https://github.com/rlepennec/neph5/releases/download/v1.1.16/system.zip",
     "license": "license.txt"
 }

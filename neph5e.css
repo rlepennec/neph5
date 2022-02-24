@@ -51,6 +51,23 @@
 .selector-disabled:disabled {
   color: var(--color-text-dark-primary);
 }
+.hand-checkbox {
+  font-style: italic;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.hand-checkbox input[type="checkbox"] {
+  display: none;
+}
+.hand-checkbox .checked {
+  display: none;
+}
+.hand-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.hand-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
 .actor .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;
@@ -202,23 +219,6 @@
 .actor .sheet-body .item-list .item:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
-}
-.actor .sheet-body .item-list .item .hand-checkbox {
-  font-style: italic;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.actor .sheet-body .item-list .item .hand-checkbox input[type="checkbox"] {
-  display: none;
-}
-.actor .sheet-body .item-list .item .hand-checkbox .checked {
-  display: none;
-}
-.actor .sheet-body .item-list .item .hand-checkbox input[type="checkbox"]:checked ~ .checked {
-  display: inline-block;
-}
-.actor .sheet-body .item-list .item .hand-checkbox input[type="checkbox"]:checked ~ .unchecked {
-  display: none;
 }
 .actor .sheet-body .item-list .item-summary {
   display: flex;

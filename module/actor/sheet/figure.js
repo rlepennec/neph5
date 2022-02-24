@@ -25,8 +25,6 @@ export class FigureSheet extends BaseSheet {
      */
     constructor(...args) {
         super(...args);
-        this.current = null; // The current editable periode
-        this.current_i = null;
     }
 
     /**
@@ -41,7 +39,7 @@ export class FigureSheet extends BaseSheet {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 900,
+            width: 1000,
             height: 800,
             classes: ["nephilim", "sheet", "actor"],
             resizable: true,
@@ -82,7 +80,7 @@ export class FigureSheet extends BaseSheet {
             data: baseData.actor.data.data,
             metamorphes: game.items.filter(item => item.data.type === 'metamorphe'),
             cercles: Game.alchimie.cercles,
-            currentPeriode: this.current != null ? this.current.data.data.id : null,
+            currentPeriode: this.getCurrentPeriodeId(),
             useV3: game.settings.get('neph5e', 'useV3'),
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
             effects: {
@@ -168,12 +166,16 @@ export class FigureSheet extends BaseSheet {
 
         // Incarnations
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="incarnations"] .lock-periode').click(this._onLockPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .item-edit').click(this._onEditIncarnations.bind(this));
+        html.find('div[data-tab="incarnations"] .delete-periode').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .item-delete').click(this._onDeleteIncarnations.bind(this));
         html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="incarnations"] .delete-vecu').click(this._onDeleteVecu.bind(this));
         html.find('div[data-tab="incarnations"] .degre-vecu').change(this._onDegreVecu.bind(this));
         html.find('div[data-tab="incarnations"] .periode-active').change(this._onPeriodeActive.bind(this));
+        html.find('div[data-tab="incarnations"] .move-up').click(this._onMoveUp.bind(this));
+        html.find('div[data-tab="incarnations"] .move-down').click(this._onMoveDown.bind(this));
 
         // Selenim
         html.find('div[data-tab="selenim"]').on("drop", this._onDrop.bind(this));
@@ -253,9 +255,9 @@ export class FigureSheet extends BaseSheet {
             
             // The vecu has been droppped
             } else if (item.data.type === "vecu") {
-                if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1 && this.current !== null) {
+                if (event.currentTarget.getElementsByClassName('tab incarnations active').length === 1 && this.currentPeriodeExist()) {
                     const items = await super._onDrop(event);
-                    await items[0].update({ ['data.periode']: this.current.data.data.id });
+                    await items[0].update({ ['data.periode']: this.getCurrentPeriodeId() });
                 }
 
             // The metamorphe has been dropped:
@@ -285,7 +287,7 @@ export class FigureSheet extends BaseSheet {
                         passes: [],
                         sciences: []
                     };
-                    periodes.push(periode);
+                    periodes.unshift(periode);
                 }
                 await this.actor.update({ ['data.periodes']: periodes });
 
@@ -384,9 +386,9 @@ export class FigureSheet extends BaseSheet {
      *  @param {Object} properties The properties to add to the item before adding.
      */
     async _onDropInPeriode(item, collection, properties) {
-        if (this.current) {
+        if (this.currentPeriodeExist()) {
             const periodes = duplicate(this.actor.data.data.periodes);
-            const index = periodes.findIndex(p => (p.refid === this.current.data.data.id));
+            const index = periodes.findIndex(p => (p.refid === this.getCurrentPeriodeId()));
             if (index != -1) {
                 if (periodes[index][collection].findIndex(i => (i.refid === item.data.data.id)) == -1) {
                     const i = {
@@ -503,10 +505,6 @@ export class FigureSheet extends BaseSheet {
         this._update('denier', 'denier.pratiques', formData, []);
         this._update('epee', 'epee.rituels', formData, []);
 
-        // Clean the lock
-        this.current = null; // The current editable periode
-        this.current_i = null;
-
         // Update
         // --------------------------------------------------------------------
         super._updateObject(event, formData);
@@ -565,12 +563,36 @@ export class FigureSheet extends BaseSheet {
     }
 
     async _onPeriodeActive(event) {
-        const li = $(event.currentTarget).parents(".item-list-header");
+        const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const actif = event.currentTarget.checked;
         for (let item of this.actor.items.filter(i => i.type === 'vecu' && i.data.data.periode === id)) {
             await item.update({ ['data.actif']: actif });
         }
+    }
+
+    async _onMoveUp(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const periodes = this.actor.data.data.periodes;
+        const i = periodes.findIndex(p => p.refid === id);
+        const pi = periodes[i];
+        const pii = periodes[i-1];
+        periodes[i] = pii;
+        periodes[i-1] = pi;
+        await this.actor.update({ ['data.periodes']: periodes });
+    }
+
+    async _onMoveDown(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const periodes = this.actor.data.data.periodes;
+        const i = periodes.findIndex(p => p.refid === id);
+        const pi = periodes[i];
+        const pii = periodes[i+1];
+        periodes[i] = pii;
+        periodes[i+1] = pi;
+        await this.actor.update({ ['data.periodes']: periodes });
     }
 
     /**
@@ -597,7 +619,7 @@ export class FigureSheet extends BaseSheet {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const periode = CustomHandlebarsHelpers.getItem(li.data("periode-id"));
-        if (this.current && periode.data.data.id === this.current.data.data.id) {
+        if (this.isCurrentPeriode(periode)) {
             return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
         }
     }
@@ -610,59 +632,56 @@ export class FigureSheet extends BaseSheet {
         item.sheet.render(true);
     }
 
+    async _onDeletePeriode(event) {
+        event.preventDefault();
+        let li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const type = li.data("item-type");
+        if (this.getCurrentPeriodeId() === id) {
+            const periode = CustomHandlebarsHelpers.getItem(id);
+            await this.actor.deletePeriode(periode);
+            if (periode.data.data.id === this.getCurrentPeriodeId()) {
+                await this.unsetCurrentPeriode();
+            }
+        }
+    }
+
     async _onDeleteIncarnations(event) {
         event.preventDefault();
         let li = $(event.currentTarget).parents(".item");
-        if (li != undefined) {
-            const id = li.data("item-id");
-            if (id === undefined) {
-                // Delete the periode
-                li = $(event.currentTarget).parents(".item-list-header");
-                const id = li.data("item-id");
+        const id = li.data("item-id");
+            // Delete item in periode except vecus which are embbeded
+            const periode = CustomHandlebarsHelpers.getItem(li.data("periode-id"));
+            if (this.isCurrentPeriode(periode)) {
                 const type = li.data("item-type");
-                if (type == "periode") {
-                    const periode = CustomHandlebarsHelpers.getItem(id);
-                    await this.actor.deletePeriode(periode);
-                    if (periode === this.current) {
-                        this.current = null;
-                        this.current_i = null;
-                    }
-                }
-            } else {
-                // Delete item in periode except vecus which are embbeded
-                const periode = CustomHandlebarsHelpers.getItem(li.data("periode-id"));
-                if (this.current && periode.data.data.id === this.current.data.data.id) {
-                    const type = li.data("item-type");
-                    switch (type) {
+                switch (type) {
 
-                        case 'arcane':
-                            await this.actor.deleteArcane(CustomHandlebarsHelpers.getItem(id), periode);
-                            break;
+                    case 'arcane':
+                        await this.actor.deleteArcane(CustomHandlebarsHelpers.getItem(id), periode);
+                        break;
 
-                        case 'chute':
-                            await this.actor.deleteChute(CustomHandlebarsHelpers.getItem(id), periode);
-                            break;
-                        
-                        case 'passe':
-                            await this.actor.deletePasse(CustomHandlebarsHelpers.getItem(id), periode);
-                            break;
+                    case 'chute':
+                        await this.actor.deleteChute(CustomHandlebarsHelpers.getItem(id), periode);
+                        break;
+                    
+                    case 'passe':
+                        await this.actor.deletePasse(CustomHandlebarsHelpers.getItem(id), periode);
+                        break;
 
-                        case 'quete':
-                            await this.actor.deleteQuete(CustomHandlebarsHelpers.getItem(id), periode);
-                            break;
+                    case 'quete':
+                        await this.actor.deleteQuete(CustomHandlebarsHelpers.getItem(id), periode);
+                        break;
 
-                        case 'savoir':
-                            await this.actor.deleteSavoir(CustomHandlebarsHelpers.getItem(id), periode);
-                            break;
+                    case 'savoir':
+                        await this.actor.deleteSavoir(CustomHandlebarsHelpers.getItem(id), periode);
+                        break;
 
-                        case 'science':
-                            await this.actor.deleteScience(CustomHandlebarsHelpers.getItem(id), periode);
-                            break;
+                    case 'science':
+                        await this.actor.deleteScience(CustomHandlebarsHelpers.getItem(id), periode);
+                        break;
 
-                    }
                 }
             }
-        }
     }
 
     async _onRollPentacle(event) {
@@ -874,55 +893,40 @@ export class FigureSheet extends BaseSheet {
         }
     }
 
+    async _onLockPeriode(event) {
+        event.preventDefault();
+        let li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+        const i = $(event.currentTarget).children();
+
+        // No current periode. The selected periode becomes the current one.
+        if (!this.currentPeriodeExist()) {
+            await this.setCurrentPeriode(item);
+
+        // A periode is selected
+        } else {
+            const old_pid = this.getCurrentPeriodeId();
+            const pid = item.data.data.id;
+
+            // The current periode is the selected one. Unselect the periode.
+            if (old_pid === pid) {
+                await this.unsetCurrentPeriode();
+
+            // The current periode is not the selected one. Unselect the current which becomes the selected one.
+            } else {
+                await this.setCurrentPeriode(item);
+            }
+        }
+        this.actor.sheet.render(true);
+    }
+
     /**
      * This method is used to lock/unlock the current periode.
      */
     async _onEditIncarnations(event) {
         event.preventDefault();
-        let li = $(event.currentTarget).parents(".item");
-        if (li != undefined) {
-            const id = li.data("item-id");
-            if (id === undefined) {
-                li = $(event.currentTarget).parents(".item-list-header");
-                const id = li.data("item-id");
-                const type = li.data("item-type");
-                const item = CustomHandlebarsHelpers.getItem(id);
-                if (type == "periode") {
-
-                    const i = $(event.currentTarget).children();
-
-                    // No unlocked periode: unlock the current
-                    if (this.current === null) {
-                        this.current = item;
-                        this.current_i = i;
-                        i.removeClass("fa-lock");
-                        i.addClass("fa-unlock");
-
-                        // The periode must be locked
-                    } else {
-                        const old_pid = this.current.data.data.id;
-                        const pid = item.data.data.id;
-                        if (old_pid === pid) {
-                            this.current = null;
-                            this.current_i = null;
-                            i.removeClass("fa-unlock");
-                            i.addClass("fa-lock");
-                        }
-                    }
-                }
-            } else {
-                const type = li.data("item-type");
-                switch (type) {
-                    case 'savoir':
-                    case 'quete':
-                    case 'arcane':
-                    case 'chute':
-                    case 'passe':
-                        await this._onEditItem(event);
-                        break;
-                }
-            }
-        }
+        await this._onEditItem(event);
     }
 
     async _onShowSomething(event, createProperties) {
@@ -954,6 +958,26 @@ export class FigureSheet extends BaseSheet {
 
     getItem(id) {
         return game.items.find(function (item) { return item.data.data.id === id });
+    }
+
+    currentPeriodeExist() {
+        return this.actor.getFlag("world", "currentPeriode") !== undefined;
+    }
+
+    isCurrentPeriode(item) {
+        return this.actor.getFlag("world", "currentPeriode") === item.data.data.id;
+    }
+
+    getCurrentPeriodeId() {
+        return this.actor.getFlag("world", "currentPeriode");
+    }
+
+    async setCurrentPeriode(item) {
+        await this.actor.setFlag("world", "currentPeriode", item.data.data.id);
+    }
+
+    async unsetCurrentPeriode() {
+        await this.actor.unsetFlag("world", "currentPeriode");
     }
 
 }

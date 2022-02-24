@@ -1,7 +1,8 @@
+{{#unless (noItemsFromPeriodes data.id 'chutes')}}
 <ol class="item-list">
     
-    <div style="text-align:center;font-size:x-large;">
-        {{localize "ITEM.TypeChute"}}
+    <div style="margin-top:20px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        {{localize "NEPH5E.chutes"}}
     </div>
 
     {{#each (getLevels data.id 'chutes') as |chute|}}
@@ -19,7 +20,8 @@
             <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
         </div>
 
-    {{/each}}
     </li>
+    {{/each}}
 
 </ol>
+{{/unless}}

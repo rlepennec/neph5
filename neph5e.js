@@ -54,6 +54,8 @@ Hooks.once("init", function () {
         concat: CustomHandlebarsHelpers.concat,
         defined: CustomHandlebarsHelpers.defined,
         getActor: CustomHandlebarsHelpers.getActor,
+        getCountFromPeriodes: CustomHandlebarsHelpers.getCountFromPeriodes,
+        noItemsFromPeriodes: CustomHandlebarsHelpers.noItemsFromPeriodes,
         getItem: CustomHandlebarsHelpers.getItem,
         getEmbeddedItem: CustomHandlebarsHelpers.getEmbeddedItem,
         getItems: CustomHandlebarsHelpers.getItems,

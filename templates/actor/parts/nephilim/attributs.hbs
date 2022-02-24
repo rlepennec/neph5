@@ -1,28 +1,42 @@
-<div style="display:flex; flex-direction:column;">
+<div class="item-list" style="display:flex; flex-direction:column;">
 
-    <div style="display:flex; flex-direction:row; justify-content: center;">
-        <label style="width:150px;flex: 0 0 auto;">{{localize "NEPH5E.initiative"}}</label>
-        <span style="width:40px">{{initiative}}</span>
+    <div style="margin-top:20px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        {{localize "NEPH5E.attributs"}}
     </div>
 
-    <div style="display:flex; flex-direction:row; justify-content: center;">
-        <label style="width:150px;flex: 0 0 auto;">{{localize "NEPH5E.bonusDommage"}}</label>
-        <span style="width:40px">{{bonusDommage}}</span>
-    </div>
+    <li class="item">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.initiative"}}</span>
+        </div>
+        <label class="item-integer">{{initiative}}</label>
+    </li>
 
-    <div style="display:flex; flex-direction:row; justify-content: center;">
-        <label style="width:150px;flex: 0 0 auto;">{{localize "NEPH5E.perspicacite"}}</label>
-        <span style="width:40px">{{perspicacite}}</span>
-    </div>
+    <li class="item">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.bonusDommage"}}</span>
+        </div>
+        <label class="item-integer">{{bonusDommage}}</label>
+    </li>
 
-    <div style="display:flex; flex-direction:row; justify-content: center;">
-        <label style="width:150px;flex: 0 0 auto;">{{localize "NEPH5E.recuperation"}}</label>
-        <span style="width:40px">{{recuperation}}</span>
-    </div>
+    <li class="item">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.perspicacite"}}</span>
+        </div>
+        <label class="item-integer">{{perspicacite}}</label>
+    </li>
 
-    <div style="display:flex; flex-direction:row; justify-content: center;">
-        <label style="width:150px;flex: 0 0 auto;">{{localize "NEPH5E.voile"}}</label>
-        <span style="width:40px">{{voile}}</span>
-    </div>
+    <li class="item">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.recuperation"}}</span>
+        </div>
+        <label class="item-integer">{{recuperation}}</label>
+    </li>
+
+    <li class="item">
+        <div class="item-name">
+            <span>{{localize "NEPH5E.voile"}}</span>
+        </div>
+        <label class="item-integer">{{voile}}</label>
+    </li>
 
 </div>

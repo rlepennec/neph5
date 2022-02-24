@@ -1,12 +1,9 @@
-<ol class="item-list">
+{{#unless (noItemsFromPeriodes data.id 'savoirs')}}
+<ol class="item-list" style="padding-top:20px;">
     
-    <li class="item-list-header" style="margin-bottom:10px">
-
-        <div class="item-name">
-            <span>{{localize "ITEM.TypeSavoir"}}</span>
-        </div>
-
-    </li>
+    <div style="margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span>{{localize "NEPH5E.savoirs"}}</span>
+    </div>
 
     <div style="column-count:3">
 
@@ -29,3 +26,4 @@
     </div>
 
 </ol>
+{{/unless}}

@@ -1,10 +1,8 @@
 <ol class="item-list">
 
-    <div style="text-align:center;font-size:x-large;">
-        <span>{{localize "NEPH5E.imago"}}</span>
+    <div style="margin-top:20px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        {{localize "NEPH5E.imago"}}
     </div>
-
-    <hr>
 
     {{#each data.imago.aspects as |aspect|}}
         {{#with (getItem aspect.refid)}}
@@ -15,6 +13,10 @@
                 type="hidden"
                 value="{{aspect.refid}}"
                 data-dtype="String"/>
+
+            <div class="item-control">
+                <a class="item-delete"><i class="fas fa-trash"></i></a>
+            </div>
 
             {{#with (getItem aspect.refid)}}
             <div class="item-name edit-aspect">
@@ -32,18 +34,6 @@
                 <i class="fas fa-eye-slash unchecked"></i>
                 <i class="fas fa-eye checked"></i>
             </label>
-    <!--
-            <div class="item-checkbox">
-                <input
-                    type="checkbox"
-                    name="data.imago.aspects.[{{@index}}].active"
-                    {{checked aspect.active}}
-                    data-dtype="Boolean"/>
-            </div>-->
-            
-            <div class="item-control">
-                <a class="item-delete"><i class="fas fa-trash"></i></a>
-            </div>
 
         </li>
         {{/with}}

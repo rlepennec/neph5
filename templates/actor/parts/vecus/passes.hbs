@@ -1,13 +1,9 @@
+{{#unless (noItemsFromPeriodes data.id 'passes')}}
 <ol class="item-list">
     
-    <li class="item-list-header" style="margin-bottom:10px">
-
-        <div class="item-name">
-            <span>{{localize "NEPH5E.passe"}}</span>
-        </div>
-
-    </li>
-
+    <div style="margin-top:20px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span>{{localize "NEPH5E.passes"}}</span>
+    </div>
     <div style="column-count:3">
 
         {{#each (getLevels data.id 'passes') as |passe|}}
@@ -29,3 +25,4 @@
     </div>
 
 </ol>
+{{/unless}}

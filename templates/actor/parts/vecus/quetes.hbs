@@ -1,14 +1,11 @@
+{{#unless (noItemsFromPeriodes data.id 'quetes')}}
 <ol class="item-list">
     
-    <li class="item-list-header" style="margin-bottom:10px">
+    <div style="margin-top:20px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span>{{localize "NEPH5E.quetes"}}</span>
+    </div>
 
-        <div class="item-name">
-            <span>{{localize "ITEM.TypeQuete"}}</span>
-        </div>
-
-    </li>
-
-    <div style="column-count:3">
+    <div style="column-count:3;">
 
         {{#each (getLevels data.id 'quetes') as |quete|}}
         <li class="item" data-item-id="{{quete.refid}}" data-item-type="quete">
@@ -30,3 +27,4 @@
     </div>
 
 </ol>
+{{/unless}}

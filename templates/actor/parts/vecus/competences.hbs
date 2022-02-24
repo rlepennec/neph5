@@ -1,14 +1,10 @@
 <ol class="item-list">
 
-    <li class="item-list-header" style="margin-bottom:10px">
+    <div style="margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span>{{localize "NEPH5E.competences"}}</span>
+    </div>
 
-        <div class="item-name">
-            <span>{{localize "ITEM.TypeCompetence"}}</span>
-        </div>
-
-    </li>
-
-    <div style="column-count:3">
+    <div style="column-count:3;">
 
         {{#if data.simulacre.refid}}
             {{#with (getActor data.simulacre.refid)}}
@@ -28,9 +24,8 @@
                 </li>
                 {{/each}}
             {{/with}}
+            <hr>
         {{/if}}
-
-        <hr>
 
         {{#each (getVecus data.id) as |item|}}
         <li class="item" data-item-id="{{id}}" data-item-type="vecu">

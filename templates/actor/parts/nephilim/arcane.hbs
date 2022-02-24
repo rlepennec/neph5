@@ -1,7 +1,8 @@
+{{#unless (noItemsFromPeriodes data.id 'arcanes')}}
 <ol class="item-list">
 
-    <div style="text-align:center;font-size:x-large;">
-        {{localize "ITEM.TypeArcane"}}
+    <div style="margin-top:20px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        {{localize "NEPH5E.arcanes"}}
     </div>
 
     {{#each (getLevels data.id 'arcanes') as |arcane|}}
@@ -23,3 +24,4 @@
     </li>
 
 </ol>
+{{/unless}}
