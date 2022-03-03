@@ -107,12 +107,12 @@
     {{/unless}}
     {{/with}}
 
-    {{#with (getScience data.id "tipheret") as |degre|}}
+    {{#with (getScience data.id "tiphereth") as |degre|}}
     {{#unless (eq degre 0)}}
-        {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Tipheret" degre=degre useV3=../useV3}}
+        {{> "systems/neph5e/templates/actor/parts/kabbale/header.hbs" sephirah="Tiphereth" degre=degre useV3=../useV3}}
         {{#each ../data.kabbale.invocations as |invocation|}}
             {{#with (getItem invocation.refid)}}
-                {{#if (eq data.data.sephirah "tipheret")}}
+                {{#if (eq data.data.sephirah "tiphereth")}}
                     {{> "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs" invocation=invocation useV3=../../useV3}}
                 {{/if}}
             {{/with}}
