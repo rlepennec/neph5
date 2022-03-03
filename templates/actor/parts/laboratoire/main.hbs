@@ -4,77 +4,538 @@
     value="true"
     data-dtype="Boolean"/>
 
-{{> "systems/neph5e/templates/actor/parts/laboratoire/constructs.hbs"}}
+<img src="systems/neph5e/assets/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
 
-{{> "systems/neph5e/templates/actor/parts/laboratoire/primae.hbs"}}
+<div style="width:100%;margin-top:10px;">
+    <div style="margin-left:auto;margin-right:auto;width:100%;display:flex; flex-direction: row; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 25px; font-weight:bold;background-color: transparent;border: 0px;">
+        {{#with (getItem data.alchimie.voie.refid)}}
+        <label style="padding-bottom:3px; border: none; background-color: transparent; width:100%; text-align: center;">{{name}}</label>
+        {{/with}}
+    </div>
+</div>
 
 <ol class="item-list">
 
-    <li class="item-list-header">
+    <div style="width:794px;margin-left:20px; display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span style="padding-left:5px;width:100%;">{{localize "NEPH5E.alchimie.construct"}}</span>
+        <div style="flex: 0 0 auto; width:40px;text-align:center;">
+            <span>Air</span>
+        </div>
+        <div style="flex: 0 0 auto; width:40px;text-align:center;">
+            <span>Eau</span>
+        </div>
+        <div style="flex: 0 0 auto; width:40px;text-align:center;">
+            <span>Feu</span>
+        </div>
+        <div style="flex: 0 0 auto; width:40px;text-align:center;">
+            <span>Lune</span>
+        </div>
+        <div style="flex: 0 0 auto; width:40px;text-align:center;">
+            <span>Terre</span>
+        </div>
+        <div style="flex: 0 0 auto; width:135px;text-align:center;">
+            <span>Oeuvre</span>
+        </div>
+        <div style="flex: 0 0 auto; width:80px;text-align:center;">
+            <span>Substance</span>
+        </div>
+        <div style="flex: 0 0 auto; width:80px;text-align:center;">
+            <span>Vaisseau</span>
+        </div>
+    </div>
 
-        <div class="item-name">
-            <span>{{localize "ITEM.TypeMateriae"}}</span>
+    <li class="item">
+
+        <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+            <input
+                class="item-checkbox"
+                name="data.alchimie.constructs.cornue.active"
+                type="checkbox"
+                {{checked data.alchimie.constructs.cornue.active}}
+                data-dtype="Boolean"/>
+            <i class="far fa-circle unchecked"></i>
+            <i class="fas fa-circle checked"></i>
+        </label>
+
+        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.cornue"}}</label>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.cornue.air"
+            type="text"
+            value="{{data.alchimie.constructs.cornue.air}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.cornue.eau"
+            type="text"
+            value="{{data.alchimie.constructs.cornue.eau}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.cornue.feu"
+            type="text"
+            value="{{data.alchimie.constructs.cornue.feu}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.cornue.lune"
+            type="text"
+            value="{{data.alchimie.constructs.cornue.lune}}"
+                data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.cornue.terre"
+            type="text"
+            value="{{data.alchimie.constructs.cornue.terre}}"
+            data-dtype="Number"/>
+
+        <div class="item-short-string" style="width: 135px;">
+            <select name="data.alchimie.constructs.cornue.degre" style="border:none;outline:0px;background-color:transparent;">
+            {{#select data.alchimie.constructs.cornue.degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
         </div>
 
         <div class="item-short-string">
-            <span>{{localize "NEPH5E.element"}}</span>
+            <span>{{localize "NEPH5E.alchimie.substances.ambre"}}</span>
         </div>
 
-        <div class="item-integer">
-            <span>Qté</span>
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.vaisseaux.ampoule"}}</span>
         </div>
-
-        <div class="item-control">
-            <span/>
-        </div>
-
-        <div class="item-control">
-            <span/>
-        </div>
-
+    
     </li>
 
-    {{#each data.alchimie.materiae as |materiae|}}
-        {{#with (getItem materiae.refid)}}
-            {{> "systems/neph5e/templates/actor/parts/laboratoire/materiae.hbs" materiae=materiae}}
-        {{/with}}
-    {{/each}}
+    <li class="item">
+
+        <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+            <input
+                class="item-checkbox" 
+                name="data.alchimie.constructs.creuset.active"
+                type="checkbox"
+                {{checked data.alchimie.constructs.creuset.active}}
+                data-dtype="Boolean"/>
+            <i class="far fa-circle unchecked"></i>
+            <i class="fas fa-circle checked"></i>
+        </label>
+
+        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.creuset"}}</label>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.creuset.air"
+            type="text"
+            value="{{data.alchimie.constructs.creuset.air}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.creuset.eau"
+            type="text"
+            value="{{data.alchimie.constructs.creuset.eau}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.creuset.feu"
+            type="text"
+            value="{{data.alchimie.constructs.creuset.feu}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.creuset.lune"
+            type="text"
+            value="{{data.alchimie.constructs.creuset.lune}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.creuset.terre"
+            type="text"
+            value="{{data.alchimie.constructs.creuset.terre}}"
+            data-dtype="Number"/>
+
+        <div class="item-short-string" style="width: 135px;">
+            <select name="data.alchimie.constructs.creuset.degre" style="border:none;outline:0px;background-color:transparent;">
+            {{#select data.alchimie.constructs.creuset.degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.substances.metal"}}</span>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.vaisseaux.pyxide"}}</span>
+        </div>
+    
+    </li>
+
+    <li class="item">
+
+        <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+            <input
+                class="item-checkbox" 
+                name="data.alchimie.constructs.athanor.active"
+                type="checkbox"
+                {{checked data.alchimie.constructs.athanor.active}}
+                data-dtype="Boolean"/>
+            <i class="far fa-circle unchecked"></i>
+            <i class="fas fa-circle checked"></i>
+        </label>
+
+        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.athanor"}}</label>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.athanor.air"
+            type="text"
+            value="{{data.alchimie.constructs.athanor.air}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.athanor.eau"
+            type="text"
+            value="{{data.alchimie.constructs.athanor.eau}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.athanor.feu"
+            type="text"
+            value="{{data.alchimie.constructs.athanor.feu}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.athanor.lune"
+            type="text"
+            value="{{data.alchimie.constructs.athanor.lune}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.athanor.terre"
+            type="text"
+            value="{{data.alchimie.constructs.athanor.terre}}"
+            data-dtype="Number"/>
+
+        <div class="item-short-string" style="width: 135px;">
+            <select name="data.alchimie.constructs.athanor.degre" style="border:none;outline:0px;background-color:transparent;">
+            {{#select data.alchimie.constructs.athanor.degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.substances.poudre"}}</span>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.vaisseaux.cartouche"}}</span>
+        </div>
+    
+    </li>
+
+    <li class="item">
+
+        <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+            <input
+                class="item-checkbox" 
+                name="data.alchimie.constructs.aludel.active"
+                type="checkbox"
+                {{checked data.alchimie.constructs.aludel.active}}
+                data-dtype="Boolean"/>
+            <i class="far fa-circle unchecked"></i>
+            <i class="fas fa-circle checked"></i>
+        </label>
+
+        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.aludel"}}</label>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.aludel.air"
+            type="text"
+            value="{{data.alchimie.constructs.aludel.air}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.aludel.eau"
+            type="text"
+            value="{{data.alchimie.constructs.aludel.eau}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.aludel.feu"
+            type="text"
+            value="{{data.alchimie.constructs.aludel.feu}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.aludel.lune"
+            type="text"
+            value="{{data.alchimie.constructs.aludel.lune}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.aludel.terre"
+            type="text"
+            value="{{data.alchimie.constructs.aludel.terre}}"
+            data-dtype="Number"/>
+
+        <div class="item-short-string" style="width: 135px;">
+            <select name="data.alchimie.constructs.aludel.degre" style="border:none;outline:0px;background-color:transparent;">
+            {{#select data.alchimie.constructs.aludel.degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.substances.vapeur"}}</span>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.vaisseaux.flacon"}}</span>
+        </div>
+    
+    </li>
+
+    <li class="item">
+
+        <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+            <input
+                class="item-checkbox" 
+                name="data.alchimie.constructs.alambic.active"
+                type="checkbox"
+                {{checked data.alchimie.constructs.alambic.active}}
+                data-dtype="Boolean"/>
+            <i class="far fa-circle unchecked"></i>
+            <i class="fas fa-circle checked"></i>
+        </label>
+
+        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.alambic"}}</label>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.alambic.air"
+            type="text"
+            value="{{data.alchimie.constructs.alambic.air}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.alambic.eau"
+            type="text"
+            value="{{data.alchimie.constructs.alambic.eau}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.alambic.feu"
+            type="text"
+            value="{{data.alchimie.constructs.alambic.feu}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.alambic.lune"
+            type="text"
+            value="{{data.alchimie.constructs.alambic.lune}}"
+            data-dtype="Number"/>
+
+        <input
+            style="width:40px;border:none;text-align: center;background-color:transparent;"
+            name="data.alchimie.constructs.alambic.terre"
+            type="text"
+            value="{{data.alchimie.constructs.alambic.terre}}"
+            data-dtype="Number"/>
+
+        <div class="item-short-string" style="width: 135px;">
+            <select name="data.alchimie.constructs.alambic.degre" style="border:none;outline:0px;background-color:transparent;">
+            {{#select data.alchimie.constructs.alambic.degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.substances.vapeur"}}</span>
+        </div>
+
+        <div class="item-short-string">
+            <span>{{localize "NEPH5E.alchimie.vaisseaux.flacon"}}</span>
+        </div>
+    
+    </li>
 
 </ol>
 
-{{#if useV3}}
-<ol class="item-list">
+<div style="display:flex;flex-direction:row;padding-top:20px;">
 
-    <li class="item-list-header">
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
 
-        <div class="item-name">
-            <span>{{localize "ITEM.TypeCatalyseur"}}</span>
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.materiaePrimae"}}</span>
+            </div>
         </div>
 
-        <div class="item-control">
-            <span/>
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center; margin-bottom:10px; margin-left:20px; ">
+
+            <label style="margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.air"}}</label>
+
+            <input
+                style="width: 30px; height:30px; margin-right:10px;text-align:center;border-radius: 50%;"
+                class="item-integer"
+                name="data.alchimie.primae.air.quantite"
+                type="text"
+                value="{{data.alchimie.primae.air.quantite}}"
+                data-dtype="Number"/>
+
+            <label style="margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.eau"}}</label>
+
+            <input
+                style="width: 30px; height:30px; margin-right:10px;text-align:center;border-radius: 50%;"
+                class="item-integer"
+                name="data.alchimie.primae.eau.quantite"
+                type="text"
+                value="{{data.alchimie.primae.eau.quantite}}"
+                data-dtype="Number"/>
+
+            <label style="margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.feu"}}</label>
+
+            <input
+                style="width: 30px; height:30px; margin-right:10px;text-align:center;border-radius: 50%;"
+                class="item-integer"
+                name="data.alchimie.primae.feu.quantite"
+                type="text"
+                value="{{data.alchimie.primae.feu.quantite}}"
+                data-dtype="Number"/>
+
+            <label style="margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.lune"}}</label>
+
+            <input
+                style="width: 30px; height:30px; margin-right:10px;text-align:center;border-radius: 50%;"
+                class="item-integer"
+                name="data.alchimie.primae.lune.quantite"
+                type="text"
+                value="{{data.alchimie.primae.lune.quantite}}"
+                data-dtype="Number"/>
+
+            <label style="margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.terre"}}</label>
+
+            <input
+                style="width: 30px; height:30px; margin-right:10px;text-align:center;border-radius: 50%;"
+                class="item-integer"
+                name="data.alchimie.primae.terre.quantite"
+                type="text"
+                value="{{data.alchimie.primae.terre.quantite}}"
+                data-dtype="Number"/>
+
         </div>
 
-        <div class="item-control">
-            <span/>
+        <ol class="item-list">
+
+            {{#each data.alchimie.materiae as |materiae|}}
+            {{#with (getItem materiae.refid)}}
+            <li class="item" style="height:17px;display:flex; flex-direction:row;align-items: center;" data-item-id="{{materiae.refid}}" data-item-science="alchimie" data-item-collection="materiae">
+
+                <input
+                    name="data.alchimie.materiae.[{{@index}}].refid"
+                    type="hidden"
+                    value="{{materiae.refid}}"
+                    data-dtype="String"/>
+
+                <div class="item-control">
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+
+                {{#with (getItem materiae.refid)}}
+                <div class="item-name" style="margin-left:10px;">
+                    <span data-item-id="{{materiae.refid}}">{{name}}</span>
+                </div>
+                <div>
+                    <span>{{data.data.element}}</span>
+                </div>
+                {{/with}}
+
+                <input
+                    style="width:40px;border:none;text-align:center;background-color:transparent;"
+                    name="data.alchimie.materiae.[{{@index}}].quantite"
+                    type="text"
+                    value="{{materiae.quantite}}"
+                    data-dtype="Number"/>
+
+            </li>
+            {{/with}}
+            {{/each}}
+
+        </ol>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.catalyseurs"}}</span>
+            </div>
         </div>
 
-    </li>
+        <ol class="item-list">
 
-    {{#each data.alchimie.catalyseurs as |catalyseur|}}
-        {{#with (getItem catalyseur.refid)}}
-            {{> "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs" catalyseur=catalyseur useV3=../../useV3}}
-        {{/with}}
-    {{/each}}
+            {{#each data.alchimie.catalyseurs as |catalyseur|}}
+            {{#with (getItem catalyseur.refid)}}
+            <li class="item" data-item-id="{{catalyseur.refid}}" data-item-science="alchimie" data-item-collection="catalyseurs">
 
-</ol>
+                <input
+                    name="data.alchimie.catalyseurs.[{{@index}}].refid"
+                    type="hidden"
+                    value="{{catalyseur.refid}}"
+                    data-dtype="String"/>
 
-{{else}}
+                <div class="item-control">
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
 
-    {{#each data.alchimie.catalyseurs as |catalyseur|}}
-        {{#with (getItem catalyseur.refid)}}
-            {{> "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs" catalyseur=catalyseur useV3=../../useV3}}
-        {{/with}}
-    {{/each}}
+                {{#with (getItem catalyseur.refid)}}
+                <div class="item-name" style="margin-left:10px;">
+                    <span data-item-id="{{catalyseur.refid}}">{{name}}</span>
+                </div>
+                {{/with}}
 
-{{/if}}
+            </li>
+            {{/with}}
+            {{/each}}
+
+        </ol>
+
+    </div>
+
+</div>

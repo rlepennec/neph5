@@ -1,64 +1,66 @@
 <div style="display:flex; flex-direction:row;margin-top:20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
 
+    {{#if (isEmptyString data.stase.description)}}
     <div style="font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size:20px; ">
-        <span>{{localize "NEPH5E.stase"}}</span><span>:</span>
+        <span>{{localize "NEPH5E.stase"}}</span>
     </div>
-
+    {{else}}
     <input
         style="margin-left: 5px; padding-bottom:4px; border: none; background-color: transparent;font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size:20px;"
         name="data.stase.description"
         type="text"
         value="{{data.stase.description}}"
         data-dtype="String"/>
+    {{/if}}
 
 </div>
 
 <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
 
-    <label style="margin-top:4px; margin-right:5px;">{{localize "NEPH5E.pentacle.elements.air"}}</label>
+    <label style="margin-top:4px; margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.air"}}</label>
 
     <input
-        style="width: 40px; margin-right:10px;text-align:center;"
+        style="width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
         class="item-integer"
         name="data.stase.air"
         type="text"
         value="{{data.stase.air}}"
         data-dtype="Number"/>
 
-    <label style="margin-top:4px; margin-right:5px;">{{localize "NEPH5E.pentacle.elements.eau"}}</label>
+    <label style="margin-top:4px; margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.eau"}}</label>
 
     <input
-        style="width: 40px; margin-right:10px;text-align:center;"
+        style="width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
         class="item-integer"
         name="data.stase.eau"
         type="text"
         value="{{data.stase.eau}}"
         data-dtype="Number"/>
 
-    <label style="margin-top:4px; margin-right:5px;">{{localize "NEPH5E.pentacle.elements.feu"}}</label>
+    <label style="margin-top:4px; margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.feu"}}</label>
 
     <input
-        style="width: 40px; margin-right:10px;text-align:center;"
+        style="width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
         class="item-integer"
         name="data.stase.feu"
         type="text"
         value="{{data.stase.feu}}"
         data-dtype="Number"/>
 
-    <label style="margin-top:4px; margin-right:5px;">{{localize "NEPH5E.pentacle.elements.lune"}}</label>
+    <label style="margin-top:4px; margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.lune"}}</label>
 
     <input
-        style="width: 40px; margin-right:10px;text-align:center;"
+        style="width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
         class="item-integer"
         name="data.stase.lune"
         type="text"
         value="{{data.stase.lune}}"
         data-dtype="Number"/>
 
-    <label style="margin-top:4px; margin-right:5px;">{{localize "NEPH5E.pentacle.elements.terre"}}</label>
+    <label style="margin-top:4px; margin-right:5px;padding-top:7px;">{{localize "NEPH5E.pentacle.elements.terre"}}</label>
 
     <input
-        style="width: 40px; margin-right:10px;text-align:center;"
+        style="width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
         class="item-integer"
         name="data.stase.terre"
         type="text"

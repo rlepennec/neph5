@@ -68,6 +68,7 @@ Hooks.once("init", function () {
         getLevel: CustomHandlebarsHelpers.getLevel,
         getSapiences: CustomHandlebarsHelpers.getSapiences,
         getNextCost: CustomHandlebarsHelpers.getNextCost,
+        getSortStatus: CustomHandlebarsHelpers.getSortStatus,
         isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
         isEmptyString: CustomHandlebarsHelpers.isEmptyString,
         isMelee: CustomHandlebarsHelpers.isMelee,

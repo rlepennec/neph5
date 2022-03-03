@@ -4,206 +4,232 @@
     value="true"
     data-dtype="Boolean"/>
 
-{{#if (eq data.options.boussole true)}}
-<ol class="item-list">
-    
-    <li class="item-list-header">
-        <div class="item-integer">
-            <span/>
-        </div>
-        <div class="item-name">
-            <span>{{localize "NEPH5E.boussole"}}</span>
-        </div>
-        <div class="item-integer">
-            <span>{{localize "NEPH5E.nef"}}</span>
-        </div>
-        <input
-            class="item-checkbox"
-            type="checkbox"
-            name="data.akasha.nef.active"
-            {{checked data.akasha.nef.active}}
-            data-dtype="Boolean"/>
-    </li>
+<img src="systems/neph5e/assets/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.septentrion}}</label>
-        <div class="item-name">
-            <span>Septentrion</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.septentrion"
-            type="text"
-            value="{{data.akasha.boussole.septentrion}}"
-            data-dtype="Number"/>
-    </li>
+<div style="display:flex;flex-direction:row;padding-top:20px;">
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.orient}}</label>
-        <div class="item-name">
-            <span>Orient</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.orient"
-            type="text"
-            value="{{data.akasha.boussole.orient}}"
-            data-dtype="Number"/>
-    </li>
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.midi}}</label>
-        <div class="item-name">
-            <span>Midi</span>
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.akasha"}}</span>
+            </div>
         </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.midi"
-            type="text"
-            value="{{data.akasha.boussole.midi}}"
-            data-dtype="Number"/>
-    </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.occident}}</label>
-        <div class="item-name">
-            <span>Occident</span>
+        <ol class="item-list">
+
+            <li class="item">
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.akasha.nef.active"
+                        type="checkbox"
+                        {{checked data.akasha.nef.active}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+                <label class="item-name" style="font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px;">{{localize "NEPH5E.nef"}}</label>
+            </li>
+
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.boussole.septentrion"
+                    type="text"
+                    value="{{data.akasha.boussole.septentrion}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.boussole.septentrion}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Septentrion</label>
+            </li>
+
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.boussole.orient"
+                    type="text"
+                    value="{{data.akasha.boussole.orient}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.boussole.orient}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Orient</label>
+            </li>
+
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.boussole.midi"
+                    type="text"
+                    value="{{data.akasha.boussole.midi}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.boussole.midi}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Midi</label>
+            </li>
+
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.boussole.occident"
+                    type="text"
+                    value="{{data.akasha.boussole.occident}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.boussole.occident}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Occident</label>
+            </li>
+
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.boussole.zenith"
+                    type="text"
+                    value="{{data.akasha.boussole.zenith}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.boussole.zenith}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Zenith</label>
+            </li>
+
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.boussole.nadir"
+                    type="text"
+                    value="{{data.akasha.boussole.nadir}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.boussole.nadir}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Nadir</label>
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;width:50%;margin-left:10px;">
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.antiTerre"}}</span>
+            </div>
         </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.occident"
-            type="text"
-            value="{{data.akasha.boussole.occident}}"
-            data-dtype="Number"/>
-    </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.zenith}}</label>
-        <div class="item-name">
-            <span>Zenith</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.zenith"
-            type="text"
-            value="{{data.akasha.boussole.zenith}}"
-            data-dtype="Number"/>
-    </li>
+        <ol class="item-list">
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.nadir}}</label>
-        <div class="item-name">
-            <span>Nadir</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.nadir"
-            type="text"
-            value="{{data.akasha.boussole.nadir}}"
-            data-dtype="Number"/>
-    </li>
+            <li class="item">
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.akasha.barge.active"
+                        type="checkbox"
+                        {{checked data.akasha.barge.active}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+                <label class="item-name" style="font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px;">{{localize "NEPH5E.barge"}}</label>
+            </li>
 
-</ol>
-{{/if}}
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.compas.septentrion"
+                    type="text"
+                    value="{{data.akasha.compas.septentrion}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.compas.septentrion}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Septentrion</label>
+            </li>
 
-{{#if (eq data.options.compas true)}}
-<ol class="item-list">
-    
-    <li class="item-list-header">
-        <div class="item-integer">
-            <span/>
-        </div>
-        <div class="item-name">
-            <span>{{localize "NEPH5E.compas"}}</span>
-        </div>
-        <div class="item-integer">
-            <span>{{localize "NEPH5E.barge"}}</span>
-        </div>
-        <input
-            class="item-checkbox"
-            type="checkbox"
-            name="data.akasha.barge.active"
-            {{checked data.akasha.barge.active}}
-            data-dtype="Boolean"/>
-    </li>
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.compas.orient"
+                    type="text"
+                    value="{{data.akasha.compas.orient}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.compas.orient}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Orient</label>
+            </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.septentrion}}</label>
-        <div class="item-name">
-            <span>Septentrion</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.septentrion"
-            type="text"
-            value="{{data.akasha.compas.septentrion}}"
-            data-dtype="Number"/>
-    </li>
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.compas.midi"
+                    type="text"
+                    value="{{data.akasha.compas.midi}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.compas.midi}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Midi</label>
+            </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.orient}}</label>
-        <div class="item-name">
-            <span>Orient</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.orient"
-            type="text"
-            value="{{data.akasha.compas.orient}}"
-            data-dtype="Number"/>
-    </li>
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.compas.occident"
+                    type="text"
+                    value="{{data.akasha.compas.occident}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.compas.occident}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Occident</label>
+            </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.midi}}</label>
-        <div class="item-name">
-            <span>Midi</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.midi"
-            type="text"
-            value="{{data.akasha.compas.midi}}"
-            data-dtype="Number"/>
-    </li>
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.compas.zenith"
+                    type="text"
+                    value="{{data.akasha.compas.zenith}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.compas.zenith}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Zenith</label>
+            </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.occident}}</label>
-        <div class="item-name">
-            <span>Occident</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.occident"
-            type="text"
-            value="{{data.akasha.compas.occident}}"
-            data-dtype="Number"/>
-    </li>
+            <li style="display:flex; flex-direction:row; padding-top:10px;">
+                <input
+                    style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
+                    class="item-integer"
+                    name="data.akasha.compas.nadir"
+                    type="text"
+                    value="{{data.akasha.compas.nadir}}"
+                    data-dtype="Number"/>
+                <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+                    <div class="circleContent" style="font-weight:normal;">+{{getLevel data.akasha.compas.nadir}}</div>
+                </div>
+                <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">Nadir</label>
+            </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.zenith}}</label>
-        <div class="item-name">
-            <span>Zenith</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.zenith"
-            type="text"
-            value="{{data.akasha.compas.zenith}}"
-            data-dtype="Number"/>
-    </li>
+        </ol>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.nadir}}</label>
-        <div class="item-name">
-            <span>Nadir</span>
-        </div>      
-        <input
-            class="item-integer"
-            name="data.akasha.compas.nadir"
-            type="text"
-            value="{{data.akasha.compas.nadir}}"
-            data-dtype="Number"/>
-    </li>
+    </div>
 
-</ol>
-{{/if}}
+</div>

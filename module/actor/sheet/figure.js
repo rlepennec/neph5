@@ -12,6 +12,7 @@ import { AspectSheet } from "../../item/sheet/aspect.js";
 import { CompetenceSheet } from "../../item/sheet/competence.js";
 import { FormuleSheet } from "../../item/sheet/formule.js";
 import { InvocationSheet } from "../../item/sheet/invocation.js";
+import { OrdonnanceSheet } from "../../item/sheet/ordonnance.js";
 import { QueteSheet } from "../../item/sheet/quete.js";
 import { RiteSheet } from "../../item/sheet/rite.js";
 import { SavoirSheet } from "../../item/sheet/savoir.js";
@@ -79,6 +80,10 @@ export class FigureSheet extends BaseSheet {
             actor: baseData.actor,
             data: baseData.actor.data.data,
             metamorphes: game.items.filter(item => item.data.type === 'metamorphe'),
+            metamorphe: this.actor.getMetamorphePoints(),
+            imago: this.actor.getImagoPoints(),
+            ordonnances: this.actor.getNumberOfOrdonnances(),
+            monde: this.actor.getMonde(),
             cercles: Game.alchimie.cercles,
             currentPeriode: this.getCurrentPeriodeId(),
             useV3: game.settings.get('neph5e', 'useV3'),
@@ -88,11 +93,12 @@ export class FigureSheet extends BaseSheet {
                 immobilise: this?.token?.combatant?.effectIsActive(Game.effects.immobilise),
                 projete: this?.token?.combatant?.effectIsActive(Game.effects.projete)
             },
-            initiative: baseData.actor.data.data.ka.eau * 2,
-            bonusDommage: Math.floor(baseData.actor.data.data.ka.feu / 5),
-            perspicacite: 11 - baseData.actor.data.data.ka.air,
-            recuperation: 11 - baseData.actor.data.data.ka.terre,
-            voile: Math.floor(baseData.actor.data.data.ka.lune / 5)
+            mouvement: this.mouvement(),
+            initiative: this.actor.initiative(),
+            bonusDommage: this.bonusDommage(),
+            perspicacite: this.perspicacite(),
+            recuperation: this.recuperation(),
+            voile: this.voile()
         }
         return sheetData;
     }
@@ -144,18 +150,22 @@ export class FigureSheet extends BaseSheet {
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="magie"] .edit-sort').click(this._onEditSort.bind(this));
+        html.find('div[data-tab="magie"] .change-sort').click(this._onChangeSortStatus.bind(this));
         html.find('div[data-tab="magie"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Kabbale
         html.find('div[data-tab="kabbale"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="kabbale"] .edit-invocation').click(this._onEditInvocation.bind(this));
+        html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditOrdonnance.bind(this));
+        html.find('div[data-tab="kabbale"] .change-sort').click(this._onChangeInvovationStatus.bind(this));
         html.find('div[data-tab="kabbale"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="kabbale"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Alchimie
         html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="alchimie"] .item-name').click(this._onEditFormule.bind(this));
+        html.find('div[data-tab="alchimie"] .change-sort').click(this._onChangeFormuleStatus.bind(this));
         html.find('div[data-tab="alchimie"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="alchimie"] .item-delete').click(this._onDeleteItem.bind(this));
 
@@ -187,12 +197,14 @@ export class FigureSheet extends BaseSheet {
         // Conjuration
         html.find('div[data-tab="conjuration"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="conjuration"] .edit-appel').click(this._onEditAppel.bind(this));
+        html.find('div[data-tab="conjuration"] .change-sort').click(this._onChangeAppelStatus.bind(this));
         html.find('div[data-tab="conjuration"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="conjuration"] .item-delete').click(this._onDeleteItem.bind(this));
 
         // Necromancie
         html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="necromancie"] .edit-rite').click(this._onEditRite.bind(this));
+        html.find('div[data-tab="necromancie"] .change-sort').click(this._onChangeRiteStatus.bind(this));
         html.find('div[data-tab="necromancie"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="necromancie"] .item-delete').click(this._onDeleteItem.bind(this));
 
@@ -219,6 +231,59 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="epee"] .item-roll').click(this._onItemRoll.bind(this));
         html.find('div[data-tab="epee"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteItem.bind(this));
+    }
+
+    /**
+     * @return the mouvement.
+     */
+     mouvement() {
+        if (this.actor.data.data.options?.nephilim === true) {
+            return this.actor.data.data.ka.eau * 2;
+        }
+        if (this.actor.data.data.options?.selenim === true) {
+            return this.actor.data.data.ka.noyau;
+        }
+        return this.actor.data.data.ka.soleil ?? 0;
+    }
+
+    bonusDommage() {
+        if (this.actor.data.data.options?.nephilim === true) {
+            return Math.floor(this.actor.data.data.ka.feu / 5);
+        }
+        if (this.actor.data.data.options?.selenim === true) {
+            return Math.floor(this.actor.data.data.ka.noyau / 10);
+        }
+        return this.actor.data.data.ka.soleil ?? 0;
+    }
+
+    perspicacite() {
+        if (this.actor.data.data.options?.nephilim === true) {
+            return 11 - this.actor.data.data.ka.air;
+        }
+        if (this.actor.data.data.options?.selenim === true) {
+            return 11 - this.actor.data.data.ka.noyau;
+        }
+        return 11 - (this.actor.data.data.ka.soleil ?? 0);
+    }
+
+    recuperation() {
+        if (this.actor.data.data.options?.nephilim === true) {
+            return 11 - this.actor.data.data.ka.terre;
+        }
+        if (this.actor.data.data.options?.selenim === true) {
+            return 11 - this.actor.data.data.ka.noyau;
+        }
+        return 11 - this.actor.data.data.soleil;
+    }
+
+    voile() {
+        if (this.actor.data.data.options?.nephilim === true) {
+            return Math.floor(this.actor.data.data.ka.lune / 5);
+        }
+        if (this.actor.data.data.options?.selenim === true) {
+            return Math.floor(this.actor.data.data.ka.noyau / 10);
+        }
+        return Math.floor((this.actor.data.data.ka.soleil ?? 0) / 10);
     }
 
     /**
@@ -335,40 +400,40 @@ export class FigureSheet extends BaseSheet {
                         await this._onDropInPeriode(item, 'sciences', { ref: item.data.data.ref });
                         break;
                     case 'sort':
-                        await this._onDropSort(item, 'magie', 'sorts', { focus: true, appris: false, tatoue: false });
+                        await this._onDropSort(item, 'magie', item.data.data.cercle, 'sorts', { focus: true, appris: false, tatoue: false });
                         break;
                     case 'invocation':
-                        await this._onDropSort(item, 'kabbale', 'invocations', { focus: true, appris: false, tatoue: false, pacte: false, feal: 0, allie: 0 });
+                        await this._onDropSort(item, 'kabbale', item.data.data.sephirah, 'invocations', { focus: true, appris: false, tatoue: false, pacte: false, feal: 0, allie: 0 });
                         break;
                     case 'formule':
-                        await this._onDropSort(item, 'alchimie', 'formules', { focus: true, appris: false, tatoue: false, quantite: 0, transporte: 0 });
+                        await this._onDropSort(item, 'alchimie', item.data.data.cercle, 'formules', { focus: true, appris: false, tatoue: false, quantite: 0, transporte: 0 });
                         break;
                     case 'materiae':
-                        await this._onDropSort(item, 'alchimie', 'materiae', { quantite: 0 });
+                        await this._onDropSort(item, 'alchimie', null, 'materiae', { quantite: 0 });
                         break;
                     case 'catalyseur':
-                        await this._onDropSort(item, 'alchimie', 'catalyseurs', {});
+                        await this._onDropSort(item, 'alchimie', null, 'catalyseurs', {});
                         break;
                     case 'aspect':
-                        await this._onDropSort(item, 'imago', 'aspects', {});
+                        await this._onDropSort(item, 'imago', null, 'aspects', {});
                         break;
                     case 'appel':
-                        await this._onDropSort(item, 'conjuration', 'appels', {});
+                        await this._onDropSort(item, 'conjuration', item.data.data.cercle, 'appels', {});
                         break;
                     case 'rite':
-                        await this._onDropSort(item, 'necromancie', 'rites', {});
+                        await this._onDropSort(item, 'necromancie', item.data.data.cercle, 'rites', {});
                         break;
                     case 'pratique':
-                        await this._onDropSort(item, 'denier', 'pratiques', {});
+                        await this._onDropSort(item, 'denier', null, 'pratiques', {});
                         break;
                     case 'technique':
-                        await this._onDropSort(item, 'baton', 'techniques', {});
+                        await this._onDropSort(item, 'baton', null, 'techniques', {});
                         break;
                     case 'tekhne':
-                        await this._onDropSort(item, 'coupe', 'tekhnes', {});
+                        await this._onDropSort(item, 'coupe', null, 'tekhnes', {});
                         break;
                     case 'rituel':
-                        await this._onDropSort(item, 'epee', 'rituels', {});
+                        await this._onDropSort(item, 'epee', null, 'rituels', {});
                         break;
 
                 }
@@ -404,13 +469,20 @@ export class FigureSheet extends BaseSheet {
     }
 
     /**
-     * Add the specified item in the specified grimoire.
+     * Add the specified item in the specified grimoire. The item is dropped only
+     * if the level of the science is over 0.
      * @param {*} item            The sort to add.
      * @param {*} science         The science occulte of the sort.
      * @param {*} grimoire        The collection of sort in which to add the item.
      * @param {Object} properties The properties to add to the sort before adding.
      */
-    async _onDropSort(item, science, grimoire, properties) {
+    async _onDropSort(item, science, cercle, grimoire, properties) {
+        if (cercle !== null) {
+            const level = this.actor.getScience(cercle);
+            if (level === 0) {
+                return;
+            }
+        }
         const so = duplicate(this.actor.data.data[science]);
         const index = so[grimoire].findIndex(s => (s.refid === item.data.data.id));
         if (index === -1) {
@@ -595,6 +667,80 @@ export class FigureSheet extends BaseSheet {
         await this.actor.update({ ['data.periodes']: periodes });
     }
 
+    async _onChangeSortStatus(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const magie = duplicate(this.actor.data.data.magie);
+        const index = magie.sorts.findIndex(s => s.refid === id);
+        const appris = magie.sorts[index].appris;
+        const tatoue = magie.sorts[index].tatoue;
+        if (appris === false && tatoue === false) {
+            magie.sorts[index].appris = true;
+        } else if (appris === true && tatoue === false) {
+            magie.sorts[index].tatoue = true;
+        } else {
+            magie.sorts[index].appris = false;
+            magie.sorts[index].tatoue = false;
+        }
+        await this.actor.update({ ['data.magie']: magie });
+    }
+
+    async _onChangeInvovationStatus(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const kabbale = duplicate(this.actor.data.data.kabbale);
+        const index = kabbale.invocations.findIndex(s => s.refid === id);
+        const appris = kabbale.invocations[index].appris;
+        const tatoue = kabbale.invocations[index].tatoue;
+        if (appris === false && tatoue === false) {
+            kabbale.invocations[index].appris = true;
+        } else if (appris === true && tatoue === false) {
+            kabbale.invocations[index].tatoue = true;
+        } else {
+            kabbale.invocations[index].appris = false;
+            kabbale.invocations[index].tatoue = false;
+        }
+        await this.actor.update({ ['data.kabbale']: kabbale });
+    }
+
+    async _onChangeFormuleStatus(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const alchimie = duplicate(this.actor.data.data.alchimie);
+        const index = alchimie.formules.findIndex(s => s.refid === id);
+        const appris = alchimie.formules[index].appris;
+        const tatoue = alchimie.formules[index].tatoue;
+        if (appris === false && tatoue === false) {
+            alchimie.formules[index].appris = true;
+        } else if (appris === true && tatoue === false) {
+            alchimie.formules[index].tatoue = true;
+        } else {
+            alchimie.formules[index].appris = false;
+            alchimie.formules[index].tatoue = false;
+        }
+        await this.actor.update({ ['data.alchimie']: alchimie });
+    }
+
+    async _onChangeRiteStatus(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const necromancie = duplicate(this.actor.data.data.necromancie);
+        const index = necromancie.rites.findIndex(s => s.refid === id);
+        const appris = necromancie.rites[index].appris;
+        necromancie.rites[index].appris = !appris;
+        await this.actor.update({ ['data.necromancie']: necromancie });
+    }
+
+    async _onChangeAppelStatus(event) {
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const conjuration = duplicate(this.actor.data.data.conjuration);
+        const index = conjuration.appels.findIndex(s => s.refid === id);
+        const appris = conjuration.appels[index].appris;
+        conjuration.appels[index].appris = !appris;
+        await this.actor.update({ ['data.conjuration']: conjuration });
+    }
+
     /**
      * This function catches the deletion of a ordonnance from the list of materiae primae.
      */
@@ -760,6 +906,10 @@ export class FigureSheet extends BaseSheet {
 
     async _onEditInvocation(event) {
         await InvocationSheet.onEdit(event, this.actor);
+    }
+
+    async _onEditOrdonnance(event) {
+        await OrdonnanceSheet.onEdit(event);
     }
 
     async _onEditFormule(event) {

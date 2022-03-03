@@ -1,8 +1,8 @@
 {{#unless (noItemsFromPeriodes data.id 'savoirs')}}
-<ol class="item-list" style="padding-top:20px;">
-    
-    <div style="margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-        <span>{{localize "NEPH5E.savoirs"}}</span>
+<ol class="item-list">
+
+    <div style="width:794px;margin-left: 10px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span style="padding-left:5px;">{{localize "NEPH5E.savoirs"}}</span>
     </div>
 
     <div style="column-count:3">
@@ -10,11 +10,11 @@
         {{#each (getLevels data.id 'savoirs') as |savoir|}}
         <li class="item" data-item-id="{{savoir.refid}}" data-item-type="savoir">
 
+            <label style="width:20px;">{{savoir.degre}}</label>
+
             <div class="item-name edit-savoir">
                 <span data-item-id="{{savoir.refid}}">{{savoir.name}}</span>
             </div>
-
-            <label class="item-integer">{{savoir.degre}}</label>
 
             <div class="item-control">
                 <a class="item-roll"><i class="fas fa-dice-d20"></i></a>

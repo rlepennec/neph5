@@ -110,6 +110,21 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * Indicates if the sort is dechiffre, appris or tatoue.
+     * @param {*} sort The sort to 
+     * @return the status of the sort.
+     */
+    static getSortStatus(sort) {
+        if (sort?.tatoue === true) {
+            return game.i18n.localize('NEPH5E.tatoue');
+        } else if (sort?.appris === true) {
+            return game.i18n.localize('NEPH5E.appris')
+        } else {
+            return game.i18n.localize('NEPH5E.dechiffre')
+        }
+    }
+
+    /**
      * @param {*} ps The number of sapience points.
      * @returns the reached level.  
      */

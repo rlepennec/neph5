@@ -1,4 +1,32 @@
-<li class="item" data-item-id="{{invocation.refid}}" data-item-science="kabbale" data-item-collection="invocations">
+<li class="item" style="height:17px;display:flex; flex-direction:row;align-items: center;" data-item-id="{{invocation.refid}}" data-item-science="kabbale" data-item-collection="invocations">
+
+    <div class="item-control">
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    </div>
+
+    <input
+        name="data.kabbale.invocations.[{{@index}}].appris"
+        type="hidden"
+        value="{{invocation.appris}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="data.kabbale.invocations.[{{@index}}].tatoue"
+        type="hidden"
+        value="{{invocation.tatoue}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="data.kabbale.invocations.[{{@index}}].feal"
+        type="hidden"
+        value="{{invocation.feal}}"
+        data-dtype="Number"/>
+
+    <input
+        name="data.kabbale.invocations.[{{@index}}].allie"
+        type="hidden"
+        value="{{invocation.allie}}"
+        data-dtype="Number"/>
 
     <input
         name="data.kabbale.invocations.[{{@index}}].refid"
@@ -7,77 +35,37 @@
         data-dtype="String"/>
 
     {{#with (getItem invocation.refid)}}
-    <div class="item-name edit-invocation">
+    <div class="item-name edit-invocation" style="margin-left:20px;">
         <span data-item-id="{{invocation.refid}}">{{name}}</span>
     </div>
     {{/with}}
 
-    <div class="item-checkbox">
+    <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
         <input
-            type="checkbox"
+            class="item-checkbox" 
             name="data.kabbale.invocations.[{{@index}}].pacte"
+            type="checkbox"
             {{checked invocation.pacte}}
             data-dtype="Boolean"/>
-    </div>
+        <i class="far fa-circle unchecked"></i>
+        <i class="fas fa-circle checked"></i>
+    </label>
 
-    {{#if useV3}}
-    <div class="item-integer">
+    <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
         <input
-            name="data.kabbale.invocations.[{{@index}}].feal"
-            type="text"
-            value="{{invocation.feal}}"
-            data-dtype="Number"/>
-    </div>
-    <div class="item-integer">
-        <input
-            name="data.kabbale.invocations.[{{@index}}].allie"
-            type="text"
-            value="{{invocation.allie}}"
-            data-dtype="Number"/>
-    </div>
-    {{else}}
-    <input
-        name="data.kabbale.invocations.[{{@index}}].feal"
-        type="hidden"
-        value="{{invocation.feal}}"
-        data-dtype="Number"/>
-    <input
-        name="data.kabbale.invocations.[{{@index}}].allie"
-        type="hidden"
-        value="{{invocation.allie}}"
-        data-dtype="Number"/>
-    {{/if}}
-
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
+            class="item-checkbox" 
             name="data.kabbale.invocations.[{{@index}}].focus"
+            type="checkbox"
             {{checked invocation.focus}}
             data-dtype="Boolean"/>
-    </div>
+        <i class="far fa-circle unchecked"></i>
+        <i class="fas fa-circle checked"></i>
+    </label>
 
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
-            name="data.kabbale.invocations.[{{@index}}].appris"
-            {{checked invocation.appris}}
-            data-dtype="Boolean"/>
-    </div>
+    <label class="change-sort" style="flex: 0 0 auto; width:80px;margin-left:10px;margin-right:10px;text-align:center;">{{getSortStatus invocation}}</label>
 
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
-            name="data.kabbale.invocations.[{{@index}}].tatoue"
-            {{checked invocation.tatoue}}
-            data-dtype="Boolean"/>
-    </div>
-
-    <div class="item-control">
+    <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:10px;margin-right:10px;">
         <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
-    </div>
-
-    <div class="item-control">
-        <a class="item-delete"><i class="fas fa-trash"></i></a>
     </div>
 
 </li>

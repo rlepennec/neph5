@@ -1,5 +1,447 @@
-{{> "systems/neph5e/templates/actor/parts/combat/dommages.hbs"}}
+<img src="systems/neph5e/assets/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
 
-{{> "systems/neph5e/templates/actor/parts/combat/bonus.hbs"}}
+<div style="display:flex;flex-direction:row;padding-top:20px;">
 
-{{> "systems/neph5e/templates/actor/parts/combat/equipements.hbs"}}
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+
+            <input
+                style="flex-basis: 40px; width: 40px; height: 40px; text-align: center; flex-grow: 0;flex-shrink: 0;border-radius: 50%;"
+                name="data.dommage.physique.cases"
+                type="text"
+                value="{{data.dommage.physique.cases}}"
+                data-dtype="Number"/>
+
+            <div style="padding-left: 5px; width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span>{{localize "NEPH5E.dommagesPhysiques"}}</span>
+            </div>
+        
+        </div>
+
+        <ol class="item-list">
+
+            <li style="display:flex; flex-direction:row;margin-bottom:10px;">
+
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.dommage.physique.choc"
+                    type="text"
+                    value="{{data.dommage.physique.choc}}"
+                    data-dtype="Number"/>
+
+                <label style="padding-top:9px; margin-left:10px;">{{localize "NEPH5E.choc"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.physique.mineure"
+                        type="checkbox"
+                        {{checked data.dommage.physique.mineure}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureMineure"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.physique.serieuse"
+                        type="checkbox"
+                        {{checked data.dommage.physique.serieuse}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureSerieuse"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.physique.grave"
+                        type="checkbox"
+                        {{checked data.dommage.physique.grave}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureGrave"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.physique.mortelle"
+                        type="checkbox"
+                        {{checked data.dommage.physique.mortelle}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureMortelle"}}</label>
+
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+
+            <input
+                style="flex-basis: 40px; width: 40px; height: 40px; text-align: center; flex-grow: 0;flex-shrink: 0;border-radius: 50%;"
+                name="data.dommage.magique.cases"
+                type="text"
+                value="{{data.dommage.magique.cases}}"
+                data-dtype="Number"/>
+
+            <div style="padding-left: 5px; width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span>{{localize "NEPH5E.dommagesMagiques"}}</span>
+            </div>
+        
+        </div>
+
+        <ol class="item-list">
+
+            <li style="display:flex; flex-direction:row;margin-bottom:10px;">
+
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.dommage.magique.choc"
+                    type="text"
+                    value="{{data.dommage.magique.choc}}"
+                    data-dtype="Number"/>
+
+                <label style="padding-top:9px; margin-left:10px;">{{localize "NEPH5E.choc"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.magique.mineure"
+                        type="checkbox"
+                        {{checked data.dommage.magique.mineure}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureMineure"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.magique.serieuse"
+                        type="checkbox"
+                        {{checked data.dommage.magique.serieuse}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureSerieuse"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.magique.grave"
+                        type="checkbox"
+                        {{checked data.dommage.magique.grave}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureGrave"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox" 
+                        name="data.dommage.magique.mortelle"
+                        type="checkbox"
+                        {{checked data.dommage.magique.mortelle}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.blessureMortelle"}}</label>
+
+            </li>
+
+        </ol>
+
+    </div>
+
+</div>
+
+<div style="display:flex;flex-direction:row;">
+
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.etats"}}</span>
+            </div>
+        </div>
+
+        <ol class="item-list">
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox"
+                        id="desoriente"
+                        name="desoriente"
+                        type="checkbox"
+                        {{checked effects.desoriente}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.desoriente"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox"
+                        id="immobilise"
+                        name="immobilise"
+                        type="checkbox"
+                        {{checked effects.immobilise}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.immobilise"}}</label>
+
+            </li>
+
+            <li class="item">
+
+                <label class="hand-checkbox">
+                    <input
+                        class="item-checkbox"
+                        id="projete"
+                        name="projete"
+                        type="checkbox"
+                        {{checked effects.projete}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="item-name">{{localize "NEPH5E.aTerre"}}</label>
+
+            </li>
+
+        </ol>
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.bonus"}}</span>
+            </div>
+        </div>
+
+        <ol class="item-list">
+
+            <li style="display:flex; flex-direction:row;margin-bottom:5px;">
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.mouvement"
+                    type="text"
+                    value="{{data.bonus.mouvement}}"
+                    data-dtype="Number"/>
+                <label style="width:50%;padding-top:9px; margin-left:10px;">{{localize "NEPH5E.mouvement"}}</label>
+                <label style="width:50%;padding-top:9px; margin-left:10px;text-align:right;">{{localize "NEPH5E.initiative"}}</label>
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.initiative"
+                    type="text"
+                    value="{{data.bonus.initiative}}"
+                    data-dtype="Number"/>
+            </li>
+
+            <li style="display:flex; flex-direction:row;margin-bottom:5px;">
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.dommages"
+                    type="text"
+                    value="{{data.bonus.dommages}}"
+                    data-dtype="Number"/>
+                <label style="width:50%;padding-top:9px; margin-left:10px;">{{localize "NEPH5E.dommages"}}</label>
+                <label style="width:50%;padding-top:9px; margin-left:10px;text-align:right;">{{localize "NEPH5E.protection"}}</label>
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.protection"
+                    type="text"
+                    value="{{data.bonus.protection}}"
+                    data-dtype="Number"/>
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.actions"}}</span>
+            </div>
+        </div>
+
+        <ol class="item-list">
+
+            <li class="item">
+                <div class="item-control">
+                    <a class="item-move"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="item-name">
+                    <span>{{localize "NEPH5E.manoeuvre"}}</span>
+                </div>
+            </li>
+
+            <li class="item">
+                <div class="item-control">
+                    <a class="item-wrestle"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="item-name">
+                    <span>{{localize "NEPH5E.mainsNues"}}</span>
+                </div>
+            </li>
+
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.type 'arme')}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
+                <div class="item-control">
+                    {{#if ../useCombatSystem}}
+                    <a class="item-attack"><i class="fas fa-dice-d20"></i></a>
+                    {{else}}
+                    <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
+                    {{/if}}
+                </div>
+                <div class="item-name">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+            </li>
+            {{/if}}
+            {{/each}}
+
+        </ol>
+
+        <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+            <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <span style="padding-left:5px;">{{localize "NEPH5E.equipement"}}</span>
+            </div>
+        </div>
+
+        <ol class="item-list">
+
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.data.type 'armure')}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
+
+                <div class="item-control">
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+
+                <div class="item-name edit-armure">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+
+                <div class="item-control">
+                {{#if item.data.data.used}}
+                    <i class="fas fa-hand-paper item-use"></i>
+                {{else}}
+                    <i class="far fa-hand-paper item-use"></i>
+                {{/if}}
+                </div>
+
+            </li>
+            {{/if}}
+            {{/each}}
+
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.type 'arme')}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
+
+                <div class="item-control">
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+
+                <div class="item-name edit-arme">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+
+                {{#if (ne item.data.data.skill 'melee')}}
+                <div class="item-control tooltip">
+                    <a class="item-reload" title="Reload"><i class="fas fa-spinner"></i></a>
+                    <span class="tooltiptext">{{item.data.data.ranged.utilise}} / {{item.data.data.ranged.munitions}}</span>
+                </div>
+                <div class="item-control tooltip">
+                    <a class="item-aim" title="Aim"><i class="fas fa-crosshairs"></i></a>
+                    <span class="tooltiptext">{{item.data.data.ranged.visee}} / 3</span>
+                </div>
+                {{/if}}
+
+                <div class="item-control">
+                {{#if item.data.data.used}}
+                    <i class="fas fa-hand-paper item-use"></i>
+                {{else}}
+                    <i class="far fa-hand-paper item-use"></i>
+                {{/if}}
+                </div>
+
+            </li>
+            {{/if}}
+            {{/each}}
+    
+        </ol>
+
+    </div>
+
+</div>
