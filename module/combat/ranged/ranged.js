@@ -60,7 +60,7 @@ export class Ranged extends Action {
      * @Override
      */
     impact() {
-        return this.weapon.data.data.damages + this.constructor.impact;
+        return parseInt(this.weapon.data.data.damages) + this.constructor.impact;
     }
 
     /**

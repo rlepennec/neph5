@@ -142,6 +142,13 @@
 .sectionTitle .sectionName {
   margin-left: 5px;
 }
+.sectionTitleUnderline {
+  font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
 .actor .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;

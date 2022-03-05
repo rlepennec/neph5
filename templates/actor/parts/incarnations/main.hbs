@@ -51,6 +51,13 @@
         <div style="margin-left:50px;display:flex;flex-direction:row-reverse;">
 
             {{#if (eq ../currentPeriode periode.refid)}}
+            <input
+                class="item-checkbox periode-active" 
+                name="data.periodes.[{{refid}}].active"
+                type="hidden"
+                value="{{periode.active}}"
+                data-dtype="Boolean"/>
+
             <div class="item-control">
                 <a class="delete-periode"><i class="fas fa-trash"></i></a>
             </div>
@@ -96,6 +103,7 @@
         <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-periode-id="{{../refid}}">
 
             <input
+                class="degre-vecu"
                 style="text-align:center;border-radius:50%;width:30px;height:30px;margin-right:10px;margin-top:1px;margin-bottom:1px;"
                 name="item.data.data.degre"
                 type="text"
