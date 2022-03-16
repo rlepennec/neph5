@@ -56,7 +56,7 @@ export class Melee extends Action {
      */
     impact() {
         return this.constructor.impact === null ? 0 :
-            this.weapon.data.data.damages +
+            parseInt(this.weapon.data.data.damages) +
             this.constructor.impact +
             this.actor.data.data.bonus.dommage;
     }

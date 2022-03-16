@@ -7,6 +7,19 @@ export const preloadTemplates = async function () {
 
     return loadTemplates([
 
+        "systems/neph5e/templates/actor/parts/akasha/main.hbs",
+        "systems/neph5e/templates/actor/parts/akasha/direction.hbs",
+        "systems/neph5e/templates/actor/parts/akasha/vaisseau.hbs",
+
+        "systems/neph5e/templates/actor/parts/alchimie/main.hbs",
+        "systems/neph5e/templates/actor/parts/alchimie/header.hbs",
+        "systems/neph5e/templates/actor/parts/alchimie/formule.hbs",
+
+        "systems/neph5e/templates/actor/parts/combat/main.hbs",
+        "systems/neph5e/templates/actor/parts/combat/blessure.hbs",
+        "systems/neph5e/templates/actor/parts/combat/choc.hbs",
+        "systems/neph5e/templates/actor/parts/combat/etat.hbs",
+
         "systems/neph5e/templates/actor/parts/nephilim/arcane.hbs",
         "systems/neph5e/templates/actor/parts/nephilim/attributs.hbs",
         "systems/neph5e/templates/actor/parts/nephilim/chutes.hbs",
@@ -20,10 +33,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/actor/parts/necromancie/main.hbs",
         "systems/neph5e/templates/actor/parts/necromancie/header.hbs",
         "systems/neph5e/templates/actor/parts/necromancie/rite.hbs",
-        "systems/neph5e/templates/actor/parts/combat/main.hbs",
-        "systems/neph5e/templates/actor/parts/combat/equipements.hbs",
-        "systems/neph5e/templates/actor/parts/combat/bonus.hbs",
-        "systems/neph5e/templates/actor/parts/combat/dommages.hbs",
+        
         "systems/neph5e/templates/actor/parts/description/main.hbs",
         "systems/neph5e/templates/actor/parts/simulacre/main.hbs",
         "systems/neph5e/templates/actor/parts/vecus/main.hbs",
@@ -37,18 +47,12 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/actor/parts/kabbale/main.hbs",
         "systems/neph5e/templates/actor/parts/kabbale/header.hbs",
         "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs",
-        "systems/neph5e/templates/actor/parts/kabbale/ordonnance.hbs",
-        "systems/neph5e/templates/actor/parts/alchimie/main.hbs",
-        "systems/neph5e/templates/actor/parts/alchimie/header.hbs",
-        "systems/neph5e/templates/actor/parts/alchimie/formule.hbs",
+
         "systems/neph5e/templates/actor/parts/laboratoire/main.hbs",
-        "systems/neph5e/templates/actor/parts/laboratoire/constructs.hbs",
-        "systems/neph5e/templates/actor/parts/laboratoire/materiae.hbs",
-        "systems/neph5e/templates/actor/parts/laboratoire/primae.hbs",
-        "systems/neph5e/templates/actor/parts/laboratoire/catalyseur.hbs",
-        "systems/neph5e/templates/actor/parts/akasha/main.hbs",
+        
         "systems/neph5e/templates/actor/parts/incarnations/main.hbs",
         "systems/neph5e/templates/actor/parts/options/main.hbs",
+        "systems/neph5e/templates/actor/parts/nephilim/attributs.hbs",
         "systems/neph5e/templates/actor/parts/selenim/main.hbs",
         "systems/neph5e/templates/actor/parts/selenim/noyau.hbs",
         "systems/neph5e/templates/actor/parts/selenim/aspect.hbs",

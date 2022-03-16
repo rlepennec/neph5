@@ -4,206 +4,60 @@
     value="true"
     data-dtype="Boolean"/>
 
-{{#if (eq data.options.boussole true)}}
-<ol class="item-list">
-    
-    <li class="item-list-header">
-        <div class="item-integer">
-            <span/>
-        </div>
-        <div class="item-name">
-            <span>{{localize "NEPH5E.boussole"}}</span>
-        </div>
-        <div class="item-integer">
-            <span>{{localize "NEPH5E.nef"}}</span>
-        </div>
-        <input
-            class="item-checkbox"
-            type="checkbox"
-            name="data.akasha.nef.active"
-            {{checked data.akasha.nef.active}}
-            data-dtype="Boolean"/>
-    </li>
+<img src="systems/neph5e/assets/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.septentrion}}</label>
-        <div class="item-name">
-            <span>Septentrion</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.septentrion"
-            type="text"
-            value="{{data.akasha.boussole.septentrion}}"
-            data-dtype="Number"/>
-    </li>
+<div class="flexrow" style="padding-top:20px;">
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.orient}}</label>
-        <div class="item-name">
-            <span>Orient</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.orient"
-            type="text"
-            value="{{data.akasha.boussole.orient}}"
-            data-dtype="Number"/>
-    </li>
+    <div class="flexcol" style="width:50%; margin-right:10px;">
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.midi}}</label>
-        <div class="item-name">
-            <span>Midi</span>
+        <div class="flexrow sectionTitleUnderline" style="margin: 10px 0px 10px 20px;">
+            <span>{{localize "NEPH5E.akasha"}}</span>
         </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.midi"
-            type="text"
-            value="{{data.akasha.boussole.midi}}"
-            data-dtype="Number"/>
-    </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.occident}}</label>
-        <div class="item-name">
-            <span>Occident</span>
+        <ol class="item-list">
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/vaisseau.hbs" name="NEPH5E.nef" input-name="data.akasha.nef.active" input-value=data.akasha.nef.active}}
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Septentrion" input-name="data.akasha.boussole.septentrion" input-value=data.akasha.boussole.septentrion}}
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Orient" input-name="data.akasha.boussole.orient" input-value=data.akasha.boussole.orient}}
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Midi" input-name="data.akasha.boussole.midi" input-value=data.akasha.boussole.midi}}
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Occident" input-name="data.akasha.boussole.occident" input-value=data.akasha.boussole.occident}}
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Zenith" input-name="data.akasha.boussole.zenith" input-value=data.akasha.boussole.zenith}}
+
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Nadir" input-name="data.akasha.boussole.nadir" input-value=data.akasha.boussole.nadir}}
+
+        </ol>
+
+    </div>
+
+    <div class="flexcol" style="width:50%;margin-right:10px;">
+
+        <div class="flexrow sectionTitleUnderline" style="margin: 10px 0px 10px 20px;">
+            <span>{{localize "NEPH5E.antiTerre"}}</span>
         </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.occident"
-            type="text"
-            value="{{data.akasha.boussole.occident}}"
-            data-dtype="Number"/>
-    </li>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.zenith}}</label>
-        <div class="item-name">
-            <span>Zenith</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.zenith"
-            type="text"
-            value="{{data.akasha.boussole.zenith}}"
-            data-dtype="Number"/>
-    </li>
+        <ol class="item-list">
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.boussole.nadir}}</label>
-        <div class="item-name">
-            <span>Nadir</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.boussole.nadir"
-            type="text"
-            value="{{data.akasha.boussole.nadir}}"
-            data-dtype="Number"/>
-    </li>
+            {{> "systems/neph5e/templates/actor/parts/akasha/vaisseau.hbs" name="NEPH5E.barge" input-name="data.akasha.barge.active" input-value=data.akasha.barge.active}}
 
-</ol>
-{{/if}}
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Septentrion" input-name="data.akasha.compas.septentrion" input-value=data.akasha.compas.septentrion}}
 
-{{#if (eq data.options.compas true)}}
-<ol class="item-list">
-    
-    <li class="item-list-header">
-        <div class="item-integer">
-            <span/>
-        </div>
-        <div class="item-name">
-            <span>{{localize "NEPH5E.compas"}}</span>
-        </div>
-        <div class="item-integer">
-            <span>{{localize "NEPH5E.barge"}}</span>
-        </div>
-        <input
-            class="item-checkbox"
-            type="checkbox"
-            name="data.akasha.barge.active"
-            {{checked data.akasha.barge.active}}
-            data-dtype="Boolean"/>
-    </li>
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Orient" input-name="data.akasha.compas.orient" input-value=data.akasha.compas.orient}}
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.septentrion}}</label>
-        <div class="item-name">
-            <span>Septentrion</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.septentrion"
-            type="text"
-            value="{{data.akasha.compas.septentrion}}"
-            data-dtype="Number"/>
-    </li>
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Midi" input-name="data.akasha.compas.midi" input-value=data.akasha.compas.midi}}
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.orient}}</label>
-        <div class="item-name">
-            <span>Orient</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.orient"
-            type="text"
-            value="{{data.akasha.compas.orient}}"
-            data-dtype="Number"/>
-    </li>
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Occident" input-name="data.akasha.compas.occident" input-value=data.akasha.compas.occident}}
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.midi}}</label>
-        <div class="item-name">
-            <span>Midi</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.midi"
-            type="text"
-            value="{{data.akasha.compas.midi}}"
-            data-dtype="Number"/>
-    </li>
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Zenith" input-name="data.akasha.compas.zenith" input-value=data.akasha.compas.zenith}}
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.occident}}</label>
-        <div class="item-name">
-            <span>Occident</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.occident"
-            type="text"
-            value="{{data.akasha.compas.occident}}"
-            data-dtype="Number"/>
-    </li>
+            {{> "systems/neph5e/templates/actor/parts/akasha/direction.hbs" name="Nadir" input-name="data.akasha.compas.nadir" input-value=data.akasha.compas.nadir}}
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.zenith}}</label>
-        <div class="item-name">
-            <span>Zenith</span>
-        </div>
-        <input
-            class="item-integer"
-            name="data.akasha.compas.zenith"
-            type="text"
-            value="{{data.akasha.compas.zenith}}"
-            data-dtype="Number"/>
-    </li>
+        </ol>
 
-    <li class="item">
-        <label class="item-integer">+{{getLevel data.akasha.compas.nadir}}</label>
-        <div class="item-name">
-            <span>Nadir</span>
-        </div>      
-        <input
-            class="item-integer"
-            name="data.akasha.compas.nadir"
-            type="text"
-            value="{{data.akasha.compas.nadir}}"
-            data-dtype="Number"/>
-    </li>
+    </div>
 
-</ol>
-{{/if}}
+</div>

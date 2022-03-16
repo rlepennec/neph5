@@ -1,3 +1,4 @@
+import { CustomHandlebarsHelpers } from "../../common/handlebars.js";
 import { Game } from "../../common/game.js";
 
 export class BaseSheet extends ActorSheet {
@@ -29,41 +30,71 @@ export class BaseSheet extends ActorSheet {
     }
 
     async _onAttack(event) {
+
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const arme = this.actor.items.get(id);
-        const token = await this.getToken(this.actor);
-        if (token !== null && token !== undefined) {
-            switch (arme.data.data.skill) {
-            case 'melee':
-                await token.actor.frapper(token, arme);
-                break;
-            case 'trait':
-            case 'feu':
-            case 'lourde':
-                await token.actor.tirer(token, arme);
-                break;
+        const useCombatSystem = game.settings.get('neph5e', 'useCombatSystem');
+        const inCombat = game.combat !== null && this.token.combatant !== null;
+ 
+        if (useCombatSystem && inCombat) {
+            const token = await this.getToken(this.actor);
+            if (token !== null && token !== undefined) {
+                switch (arme.data.data.skill) {
+                case 'melee':
+                    await token.actor.frapper(token, arme);
+                    break;
+                case 'trait':
+                case 'feu':
+                case 'lourde':
+                    await token.actor.tirer(token, arme);
+                    break;
+                }
+            } else {
+                ui.notifications.warn("Veuillez selectionner un token");
             }
         } else {
-            ui.notifications.warn("Veuillez selectionner un token");
+            const uuid = this.getCombatSkillsUUID(arme.data.data.skill);
+            const skill = CustomHandlebarsHelpers.getItem(uuid);
+            return await skill.roll(this.actor);
         }
     }
 
     async _onWrestle(event) {
-        const token = await this.getToken(this.actor);
-        if (token !== null && token !== undefined) {
-            await token.actor.wrestle(token);
+
+        const useCombatSystem = game.settings.get('neph5e', 'useCombatSystem');
+        const inCombat = game.combat !== null && this.token.combatant !== null;
+
+        if (useCombatSystem && inCombat) {
+            const token = await this.getToken(this.actor);
+            if (token !== null && token !== undefined) {
+                await token.actor.wrestle(token);
+            } else {
+                ui.notifications.warn("Veuillez selectionner un token");
+            }
         } else {
-            ui.notifications.warn("Veuillez selectionner un token");
+            const uuid = game.settings.get('neph5e', 'uuidHand');
+            const skill = CustomHandlebarsHelpers.getItem(uuid);
+            return await skill.roll(this.actor);
         }
     }
 
     async _onMove(event) {
-        const token = await this.getToken(this.actor);
-        if (token !== null && token !== undefined) {
-            await token.actor.move(token);
+
+        const useCombatSystem = game.settings.get('neph5e', 'useCombatSystem');
+        const inCombat = game.combat !== null && this.token.combatant !== null;
+
+        if (useCombatSystem && inCombat) {
+            const token = await this.getToken(this.actor);
+            if (token !== null && token !== undefined) {
+                await token.actor.move(token);
+            } else {
+                ui.notifications.warn("Veuillez selectionner un token");
+            }
         } else {
-            ui.notifications.warn("Veuillez selectionner un token");
+            const uuid = game.settings.get('neph5e', 'uuidDodge');
+            const skill = CustomHandlebarsHelpers.getItem(uuid);
+            return await skill.roll(this.actor);
         }
     }
 

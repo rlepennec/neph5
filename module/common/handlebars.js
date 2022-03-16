@@ -1,7 +1,7 @@
 export class CustomHandlebarsHelpers {
 
     /**
-     * @param {*} value 
+     * @param {*} value The value to check.
      * @returns true if the specified value is defined.
      */
     static defined(value) {
@@ -16,6 +16,10 @@ export class CustomHandlebarsHelpers {
         return str === undefined || str === null || str.trim() === '';
     }
 
+    /**
+     * @param {*} collection The collection to check.
+     * @returns true if the collection is empty.
+     */
     static isEmptyCollection(collection) {
         return collection.length === 0;
     }
@@ -39,6 +43,8 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param {*} actor The actor object.
+     * @param {*} id    The id of the item to get.
      * @returns the specified item embedded in actor.
      */
     static getEmbeddedItem(actor, id) {
@@ -52,6 +58,36 @@ export class CustomHandlebarsHelpers {
      */
     static getItems(type) {
         return Array.from(game.items.values()).filter(i => i.data.type === type);
+    }
+
+    /**
+     * Gets the number of elements in all periodes.
+     * @param actor The uuid of the actor.
+     * @param items The items for which to get the count. Allowed items are:
+     *   quetes,
+     *   savoirs,
+     *   arcanes,
+     *   chutes,
+     *   passes
+     * @returns the number of items.
+     */
+    static getCountFromPeriodes(actor, items) {
+        const collection = CustomHandlebarsHelpers.getLevels(actor, items);
+        return collection.length;
+    }
+
+    /**
+     * @param actor The uuid of the actor .
+     * @param items The items for which to get the count. Allowed items are:
+     *   quetes,
+     *   savoirs,
+     *   arcanes,
+     *   chutes,
+     *   passes
+     * @returns true if no items.
+     */
+    static noItemsFromPeriodes(actor, items) {
+        return CustomHandlebarsHelpers.getCountFromPeriodes(actor, items) === 0;
     }
 
     /**
@@ -73,6 +109,25 @@ export class CustomHandlebarsHelpers {
         return CustomHandlebarsHelpers.getActor(actor).getScience(science);
     }
 
+    /**
+     * Indicates if the sort is dechiffre, appris or tatoue.
+     * @param {*} sort The sort to 
+     * @return the status of the sort.
+     */
+    static getSortStatus(sort) {
+        if (sort?.tatoue === true) {
+            return game.i18n.localize('NEPH5E.tatoue');
+        } else if (sort?.appris === true) {
+            return game.i18n.localize('NEPH5E.appris')
+        } else {
+            return game.i18n.localize('NEPH5E.dechiffre')
+        }
+    }
+
+    /**
+     * @param {*} ps The number of sapience points.
+     * @returns the reached level.  
+     */
     static getLevel(ps) {
         let degre = 0;
         let cost = 0;
@@ -95,12 +150,12 @@ export class CustomHandlebarsHelpers {
 
     /**
      * Gets the number points of sapience to spend to reach a skill level to one degre.
-     * @param {Integer} degre The level to reach which must be in [0.. +[.
-     * @returns the number of points of sapience.
+     * @param {Integer} degre The actual level which must be in [0.. +[.
+     * @returns the number of points of sapience to reach the next level.
      */
     static getNextCost(degre) {
         const costs = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 100];
-        return costs[degre];
+        return costs[degre+1];
     }
 
     /**
@@ -125,7 +180,7 @@ export class CustomHandlebarsHelpers {
 
     /**
      * Gets the competences according to the specified character and the active periodes.
-     * @param actor The uuid of the actor for which to create the competences. 
+     * @param actor The uuid of the actor. 
      * @returns the competences to display in the character sheet.
      */
     static getCompetences(actor) {
@@ -145,7 +200,7 @@ export class CustomHandlebarsHelpers {
 
     /**
      * Gets the items according to the specified character and the active periodes.
-     * @param actor The uuid of the actor for which to create the competences.
+     * @param actor The uuid of the actor.
      * @param items The items to get. Allowed items are:
      *   quetes,
      *   savoirs,
@@ -158,6 +213,10 @@ export class CustomHandlebarsHelpers {
         return CustomHandlebarsHelpers.getActor(actor).getLevelsFrom(items);
     }
 
+    /**
+     * @param {*} skill The name of the skill.
+     * @returns true if the skill is used for cac.
+     */
     static isMelee(skill) {
         return skill === 'martial' || skill === 'melee';
     }

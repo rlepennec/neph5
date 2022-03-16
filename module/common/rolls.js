@@ -411,7 +411,7 @@ export class Rolls {
                 item: {
                     img: flags.actor.img
                 },
-                sentence: flags.item.type === 'invocation' ? " s'oppose à l'invocateur" : "La situation n'est pas si simple",
+                sentence: "",
                 difficulty: difficulty
             })
             .withRoll(true)

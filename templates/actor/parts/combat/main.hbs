@@ -1,5 +1,243 @@
-{{> "systems/neph5e/templates/actor/parts/combat/dommages.hbs"}}
+<div class="flexrow" style="padding-top:20px;">
 
-{{> "systems/neph5e/templates/actor/parts/combat/bonus.hbs"}}
+    <div class="flexcol" style="width:50%; margin-right:10px;">
 
-{{> "systems/neph5e/templates/actor/parts/combat/equipements.hbs"}}
+        <div class="flexrow" style="padding-top:10px; justify-content: center;">
+
+            <input
+                style="flex-basis: 40px; width: 40px; height: 40px; text-align: center; flex-grow: 0;flex-shrink: 0; border-radius: 50%;"
+                name="data.dommage.physique.cases"
+                type="text"
+                value="{{data.dommage.physique.cases}}"
+                data-dtype="Number"/>
+
+            <div class="sectionTitleUnderline" style="padding-left: 5px; width:100%; margin: 10px 0px 10px 20px;">
+                <span>{{localize "NEPH5E.dommagesPhysiques"}}</span>
+            </div>
+        
+        </div>
+
+        <ol class="item-list">
+
+            {{> "systems/neph5e/templates/actor/parts/combat/choc.hbs" name="NEPH5E.choc" input-name="data.dommage.physique.choc" input-value=data.dommage.physique.choc}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureMineure" input-name="data.dommage.physique.mineure" input-value=data.dommage.physique.mineure}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureSerieuse" input-name="data.dommage.physique.serieuse" input-value=data.dommage.physique.serieuse}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureGrave" input-name="data.dommage.physique.grave" input-value=data.dommage.physique.grave}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureMortelle" input-name="data.dommage.physique.mortelle" input-value=data.dommage.physique.mortelle}}
+
+        </ol>
+
+    </div>
+
+    <div class="flexcol" style="width:50%; margin-right:10px;">
+
+        <div class="flexrow" style="padding-top:10px; justify-content: center;">
+
+            <input
+                style="flex-basis: 40px; width: 40px; height: 40px; text-align: center; flex-grow: 0;flex-shrink: 0;border-radius: 50%;"
+                name="data.dommage.magique.cases"
+                type="text"
+                value="{{data.dommage.magique.cases}}"
+                data-dtype="Number"/>
+
+            <div class="sectionTitleUnderline" style="padding-left: 5px; width:100%; margin: 10px 0px 10px 20px;">
+                <span>{{localize "NEPH5E.dommagesMagiques"}}</span>
+            </div>
+        
+        </div>
+
+        <ol class="item-list">
+
+            {{> "systems/neph5e/templates/actor/parts/combat/choc.hbs" name="NEPH5E.choc" input-name="data.dommage.magique.choc" input-value=data.dommage.magique.choc}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureMineure" input-name="data.dommage.magique.mineure" input-value=data.dommage.magique.mineure}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureSerieuse" input-name="data.dommage.magique.serieuse" input-value=data.dommage.magique.serieuse}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureGrave" input-name="data.dommage.magique.grave" input-value=data.dommage.magique.grave}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/blessure.hbs" name="NEPH5E.blessureMortelle" input-name="data.dommage.magique.mortelle" input-value=data.dommage.magique.mortelle}}
+
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="flexrow">
+
+    <div class="flexcol" style="width:50%;margin-right:10px;">
+
+        <div class="flexrow sectionTitleUnderline" style="margin: 10px 0px 10px 20px;">
+            <span>{{localize "NEPH5E.etats"}}</span>
+        </div>
+
+        <ol class="item-list">
+
+            {{> "systems/neph5e/templates/actor/parts/combat/etat.hbs" name="NEPH5E.desoriente" input-name="desoriente" input-value=effects.desoriente}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/etat.hbs" name="NEPH5E.immobilise" input-name="immobilise" input-value=effects.immobilise}}
+
+            {{> "systems/neph5e/templates/actor/parts/combat/etat.hbs" name="NEPH5E.aTerre" input-name="projete" input-value=effects.projete}}
+
+        </ol>
+
+        <div class="flexrow sectionTitleUnderline" style="margin: 10px 0px 10px 20px;">
+            <span>{{localize "NEPH5E.bonus"}}</span>
+        </div>
+
+        <ol class="item-list">
+
+            <li class="flexrow" style="margin-bottom:5px;">
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.mouvement"
+                    type="text"
+                    value="{{data.bonus.mouvement}}"
+                    data-dtype="Number"/>
+                <label style="width:50%;padding-top:9px; margin-left:10px;">{{localize "NEPH5E.mouvement"}}</label>
+                <label style="width:50%;padding-top:9px; margin-left:10px;text-align:right;">{{localize "NEPH5E.initiative"}}</label>
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.initiative"
+                    type="text"
+                    value="{{data.bonus.initiative}}"
+                    data-dtype="Number"/>
+            </li>
+
+            <li class="flexrow" style="margin-bottom:5px;">
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.dommage"
+                    type="text"
+                    value="{{data.bonus.dommage}}"
+                    data-dtype="Number"/>
+                <label style="width:50%;padding-top:9px; margin-left:10px;">{{localize "NEPH5E.dommages"}}</label>
+                <label style="width:50%;padding-top:9px; margin-left:10px;text-align:right;">{{localize "NEPH5E.protection"}}</label>
+                <input
+                    style="width: 30px; height:30px; margin-left: 20px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
+                    name="data.bonus.protection"
+                    type="text"
+                    value="{{data.bonus.protection}}"
+                    data-dtype="Number"/>
+            </li>
+
+        </ol>
+
+    </div>
+
+    <div class="flexcol" style="width:50%;margin-right:10px;">
+
+        <div class="flexrow sectionTitleUnderline" style="margin: 10px 0px 10px 20px;">
+            <span>{{localize "NEPH5E.actions"}}</span>
+        </div>
+
+        <ol class="item-list">
+
+            <li class="item">
+                <div class="item-control">
+                    <a class="item-move"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="item-name">
+                    <span>{{localize "NEPH5E.manoeuvre"}}</span>
+                </div>
+            </li>
+
+            <li class="item">
+                <div class="item-control">
+                    <a class="item-wrestle"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="item-name">
+                    <span>{{localize "NEPH5E.mainsNues"}}</span>
+                </div>
+            </li>
+
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.type 'arme')}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
+                <div class="item-control">
+                    <a class="item-attack"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="item-name">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+            </li>
+            {{/if}}
+            {{/each}}
+
+        </ol>
+
+        <div class="flexrow sectionTitleUnderline" style="margin: 10px 0px 10px 20px;">
+            <span>{{localize "NEPH5E.equipement"}}</span>
+        </div>
+
+        <ol class="item-list">
+
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.data.type 'armure')}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
+
+                <div class="item-control">
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+
+                <div class="item-name edit-armure">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+
+                <div class="item-control">
+                {{#if item.data.data.used}}
+                    <i class="fas fa-hand-paper item-use"></i>
+                {{else}}
+                    <i class="far fa-hand-paper item-use"></i>
+                {{/if}}
+                </div>
+
+            </li>
+            {{/if}}
+            {{/each}}
+
+            {{#each actor.items as |item id|}}
+            {{#if (eq item.type 'arme')}}
+            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
+
+                <div class="item-control">
+                    <a class="item-delete"><i class="fas fa-trash"></i></a>
+                </div>
+
+                <div class="item-name edit-arme">
+                    <span data-item-id="{{item.id}}">{{item.name}}</span>
+                </div>
+
+                {{#if (ne item.data.data.skill 'melee')}}
+                <div class="item-control tooltip">
+                    <a class="item-reload" title="Reload"><i class="fas fa-spinner"></i></a>
+                    <span class="tooltiptext">{{item.data.data.ranged.utilise}} / {{item.data.data.ranged.munitions}}</span>
+                </div>
+                <div class="item-control tooltip">
+                    <a class="item-aim" title="Aim"><i class="fas fa-crosshairs"></i></a>
+                    <span class="tooltiptext">{{item.data.data.ranged.visee}} / 3</span>
+                </div>
+                {{/if}}
+
+                <div class="item-control">
+                {{#if item.data.data.used}}
+                    <i class="fas fa-hand-paper item-use"></i>
+                {{else}}
+                    <i class="far fa-hand-paper item-use"></i>
+                {{/if}}
+                </div>
+
+            </li>
+            {{/if}}
+            {{/each}}
+    
+        </ol>
+
+    </div>
+
+</div>

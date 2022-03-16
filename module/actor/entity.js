@@ -11,6 +11,33 @@ import { Defend } from "../combat/defense/defend.js";
 export class NephilimActor extends Actor {
 
     /**
+     * @return the initiative.
+     */
+     initiative() {
+         switch (this.type) {
+             case 'figure':
+                if (this.data.data.options?.nephilim === true) {
+                    return this.data.data.ka.eau * 2;
+                }
+                if (this.data.data.options?.selenim === true) {
+                    return this.data.data.ka.noyau;
+                }
+                for (let elt of ['soleil', 'orichalque', 'brume', 'air', 'feu', 'lune', 'terre']) {
+                    const val = this.data.data.ka[elt];
+                    if (val !== undefined) {
+                        return val;
+                    }
+                }
+            case 'simulacre':
+                return this.data.data.soleil;
+            case 'figurant':
+                return this.data.data.menace;
+            default:
+                return 0;
+         }
+    }
+
+    /**
      * @returns true if combat actions are locked.
      */
     unlocked() {
@@ -307,11 +334,11 @@ export class NephilimActor extends Actor {
                             refid: item.refid,
                             name: CustomHandlebarsHelpers.getItem(item.refid).data.name,
                             degre: item.degre,
-                            next: CustomHandlebarsHelpers.getNextCost(item.degre + 1)
+                            next: CustomHandlebarsHelpers.getNextCost(item.degre)
                         });
                     } else {
                         sums[index].degre = sums[index].degre + item.degre;
-                        sums[index].next = CustomHandlebarsHelpers.getNextCost(sums[index].degre + 1);
+                        sums[index].next = CustomHandlebarsHelpers.getNextCost(sums[index].degre);
                     }
                 }
             }
@@ -663,6 +690,43 @@ export class NephilimActor extends Actor {
         }
         await this.update({ ["data.imago"]: data });
 
+    }
+
+    /**
+     * @return the number of points of metamorphe.
+     */
+     getMetamorphePoints() {
+        return this.data.data.metamorphe.metamorphoses.filter(m => m === true).length;
+    }
+
+    /**
+     * @return the number of points of imago.
+     */
+    getImagoPoints() {
+        let points = 0;
+        for (let aspect of this.data.data.imago.aspects) {
+            const item = CustomHandlebarsHelpers.getItem(aspect.refid);
+            const pts = item.data.data.degre;
+            points = points + pts;
+        }
+        return points;
+    }
+
+    /**
+     * @returns the number of ordonnances.
+     */
+    getNumberOfOrdonnances() {
+        return this.data.data.kabbale.voie.ordonnances.length;
+    }
+
+    getMonde() {
+        if (this.data.data.kabbale.voie.ordonnances.length > 0) {
+            const uuid = this.data.data.kabbale.voie.ordonnances[0].refid;
+            const ordo = CustomHandlebarsHelpers.getItem(uuid);
+            return ordo.data.data.monde;
+        } else {
+            return '';
+        }
     }
 
     /**

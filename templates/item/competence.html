@@ -54,7 +54,11 @@
             </table>
             {{/if}}
 
+            {{#if (defined degre)}}
+            {{html item.data.data.description}}
+            {{else}}
             {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+            {{/if}}
 
         </div>
 

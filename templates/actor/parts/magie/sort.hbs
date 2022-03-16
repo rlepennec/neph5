@@ -1,4 +1,20 @@
-<li class="item" data-item-id="{{sort.refid}}" data-item-science="magie" data-item-collection="sorts">
+<li class="item" style="height:17px;display:flex; flex-direction:row;align-items: center;" data-item-id="{{sort.refid}}" data-item-science="magie" data-item-collection="sorts">
+
+    <div class="item-control">
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    </div>
+
+    <input
+        name="data.magie.sorts.[{{@index}}].appris"
+        type="hidden"
+        value="{{sort.appris}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="data.magie.sorts.[{{@index}}].tatoue"
+        type="hidden"
+        value="{{sort.tatoue}}"
+        data-dtype="Boolean"/>
 
     <input
         name="data.magie.sorts.[{{@index}}].refid"
@@ -7,41 +23,26 @@
         data-dtype="String"/>
 
     {{#with (getItem sort.refid)}}
-    <div class="item-name edit-sort">
+    <div class="item-name edit-sort" style="margin-left:20px;">
         <span data-item-id="{{sort.refid}}">{{name}}</span>
     </div>
     {{/with}}
 
-    <div class="item-checkbox">
+    <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
         <input
-            type="checkbox"
+            class="item-checkbox" 
             name="data.magie.sorts.[{{@index}}].focus"
+            type="checkbox"
             {{checked sort.focus}}
             data-dtype="Boolean"/>
-    </div>
+        <i class="far fa-circle unchecked"></i>
+        <i class="fas fa-circle checked"></i>
+    </label>
 
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
-            name="data.magie.sorts.[{{@index}}].appris"
-            {{checked sort.appris}}
-            data-dtype="Boolean"/>
-    </div>
+    <label class="change-sort" style="flex: 0 0 auto; width:80px;margin-left:10px;margin-right:10px;text-align:center;">{{getSortStatus sort}}</label>
 
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
-            name="data.magie.sorts.[{{@index}}].tatoue"
-            {{checked sort.tatoue}}
-            data-dtype="Boolean"/>
-    </div>
-
-    <div class="item-control">
+    <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:10px;margin-right:10px;">
         <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
-    </div>
-    
-    <div class="item-control">
-        <a class="item-delete"><i class="fas fa-trash"></i></a>
     </div>
 
 </li>

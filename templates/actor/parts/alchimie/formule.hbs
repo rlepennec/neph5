@@ -1,4 +1,20 @@
-<li class="item" data-item-id="{{formule.refid}}" data-item-science="alchimie" data-item-collection="formules">
+<li class="item" style="height:17px;display:flex; flex-direction:row;align-items: center;" data-item-id="{{formule.refid}}" data-item-science="alchimie" data-item-collection="formules">
+
+    <div class="item-control">
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    </div>
+
+    <input
+        name="data.alchimie.formules.[{{@index}}].appris"
+        type="hidden"
+        value="{{formule.appris}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="data.alchimie.formules.[{{@index}}].tatoue"
+        type="hidden"
+        value="{{formule.tatoue}}"
+        data-dtype="Boolean"/>
 
     <input
         name="data.alchimie.formules.[{{@index}}].refid"
@@ -7,57 +23,41 @@
         data-dtype="String"/>
 
     {{#with (getItem formule.refid)}}
-    <div class="item-name edit-formule">
+    <div class="item-name edit-formule" style="margin-left:20px;">
         <span data-item-id="{{formule.refid}}">{{name}}</span>
     </div>
     {{/with}}
 
-    <div class="item-integer">
-        <input
-            name="data.alchimie.formules.[{{@index}}].quantite"
-            type="text"
-            value="{{formule.quantite}}"
-            data-dtype="Number"/>
-    </div>
+    <input
+        style="width:40px;border:none;text-align: center;background-color:transparent;"
+        name="data.alchimie.formules.[{{@index}}].quantite"
+        type="text"
+        value="{{formule.quantite}}"
+        data-dtype="Number"/>
 
-    <div class="item-integer">
-        <input
-            name="data.alchimie.formules.[{{@index}}].transporte"
-            type="text"
-            value="{{formule.transporte}}"
-            data-dtype="Number"/>
-    </div>
+    <input
+        style="width:40px;border:none;text-align: center;background-color:transparent;"
+        name="data.alchimie.formules.[{{@index}}].transporte"
+        type="text"
+        value="{{formule.transporte}}"
+        data-dtype="Number"/>
 
-    <div class="item-checkbox"> 
+    <label class="hand-checkbox" style="flex: 0 0 auto; padding-top:10px; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
         <input
-            type="checkbox"
+            class="item-checkbox" 
             name="data.alchimie.formules.[{{@index}}].focus"
+            type="checkbox"
             {{checked formule.focus}}
             data-dtype="Boolean"/>
-    </div>
+        <i class="far fa-circle unchecked"></i>
+        <i class="fas fa-circle checked"></i>
+    </label>
 
-    <div class="item-checkbox"> 
-        <input
-            type="checkbox"
-            name="data.alchimie.formules.[{{@index}}].appris"
-            {{checked formule.appris}}
-            data-dtype="Boolean"/>
-    </div>
+    <label class="change-sort" style="flex: 0 0 auto; width:80px;margin-left:10px;margin-right:10px;text-align:center;">{{getSortStatus formule}}</label>
 
-    <div class="item-checkbox">
-        <input
-            type="checkbox"
-            name="data.alchimie.formules.[{{@index}}].tatoue"
-            {{checked formule.tatoue}}
-            data-dtype="Boolean"/>
-    </div>
-
-    <div class="item-control">
+    <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:10px;margin-right:10px;">
         <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
     </div>
-    
-    <div class="item-control">
-        <a class="item-delete"><i class="fas fa-trash"></i></a>
-    </div>
+
 
 </li>

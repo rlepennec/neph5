@@ -1,25 +1,39 @@
-<ol class="item-list">
+{{#unless (noItemsFromPeriodes data.id 'arcanes')}}
+<div class="section">
 
-    <div style="text-align:center;font-size:x-large;">
-        {{localize "ITEM.TypeArcane"}}
+    <div class="sectionRow">
+
+        <div class="circleHidden">
+            <div class="circleContent"></div>
+        </div>
+
+        <div class="sectionTitle">
+            <span class="sectionName">{{localize "NEPH5E.arcanes"}}</span>
+        </div>
+
     </div>
 
-    {{#each (getLevels data.id 'arcanes') as |arcane|}}
-    <li class="item" data-item-id="{{arcane.refid}}" data-item-type="arcane">
+    <ol class="item-list">
 
-        {{#with (getItem arcane.refid)}}
-        <div class="item-name show-arcane">
-            <span data-item-id="{{arcane.refid}}">{{name}}</span>
-        </div>
-        {{/with}}
+        {{#each (getLevels data.id 'arcanes') as |arcane|}}
+        <li class="item" data-item-id="{{arcane.refid}}" data-item-type="arcane">
 
-        <label class="item-integer">{{arcane.degre}}</label>
+            <label class="item-integer">{{arcane.degre}}</label>
 
-        <div class="item-control">
-            <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
-        </div>
+            {{#with (getItem arcane.refid)}}
+            <div class="item-name show-arcane">
+                <span data-item-id="{{arcane.refid}}">{{name}}</span>
+            </div>
+            {{/with}}
 
-    {{/each}}
-    </li>
+            <div class="item-control">
+                <a class="item-roll"><i class="fas fa-dice-d20"></i></a>
+            </div>
 
-</ol>
+        {{/each}}
+        </li>
+
+    </ol>
+
+</div>
+{{/unless}}
