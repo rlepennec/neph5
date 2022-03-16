@@ -28,7 +28,7 @@ jobs:
         download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/system.zip
 
     # Create a zip file with all files required by the system to add to the release
-    - run: zip -r ./system.zip system.json template.json neph5e.js neph5e.css assets/ icons/ lang/ module/ packs/ templates/
+    - run: zip -r ./system.zip system.json template.json neph5e.js neph5e.css assets/ icons/ lang/ module/ templates/
 
     # Create a release for this specific version
     - name: Update Release with Files
