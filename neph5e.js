@@ -158,6 +158,62 @@ Hooks.once("init", function () {
     // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
     Hooks.on("hotbarDrop", async (bar, data, slot) => createMacro(bar, data, slot));
 
+    // The hook to pre-create actor.
+    Hooks.on("preCreateActor", (actor, data, options, user) => {
+
+        // Si duplication
+        if (actor.link.startsWith("@Actor[null]{") && actor.link.endsWith(" (Copy)}")) {
+            const uuid = UUID();
+            actor.data.data.id = uuid;
+            data.data.id = uuid;
+            actor.data._source.data.id = uuid;
+            return true; 
+        }
+
+        // Si copie dans un compendium
+        if (actor.compendium !== undefined) {
+            console.log("Add actor from world in compendium");
+
+            const compendiumName = actor.compendium.collection;
+            const pack = game.packs.get(compendiumName);
+            const compendiumActor = pack.find(i => i.data.data.id === actor.data.data.id) ;
+            const exists = compendiumActor !== undefined;
+            if (exists) {
+                console.log("Update actor from world in compendium");
+                /*
+                const newData = duplicate(data.data);
+                newData.id = worldItem.data.data.id;
+                worldItem.update({['data']: newData});
+                */
+                return true;
+    
+            } else {
+                console.log("Add actor from world in compendium");
+                return true;
+    
+            }
+        }
+
+        // Copie dans monde depuis compendium. Peut etre autre chose.
+        const worldActor = game.actors.find(i => i.data.data.id === actor.data.data.id) ;
+        const alreadyExists = worldActor !== undefined;
+        if (alreadyExists) {
+            console.log("Update actor from compendium in world");
+            const newData = duplicate(data.data);
+            newData.id = worldActor.data.data.id;
+            worldActor.update({['data']: newData});
+            return false;
+
+        } else {
+            console.log("Add actor from compendium in world");
+            return true;
+
+        }
+
+        return true;
+
+    });
+
     // The hook to pre-create item.
     Hooks.on("preCreateItem", (item, data, options, user) => {
 
