@@ -146,25 +146,25 @@ Game.wounds = {
         id: "mineure",
         sentence: "une blessure légère",
         magique: "une blessure magique légère",
-        modifier: -2
+        modifier: -20
     },
     serieuse: {
         id: "serieuse",
         sentence: "une blessure sérieuse",
         magique: "une blessure magique sérieuse",
-        modifier: -4
+        modifier: -40
     },
     grave: {
         id: "grave",
         sentence: "une blessure grave",
         magique: "une blessure magique grave",
-        modifier: -6
+        modifier: -60
     },
     mortelle: {
         id: "mortelle",
         sentence: "une blessure mortelle",
         magique: "une blessure magique mortelle",
-        modifier: -20
+        modifier: -200
     }
 }
 
@@ -236,14 +236,5 @@ Game.effects = {
         },
         modifier: null
     }
-}
 
-Game.weapon = {
-    skills: {
-        martial: "NEPH5E.armes.martial",
-        melee:   "NEPH5E.armes.melee",
-        trait:   "NEPH5E.armes.trait",
-        feu:     "NEPH5E.armes.feu",
-        lourde:  "NEPH5E.armes.lourde",
-    }
 }

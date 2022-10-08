@@ -1,7 +1,9 @@
+import { Constants } from "./constants.js";
+
 export class NephilimChat {
 
     /**
-     * Consstructor.
+     * Constructor.
      * @param actor The emiter of the chat message.
      */
     constructor(actor) {
@@ -56,7 +58,7 @@ export class NephilimChat {
 
     /**
      * Indicates if the chat is a roll.
-     * @param roll True if the chat is a roll.
+     * @param roll The roll.
      * @returns the instance.
      */
     withRoll(roll) {
@@ -81,7 +83,7 @@ export class NephilimChat {
         }
 
         // Create the chat data
-        const d = {
+        const data = {
             user: game.user.id,
             speaker: {
                 actor: this.actor.id,
@@ -94,47 +96,75 @@ export class NephilimChat {
 
         // Set the roll parameter if necessary
         if (this.roll) {
-            d.roll = this.roll;
+            data.type = CONST.CHAT_MESSAGE_TYPES.ROLL,
+            data.roll = this.roll;
         }
 
         // Set the flags parameter if necessary
         if (this.flags) {
-            d.flags = this.flags;
+            data.flags = this.flags;
         }
 
         // Set the whisper and blind parameters according to the player roll mode settings
         switch (game.settings.get('core', 'rollMode')) {
             case 'gmroll':
-                d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
                 break;
             case 'blindroll':
-                d.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
-                d.blind = true;
+                data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
+                data.blind = true;
                 break;
             case 'selfroll':
-                d.whisper = [game.user.id];
+                data.whisper = [game.user.id];
                 break;
         }
 
         // Create the chat
-        this.chat = await ChatMessage.create(d);
+        this.chat = await ChatMessage.create(data);
         return this;
 
     }
 
     /**
-     * Creates the message content from the registered template.
-     * @returns the message content or null i an error occurs.
+     * Create the message content from the registered template.
+     * @returns the message content or null if an error occurs.
      */
     async _createContent() {
 
         // Update the data to provide to the template
-        const d = duplicate(this.data);
-        d.owner = this.actor.id;
+        const data = duplicate(this.data);
+        data.owner = this.actor.id;
 
         // Call the template renderer.
-        return await renderTemplate(this.template, d);
+        return await renderTemplate(this.template, data);
 
+    }
+
+    /**
+     * Handle the socket message.
+     * @param sockmsg 
+     * @returns 
+     */
+    static async onSocketMessage(socketMessage) {
+        if (game.user.isGM !== true) return;
+        switch (socketMessage.msg) {
+          case Constants.MSG_UNSET_CHAT_MESSAGE:
+            await NephilimChat.unsetFlags(socketMessage.data.id);
+            break;
+        }
+    }
+
+    static async unsetFlags(id) {
+        if (game.user.isGM === true) {
+            await game.messages.get(id)?.unsetFlag(game.system.id, Constants.OPPOSED);
+        } else {
+            game.socket.emit(Constants.SYSTEM_SOCKET_ID, {
+                msg: Constants.MSG_UNSET_CHAT_MESSAGE,
+                data: {
+                    id: id
+                }
+            });
+        }
     }
 
 }

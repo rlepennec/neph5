@@ -1,0 +1,63 @@
+<div style="position: relative; text-align: center;margin-left:40px;">
+
+    <img src="systems/neph5e/assets/core/noyau.webp" style="border: 0px;"/>
+
+    <div class="macro" data-id="pavane" data-sid="pavane" data-type="pavane">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-90px, -100px);">
+            <a class="roll-pavane"><i class="fas fa-dice-d20"></i></a>
+        </div>
+        <div class="tooltip" style="position: absolute; top: 50%; left: 50%; transform: translate(-80px, -105px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="system.ka.pavane"
+                type="text"
+                value="{{system.ka.pavane}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.pavane"}}</span>
+        </div>
+    </div>
+
+    <div class="macro" data-id="noyau" data-sid="noyau" data-type="noyau">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-40px, 115px);">
+            <a class="roll-noyau"><i class="fas fa-dice-d20"></i></a>
+        </div>
+        <div class="tooltip" style="position: absolute; top: 50%; left: 50%; transform: translate(-30px, 110px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="system.ka.noyau"
+                type="text"
+                value="{{system.ka.noyau}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.noyau"}}</span>
+        </div>
+    </div>
+
+    <div>
+        <div class="tooltip" style="position: absolute; top: 50%; left: 50%; transform: translate(60px, 80px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="system.ka.reserveCourante"
+                type="text"
+                value="{{system.ka.reserveCourante}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.reserveCourante"}}</span>
+        </div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(97px, 80px); font-size: 20px; font-weight:bold; text-align: center;">
+            <span>/</span>
+        </div>
+        <div class="tooltip" style="position: absolute; top: 50%; left: 50%; transform: translate(100px, 80px);">
+            <input
+                style="background-color: transparent; font-size: 20px; font-weight:bold; border: 0px; width: 40px; text-align: center;"
+                class="item-integer"
+                name="system.ka.reserve"
+                type="text"
+                value="{{system.ka.reserve}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.reserveMaximale"}}</span>
+        </div>
+    </div>
+
+</div>

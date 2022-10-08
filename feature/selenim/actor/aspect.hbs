@@ -1,0 +1,43 @@
+{{#with actor.imago as |item|}}
+<div class="section">
+
+    <div class="sectionRow">
+
+        <div class="circle">
+            <div class="circleContent">{{item.size}}</div>
+        </div>
+
+        <div class="sectionTitle">
+            <span class="sectionName">{{localize "NEPH5E.imago"}}</span>
+        </div>
+
+    </div>
+
+    <ol class="item-list">
+    {{#each item.aspects as |aspect|}}
+
+        <li class="item" data-item-id="{{aspect.embedded.id}}">
+
+            <div class="item-control" style="margin-left: 13px; margin-right:10px;">
+                <a class="item-delete" data-id="{{aspect.embedded.id}}"><i class="fas fa-trash"></i></a>
+            </div>
+            
+            <div class="item-name edit-aspect" data-id="{{aspect.original.id}}">
+                <span>{{aspect.original.name}}</span>
+            </div>
+
+            <label class="hand-checkbox active" data-id="{{aspect.original.id}}">
+            {{#if aspect.embedded.active}}
+            <i class="fas fa-eye-slash"></i>
+            {{else}}
+            <i class="fas fa-eye"></i>
+            {{/if}}
+            </label>
+
+        </li>
+
+    {{/each}}
+    </ol>
+
+</div>
+{{/with}}

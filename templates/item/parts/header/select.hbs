@@ -3,7 +3,7 @@
     <div style="padding-top: 5px; flex: 1 1 auto; font-weight: bold; text-align: center; width: 100px;">{{localize title}}</div>
 
     <div style="border: 0; outline: 0; height: 30px; width: 100px;">
-        {{#if (defined difficulty)}}
+        {{#if (nonNull difficulty)}}
         <select class="selector-disabled" name={{name}} disabled style="width: 100px;">
         {{else}}
         <select name={{name}} style="width: 100px;">

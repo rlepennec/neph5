@@ -1,0 +1,108 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div class="tbd" style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/core/side-vecu.webp" title="{{localize 'ITEM.TypeVecu'}}"/>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
+
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+
+            <div style="display: flex; flex-direction: row; margin-top: 10px;">
+
+                <div class="hoverable edit-periode" style="width: 100%; text-align: center; margin-bottom: 10px;">
+                    {{#with (getItem system.periode)}}
+                    <span style="margin-top: 15px; margin-left: 10px; vertical-align: middle; width: 100%; font-family: Calibri; font-style: italic; font-size: 20px; text-align: center;">{{name}}</span>
+                    {{/with}}
+                </div>
+
+                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                    <select name="system.element">
+                    {{#select system.element}}
+                        {{#each elements as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+            </div>
+
+            <ol style="column-count: 2;">
+
+                {{#each system.competences as |competence|}}
+                <li class="item" data-item-id="{{competence}}" style="display: flex; flex-direction: row;">
+
+                    <input
+                        name="system.competences.[{{@index}}]"
+                        type="hidden"
+                        value="{{competence}}"
+                        data-dtype="String"/>
+
+                    <div style="margin-right: 10px;" >
+                        <a><i class="delete-competence fas fa-trash"></i></a>
+                    </div>
+
+                    {{#with (getItem competence)}}
+                    <div class="edit-competence">
+                        <span class="hoverable" data-item-id="{{competence}}">{{name}}</span>
+                    </div>
+                    {{/with}}
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+            {{#if item.isEmbedded}}
+            <ol style="margin-top: 10px;">
+
+                {{#each system.mnemos as |mnemos|}}
+                <li class="item" data-item-id="{{@index}}" style="display: flex; flex-direction: row;">
+
+                    <div style="margin-right: 10px;" >
+                        <a><i class="delete-mnemos fas fa-trash"></i></a>
+                    </div>
+
+                    <input
+                        style="border: 0; background: transparent;"
+                        name="system.mnemos.[{{@index}}]"
+                        type="text"
+                        value="{{mnemos}}"
+                        data-dtype="String"/>
+
+                </li>
+                {{/each}}
+
+                <li style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="add-mnemos fas fa-plus"></i></a>
+                    </div>
+                    <span>{{localize 'NEPH5E.mnemos'}}</span>
+                </li>
+
+            </ol>
+            {{/if}}
+
+            {{#if item.isEmbedded}}
+            <table style="margin-top: 10px;">
+                <tr>
+                    <th>{{localize 'NEPH5E.degre'}}</th>
+                    <th>{{localize 'NEPH5E.sapience'}}</th>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;">{{system.degre}}</td>
+                    <td style="text-align: center; font-weight: bold;">{{getNextCost system.degre}}</td>
+                </tr>
+            </table>
+            {{/if}}
+
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+
+        </div>
+
+    </div>
+
+</form>

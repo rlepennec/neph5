@@ -1,0 +1,40 @@
+<img src="systems/neph5e/assets/core/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
+
+{{#if (displaySciences actor 'fossoyeur' 'embaumeur' 'imputrescible')}}
+<ol class="item-list">
+
+    {{#if (displayScience actor "fossoyeur")}}
+    {{#with (science actor "fossoyeur") as |degre|}}
+        {{> "systems/neph5e/feature/necromancie/actor/header.hbs" cercle="Fossyeur" degre=degre cercle-id="fossoyeur" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'fossoyeur') as |item|}}
+            {{> "systems/neph5e/feature/necromancie/actor/rite.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "embaumeur")}}
+    {{#with (science actor "embaumeur") as |degre|}}
+        {{> "systems/neph5e/feature/necromancie/actor/header.hbs" cercle="Embaumeur" degre=degre cercle-id="embaumeur" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'embaumeur') as |item|}}
+            {{> "systems/neph5e/feature/necromancie/actor/rite.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "imputrescible")}}
+    {{#with (science actor "imputrescible") as |degre|}}
+        {{> "systems/neph5e/feature/necromancie/actor/header.hbs" cercle="Imputrescible" degre=degre cercle-id="imputrescible" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'imputrescible') as |item|}}
+            {{> "systems/neph5e/feature/necromancie/actor/rite.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+</ol>
+
+{{else}}
+<div style="display:flex; flex-direction:column; margin-top:200px; text-align: center; color:indianred">
+    <label style="margin-left:100px;margin-right:100px;">{{localize 'NEPH5E.aideFocus'}}</label>
+    <i style="margin-top:50px;" class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+</div>
+{{/if}}

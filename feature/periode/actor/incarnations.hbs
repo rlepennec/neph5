@@ -1,0 +1,135 @@
+<img src="systems/neph5e/assets/core/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
+
+<div class="flexrow" style="align-items:center;justify-content:center;margin-top:10px;font-family:'Modesto Condensed','Palatino Linotype','serif';font-size:25px;font-weight:bold;background-color:transparent;border:0px;">
+    <div style="flex: 0 0 auto;">
+        <input
+            style="text-align:center;padding-bottom:3px;border:none;width:40px;border-radius:50%;border:1px solid black;width:40px;height:40px;"
+            class="item-integer"
+            name="system.sapience"
+            type="text"
+            value="{{system.sapience}}"
+            data-dtype="Number"/>
+        {{#if (isNull actor.system.periode)}}
+        <label style="margin-top:5px;margin-left:20px;color:indianred">{{actor.currentPeriode}}</label>
+        {{else}}
+        <label style="margin-top:5px;margin-left:20px;">{{actor.currentPeriode}}</label>
+        {{/if}}
+    </div>
+</div>
+
+{{#if actor.noPeriodes}}
+<div style="display:flex; flex-direction:column; margin-top:200px; text-align: center; color:indianred">
+    <label style="margin-left:100px;margin-right:100px;">{{localize 'NEPH5E.aideIncarnations'}}</label>
+    <i style="margin-top:50px;" class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+</div>
+{{/if}}
+
+{{#with actor.periodes as |items|}}
+
+    {{#each items as |periode|}}
+    <ol class="item-list">
+
+        <li class="item draggable" data-id="{{periode.original.id}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}" style="margin-top:20px;margin-bottom:10px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+
+            <div class="item-control">
+                {{#if (eq ../../actor.system.periode periode.original.sid)}}
+                <a class="current-periode"><i class="fa-solid fa-star-of-life"></i></a>
+                {{else}}
+                <a class="current-periode" style="color: #a1a1a1;"><i class="fa-solid fa-star-of-life"></i></a>
+                {{/if}}
+            </div>
+
+            <label class="edit-periode" data-id="{{periode.original.id}}" style="margin-right:10px;">
+                {{#if (eq ../../editedPeriode periode.original.sid)}}
+                <i class="fas fa-edit"></i>
+                {{else}}
+                <i class="far fa-edit"></i>
+                {{/if}}
+            </label>
+
+            <div class="item-name display" style="font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 18px;">
+                <span>{{periode.original.name}}: {{periode.original.contexte}}</span>
+            </div>
+
+            <div style="margin-left:50px;display:flex;flex-direction:row-reverse;">
+
+                {{#if (eq ../../editedPeriode periode.original.sid)}}
+
+                    <div class="item-control">
+                        <a class="delete-periode"><i class="fas fa-trash"></i></a>
+                    </div>
+
+                {{else}}
+
+                    <label class="active-periode" data-id="{{periode.original.id}}">
+                        {{#if periode.embedded.actif}}
+                        <i class="fa-solid fa-feather-pointed"></i>
+                        {{else}}
+                        <i class="fa-regular fa-feather-pointed"></i>
+                        {{/if}}
+                    </label>
+
+                {{/if}}
+
+            </div>
+
+        </li>
+
+        {{#if (includes ../../elapsedPeriodes periode.original.id)}}
+        <div data-id="{{periode.original.id}}">
+        {{else}}
+            {{#if (eq ../../editedPeriode periode.original.sid)}}
+            <div data-id="{{periode.original.id}}">
+            {{else}}
+            <div data-id="{{periode.original.id}}" style="display: none;">
+            {{/if}}
+        {{/if}}
+
+            <div style="margin-left:10px;">
+
+                {{#each periode.embedded.items as |item|}}
+                <li class="item" data-item-id="{{item.id}}">
+
+                    {{#if (isNull item.degre)}}
+                        <div data-id="{{item.id}}" style="text-align:center;border-radius:50%;width:30px;height:30px;margin-right:10px;margin-top:1px;margin-bottom:1px;">
+                            <i class="fas fa-scroll" style="margin-top:7px;"></i>
+                        </div>
+                    {{else}}
+                        <div data-id="{{item.id}}">
+                            <input
+                                class="change-degre"
+                                style="text-align:center;border-radius:50%;width:30px;height:30px;margin-right:10px;margin-top:1px;margin-bottom:1px;"
+                                data-id="{{item.id}}"
+                                type="number"
+                                value="{{item.degre}}"
+                                data-dtype="Number"/>
+                        </div>
+                    {{/if}}
+
+                    {{#if (eq item.type 'vecu')}}
+                    <div class="item-name edit-vecu" data-id="{{item.id}}" data-type="{{item.type}}">
+                        <span>{{item.name}}</span>
+                    </div>
+                    {{else}}
+                    <div class="item-name edit-item" data-id="{{item.wid}}" data-type="{{item.type}}">
+                        <span>{{item.name}}</span>
+                    </div>
+                    {{/if}}
+
+                    {{#if (eq ../../../editedPeriode ../original.sid)}}                
+                    <div class="item-control">
+                        <a class="delete-item" data-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+                    </div>
+                    {{/if}}
+
+                </li>
+                {{/each}}
+
+            </div>
+
+        </div>
+
+    </ol>
+    {{/each}}
+
+{{/with}}

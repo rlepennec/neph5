@@ -1,0 +1,23 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/core/side-catalyseur.webp" title="{{localize 'ITEM.TypeCatalyseur'}}"/>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
+
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+
+            {{#if (nonNull readOnly)}}
+            {{html item.system.description}}
+            {{else}}
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+            {{/if}}
+
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,11 @@
+<ol class="item-list">
+
+    {{> "systems/neph5e/feature/baton/actor/header.hbs" }}
+
+    {{#each system.baton.techniques as |technique|}}
+        {{#with (getItem technique.refid)}}
+            {{> "systems/neph5e/feature/baton/actor/technique.hbs" technique=technique}}
+        {{/with}}
+    {{/each}}
+
+</ol>

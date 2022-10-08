@@ -1,0 +1,41 @@
+{{#with ../actor.arcanes as |items|}}
+{{#unless (isEmptyCollection items)}}
+<div class="section">
+
+    <div class="sectionRow">
+
+        <div class="circleHidden">
+            <div class="circleContent"></div>
+        </div>
+
+        <div class="sectionTitle">
+            <span class="sectionName">{{localize "NEPH5E.arcanes"}}</span>
+        </div>
+
+    </div>
+
+    <ol class="item-list">
+
+        {{#each items as |item|}}
+        {{#if (ne item.degre 0)}}
+        <li class="item">
+
+            <label class="item-integer">{{item.degre}}</label>
+
+            <div class="item-name edit-arcane" data-id="{{item.id}}">
+                <span>{{item.name}}</span>
+            </div>
+
+            <div class="item-control">
+                <a class="roll-arcane" data-id="{{item.id}}"><i class="fas fa-dice-d20"></i></a>
+            </div>
+
+        </li>
+        {{/if}}
+        {{/each}}
+
+    </ol>
+
+</div>
+{{/unless}}
+{{/with}}

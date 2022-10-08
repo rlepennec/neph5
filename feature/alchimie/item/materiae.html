@@ -1,0 +1,43 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div style="display: flex; flex-direction: row;">
+    
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/core/side-materiae.webp" title="{{localize 'ITEM.TypeMateriae'}}"/>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%;">
+
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+
+            <div style="display: flex; flex-direction: row; margin-top: 10px;">
+
+                <div style="width: 100%; text-align: center; vertical-align: middle;"></div>
+
+                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
+                    {{#if (nonNull readOnly)}}
+                    <select name="system.element" disabled>
+                    {{else}}
+                    <select name="system.element">
+                    {{/if}}
+                    {{#select system.element}}
+                        {{#each elements as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+            </div>
+
+            {{#if (nonNull readOnly)}}
+            {{html item.system.description}}
+            {{else}}
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+            {{/if}}
+
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,40 @@
+<img src="systems/neph5e/assets/core/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
+
+{{#if (displaySciences actor 'charmeur' 'dresseur' 'demiurge')}}
+<ol class="item-list">
+
+    {{#if (displayScience actor "charmeur")}}
+    {{#with (science actor "charmeur") as |degre|}}
+        {{> "systems/neph5e/feature/conjuration/actor/header.hbs" cercle="Charmeur" degre=degre cercle-id="charmeur" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'charmeur') as |item|}}
+            {{> "systems/neph5e/feature/conjuration/actor/appel.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "dresseur")}}
+    {{#with (science actor "dresseur") as |degre|}}
+        {{> "systems/neph5e/feature/conjuration/actor/header.hbs" cercle="Dresseur" degre=degre cercle-id="dresseur" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'dresseur') as |item|}}
+            {{> "systems/neph5e/feature/conjuration/actor/appel.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "demiurge")}}
+    {{#with (science actor "demiurge") as |degre|}}
+        {{> "systems/neph5e/feature/conjuration/actor/header.hbs" cercle="Démiurge" degre=degre cercle-id="demiurge" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'demiurge') as |item|}}
+            {{> "systems/neph5e/feature/conjuration/actor/appel.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+</ol>
+
+{{else}}
+<div style="display:flex; flex-direction:column; margin-top:200px; text-align: center; color:indianred">
+    <label style="margin-left:100px;margin-right:100px;">{{localize 'NEPH5E.aideFocus'}}</label>
+    <i style="margin-top:50px;" class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+</div>
+{{/if}}

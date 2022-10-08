@@ -1,0 +1,27 @@
+<li class="item" data-item-id="{{pratique.refid}}" data-item-science="denier" data-item-collection="pratiques">
+
+    <input
+        name="system.denier.pratiques.[{{@index}}].refid"
+        type="hidden"
+        value="{{pratique.refid}}"
+        data-dtype="String"/>
+
+    {{#with (getItem pratique.refid)}}
+    <div class="item-name">
+        <span data-item-id="{{pratique.refid}}">{{name}}</span>
+    </div>
+    {{/with}}
+
+    <div class="item-control">
+        <a class="item-roll" title="Roll Item"><i class="fas fa-dice-d20"></i></a>
+    </div>
+
+    <div class="item-control">
+        <a class="item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+    </div>
+    
+    <div class="item-control">
+        <a class="item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+    </div>
+
+</li>

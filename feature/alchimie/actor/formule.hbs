@@ -1,0 +1,90 @@
+{{#if (eq degre 0)}}
+<li class="item macro"
+    style="height:17px;display:flex; flex-direction:row;align-items: center;color: #a1a1a1;"
+    data-item-id="{{item.embedded.id}}"
+    data-id="{{item.embedded.id}}"
+    data-sid="{{item.original.sid}}"
+    data-type="formule">
+{{else}}
+<li class="item macro"
+    style="height:17px;display:flex; flex-direction:row;align-items: center;"
+    data-item-id="{{item.embedded.id}}"
+    data-id="{{item.embedded.id}}"
+    data-sid="{{item.original.sid}}"
+    data-type="formule">
+{{/if}}
+
+    <div class="item-control">
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    </div>
+
+    <div class="item-name edit-focus" data-id="{{item.original.id}}" style="margin-left:20px;">
+        <span>{{item.original.name}}</span>
+    </div>
+
+    {{#unless (eq degre 0)}}
+
+    <label style="flex: 0 0 auto; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+        {{item.embedded.degre}}
+    </label>
+
+    <label style="flex: 0 0 auto; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;">
+        <div class="tooltip">
+        {{#switch item.original.system.elements.[0]}}
+            {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
+            {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
+            {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
+            {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
+            {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
+            {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+        {{/switch}}
+        </div>
+        <div class="tooltip">
+        {{#switch item.original.system.elements.[1]}}
+            {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
+            {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
+            {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
+            {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
+            {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
+            {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+        {{/switch}}
+        </div>
+    </label>
+
+    <div data-id="{{item.embedded.id}}">
+        <input
+            class="change-quantite"
+            data-id="{{item.embedded.id}}"
+            style="flex: 0 0 auto;width:40px;border:none;text-align: center;background-color:transparent;"
+            type="number"
+            value="{{item.embedded.system.quantite}}"
+            data-dtype="Number"/>
+    </div>
+
+    <div data-id="{{item.embedded.id}}">
+        <input
+            class="change-transporte"
+            data-id="{{item.embedded.id}}"
+            style="flex: 0 0 auto;width:40px;border:none;text-align: center;background-color:transparent;"
+            type="number"
+            value="{{item.embedded.system.transporte}}"
+            data-dtype="Number"/>
+    </div>
+
+    <label class="change-focus" style="flex: 0 0 auto; justify-content: center; text-align:center; width:40px;margin-left:10px; margin-right:10px;" data-id="{{item.embedded.id}}">
+        {{#if item.embedded.system.focus}}
+        <i class="fa-solid fa-scroll"></i>
+        {{else}}
+        <i class="fa-regular fa-scroll"></i>
+        {{/if}}
+    </label>
+
+    <label class="change-status" style="flex: 0 0 auto; width:80px;margin-left:10px;margin-right:10px;text-align:center;" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+
+    <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:10px;margin-right:10px;">
+        <a class="roll-focus" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+    </div>
+
+    {{/unless}}
+
+</li>

@@ -1,0 +1,208 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div class="tbd" style="display: flex; flex-direction: row;">
+
+        <div style="margin: 10px;">
+            <img src="systems/neph5e/assets/core/side-arme.webp" title="{{localize 'ITEM.TypeArme'}}"/>
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
+
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+
+            <div style="margin-top: 20px; display: flex; flex-direction: row;">
+
+                <div style="margin-left:20px; flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.arme'}}</div>
+
+                <div style="margin-left:5px; border:0; outline:0; width:90px;">
+                    {{#if (nonNull difficulty)}}
+                    <select name="system.type" class="selector-disabled" disabled style="border:none;outline:0px;background-color:transparent;width:90px;">
+                    {{else}}
+                    <select name="system.type" style="border:none;outline:0px;background-color:transparent;width:90px;">
+                    {{/if}}
+                    {{#select system.type}}
+                        {{#each types as |name label|}}
+                        <option value="{{label}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                    </select>
+                </div>
+
+                <span style="margin-left:10px; flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.using'}} : </span>
+
+                {{#if (isEmptyString system.competence)}}
+                    <span style="margin-top: 5px; margin-left:10px;font-style:italic;">{{localize "NEPH5E.deposerVecuCompetence"}}</span>
+                {{else}}
+                    {{#with (getItem system.competence)}}
+                    <span style="margin-top: 5px; margin-left:10px;">{{name}}</span>
+                    {{/with}}
+                {{/if}}
+
+            </div>
+
+            <hr>
+
+            <ol class="item-list">
+
+                <li class="flexrow" style="margin-bottom:5px;">
+
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;padding-top:3px;">{{localize "NEPH5E.attaque"}}</label>
+                    <input
+                        style="flex: 0 0 auto; width: 30px; height:30px; margin-left: 10px; text-align:center;border-radius: 50%;"
+                        name="system.attack"
+                        type="text"
+                        value="{{system.attack}}"
+                        data-dtype="Number"/>
+
+                    <label style="flex: 0 0 auto; margin-left:30px; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;padding-top:3px;">{{localize "NEPH5E.defense"}}</label>
+                    <input
+                        style="flex: 0 0 auto; width: 30px; height:30px; margin-left: 10px; text-align:center;border-radius: 50%;"
+                        name="system.defense"
+                        type="text"
+                        value="{{system.defense}}"
+                        data-dtype="Number"/>
+
+                    <label style="flex: 0 0 auto; margin-left:30px; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;padding-top:3px;">{{localize "NEPH5E.dommages"}}</label>
+                    <input
+                        style="flex: 0 0 auto; width: 30px; height:30px; margin-left: 10px; text-align:center;border-radius: 50%;"
+                        name="system.damages"
+                        type="text"
+                        value="{{system.damages}}"
+                        data-dtype="Number"/>
+
+                </li>
+
+                {{#if (eq system.type 'melee')}}
+                <li class="flexrow" style="margin-bottom:5px;">
+
+                    <label class="hand-checkbox" style="padding-top:5px;flex: 0 0 auto;">
+                        <input
+                            class="item-checkbox"
+                            id="system.blocage"
+                            name="system.blocage"
+                            type="checkbox"
+                            {{checked system.blocage}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.blocageAutorise'}}</label>
+
+                </li>
+
+                <li class="flexrow" style="margin-bottom:5px;">
+                    
+                    <label class="hand-checkbox" style="padding-top:5px;flex: 0 0 auto;">
+                        <input
+                            class="item-checkbox"
+                            id="system.lance"
+                            name="system.lance"
+                            type="checkbox"
+                            {{checked system.lance}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.lanceAutorise'}}</label>
+
+                </li>
+                {{/if}}
+
+                <li class="flexrow" style="margin-bottom:5px;">
+
+                    <label class="hand-checkbox" style="padding-top:5px;flex: 0 0 auto;">
+                        <input
+                            class="item-checkbox"
+                            id="system.magique"
+                            name="system.magique"
+                            type="checkbox"
+                            {{checked system.magique}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.dommagesMagiques'}}</label>
+
+                </li>
+
+            </ol>
+
+            <hr>
+
+            {{#unless (isContact system.type)}}
+            <ol class="item-list">
+
+                <li class="flexrow" style="margin-bottom:5px;">
+
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;padding-top:3px;">{{localize "NEPH5E.chargeur"}}</label>
+                    <input
+                        style="flex: 0 0 auto; width: 30px; height:30px; margin-left: 10px; text-align:center;border-radius: 50%;"
+                        name="system.munitions"
+                        type="text"
+                        value="{{system.munitions}}"
+                        data-dtype="Number"/>
+
+                    <input
+                        style="margin-left: 10px; padding-top:4px; border:none; background-color:transparent;"
+                        name="system.ammunition"
+                        type="text"
+                        value="{{system.ammunition}}"
+                        data-dtype="String"
+                        placeholder="Type de munition"/>
+     
+                </li>
+
+                {{#if (eq system.type 'feu')}}
+                <li class="flexrow" style="margin-bottom:5px;">
+                    <label class="hand-checkbox" style="padding-top:5px;flex: 0 0 auto;">
+                        <input
+                            class="item-checkbox"
+                            id="system.salve"
+                            name="system.salve"
+                            type="checkbox"
+                            {{checked system.salve}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.salve'}}</label>
+                </li>
+
+                <li class="flexrow" style="margin-bottom:5px;">
+                    <label class="hand-checkbox" style="padding-top:5px;flex: 0 0 auto;">
+                        <input
+                            class="item-checkbox"
+                            id="system.rafale"
+                            name="system.rafale"
+                            type="checkbox"
+                            {{checked system.rafale}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    <label style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.rafale'}}</label>
+                </li>
+                {{/if}}
+
+            </ol>
+            {{/unless}}
+
+            <hr>
+
+            <div style="border-width: 2px;margin-left:20px;">
+                {{#if (isEmptyString system.description)}}
+                <div style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">
+                    <span>{{localize 'NEPH5E.description'}}</span>
+                </div>
+                {{/if}}
+                {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+            </div>
+
+        </div>
+
+    </div>
+
+</form>

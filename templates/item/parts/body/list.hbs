@@ -6,12 +6,12 @@
     <ol>
 
         {{#each values as |item|}}
-        <li class="item" data-item-id="{{item.refid}}" style="display: flex; flex-direction: row; height: 20px;">
+        <li class="item" data-item-id="{{item}}" style="display: flex; flex-direction: row; height: 20px;">
 
             <input
-                name="{{../names}}.[{{@index}}].refid"
+                name="{{../names}}.[{{@index}}]"
                 type="hidden"
-                value="{{item.refid}}"
+                value="{{item}}"
                 data-dtype="String"/>
 
             {{#with (concat ../delete " fas fa-trash") as |class|}}
@@ -20,9 +20,9 @@
             </div>
             {{/with}}
 
-            {{#with (getItem item.refid)}}
+            {{#with (getItem item)}}
             <div>
-                <span class="hoverable" data-item-id="{{item.refid}}">{{name}}</span>
+                <span class="hoverable" data-item-id="{{item}}">{{name}}</span>
             </div>
             {{/with}}
 

@@ -1,0 +1,111 @@
+<ol class="item-list">
+
+    <div style="width:794px;margin-left:10px; display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <span style="padding-left:5px;">{{localize "NEPH5E.competencesEtVecus"}}</span>
+    </div>
+
+    <div style="column-count:3;">
+
+        {{#unless (isNull system.simulacre)}}
+
+            {{#with actor.vecusOfSimulacre as |items|}}
+            {{#unless (isEmptyCollection items)}}
+            {{#each items as |item|}}
+            <li class="item" data-item-id="{{id}}" data-scope="simulacre">
+
+                {{#if ../../actor.system.options.degreGauche}}
+                <label style="width:20px;">{{item.degre}}</label>
+                {{/if}}
+
+                <div class="item-name edit-vecu" data-id="{{item.id}}" data-scope="simulacre">
+                    <span>{{item.name}}</span>
+                </div>
+
+                {{#unless ../../actor.system.options.degreGauche}}
+                <label style="width:20px;">{{item.degre}}</label>
+                {{/unless}}
+
+                <div class="item-control">
+                    <a class="roll-vecu" data-id="{{item.id}}" data-scope="simulacre"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
+            </li>
+            {{/each}}
+            <hr>
+            {{/unless}}
+            {{/with}}
+            
+        {{/unless}}
+        
+        {{#with actor.vecusOfActor as |items|}}
+        {{#unless (isEmptyCollection items)}}
+        {{#each items as |item|}}
+        <li class="item macro" data-item-id="{{id}}" data-item-type="vecu" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="vecu">
+
+            {{#if ../../actor.system.options.degreGauche}}
+            <label style="width:20px;">{{item.degre}}</label>
+            {{/if}}
+
+            <div class="item-name edit-vecu" data-id="{{item.id}}" data-scope="actor">
+                <span>{{item.name}}</span>
+            </div>
+
+            {{#unless ../../actor.system.options.degreGauche}}
+            <label style="width:20px;">{{item.degre}}</label>
+            {{/unless}}
+
+            <div class="item-control">
+                <a class="roll-vecu" data-id="{{item.id}}" data-scope="actor"><i class="fas fa-dice-d20"></i></a>
+            </div>
+
+        </li>
+        {{/each}}
+        <hr>
+        {{/unless}}
+        {{/with}}
+
+        {{#with actor.competences as |items|}}
+        {{#unless (isEmptyCollection items)}}
+        {{#each items as |item|}}
+        <li class="item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="competence">
+
+            {{#if ../../actor.system.options.degreGauche}}
+            <div style="width:20px;">
+                {{#if (eq item.degre 0)}}
+                <span style="color: #a1a1a1;">{{item.degre}}</span>
+                {{else}}
+                <span>{{item.degre}}</span>
+                {{/if}}
+            </div>
+            {{/if}}
+
+            <div class="item-name edit-competence" data-id="{{item.id}}">
+                {{#if (eq item.degre 0)}}
+                <span style="color: #a1a1a1;">{{item.name}}</span>
+                {{else}}
+                <span>{{item.name}}</span>
+                {{/if}}
+            </div>
+
+            {{#unless ../../actor.system.options.degreGauche}}
+            <div style="width:20px;">
+                {{#if (eq item.degre 0)}}
+                <span style="color: #a1a1a1;">{{item.degre}}</span>
+                {{else}}
+                <span>{{item.degre}}</span>
+                {{/if}}
+            </div>
+            {{/unless}}
+
+            <div class="item-control">
+                <a class="roll-competence" data-id="{{item.id}}"><i class="fas fa-dice-d20"></i></a>
+            </div>
+
+        </li>
+        {{/each}}
+        {{/unless}}
+        {{/with}}
+
+    </div>
+
+</ol>

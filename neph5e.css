@@ -1,6 +1,12 @@
 .editor {
   height: 630px;
 }
+.no-scrollbar .editor {
+  overflow: hidden;
+}
+.no-scrollbar .editor .editor-content {
+  overflow: hidden;
+}
 .tooltip {
   position: relative;
   display: inline-block;
@@ -50,6 +56,24 @@
 }
 .selector-disabled:disabled {
   color: var(--color-text-dark-primary);
+}
+.dommage-checkbox {
+  font-style: italic;
+  padding-top: 4px;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+.dommage-checkbox input[type="checkbox"] {
+  display: none;
+}
+.dommage-checkbox .checked {
+  display: none;
+}
+.dommage-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.dommage-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
 }
 .hand-checkbox {
   font-style: italic;

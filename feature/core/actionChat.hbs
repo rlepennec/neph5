@@ -1,0 +1,26 @@
+<form class="chat">
+
+    <div class="chat-header">
+        <img class="chat-image" src="{{actor.img}}" />
+        <span class="chat-title">{{sentence}}</span>
+        <img class="chat-image" src="{{img}}" />
+    </div>
+
+    {{#if (nonNull difficulty)}}
+    <div class="chat-body">
+        <i class="fa-sharp fa-solid fa-dice-d20"></i>
+        <span>{{total}}</span>
+        {{#if (nonNull impact)}}
+        <i class="fas fa-heart-broken" style="margin-left:30px;"></i>
+        <span> {{impact}}</span>
+        {{/if}}
+    </div>
+    {{/if}}
+
+    {{#if (nonNull result)}}
+    <div class="chat-body">
+        <span>{{actor.name}} {{result}}</span>
+    </div>
+    {{/if}}
+
+</form>

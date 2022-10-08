@@ -1,0 +1,29 @@
+{{#if (eq degre 0)}}
+<div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;color: #a1a1a1;">
+{{else}}
+<div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
+{{/if}}
+
+    <div class="circle" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+        <div class="circleContent">{{degre}}</div>
+    </div>
+
+    <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <div class="item-name" style="width:100%; padding-left:5px;">
+            <span>{{cercle}}</span>
+        </div>
+        {{#unless (eq degre 0)}}
+        <div style="flex: 0 0 auto; width:80px;margin-left:10px;margin-right:10px;text-align:center;">
+            <span>Status</span>
+        </div>
+        {{#if sciencesOccultes}}
+        <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:12px;margin-right:8px;">
+            <a class="roll-science" data-item="{{cercle-id}}"><i style="font-size: 14px;" class="fas fa-dice-d20"></i></a>
+        </div>
+        {{else}}
+        <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:12px;margin-right:8px;"></div>
+        {{/if}}
+        {{/unless}}
+    </div>
+
+</div>

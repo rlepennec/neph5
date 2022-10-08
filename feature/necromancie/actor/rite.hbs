@@ -1,0 +1,32 @@
+{{#if (eq degre 0)}}
+<li class="item macro"
+    style="height:17px;display:flex; flex-direction:row;align-items: center;color: #a1a1a1;"
+    data-item-id="{{item.embedded.id}}"
+    data-id="{{item.embedded.id}}"
+    data-sid="{{item.original.sid}}"
+    data-type="rite">
+{{else}}
+<li class="item macro" style="height:17px;display:flex; flex-direction:row;align-items: center;"
+    data-item-id="{{item.embedded.id}}"
+    data-id="{{item.embedded.id}}"
+    data-sid="{{item.original.sid}}"
+    data-type="rite">
+{{/if}}
+
+    <div class="item-control">
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    </div>
+
+    <div class="item-name edit-focus" data-id="{{item.original.id}}" style="margin-left:20px;">
+        <span>{{item.original.name}}</span>
+    </div>
+
+    {{#unless (eq degre 0)}}
+    <label class="change-status" style="flex: 0 0 auto; width:80px;margin-left:10px;margin-right:10px;text-align:center;" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+
+    <div class="item-control" style="flex: 0 0 auto; width:18px;margin-left:10px;margin-right:10px;">
+        <a class="roll-focus" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+    </div>
+    {{/unless}}
+
+</li>

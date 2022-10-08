@@ -1,0 +1,11 @@
+<ol class="item-list">
+
+    {{> "systems/neph5e/feature/coupe/actor/header.hbs" }}
+
+    {{#each system.coupe.tekhnes as |tekhne|}}
+        {{#with (getItem tekhne.refid)}}
+            {{> "systems/neph5e/feature/coupe/actor/tekhne.hbs" tekhne=tekhne}}
+        {{/with}}
+    {{/each}}
+
+</ol>

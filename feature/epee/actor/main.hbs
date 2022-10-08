@@ -1,0 +1,11 @@
+<ol class="item-list">
+
+    {{> "systems/neph5e/feature/epee/actor/header.hbs" }}
+
+    {{#each system.epee.rituels as |rituel|}}
+        {{#with (getItem rituel.refid)}}
+            {{> "systems/neph5e/feature/epee/actor/rituel.hbs" rituel=rituel}}
+        {{/with}}
+    {{/each}}
+
+</ol>

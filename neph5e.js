@@ -1,47 +1,48 @@
 import { preloadTemplates } from "./module/common/templates.js";
-import { MigrationTools } from "./module/common/migration.js";
+import { Constants } from "./module/common/constants.js";
+import { NephilimChat } from "./module/common/chat.js";
+import { Macros } from "./module/common/macros.js";
+import { MigrationTools } from "./module/migration/migration.js";
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
-import { UUID } from "./module/common/tools.js";
-import { createMacro } from "./module/common/macros.js";
 
-import { NephilimActor } from "./module/actor/entity.js";
 import { NephilimItem } from "./module/item/entity.js";
 
-import { FigureSheet } from "./module/actor/sheet/figure.js";
-import { FigurantSheet } from "./module/actor/sheet/figurant.js";
-import { SimulacreSheet } from "./module/actor/sheet/simulacre.js";
+import { NephilimActor } from "./module/actor/entity.js";
+import { FigureSheet } from "./module/actor/figure.js";
+import { FigurantSheet } from "./module/actor/figurant.js";
 
-import { AlchimieSheet } from "./module/item/sheet/alchimie.js";
-import { AppelSheet } from "./module/item/sheet/appel.js";
-import { ArcaneSheet } from "./module/item/sheet/arcane.js";
-import { ArmeSheet } from "./module/item/sheet/arme.js";
-import { ArmureSheet } from "./module/item/sheet/armure.js";
-import { AspectSheet } from "./module/item/sheet/aspect.js";
-import { CapaciteSheet } from "./module/item/sheet/capacite.js";
-import { CatalyseurSheet } from "./module/item/sheet/catalyseur.js";
-import { ChuteSheet } from "./module/item/sheet/chute.js";
-import { CompetenceSheet } from "./module/item/sheet/competence.js";
-import { FormuleSheet } from "./module/item/sheet/formule.js";
-import { InvocationSheet } from "./module/item/sheet/invocation.js";
-import { MagieSheet } from "./module/item/sheet/magie.js";
-import { MateriaeSheet } from "./module/item/sheet/materiae.js";
-import { MetamorpheSheet } from "./module/item/sheet/metamorphe.js";
-import { OrdonnanceSheet } from "./module/item/sheet/ordonnance.js";
-import { PasseSheet } from "./module/item/sheet/passe.js";
-import { PeriodeSheet } from "./module/item/sheet/periode.js";
-import { PratiqueSheet } from "./module/item/sheet/pratique.js";
-import { QueteSheet } from "./module/item/sheet/quete.js";
-import { RiteSheet } from "./module/item/sheet/rite.js";
-import { RituelSheet } from "./module/item/sheet/rituel.js";
-import { SavoirSheet } from "./module/item/sheet/savoir.js";
-import { ScienceSheet } from "./module/item/sheet/science.js";
-import { SortSheet } from "./module/item/sheet/sort.js";
-import { TechniqueSheet } from "./module/item/sheet/technique.js";
-import { TekhneSheet } from "./module/item/sheet/tekhne.js";
-import { VecuSheet } from "./module/item/sheet/vecu.js";
+import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
+import { AppelSheet } from "./feature/conjuration/item/appel.js";
+import { ArcaneSheet } from "./feature/periode/item/arcane.js";
+import { ArmeSheet } from "./feature/combat/item/arme.js";
+import { ArmureSheet } from "./feature/combat/item/armure.js";
+import { AspectSheet } from "./feature/selenim/item/aspect.js";
+import { CapaciteSheet } from "./module/item/capacite.js";
+import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
+import { ChuteSheet } from "./feature/periode/item/chute.js";
+import { CompetenceSheet } from "./feature/periode/item/competence.js";
+import { FormuleSheet } from "./feature/alchimie/item/formule.js";
+import { InvocationSheet } from "./feature/kabbale/item/invocation.js";
+import { MagieSheet } from "./feature/magie/item/magie.js";
+import { MateriaeSheet } from "./feature/alchimie/item/materiae.js";
+import { MetamorpheSheet } from "./feature/nephilim/item/metamorphe.js";
+import { OrdonnanceSheet } from "./feature/kabbale/item/ordonnance.js";
+import { PasseSheet } from "./feature/periode/item/passe.js";
+import { PeriodeSheet } from "./feature/periode/item/periode.js";
+import { PratiqueSheet } from "./feature/denier/item/pratique.js";
+import { QueteSheet } from "./feature/periode/item/quete.js";
+import { RiteSheet } from "./feature/necromancie/item/rite.js";
+import { RituelSheet } from "./feature/epee/item/rituel.js";
+import { SavoirSheet } from "./feature/periode/item/savoir.js";
+import { ScienceSheet } from "./feature/science/item/science.js";
+import { SortSheet } from "./feature/magie/item/sort.js";
+import { TechniqueSheet } from "./feature/baton/item/technique.js";
+import { TekhneSheet } from "./feature/coupe/item/tekhne.js";
+import { VecuSheet } from "./feature/periode/item/vecu.js";
 
-import { NephilimCombatant } from "./module/combat/combatant.js";
-import { Rolls } from "./module/common/rolls.js";
+import { NephilimCombatant } from "./feature/combat/core/combatant.js";
+import { AbstractRoll } from "./feature/core/abstractRoll.js";
+import { OpposedRollBuilder } from "./feature/core/opposedRollBuilder.js";
 
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
@@ -52,30 +53,25 @@ Hooks.once("init", function () {
 
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
-        defined: CustomHandlebarsHelpers.defined,
-        getActor: CustomHandlebarsHelpers.getActor,
-        getCountFromPeriodes: CustomHandlebarsHelpers.getCountFromPeriodes,
-        noItemsFromPeriodes: CustomHandlebarsHelpers.noItemsFromPeriodes,
+        isNull: CustomHandlebarsHelpers.isNull,
+        nonNull: CustomHandlebarsHelpers.nonNull,
         getItem: CustomHandlebarsHelpers.getItem,
-        getEmbeddedItem: CustomHandlebarsHelpers.getEmbeddedItem,
-        getItems: CustomHandlebarsHelpers.getItems,
-        canEditItem: CustomHandlebarsHelpers.canEditItem,
-        getLevels: CustomHandlebarsHelpers.getLevels,
+        loop: CustomHandlebarsHelpers.loop,
+        log: CustomHandlebarsHelpers.log,
+        html: CustomHandlebarsHelpers.html,
+        includes: CustomHandlebarsHelpers.includes,
+        sum: CustomHandlebarsHelpers.sum,
         getSapiences: CustomHandlebarsHelpers.getSapiences,
-        getCompetences: CustomHandlebarsHelpers.getCompetences,
-        getVecus: CustomHandlebarsHelpers.getVecus,
-        getScience: CustomHandlebarsHelpers.getScience,
         getLevel: CustomHandlebarsHelpers.getLevel,
         getSapiences: CustomHandlebarsHelpers.getSapiences,
         getNextCost: CustomHandlebarsHelpers.getNextCost,
-        getSortStatus: CustomHandlebarsHelpers.getSortStatus,
         isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
         isEmptyString: CustomHandlebarsHelpers.isEmptyString,
-        isMelee: CustomHandlebarsHelpers.isMelee,
-        getCount: CustomHandlebarsHelpers.getCount,
-        loop: CustomHandlebarsHelpers.loop,
-        log: CustomHandlebarsHelpers.log,
-        html: CustomHandlebarsHelpers.html
+        isContact: CustomHandlebarsHelpers.isContact,
+        displayScience: CustomHandlebarsHelpers.displayScience,
+        displaySciences: CustomHandlebarsHelpers.displaySciences,
+        focus: CustomHandlebarsHelpers.focus,
+        science: CustomHandlebarsHelpers.science
     });
 
     Handlebars.registerHelper('switch', function (value, options) {
@@ -100,7 +96,6 @@ Hooks.once("init", function () {
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });
     Actors.registerSheet("nephilim", FigurantSheet, { types: ["figurant"], makeDefault: true, label: "NEPHILIM.figurant" });
-    Actors.registerSheet("nephilim", SimulacreSheet, { types: ["simulacre"], makeDefault: true, label: "NEPHILIM.simulacre" });
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
@@ -135,14 +130,14 @@ Hooks.once("init", function () {
     preloadTemplates();
     registerSystemSettings();
 
+    // Migrate data model if necessary
     Hooks.once('ready', async () => {
         await MigrationTools.migrate();
     });
 
+    // Add data to combatant
     Hooks.on("createCombatant", async (combat, data) => {
-
         if (!game.user.isGM) return;
-
         const status = {
             effects: [],
             history: {
@@ -155,230 +150,63 @@ Hooks.once("init", function () {
         await combat.setFlag("world", "combat", status);
     })
 
-    // The hook to create a macro by draggind and dropping an item of the character sheet in the hot bar.
-    Hooks.on("hotbarDrop", async (bar, data, slot) => createMacro(bar, data, slot));
+    // Disable simulacre creation
+    Hooks.on("createActor", async (actor, data, options, user) => {
+        if (actor.type === 'simulacre') {
+            ui.notifications.error("Les Simulacres ne doivent plus être utilisés. Veuillez utiliser les acteurs Figurant.");
+            await actor.delete();
+            return false;
+        }
+    })
 
-    // The hook to pre-create actor.
-    Hooks.on("preCreateActor", (actor, data, options, user) => {
+    // The hook to pre-create actor
+    Hooks.on("preCreateActor", async (actor, data, options, user) => {
 
-        // Si duplication
-        if (actor.link.startsWith("@Actor[null]{") && actor.link.endsWith(" (Copy)}")) {
-            const uuid = UUID();
-            actor.data.data.id = uuid;
-            data.data.id = uuid;
-            actor.data._source.data.id = uuid;
+        // If duplicate, create a new uuid
+        if (actor.link.startsWith("@UUID[Actor") && actor.link.endsWith(" (Copy)}")) {
+            const uuid = CustomHandlebarsHelpers.UUID();
+            actor.system.id = uuid;
+            data.system.id = uuid;
+            actor._source.system.id = uuid;
             return true; 
         }
 
-        // Si copie dans un compendium
-        if (actor.compendium !== undefined) {
-            console.log("Add actor from world in compendium");
-
-            const compendiumName = actor.compendium.collection;
-            const pack = game.packs.get(compendiumName);
-            const compendiumActor = pack.find(i => i.data.data.id === actor.data.data.id) ;
-            const exists = compendiumActor !== undefined;
-            if (exists) {
-                console.log("Update actor from world in compendium");
-                /*
-                const newData = duplicate(data.data);
-                newData.id = worldItem.data.data.id;
-                worldItem.update({['data']: newData});
-                */
-                return true;
-    
-            } else {
-                console.log("Add actor from world in compendium");
-                return true;
-    
-            }
-        }
-
-        // Copie dans monde depuis compendium. Peut etre autre chose.
-        const worldActor = game.actors.find(i => i.data.data.id === actor.data.data.id) ;
-        const alreadyExists = worldActor !== undefined;
-        if (alreadyExists) {
-            console.log("Update actor from compendium in world");
-            const newData = duplicate(data.data);
-            newData.id = worldActor.data.data.id;
-            worldActor.update({['data']: newData});
-            return false;
-
-        } else {
-            console.log("Add actor from compendium in world");
-            return true;
-
-        }
-
-        return true;
-
     });
 
-    // The hook to pre-create item.
-    Hooks.on("preCreateItem", (item, data, options, user) => {
+    // The hook to pre-create item
+    Hooks.on("preCreateItem", async (item, data, options, user) => {
 
-        // Si duplication
-        if (item.link.startsWith("@Item[null]{") && item.link.endsWith(" (Copy)}")) {
-            const uuid = UUID();
-            item.data.data.id = uuid;
-            data.data.id = uuid;
+        // If duplicate, create a new uuid
+        if (item.link.startsWith("@UUID[Item") && item.link.endsWith(" (Copy)}")) {
+            const uuid = CustomHandlebarsHelpers.UUID();
+            item.sid = uuid;
+            data.system.id = uuid;
             item.data._source.data.id = uuid;
             return true;
         }
 
-        // Si copie dans un acteur
-        if (item.actor !== null) {
-            return true;
-        }
-
-        // Si copie dans un compendium
-        if (item.compendium !== undefined) {
-            console.log("Add item from world in compendium");
-
-            const compendiumName = item.compendium.collection;
-            const pack = game.packs.get(compendiumName);
-            const compendiumItem = pack.find(i => i.data.data.id === item.data.data.id) ;
-            const exists = compendiumItem !== undefined;
-            if (exists) {
-                console.log("Update item from world in compendium");
-                /*
-                const newData = duplicate(data.data);
-                newData.id = worldItem.data.data.id;
-                worldItem.update({['data']: newData});
-                */
-                return true;
-    
-            } else {
-                console.log("Add item from world in compendium");
-                return true;
-    
-            }
-        }
-
-        // Copie dans monde depuis compendium. Peut etre autre chose.
-        const worldItem = game.items.find(i => i.data.data.id === item.data.data.id) ;
-        const alreadyExists = worldItem !== undefined;
-        if (alreadyExists) {
-            console.log("Update item from compendium in world");
-            const newData = duplicate(data.data);
-            newData.id = worldItem.data.data.id;
-            worldItem.update({['data']: newData});
-            return false;
-
-        } else {
-            console.log("Add item from compendium in world");
-            return true;
-
-        }
-
     });
 
-    // Handle chat message for combat system
+    // Handle chat message for opposed rolls, especially combat system
     Hooks.on("renderChatMessage", async (app, html, data) => {
-
-        // Hook messages ussing flags with the system identifier allows
-        //   - To resolve opposed actions
-        //   - To react against some attacks
-        const flags = data?.message?.flags[game.system.id];
-        if (flags === undefined) {
-            return;
+        const reaction = await OpposedRollBuilder.create(data);
+        if (reaction != null) {
+            await reaction.initialize();
+            await NephilimChat.unsetFlags(data.message._id);
         }
+    });
 
-        // Players and GM can perform an opposed action.
-        // Only GM can handle opposed actions.
-        if (flags.hasOwnProperty(Rolls.OPPOSED)) {
-            if (game.user.isGM) {
-                await Rolls.resolveOpposedRoll(flags);
-                await game.messages.get(data.message._id).unsetFlag(game.system.id, Rolls.OPPOSED);
-            }
-            return;
-        }
+    // Handle the macro creation
+    Hooks.on("hotbarDrop", async (bar, data, slot) => await Macros.create(bar, data, slot));
 
-        // Players and GM can perform an attack.
-        // Only defender can handle attack to defend.
-        if (flags.hasOwnProperty('attack')) {
-
-            // Check tokens on the canvas
-            if (!canvas?.tokens?.objects?.children) {
-                return;
-            }
-
-            // Gets the target token and dispatches the message if:
-            // - The token is managed by the current user
-            // - The message has not been proccessed by the combatant yet
-            const token = canvas.tokens.objects.children.find((t) => t.data._id === flags.attack.target.id);
-            if (isManaged(token)) {
-                await token.actor.react(token, data.message._id, flags.attack);
-            }
-
-            return;
-        }
-
-        // Players and GM can perform a defense against an attack.
-        // Only the GM can handle defense to unset flags from defense and intial attack.
-        if (flags.hasOwnProperty('defense')) {
-            if (game.user.isGM) {
-                const attackEventId = flags.defense.attackEventId;
-                await game.messages.get(attackEventId).unsetFlag(game.system.id, 'attack');
-                await game.messages.get(data.message._id).unsetFlag(game.system.id, 'defense');
-            }
-            return;
-        }
-
+    // Register socket messages
+    game.socket.on(Constants.SYSTEM_SOCKET_ID, async socketMessage => {
+        await NephilimChat.onSocketMessage(socketMessage);
     });
 
     /**
-     * Indicates if the specified token is managed and can be updated.
-     * @param token The token to watch.
-     * @return true if managed.
+     * Register the system settings
      */
-    function isManaged(token) {
-
-        // Initialization
-        let initialized = false;
-
-        // Token not defined
-        if (token === undefined) {
-            return initialized;
-        }
-
-        // Gets the actor of the token
-        const actor = token.actor;
-        if (actor === undefined) {
-            return initialized;
-        }
-
-        // Managed if:
-        //  the user is not a GM and is the owner of the token
-        //  the user is the GM and token has no player owner or the player owner is not active
-        if (game.user.isGM) {
-            if (!actor.hasPlayerOwner) {
-                initialized = true;
-            } else {
-                let activeOwner = 0;
-                for (const [userId, perm] of Object.entries(actor.data.permission)) {
-                    if (perm === 3) {
-                        const user = game.users.get(userId);
-                        if (!user.isGM && user.active) {
-                            activeOwner = activeOwner + 1;
-                        }
-                    }
-                }
-                if (activeOwner === 0) {
-                    initialized = true;
-                }
-            }
-        } else {
-            if (token.owner) {
-                initialized = true;
-            }
-        }
-
-        // Returns the result
-        return initialized
-
-    }
-
     function registerSystemSettings() {
         game.settings.register('neph5e', 'debug', {
             config: true,
@@ -388,11 +216,19 @@ Hooks.once("init", function () {
             type: Boolean,
             default: false
         });
-        game.settings.register('neph5e', 'useV3', {
+        game.settings.register('neph5e', 'catalyseurs', {
             config: true,
             scope: 'world',
-            name: game.i18n.localize('SETTINGS.useV3'),
-            hint: game.i18n.localize('SETTINGS.useV3Desc'),
+            name: game.i18n.localize('SETTINGS.catalyseurs'),
+            hint: game.i18n.localize('SETTINGS.catalyseursDesc'),
+            type: Boolean,
+            default: false
+        });
+        game.settings.register('neph5e', 'sciencesOccultes', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.sciencesOccultes'),
+            hint: game.i18n.localize('SETTINGS.sciencesOccultesDesc'),
             type: Boolean,
             default: false
         });
@@ -403,54 +239,6 @@ Hooks.once("init", function () {
             hint: game.i18n.localize('SETTINGS.useCombatSystemDesc'),
             type: Boolean,
             default: false
-        });
-        game.settings.register('neph5e', 'uuidMelee', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.uuidMelee'),
-            hint: game.i18n.localize('SETTINGS.uuidMeleeDesc'),
-            type: String,
-            default: '8b2b8da6-b8cddff0-bfcd50b6-48cec162'
-        });
-        game.settings.register('neph5e', 'uuidDodge', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.uuidDodge'),
-            hint: game.i18n.localize('SETTINGS.uuidDodgeDesc'),
-            type: String,
-            default: '456ea358-8ce41469-677e0602-4c5fddcd'
-        });
-        game.settings.register('neph5e', 'uuidHand', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.uuidHand'),
-            hint: game.i18n.localize('SETTINGS.uuidHandDesc'),
-            type: String,
-            default: 'd36beb62-017415a5-325fb05e-de7fd714'
-        });
-        game.settings.register('neph5e', 'uuidDraft', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.uuidDraft'),
-            hint: game.i18n.localize('SETTINGS.uuidDraftDesc'),
-            type: String,
-            default: 'bd18f1cc-2e108eb2-988cec32-3727ed1b'
-        });
-        game.settings.register('neph5e', 'uuidFire', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.uuidFire'),
-            hint: game.i18n.localize('SETTINGS.uuidFireDesc'),
-            type: String,
-            default: 'f82328b3-7ac00919-d54625c1-c1a5e138'
-        });
-        game.settings.register('neph5e', 'uuidHeavy', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.uuidHeavy'),
-            hint: game.i18n.localize('SETTINGS.uuidHeavyDesc'),
-            type: String,
-            default: '146b1eaf-9d2d1038-b6d1534c-d8a7cc98'
         });
         game.settings.register('neph5e', 'worldTemplateVersion', {
             name: 'World Template Version',

@@ -1,0 +1,231 @@
+import { AbstractDialog } from "./abstractDialog.js";
+
+export class ActionDialog extends AbstractDialog {
+
+    /**
+     * Constructor.
+     * @param actor  The emiter of the dialog.
+     * @param action The action.
+     */
+    constructor(actor, action) {
+        super(actor);
+        this.actor = actor;
+        this.action = action;
+        this.data = null;
+    }
+
+    /**
+     * @param title The title of the dialog panel.
+     * @returns the instance.
+     */
+    withTitle(title) {
+        super.withTitle(title);
+        return this;
+    }
+
+    /**
+     * @param template The path of the template file used to create the dialog.
+     * @returns the instance.
+     */
+    withTemplate(template) {
+        super.withTemplate(template);
+        return this;
+    }
+
+    /**
+     * @param data The data used to create the content of the dialog.
+     * @returns the instance.
+     */
+    withData(data) {
+        super.withData(data);
+        return this;
+    }
+
+    /**
+     * @param height The height of the dialog panel.
+     * @returns the instance.
+     */
+    withHeight(height) {
+        super.withHeight(height);
+        return this;
+    }
+
+    /**
+     * @param width The width of the dialog panel.
+     * @returns the instance.
+     */
+    withWidth(width) {
+        super.withWidth(width);
+        return this;
+    }
+
+    /**
+     * @returns the default options to manage the dialog.
+     */
+    static get defaultOptions() {
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            classes: ["nephilim", "sheet"],
+            template: "systems/neph5e/feature/core/action.hbs",
+            width: 500,
+            height: "auto",
+            choices: {},
+            allowCustom: true,
+            minimum: 0,
+            maximum: null,
+            closeOnSubmit: false
+        });
+    }
+
+    /**
+     * @override
+     */
+    getData(options) {
+        const data = duplicate(this.data);
+        data.owner = this.object.id;
+        data.difficulty = this.action.difficulty();
+        return data;
+    }
+
+    /**
+     * @override
+     */
+    activateListeners(html) {
+        super.activateListeners(html);
+        html.find("#modifier").change(this._onSetModifier.bind(this));
+        html.find("#blessures").change(this._onSelectBlessures.bind(this));
+        html.find("#approche").change(this._onSelectApproche.bind(this));
+        html.find("#roll").click(this._onRoll.bind(this));
+        html.find("#details").click(this._onDetails.bind(this));
+    }
+
+    /**
+     * Handle the details display change.
+     * @param event The event to handle.
+     */
+    async _onDetails(event) {
+        event.preventDefault();
+        $(".hiddable").toggle();
+    }
+
+    /**
+     * Handle the modifier change.
+     * @param event The event to handle.
+     */
+    async _onSetModifier(event) {
+        event.preventDefault();
+        const difficulty = this.action.difficulty(this.parameters());
+        $('#difficulty').html("<span>" + difficulty + "%<span>");
+    }
+
+    /**
+     * Handle the blessures modifier change.
+     * @param event The event to handle.
+     */
+     async _onSelectBlessures(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const blessures = parameters.blessures;
+        const difficulty = this.action.difficulty(parameters);
+        $('#blessuresModifier').html("<span>" + blessures + "<span>");
+        $('#difficulty').html("<span>" + difficulty + "%<span>");
+    }
+
+    /**
+     * Handle the approche change.
+     * @param event The event to handle.
+     */
+    async _onSelectApproche(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const approche = parameters.approche;
+        const difficulty = this.action.difficulty(parameters);
+        $('#approcheModifier').html("<span>" + approche + "<span>");
+        $('#difficulty').html("<span>" + difficulty + "%<span>");
+    }
+
+    /**
+     * Handle the click to roll action.
+     * @param event The event to handle.
+     */
+    async _onRoll(event) {
+        event.preventDefault();
+        await this.close();
+        await this.action.roll(this.parameters());
+    }
+
+    /**
+     * @returns the action parameters.
+     */
+    parameters() {
+        return {
+            manoeuver: this._manoeuver(),
+            modifier: this._modifier(),
+            blessures: this._blessures(),
+            approche: this._approche(),
+            ka: this._ka(),
+            opposed: this._opposed(),
+            shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1
+        }
+    }
+
+    /**
+     * @returns the selected manoeuver.
+     */
+    _manoeuver() {
+        const selector = this.form.querySelector("#manoeuver");
+        return selector?.value;
+    }
+
+    /**
+     * @returns the current action modifier.
+     */
+    _modifier() {
+        const modifier = parseInt(this.form.querySelector("#modifier")?.value);
+        return isNaN(modifier) ? 0 : modifier;
+    }
+
+    /**
+     * @returns the current wound modifier if activated.
+     */
+    _blessures() {
+        const selector = this.form.querySelector("#blessures");
+        const blessures = selector == null || selector?.value === 'ignore' ? 0 : this.data.blessures;
+        return blessures;
+    }
+
+    /**
+     * @returns the optional approche modifier.
+     */
+    _approche() {
+        const selector = this.form.querySelector("#approche");
+        const approche =  selector?.value;
+        if (approche == null) return 0;
+        const element = approche.replaceAll('NEPH5E.','').replaceAll('pentacle.elements.','');
+        return element === 'none' ? 0 : this.object.getKa(element) * 10;
+    }
+
+    /**
+     * @returns the current ka modifier used for invocations.
+     */
+    _ka() {
+        const selector = this.form.querySelector("#element");
+        return this.data.selectElement ? selector != null && actor.getKa(this.form.querySelector("#element")?.value) : 0;
+    }
+
+    /**
+     * @returns true if opposed action, false for simple action.
+     */
+    _opposed() {
+        return this.data.opposed ? true : this.data.simple ? false : this.form.querySelector("#rollType")?.value === 'opposed';
+    }
+
+    /**
+     * @param shot The index of the shot from 1 to 6.
+     * @returns true if the shot is checked. 
+     */
+    _shot(shot) {
+        const selector = this.form.querySelector("#shot"+shot);
+        return shot === 1 ? true : selector == null ? false : selector.checked;
+    }
+
+}

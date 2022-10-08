@@ -1,0 +1,63 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+
+        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+
+        <div class="title">
+
+            <span class="type">{{localize "NEPH5E.baton.technique"}}</span>
+
+            <input class="name" name="name" type="text" value="{{item.name}}"/>
+
+            <br>
+
+            <input
+                name="system.id"
+                type="text"
+                value="{{system.id}}"
+                data-dtype="String"/>
+
+        </div>
+
+    </header>
+
+    {{!-- Sheet Navigation --}}
+    <nav class="sheet-navigation tabs" data-group="primary">
+
+        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        <div class="tab description" data-group="primary" data-tab="description">
+
+            <div class="header technique">
+
+                <div class="property">
+                    <label class="property-name">{{localize "NEPH5E.degre"}}</label>
+                    <input
+                        class="property-value"
+                        name="system.degre"
+                        type="text"
+                        value="{{system.degre}}"
+                        data-dtype="Number"
+                    />
+                </div>
+
+            </div>
+
+            <div class="part-header">
+                <div class="part-name">
+                    <span>{{localize "NEPH5E.effet"}}</span>
+                </div>
+            </div>
+
+            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+
+    </section>
+        
+</form>

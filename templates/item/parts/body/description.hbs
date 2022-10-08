@@ -1,8 +1,8 @@
 <div style="border-width: 2px;">
-{{#if (defined difficulty)}}
-    {{html item.data.data.description}}
+{{#if (nonNull difficulty)}}
+    {{html system.description}}
 {{else}}
-    {{#if (isEmptyString data.description)}}
+    {{#if (isEmptyString system.description)}}
     <div style="display: flex; flex-direction: row; margin-top: 10px;">
         <div style="margin-right: 10px;" >
             <a><i class="fas fa-plus"></i></a>
@@ -10,6 +10,8 @@
         <span>{{localize 'NEPH5E.description'}}</span>
     </div>
     {{/if}}
-    {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    <div class="no-scrollbar">
+    {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+    </div>
 {{/if}}
 </div>

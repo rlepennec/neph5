@@ -1,0 +1,21 @@
+{{#if (nonNull degre)}}
+<table style="margin-top: 10px;">
+    <tr>
+        <th>{{localize title}}</th>
+        <th>{{localize 'NEPH5E.degre'}}</th>
+        <th>{{localize 'NEPH5E.sapience'}}</th>
+    </tr>
+    {{#each periodes as |periode|}}
+    <tr>
+        <td>{{periode.name}}</td>
+        <td style="text-align: center;">{{periode.degre}}</td>
+        <td style="text-align: center;">{{periode.sapiences}}</td>
+    </tr>
+    {{/each}}
+    <tr>
+        <td></td>
+        <td style="text-align: center; font-weight: bold;">{{degre}}</td>
+        <td style="text-align: center; font-weight: bold;">{{next}}</td>
+    </tr>
+</table>
+{{/if}}

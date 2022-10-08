@@ -3,22 +3,20 @@
     <div style="padding-top: 5px; flex: 1  1 auto; font-weight: bold; text-align: center; width: 100px;">{{localize title}}</div>
 
     <div style="border: 0; outline: 0; height: 30px; width: 100px;">
-        {{#if (defined difficulty)}}
         <input
+        {{#if (nonNull difficulty)}}
             disabled
             style="border: 0; background: transparent; width: 100px;"
-            name={{name}}
-            type="text"
-            value="{{value}}"
-            data-dtype={{type}}/>
         {{else}}
-        <input
             style="width: 100px;"
-            name={{name}}
-            type="text"
-            value="{{value}}"
-            data-dtype={{type}}/>
         {{/if}}
+        {{#if (eq type "Number")}}
+            placeholder="0"
+        {{/if}}
+        name={{name}}
+        type="text"
+        value="{{value}}"
+        data-dtype={{type}}/>
     </div>
 
 </div>

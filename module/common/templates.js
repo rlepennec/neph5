@@ -7,75 +7,101 @@ export const preloadTemplates = async function () {
 
     return loadTemplates([
 
-        "systems/neph5e/templates/actor/parts/akasha/main.hbs",
-        "systems/neph5e/templates/actor/parts/akasha/direction.hbs",
-        "systems/neph5e/templates/actor/parts/akasha/vaisseau.hbs",
+        // Akasha
+        "systems/neph5e/feature/akasha/actor/main.hbs",
+        "systems/neph5e/feature/akasha/actor/direction.hbs",
+        "systems/neph5e/feature/akasha/actor/vaisseau.hbs",
 
-        "systems/neph5e/templates/actor/parts/alchimie/main.hbs",
-        "systems/neph5e/templates/actor/parts/alchimie/header.hbs",
-        "systems/neph5e/templates/actor/parts/alchimie/formule.hbs",
+        // Alchimie
+        "systems/neph5e/feature/alchimie/actor/main.hbs",
+        "systems/neph5e/feature/alchimie/actor/header.hbs",
+        "systems/neph5e/feature/alchimie/actor/formule.hbs",
 
-        "systems/neph5e/templates/actor/parts/combat/main.hbs",
-        "systems/neph5e/templates/actor/parts/combat/blessure.hbs",
-        "systems/neph5e/templates/actor/parts/combat/choc.hbs",
-        "systems/neph5e/templates/actor/parts/combat/etat.hbs",
+        // Baton
+        "systems/neph5e/feature/baton/actor/main.hbs",
+        "systems/neph5e/feature/baton/actor/header.hbs",
+        "systems/neph5e/feature/baton/actor/technique.hbs",
 
-        "systems/neph5e/templates/actor/parts/nephilim/arcane.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/attributs.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/chutes.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/main.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/pentacle.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/metamorphe.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/stase.hbs",
-        "systems/neph5e/templates/actor/parts/conjuration/main.hbs",
-        "systems/neph5e/templates/actor/parts/conjuration/header.hbs",
-        "systems/neph5e/templates/actor/parts/conjuration/appel.hbs",
-        "systems/neph5e/templates/actor/parts/necromancie/main.hbs",
-        "systems/neph5e/templates/actor/parts/necromancie/header.hbs",
-        "systems/neph5e/templates/actor/parts/necromancie/rite.hbs",
-        
-        "systems/neph5e/templates/actor/parts/description/main.hbs",
-        "systems/neph5e/templates/actor/parts/simulacre/main.hbs",
-        "systems/neph5e/templates/actor/parts/vecus/main.hbs",
-        "systems/neph5e/templates/actor/parts/vecus/savoirs.hbs",
-        "systems/neph5e/templates/actor/parts/vecus/quetes.hbs",
-        "systems/neph5e/templates/actor/parts/vecus/passes.hbs",
-        "systems/neph5e/templates/actor/parts/vecus/competences.hbs",
-        "systems/neph5e/templates/actor/parts/magie/main.hbs",
-        "systems/neph5e/templates/actor/parts/magie/header.hbs",
-        "systems/neph5e/templates/actor/parts/magie/sort.hbs",
-        "systems/neph5e/templates/actor/parts/kabbale/main.hbs",
-        "systems/neph5e/templates/actor/parts/kabbale/header.hbs",
-        "systems/neph5e/templates/actor/parts/kabbale/invocation.hbs",
+        // Combat
+        "systems/neph5e/feature/combat/actor/main.hbs",
+        "systems/neph5e/feature/combat/actor/blessure.hbs",
+        "systems/neph5e/feature/combat/actor/etat.hbs",
 
-        "systems/neph5e/templates/actor/parts/laboratoire/main.hbs",
-        
-        "systems/neph5e/templates/actor/parts/incarnations/main.hbs",
-        "systems/neph5e/templates/actor/parts/options/main.hbs",
-        "systems/neph5e/templates/actor/parts/nephilim/attributs.hbs",
-        "systems/neph5e/templates/actor/parts/selenim/main.hbs",
-        "systems/neph5e/templates/actor/parts/selenim/noyau.hbs",
-        "systems/neph5e/templates/actor/parts/selenim/aspect.hbs",
-        "systems/neph5e/templates/actor/parts/baton/main.hbs",
-        "systems/neph5e/templates/actor/parts/baton/header.hbs",
-        "systems/neph5e/templates/actor/parts/baton/technique.hbs",
-        "systems/neph5e/templates/actor/parts/coupe/main.hbs",
-        "systems/neph5e/templates/actor/parts/coupe/header.hbs",
-        "systems/neph5e/templates/actor/parts/coupe/tekhne.hbs",
-        "systems/neph5e/templates/actor/parts/denier/main.hbs",
-        "systems/neph5e/templates/actor/parts/denier/header.hbs",
-        "systems/neph5e/templates/actor/parts/denier/pratique.hbs",
-        "systems/neph5e/templates/actor/parts/epee/main.hbs",
-        "systems/neph5e/templates/actor/parts/epee/header.hbs",
-        "systems/neph5e/templates/actor/parts/epee/rituel.hbs",
+        // Conjuration
+        "systems/neph5e/feature/conjuration/actor/main.hbs",
+        "systems/neph5e/feature/conjuration/actor/header.hbs",
+        "systems/neph5e/feature/conjuration/actor/appel.hbs",
 
+        // Coupe
+        "systems/neph5e/feature/coupe/actor/main.hbs",
+        "systems/neph5e/feature/coupe/actor/header.hbs",
+        "systems/neph5e/feature/coupe/actor/tekhne.hbs",
+
+        // Denier
+        "systems/neph5e/feature/denier/actor/main.hbs",
+        "systems/neph5e/feature/denier/actor/header.hbs",
+        "systems/neph5e/feature/denier/actor/pratique.hbs",
+
+        // Epee
+        "systems/neph5e/feature/epee/actor/main.hbs",
+        "systems/neph5e/feature/epee/actor/header.hbs",
+        "systems/neph5e/feature/epee/actor/rituel.hbs",
+
+        // Kabbale
+        "systems/neph5e/feature/kabbale/actor/main.hbs",
+        "systems/neph5e/feature/kabbale/actor/header.hbs",
+        "systems/neph5e/feature/kabbale/actor/invocation.hbs",
+
+        // Laboratoire
+        "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",
+
+        // Magie
+        "systems/neph5e/feature/magie/actor/main.hbs",
+        "systems/neph5e/feature/magie/actor/header.hbs",
+        "systems/neph5e/feature/magie/actor/sort.hbs",
+
+        // Necromancie
+        "systems/neph5e/feature/necromancie/actor/main.hbs",
+        "systems/neph5e/feature/necromancie/actor/header.hbs",
+        "systems/neph5e/feature/necromancie/actor/rite.hbs",
+
+        // Nephilim
+        "systems/neph5e/feature/nephilim/actor/arcane.hbs",
+        "systems/neph5e/feature/nephilim/actor/attributs.hbs",
+        "systems/neph5e/feature/nephilim/actor/main.hbs",
+        "systems/neph5e/feature/nephilim/actor/pentacle.hbs",
+        "systems/neph5e/feature/nephilim/actor/chutes.hbs",
+        "systems/neph5e/feature/nephilim/actor/metamorphe.hbs",
+        "systems/neph5e/feature/nephilim/actor/stase.hbs",
+
+        // Periode
+        "systems/neph5e/feature/periode/actor/main.hbs",
+        "systems/neph5e/feature/periode/actor/savoirs.hbs",
+        "systems/neph5e/feature/periode/actor/quetes.hbs",
+        "systems/neph5e/feature/periode/actor/chutes.hbs",
+        "systems/neph5e/feature/periode/actor/passes.hbs",
+        "systems/neph5e/feature/periode/actor/competences.hbs",
+        "systems/neph5e/feature/periode/actor/incarnations.hbs",
+
+        // Selenim
+        "systems/neph5e/feature/selenim/actor/main.hbs",
+        "systems/neph5e/feature/selenim/actor/noyau.hbs",
+        "systems/neph5e/feature/selenim/actor/aspect.hbs",
+        "systems/neph5e/feature/selenim/actor/attributs.hbs",
+
+        // Actor parts
+        "systems/neph5e/templates/actor/parts/description.hbs",
+        "systems/neph5e/templates/actor/parts/options.hbs",
+
+        // Item parts
         "systems/neph5e/templates/item/parts/header/header.hbs",
         "systems/neph5e/templates/item/parts/header/input.hbs",
         "systems/neph5e/templates/item/parts/header/select.hbs",
-
+        "systems/neph5e/templates/item/parts/body/chronology.hbs",
         "systems/neph5e/templates/item/parts/body/description.hbs",
         "systems/neph5e/templates/item/parts/body/difficulte.hbs",
         "systems/neph5e/templates/item/parts/body/input.hbs",
+        "systems/neph5e/templates/item/parts/body/label.hbs",
         "systems/neph5e/templates/item/parts/body/list.hbs"
 
     ]);

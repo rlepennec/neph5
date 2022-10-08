@@ -12,16 +12,20 @@
             "combat": {
                 "dommage": {
                     "physique": {
-                        "cases": 3,
-                        "choc": 0,
+                        "_1": false,
+                        "_2": false,
+                        "_3": false,
+                        "_4": false,
+                        "_5": false,
                         "mineure": false,
                         "serieuse": false,
                         "grave": false,
                         "mortelle": false
                     },
                     "magique": {
-                        "cases": 3,
-                        "choc": 0,
+                        "_1": false,
+                        "_2": false,
+                        "_3": false,
                         "mineure": false,
                         "serieuse": false,
                         "grave": false,
@@ -41,28 +45,18 @@
                 "id", "combat"
             ],
             "menace": 3,
-            "ka": 3
+            "ka": 3,
+            "description": ""
         },
         "simulacre": {
-            "templates": [
-                "id", "combat"
-            ],
-            "agile": 3,
-            "endurant": 3,
-            "fort": 3,
-            "intelligent": 3,
-            "seduisant": 3,
-            "soleil": 3,
-            "fortune": 3,
-            "savant": 3,
-            "sociable": 3,
-            "description": ""
         },
         "figure": {
             "templates": [
                 "id", "combat"
             ],
             "description": "",
+            "simulacre": null,
+            "periode": null,
             "sapience": 0,
             "ka" : {
                 "air": 0,
@@ -78,44 +72,19 @@
                 "soleil": 0,
                 "terre": 0
             },
-            "simulacre": {
-                "refid": null
+            "manoeuvres" : {
+                "esquive": null,
+                "lutte": null
             },
-            "periodes": [],
             "stase": {
                 "description": "",
-                "air": 0,
-                "eau": 0,
-                "feu": 0,
-                "lune": 0,
-                "terre": 0
-            },
-            "metamorphe": {
-                "refid": null,
-                "metamorphoses": [false, false, false, false, false, false, false, false, false, false],
-                "manifested": [false, false, false, false, false, false, false, false, false, false]
-            },
-            "magie": {
-                "sorts": [],
-                "voie": {
-                    "refid": null
-                }
-            },
-            "kabbale": {
-                "invocations": [],
-                "voie": {
-                    "ordonnances": []
-                }
+                "ka": 0
             },
             "alchimie": {
-                "formules": [],
-                "voie": {
-                    "refid": null
-                },
                 "constructs": {
                     "cornue": {
                         "active": false,
-                        "degre": "",
+                        "degre": null,
                         "air": 0,
                         "eau": 0,
                         "feu": 0,
@@ -124,7 +93,7 @@
                     },
                     "creuset": {
                         "active": false,
-                        "degre": "",
+                        "degre": null,
                         "air": 0,
                         "eau": 0,
                         "feu": 0,
@@ -133,7 +102,7 @@
                     },
                     "athanor": {
                         "active": false,
-                        "degre": "",
+                        "degre": null,
                         "air": 0,
                         "eau": 0,
                         "feu": 0,
@@ -142,7 +111,7 @@
                     },
                     "aludel": {
                         "active": false,
-                        "degre": "",
+                        "degre": null,
                         "air": 0,
                         "eau": 0,
                         "feu": 0,
@@ -159,8 +128,6 @@
                         "terre": 0
                     }
                 },
-                "catalyseurs": [],
-                "materiae": [],
                 "primae": {
                     "air": {
                         "quantite": 0,
@@ -183,16 +150,6 @@
                         "max": 0
                     }
                 }
-            },
-            "imago": {
-                "aspects": [],
-                "description": ""
-            },
-            "necromancie": {
-                "rites": []
-            },
-            "conjuration": {
-                "appels": []
             },
             "akasha": {
                 "nef": {
@@ -218,18 +175,6 @@
                     "nadir": 0
                 }
             },
-            "baton": {
-                "techniques": []
-            },
-            "coupe": {
-                "tekhnes": []
-            },
-            "denier": {
-                "pratiques": []
-            },
-            "epee": {
-                "rituels": []
-            },
             "options": {
                 "alchimie": true,
                 "anamorphose": true,
@@ -237,6 +182,7 @@
                 "description": true,
                 "simulacre": true,
                 "incarnations": true,
+                "combat": true,
                 "kabbale": true,
                 "magie": true,
                 "necromancie": true,
@@ -249,7 +195,9 @@
                 "baton": false,
                 "coupe": false,
                 "denier": false,
-                "epee": false
+                "epee": false,
+                "chronologieDescendante": false,
+                "degreGauche": false
             }
         }
     },
@@ -294,169 +242,113 @@
             }
         },
         "alchimie": {
-            "templates": ["base"]
+            "id": null
         },
         "appel": {
-            "templates": ["base", "withLevel"],
-            "appel": "pacifiste",
-            "controle": false,
-            "visibilite": "Non",
-            "entropie": "0",
-            "dommages": "0",
-            "protection": "0"
+            "id": null
         },
         "arcane": {
-            "templates": ["base"]
+            "id": null
         },
         "arme": {
             "templates": ["base"],
-            "used": false,
-            "skill": "melee",
-            "damages": 0,
+            "used": true,
+            "parade": false,
+            "type": "melee",
+            "competence": null,
             "attack": 0,
+            "defense": 0,
+            "damages": 0,
+            "blocage": false,
+            "physique": true,
             "magique": false,
-            "melee": {
-                "defense": 0,
-                "blocage": false
-            },
-            "ranged": {
-                "ammunition": "",
-                "munitions": 1,
-                "perce": 0,
-                "vitesse": 1,
-                "actions": {
-                    "tirer": true,
-                    "salve": false,
-                    "rafale": false
-                },
-                "utilise": 0,
-                "reload": 0,
-                "target": "",
-                "visee": 0
-            }
+            "ammunition": "",
+            "munitions": 1,
+            "tire": 0,
+            "cible": null,
+            "visee": 0,
+            "lance": false,
+            "salve": false,
+            "rafale": false
         },
         "armure": {
             "templates": ["base"],
-            "used": false,
-            "contact": 0,
-            "trait": 0,
-            "feu": 0,
-            "magique": 0,
-            "bouclier": false
+            "used": true,
+            "physique": 0,
+            "magique": 0
         },
         "aspect": {
-            "templates": ["base", "withLevel"],
-            "activation": 1,
-            "duree": ""
+            "id": null
         },
         "capacite": {
-            "templates": ["base"]
+            "id": null
         },
         "catalyseur": {
-            "templates": ["base"]
+            "id": null
         },
         "chute": {
-            "templates": ["base"],
-            "actif": true,
-            "periode": ""
+            "id": null
         },
         "competence": {
-            "templates": ["base"],
+            "id": null,
+            "description": "",
             "element": "air"
         },
         "formule": {
-            "templates": ["base"],
-            "cercle": "oeuvreAuNoir",
-            "enonce": "",
-            "substance": "poudre",
-            "elements": ["air", "eau"],
-            "degre": 1,
-            "aire": "",
-            "duree": "Instantanée",
-            "catalyseurs": [],
-            "variantes": []
+            "id": null
         },
         "invocation": {
-            "templates": ["base"],
-            "sephirah": "malkut",
-            "monde": "aresh",
-            "element": "air",
-            "degre": 1,
-            "portee": "Personnelle",
-            "duree": "Instantanée",
-            "visibilite": "Non"
+            "id": null
         },
         "magie": {
-            "templates": ["base"]
+            "id": null
         },
         "materiae": {
-            "templates": ["base"],
-            "element": "air"
+            "id": null
         },
         "metamorphe": {
-            "templates": ["base"],
-            "element": "air",
-            "metamorphoses": ["", "", "", "", "", "", "", "", "", ""]
+            "id": null
         },
         "ordonnance": {
-            "templates": ["base"],
-            "monde": ""
+            "id": null
         },
         "passe": {
-            "templates": ["base"],
-            "actif": true,
-            "periode": ""
+            "id": null
         },
         "periode": {
-            "templates": ["base"],
-            "aube": 0,
-            "contexte": ""
+            "id": null
         },
         "pratique": {
-            "templates": ["base", "withLevel"],
-            "axe": "architecte"
+            "id": null
         },
         "quete": {
-            "templates": ["base"]
+            "id": null
         },
         "rite": {
-            "templates": ["base"],
-            "cercle": "fossoyeur",
-            "desmos": "spiritisme"
+            "id": null
         },
         "rituel": {
-            "templates": ["base", "withLevel"]
+            "id": null
         },
         "savoir": {
-            "templates": ["base"]
+            "id": null
         },
         "science": {
-            "id": "",
-            "ref": ""
+            "id": null
         },
         "sort": {
-            "templates": ["base"],
-            "cercle": "basseMagie",
-            "element": "air",
-            "voies": [],
-            "degre": 1,
-            "portee": "Personnelle",
-            "duree": "Instantanée"
+            "id": null
         },
         "technique": {
-            "templates": ["base", "withLevel"]
+            "id": null
         },
         "tekhne": {
-            "templates": ["base", "withLevel"]
+            "id": null
         },
         "vecu": {
-            "templates": ["base"],
-            "actif": true,
+            "id": null,
             "competences": [],
-            "degre": 0,
-            "element": "air",
-            "mnemos": [],
-            "periode": ""
+            "periode": null
         }
     }
 }

@@ -1,11 +1,16 @@
 {
     "name":"neph5e",
-    "title": "Nephilim Legende",
-    "description": "A system for playing Nephilim Legende games.",
-    "version": "1.1.23",
-    "author": "Kartaj",
-    "minimumCoreVersion": "0.8.9",
-    "compatibleCoreVersion": "9.255",
+    "title": "Nephilim Légende",
+    "description": "A system for playing Nephilim Légende game.",
+    "version": "1.2.0",
+    "author": [
+        {
+          "name": "Kartaj",
+          "flags": {}
+        }]
+    ,
+    "minimumCoreVersion": "10.284",
+    "compatibleCoreVersion": "10.287",
     "esmodules": [
         "neph5e.js"
     ],
@@ -14,13 +19,13 @@
     ],
     "packs": [
         {
-            "name": "cercles",
-            "label": "Cercles Occultes",
+            "name": "system",
+            "label": "Systeme",
             "system": "neph5e",
             "module": "neph5e",
-            "path": "./packs/cercles.db",
+            "path": "./packs/system.db",
             "type": "Item",
-            "tags" : [ "item", "cercles" ]
+            "tags" : [ "item", "system" ]
         }
     ],
     "languages": [
@@ -30,8 +35,9 @@
             "path": "lang/fr.json"
         }
     ],
+    "socket": true,
     "url": "https://github.com/rlepennec/neph5",
     "manifest": "https://github.com/rlepennec/neph5/releases/latest/download/system.json",
-    "download": "https://github.com/rlepennec/neph5/releases/download/v1.1.23/system.zip",
+    "download": "https://github.com/rlepennec/neph5/releases/download/v1.2.0/system.zip",
     "license": "license.txt"
 }
