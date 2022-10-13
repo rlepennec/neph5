@@ -103,6 +103,7 @@ export class Distance extends AbstractRoll {
              + AbstractRoll.toInt(parameters?.approche)
              + AbstractRoll.toInt(parameters?.blessures, data.blessures)
              + AbstractRoll.toInt(this.data.visee)
+             + this.weaponModifier(data.weapon)
              + this.manoeuverModifier(parameters);
     }
 
@@ -113,6 +114,14 @@ export class Distance extends AbstractRoll {
         const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
         const shot = parameters?.shot == null ? null : parameters.shot - 1;
         return AbstractRoll.toInt(manoeuver?.attack?.modifier) + AbstractRoll.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
+    }
+
+    /**
+     * @param weapon The weapon object used for the attack.
+     * @returns the attack modififer.
+     */
+    weaponModifier(weapon) {
+        return AbstractRoll.toInt(weapon?.system.attack * 10);
     }
 
     /**

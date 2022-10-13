@@ -161,6 +161,14 @@
         </tr>
         {{/if}}
 
+        {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
+        <tr class="hiddable" style="height:35px;display:none;">
+            <td style="width:380px;text-align:left;padding-left:20px;">{{weapon.name}}</td>
+            <td style="width:50px;text-align:right;">{{weapon.system.attack}}0</td>
+            <td style="width:34px;text-align:left;">%</td>
+        </tr>
+        {{/if}}
+
     </table>
 
     <div class="hiddable" style="

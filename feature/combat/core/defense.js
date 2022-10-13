@@ -126,6 +126,7 @@ export class Defense extends AbstractRoll {
              + AbstractRoll.toInt(data?.onGround?.modifier)
              + AbstractRoll.toInt(data?.stunned?.modifier)
              + AbstractRoll.toInt(data?.attack?.modifier)
+             + this.weaponModifier(data.weapon)
              + this.manoeuverModifier(parameters);
     }
 
@@ -136,6 +137,14 @@ export class Defense extends AbstractRoll {
         const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
         const shot = parameters?.shot == null ? null : parameters.shot - 1;
         return AbstractRoll.toInt(manoeuver?.update(this)?.defense?.modifier) + AbstractRoll.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
+    }
+
+    /**
+     * @param weapon The weapon object used for the defense.
+     * @returns the attack modififer.
+     */
+    weaponModifier(weapon) {
+        return AbstractRoll.toInt(weapon?.system.defense * 10);
     }
 
     /**

@@ -104,6 +104,7 @@ export class Naturelle extends AbstractRoll {
              + AbstractRoll.toInt(data?.foeOnGround?.modifier)
              + AbstractRoll.toInt(data?.onGround?.modifier)
              + AbstractRoll.toInt(data?.stunned?.modifier)
+             + this.weaponModifier(data.weapon)
              + this.manoeuverModifier(parameters);
     }
 
@@ -112,6 +113,14 @@ export class Naturelle extends AbstractRoll {
      */
     manoeuverModifier(parameters) {
         return AbstractRoll.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
+    }
+
+    /**
+     * @param weapon The weapon object used for the attack.
+     * @returns the attack modififer.
+     */
+    weaponModifier(weapon) {
+        return AbstractRoll.toInt(weapon?.system.attack * 10);
     }
 
     /**

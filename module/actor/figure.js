@@ -312,18 +312,16 @@ export class FigureSheet extends BaseSheet {
                 case 'alchimie':
                 case 'aspect':
                 case 'catalyseur':
+                case 'competence':
                 case 'magie':
                 case 'materiae':
                 case 'metamorphe':
-                    await new AbstractRollBuilder(this.actor)
-                        .withItem(item)
-                        .create()
-                        .drop();
-                    break;
                 case 'periode':
                     await new AbstractRollBuilder(this.actor)
                         .withItem(item)
                         .withEvent(event)
+                        .withPeriode(this.editedPeriode)
+                        .withManoeuver(this.editedCapacity)
                         .create()
                         .drop();
                     break;
@@ -339,35 +337,36 @@ export class FigureSheet extends BaseSheet {
                 case 'savoir':
                 case 'science':
                 case 'sort':
-                    await new AbstractRollBuilder(this.actor)
-                        .withItem(item)
-                        .withPeriode(this.editedPeriode)
-                        .create()
-                        .drop();
-                    break;
                 case 'vecu':
-                    await new AbstractRollBuilder(this.actor)
-                        .withItem(item)
-                        .withPeriode(this.editedPeriode)
-                        .withManoeuver(this.editedCapacity)
-                        .create()
-                        .drop();
+                    const periode = this._periodeOnDrop();
+                    if (periode != null) {
+                        await new AbstractRollBuilder(this.actor)
+                            .withItem(item)
+                            .withEvent(event)
+                            .withPeriode(periode)
+                            .withManoeuver(this.editedCapacity)
+                            .create()
+                            .drop();
+                    }
                     break;
-                case 'competence':
-                    await new AbstractRollBuilder(this.actor)
-                        .withItem(item)
-                        .withManoeuver(this.editedCapacity)
-                        .create()
-                        .drop();
+
             }
 
         }
 
     }
 
+    /**
+     * @returns the periode identifier on which to link the dropped item.
+     */
+    _periodeOnDrop() {
+        //const p = this.editedPeriode != null ? this.editedPeriode : this.actor.system.periode;
+        return this.editedPeriode;
+    }
+
     // -------------------------------------> Item edition
 
-    // Roll combart
+    // Roll combat
     async _onRoll(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -381,10 +380,6 @@ export class FigureSheet extends BaseSheet {
         }
     }
 
-    async _onDropManoeuver(event) {
-        event.preventDefault();
-    }
-
     // -- COMBAT-- ------------------------------------------------------------------------
 
     /**
@@ -393,7 +388,6 @@ export class FigureSheet extends BaseSheet {
      */
      async _onEditEsquive(event) {
         event.preventDefault();
-        //const feature = this.createFeature(".item", event);
         this.editedCapacity = this.editedCapacity === 'esquive' ? null : 'esquive';
         await this.render(true);
     }
@@ -404,7 +398,6 @@ export class FigureSheet extends BaseSheet {
      */
      async _onEditLutte(event) {
         event.preventDefault();
-        //const feature = this.createFeature(".item", event);
         this.editedCapacity = this.editedCapacity === 'lutte' ? null : 'lutte';
         await this.render(true);
     }
