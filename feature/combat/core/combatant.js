@@ -10,7 +10,7 @@ export class NephilimCombatant extends Combatant {
         if (!this.actor) return "1d6";
         let malus = this.getWoundsModifier(Constants.PHYSICAL);
         let bonus = this.actor.system.bonus.initiative;
-        let base = this.actor.initiative();
+        let base = this.actor.initiative;
         return "1d6" + 
             (malus === 0 ? "" : malus.toString()) +
             (bonus === 0 ? "" : "+" + bonus.toString()) +
