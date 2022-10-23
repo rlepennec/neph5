@@ -53,7 +53,6 @@ Hooks.once("init", function () {
 
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
-        enrichHTML: CustomHandlebarsHelpers.enrichHTML,
         isNull: CustomHandlebarsHelpers.isNull,
         nonNull: CustomHandlebarsHelpers.nonNull,
         getItem: CustomHandlebarsHelpers.getItem,

@@ -95,7 +95,7 @@ export class FormuleSheet extends NephilimItemSheet {
         formData["system.elements"] = elements;
 
         // Update catalyseurs
-        let size = this.item.system.catalyseurs == null ? 0 : this.item.system.catalyseurs.length;
+        let size = this.item.system.catalyseurs.length;
         const catalyseurs = [];
         for (let index = 0; index < size; index++) {
             const name = "system.catalyseurs.[" + index + "]";
@@ -105,7 +105,7 @@ export class FormuleSheet extends NephilimItemSheet {
         formData["system.catalyseurs"] = catalyseurs;
 
         // Update variantes
-        size = this.item.system.variantes == null ? 0 : this.item.system.variantes.length;
+        size = this.item.system.variantes.length;
         const variantes = [];
         for (let index = 0; index < size; index++) {
             const name = "system.variantes.[" + index + "]";

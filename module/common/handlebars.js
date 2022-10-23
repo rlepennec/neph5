@@ -122,15 +122,6 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
-     * @param content The intial content.
-     * @param owner   The document owner.
-     * @returns the enriched HTML content with links and secret contents.
-     */
-    static enrichHTML(content, owner) {
-        return TextEditor.enrichHTML(content, {secrets: owner, async: false});
-    }
-    
-    /**
      * @param words The words to concat. 
      * @returns the concated words.
      */
