@@ -10,7 +10,7 @@ export class Invocation extends AbstractRoll {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
+     * @param item  The original item object, purpose of the action. 
      */
     constructor(actor, item) {
         super(actor);
@@ -31,22 +31,23 @@ export class Invocation extends AbstractRoll {
      * @Override
      */
     get title() {
-        return "Jet d'Invocation";
+        return this.pacte ? game.i18n.localize('NEPH5E.jetInvocation') : game.i18n.localize('NEPH5E.jetPacte');
     }
 
     /**
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.invocation';
+        return this.pacte ? 'NEPH5E.tente.self.invocation' : 'NEPH5E.tente.self.pacte';
     }
 
     /**
      * @Override
      */
     get data() {
+        console.log(this);
         return new ActionDataBuilder(this)
-            .withType(Constants.OPPOSED)
+            .withType(this.pacte ? Constants.SIMPLE : Constants.OPPOSED)
             .withItem(this.item)
             .withBase('Invocation', this.degre)
             .withBlessures('magique')
@@ -57,21 +58,16 @@ export class Invocation extends AbstractRoll {
      * @Override
      */
     async initialize() {
-
         const embedded = this.actor.items.find(i => i.sid === this.sid);
-
         if (embedded == null) {
             ui.notifications.warn("Vous ne possédez pas cette invocation");
             return;
         }
-
         if (embedded.system.focus !== true && embedded.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
             return;
         }
-
         return await super.initialize();
-
     }
 
     /**
@@ -89,6 +85,14 @@ export class Invocation extends AbstractRoll {
         const science = new Science(this.actor, item).degre;
         const ka = this.actor.getKa(this.item.system.element);
         return science + ka;
+    }
+
+    /**
+     * @returns true if a pacte has already be done.
+     */
+    get pacte() {
+        const embedded = this.actor.items.find(i => i.sid === this.sid);
+        return embedded == null ? null : embedded.system.pacte;
     }
 
     /**
