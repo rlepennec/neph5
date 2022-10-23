@@ -90,19 +90,16 @@ export class Appel extends AbstractRoll {
      */
     async drop() {
 
-        // Delete the current appel
-        const current = this.actor.items.find(i => i.type === 'alchimie');
-        if (current != null) {
-            await this.actor.deleteEmbeddedDocuments('Item', current.id);
-        }
-
         // Create and embed the new appel
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+
+            // Previous is used if the focus is moved inside incarnations panel
+            const previous = this.actor.items.find(i => i.sid === this.sid);
+
             await new EmbeddedItem(this.actor, this.sid)
                 .withContext("Drop of a appel")
                 .withDeleteExisting()
-                .withData("status", Constants.DECHIFFRE)
+                .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
                 .withData("periode", this.periode)
                 .withoutData('description', 'degre', 'appel', 'controle', 'visibilite', 'entropie', 'dommages', 'protection')
                 .create();

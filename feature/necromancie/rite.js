@@ -89,11 +89,15 @@ export class Rite extends AbstractRoll {
      * @Override
      */
     async drop() {
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+
+            // Previous is used if the rite is moved inside incarnations panel
+            const previous = this.actor.items.find(i => i.sid === this.sid);
+
             await new EmbeddedItem(this.actor, this.sid)
                 .withContext("Drop of a rite")
-                .withData("status", Constants.DECHIFFRE)
+                .withDeleteExisting()
+                .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
                 .withData("periode", this.periode)
                 .withoutData('description', 'cercle', 'desmos')
                 .create();

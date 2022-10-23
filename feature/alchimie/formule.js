@@ -96,12 +96,16 @@ export class Formule extends AbstractRoll {
      * @Override
      */
     async drop() {
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+
+            // Previous is used if the focus is moved inside incarnations panel
+            const previous = this.actor.items.find(i => i.sid === this.sid);
+
             await new EmbeddedItem(this.actor, this.sid)
                 .withContext("Drop of a sort")
-                .withData("focus", false)
-                .withData("status", Constants.DECHIFFRE)
+                .withDeleteExisting()
+                .withData("focus", (previous == null ? false : previous.system.focus))
+                .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
                 .withData("quantite", 0)
                 .withData("transporte", 0)
                 .withData("periode", this.periode)
