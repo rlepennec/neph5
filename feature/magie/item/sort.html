@@ -22,7 +22,7 @@
 
             <hr>
 
-            {{#if (eq system.cercle "hauteMagie")}}
+            {{#if (ne system.cercle "basseMagie")}}
             {{> "systems/neph5e/templates/item/parts/body/list.hbs" title="NEPH5E.voies" values=system.voies names="system.voies" delete="delete-voie"}}
             {{/if}}
 

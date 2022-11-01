@@ -99,7 +99,15 @@
             </table>
             {{/if}}
 
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+            {{#if item.isEmbedded}}
+                <div style="border-width: 2px;">
+                    <div class="no-scrollbar" style="margin-top: 10px">
+                        {{html (enrichHTML item.description owner)}}
+                    </div>
+                </div>
+            {{else}}
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+            {{/if}}
 
         </div>
 

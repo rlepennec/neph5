@@ -85,17 +85,18 @@ export class Ordonnance extends AbstractRoll {
         let items = [];
 
         // For each ordonnance
-        for (let item of AbstractRoll.items(actor,'ordonnance')) {
+        for (let item of actor.items.filter(o => o.type === 'ordonnance' && AbstractRoll.isActive(actor, o))) {
+            const original = AbstractRoll.original(item.sid);
             size++;
-            monde = item.original.system.monde;
+            monde = original.system.monde;
             items.push({
                 original: {
-                    id: item.original.id,
-                    name: item.original.name,
-                    description: item.original.system.description
+                    id: original.id,
+                    name: original.name,
+                    description: original.system.description
                 },
                 embedded: {
-                    id: item.embedded.id
+                    id: item.id
                 }
             });
         }

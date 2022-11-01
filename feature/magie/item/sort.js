@@ -65,10 +65,10 @@ export class SortSheet extends NephilimItemSheet {
     _updateObject(event, formData) {
 
         // Update voies
-        if (formData["system.cercle"] === "basseMagie" || formData["system.cercle"] === "grandSecret") {
+        if (formData["system.cercle"] === "basseMagie") {
             formData["system.voies"] = [];
         } else {
-            let size = this.item.system.voies.length;
+            let size = this.item.system.voies == null ? 0 : this.item.system.voies.length;
             const voies = [];
             for (let index = 0; index < size; index++) {
                 const name = "system.voies.[" + index + "]";

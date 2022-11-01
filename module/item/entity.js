@@ -1,6 +1,4 @@
 import { Distance } from "../../feature/combat/core/distance.js";
-import { Melee } from "../../feature/combat/core/melee.js";
-import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Periode } from "../../feature/periode/periode.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
@@ -12,6 +10,22 @@ export class NephilimItem extends Item {
      */
     get sid() {
         return this?.system?.id;
+    }
+
+    /**
+     * @returns the item description from the embedded or the original item if necessary.
+     */
+    get description() {
+        if (this.system.hasOwnProperty('description')) {
+            return this.system.description;
+        }
+        if (this.sid != null) {
+            const original = game.items.find(i => i.sid === this.sid);
+            if (original != null) {
+                return original.system.description;
+            }
+        }
+        return null;
     }
 
     /**

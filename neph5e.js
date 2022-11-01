@@ -180,7 +180,7 @@ Hooks.once("init", function () {
         // If duplicate, create a new uuid
         if (item.link.startsWith("@UUID[Item") && item.link.endsWith(" (Copy)}")) {
             const uuid = CustomHandlebarsHelpers.UUID();
-            item.sid = uuid;
+            item.system.id = uuid;
             data.system.id = uuid;
             item.data._source.data.id = uuid;
             return true;
