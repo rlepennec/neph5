@@ -1,0 +1,15 @@
+<li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+    <div style="margin-right: 10px;" >
+        <a><i class="fas fa-feather-alt"></i></a>
+    </div>
+    {{#if (nonNull readOnly)}}
+    <label style="border: 0; background: transparent;">{{value}}</label>
+    {{else}}
+    <input
+        style="border: 0; background: transparent;padding-bottom:13px;"
+        name={{name}}
+        type="text"
+        value="{{value}}"
+        data-dtype="String"/>
+    {{/if}}
+</li>
