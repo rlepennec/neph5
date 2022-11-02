@@ -36,9 +36,8 @@ export class MetamorpheSheet extends NephilimItemSheet {
     _updateObject(event, formData) {
 
         // Update metamorphoses
-        let size = this.item.system.metamorphoses.length;
         const metamorphoses = [];
-        for (let index = 0; index < size; index++) {
+        for (let index = 0; index < 10; index++) {
             const name = "system.metamorphoses.[" + index + "]";
             metamorphoses.push({ name: formData[name + ".name"] });
             delete formData[name + ".name"];

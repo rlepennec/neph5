@@ -32,33 +32,172 @@
 
             <ol style="margin-top: 10px;">
 
-                {{#each system.metamorphoses as |metamorphose|}}
-                <li class="item" data-item-id="{{@index}}" style="display: flex; flex-direction: row;">
-
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
                     <div style="margin-right: 10px;" >
                         <a><i class="fas fa-feather-alt"></i></a>
                     </div>
-
-                    {{#if (nonNull ../readOnly)}}
-                    <label style="border: 0; background: transparent;">{{metamorphose.name}}</label>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[0].name}}</label>
                     {{else}}
                     <input
-                        style="border: 0; background: transparent;"
-                        name="system.metamorphoses.[{{@index}}].name"
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[0].name"
                         type="text"
-                        value="{{metamorphose.name}}"
+                        value="{{system.metamorphoses.[0].name}}"
                         data-dtype="String"/>
                     {{/if}}
-
                 </li>
-                {{/each}}
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[1].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[1].name"
+                        type="text"
+                        value="{{system.metamorphoses.[1].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[2].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[2].name"
+                        type="text"
+                        value="{{system.metamorphoses.[2].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[3].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[3].name"
+                        type="text"
+                        value="{{system.metamorphoses.[3].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[4].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[4].name"
+                        type="text"
+                        value="{{system.metamorphoses.[4].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[5].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[5].name"
+                        type="text"
+                        value="{{system.metamorphoses.[5].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[6].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[6].name"
+                        type="text"
+                        value="{{system.metamorphoses.[6].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[7].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[7].name"
+                        type="text"
+                        value="{{system.metamorphoses.[7].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[8].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[8].name"
+                        type="text"
+                        value="{{system.metamorphoses.[8].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
+
+                <li class="item" data-item-id="0" style="display: flex; flex-direction: row;">
+                    <div style="margin-right: 10px;" >
+                        <a><i class="fas fa-feather-alt"></i></a>
+                    </div>
+                    {{#if (nonNull readOnly)}}
+                    <label style="border: 0; background: transparent;">{{system.metamorphoses.[9].name}}</label>
+                    {{else}}
+                    <input
+                        style="border: 0; background: transparent;padding-bottom:13px;"
+                        name="system.metamorphoses.[9].name"
+                        type="text"
+                        value="{{system.metamorphoses.[9].name}}"
+                        data-dtype="String"/>
+                    {{/if}}
+                </li>
 
             </ol>
 
             {{#if (nonNull readOnly)}}
-            {{html item.system.description}}
+                {{html (enrichHTML item.system.description owner)}}
             {{else}}
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
             {{/if}}
 
         </div>

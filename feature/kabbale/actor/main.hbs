@@ -125,9 +125,7 @@
         </div>
 
         <div class="item-name edit-ordonnance" data-id="{{item.original.id}}" style="margin-left:20px;">
-            {{#with (html item.original.description) as |description|}}
-            <span>{{description}}</span>
-            {{/with}}
+            {{html item.original.name}}
         </div>
 
     </li>

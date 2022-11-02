@@ -31,9 +31,9 @@
             </div>
 
             {{#if (nonNull readOnly)}}
-            {{html item.system.description}}
+                {{html (enrichHTML item.description owner)}}
             {{else}}
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
             {{/if}}
 
         </div>

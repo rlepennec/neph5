@@ -1,8 +1,17 @@
+{{#if (and debug isGM)}}
+<input
+    name="system.id"
+    type="text"
+    value="{{system.id}}"
+    data-dtype="String"
+    style="margin-bottom:5px;text-align:center;color:indianred;font-weight:bold;"/>
+{{else}}
 <input
     name="system.id"
     type="hidden"
     value="{{system.id}}"
     data-dtype="String"/>
+{{/if}}
 
 <div style="display: flex; flex-direction: row; height: 60px;">
 
