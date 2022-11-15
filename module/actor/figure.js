@@ -317,6 +317,7 @@ export class FigureSheet extends BaseSheet {
                 case 'materiae':
                 case 'metamorphe':
                 case 'periode':
+                case 'vecu':
                     await new AbstractRollBuilder(this.actor)
                         .withItem(item)
                         .withEvent(event)
@@ -337,7 +338,6 @@ export class FigureSheet extends BaseSheet {
                 case 'savoir':
                 case 'science':
                 case 'sort':
-                case 'vecu':
                     const periode = this._periodeOnDrop();
                     if (periode != null) {
                         await new AbstractRollBuilder(this.actor)

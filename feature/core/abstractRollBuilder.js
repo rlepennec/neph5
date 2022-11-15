@@ -31,6 +31,7 @@ export class AbstractRollBuilder {
      */
     constructor(actor) {
         this.actor = actor;
+        this.scope = 'actor';
     }
 
     /**

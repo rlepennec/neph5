@@ -20,10 +20,12 @@
             </div>
             {{/with}}
 
-            {{#with (getItem item)}}
+            {{#with (concat ../edit " hoverable") as |class|}}
+            {{#with (getItem ..)}}
             <div>
-                <span class="hoverable" data-item-id="{{item}}">{{name}}</span>
+                <span class="{{class}}" data-item-id="{{item}}">{{name}}</span>
             </div>
+            {{/with}}
             {{/with}}
 
         </li>

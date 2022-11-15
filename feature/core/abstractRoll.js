@@ -549,7 +549,7 @@ export class AbstractRoll {
      */
     static isActive(actor, item) {
         const periode = actor.items.find(i => i.sid === item.system.periode);
-        return periode.actif;
+        return periode != null && periode.actif;
     }
 
     /**

@@ -40,6 +40,7 @@ export class FormuleSheet extends NephilimItemSheet {
         super.activateListeners(html);
         html.find('.tbd').on("drop", this._onDrop.bind(this));
         html.find('.delete-variante').click(this._onDeleteVariante.bind(this));
+        html.find('.edit-variante').click(this._onEditVariante.bind(this));
         html.find('.delete-catalyseur').click(this._onDeleteCatalyseur.bind(this));
     }
 
@@ -59,7 +60,7 @@ export class FormuleSheet extends NephilimItemSheet {
     }
 
     /**
-     * This function catches the deletion of a catalyseur or a variante.
+     * This function catches the deletion of a catalyseur.
      */
      async _onDeleteCatalyseur(event) {
         const li = $(event.currentTarget).closest(".item");
@@ -68,7 +69,19 @@ export class FormuleSheet extends NephilimItemSheet {
     }
 
     /**
-     * This function catches the deletion of a catalyseur or a variante.
+     * The function opens the sheet of the variante.
+     * @param {*} event 
+     */
+    async _onEditVariante(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".item");
+        const id = li.data("item-id");
+        const item = CustomHandlebarsHelpers.getItem(id);
+        await item.sheet.render(true);
+    }
+
+    /**
+     * This function catches the deletion of a variante.
      */
     async _onDeleteVariante(event) {
         const li = $(event.currentTarget).closest(".item");

@@ -103,7 +103,8 @@ export class Vecu extends AbstractRoll {
                 .withData("degre", 0)
                 .withData("mnemos", [])
                 .withData("periode", this.periode)
-                .withoutData('description', 'element')
+                .withData("element", this.item.system.element)
+                .withoutData('description')
                 .withoutAlreadyEmbeddedError()
                 .create();
         }

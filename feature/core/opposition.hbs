@@ -1,7 +1,7 @@
 <form class="chat">
 
     <div class="chat-body" style="margin-top:20px">
-        <i class="fa-sharp fa-solid fa-dice-d20"></i>
+        <i class="fa-solid fa-dice-d20"></i>
         <span>{{total}}</span>
         {{#unless (isNull absorption)}}
             {{#if (nonNull absorption.modifier)}}
@@ -9,7 +9,7 @@
                 <span> {{absorption.modifier}}</span>
             {{else}}
                 <i class="fas fa-heart-broken" style="margin-left:30px;margin-right:5px"></i>
-                <i class="fa-sharp fa-solid fa-right" style="margin-right:5px"></i>
+                <i class="fa-solid fa-right" style="margin-right:5px"></i>
                 <span> {{absorption.fix}}</span>
             {{/if}}
         {{/unless}}

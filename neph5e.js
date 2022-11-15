@@ -182,7 +182,7 @@ Hooks.once("init", function () {
             const uuid = CustomHandlebarsHelpers.UUID();
             item.system.id = uuid;
             data.system.id = uuid;
-            item.data._source.data.id = uuid;
+            item._source.system.id = uuid;
             return true;
         }
 

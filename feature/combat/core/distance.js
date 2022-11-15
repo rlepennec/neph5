@@ -1,7 +1,7 @@
 import { AbstractRoll } from "../../core/abstractRoll.js";
-import { AbstractRollBuilder } from "../../core/abstractRollBuilder.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
+import { Combat } from "./combat.js";
 import { Competence } from "../../periode/competence.js";
 import { Constants } from "../../../module/common/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
@@ -132,8 +132,7 @@ export class Distance extends AbstractRoll {
 
             // Use actor
             if (this.actor.token == null) {
-                const item = game.items.find(i => i.sid === this.weapon.system.competence);
-                new AbstractRollBuilder(this.actor).withItem(item).create().initialize();
+                await new Combat(this.actor).simpleAttack(this.weapon);
 
             // Use token
             } else {

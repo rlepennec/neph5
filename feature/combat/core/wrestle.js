@@ -1,7 +1,7 @@
 import { AbstractRoll } from "../../core/abstractRoll.js";
-import { AbstractRollBuilder } from "../../core/abstractRollBuilder.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
+import { Combat } from "./combat.js";
 import { CombatDialog } from "./combatDialog.js";
 import { Competence } from "../../periode/competence.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -9,7 +9,6 @@ import { Immobiliser } from "../manoeuver/immobiliser.js";
 import { Liberer } from "../manoeuver/liberer.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
-import { Menace } from "../core/menace.js";
 import { Projeter } from "../manoeuver/projeter.js";
 
 export class Wrestle extends AbstractRoll {
@@ -124,15 +123,7 @@ export class Wrestle extends AbstractRoll {
 
             // Use actor
             if (this.actor.token == null) {
-
-                switch (this.actor.type) {
-                    case 'figure':
-                        const item = game.items.find(i => i.sid === this.actor.system.manoeuvres.lutte);
-                        new AbstractRollBuilder(this.actor).withItem(item).create().initialize();
-                        break;
-                    case 'figurant':
-                        await new Menace(this.actor).initialize();
-                }
+                await new Combat(this.actor).simpleAttack(this.weapon);
 
             // Use token
             } else {

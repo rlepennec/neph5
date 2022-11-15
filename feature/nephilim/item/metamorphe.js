@@ -18,7 +18,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
 	static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 560,
-            height: 650,
+            height: 750,
             classes: ["nephilim", "sheet", "item"]
       });
     }

@@ -139,7 +139,7 @@ export class CombatDialog extends ActionDialog {
         }
         if (absorption.hasOwnProperty('fix')) {
             return '<i class="fas fa-heart-broken" style="margin-right:5px"></i>' +
-                   '<i class="fa-sharp fa-solid fa-right" style="margin-right:5px"></i>' + 
+                   '<i class="fa-solid fa-right" style="margin-right:5px"></i>' + 
                    absorption.fix.toString();
         }
     }
