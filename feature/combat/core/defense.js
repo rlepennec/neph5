@@ -1,10 +1,9 @@
-import { AbstractManoeuver } from "../manoeuver/abstractManoeuver.js";
 import { AbstractRoll } from "../../core/abstractRoll.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Bloquer } from "../manoeuver/bloquer.js";
-import { Competence } from "../../periode/competence.js";
+import { Combat } from "./combat.js";
 import { Contrer } from "../manoeuver/contrer.js";
 import { DefenseDialog } from "./defenseDialog.js";
 import { Desarmer } from "../manoeuver/desarmer.js";
@@ -19,7 +18,6 @@ import { NephilimChat } from "../../../module/common/chat.js";
 import { Parer } from "../manoeuver/parer.js";
 import { ParerLance } from "../manoeuver/parerLance.js";
 import { ParerProjectile } from "../manoeuver/parerProjectile.js";
-import { Vecu } from "../../periode/vecu.js";
 
 export class Defense extends AbstractRoll {
 
@@ -97,20 +95,8 @@ export class Defense extends AbstractRoll {
      * @Override
      */
     get degre() {
-        switch (this.actor.type) {
-            case 'figure':
-                const item = this.manoeuver?.competenceUsed(this.actor, this.weapon);
-                switch (item?.type) {
-                    case 'competence':
-                        return new Competence(this.actor, item).degre;
-                    case 'vecu':
-                        return new Vecu(this.actor, item, 'actor').degre;
-                    default:
-                        return 0;
-                }
-            case 'figurant':
-                return this.actor.system.menace;
-        }
+        const item = this.manoeuver?.competenceUsed(this.actor, this.weapon);
+        return new Combat(this.actor).degreOf(item);
     }
 
     /**
@@ -126,7 +112,7 @@ export class Defense extends AbstractRoll {
              + AbstractRoll.toInt(data?.onGround?.modifier)
              + AbstractRoll.toInt(data?.stunned?.modifier)
              + AbstractRoll.toInt(data?.attack?.modifier)
-             + this.weaponModifier(data.weapon)
+             + this.weaponModifier(data?.weapon)
              + this.manoeuverModifier(parameters);
     }
 
@@ -144,7 +130,7 @@ export class Defense extends AbstractRoll {
      * @returns the attack modififer.
      */
     weaponModifier(weapon) {
-        return AbstractRoll.toInt(weapon?.system.defense * 10);
+        return weapon == null ? 0 : AbstractRoll.toInt(weapon.system.defense * 10);
     }
 
     /**

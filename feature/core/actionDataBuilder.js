@@ -1,4 +1,3 @@
-import { AbstractRoll } from "./abstractRoll.js";
 import { Constants } from "../../module/common/constants.js";
 
 export class ActionDataBuilder {

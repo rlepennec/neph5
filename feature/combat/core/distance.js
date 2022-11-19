@@ -2,7 +2,6 @@ import { AbstractRoll } from "../../core/abstractRoll.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
-import { Competence } from "../../periode/competence.js";
 import { Constants } from "../../../module/common/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
 import { Instinctif } from "../manoeuver/instinctif.js";
@@ -63,12 +62,7 @@ export class Distance extends AbstractRoll {
      * @Override
      */
     get degre() {
-        switch (this.actor.type) {
-            case 'figure':
-                return new Competence(this.actor, this.item).degre;
-            case 'figurant':
-                return this.actor.system.menace;
-        }
+        return new Combat(this.actor).degreOf(this.item);
     }
 
     /**

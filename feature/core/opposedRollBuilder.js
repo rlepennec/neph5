@@ -1,4 +1,3 @@
-import { AbstractRoll } from "./abstractRoll.js";
 import { Attack } from "../combat/core/attack.js";
 import { Constants } from "../../module/common/constants.js";
 import { Defense } from "../combat/core/defense.js";
@@ -25,7 +24,7 @@ export class OpposedRollBuilder {
         }
 
         // Retrieve the actor which performed the initial action.
-        const actor = game.canvas?.scene?.tokens.find(t => t.actorId === flags.opposed.actor)?.actor;
+        const actor = OpposedRollBuilder.actorFromFlag(flags);
         if (actor == null) {
             return;
         }
@@ -128,6 +127,33 @@ export class OpposedRollBuilder {
 
         // The target is managed by a player which is not connected.
         return true;
+
+    }
+
+    /**
+     * @param flags The foundry identifier of the actor defined in the flag.
+     * @returns the actor which performs the initial action.
+     */
+    static actorFromFlag(flags) {
+
+        // Initialization
+        const id = flags.opposed.actor;
+        let actor = null;
+
+        // Retrieve the actor from scene.
+        actor = game.canvas?.scene?.tokens.find(t => t.actorId === id)?.actor;
+        if (actor != null) {
+            return actor;
+        }
+
+        // Retrieve the actor from game.
+        actor = game.actors.find(a => a.id === id);
+        if (actor != null) {
+            return actor;
+        }
+
+        // Error
+        ui.notifications.error("Acteur " + id + " introuvable");
 
     }
 

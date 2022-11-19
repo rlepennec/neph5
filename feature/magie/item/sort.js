@@ -1,5 +1,5 @@
-import { NephilimItemSheet } from "../../../module/item/base.js";
 import { Game } from "../../../module/common/game.js";
+import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class SortSheet extends NephilimItemSheet {
 
