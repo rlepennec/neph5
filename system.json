@@ -9,7 +9,7 @@
         }
     ],
     "minimumCoreVersion": "10.284",
-    "compatibleCoreVersion": "10.290",
+    "compatibleCoreVersion": "10.291",
     "esmodules": [
         "neph5e.js"
     ],
