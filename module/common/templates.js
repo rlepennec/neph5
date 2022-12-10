@@ -51,6 +51,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/kabbale/actor/main.hbs",
         "systems/neph5e/feature/kabbale/actor/header.hbs",
         "systems/neph5e/feature/kabbale/actor/invocation.hbs",
+        "systems/neph5e/feature/kabbale/actor/arbre.hbs",
 
         // Laboratoire
         "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",
@@ -93,14 +94,18 @@ export const preloadTemplates = async function () {
         // Actor parts
         "systems/neph5e/templates/actor/parts/description.hbs",
         "systems/neph5e/templates/actor/parts/options.hbs",
+        "systems/neph5e/templates/actor/parts/header.hbs",
 
         // Item parts
         "systems/neph5e/templates/item/parts/header/header.hbs",
-        "systems/neph5e/templates/item/parts/header/input.hbs",
+        "systems/neph5e/templates/item/parts/header/number.hbs",
         "systems/neph5e/templates/item/parts/header/select.hbs",
+        "systems/neph5e/templates/item/parts/header/text.hbs",
+        "systems/neph5e/templates/item/parts/header/label.hbs",
         "systems/neph5e/templates/item/parts/body/chronology.hbs",
         "systems/neph5e/templates/item/parts/body/description.hbs",
         "systems/neph5e/templates/item/parts/body/difficulte.hbs",
+        "systems/neph5e/templates/item/parts/body/checkbox.hbs",
         "systems/neph5e/templates/item/parts/body/input.hbs",
         "systems/neph5e/templates/item/parts/body/label.hbs",
         "systems/neph5e/templates/item/parts/body/list.hbs"

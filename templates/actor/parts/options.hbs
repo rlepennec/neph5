@@ -8,7 +8,7 @@
         <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.nephilim"}}</span>
                 </div>
             </div>
@@ -74,7 +74,7 @@
             </ol>
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.selenim"}}</span>
                 </div>
             </div>
@@ -126,7 +126,7 @@
             </ol>
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.arcanesMineurs"}}</span>
                 </div>
             </div>
@@ -196,7 +196,7 @@
         <div style="display:flex;flex-direction:column;width:50%;margin-left:10px;">
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.mondeProfane"}}</span>
                 </div>
             </div>
@@ -262,7 +262,7 @@
             </ol>
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.mondeOcculte"}}</span>
                 </div>
             </div>
@@ -286,7 +286,7 @@
             </ol>
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.affichage"}}</span>
                 </div>
             </div>
@@ -319,6 +319,20 @@
                         <i class="fas fa-circle checked"></i>
                     </label>
                     <label class="item-name">{{localize "NEPH5E.degreGauche"}}</label>
+                </li>
+
+                <li class="item">
+                    <label class="hand-checkbox">
+                        <input
+                            class="item-checkbox incarnationsOuvertes" 
+                            name="system.options.incarnationsOuvertes"
+                            type="checkbox"
+                            {{checked system.options.incarnationsOuvertes}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    <label class="item-name">{{localize "NEPH5E.incarnationsOuvertes"}}</label>
                 </li>
 
             </ol>
@@ -338,7 +352,7 @@
         <div style="display:flex;flex-direction:column;width:100%;margin-right:10px;">
 
             <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
                     <span style="padding-left:5px;">{{localize "NEPH5E.affichage"}}</span>
                 </div>
             </div>
@@ -371,6 +385,20 @@
                         <i class="fas fa-circle checked"></i>
                     </label>
                     <label class="item-name">{{localize "NEPH5E.degreGauche"}}</label>
+                </li>
+
+                <li class="item">
+                    <label class="hand-checkbox">
+                        <input
+                            class="item-checkbox incarnationsOuvertes" 
+                            name="system.options.incarnationsOuvertes"
+                            type="checkbox"
+                            {{checked system.options.incarnationsOuvertes}}
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    <label class="item-name">{{localize "NEPH5E.incarnationsOuvertes"}}</label>
                 </li>
 
             </ol>

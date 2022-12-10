@@ -106,7 +106,8 @@ export class Competence extends AbstractRoll {
                 degre: this.degre,
                 sapience: this.sapiences,
                 next: this.next,
-                elements: Game.pentacle.elements
+                elements: Game.pentacle.elements,
+                readOnly: this.degre === null
             },
             'ITEM.TypeCompetence',
             560,

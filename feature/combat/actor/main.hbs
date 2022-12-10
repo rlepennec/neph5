@@ -8,7 +8,8 @@
 
                 <span style="margin-right:20px;">{{localize "NEPH5E.dommagesPhysiques"}}</span>
 
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                    <span class="tooltiptext">1</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.physique._1"
@@ -20,7 +21,8 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                    <span class="tooltiptext">2</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.physique._2"
@@ -32,7 +34,8 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                    <span class="tooltiptext">3</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.physique._3"
@@ -45,10 +48,11 @@
                 </label>
 
                 {{#if (gt system.ka.terre 4)}}
-                <label class="dommage-checkbox" style="margin-left:20px; font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="margin-left:20px; font-size: 14px;">
                 {{else}}
-                <label class="dommage-checkbox" style="display:none;font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="display:none;font-size: 14px;">
                 {{/if}}
+                    <span class="tooltiptext">1</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.physique._4"
@@ -61,10 +65,11 @@
                 </label>
 
                 {{#if (gt system.ka.terre 9)}}
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
                 {{else}}
-                <label class="dommage-checkbox" style="display:none;font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="display:none;font-size: 14px;">
                 {{/if}}
+                    <span class="tooltiptext">1</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.physique._5"
@@ -153,13 +158,14 @@
 
     <div class="flexcol" style="width:50%; margin-right:10px;">
 
-        <div class="flexrow" style="flex:none; padding-top:10px; justify-content: center;flex:none"">
+        <div class="flexrow" style="flex:none; padding-top:10px; justify-content: center;flex:none">
 
             <div class="sectionTitleUnderline" style="padding-left: 5px; width:100%; margin: 10px 0px 10px 20px;">
 
                 <span style="margin-right:20px;">{{localize "NEPH5E.dommagesMagiques"}}</span>
 
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                    <span class="tooltiptext">1</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.magique._1"
@@ -171,7 +177,8 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                    <span class="tooltiptext">2</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.magique._2"
@@ -183,7 +190,8 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                    <span class="tooltiptext">3</span>
                     <input
                         class="item-checkbox"
                         id="system.dommage.magique._3"

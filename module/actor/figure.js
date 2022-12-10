@@ -5,7 +5,6 @@ import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { EmbeddedItem } from "../common/embeddedItem.js";
 import { Game } from "../common/game.js";
-import { NephilimActor } from "./entity.js";
 import { NephilimItemSheet } from "../item/base.js";
 import { Periode } from "../../feature/periode/periode.js";
 
@@ -19,7 +18,7 @@ export class FigureSheet extends BaseSheet {
         super(...args);
         this.editedCapacity = null;
         this.editedPeriode = null;
-        this.elapsedPeriodes = [];
+        this.elapsedPeriodes = this._initialElapsedPeriodes();
     }
 
     /**
@@ -27,6 +26,17 @@ export class FigureSheet extends BaseSheet {
      */
     get template() {
         return 'systems/neph5e/templates/actor/figure.html';
+    }
+
+    /**
+     * @return the elapsed periodes according to the user option and the history.
+     */
+    _initialElapsedPeriodes() {
+        if (this.actor.system.options.incarnationsOuvertes == true) {
+            return Periode.getOriginals(this.actor)
+        } else {
+            return [];
+        }
     }
 
     /**
@@ -45,7 +55,7 @@ export class FigureSheet extends BaseSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 1000,
-            height: 800,
+            height: 850,
             classes: ["nephilim", "sheet", "actor"],
             resizable: true,
             scrollY: [
@@ -216,6 +226,9 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="vecus"] .roll-savoir').click(this._onRollFeature.bind(this, 'savoir'));
         html.find('div[data-tab="vecus"] .roll-vecu').click(this._onRollFeature.bind(this, 'vecu'));
         html.find('div[data-tab="vecus"] .roll-chute').click(this._onRollFeature.bind(this, 'chute'));
+
+        // Options
+        html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
 
         html.find('div[data-tab="vecus"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
@@ -477,6 +490,26 @@ export class FigureSheet extends BaseSheet {
         event.preventDefault();
         const node = $(event.currentTarget).parent().next();
         const id = node.data('id');
+        await this._updateDisplayPeriode(node, id);
+    }
+
+    /**
+     * Used to elapse or colapse all periodes in incarnations.
+     * @param event The click event.
+     */
+    async _onChangePeriodesDisplay(event) {
+        event.preventDefault();
+        const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
+        await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
+        this.elapsedPeriodes = this._initialElapsedPeriodes();
+        await this.render(true);
+    }
+
+    /**
+     * @param id   The identifier of the periode to display or to show.
+     * @param node The node on which to update the periode.
+     */
+    async _updateDisplayPeriode(node, id) {
         if (node.css('display') !== 'none') {
             this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== id);
             node.attr("style", "display: none;");

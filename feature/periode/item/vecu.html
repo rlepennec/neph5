@@ -1,39 +1,38 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    <div class="tbd" style="display: flex; flex-direction: row;">
+    <div class="item-drop-target item-root">
     
-        <div style="margin: 10px;">
+        <div class="side">
             <img src="systems/neph5e/assets/core/side-vecu.webp" title="{{localize 'ITEM.TypeVecu'}}"/>
         </div>
 
-        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
+        <div class="article">
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div style="display: flex; flex-direction: row; margin-top: 10px;">
-
-                <div class="hoverable edit-periode" style="width: 100%; text-align: center; margin-bottom: 10px;">
-                    {{#with (getItem system.periode)}}
-                    <span style="margin-top: 15px; margin-left: 10px; vertical-align: middle; width: 100%; font-family: Calibri; font-style: italic; font-size: 20px; text-align: center;">{{name}}</span>
-                    {{/with}}
-                </div>
-
-                <div style="flex: 0 0 auto; vertical-align: middle; margin-left: 10px;">
-                    <select name="system.element">
-                    {{#select system.element}}
-                        {{#each elements as |name label|}}
-                        <option value="{{label}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
-                    </select>
-                </div>
-
+            <div class="main">
+                {{> "systems/neph5e/templates/item/parts/header/label.hbs" tooltip="NEPH5E.periode" style="padding-top:4px;" value=system.periode class="hoverable edit-periode"}}
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
             </div>
 
-            <ol style="column-count: 2;">
+            {{#if item.isEmbedded}}
+            <table class="table-center">
+                <tr>
+                    <th>{{localize 'NEPH5E.degre'}}</th>
+                    <th>{{localize 'NEPH5E.sapience'}}</th>
+                </tr>
+                <tr>
+                    <td>{{system.degre}}</td>
+                    <td>{{getNextCost system.degre}}</td>
+                </tr>
+            </table>
+            {{/if}}
+
+            {{#unless (isEmptyCollection system.competences)}}
+            <ol class="column-2 line-bottom">
 
                 {{#each system.competences as |competence|}}
-                <li class="item" data-item-id="{{competence}}" style="display: flex; flex-direction: row;">
+                <li class="item hoverable flexrow-start" data-item-id="{{competence}}">
 
                     <input
                         name="system.competences.[{{@index}}]"
@@ -41,7 +40,7 @@
                         value="{{competence}}"
                         data-dtype="String"/>
 
-                    <div style="margin-right: 10px;" >
+                    <div class="mright">
                         <a><i class="delete-competence fas fa-trash"></i></a>
                     </div>
 
@@ -55,19 +54,20 @@
                 {{/each}}
 
             </ol>
+            {{/unless}}
 
             {{#if item.isEmbedded}}
-            <ol style="margin-top: 10px;">
+            <ol class="mtop">
 
                 {{#each system.mnemos as |mnemos|}}
-                <li class="item" data-item-id="{{@index}}" style="display: flex; flex-direction: row;">
+                <li class="item hoverable flexrow-start" data-item-id="{{@index}}">
 
-                    <div style="margin-right: 10px;" >
+                    <div class="mright">
                         <a><i class="delete-mnemos fas fa-trash"></i></a>
                     </div>
 
                     <input
-                        style="border: 0; background: transparent;"
+                        class="input-text"
                         name="system.mnemos.[{{@index}}]"
                         type="text"
                         value="{{mnemos}}"
@@ -75,9 +75,13 @@
 
                 </li>
                 {{/each}}
-
-                <li style="display: flex; flex-direction: row;">
-                    <div style="margin-right: 10px;" >
+                
+                {{#if (isEmptyCollection system.mnemos)}}
+                <li class="item hoverable flexrow-start">
+                {{else}}
+                <li class="item hoverable flexrow-start mtop">
+                {{/if}}
+                    <div class="mright">
                         <a><i class="add-mnemos fas fa-plus"></i></a>
                     </div>
                     <span>{{localize 'NEPH5E.mnemos'}}</span>
@@ -87,21 +91,8 @@
             {{/if}}
 
             {{#if item.isEmbedded}}
-            <table style="margin-top: 10px;">
-                <tr>
-                    <th>{{localize 'NEPH5E.degre'}}</th>
-                    <th>{{localize 'NEPH5E.sapience'}}</th>
-                </tr>
-                <tr>
-                    <td style="text-align: center; font-weight: bold;">{{system.degre}}</td>
-                    <td style="text-align: center; font-weight: bold;">{{getNextCost system.degre}}</td>
-                </tr>
-            </table>
-            {{/if}}
-
-            {{#if item.isEmbedded}}
                 <div style="border-width: 2px;">
-                    <div class="no-scrollbar" style="margin-top: 10px">
+                    <div class="no-scrollbar mtop">
                         {{html (enrichHTML item.description owner)}}
                     </div>
                 </div>

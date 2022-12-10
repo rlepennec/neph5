@@ -1,0 +1,27 @@
+<div class="data">
+
+    <div 
+    
+        {{#if (nonNull style)}}
+        style="{{style}}"
+        {{/if}}
+
+        class="value tooltip {{class}}">
+
+        <span class="tooltiptext">{{localize tooltip}}</span>
+
+        {{#if (isNull value)}}
+            <span class="label placeholder">
+                {{localize placeholder}}
+            </span>
+        {{else}}
+            {{#with (getItem value)}}
+            <span class="label">
+                {{name}}
+            </span>
+            {{/with}}
+        {{/if}}
+        
+    </div>
+
+</div>

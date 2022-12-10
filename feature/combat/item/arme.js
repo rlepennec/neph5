@@ -22,7 +22,7 @@ export class ArmeSheet extends NephilimItemSheet {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 560,
+            width: 650,
             height: 500,
             classes: ["nephilim", "sheet", "item"]
         });
@@ -40,12 +40,15 @@ export class ArmeSheet extends NephilimItemSheet {
      */
      activateListeners(html) {
         super.activateListeners(html);
-        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
     }
 
     /**
-     * This function catches the drop of vecu or competence to register the skill uuid.
-     * @param {*} event 
+     * This function catches the drop on a weapon. The uuid of the dropped item is stored
+     * as skill to use the weapon. The dropped item can be
+     *   - a vecu
+     *   - a competence
+     * @param event The drop event.
      */
     async _onDrop(event) {
         event.preventDefault();

@@ -1,3 +1,72 @@
+@font-face {
+  font-family: "AJensonPro";
+  src: url("../../systems/neph5e/assets/fonts/AJensonPro-Regular.otf");
+}
+@font-face {
+  font-family: "AJensonProLtDisp";
+  src: url("../../systems/neph5e/assets/fonts/AJensonPro-LtDisp.otf");
+}
+@font-face {
+  font-family: "MinionPro";
+  src: url("../../systems/neph5e/assets/fonts/MinionPro-Regular.otf");
+}
+@font-face {
+  font-family: "Nightjar";
+  src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Regular.ttf");
+}
+@font-face {
+  font-family: "NightjarDemi";
+  src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
+}
+/* OLD */
+.window-app .window-content {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.center {
+  justify-content: center;
+}
+.description {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: 'AJensonProLtDisp';
+  font-size: 15px;
+}
+.description .add {
+  color: indianred;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+.table-center {
+  text-align: center;
+  font-weight: bold;
+}
+.column-2 {
+  column-count: 2;
+}
+.flexrow-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.no-display {
+  display: none;
+}
+.no-vertical-margin {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.mtop {
+  margin-top: 10px;
+}
+.mtop {
+  margin-bottom: 10px;
+}
+.mright {
+  margin-right: 10px;
+}
 .editor {
   height: 630px;
 }
@@ -126,7 +195,7 @@
   bottom: 50%;
   width: 100%;
   text-align: center;
-  font-family: arial, sans-serif;
+  font-family: 'AJensonPro';
   font-weight: bold;
 }
 .circleHidden {
@@ -157,7 +226,7 @@
   margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif';
+  font-family: 'AJensonPro';
   font-size: 20px;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
@@ -167,11 +236,83 @@
   margin-left: 5px;
 }
 .sectionTitleUnderline {
-  font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif';
+  font-family: 'AJensonPro';
   font-size: 20px;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
   border-color: black;
+}
+.actor-root {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .side {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+  margin-right: 20px;
+}
+.actor-root .side .header {
+  border-radius: 4px;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.actor-root .side .header .profile {
+  width: 150px;
+  border: 0px;
+  margin-left: 10px;
+}
+.actor-root .side .header .title .name {
+  resize: none;
+  margin-top: 10px;
+  margin-left: 10px;
+  text-align: center;
+  border: 0px;
+  background-color: transparent;
+  width: 150px;
+  font-family: 'NightjarDemi';
+  font-size: 25px;
+}
+.actor-root .side .tabs {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex: 0 0 30px;
+  margin-bottom: 5px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.actor-root .side .simulacre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  padding-top: 5px;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.actor-root .side .simulacre .name {
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  height: 30px;
+}
+.actor-root .side .simulacre .no-name {
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  height: 30px;
+  color: indianred;
+}
+.actor-root .side .simulacre .image {
+  margin-left: 50px;
+  width: 50px;
+  border: 0px;
 }
 .actor .sheet-header {
   flex: 0 0 100px;
@@ -350,222 +491,208 @@
   font-weight: lighter;
   font-style: italic;
 }
-.item .sheet-header {
+.item-root {
   display: flex;
   flex-direction: row;
-  flex: 0;
-  margin-bottom: 10px;
-  border-bottom: 2px groove #eeede0;
+  font-family: 'AJensonPro';
 }
-.item .sheet-header .picture {
-  padding: 2px;
+.item-root .side {
+  margin: 10px;
+}
+.item-root .article {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  flex-basis: 100%;
+  font-family: 'AJensonPro';
+}
+.item-root .article .header .uuid {
+  margin-bottom: 5px;
+  text-align: center;
+  color: indianred;
+  font-weight: bold;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.item-root .article .header .title {
+  display: flex;
+  flex-direction: row;
   height: 60px;
-  width: 60px;
-  flex: 0;
 }
-.item .sheet-header .title {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+.item-root .article .header .title .name {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+  width: 100%;
+  font-family: 'NightjarDemi';
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.item-root .article .header .title .image {
+  flex: 0 0 auto;
   margin-left: 10px;
-  font-style: bold;
-  text-align: center;
-  flex: 1;
-  align-items: center;
 }
-.item .sheet-header .title .type {
-  font-size: 20px;
-  font-style: bold;
-  margin-bottom: 8px;
+.item-root .article .line-bottom {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 14px;
 }
-.item .sheet-header .title .name {
-  font-size: 14;
+.item-root .article .input-text {
+  border: 0;
+  background: transparent;
+  vertical-align: top;
+  height: 16px;
 }
-.item .sheet-navigation {
-  flex: 0 0 30px;
-  margin-bottom: 25px;
-  font-family: "Modesto Condensed", "Palatino Linotype", serif;
-  font-size: 20px;
+.item-root .article .main {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: space-evenly;
+  border-bottom: 1px solid black;
+  padding-bottom: 8px;
 }
-.item .sheet-navigation .sheet-navigation-tab {
-  height: 30px;
-  line-height: 32px;
-  margin: 0 14px;
-}
-.item .sheet-navigation .sheet-navigation-tab .active {
-  border-bottom: 3px solid #44191A;
-}
-.item .sheet-body .header .property {
+.item-root .article .main .data {
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
+  flex-basis: content;
   text-align: center;
+  font-size: large;
+  font-family: 'AJensonPro';
 }
-.item .sheet-body .header .property .property-name {
-  padding-top: 5px;
-  flex: 1  1 auto;
-  font-size: 20px;
-  font-style: bold;
-  text-align: center;
-}
-.item .sheet-body .header .property .property-value {
-  font-size: 16px;
+.item-root .article .main .data .value {
   border: 0;
   outline: 0;
   height: 30px;
+  vertical-align: middle;
 }
-.item .sheet-body .header .property .property-value:focus {
-  outline: none;
-}
-.item .sheet-body .header.arme {
-  column-count: 4;
-}
-.item .sheet-body .header.sort {
-  column-count: 3;
-}
-.item .sheet-body .header.invocation {
-  column-count: 4;
-}
-.item .sheet-body .header.formule {
-  column-count: 4;
-}
-.item .sheet-body .header.materiae {
-  column-count: 1;
-}
-.item .sheet-body .header.metamorphe {
-  column-count: 1;
-}
-.item .sheet-body .header.aspect {
-  column-count: 2;
-}
-.item .sheet-body .header.appel {
-  column-count: 3;
-}
-.item .sheet-body .header.rite {
-  column-count: 3;
-}
-.item .sheet-body .header.pratique {
-  column-count: 2;
-}
-.item .sheet-body .header.rituel {
-  column-count: 1;
-}
-.item .sheet-body .header.technique {
-  column-count: 1;
-}
-.item .sheet-body .header.tekhne {
-  column-count: 1;
-}
-.item .sheet-body .header.arme {
-  column-count: 3;
-}
-.item .sheet-body .property-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 0;
-}
-.item .sheet-body .property-list .property {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  margin: 20px 0px 0px 0px;
-  font-family: Signika, sans-serif;
-  font-size: 16px;
-}
-.item .sheet-body .property-list .property .property-name {
-  flex: 0;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 20px;
-  font-style: "bold";
-}
-.item .sheet-body .property-list .property .property-value {
-  flex: 1;
-  padding-left: 10px;
-  border-style: none;
-}
-.item .sheet-body .part-header {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  justify-content: space-between;
-  height: 28px;
+.item-root .article .main .data .value .select {
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  width: 120%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #191813;
-  font-family: Signika, sans-serif;
-  font-size: 20px;
-  margin-top: 20px;
 }
-.item .sheet-body .part-header .part-name {
-  flex: 1  1 auto;
+.item-root .article .main .data .value .select .option {
+  text-align: center;
+}
+.item-root .article .main .data .value .number {
+  flex: 0 0 auto;
+  width: 35px;
+  height: 35px;
   margin-left: 10px;
-}
-.item .sheet-body .item-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 0;
-}
-.item .sheet-body .item-list .item-list-header {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  justify-content: space-between;
-  height: 28px;
+  text-align: center;
+  border-radius: 50%;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #191813;
-  font-family: Signika, sans-serif;
-  font-size: 20px;
-  margin-top: 20px;
 }
-.item .sheet-body .item-list .item-list-header .item-name {
-  flex: 1  1 auto;
-  margin-left: 10px;
+.item-root .article .main .data .value .label {
+  margin-top: 4px;
 }
-.item .sheet-body .item-list .item-list-header .item-checkbox {
-  width: 54px;
+.item-root .article .main .data .value .placeholder {
+  color: indianred;
 }
-.item .sheet-body .item-list .item-list-header .item-integer {
-  width: 54px;
+.item-root .article .main .data .value .text {
+  margin-top: 4px;
+  border: 0;
+  background: transparent;
 }
-.item .sheet-body .item-list .item-list-header .item-control {
+.item-root .article .row {
   display: flex;
   flex-direction: row;
-  width: 32px;
-}
-.item .sheet-body .item-list .item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 10px;
-  padding: 0 0 0 20px;
+  margin-bottom: 10px;
+  justify-content: space-evenly;
+}
+.item-root .article .row .data {
+  display: flex;
+  flex-direction: column;
+  flex-basis: content;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'AJensonPro';
+}
+.item-root .article .row .data .value {
+  border: 0;
+  outline: 0;
+  height: 30px;
+  vertical-align: middle;
+}
+.item-root .article .row .data .value .number {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  text-align: center;
+  border-radius: 50%;
+  align-items: center;
+}
+.item-root .article .input {
+  display: flex;
+  flex-direction: row;
+  height: 26px;
+  vertical-align: middle;
+  font-size: 16px;
+  font-family: 'AJensonPro';
+}
+.item-root .article .input .title {
+  flex: 0 0 auto;
+  font-weight: bold;
+  padding-top: 3px;
+}
+.item-root .article .input .value {
+  border: 0;
+  background: transparent;
+}
+.item-root .article .list {
+  vertical-align: middle;
+  font-family: 'AJensonPro';
   font-size: 16px;
 }
-.item .sheet-body .item-list .item .item-name {
-  flex: 1  1 auto;
+.item-root .article .list .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 26px;
+  font-weight: bold;
 }
-.item .sheet-body .item-list .item .item-name:hover {
-  text-shadow: 0 0 10px #2C606D;
-  color: #2C606D;
+.item-root .article .list .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 26px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
-.item .sheet-body .item-list .item .item-checkbox {
-  width: 54px;
+.item-root .article .checkbox {
+  display: flex;
+  flex-direction: row;
+  height: 26px;
+  vertical-align: middle;
+  font-size: 16px;
+  font-family: 'AJensonPro';
 }
-.item .sheet-body .item-list .item .item-integer {
-  width: 54px;
-  padding: 10px;
+.item-root .article .checkbox input[type="checkbox"] {
+  display: none;
 }
-.item .sheet-body .item-list .item .item-control {
-  width: 32px;
+.item-root .article .checkbox .checked {
+  display: none;
+}
+.item-root .article .checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.item-root .article .checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
+.item-root .article .checkbox i {
+  margin-left: 50px;
+  margin-right: 10px;
 }
 .chat {
   display: flex;

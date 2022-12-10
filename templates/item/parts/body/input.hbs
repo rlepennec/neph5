@@ -1,32 +1,32 @@
-<div style="display: flex; flex-direction: row; height: 26px; vertical-align: middle;">
-
-    <span style="flex: 0 0 auto; font-weight: bold; padding-top: 4px;">{{localize title}} : </span>
-
-    {{#if (nonNull difficulty)}}
-    <input
-        disabled
-        style="border: 0; background: transparent;"
-        name={{name}}
-        {{#if (eq type "Boolean")}}
-        type="checkbox"
-        {{checked value}}
-        {{else}}
-        type="text"
-        value="{{value}}"
-        {{/if}}
-        data-dtype={{type}}/>
-    {{else}}
-    <input
-        style="border: 0; background: transparent;"
-        name={{name}}
-        {{#if (eq type "Boolean")}}
-        type="checkbox"
-        {{checked value}}
-        {{else}}
-        type="text"
-        value="{{value}}"
-        {{/if}}
-        data-dtype={{type}}/>
+<div 
+    {{#if (nonNull style)}}
+    style={{style}}
     {{/if}}
+    class="input">
+
+    {{#if (nonNull title)}}
+    <span class="title">{{localize title}} : </span>
+    {{/if}}
+
+    <input
+
+        {{#if (nonNull difficulty)}}
+        disabled
+        {{/if}}
+
+        {{#if (nonNull placeholder)}}
+        placeholder="{{localize placeholder}}"
+        {{/if}}
+
+        class="value"
+        name={{name}}
+        {{#if (eq type "Boolean")}}
+        type="checkbox"
+        {{checked value}}
+        {{else}}
+        type="text"
+        value="{{value}}"
+        {{/if}}
+        data-dtype={{type}}/>
 
 </div>

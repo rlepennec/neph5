@@ -58,6 +58,8 @@
             "simulacre": null,
             "periode": null,
             "sapience": 0,
+            "sapienceDepensee": 0,
+            "pointsIncarnations": 0,
             "ka" : {
                 "air": 0,
                 "brume": 0,
@@ -197,7 +199,8 @@
                 "denier": false,
                 "epee": false,
                 "chronologieDescendante": false,
-                "degreGauche": false
+                "degreGauche": false,
+                "incarnationsOuvertes": false
             }
         }
     },

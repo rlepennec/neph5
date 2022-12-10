@@ -1,12 +1,17 @@
-<div style="display: flex; flex-direction: column; margin-top: 4px;">
+<div
+    {{#if (or (isNull display) display)}}
+    class="list"
+    {{else}}
+    class="list no-display"
+    {{/if}}>
 
-    <span style="font-weight: bold; height: 26px;">{{localize title}} : </span>
+    <span class="title">{{localize title}} : </span>
 
     {{#unless (isEmptyCollection values)}}
-    <ol>
+    <ol class="no-vertical-margin">
 
         {{#each values as |item|}}
-        <li class="item" data-item-id="{{item}}" style="display: flex; flex-direction: row; height: 20px;">
+        <li class="item hoverable flexrow-start" data-item-id="{{item}}">
 
             <input
                 name="{{../names}}.[{{@index}}]"
@@ -15,7 +20,7 @@
                 data-dtype="String"/>
 
             {{#with (concat ../delete " fas fa-trash") as |class|}}
-            <div style="margin-right: 10px;" >
+            <div class="mright" >
                 <a><i class="{{class}}"></i></a>
             </div>
             {{/with}}

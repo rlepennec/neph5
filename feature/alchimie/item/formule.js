@@ -12,6 +12,7 @@ export class FormuleSheet extends NephilimItemSheet {
         data.elements = Game.pentacle.elements;
         data.cercles = Game.alchimie.cercles;
         data.substances = Game.alchimie.substances;
+        data.catalyseurs = game.settings.get('neph5e', 'catalyseurs');
         return data;
     }
 
@@ -38,15 +39,17 @@ export class FormuleSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
         html.find('.delete-variante').click(this._onDeleteVariante.bind(this));
         html.find('.edit-variante').click(this._onEditVariante.bind(this));
         html.find('.delete-catalyseur').click(this._onDeleteCatalyseur.bind(this));
     }
 
     /**
-     * This function catches the drop on an formule.
-     * @param {*} event 
+     * This function catches the drop on an formule. It can be
+     *   - an other formule, that is a variante
+     *   - a catalyseur
+     * @param event The drop event.
      */
     async _onDrop(event) {
         event.preventDefault();
@@ -143,6 +146,7 @@ export class FormuleSheet extends NephilimItemSheet {
             item: item,
             system: item.system,
             debug: game.settings.get('neph5e', 'debug'),
+            catalyseurs: game.settings.get('neph5e', 'catalyseurs'),
             elements: Game.pentacle.elements,
             cercles: Game.alchimie.cercles,
             substances: Game.alchimie.substances,

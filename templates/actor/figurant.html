@@ -1,22 +1,12 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    <div style="display: flex; flex-direction: row;">
+    <div class="actor-root">
     
-        <div style="display: flex; flex-direction: column; width:150px; margin-right: 20px;">
+        <div class="side">
         
-            <input
-                name="system.id"
-                type="hidden"
-                value="{{system.id}}"
-                data-dtype="String"/>
+            {{> "systems/neph5e/templates/actor/parts/header.hbs"}}
 
-            <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" style="width:150px;border:0px;"/>
-
-            <div class="title">
-                <textarea spellcheck="false" class="name" name="name" style="resize: none; margin-top: 20px;text-align: center; border: 0px; background-color: transparent; width: 150px;font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 30px;">{{actor.name}}</textarea>
-            </div>
-
-            <nav class="sheet-navigation tabs" data-group="primary" style="display: flex; flex-direction: column; text-align: center; margin-top:20px;border-radius: 4px; background: rgba(0, 0, 0, 0.05);padding-top:5px;padding-bottom:5px;">
+            <nav class="sheet-navigation tabs" data-group="primary">
                 
                 <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
 

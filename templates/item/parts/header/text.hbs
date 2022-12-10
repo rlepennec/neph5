@@ -1,0 +1,22 @@
+<div class="data">
+
+    <div class="value tooltip {{class}}">
+
+        <span class="tooltiptext">{{localize tooltip}}</span>
+
+        <input
+
+            {{#if (nonNull style)}}
+            style="{{style}}"
+            {{/if}}
+
+            name={{name}}
+            placeholder="{{placeholder}}"
+            type="text"
+            class="text hoverable"
+            value="{{value}}"
+            data-dtype="String"/>
+
+    </div>
+
+</div>

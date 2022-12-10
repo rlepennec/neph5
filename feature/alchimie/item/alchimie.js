@@ -9,10 +9,7 @@ export class AlchimieSheet extends NephilimItemSheet {
         return mergeObject(super.defaultOptions, {
             width: 560,
             height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
+            classes: ["nephilim", "sheet", "item"]
       });
     }
 

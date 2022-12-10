@@ -84,6 +84,7 @@ export class Chute extends AbstractRoll {
                 periodes: this.detailsFromPeriodes(this.sid),
                 degre: this.degre,
                 next: this.next,
+                readOnly: this.degre === null
             },
             'ITEM.TypeChute',
             560,

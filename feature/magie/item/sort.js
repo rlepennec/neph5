@@ -36,13 +36,14 @@ export class SortSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
         html.find('.delete-voie').click(this._onDelete.bind(this));
     }
 
     /**
-     * This function catches the drop on a voie.
-     * @param {*} event 
+     * This function catches the drop on a sort. The dropped item can be
+     *   - une voie magique
+     * @param event The drop event.
      */
     async _onDrop(event) {
         event.preventDefault();

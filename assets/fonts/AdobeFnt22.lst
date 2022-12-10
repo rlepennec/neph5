@@ -1,0 +1,325 @@
+%!Adobe-FontList 1.22
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AJensonPro-It
+FamilyName:Adobe Jenson Pro
+StyleName:Italic
+MenuName:Adobe Jenson Pro
+StyleBits:1
+WeightClass:400
+WidthClass:5
+AngleClass:1
+FullName:Adobe Jenson Pro Italic
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/AJensonPro-It.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:158744
+FileModTime:646827357
+DesignSize:120
+NameArray:0,Mac,18,Adobe Jenson Pro Ital
+NameArray:0,Mac,4,Adobe Jenson Pro Italic
+NameArray:0,Win,1,Adobe Jenson Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AJensonPro-LtDisp
+FamilyName:Adobe Jenson Pro
+StyleName:Light Display
+MenuName:Adobe Jenson Pro Lt Disp
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Adobe Jenson Pro Light Display
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/AJensonPro-LtDisp.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:121940
+FileModTime:646827357
+DesignSize:720
+NameArray:0,Mac,18,Adobe Jenson Pro Lt Disp
+NameArray:0,Mac,4,Adobe Jenson Pro Light Display
+NameArray:0,Win,1,Adobe Jenson Pro Lt Disp
+NameArray:0,Win,16,Adobe Jenson Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AJensonPro-LtItSubh
+FamilyName:Adobe Jenson Pro
+StyleName:Light Italic Subhead
+MenuName:Adobe Jenson Pro Lt Subh
+StyleBits:1
+WeightClass:300
+WidthClass:5
+AngleClass:1
+FullName:Adobe Jenson Pro Light Italic Subhead
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/AJensonPro-LtItSubh.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:157436
+FileModTime:646827357
+DesignSize:190
+NameArray:0,Mac,18,Adobe Jenson Pro Lt Ital Subh
+NameArray:0,Mac,4,Adobe Jenson Pro Light Italic Subhead
+NameArray:0,Win,1,Adobe Jenson Pro Lt Subh
+NameArray:0,Win,16,Adobe Jenson Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:AJensonPro-Regular
+FamilyName:Adobe Jenson Pro
+StyleName:Regular
+MenuName:Adobe Jenson Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Adobe Jenson Pro
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/AJensonPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:129184
+FileModTime:646827357
+DesignSize:120
+NameArray:0,Mac,4,Adobe Jenson Pro
+NameArray:0,Win,1,Adobe Jenson Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/AdobeFnt22.lst
+FileLength:7752
+FileModTime:646827357
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Adso-UltraLight
+FamilyName:Adso
+StyleName:UltraLight
+MenuName:Adso
+StyleBits:0
+WeightClass:250
+WidthClass:5
+AngleClass:0
+FullName:Adso-UltraLight
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/Adso-UlLt.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:199832
+FileModTime:646827357
+NameArray:0,Mac,18,Adso UltraLight
+NameArray:0,Mac,4,Adso-UltraLight
+NameArray:0,Win,1,Adso
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Francesco-Regular
+FamilyName:Francesco
+StyleName:Regular
+MenuName:Francesco
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Francesco-Regular
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/Francesco-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:291276
+FileModTime:646827357
+NameArray:0,Mac,18,Francesco Regular
+NameArray:0,Mac,4,Francesco-Regular
+NameArray:0,Win,1,Francesco
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-It
+FamilyName:Minion Pro
+StyleName:Italic
+MenuName:Minion Pro
+StyleBits:1
+WeightClass:400
+WidthClass:5
+AngleClass:1
+FullName:Minion Pro Italic
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/MinionPro-It.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:276140
+FileModTime:646827357
+DesignSize:110
+NameArray:0,Mac,18,Minion Pro Ital
+NameArray:0,Mac,4,Minion Pro Italic
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:231312
+FileModTime:646827357
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Nightjar-Black
+FamilyName:Nightjar
+StyleName:Black
+MenuName:Nightjar Black
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Nightjar Black
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/T-26 - Nightjar Black.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:87944
+FileModTime:646827357
+NameArray:0,Mac,18,Nightjar Black
+NameArray:0,Mac,4,Nightjar Black
+NameArray:0,Win,1,Nightjar Black
+NameArray:0,Win,16,Nightjar
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Nightjar-Demi
+FamilyName:Nightjar
+StyleName:Demi
+MenuName:Nightjar Demi
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Nightjar Demi
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/T-26 - Nightjar Demi.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:85724
+FileModTime:646827357
+NameArray:0,Mac,18,Nightjar Demi
+NameArray:0,Mac,4,Nightjar Demi
+NameArray:0,Win,1,Nightjar Demi
+NameArray:0,Win,16,Nightjar
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Nightjar-Regular
+FamilyName:Nightjar
+StyleName:Regular
+MenuName:Nightjar Regular
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Nightjar Regular
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/T-26 - Nightjar Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:87064
+FileModTime:646827357
+NameArray:0,Mac,18,Nightjar Regular
+NameArray:0,Mac,4,Nightjar Regular
+NameArray:0,Win,1,Nightjar Regular
+NameArray:0,Win,16,Nightjar
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Nightjar-Song
+FamilyName:Nightjar
+StyleName:Song
+MenuName:Nightjar Song
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Nightjar Song
+WritingScript:Roman
+OutlineFileName:/Volumes/Dropbox Triton/OneDrive/Nephilim Légendes/Saison 1/Maquette/Maquette Nephilim Quintessence/REIMP Maquette Quintessence REIMP/Dossier Maquette Nephilim Quintessence PAGE 1/Document fonts/T-26 - Nightjar Song.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:47928
+FileModTime:646827357
+NameArray:0,Mac,18,Nightjar Song
+NameArray:0,Mac,4,Nightjar Song
+NameArray:0,Win,1,Nightjar Song
+NameArray:0,Win,16,Nightjar
+%EndFont
+

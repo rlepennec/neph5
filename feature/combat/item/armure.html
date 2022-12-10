@@ -1,53 +1,24 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    <div class="tbd" style="display: flex; flex-direction: row;">
+    <div class="item-root">
     
-        <div style="margin: 10px;">
+        <div class="side">
             <img src="systems/neph5e/assets/core/side-armure.webp" title="{{localize 'ITEM.TypeArmure'}}"/>
         </div>
 
-        <div style="display: flex; flex-direction: column; margin: 10px; flex-basis: 100%; ">
+        <div class="article">
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div style="margin-top: 20px; display: flex; flex-direction: row;">
-                <div style="margin-left:20px; flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">{{localize 'NEPH5E.protectionContreDegats'}}</div>
+            <div class="main">
+
+                {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.physique" tooltip="NEPH5E.protection" name="system.physique" value=system.physique}}
+
+                {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.magique" tooltip="NEPH5E.protection" name="system.magique" value=system.magique}}
+
             </div>
 
-            <ol class="item-list">
-
-                <li class="flexrow" style="margin-bottom:5px;">
-                     <input
-                        style="flex: 0 0 auto; width: 30px; height:30px; margin-left: 10px; text-align:center;border-radius: 50%;"
-                        name="system.physique"
-                        type="text"
-                        value="{{system.physique}}"
-                        data-dtype="Number"/>
-                    <label style="flex: 0 0 auto; margin-left:10px; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;padding-top:3px;">{{localize "NEPH5E.physique"}}</label>
-                </li>
-
-                <li class="flexrow" style="margin-bottom:5px;">
-                    <input
-                        style="flex: 0 0 auto; width: 30px; height:30px; margin-left: 10px; text-align:center;border-radius: 50%;"
-                        name="system.magique"
-                        type="text"
-                        value="{{system.magique}}"
-                        data-dtype="Number"/>
-                    <label style="flex: 0 0 auto; margin-left:10px; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;padding-top:3px;">{{localize "NEPH5E.magique"}}</label>
-                </li>
-
-            </ol>
-
-            <hr>
-
-            <div style="border-width: 2px;margin-left:20px;">
-                {{#if (isEmptyString system.description)}}
-                <div style="flex: 0 0 auto; font-family:'Modesto Condensed','Palatino Linotype','serif'; font-size:20px; border-color:black;">
-                    <span>{{localize 'NEPH5E.description'}}</span>
-                </div>
-                {{/if}}
-                {{editor system.description target="system.description" button=true owner=owner editable=editable}}
-            </div>
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

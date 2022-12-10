@@ -1,22 +1,12 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    <div style="display: flex; flex-direction: row;">
+    <div class="actor-root">
     
-        <div style="display: flex; flex-direction: column; width:150px; margin-right: 20px;">
+        <div class="side">
         
-            <input
-                name="system.id"
-                type="hidden"
-                value="{{system.id}}"
-                data-dtype="String"/>
+            {{> "systems/neph5e/templates/actor/parts/header.hbs"}}
 
-            <img class="profile" src="{{actor.img}}" title="{{actor.name}}" data-edit="img" style="width:150px;border:0px;"/>
-
-            <div class="title">
-                <textarea spellcheck="false" class="name" name="name" style="resize: none; margin-top: 10px;text-align: center; border: 0px; background-color: transparent; width: 150px;font-family: 'Modesto Condensed', 'Palatino Linotype', 'serif'; font-size: 30px;">{{actor.name}}</textarea>
-            </div>
-
-            <nav class="sheet-navigation tabs" data-group="primary" style="display: flex; flex-direction: column; text-align: center; margin-top:20px;border-radius: 4px; background: rgba(0, 0, 0, 0.05);padding-top:5px;padding-bottom:5px;">
+            <nav class="sheet-navigation tabs" data-group="primary">
 
                 <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
 
@@ -43,6 +33,7 @@
         
                 {{#if (eq system.options.kabbale true)}}
                 <a class="sheet-navigation-tab" data-tab="kabbale">{{localize "NEPH5E.kabbale.science"}}</a>
+                <a class="sheet-navigation-tab" data-tab="arbre">{{localize "NEPH5E.arbre"}}</a>
                 {{/if}}
         
                 {{#if (eq system.options.alchimie true)}}
@@ -88,12 +79,12 @@
             </nav>
 
             {{#if (eq system.options.simulacre true)}}
-            <div class="sheet-navigation-tab" data-tab="simulacre" style="display: flex; flex-direction: column; justify-content: center; margin-top:20px;border-radius: 4px; background: rgba(0, 0, 0, 0.05);padding-top:5px;text-align: center;">
+            <div class="sheet-navigation-tab simulacre" data-tab="simulacre">
                 {{#if (isNull simulacre.name)}}
-                <a style="font-family:'Modesto Condensed','Palatino Linotype','serif';font-size: 20px;height: 30px;line-height: 32px;">{{localize "NEPH5E.aucunSimulacre"}}</a>
+                <a class="no-name">{{localize "NEPH5E.aucunSimulacre"}}</a>
                 {{else}}
-                <img class="profile" src="{{simulacre.img}}" data-edit="img" style="margin-left:50px;width:50px;border:0px;"/>
-                <a style="font-family:'Modesto Condensed','Palatino Linotype','serif';font-size: 20px;height: 30px;line-height: 32px;">{{simulacre.name}}</a>
+                <img class="image" src="{{simulacre.img}}" data-edit="img"/>
+                <a class="name">{{simulacre.name}}</a>
                 {{/if}}
             </div>
             {{/if}}
@@ -136,6 +127,9 @@
                 {{#if (eq system.options.kabbale true)}}
                 <div class="tab" data-group="primary" data-tab="kabbale">
                     {{> "systems/neph5e/feature/kabbale/actor/main.hbs"}}
+                </div>
+                <div class="tab" data-group="primary" data-tab="arbre">
+                    {{> "systems/neph5e/feature/kabbale/actor/arbre.hbs"}}
                 </div>
                 {{/if}}
         

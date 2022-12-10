@@ -36,7 +36,7 @@ export class VecuSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
         html.find('.add-mnemos').click(this._onEditMnemos.bind(this));
         html.find('.edit-competence').click(this.onEdit.bind(this));
         html.find('.edit-periode').click(this.onEditPeriode.bind(this));
@@ -45,8 +45,10 @@ export class VecuSheet extends NephilimItemSheet {
     }
 
     /**
-     * This function catches the drop on a competence.
-     * @param {*} event 
+     * This function catches the drop on a periode. The dropped item can be
+     *   - a periode
+     *   - a competence
+     * @param event The drop event.
      */
     async _onDrop(event) {
         event.preventDefault();

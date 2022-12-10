@@ -85,6 +85,7 @@ export class Savoir extends AbstractRoll {
                 periodes: this.detailsFromPeriodes(this.sid),
                 degre: this.degre,
                 next: this.next,
+                readOnly: this.degre === null
             },
             'ITEM.TypeSavoir',
             560,

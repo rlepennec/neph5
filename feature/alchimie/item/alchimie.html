@@ -1,38 +1,19 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
-
-        <input
-            name="system.id"
-            type="hidden"
-            value="{{system.id}}"
-            data-dtype="String"/>
-
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
-
-        <div class="title">
-
-            <span class="type">{{localize "ITEM.TypeAlchimie"}}</span>
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
+    <div class="item-root">
+    
+        <div class="side">
+            <img src="systems/neph5e/assets/core/site-formule.webp" title="{{localize 'ITEM.TypeAlchimie'}}"/>
         </div>
 
-    </header>
+        <div class="article">
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-        <a class="sheet-navigation-tab active " data-tab="description">{{localize "NEPH5E.description"}}</a>
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        <div class="tab" data-group="primary" data-tab="description">
-            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
         </div>
 
-    </section>
+    </div>
 
 </form>

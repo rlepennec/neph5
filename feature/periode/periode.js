@@ -145,6 +145,19 @@ export class Periode extends AbstractRoll {
 
     /**
      * @param actor  The actor object.
+     * @returns all ids from actor periodes.
+     */
+    static getOriginals(actor) {
+        const periodes = [];
+        for (let periode of actor.items.filter(i => i.type === 'periode')) {
+            const original = AbstractRoll.original(periode.sid);
+            periodes.push(original.id);
+        }
+        return periodes;
+    }
+
+    /**
+     * @param actor  The actor object.
      * @param chrono True for chronologic order, false for antichronologic, null for display order.
      * @param actif  True if only active periode, false for only passive, null for all.
      * @param last   The identifier of the last periode included, null if no limit.

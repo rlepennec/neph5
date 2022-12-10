@@ -1,0 +1,26 @@
+<label class="checkbox">
+
+    <input
+
+        {{#if (nonNull difficulty)}}
+            disabled
+        {{/if}}
+        
+        {{#if value}}
+            checked
+        {{/if}}
+
+        id="{{name}}"
+        name="{{name}}"
+        type="checkbox"
+        data-dtype="Boolean"/>
+
+    <i class="far fa-circle unchecked"></i>
+    <i class="fas fa-circle checked"></i>
+
+    {{#if (nonNull label)}}
+    <span class="label">{{localize label}}</span>
+    {{/if}}
+
+</label>
+

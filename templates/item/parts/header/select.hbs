@@ -1,19 +1,23 @@
-<div style="display: flex; flex-direction: column; text-align: center; width: 100px;">
+<div class="data">
 
-    <div style="padding-top: 5px; flex: 1 1 auto; font-weight: bold; text-align: center; width: 100px;">{{localize title}}</div>
+    <div class="value tooltip">
 
-    <div style="border: 0; outline: 0; height: 30px; width: 100px;">
-        {{#if (nonNull difficulty)}}
-        <select class="selector-disabled" name={{name}} disabled style="width: 100px;">
+        <span class="tooltiptext">{{localize tooltip}}</span>
+
+        {{#if (or (nonNull difficulty) (nonNull readOnly))}}
+        <select name={{name}} class="select selector-disabled" disabled>
         {{else}}
-        <select name={{name}} style="width: 100px;">
+        <select name={{name}} class="select hoverable">
         {{/if}}
-        {{#select value}}
+
+            {{#select value}}
             {{#each collection as |name label|}}
-            <option value="{{label}}">{{localize name}}</option>
+            <option value="{{label}}" class="option">{{localize name}}</option>
             {{/each}}
-        {{/select}}
+            {{/select}}
+
         </select>
+        
     </div>
 
 </div>

@@ -35,14 +35,15 @@ export class PeriodeSheet extends NephilimItemSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.tbd').on("drop", this._onDrop.bind(this));
+        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
         html.find('.edit-vecu').click(this.onEdit.bind(this));
         html.find('.delete-vecu').click(this._onDeleteVecu.bind(this));
     }
 
     /**
-     * This function catches the drop on the vecu list
-     * @param {*} event 
+     * This function catches the drop on a periode. The dropped item can be
+     *   - a vecu
+     * @param event The drop event.
      */
     async _onDrop(event) {
         event.preventDefault();
@@ -68,7 +69,7 @@ export class PeriodeSheet extends NephilimItemSheet {
 
     /**
      * Gets the vecus of the specified periode.
-     * @param {} Periode The uuid of the periode.
+     * @param periode The uuid of the periode.
      * @return the array of the uuid od the vecus.
      */
     _getVecus(periode) {
