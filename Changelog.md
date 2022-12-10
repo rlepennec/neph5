@@ -1,4 +1,8 @@
 # 1.2.9
+Utilisation de nouvelles polices et de nouveaux fonds
+Réecriture du css pour les objets
+Ajout de l'onglet arbre de vie
+Ajout de compteurs pour les points de sapience et d'incarnation
 
 # 1.2.8
 Correction d'anomalies (combat, jets opposés)
