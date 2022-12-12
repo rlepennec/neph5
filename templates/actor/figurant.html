@@ -18,11 +18,11 @@
 
         </div>
         
-        <div style="display: flex; flex-direction: column;">
+        <div class="article">
 
             <section class="sheet-body">
 
-                <img src="systems/neph5e/assets/core/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
+                {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
 
                 <div class="tab" data-group="primary" data-tab="description">
                     {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}

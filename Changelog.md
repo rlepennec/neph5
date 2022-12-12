@@ -1,3 +1,9 @@
+# 1.2.10
+Amélioration de l'arbre de vie
+Ajout des images des constructs alchimiques dans l'onglet laboratoire
+Correction d'une anomalie sur la suppression des effets mnemos
+Factorisation du css
+
 # 1.2.9
 Utilisation de nouvelles polices et de nouveaux fonds
 Réecriture du css pour les objets

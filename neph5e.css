@@ -314,6 +314,10 @@
   width: 50px;
   border: 0px;
 }
+.actor-root .article {
+  display: flex;
+  flex-direction: column;
+}
 .actor .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;
@@ -321,8 +325,6 @@
 .actor .sheet-navigation {
   flex: 0 0 30px;
   margin-bottom: 5px;
-  font-family: "Modesto Condensed", "Palatino Linotype", serif;
-  font-size: 20px;
 }
 .actor .sheet-navigation .sheet-navigation-tab {
   height: 30px;

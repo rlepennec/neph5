@@ -91,41 +91,46 @@
 
         </div>
         
-        <div style="display: flex; flex-direction: column;">
+        <div class="article">
 
             <section class="sheet-body">
 
                 <div class="tab" data-group="primary" data-tab="description">
-                    {{> "systems/neph5e/templates/actor/parts/description.hbs"}}
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+                    {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}
                 </div>
         
                 {{#if (eq system.options.combat true)}}
                 <div class="tab" data-group="primary" data-tab="combat">
-                    <img src="systems/neph5e/assets/core/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/combat/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.vecus true)}}
                 <div class="tab" data-group="primary" data-tab="vecus">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/periode/actor/main.hbs"}}
                 </div>
                 {{/if}}
                 
                 {{#if (eq system.options.nephilim true)}}
                 <div class="tab" data-group="primary" data-tab="nephilim">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/nephilim/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.magie true)}}
                 <div class="tab" data-group="primary" data-tab="magie">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/magie/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.kabbale true)}}
                 <div class="tab" data-group="primary" data-tab="kabbale">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/kabbale/actor/main.hbs"}}
                 </div>
                 <div class="tab" data-group="primary" data-tab="arbre">
@@ -135,63 +140,74 @@
         
                 {{#if (eq system.options.alchimie true)}}
                 <div class="tab" data-group="primary" data-tab="alchimie">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/alchimie/actor/main.hbs"}}
                 </div>
                 <div class="tab" data-group="primary" data-tab="laboratoire">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/alchimie/actor/laboratoire.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.akasha true)}}
                 <div class="tab" data-group="primary" data-tab="akasha">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/akasha/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.selenim true)}}
                 <div class="tab" data-group="primary" data-tab="selenim">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/selenim/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.necromancie true)}}
                 <div class="tab" data-group="primary" data-tab="necromancie">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/necromancie/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.conjuration true)}}
                 <div class="tab" data-group="primary" data-tab="conjuration">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/conjuration/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.baton true)}}
                 <div class="tab" data-group="primary" data-tab="baton">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/baton/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.coupe true)}}
                 <div class="tab" data-group="primary" data-tab="coupe">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/coupe/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.denier true)}}
                 <div class="tab" data-group="primary" data-tab="denier">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/denier/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.epee true)}}
                 <div class="tab" data-group="primary" data-tab="epee">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/epee/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.incarnations true)}}
                 <div class="tab" data-group="primary" data-tab="incarnations">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/periode/actor/incarnations.hbs"}}
                 </div>
                 {{/if}}

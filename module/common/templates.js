@@ -92,9 +92,9 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/selenim/actor/attributs.hbs",
 
         // Actor parts
-        "systems/neph5e/templates/actor/parts/description.hbs",
         "systems/neph5e/templates/actor/parts/options.hbs",
         "systems/neph5e/templates/actor/parts/header.hbs",
+        "systems/neph5e/templates/actor/parts/top.hbs",
 
         // Item parts
         "systems/neph5e/templates/item/parts/header/header.hbs",

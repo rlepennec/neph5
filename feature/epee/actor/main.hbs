@@ -1,6 +1,6 @@
 <ol class="item-list">
 
-    {{> "systems/neph5e/feature/epee/actor/header.hbs" }}
+{{> "systems/neph5e/templates/actor/parts/top.hbs"}}
 
     {{#each system.epee.rituels as |rituel|}}
         {{#with (getItem rituel.refid)}}

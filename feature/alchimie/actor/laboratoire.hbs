@@ -1,11 +1,29 @@
-<img src="systems/neph5e/assets/core/top-incarnations.webp" style="border:0px;width:814px;height:98px"/>
+<div style="display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            justify-content: space-evenly;">
 
-<div style="width:100%;margin-top:10px;">
-    <div style="margin-left:auto;margin-right:auto;width:100%;display:flex; flex-direction: row; font-family: 'AJensonPro'; font-size: 25px; font-weight:bold;background-color: transparent;border: 0px;">
-        {{#with (getItem actor.system.alchimie.voie)}}
-        <label style="padding-bottom:3px; border: none; background-color: transparent; width:100%; text-align: center;">{{name}}</label>
-        {{/with}}
-    </div>
+    {{#if actor.system.alchimie.constructs.cornue.active}}
+    <img src="systems/neph5e/assets/backgrounds/cornue.webp" style="border:none; height:90px;"/>
+    {{/if}}
+
+    {{#if actor.system.alchimie.constructs.creuset.active}}
+    <img src="systems/neph5e/assets/backgrounds/creuset.webp" style="border:none; height:90px;"/>
+    {{/if}}
+
+    {{#if actor.system.alchimie.constructs.athanor.active}}
+    <img src="systems/neph5e/assets/backgrounds/athanor.webp" style="border:none; height:90px;"/>
+    {{/if}}
+
+    {{#if actor.system.alchimie.constructs.aludel.active}}
+    <img src="systems/neph5e/assets/backgrounds/aludel.webp" style="border:none; height:90px;"/>
+    {{/if}}
+
+    {{#if actor.system.alchimie.constructs.alambic.active}}
+    <img src="systems/neph5e/assets/backgrounds/alambic.webp" style="border:none; height:90px;"/>
+    {{/if}}
+
 </div>
 
 <ol class="item-list">
