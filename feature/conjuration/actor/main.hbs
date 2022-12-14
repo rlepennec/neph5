@@ -31,8 +31,5 @@
 </ol>
 
 {{else}}
-<div style="display:flex; flex-direction:column; margin-top:200px; text-align: center; color:indianred">
-    <label style="margin-left:100px;margin-right:100px;">{{localize 'NEPH5E.aideFocus'}}</label>
-    <i style="margin-top:50px;" class="fas fa-arrow-alt-circle-down fa-2xl"></i>
-</div>
+    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
 {{/if}}

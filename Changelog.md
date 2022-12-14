@@ -1,3 +1,8 @@
+# 1.2.11
+Mise à jour d'icones du système
+Ajout d'une note informative
+Factorisation du css
+
 # 1.2.10
 Amélioration de l'arbre de vie
 Ajout des images des constructs alchimiques dans l'onglet laboratoire

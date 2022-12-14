@@ -34,6 +34,27 @@ export class MigrationTools {
     }
 
     /**
+     * Display a information content.
+     */
+    static async important() {
+
+        const content = await renderTemplate("systems/neph5e/module/migration/important.html");
+        new Dialog({
+            title: "Important", 
+            content: content,
+            buttons: {
+                close: {
+                    label: "Fermer"
+                }
+            }
+        }, {
+            width: 600,
+            height: 520
+        }).render(true);
+
+    }
+
+    /**
      * Process to full migration.
      */
     static async migrate() {
@@ -53,6 +74,8 @@ export class MigrationTools {
         if (isNewerVersion('1.0.3', worldTemplateVersion)) {
             await _1_0_3.migrate('1.0.3');
         }
+
+        await MigrationTools.important();
 
     }
 
