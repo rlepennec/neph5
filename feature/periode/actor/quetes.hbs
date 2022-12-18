@@ -2,18 +2,18 @@
 {{#unless (isEmptyCollection items)}}
 <ol class="item-list">
 
-    <div style="width:794px;margin-left:10px; display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-        <span style="padding-left:5px;">{{localize "NEPH5E.quetes"}}</span>
+    <div class="title">
+        <span>{{localize "NEPH5E.quetes"}}</span>
     </div>
 
-    <div style="column-count:3">
+    <div class="content">
 
         {{#each items as |item|}}
         {{#if (ne item.degre 0)}}
         <li class="item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="quete">
 
             {{#if ../../actor.system.options.degreGauche}}
-            <label style="width:20px;">{{item.degre}}</label>
+            <label class="degre">{{item.degre}}</label>
             {{/if}}
 
             <div class="item-name edit-quete" data-id="{{item.id}}">
@@ -21,7 +21,7 @@
             </div>
 
             {{#unless ../../actor.system.options.degreGauche}}
-            <label style="width:20px;">{{item.degre}}</label>
+            <label class="degre">{{item.degre}}</label>
             {{/unless}}
 
             <div class="item-control">

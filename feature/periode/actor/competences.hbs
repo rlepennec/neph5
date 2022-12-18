@@ -1,12 +1,13 @@
 <ol class="item-list">
 
-    <div style="width:794px;margin-left:10px; display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-        <span style="padding-left:5px;">{{localize "NEPH5E.competencesEtVecus"}}</span>
+    <div class="title">
+        <span>{{localize "NEPH5E.competencesEtVecus"}}</span>
     </div>
 
-    <div style="column-count:3;">
+    <div class="content">
 
         {{#unless (isNull system.simulacre)}}
+        {{#if (eq system.options.simulacre true)}}
 
             {{#with actor.vecusOfSimulacre as |items|}}
             {{#unless (isEmptyCollection items)}}
@@ -14,7 +15,7 @@
             <li class="item" data-item-id="{{id}}" data-scope="simulacre">
 
                 {{#if ../../actor.system.options.degreGauche}}
-                <label style="width:20px;">{{item.degre}}</label>
+                <label class="degre">{{item.degre}}</label>
                 {{/if}}
 
                 <div class="item-name edit-vecu" data-id="{{item.id}}" data-scope="simulacre">
@@ -22,7 +23,7 @@
                 </div>
 
                 {{#unless ../../actor.system.options.degreGauche}}
-                <label style="width:20px;">{{item.degre}}</label>
+                <label class="degre">{{item.degre}}</label>
                 {{/unless}}
 
                 <div class="item-control">
@@ -35,6 +36,7 @@
             {{/unless}}
             {{/with}}
             
+        {{/if}}
         {{/unless}}
         
         {{#with actor.vecusOfActor as |items|}}
@@ -43,7 +45,7 @@
         <li class="item macro" data-item-id="{{id}}" data-item-type="vecu" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="vecu">
 
             {{#if ../../actor.system.options.degreGauche}}
-            <label style="width:20px;">{{item.degre}}</label>
+            <label class="degre">{{item.degre}}</label>
             {{/if}}
 
             <div class="item-name edit-vecu" data-id="{{item.id}}" data-scope="actor">
@@ -51,7 +53,7 @@
             </div>
 
             {{#unless ../../actor.system.options.degreGauche}}
-            <label style="width:20px;">{{item.degre}}</label>
+            <label class="degre">{{item.degre}}</label>
             {{/unless}}
 
             <div class="item-control">
@@ -70,30 +72,30 @@
         <li class="item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="competence">
 
             {{#if ../../actor.system.options.degreGauche}}
-            <div style="width:20px;">
-                {{#if (eq item.degre 0)}}
-                <span style="color: #a1a1a1;">{{item.degre}}</span>
-                {{else}}
-                <span>{{item.degre}}</span>
-                {{/if}}
+            <div class="degre">
+                <span
+                    {{#if (eq item.degre 0)}}
+                    class="disabled"
+                    {{/if}}>
+                    {{item.degre}}</span>
             </div>
             {{/if}}
 
             <div class="item-name edit-competence" data-id="{{item.id}}">
-                {{#if (eq item.degre 0)}}
-                <span style="color: #a1a1a1;">{{item.name}}</span>
-                {{else}}
-                <span>{{item.name}}</span>
-                {{/if}}
+                <span
+                    {{#if (eq item.degre 0)}}
+                    class="disabled"
+                    {{/if}}>
+                    {{item.name}}</span>
             </div>
 
             {{#unless ../../actor.system.options.degreGauche}}
-            <div style="width:20px;">
-                {{#if (eq item.degre 0)}}
-                <span style="color: #a1a1a1;">{{item.degre}}</span>
-                {{else}}
-                <span>{{item.degre}}</span>
-                {{/if}}
+            <div class="degre">
+                <span
+                    {{#if (eq item.degre 0)}}
+                    class="disabled"
+                    {{/if}}>
+                    {{item.degre}}</span>
             </div>
             {{/unless}}
 

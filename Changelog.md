@@ -1,3 +1,8 @@
+# 1.2.12
+Correction d'une anomalie empêchant de renommer un vécu
+Caché le vécu du simulacre si l'option est désactivée
+CSS
+
 # 1.2.11
 Mise à jour d'icones du système
 Ajout d'une note informative

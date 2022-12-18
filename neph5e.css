@@ -339,6 +339,31 @@
 .actor-root .article .nofocus i {
   margin-top: 50px;
 }
+.actor-root .article .vecus .title {
+  width: 794px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .vecus .title span {
+  padding-left: 5px;
+}
+.actor-root .article .vecus .content {
+  column-count: 3;
+}
+.actor-root .article .vecus .content .degre {
+  width: 20px;
+}
+.actor-root .article .vecus .content .disabled {
+  color: #a1a1a1;
+}
 .actor .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;

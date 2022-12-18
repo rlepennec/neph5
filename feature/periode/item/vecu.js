@@ -140,14 +140,16 @@ export class VecuSheet extends NephilimItemSheet {
         formData["system.competences"] = competences;
 
         // Update mnemos
-        size = this.item.system.mnemos.length;
-        const mnemos = [];
-        for (let index = 0; index < size; index++) {
-            const name = "system.mnemos.[" + index + "]";
-            mnemos.push(formData[name]);
-            delete formData[name];
+        if (this.item.system.mnemos != null) {
+            size = this.item.system.mnemos.length;
+            const mnemos = [];
+            for (let index = 0; index < size; index++) {
+                const name = "system.mnemos.[" + index + "]";
+                mnemos.push(formData[name]);
+                delete formData[name];
+            }
+            formData["system.mnemos"] = mnemos;
         }
-        formData["system.mnemos"] = mnemos;
 
         // Update object
         super._updateObject(event, formData);
