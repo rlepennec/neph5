@@ -89,6 +89,7 @@ export class Viser extends AbstractManoeuver {
             .withData({
                 actor: action.actor,
                 sentence: game.i18n.localize('NEPH5E.manoeuvres.viser.sentence').replaceAll("${arme}", action.weapon.name),
+                richSentence: game.i18n.localize('NEPH5E.manoeuvres.viser.sentence').replaceAll("${arme}", action.weapon.name),
                 img: action.img
             })
             .withFlags({})

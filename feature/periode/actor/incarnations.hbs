@@ -1,167 +1,147 @@
-<div class="flexrow" style="align-items:center;justify-content:center;margin-top:10px;font-family:'AJensonPro';font-size:20px;background-color:transparent;border:0px;">
-    <div style="flex: 0 0 auto;">
+<div class="top">
 
-        {{#if (isNull actor.system.periode)}}
-        <label style="font-size:22px; margin-top:5px;margin-right:40px;color:indianred">{{actor.currentPeriode}}</label>
-        {{else}}
-        <div class="tooltip">
-            <label style="font-size:22px; margin-top:5px;margin-right:40px;">{{actor.currentPeriode}}</label>
-            <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
-        </div>
-        {{/if}}
-
-        <div class="tooltip" style="width:60px; text-align:center;">
-            <input
-                style="vertical-align: middle;text-align:center;border:none;border-radius:50%;border:1px solid black;width:35px;height:35px;"
-                class="item-integer"
-                name="system.pointsIncarnations"
-                placeholder="0"
-                type="text"
-                value="{{system.pointsIncarnations}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
-        </div>
-
-        <div class="tooltip" style="width:60px; text-align:center;">
-            <input
-                style="text-align:center;border:none;border-radius:50%;border:1px solid black;width:35px;height:35px;"
-                class="item-integer"
-                name="system.sapienceDepensee"
-                placeholder="0"
-                type="text"
-                value="{{system.sapienceDepensee}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
-        </div>
-
-        <div class="tooltip" style="width:60px; text-align:center;">
-            <input
-                style="text-align:center;border:none;border-radius:50%;border:1px solid black;width:35px;height:35px;"
-                class="item-integer"
-                name="system.sapience"
-                placeholder="0"
-                type="text"
-                value="{{system.sapience}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
-        </div>
-
+    {{#if (isNull actor.system.periode)}}
+    <label class="noperiode">{{actor.currentPeriode}}</label>
+    {{else}}
+    <div class="tooltip">
+        <label class="periode">{{actor.currentPeriode}}</label>
+        <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
     </div>
+    {{/if}}
+
+    <div class="tooltip points">
+        <input
+            class="middle"
+            name="system.pointsIncarnations"
+            placeholder="0"
+            type="text"
+            value="{{system.pointsIncarnations}}"
+            data-dtype="Number"/>
+        <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
+    </div>
+
+    <div class="tooltip points">
+        <input
+            name="system.sapienceDepensee"
+            placeholder="0"
+            type="text"
+            value="{{system.sapienceDepensee}}"
+            data-dtype="Number"/>
+        <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
+    </div>
+
+    <div class="tooltip points">
+        <input
+            name="system.sapience"
+            placeholder="0"
+            type="text"
+            value="{{system.sapience}}"
+            data-dtype="Number"/>
+        <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
+    </div>
+
 </div>
 
 {{#if actor.noPeriodes}}
-<div style="display:flex; flex-direction:column; margin-top:200px; text-align: center; color:indianred">
-    <label style="margin-left:100px;margin-right:100px;">{{localize 'NEPH5E.aideIncarnations'}}</label>
-    <i style="margin-top:50px;" class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+<div class="helpPeriode">
+    <label>{{localize 'NEPH5E.aideIncarnations'}}</label>
+    <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
 </div>
 {{/if}}
 
 {{#with actor.periodes as |items|}}
+{{#each items as |periode|}}
+<ol class="item-list">
 
-    {{#each items as |periode|}}
-    <ol class="item-list">
+    <li class="item draggable periode" data-id="{{periode.original.id}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
 
-        <li class="item draggable" data-id="{{periode.original.id}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}" style="margin-top:20px;margin-bottom:10px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
+        <a
+            {{#if (eq ../../actor.system.periode periode.original.sid)}}
+            class="current-periode"
+            {{else}}
+            class="current-periode grey"
+            {{/if}}
+            ><i class="fa-solid fa-star-of-life"></i></a>
 
-            <div class="item-control">
-                {{#if (eq ../../actor.system.periode periode.original.sid)}}
-                <a class="current-periode"><i class="fa-solid fa-star-of-life"></i></a>
+        <label class="edit-periode" data-id="{{periode.original.id}}">
+            {{#if (eq ../../editedPeriode periode.original.sid)}}
+            <i class="fas fa-edit"></i>
+            {{else}}
+            <i class="far fa-edit"></i>
+            {{/if}}
+        </label>
+
+        <div class="display">
+            <span>{{periode.original.name}}: {{periode.original.contexte}}</span>
+        </div>
+
+        <div class="action">
+
+            {{#if (eq ../../editedPeriode periode.original.sid)}}
+            <a class="delete-periode"><i class="fas fa-trash"></i></a>
+
+            {{else}}
+
+            <label class="active-periode" data-id="{{periode.original.id}}">
+                {{#if periode.embedded.actif}}
+                <i class="fa-solid fa-feather-pointed"></i>
                 {{else}}
-                <a class="current-periode" style="color: #a1a1a1;"><i class="fa-solid fa-star-of-life"></i></a>
-                {{/if}}
-            </div>
-
-            <label class="edit-periode" data-id="{{periode.original.id}}" style="margin-right:10px;">
-                {{#if (eq ../../editedPeriode periode.original.sid)}}
-                <i class="fas fa-edit"></i>
-                {{else}}
-                <i class="far fa-edit"></i>
+                <i class="fa-regular fa-feather-pointed"></i>
                 {{/if}}
             </label>
 
-            <div class="item-name display" style="font-family: 'AJensonPro'; font-size: 18px;">
-                <span>{{periode.original.name}}: {{periode.original.contexte}}</span>
-            </div>
-
-            <div style="margin-left:50px;display:flex;flex-direction:row-reverse;">
-
-                {{#if (eq ../../editedPeriode periode.original.sid)}}
-
-                    <div class="item-control">
-                        <a class="delete-periode"><i class="fas fa-trash"></i></a>
-                    </div>
-
-                {{else}}
-
-                    <label class="active-periode" data-id="{{periode.original.id}}">
-                        {{#if periode.embedded.actif}}
-                        <i class="fa-solid fa-feather-pointed"></i>
-                        {{else}}
-                        <i class="fa-regular fa-feather-pointed"></i>
-                        {{/if}}
-                    </label>
-
-                {{/if}}
-
-            </div>
-
-        </li>
-
-        {{#if (includes ../../elapsedPeriodes periode.original.id)}}
-        <div data-id="{{periode.original.id}}">
-        {{else}}
-            {{#if (eq ../../editedPeriode periode.original.sid)}}
-            <div data-id="{{periode.original.id}}">
-            {{else}}
-            <div data-id="{{periode.original.id}}" style="display: none;">
             {{/if}}
-        {{/if}}
-
-            <div style="margin-left:10px;">
-
-                {{#each periode.embedded.items as |item|}}
-                <li class="item" data-item-id="{{item.id}}">
-
-                    {{#if (isNull item.degre)}}
-                        <div data-id="{{item.id}}" style="text-align:center;border-radius:50%;width:30px;height:30px;margin-right:10px;margin-top:1px;margin-bottom:1px;">
-                            <i class="fas fa-scroll" style="margin-top:7px;"></i>
-                        </div>
-                    {{else}}
-                        <div data-id="{{item.id}}">
-                            <input
-                                class="change-degre"
-                                style="text-align:center;border-radius:50%;width:30px;height:30px;margin-right:10px;margin-top:1px;margin-bottom:1px;"
-                                data-id="{{item.id}}"
-                                type="number"
-                                value="{{item.degre}}"
-                                data-dtype="Number"/>
-                        </div>
-                    {{/if}}
-
-                    {{#if (eq item.type 'vecu')}}
-                    <div class="item-name edit-vecu" data-id="{{item.id}}" data-type="{{item.type}}">
-                        <span>{{item.name}}</span>
-                    </div>
-                    {{else}}
-                    <div class="item-name edit-item" data-id="{{item.wid}}" data-type="{{item.type}}">
-                        <span>{{item.name}}</span>
-                    </div>
-                    {{/if}}
-
-                    {{#if (eq ../../../editedPeriode ../original.sid)}}                
-                    <div class="item-control">
-                        <a class="delete-item" data-id="{{item.id}}"><i class="fas fa-trash"></i></a>
-                    </div>
-                    {{/if}}
-
-                </li>
-                {{/each}}
-
-            </div>
 
         </div>
 
-    </ol>
-    {{/each}}
+    </li>
 
+    <div
+        {{#unless (or (includes ../../elapsedPeriodes periode.original.id) (eq ../../editedPeriode periode.original.sid))}}
+        style="display: none;"
+        {{/unless}}
+        class="item-content"
+        data-id="{{periode.original.id}}">
+
+        {{#each periode.embedded.items as |item|}}
+        <li class="item" data-item-id="{{item.id}}">
+
+            {{#if (isNull item.degre)}}
+            <div data-id="{{item.id}}" class="scroll">
+                <i class="fas fa-scroll"></i>
+            </div>
+            {{else}}
+            <div data-id="{{item.id}}" class="degre">
+                <input
+                    class="change-degre"
+                    data-id="{{item.id}}"
+                    type="number"
+                    value="{{item.degre}}"
+                    data-dtype="Number"/>
+            </div>
+            {{/if}}
+
+            {{#if (eq item.type 'vecu')}}
+            <div class="edit-vecu" data-id="{{item.id}}" data-type="{{item.type}}">
+                <span>{{item.name}}</span>
+            </div>
+            {{else}}
+            <div class="edit-item" data-id="{{item.wid}}" data-type="{{item.type}}">
+                <span>{{item.name}}</span>
+            </div>
+            {{/if}}
+
+            {{#if (eq ../../../editedPeriode ../original.sid)}}                
+            <div class="delete">
+                <a class="delete-item" data-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+            </div>
+            {{/if}}
+
+        </li>
+        {{/each}}
+
+    </div>
+
+</ol>
+{{/each}}
 {{/with}}

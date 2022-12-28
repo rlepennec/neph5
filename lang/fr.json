@@ -34,6 +34,8 @@
 
     "SETTINGS.debug": "Mode debug",
     "SETTINGS.debugDesc": "Permet d'afficher des informations de debug",
+    "SETTINGS.note": "Note de démarrage",
+    "SETTINGS.noteDesc": "Permet d'afficher les notes de démarrage",
     "SETTINGS.useCombatSystem": "Système de combat",
     "SETTINGS.useCombatSystemDesc": "Permet d'utiliser le système de combat automatique",
     "SETTINGS.catalyseurs": "Catalyseurs alchimiques",

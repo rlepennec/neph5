@@ -215,6 +215,7 @@ export class ActionDataBuilder {
         let data = {
             actor: this.actor,
             sentence: this.actor.name + " " + game.i18n.localize(this.sentence),
+            richSentence: game.i18n.localize(this.sentence),
             type: this.type,
         };
 
@@ -226,6 +227,16 @@ export class ActionDataBuilder {
             data.sentence = this.actor.name + " " + game.i18n.localize(this.sentence);
         } else {
             data.sentence = this.actor.name + " " + game.i18n.localize('NEPH5E.utiliseNonDefini');
+        }
+
+        if (this.item?.name != null) {
+            data.richSentence = data.richSentence.replaceAll("${item}", this.item.link);
+        } else if (this.ka != null) {
+            data.richSentence = data.richSentence.replaceAll("${ka}", this.ka);
+        } else if (this.sentence != null) {
+            data.richSentence = this.actor.name + " " + game.i18n.localize(this.sentence);
+        } else {
+            data.richSentence = this.actor.name + " " + game.i18n.localize('NEPH5E.utiliseNonDefini');
         }
 
         if (this.img != null) {

@@ -1,7 +1,6 @@
 import { Constants } from "../common/constants.js";
 import { EmbeddedItem } from "../common/embeddedItem.js";
 import { MigrationTools } from "./migration.js";
-import { NephilimActor } from "../actor/entity.js";
 
 export class _1_0_3 {
 

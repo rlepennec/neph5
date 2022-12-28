@@ -33,13 +33,13 @@
             {{#if metamorphose.formed}}
             <label class="item-name">{{metamorphose.name}}</label>
             {{else}}
-            <label class="item-name" style="color: #a1a1a1;">{{metamorphose.name}}</label>
+            <label class="item-name grey">{{metamorphose.name}}</label>
             {{/if}}
 
             {{#if metamorphose.formed}}
             <label class="hand-checkbox visible" data-id="{{../id}}" data-index="{{@index}}">
             {{else}}
-            <label class="hand-checkbox visible" style="visibility:hidden" data-id="{{../id}}" data-index="{{@index}}">
+            <label class="hand-checkbox visible hidden" data-id="{{../id}}" data-index="{{@index}}">
             {{/if}}
             {{#if metamorphose.visible}}
             <i class="fas fa-eye-slash"></i>

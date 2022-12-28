@@ -28,21 +28,20 @@
                     {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}
                 </div>
 
-                <div class="tab" data-group="primary" data-tab="combat">
+                <div class="tab combat" data-group="primary" data-tab="combat">
 
-                    <div class="flexcol" style="padding-top:20px;">
+                    <div class="figurant">
 
-                        <div class="sectionTitleUnderline" style="padding-left: 5px; width:95%; margin: 10px 20px 10px 20px;">
+                        <div class="sectionTitleUnderline">
                             <span>{{localize "NEPH5E.caracteristiques"}}</span>
                         </div>
 
                         <ol class="item-list">
 
-                            <li class="item" data-item-id="{{system.id}}" data-item-type="menace">
+                            <li class="item menace" data-item-id="{{system.id}}" data-item-type="menace">
                     
                                 <input
                                     class="item-integer"
-                                    style="text-align:center;border-radius:50%;width:30px;height:30px;margin-left: 10px; margin-right:10px;margin-top:1px;margin-bottom:1px;"
                                     name="system.menace"
                                     type="text"
                                     value="{{system.menace}}"
@@ -56,11 +55,10 @@
                     
                             </li>
                     
-                            <li class="item" data-item-id="{{system.id}}" data-item-type="ka">
+                            <li class="item ka" data-item-id="{{system.id}}" data-item-type="ka">
                     
                                 <input
                                     class="item-integer"
-                                    style="text-align:center;border-radius:50%;width:30px;height:30px;margin-left: 10px; margin-right:10px;margin-top:1px;margin-bottom:1px;"
                                     name="system.ka"
                                     type="text"
                                     value="{{system.ka}}"
@@ -76,11 +74,10 @@
                     
                             {{#each actor.items as |item id|}}
                             {{#if (eq item.type 'vecu')}}
-                            <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-simulacre-uuid="{{../system.id}}">
+                            <li class="item vecu" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-simulacre-uuid="{{../system.id}}">
                     
                                 <input
                                     class="item-integer degre-vecu"
-                                    style="text-align:center;border-radius:50%;width:30px;height:30px;margin-left: 10px;margin-right:10px;margin-top:1px;margin-bottom:1px;"
                                     name="item.system.degre"
                                     type="text"
                                     value="{{item.system.degre}}"

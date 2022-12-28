@@ -1,3 +1,8 @@
+# 1.2.13
+Amélioration du chat avec des liens
+Correction d'une anomalie sur la suppression des périodes du monde
+CSS
+
 # 1.2.12
 Correction d'une anomalie empêchant de renommer un vécu
 Caché le vécu du simulacre si l'option est désactivée

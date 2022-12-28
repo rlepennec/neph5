@@ -1,339 +1,96 @@
 {{#if isGM}}
-<div class="tab" data-group="primary" data-tab="options">
 
-    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+    <div class="columns">
 
-    <div style="display:flex;flex-direction:row;padding-top:20px;">
+        <div class="column">
 
-        <div style="display:flex;flex-direction:column;width:50%;margin-right:10px;">
-
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.nephilim"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.nephilim"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.nephilim"
-                            type="checkbox"
-                            {{checked system.options.nephilim}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.pentacle.nom"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.pentacle.nom" name="system.options.nephilim" value=system.options.nephilim}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.magie"
-                            type="checkbox"
-                            {{checked system.options.magie}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.magie.science"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.magie.science" name="system.options.magie" value=system.options.magie}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.kabbale"
-                            type="checkbox"
-                            {{checked system.options.kabbale}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.kabbale.science"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.kabbale.science" name="system.options.kabbale" value=system.options.kabbale}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.alchimie"
-                            type="checkbox"
-                            {{checked system.options.alchimie}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.alchimie.science"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.alchimie.science" name="system.options.alchimie" value=system.options.alchimie}}
 
             </ol>
 
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.selenim"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.selenim"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.selenim"
-                            type="checkbox"
-                            {{checked system.options.selenim}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.noyau"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.noyau" name="system.options.selenim" value=system.options.selenim}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.necromancie"
-                            type="checkbox"
-                            {{checked system.options.necromancie}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.necromancie.science"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.necromancie.science" name="system.options.necromancie" value=system.options.necromancie}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.conjuration"
-                            type="checkbox"
-                            {{checked system.options.conjuration}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.conjuration.science"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.conjuration.science" name="system.options.conjuration" value=system.options.conjuration}}
 
             </ol>
 
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.arcanesMineurs"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.arcanesMineurs"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.baton"
-                            type="checkbox"
-                            {{checked system.options.baton}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.baton.baton"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.baton.baton" name="system.options.baton" value=system.options.baton}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.coupe"
-                            type="checkbox"
-                            {{checked system.options.coupe}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.coupe.coupe"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.coupe.coupe" name="system.options.coupe" value=system.options.coupe}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.denier"
-                            type="checkbox"
-                            {{checked system.options.denier}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.denier.denier"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.denier.denier" name="system.options.denier" value=system.options.denier}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.epee"
-                            type="checkbox"
-                            {{checked system.options.epee}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.epee.epee"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.epee.epee" name="system.options.epee" value=system.options.epee}}
 
             </ol>
 
         </div>
 
-        <div style="display:flex;flex-direction:column;width:50%;margin-left:10px;">
+        <div class="column">
 
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.mondeProfane"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.mondeProfane"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.vecus"
-                            type="checkbox"
-                            {{checked system.options.vecus}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.vecus"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.vecus" name="system.options.vecus" value=system.options.vecus}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.incarnations"
-                            type="checkbox"
-                            {{checked system.options.incarnations}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.incarnations"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnations" name="system.options.incarnations" value=system.options.incarnations}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.combat"
-                            type="checkbox"
-                            {{checked system.options.combat}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.combat"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.combat" name="system.options.combat" value=system.options.combat}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.simulacre"
-                            type="checkbox"
-                            {{checked system.options.simulacre}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.simulacre"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.simulacre" name="system.options.simulacre" value=system.options.simulacre}}
 
             </ol>
 
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.mondeOcculte"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.mondeOcculte"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.akasha"
-                            type="checkbox"
-                            {{checked system.options.akasha}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.plansSubtils"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.plansSubtils" name="system.options.akasha" value=system.options.akasha}}
 
             </ol>
 
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.affichage"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.affichage"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.chronologieDescendante"
-                            type="checkbox"
-                            {{checked system.options.chronologieDescendante}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.chronologieDescendante"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.degreGauche"
-                            type="checkbox"
-                            {{checked system.options.degreGauche}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.degreGauche"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox incarnationsOuvertes" 
-                            name="system.options.incarnationsOuvertes"
-                            type="checkbox"
-                            {{checked system.options.incarnationsOuvertes}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.incarnationsOuvertes"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
 
             </ol>
 
@@ -341,65 +98,23 @@
 
     </div>
 
-</div>
 {{else}}
-<div class="tab" data-group="primary" data-tab="options">
 
-    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+    <div class="columns">
 
-    <div style="display:flex;flex-direction:row;padding-top:20px;">
+        <div class="column">
 
-        <div style="display:flex;flex-direction:column;width:100%;margin-right:10px;">
-
-            <div style="display:flex; flex-direction:row; padding-top:10px; justify-content: center;">
-                <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-                    <span style="padding-left:5px;">{{localize "NEPH5E.affichage"}}</span>
-                </div>
+            <div class="group">
+                <span>{{localize "NEPH5E.affichage"}}</span>
             </div>
 
             <ol class="item-list">
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.chronologieDescendante"
-                            type="checkbox"
-                            {{checked system.options.chronologieDescendante}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.chronologieDescendante"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox" 
-                            name="system.options.degreGauche"
-                            type="checkbox"
-                            {{checked system.options.degreGauche}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.degreGauche"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                <li class="item">
-                    <label class="hand-checkbox">
-                        <input
-                            class="item-checkbox incarnationsOuvertes" 
-                            name="system.options.incarnationsOuvertes"
-                            type="checkbox"
-                            {{checked system.options.incarnationsOuvertes}}
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="item-name">{{localize "NEPH5E.incarnationsOuvertes"}}</label>
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
 
             </ol>
 
@@ -515,5 +230,4 @@
         value="{{system.options.options}}"
         data-dtype="Boolean"/>
 
-</div>
 {{/if}}

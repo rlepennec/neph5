@@ -101,7 +101,7 @@
                 </div>
         
                 {{#if (eq system.options.combat true)}}
-                <div class="tab" data-group="primary" data-tab="combat">
+                <div class="tab combat" data-group="primary" data-tab="combat">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/combat/actor/main.hbs"}}
                 </div>
@@ -115,21 +115,21 @@
                 {{/if}}
                 
                 {{#if (eq system.options.nephilim true)}}
-                <div class="tab" data-group="primary" data-tab="nephilim">
+                <div class="tab nephilim" data-group="primary" data-tab="nephilim">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/nephilim/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.magie true)}}
-                <div class="tab" data-group="primary" data-tab="magie">
+                <div class="tab all-focus" data-group="primary" data-tab="magie">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/magie/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.kabbale true)}}
-                <div class="tab" data-group="primary" data-tab="kabbale">
+                <div class="tab all-focus" data-group="primary" data-tab="kabbale">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/kabbale/actor/main.hbs"}}
                 </div>
@@ -139,39 +139,39 @@
                 {{/if}}
         
                 {{#if (eq system.options.alchimie true)}}
-                <div class="tab" data-group="primary" data-tab="alchimie">
+                <div class="tab all-focus" data-group="primary" data-tab="alchimie">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/alchimie/actor/main.hbs"}}
                 </div>
-                <div class="tab" data-group="primary" data-tab="laboratoire">
+                <div class="tab laboratoire" data-group="primary" data-tab="laboratoire">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/alchimie/actor/laboratoire.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.akasha true)}}
-                <div class="tab" data-group="primary" data-tab="akasha">
+                <div class="tab akasha" data-group="primary" data-tab="akasha">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/akasha/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.selenim true)}}
-                <div class="tab" data-group="primary" data-tab="selenim">
+                <div class="tab selenim" data-group="primary" data-tab="selenim">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/selenim/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.necromancie true)}}
-                <div class="tab" data-group="primary" data-tab="necromancie">
+                <div class="tab all-focus" data-group="primary" data-tab="necromancie">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/necromancie/actor/main.hbs"}}
                 </div>
                 {{/if}}
         
                 {{#if (eq system.options.conjuration true)}}
-                <div class="tab" data-group="primary" data-tab="conjuration">
+                <div class="tab all-focus" data-group="primary" data-tab="conjuration">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/conjuration/actor/main.hbs"}}
                 </div>
@@ -206,14 +206,17 @@
                 {{/if}}
         
                 {{#if (eq system.options.incarnations true)}}
-                <div class="tab" data-group="primary" data-tab="incarnations">
+                <div class="tab incarnations" data-group="primary" data-tab="incarnations">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
                     {{> "systems/neph5e/feature/periode/actor/incarnations.hbs"}}
                 </div>
                 {{/if}}
         
-                {{> "systems/neph5e/templates/actor/parts/options.hbs"}}
-        
+                <div class="tab options" data-group="primary" data-tab="options">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+                    {{> "systems/neph5e/templates/actor/parts/options.hbs"}}
+                </div>
+
             </section>
 
         </div>

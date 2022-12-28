@@ -833,13 +833,13 @@ export class NephilimActor extends Actor {
 
             // Remove the current periode if necessary
             if (this.system.periode === item.sid) {
-                this.actor.setCurrentPeriode(null);
+                await this.setCurrentPeriode(null);
             }
         }
 
         // Update embedded items
-        for (let vecu of this.items.filter(i => i.type === 'vecu' && i.system.periode === item.sid)) {
-            await this.deleteEmbeddedDocuments('Item', [vecu.id]);
+        for (let embedded of this.items.filter(i => i.system.periode === item.sid)) {
+            await this.deleteEmbeddedDocuments('Item', [embedded.id]);
         }
 
         // Render the sheet if opened.

@@ -217,6 +217,14 @@ Hooks.once("init", function () {
             type: Boolean,
             default: false
         });
+        game.settings.register('neph5e', 'note', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.note'),
+            hint: game.i18n.localize('SETTINGS.noteDesc'),
+            type: Boolean,
+            default: true
+        });
         game.settings.register('neph5e', 'catalyseurs', {
             config: true,
             scope: 'world',

@@ -1,14 +1,14 @@
-<div class="flexrow" style="padding-top:20px;">
+<div class="content">
 
-    <div class="flexcol" style="width:50%; margin-right:10px;">
+    <div class="column">
 
-        <div class="flexrow" style="padding-top:10px; justify-content: center;flex:none">
+        <div class="dommages">
 
-            <div class="sectionTitleUnderline" style="padding-left: 5px; width:100%; margin: 10px 0px 10px 20px;">
+            <div class="sectionTitleUnderline">
 
-                <span style="margin-right:20px;">{{localize "NEPH5E.dommagesPhysiques"}}</span>
+                <span>{{localize "NEPH5E.dommagesPhysiques"}}</span>
 
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                     <span class="tooltiptext">1</span>
                     <input
                         class="item-checkbox"
@@ -21,7 +21,7 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                     <span class="tooltiptext">2</span>
                     <input
                         class="item-checkbox"
@@ -34,7 +34,7 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                     <span class="tooltiptext">3</span>
                     <input
                         class="item-checkbox"
@@ -48,9 +48,9 @@
                 </label>
 
                 {{#if (gt system.ka.terre 4)}}
-                <label class="dommage-checkbox tooltip" style="margin-left:20px; font-size: 14px;">
+                <label class="dommage-checkbox tooltip additional">
                 {{else}}
-                <label class="dommage-checkbox tooltip" style="display:none;font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="display:none;">
                 {{/if}}
                     <span class="tooltiptext">1</span>
                     <input
@@ -65,9 +65,9 @@
                 </label>
 
                 {{#if (gt system.ka.terre 9)}}
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                 {{else}}
-                <label class="dommage-checkbox tooltip" style="display:none;font-size: 14px;">
+                <label class="dommage-checkbox tooltip" style="display:none;">
                 {{/if}}
                     <span class="tooltiptext">1</span>
                     <input
@@ -97,7 +97,7 @@
 
         </ol>
 
-        <div class="flexrow sectionTitleUnderline" style="flex:none; padding-left: 5px; margin: 10px 0px 10px 20px;">
+        <div class="title sectionTitleUnderline">
             <span>{{localize "NEPH5E.etats"}}</span>
         </div>
 
@@ -111,60 +111,56 @@
 
         </ol>
 
-        <div class="flexrow sectionTitleUnderline" style="padding-left: 5px; margin: 10px 0px 10px 20px;">
+        <div class="title sectionTitleUnderline">
             <span>{{localize "NEPH5E.bonus"}}</span>
         </div>
 
-        <ol class="item-list">
-            <li class="flexrow" style="margin-bottom:5px;">
+        <ol class="bonus item-list">
+            <li>
                 <input
-                    style="width: 30px; height:30px; margin-left: 30px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
                     name="system.bonus.mouvement"
                     type="text"
                     value="{{actor.system.bonus.mouvement}}"
                     data-dtype="Number"/>
-                <label style="padding-top:9px; margin-left:10px;">{{localize "NEPH5E.mouvement"}}</label>
+                <label>{{localize "NEPH5E.mouvement"}}</label>
             </li>
-            <li class="flexrow" style="margin-bottom:5px;">
+            <li>
                 <input
-                    style="width: 30px; height:30px; margin-left: 30px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
                     name="system.bonus.initiative"
                     type="text"
                     value="{{actor.system.bonus.initiative}}"
                     data-dtype="Number"/>
-                <label style="padding-top:9px; margin-left:10px;">{{localize "NEPH5E.initiative"}}</label>
+                <label>{{localize "NEPH5E.initiative"}}</label>
             </li>
-            <li class="flexrow" style="margin-bottom:5px;">
+            <li>
                 <input
-                    style="width: 30px; height:30px; margin-left: 30px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
                     name="system.bonus.dommage"
                     type="text"
                     value="{{actor.system.bonus.dommage}}"
                     data-dtype="Number"/>
-                <label style="padding-top:9px; margin-left:10px;">{{localize "NEPH5E.dommages"}}</label>
+                <label>{{localize "NEPH5E.dommages"}}</label>
             </li>
-            <li class="flexrow" style="margin-bottom:5px;">
+            <li>
                 <input
-                    style="width: 30px; height:30px; margin-left: 30px; margin-right:10px;text-align:center;border-radius: 50%; flex-basis: 30px;flex-grow: 0; flex-shrink: 0;"
                     name="system.bonus.protection"
                     type="text"
                     value="{{actor.system.bonus.protection}}"
                     data-dtype="Number"/>
-                <label style="padding-top:9px; margin-left:10px;">{{localize "NEPH5E.protection"}}</label>
+                <label>{{localize "NEPH5E.protection"}}</label>
             </li>
         </ol>
 
     </div>
 
-    <div class="flexcol" style="width:50%; margin-right:10px;">
+    <div class="column">
 
-        <div class="flexrow" style="flex:none; padding-top:10px; justify-content: center;flex:none">
+        <div class="dommages">
 
-            <div class="sectionTitleUnderline" style="padding-left: 5px; width:100%; margin: 10px 0px 10px 20px;">
+            <div class="sectionTitleUnderline">
 
-                <span style="margin-right:20px;">{{localize "NEPH5E.dommagesMagiques"}}</span>
+                <span>{{localize "NEPH5E.dommagesMagiques"}}</span>
 
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                     <span class="tooltiptext">1</span>
                     <input
                         class="item-checkbox"
@@ -177,7 +173,7 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                     <span class="tooltiptext">2</span>
                     <input
                         class="item-checkbox"
@@ -190,7 +186,7 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="dommage-checkbox tooltip" style="font-size: 14px;">
+                <label class="dommage-checkbox tooltip">
                     <span class="tooltiptext">3</span>
                     <input
                         class="item-checkbox"
@@ -219,26 +215,26 @@
 
         </ol>
 
-        <div class="flexrow sectionTitleUnderline" style="flex:none; padding-left: 5px; margin: 10px 0px 10px 20px;">
+        <div class="title sectionTitleUnderline">
             <span>{{localize "NEPH5E.actions"}}</span>
         </div>
 
-        <ol class="item-list">
+        <ol class="actions item-list">
 
             <li class="item macro" data-id="lutte" data-sid="lutte" data-type="lutte">
-                <div class="item-control" style="margin-left:12px; margin-right:10px">
-                    {{#if (eq actor.lutteCanBePerformed true)}}
-                    <a class="wrestle"><i class="fas fa-dice-d20"></i></a>
-                    {{else}}
-                    <a class="wrestle"><i class="fas fa-dice-d20" style="color: #a1a1a1;"></i></a>
-                    {{/if}}
+                <div class="roll">
+                    <a class="wrestle"><i
+                        {{#if (eq actor.lutteCanBePerformed true)}}
+                        class="fas fa-dice-d20"
+                        {{else}}
+                        class="fas fa-dice-d20 grey"
+                        {{/if}}></i></a>
                 </div>
                 <div class="item-name">
-                    {{#if (eq actor.lutteCanBePerformed true)}}
-                    <span>{{localize "NEPH5E.lutte"}}</span>
-                    {{else}}
-                    <span style="color: #a1a1a1;">{{localize "NEPH5E.lutte"}}</span>
-                    {{/if}}
+                    <span
+                        {{#if (eq actor.lutteCanBePerformed false)}}
+                        class="grey"
+                        {{/if}}>{{localize "NEPH5E.lutte"}}</span>
                 </div>
             </li>
 
@@ -247,21 +243,23 @@
             <li class="item macro" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="weapon-attack">
 
                 <!-- Weapon roll -->
-                <div class="item-control" style="margin-left:12px; margin-right:10px">
-                    {{#if (or (not item.system.used) ../actor.immobilise (and (nonNull ../actor.token) (isNull ../actor.target)))}}
-                    <a class="attack"><i class="fas fa-dice-d20" style="color: #a1a1a1;"></i></a>
-                    {{else}}
-                    <a class="attack"><i class="fas fa-dice-d20"></i></a>
-                    {{/if}}
+                <div class="roll">
+                    <a class="attack"><i
+                        {{#if (or (not item.system.used) ../actor.immobilise (and (nonNull ../actor.token) (isNull ../actor.target)))}}
+                        class="fas fa-dice-d20 grey"
+                        {{else}}
+                        class="fas fa-dice-d20"
+                        {{/if}}
+                        ></i></a>
                 </div>
 
                 <!-- Weapon name -->
-                <div class="item-name">
+                <div class="item-name"><span
+                    data-item-id="{{item.id}}"
                     {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}
-                    <span data-item-id="{{item.id}}" style="color: #a1a1a1;">{{item.name}}</span>
-                     {{else}}
-                    <span data-item-id="{{item.id}}">{{item.name}}</span>
-                    {{/if}}
+                    class="grey"
+                    {{/if}} 
+                    >{{item.name}}</span>
                 </div>
 
                 <!-- Weapon recharge if fire weapon -->
@@ -295,7 +293,7 @@
         </ol>
 
         {{#if (eq actor.type 'figure')}}
-        <div class="flexrow sectionTitleUnderline" style="flex:none; padding-left: 5px; margin: 10px 0px 10px 20px;">
+        <div class="title sectionTitleUnderline">
             <span>{{localize "NEPH5E.capacites"}}</span>
         </div>
 
@@ -342,7 +340,7 @@
         </ol>
         {{/if}}
 
-        <div class="flexrow sectionTitleUnderline" style="flex:none; padding-left: 5px; margin: 10px 0px 10px 20px;">
+        <div class="title sectionTitleUnderline">
             <span>{{localize "NEPH5E.equipement"}}</span>
         </div>
 

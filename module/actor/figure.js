@@ -54,7 +54,7 @@ export class FigureSheet extends BaseSheet {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 1000,
+            width: 1030,
             height: 850,
             classes: ["nephilim", "sheet", "actor"],
             resizable: true,

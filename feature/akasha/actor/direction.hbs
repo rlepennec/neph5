@@ -1,13 +1,11 @@
-<li style="display:flex; flex-direction:row; padding-top:10px;">
+<li class="direction">
     <input
-        style="margin-left: 40px; width: 40px; height:40px; margin-right:10px;text-align:center;border-radius: 50%;"
-        class="item-integer"
         name={{input-name}}
         type="text"
         value="{{input-value}}"
         data-dtype="Number"/>
-    <div class="circleHidden" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
-        <div class="circleContent" style="font-weight:normal;">+{{getLevel input-value}}</div>
+    <div class="circleHidden">
+        <div class="circleContent">+{{getLevel input-value}}</div>
     </div>
-    <label style="margin-top:4px; margin-right:5px;padding-top:7px;width:260px;">{{name}}</label>
+    <label>{{name}}</label>
 </li>

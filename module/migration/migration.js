@@ -75,7 +75,9 @@ export class MigrationTools {
             await _1_0_3.migrate('1.0.3');
         }
 
-        await MigrationTools.important();
+        if (game.settings.get('neph5e', 'note')) {
+            await MigrationTools.important();
+        }
 
     }
 

@@ -173,6 +173,7 @@ export class AbstractRoll {
             .withData({
                 actor: this.actor,
                 sentence: data.sentence,
+                richSentence: data.richSentence,
                 img: data.img,
                 difficulty: result.difficulty,
                 total: result.roll._total,
