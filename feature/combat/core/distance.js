@@ -4,6 +4,7 @@ import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
 import { Constants } from "../../../module/common/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
+import { Health } from "../../core/health.js";
 import { Instinctif } from "../manoeuver/instinctif.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
@@ -138,6 +139,17 @@ export class Distance extends AbstractRoll {
                     .render(true);
             }
 
+        }
+    }
+
+    /**
+     * @Override
+     */
+    async finalize(result) {
+        if (game.settings.get('neph5e', 'useCombatSystem') === true) {
+            const impact = this.impact(this.manoeuver.id);
+            await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null);
+            await Health.applyEffectsOn(this.target.id, this.actor?.token.id, result === true ? Constants.ACTION : Constants.REACTION, this.manoeuver);
         }
     }
 

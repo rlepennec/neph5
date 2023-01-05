@@ -1,43 +1,49 @@
-<div class="top">
+<div class="header">
 
-    {{#if (isNull actor.system.periode)}}
-    <label class="noperiode">{{actor.currentPeriode}}</label>
-    {{else}}
-    <div class="tooltip">
-        <label class="periode">{{actor.currentPeriode}}</label>
-        <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
-    </div>
-    {{/if}}
-
-    <div class="tooltip points">
-        <input
-            class="middle"
-            name="system.pointsIncarnations"
-            placeholder="0"
-            type="text"
-            value="{{system.pointsIncarnations}}"
-            data-dtype="Number"/>
-        <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
+    <div class="periode-courante">
+        {{#if (isNull actor.system.periode)}}
+        <label class="noperiode">{{actor.currentPeriode}}</label>
+        {{else}}
+        <div class="tooltip">
+            <label class="periode">{{actor.currentPeriode}}</label>
+            <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
+        </div>
+        {{/if}}
     </div>
 
-    <div class="tooltip points">
-        <input
-            name="system.sapienceDepensee"
-            placeholder="0"
-            type="text"
-            value="{{system.sapienceDepensee}}"
-            data-dtype="Number"/>
-        <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
-    </div>
+    <div class="all-points">
 
-    <div class="tooltip points">
-        <input
-            name="system.sapience"
-            placeholder="0"
-            type="text"
-            value="{{system.sapience}}"
-            data-dtype="Number"/>
-        <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
+        <div class="tooltip points">
+            <input
+                class="middle"
+                name="system.pointsIncarnations"
+                placeholder="0"
+                type="text"
+                value="{{system.pointsIncarnations}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
+        </div>
+
+        <div class="tooltip points">
+            <input
+                name="system.sapienceDepensee"
+                placeholder="0"
+                type="text"
+                value="{{system.sapienceDepensee}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
+        </div>
+
+        <div class="tooltip points">
+            <input
+                name="system.sapience"
+                placeholder="0"
+                type="text"
+                value="{{system.sapience}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
+        </div>
+
     </div>
 
 </div>
@@ -51,6 +57,7 @@
 
 {{#with actor.periodes as |items|}}
 {{#each items as |periode|}}
+{{#unless (and (not ../../isGM) (not periode.embedded.actif))}}
 <ol class="item-list">
 
     <li class="item draggable periode" data-id="{{periode.original.id}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
@@ -72,7 +79,7 @@
         </label>
 
         <div class="display">
-            <span>{{periode.original.name}}: {{periode.original.contexte}}</span>
+            <span>{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</span>
         </div>
 
         <div class="action">
@@ -83,10 +90,12 @@
             {{else}}
 
             <label class="active-periode" data-id="{{periode.original.id}}">
+                {{#if ../../isGM}}
                 {{#if periode.embedded.actif}}
                 <i class="fa-solid fa-feather-pointed"></i>
                 {{else}}
                 <i class="fa-regular fa-feather-pointed"></i>
+                {{/if}}
                 {{/if}}
             </label>
 
@@ -97,9 +106,15 @@
     </li>
 
     <div
-        {{#unless (or (includes ../../elapsedPeriodes periode.original.id) (eq ../../editedPeriode periode.original.sid))}}
+
+        {{#if (and (not ../../isGM) (not periode.embedded.actif))}}
         style="display: none;"
-        {{/unless}}
+        {{else}}
+            {{#unless (or (includes ../../elapsedPeriodes periode.original.id) (eq ../../editedPeriode periode.original.sid))}}
+            style="display: none;"
+            {{/unless}}
+        {{/if}}
+
         class="item-content"
         data-id="{{periode.original.id}}">
 
@@ -141,7 +156,8 @@
         {{/each}}
 
     </div>
-
+    
 </ol>
+{{/unless}}
 {{/each}}
 {{/with}}

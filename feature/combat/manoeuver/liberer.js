@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Liberer extends AbstractManoeuver {
@@ -13,6 +14,7 @@ export class Liberer extends AbstractManoeuver {
         this.withApproches(['eau','feu', 'ka']);
         this.whithImmobilized();
         this.withFamilly(Constants.BRAWL);
+        this.withEffect(ActiveEffects.LIBERE);
     }
 
     /**

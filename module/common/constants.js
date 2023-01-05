@@ -11,6 +11,8 @@ export class Constants {
     static MAGICAL = 'magique';
     static MELEE = 'melee';
     static MSG_UNSET_CHAT_MESSAGE = 'unsetChatMessage';
+    static MSG_APPLY_DAMAGES_ON = 'applyDamagesOn';
+    static MSG_APPLY_EFFECTS_ON = 'applyEffectsOn';
     static NATURELLE = 'naturelle';
     static NONE = 'none';
     static OPPOSED = 'opposed';

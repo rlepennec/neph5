@@ -1,157 +1,158 @@
-<form class="flexcol">
+<form class="combat">
 
-    <div class="flexrow" style="flex-grow:0; align-items: center; background-color: rgba(0, 0, 0, 0.2); border-radius: 4px; margin: 10px;">
-        <img style="margin: 10px; height: 50px; width: 50px; border: none;flex: 0;" src="{{actor.img}}"/>
-        <span style="font-size: 14px;font-style: bold;text-align: center;flex: 1;font-family:'Modesto Condensed','Palatino Linotype','serif';font-size:18px;">{{sentence}}</span>
+    <div class="header">
+        <img src="{{actor.img}}"/>
+        <span>{{sentence}}</span>
         {{#unless (isNull img)}}
-        <img style="margin: 10px; height: 50px; width: 50px; border: none;flex: 0;" src="{{img}}"/>
+        <img src="{{img}}"/>
         {{/unless}}
     </div>
 
-    <div class="flexrow" style="height:20px;flex-grow:0;">
+    <div class="roll">
 
-        <div id="difficulty" style="margin-left:60px;padding-top:4px;text-align:right">{{difficulty}}%</div>
-        <div style="margin-left:10px;padding-top: 5px;">
-            <a id="roll"><i class="fas fa-dice-d20"></i></a>
+        <div class="dice">
+            <div id="difficulty">{{difficulty}}%</div>
+            <div class="roll-dice">
+                <a id="roll"><i class="fas fa-dice-d20"></i></a>
+            </div>
         </div>
 
-        <div id="absorption" style="margin-left:30px;padding-top:4px;text-align:right">1 <i class="fas fa-shield" style="margin-left:5px"></i></div>
-
-        <div class="flexrow" style="margin-left:40px">
-            <span style="flex: 0 0 auto;padding-top:5px;">{{localize 'NEPH5E.jetOpposition'}}</span>
+        <div class="absorption">
+            <div id="absorption">1 </div>
+            <div class="shield">
+                <i class="fas fa-shield"></i>
+            </div>
         </div>
 
-        <div id="details" class="item-control" style="width:20px; padding-top: 5px;padding-right:20px; margin-left:40px;">
+        <div class="type">
+            <select id="rollType" name="rollType" disabled>
+                <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+            </select>
+        </div>
+
+        <div id="details" class="item-control">
             <span><i class="fas fa-search"></i></span>
         </div>
 
     </div>
 
-    <table style="width:100%; table-layout: fixed;margin-top:20px;margin-bottom:20px;">
+    <table>
 
         {{#unless (isEmptyCollection manoeuvers)}}
-        <tr style="height:35px;">
-            <td style="width:380px;display:flex;flex-direction:row;">
-                <select id="manoeuver" name="manoeuver" style="padding-left:15px; border:none; outline:0px; background-color:transparent;">
+        <tr>
+            <td class="manoeuver">
+                <select id="manoeuver" name="manoeuver">
                     {{#each manoeuvers as |manoeuver|}}
-                    {{#if (eq manoeuver.id 'eviter')}}
-                    <option style="width:140px;" value="{{manoeuver.id}}" selected>{{manoeuver.name}}</option>
-                    {{else}}
-                    <option style="width:140px;" value="{{manoeuver.id}}">{{manoeuver.name}}</option>
-                    {{/if}}
+                    <option
+                        {{#if (eq manoeuver.id 'eviter')}}
+                        selected
+                        {{/if}}
+                        value="{{manoeuver.id}}">{{manoeuver.name}}</option>
                     {{/each}}
                 </select>
-                <div id='times' style='padding-top:5px;padding-left:30px;'>
-                    <i id='shot-1' style='font-size:14px; margin-right:5px;' class='fa-solid fa-shield checked'></i>
-                    <label class='dommage-checkbox' id='shot-2' style='font-size:14px;'> 
+                <div id='times'>
+                    <i id='shot-1' class='fa-solid fa-shield checked'></i>
+                    <label class='dommage-checkbox' id='shot-2'> 
                         <input class='item-checkbox' id='shot2' type='checkbox' data-dtype='Boolean'/>
                         <i class="fa-regular fa-shield unchecked"></i>
                         <i class="fa-solid fa-shield checked"></i>
                     </label>
-                    <label class='dommage-checkbox' id='shot-3' style='font-size:14px;'> 
+                    <label class='dommage-checkbox' id='shot-3'> 
                         <input class='item-checkbox' id='shot3' type='checkbox' data-dtype='Boolean'/>
                         <i class="fa-regular fa-shield unchecked"></i>
                         <i class="fa-solid fa-shield checked"></i>
                     </label>
-                    <label class='dommage-checkbox' id='shot-4' style='font-size:14px;'> 
+                    <label class='dommage-checkbox' id='shot-4'> 
                         <input class='item-checkbox' id='shot4' type='checkbox' data-dtype='Boolean'/>
                         <i class="fa-regular fa-shield unchecked"></i>
                         <i class="fa-solid fa-shield checked"></i>
                     </label>
-                    <label class='dommage-checkbox' id='shot-5' style='font-size:14px;'> 
+                    <label class='dommage-checkbox' id='shot-5'> 
                         <input class='item-checkbox' id='shot5' type='checkbox' data-dtype='Boolean'/>
                         <i class="fa-regular fa-shield unchecked"></i>
                         <i class="fa-solid fa-shield checked"></i>
                     </label>
-                    <label class='dommage-checkbox' id='shot-6' style='font-size:14px;'> 
+                    <label class='dommage-checkbox' id='shot-6'> 
                         <input class='item-checkbox' id='shot6' type='checkbox' data-dtype='Boolean'/>
                         <i class="fa-regular fa-shield unchecked"></i>
                         <i class="fa-solid fa-shield checked"></i>
                     </label>
                 </div>
             </td>
-            <td id="manoeuverModifier" style="width:50px;text-align:right;">0</td>
-            <td style="width:34px;text-align: left;">%</td>
+            <td id="manoeuverModifier">0</td>
+            <td>%</td>
         </tr>
         {{/unless}}
 
-        <tr style="height:35px;">
-            <td style="width:380px;text-align:left;padding-left:20px;">Modificateur</td>
-            <td style="width:50px;text-align:right;">
-                <input id="modifier" type="Number" value="0" style="text-align:right; margin-right:-3px;border:none; background-color:transparent;"/>
+        <tr>
+            <td class="label">Modificateur</td>
+            <td>
+                <input id="modifier" type="Number" value="0"/>
             </td>
-            <td style="width:34px;text-align:left;">%</td>
+            <td>%</td>
         </tr>
 
         {{#unless (eq blessures 0)}}
-        <tr style="height:35px;">
-            <td style="width:380px;">
-                <select id="blessures" name="blessures" style="padding-left:15px;border:none;outline:0px;background-color:transparent;">
+        <tr>
+            <td class="blessures">
+                <select id="blessures" name="blessures">
                     <option value="apply">Appliquer les blessures</option>
                     <option value="ignore">Ignorer les blessures</option>
                 </select>
             </td>
-            <td id="blessuresModifier" style="width:50px;text-align:right;">{{blessures}}</td>
-            <td style="width:34px;text-align:left;">%</td>
+            <td id="blessuresModifier">{{blessures}}</td>
+            <td>%</td>
         </tr>
         {{/unless}}
 
         {{#if (nonNull approches)}}
-        <tr style="height:35px;">
-            <td style="width:380px;">
-                <select id="approche" name="approche" style="padding-left:15px;border:none;outline:0px;background-color:transparent;">
+        <tr>
+            <td class="approche">
+                <select id="approche" name="approche">
                     {{#each approches as |approche|}}
                     <option value="{{approche.name}}">{{approche.label}}</option>
                     {{/each}}
                 </select>
             </td>
-            <td id="approcheModifier" style="width:50px;text-align:right;">0</td>
-            <td style="width:34px;text-align:left;">%</td>
+            <td id="approcheModifier">0</td>
+            <td>%</td>
         </tr>
         {{/if}}
 
-        <tr class="hiddable" style="height:35px;display:none;">
-            <td id="vecu" style="width:380px;text-align:left;padding-left:20px;">{{base.name}}</td>
-            <td id="base" style="width:50px;text-align:right;">{{base.difficulty}}</td>
-            <td style="width:34px;text-align:left;">%</td>
+        <tr class="hiddable" style="display:none;">
+            <td id="vecu" class="label">{{base.name}}</td>
+            <td id="base">{{base.difficulty}}</td>
+            <td>%</td>
         </tr>
 
         {{#if (nonNull stunned)}}
-        <tr class="hiddable" style="height:35px;display:none;">
-            <td style="width:380px;text-align:left;padding-left:20px;">{{localize stunned.label}}</td>
-            <td style="width:50px;text-align:right;">{{stunned.modifier}}</td>
-            <td style="width:34px;text-align:left;">%</td>
+        <tr class="hiddable" style="display:none;">
+            <td class="label">{{localize stunned.label}}</td>
+            <td>{{stunned.modifier}}</td>
+            <td>%</td>
         </tr>
         {{/if}}
 
         {{#if (nonNull attack)}}
-        <tr class="hiddable" style="height:35px;display:none;">
-            <td style="width:380px;text-align:left;padding-left:20px;">{{attack.name}}</td>
-            <td style="width:50px;text-align:right;">{{attack.modifier}}</td>
-            <td style="width:34px;text-align:left;">%</td>
+        <tr class="hiddable" style="display:none;">
+            <td class="label">{{attack.name}}</td>
+            <td>{{attack.modifier}}</td>
+            <td>%</td>
         </tr>
         {{/if}}
 
         {{#if (and (nonNull weapon) (ne weapon.system.defense 0))}}
-        <tr class="hiddable" style="height:35px;display:none;">
-            <td style="width:380px;text-align:left;padding-left:20px;">{{weapon.name}}</td>
-            <td style="width:50px;text-align:right;">{{weapon.system.defense}}0</td>
-            <td style="width:34px;text-align:left;">%</td>
+        <tr class="hiddable" style="display:none;">
+            <td class="label">{{weapon.name}}</td>
+            <td>{{weapon.system.defense}}0</td>
+            <td>%</td>
         </tr>
         {{/if}}
 
     </table>
 
-    <div class="hiddable" style="
-        display:flex;
-        width:96%;
-        height:80px;
-        margin: auto;
-        font-style:italic;
-        border:solid 1px;
-        border-radius:4px;
-        padding:10px;">
-        <p id="description" style="margin:auto;text-align:center;">{{localize "NEPH5E.manoeuvres.eviter.description"}}</p>
+    <div class="hiddable">
+        <p id="description">{{localize "NEPH5E.manoeuvres.eviter.description"}}</p>
     </div>
 
 </form>

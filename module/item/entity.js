@@ -1,3 +1,4 @@
+import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { Periode } from "../../feature/periode/periode.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
@@ -356,6 +357,11 @@ export class NephilimItem extends Item {
         }
         if (this.actor.immobilise) {
             return false;
+        }
+        if (this.system.type === Constants.FEU) {
+            if (this.numberOfMunitionsLeft === 0) {
+                return false;
+            }
         }
         if (this.actor.token == null) {
             return true;

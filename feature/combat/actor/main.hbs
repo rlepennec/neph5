@@ -219,7 +219,7 @@
             <span>{{localize "NEPH5E.actions"}}</span>
         </div>
 
-        <ol class="actions item-list">
+        <ol class="item-list actions">
 
             <li class="item macro" data-id="lutte" data-sid="lutte" data-type="lutte">
                 <div class="roll">
@@ -245,7 +245,7 @@
                 <!-- Weapon roll -->
                 <div class="roll">
                     <a class="attack"><i
-                        {{#if (or (not item.system.used) ../actor.immobilise (and (nonNull ../actor.token) (isNull ../actor.target)))}}
+                        {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.token) (isNull ../actor.target)))}}
                         class="fas fa-dice-d20 grey"
                         {{else}}
                         class="fas fa-dice-d20"
@@ -265,20 +265,19 @@
                 <!-- Weapon recharge if fire weapon -->
                 {{#if (eq item.system.type 'feu')}}
                 <div class="item-control tooltip">
-                    {{#if (or (isNull ../actor.token) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}
-                    <a id="recharger" style="color: #a1a1a1;"><i class="fas fa-spinner"></i></a>
-                    {{else}}
-                    <a id="recharger"><i class="fas fa-spinner"></i></a>
+                    <a id="recharger"
+                        {{#if (or (isNull ../actor.token) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}
+                        class="grey"
+                        {{/if}}><i class="fas fa-spinner"></i></a>
                     <span class="tooltiptext">Munitions: {{item.numberOfMunitionsLeft}}/{{item.system.munitions}}</span>
-                    {{/if}}
                 </div>
                 {{/if}}
 
                 <!-- Weapon visee if distance -->
                 {{#unless (isContact item.system.type)}}
                 <div class="item-control tooltip">
-                    {{#if (or (not item.system.used) (eq item.viserAvailable false) ../actor.immobilise)}}
-                    <a id="viser" style="color: #a1a1a1;"><i class="fas fa-crosshairs"></i></a>
+                    {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}
+                    <a id="viser" class="grey"><i class="fas fa-crosshairs"></i></a>
                     {{else}}
                     <a id="viser"><i class="fas fa-crosshairs"></i></a>
                     <span class="tooltiptext">Visée: {{item.system.visee}}/3</span>
@@ -297,10 +296,10 @@
             <span>{{localize "NEPH5E.capacites"}}</span>
         </div>
 
-        <ol class="item-list">
+        <ol class="item-list capacites">
 
             <li class="item">
-                <div class="item-control edit-esquive" style="margin-left:12px; margin-right:10px">
+                <div class="item-control edit-esquive">
                     {{#if (eq editedCapacity 'esquive')}}
                     <i class="fas fa-edit"></i>
                     {{else}}
@@ -309,17 +308,17 @@
                 </div>
                 <div class="item-name">
                     {{#if actor.isEsquiveAvailable}}
-                    <span style="margin-right:5px">{{localize "NEPH5E.esquive"}}</span>
-                    <i class="fas fa-caret-right" style="margin-right:15px"></i>
+                    <span class="esquive">{{localize "NEPH5E.esquive"}}</span>
+                    <i class="fas fa-caret-right"></i>
                     <span>{{actor.esquive}}</span>
                     {{else}}
-                    <span style="color:indianred">{{localize "NEPH5E.esquive"}} </span>
+                    <span class="indianred">{{localize "NEPH5E.esquive"}} </span>
                     {{/if}}
                 </div>
             </li>
 
             <li class="item">
-                <div class="item-control edit-lutte" style="margin-left:12px; margin-right:10px">
+                <div class="item-control edit-lutte">
                     {{#if (eq editedCapacity 'lutte')}}
                     <i class="fas fa-edit"></i>
                     {{else}}
@@ -328,11 +327,11 @@
                 </div>
                 <div class="item-name">
                     {{#if actor.isLutteAvailable}}
-                    <span style="margin-right:20px">{{localize "NEPH5E.lutte"}}</span>
-                    <i class="fas fa-caret-right" style="margin-right:15px"></i>
+                    <span class="lutte">{{localize "NEPH5E.lutte"}}</span>
+                    <i class="fas fa-caret-right"></i>
                     <span>{{actor.lutte}}</span>
                     {{else}}
-                    <span style="color:indianred">{{localize "NEPH5E.lutte"}}</span>
+                    <span class="indianred">{{localize "NEPH5E.lutte"}}</span>
                     {{/if}}
                 </div>
             </li>
@@ -344,13 +343,13 @@
             <span>{{localize "NEPH5E.equipement"}}</span>
         </div>
 
-        <ol class="item-list">
+        <ol class="item-list equipement">
 
             {{#each actor.items as |item id|}}
             {{#if (eq item.type 'arme')}}
             <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
 
-                <div class="item-control" style="margin-left:12px; margin-right:10px">
+                <div class="item-control delete">
                     <a class="item-delete"><i class="fas fa-trash"></i></a>
                 </div>
 
@@ -390,7 +389,7 @@
             {{#if (eq item.type 'armure')}}
             <li class="item" data-item-id="{{item.id}}" data-item-type="{{item.type}}">
 
-                <div class="item-control" style="margin-left:12px; margin-right:10px">
+                <div class="item-control delete">
                     <a class="item-delete"><i class="fas fa-trash"></i></a>
                 </div>
 

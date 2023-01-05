@@ -118,4 +118,26 @@ export class ActiveEffects {
         }
     }
 
+    /**
+     * @param actor  The actor objet from which to activate the effect.
+     * @param effect The effect to activate.
+     */
+    static async activate(actor, effect) {
+        const active = ActiveEffects.isActive(actor, effect);
+        if (active === false) {
+            await ActiveEffects.add(actor, effect);
+        }
+    }
+
+    /**
+     * @param actor  The actor objet from which to deactivate the effect.
+     * @param effect The effect to deactivate.
+     */
+    static async deactivate(actor, effect) {
+        const active = ActiveEffects.isActive(actor, effect);
+        if (active === true) {
+            await ActiveEffects.delete(actor, effect);
+        }
+    }
+
 }

@@ -77,6 +77,36 @@ export class Formule extends AbstractRoll {
     /**
      * @Override
      */
+    async finalize(result) {
+
+        if (this.actor.system.options.gestionLaboratoire != true) {
+            return;
+        }
+
+        // Retrieve the embedded focus
+        const embedded = this.actor.items.find(i => i.sid === this.sid);
+
+        // If success, produce 1 dose
+        if (result.success === true) {
+            const quantite = embedded.system.quantite + 1;
+            await embedded.update({ ['system.quantite']: quantite });
+
+            // If not critical, spend materiae primae
+            if (result.critical === false) {
+                for (let element of this.item.system.elements) {
+                    const current = this.actor.system.alchimie.primae[element].quantite - 1;
+                    const quantite = current < 0 ? 0 : current;
+                    await this.actor.update({ ['system.alchimie.primae.' + element + ".quantite"]: quantite });
+                }
+            }
+
+        }
+
+    }
+
+    /**
+     * @Override
+     */
     get purpose() {
         return this.item;
     }
@@ -87,7 +117,7 @@ export class Formule extends AbstractRoll {
     get degre() {
         const item = game.items.find(i => i.system.key === this.item.system.cercle);
         const science = new Science(this.actor, item).degre;
-        const construct = this.actor.getKaOfConstruct(this.item.system.substance, this.item.system.elements);
+        const construct = this.getKaOfConstruct();
         const formule = this.item.system.degre;
         return science + construct - formule;
     }
@@ -141,6 +171,17 @@ export class Formule extends AbstractRoll {
             560,
             500
         )
+    }
+
+    /**
+     * Gets the level og the specified ka for the specified construct.
+     * @returns the level of the specified ka.
+     */
+    getKaOfConstruct() {
+        const substance = this.item.system.substance;
+        const elements = this.item.system.elements;
+        const construct = this.actor.getConstruct(substance);
+        return elements.length === 1 ? construct[elements[0]] ?? 0 : Math.min(construct[elements[0]] ?? 0, construct[elements[1]] ?? 0);
     }
 
 }

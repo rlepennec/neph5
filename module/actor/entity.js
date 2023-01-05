@@ -636,6 +636,14 @@ export class NephilimActor extends Actor {
         await ActiveEffects.toggle(this, ActiveEffects.get(id));
     }
 
+    async activateEffect(id) {
+        await ActiveEffects.activate(this, ActiveEffects.get(id));
+    }
+
+    async deactivateEffect(id) {
+        await ActiveEffects.deactivate(this, ActiveEffects.get(id));
+    }
+
     /**
      * Use or unused the specified item.
      * @param item The item to modify.
@@ -658,17 +666,6 @@ export class NephilimActor extends Actor {
     }
 
     // ----------------------------------------------------------------------------------------------
-
-    /**
-     * Gets the level og the specified ka for the specified construct.
-     * @param substance The substance which defines the construct to get.
-     * @param elements  The elements for which to get the ka.
-     * @returns the level of the specified ka.
-     */
-    getKaOfConstruct(substance, elements) {
-        const construct = this.getConstruct(substance);
-        return elements.length === 1 ? construct[elements[0]] ?? 0 : Math.min(construct[elements[0]] ?? 0, construct[elements[1]] ?? 0);
-    }
 
     /**
      * Gets the construct associated with the specified substance.

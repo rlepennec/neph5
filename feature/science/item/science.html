@@ -11,14 +11,14 @@
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
             {{#if (and debug isGM)}}
-            <div style="color:indianred;margin-top:20px;font-family: 'Gill Sans';">
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
-            </div>
+            <div class="key">
             {{else}}
-            <div style="visibility: hidden;">
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
-            </div>
+            <div class="key hidden">
             {{/if}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
+
+            </div>
 
             {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 

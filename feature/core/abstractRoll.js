@@ -72,6 +72,13 @@ export class AbstractRoll {
     }
 
     /**
+     * Finalize the roll which can be overrided.
+     * @param result The roll result.
+     */
+    async finalize(result) {
+    }
+
+    /**
      * @returns the total number of sapiences used to develop the capacity.
      */
     get sapiences() {
@@ -191,6 +198,7 @@ export class AbstractRoll {
                 }
             } : {})
             .create();
+        await this.finalize(result);
     }
 
     /**
@@ -600,68 +608,6 @@ export class AbstractRoll {
                 return Constants.TIE;
             }
         }
-    }
-
-    /**
-     * @param actor   The actor which suffers from damages.
-     * @param damages The number of damages points.
-     * @param type    The type of damages, physique or magique.
-     */
-    static async applyDamages(actor, damages, type) {
-
-        if (damages <= 0) {
-            return;
-        }
-
-        switch (type) {
-            case Constants.PHYSICAL:
-                data = duplicate(actor.system.dommage.physique);
-                break;
-            case Constants.MAGICAL:
-                data = duplicate(actor.system.dommage.magique);
-                break;
-            default:
-                return;
-        }
-
-
-        switch (type) {
-            case Constants.PHYSICAL:
-                await this.update({ ["system.dommage.physique"]: data });
-                break;
-            case Constants.MAGICAL:
-                await this.update({ ["system.dommage.magique"]: data });
-                break;
-        }
-
-        /*
-        let baseDommage = type === Constants.PHYSICAL ? actor.system.dommage.physique : actor.system.dommage.magique;
-        "physique": {
-            "_1": false,
-            "_2": false,
-            "_3": false,
-            "_4": false,
-            "_5": false,
-            "mineure": false,
-            "serieuse": false,
-            "grave": false,
-            "mortelle": false
-        },
-        "magique": {
-            "_1": false,
-            "_2": false,
-            "_3": false,
-            "mineure": false,
-            "serieuse": false,
-            "grave": false,
-            "mortelle": false
-        }
-        const data = duplicate(this.system.periodes);
-        await this.update({ ["data.periodes"]: data });
-        */
-
-
-
     }
 
 }

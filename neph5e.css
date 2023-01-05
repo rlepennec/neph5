@@ -58,10 +58,13 @@
   margin-top: 0px;
   margin-bottom: 0px;
 }
+.mborder {
+  border-width: 2px;
+}
 .mtop {
   margin-top: 10px;
 }
-.mtop {
+.mbottom {
   margin-bottom: 10px;
 }
 .mright {
@@ -72,6 +75,9 @@
 }
 .hidden {
   visibility: hidden;
+}
+.indianred {
+  color: indianred;
 }
 .grey {
   color: #a1a1a1;
@@ -324,12 +330,22 @@
   display: flex;
   flex-direction: column;
 }
+.actor-root .article .top {
+  border: 0px;
+  width: 814px;
+  height: 98px;
+}
 .actor-root .article .tab .voie {
   margin-top: 10px;
   padding-bottom: 3px;
   font-family: 'AJensonPro';
   font-size: 25px;
   text-align: center;
+}
+.actor-root .article .tab .top {
+  border: 0px;
+  width: 814px;
+  height: 98px;
 }
 .actor-root .article .combat .figurant {
   display: flex;
@@ -433,6 +449,23 @@
 .actor-root .article .combat .content .column .actions .roll {
   text-align: center;
   width: 32px;
+  margin-left: 12px;
+  margin-right: 10px;
+}
+.actor-root .article .combat .content .column .capacites .item .item-control {
+  margin-left: 12px;
+  margin-right: 10px;
+}
+.actor-root .article .combat .content .column .capacites .item .item-name span.esquive {
+  margin-right: 5px;
+}
+.actor-root .article .combat .content .column .capacites .item .item-name span.lutte {
+  margin-right: 20px;
+}
+.actor-root .article .combat .content .column .capacites .item i {
+  margin-right: 15px;
+}
+.actor-root .article .combat .content .column .equipement .item .delete {
   margin-left: 12px;
   margin-right: 10px;
 }
@@ -669,37 +702,57 @@
   flex-direction: column;
   width: 314px;
 }
-.actor-root .article .incarnations .top {
+.actor-root .article .nephilim .content .right .stase .sectionRow .circle input {
+  border: none;
+  background-color: transparent;
+  transform: translate(2px, 14px);
+  text-align: center;
+}
+.actor-root .article .nephilim .content .right .stase .sectionRow .sectionTitle input {
+  border: none;
+  background-color: transparent;
+}
+.actor-root .article .incarnations .header {
   display: flex;
   flex-direction: row;
   flex: 0 0 auto;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 10px;
   font-family: 'AJensonPro';
   font-size: 20px;
   background-color: transparent;
   border: 0px;
 }
-.actor-root .article .incarnations .top label.noperiode {
-  font-size: 22px;
+.actor-root .article .incarnations .header .periode-courante {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  text-align: center;
+  font-family: 'NightjarDemi';
+  font-size: 20px;
   margin-top: 5px;
   margin-right: 40px;
+}
+.actor-root .article .incarnations .header .periode-courante label.noperiode {
   color: indianred;
+  width: 100%;
 }
-.actor-root .article .incarnations .top .tooltip .periode {
-  font-size: 22px;
-  margin-top: 5px;
-  margin-right: 40px;
+.actor-root .article .incarnations .header .periode-courante .tooltip {
+  width: 100%;
 }
-.actor-root .article .incarnations .top .points {
+.actor-root .article .incarnations .header .all-points {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .article .incarnations .header .all-points .points {
   width: 60px;
   text-align: center;
 }
-.actor-root .article .incarnations .top .points input.middle {
+.actor-root .article .incarnations .header .all-points .points input.middle {
   vertical-align: middle;
 }
-.actor-root .article .incarnations .top .points input {
+.actor-root .article .incarnations .header .all-points .points input {
   text-align: center;
   border: none;
   border-radius: 50%;
@@ -801,6 +854,10 @@
   margin: 10px 0px 10px 20px;
 }
 .actor-root .article .akasha .content .column .item-list .item .item-name {
+  font-family: 'AJensonPro';
+  font-size: 20px;
+}
+.actor-root .article .akasha .content .column .item-list .vaisseau .item-name {
   font-family: 'AJensonPro';
   font-size: 20px;
 }
@@ -1123,6 +1180,175 @@
 .actor-root .article .all-focus .focus .width-80 {
   width: 80px;
 }
+.actor-root .article .all-focus .ordonnances {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.actor-root .article .all-focus .ordonnances .monde {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.actor-root .article .all-focus .ordonnances .monde .circle {
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.actor-root .article .all-focus .ordonnances .monde .title {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .all-focus .ordonnances .item {
+  height: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.actor-root .article .all-focus .ordonnances .item .item-name {
+  margin-left: 20px;
+}
+.actor-root .article .arbre .content {
+  position: relative;
+  text-align: center;
+  font-family: 'NightjarDemi';
+  font-size: 18px;
+}
+.actor-root .article .arbre .content img {
+  margin-left: 90px;
+  border: 0px;
+  width: 600px;
+  height: 795px;
+}
+.actor-root .article .arbre .content .malkut .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(17px, 320px);
+}
+.actor-root .article .arbre .content .malkut .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(44px, 340px);
+}
+.actor-root .article .arbre .content .yesod .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(25px, 165px);
+}
+.actor-root .article .arbre .content .yesod .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(44px, 185px);
+}
+.actor-root .article .arbre .content .hod .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-105px, 85px);
+}
+.actor-root .article .arbre .content .hod .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-94px, 105px);
+}
+.actor-root .article .arbre .content .netzach .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(148px, 85px);
+}
+.actor-root .article .arbre .content .netzach .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(182px, 105px);
+}
+.actor-root .article .arbre .content .tiphereth .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(2px, 8px);
+}
+.actor-root .article .arbre .content .tiphereth .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(44px, 27px);
+}
+.actor-root .article .arbre .content .geburah .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-128px, -70px);
+}
+.actor-root .article .arbre .content .geburah .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-94px, -48px);
+}
+.actor-root .article .arbre .content .chesed .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(151px, -70px);
+}
+.actor-root .article .arbre .content .chesed .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(182px, -48px);
+}
+.actor-root .article .arbre .content .binah .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-113px, -225px);
+}
+.actor-root .article .arbre .content .binah .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-94px, -205px);
+}
+.actor-root .article .arbre .content .chokmah .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(150px, -225px);
+}
+.actor-root .article .arbre .content .chokmah .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(182px, -205px);
+}
+.actor-root .article .arbre .content .kether .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(17px, -305px);
+}
+.actor-root .article .arbre .content .kether .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(44px, -284px);
+}
 .actor-root .article .options .columns {
   display: flex;
   flex-direction: row;
@@ -1434,6 +1660,18 @@
   border: 0;
   background: transparent;
 }
+.item-root .article .main .label {
+  display: flex;
+  flex-direction: row;
+  height: 26px;
+  vertical-align: middle;
+  font-family: 'AJensonPro';
+}
+.item-root .article .main .label .title {
+  flex: 0 0 auto;
+  font-weight: bold;
+  margin-right: 5px;
+}
 .item-root .article .row {
   display: flex;
   flex-direction: row;
@@ -1525,6 +1763,50 @@
   margin-left: 50px;
   margin-right: 10px;
 }
+.item-root .article .key {
+  color: indianred;
+  margin-top: 20px;
+  font-family: 'Gill Sans';
+}
+.item-root .article .chronology {
+  margin-top: 10px;
+  font-family: 'AJensonPro';
+}
+.item-root .article .chronology tr td.periode-name {
+  padding-left: 10px;
+}
+.item-root .article .chronology tr td.periode {
+  text-align: center;
+}
+.item-root .article .chronology tr td.infos {
+  text-align: center;
+  font-weight: bold;
+}
+.item-root .article .difficulte {
+  display: flex;
+  flex-direction: row;
+  height: 26px;
+  font-family: 'AJensonPro';
+}
+.item-root .article .difficulte span:nth-child(1) {
+  font-weight: bold;
+  padding-top: 4px;
+}
+.item-root .article .difficulte span:nth-child(2) {
+  margin-left: 5px;
+  padding-top: 4px;
+}
+.item-root .article .metamorphoses {
+  margin-top: 10px;
+}
+.item-root .article .metamorphoses li input {
+  border: 0;
+  background: transparent;
+  padding-bottom: 13px;
+}
+.item-root .article .description .add span {
+  margin-left: 10px;
+}
 .chat-message {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
   font-family: 'AJensonProLtDisp';
@@ -1567,6 +1849,9 @@
   white-space: normal;
   word-break: normal;
 }
+.chat-message .chat .chat-body.opposition {
+  margin-top: 20px;
+}
 .chat-message .chat .chat-body {
   margin: 10px;
   font-size: 16px;
@@ -1578,12 +1863,27 @@
 .chat-message .chat .chat-body .fa-heart-broken {
   margin-left: 30px;
 }
+.chat-message .chat .chat-body .fa-heart-broken.opposition {
+  margin-left: 30px;
+  margin-right: 5px;
+}
 .chat-message .chat .chat-body .chat-description {
   font-style: bold;
 }
 .chat-message .chat .chat-body .chat-details {
   font-size: 11px;
   font-style: italic;
+}
+.chat-message .chat .chat-body .fa-right.opposition {
+  margin-right: 5px;
+}
+.chat-message .chat .chat-body .fa-shield.opposition {
+  margin-left: 30px;
+  margin-right: 5px;
+}
+.chat-message .chat .effects {
+  text-align: center;
+  margin-bottom: 20px;
 }
 .roll-before {
   border: 3px solid rgba(0, 0, 0, 0.7);
@@ -1682,4 +1982,414 @@
 }
 .basic .basic-body .opposed-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
+}
+.action {
+  display: flex;
+  flex-direction: column;
+}
+.action .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 10px;
+}
+.action .header .actor {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+}
+.action .header .sentence {
+  font-size: 16px;
+  font-style: bold;
+  text-align: center;
+  flex: 1;
+  font-family: 'NightjarDemi';
+}
+.action .header .target {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+  border-radius: 4px;
+}
+.action .roll {
+  display: flex;
+  flex-direction: row;
+}
+.action .roll #difficulty {
+  flex: 0 0 auto;
+  padding-left: 70px;
+  padding-top: 4px;
+  padding-right: 10px;
+}
+.action .roll .item-control {
+  flex: 0 0 auto;
+  width: 20px;
+  padding-top: 5px;
+  padding-right: 100px;
+}
+.action .roll .type {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+.action .roll .type #rollType {
+  flex: 0 0 auto;
+  width: 100px;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+}
+.action .roll .type span {
+  flex: 0 0 auto;
+  margin-left: 67px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+.action .roll .type #element {
+  flex: 0 0 auto;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+  width: 80px;
+}
+.action .table {
+  width: 100%;
+  table-layout: fixed;
+}
+.action .table tr {
+  height: 35px;
+}
+.action .table tr td select {
+  padding-left: 15px;
+  flex: 0 0 auto;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+}
+.action .table tr td input {
+  text-align: right;
+  margin-right: -3px;
+  border: none;
+  background-color: transparent;
+}
+.action .table tr .base-name {
+  width: 65%;
+  text-align: left;
+  padding-left: 20px;
+}
+.action .table tr .modifier {
+  width: 65%;
+  text-align: left;
+  padding-left: 20px;
+}
+.action .table tr .value {
+  width: 25%;
+  text-align: right;
+  flex: 0 0 auto;
+}
+.action .table tr .percentage {
+  width: 10%;
+  text-align: left;
+  padding-top: 5px;
+  flex: 0 0 auto;
+  width: auto;
+}
+.reaction {
+  display: flex;
+  flex-direction: column;
+}
+.reaction .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 10px;
+}
+.reaction .header .actor {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+}
+.reaction .header .sentence {
+  font-size: 16px;
+  font-style: bold;
+  text-align: center;
+  flex: 1;
+  font-family: 'NightjarDemi';
+}
+.reaction .header .target {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+  border-radius: 4px;
+}
+.reaction .roll {
+  display: flex;
+  flex-direction: row;
+}
+.reaction .roll #difficulty {
+  flex: 0 0 auto;
+  padding-left: 70px;
+  padding-top: 4px;
+  padding-right: 10px;
+}
+.reaction .roll .item-control {
+  flex: 0 0 auto;
+  width: 20px;
+  padding-top: 5px;
+  padding-right: 100px;
+}
+.reaction .roll .type {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+.reaction .roll .type span {
+  flex: 0 0 auto;
+  padding-top: 5px;
+}
+.reaction .table {
+  width: 100%;
+  table-layout: fixed;
+}
+.reaction .table tr {
+  height: 35px;
+}
+.reaction .table tr td input {
+  text-align: right;
+  margin-right: -3px;
+  border: none;
+  background-color: transparent;
+}
+.reaction .table tr .base-name {
+  width: 65%;
+  text-align: left;
+  padding-left: 20px;
+}
+.reaction .table tr .modifier {
+  width: 65%;
+  text-align: left;
+  padding-left: 20px;
+}
+.reaction .table tr .value {
+  width: 25%;
+  text-align: right;
+  flex: 0 0 auto;
+}
+.reaction .table tr .percentage {
+  width: 10%;
+  text-align: left;
+  padding-top: 5px;
+  flex: 0 0 auto;
+  width: auto;
+}
+.mnemos .article .id {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.mnemos .article .name {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+}
+.mnemos .article .name input {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+  height: 100%;
+  width: 100%;
+  font-family: Calibri;
+}
+.mnemos .article .name img {
+  flex: 0 0 auto;
+  margin-left: 10px;
+}
+.mnemos .article .desc {
+  border-width: 2px;
+  margin-top: 10px;
+}
+.combat {
+  display: flex;
+  flex-direction: column;
+}
+.combat .header {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 10px;
+}
+.combat .header img {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+}
+.combat .header span {
+  font-size: 16px;
+  font-style: bold;
+  text-align: center;
+  flex: 1;
+  font-family: 'NightjarDemi';
+}
+.combat .roll {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 20px;
+  flex-grow: 0;
+}
+.combat .roll .dice {
+  display: flex;
+  flex-direction: row;
+}
+.combat .roll .dice #difficulty {
+  padding-top: 4px;
+  text-align: right;
+}
+.combat .roll .dice .roll-dice {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+.combat .roll .impact {
+  display: flex;
+  flex-direction: row;
+}
+.combat .roll .impact #impact {
+  padding-top: 4px;
+  text-align: right;
+}
+.combat .roll .impact .heart {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+.combat .roll .absorption {
+  display: flex;
+  flex-direction: row;
+}
+.combat .roll .absorption #absorption {
+  padding-top: 4px;
+  text-align: right;
+}
+.combat .roll .absorption .shield {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+.combat .roll .type select {
+  flex: 0 0 auto;
+  width: 100px;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+}
+.combat .roll #details {
+  width: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
+}
+.combat table {
+  table-layout: fixed;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  width: 464px;
+  flex-grow: 0;
+}
+.combat table tr {
+  height: 35px;
+}
+.combat table tr td:nth-child(1) {
+  width: 380px;
+}
+.combat table tr td:nth-child(1).manoeuver {
+  display: flex;
+  flex-direction: row;
+}
+.combat table tr td:nth-child(1).manoeuver select {
+  padding-left: 15px;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+}
+.combat table tr td:nth-child(1).manoeuver select option {
+  width: 140px;
+}
+.combat table tr td:nth-child(1).manoeuver #times {
+  padding-top: 5px;
+  padding-left: 30px;
+}
+.combat table tr td:nth-child(1).manoeuver #times #shot-1 {
+  font-size: 14px;
+  margin-right: 5px;
+}
+.combat table tr td:nth-child(1).manoeuver #times label {
+  font-size: 14px;
+}
+.combat table tr td:nth-child(1).blessures {
+  display: flex;
+  flex-direction: row;
+}
+.combat table tr td:nth-child(1).blessures select {
+  padding-left: 15px;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+}
+.combat table tr td:nth-child(1).approche {
+  display: flex;
+  flex-direction: row;
+}
+.combat table tr td:nth-child(1).approche select {
+  padding-left: 15px;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+}
+.combat table tr td:nth-child(2) {
+  width: 50px;
+  text-align: right;
+}
+.combat table tr td:nth-child(2) #modifier {
+  text-align: right;
+  margin-right: -3px;
+  border: none;
+  background-color: transparent;
+}
+.combat table tr td:nth-child(3) {
+  width: 34px;
+  text-align: left;
+}
+.combat table tr td.label {
+  text-align: left;
+  padding-left: 20px;
+}
+.combat div.hiddable {
+  display: flex;
+  width: 96%;
+  height: 80px;
+  margin: auto;
+  font-style: italic;
+  border: solid 1px;
+  border-radius: 4px;
+  padding: 10px;
+}
+.combat div.hiddable #description {
+  margin: auto;
+  text-align: center;
 }

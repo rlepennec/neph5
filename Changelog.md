@@ -1,12 +1,20 @@
+# 1.2.14
+Correction d'une anomalie sur le calcul de l'initiative
+Correction d'une anomalie sur les tirs à distance
+Masquer aux joueurs les périodes non activées, gestion réservée au MJ
+Gestion automatique des materiae primae lors de la création de substances alchimiques
+Application automatique des dommages, conséquences et effets lorsque l'option combat automatique est activée
+Factorisation du css
+
 # 1.2.13
-Amélioration du chat avec des liens
+Amélioration du tchat avec des liens
 Correction d'une anomalie sur la suppression des périodes du monde
-CSS
+Factorisation du css
 
 # 1.2.12
 Correction d'une anomalie empêchant de renommer un vécu
 Caché le vécu du simulacre si l'option est désactivée
-CSS
+Factorisation du css
 
 # 1.2.11
 Mise à jour d'icones du système

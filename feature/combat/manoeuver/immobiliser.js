@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Immobiliser extends AbstractManoeuver {
@@ -12,6 +13,7 @@ export class Immobiliser extends AbstractManoeuver {
         super(Immobiliser.ID, Constants.BRAWL);
         this.withApproches(['eau','terre', 'ka']);
         this.withImpact({fix: 1});
+        this.withEffect(ActiveEffects.IMMOBILISE);
     }
 
     /**

@@ -200,7 +200,8 @@
                 "epee": false,
                 "chronologieDescendante": false,
                 "degreGauche": false,
-                "incarnationsOuvertes": false
+                "incarnationsOuvertes": false,
+                "gestionLaboratoire": false
             }
         }
     },

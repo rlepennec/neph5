@@ -1,5 +1,5 @@
 {{#if (nonNull readOnly)}}
-<table style="margin-top: 10px; font-family:'AJensonPro'">
+<table class="chronology">
     <tr>
         <th>{{localize title}}</th>
         <th>{{localize 'NEPH5E.degre'}}</th>
@@ -7,15 +7,15 @@
     </tr>
     {{#each periodes as |periode|}}
     <tr>
-        <td>{{periode.name}}</td>
-        <td style="text-align: center;">{{periode.degre}}</td>
-        <td style="text-align: center;">{{periode.sapiences}}</td>
+        <td class="periode-name">{{periode.name}}</td>
+        <td class="periode">{{periode.degre}}</td>
+        <td class="periode">{{periode.sapiences}}</td>
     </tr>
     {{/each}}
     <tr>
         <td></td>
-        <td style="text-align: center; font-weight: bold;">{{degre}}</td>
-        <td style="text-align: center; font-weight: bold;">{{next}}</td>
+        <td class="infos">{{degre}}</td>
+        <td class="infos">{{next}}</td>
     </tr>
 </table>
 {{/if}}

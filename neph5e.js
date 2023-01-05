@@ -41,8 +41,8 @@ import { TekhneSheet } from "./feature/coupe/item/tekhne.js";
 import { VecuSheet } from "./feature/periode/item/vecu.js";
 
 import { NephilimCombatant } from "./feature/combat/core/combatant.js";
-import { AbstractRoll } from "./feature/core/abstractRoll.js";
 import { OpposedRollBuilder } from "./feature/core/opposedRollBuilder.js";
+import { Health } from "./feature/core/health.js";
 
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
@@ -202,7 +202,17 @@ Hooks.once("init", function () {
 
     // Register socket messages
     game.socket.on(Constants.SYSTEM_SOCKET_ID, async socketMessage => {
-        await NephilimChat.onSocketMessage(socketMessage);
+        switch (socketMessage.msg) {
+            case Constants.MSG_UNSET_CHAT_MESSAGE:
+                await NephilimChat.onSocketMessage(socketMessage);
+                break;
+            case Constants.MSG_APPLY_DAMAGES_ON:
+                await Health.onSocketMessage(socketMessage);
+                break;
+            case Constants.MSG_APPLY_EFFECTS_ON:
+                await Health.onSocketMessage(socketMessage);
+                break;
+          }
     });
 
     /**

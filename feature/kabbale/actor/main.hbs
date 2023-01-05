@@ -1,5 +1,5 @@
 {{#if (displaySciences actor 'malkut' 'yesod' 'hod' 'netzach' 'tiphereth' 'geburah' 'chesed' 'binah' 'chokmah' 'kether' )}}
-<ol class="item-list" style="margin-top:20px;">
+<ol class="item-list">
 
     {{#if (displayScience actor "malkut")}}
     {{#with (science actor "malkut") as |degre|}}
@@ -99,27 +99,25 @@
 
 {{#with actor.ordonnances as |items|}}
 {{#unless (eq items.size 0)}}
-<ol class="item-list" style="margin-top:0px;margin-bottom:20px;">
+<ol class="item-list ordonnances">
 
-    <div style="display:flex; flex-direction:row; justify-content: center;">
-        <div class="circle" style="flex-basis: 40px;flex-grow: 0;flex-shrink: 0;">
+    <div class="monde">
+        <div class="circle">
             <div class="circleContent">{{items.size}}</div>
         </div>
-        <div style="width:100%; margin-left: 20px;display:flex; flex-direction:row; margin-top:10px; margin-bottom:10px; font-family: 'AJensonPro'; font-size: 20px; border-width:0px 0px 2px 0px;border-style:solid;border-color:black;">
-            <div class="item-name" style="width:100%;padding-left:5px;">
-                <span>{{localize "NEPH5E.ordonnances-de"}} {{items.monde}}</span>
-            </div>
+        <div class="title">
+            <span>{{localize "NEPH5E.ordonnances-de"}} {{items.monde}}</span>
         </div>
     </div>
 
     {{#each items.items as |item|}}
-    <li class="item" style="height:17px;display:flex; flex-direction:row;align-items: center;" data-item-id="{{item.embedded.id}}">
+    <li class="item" data-item-id="{{item.embedded.id}}">
 
         <div class="item-control">
             <a class="item-delete"><i class="fas fa-trash"></i></a>
         </div>
 
-        <div class="item-name edit-ordonnance" data-id="{{item.original.id}}" style="margin-left:20px;">
+        <div class="item-name edit-ordonnance" data-id="{{item.original.id}}">
             {{html item.original.name}}
         </div>
 

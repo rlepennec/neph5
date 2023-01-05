@@ -274,6 +274,7 @@ export class Periode extends AbstractRoll {
                     id: periode.id,
                     sid: periode.sid,
                     contexte: periode.system.contexte,
+                    aube: periode.system.aube
                 },
                 embedded: {
                     id: p.id,

@@ -8,7 +8,6 @@ import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
-
 export class BaseSheet extends ActorSheet {
 
     /**

@@ -1,22 +1,25 @@
 <form class="chat">
 
-    <div class="chat-body" style="margin-top:20px">
+    <div class="chat-body opposition">
+
         <i class="fa-solid fa-dice-d20"></i>
         <span>{{total}}</span>
+
         {{#unless (isNull absorption)}}
-            {{#if (nonNull absorption.modifier)}}
-                <i class="fas fa-shield" style="margin-left:30px;margin-right:5px"></i>
-                <span> {{absorption.modifier}}</span>
-            {{else}}
-                <i class="fas fa-heart-broken" style="margin-left:30px;margin-right:5px"></i>
-                <i class="fa-solid fa-right" style="margin-right:5px"></i>
-                <span> {{absorption.fix}}</span>
-            {{/if}}
+        {{#if (nonNull absorption.modifier)}}
+        <i class="fas fa-shield opposition"></i>
+        <span> {{absorption.modifier}}</span>
+        {{else}}
+        <i class="fas fa-heart-broken opposition"></i>
+        <i class="fa-solid fa-right opposition"></i>
+        <span> {{absorption.fix}}</span>
+        {{/if}}
         {{/unless}}
+
     </div>
 
     {{#unless (isEmptyString effects)}}
-    <div style="text-align: center;margin-bottom:20px">{{effects}}</div>
+    <div class="effects">{{effects}}</div>
     {{/unless}}
 
     <div class="chat-header">

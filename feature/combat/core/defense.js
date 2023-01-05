@@ -12,12 +12,14 @@ import { Esquiver } from "../manoeuver/esquiver.js";
 import { EsquiverLance } from "../manoeuver/esquiverLance.js";
 import { Eviter } from "../manoeuver/eviter.js";
 import { Fuir } from "../manoeuver/fuir.js";
+import { Health } from "../../core/health.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { NephilimChat } from "../../../module/common/chat.js";
 import { Parer } from "../manoeuver/parer.js";
 import { ParerLance } from "../manoeuver/parerLance.js";
 import { ParerProjectile } from "../manoeuver/parerProjectile.js";
+
 
 export class Defense extends AbstractRoll {
 
@@ -122,7 +124,8 @@ export class Defense extends AbstractRoll {
     manoeuverModifier(parameters) {
         const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
         const shot = parameters?.shot == null ? null : parameters.shot - 1;
-        return AbstractRoll.toInt(manoeuver?.update(this)?.defense?.modifier) + AbstractRoll.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
+        return AbstractRoll.toInt(manoeuver?.update(this)?.defense?.modifier) +
+               AbstractRoll.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
     }
 
     /**
@@ -148,7 +151,14 @@ export class Defense extends AbstractRoll {
      * @Overrides
      */
     async apply(result) { 
+
+        // Process the opposition roll
         const winner = AbstractRoll.winner(this.result, result);
+
+        // Determine manoeuver absorption
+        const absorption = winner !== Constants.ACTION ? this.manoeuver.absorption : null;
+        
+        // Display result in chat
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/feature/core/opposition.hbs")
             .withData({
@@ -157,10 +167,17 @@ export class Defense extends AbstractRoll {
                 img: this.attack.actor.img,
                 total: result.roll._total,
                 effects : this.effectsOf(winner),
-                absorption: winner !== Constants.ACTION ? this.manoeuver.absorption : null
+                absorption: absorption
             })
             .withRoll(result.roll)
             .create();
+
+        // Apply damages automaticaly if necessary
+        if (game.settings.get('neph5e', 'useCombatSystem') === true) {
+            await Health.applyDamagesOn(this.actor.token?.id, this.attack.impact, true, this.attack.weapon, absorption);
+            await Health.applyEffectsOn(this.actor.token?.id, this.attack.actor.token.id, winner, this.attack.manoeuver);
+        }
+
     }
 
     /**

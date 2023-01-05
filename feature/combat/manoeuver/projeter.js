@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Projeter extends AbstractManoeuver {
@@ -12,6 +13,7 @@ export class Projeter extends AbstractManoeuver {
         super(Projeter.ID, Constants.BRAWL);
         this.withApproches(['feu','terre', 'ka']);
         this.withImpact({modifier: 0});
+        this.withEffect(ActiveEffects.PROJETE);
     }
 
     /**

@@ -91,13 +91,11 @@
             {{/if}}
 
             {{#if item.isEmbedded}}
-                <div style="border-width: 2px;">
-                    <div class="no-scrollbar mtop">
-                        {{html (enrichHTML item.description owner)}}
-                    </div>
-                </div>
+            <div class="no-scrollbar mtop mborder">
+                {{html (enrichHTML item.description owner)}}
+            </div>
             {{else}}
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
             {{/if}}
 
         </div>

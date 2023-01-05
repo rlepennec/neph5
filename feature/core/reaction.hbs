@@ -1,39 +1,39 @@
-<form class="flexcol">
+<form class="reaction">
 
-    <div class="flexrow" style="align-items: center; background-color: rgba(0, 0, 0, 0.2); border-radius: 4px; margin: 10px;">
-        <img style="margin: 10px; height: 50px; width: 50px; border: none;flex: 0;" src="{{actor.img}}"/>
-        <span style="font-size: 14px;font-style: bold;text-align: center;flex: 1;font-family:'Modesto Condensed','Palatino Linotype','serif';font-size:18px;">{{sentence}}</span>
-        <img style="margin: 10px; height: 50px; width: 50px; border: none;flex: 0; border-radius: 4px;" src="{{img}}"/>
+    <div class="header">
+        <img class="actor" src="{{actor.img}}"/>
+        <span class="sentence">{{sentence}}</span>
+        <img class="target" src="{{img}}"/>
     </div>
 
-    <div class="flexrow">
+    <div class="roll">
 
-        <span id="difficulty" style="flex: 0 0 auto; padding-left:70px;padding-top: 4px;padding-right:10px;">{{base.difficulty}}%</span>
+        <span id="difficulty">{{difficulty}}%</span>
 
-        <div class="item-control" style="flex: 0 0 auto; width:20px; padding-top: 5px;padding-right:100px;">
+        <div class="item-control">
             <a id="roll"><i class="fas fa-dice-d20"></i></a>
         </div>
 
-        <div class="flexrow" style="margin-left:20px">
-            <span style="flex: 0 0 auto;padding-top:5px;">{{localize 'NEPH5E.jetOpposition'}}</span>
+        <div class="type">
+            <span>{{localize 'NEPH5E.jetOpposition'}}</span>
         </div>
 
     </div>
 
-    <table style="width:100%; table-layout: fixed;">
+    <table class="table">
 
-        <tr style="height:35px;">
-            <td style="width:65%; text-align:left; padding-left:20px;">{{base.name}}</th>
-            <td id="base" style="width:25%; text-align:right; flex: 0 0 auto;">{{base.difficulty}}</th>
-            <td style="width:10%; text-align: left; flex: 0 0 auto; padding-top:5px; flex: 0 0 auto; width:auto;">%</td>
+        <tr>
+            <td class="base-name">{{base.name}}</th>
+            <td class="value" id="base">{{base.difficulty}}</th>
+            <td class="percentage">%</td>
         </tr>
 
-        <tr style="height:35px;">
-            <td style="width:65%; text-align:left; padding-left:20px;">Modificateur</td>
-            <td style="width:25%; text-align:right; flex: 0 0 auto;">
-                <input id="modifier" type="Number" value="0" style="text-align:right; margin-right:-3px;border:none; background-color:transparent;"/>
+        <tr>
+            <td class="modifier">Modificateur</td>
+            <td class="value">
+                <input id="modifier" type="Number" value="0"/>
             </td>
-            <td style="width:10%; text-align: left; flex: 0 0 auto; padding-top:5px; flex: 0 0 auto; width:auto;">%</td>
+            <td class="percentage">%</td>
         </tr>
 
     </table>

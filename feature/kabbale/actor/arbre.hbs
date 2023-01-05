@@ -1,105 +1,95 @@
-<div style="position: relative; text-align: center; font-family: 'NightjarDemi'; font-size: 18px;">
+<div class="content">
 
-    <img src="systems/neph5e/assets/backgrounds/arbre.webp" style="margin-left: 90px; border: 0px;width:600px;height:795px"/>
+    <img src="systems/neph5e/assets/backgrounds/arbre.webp"/>
 
-    <!-- Malkut -->
+    <div class="malkut">
+        <span class="title">Malkut</span>
+        {{#if (displayScience actor "malkut")}}
+        {{#with (science actor "malkut") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(17px, 320px);">Malkut</span>
+    <div class="yesod">
+        <span class="title">Yesod</span>
+        {{#if (displayScience actor "yesod")}}
+        {{#with (science actor "yesod") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    {{#if (displayScience actor "malkut")}}
-    {{#with (science actor "malkut") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(44px, 340px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
+    <div class="hod">
+        <span class="title">Hod</span>
+        {{#if (displayScience actor "hod")}}
+        {{#with (science actor "hod") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    <!-- Yesod -->
+    <div class="netzach">
+        <span class="title">Netzach</span>
+        {{#if (displayScience actor "netzach")}}
+        {{#with (science actor "netzach") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(25px, 165px);">Yesod</span>
+    <div class="tiphereth">
+        <span class="title">Tiphereth</span>
+        {{#if (displayScience actor "tiphereth")}}
+        {{#with (science actor "tiphereth") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    {{#if (displayScience actor "yesod")}}
-    {{#with (science actor "yesod") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(44px, 185px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
+    <div class="geburah">
+        <span class="title">Geburah</span>
+        {{#if (displayScience actor "geburah")}}
+        {{#with (science actor "geburah") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    <!-- Hod -->
+    <div class="chesed">
+        <span class="title">Chesed</span>
+        {{#if (displayScience actor "chesed")}}
+        {{#with (science actor "chesed") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-105px, 85px);">Hod</span>
+    <div class="binah">
+        <span class="title">Binah</span>
+        {{#if (displayScience actor "binah")}}
+        {{#with (science actor "binah") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    {{#if (displayScience actor "hod")}}
-    {{#with (science actor "hod") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-94px, 105px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
+    <div class="chokmah">
+        <span class="title">Hokmah</span>
+        {{#if (displayScience actor "chokmah")}}
+        {{#with (science actor "chokmah") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
-    <!-- Netzach -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(148px, 85px);">Netzach</span>
-
-    {{#if (displayScience actor "netzach")}}
-    {{#with (science actor "netzach") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(182px, 105px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
-
-    <!-- Tiphereth -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(2px, 8px);">Tiphereth</span>
-
-    {{#if (displayScience actor "tiphereth")}}
-    {{#with (science actor "tiphereth") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(44px, 27px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
-
-    <!-- Geburah -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-128px, -70px);">Geburah</span>
-
-    {{#if (displayScience actor "geburah")}}
-    {{#with (science actor "geburah") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-94px, -48px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
-
-    <!-- Chesed -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(151px, -70px);">Chesed</span>
-
-    {{#if (displayScience actor "chesed")}}
-    {{#with (science actor "chesed") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(182px, -48px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
-
-    <!-- Binah -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-113px, -225px);">Binah</span>
-
-    {{#if (displayScience actor "binah")}}
-    {{#with (science actor "binah") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-94px, -205px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
-
-    <!-- Chokmah -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(150px, -225px);">Hokmah</span>
-
-    {{#if (displayScience actor "chokmah")}}
-    {{#with (science actor "chokmah") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(182px, -205px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
-
-    <!-- Kether -->
-
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(17px, -305px);">Kether</span>
-
-    {{#if (displayScience actor "kether")}}
-    {{#with (science actor "kether") as |degre|}}
-    <span style="position: absolute; top: 50%; left: 50%; transform: translate(44px, -284px);">{{degre}}</span>
-    {{/with}}
-    {{/if}}
+    <div class="kether">
+        <span class="title">Kether</span>
+        {{#if (displayScience actor "kether")}}
+        {{#with (science actor "kether") as |degre|}}
+        <span class="degre">{{degre}}</span>
+        {{/with}}
+        {{/if}}
+    </div>
 
 </div>
