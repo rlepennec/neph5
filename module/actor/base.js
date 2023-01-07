@@ -61,7 +61,7 @@ export class BaseSheet extends ActorSheet {
      * @returns true if a token of the character is in combat, false otherwise.
      */
     _inCombat() {
-        return game.combat !== null && this?.token?.combatant !== undefined && this?.token?.combatant !== null;
+        return game.combat !== null && this?.tokenOf?.combatant !== undefined && this?.tokenOf?.combatant !== null;
     }
 
     /**

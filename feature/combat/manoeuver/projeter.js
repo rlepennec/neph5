@@ -12,7 +12,7 @@ export class Projeter extends AbstractManoeuver {
     constructor() {
         super(Projeter.ID, Constants.BRAWL);
         this.withApproches(['feu','terre', 'ka']);
-        this.withImpact({modifier: 0});
+        this.withImpact({fix: 1});
         this.withEffect(ActiveEffects.PROJETE);
     }
 

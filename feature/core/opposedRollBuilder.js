@@ -49,14 +49,14 @@ export class OpposedRollBuilder {
 
                     // Attack with target are processed as defense reaction by the player if connected or the GM otherwise.
                     } else {
-                        const token = await fromUuid(flags.opposed.purpose.target);
+                        const token = OpposedRollBuilder.tokenFromId(flags.opposed.purpose.target);
                         if (OpposedRollBuilder.handle(token)) {
-                            const attacker = await fromUuid(flags.opposed.purpose.attacker);
+                            const attacker = OpposedRollBuilder.actorFromId(flags.opposed.purpose.attacker);
                             const manoeuver = ManoeuverBuilder.create(flags.opposed.purpose.manoeuver);
                             return new Defense(
                                 token.actor,
                                 new Attack(
-                                    attacker.actor,
+                                    attacker,
                                     flags.opposed.purpose.impact,
                                     manoeuver,
                                     actor.items.get(flags.opposed.purpose.weapon)),
@@ -155,6 +155,22 @@ export class OpposedRollBuilder {
         // Error
         ui.notifications.error("Acteur " + id + " introuvable");
 
+    }
+
+    /**
+     * @param id The idenfier of the token.
+     * @return the token.
+     */
+    static tokenFromId(id) {
+        return canvas.tokens?.objects?.children.find(t => t.id === id);
+    }
+
+    /**
+     * @param id The idenfier of the actor.
+     * @return the actor.
+     */
+    static actorFromId(id) {
+        return canvas.tokens?.objects?.children.find(t => t.actor.id === id)?.actor;
     }
 
 }

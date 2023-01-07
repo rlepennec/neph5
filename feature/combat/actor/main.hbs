@@ -245,7 +245,7 @@
                 <!-- Weapon roll -->
                 <div class="roll">
                     <a class="attack"><i
-                        {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.token) (isNull ../actor.target)))}}
+                        {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}
                         class="fas fa-dice-d20 grey"
                         {{else}}
                         class="fas fa-dice-d20"
@@ -266,7 +266,7 @@
                 {{#if (eq item.system.type 'feu')}}
                 <div class="item-control tooltip">
                     <a id="recharger"
-                        {{#if (or (isNull ../actor.token) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}
+                        {{#if (or (isNull ../actor.tokenOf) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}
                         class="grey"
                         {{/if}}><i class="fas fa-spinner"></i></a>
                     <span class="tooltiptext">Munitions: {{item.numberOfMunitionsLeft}}/{{item.system.munitions}}</span>

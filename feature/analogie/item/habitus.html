@@ -1,0 +1,41 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div class="item-drop-target item-root">
+
+        <div class="side">
+            <img src="systems/neph5e/assets/core/side-sort.webp" title="{{localize 'ITEM.TypeHabitus'}}"/>
+        </div>
+
+        <div class="article">
+
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+
+            <div class="main">
+
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.domaines" collection=domaines name="system.domaine" value=system.domaine}}
+
+                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+
+                {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+
+            </div>
+
+            <hr>
+
+            {{> "systems/neph5e/templates/item/parts/body/list.hbs" title="NEPH5E.voies" values=system.voies names="system.voies" delete="delete-voie"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.incantation" name="system.incantation" value=system.incantation type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.portee" name="system.portee" value=system.portee type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+
+        </div>
+
+    </div>
+
+</form>

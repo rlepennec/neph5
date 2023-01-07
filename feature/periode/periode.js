@@ -252,7 +252,7 @@ export class Periode extends AbstractRoll {
                     }
                 }
             }
-            for (let type of ['sort','invocation','formule','rite','ordonnance','appel']) {
+            for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus']) {
                 for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
                     const original = AbstractRoll.original(i.sid);
                     if (original != null) {

@@ -30,7 +30,11 @@
                 {{#if (eq system.options.magie true)}}
                 <a class="sheet-navigation-tab" data-tab="magie">{{localize "NEPH5E.magie.science"}}</a>
                 {{/if}}
-        
+
+                {{#if (eq system.options.analogie true)}}
+                <a class="sheet-navigation-tab" data-tab="analogie">{{localize "NEPH5E.analogie"}}</a>
+                {{/if}}
+
                 {{#if (eq system.options.kabbale true)}}
                 <a class="sheet-navigation-tab" data-tab="kabbale">{{localize "NEPH5E.kabbale.science"}}</a>
                 <a class="sheet-navigation-tab" data-tab="arbre">{{localize "NEPH5E.arbre"}}</a>
@@ -127,7 +131,14 @@
                     {{> "systems/neph5e/feature/magie/actor/main.hbs"}}
                 </div>
                 {{/if}}
-        
+
+                {{#if (eq system.options.analogie true)}}
+                <div class="tab all-focus" data-group="primary" data-tab="analogie">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+                    {{> "systems/neph5e/feature/analogie/actor/main.hbs"}}
+                </div>
+                {{/if}}
+
                 {{#if (eq system.options.kabbale true)}}
                 <div class="tab all-focus" data-group="primary" data-tab="kabbale">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}

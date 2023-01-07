@@ -1,0 +1,59 @@
+<div class="voie">
+    {{#with actor.voieMagique}}
+    <label>{{name}}</label>
+    {{/with}}
+</div>
+
+{{#if (displaySciences actor 'comprendre' 'controler' 'creer' 'detruire' 'transformer')}}
+<ol class="item-list">
+
+    {{#if (displayScience actor "comprendre")}}
+    {{#with (science actor "comprendre") as |degre|}}
+        {{> "systems/neph5e/feature/analogie/actor/header.hbs" cercle="Comprendre" degre=degre cercle-id="comprendre" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'comprendre') as |item|}}
+            {{> "systems/neph5e/feature/analogie/actor/habitus.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "controler")}}
+    {{#with (science actor "controler") as |degre|}}
+        {{> "systems/neph5e/feature/analogie/actor/header.hbs" cercle="Contrôler" degre=degre cercle-id="controler" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'controler') as |item|}}
+            {{> "systems/neph5e/feature/analogie/actor/habitus.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "creer")}}
+    {{#with (science actor "creer") as |degre|}}
+        {{> "systems/neph5e/feature/analogie/actor/header.hbs" cercle="Créer" degre=degre cercle-id="creer" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'creer') as |item|}}
+            {{> "systems/neph5e/feature/analogie/actor/habitus.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "detruire")}}
+    {{#with (science actor "detruire") as |degre|}}
+        {{> "systems/neph5e/feature/analogie/actor/header.hbs" cercle="Détruire" degre=degre cercle-id="detruire" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'detruire') as |item|}}
+            {{> "systems/neph5e/feature/analogie/actor/habitus.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+    {{#if (displayScience actor "transformer")}}
+    {{#with (science actor "transformer") as |degre|}}
+        {{> "systems/neph5e/feature/analogie/actor/header.hbs" cercle="Transformer" degre=degre cercle-id="transformer" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'transformer') as |item|}}
+            {{> "systems/neph5e/feature/analogie/actor/habitus.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
+
+</ol>
+
+{{else}}
+    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+{{/if}}

@@ -49,9 +49,9 @@ export class Naturelle extends AbstractRoll {
      */
     get purpose() {
         return {
-            attacker: this.actor.uuid,
+            attacker: this.actor.id,
             manoeuver: this.manoeuver.id,
-            target: this.target?.actor.uuid,
+            target: this.target?.id,
             type: 'combat',
             weapon: this.weapon.id,
             impact: this.impact(this.manoeuver.id)
@@ -121,7 +121,7 @@ export class Naturelle extends AbstractRoll {
         if (this.effects.restrained === false) {
 
             // Use actor
-            if (this.actor.token == null) {
+            if (this.actor.tokenOf == null) {
                 await new Combat(this.actor).simpleAttack(this.weapon);
 
             // Use token

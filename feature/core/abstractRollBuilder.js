@@ -6,6 +6,7 @@ import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/periode/chute.js";
 import { Competence } from "../../feature/periode/competence.js";
 import { Formule } from "../../feature/alchimie/formule.js";
+import { Habitus } from "../../feature/analogie/habitus.js";
 import { Invocation } from "../../feature/kabbale/invocation.js";
 import { Ka } from "../../feature/nephilim/ka.js";
 import { Magie } from "../../feature/magie/magie.js";
@@ -125,6 +126,8 @@ export class AbstractRollBuilder {
                 return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
             case 'formule':
                 return new Formule(this.actor, this.item).withPeriode(this.periode);
+            case 'habitus':
+                return new Habitus(this.actor, this.item).withPeriode(this.periode);
             case 'invocation':
                 return new Invocation(this.actor, this.item).withPeriode(this.periode);
             case 'magie':

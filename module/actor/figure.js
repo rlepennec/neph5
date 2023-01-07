@@ -63,6 +63,7 @@ export class FigureSheet extends BaseSheet {
                 ".tab.vecus",
                 ".tab.nephilim",
                 ".tab.magie",
+                ".tab.analogie",
                 ".tab.kabbale",
                 ".tab.alchimie",
                 ".tab.laboratoire",
@@ -95,6 +96,7 @@ export class FigureSheet extends BaseSheet {
             actor: baseData.actor,
             system: baseData.actor.system,
             cercles: Game.alchimie.cercles,
+            domaines: Game.analogie.domaines,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs'),
             sciencesOccultes: game.settings.get('neph5e', 'sciencesOccultes'),
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
@@ -178,6 +180,14 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="magie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
         html.find('div[data-tab="magie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
         html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
+        // Magie
+        html.find('div[data-tab="analogie"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="analogie"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="analogie"] .change-focus').click(this._onChangeFocus.bind(this));
+        html.find('div[data-tab="analogie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="analogie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="analogie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Necromancie
         html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
@@ -351,6 +361,7 @@ export class FigureSheet extends BaseSheet {
                 case 'savoir':
                 case 'science':
                 case 'sort':
+                case 'habitus':
                     const periode = this._periodeOnDrop();
                     if (periode != null) {
                         await new AbstractRollBuilder(this.actor)

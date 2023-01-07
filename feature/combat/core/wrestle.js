@@ -43,9 +43,9 @@ export class Wrestle extends AbstractRoll {
      */
     get purpose() {
         return {
-            attacker: this.actor.uuid,
+            attacker: this.actor.id,
             manoeuver: this.manoeuver.id,
-            target: this.target?.actor.uuid,
+            target: this.target?.id,
             type: 'combat',
             impact: this.impact(this.manoeuver.id)
         }
@@ -55,7 +55,8 @@ export class Wrestle extends AbstractRoll {
      * @Override
      */
     get degre() {
-        return new Combat(this.actor).degreOf(this.item);
+        const item = this.manoeuver?.competenceUsed(this.actor, this.weapon);
+        return new Combat(this.actor).degreOf(item);
     }
 
     /**
@@ -116,7 +117,7 @@ export class Wrestle extends AbstractRoll {
         if (this.actor.isLutteAvailable) {
 
             // Use actor
-            if (this.actor.token == null) {
+            if (this.actor.tokenOf == null) {
                 await new Combat(this.actor).simpleAttack(this.weapon);
 
             // Use token

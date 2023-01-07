@@ -21,6 +21,15 @@ export class Health {
                 socketMessage.data.impact,
                 socketMessage.data.physical,
                 socketMessage.data.weapon,
+                socketMessage.data.manoeuver,
+                socketMessage.data.winner,
+                socketMessage.data.attack );
+            break;
+        case Constants.MSG_APPLY_EFFECTS_ON:
+            await Health.applyEffectsOn(
+                socketMessage.data.token,
+                socketMessage.data.attacker,
+                socketMessage.data.winner,
                 socketMessage.data.manoeuver );
             break;
         }
@@ -31,13 +40,15 @@ export class Health {
      * @param impact    The impact of the attack.
      * @param magical   True if physical damages must be to apply.
      * @param weapon    The weapon used to attack.
-     * @param manoeuver The nmanoeuver absorption.
+     * @param manoeuver The manoeuver absorption.
+     * @param winner    The action winner
+     * @param attack    The attack manoeuver
      */
-    static async applyDamagesOn(token, impact, physical, weapon, manoeuver) {
+    static async applyDamagesOn(token, impact, physical, weapon, manoeuver, winner, attack) {
         if (game.user.isGM === true) {
             const t = canvas.tokens?.objects?.children.find(t => t.id === token);
             if (t != null) {
-                await new Health(t.actor).applyDamages(impact, physical, weapon, manoeuver);
+                await new Health(t.actor).applyDamages(impact, physical, weapon, manoeuver, winner, attack);
             }
         } else {
             game.socket.emit(Constants.SYSTEM_SOCKET_ID, {
@@ -47,7 +58,9 @@ export class Health {
                     impact: impact,
                     physical: physical,
                     weapon: weapon,
-                    manoeuver: manoeuver
+                    manoeuver: manoeuver,
+                    winner: winner,
+                    attack: attack
                 }
             });
         }
@@ -58,8 +71,10 @@ export class Health {
      * @param magical   True if physical damages must be to apply.
      * @param weapon    The weapon used to attack.
      * @param manoeuver The nmanoeuver absorption.
+     * @param winner    The action winner
+     * @param attack    The attack manoeuver
      */
-    async applyDamages(impact, physical, weapon, manoeuver) {
+    async applyDamages(impact, physical, weapon, manoeuver, winner, attack) {
 
         // Because dodge all damages
         if (manoeuver != null && manoeuver.hasOwnProperty('fix')) {
@@ -72,7 +87,14 @@ export class Health {
         if (physical === true) {
             const armor = this.actor.protection("physique");
             const encaisse = Math.max(minDamages, impact - armor);
-            const damages = Math.max(0, encaisse - absorption);
+
+            let damages = 0;
+            if (winner === Constants.ACTION && attack.impact.fix != null) {
+                damages = attack.impact.fix;
+            } else {
+                damages = Math.max(0, encaisse - absorption);
+            }
+
             await new Damages(this.actor, 'physique').apply(damages);
         }
         if (weapon?.system?.magique === true) {
@@ -100,7 +122,7 @@ export class Health {
     /**
      * 
      * @param token     The token id of the defender.
-     * @param attacker  The token id of the attacker.
+     * @param attacker  The actor id of the attacker.
      * @param winner    The action winner
      * @param manoeuver Tha action manoeuver
      */
@@ -114,7 +136,7 @@ export class Health {
                         await actor.activateEffect(manoeuver.effect.id);
                     }
                 } else if (manoeuver.id === Liberer.ID) {
-                    const actor = canvas.tokens?.objects?.children.find(t => t.id === attacker)?.actor;
+                    const actor = canvas.tokens?.objects?.children.find(t => t.actor.id === attacker)?.actor;
                     if (actor != null) {
                         await actor.deactivateEffect(ActiveEffects.IMMOBILISE.id);
                     }
@@ -277,6 +299,7 @@ class Damage {
     constructor() {
         this.size = null;
         this.boxes = new Set();
+        this.sentence = null;
     }
 
     /**
@@ -294,6 +317,15 @@ class Damage {
      */
     withBox(value) {
         this.boxes.add(value);
+        return this;
+    }
+
+    /**
+     * @param value The sentence to set.
+     * @returns the instance.
+     */
+    withSentence(value) {
+        this.sentence = value;
         return this;
     }
 

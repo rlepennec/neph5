@@ -8,6 +8,7 @@ import { Competence } from "../../feature/periode/competence.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { Formule } from "../../feature/alchimie/formule.js";
+import { Habitus } from "../../feature/analogie/habitus.js";
 import { Game } from "../common/game.js";
 import { Invocation } from "../../feature/kabbale/invocation.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
@@ -207,7 +208,7 @@ export class NephilimActor extends Actor {
         if (this.isLutteAvailable === false) {
             return false;
         }
-        if (this.token == null) {
+        if (this.tokenOf == null) {
             return true;
         }
         if (this.immobilise) {
@@ -408,6 +409,16 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * @returns the token of the actor on the scene, null if none
+     */
+    get tokenOf() {
+        if (this.token != null) {
+            return this.token;
+        }
+        return canvas.tokens?.objects?.children.find(t => t.actor.id === this.id);
+    }
+
+    /**
      * @param sciences The name of the sciences.
      * @returns true if at least a science must be displayed.
      */
@@ -452,6 +463,15 @@ export class NephilimActor extends Actor {
                 type = 'sort';
                 property = 'cercle';
                 break;
+            case 'comprendre':
+            case 'controler':
+            case 'creer':
+            case 'detruire':
+            case 'transformer':
+                type = 'habitus';
+                property = 'domaine';
+                break;
+
             case 'malkut':
             case 'yesod':
             case 'hod':
@@ -493,6 +513,9 @@ export class NephilimActor extends Actor {
             switch (item.type) {
                 case 'sort':
                     degre = new Sort(this, item).withPeriode(this.system.periode).degre;
+                    break;
+                case 'habitus':
+                    degre = new Habitus(this, item).withPeriode(this.system.periode).degre;
                     break;
                 case 'invocation':
                     degre = new Invocation(this, item).withPeriode(this.system.periode).degre;

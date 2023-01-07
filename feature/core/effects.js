@@ -57,7 +57,7 @@ export class ActiveEffects {
     /**
      * 
      * @param actor  The actor object.
-     * @param target The targeted actor object .
+     * @param target The targeted actor object.
      * @returns all actor effects.
      */
     static effectsOf(actor, target) {

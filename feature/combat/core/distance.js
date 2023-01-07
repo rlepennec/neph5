@@ -50,9 +50,9 @@ export class Distance extends AbstractRoll {
      */
     get purpose() {
         return {
-            attacker: this.actor.uuid,
+            attacker: this.actor.id,
             manoeuver: this.manoeuver.id,
-            target: this.target?.actor.uuid,
+            target: this.target?.id,
             type: 'combat',
             weapon: this.weapon.id,
             impact: this.impact(this.manoeuver.id)
@@ -126,7 +126,7 @@ export class Distance extends AbstractRoll {
         if (this.weapon.system.used === true && this.effects.restrained === false) {
 
             // Use actor
-            if (this.actor.token == null) {
+            if (this.actor.tokenOf == null) {
                 await new Combat(this.actor).simpleAttack(this.weapon);
 
             // Use token
@@ -148,8 +148,9 @@ export class Distance extends AbstractRoll {
     async finalize(result) {
         if (game.settings.get('neph5e', 'useCombatSystem') === true) {
             const impact = this.impact(this.manoeuver.id);
-            await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null);
-            await Health.applyEffectsOn(this.target.id, this.actor?.token.id, result === true ? Constants.ACTION : Constants.REACTION, this.manoeuver);
+            const winner = result === true ? Constants.ACTION : Constants.REACTION;
+            await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, winner, this.manoeuver);
+            await Health.applyEffectsOn(this.target.id, this.actor.id, winner, this.manoeuver);
         }
     }
 

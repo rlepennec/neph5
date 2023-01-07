@@ -22,6 +22,7 @@ import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/periode/item/chute.js";
 import { CompetenceSheet } from "./feature/periode/item/competence.js";
 import { FormuleSheet } from "./feature/alchimie/item/formule.js";
+import { HabitusSheet } from "./feature/analogie/item/habitus.js";
 import { InvocationSheet } from "./feature/kabbale/item/invocation.js";
 import { MagieSheet } from "./feature/magie/item/magie.js";
 import { MateriaeSheet } from "./feature/alchimie/item/materiae.js";
@@ -110,6 +111,7 @@ Hooks.once("init", function () {
     Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
     Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
     Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
+    Items.registerSheet('nephilim', HabitusSheet, { types: ['habitus'], makeDefault: true });
     Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
     Items.registerSheet('nephilim', PasseSheet, { types: ['passe'], makeDefault: true });
     Items.registerSheet('nephilim', PeriodeSheet, { types: ['periode'], makeDefault: true });

@@ -174,8 +174,8 @@ export class Defense extends AbstractRoll {
 
         // Apply damages automaticaly if necessary
         if (game.settings.get('neph5e', 'useCombatSystem') === true) {
-            await Health.applyDamagesOn(this.actor.token?.id, this.attack.impact, true, this.attack.weapon, absorption);
-            await Health.applyEffectsOn(this.actor.token?.id, this.attack.actor.token.id, winner, this.attack.manoeuver);
+            await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver);
+            await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
         }
 
     }

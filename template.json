@@ -187,6 +187,7 @@
                 "combat": true,
                 "kabbale": true,
                 "magie": true,
+                "analogie": false,
                 "necromancie": true,
                 "nephilim": true,
                 "vecus": true,
@@ -216,6 +217,7 @@
             "chute",
             "competence",
             "formule",
+            "habitus",
             "invocation",
             "materiae",
             "metamorphe",
@@ -299,6 +301,9 @@
             "element": "air"
         },
         "formule": {
+            "id": null
+        },
+        "habitus": {
             "id": null
         },
         "invocation": {

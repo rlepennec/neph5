@@ -61,6 +61,11 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/magie/actor/header.hbs",
         "systems/neph5e/feature/magie/actor/sort.hbs",
 
+        // Analogie
+        "systems/neph5e/feature/analogie/actor/main.hbs",
+        "systems/neph5e/feature/analogie/actor/header.hbs",
+        "systems/neph5e/feature/analogie/actor/habitus.hbs",
+
         // Necromancie
         "systems/neph5e/feature/necromancie/actor/main.hbs",
         "systems/neph5e/feature/necromancie/actor/header.hbs",

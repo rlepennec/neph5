@@ -65,6 +65,16 @@ Game.magie = {
     }
 }
 
+Game.analogie = {
+    domaines: {
+        comprendre:    "NEPH5E.comprendre",
+        controler:     "NEPH5E.controler",
+        creer:         "NEPH5E.creer",
+        detruire:      "NEPH5E.detruire",
+        transformer:   "NEPH5E.transformer"
+    }
+}
+
 Game.pentacle = {
     elements: {
         air:           "NEPH5E.pentacle.elements.air",

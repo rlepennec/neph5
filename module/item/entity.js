@@ -119,7 +119,7 @@ export class NephilimItem extends Item {
             case 'magie':
 
                 // Delete from all sorts of the world
-                for (let item of game.items.filter(i => i.type === "sort")) {
+                for (let item of game.items.filter(i => i.type === "sort" || i.type === "habitus")) {
                     await item.deleteMagie(this);
                 }
 
@@ -363,7 +363,7 @@ export class NephilimItem extends Item {
                 return false;
             }
         }
-        if (this.actor.token == null) {
+        if (this.actor.tokenOf == null) {
             return true;
         }
         return this.actor.target !== null;
