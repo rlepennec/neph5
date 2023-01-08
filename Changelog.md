@@ -1,4 +1,5 @@
 # 1.2.16
+Possibilité de rajouter des domaines analogiques
 
 # 1.2.15
 Correction d'anomalies sur le système de combat
