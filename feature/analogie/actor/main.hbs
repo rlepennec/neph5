@@ -4,7 +4,7 @@
     {{/with}}
 </div>
 
-{{#if (displaySciences actor 'comprendre' 'controler' 'creer' 'detruire' 'transformer')}}
+{{#if (displaySciencesOf actor 'analogie' true)}}
 <ol class="item-list">
 
     {{#if (displayScience actor "comprendre")}}
@@ -51,6 +51,17 @@
         {{/each}}
     {{/with}}
     {{/if}}
+
+    {{#each (cerclesOf 'analogie' false) as |name key|}}
+        {{#if (displayScience ../actor key)}}
+        {{#with (science ../actor key) as |degre|}}
+            {{> "systems/neph5e/feature/analogie/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
+            {{#each (focus ../../actor key) as |item|}}
+             {{> "systems/neph5e/feature/analogie/actor/habitus.hbs" item=item degre=degre}}
+            {{/each}}
+        {{/with}}
+        {{/if}}
+    {{/each}}
 
 </ol>
 

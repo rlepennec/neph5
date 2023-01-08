@@ -72,6 +72,8 @@ Hooks.once("init", function () {
         isContact: CustomHandlebarsHelpers.isContact,
         displayScience: CustomHandlebarsHelpers.displayScience,
         displaySciences: CustomHandlebarsHelpers.displaySciences,
+        displaySciencesOf: CustomHandlebarsHelpers.displaySciencesOf,
+        cerclesOf: CustomHandlebarsHelpers.cerclesOf,
         focus: CustomHandlebarsHelpers.focus,
         science: CustomHandlebarsHelpers.science
     });

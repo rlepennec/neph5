@@ -503,6 +503,11 @@ export class NephilimActor extends Actor {
                 type = 'appel';
                 property = 'cercle';
                 break;
+            default:
+                if (typeof science === 'string' && science?.substring(0,9) === 'analogie@') {
+                    type = 'habitus';
+                    property = 'domaine';
+                }
         }
 
         let items = [];

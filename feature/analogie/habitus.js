@@ -1,6 +1,7 @@
 import { AbstractRoll } from "../core/abstractRoll.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
+import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
@@ -121,7 +122,7 @@ export class Habitus extends AbstractRoll {
                 system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
-                domaines: Game.analogie.domaines,
+                domaines: CustomHandlebarsHelpers.cerclesOf('analogie', true),
                 difficulty: this.degre
             },
             'ITEM.TypeHabitus',

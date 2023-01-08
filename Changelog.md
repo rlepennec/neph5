@@ -1,6 +1,8 @@
+# 1.2.16
+
 # 1.2.15
 Correction d'anomalies sur le système de combat
-Ajout des dommaines Comprendre, Contrôler, Créer, Détruire et Transformer pour la magie analogique
+Ajout des domaines Comprendre, Contrôler, Créer, Détruire et Transformer pour la magie analogique
 Ajout d'un onglet analogie pour les figures avec les domaines et les habitus
 
 # 1.2.14

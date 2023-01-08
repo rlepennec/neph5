@@ -187,6 +187,42 @@ export class CustomHandlebarsHelpers {
     /**
      * @param actor   The actor object.
      * @param science The name of the science.
+     * @param all     True if all cercles with base, false without base.
+     * @returns true if at least a cercles of the science must be displayed.
+     */
+    static displaySciencesOf(actor, science, all) {
+        const keys = Object.keys(CustomHandlebarsHelpers.cerclesOf(science, all))
+        return actor.displaySciences(keys);
+    }
+
+    /**
+     * @param science The name of the science for which to retrieve the cercle.
+     * @param all     True if all cercles with base, false without base.
+     * @returns the cercles of the science based on the 
+     */
+    static cerclesOf(science, all) {
+        const base = {};
+        switch (science) {
+            case 'analogie':
+                if (all === true) {
+                    base.comprendre = "NEPH5E.comprendre";
+                    base.controler = "NEPH5E.controler";
+                    base.creer = "NEPH5E.creer";
+                    base.detruire = "NEPH5E.detruire";
+                    base.transformer = "NEPH5E.transformer";
+                }
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 9) === "analogie@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+        }
+        return base;
+    }
+
+    /**
+     * @param actor   The actor object.
+     * @param science The name of the science.
      * @returns the owned focus of the actor. 
      */
     static focus(actor, science) {
