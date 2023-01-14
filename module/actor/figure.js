@@ -325,6 +325,14 @@ export class FigureSheet extends BaseSheet {
 
         } else if (item.hasOwnProperty('system')) {
 
+            // Check if the tab is compliant with the item to drop
+            const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
+            const tabs = this._droppableTabs(item.type);
+            if (tabs.includes(currentTab) !== true) {
+                return false;
+            }
+
+            // Process the drop
             switch(item.type) {
                 case 'arme':
                     await super._onDropWeapon(event, item);
@@ -362,7 +370,7 @@ export class FigureSheet extends BaseSheet {
                 case 'science':
                 case 'sort':
                 case 'habitus':
-                    const periode = this._periodeOnDrop();
+                    const periode = this.editedPeriode;
                     if (periode != null) {
                         await new AbstractRollBuilder(this.actor)
                             .withItem(item)
@@ -381,11 +389,46 @@ export class FigureSheet extends BaseSheet {
     }
 
     /**
-     * @returns the periode identifier on which to link the dropped item.
+     * @param type The type of item to drop.
+     * @returns the tabs on which the item can be dropped.
      */
-    _periodeOnDrop() {
-        //const p = this.editedPeriode != null ? this.editedPeriode : this.actor.system.periode;
-        return this.editedPeriode;
+    _droppableTabs(type) {
+        switch (type) {
+            case 'arme':
+            case 'armure':
+            case 'competence':
+                return ['combat'];
+            case 'alchimie':
+                return ['alchimie'];
+            case 'aspect':
+                return ['selenim'];
+            case 'magie':
+                return ['magie'];
+            case 'catalyseur':
+            case 'materiae':
+                return ['laboratoire'];
+            case 'metamorphe':
+                return ['nephilim'];
+            case 'vecu':
+                return ['combat','incarnations'];
+            case 'periode':
+            case 'appel':
+            case 'arcane':
+            case 'chute':
+            case 'formule':
+            case 'invocation':
+            case 'ordonnance':
+            case 'passe':
+            case 'quete':
+            case 'rite':
+            case 'savoir':
+            case 'science':
+            case 'sort':
+            case 'habitus':
+                return ['incarnations'];
+            default:
+                return [];
+        }
     }
 
     // -------------------------------------> Item edition
@@ -452,7 +495,7 @@ export class FigureSheet extends BaseSheet {
         return this;
     }
 
-    // -- INCARNATION------------------------------------------------------------------------
+    // -- INCARNATION ------------------------------------------------------------------------
 
     /**
      * Edit or unedit the specified periode.
@@ -470,17 +513,20 @@ export class FigureSheet extends BaseSheet {
      * @param event The click event.
      */
     async _onDeletePeriode(event) {
+
         event.preventDefault();
+
+        // Retrieve the data
         const feature = this.createFeature(".item", event);
-        if (this.editedPeriode === feature.sid) {
-            this.editedPeriode = null;
-        }
+        const periode = this.actor.items.find(i => i.sid === feature.item.sid);
+
+        // Update the periode edition options
+        this.editedPeriode = this.editedPeriode === feature.sid ? null : this.editedPeriode;
         this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== feature.item.id);
-        await feature.delete();
-        if (feature.sid === this.actor.system.periode) {
-            const first = this.actor.items.find(i => i.type === 'periode' && i.system.previous === null);
-            await this.actor.setCurrentPeriode(first?.sid);
-        }
+
+        // Used to remove vecus & combat options
+        await this.actor.deletePeriode(periode);
+
     }
 
     /**
@@ -646,9 +692,9 @@ export class FigureSheet extends BaseSheet {
 
     /**
      * 
-     * @param {*} event 
-     * @param {*} key 
-     * @param {*} degre 
+     * @param event The click event.
+     * @param key   The key of the chute item.
+     * @param degre The degre of the chute to set.
      */
     async _onChute(event, key, degre, find) {
 
@@ -703,7 +749,6 @@ export class FigureSheet extends BaseSheet {
         }
 
     }
-
 
     // -- SORT, INVOCATION, FORMULE, RITE, APPEL --------------------------------------------
 
@@ -820,7 +865,6 @@ export class FigureSheet extends BaseSheet {
             simulacre.sheet.render(true);
         }
     }
-
 
     static async droppedActor(event) {
 

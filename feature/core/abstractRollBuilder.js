@@ -153,7 +153,7 @@ export class AbstractRollBuilder {
             case 'sort':
                 return new Sort(this.actor, this.item).withPeriode(this.periode);
             case 'vecu':
-                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver);
+                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
             default:
                 if (this.ka != null) {
                     return new Ka(this.actor, this.ka, this.scope);

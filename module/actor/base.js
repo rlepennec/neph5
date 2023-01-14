@@ -5,6 +5,7 @@ import { Distance } from "../../feature/combat/core/distance.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
+import { Vecu } from "../../feature/periode/vecu.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
@@ -153,6 +154,27 @@ export class BaseSheet extends ActorSheet {
     async _onDeleteEmbeddedItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
+
+        const item = this.actor.items.get(li.data("item-id"));
+        if (item == null) {
+            return;
+        }
+
+        if (this.actor.type === 'figure' && item.type === 'periode') {
+            await this.actor.deletePeriode(item);
+            return;
+        }
+
+        if (this.actor.type === 'figure' && item.type === 'vecu') {
+            await new Vecu(this.actor, item, 'actor').delete();
+            return;
+        }
+
+        if (this.actor.type === 'figure' && item.type === 'competence') {
+            await this.actor.deleteCompetence(item);
+            return;
+        }
+
         await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
     }
 

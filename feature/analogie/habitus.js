@@ -81,7 +81,7 @@ export class Habitus extends AbstractRoll {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
+        const item = game.items.find(i => i.system.key === this.item.system.domaine);
         const science = new Science(this.actor, item).degre;
         const sort = this.item.system.degre;
         const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);

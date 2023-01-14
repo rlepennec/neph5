@@ -1,3 +1,10 @@
+# 1.2.17
+Correction d'une anomalie sur le calcul de % du lancé d'un habitus
+Correction d'une anomalie qui affichait l'onglet option d'une figure pour un observateur
+Correction d'anomalies sur la suppression de périodes, de vécus et de compétences
+Possibilité de droppper directement un vécu pour ajouter une nouvelle période d'incarnation
+Vérification de l'onglet de l'acteur ouvert avant l'ajout d'objets
+
 # 1.2.16
 Possibilité de rajouter des domaines analogiques
 

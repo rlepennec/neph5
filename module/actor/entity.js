@@ -805,71 +805,33 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * Deletes the specified competence.
+     * Deletes the specified vecu, used as callback.
+     * @param item The original or embedded vecu item to delete.
+     */
+    async deleteVecu(item) {
+        const embedded = this.items.find(i => i.sid === item.sid);
+        if (embedded != null) {
+            await new Vecu(this, embedded, 'actor').delete();
+        }
+    }
+
+    /**
+     * Deletes the specified competence, used as callback.
      * @param item The competence item object to delete.
      */
     async deleteCompetence(item) {
-
-        // Update embedded vecus
-        for (let o of this.items.filter(i => i.type === 'vecu')) {
-            const competences = o.system.competences.filter(i => i !== item.sid);
-            await o.update({ ['system.competences']: competences });
-        }
-
-        // Delete embedded weapons which use the competence
-        for (let o of this.items.filter(i => i.type === 'arme')) {
-            if (o.system?.competence === item.sid) {
-                await this.deleteEmbeddedDocuments('Item', [o.id]);
-            }
-        }
-
-        // Update actor manoeuvres
-        if (this.type === 'figure') {
-            const system = duplicate(this.system);
-            if (system.manoeuvres.esquive === item.sid) {
-                system.manoeuvres.esquive = null;
-            }
-            if (system.manoeuvres.lutte === item.sid) {
-                system.manoeuvres.lutte = null;
-            }
-            await this.update({['system']: system});
-        }
-
-        // Render the sheet if opened.
-        await this.render();
-
-    }
+        await new Competence(this, item).delete();
+    }   
 
     /**
      * Deletes the specified periode.
      * @param item The item to delete.
      */
     async deletePeriode(item) {
-
-        // Update actor data
-        if (this.type === 'figure') {
-
-            // Remove the specified embedded item
-            const next = this.items.find(i => (i.type === 'periode' && i.system.previous === item.sid));
-            if (next != null) {
-                const del = this.items.find(i => i.sid === item.sid);
-                await next.update({ ["system.previous"]: del.system.previous });
-            }
-
-            // Remove the current periode if necessary
-            if (this.system.periode === item.sid) {
-                await this.setCurrentPeriode(null);
-            }
+        const embedded = this.items.find(i => i.sid === item.sid);
+        if (embedded != null) {
+            await new Periode(this, embedded).delete();
         }
-
-        // Update embedded items
-        for (let embedded of this.items.filter(i => i.system.periode === item.sid)) {
-            await this.deleteEmbeddedDocuments('Item', [embedded.id]);
-        }
-
-        // Render the sheet if opened.
-        await this.render();
-
     }
  
     /**
@@ -878,39 +840,6 @@ export class NephilimActor extends Actor {
      */
     async setCurrentPeriode(sid) {
         await this.update({ ["system.periode"]: sid });
-    }
-
-    /**
-     * Deletes the specified periode.
-     * @param item The item to delete.
-     */
-    async deleteVecu(item) {
-
-        // Update embedded items
-        for (let v of this.items.filter(o => o.type === 'vecu' && o.system.periode === item.system.periode)) {
-            await this.deleteEmbeddedDocuments('Item', [v.id]);
-        }
-
-        // Delete embedded weapons which use the vecu
-        for (let o of this.items.filter(i => i.type === 'arme' && i.system?.competence === item.sid)) {
-            await this.deleteEmbeddedDocuments('Item', [o.id]);
-        }
-
-        // Update actor manoeuvres
-        if (this.type === 'figure') {
-            const system = duplicate(this.system);
-            if (system.manoeuvres.esquive === item.sid) {
-                system.manoeuvres.esquive = null;
-            }
-            if (system.manoeuvres.lutte === item.sid) {
-                system.manoeuvres.lutte = null;
-            }
-            await this.update({['system']: system});
-        }
-
-        // Render the sheet if opened.
-        await this.render();
-
     }
 
     /**

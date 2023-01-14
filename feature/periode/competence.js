@@ -128,6 +128,37 @@ export class Competence extends AbstractRoll {
     }
 
     /**
+     * @Override
+     */
+    async delete() {
+
+        // Remove the competence from all embedded vecus
+        for (let o of this.actor.items.filter(i => i.type === 'vecu')) {
+            const competences = o.system.competences.filter(i => i !== this.item.sid);
+            await o.update({ ['system.competences']: competences });
+        }
+
+        // Delete the competence from all embedded weapons
+        for (let o of this.actor.items.filter(i => i.type === 'arme')) {
+            if (o.system?.competence === this.item.sid) {
+                await this.actor.deleteEmbeddedDocuments('Item', [o.id]);
+            }
+        }
+
+        // Update actor manoeuvres, lutte and esquive
+        if (this.actor.type === 'figure') {
+            const manoeuvres = duplicate(this.actor.system.manoeuvres);
+            manoeuvres.esquive = manoeuvres.esquive === this.item.sid ? null : manoeuvres.esquive;
+            manoeuvres.lutte = manoeuvres.lutte === this.item.sid ? null : manoeuvres.lutte;
+            await this.actor.update({['system.manoeuvres']: manoeuvres});
+        }
+
+        // Render the sheet if opened
+        await this.actor.render();
+
+    }
+
+    /**
      * Gets the competences according to the specified character and the active periodes.
      * @param actor The actor object. 
      * @returns the competences to display in the character sheet.

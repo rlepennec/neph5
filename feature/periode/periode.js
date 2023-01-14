@@ -111,17 +111,35 @@ export class Periode extends AbstractRoll {
      */
     async delete() {
 
-        // Update the next previous periode
-        const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.sid);
-        if (next != null) {
-            const system = duplicate(next.system);
-            system.previous = AbstractRoll.embedded(this.actor, this.sid).system.previous;
-            await next.update({ ['system']: system });
+        // Update actor data
+        if (this.actor.type === 'figure') {
+
+            // Update the next previous periode
+            const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.item.sid);
+            if (next != null) {
+                await next.update({ ["system.previous"]: this.item.system.previous });
+            }
+
+            // Remove the current actor periode if necessary
+            if (this.actor.system.periode === this.item.sid) {
+                await this.actor.setCurrentPeriode(null);
+            }
+
         }
 
-        // Delete the periode and the linked items
-        await this.actor.deleteEmbeddedDocuments('Item', this.actor.items.filter(i => i.system?.periode === this.sid).map(i => i.id));
-        await this.actor.deleteEmbeddedDocuments('Item', [AbstractRoll.embedded(this.actor, this.sid).id]);
+        // Delete all related vecus items
+        for (let embedded of this.actor.items.filter(i => i.type === 'vecu' && i.system.periode === this.item.sid)) {
+            await this.actor.deleteVecu(embedded);
+        }
+
+        // Delete other embedded items which are related to the periode
+        await this.actor.deleteEmbeddedDocuments('Item', this.actor.items.filter(i => i.system?.periode === this.item.sid).map(i => i.id));
+
+        // Delete the embedded periode item
+        await this.actor.deleteEmbeddedDocuments('Item', [AbstractRoll.embedded(this.actor, this.item.sid).id]);
+
+        // Render the sheet if opened.
+        await this.actor.render();
 
         return this;
     }

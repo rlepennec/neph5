@@ -1,7 +1,7 @@
 import { Constants } from "../common/constants.js";
+import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { Periode } from "../../feature/periode/periode.js";
-import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 
 export class NephilimItem extends Item {
@@ -84,25 +84,23 @@ export class NephilimItem extends Item {
                 const i = catalyseurs.findIndex(o => o.refid === this.sid);
                 if (i !== -1) {
                     catalyseurs.splice(i, 1);
-                    await this.update({ ["system.catalyseurs"]: catalyseurs });
+                    await this.update({ ['system.catalyseurs']: catalyseurs });
                 }
                 break;
 
             case 'competence':
 
-                // Update each actor of the world and scenes
+                // Delete the competence from each actor of the world and scenes
                 await this._actors('deleteCompetence');
 
                 // Delete from all vecus of the world
-                for (let item of game.items.filter(i => i.type === "vecu")) {
+                for (let item of game.items.filter(i => i.type === 'vecu')) {
                     await item.deleteCompetence(this);
                 }
 
                 // Delete from all armes of the world
                 for (let item of game.items.filter(i => i.type === 'arme' && i.system.competence === this.sid)) {
-                    const system = duplicate(item.system);
-                    system.competence = null;
-                    await item.update({ ['system']: system });
+                    await item.update({ ['system.competence']: null });
                 }
 
                 break;
@@ -130,9 +128,9 @@ export class NephilimItem extends Item {
                 // Update each actor of the world and scenes
                 await this._actors('deletePeriode');
 
-                // Delete all vecus items of the world
+                // Delete from all vecus of the world
                 for (let item of game.items.filter(i => i.type === 'vecu' && i.system.periode === this.sid)) {
-                    await item.delete();
+                    await item.update({ ['system.periode']: null });
                 }
 
                 break;
@@ -144,9 +142,7 @@ export class NephilimItem extends Item {
 
                 // Delete from all armes of the world
                 for (let item of game.items.filter(i => i.type === 'arme' && i.system.competence === this.sid)) {
-                    const system = duplicate(item.system);
-                    system.competence = null;
-                    await item.update({ ['system']: system });
+                    await item.update({ ['system.competence']: null });
                 }
 
                 break;
@@ -186,8 +182,8 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * Deletes the specified competence.
-     * @param {*} item The item to delete.
+     * Deletes the specified competence from the current vecu item.
+     * @param item The competence item to remove from the vecu item.
      */
     async deleteCompetence(item) {
         const competences = duplicate(this.system.competences);

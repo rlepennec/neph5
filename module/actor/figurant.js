@@ -122,6 +122,15 @@ s
         event.preventDefault();
         const item = await NephilimItemSheet.droppedItem(event);
         if (item != null && item.hasOwnProperty('system')) {
+
+            // Check if the tab is compliant with the item to drop
+            const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
+            const tabs = this._droppableTabs(item.type);
+            if (tabs.includes(currentTab) !== true) {
+                return false;
+            }
+
+            // Process the drop
             switch(item.type) {
                 case 'arme':
                     await super._onDropWeapon(event, item);
@@ -130,9 +139,25 @@ s
                     await super._onDrop(event);
                     break;
                 case 'vecu':
-                    await new AbstractRollBuilder(this.actor).withItem(item).withPeriode(item.system.periode).create().drop();
+                    await new AbstractRollBuilder(this.actor).withItem(item).withEvent(event).withPeriode(item.system.periode).create().drop();
                     break;
             }
+        }
+
+    }
+
+    /**
+     * @param type The type of item to drop.
+     * @returns the tabs on which the item can be dropped.
+     */
+    _droppableTabs(type) {
+        switch (type) {
+            case 'arme':
+            case 'armure':
+            case 'vecu':
+                return ['combat'];
+            default:
+                return [];
         }
     }
 

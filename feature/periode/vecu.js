@@ -3,6 +3,7 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
 import { Game } from "../../module/common/game.js";
+import { Periode } from "./periode.js";
 
 export class Vecu extends AbstractRoll {
 
@@ -33,6 +34,15 @@ export class Vecu extends AbstractRoll {
      */
     withManoeuver(manoeuver) {
         this.manoeuver = manoeuver;
+        return this;
+    }
+
+    /**
+     * @param event The drop event.
+     * @returns the instance.
+     */
+    withEvent(event) {
+        this.event = event;
         return this;
     }
 
@@ -95,28 +105,87 @@ export class Vecu extends AbstractRoll {
      */
     async drop() {
 
-        // Process the drop on the incarnation
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a vecu on periode " + this.periode)
-                .withData("degre", 0)
-                .withData("mnemos", [])
-                .withData("periode", this.periode)
-                .withData("element", this.item.system.element)
-                .withoutData('description')
-                .withoutAlreadyEmbeddedError()
-                .create();
-        }
+        const currentTab = $(this.event.currentTarget).find("div.tab.active").data("tab");
 
         // Process the drop on the manoeuver definition
-        if (this.manoeuver != null) {
-            if (this.actor.items.find(i => i.sid === this.sid)) {
-                await this.actor.update({ ['system.manoeuvres.' + this.manoeuver]: this.sid });
-            } else {
-                ui.notifications.warn(game.i18n.localize('NEPH5E.vecuNonDefini').replaceAll("${item}", this.name));
+        if (currentTab === 'combat') {
+
+            // For figure only, edit combat option
+            if (this.manoeuver != null) {
+                if (this.actor.items.find(i => i.sid === this.sid)) {
+                    await this.actor.update({ ['system.manoeuvres.' + this.manoeuver]: this.sid });
+                } else {
+                    ui.notifications.warn(game.i18n.localize('NEPH5E.vecuNonDefini').replaceAll("${item}", this.name));
+                }
             }
             
+            // For figurant only, attach a new vecu if not in combat option edition
+            else if (this.actor.type === 'figurant' &&
+                this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+
+                await new EmbeddedItem(this.actor, this.sid)
+                    .withContext("Drop a vecu")
+                    .withData("degre", 0)
+                    .withData("mnemos", [])
+                    .withData("element", this.item.system.element)
+                    .withoutData('description')
+                    .withoutAlreadyEmbeddedError()
+                    .create();
+    
+            }
+
+            return;
+
+        }
+
+        // Process the drop on the incarnations for figure
+        if (currentTab === 'incarnations') {
+
+            // Drop the vecu with the related periode if none in current edition
+            if (this.periode == null) {
+
+                // The vecu must have a periode defined
+                if (this.item.system.periode == null) {
+                    ui.notifications.warn("Le vécu doit avoir une période pour pouvoir être déposé");
+                    return;
+                }
+
+                // The vecu must not already exist
+                if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) != null) {
+                    ui.notifications.warn("Le vécu existe déjà");
+                    return;
+                }
+
+                // Create the related periode if necessary
+                if (this.actor.items.find(i => i.sid === this.item.system.periode) == null) {
+                    this.periode = game.items.find(i => i.sid === this.item.system.periode);
+                    if (this.periode == null) {
+                        ui.notifications.error("La période auquelle est rattachée le vécu n'existe pas");
+                        return;
+                    }
+                    await new Periode(this.actor, this.periode).drop();
+                }
+
+                // Just keep the sid to create the vecu
+                this.periode = this.periode.sid;
+
+            }
+                
+            // Create the vecu
+            if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+
+                await new EmbeddedItem(this.actor, this.sid)
+                    .withContext("Drop of a vecu on periode " + this.periode)
+                    .withData("degre", 0)
+                    .withData("mnemos", [])
+                    .withData("periode", this.periode)
+                    .withData("element", this.item.system.element)
+                    .withoutData('description')
+                    .withoutAlreadyEmbeddedError()
+                    .create();
+
+            }
+
         }
 
     }
@@ -136,6 +205,32 @@ export class Vecu extends AbstractRoll {
             560,
             500
         )
+    }
+
+    /**
+     * @Override
+     */
+    async delete() {
+
+        // Delete the vecu
+        await this.actor.deleteEmbeddedDocuments('Item', [this.item.id]);
+
+        // Delete embedded weapons which use the vecu
+        for (let o of this.actor.items.filter(i => i.type === 'arme' && i.system?.competence === this.item.sid)) {
+            await this.actor.deleteEmbeddedDocuments('Item', [o.id]);
+        }
+
+        // Update actor manoeuvres, lutte and esquive
+        if (this.actor.type === 'figure') {
+            const manoeuvres = duplicate(this.actor.system.manoeuvres);
+            manoeuvres.esquive = manoeuvres.esquive === this.item.sid ? null : manoeuvres.esquive;
+            manoeuvres.lutte = manoeuvres.lutte === this.item.sid ? null : manoeuvres.lutte;
+            await this.actor.update({['system.manoeuvres']: manoeuvres});
+        }
+
+        // Render the actor sheet if opened
+        await this.actor.render();
+
     }
 
     /**
