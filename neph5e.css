@@ -966,6 +966,9 @@
 }
 .actor-root .article .laboratoire .constructs .item .element {
   width: 40px;
+  height: 24px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   border: none;
   text-align: center;
   background-color: transparent;
@@ -1086,6 +1089,47 @@
   width: 100%;
 }
 .actor-root .article .laboratoire .catalyseur-list .item:hover {
+  text-shadow: 0 0 10px #2C606D;
+  color: #2C606D;
+}
+.actor-root .article .laboratoire .laboratoire-header {
+  width: 814px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+}
+.actor-root .article .laboratoire .laboratoire-header span {
+  padding-left: 5px;
+}
+.actor-root .article .laboratoire .laboratoire-list {
+  column-count: 1;
+  column-fill: balance;
+  column-gap: 10%;
+}
+.actor-root .article .laboratoire .laboratoire-list .actor {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  break-inside: avoid-column;
+}
+.actor-root .article .laboratoire .laboratoire-list .actor .actor-delete {
+  width: 32px;
+}
+.actor-root .article .laboratoire .laboratoire-list .actor .actor-active {
+  width: 32px;
+  padding-top: 3px;
+}
+.actor-root .article .laboratoire .laboratoire-list .actor .actor-name {
+  width: 100%;
+}
+.actor-root .article .laboratoire .laboratoire-list .actor:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }

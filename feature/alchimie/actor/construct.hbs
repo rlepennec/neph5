@@ -1,0 +1,215 @@
+<li class="item">
+
+    <!-- The current actor is the owner of the laboratory -->
+    {{#if (isNull actor.system.alchimie.courant)}}
+
+    <label class="hand-checkbox">
+        <input
+            class="item-checkbox"
+            name="system.alchimie.constructs.{{construct}}.active"
+            type="checkbox"
+            {{checked active}}
+            data-dtype="Boolean"/>
+        <i class="fa-light fa-flask-round-potion unchecked"></i>
+        <i class="fa-solid fa-flask-round-potion checked"></i>
+    </label>
+
+    {{#with (concat "NEPH5E.alchimie.constructs." construct) as |label|}}
+    <label class="item-name">{{localize label}}</label>
+    {{/with}}
+
+    <input
+        class="element"
+        name="system.alchimie.constructs.{{construct}}.air"
+        type="text"
+        value="{{air}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        name="system.alchimie.constructs.{{construct}}.eau"
+        type="text"
+        value="{{eau}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        name="system.alchimie.constructs.{{construct}}.feu"
+        type="text"
+        value="{{feu}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        name="system.alchimie.constructs.{{construct}}.lune"
+        type="text"
+        value="{{lune}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        name="system.alchimie.constructs.{{construct}}.terre"
+        type="text"
+        value="{{terre}}"
+        data-dtype="Number"/>
+
+    <div class="degre">
+        <select name="system.alchimie.constructs.{{construct}}.degre">
+        {{#select degre}}
+            {{#each cercles as |name label|}}
+            <option value="{{label}}">{{localize name}}</option>
+            {{/each}}
+        {{/select}}
+        </select>
+    </div>
+
+    <!-- The current actor use an other laboratory -->
+    {{else}}
+    
+    <label class="hand-checkbox no-display">
+        <input
+            class="item-checkbox"
+            name="system.alchimie.constructs.{{construct}}.active"
+            type="checkbox"
+            {{checked active}}
+            data-dtype="Boolean"/>
+        <i class="fa-light fa-flask-round-potion unchecked"></i>
+        <i class="fa-solid fa-flask-round-potion checked"></i>
+    </label>
+
+    {{#with (constructOf actor construct)}}
+    <label class="hand-checkbox">
+        <input
+            class="item-checkbox"
+            name="system.alchimie.constructs.{{construct}}.active"
+            type="checkbox"
+            disabled
+            {{checked active}}
+            data-dtype="Boolean"/>
+        <i class="fa-light fa-flask-round-potion unchecked"></i>
+        <i class="fa-solid fa-flask-round-potion checked"></i>
+    </label>
+    {{/with}}
+
+    {{#with (concat "NEPH5E.alchimie.constructs." construct) as |label|}}
+    <label class="item-name">{{localize label}}</label>
+    {{/with}}
+
+    <input
+        class="element no-display"
+        name="system.alchimie.constructs.{{construct}}.air"
+        type="text"
+        value="{{air}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element no-display"
+        name="system.alchimie.constructs.{{construct}}.eau"
+        type="text"
+        value="{{eau}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element no-display"
+        name="system.alchimie.constructs.{{construct}}.feu"
+        type="text"
+        value="{{feu}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element no-display"
+        name="system.alchimie.constructs.{{construct}}.lune"
+        type="text"
+        value="{{lune}}"
+        data-dtype="Number"/>
+
+    <input
+        class="element no-display"
+        name="system.alchimie.constructs.{{construct}}.terre"
+        type="text"
+        value="{{terre}}"
+        data-dtype="Number"/>
+
+    <div class="degre no-display">
+        <select name="system.alchimie.constructs.{{construct}}.degre">
+        {{#select degre}}
+            {{#each cercles as |name label|}}
+            <option value="{{label}}">{{localize name}}</option>
+            {{/each}}
+        {{/select}}
+        </select>
+    </div>
+
+    {{#with (constructOf actor construct)}}
+    <input
+        class="element"
+        style="disabled"
+        name="system.alchimie.constructs.{{construct}}.air"
+        type="text"
+        value="{{air}}"
+        disabled
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        style="disabled"
+        name="system.alchimie.constructs.{{construct}}.eau"
+        type="text"
+        value="{{eau}}"
+        disabled
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        style="disabled"
+        name="system.alchimie.constructs.{{construct}}.feu"
+        type="text"
+        value="{{feu}}"
+        disabled
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        style="disabled"
+        name="system.alchimie.constructs.{{construct}}.lune"
+        type="text"
+        value="{{lune}}"
+        disabled
+        data-dtype="Number"/>
+
+    <input
+        class="element"
+        name="system.alchimie.constructs.{{terre}}.lune"
+        type="text"
+        value="{{terre}}"
+        disabled
+        data-dtype="Number"/>
+
+    <div class="degre">
+        <select name="system.alchimie.constructs.{{construct}}.degre" disabled>
+        {{#select degre}}
+            {{#each ../cercles as |name label|}}
+            <option value="{{label}}">{{localize name}}</option>
+            {{/each}}
+        {{/select}}
+        </select>
+    </div>
+    {{/with}}
+
+    {{/if}}
+
+    <!-- Commons --> 
+
+    {{#with (concat "NEPH5E.alchimie.substances." substance) as |label|}}
+    <div class="substance">
+        <span>{{localize label}}</span>
+    </div>
+    {{/with}}
+
+    {{#with (concat "NEPH5E.alchimie.vaisseaux." vaisseau) as |label|}}
+    <div class="substance">
+        <span>{{localize label}}</span>
+    </div>
+    {{/with}}
+
+</li>

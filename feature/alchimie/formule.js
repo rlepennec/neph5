@@ -115,11 +115,43 @@ export class Formule extends AbstractRoll {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
-        const science = new Science(this.actor, item).degre;
-        const construct = this.getKaOfConstruct();
-        const formule = this.item.system.degre;
-        return science + construct - formule;
+
+        // Retrieve the construct according to the current laboratory
+        const construct = this.getConstruct();
+
+        // The construct must be active
+        if (construct.active !== true) {
+            return null;
+        }
+
+        // All Ka must be present
+        const elements = this.item.system.elements;
+        const ka = elements.length === 1 ? construct[elements[0]] ?? 0 : Math.min(construct[elements[0]] ?? 0, construct[elements[1]] ?? 0);
+        if (ka < 1) {
+            return null;
+        }
+
+        // The cercle of the formule must be supported by the construct
+        switch (this.item.system.cercle) {
+            case 'oeuvreAuNoir':
+                break;
+            case 'oeuvreAuBlanc':
+                if (construct.degre === 'oeuvreAuNoir') {
+                    return null;
+                }
+                break;
+            case 'oeuvreAuRouge':
+                if (construct.degre === 'oeuvreAuNoir' || construct.degre === 'oeuvreAuBlanc') {
+                    return null;
+                }
+                break;
+        }
+
+        // Retrieve the degre of the cercle used to create the formule
+        const science = new Science(this.actor, game.items.find(i => i.system.key === this.item.system.cercle)).degre;
+
+        // Return the final degre
+        return science + ka - this.item.system.degre;
     }
 
     /**
@@ -174,14 +206,19 @@ export class Formule extends AbstractRoll {
     }
 
     /**
-     * Gets the level og the specified ka for the specified construct.
-     * @returns the level of the specified ka.
+     * @returns the owner actor of the used laboratory.
      */
-    getKaOfConstruct() {
-        const substance = this.item.system.substance;
-        const elements = this.item.system.elements;
-        const construct = this.actor.getConstruct(substance);
-        return elements.length === 1 ? construct[elements[0]] ?? 0 : Math.min(construct[elements[0]] ?? 0, construct[elements[1]] ?? 0);
+    getOwner() {
+        const sid = this.actor.system.alchimie.courant;
+        return sid == null ? this.actor : game.actors.find(i => i.sid === sid);
+    }
+
+    /**
+     * @returns the construct used to produced the formule according to the current laboratory.
+     */
+    getConstruct() {
+        const owner = this.getOwner();
+        return owner == null ? null : owner.getConstruct(this.item.system.substance);
     }
 
 }

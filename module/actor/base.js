@@ -5,7 +5,6 @@ import { Distance } from "../../feature/combat/core/distance.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
-import { Vecu } from "../../feature/periode/vecu.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
@@ -39,12 +38,10 @@ export class BaseSheet extends ActorSheet {
         html.find('div[data-tab="combat"] #desoriente').click(this._onEffect.bind(this, 'stun'));
         html.find('div[data-tab="combat"] #immobilise').click(this._onEffect.bind(this, 'restrain'));
         html.find('div[data-tab="combat"] #projete').click(this._onEffect.bind(this, 'prone'));
-
         html.find('div[data-tab="combat"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.addMacroData(event), false);
         });
-
     }
 
     addMacroData(event) {
@@ -59,13 +56,6 @@ export class BaseSheet extends ActorSheet {
     }
 
     /**
-     * @returns true if a token of the character is in combat, false otherwise.
-     */
-    _inCombat() {
-        return game.combat !== null && this?.tokenOf?.combatant !== undefined && this?.tokenOf?.combatant !== null;
-    }
-
-    /**
      * Attack with a melee or a ranged weapon.
      * @param event The click event.
      */
@@ -75,21 +65,19 @@ export class BaseSheet extends ActorSheet {
         const id = li.data("item-id");
         const weapon = this.actor.items.get(id);
 
-        if (weapon.attackCanBePerformed === false) {
-            return;
-        }
-
-        switch (weapon.system.type) {
-            case Constants.NATURELLE:
-                await new Naturelle(this.actor, weapon).initialize();
-                break;
-            case Constants.MELEE:
-                await new Melee(this.actor, weapon).initialize();
-                break;
-            case Constants.FEU:
-            case Constants.TRAIT:
-                await new Distance(this.actor, weapon).initialize();
-                break;
+        if (weapon?.attackCanBePerformed === true) {
+            switch (weapon.system.type) {
+                case Constants.NATURELLE:
+                    await new Naturelle(this.actor, weapon).initialize();
+                    break;
+                case Constants.MELEE:
+                    await new Melee(this.actor, weapon).initialize();
+                    break;
+                case Constants.FEU:
+                case Constants.TRAIT:
+                    await new Distance(this.actor, weapon).initialize();
+                    break;
+            }
         }
 
     }
@@ -104,7 +92,9 @@ export class BaseSheet extends ActorSheet {
         }
     }
 
-    // USED IN NEW VERSION
+    /**
+     * @param event The event to handle.
+     */
     async _onUseItem(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -112,6 +102,9 @@ export class BaseSheet extends ActorSheet {
         await this.actor.useItem(item);
     }
 
+    /**
+     * @param event The event to handle.
+     */
     async _onParadeItem(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -134,6 +127,13 @@ export class BaseSheet extends ActorSheet {
     /**
      * @param event The event to handle.
      */
+    async _onEffect(id, event) {
+        this.actor.updateEffect(id);
+    }
+
+    /**
+     * @param event The event to handle.
+     */
     async _onRecharger(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
@@ -143,10 +143,6 @@ export class BaseSheet extends ActorSheet {
         await new Recharger().apply(action);
     }
 
-    async _onEffect(id, event) {
-        this.actor.updateEffect(id);
-    }
-
     /**
      * Delete the specified embedded item.
      * @param event The click event.
@@ -154,28 +150,8 @@ export class BaseSheet extends ActorSheet {
     async _onDeleteEmbeddedItem(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
-
         const item = this.actor.items.get(li.data("item-id"));
-        if (item == null) {
-            return;
-        }
-
-        if (this.actor.type === 'figure' && item.type === 'periode') {
-            await this.actor.deletePeriode(item);
-            return;
-        }
-
-        if (this.actor.type === 'figure' && item.type === 'vecu') {
-            await new Vecu(this.actor, item, 'actor').delete();
-            return;
-        }
-
-        if (this.actor.type === 'figure' && item.type === 'competence') {
-            await this.actor.deleteCompetence(item);
-            return;
-        }
-
-        await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
+        await this.actor.deleteEmbeddedItem(item);
     }
 
     /**

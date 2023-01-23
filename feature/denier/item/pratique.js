@@ -8,7 +8,7 @@ export class PratiqueSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.axes = Game.denier.axes;
+        data.cercles = Game.denier.axes;
         return data;
     }
 

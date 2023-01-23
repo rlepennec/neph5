@@ -11,6 +11,7 @@ import { Formule } from "../../feature/alchimie/formule.js";
 import { Habitus } from "../../feature/analogie/habitus.js";
 import { Game } from "../common/game.js";
 import { Invocation } from "../../feature/kabbale/invocation.js";
+import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
@@ -18,6 +19,7 @@ import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Materiae } from "../../feature/alchimie/materiae.js";
 import { Passe } from "../../feature/periode/passe.js";
 import { Periode } from "../../feature/periode/periode.js";
+import { Pratique } from "../../feature/denier/pratique.js";
 import { Quete } from "../../feature/periode/quete.js";
 import { Savoir } from "../../feature/periode/savoir.js";
 import { Science } from "../../feature/science/science.js";
@@ -454,65 +456,10 @@ export class NephilimActor extends Actor {
      */
     focus(science) {
 
-        let type = null;
-        let property = null;
-        switch(science) {
-            case 'basseMagie':
-            case 'hauteMagie':
-            case 'grandSecret':
-                type = 'sort';
-                property = 'cercle';
-                break;
-            case 'comprendre':
-            case 'controler':
-            case 'creer':
-            case 'detruire':
-            case 'transformer':
-                type = 'habitus';
-                property = 'domaine';
-                break;
-
-            case 'malkut':
-            case 'yesod':
-            case 'hod':
-            case 'netzach':
-            case 'tiphereth':
-            case 'geburah':
-            case 'chesed':
-            case 'binah':
-            case 'chokmah':
-            case 'kether':
-                type = 'invocation';
-                property = 'sephirah';
-                break;
-            case 'oeuvreAuNoir':
-            case 'oeuvreAuBlanc':
-            case 'oeuvreAuRouge':
-                type = 'formule';
-                property = 'cercle';
-                break;
-            case 'fossoyeur':
-            case 'embaumeur':
-            case 'imputrescible':
-                type = 'rite';
-                property = 'cercle';
-                break;
-            case 'charmeur':
-            case 'dresseur':
-            case 'demiurge':
-                type = 'appel';
-                property = 'cercle';
-                break;
-            default:
-                if (typeof science === 'string' && science?.substring(0,9) === 'analogie@') {
-                    type = 'habitus';
-                    property = 'domaine';
-                }
-        }
-
         let items = [];
-        const ids = this.items.filter(i => i.type === type && new Periode(this, this.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
-        for (let item of game.items.filter(i => i.system[property] === science && ids.includes(i.sid))) {
+        const cercle = Science.getCercle(science);
+        const ids = this.items.filter(i => i.type === cercle?.type && new Periode(this, this.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
+        for (let item of game.items.filter(i => i.system[cercle?.property] === science && ids.includes(i.sid))) {
 
             let degre = null;
             switch (item.type) {
@@ -528,11 +475,16 @@ export class NephilimActor extends Actor {
                 case 'formule':
                     degre = new Formule(this, item).withPeriode(this.system.periode).degre;
                     break;
+                case 'pratique':
+                    degre = new Pratique(this, item).withPeriode(this.system.periode).degre;
+                    break;
             }
 
             const embedded = this.items.find(i => i.sid === item.sid);
             if (degre != null) {
                 embedded.degre = degre * 10;
+            } else if (item.type === 'formule') {
+                embedded.degre = null;
             }
 
             items.push({
@@ -543,6 +495,13 @@ export class NephilimActor extends Actor {
         }
         return items;
 
+    }
+
+    /**
+     * @returns the actor laboratories.
+     */
+    get laboratoires() {
+        return Laboratoire.getAll(this);
     }
 
     /**
@@ -579,8 +538,8 @@ export class NephilimActor extends Actor {
      *   - savoir
      *   - science
      *   - vecu
-     * @param id The object identifier
-     * @param 
+     * @param id  The object identifier
+     * @param sid The object system identifier.
      * @returns the instance.
      */
     async processMacro(type, id, sid) {
@@ -805,6 +764,29 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * Deletes the specified embedded item.
+     * @param item The embedded item to delete.
+     */
+    async deleteEmbeddedItem(item) {
+        if (item != null) {
+            switch (item.type) {
+                case 'periode':
+                    await this.deletePeriode(item);
+                    break;
+                case 'vecu':
+                    await this.deleteVecu(item);
+                    break;
+                case 'competence':
+                    await this.deleteCompetence(item);
+                    break;
+                default:
+                    await this.deleteEmbeddedDocuments('Item', [item.id]);
+                    break;
+            }
+        }
+    }
+
+    /**
      * Deletes the specified vecu, used as callback.
      * @param item The original or embedded vecu item to delete.
      */
@@ -825,7 +807,7 @@ export class NephilimActor extends Actor {
 
     /**
      * Deletes the specified periode.
-     * @param item The item to delete.
+     * @param item The The original or embedded periode item to delete.
      */
     async deletePeriode(item) {
         const embedded = this.items.find(i => i.sid === item.sid);

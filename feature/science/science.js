@@ -85,4 +85,102 @@ export class Science extends AbstractRoll {
         return game.items.find(i => i.system?.key === key);
     }
 
+    /**
+     * 
+     * @param name The name of the cercle.
+     */
+    static getCercle(name) {
+
+        switch(name) {
+
+            // Magie
+            case 'basseMagie':
+            case 'hauteMagie':
+            case 'grandSecret':
+                return {
+                    type: 'sort',
+                    property: 'cercle'
+                }
+
+            // Magie analogique
+            case 'comprendre':
+            case 'controler':
+            case 'creer':
+            case 'detruire':
+            case 'transformer':
+                return {
+                    type: 'habitus',
+                    property: 'domaine'
+                }
+
+            // Kabbale
+            case 'malkut':
+            case 'yesod':
+            case 'hod':
+            case 'netzach':
+            case 'tiphereth':
+            case 'geburah':
+            case 'chesed':
+            case 'binah':
+            case 'chokmah':
+            case 'kether':
+                return {
+                    type: 'invocation',
+                    property: 'sephirah'
+                }
+
+            // Alchimie
+            case 'oeuvreAuNoir':
+            case 'oeuvreAuBlanc':
+            case 'oeuvreAuRouge':
+                return {
+                    type: 'formule',
+                    property: 'cercle'
+                }
+
+            // Necromancie
+            case 'fossoyeur':
+            case 'embaumeur':
+            case 'imputrescible':
+                return {
+                    type: 'rite',
+                    property: 'cercle'
+                }
+
+            // Conjuration
+            case 'charmeur':
+            case 'dresseur':
+            case 'demiurge':
+                return {
+                    type: 'appel',
+                    property: 'cercle'
+                }
+
+            // Denier
+            case 'architecte':
+            case 'guide':
+            case 'mage':
+            case 'ouvrier':
+            case 'roi':
+            case 'sage':
+                return {
+                    type: 'pratique',
+                    property: 'cercle'
+                }
+
+            // Custom
+            default:
+
+                // Magie analogique
+                if (typeof name === 'string' && name?.substring(0,9) === 'analogie@') {
+                    return {
+                        type: 'habitus',
+                        property: 'domaine'
+                    }
+                }
+
+        }
+
+    }
+
 }

@@ -230,6 +230,29 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param actor The actor which uses the laboratory.
+     * @returns the owner actor of the laboratory.
+     */
+    static laboratoryOwner(actor) {
+        const sid = actor.system.alchimie.courant;
+        return sid == null ? actor : game.actors.find(i => i.sid === sid);
+    }
+
+    /**
+     * @param actor     The actor which uses the laboratory.
+     * @param construct The name of the construct.
+     * @returns the construct parameters, null if the owner.
+     */
+    static constructOf(actor, construct) {
+        const sid = actor.system.alchimie.courant;
+        if (sid == null) {
+            return null;
+        }
+        const owner = game.actors.find(i => i.sid === sid);
+        return owner == null ? null : owner.system.alchimie.constructs[construct];
+    }
+
+    /**
      * Defines a fast UUID generator compliant with RFC4122 version 4.
      */
     static UUID() {

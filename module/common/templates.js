@@ -16,6 +16,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/alchimie/actor/main.hbs",
         "systems/neph5e/feature/alchimie/actor/header.hbs",
         "systems/neph5e/feature/alchimie/actor/formule.hbs",
+        "systems/neph5e/feature/alchimie/actor/construct.hbs",
 
         // Baton
         "systems/neph5e/feature/baton/actor/main.hbs",

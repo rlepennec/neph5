@@ -43,10 +43,15 @@ export class FigureSheet extends BaseSheet {
      * @override
      */
      _updateObject(event, formData) {
+
+        // The system uuid
         if (formData['system.id'] == null || formData['system.id'] === "") {
             formData['system.id'] = CustomHandlebarsHelpers.UUID();
         }
+
+        // Update the actor
         super._updateObject(event, formData);
+
     }
 
     /**
@@ -171,7 +176,9 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="laboratoire"] .edit-catalyseur').click(this._onEditFeature.bind(this, 'catalyseur'));
         html.find('div[data-tab="laboratoire"] .edit-materiae').click(this._onEditFeature.bind(this, 'materiae'));
         html.find('div[data-tab="laboratoire"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
-
+        html.find('div[data-tab="laboratoire"] .actor-delete').click(this._onDeleteLaboratory.bind(this));
+        html.find('div[data-tab="laboratoire"] .actor-name').click(this._onActiveLaboratory.bind(this));
+        
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="magie"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
@@ -181,7 +188,7 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="magie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
         html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
 
-        // Magie
+        // Magie analogique
         html.find('div[data-tab="analogie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="analogie"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="analogie"] .change-focus').click(this._onChangeFocus.bind(this));
@@ -236,6 +243,13 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="vecus"] .roll-savoir').click(this._onRollFeature.bind(this, 'savoir'));
         html.find('div[data-tab="vecus"] .roll-vecu').click(this._onRollFeature.bind(this, 'vecu'));
         html.find('div[data-tab="vecus"] .roll-chute').click(this._onRollFeature.bind(this, 'chute'));
+
+        // Denier
+        html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="denier"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="denier"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="denier"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="denier"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
@@ -292,11 +306,6 @@ export class FigureSheet extends BaseSheet {
         //html.find('div[data-tab="coupe"] .item-edit').click(this._onEditItem.bind(this));
         //html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteItem.bind(this));
 
-        // Denier
-        //html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
-        //html.find('div[data-tab="denier"] .item-edit').click(this._onEditItem.bind(this));
-        //html.find('div[data-tab="denier"] .item-delete').click(this._onDeleteItem.bind(this));
-
         // Epee
         //html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
         //html.find('div[data-tab="epee"] .item-edit').click(this._onEditItem.bind(this));
@@ -315,12 +324,33 @@ export class FigureSheet extends BaseSheet {
         const item = await NephilimItemSheet.droppedItem(event);
         if (item == null) {
 
-            // Catch and retrieve the dropped actor
-            if (this.actor.system.options.simulacre === true) {
-                const actor = await FigureSheet.droppedActor(event);
-                if (actor !== null && actor.hasOwnProperty('system') && actor.type === "figurant" && actor.sid != "") {
-                    await this.actor.update({ ['system.simulacre']: actor.sid });
+            // Retrieve the dropped actor
+            const actor = await FigureSheet.droppedActor(event);
+            if (actor != null) {
+                
+                switch (actor.type) {
+
+                    // Drop the new simulacre on the figure
+                    case 'figurant':
+                        if (this.actor.system.options.simulacre === true && actor.hasOwnProperty('system') && actor.sid != "") {
+                            await this.actor.update({ ['system.simulacre']: actor.sid });
+                        }
+                        break;
+
+                    // Drop the new laboratoire
+                    case 'figure':
+                        const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
+                        if (currentTab === 'laboratoire') {
+                            const laboratoires = this.actor.system.alchimie.laboratoires;
+                            if (!laboratoires.includes(actor.sid)) {
+                                laboratoires.push(actor.sid);
+                                await this.actor.update({ ['system.alchimie.laboratoires']: laboratoires });
+                            }
+                        }
+                        break;
+
                 }
+
             }
 
         } else if (item.hasOwnProperty('system')) {
@@ -364,6 +394,7 @@ export class FigureSheet extends BaseSheet {
                 case 'invocation':
                 case 'ordonnance':
                 case 'passe':
+                case 'pratique':
                 case 'quete':
                 case 'rite':
                 case 'savoir':
@@ -419,6 +450,7 @@ export class FigureSheet extends BaseSheet {
             case 'invocation':
             case 'ordonnance':
             case 'passe':
+            case 'pratique':
             case 'quete':
             case 'rite':
             case 'savoir':
@@ -751,6 +783,45 @@ export class FigureSheet extends BaseSheet {
     }
 
     // -- SORT, INVOCATION, FORMULE, RITE, APPEL --------------------------------------------
+
+    /**
+     * Active the specified laboratory.
+     * @param event The click event.
+     */
+    async _onActiveLaboratory(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".actor");
+        const sid = li.data("actor-id");
+        const actor = game.actors.find(i => i.sid === sid);
+        if (actor != null) {
+            if (this.actor.system.alchimie.courant === actor.sid) {
+                await this.actor.update({ ['system.alchimie.courant']: null });
+            } else {
+                await this.actor.update({ ['system.alchimie.courant']: actor.sid });
+            }
+        }
+    }
+
+    /**
+     * Delete the specified laboratory.
+     * @param event The click event.
+     */
+    async _onDeleteLaboratory(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".actor");
+        const sid = li.data("actor-id");
+        const actor = game.actors.find(i => i.sid === sid);
+        if (actor != null) {
+            const laboratoires = this.actor.system.alchimie.laboratoires;
+            if (laboratoires.includes(actor.sid)) {
+                const labs = laboratoires.filter(i => i !== actor.sid);
+                await this.actor.update({ ['system.alchimie.laboratoires']: labs });
+            }
+            if (this.actor.system.alchimie.courant === actor.sid) {
+                await this.actor.update({ ['system.alchimie.courant']: null });
+            }
+        }
+    }
 
     /**
      * Set the number of vaisseaux alchimiques.

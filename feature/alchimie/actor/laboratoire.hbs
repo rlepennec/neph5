@@ -1,31 +1,35 @@
 <div class="construct-images">
 
-    {{#if actor.system.alchimie.constructs.cornue.active}}
-    <img src="systems/neph5e/assets/backgrounds/cornue.webp"/>
-    {{/if}}
+    {{#with (laboratoryOwner actor) as |actor|}}
 
-    {{#if actor.system.alchimie.constructs.creuset.active}}
-    <img src="systems/neph5e/assets/backgrounds/creuset.webp"/>
-    {{/if}}
+        {{#if actor.system.alchimie.constructs.cornue.active}}
+        <img src="systems/neph5e/assets/backgrounds/cornue.webp"/>
+        {{/if}}
 
-    {{#if actor.system.alchimie.constructs.athanor.active}}
-    <img src="systems/neph5e/assets/backgrounds/athanor.webp"/>
-    {{/if}}
+        {{#if actor.system.alchimie.constructs.creuset.active}}
+        <img src="systems/neph5e/assets/backgrounds/creuset.webp"/>
+        {{/if}}
 
-    {{#if actor.system.alchimie.constructs.aludel.active}}
-    <img src="systems/neph5e/assets/backgrounds/aludel.webp"/>
-    {{/if}}
+        {{#if actor.system.alchimie.constructs.athanor.active}}
+        <img src="systems/neph5e/assets/backgrounds/athanor.webp"/>
+        {{/if}}
 
-    {{#if actor.system.alchimie.constructs.alambic.active}}
-    <img src="systems/neph5e/assets/backgrounds/alambic.webp"/>
-    {{/if}}
+        {{#if actor.system.alchimie.constructs.aludel.active}}
+        <img src="systems/neph5e/assets/backgrounds/aludel.webp"/>
+        {{/if}}
+
+        {{#if actor.system.alchimie.constructs.alambic.active}}
+        <img src="systems/neph5e/assets/backgrounds/alambic.webp"/>
+        {{/if}}
+
+    {{/with}}
 
 </div>
 
 <ol class="item-list constructs">
 
     <div class="header">
-        <span class="name">{{localize "NEPH5E.alchimie.construct"}}</span>
+        <span class="name">{{localize "NEPH5E.constructs"}}</span>
         <div class="tooltip parameter width-40">
             <i class="fas fa-wind"></i>
             <span class="tooltiptext">{{localize "NEPH5E.air"}}</span>
@@ -57,355 +61,70 @@
         </div>
     </div>
 
-    <li class="item">
+    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
+        construct="cornue"
+        active=actor.system.alchimie.constructs.cornue.active
+        air=actor.system.alchimie.constructs.cornue.air
+        eau=actor.system.alchimie.constructs.cornue.eau
+        feu=actor.system.alchimie.constructs.cornue.feu
+        lune=actor.system.alchimie.constructs.cornue.lune
+        terre=actor.system.alchimie.constructs.cornue.terre
+        degre=actor.system.alchimie.constructs.cornue.degre
+        cercles=cercles
+        substance="ambre"
+        vaisseau="ampoule" }}
 
-        <label class="hand-checkbox">
-            <input
-                class="item-checkbox"
-                name="system.alchimie.constructs.cornue.active"
-                type="checkbox"
-                {{checked actor.system.alchimie.constructs.cornue.active}}
-                data-dtype="Boolean"/>
-            <i class="fa-light fa-flask-round-potion unchecked"></i>
-            <i class="fa-solid fa-flask-round-potion checked"></i>
-        </label>
+    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
+        construct="creuset"
+        active=actor.system.alchimie.constructs.creuset.active
+        air=actor.system.alchimie.constructs.creuset.air
+        eau=actor.system.alchimie.constructs.creuset.eau
+        feu=actor.system.alchimie.constructs.creuset.feu
+        lune=actor.system.alchimie.constructs.creuset.lune
+        terre=actor.system.alchimie.constructs.creuset.terre
+        degre=actor.system.alchimie.constructs.creuset.degre
+        cercles=cercles
+        substance="metal"
+        vaisseau="pyxide" }}
 
-        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.cornue"}}</label>
+    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
+        construct="athanor"
+        active=actor.system.alchimie.constructs.athanor.active
+        air=actor.system.alchimie.constructs.athanor.air
+        eau=actor.system.alchimie.constructs.athanor.eau
+        feu=actor.system.alchimie.constructs.athanor.feu
+        lune=actor.system.alchimie.constructs.athanor.lune
+        terre=actor.system.alchimie.constructs.athanor.terre
+        degre=actor.system.alchimie.constructs.athanor.degre
+        cercles=cercles
+        substance="poudre"
+        vaisseau="cartouche" }}
 
-        <input
-            class="element"
-            name="system.alchimie.constructs.cornue.air"
-            type="text"
-            value="{{actor.system.alchimie.constructs.cornue.air}}"
-            data-dtype="Number"/>
+    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
+        construct="aludel"
+        active=actor.system.alchimie.constructs.aludel.active
+        air=actor.system.alchimie.constructs.aludel.air
+        eau=actor.system.alchimie.constructs.aludel.eau
+        feu=actor.system.alchimie.constructs.aludel.feu
+        lune=actor.system.alchimie.constructs.aludel.lune
+        terre=actor.system.alchimie.constructs.aludel.terre
+        degre=actor.system.alchimie.constructs.aludel.degre
+        cercles=cercles
+        substance="vapeur"
+        vaisseau="flacon" }}
 
-        <input
-            class="element"
-            name="system.alchimie.constructs.cornue.eau"
-            type="text"
-            value="{{system.alchimie.constructs.cornue.eau}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.cornue.feu"
-            type="text"
-            value="{{actor.system.alchimie.constructs.cornue.feu}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.cornue.lune"
-            type="text"
-            value="{{actor.system.alchimie.constructs.cornue.lune}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.cornue.terre"
-            type="text"
-            value="{{actor.system.alchimie.constructs.cornue.terre}}"
-            data-dtype="Number"/>
-
-        <div class="degre">
-            <select name="system.alchimie.constructs.cornue.degre">
-            {{#select actor.system.alchimie.constructs.cornue.degre}}
-                {{#each cercles as |name label|}}
-                <option value="{{label}}">{{localize name}}</option>
-                {{/each}}
-            {{/select}}
-            </select>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.substances.ambre"}}</span>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.vaisseaux.ampoule"}}</span>
-        </div>
-    
-    </li>
-
-    <li class="item">
-
-        <label class="hand-checkbox">
-            <input
-                class="item-checkbox" 
-                name="system.alchimie.constructs.creuset.active"
-                type="checkbox"
-                {{checked actor.system.alchimie.constructs.creuset.active}}
-                data-dtype="Boolean"/>
-            <i class="fa-light fa-flask-round-potion unchecked"></i>
-            <i class="fa-solid fa-flask-round-potion checked"></i>
-        </label>
-
-        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.creuset"}}</label>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.creuset.air"
-            type="text"
-            value="{{actor.system.alchimie.constructs.creuset.air}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.creuset.eau"
-            type="text"
-            value="{{actor.system.alchimie.constructs.creuset.eau}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.creuset.feu"
-            type="text"
-            value="{{actor.system.alchimie.constructs.creuset.feu}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.creuset.lune"
-            type="text"
-            value="{{actor.system.alchimie.constructs.creuset.lune}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.creuset.terre"
-            type="text"
-            value="{{actor.system.alchimie.constructs.creuset.terre}}"
-            data-dtype="Number"/>
-
-        <div class="degre">
-            <select name="system.alchimie.constructs.creuset.degre">
-            {{#select actor.system.alchimie.constructs.creuset.degre}}
-                {{#each cercles as |name label|}}
-                <option value="{{label}}">{{localize name}}</option>
-                {{/each}}
-            {{/select}}
-            </select>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.substances.metal"}}</span>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.vaisseaux.pyxide"}}</span>
-        </div>
-    
-    </li>
-
-    <li class="item">
-
-        <label class="hand-checkbox">
-            <input
-                class="item-checkbox" 
-                name="system.alchimie.constructs.athanor.active"
-                type="checkbox"
-                {{checked actor.system.alchimie.constructs.athanor.active}}
-                data-dtype="Boolean"/>
-            <i class="fa-light fa-flask-round-potion unchecked"></i>
-            <i class="fa-solid fa-flask-round-potion checked"></i>
-        </label>
-
-        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.athanor"}}</label>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.athanor.air"
-            type="text"
-            value="{{actor.system.alchimie.constructs.athanor.air}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.athanor.eau"
-            type="text"
-            value="{{actor.system.alchimie.constructs.athanor.eau}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.athanor.feu"
-            type="text"
-            value="{{actor.system.alchimie.constructs.athanor.feu}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.athanor.lune"
-            type="text"
-            value="{{actor.system.alchimie.constructs.athanor.lune}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.athanor.terre"
-            type="text"
-            value="{{actor.system.alchimie.constructs.athanor.terre}}"
-            data-dtype="Number"/>
-
-        <div class="degre">
-            <select name="system.alchimie.constructs.athanor.degre">
-            {{#select actor.system.alchimie.constructs.athanor.degre}}
-                {{#each cercles as |name label|}}
-                <option value="{{label}}">{{localize name}}</option>
-                {{/each}}
-            {{/select}}
-            </select>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.substances.poudre"}}</span>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.vaisseaux.cartouche"}}</span>
-        </div>
-    
-    </li>
-
-    <li class="item">
-
-        <label class="hand-checkbox">
-            <input
-                class="item-checkbox" 
-                name="system.alchimie.constructs.aludel.active"
-                type="checkbox"
-                {{checked actor.system.alchimie.constructs.aludel.active}}
-                data-dtype="Boolean"/>
-            <i class="fa-light fa-flask-round-potion unchecked"></i>
-            <i class="fa-solid fa-flask-round-potion checked"></i>
-        </label>
-
-        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.aludel"}}</label>
-
-        <input
-           class="element"
-            name="system.alchimie.constructs.aludel.air"
-            type="text"
-            value="{{actor.system.alchimie.constructs.aludel.air}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.aludel.eau"
-            type="text"
-            value="{{actor.system.alchimie.constructs.aludel.eau}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.aludel.feu"
-            type="text"
-            value="{{actor.system.alchimie.constructs.aludel.feu}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.aludel.lune"
-            type="text"
-            value="{{actor.system.alchimie.constructs.aludel.lune}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.aludel.terre"
-            type="text"
-            value="{{actor.system.alchimie.constructs.aludel.terre}}"
-            data-dtype="Number"/>
-
-        <div class="degre">
-            <select name="system.alchimie.constructs.aludel.degre">
-            {{#select actor.system.alchimie.constructs.aludel.degre}}
-                {{#each cercles as |name label|}}
-                <option value="{{label}}">{{localize name}}</option>
-                {{/each}}
-            {{/select}}
-            </select>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.substances.vapeur"}}</span>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.vaisseaux.flacon"}}</span>
-        </div>
-    
-    </li>
-
-    <li class="item">
-
-        <label class="hand-checkbox">
-            <input
-                class="item-checkbox" 
-                name="system.alchimie.constructs.alambic.active"
-                type="checkbox"
-                {{checked actor.system.alchimie.constructs.alambic.active}}
-                data-dtype="Boolean"/>
-            <i class="fa-light fa-flask-round-potion unchecked"></i>
-            <i class="fa-solid fa-flask-round-potion checked"></i>
-        </label>
-
-        <label class="item-name">{{localize "NEPH5E.alchimie.constructs.alambic"}}</label>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.alambic.air"
-            type="text"
-            value="{{actor.system.alchimie.constructs.alambic.air}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.alambic.eau"
-            type="text"
-            value="{{actor.system.alchimie.constructs.alambic.eau}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.alambic.feu"
-            type="text"
-            value="{{actor.system.alchimie.constructs.alambic.feu}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.alambic.lune"
-            type="text"
-            value="{{actor.system.alchimie.constructs.alambic.lune}}"
-            data-dtype="Number"/>
-
-        <input
-            class="element"
-            name="system.alchimie.constructs.alambic.terre"
-            type="text"
-            value="{{actor.system.alchimie.constructs.alambic.terre}}"
-            data-dtype="Number"/>
-
-        <div class="degre">
-            <select name="system.alchimie.constructs.alambic.degre">
-            {{#select actor.system.alchimie.constructs.alambic.degre}}
-                {{#each cercles as |name label|}}
-                <option value="{{label}}">{{localize name}}</option>
-                {{/each}}
-            {{/select}}
-            </select>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.substances.liqueur"}}</span>
-        </div>
-
-        <div class="substance">
-            <span>{{localize "NEPH5E.alchimie.vaisseaux.fiole"}}</span>
-        </div>
-    
-    </li>
+    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
+        construct="alambic"
+        active=actor.system.alchimie.constructs.alambic.active
+        air=actor.system.alchimie.constructs.alambic.air
+        eau=actor.system.alchimie.constructs.alambic.eau
+        feu=actor.system.alchimie.constructs.alambic.feu
+        lune=actor.system.alchimie.constructs.alambic.lune
+        terre=actor.system.alchimie.constructs.alambic.terre
+        degre=actor.system.alchimie.constructs.alambic.degre
+        cercles=cercles
+        substance="liqueur"
+        vaisseau="fiole" }}
 
 </ol>
 
@@ -532,3 +251,33 @@
 
 </ol>
 {{/if}}
+
+<div class="laboratoire-header">
+    <span>{{localize "NEPH5E.laboratoires"}}</span>
+</div>
+
+<ol class="laboratoire-list">
+
+    {{#each actor.laboratoires as |item|}}
+    <li class="actor hoverable flexrow-start" data-actor-id="{{item.id}}">
+
+        <div class="mright actor-delete">
+            <a><i class="fas fa-trash"></i></a>
+        </div>
+
+        <div class="mright actor-active">
+            {{#if active}}
+            <a><i class="fa-solid fa-feather-pointed"></i></a>
+            {{else}}
+            <span></span>
+            {{/if}}
+        </div>
+
+        <div>
+            <span class="actor-name">{{item.name}}</span>
+        </div>
+
+    </li>
+    {{/each}}
+
+</ol>

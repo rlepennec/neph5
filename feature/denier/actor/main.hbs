@@ -1,103 +1,62 @@
-<div class="cercles" style="column-count: 6">
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.denier.architecte"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{science actor "architecte"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.denier.guide"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{science actor "guide"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.denier.mage"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{science actor "mage"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.denier.ouvrier"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{science actor "ouvrier"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.denier.roi"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{science actor "roi"}}</label>
-    </div>
-
-    <div class="cercle">
-        <label class="cercle-name">{{localize "NEPH5E.denier.sage"}}</label>
-        <label class="cercle-tag"/>
-        <label class="cercle-value">{{science actor "sage"}}</label>
-    </div>
-
-</div>
-
+{{#if (displaySciences actor 'architecte' 'guide' 'mage' 'ouvrier' 'roi' 'sage')}}
 <ol class="item-list">
 
-    {{> "systems/neph5e/feature/denier/actor/header.hbs" axe="Architecte"}}
+    {{#if (displayScience actor "architecte")}}
+    {{#with (science actor "architecte") as |degre|}}
+        {{> "systems/neph5e/feature/denier/actor/header.hbs" cercle="Architecte" degre=degre cercle-id="architecte" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'architecte') as |item|}}
+            {{> "systems/neph5e/feature/denier/actor/pratique.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
 
-    {{#each system.denier.pratiques as |pratique|}}
-        {{#with (getItem pratique.refid)}}
-            {{#if (eq system.axe "architecte")}}
-                {{> "systems/neph5e/feature/denier/actor/pratique.hbs" pratique=pratique}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
+    {{#if (displayScience actor "guide")}}
+    {{#with (science actor "guide") as |degre|}}
+        {{> "systems/neph5e/feature/denier/actor/header.hbs" cercle="Guide" degre=degre cercle-id="guide" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'guide') as |item|}}
+            {{> "systems/neph5e/feature/denier/actor/pratique.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
 
-    {{> "systems/neph5e/feature/denier/actor/header.hbs" axe="Guide"}}
+    {{#if (displayScience actor "mage")}}
+    {{#with (science actor "mage") as |degre|}}
+        {{> "systems/neph5e/feature/denier/actor/header.hbs" cercle="Mage" degre=degre cercle-id="mage" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'mage') as |item|}}
+            {{> "systems/neph5e/feature/denier/actor/pratique.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
 
-    {{#each system.denier.pratiques as |pratique|}}
-        {{#with (getItem pratique.refid)}}
-            {{#if (eq system.axe "guide")}}
-                {{> "systems/neph5e/feature/denier/actor/pratique.hbs" pratique=pratique}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
+    {{#if (displayScience actor "ouvrier")}}
+    {{#with (science actor "ouvrier") as |degre|}}
+        {{> "systems/neph5e/feature/denier/actor/header.hbs" cercle="Ouvrier" degre=degre cercle-id="ouvrier" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'ouvrier') as |item|}}
+            {{> "systems/neph5e/feature/denier/actor/pratique.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
 
-    {{> "systems/neph5e/feature/denier/actor/header.hbs" axe="Mage"}}
+    {{#if (displayScience actor "roi")}}
+    {{#with (science actor "roi") as |degre|}}
+        {{> "systems/neph5e/feature/denier/actor/header.hbs" cercle="Roi" degre=degre cercle-id="roi" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'roi') as |item|}}
+            {{> "systems/neph5e/feature/denier/actor/pratique.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
 
-    {{#each system.denier.pratiques as |pratique|}}
-        {{#with (getItem pratique.refid)}}
-            {{#if (eq system.axe "mage")}}
-                {{> "systems/neph5e/feature/denier/actor/pratique.hbs" pratique=pratique}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/feature/denier/actor/header.hbs" axe="Ouvrier"}}
-
-    {{#each system.denier.pratiques as |pratique|}}
-        {{#with (getItem pratique.refid)}}
-            {{#if (eq system.axe "ouvrier")}}
-                {{> "systems/neph5e/feature/denier/actor/pratique.hbs" pratique=pratique}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/feature/denier/actor/header.hbs" axe="Roi"}}
-
-    {{#each system.denier.pratiques as |pratique|}}
-        {{#with (getItem pratique.refid)}}
-            {{#if (eq system.axe "roi")}}
-                {{> "systems/neph5e/feature/denier/actor/pratique.hbs" pratique=pratique}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
-
-    {{> "systems/neph5e/feature/denier/actor/header.hbs" axe="Sage"}}
-
-    {{#each system.denier.pratiques as |pratique|}}
-        {{#with (getItem pratique.refid)}}
-            {{#if (eq system.axe "sage")}}
-                {{> "systems/neph5e/feature/denier/actor/pratique.hbs" pratique=pratique}}
-            {{/if}}
-        {{/with}}
-    {{/each}}
+    {{#if (displayScience actor "sage")}}
+    {{#with (science actor "sage") as |degre|}}
+        {{> "systems/neph5e/feature/denier/actor/header.hbs" cercle="Sage" degre=degre cercle-id="sage" sciencesOccultes=../sciencesOccultes}}
+        {{#each (focus ../actor 'sage') as |item|}}
+            {{> "systems/neph5e/feature/denier/actor/pratique.hbs" item=item degre=degre}}
+        {{/each}}
+    {{/with}}
+    {{/if}}
 
 </ol>
+
+{{else}}
+    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+{{/if}}

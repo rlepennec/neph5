@@ -1,63 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
 
-    {{!-- Sheet Header --}}
-    <header class="sheet-header">
+    <div class="item-drop-target item-root">
 
-        <img class="picture" src="{{item.img}}" title="{{item.name}}" data-edit="img"/>
+        <div class="side">
+            <img src="systems/neph5e/assets/core/side-sort.webp" title="{{localize 'ITEM.TypeRituel'}}"/>
+        </div>
 
-        <div class="title">
+        <div class="article">
 
-            <span class="type">{{localize "NEPH5E.epee.rituel"}}</span>
+            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <input class="name" name="name" type="text" value="{{item.name}}"/>
+            <div class="main">
 
-            <br>
+                {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
 
-            <input
-                name="system.id"
-                type="text"
-                value="{{system.id}}"
-                data-dtype="String"/>
+            </div>
+
+            <hr>
+
+            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 
-    </header>
+    </div>
 
-    {{!-- Sheet Navigation --}}
-    <nav class="sheet-navigation tabs" data-group="primary">
-
-        <a class="sheet-navigation-tab active" data-tab="description">{{localize "NEPH5E.description"}}</a>
-
-    </nav>
-
-    {{!-- Sheet Body --}}
-    <section class="sheet-body">
-
-        <div class="tab description" data-group="primary" data-tab="description">
-
-            <div class="header rituel">
-
-                <div class="property">
-                    <label class="property-name">{{localize "NEPH5E.degre"}}</label>
-                    <input
-                        class="property-value"
-                        name="system.degre"
-                        type="text"
-                        value="{{system.degre}}"
-                        data-dtype="Number"
-                    />
-                </div>
-
-            </div>
-
-            <div class="part-header">
-                <div class="part-name">
-                    <span>{{localize "NEPH5E.effet"}}</span>
-                </div>
-            </div>
-
-            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
-
-    </section>
-        
 </form>

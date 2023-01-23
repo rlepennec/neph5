@@ -17,6 +17,7 @@ import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Passe } from "../../feature/periode/passe.js";
 import { Pavane } from "../../feature/selenim/pavane.js";
 import { Periode } from "../../feature/periode/periode.js";
+import { Pratique } from "../../feature/denier/pratique.js";
 import { Quete } from "../../feature/periode/quete.js";
 import { Rite } from "../../feature/necromancie/rite.js";
 import { Savoir } from "../../feature/periode/savoir.js";
@@ -140,6 +141,8 @@ export class AbstractRollBuilder {
                 return new Passe(this.actor, this.item, this.periode);
             case 'periode':
                 return new Periode(this.actor, this.item).withEvent(this.event);
+            case 'pratique':
+                return new Pratique(this.actor, this.item).withPeriode(this.periode);
             case 'quete':
                 return new Quete(this.actor, this.item, this.periode);
             case 'ordonnance':
