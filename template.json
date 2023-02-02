@@ -3,7 +3,7 @@
         "types": [
             "figure",
             "figurant",
-            "simulacre"
+            "fraternite"
         ],
         "templates": {
             "id": {
@@ -47,8 +47,6 @@
             "menace": 3,
             "ka": 3,
             "description": ""
-        },
-        "simulacre": {
         },
         "figure": {
             "templates": [
@@ -185,6 +183,7 @@
                 "conjuration": true,
                 "description": true,
                 "simulacre": true,
+                "fraternites": false,
                 "incarnations": true,
                 "combat": true,
                 "kabbale": true,
@@ -205,6 +204,19 @@
                 "degreGauche": false,
                 "incarnationsOuvertes": false,
                 "gestionLaboratoire": false
+            }
+        },
+        "fraternite": {
+            "templates": [
+                "id"
+            ],
+            "periode": null,
+            "effectif": [],
+            "description": "",
+            "options": {
+                "active": true,
+                "chronologieDescendante": false,
+                "incarnationsOuvertes": false
             }
         }
     },

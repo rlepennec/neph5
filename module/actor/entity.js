@@ -7,10 +7,8 @@ import { Chute } from "../../feature/periode/chute.js";
 import { Competence } from "../../feature/periode/competence.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
-import { Formule } from "../../feature/alchimie/formule.js";
-import { Habitus } from "../../feature/analogie/habitus.js";
+import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { Game } from "../common/game.js";
-import { Invocation } from "../../feature/kabbale/invocation.js";
 import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
 import { Melee } from "../../feature/combat/core/melee.js";
@@ -19,12 +17,10 @@ import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Materiae } from "../../feature/alchimie/materiae.js";
 import { Passe } from "../../feature/periode/passe.js";
 import { Periode } from "../../feature/periode/periode.js";
-import { Pratique } from "../../feature/denier/pratique.js";
 import { Quete } from "../../feature/periode/quete.js";
 import { Savoir } from "../../feature/periode/savoir.js";
 import { Science } from "../../feature/science/science.js";
 import { Vecu } from "../../feature/periode/vecu.js";
-import { Sort } from "../../feature/magie/sort.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
 export class NephilimActor extends Actor {
@@ -391,6 +387,13 @@ export class NephilimActor extends Actor {
     /**
      * @returns the data to display. 
      */
+    get sciences() {
+        return Science.getAll(this);
+    }
+
+    /**
+     * @returns the data to display. 
+     */
     get vecusOfActor() {
         return Vecu.getAll(this, 'actor');
     }
@@ -442,6 +445,14 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * @param science The name of the science.
+     * @returns true if some focus are owned.
+     */
+    numberOfFocus(science) {
+        return this.focus(science).length;
+    }
+
+    /**
      * @param science The key of the science.
      * @returns the level of the science.
      */
@@ -455,46 +466,7 @@ export class NephilimActor extends Actor {
      * @returns the owned focus of the actor. 
      */
     focus(science) {
-
-        let items = [];
-        const cercle = Science.getCercle(science);
-        const ids = this.items.filter(i => i.type === cercle?.type && new Periode(this, this.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
-        for (let item of game.items.filter(i => i.system[cercle?.property] === science && ids.includes(i.sid))) {
-
-            let degre = null;
-            switch (item.type) {
-                case 'sort':
-                    degre = new Sort(this, item).withPeriode(this.system.periode).degre;
-                    break;
-                case 'habitus':
-                    degre = new Habitus(this, item).withPeriode(this.system.periode).degre;
-                    break;
-                case 'invocation':
-                    degre = new Invocation(this, item).withPeriode(this.system.periode).degre;
-                    break;
-                case 'formule':
-                    degre = new Formule(this, item).withPeriode(this.system.periode).degre;
-                    break;
-                case 'pratique':
-                    degre = new Pratique(this, item).withPeriode(this.system.periode).degre;
-                    break;
-            }
-
-            const embedded = this.items.find(i => i.sid === item.sid);
-            if (degre != null) {
-                embedded.degre = degre * 10;
-            } else if (item.type === 'formule') {
-                embedded.degre = null;
-            }
-
-            items.push({
-                original: item,
-                embedded: embedded
-            });
-
-        }
-        return items;
-
+        return Science.getFocus(this, science);
     }
 
     /**
@@ -502,6 +474,35 @@ export class NephilimActor extends Actor {
      */
     get laboratoires() {
         return Laboratoire.getAll(this);
+    }
+
+    /**
+     * @returns the fraternites objects in which the actor is member.
+     */
+    get fraternites() {
+        const fraternites = [];
+        for (let f of game.actors.filter(a => a.type === 'fraternite')) {
+            if (new Fraternite(f).isActiveMember(this)) {
+                fraternites.push(f);
+            }
+        }
+        return fraternites;
+    }
+
+    /**
+     * @returns the members of the fraternite sorted by status.
+     */
+    get membres() {
+        return new Fraternite(this).membres();
+    }
+
+    /**
+     * @param actor   The actor identifier.
+     * @param periode The periode system identifier.
+     * @returns true if new member for the periode (in), false is out
+     */
+    isNewMember(actor, periode) {
+        return new Fraternite(this).isNewMember(actor, periode);
     }
 
     /**
@@ -660,19 +661,7 @@ export class NephilimActor extends Actor {
      * @return the construct.
      */
     getConstruct(substance) {
-        const constructs = this.system.alchimie.constructs;
-        switch (substance) {
-            case 'ambre':
-                return constructs.cornue;
-            case 'liqueur':
-                return constructs.alambic;
-            case 'metal':
-                return constructs.creuset;
-            case 'poudre':
-                return constructs.athanor;
-            case 'vapeur':
-                return constructs.aludel;
-        }
+        return new Laboratoire(this).getConstruct(substance);
     }
 
     /**

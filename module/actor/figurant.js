@@ -1,6 +1,5 @@
 import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
 import { BaseSheet } from "./base.js";
-import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Ka } from "../../feature/nephilim/ka.js";
 import { Menace } from "../../feature/combat/core/menace.js";
 import { NephilimItemSheet } from "../item/base.js";
@@ -43,16 +42,13 @@ export class FigurantSheet extends BaseSheet {
         });
     }
 
+    /**
+     * @override
+     */
     getData() {
-        const baseData = super.getData();
-        let sheetData = {
-            owner: this.actor.isOwner,
-            editable: this.isEditable,
-            actor: baseData.actor,
-            system: baseData.actor.system,
+        return mergeObject(super.getData(), {
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
-        }
-        return sheetData;
+        });
     }
 
     /**
@@ -68,7 +64,7 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .roll-menace').click(this._onRollMenace.bind(this));
         html.find('div[data-tab="combat"] .roll-vecu').click(this._onRollVecu.bind(this));
     }
-s
+
     async _onDegreVecu(event) {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
@@ -102,16 +98,6 @@ s
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
-    }
-
-    /**
-     * @override
-     */
-    _updateObject(event, formData) {
-        if (formData['system.id'] == null || formData['system.id'] === "") {
-            formData['system.id'] = CustomHandlebarsHelpers.UUID();
-        }
-        super._updateObject(event, formData);
     }
 
     /**

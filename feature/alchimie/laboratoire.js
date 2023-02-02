@@ -11,6 +11,16 @@ export class Laboratoire {
     static CONSTRUCTS = [Laboratoire.CORNUE, Laboratoire.CREUSET, Laboratoire.ATHANOR, Laboratoire.ALUDEL, Laboratoire.ALAMBIC];
 
     /**
+     * The substances.
+     */
+    static AMBRE = 'ambre';
+    static LIQUEUR = 'liqueur';
+    static METAL = 'metal';
+    static POUDRE = 'poudre';
+    static VAPEUR = 'vapeur';
+    static SUBSTANCES = [Laboratoire.AMBRE, Laboratoire.LIQUEUR, Laboratoire.METAL, Laboratoire.POUDRE, Laboratoire.VAPEUR];
+
+    /**
      * Constructor.
      * @param actor The actor which owns the laboratory.
      */
@@ -43,6 +53,27 @@ export class Laboratoire {
             }
         }
         return all;
+    }
+
+    /**
+     * Gets the construct associated with the specified substance.
+     * @param actor     The actor object for which to retrieve the construct.
+     * @param substance The substance of the construct to get.
+     * @return the construct.
+     */
+    getConstruct(substance) {
+        switch (substance) {
+            case Laboratoire.AMBRE:
+                return this.actor.system.alchimie.constructs.cornue;
+            case Laboratoire.LIQUEUR:
+                return this.actor.system.alchimie.constructs.alambic;
+            case Laboratoire.METAL:
+                return this.actor.system.alchimie.constructs.creuset;
+            case Laboratoire.POUDRE:
+                return this.actor.system.alchimie.constructs.athanor;
+            case Laboratoire.VAPEUR:
+                return this.actor.system.alchimie.constructs.aludel;
+        }
     }
 
 }

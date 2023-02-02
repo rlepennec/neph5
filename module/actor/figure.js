@@ -1,14 +1,12 @@
 import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
-import { BaseSheet } from "./base.js";
 import { Chute } from "../../feature/periode/chute.js";
 import { Constants } from "../common/constants.js";
-import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { EmbeddedItem } from "../common/embeddedItem.js";
 import { Game } from "../common/game.js";
-import { NephilimItemSheet } from "../item/base.js";
+import { HistoricalSheet } from "./historical.js";
 import { Periode } from "../../feature/periode/periode.js";
 
-export class FigureSheet extends BaseSheet {
+export class FigureSheet extends HistoricalSheet {
 
     /**
      * @constructor
@@ -17,8 +15,6 @@ export class FigureSheet extends BaseSheet {
     constructor(...args) {
         super(...args);
         this.editedCapacity = null;
-        this.editedPeriode = null;
-        this.elapsedPeriodes = this._initialElapsedPeriodes();
     }
 
     /**
@@ -26,32 +22,6 @@ export class FigureSheet extends BaseSheet {
      */
     get template() {
         return 'systems/neph5e/templates/actor/figure.html';
-    }
-
-    /**
-     * @return the elapsed periodes according to the user option and the history.
-     */
-    _initialElapsedPeriodes() {
-        if (this.actor.system.options.incarnationsOuvertes == true) {
-            return Periode.getOriginals(this.actor)
-        } else {
-            return [];
-        }
-    }
-
-    /**
-     * @override
-     */
-     _updateObject(event, formData) {
-
-        // The system uuid
-        if (formData['system.id'] == null || formData['system.id'] === "") {
-            formData['system.id'] = CustomHandlebarsHelpers.UUID();
-        }
-
-        // Update the actor
-        super._updateObject(event, formData);
-
     }
 
     /**
@@ -91,29 +61,22 @@ export class FigureSheet extends BaseSheet {
         });
     }
 
+    /**
+     * @override
+     */
     getData() {
-        const baseData = super.getData();
-        const simulacre = this.actor.simulacre;
-        let sheetData = {
-            owner: this.actor.isOwner,
-            editable: this.isEditable,
-            isGM: game.user.isGM,
-            actor: baseData.actor,
-            system: baseData.actor.system,
+        return mergeObject(super.getData(), {
             cercles: Game.alchimie.cercles,
             domaines: Game.analogie.domaines,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs'),
             sciencesOccultes: game.settings.get('neph5e', 'sciencesOccultes'),
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
-            editedPeriode: this.editedPeriode,
-            elapsedPeriodes: this.elapsedPeriodes,
             editedCapacity: this.editedCapacity,
             simulacre: {
-                name: simulacre?.name,
-                img: simulacre?.img
+                name: this.actor.simulacre?.name,
+                img: this.actor.simulacre?.img
             }
-        }
-        return sheetData;
+        });
     }
 
     /**
@@ -230,6 +193,9 @@ export class FigureSheet extends BaseSheet {
         html.find('div[data-tab="simulacre"]').click(this._onOpenSimulacre.bind(this));
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
 
+        // Fraternites
+        html.find('div[data-tab="fraternites"]').click(this._onOpenFraternite.bind(this));
+
         // Vecus
         html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditFeature.bind(this, 'competence'));
         html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditFeature.bind(this, 'passe'));
@@ -321,13 +287,75 @@ export class FigureSheet extends BaseSheet {
 
         // Catch and retrieve the dropped item
         event.preventDefault();
-        const item = await NephilimItemSheet.droppedItem(event);
-        if (item == null) {
+        const dropped = await super.droppedObject(event);
+        switch (dropped?.type) {
+            case 'item':
+                const item = dropped.object;
+                if (item.hasOwnProperty('system')) {
 
-            // Retrieve the dropped actor
-            const actor = await FigureSheet.droppedActor(event);
-            if (actor != null) {
-                
+                    // Check if the tab is compliant with the item to drop
+                    const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
+                    const tabs = this._droppableTabs(item.type);
+                    if (tabs.includes(currentTab) !== true) {
+                        return false;
+                    }
+
+                    // Process the drop
+                    switch(item.type) {
+                        case 'arme':
+                            await super._onDropWeapon(event, item);
+                            break;
+                        case 'armure':
+                            await super._onDrop(event);
+                            break;
+                        case 'alchimie':
+                        case 'aspect':
+                        case 'catalyseur':
+                        case 'competence':
+                        case 'magie':
+                        case 'materiae':
+                        case 'metamorphe':
+                        case 'periode':
+                        case 'vecu':
+                            await new AbstractRollBuilder(this.actor)
+                                .withItem(item)
+                                .withEvent(event)
+                                .withPeriode(this.editedPeriode)
+                                .withManoeuver(this.editedCapacity)
+                                .create()
+                                .drop();
+                            break;
+                        case 'appel':
+                        case 'arcane':
+                        case 'chute':
+                        case 'formule':
+                        case 'invocation':
+                        case 'ordonnance':
+                        case 'passe':
+                        case 'pratique':
+                        case 'quete':
+                        case 'rite':
+                        case 'savoir':
+                        case 'science':
+                        case 'sort':
+                        case 'habitus':
+                            const periode = this.editedPeriode;
+                            if (periode != null) {
+                                await new AbstractRollBuilder(this.actor)
+                                    .withItem(item)
+                                    .withEvent(event)
+                                    .withPeriode(periode)
+                                    .withManoeuver(this.editedCapacity)
+                                    .create()
+                                    .drop();
+                            }
+                            break;
+                    }
+                }
+                break;
+
+            case 'actor':
+                const actor = dropped.object;
                 switch (actor.type) {
 
                     // Drop the new simulacre on the figure
@@ -350,71 +378,7 @@ export class FigureSheet extends BaseSheet {
                         break;
 
                 }
-
-            }
-
-        } else if (item.hasOwnProperty('system')) {
-
-            // Check if the tab is compliant with the item to drop
-            const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
-            const tabs = this._droppableTabs(item.type);
-            if (tabs.includes(currentTab) !== true) {
-                return false;
-            }
-
-            // Process the drop
-            switch(item.type) {
-                case 'arme':
-                    await super._onDropWeapon(event, item);
-                    break;
-                case 'armure':
-                    await super._onDrop(event);
-                    break;
-                case 'alchimie':
-                case 'aspect':
-                case 'catalyseur':
-                case 'competence':
-                case 'magie':
-                case 'materiae':
-                case 'metamorphe':
-                case 'periode':
-                case 'vecu':
-                    await new AbstractRollBuilder(this.actor)
-                        .withItem(item)
-                        .withEvent(event)
-                        .withPeriode(this.editedPeriode)
-                        .withManoeuver(this.editedCapacity)
-                        .create()
-                        .drop();
-                    break;
-                case 'appel':
-                case 'arcane':
-                case 'chute':
-                case 'formule':
-                case 'invocation':
-                case 'ordonnance':
-                case 'passe':
-                case 'pratique':
-                case 'quete':
-                case 'rite':
-                case 'savoir':
-                case 'science':
-                case 'sort':
-                case 'habitus':
-                    const periode = this.editedPeriode;
-                    if (periode != null) {
-                        await new AbstractRollBuilder(this.actor)
-                            .withItem(item)
-                            .withEvent(event)
-                            .withPeriode(periode)
-                            .withManoeuver(this.editedCapacity)
-                            .create()
-                            .drop();
-                    }
-                    break;
-
-            }
-
+                break;
         }
 
     }
@@ -504,18 +468,6 @@ export class FigureSheet extends BaseSheet {
     // -- FEATURE ------------------------------------------------------------------------
 
     /**
-     * Edit the specified feature.
-     * @param feature The purpose of the edition.
-     * @param event   The click event.
-     * @returns the instance.
-     */
-    async _onEditFeature(feature, event) {
-        event.preventDefault();
-        await this.createFeature(".edit-" + feature, event).edit();
-        return this;
-    }
-
-    /**
      * Roll the specified feature.
      * @param feature The purpose of the roll.
      * @param event   The click event.
@@ -525,112 +477,6 @@ export class FigureSheet extends BaseSheet {
         event.preventDefault();
         await this.createFeature(".roll-" + feature, event).initialize();
         return this;
-    }
-
-    // -- INCARNATION ------------------------------------------------------------------------
-
-    /**
-     * Edit or unedit the specified periode.
-     * @param event The click event.
-     */
-    async _onEditPeriode(event) {
-        event.preventDefault();
-        const feature = this.createFeature(".item", event);
-        this.editedPeriode = this.editedPeriode === feature.sid ? null : feature.sid;
-        await this.render(true);
-    }
-
-    /**
-     * Delete the specified periode.
-     * @param event The click event.
-     */
-    async _onDeletePeriode(event) {
-
-        event.preventDefault();
-
-        // Retrieve the data
-        const feature = this.createFeature(".item", event);
-        const periode = this.actor.items.find(i => i.sid === feature.item.sid);
-
-        // Update the periode edition options
-        this.editedPeriode = this.editedPeriode === feature.sid ? null : this.editedPeriode;
-        this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== feature.item.id);
-
-        // Used to remove vecus & combat options
-        await this.actor.deletePeriode(periode);
-
-    }
-
-    /**
-     * Set the specified current periode.
-     * @param event The click event.
-     */
-    async _onCurrentPeriode(event) {
-        event.preventDefault();
-        const feature = this.createFeature(".item", event);
-        await this.actor.setCurrentPeriode(feature.sid);
-    }
-
-    /**
-     * Show or hide the specified feature.
-     * @param event The click event.
-     */
-    async _onDisplayPeriode(event) {
-        event.preventDefault();
-        const node = $(event.currentTarget).parent().next();
-        const id = node.data('id');
-        await this._updateDisplayPeriode(node, id);
-    }
-
-    /**
-     * Used to elapse or colapse all periodes in incarnations.
-     * @param event The click event.
-     */
-    async _onChangePeriodesDisplay(event) {
-        event.preventDefault();
-        const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
-        await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
-        this.elapsedPeriodes = this._initialElapsedPeriodes();
-        await this.render(true);
-    }
-
-    /**
-     * @param id   The identifier of the periode to display or to show.
-     * @param node The node on which to update the periode.
-     */
-    async _updateDisplayPeriode(node, id) {
-        if (node.css('display') !== 'none') {
-            this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== id);
-            node.attr("style", "display: none;");
-        } else {
-            this.elapsedPeriodes.push(id);
-            node.removeAttr("style");
-        }
-    }
-
-    /**
-     * Set the degre in the linked item.
-     * @param event The click event.
-     */
-     async _onChangeDegre(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-degre").data("id");
-        const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".change-degre").val();
-        const system = duplicate(item.system);
-        system.degre = parseInt(value);
-        await item.update({ ['system']: system });
-    }
-
-    /**
-     * Active or deactive the specified periode.
-     * @param event The click event. 
-     */
-    async _onToggleActivePeriode(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".active-periode").data("id");
-        const item = game.items.get(id);
-        await new AbstractRollBuilder(this.actor).withItem(item).create().toggleActive();
     }
 
     // -- IMAGO -----------------------------------------------------------------------------
@@ -923,7 +769,7 @@ export class FigureSheet extends BaseSheet {
         await item.update({ ['system']: system });
     }
 
-    // -- SIMULACRE -------------------------------------------------------------------------
+    // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
 
     /**
      * Edit the simulacre.
@@ -937,44 +783,17 @@ export class FigureSheet extends BaseSheet {
         }
     }
 
-    static async droppedActor(event) {
-
-        // Retrieve the dropped data id and type from the event
-        let data = null;
-        if (event.dataTransfer !== undefined) {
-            try {
-                data = JSON.parse(event.dataTransfer.getData('text/plain'));
-            } catch (err) {
-                return null;
-            }
+    /**
+     * Edit the fraternite.
+     * @param event The click event.
+     */
+    async _onOpenFraternite(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest(".fraternites").data("id");
+        const actor = game.actors.get(id);
+        if (actor != null) {
+            actor.sheet.render(true);
         }
-        if (data === null || data.type !== "Actor") {
-            return null;
-        };
-    
-        let dataType = "";
-        if (data.type === "Actor") {
-            let actorData = {};
-            // Case 1 - Import from a Compendium pack
-            if (data.pack) {
-                dataType = "compendium";
-                const pack = game.packs.find(p => p.collection === data.pack);
-                const packActor = await pack.getEntity(data.id);
-                if (packActor != null) actorData = packActor.data;
-            }
-    
-            // Case 3 - Import from World entity
-            else {
-                return await fromUuid(data.uuid);
-            }
-    
-            return { from: dataType, data: actorData };
-    
-        } else {
-    
-            return null;
-        }
-    
     }
 
 }

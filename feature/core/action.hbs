@@ -64,12 +64,25 @@
             <td class="percentage">%</td>
         </tr>
 
+        {{#unless (eq fraternite 0)}}
+        <tr>
+            <td>
+                <select id="fraternite" name="fraternite">
+                    <option value="ignore">{{localize 'NEPH5E.ignorerFraternite'}}</option>
+                    <option value="apply">{{localize 'NEPH5E.appliquerFraternite'}}</option>
+                </select>
+            </td>
+            <td class="value" id="fraterniteModifier">0</td>
+            <td class="percentage">%</td>
+        </tr>
+        {{/unless}}
+
         {{#unless (eq blessures 0)}}
         <tr>
             <td>
                 <select id="blessures" name="blessures">
-                    <option value="apply">Appliquer les blessures</option>
-                    <option value="ignore">Ignorer les blessures</option>
+                    <option value="apply">{{localize 'NEPH5E.appliquerBlessures'}}</option>
+                    <option value="ignore">{{localize 'NEPH5E.ignorerBlessures'}}</option>
                 </select>
             </td>
             <td class="value" id="blessuresModifier">{{blessures}}</td>

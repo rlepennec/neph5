@@ -14,6 +14,7 @@ export class Quete extends AbstractRoll {
         super(actor);
         this.item = item;
         this.periode = periode;
+        this.attachPeriode = true;
     }
 
     /**
@@ -37,6 +38,7 @@ export class Quete extends AbstractRoll {
         return new ActionDataBuilder(this)
             .withItem(this.item)
             .withBase(this.item.name, this.degre)
+            .withFraternite(this.fraternite)
             .withBlessures('magique')
             .export();
     }
@@ -56,18 +58,48 @@ export class Quete extends AbstractRoll {
     }
 
     /**
+     * @param actor   The actor which performs the action.
+     * @param item    The embedded item object, purpose of the action.
+     * @param periode The optional system identifier of the periode.
+     * @returns a new instance.
+     */
+    clone(actor, item, periode) {
+        return new Quete(actor, item, periode);
+    }
+
+    /**
+     * Set no periode is attached to the savoir.
+     * @returns the instance.
+     */
+    withoutPeriode() {
+        this.attachPeriode = false;
+        return this;
+    }
+
+    /**
      * @Override
      */
     async drop() {
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a quete on periode " + this.periode)
-                .withData("degre", 0)
-                .withData("periode", this.periode)
-                .withoutData('description')
-                .withoutAlreadyEmbeddedError()
-                .create();
+        if (this.attachPeriode === true) {
+            if (this.periode != null &&
+                this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+                await new EmbeddedItem(this.actor, this.sid)
+                    .withContext("Drop of a quete on periode " + this.periode)
+                    .withData("degre", 0)
+                    .withData("periode", this.periode)
+                    .withoutData('description')
+                    .withoutAlreadyEmbeddedError()
+                    .create();
+            }
+        } else {
+            if (this.actor.items.find(i => i.sid === this.sid) == null) {
+                await new EmbeddedItem(this.actor, this.sid)
+                    .withContext("Drop of a quete")
+                    .withData("degre", 0)
+                    .withoutData('description')
+                    .withoutAlreadyEmbeddedError()
+                    .create();
+            } 
         }
     }
 
@@ -90,6 +122,7 @@ export class Quete extends AbstractRoll {
             500
         )
     }
+
     /**
      * Get the quetes according to the specified character and the active periodes.
      * @param actor The actor object.

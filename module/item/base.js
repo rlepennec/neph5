@@ -25,7 +25,7 @@ export class NephilimItemSheet extends ItemSheet {
     getData() {
         const data = super.getData();
         data.system = data.item.system;
-        data.isGM = game.user.isGM,
+        data.isGM = game.user.isGM;
         data.debug = game.settings.get('neph5e', 'debug');
         return data;
     }

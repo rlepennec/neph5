@@ -1,0 +1,37 @@
+{{#with actor.sciences as |items|}}
+{{#unless (isEmptyCollection items)}}
+<ol class="item-list">
+
+    <div class="title">
+        <span>{{localize "ITEM.TypeScience"}}</span>
+    </div>
+
+    {{#if (eq ../from 'figure')}}
+    <div class="content">
+    {{else}}
+    <div class="fcontent">
+    {{/if}}
+
+        {{#each items as |item|}}
+        {{#if (ne item.degre 0)}}
+        <li class="item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="science">
+
+            <label class="degre">{{item.degre}}</label>
+
+            <div class="item-name edit-science" data-id="{{item.id}}">
+                <span>{{item.name}}</span>
+            </div>
+
+            <div class="item-control">
+                <a class="roll-science" data-id="{{item.id}}"><span>+{{fraterniteBonus item.degre}}</span></a>
+            </div>
+
+        </li>
+        {{/if}}
+        {{/each}}
+
+    </div>
+
+</ol>
+{{/unless}}
+{{/with}}

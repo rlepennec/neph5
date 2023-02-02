@@ -1,3 +1,10 @@
+# 1.3.0
+Ajout du nouveau type d'acteur Fraternité
+Ajout de logos
+Correction d'une anomalie sur l'affichage du combat tracker
+Correction d'une anomalie sur la désactivation d'une époque d'incarnation d'une figure
+Suppression définitive du type d'acteur simulacre
+
 # 1.2.18
 Possibilité d'utiliser un laboratoire d'une autre figure
 Ajout de controles sur la création de formules alchimiques

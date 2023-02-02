@@ -1,6 +1,12 @@
 import { AbstractRoll } from "../core/abstractRoll.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
+import { Formule } from "../alchimie/formule.js";
+import { Habitus } from "../analogie/habitus.js";
+import { Invocation } from "../kabbale/invocation.js";
+import { Periode } from "../periode/periode.js";
+import { Pratique } from "../denier/pratique.js";
+import { Sort } from "../magie/sort.js";
 
 export class Science extends AbstractRoll {
 
@@ -14,6 +20,7 @@ export class Science extends AbstractRoll {
         super(actor);
         this.item = item;
         this.periode = periode;
+        this.attachPeriode = true;
     }
 
     /**
@@ -37,6 +44,7 @@ export class Science extends AbstractRoll {
         return new ActionDataBuilder(this)
             .withItem(this.item)
             .withBase('Science Occulte', this.degre)
+            .withFraternite(this.fraternite)
             .withBlessures('magique')
             .export();
     }
@@ -56,15 +64,43 @@ export class Science extends AbstractRoll {
     }
 
     /**
+     * @param actor   The actor which performs the action.
+     * @param item    The embedded item object, purpose of the action.
+     * @param periode The optional system identifier of the periode.
+     * @returns a new instance.
+     */
+    clone(actor, item, periode) {
+        return new Science(actor, item, periode);
+    }
+
+    /**
+     * Set no periode is attached to the savoir.
+     * @returns the instance.
+     */
+    withoutPeriode() {
+        this.attachPeriode = false;
+        return this;
+    }
+
+    /**
      * @Override
      */
     async drop() {
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+        if (this.attachPeriode === true) {
+            if (this.periode != null &&
+                this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+                await new EmbeddedItem(this.actor, this.sid)
+                    .withContext("Drop of a science on periode " + this.periode)
+                    .withData("degre", 0)
+                    .withData("periode", this.periode)
+                    .withoutData('description')
+                    .withoutAlreadyEmbeddedError()
+                    .create();
+            }
+        } else {
             await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a science on periode " + this.periode)
+                .withContext("Drop of a science")
                 .withData("degre", 0)
-                .withData("periode", this.periode)
                 .withoutData('description')
                 .withoutAlreadyEmbeddedError()
                 .create();
@@ -181,6 +217,75 @@ export class Science extends AbstractRoll {
 
         }
 
+    }
+
+    /**
+     * @param actor   The actor object for which to retrieve the focus.
+     * @param science The name of the science.
+     * @returns the owned focus of the actor. 
+     */
+    static getFocus(actor, science) {
+
+        let items = [];
+        const cercle = Science.getCercle(science);
+        const ids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
+        for (let item of game.items.filter(i => i.system[cercle?.property] === science && ids.includes(i.sid))) {
+
+            let degre = null;
+            switch (item.type) {
+                case 'sort':
+                    degre = new Sort(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+                case 'habitus':
+                    degre = new Habitus(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+                case 'invocation':
+                    degre = new Invocation(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+                case 'formule':
+                    degre = new Formule(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+                case 'pratique':
+                    degre = new Pratique(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+            }
+
+            const embedded = actor.items.find(i => i.sid === item.sid);
+            if (degre != null) {
+                embedded.degre = degre * 10;
+            } else if (item.type === 'formule') {
+                embedded.degre = null;
+            }
+
+            items.push({
+                original: item,
+                embedded: embedded
+            });
+
+        }
+        return items;
+
+    }
+
+    /**
+     * Get the sciences occultes according to the specified character and the active periodes.
+     * @param actor The actor object.
+     * @returns the sciences occultes to display in the character sheet.
+     */
+    static getAll(actor) {
+        const all = [];
+        for (let s of game.items.filter(i => i.type === 'science')) {
+            const feature = new Science(actor, s);
+            if (feature.degre !== 0) {
+                all.push({
+                    name: feature.name,
+                    sid: feature.sid,
+                    id: s.id,
+                    degre: feature.degre
+                });
+            }
+        }
+        return all;
     }
 
 }

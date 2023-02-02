@@ -11,6 +11,7 @@
         {{/if}}
     </div>
 
+    {{#if (eq from "figure")}}
     <div class="all-points">
 
         <div class="tooltip points">
@@ -45,12 +46,17 @@
         </div>
 
     </div>
+    {{/if}}
 
 </div>
 
 {{#if actor.noPeriodes}}
 <div class="helpPeriode">
+    {{#if (eq from "figure")}}
     <label>{{localize 'NEPH5E.aideIncarnations'}}</label>
+    {{else}}
+    <label>{{localize 'NEPH5E.aideHistorique'}}</label>
+    {{/if}}
     <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
 </div>
 {{/if}}
@@ -117,6 +123,30 @@
 
         class="item-content"
         data-id="{{periode.original.id}}">
+
+        {{#each periode.embedded.actors as |actor|}}
+        <li class="item" data-actor-id="{{actor.id}}" data-periode-sid="{{../original.sid}}">
+
+            <div class="scroll">
+                {{#if (isNewMember ../../../actor actor.id ../original.sid)}}
+                <i class="fa-solid fa-user-plus"></i>
+                {{else}}
+                <i class="fa-solid fa-user-minus"></i>
+                {{/if}}
+            </div>          
+
+            <div class="edit-actor" data-id="{{actor.id}}" data-sid="{{actor.sid}}" data-type="{{actor.type}}">
+                <span>{{actor.name}}</span>
+            </div>
+
+            {{#if (eq ../../../editedPeriode ../original.sid)}}                
+            <div class="delete">
+                <a class="delete-actor" data-id="{{actor.id}}"><i class="fas fa-trash"></i></a>
+            </div>
+            {{/if}}
+
+        </li>
+        {{/each}}
 
         {{#each periode.embedded.items as |item|}}
         <li class="item" data-item-id="{{item.id}}">

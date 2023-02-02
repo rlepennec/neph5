@@ -93,6 +93,15 @@
             </div>
             {{/if}}
 
+            {{#if (eq system.options.fraternites true)}}
+            {{#each actor.fraternites as |fraternite|}}
+            <div class="sheet-navigation-tab fraternites" data-tab="fraternites" data-id="{{fraternite.id}}">
+                <img class="image" src="{{fraternite.img}}" data-edit="img"/>
+                <a class="name">{{fraternite.name}}</a>
+            </div>
+            {{/each}}
+            {{/if}}
+
         </div>
         
         <div class="article">
@@ -114,7 +123,7 @@
                 {{#if (eq system.options.vecus true)}}
                 <div class="tab vecus" data-group="primary" data-tab="vecus">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
-                    {{> "systems/neph5e/feature/periode/actor/main.hbs"}}
+                    {{> "systems/neph5e/feature/periode/actor/main.hbs" from="figure"}}
                 </div>
                 {{/if}}
                 
@@ -219,7 +228,7 @@
                 {{#if (eq system.options.incarnations true)}}
                 <div class="tab incarnations" data-group="primary" data-tab="incarnations">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
-                    {{> "systems/neph5e/feature/periode/actor/incarnations.hbs"}}
+                    {{> "systems/neph5e/feature/periode/actor/incarnations.hbs" from="figure"}}
                 </div>
                 {{/if}}
         

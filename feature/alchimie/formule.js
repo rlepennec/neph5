@@ -120,7 +120,7 @@ export class Formule extends AbstractRoll {
         const construct = this.getConstruct();
 
         // The construct must be active
-        if (construct.active !== true) {
+        if (construct?.active !== true) {
             return null;
         }
 
@@ -209,8 +209,12 @@ export class Formule extends AbstractRoll {
      * @returns the owner actor of the used laboratory.
      */
     getOwner() {
-        const sid = this.actor.system.alchimie.courant;
-        return sid == null ? this.actor : game.actors.find(i => i.sid === sid);
+        if (this.actor.type === 'figure') {
+            const sid = this.actor.system.alchimie.courant;
+            return sid == null ? this.actor : game.actors.find(i => i.sid === sid);
+        } else {
+            return null;
+        }
     }
 
     /**

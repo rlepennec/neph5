@@ -1,5 +1,6 @@
 import { AbstractRoll } from "../../feature/core/abstractRoll.js";
 import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
+import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { Melee } from "../../feature/combat/core/melee.js";
@@ -18,6 +19,35 @@ export class BaseSheet extends ActorSheet {
         super(...args);
         this.options.submitOnClose = true;
         this.editable = game.user.isGM || this.actor.owner === true;
+    }
+
+    /**
+     * @override
+     */
+    getData() {
+        const base = super.getData();
+        return {
+            owner: this.actor.isOwner,
+            editable: this.isEditable,
+            isGM: game.user.isGM,
+            actor: base.actor,
+            system: base.actor.system,
+        }
+    }
+
+    /**
+     * @override
+     */
+    _updateObject(event, formData) {
+
+        // The system uuid
+        if (formData['system.id'] == null || formData['system.id'] === "") {
+            formData['system.id'] = CustomHandlebarsHelpers.UUID();
+        }
+
+        // Update the actor
+        super._updateObject(event, formData);
+
     }
 
     /**
@@ -231,6 +261,50 @@ export class BaseSheet extends ActorSheet {
                 return builder.create();
             }
         }
+    }
+
+    /**
+     * @param event 
+     * @returns the dropped actor.
+     */
+    static async droppedActor(event) {
+
+        // Retrieve the dropped data id and type from the event
+        let data = null;
+        if (event.dataTransfer !== undefined) {
+            try {
+                data = JSON.parse(event.dataTransfer.getData('text/plain'));
+            } catch (err) {
+                return null;
+            }
+        }
+        if (data === null || data.type !== "Actor") {
+            return null;
+        };
+    
+        let dataType = "";
+        if (data.type === "Actor") {
+            let actorData = {};
+            // Case 1 - Import from a Compendium pack
+            if (data.pack) {
+                dataType = "compendium";
+                const pack = game.packs.find(p => p.collection === data.pack);
+                const packActor = await pack.getEntity(data.id);
+                if (packActor != null) actorData = packActor.data;
+            }
+    
+            // Case 3 - Import from World entity
+            else {
+                return await fromUuid(data.uuid);
+            }
+    
+            return { from: dataType, data: actorData };
+    
+        } else {
+    
+            return null;
+        }
+    
     }
 
 }

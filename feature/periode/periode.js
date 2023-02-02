@@ -1,5 +1,6 @@
 import { AbstractRoll } from "../core/abstractRoll.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
+import { Fraternite } from "../fraternite/fraternite.js";
 
 export class Periode extends AbstractRoll {
 
@@ -111,8 +112,8 @@ export class Periode extends AbstractRoll {
      */
     async delete() {
 
-        // Update actor data
-        if (this.actor.type === 'figure') {
+        // Update actor data, figure or fraternite use chronogical data
+        if (this.actor.type === 'figure' || this.actor.type === 'fraternite') {
 
             // Update the next previous periode
             const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.item.sid);
@@ -138,6 +139,11 @@ export class Periode extends AbstractRoll {
         // Delete the embedded periode item
         await this.actor.deleteEmbeddedDocuments('Item', [AbstractRoll.embedded(this.actor, this.item.sid).id]);
 
+        // Update the members of the fraternite if necessary
+        if (this.actor.type === 'fraternite') {
+            await new Fraternite(this.actor).deleteMembresFromPeriode(this.item);
+        }
+
         // Render the sheet if opened.
         await this.actor.render();
 
@@ -158,7 +164,8 @@ export class Periode extends AbstractRoll {
      * @returns true if the periode is active according to his activation and the current one.
      */
     actif() {
-        return Periode.getSorted(this.actor, true, true, this.actor.system.periode).find(i => i.sid === this.sid) != null;
+        const p = Periode.getSorted(this.actor, true, true, this.actor.system.periode).find(i => i.sid === this.sid);
+        return p != null && p.system.actif === true;
     }
 
     /**
@@ -285,6 +292,20 @@ export class Periode extends AbstractRoll {
                 }
             }
 
+            // Create all linked actors
+            const actors = [];
+            if (actor.type === 'fraternite') {
+                for (let fa of actor.system.effectif.filter(a => a.periode === p.sid)) {
+                    const original = game.actors.find(a => a.sid === fa.actor);
+                    actors.push({
+                        id: original.id,
+                        sid: original.sid,
+                        name: original.name,
+                        status: fa.status
+                    });
+                }
+            }
+
             // Push the new periode
             all.push({
                 original: {
@@ -297,7 +318,8 @@ export class Periode extends AbstractRoll {
                 embedded: {
                     id: p.id,
                     actif: p.system.actif,
-                    items: items
+                    items: items,
+                    actors: actors
                 }
             });
 

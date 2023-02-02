@@ -1,0 +1,188 @@
+<form class="{{cssClass}}" autocomplete="off">
+
+    <div class="actor-root">
+    
+        <div class="side">
+        
+            {{> "systems/neph5e/templates/actor/parts/header.hbs"}}
+
+            <nav class="sheet-navigation tabs" data-group="primary">
+                
+                <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
+
+                {{#if editable}}
+                <a class="sheet-navigation-tab" data-tab="effectif">{{localize "NEPH5E.membres"}}</a>
+
+                <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.connaissance"}}</a>
+
+                <a class="sheet-navigation-tab" data-tab="ressources">{{localize "NEPH5E.ressources"}}</a>
+
+                <a class="sheet-navigation-tab" data-tab="incarnations">{{localize "NEPH5E.historique"}}</a>
+
+                {{#if isGM}}
+                <a class="sheet-navigation-tab" data-tab="options">{{localize "NEPH5E.options"}}</a>
+                {{/if}}
+
+                {{/if}}
+
+            </nav>
+
+        </div>
+        
+        <div class="article">
+
+            <section class="sheet-body">
+
+                {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+
+                <div class="tab" data-group="primary" data-tab="description">
+                    {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}
+                </div>
+
+                <div class="tab effectif" data-group="primary" data-tab="effectif">
+
+                    {{#each actor.membres as |group|}}
+
+                    <div class="header">
+
+                        <div class="circle">
+                            <div class="circleContent">{{group.size}}</div>
+                        </div>
+
+                        <div class="title">
+                            <div class="item-name">
+                                {{#if (eq group.status "membres")}}
+                                <span>{{localize "NEPH5E.membres"}}</span>
+                                {{else}}
+                                <span>{{group.status}}</span>
+                                {{/if}}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <ol class="item-list">
+                        {{#each group.membres as |membre|}}
+                        <li class="item membre" data-actor-id="{{membre.id}}" data-status="{{../status}}">
+
+                            <div class="item-control">
+                                <a class="item-delete"><i class="fa-solid fa-user"></i></a>
+                            </div>
+                        
+                            <div class="item-name edit-actor">
+                                <span>{{membre.name}}</span>
+                            </div>
+
+                            <div class="item-name edit-status">
+                                <span>{{membre.status}}</span>
+                            </div>
+
+                        </li>
+                        {{/each}}
+                    </ol>
+
+                    {{/each}}
+
+                </div>
+        
+                <div class="tab vecus" data-group="primary" data-tab="vecus">
+
+                    {{> "systems/neph5e/feature/periode/actor/savoirs.hbs" from="fraternite"}}
+
+                    {{> "systems/neph5e/feature/periode/actor/quetes.hbs" from="fraternite"}}
+
+                    {{> "systems/neph5e/feature/periode/actor/passes.hbs" from=fraternite }}
+
+                    {{> "systems/neph5e/feature/science/actor/sciences.hbs" from=fraternite }}
+
+                    {{> "systems/neph5e/feature/periode/actor/chutes.hbs" from=fraternite }}
+
+                </div>
+
+                <div class="tab incarnations" data-group="primary" data-tab="incarnations">
+                    {{> "systems/neph5e/feature/periode/actor/incarnations.hbs" from="fraternite"}}
+                </div>
+
+                <div class="tab ressources" data-group="primary" data-tab="ressources">
+
+                    {{#each (sciences) as |science|}}
+                    {{#with (numberOfFocus ../actor science) as |size|}}
+                    {{#if (gt size 0)}}
+                    <div class="header">
+
+                        <div class="circle">
+                            <div class="circleContent">{{size}}</div>
+                        </div>
+
+                        <div class="title">
+                            <div class="item-name">
+                                <span>{{localize (concat "NEPH5E." science)}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <ol class="item-list">
+
+                        {{#each (focus ../../actor science) as |focus|}}
+                        <li class="item science" data-item-id="{{focus.embedded.id}}">
+
+                            <div class="item-control">
+                                <a class="item-delete"><i class="fas fa-scroll"></i></a>
+                            </div>
+                        
+                            <div class="item-name edit-focus">
+                                <span>{{focus.original.name}}</span>
+                            </div>
+
+                        </li>
+                        {{/each}}
+                        
+                    </ol>
+                    {{/if}}
+                    {{/with}}
+                    {{/each}}
+
+                </div>
+                
+                <div class="tab foptions" data-group="primary" data-tab="options">
+
+                    <div class="header">
+                        <div class="title">
+                            <div class="item-name">
+                                <span>{{localize "NEPH5E.options"}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ol class="item-list">
+
+                        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.active" name="system.options.active" value=system.options.active}}
+   
+                    </ol>
+
+                    <div class="header">
+                        <div class="title">
+                            <div class="item-name">
+                                <span>{{localize "NEPH5E.affichage"}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ol class="item-list">
+
+                        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+       
+                        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+    
+                    </ol>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</form>

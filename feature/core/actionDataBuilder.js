@@ -45,6 +45,7 @@ export class ActionDataBuilder {
         this.viser = null;
         this.recharger = null;
         this.attack = null;
+        this.fraternite = 0;
     }
 
     /**
@@ -71,6 +72,15 @@ export class ActionDataBuilder {
      */
     withApproches(approches) {
         this.approches = approches;
+        return this;
+    }
+
+    /**
+     * @param fraternite The fraternite bonus to register.
+     * @returns the instance.
+     */
+    withFraternite(fraternite) {
+        this.fraternite = fraternite;
         return this;
     }
 
@@ -253,6 +263,8 @@ export class ActionDataBuilder {
                 difficulty: this.base.degre * 10
             }
         }
+
+        data.fraternite = this.fraternite * 10;
 
         if (this.blessures != null) {
             data.blessures = this.actor.getWoundsModifier(this.blessures);

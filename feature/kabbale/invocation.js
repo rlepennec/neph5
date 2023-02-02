@@ -45,7 +45,6 @@ export class Invocation extends AbstractRoll {
      * @Override
      */
     get data() {
-        console.log(this);
         return new ActionDataBuilder(this)
             .withType(this.pacte ? Constants.SIMPLE : Constants.OPPOSED)
             .withItem(this.item)

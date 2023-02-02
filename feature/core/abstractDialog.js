@@ -72,10 +72,4 @@ export class AbstractDialog extends FormApplication {
         return data;
     }
 
-    /**
-     * @override
-     */
-    _updateObject(event, formData) {
-    }
-
 }

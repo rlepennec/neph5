@@ -92,6 +92,7 @@ export class ActionDialog extends AbstractDialog {
     activateListeners(html) {
         super.activateListeners(html);
         html.find("#modifier").change(this._onSetModifier.bind(this));
+        html.find("#fraternite").change(this._onSelectFraternite.bind(this));
         html.find("#blessures").change(this._onSelectBlessures.bind(this));
         html.find("#approche").change(this._onSelectApproche.bind(this));
         html.find("#roll").click(this._onRoll.bind(this));
@@ -114,6 +115,19 @@ export class ActionDialog extends AbstractDialog {
     async _onSetModifier(event) {
         event.preventDefault();
         const difficulty = this.action.difficulty(this.parameters());
+        $('#difficulty').html("<span>" + difficulty + "%<span>");
+    }
+
+    /**
+     * Handle the fraternite use change.
+     * @param event The event to handle.
+     */
+    async _onSelectFraternite(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const fraternite = parameters.fraternite;
+        const difficulty = this.action.difficulty(parameters);
+        $('#fraterniteModifier').html("<span>" + fraternite + "<span>");
         $('#difficulty').html("<span>" + difficulty + "%<span>");
     }
 
@@ -161,6 +175,7 @@ export class ActionDialog extends AbstractDialog {
             manoeuver: this._manoeuver(),
             modifier: this._modifier(),
             blessures: this._blessures(),
+            fraternite: this._fraternite(),
             approche: this._approche(),
             ka: this._ka(),
             opposed: this._opposed(),
@@ -182,6 +197,15 @@ export class ActionDialog extends AbstractDialog {
     _modifier() {
         const modifier = parseInt(this.form.querySelector("#modifier")?.value);
         return isNaN(modifier) ? 0 : modifier;
+    }
+
+    /**
+     * @returns the current fraternite modifier if activated.
+     */
+    _fraternite() {
+        const selector = this.form.querySelector("#fraternite");
+        const fraternite = selector == null || selector?.value === 'ignore' ? 0 : this.data.fraternite;
+        return fraternite;
     }
 
     /**

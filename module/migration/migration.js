@@ -1,6 +1,7 @@
 import { _1_0_1 } from "./_1_0_1.js";
 import { _1_0_2 } from "./_1_0_2.js";
 import { _1_0_3 } from "./_1_0_3.js";
+import { _1_0_4 } from "./_1_0_4.js";
 
 export class MigrationTools {
 
@@ -73,6 +74,10 @@ export class MigrationTools {
 
         if (isNewerVersion('1.0.3', worldTemplateVersion)) {
             await _1_0_3.migrate('1.0.3');
+        }
+
+        if (isNewerVersion('1.0.4', worldTemplateVersion)) {
+            await _1_0_4.migrate('1.0.4');
         }
 
         if (game.settings.get('neph5e', 'note')) {

@@ -170,7 +170,7 @@ export class Vecu extends AbstractRoll {
                 this.periode = this.periode.sid;
 
             }
-                
+            
             // Create the vecu
             if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
 

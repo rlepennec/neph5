@@ -230,6 +230,66 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param actor   The actor object.
+     * @param science The name of the science.
+     * @returns the number of focus owned by the actor.
+     */
+    static numberOfFocus(actor, science) {
+        return actor.numberOfFocus(science);
+    }
+
+    /**
+     * @param fraternite The fraternite actor object.
+     * @param actor      The actor identifier.
+     * @param periode    The periode system identifier.
+     * @returns true if new member for the periode (in), false is out
+     */
+    static isNewMember(fraternite, actor, periode) {
+        return fraternite.isNewMember(actor, periode);
+    }
+
+    /**
+     * @returns all sciences names.
+     */
+    static sciences() {
+        return [
+            'basseMagie',
+            'hauteMagie',
+            'grandSecret',
+            'comprendre',
+            'controler',
+            'creer',
+            'detruire',
+            'transformer',
+            'malkut',
+            'yesod',
+            'hod',
+            'netzach',
+            'tiphereth',
+            'geburah',
+            'chesed',
+            'binah',
+            'chokmah',
+            'kether',
+            'oeuvreAuNoir',
+            'oeuvreAuBlanc',
+            'oeuvreAuRouge',
+            'fossoyeur',
+            'embaumeur',
+            'imputrescible',
+            'charmeur',
+            'dresseur',
+            'demiurge',
+            'architecte',
+            'guide',
+            'mage',
+            'ouvrier',
+            'roi',
+            'sage'
+        ];
+    }
+
+    /**
      * @param actor The actor which uses the laboratory.
      * @returns the owner actor of the laboratory.
      */
@@ -250,6 +310,26 @@ export class CustomHandlebarsHelpers {
         }
         const owner = game.actors.find(i => i.sid === sid);
         return owner == null ? null : owner.system.alchimie.constructs[construct];
+    }
+
+    /**
+     * @param degre The degre.
+     * @returns the bonus.
+     */
+    static fraterniteBonus(degre) {
+        if (degre < 1) {
+            return 0;
+        }
+        if ([1,2,3].includes(degre)) {
+            return 1;
+        }
+        if ([4,5,6].includes(degre)) {
+            return 2;
+        }
+        if ([7,8,9].includes(degre)) {
+            return 3;
+        }
+        return 4;
     }
 
     /**

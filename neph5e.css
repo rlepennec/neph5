@@ -19,6 +19,18 @@
   src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
 }
 /* OLD */
+#logo {
+  content: url("../../systems/neph5e/assets/core/logo.webp");
+  width: 128px;
+  height: 146px;
+}
+#pause > img {
+  content: url("../../systems/neph5e/assets/core/logo.webp");
+  width: 128px;
+  height: 146px;
+  top: -45px;
+  left: calc(50% - 96px);
+}
 .window-app .window-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
@@ -322,7 +334,34 @@
   color: indianred;
 }
 .actor-root .side .simulacre .image {
-  margin-left: 50px;
+  margin-left: 60px;
+  width: 50px;
+  border: 0px;
+}
+.actor-root .side .fraternites {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  padding-top: 5px;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.actor-root .side .fraternites .name {
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  height: 30px;
+}
+.actor-root .side .fraternites .no-name {
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  height: 30px;
+  color: indianred;
+}
+.actor-root .side .fraternites .image {
+  margin-left: 60px;
   width: 50px;
   border: 0px;
 }
@@ -346,6 +385,125 @@
   border: 0px;
   width: 814px;
   height: 98px;
+}
+.actor-root .article .effectif .header {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  justify-content: center;
+}
+.actor-root .article .effectif .header .circle {
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.actor-root .article .effectif .header .title {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .effectif .header .title .item-name {
+  width: 100%;
+  padding-left: 5px;
+}
+.actor-root .article .effectif .membre {
+  height: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.actor-root .article .effectif .membre .edit-actor {
+  margin-left: 20px;
+  width: 70%;
+}
+.actor-root .article .effectif .membre .edit-status {
+  margin-left: 20px;
+  width: 30%;
+}
+.actor-root .article .ressources .header {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  justify-content: center;
+}
+.actor-root .article .ressources .header .title {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .ressources .header .title .item-name {
+  width: 100%;
+  padding-left: 5px;
+}
+.actor-root .article .ressources .item-list .item {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.actor-root .article .ressources .item-list .item .edit-item {
+  flex: 1 1 auto;
+  margin-left: 30px;
+}
+.actor-root .article .ressources .item-list .item .item-control {
+  margin-right: 20px;
+}
+.actor-root .article .foptions .header {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  justify-content: center;
+}
+.actor-root .article .foptions .header .title {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .foptions .header .title .item-name {
+  width: 100%;
+  padding-left: 5px;
+}
+.actor-root .article .foptions .item-list .item {
+  margin-left: 10px;
+}
+.actor-root .article .foptions .item-list .item .degre input {
+  text-align: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+.actor-root .article .foptions .item-list .item .edit-item {
+  flex: 1 1 auto;
+}
+.actor-root .article .foptions .item-list .item .delete {
+  text-align: center;
+  width: 32px;
 }
 .actor-root .article .combat .figurant {
   display: flex;
@@ -831,6 +989,9 @@
 .actor-root .article .incarnations .item-list .item-content .item .edit-item {
   flex: 1 1 auto;
 }
+.actor-root .article .incarnations .item-list .item-content .item .edit-actor {
+  flex: 1 1 auto;
+}
 .actor-root .article .incarnations .item-list .item-content .item .delete {
   text-align: center;
   width: 32px;
@@ -912,6 +1073,25 @@
 }
 .actor-root .article .vecus .content .disabled {
   color: #a1a1a1;
+}
+.actor-root .article .vecus .fcontent {
+  column-count: 2;
+}
+.actor-root .article .vecus .fcontent .degre {
+  text-align: center;
+  border: none;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  padding-top: 5px;
+  margin-right: 30px;
+}
+.actor-root .article .vecus .fcontent .disabled {
+  color: #a1a1a1;
+}
+.actor-root .article .vecus .fcontent li {
+  margin-bottom: 3px;
 }
 .actor-root .article .laboratoire .construct-images {
   display: flex;
@@ -2264,11 +2444,11 @@
   border-width: 2px;
   margin-top: 10px;
 }
-.combat {
+form.combat {
   display: flex;
   flex-direction: column;
 }
-.combat .header {
+form.combat .header {
   display: flex;
   flex-direction: row;
   flex-grow: 0;
@@ -2277,21 +2457,21 @@
   border-radius: 4px;
   margin: 10px;
 }
-.combat .header img {
+form.combat .header img {
   margin: 10px;
   height: 50px;
   width: 50px;
   border: none;
   flex: 0;
 }
-.combat .header span {
+form.combat .header span {
   font-size: 16px;
   font-style: bold;
   text-align: center;
   flex: 1;
   font-family: 'NightjarDemi';
 }
-.combat .roll {
+form.combat .roll {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -2299,55 +2479,55 @@
   height: 20px;
   flex-grow: 0;
 }
-.combat .roll .dice {
+form.combat .roll .dice {
   display: flex;
   flex-direction: row;
 }
-.combat .roll .dice #difficulty {
+form.combat .roll .dice #difficulty {
   padding-top: 4px;
   text-align: right;
 }
-.combat .roll .dice .roll-dice {
+form.combat .roll .dice .roll-dice {
   margin-left: 10px;
   padding-top: 5px;
 }
-.combat .roll .impact {
+form.combat .roll .impact {
   display: flex;
   flex-direction: row;
 }
-.combat .roll .impact #impact {
+form.combat .roll .impact #impact {
   padding-top: 4px;
   text-align: right;
 }
-.combat .roll .impact .heart {
+form.combat .roll .impact .heart {
   margin-left: 10px;
   padding-top: 5px;
 }
-.combat .roll .absorption {
+form.combat .roll .absorption {
   display: flex;
   flex-direction: row;
 }
-.combat .roll .absorption #absorption {
+form.combat .roll .absorption #absorption {
   padding-top: 4px;
   text-align: right;
 }
-.combat .roll .absorption .shield {
+form.combat .roll .absorption .shield {
   margin-left: 10px;
   padding-top: 5px;
 }
-.combat .roll .type select {
+form.combat .roll .type select {
   flex: 0 0 auto;
   width: 100px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-.combat .roll #details {
+form.combat .roll #details {
   width: 20px;
   padding-top: 5px;
   padding-right: 20px;
 }
-.combat table {
+form.combat table {
   table-layout: fixed;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -2355,75 +2535,75 @@
   width: 464px;
   flex-grow: 0;
 }
-.combat table tr {
+form.combat table tr {
   height: 35px;
 }
-.combat table tr td:nth-child(1) {
+form.combat table tr td:nth-child(1) {
   width: 380px;
 }
-.combat table tr td:nth-child(1).manoeuver {
+form.combat table tr td:nth-child(1).manoeuver {
   display: flex;
   flex-direction: row;
 }
-.combat table tr td:nth-child(1).manoeuver select {
+form.combat table tr td:nth-child(1).manoeuver select {
   padding-left: 15px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-.combat table tr td:nth-child(1).manoeuver select option {
+form.combat table tr td:nth-child(1).manoeuver select option {
   width: 140px;
 }
-.combat table tr td:nth-child(1).manoeuver #times {
+form.combat table tr td:nth-child(1).manoeuver #times {
   padding-top: 5px;
   padding-left: 30px;
 }
-.combat table tr td:nth-child(1).manoeuver #times #shot-1 {
+form.combat table tr td:nth-child(1).manoeuver #times #shot-1 {
   font-size: 14px;
   margin-right: 5px;
 }
-.combat table tr td:nth-child(1).manoeuver #times label {
+form.combat table tr td:nth-child(1).manoeuver #times label {
   font-size: 14px;
 }
-.combat table tr td:nth-child(1).blessures {
+form.combat table tr td:nth-child(1).blessures {
   display: flex;
   flex-direction: row;
 }
-.combat table tr td:nth-child(1).blessures select {
+form.combat table tr td:nth-child(1).blessures select {
   padding-left: 15px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-.combat table tr td:nth-child(1).approche {
+form.combat table tr td:nth-child(1).approche {
   display: flex;
   flex-direction: row;
 }
-.combat table tr td:nth-child(1).approche select {
+form.combat table tr td:nth-child(1).approche select {
   padding-left: 15px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-.combat table tr td:nth-child(2) {
+form.combat table tr td:nth-child(2) {
   width: 50px;
   text-align: right;
 }
-.combat table tr td:nth-child(2) #modifier {
+form.combat table tr td:nth-child(2) #modifier {
   text-align: right;
   margin-right: -3px;
   border: none;
   background-color: transparent;
 }
-.combat table tr td:nth-child(3) {
+form.combat table tr td:nth-child(3) {
   width: 34px;
   text-align: left;
 }
-.combat table tr td.label {
+form.combat table tr td.label {
   text-align: left;
   padding-left: 20px;
 }
-.combat div.hiddable {
+form.combat div.hiddable {
   display: flex;
   width: 96%;
   height: 80px;
@@ -2433,7 +2613,7 @@
   border-radius: 4px;
   padding: 10px;
 }
-.combat div.hiddable #description {
+form.combat div.hiddable #description {
   margin: auto;
   text-align: center;
 }

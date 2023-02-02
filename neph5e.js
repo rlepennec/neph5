@@ -10,6 +10,7 @@ import { NephilimItem } from "./module/item/entity.js";
 import { NephilimActor } from "./module/actor/entity.js";
 import { FigureSheet } from "./module/actor/figure.js";
 import { FigurantSheet } from "./module/actor/figurant.js";
+import { FraterniteSheet } from "./module/actor/fraternite.js";
 
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
 import { AppelSheet } from "./feature/conjuration/item/appel.js";
@@ -75,9 +76,13 @@ Hooks.once("init", function () {
         displaySciencesOf: CustomHandlebarsHelpers.displaySciencesOf,
         cerclesOf: CustomHandlebarsHelpers.cerclesOf,
         focus: CustomHandlebarsHelpers.focus,
+        numberOfFocus: CustomHandlebarsHelpers.numberOfFocus,
+        sciences: CustomHandlebarsHelpers.sciences,
         laboratoryOwner: CustomHandlebarsHelpers.laboratoryOwner,
         constructOf: CustomHandlebarsHelpers.constructOf,
-        science: CustomHandlebarsHelpers.science
+        science: CustomHandlebarsHelpers.science,
+        fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
+        isNewMember: CustomHandlebarsHelpers.isNewMember
     });
 
     Handlebars.registerHelper('switch', function (value, options) {
@@ -102,6 +107,7 @@ Hooks.once("init", function () {
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });
     Actors.registerSheet("nephilim", FigurantSheet, { types: ["figurant"], makeDefault: true, label: "NEPHILIM.figurant" });
+    Actors.registerSheet("nephilim", FraterniteSheet, { types: ["fraternite"], makeDefault: true, label: "NEPHILIM.fraternite" });
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
@@ -155,15 +161,6 @@ Hooks.once("init", function () {
             }
         }
         await combat.setFlag("world", "combat", status);
-    })
-
-    // Disable simulacre creation
-    Hooks.on("createActor", async (actor, data, options, user) => {
-        if (actor.type === 'simulacre') {
-            ui.notifications.error("Les Simulacres ne doivent plus être utilisés. Veuillez utiliser les acteurs Figurant.");
-            await actor.delete();
-            return false;
-        }
     })
 
     // The hook to pre-create actor
@@ -225,14 +222,6 @@ Hooks.once("init", function () {
      * Register the system settings
      */
     function registerSystemSettings() {
-        game.settings.register('neph5e', 'debug', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.debug'),
-            hint: game.i18n.localize('SETTINGS.debugDesc'),
-            type: Boolean,
-            default: false
-        });
         game.settings.register('neph5e', 'note', {
             config: true,
             scope: 'world',
@@ -272,6 +261,26 @@ Hooks.once("init", function () {
             config: false,
             default: "1.0.0",
             type: String,
+        });
+        game.settings.register('neph5e', 'fraternitePolicy', {
+            config: true,
+            name: game.i18n.localize('SETTINGS.fraternitePolicy'),
+            hint: game.i18n.localize('SETTINGS.fraternitePolicyDesc'),
+            scope: "world",
+            type: String,
+            choices: {
+              'standard': 'Standard',
+              'bonus': 'Bonus'
+            },
+            default: 'standard'
+          });
+          game.settings.register('neph5e', 'debug', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.debug'),
+            hint: game.i18n.localize('SETTINGS.debugDesc'),
+            type: Boolean,
+            default: false
         });
     }
 

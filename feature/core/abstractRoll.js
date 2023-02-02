@@ -79,6 +79,22 @@ export class AbstractRoll {
     }
 
     /**
+     * @returns the fraternite degre.
+     */
+    get fraternite() {
+        let degre = 0;
+        if (this.actor.system?.options?.fraternites === true) {
+            for (let f of this.actor.fraternites.filter(a => a.system.options.active === true)) {
+                const d = this.clone(f, this.item).degre;
+                if (d != null && d > degre) {
+                    degre = d;
+                }
+            }
+        }
+        return degre;
+    }
+
+    /**
      * @returns the total number of sapiences used to develop the capacity.
      */
     get sapiences() {
@@ -128,12 +144,27 @@ export class AbstractRoll {
      * @returns the action difficulty.
      */
     difficulty(parameters) {
-        const data = this.data;
-        return AbstractRoll.toInt(data?.base?.difficulty)
-             + AbstractRoll.toInt(parameters?.modifier)
-             + AbstractRoll.toInt(parameters?.approche)
-             + AbstractRoll.toInt(parameters?.blessures, data.blessures)
-             + this.modifier(parameters);
+
+        const b = AbstractRoll.toInt(this.data?.base?.difficulty);
+        const f = AbstractRoll.toInt(parameters?.fraternite);
+
+        let base = null;
+        switch (game.settings.get('neph5e', 'fraternitePolicy')) {
+            case 'bonus':
+                const ps = CustomHandlebarsHelpers.getSapiences(b / 10) + CustomHandlebarsHelpers.getSapiences(f / 10);
+                base = CustomHandlebarsHelpers.getLevel(ps) * 10;
+                break;
+            case 'standard':
+                base = Math.max(b, f);
+                break;
+        }
+
+        return base
+            + AbstractRoll.toInt(parameters?.modifier)
+            + AbstractRoll.toInt(parameters?.approche)
+            + AbstractRoll.toInt(parameters?.blessures, this.data.blessures)
+            + this.modifier(parameters);
+
     }
 
     /**
