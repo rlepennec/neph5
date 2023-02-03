@@ -168,7 +168,7 @@ Hooks.once("init", function () {
             btns.push({
                 name: "NEPHILIM",
                 title: "Nephilim",
-                icon: "fa-solid fa-hamsa",
+                icon: "fa-solid fa-feather-pointed",
                 layer: "nephilim",
                 tools: menu
             });
