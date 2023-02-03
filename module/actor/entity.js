@@ -829,7 +829,7 @@ export class NephilimActor extends Actor {
                 await actor.update({ ['system.simulacre']: null });
             }
             if (actor.type === 'fraternite') {
-                await actor.onDeleteActor(this);
+                await new Fraternite(actor).onDeleteActor(this);
             }
         }
         for (let scene of game.scenes) {
@@ -839,7 +839,7 @@ export class NephilimActor extends Actor {
                         await token.actor.update({ ['system.simulacre']: null });
                     }
                     if (token.actor.type === 'fraternite') {
-                        await token.actor.onDeleteActor(this);
+                        await new Fraternite(actor).onDeleteActor(this);
                     }
                 }
             }
