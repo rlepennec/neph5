@@ -1,0 +1,345 @@
+.item-root {
+    display: flex;
+    flex-direction: row;
+    font-family: 'AJensonPro';
+
+    .side {
+        margin: 10px;
+    }
+    
+    .article {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        flex-basis: 100%;
+        font-family: 'AJensonPro';
+
+        .header {
+
+            .uuid {
+                margin-bottom: 5px;
+                text-align: center;
+                color: indianred;
+                font-weight: bold;
+                background:
+                    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                    url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+            }
+
+            .title {
+                display: flex;
+                flex-direction: row;
+                height: 60px;
+
+                .name {
+                    font-size: 20px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    height: 100%;
+                    width: 100%;
+                    font-family:'NightjarDemi';
+                    background:
+                        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                        url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+                }
+
+                .image {
+                    flex: 0 0 auto;
+                    margin-left: 10px
+                }
+
+            }
+
+        }
+
+        .line-bottom {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid black;
+            padding-bottom: 14px;
+        }
+
+        .input-text {
+            border: 0;
+            background: transparent;
+            vertical-align: top;
+            height: 16px;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            justify-content: space-evenly;
+            border-bottom: 1px solid black;
+            padding-bottom: 8px;
+
+            .data {
+                display: flex;
+                flex-direction: column;
+                flex-basis: content;
+                text-align: center;
+                font-size: large;
+                font-family:'AJensonPro';
+
+                .value {
+                    border: 0;
+                    outline: 0;
+                    height: 30px;
+                    vertical-align: middle;
+
+                    .select {
+                        border: none;
+                        outline: 0px;
+                        background-color: transparent;
+                        margin-top: 4px;
+                        width: 120%;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        text-align-last: center;
+                        align-items: center;
+
+                        .option {
+                            text-align: center;
+                        }
+                    }
+
+                    .number {
+                        flex: 0 0 auto;
+                        width: 35px;
+                        height: 35px;
+                        margin-left: 10px;
+                        text-align: center;
+                        border-radius: 50%;
+                        align-items: center;
+                    }
+
+                    .label {
+                        margin-top: 4px;
+                    }
+
+                    .placeholder {
+                        color: indianred;  
+                    }
+
+                    .text {
+                        margin-top: 4px;
+                        border: 0;
+                        background: transparent;
+                    }
+
+                }
+
+            }
+
+            .label {
+                display: flex;
+                flex-direction: row;
+                height: 26px;
+                vertical-align: middle;
+                font-family: 'AJensonPro';
+
+                .title {
+                    flex: 0 0 auto;
+                    font-weight: bold;
+                    margin-right: 5px;
+                }
+
+            }
+
+        }
+        
+        .row {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            justify-content: space-evenly;
+
+            .data {
+                display: flex;
+                flex-direction: column;
+                flex-basis: content;
+                text-align: center;
+                font-size: 16px;
+                font-family:'AJensonPro';
+
+                .value {
+                    border: 0;
+                    outline: 0;
+                    height: 30px;
+                    vertical-align: middle;
+
+                    .number {
+                        flex: 0 0 auto;
+                        width: 40px;
+                        height: 40px;
+                        margin-left: 10px;
+                        text-align: center;
+                        border-radius: 50%;
+                        align-items: center;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .input {
+            display: flex;
+            flex-direction: row;
+            height: 26px;
+            vertical-align: middle;
+            font-size: 16px;
+            font-family: 'AJensonPro';
+
+            .title {
+                flex: 0 0 auto;
+                font-weight: bold;
+                padding-top: 3px;
+            }
+
+            .value {
+                border: 0;
+                background: transparent;
+            }
+
+        }
+
+        .list {
+            vertical-align: middle;
+            font-family: 'AJensonPro';
+            font-size: 16px;
+
+            .title {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 26px;
+                font-weight: bold;
+            }
+
+            .item {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 26px;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+
+        }
+
+        .checkbox {
+            display: flex;
+            flex-direction: row;
+            height: 26px;
+            vertical-align: middle;
+            font-size: 16px;
+            font-family: 'AJensonPro';
+
+            input[type="checkbox"] {
+                display:none;
+            }
+        
+            .checked {
+                display: none;
+            }
+        
+            input[type="checkbox"]:checked ~ .checked {
+                display: inline-block;
+            }
+                
+            input[type="checkbox"]:checked ~ .unchecked {
+                display: none;
+            }
+
+            i {
+                margin-left: 50px;
+                margin-right: 10px;
+            }
+
+        }
+
+        .key {
+            color: indianred;
+            margin-top: 20px;
+            font-family: 'Gill Sans';
+        }
+
+        .chronology {
+            margin-top: 10px;
+            font-family:'AJensonPro';
+
+            tr {
+
+                td.periode-name {
+                    padding-left: 10px;
+                }
+
+                td.periode {
+                    text-align: center;
+                }
+
+                td.infos {
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+            }
+
+        }
+
+        .difficulte {
+            display: flex;
+            flex-direction: row;
+            height: 26px;
+            font-family:'AJensonPro';
+
+            span:nth-child(1) {
+                font-weight: bold;
+                padding-top: 4px;
+            }
+
+            span:nth-child(2) {
+                margin-left: 5px;
+                padding-top: 4px;
+            }
+
+        }
+
+        .metamorphoses {
+            margin-top: 10px;
+
+            li {
+
+                input {
+                    border: 0;
+                    background: transparent;
+                    padding-bottom: 13px;
+                }
+
+            }
+
+        }
+
+        .description {
+
+            .add {
+
+                span {
+                    margin-left: 10px;
+                }
+
+            }
+
+        }
+
+    }
+
+}

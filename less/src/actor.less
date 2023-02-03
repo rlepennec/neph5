@@ -1,0 +1,2089 @@
+.actor-root {
+    display: flex;
+    flex-direction: row;
+
+    .side {
+        display: flex;
+        flex-direction: column;
+        width:170px;
+        margin-right: 20px;
+
+        .header {
+            border-radius: 4px;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+
+            .profile {
+                width: 150px;
+                border: 0px;
+                margin-left: 10px;
+            }
+
+            .title {
+
+                .name {
+                    resize: none;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                    text-align: center;
+                    border: 0px;
+                    background-color: transparent;
+                    width: 150px;
+                    font-family: 'NightjarDemi';
+                    font-size: 25px;
+                }
+
+            }
+
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin-top:20px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            padding-top:5px;
+            padding-bottom:5px;
+            flex: 0 0 30px;
+            margin-bottom: 5px;
+            font-family: 'AJensonPro';
+            font-size: 20px;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+        }
+
+        .simulacre {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top:20px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            padding-top:5px;
+            text-align: center;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+
+            .name {
+                font-family: 'AJensonPro';
+                font-size: 20px;
+                height: 30px;
+            }
+
+            .no-name {
+                font-family: 'AJensonPro';
+                font-size: 20px;
+                height: 30px;
+                color: indianred;
+            }
+
+            .image {
+                margin-left: 60px;
+                width: 50px;
+                border: 0px;
+            }
+
+        }
+
+        .fraternites {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top:20px;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            padding-top:5px;
+            text-align: center;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+
+            .name {
+                font-family: 'AJensonPro';
+                font-size: 20px;
+                height: 30px;
+            }
+
+            .no-name {
+                font-family: 'AJensonPro';
+                font-size: 20px;
+                height: 30px;
+                color: indianred;
+            }
+
+            .image {
+                margin-left: 60px;
+                width: 50px;
+                border: 0px;
+            }
+
+        }
+
+    }
+
+    .article {
+        display: flex;
+        flex-direction: column;
+
+        .top {
+            border: 0px;
+            width: 814px;
+            height: 98px;
+        }
+
+        .tab {
+
+            .voie {
+                margin-top: 10px;
+                padding-bottom:3px;
+                font-family: 'AJensonPro';
+                font-size: 25px;
+                text-align: center;
+            }
+
+            .top {
+                border: 0px;
+                width: 814px;
+                height: 98px;
+            }
+
+        }
+
+        .effectif {
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                justify-content: center;
+
+                .circle {
+                    flex-basis: 40px;
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                }
+
+                .title {
+                    width: 100%;
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    border-width: 0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+
+                    .item-name {
+                        width: 100%;
+                        padding-left: 5px;
+                    }
+
+                }
+
+            }
+
+            .membre {
+                height: 17px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 10px;
+
+                .edit-actor {
+                    margin-left: 20px;
+                    width: 70%;
+                }
+
+                .edit-status {
+                    margin-left: 20px;
+                    width: 30%;
+                }
+
+            }
+
+        }
+
+        .ressources {
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                justify-content: center;
+
+                .title {
+                    width: 100%;
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    border-width: 0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+
+                    .item-name {
+                        width: 100%;
+                        padding-left: 5px;
+                    }
+
+                }
+
+            }
+
+            .item-list {
+
+                .item {
+                    margin-left: 10px;
+                    margin-bottom: 10px;
+
+                    .edit-item {
+                        flex: 1 1 auto;
+                        margin-left: 30px;
+                    }
+
+                    .item-control {
+                        margin-right: 20px;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .foptions {
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                justify-content: center;
+
+                .title {
+                    width: 100%;
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    border-width: 0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+
+                    .item-name {
+                        width: 100%;
+                        padding-left: 5px;
+                    }
+
+                }
+
+            }
+
+            .item-list {
+
+                .item {
+                    margin-left: 10px;
+
+                    .degre {
+
+                        input {
+                            text-align: center;
+                            border-radius: 50%;
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 10px;
+                            margin-top: 1px;
+                            margin-bottom: 1px;
+                        }
+
+                    }
+
+                    .edit-item {
+                        flex: 1 1 auto;
+                    }
+
+                    .delete {
+                        text-align: center;
+                        width: 32px;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .combat {
+
+            .figurant {
+                display: flex;
+                flex-direction: column;
+                padding-top: 20px;
+
+                .sectionTitleUnderline {
+                    padding-left: 5px;
+                    width: 95%;
+                    margin: 10px 20px 10px 20px;
+                }
+
+                .item-list {
+
+                    .menace {
+
+                        input {
+                            text-align: center;
+                            border-radius: 50%;
+                            width: 30px;
+                            height: 30px;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            margin-top: 1px;
+                            margin-bottom: 1px;
+                        }
+
+                    }
+
+                    .ka {
+
+                        input {
+                            text-align: center;
+                            border-radius: 50%;
+                            width: 30px;
+                            height: 30px;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            margin-top: 1px;
+                            margin-bottom: 1px;
+                        }
+
+                    }
+
+                    .vecu {
+
+                        input {
+                            text-align: center;
+                            border-radius: 50%;
+                            width: 30px;
+                            height: 30px;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            margin-top: 1px;
+                            margin-bottom: 1px;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .content {
+                display: flex;
+                flex-direction: row;
+                padding-top: 20px;
+
+                .column {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    margin-right: 10px;
+
+                    .dommages {
+                        display: flex;
+                        flex-direction: row;
+                        flex: none;
+                        padding-top: 10px;
+                        justify-content: center;
+
+                        .sectionTitleUnderline {
+                            padding-left: 5px;
+                            width: 100%;
+                            margin: 10px 0px 10px 20px;
+
+                            span {
+                                margin-right: 20px;
+                            }
+
+                            .dommage-checkbox {
+                                font-size: 14px;
+                            }
+
+                            .additional {
+                                margin-left: 20px;
+                            }
+
+                        }
+
+                    }
+
+                    .title {
+                        display: flex;
+                        flex-direction: row;
+                        flex: none;
+                        padding-left: 5px;
+                        margin: 10px 0px 10px 20px;
+                    }
+
+                    .bonus {
+
+                        li {
+                            display: flex;
+                            flex-direction: row;
+                            margin-bottom: 5px;
+
+                            input {
+                                width: 30px;
+                                height: 30px;
+                                margin-left: 30px;
+                                margin-right: 10px;
+                                text-align: center;
+                                border-radius: 50%;
+                                flex-basis: 30px;
+                                flex-grow: 0;
+                                flex-shrink: 0;
+                            }
+
+                            label {
+                                padding-top: 9px; 
+                                margin-left: 10px;
+                            }
+
+                        }
+
+                    }
+
+                    .actions {
+
+                        .roll {
+                            text-align: center;
+                            width: 32px;
+                            margin-left: 12px;
+                            margin-right: 10px
+                        }
+                    }
+
+                    .capacites {
+
+                        .item {
+
+                            .item-control {
+                                margin-left: 12px;
+                                margin-right: 10px
+                            }
+
+                            .item-name {
+
+                                span.esquive {
+                                    margin-right: 5px;
+                                }
+
+                                span.lutte {
+                                    margin-right: 20px;
+                                }
+                            }
+
+                            i {
+                                margin-right: 15px;
+                            }
+
+                        }
+
+                    }
+
+                    .equipement {
+
+                        .item {
+
+                            .delete {
+                                margin-left: 12px;
+                                margin-right: 10px
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .nofocus {
+            display: flex;
+            flex-direction: column;
+            margin-top: 200px;
+            text-align: center;
+            color:indianred;
+
+            label {
+                margin-left: 100px;
+                margin-right:100px;
+            }
+
+            i {
+                margin-top:50px;
+            }
+
+        }
+
+        .selenim {
+
+            .content {
+                display: flex;
+                flex-direction: row;
+                padding-top: 20px;
+
+                .left {
+                    display: flex;
+                    flex-direction: column;
+                    width: 500px;
+
+                    .noyau {
+                        position: relative;
+                        text-align: center;
+                        margin-left: 40px;
+
+                        img {
+                            border: 0px;
+                        }
+
+                        .macro {
+
+                            .dice.noyau {
+                                transform: translate(-40px, 115px);
+                            }
+
+                            .dice.pavane {
+                                transform: translate(-90px, -100px);
+                            }
+
+                            .dice {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%
+                            }
+
+                            .tooltip.pavane {
+                                transform: translate(-80px, -105px);
+                            }
+
+                            .tooltip.noyau {
+                                transform: translate(-30px, 110px);
+                            }
+
+                            .tooltip {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+
+                                input {
+                                    background-color: transparent;
+                                    font-size: 20px;
+                                    font-weight: bold;
+                                    border: 0px;
+                                    width: 40px;
+                                    text-align: center;
+                                }
+                            }
+
+                        }
+
+                        .tooltip.reserveCourante {
+                            transform: translate(60px, 80px);
+                        }
+
+                        .tooltip.reserveMaximale {
+                            transform: translate(100px, 80px);
+                        }
+
+                        .tooltip {
+                            position: absolute;
+                            top: 50%; 
+                            left: 50%;
+
+                            input {
+                                background-color: transparent;
+                                font-size: 20px;
+                                font-weight: bold;
+                                border: 0px;
+                                width: 40px;
+                                text-align: center;
+                            }
+                        }
+
+                        .separator {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(97px, 80px);
+                            font-size: 20px;
+                            font-weight: bold;
+                            text-align: center;
+                        }
+
+                    }
+
+                }
+
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    margin-left: 20px;
+
+                    .imago {
+
+                        .item-list {
+
+                            .item {
+
+                                .item-delete {
+                                    text-align: center;
+                                    width: 32px;
+                                    margin-left: 13px;
+                                    margin-right:10px;
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .nephilim {
+
+            .content {
+                display: flex;
+                flex-direction: row;
+                padding-top: 20px;
+
+                .left {
+                    display: flex;
+                    flex-direction: column;
+                    width: 500px;
+
+                    .pentacle {
+                        position: relative;
+                        text-align: center;
+                        margin-left: 40px;
+
+                        img {
+                            border: 0px;
+                            width: 380px;
+                            height: 378px
+                        }
+
+                        .macro {
+
+                            .tooltip.air {
+                                transform: translate(150px, -85px);
+                            }
+
+                            .tooltip.eau {
+                                transform: translate(120px, 140px);
+                            }
+
+                            .tooltip.feu {
+                                transform: translate(-60px, -180px);
+                            }
+
+                            .tooltip.lune {
+                                transform: translate(-130px, 150px);
+                            }
+
+                            .tooltip.terre {
+                                transform: translate(-210px, -20px);
+                            }
+
+                            .tooltip {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+
+                                input {
+                                    background-color: transparent;
+                                    font-size: 20px;
+                                    font-weight: bold;
+                                    border: 0px;
+                                    width: 40px;
+                                    text-align: center;
+                                }
+                            }
+
+                            .dice.air {
+                                transform: translate(140px, -80px);
+                            }
+
+                            .dice.eau {
+                                transform: translate(110px, 145px);
+                            }
+
+                            .dice.feu {
+                                transform: translate(-70px, -175px);
+                            }
+
+                            .dice.lune {
+                                transform: translate(-140px, 155px);
+                            }
+
+                            .dice.terre {
+                                transform: translate(-220px, -15px);
+                            }
+
+                            .dice {
+                                position: absolute; 
+                                top: 50%;
+                                left: 50%;
+                            }
+
+                        }
+                    }
+
+                    .chutes {
+
+                        .title {
+                            margin-top: 20px;
+                            border-width: 0px 0px 2px 0px;
+                            border-style: solid;
+                            border-color: black;
+
+                            span {
+                                margin-left: 5px;
+                                padding-bottom: 4px;
+                                border: none;
+                                background-color: transparent;
+                                font-family: 'AJensonPro';
+                                font-size: 20px;
+                            }
+                        }
+
+                        .article {
+                            padding-top: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            padding: 0 0 0 0;
+
+                            .item {
+                                display: flex;
+                                flex-direction: row;
+                                flex-wrap: nowrap;
+                                align-items: center;
+                                padding: 0 0 0 20px;
+                                -webkit-column-break-inside: avoid;
+                                page-break-inside: avoid;
+                                break-inside: avoid;
+
+                                .tooltip {
+                                    flex: 0 0 70px;
+                                    margin-right: 100px;
+                                }
+
+                                .name {
+                                    flex: 0 0 70px;
+                                    margin-right: 100px;
+                                }
+
+                                .degres {
+                                    display: flex;
+                                    flex-direction: row;
+                                    flex-wrap: nowrap;
+                                    flex: 0 0 auto;
+                                }
+
+                                .l3 {
+                                    margin-left: 3px;
+                                }
+
+                                .l3r {
+                                    margin-left: 3px;
+                                    color: indianred;
+                                }
+
+                                .l6 {
+                                    margin-left: 6px;
+                                }
+
+                                .l6r {
+                                    margin-left: 6px;
+                                    color: indianred;
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    width: 314px;
+
+                    .stase {
+
+                        .sectionRow {
+
+                            .circle {
+                                input {
+                                    border:none;
+                                    background-color:transparent;
+                                    transform: translate(2px, 14px);
+                                    text-align: center;
+                                }
+                            }
+
+                            .sectionTitle {
+                                input {
+                                    border: none;
+                                    background-color: transparent;
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+        }
+
+        .incarnations {
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                flex: 0 0 auto;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 10px;
+                font-family: 'AJensonPro';
+                font-size: 20px;
+                background-color: transparent;
+                border: 0px;
+
+                .periode-courante {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    text-align: center;
+                    font-family: 'NightjarDemi';
+                    font-size: 20px;
+                    margin-top: 5px;
+                    margin-right: 40px;
+                    
+                    label.noperiode {
+                        color: indianred;
+                        width: 100%;
+                    }
+
+                    .tooltip {
+                        width: 100%;
+                    }
+
+                }
+
+                .all-points {
+                    display: flex;
+                    flex-direction: row;
+
+                    .points {
+                        width: 60px;
+                        text-align: center;
+
+                        input.middle {
+                            vertical-align: middle;
+                        }
+
+                        input {
+                            text-align: center;
+                            border: none;
+                            border-radius: 50%;
+                            border: 1px solid black;
+                            width: 35px;
+                            height: 35px;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .helpPeriode {
+                display: flex;
+                flex-direction: column;
+                margin-top: 200px; 
+                text-align: center;
+                color: indianred;
+
+                label {
+                    margin-left: 100px;
+                    margin-right: 100px;
+                }
+
+                i {
+                    margin-top: 50px;
+                }
+
+            }
+
+            .item-list {
+
+                .periode {
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    border-width: 0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+                }
+
+                .item {
+
+                    .edit-periode {
+                        margin-right: 10px;
+                    }
+
+                    .display {
+                        font-family: 'AJensonPro';
+                        font-size: 18px;
+                        flex: 1 1 auto;
+                    }
+
+                    .action {
+                        margin-left: 50px;
+                        display: flex;
+                        flex-direction: row-reverse;
+
+                        .delete-periode {
+                            text-align: center;
+                            width: 32px;
+                        }
+
+                    }
+
+                    .current-periode {
+                        text-align: center;
+                        width: 32px;
+                    }
+                    
+                }
+
+                .item-content {
+
+                    .item {
+                        margin-left: 10px;
+
+                        .scroll {
+                            text-align: center;
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 10px;
+                            margin-top: 1px;
+                            margin-bottom: 1px;
+
+                            i {
+                                margin-top: 7px;
+                            }
+
+                        }
+
+                        .degre {
+
+                            input {
+                                text-align: center;
+                                border-radius: 50%;
+                                width: 30px;
+                                height: 30px;
+                                margin-right: 10px;
+                                margin-top: 1px;
+                                margin-bottom: 1px;
+                            }
+
+                        }
+
+                        .edit-vecu {
+                            flex: 1 1 auto;
+                        }
+
+                        .edit-item {
+                            flex: 1 1 auto;
+                        }
+
+                        .edit-actor {
+                            flex: 1 1 auto;
+                        }
+
+                        .delete {
+                            text-align: center;
+                            width: 32px;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .akasha {
+
+            .content {
+                display: flex;
+                flex-direction: row;
+                width:100%;
+                padding-top: 20px;
+                flex-wrap: unset;
+
+                .column {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    margin-right: 10px;
+
+                    .sectionTitleUnderline {
+                        display: flex;
+                        flex-direction: row;
+                        margin: 10px 0px 10px 20px;
+                    }
+
+                    .item-list {
+
+                        .item {
+
+                            .item-name {
+                                font-family: 'AJensonPro';
+                                font-size: 20px;
+                            }
+
+                        }
+
+                        .vaisseau {
+
+                            .item-name {
+                                font-family: 'AJensonPro';
+                                font-size: 20px;
+                            }
+
+                        }
+
+                        .direction {
+                            display:flex;
+                            flex-direction: row; 
+                            padding-top: 10px;
+
+                            .circleHidden {
+                                flex-basis: 40px;
+                                flex-grow: 0;
+                                flex-shrink: 0;
+
+                                .circleContent {
+                                    font-weight:normal;
+                                }
+                            }
+
+                            input {
+                                margin-left: 40px;
+                                width: 40px;
+                                height: 40px;
+                                margin-right: 10px;
+                                text-align: center;
+                                border-radius: 50%;
+                            }
+
+                            label {
+                                margin-top: 4px;
+                                margin-right: 5px;
+                                padding-top: 7px;
+                                width: 260px;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .vecus {
+
+            .title {
+                width:794px; margin-left:10px;
+                display: flex;
+                flex-direction: row;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-family: 'AJensonPro';
+                font-size: 20px;
+                border-width:0px 0px 2px 0px;
+                border-style: solid;
+                border-color: black;
+
+                span {
+                    padding-left: 5px;
+                }
+
+            }
+
+            .content {
+                column-count: 3;
+
+                .degre {
+                    width: 20px;
+                }
+
+                .disabled {
+                    color: #a1a1a1;
+                }
+
+            }
+
+            .fcontent {
+                column-count: 2;
+
+                .degre {
+                    text-align: center;
+                    border: none;
+                    border-radius: 50%;
+                    border: 1px solid black;
+                    width: 30px;
+                    height: 30px;
+                    padding-top: 5px;
+                    margin-right: 30px;
+                }
+
+                .disabled {
+                    color: #a1a1a1;
+                }
+
+                li {
+                    margin-bottom: 3px;
+                }
+
+            }
+
+        }
+
+        .laboratoire {
+
+            .construct-images {
+                display: flex;
+                flex-direction: row;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                justify-content: space-evenly;
+
+                img {
+                    border: none;
+                    height: 90px;
+                }
+            }
+
+            .constructs {
+
+                .header {
+                    width: 814px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    border-width: 0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+
+                    .name {
+                        padding-left: 5px;
+                        width: 100%;
+                    }
+    
+                    .parameter {
+                        flex: 0 0 auto;
+                        text-align: center;
+                    }
+    
+                    .width-40 {
+                        width: 40px;
+                    }
+    
+                    .width-80 {
+                        width: 80px;
+                    }
+    
+                    .width-135 {
+                        width: 135px;
+                    }
+
+                }
+
+                .item {
+                    padding-left: 10px;
+
+                    .hand-checkbox {
+                        flex: 0 0 auto;
+                        justify-content: center;
+                        text-align: center;
+                        width: 40px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                    }
+
+                    .element {
+                        width: 40px;
+                        height: 24px;
+                        padding-top: 1px;
+                        padding-bottom: 1px;
+                        border: none;
+                        text-align: center;
+                        background-color: transparent;
+                    }
+
+                    .degre {
+                        text-align: center;
+                        width: 135px;
+
+                        select {
+                            border: none;
+                            outline: 0px;
+                            background-color: transparent;
+                        }
+
+                    }
+
+                    .substance {
+                        text-align: center;
+                        width: 80px;
+                    }
+
+                }
+
+            }
+
+            .materiae-header {
+                width: 814px;
+                margin-top: 30px;
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                justify-content: center;
+                border-width: 0px 0px 2px 0px;
+                border-style: solid;
+                border-color: black;
+                font-family: 'AJensonPro';
+                font-size: 20px;
+
+                .name {
+                    padding-left: 5px;
+                    width: 100%;
+                    transform: translate(0px, 7px);
+                }
+
+                .element {
+                    flex: 0 0 auto;
+                    padding-top: 7px;
+                    width: 30px;
+                    text-align: center;
+                    transform:translate(0px, -5px);
+                }
+
+                .quantite {
+                    font-size: 14px;
+                    flex: 0 0 auto;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 38px;
+                    text-align: center;
+                    border-radius: 50%;
+                    transform:translate(0px, -5px);
+                }
+
+            }
+
+            .materiae-list {
+                column-count: 2;
+                column-fill: balance;
+                column-gap: 10%;
+
+                .item {
+                    height: 30px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    break-inside: avoid-column;
+
+                    .element {
+                        padding-top: 3px;
+                        margin-left: 10px;
+                        margin-right: 30px;
+                    }
+
+                    .item-delete {
+                        width: 32px;
+                    }
+
+                    .item-name {
+                        width: 100%;
+                    }
+
+                    .change-quantite {
+                        width: 25px;
+                        height: 25px;
+                        margin-right: 10px;
+                        text-align: center;
+                        border-radius: 50%;
+                    }
+
+                    &:hover {
+                        text-shadow: 0 0 10px #2C606D;
+                        color: #2C606D;
+                    }
+
+                }
+
+            }
+
+            .catalyseur-header {
+                width: 814px;
+                margin-top: 30px;
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                border-width: 0px 0px 2px 0px;
+                border-style: solid;
+                border-color: black;
+                font-family: 'AJensonPro';
+                font-size: 20px;
+
+                span {
+                    padding-left: 5px;
+                }
+            }
+
+            .catalyseur-list {
+                column-count: 3;
+                column-fill: balance;
+                column-gap: 10%;
+
+                .item {
+                    height: 30px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    break-inside: avoid-column;
+
+                    .item-delete {
+                        width: 32px;
+                    }
+
+                    .item-name {
+                        width: 100%;
+                    }
+
+                    &:hover {
+                        text-shadow: 0 0 10px #2C606D;
+                        color: #2C606D;
+                    }
+
+                }
+
+            }
+
+            .laboratoire-header {
+                width: 814px;
+                margin-top: 30px;
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                border-width: 0px 0px 2px 0px;
+                border-style: solid;
+                border-color: black;
+                font-family: 'AJensonPro';
+                font-size: 20px;
+
+                span {
+                    padding-left: 5px;
+                }
+            }
+
+            .laboratoire-list {
+                column-count: 1;
+                column-fill: balance;
+                column-gap: 10%;
+
+                .actor {
+                    height: 30px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    break-inside: avoid-column;
+
+                    .actor-delete {
+                        width: 32px;
+                    }
+
+                    .actor-active {
+                        width: 32px;
+                        padding-top: 3px;
+                    }
+
+                    .actor-name {
+                        width: 100%;
+                    }
+
+                    &:hover {
+                        text-shadow: 0 0 10px #2C606D;
+                        color: #2C606D;
+                    }
+
+                }
+            }
+
+        }
+
+        .all-focus {
+
+            .disabled {
+                color: #a1a1a1;
+            }
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                padding-top: 10px;
+                justify-content: center;
+
+                .circle {
+                    flex-basis: 40px;
+                    flex-grow: 0;
+                    flex-shrink: 0;
+                }
+
+                .title {
+                    width: 100%;
+                    margin-left: 20px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    border-width: 0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+
+                    .item-name {
+                        width: 100%;
+                        padding-left: 5px;
+                    }
+
+                    .item-parameter {
+                        flex: 0 0 auto;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        text-align: center;
+                    }
+
+                    .item-quantite {
+                        flex: 0 0 auto;
+                        text-align:center;
+                    }
+                    
+                    .dice {
+                        flex: 0 0 auto;
+                        width: 18px;
+                        margin-left: 12px;
+                        margin-right: 8px;
+                        font-size: 14px;
+                        padding-top: 5px;
+                    }
+
+                    .width-40 {
+                        width: 40px;
+                    }
+
+                    .width-80 {
+                        width: 80px;
+                    }
+
+                }
+
+            }
+
+            .focus {
+                height: 17px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .item-parameter {
+                    flex: 0 0 auto;
+                    justify-content: center;
+                    text-align: center;
+                    margin-left: 10px;
+                    margin-right:10px;
+                }
+
+                .edit-focus {
+                    margin-left: 20px;
+                }
+
+                .quantite {
+                    flex: 0 0 auto;
+                    width: 40px;
+                    border: none;
+                    text-align: center;
+                    background-color: transparent;
+                }
+
+                .dice {
+                    flex: 0 0 auto;
+                    width: 18px;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    text-align: center;
+                }
+
+                .width-40 {
+                    width: 40px;
+                }
+
+                .width-80 {
+                    width: 80px;
+                }
+
+            }
+
+            .ordonnances {
+                margin-top: 0px;
+                margin-bottom: 20px;
+
+                .monde {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+
+                    .circle {
+                        flex-basis: 40px;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                    }
+
+                    .title {
+                        width: 100%;
+                        margin-left: 20px;
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        padding-left: 5px;
+                        font-family: 'AJensonPro';
+                        font-size: 20px;
+                        border-width: 0px 0px 2px 0px;
+                        border-style: solid;
+                        border-color: black;
+                    }
+
+                }
+
+                .item {
+                    height: 17px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .item-name {
+                        margin-left: 20px;
+                    }
+
+                }
+            }
+
+        }
+
+        .arbre {
+
+            .content {
+                position: relative;
+                text-align: center;
+                font-family: 'NightjarDemi';
+                font-size: 18px;
+
+                img {
+                    margin-left: 90px;
+                    border: 0px;
+                    width: 600px;
+                    height: 795px;
+                }
+
+                .malkut {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(17px, 320px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(44px, 340px);
+                    }
+
+                }
+
+                .yesod {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(25px, 165px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(44px, 185px);
+                    }
+
+                }
+
+                .hod {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-105px, 85px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-94px, 105px);
+                    }
+
+                }
+
+                .netzach {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(148px, 85px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(182px, 105px);
+                    }
+
+                }
+
+                .tiphereth {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(2px, 8px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(44px, 27px);
+                    }
+
+                }
+
+                .geburah {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-128px, -70px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-94px, -48px);
+                    }
+
+                }
+
+                .chesed {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(151px, -70px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(182px, -48px);
+                    }
+
+                }
+
+                .binah {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-113px, -225px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-94px, -205px);
+                    }
+
+                }
+
+                .chokmah {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(150px, -225px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(182px, -205px);
+                    }
+
+                }
+
+                .kether {
+
+                    .title {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(17px, -305px);
+                    }
+
+                    .degre {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(44px, -284px);
+                    }
+
+                }
+
+            }
+
+        }
+
+        .options {
+
+            .columns {
+                display: flex;
+                flex-direction: row;
+                padding-top: 20px;
+
+                .column {
+                    display: flex;
+                    flex-direction: column;
+                    width: 50%;
+                    margin-right: 10px;
+
+                    .group {
+                        width: 100%;
+                        margin-left: 20px;
+                        margin-top: 10px;
+                        font-family: 'AJensonPro';
+                        font-size: 20px;
+                        border-width: 0px 0px 2px 0px;
+                        border-style: solid;
+                        border-color: black;
+
+                        span {
+                            padding-left: 5px;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+    }
+
+}
+
+.actor {
+
+    .sheet-header {
+        flex: 0 0 100px;
+        border-bottom: 2px groove #eeede0;
+    }
+
+    .sheet-navigation {
+        flex: 0 0 30px;
+        margin-bottom: 5px;
+
+        .sheet-navigation-tab {
+            height: 30px;
+            line-height: 32px;
+            margin: 0 14px;
+
+            .active {
+                border-bottom: 3px solid #44191A;
+            }
+        }
+
+    }
+
+    .sheet-body {
+
+        .columns {
+            column-count: 2;
+
+            .column {
+                display: flex;
+                flex-direction: column;
+                height: 500px;
+            }
+
+        }
+
+        .cercles {
+            column-count: 3;
+
+            .cercle {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                border-radius: 4px;
+                text-align: center;
+                height: 90px;
+
+                .cercle-name {
+                    padding-top: 5px;
+                    flex: 1  1 auto;
+                    font-size: 20px;
+                    height: 30px;
+                    font-style: bold;
+
+                    &:hover {
+                        text-shadow: 0 0 10px #2C606D;
+                        color: #2C606D;
+                    }
+                }
+
+                .cercle-value {
+                    font-size: 16px;
+                    border: 0;
+                    outline: 0;
+                    height: 30px;
+
+                    &:focus {
+                        outline:none;
+                    }
+                }
+
+                .cercle-tag {
+                    margin: 1px;
+                    font-size: 14px;
+                    height: 30px;
+                }
+
+            }
+
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            padding: 0 0 0 0;
+
+            .item-list-header {
+                display: flex;
+                flex-direction: row;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+                justify-content: space-between;
+                height: 28px;
+                align-items: center;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                border-radius: 4px;
+                background-color: rgba(0, 0, 0, 0.05);
+                color: rgb(25, 24, 19);
+                font-family: Signika, sans-serif;
+                font-size: 13px;
+                font-weight: bold;
+                margin-top: 20px;
+
+                .item-name {
+                    flex: 1  1 auto;
+                    margin-left: 10px;
+                }
+
+                .item-checkbox {
+                    text-align: center;
+                    width: 54px;
+                }
+
+                .item-integer {
+                    text-align: center;
+                    width: 54px;
+                }
+
+                .item-short-string {
+                    text-align: center;
+                    width: 80px;
+                }
+
+                .item-short-string-left {
+                    margin-left: 10px;
+                    width: 50px;
+                }
+
+                .item-string-right {
+                    border:none;
+                    flex: 1  1 auto;
+                    text-align: left;
+                }
+
+                .item-string {
+                    width: 200px;
+                }
+
+                .item-control {
+                    display: flex;
+                    flex-direction: row;
+                    width: 32px;
+                }
+
+            }
+
+            .item {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 0 0 20px;
+                -webkit-column-break-inside: avoid;
+                page-break-inside: avoid;
+                break-inside: avoid;
+
+                .item-name {
+                    flex: 1  1 auto;
+                }
+
+                .item-checkbox {
+                    text-align: center;
+                    width: 54px;
+                }
+
+                .item-integer {
+                    text-align: center;
+                    width: 54px;
+                }
+
+                .item-short-string {
+                    text-align: center;
+                    width: 80px;
+                }
+
+                .item-string {
+                    width: 200px;
+                }
+
+                .item-control {
+                    text-align: center;
+                    width: 32px;
+                }
+
+                &:hover {
+                    text-shadow: 0 0 10px #2C606D;
+                    color: #2C606D;
+                }
+
+            }
+
+            .item-summary {
+                display: flex;
+                flex-direction: column;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                border-radius: 4px;
+                margin: 10px 10px 10px 10px;
+                padding-right: 20px;
+
+                .item-property {
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 12px;
+
+                    .item-property-name {
+                        font-weight: bold;
+                        width: 100px;
+                    }
+
+                    .item-property-value {
+                        font-weight:lighter;
+                        font-style: italic;
+                    }
+
+                    .item-property-description {
+                        font-weight:lighter;
+                        font-style: italic;
+                    }
+
+                }
+
+            }
+
+        }
+    }
+
+}

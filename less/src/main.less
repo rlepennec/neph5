@@ -1,0 +1,343 @@
+@font-face {
+    font-family: "AJensonPro";
+    src: url("../../systems/neph5e/assets/fonts/AJensonPro-Regular.otf");
+}
+@font-face {
+    font-family: "AJensonProLtDisp";
+    src: url("../../systems/neph5e/assets/fonts/AJensonPro-LtDisp.otf");
+}
+@font-face {
+    font-family: "MinionPro";
+    src: url("../../systems/neph5e/assets/fonts/MinionPro-Regular.otf");
+}
+@font-face {
+    font-family: "Nightjar";
+    src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Regular.ttf");
+}
+@font-face {
+    font-family: "NightjarDemi";
+    src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
+}
+
+/* OLD */
+
+#logo {
+    content: url("../../systems/neph5e/assets/core/logo.webp");
+    width: 128px;
+    height: 146px;
+  }
+
+  #pause > img {
+    content: url("../../systems/neph5e/assets/core/logo.webp");
+    width: 128px;
+    height: 146px;
+    top: -45px;
+    left: calc(50% - 96px);
+  }
+
+.window-app {
+
+    .window-content {
+        background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+    }
+
+}
+
+.center {
+    justify-content: center;
+}
+
+.description {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'AJensonProLtDisp';
+    font-size: 15px;
+
+    .add {
+        color: indianred;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        top: 30px;
+    }
+}
+
+.table-center {
+    text-align: center;
+    font-weight: bold;
+}
+
+.column-2 {
+    column-count: 2;
+}
+
+.flexrow-start {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+}
+
+.no-display {
+    display: none;
+}
+
+.no-vertical-margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.mborder {
+    border-width: 2px;
+}
+
+.mtop {
+    margin-top: 10px;
+}
+
+.mbottom {
+    margin-bottom: 10px;
+}
+
+.mright {
+    margin-right: 10px;
+}
+
+.editor {
+    height: 630px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.indianred {
+    color: indianred;
+}
+
+.grey {
+    color: #a1a1a1;
+}
+
+.no-scrollbar {
+
+    .editor {
+        overflow: hidden;
+
+        .editor-content {
+            overflow: hidden;
+        }
+    }
+
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+      
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+      
+        /* Fade in tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+      }
+
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hoverable {
+
+    &:hover {
+        text-shadow: 0 0 10px #2C606D;
+        color: #2C606D;
+    }
+
+}
+
+.selector-disabled {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-weight: normal;
+
+    &:disabled {
+        color: var(--color-text-dark-primary);
+    }
+}
+
+.dommage-checkbox {
+    font-style: italic;
+    padding-top: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
+
+    input[type="checkbox"] {
+        display:none;
+    }
+
+    .checked {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ .checked {
+        display: inline-block;
+    }
+     
+    input[type="checkbox"]:checked ~ .unchecked {
+        display: none;
+    }
+
+}
+
+.hand-checkbox {
+    font-style: italic;
+    margin-left: 22px;
+    margin-right: 20px;
+
+    input[type="checkbox"] {
+        display:none;
+    }
+
+    .checked {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ .checked {
+        display: inline-block;
+    }
+     
+    input[type="checkbox"]:checked ~ .unchecked {
+        display: none;
+    }
+
+}
+
+.custom-checkbox {
+
+    input[type="checkbox"] {
+        display:none;
+    }
+
+    .checked {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ .checked {
+        display: inline-block;
+    }
+     
+    input[type="checkbox"]:checked ~ .unchecked {
+        display: none;
+    }
+
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  line-height: 0;
+  position: relative;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-border-light-tertiary);
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.circle::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.circleContent {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+  text-align: center;
+  font-family: 'AJensonPro';
+  font-weight: bold;
+}
+
+.circleHidden {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 0;
+    position: relative;
+    background: none;
+    border: none;
+    flex-basis: 40px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.section {
+    margin-bottom: 10px;
+}
+
+.sectionRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.sectionColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionTitle {
+    width: 100%;
+    margin-left: 20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    font-family: 'AJensonPro';
+    font-size: 20px;
+    border-width:0px 0px 2px 0px;
+    border-style:solid;
+    border-color:black;
+
+    .sectionName {
+        margin-left: 5px;
+    }
+}
+
+.sectionTitleUnderline {
+    font-family: 'AJensonPro';
+    font-size: 20px;
+    border-width:0px 0px 2px 0px;
+    border-style: solid;
+    border-color:black;
+}

@@ -1,0 +1,117 @@
+.chat-message {
+    background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+    font-family: 'AJensonProLtDisp';
+    font-size: 15px;
+
+    .message-header {
+        font-family: 'NightjarDemi';
+    }
+
+    .chat {
+        display: flex;
+        flex-direction: column;
+        border: 3px solid rgba(0, 0, 0, 0.7);
+        border-radius: 4px;
+
+        .chat-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-radius: 4px;
+            margin: 10px;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+
+            .chat-image {
+                margin: 10px;
+                height: 50px;
+                width: 50px;
+                border: none;
+                flex: 0;
+                border-radius: 4px;
+            }
+
+            .chat-title {
+                font-size: 16px;
+                font-style: bold;
+                text-align: center;
+                flex: 1;
+
+                a {
+                    background: none;
+                    border: none;
+                    white-space: normal;
+                    word-break: normal;
+                }
+            }
+        }
+
+        .chat-body.opposition {
+            margin-top: 20px;
+        }
+
+        .chat-body {
+            margin: 10px;
+            font-size: 16px;
+            text-align: center;
+
+            .fa-dice-d20 {
+                margin-right: 5px;
+            }
+
+            .fa-heart-broken {
+                margin-left: 30px;
+            }
+
+            .fa-heart-broken.opposition {
+                margin-left: 30px;
+                margin-right: 5px;
+            }
+
+            .chat-description {
+                font-style: bold;
+            }
+
+            .chat-details {
+                font-size: 11px;
+                font-style: italic;
+            }
+
+            .fa-right.opposition {
+                margin-right: 5px;
+            }
+
+            .fa-shield.opposition {
+                margin-left: 30px;
+                margin-right: 5px
+            }
+
+        }
+
+        .effects {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    }
+
+}
+
+.roll-before {
+    border: 3px solid rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+
+    .image {
+        width: 30%;
+        height: auto;
+    }
+
+    .title {
+        background-color: lightcoral;
+        text-align: center;
+    }
+
+}

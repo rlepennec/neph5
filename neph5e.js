@@ -148,6 +148,35 @@ Hooks.once("init", function () {
         await MigrationTools.migrate();
     });
 
+    CONFIG.Canvas.layers.nephilim = { layerClass: ControlsLayer, group: "primary" };
+
+    // Add some controls
+    Hooks.on("getSceneControlButtons", (btns) => {
+
+        let menu = [];
+    
+        if (game.user.isGM) {
+
+            menu.push({
+                name: "Experience",
+                title: "Experience",
+                icon: "fa fa-book-open",
+                button: true,
+                onClick: () => { console.log("toto") }
+            });
+
+            btns.push({
+                name: "NEPHILIM",
+                title: "Nephilim",
+                icon: "fa-solid fa-hamsa",
+                layer: "nephilim",
+                tools: menu
+            });
+
+        }
+
+    })
+
     // Add data to combatant
     Hooks.on("createCombatant", async (combat, data) => {
         if (!game.user.isGM) return;

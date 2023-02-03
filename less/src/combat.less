@@ -1,0 +1,225 @@
+form.combat {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 0;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        margin: 10px;
+
+        img {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+        }
+
+        span {
+            font-size: 16px;
+            font-style: bold;
+            text-align: center;
+            flex: 1;
+            font-family:'NightjarDemi';
+        }
+
+    }
+
+    .roll {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        height: 20px;
+        flex-grow: 0;
+
+        .dice {
+            display: flex;
+            flex-direction: row;
+
+            #difficulty {
+                padding-top: 4px;
+                text-align: right;
+            }
+
+            .roll-dice {
+                margin-left: 10px;
+                padding-top: 5px;
+            }
+
+        }
+
+        .impact {
+            display: flex;
+            flex-direction: row;
+
+            #impact {
+                padding-top: 4px;
+                text-align: right;
+            }
+
+            .heart {
+                margin-left: 10px;
+                padding-top: 5px;
+            }
+
+        }
+
+        .absorption {
+            display: flex;
+            flex-direction: row;
+
+            #absorption {
+                padding-top: 4px;
+                text-align: right;
+            }
+
+            .shield {
+                margin-left: 10px;
+                padding-top: 5px;
+            }
+
+        }
+
+        .type {
+ 
+            select {
+                flex: 0 0 auto;
+                width: 100px;
+                border: none;
+                outline: 0px;
+                background-color: transparent;
+            }
+
+        }
+
+        #details {
+            width: 20px;
+            padding-top: 5px;
+            padding-right: 20px;
+        }
+
+    }
+
+    table {
+        table-layout: fixed;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 10px;
+        width: 464px;
+        flex-grow: 0;
+
+        tr {
+            height: 35px;
+
+            td:nth-child(1) {
+                width: 380px;
+            }
+
+            td:nth-child(1).manoeuver {
+                display: flex;
+                flex-direction: row;
+
+                select {
+                    padding-left: 15px;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+
+                    option {
+                        width: 140px;
+                    }
+                }
+
+                #times {
+                    padding-top: 5px;
+                    padding-left: 30px;
+
+                    #shot-1 {
+                        font-size: 14px;
+                        margin-right: 5px;
+                    }
+
+                    label {
+                        font-size: 14px;
+                    }
+
+                }
+
+            }
+
+            td:nth-child(1).blessures {
+                display: flex;
+                flex-direction: row;
+
+                select {
+                    padding-left: 15px;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+                }
+
+            }
+
+            td:nth-child(1).approche {
+                display: flex;
+                flex-direction: row;
+
+                select {
+                    padding-left: 15px;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+                }
+
+            }
+
+            td:nth-child(2) {
+                width: 50px;
+                text-align: right;
+
+                #modifier {
+                    text-align: right;
+                    margin-right: -3px;
+                    border: none;
+                    background-color: transparent;
+                }
+
+            }
+
+            td:nth-child(3) {
+                width: 34px;
+                text-align: left;
+            }
+
+            td.label {
+                text-align: left;
+                padding-left: 20px; 
+            }
+
+        }
+
+    }
+
+    div.hiddable {
+        display: flex;
+        width: 96%;
+        height: 80px;
+        margin: auto;
+        font-style: italic;
+        border: solid 1px;
+        border-radius: 4px;
+        padding: 10px;
+
+        #description {
+            margin: auto;
+            text-align: center;
+        }
+
+    }
+
+}

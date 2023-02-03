@@ -1,0 +1,307 @@
+.action {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        margin: 10px;
+
+        .actor {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+        }
+
+        .sentence {
+            font-size: 16px;
+            font-style: bold;
+            text-align: center;
+            flex: 1;
+            font-family: 'NightjarDemi';
+        }
+
+        .target {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+            border-radius: 4px;
+        }
+
+    }
+
+    .roll {
+        display: flex;
+        flex-direction: row;
+
+        #difficulty {
+            flex: 0 0 auto;
+            padding-left: 70px;
+            padding-top: 4px;
+            padding-right:10px;
+        }
+
+        .item-control {
+            flex: 0 0 auto;
+            width: 20px;
+            padding-top: 5px;
+            padding-right: 100px;
+        }
+
+        .type {
+            display: flex;
+            flex-direction: row;
+            margin-left: 20px;
+
+            #rollType {
+                flex: 0 0 auto;
+                width: 100px;
+                border: none;
+                outline: 0px;
+                background-color: transparent;
+            }
+
+            span {
+                flex: 0 0 auto;
+                margin-left: 67px;
+                margin-right: 5px;
+                padding-top: 5px;
+            }
+
+            #element {
+                flex: 0 0 auto;
+                border: none;
+                outline: 0px;
+                background-color: transparent;
+                width: 80px;
+            }
+
+        }
+
+    }
+
+    .table {
+        width: 100%;
+        table-layout: fixed;
+
+        tr {
+            height: 35px;
+
+            td {
+
+                select {
+                    padding-left: 15px;
+                    flex: 0 0 auto;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+                }
+
+                input {
+                    text-align: right;
+                    margin-right: -3px;
+                    border: none;
+                    background-color: transparent;
+                }
+
+            }
+
+            .base-name {
+                width: 65%;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .modifier {
+                width: 65%;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .value {
+                width: 25%;
+                text-align: right;
+                flex: 0 0 auto;
+            }
+
+            .percentage {
+                width: 10%;
+                text-align: left;
+                flex: 0 0 auto;
+                padding-top: 5px; 
+                flex: 0 0 auto;
+                width: auto;
+            }
+
+        }
+    }
+
+}
+
+.reaction {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        margin: 10px;
+
+        .actor {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+        }
+
+        .sentence {
+            font-size: 16px;
+            font-style: bold;
+            text-align: center;
+            flex: 1;
+            font-family: 'NightjarDemi';
+        }
+
+        .target {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+            border-radius: 4px;
+        }
+
+    }
+
+    .roll {
+        display: flex;
+        flex-direction: row;
+
+        #difficulty {
+            flex: 0 0 auto;
+            padding-left: 70px;
+            padding-top: 4px;
+            padding-right:10px;
+        }
+
+        .item-control {
+            flex: 0 0 auto;
+            width: 20px;
+            padding-top: 5px;
+            padding-right: 100px;
+        }
+
+        .type {
+            display: flex;
+            flex-direction: row;
+            margin-left: 20px;
+
+            span {
+                flex: 0 0 auto;
+                padding-top: 5px;
+            }
+
+        }
+
+    }
+
+    .table {
+        width: 100%;
+        table-layout: fixed;
+
+        tr {
+            height: 35px;
+
+            td {
+
+                input {
+                    text-align: right;
+                    margin-right: -3px;
+                    border: none;
+                    background-color: transparent;
+                }
+
+            }
+
+            .base-name {
+                width: 65%;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .modifier {
+                width: 65%;
+                text-align: left;
+                padding-left: 20px;
+            }
+
+            .value {
+                width: 25%;
+                text-align: right;
+                flex: 0 0 auto;
+            }
+
+            .percentage {
+                width: 10%;
+                text-align: left;
+                flex: 0 0 auto;
+                padding-top: 5px; 
+                flex: 0 0 auto;
+                width: auto;
+            }
+
+        }
+    }
+
+}
+
+.mnemos {
+
+    .article {
+
+        .id {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;  
+        }
+
+        .name {
+            display: flex;
+            flex-direction: row;
+            height: 60px;
+
+            input {
+                font-size: 25px;
+                text-align: center;
+                margin-bottom: 10px;
+                height: 100%;
+                width: 100%;
+                font-family: Calibri;
+            }
+
+            img {
+                flex: 0 0 auto;
+                margin-left: 10px
+            }
+
+        }
+
+        .desc {
+            border-width: 2px;
+            margin-top: 10px
+        }
+
+    }
+
+}
