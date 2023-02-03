@@ -141,7 +141,7 @@ export class Periode extends AbstractRoll {
 
         // Update the members of the fraternite if necessary
         if (this.actor.type === 'fraternite') {
-            await new Fraternite(this.actor).deleteMembresFromPeriode(this.item);
+            await new Fraternite(this.actor).onDeletePeriode(this.item);
         }
 
         // Render the sheet if opened.

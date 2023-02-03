@@ -123,8 +123,17 @@ export class Fraternite {
     /**
      * @param periode The periode object to delete.
      */
-    async deleteMembresFromPeriode(periode) {
+    async onDeletePeriode(periode) {
+        const effectif = this.actor.system.effectif.filter(m => m => m.periode !== periode.sid);
+        await this.actor.update({ ['system.effectif']: effectif });
+    }
 
+        /**
+     * @param actor The actor object to delete.
+     */
+    async onDeleteActor(actor) {
+        const effectif = this.actor.system.effectif.filter(m => m => m.actor !== actor.sid);
+        await this.actor.update({ ['system.effectif']: effectif });
     }
 
     /**

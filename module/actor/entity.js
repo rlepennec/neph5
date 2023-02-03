@@ -823,10 +823,13 @@ export class NephilimActor extends Actor {
             return;
         }
 
-        // Delete simulacre
+        // Delete simulacre & remove member from fraternite
         for (let actor of game.actors) {
             if (actor.system?.simulacre === this.sid) {
                 await actor.update({ ['system.simulacre']: null });
+            }
+            if (actor.type === 'fraternite') {
+                await actor.onDeleteActor(this);
             }
         }
         for (let scene of game.scenes) {
@@ -834,6 +837,9 @@ export class NephilimActor extends Actor {
                 if (token.actor != null) {
                     if (token.actor.system?.simulacre === this.sid) {
                         await token.actor.update({ ['system.simulacre']: null });
+                    }
+                    if (token.actor.type === 'fraternite') {
+                        await token.actor.onDeleteActor(this);
                     }
                 }
             }
