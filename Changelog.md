@@ -1,3 +1,6 @@
+# 1.3.1
+Suppression des membres dont l'acteur est supprimé du monde
+
 # 1.3.0
 Ajout du nouveau type d'acteur Fraternité
 Ajout de logos
