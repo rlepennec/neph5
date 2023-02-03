@@ -823,29 +823,37 @@ export class NephilimActor extends Actor {
             return;
         }
 
-        // Delete simulacre & remove member from fraternite
         for (let actor of game.actors) {
-            if (actor.system?.simulacre === this.sid) {
-                await actor.update({ ['system.simulacre']: null });
-            }
-            if (actor.type === 'fraternite') {
-                await new Fraternite(actor).onDeleteActor(this);
-            }
+            await this.onDeleteEmbeddedActor(actor);
         }
+
         for (let scene of game.scenes) {
             for (let token of scene.tokens) {
                 if (token.actor != null) {
-                    if (token.actor.system?.simulacre === this.sid) {
-                        await token.actor.update({ ['system.simulacre']: null });
-                    }
-                    if (token.actor.type === 'fraternite') {
-                        await new Fraternite(actor).onDeleteActor(this);
-                    }
+                    await this.onDeleteEmbeddedActor(token.actor);
                 }
             }
         }
 
         await super._onDelete(options, userId);
+
+    }
+
+    /**
+     * Delete the current actor from the specified container actor
+     * @param actor The actor for which to delete the current actor object.
+     */
+    async onDeleteEmbeddedActor(actor) {
+
+        // Remove the current actor if it is a simulacre of a figure
+        if (actor.system?.simulacre === this.sid) {
+            await actor.update({ ['system.simulacre']: null });
+        }
+
+        // Remove the current actor if it is a member of a fraternite
+        if (actor.type === 'fraternite') {
+            await new Fraternite(actor).onDeleteActor(this);
+        }
 
     }
 
