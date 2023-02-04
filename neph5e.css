@@ -25,11 +25,11 @@
   height: 100px;
 }
 #pause > img {
-  content: url("../../systems/neph5e/assets/core/logo.webp");
-  width: 128px;
-  height: 146px;
-  top: -45px;
-  left: calc(50% - 96px);
+  content: url("../../systems/neph5e/assets/core/pentacle.webp");
+  width: 180px;
+  height: 179px;
+  top: -40px;
+  left: calc(50% - 86px);
 }
 .window-app .window-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
