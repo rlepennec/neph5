@@ -1,6 +1,6 @@
 import { AbstractDialog } from "../core/abstractDialog.js";
 
-export class EphemerideDialog extends AbstractDialog {
+export class RechercheDialog extends AbstractDialog {
 
     /**
      * Constructor.
@@ -24,8 +24,8 @@ export class EphemerideDialog extends AbstractDialog {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["nephilim", "sheet"],
-            template: "systems/neph5e/feature/ephemeride/ephemeride.hbs",
-            width: 600,
+            template: "systems/neph5e/feature/recherche/recherche.hbs",
+            width: 1030,
             height: "auto",
             choices: {},
             allowCustom: true,

@@ -2620,14 +2620,36 @@ form.combat div.hiddable #description {
 .ephemeride table tr td {
   font-family: 'AJensonPro';
   text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
 }
-.ephemeride table td td {
+.ephemeride table tr:nth-child(1) {
+  font-family: 'Nightjar';
+  font-size: 16px;
+  height: 50px;
+}
+.recherche table tr td {
   font-family: 'AJensonPro';
   text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
 }
-.ephemeride table td td:first-child {
-  background-color: #32a852;
+.recherche table tr td:nth-child(1) {
+  font-weight: bold;
 }
-.ephemeride table td td:nth-child(2) {
-  background-color: #aaaaaa;
+.recherche table tr td:nth-child(2n) {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+.recherche table tr:nth-child(1) {
+  font-family: 'Nightjar';
+  font-size: 16px;
+  height: 50px;
+}
+.recherche table tr:nth-child(2) {
+  font-weight: bold;
+}
+.recherche table tr:nth-child(5) {
+  font-style: italic;
 }

@@ -36,6 +36,7 @@ import { PasseSheet } from "./feature/periode/item/passe.js";
 import { PeriodeSheet } from "./feature/periode/item/periode.js";
 import { PratiqueSheet } from "./feature/denier/item/pratique.js";
 import { QueteSheet } from "./feature/periode/item/quete.js";
+import { RechercheDialog } from "./feature/recherche/recherche.js";
 import { RiteSheet } from "./feature/necromancie/item/rite.js";
 import { RituelSheet } from "./feature/epee/item/rituel.js";
 import { SavoirSheet } from "./feature/periode/item/savoir.js";
@@ -153,28 +154,24 @@ Hooks.once("init", function () {
 
         let menu = [];
     
-        if (game.user.isGM) {
+        menu.push({
+            name: "recherche",
+            title: "Recherche occulte",
+            icon: "fa fa-book-open",
+            button: true,
+            onClick: () => { new RechercheDialog().render(true); }
+        });
 
-            menu.push({
-                name: "Recherche",
-                title: "Recherche",
-                icon: "fa fa-book-open",
-                button: true,
-                onClick: () => { console.log("toto") }
-            });
-
-            menu.push({
-                name: "Ephemeride",
-                title: "Ephéméride",
-                icon: "fa-solid fa-eclipse",
-                button: true,
-                onClick: () => { new EphemerideDialog().render(true); }
-            });
-
-        }
+        menu.push({
+            name: "ephemeride",
+            title: "Ephéméride",
+            icon: "fa-solid fa-eclipse",
+            button: true,
+            onClick: () => { new EphemerideDialog().render(true); }
+        });
 
         btns.push({
-            name: "NEPHILIM",
+            name: "nephilim",
             title: "Nephilim",
             icon: "fa-solid fa-feather-pointed",
             layer: "nephilim",
