@@ -1,12 +1,11 @@
 import { preloadTemplates } from "./module/common/templates.js";
 import { Constants } from "./module/common/constants.js";
-import { NephilimChat } from "./module/common/chat.js";
+import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 import { Macros } from "./module/common/macros.js";
 import { MigrationTools } from "./module/migration/migration.js";
-import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
+import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/entity.js";
-
 import { NephilimActor } from "./module/actor/entity.js";
 import { FigureSheet } from "./module/actor/figure.js";
 import { FigurantSheet } from "./module/actor/figurant.js";
@@ -22,12 +21,16 @@ import { CapaciteSheet } from "./module/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/periode/item/chute.js";
 import { CompetenceSheet } from "./feature/periode/item/competence.js";
+import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
 import { FormuleSheet } from "./feature/alchimie/item/formule.js";
 import { HabitusSheet } from "./feature/analogie/item/habitus.js";
+import { Health } from "./feature/core/health.js";
 import { InvocationSheet } from "./feature/kabbale/item/invocation.js";
 import { MagieSheet } from "./feature/magie/item/magie.js";
 import { MateriaeSheet } from "./feature/alchimie/item/materiae.js";
 import { MetamorpheSheet } from "./feature/nephilim/item/metamorphe.js";
+import { NephilimCombatant } from "./feature/combat/core/combatant.js";
+import { OpposedRollBuilder } from "./feature/core/opposedRollBuilder.js";
 import { OrdonnanceSheet } from "./feature/kabbale/item/ordonnance.js";
 import { PasseSheet } from "./feature/periode/item/passe.js";
 import { PeriodeSheet } from "./feature/periode/item/periode.js";
@@ -42,16 +45,13 @@ import { TechniqueSheet } from "./feature/baton/item/technique.js";
 import { TekhneSheet } from "./feature/coupe/item/tekhne.js";
 import { VecuSheet } from "./feature/periode/item/vecu.js";
 
-import { NephilimCombatant } from "./feature/combat/core/combatant.js";
-import { OpposedRollBuilder } from "./feature/core/opposedRollBuilder.js";
-import { Health } from "./feature/core/health.js";
-
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
 
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
+    CONFIG.Canvas.layers.nephilim = { layerClass: ControlsLayer, group: "primary" };
 
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
@@ -148,8 +148,6 @@ Hooks.once("init", function () {
         await MigrationTools.migrate();
     });
 
-    CONFIG.Canvas.layers.nephilim = { layerClass: ControlsLayer, group: "primary" };
-
     // Add some controls
     Hooks.on("getSceneControlButtons", (btns) => {
 
@@ -170,7 +168,7 @@ Hooks.once("init", function () {
                 title: "Ephéméride",
                 icon: "fa-solid fa-eclipse",
                 button: true,
-                onClick: () => { console.log("toto") }
+                onClick: () => { new EphemerideDialog().render(true); }
             });
 
         }

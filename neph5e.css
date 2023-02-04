@@ -2617,3 +2617,17 @@ form.combat div.hiddable #description {
   margin: auto;
   text-align: center;
 }
+.ephemeride table tr td {
+  font-family: 'AJensonPro';
+  text-align: center;
+}
+.ephemeride table td td {
+  font-family: 'AJensonPro';
+  text-align: center;
+}
+.ephemeride table td td:first-child {
+  background-color: #32a852;
+}
+.ephemeride table td td:nth-child(2) {
+  background-color: #aaaaaa;
+}
