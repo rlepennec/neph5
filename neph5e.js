@@ -158,22 +158,30 @@ Hooks.once("init", function () {
         if (game.user.isGM) {
 
             menu.push({
-                name: "Experience",
-                title: "Experience",
+                name: "Recherche",
+                title: "Recherche",
                 icon: "fa fa-book-open",
                 button: true,
                 onClick: () => { console.log("toto") }
             });
 
-            btns.push({
-                name: "NEPHILIM",
-                title: "Nephilim",
-                icon: "fa-solid fa-feather-pointed",
-                layer: "nephilim",
-                tools: menu
+            menu.push({
+                name: "Ephemeride",
+                title: "Ephéméride",
+                icon: "fa-solid fa-eclipse",
+                button: true,
+                onClick: () => { console.log("toto") }
             });
 
         }
+
+        btns.push({
+            name: "NEPHILIM",
+            title: "Nephilim",
+            icon: "fa-solid fa-feather-pointed",
+            layer: "nephilim",
+            tools: menu
+        });
 
     })
 
