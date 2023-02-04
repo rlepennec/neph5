@@ -1,5 +1,7 @@
 # 1.3.1
 Suppression des membres dont l'acteur est supprimé du monde
+Ajout d'une aide pour les éphémérides
+Ajout d'une aide pour les recherches occultes
 
 # 1.3.0
 Ajout du nouveau type d'acteur Fraternité
