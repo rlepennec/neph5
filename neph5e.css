@@ -2629,6 +2629,21 @@ form.combat div.hiddable #description {
   font-size: 16px;
   height: 50px;
 }
+.experience table tr td {
+  font-family: 'AJensonPro';
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+}
+.experience table tr:nth-child(1) {
+  font-family: 'Nightjar';
+  font-size: 16px;
+  height: 50px;
+}
+.experience table tr:nth-child(2) {
+  font-weight: bold;
+}
 .recherche table tr td {
   font-family: 'AJensonPro';
   text-align: center;

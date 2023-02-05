@@ -22,6 +22,7 @@ import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/periode/item/chute.js";
 import { CompetenceSheet } from "./feature/periode/item/competence.js";
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
+import { ExperienceDialog } from "./feature/experience/experience.js";
 import { FormuleSheet } from "./feature/alchimie/item/formule.js";
 import { HabitusSheet } from "./feature/analogie/item/habitus.js";
 import { Health } from "./feature/core/health.js";
@@ -168,6 +169,14 @@ Hooks.once("init", function () {
             icon: "fa-solid fa-eclipse",
             button: true,
             onClick: () => { new EphemerideDialog().render(true); }
+        });
+
+        menu.push({
+            name: "experience",
+            title: "Expérience",
+            icon: "fa-solid fa-coins",
+            button: true,
+            onClick: () => { new ExperienceDialog().render(true); }
         });
 
         btns.push({
