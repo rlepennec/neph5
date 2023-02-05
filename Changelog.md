@@ -1,3 +1,6 @@
+# 1.3.2
+
+
 # 1.3.1
 Suppression des membres d'une fraternité lorsque l'acteur est supprimé du monde
 Ajout d'une aide pour les éphémérides
