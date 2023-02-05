@@ -7,15 +7,15 @@ export class RechercheDialog extends AbstractDialog {
      */
     constructor() {
         super(null);
-        this.data = {};
     }
 
     /**
      * @override
      */
     getData(options) {
-        const data = duplicate(this.data);
-        return data;
+        return {
+            isGM: game.user.isGM
+        }
     }
 
     /**
