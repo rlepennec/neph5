@@ -1,5 +1,6 @@
 # 1.3.2
-
+Renommage de la chute Lune Noire en Entropie lunaire
+Ajout d'une aide pour l'expérience
 
 # 1.3.1
 Suppression des membres d'une fraternité lorsque l'acteur est supprimé du monde
