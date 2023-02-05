@@ -1,5 +1,5 @@
 # 1.3.1
-Suppression des membres dont l'acteur est supprimé du monde
+Suppression des membres d'une fraternité lorsque l'acteur est supprimé du monde
 Ajout d'une aide pour les éphémérides
 Ajout d'une aide pour les recherches occultes
 
