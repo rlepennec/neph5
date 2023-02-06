@@ -46,7 +46,8 @@ export class HistoricalSheet extends BaseSheet {
         const item = this.actor.items.get(id);
         const value = $(event.currentTarget).closest(".change-degre").val();
         const system = duplicate(item.system);
-        system.degre = parseInt(value);
+        const converted = parseInt(value);
+        system.degre = isNaN(converted) ? 0 : converted;
         await item.update({ ['system']: system });
     }
 
