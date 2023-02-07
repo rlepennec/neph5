@@ -192,27 +192,27 @@ export class Science extends AbstractRoll {
                     property: 'cercle'
                 }
 
-            // Denier
-            case 'architecte':
-            case 'guide':
-            case 'mage':
-            case 'ouvrier':
-            case 'roi':
-            case 'sage':
-                return {
-                    type: 'pratique',
-                    property: 'cercle'
-                }
-
             // Custom
             default:
 
-                // Magie analogique
-                if (typeof name === 'string' && name?.substring(0,9) === 'analogie@') {
-                    return {
-                        type: 'habitus',
-                        property: 'domaine'
+                if (typeof name === 'string') {
+
+                    // Magie analogique
+                    if (name?.substring(0,9) === 'analogie@') {
+                        return {
+                            type: 'habitus',
+                            property: 'domaine'
+                        }
                     }
+
+                    // Pratique synarche
+                    if (name?.substring(0,9) === 'pratique@') {
+                        return {
+                            type: 'pratique',
+                            property: 'cercle'
+                        }
+                    }
+
                 }
 
         }
