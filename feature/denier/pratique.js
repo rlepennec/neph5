@@ -2,7 +2,6 @@ import { AbstractRoll } from "../core/abstractRoll.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
-import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
 
 export class Pratique extends AbstractRoll {
@@ -123,7 +122,7 @@ export class Pratique extends AbstractRoll {
                 item: game.items.get(this.item._id),
                 system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
-                cercles: Game.denier.axes,
+                cercles: CustomHandlebarsHelpers.cerclesOf('pratique', true),
                 difficulty: this.degre
             },
             'ITEM.TypePratique',

@@ -216,6 +216,14 @@ export class CustomHandlebarsHelpers {
                         base[i.system.key] = i.name;
                     }
                 }
+                break;
+            case 'pratique':
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 9) === "pratique@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+                break;
         }
         return base;
     }
