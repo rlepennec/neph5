@@ -1,5 +1,5 @@
+import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Game } from "../../../module/common/game.js";
 
 export class PratiqueSheet extends NephilimItemSheet {
 
@@ -8,7 +8,7 @@ export class PratiqueSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.cercles = Game.denier.axes;
+        data.cercles = CustomHandlebarsHelpers.cerclesOf('pratique', true);
         return data;
     }
 
