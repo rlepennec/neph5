@@ -2,6 +2,7 @@
 Renommage de la chute Lune Noire en Entropie lunaire
 Ajout d'une aide pour l'expérience
 Correction d'une anomalie lors de la suppression des degrés dans le panneau Incarnations
+Possibilité d'utiliser des pratiques synarques
 
 # 1.3.1
 Suppression des membres d'une fraternité lorsque l'acteur est supprimé du monde
