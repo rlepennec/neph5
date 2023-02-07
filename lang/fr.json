@@ -98,10 +98,12 @@
         "bonus": "Bonus",
         "bonusDommage": "Bonus de dommages",
         "boussole": "Boussole",
+        "branche": "Branche",
         "capacites": "Capacités",
         "caracteristiques": "Caracteristiques",
         "catalyseurs": "Catalyseurs",
         "cercle": "Cercle",
+        "chapelle": "Chapelle",
         "chargeur": "Chargeur",
         "charmeur": "Charmeur",
         "chesed": "Chesed",
@@ -356,6 +358,7 @@
                 "description": "Chaque round passé à viser avant de tirer apporte un bonus de +2 au tir, avec un maximum de +6. Aucune autre action et aucune Défense autorisée pendant qu’on vise"
             }
         },
+        "manteau": "Manteau",
         "materiaePrimae": "Materiae Primae",
         "melee": "De mélée",
         "membres": "Membres",

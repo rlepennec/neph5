@@ -1,0 +1,16 @@
+{{#if (displaySciencesOf actor 'technique' true)}}
+<ol class="item-list">
+    {{#each (cerclesOf 'technique' false) as |name key|}}
+        {{#if (displayScience ../actor key)}}
+        {{#with (science ../actor key) as |degre|}}
+            {{> "systems/neph5e/feature/baton/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
+            {{#each (focus ../../actor key) as |item|}}
+              {{> "systems/neph5e/feature/baton/actor/technique.hbs" item=item degre=degre}}
+            {{/each}}
+        {{/with}}
+        {{/if}}
+    {{/each}}
+</ol>
+{{else}}
+    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+{{/if}}

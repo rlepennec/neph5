@@ -20,9 +20,12 @@ import { Periode } from "../../feature/periode/periode.js";
 import { Pratique } from "../../feature/denier/pratique.js";
 import { Quete } from "../../feature/periode/quete.js";
 import { Rite } from "../../feature/necromancie/rite.js";
+import { Rituel } from "../../feature/epee/rituel.js";
 import { Savoir } from "../../feature/periode/savoir.js";
 import { Science } from "../../feature/science/science.js";
 import { Sort } from "../../feature/magie/sort.js";
+import { Technique } from "../../feature/baton/technique.js";
+import { Tekhne } from "../../feature/coupe/tekhne.js";
 import { Vecu } from "../../feature/periode/vecu.js";
 
 export class AbstractRollBuilder {
@@ -149,12 +152,18 @@ export class AbstractRollBuilder {
                 return new Ordonnance(this.actor, this.item).withPeriode(this.periode);
             case 'rite':
                 return new Rite(this.actor, this.item).withPeriode(this.periode);
+            case 'rituel':
+                return new Rituel(this.actor, this.item).withPeriode(this.periode);
             case 'savoir':
                 return new Savoir(this.actor, this.item, this.periode);
             case 'science':
                 return new Science(this.actor, this.item, this.periode);
             case 'sort':
                 return new Sort(this.actor, this.item).withPeriode(this.periode);
+            case 'technique':
+                return new Technique(this.actor, this.item).withPeriode(this.periode);
+            case 'tekhne':
+                return new Tekhne(this.actor, this.item).withPeriode(this.periode);
             case 'vecu':
                 return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
             default:

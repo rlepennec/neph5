@@ -224,6 +224,27 @@ export class CustomHandlebarsHelpers {
                     }
                 }
                 break;
+            case 'rituel':
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 7) === "rituel@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+                break;
+            case 'technique':
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 10) === "technique@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+                break;
+            case 'tekhne':
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 7) === "tekhne@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+                break;
         }
         return base;
     }

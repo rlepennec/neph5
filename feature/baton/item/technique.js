@@ -1,6 +1,16 @@
+import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class TechniqueSheet extends NephilimItemSheet {
+
+    /** 
+     * @override
+     */
+    getData() {
+        const data = super.getData();
+        data.cercles = CustomHandlebarsHelpers.cerclesOf('technique', true);
+        return data;
+    }
 
     /** 
      * @override

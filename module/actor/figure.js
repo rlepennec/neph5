@@ -210,12 +210,33 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="vecus"] .roll-vecu').click(this._onRollFeature.bind(this, 'vecu'));
         html.find('div[data-tab="vecus"] .roll-chute').click(this._onRollFeature.bind(this, 'chute'));
 
+        // Baton
+        html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="baton"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="baton"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="baton"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
+        // Coupe
+        html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="coupe"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="coupe"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="coupe"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
         // Denier
         html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="denier"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="denier"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
         html.find('div[data-tab="denier"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
         html.find('div[data-tab="denier"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
+        // Epee
+        html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="epee"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="epee"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="epee"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
@@ -259,23 +280,6 @@ export class FigureSheet extends HistoricalSheet {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.addMacroData(event), false);
         });
-
-////////////
-
-        // Baton
-        //html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
-        //html.find('div[data-tab="baton"] .item-edit').click(this._onEditItem.bind(this));
-        //html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteItem.bind(this));
-
-        // Coupe
-        //html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
-        //html.find('div[data-tab="coupe"] .item-edit').click(this._onEditItem.bind(this));
-        //html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteItem.bind(this));
-
-        // Epee
-        //html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
-        //html.find('div[data-tab="epee"] .item-edit').click(this._onEditItem.bind(this));
-        //html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteItem.bind(this));
 
     }
 
@@ -335,6 +339,9 @@ export class FigureSheet extends HistoricalSheet {
                         case 'pratique':
                         case 'quete':
                         case 'rite':
+                        case 'rituel':
+                        case 'technique':
+                        case 'tekhne':
                         case 'savoir':
                         case 'science':
                         case 'sort':
@@ -411,16 +418,19 @@ export class FigureSheet extends HistoricalSheet {
             case 'arcane':
             case 'chute':
             case 'formule':
+            case 'habitus':
             case 'invocation':
             case 'ordonnance':
             case 'passe':
             case 'pratique':
             case 'quete':
             case 'rite':
+            case 'rituel':
             case 'savoir':
             case 'science':
             case 'sort':
-            case 'habitus':
+            case 'technique':
+            case 'tekhne':
                 return ['incarnations'];
             default:
                 return [];

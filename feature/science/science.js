@@ -6,6 +6,9 @@ import { Habitus } from "../analogie/habitus.js";
 import { Invocation } from "../kabbale/invocation.js";
 import { Periode } from "../periode/periode.js";
 import { Pratique } from "../denier/pratique.js";
+import { Rituel } from "../epee/rituel.js";
+import { Tekhne } from "../coupe/tekhne.js";
+import { Technique } from "../baton/technique.js";
 import { Sort } from "../magie/sort.js";
 
 export class Science extends AbstractRoll {
@@ -213,6 +216,30 @@ export class Science extends AbstractRoll {
                         }
                     }
 
+                    // Technique templiere
+                    if (name?.substring(0,10) === 'technique@') {
+                        return {
+                            type: 'technique',
+                            property: 'cercle'
+                        }
+                    }
+
+                    // Tekhne rosicrucienne
+                    if (name?.substring(0,7) === 'tekhne@') {
+                        return {
+                            type: 'tekhne',
+                            property: 'cercle'
+                        }
+                    }
+
+                    // Rituel myste
+                    if (name?.substring(0,7) === 'rituel@') {
+                        return {
+                            type: 'rituel',
+                            property: 'cercle'
+                        }
+                    }
+
                 }
 
         }
@@ -248,6 +275,16 @@ export class Science extends AbstractRoll {
                 case 'pratique':
                     degre = new Pratique(actor, item).withPeriode(actor.system.periode).degre;
                     break;
+                case 'rituel':
+                    degre = new Rituel(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+                case 'technique':
+                    degre = new Technique(actor, item).withPeriode(actor.system.periode).degre;
+                    break;
+                case 'tekhne':
+                    degre = new Tekhne(actor, item).withPeriode(actor.system.periode).degre;
+                    break;               
+
             }
 
             const embedded = actor.items.find(i => i.sid === item.sid);

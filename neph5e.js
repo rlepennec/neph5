@@ -326,3 +326,16 @@ Hooks.once("init", function () {
     }
 
 });
+
+
+/**
+ * MEMO
+ *  - CSS
+ *  - module/common/Handlebars.js : static cerclesOf(science, all)
+ *    module/common/Templates.js : preloadTemplates
+ *  - module/actor/figure.js : async _onDrop(event) & _droppableTabs(type)
+ *  - core/abstractRollBuilder.hs : create()
+ *  - feature/science/science.js : static getCercle(name)
+ *  - feature/periode/periode.js : static getAll(actor)
+ * 
+ */

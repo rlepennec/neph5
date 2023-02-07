@@ -1,0 +1,27 @@
+{{#if (eq degre 0)}}
+<div class="header disabled">
+{{else}}
+<div class="header">
+{{/if}}
+
+    <div class="circle">
+        <div class="circleContent">{{degre}}</div>
+    </div>
+
+    <div class="title">
+        <div class="item-name">
+            <span>{{cercle}}</span>
+        </div>
+        {{#unless (eq degre 0)}}
+        <div class="item-parameter width-40">
+            <span>{{localize "%"}}</span>
+        </div>
+        <div class="item-control dice">
+            {{#if sciencesOccultes}}
+            <a class="roll-science" data-item="{{cercle-id}}"><i class="fas fa-dice-d20"></i></a>
+            {{/if}}
+        </div>
+        {{/unless}}
+    </div>
+
+</div>

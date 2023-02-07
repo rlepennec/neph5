@@ -1,0 +1,32 @@
+<li 
+    {{#if (eq degre 0)}}
+    class="item macro focus disabled"
+    {{else}}
+    class="item macro focus"
+    {{/if}}
+    data-item-id="{{item.embedded.id}}"
+    data-id="{{item.embedded.id}}"
+    data-sid="{{item.original.sid}}"
+    data-type="tekhne">
+
+    <div class="item-control">
+        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    </div>
+
+    <div class="item-name edit-focus" data-id="{{item.original.id}}">
+        <span>{{item.original.name}}</span>
+    </div>
+
+    {{#unless (eq degre 0)}}
+
+    <label class="item-parameter width-40">
+        {{item.embedded.degre}}
+    </label>
+
+    <div class="dice">
+        <a class="roll-focus" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+    </div>
+
+    {{/unless}}
+
+</li>
