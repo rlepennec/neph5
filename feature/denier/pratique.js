@@ -83,7 +83,7 @@ export class Pratique extends AbstractRoll {
         const item = game.items.find(i => i.system.key === this.item.system.cercle);
         const science = new Science(this.actor, item).degre;
         const pratique = this.item.system.degre;
-        const ka = this.actor.getKa("soleil");
+        const ka = this.actor.ka;
         return science + ka - pratique;
     }
 

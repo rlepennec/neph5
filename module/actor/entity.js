@@ -179,6 +179,31 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * @returns the actor ka dominant.
+     */
+    get ka() {
+        switch (this.type) {
+            case 'figure':
+                if (this.system.options?.nephilim === true) {
+                    return Math.max(
+                        this.system.ka.air,
+                        this.system.ka.eau,
+                        this.system.ka.feu,
+                        this.system.ka.lune,
+                        this.system.ka.terre);
+                }
+                if (this.system.options?.selenim === true) {
+                    return this.system.ka.noyau;
+                }
+                return 0;
+            case 'figurant':
+                return this.system.ka;
+            default:
+                return 0;
+        }
+    }
+
+    /**
      * @returns the voie magique of the actor.
      */
     get voieMagique() {
