@@ -118,7 +118,7 @@ export class Atlanteide extends AbstractRoll {
      */
     async edit() {
         await super.edit(
-            "systems/neph5e/feature/altanteide/item/atlanteide.html",
+            "systems/neph5e/feature/atlanteide/item/atlanteide.html",
             {
                 item: game.items.get(this.item._id),
                 system: this.item.system,

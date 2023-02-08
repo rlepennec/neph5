@@ -126,7 +126,7 @@ export class AbstractRollBuilder {
             case 'aspect':
                 return new Aspect(this.actor, this.item);
             case 'atlanteide':
-                return new Atlanteide(this.actor, this.item);
+                return new Atlanteide(this.actor, this.item).withPeriode(this.periode);
             case 'catalyseur':
                 return new Catalyseur(this.actor, this.item);
             case 'chute':
@@ -134,7 +134,7 @@ export class AbstractRollBuilder {
             case 'competence':
                 return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
             case 'dracomachie':
-                return new Dracomachie(this.actor, this.item);
+                return new Dracomachie(this.actor, this.item).withPeriode(this.periode);
             case 'formule':
                 return new Formule(this.actor, this.item).withPeriode(this.periode);
             case 'habitus':
