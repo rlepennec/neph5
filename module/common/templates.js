@@ -18,6 +18,11 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/alchimie/actor/formule.hbs",
         "systems/neph5e/feature/alchimie/actor/construct.hbs",
 
+        // Atlanteide
+        "systems/neph5e/feature/atlanteide/actor/main.hbs",
+        "systems/neph5e/feature/atlanteide/actor/header.hbs",
+        "systems/neph5e/feature/atlanteide/actor/atlanteide.hbs",
+
         // Baton
         "systems/neph5e/feature/baton/actor/main.hbs",
         "systems/neph5e/feature/baton/actor/header.hbs",
@@ -42,6 +47,11 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/denier/actor/main.hbs",
         "systems/neph5e/feature/denier/actor/header.hbs",
         "systems/neph5e/feature/denier/actor/pratique.hbs",
+
+        // Dracomachie
+        "systems/neph5e/feature/dracomachie/actor/main.hbs",
+        "systems/neph5e/feature/dracomachie/actor/header.hbs",
+        "systems/neph5e/feature/dracomachie/actor/dracomachie.hbs",
 
         // Epee
         "systems/neph5e/feature/epee/actor/main.hbs",

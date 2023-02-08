@@ -16,11 +16,13 @@ import { AppelSheet } from "./feature/conjuration/item/appel.js";
 import { ArcaneSheet } from "./feature/periode/item/arcane.js";
 import { ArmeSheet } from "./feature/combat/item/arme.js";
 import { ArmureSheet } from "./feature/combat/item/armure.js";
+import { AtlanteideSheet } from "./feature/atlanteide/item/atlanteide.js";
 import { AspectSheet } from "./feature/selenim/item/aspect.js";
 import { CapaciteSheet } from "./module/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/periode/item/chute.js";
 import { CompetenceSheet } from "./feature/periode/item/competence.js";
+import { DracomachieSheet } from "./feature/dracomachie/item/dracomachie.js";
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
 import { ExperienceDialog } from "./feature/experience/experience.js";
 import { FormuleSheet } from "./feature/alchimie/item/formule.js";
@@ -118,10 +120,12 @@ Hooks.once("init", function () {
     Items.registerSheet('nephilim', ArmeSheet, { types: ['arme'], makeDefault: true });
     Items.registerSheet('nephilim', ArmureSheet, { types: ['armure'], makeDefault: true });
     Items.registerSheet('nephilim', AspectSheet, { types: ['aspect'], makeDefault: true });
+    Items.registerSheet('nephilim', AtlanteideSheet, { types: ['atlanteide'], makeDefault: true });
     Items.registerSheet('nephilim', CapaciteSheet, { types: ['capacite'], makeDefault: true });
     Items.registerSheet('nephilim', CatalyseurSheet, { types: ['catalyseur'], makeDefault: true });
     Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
     Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
+    Items.registerSheet('nephilim', DracomachieSheet, { types: ['dracomachie'], makeDefault: true });
     Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
     Items.registerSheet('nephilim', HabitusSheet, { types: ['habitus'], makeDefault: true });
     Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
@@ -335,7 +339,7 @@ Hooks.once("init", function () {
  *    module/common/Templates.js : preloadTemplates
  *  - module/actor/figure.js : async _onDrop(event) & _droppableTabs(type)
  *  - core/abstractRollBuilder.hs : create()
- *  - feature/science/science.js : static getCercle(name)
+ *  - feature/science/science.js : static getCercle(name) + focus
  *  - feature/periode/periode.js : static getAll(actor)
  * 
  */

@@ -5,7 +5,7 @@ import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
-export class Dracomachique extends AbstractRoll {
+export class Dracomachie extends AbstractRoll {
 
     /**
      * Constructor.

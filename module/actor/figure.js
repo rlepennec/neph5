@@ -238,6 +238,20 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="epee"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
         html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
 
+        // Atlanteide
+        html.find('div[data-tab="atlanteide"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="atlanteide"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="atlanteide"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="atlanteide"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="atlanteide"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
+        // Dracomachie
+        html.find('div[data-tab="dracomachie"]').on("drop", this._onDrop.bind(this));
+        html.find('div[data-tab="dracomachie"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
+        html.find('div[data-tab="dracomachie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
+        html.find('div[data-tab="dracomachie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
+        html.find('div[data-tab="dracomachie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
 
@@ -331,7 +345,9 @@ export class FigureSheet extends HistoricalSheet {
                             break;
                         case 'appel':
                         case 'arcane':
+                        case 'atlanteide':
                         case 'chute':
+                        case 'dracomachie':
                         case 'formule':
                         case 'invocation':
                         case 'ordonnance':
@@ -416,7 +432,9 @@ export class FigureSheet extends HistoricalSheet {
             case 'periode':
             case 'appel':
             case 'arcane':
+            case 'atlanteide':
             case 'chute':
+            case 'dracomachie':
             case 'formule':
             case 'habitus':
             case 'invocation':

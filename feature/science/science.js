@@ -1,5 +1,7 @@
 import { AbstractRoll } from "../core/abstractRoll.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { Atlanteide } from "../atlanteide/atlanteide.js";
+import { Dracomachie } from "../dracomachie/dracomachie.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Formule } from "../alchimie/formule.js";
 import { Habitus } from "../analogie/habitus.js";
@@ -200,6 +202,22 @@ export class Science extends AbstractRoll {
 
                 if (typeof name === 'string') {
 
+                    // Atlanteide
+                    if (name?.substring(0,11) === 'atlanteide@') {
+                        return {
+                            type: 'rituel',
+                            property: 'cercle'
+                        }
+                    }
+
+                    // Dracomachie
+                    if (name?.substring(0,12) === 'dracomachie@') {
+                        return {
+                            type: 'technique',
+                            property: 'cercle'
+                        }
+                    }
+
                     // Magie analogique
                     if (name?.substring(0,9) === 'analogie@') {
                         return {
@@ -260,6 +278,12 @@ export class Science extends AbstractRoll {
 
             let degre = null;
             switch (item.type) {
+                case 'atlanteide':
+                    degre = new Atlanteide(actor, item).withPeriode(actor.system.periode).degre;
+                    break; 
+                case 'dracomachie':
+                    degre = new Dracomachie(actor, item).withPeriode(actor.system.periode).degre;
+                    break; 
                 case 'sort':
                     degre = new Sort(actor, item).withPeriode(actor.system.periode).degre;
                     break;

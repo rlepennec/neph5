@@ -45,6 +45,10 @@
                 <a class="sheet-navigation-tab" data-tab="laboratoire">{{localize "NEPH5E.alchimie.laboratoire"}}</a>
                 {{/if}}
         
+                {{#if (eq system.options.dracomachie true)}}
+                <a class="sheet-navigation-tab" data-tab="dracomachie">{{localize "NEPH5E.dracomachie"}}</a>
+                {{/if}}
+
                 {{#if (eq system.options.necromancie true)}}
                 <a class="sheet-navigation-tab" data-tab="necromancie">{{localize "NEPH5E.necromancie.science"}}</a>
                 {{/if}}
@@ -71,6 +75,10 @@
         
                 {{#if (eq system.options.akasha true)}}
                 <a class="sheet-navigation-tab" data-tab="akasha">{{localize "NEPH5E.akasha"}}</a>
+                {{/if}}
+
+                {{#if (eq system.options.atlanteide true)}}
+                <a class="sheet-navigation-tab" data-tab="atlanteide">{{localize "NEPH5E.atlanteide"}}</a>
                 {{/if}}
         
                 {{#if (eq system.options.incarnations true)}}
@@ -168,7 +176,14 @@
                     {{> "systems/neph5e/feature/alchimie/actor/laboratoire.hbs"}}
                 </div>
                 {{/if}}
-        
+
+                {{#if (eq system.options.atlanteide true)}}
+                <div class="tab all-focus" data-group="primary" data-tab="atlanteide">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+                    {{> "systems/neph5e/feature/atlanteide/actor/main.hbs"}}
+                </div>
+                {{/if}}
+
                 {{#if (eq system.options.akasha true)}}
                 <div class="tab akasha" data-group="primary" data-tab="akasha">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
@@ -176,6 +191,13 @@
                 </div>
                 {{/if}}
         
+                {{#if (eq system.options.dracomachie true)}}
+                <div class="tab all-focus" data-group="primary" data-tab="dracomachie">
+                    {{> "systems/neph5e/templates/actor/parts/top.hbs"}}
+                    {{> "systems/neph5e/feature/dracomachie/actor/main.hbs"}}
+                </div>
+                {{/if}}
+
                 {{#if (eq system.options.selenim true)}}
                 <div class="tab selenim" data-group="primary" data-tab="selenim">
                     {{> "systems/neph5e/templates/actor/parts/top.hbs"}}

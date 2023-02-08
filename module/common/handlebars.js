@@ -245,6 +245,20 @@ export class CustomHandlebarsHelpers {
                     }
                 }
                 break;
+            case 'dracomachie':
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 12) === "dracomachie@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+                break;
+            case 'atlanteide':
+                for (let i of game.items.filter(i => i.type === 'science')) {
+                    if (i.system.key.substring(0, 11) === "atlanteide@") {
+                        base[i.system.key] = i.name;
+                    }
+                }
+                break;
         }
         return base;
     }

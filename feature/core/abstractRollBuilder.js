@@ -2,9 +2,11 @@ import { Alchimie } from "../../feature/alchimie/alchimie.js";
 import { Appel } from "../../feature/conjuration/appel.js";
 import { Arcane } from "../../feature/periode/arcane.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
+import { Atlanteide } from "../../feature/atlanteide/atlanteide.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/periode/chute.js";
 import { Competence } from "../../feature/periode/competence.js";
+import { Dracomachie } from "../../feature/dracomachie/dracomachie.js";
 import { Formule } from "../../feature/alchimie/formule.js";
 import { Habitus } from "../../feature/analogie/habitus.js";
 import { Invocation } from "../../feature/kabbale/invocation.js";
@@ -27,6 +29,7 @@ import { Sort } from "../../feature/magie/sort.js";
 import { Technique } from "../../feature/baton/technique.js";
 import { Tekhne } from "../../feature/coupe/tekhne.js";
 import { Vecu } from "../../feature/periode/vecu.js";
+import { AtlanteideSheet } from "../atlanteide/item/atlanteide.js";
 
 export class AbstractRollBuilder {
 
@@ -122,12 +125,16 @@ export class AbstractRollBuilder {
                 return new Arcane(this.actor, this.item, this.periode);
             case 'aspect':
                 return new Aspect(this.actor, this.item);
+            case 'atlanteide':
+                return new Atlanteide(this.actor, this.item);
             case 'catalyseur':
                 return new Catalyseur(this.actor, this.item);
             case 'chute':
                 return new Chute(this.actor, this.item, this.periode);
             case 'competence':
                 return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
+            case 'dracomachie':
+                return new Dracomachie(this.actor, this.item);
             case 'formule':
                 return new Formule(this.actor, this.item).withPeriode(this.periode);
             case 'habitus':
