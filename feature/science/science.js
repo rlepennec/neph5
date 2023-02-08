@@ -205,7 +205,7 @@ export class Science extends AbstractRoll {
                     // Atlanteide
                     if (name?.substring(0,11) === 'atlanteide@') {
                         return {
-                            type: 'rituel',
+                            type: 'atlanteide',
                             property: 'cercle'
                         }
                     }
@@ -213,7 +213,7 @@ export class Science extends AbstractRoll {
                     // Dracomachie
                     if (name?.substring(0,12) === 'dracomachie@') {
                         return {
-                            type: 'technique',
+                            type: 'dracomachie',
                             property: 'cercle'
                         }
                     }

@@ -118,15 +118,15 @@ export class Dracomachie extends AbstractRoll {
      */
     async edit() {
         await super.edit(
-            "systems/neph5e/feature/dracomachie/item/passe.html",
+            "systems/neph5e/feature/dracomachie/item/dracomachie.html",
             {
                 item: game.items.get(this.item._id),
                 system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
-                cercles: CustomHandlebarsHelpers.cerclesOf('passe', true),
+                cercles: CustomHandlebarsHelpers.cerclesOf('dracomachie', true),
                 difficulty: this.degre
             },
-            'ITEM.TypePasse',
+            'ITEM.TypeDracomachie',
             560,
             500
         )

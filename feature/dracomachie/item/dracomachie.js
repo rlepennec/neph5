@@ -8,7 +8,7 @@ export class DracomachieSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.cercles = CustomHandlebarsHelpers.cerclesOf('rituel', true);
+        data.cercles = CustomHandlebarsHelpers.cerclesOf('dracomachie', true);
         return data;
     }
 
