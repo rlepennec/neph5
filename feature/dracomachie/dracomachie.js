@@ -5,7 +5,7 @@ import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
-export class Passe extends AbstractRoll {
+export class Dracomachique extends AbstractRoll {
 
     /**
      * Constructor.
@@ -35,7 +35,7 @@ export class Passe extends AbstractRoll {
         const embedded = this.actor.items.find(i => i.sid === this.sid);
 
         if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas cette passe");
+            ui.notifications.warn("Vous ne possédez pas cette technique dracomachique");
             return;
         }
 
@@ -47,14 +47,14 @@ export class Passe extends AbstractRoll {
      * @Override
      */
     get title() {
-        return "Jet de Passe Dracomachique";
+        return "Jet de dracomachie";
     }
 
     /**
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.passe';
+        return 'NEPH5E.tente.self.dracomachie';
     }
 
     /**

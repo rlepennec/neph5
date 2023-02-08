@@ -1,7 +1,7 @@
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
-export class RituelAtlanteideSheet extends NephilimItemSheet {
+export class DracomachieSheet extends NephilimItemSheet {
 
     /** 
      * @override
@@ -30,7 +30,7 @@ export class RituelAtlanteideSheet extends NephilimItemSheet {
      * @override
      */
     get template() {
-        return `systems/neph5e/feature/epee/item/rituel.html`;
+        return `systems/neph5e/feature/dracomachie/item/dracomachie.html`;
     }
 
 }

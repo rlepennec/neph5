@@ -1,11 +1,11 @@
-{{#if (displaySciencesOf actor 'rituel' true)}}
+{{#if (displaySciencesOf actor 'dracomachie' true)}}
 <ol class="item-list">
-    {{#each (cerclesOf 'rituel' false) as |name key|}}
+    {{#each (cerclesOf 'dracomachie' false) as |name key|}}
         {{#if (displayScience ../actor key)}}
         {{#with (science ../actor key) as |degre|}}
-            {{> "systems/neph5e/feature/epee/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
+            {{> "systems/neph5e/feature/dracomachie/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
             {{#each (focus ../../actor key) as |item|}}
-              {{> "systems/neph5e/feature/epee/actor/rituel.hbs" item=item degre=degre}}
+              {{> "systems/neph5e/feature/dracomachie/actor/dracomachie.hbs" item=item degre=degre}}
             {{/each}}
         {{/with}}
         {{/if}}

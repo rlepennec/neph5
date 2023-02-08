@@ -5,7 +5,7 @@ import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
-export class RituelAtlanteide extends AbstractRoll {
+export class Atlanteide extends AbstractRoll {
 
     /**
      * Constructor.
@@ -47,14 +47,14 @@ export class RituelAtlanteide extends AbstractRoll {
      * @Override
      */
     get title() {
-        return "Jet de Passe Dracomachique";
+        return "Jet de Rituel Altlantéide";
     }
 
     /**
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.passe';
+        return 'NEPH5E.tente.self.atlanteide';
     }
 
     /**
@@ -64,7 +64,7 @@ export class RituelAtlanteide extends AbstractRoll {
         return new ActionDataBuilder(this)
             .withType(Constants.SIMPLE)
             .withItem(this.item)
-            .withBase('Passe', this.degre)
+            .withBase('Rituel', this.degre)
             .withBlessures('magique')
             .export();
     }
@@ -97,7 +97,7 @@ export class RituelAtlanteide extends AbstractRoll {
             const previous = this.actor.items.find(i => i.sid === this.sid);
 
             await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a passe")
+                .withContext("Drop of a rituel altantéide")
                 .withDeleteExisting()
                 .withData("periode", this.periode)
                 .withoutData('description', 'cercle', 'degre')
@@ -118,15 +118,15 @@ export class RituelAtlanteide extends AbstractRoll {
      */
     async edit() {
         await super.edit(
-            "systems/neph5e/feature/dracomachie/item/passe.html",
+            "systems/neph5e/feature/altanteide/item/atlanteide.html",
             {
                 item: game.items.get(this.item._id),
                 system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
-                cercles: CustomHandlebarsHelpers.cerclesOf('passe', true),
+                cercles: CustomHandlebarsHelpers.cerclesOf('atlanteide', true),
                 difficulty: this.degre
             },
-            'ITEM.TypePasse',
+            'ITEM.TypeAtlanteide',
             560,
             500
         )

@@ -1,14 +1,14 @@
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
-export class RituelSheet extends NephilimItemSheet {
+export class AtlanteideSheet extends NephilimItemSheet {
 
     /** 
      * @override
      */
     getData() {
         const data = super.getData();
-        data.cercles = CustomHandlebarsHelpers.cerclesOf('rituel', true);
+        data.cercles = CustomHandlebarsHelpers.cerclesOf('atlanteide', true);
         return data;
     }
 
@@ -30,7 +30,7 @@ export class RituelSheet extends NephilimItemSheet {
      * @override
      */
     get template() {
-        return `systems/neph5e/feature/epee/item/rituel.html`;
+        return `systems/neph5e/feature/atlanteide/item/atlanteide.html`;
     }
 
 }
