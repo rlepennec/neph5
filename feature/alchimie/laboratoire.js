@@ -81,7 +81,10 @@ export class Laboratoire {
      * @returns the maximum number of materiae primae.
      */
     getMaxMP(element) {
-        return 8;
+        return this.actor.science('oeuvreAuNoir') +
+            this.actor.science('oeuvreAuBlanc') +
+            this.actor.science('oeuvreAuRouge') +
+            this.actor.system.ka[element];
     }
 
 }
