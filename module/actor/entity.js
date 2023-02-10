@@ -572,15 +572,22 @@ export class NephilimActor extends Actor {
         let builder = null;
         switch (type) {
             case 'appel':
+            case 'atlanteide':
             case 'chute':
             case 'competence':
+            case 'dracomachie':
             case 'formule':
+            case 'habitus':
             case 'invocation':
             case 'quete':
             case 'passe':
+            case 'pratique':
             case 'rite':
+            case 'rituel':
             case 'savoir':
-            case 'sort': {
+            case 'sort':
+            case 'tekhne':
+            case 'technique': {
                 const item = game.items.find(i => i.sid === sid);
                 builder = new AbstractRollBuilder(this)
                     .withItem(item)

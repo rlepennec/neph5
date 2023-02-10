@@ -29,7 +29,6 @@ import { Sort } from "../../feature/magie/sort.js";
 import { Technique } from "../../feature/baton/technique.js";
 import { Tekhne } from "../../feature/coupe/tekhne.js";
 import { Vecu } from "../../feature/periode/vecu.js";
-import { AtlanteideSheet } from "../atlanteide/item/atlanteide.js";
 
 export class AbstractRollBuilder {
 
