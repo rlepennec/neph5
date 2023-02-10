@@ -59,7 +59,7 @@ export class Laboratoire {
      * Gets the construct associated with the specified substance.
      * @param actor     The actor object for which to retrieve the construct.
      * @param substance The substance of the construct to get.
-     * @return the construct.
+     * @returns the construct.
      */
     getConstruct(substance) {
         switch (substance) {
@@ -74,6 +74,14 @@ export class Laboratoire {
             case Laboratoire.VAPEUR:
                 return this.actor.system.alchimie.constructs.aludel;
         }
+    }
+
+    /**
+     * @param element The element for which to retrieve to max MP.
+     * @returns the maximum number of materiae primae.
+     */
+    getMaxMP(element) {
+        return 10;
     }
 
 }

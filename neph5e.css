@@ -1196,9 +1196,26 @@
   flex: 0 0 auto;
   width: 30px;
   height: 30px;
-  margin-right: 38px;
+  margin-right: 0px;
   text-align: center;
   border-radius: 50%;
+  transform: translate(0px, -5px);
+}
+.actor-root .article .laboratoire .materiae-header .maximum {
+  font-size: 14px;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  margin-right: 38px;
+  text-align: center;
+  transform: translate(0px, -5px);
+}
+.actor-root .article .laboratoire .materiae-header .lastMaximum {
+  font-size: 14px;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  text-align: center;
   transform: translate(0px, -5px);
 }
 .actor-root .article .laboratoire .materiae-list {

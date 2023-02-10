@@ -2,6 +2,7 @@
 Renommage de la chute Lune Noire en Entropie lunaire
 Correction d'une anomalie lors de la suppression des degrés dans le panneau Incarnations
 Correction d'une anomalie sur la manoeuvre permettant de viser avec une arme
+Ajout du nombre maximum de materia primae dans l'onglet laboratoire
 Ajout d'une aide pour l'expérience
 Ajout des pratiques synarques
 Ajout des techniques templieres
