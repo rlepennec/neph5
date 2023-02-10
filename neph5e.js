@@ -84,6 +84,7 @@ Hooks.once("init", function () {
         sciences: CustomHandlebarsHelpers.sciences,
         laboratoryOwner: CustomHandlebarsHelpers.laboratoryOwner,
         constructOf: CustomHandlebarsHelpers.constructOf,
+        getMaxMP: CustomHandlebarsHelpers.getMaxMP,
         science: CustomHandlebarsHelpers.science,
         fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
         isNewMember: CustomHandlebarsHelpers.isNewMember

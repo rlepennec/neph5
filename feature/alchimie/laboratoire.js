@@ -81,7 +81,7 @@ export class Laboratoire {
      * @returns the maximum number of materiae primae.
      */
     getMaxMP(element) {
-        return 10;
+        return 8;
     }
 
 }

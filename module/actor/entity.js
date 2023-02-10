@@ -681,6 +681,14 @@ export class NephilimActor extends Actor {
     // ----------------------------------------------------------------------------------------------
 
     /**
+     * @param element The element for which to retrieve to max MP.
+     * @returns the maximum number of materiae primae.
+     */
+    getMaxMP(element) {
+        return new Laboratoire(this).getMaxMP(element);
+    }
+
+    /**
      * Gets the construct associated with the specified substance.
      * @param substance The substance of the construct to get.
      * @return the construct.

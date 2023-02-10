@@ -342,6 +342,15 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param actor  The actor which uses the laboratory.
+     * @param element The element for which to retrieve to max MP.
+     * @returns the maximum number of materiae primae.
+     */
+    static getMaxMP(actor, element) {
+        return actor.getMaxMP(element);
+    }
+
+    /**
      * @param actor     The actor which uses the laboratory.
      * @param construct The name of the construct.
      * @returns the construct parameters, null if the owner.
