@@ -80,6 +80,7 @@ export class Fraternite {
     }
 
     /**
+     * @param event   The event to process.
      * @param actor   The actor to add.
      * @param periode The system identifier of the periode.
      * @param status  The status of the actor to add.
@@ -128,7 +129,7 @@ export class Fraternite {
         await this.actor.update({ ['system.effectif']: effectif });
     }
 
-        /**
+    /**
      * @param actor The actor object to delete.
      */
     async onDeleteActor(actor) {
