@@ -36,6 +36,7 @@
 }
 .window-app .window-content .journal-sheet-container .journal-sidebar {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp") repeat;
+  font-family: 'MinionPro';
 }
 .window-app .window-content .journal-sheet-container .journal-sidebar .pages-list {
   color: black;
