@@ -34,6 +34,19 @@
 .window-app .window-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
+.window-app .window-content .journal-sheet-container .journal-sidebar {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp") repeat;
+}
+.window-app .window-content .journal-sheet-container .journal-sidebar .pages-list {
+  color: black;
+}
+.window-app .window-content .journal-sheet-container .journal-entry-content {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}
+/*
+.journal-sheet-container {
+    background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+}*/
 .center {
   justify-content: center;
 }
