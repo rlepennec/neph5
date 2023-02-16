@@ -1,5 +1,5 @@
 <li 
-    {{#if (eq degre 0)}}
+    {{#if (or (eq degre 0) (isNull item.embedded.degre))}}
     class="item macro focus disabled"
     {{else}}
     class="item macro focus"
@@ -17,7 +17,6 @@
         <span>{{item.original.name}}</span>
     </div>
 
-    
     <label class="item-parameter width-40">
         {{#unless (or (eq degre 0) (isNull item.embedded.degre))}}
         {{item.embedded.degre}}
