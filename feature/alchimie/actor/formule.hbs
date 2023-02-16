@@ -17,9 +17,11 @@
         <span>{{item.original.name}}</span>
     </div>
 
-    {{#unless (or (eq degre 0) (isNull item.embedded.degre))}}
+    
     <label class="item-parameter width-40">
+        {{#unless (or (eq degre 0) (isNull item.embedded.degre))}}
         {{item.embedded.degre}}
+        {{/unless}}
     </label>
 
     <label class="item-parameter width-40">
@@ -74,9 +76,11 @@
     <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
 
     <div class="dice">
-        <a class="roll-focus" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+        <a class="roll-focus" data-id="{{item.original.id}}">
+            {{#unless (or (eq degre 0) (isNull item.embedded.degre))}}
+            <i class="fas fa-dice-d20"></i>
+            {{/unless}}
+        </a>
     </div>
-
-    {{/unless}}
 
 </li>
