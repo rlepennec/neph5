@@ -285,6 +285,7 @@
 .actor-root .side {
   display: flex;
   flex-direction: column;
+  background-color: transparent;
   width: 170px;
   margin-right: 20px;
 }
@@ -296,17 +297,6 @@
   width: 150px;
   border: 0px;
   margin-left: 10px;
-}
-.actor-root .side .header .title .name {
-  resize: none;
-  margin-top: 10px;
-  margin-left: 10px;
-  text-align: center;
-  border: 0px;
-  background-color: transparent;
-  width: 150px;
-  font-family: 'NightjarDemi';
-  font-size: 25px;
 }
 .actor-root .side .tabs {
   display: flex;
@@ -380,11 +370,16 @@
 .actor-root .article {
   display: flex;
   flex-direction: column;
-}
-.actor-root .article .top {
-  border: 0px;
   width: 814px;
-  height: 98px;
+}
+.actor-root .article .title {
+  resize: none;
+  text-align: center;
+  border: 0px;
+  background-color: transparent;
+  font-family: 'NightjarDemi';
+  font-size: 28px;
+  vertical-align: middle;
 }
 .actor-root .article .tab .voie {
   margin-top: 10px;
