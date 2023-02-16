@@ -85,6 +85,9 @@ export class Sort extends AbstractRoll {
      * @Override
      */
     get degre() {
+        if (this.item.system?.voies.length > 0 && this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
+            return 0;
+        }
         const item = game.items.find(i => i.system.key === this.item.system.cercle);
         const science = new Science(this.actor, item).degre;
         const sort = this.item.system.degre;

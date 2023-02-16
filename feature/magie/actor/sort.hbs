@@ -20,7 +20,9 @@
     {{#unless (eq degre 0)}}
 
     <label class="item-parameter width-40">
+        {{#unless (eq item.embedded.degre 0)}}
         {{item.embedded.degre}}
+        {{/unless}}
     </label>
 
     <label class="tooltip item-parameter width-40">
@@ -45,7 +47,11 @@
     <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
 
     <div class="dice">
-        <a class="roll-focus" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+        <a class="roll-focus" data-id="{{item.original.id}}">
+            {{#unless (eq item.embedded.degre 0)}}
+            <i class="fas fa-dice-d20"></i>
+            {{/unless}}
+        </a>
     </div>
 
     {{/unless}}
