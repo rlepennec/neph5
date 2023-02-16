@@ -25,7 +25,11 @@
         {{/unless}}
     </label>
 
+    {{#if (eq item.embedded.degre 0)}}
+    <label class="tooltip item-parameter width-40 disabled">
+    {{else}}
     <label class="tooltip item-parameter width-40">
+    {{/if}}
         {{#switch item.original.system.element}}
             {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
             {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
@@ -36,7 +40,11 @@
         {{/switch}}
     </label>
 
+    {{#if (eq item.embedded.degre 0)}}
+    <label class="change-focus item-parameter width-40 disabled" data-id="{{item.embedded.id}}">
+    {{else}}
     <label class="change-focus item-parameter width-40" data-id="{{item.embedded.id}}">
+    {{/if}}
         {{#if item.embedded.system.focus}}
         <i class="fa-solid fa-scroll"></i>
         {{else}}
@@ -44,7 +52,11 @@
         {{/if}}
     </label>
 
+    {{#if (eq item.embedded.degre 0)}}
+    <label class="change-status item-parameter width-80 disabled" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    {{else}}
     <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    {{/if}}
 
     <div class="dice">
         <a class="roll-focus" data-id="{{item.original.id}}">
