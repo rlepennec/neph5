@@ -285,13 +285,13 @@
 .actor-root .side {
   display: flex;
   flex-direction: column;
-  background-color: transparent;
   width: 170px;
   margin-right: 20px;
+  -webkit-mask-image: -webkit-gradient(radial, left top, right bottom, from(#000000), to(rgba(0, 0, 0, 0)));
+  background: url("../../systems/neph5e/assets/core/archeo-vertical.webp") repeat;
 }
 .actor-root .side .header {
   border-radius: 4px;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
 .actor-root .side .header .profile {
   width: 150px;
@@ -299,6 +299,7 @@
   margin-left: 10px;
 }
 .actor-root .side .tabs {
+  opacity: 1;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -311,7 +312,6 @@
   margin-bottom: 5px;
   font-family: 'AJensonPro';
   font-size: 20px;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
 .actor-root .side .simulacre {
   display: flex;
@@ -322,7 +322,6 @@
   background: rgba(0, 0, 0, 0.05);
   padding-top: 5px;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
 .actor-root .side .simulacre .name {
   font-family: 'AJensonPro';
@@ -349,7 +348,6 @@
   background: rgba(0, 0, 0, 0.05);
   padding-top: 5px;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
 .actor-root .side .fraternites .name {
   font-family: 'AJensonPro';
