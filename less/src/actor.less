@@ -2,31 +2,40 @@
     display: flex;
     flex-direction: row;
 
+    .side::before {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        content: "";
+        background:
+            url("../../systems/neph5e/assets/core/archeo-vertical.webp") repeat;
+            -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
+    }
+
     .side {
         display: flex;
         flex-direction: column;
+        align-items: center;
         width: 170px;
-        margin-right: 20px;
-        -webkit-mask-image: -webkit-gradient(radial, left top, right bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-        background:
-            url("../../systems/neph5e/assets/core/archeo-vertical.webp") repeat;
+        position: relative;
 
-        .header {
+
+        .image {
             border-radius: 4px;
-            .profile {
-                width: 150px;
-                border: 0px;
-                margin-left: 10px;
-            }
-
+            width: 150px;
+            border: 0px;
+            position: relative;
         }
 
         .tabs {
-            opacity: 1.0;
+            position: relative;
             display: flex;
             flex-direction: column;
             text-align: center;
-            margin-top:20px;
+            text-shadow: 0px 0px 1px black;
+            margin-top:25px;
             border-radius: 4px;
             background: rgba(0, 0, 0, 0.05);
             padding-top:5px;
@@ -34,7 +43,26 @@
             flex: 0 0 30px;
             margin-bottom: 5px;
             font-family: 'AJensonPro';
-            font-size: 20px;
+            font-weight: bold;
+            font-size: 23px;
+
+            .sheet-navigation-tab:hover {
+                text-shadow: 0 0 10px #2C606D;
+                color: #2C606D;
+            }
+
+
+            .tab {
+                height: 30px;
+                line-height: 32px;
+                margin: 0 14px;
+    /*
+                .active {
+                    border-bottom: 3px solid #44191A;
+                }
+*/
+            }
+
         }
 
         .simulacre {
@@ -105,6 +133,7 @@
         display: flex;
         flex-direction: column;
         width: 814px;
+        margin-left: 10px;
 
         .title {
             resize: none;
@@ -112,7 +141,7 @@
             border: 0px;
             background-color: transparent;
             font-family: 'NightjarDemi';
-            font-size: 28px;
+            font-size: 35px;
             vertical-align: middle;
         }
 
@@ -1862,27 +1891,6 @@
 }
 
 .actor {
-
-    .sheet-header {
-        flex: 0 0 100px;
-        border-bottom: 2px groove #eeede0;
-    }
-
-    .sheet-navigation {
-        flex: 0 0 30px;
-        margin-bottom: 5px;
-
-        .sheet-navigation-tab {
-            height: 30px;
-            line-height: 32px;
-            margin: 0 14px;
-
-            .active {
-                border-bottom: 3px solid #44191A;
-            }
-        }
-
-    }
 
     .sheet-body {
 
