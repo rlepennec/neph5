@@ -54,7 +54,7 @@ export class FigureSheet extends HistoricalSheet {
                 ".tab.options"],
             tabs: [
                 {
-                    navSelector: ".tabs",
+                    navSelector: ".sheet-navigation",
                     contentSelector: ".sheet-body",
                     initial: "description"
                 }]

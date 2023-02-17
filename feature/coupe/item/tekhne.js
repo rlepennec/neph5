@@ -22,7 +22,7 @@ export class TekhneSheet extends NephilimItemSheet {
             classes: ["nephilim", "sheet", "item"],
             resizable: true,
             scrollY: [".tab.description"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".sheet-body", initial: "description"}]
+            tabs: [{navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "description"}]
       });
     }
 
