@@ -298,9 +298,9 @@
   align-items: center;
   width: 170px;
   position: relative;
-  text-shadow: 0px 0px 1px black;
   font-family: 'AJensonPro';
   font-size: 23px;
+  font-weight: bolder;
 }
 .actor-root .side .image {
   margin-top: 25px;
@@ -311,34 +311,21 @@
 .actor-root .side .sheet-navigation {
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
   margin-top: 25px;
   flex: 0 0 30px;
   position: relative;
   margin-bottom: 5px;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
-  text-shadow: 0 0 10px #2C606D;
-  color: #2C606D;
-}
-.actor-root .side .sheet-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.actor-root .side .sheet-navigation .sheet-navigation-image {
   margin-top: 20px;
-}
-.actor-root .side .sheet-link .image {
   width: 50px;
   border: 0px;
   position: relative;
 }
-.actor-root .side .sheet-link .name {
-  height: 30px;
-}
-.actor-root .side .sheet-link .no-name {
-  height: 30px;
-  color: indianred;
+.actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
+  text-shadow: 0px 0px 3px black;
 }
 .actor-root .article {
   display: flex;

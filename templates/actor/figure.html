@@ -20,19 +20,19 @@
                 {{#if (eq system.options.nephilim true)}}
                 <a class="sheet-navigation-tab" data-tab="nephilim">{{localize "NEPH5E.nephilim"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.selenim true)}}
                 <a class="sheet-navigation-tab" data-tab="selenim">{{localize "NEPH5E.selenim"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.vecus true)}}
                 <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.vecus"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.combat true)}}
                 <a class="sheet-navigation-tab" data-tab="combat">{{localize "NEPH5E.combat"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.magie true)}}
                 <a class="sheet-navigation-tab" data-tab="magie">{{localize "NEPH5E.magie.science"}}</a>
                 {{/if}}
@@ -45,12 +45,12 @@
                 <a class="sheet-navigation-tab" data-tab="kabbale">{{localize "NEPH5E.kabbale.science"}}</a>
                 <a class="sheet-navigation-tab" data-tab="arbre">{{localize "NEPH5E.arbre"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.alchimie true)}}
                 <a class="sheet-navigation-tab" data-tab="alchimie">{{localize "NEPH5E.alchimie.science"}}</a>
                 <a class="sheet-navigation-tab" data-tab="laboratoire">{{localize "NEPH5E.alchimie.laboratoire"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.dracomachie true)}}
                 <a class="sheet-navigation-tab" data-tab="dracomachie">{{localize "NEPH5E.dracomachie"}}</a>
                 {{/if}}
@@ -58,27 +58,27 @@
                 {{#if (eq system.options.necromancie true)}}
                 <a class="sheet-navigation-tab" data-tab="necromancie">{{localize "NEPH5E.necromancie.science"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.conjuration true)}}
                 <a class="sheet-navigation-tab" data-tab="conjuration">{{localize "NEPH5E.conjuration.science"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.baton true)}}
                 <a class="sheet-navigation-tab" data-tab="baton">{{localize "NEPH5E.baton.baton"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.coupe true)}}
                 <a class="sheet-navigation-tab" data-tab="coupe">{{localize "NEPH5E.coupe.coupe"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.denier true)}}
                 <a class="sheet-navigation-tab" data-tab="denier">{{localize "NEPH5E.denier.denier"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.epee true)}}
                 <a class="sheet-navigation-tab" data-tab="epee">{{localize "NEPH5E.epee.epee"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.akasha true)}}
                 <a class="sheet-navigation-tab" data-tab="akasha">{{localize "NEPH5E.akasha"}}</a>
                 {{/if}}
@@ -86,35 +86,29 @@
                 {{#if (eq system.options.atlanteide true)}}
                 <a class="sheet-navigation-tab" data-tab="atlanteide">{{localize "NEPH5E.atlanteide"}}</a>
                 {{/if}}
-        
+
                 {{#if (eq system.options.incarnations true)}}
                 <a class="sheet-navigation-tab" data-tab="incarnations">{{localize "NEPH5E.incarnations"}}</a>
                 {{/if}}
 
                 <a class="sheet-navigation-tab" data-tab="options">{{localize "NEPH5E.options"}}</a>
+
+                {{#if (and (eq system.options.simulacre true) (nonNull simulacre.name))}}
+                {{log simulacre}}
+                <img class="sheet-navigation-image" src="{{simulacre.img}}" data-edit="img"/>
+                <a class="sheet-navigation-tab" data-tab="actor" data-id="{{simulacre.id}}">{{simulacre.name}}</a>
+                {{/if}}
+
+                {{#if (eq system.options.fraternites true)}}
+                {{#each actor.fraternites as |fraternite|}}
+                <img class="sheet-navigation-image" src="{{fraternite.img}}" data-edit="img"/>
+                <a class="sheet-navigation-tab" data-tab="actor" data-id="{{fraternite.id}}">{{fraternite.name}}</a>
+                {{/each}}
+                {{/if}}
+
                 {{/if}}
 
             </nav>
-
-            {{#if (eq system.options.simulacre true)}}
-            <div class="sheet-link simulacre" data-tab="simulacre">
-                {{#if (isNull simulacre.name)}}
-                <a class="no-name">{{localize "NEPH5E.aucunSimulacre"}}</a>
-                {{else}}
-                <img class="image" src="{{simulacre.img}}" data-edit="img"/>
-                <a class="name">{{simulacre.name}}</a>
-                {{/if}}
-            </div>
-            {{/if}}
-
-            {{#if (eq system.options.fraternites true)}}
-            {{#each actor.fraternites as |fraternite|}}
-            <div class="sheet-link fraternites" data-tab="fraternites" data-id="{{fraternite.id}}">
-                <img class="image" src="{{fraternite.img}}" data-edit="img"/>
-                <a class="name">{{fraternite.name}}</a>
-            </div>
-            {{/each}}
-            {{/if}}
 
         </div>
         

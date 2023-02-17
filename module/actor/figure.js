@@ -72,10 +72,7 @@ export class FigureSheet extends HistoricalSheet {
             sciencesOccultes: game.settings.get('neph5e', 'sciencesOccultes'),
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
             editedCapacity: this.editedCapacity,
-            simulacre: {
-                name: this.actor.simulacre?.name,
-                img: this.actor.simulacre?.img
-            }
+            simulacre: this.actor.simulacre
         });
     }
 
@@ -85,6 +82,12 @@ export class FigureSheet extends HistoricalSheet {
     activateListeners(html) {
 
         super.activateListeners(html);
+
+        // Simulacre
+        html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
+
+        // Fraternites
+        html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
 
         // Alchimie
         html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
@@ -188,13 +191,6 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="selenim"] .roll-noyau').click(this._onRollFeature.bind(this, 'noyau'));
         html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="selenim"] .active').click(this._onToggleActive.bind(this));
-
-        // Simulacre
-        html.find('div[data-tab="simulacre"]').click(this._onOpenSimulacre.bind(this));
-        html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
-
-        // Fraternites
-        html.find('div[data-tab="fraternites"]').click(this._onOpenFraternite.bind(this));
 
         // Vecus
         html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditFeature.bind(this, 'competence'));
@@ -800,24 +796,12 @@ export class FigureSheet extends HistoricalSheet {
     // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
 
     /**
-     * Edit the simulacre.
+     * Open the simulacre or the fraternite.
      * @param event The click event.
      */
-    async _onOpenSimulacre(event) {
+    async _onOpenActor(event) {
         event.preventDefault();
-        const simulacre = this.actor.simulacre;
-        if (simulacre != null) {
-            simulacre.sheet.render(true);
-        }
-    }
-
-    /**
-     * Edit the fraternite.
-     * @param event The click event.
-     */
-    async _onOpenFraternite(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".fraternites").data("id");
+        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
         const actor = game.actors.get(id);
         if (actor != null) {
             actor.sheet.render(true);
