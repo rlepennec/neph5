@@ -14,7 +14,7 @@
 
             <nav class="sheet-navigation" data-group="primary">
 
-                <a class="tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
+                <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
 
                 {{#if editable}}
                 {{#if (eq system.options.nephilim true)}}
@@ -97,7 +97,7 @@
             </nav>
 
             {{#if (eq system.options.simulacre true)}}
-            <div class="sheet-navigation-tab simulacre" data-tab="simulacre">
+            <div class="sheet-link simulacre" data-tab="simulacre">
                 {{#if (isNull simulacre.name)}}
                 <a class="no-name">{{localize "NEPH5E.aucunSimulacre"}}</a>
                 {{else}}
@@ -109,7 +109,7 @@
 
             {{#if (eq system.options.fraternites true)}}
             {{#each actor.fraternites as |fraternite|}}
-            <div class="sheet-navigation-tab fraternites" data-tab="fraternites" data-id="{{fraternite.id}}">
+            <div class="sheet-link fraternites" data-tab="fraternites" data-id="{{fraternite.id}}">
                 <img class="image" src="{{fraternite.img}}" data-edit="img"/>
                 <a class="name">{{fraternite.name}}</a>
             </div>
