@@ -1429,8 +1429,6 @@
 .actor-root .article .arbre .content {
   position: relative;
   text-align: center;
-  font-family: 'NightjarDemi';
-  font-size: 18px;
 }
 .actor-root .article .arbre .content img {
   margin-left: 90px;
@@ -1438,124 +1436,78 @@
   width: 600px;
   height: 795px;
 }
-.actor-root .article .arbre .content .malkut .title {
+.actor-root .article .arbre .content .sephiroth .title {
   position: absolute;
   top: 50%;
   left: 50%;
+  font-family: 'NightjarDemi';
+  font-size: 18px;
+}
+.actor-root .article .arbre .content .sephiroth .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'NightjarDemi';
+  font-size: 18px;
+}
+.actor-root .article .arbre .content .malkut .title {
   transform: translate(17px, 320px);
 }
 .actor-root .article .arbre .content .malkut .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(44px, 340px);
 }
 .actor-root .article .arbre .content .yesod .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(25px, 165px);
 }
 .actor-root .article .arbre .content .yesod .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(44px, 185px);
 }
 .actor-root .article .arbre .content .hod .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-105px, 85px);
 }
 .actor-root .article .arbre .content .hod .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-94px, 105px);
 }
 .actor-root .article .arbre .content .netzach .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(148px, 85px);
 }
 .actor-root .article .arbre .content .netzach .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(182px, 105px);
 }
 .actor-root .article .arbre .content .tiphereth .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(2px, 8px);
 }
 .actor-root .article .arbre .content .tiphereth .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(44px, 27px);
 }
 .actor-root .article .arbre .content .geburah .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-128px, -70px);
 }
 .actor-root .article .arbre .content .geburah .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-94px, -48px);
 }
 .actor-root .article .arbre .content .chesed .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(151px, -70px);
 }
 .actor-root .article .arbre .content .chesed .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(182px, -48px);
 }
 .actor-root .article .arbre .content .binah .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-113px, -225px);
 }
 .actor-root .article .arbre .content .binah .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-94px, -205px);
 }
 .actor-root .article .arbre .content .chokmah .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(150px, -225px);
 }
 .actor-root .article .arbre .content .chokmah .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(182px, -205px);
 }
 .actor-root .article .arbre .content .kether .title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(17px, -305px);
 }
 .actor-root .article .arbre .content .kether .degre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(44px, -284px);
 }
 .actor-root .article .options .columns {
