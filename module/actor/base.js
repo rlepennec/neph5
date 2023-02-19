@@ -55,6 +55,7 @@ export class BaseSheet extends ActorSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
+        html.find('.sheet-navigation-choice').click(this._onSideTab.bind(this));
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="combat"] .edit-arme').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .edit-armure').click(this._onEditEmbeddedItem.bind(this));
@@ -85,12 +86,21 @@ export class BaseSheet extends ActorSheet {
         event.dataTransfer.setData('text/plain', JSON.stringify(macro));
     }
 
+    async _onSideTab(event) {
+        event.preventDefault();
+        const nav = $(event.currentTarget).closest('.sheet-navigation');
+        $(nav[0]).find('.sheet-navigation-pin').attr("src", 'systems/neph5e/assets/core/hole.webp');
+        const choice = $(event.currentTarget).closest('.sheet-navigation-choice');
+        $(choice[0]).find('.sheet-navigation-pin').attr("src", 'systems/neph5e/assets/core/pin.webp');
+    }
+
     /**
      * Attack with a melee or a ranged weapon.
      * @param event The click event.
      */
     async _onAttack(event) {
 
+        event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const weapon = this.actor.items.get(id);
@@ -117,6 +127,7 @@ export class BaseSheet extends ActorSheet {
      * @param event The click event.
      */
     async _onWrestle(event) {
+        event.preventDefault();
         if (this.actor.lutteCanBePerformed) {
             await new Wrestle(this.actor).initialize();
         }
@@ -126,6 +137,7 @@ export class BaseSheet extends ActorSheet {
      * @param event The event to handle.
      */
     async _onUseItem(event) {
+        event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const item = this.actor.items.get(id);
@@ -136,6 +148,7 @@ export class BaseSheet extends ActorSheet {
      * @param event The event to handle.
      */
     async _onParadeItem(event) {
+        event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const item = this.actor.items.get(id);
