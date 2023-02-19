@@ -50,6 +50,18 @@
                     width: 170px;
                 }
 
+                .sheet-navigation-tab.active {
+                    ~ .sheet-navigation-hole {
+                        display: none;
+                    }
+                }
+
+                .sheet-navigation-tab:not(.active) {
+                    ~ .sheet-navigation-pin {
+                        display: none;
+                    }
+                }
+
                 .sheet-navigation-pin {
                     position: absolute;
                     top: 7px;
@@ -58,8 +70,16 @@
                     border: none;
                 }
 
-            }
+                .sheet-navigation-hole {
+                    position: absolute;
+                    top: 7px;
+                    left: 161px;
+                    width: 17px;
+                    border: none;
+                }
 
+            }
+            
             .sheet-navigation-tab:hover {
                 text-shadow: 0px 0px 3px black;
             }

@@ -326,7 +326,21 @@
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab {
   width: 170px;
 }
+.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active ~ .sheet-navigation-hole {
+  display: none;
+  color: green;
+}
+.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab:not(.active) ~ .sheet-navigation-pin {
+  display: none;
+}
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-pin {
+  position: absolute;
+  top: 7px;
+  left: 161px;
+  width: 17px;
+  border: none;
+}
+.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-hole {
   position: absolute;
   top: 7px;
   left: 161px;
