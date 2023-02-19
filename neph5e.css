@@ -326,6 +326,9 @@
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab {
   width: 170px;
 }
+.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active {
+  color: #4e3904;
+}
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active ~ .sheet-navigation-hole {
   visibility: hidden;
   opacity: 0;
