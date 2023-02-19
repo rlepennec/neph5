@@ -327,11 +327,14 @@
   width: 170px;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active ~ .sheet-navigation-hole {
-  display: none;
-  color: green;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab:not(.active) ~ .sheet-navigation-pin {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-pin {
   position: absolute;
@@ -339,6 +342,9 @@
   left: 161px;
   width: 17px;
   border: none;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.3s, opacity 0.5s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-hole {
   position: absolute;
@@ -346,6 +352,9 @@
   left: 161px;
   width: 17px;
   border: none;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.3s, opacity 0.5s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
   text-shadow: 0px 0px 3px black;

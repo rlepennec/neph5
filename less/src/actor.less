@@ -52,13 +52,17 @@
 
                 .sheet-navigation-tab.active {
                     ~ .sheet-navigation-hole {
-                        display: none;
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: visibility 0s, opacity 0.5s linear;
                     }
                 }
 
                 .sheet-navigation-tab:not(.active) {
                     ~ .sheet-navigation-pin {
-                        display: none;
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: visibility 0s, opacity 0.5s linear;
                     }
                 }
 
@@ -68,6 +72,9 @@
                     left: 161px;
                     width: 17px;
                     border: none;
+                    visibility: visible;
+                    opacity: 1;
+                    transition: visibility 0.3s, opacity 0.5s linear;
                 }
 
                 .sheet-navigation-hole {
@@ -76,6 +83,9 @@
                     left: 161px;
                     width: 17px;
                     border: none;
+                    visibility: visible;
+                    opacity: 1;
+                    transition: visibility 0.3s, opacity 0.5s linear;
                 }
 
             }
