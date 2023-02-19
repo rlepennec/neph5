@@ -14,84 +14,150 @@
 
             <nav class="sheet-navigation" data-group="primary">
 
-                <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
 
                 {{#if editable}}
                 {{#if (eq system.options.nephilim true)}}
-                <a class="sheet-navigation-tab" data-tab="nephilim">{{localize "NEPH5E.nephilim"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="nephilim">{{localize "NEPH5E.nephilim"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.selenim true)}}
-                <a class="sheet-navigation-tab" data-tab="selenim">{{localize "NEPH5E.selenim"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="selenim">{{localize "NEPH5E.selenim"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.vecus true)}}
-                <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.vecus"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.vecus"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.combat true)}}
-                <a class="sheet-navigation-tab" data-tab="combat">{{localize "NEPH5E.combat"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="combat">{{localize "NEPH5E.combat"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.magie true)}}
-                <a class="sheet-navigation-tab" data-tab="magie">{{localize "NEPH5E.magie.science"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="magie">{{localize "NEPH5E.magie.science"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.analogie true)}}
-                <a class="sheet-navigation-tab" data-tab="analogie">{{localize "NEPH5E.analogie"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="analogie">{{localize "NEPH5E.analogie"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.kabbale true)}}
-                <a class="sheet-navigation-tab" data-tab="kabbale">{{localize "NEPH5E.kabbale.science"}}</a>
-                <a class="sheet-navigation-tab" data-tab="arbre">{{localize "NEPH5E.arbre"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="kabbale">{{localize "NEPH5E.kabbale.science"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="arbre">{{localize "NEPH5E.arbre"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.alchimie true)}}
-                <a class="sheet-navigation-tab" data-tab="alchimie">{{localize "NEPH5E.alchimie.science"}}</a>
-                <a class="sheet-navigation-tab" data-tab="laboratoire">{{localize "NEPH5E.alchimie.laboratoire"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="alchimie">{{localize "NEPH5E.alchimie.science"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="laboratoire">{{localize "NEPH5E.alchimie.laboratoire"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.dracomachie true)}}
-                <a class="sheet-navigation-tab" data-tab="dracomachie">{{localize "NEPH5E.dracomachie"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="dracomachie">{{localize "NEPH5E.dracomachie"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.necromancie true)}}
-                <a class="sheet-navigation-tab" data-tab="necromancie">{{localize "NEPH5E.necromancie.science"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="necromancie">{{localize "NEPH5E.necromancie.science"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.conjuration true)}}
-                <a class="sheet-navigation-tab" data-tab="conjuration">{{localize "NEPH5E.conjuration.science"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="conjuration">{{localize "NEPH5E.conjuration.science"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.baton true)}}
-                <a class="sheet-navigation-tab" data-tab="baton">{{localize "NEPH5E.baton.baton"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="baton">{{localize "NEPH5E.baton.baton"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.coupe true)}}
-                <a class="sheet-navigation-tab" data-tab="coupe">{{localize "NEPH5E.coupe.coupe"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="coupe">{{localize "NEPH5E.coupe.coupe"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.denier true)}}
-                <a class="sheet-navigation-tab" data-tab="denier">{{localize "NEPH5E.denier.denier"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="denier">{{localize "NEPH5E.denier.denier"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.epee true)}}
-                <a class="sheet-navigation-tab" data-tab="epee">{{localize "NEPH5E.epee.epee"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="epee">{{localize "NEPH5E.epee.epee"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.akasha true)}}
-                <a class="sheet-navigation-tab" data-tab="akasha">{{localize "NEPH5E.akasha"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="akasha">{{localize "NEPH5E.akasha"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.atlanteide true)}}
-                <a class="sheet-navigation-tab" data-tab="atlanteide">{{localize "NEPH5E.atlanteide"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="atlanteide">{{localize "NEPH5E.atlanteide"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.incarnations true)}}
-                <a class="sheet-navigation-tab" data-tab="incarnations">{{localize "NEPH5E.incarnations"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="incarnations">{{localize "NEPH5E.incarnations"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
                 {{/if}}
 
-                <a class="sheet-navigation-tab" data-tab="options">{{localize "NEPH5E.options"}}</a>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="options">{{localize "NEPH5E.options"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                </div>
 
                 {{#if (and (eq system.options.simulacre true) (nonNull simulacre.name))}}
                 {{log simulacre}}

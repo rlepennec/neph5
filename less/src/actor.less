@@ -41,16 +41,35 @@
             position: relative;
             margin-bottom: 5px;
 
+            .sheet-navigation-choice {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+
+                .sheet-navigation-tab {
+                    width: 170px;
+                }
+
+                .sheet-navigation-pin {
+                    position: absolute;
+                    top: 5px;
+                    left: 160px;
+                    width: 23px;
+                    border: none;
+                }
+
+            }
+
+            .sheet-navigation-tab:hover {
+                text-shadow: 0px 0px 3px black;
+            }
+
             .sheet-navigation-image {
                 margin-top: 20px;
                 width: 50px;
                 border: 0px;
                 position: relative;
             }
-
-            .sheet-navigation-tab:hover {
-                text-shadow: 0px 0px 3px black;
-             }
 
         }
 
