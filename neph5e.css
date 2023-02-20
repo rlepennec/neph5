@@ -374,7 +374,12 @@
   width: 814px;
   margin-left: 10px;
 }
-.actor-root .article .article-title {
+.actor-root .article .article-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.actor-root .article .article-header .article-title {
   resize: none;
   text-align: center;
   border: 0px;
@@ -382,6 +387,10 @@
   font-family: 'NightjarDemi';
   font-size: 35px;
   vertical-align: middle;
+}
+.actor-root .article .article-header .article-sepatator {
+  border: 0px;
+  width: 200px;
 }
 .actor-root .article .tab .voie {
   margin-top: 10px;
