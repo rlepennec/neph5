@@ -332,12 +332,12 @@
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active ~ .sheet-navigation-hole {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab:not(.active) ~ .sheet-navigation-pin {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0.3s, opacity 0.3s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-pin {
   position: absolute;
@@ -347,7 +347,7 @@
   border: none;
   visibility: visible;
   opacity: 1;
-  transition: visibility 0.3s, opacity 0.5s linear;
+  transition: visibility 0.3s, opacity 0.3s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-hole {
   position: absolute;
@@ -357,7 +357,7 @@
   border: none;
   visibility: visible;
   opacity: 1;
-  transition: visibility 0.3s, opacity 0.5s linear;
+  transition: visibility 0.3s, opacity 0.3s linear;
 }
 .actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
   text-shadow: 0px 0px 3px black;
