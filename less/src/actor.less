@@ -279,24 +279,173 @@
     
             }
 
-        }
+            .science {
 
-
-
-        .tab {
-
-            .voie {
-                margin-top: 10px;
-                padding-bottom:3px;
-                font-family: 'AJensonPro';
-                font-size: 25px;
-                text-align: center;
-            }
-
-            .top {
-                border: 0px;
-                width: 814px;
-                height: 98px;
+                .voie {
+                    margin-top: 10px;
+                    padding-bottom:3px;
+                    font-family: 'AJensonPro';
+                    font-size: 25px;
+                    text-align: center;
+                }
+    
+                .disabled {
+                    color: #a1a1a1;
+                }
+    
+                .header {
+                    display: flex;
+                    flex-direction: row;
+                    padding-top: 10px;
+                    justify-content: center;
+    
+                    .circle {
+                        flex-basis: 40px;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                    }
+    
+                    .title {
+                        width: 100%;
+                        margin-left: 20px;
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        font-family: 'AJensonPro';
+                        font-size: 20px;
+                        border-width: 0px 0px 2px 0px;
+                        border-style: solid;
+                        border-color: black;
+    
+                        .item-name {
+                            width: 100%;
+                            padding-left: 5px;
+                        }
+    
+                        .item-parameter {
+                            flex: 0 0 auto;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            text-align: center;
+                        }
+    
+                        .item-quantite {
+                            flex: 0 0 auto;
+                            text-align:center;
+                        }
+                        
+                        .dice {
+                            flex: 0 0 auto;
+                            width: 18px;
+                            margin-left: 12px;
+                            margin-right: 8px;
+                            font-size: 14px;
+                            padding-top: 5px;
+                        }
+    
+                        .width-40 {
+                            width: 40px;
+                        }
+    
+                        .width-80 {
+                            width: 80px;
+                        }
+    
+                    }
+    
+                }
+    
+                .focus {
+                    height: 17px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+    
+                    .item-parameter {
+                        flex: 0 0 auto;
+                        justify-content: center;
+                        text-align: center;
+                        margin-left: 10px;
+                        margin-right:10px;
+                    }
+    
+                    .edit-focus {
+                        margin-left: 20px;
+                    }
+    
+                    .quantite {
+                        flex: 0 0 auto;
+                        width: 40px;
+                        border: none;
+                        text-align: center;
+                        background-color: transparent;
+                    }
+    
+                    .dice {
+                        flex: 0 0 auto;
+                        width: 18px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        text-align: center;
+                    }
+    
+                    .width-40 {
+                        width: 40px;
+                    }
+    
+                    .width-80 {
+                        width: 80px;
+                    }
+    
+                }
+    
+                .ordonnances {
+                    margin-top: 0px;
+                    margin-bottom: 20px;
+    
+                    .monde {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+    
+                        .circle {
+                            flex-basis: 40px;
+                            flex-grow: 0;
+                            flex-shrink: 0;
+                        }
+    
+                        .title {
+                            width: 100%;
+                            margin-left: 20px;
+                            display: flex;
+                            flex-direction: row;
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            padding-left: 5px;
+                            font-family: 'AJensonPro';
+                            font-size: 20px;
+                            border-width: 0px 0px 2px 0px;
+                            border-style: solid;
+                            border-color: black;
+                        }
+    
+                    }
+    
+                    .item {
+                        height: 17px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+    
+                        .item-name {
+                            margin-left: 20px;
+                        }
+    
+                    }
+    
+                }
+    
             }
 
         }
@@ -1630,166 +1779,7 @@
 
         }
 
-        .all-focus {
 
-            .disabled {
-                color: #a1a1a1;
-            }
-
-            .header {
-                display: flex;
-                flex-direction: row;
-                padding-top: 10px;
-                justify-content: center;
-
-                .circle {
-                    flex-basis: 40px;
-                    flex-grow: 0;
-                    flex-shrink: 0;
-                }
-
-                .title {
-                    width: 100%;
-                    margin-left: 20px;
-                    display: flex;
-                    flex-direction: row;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    font-family: 'AJensonPro';
-                    font-size: 20px;
-                    border-width: 0px 0px 2px 0px;
-                    border-style: solid;
-                    border-color: black;
-
-                    .item-name {
-                        width: 100%;
-                        padding-left: 5px;
-                    }
-
-                    .item-parameter {
-                        flex: 0 0 auto;
-                        margin-left: 10px;
-                        margin-right: 10px;
-                        text-align: center;
-                    }
-
-                    .item-quantite {
-                        flex: 0 0 auto;
-                        text-align:center;
-                    }
-                    
-                    .dice {
-                        flex: 0 0 auto;
-                        width: 18px;
-                        margin-left: 12px;
-                        margin-right: 8px;
-                        font-size: 14px;
-                        padding-top: 5px;
-                    }
-
-                    .width-40 {
-                        width: 40px;
-                    }
-
-                    .width-80 {
-                        width: 80px;
-                    }
-
-                }
-
-            }
-
-            .focus {
-                height: 17px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-
-                .item-parameter {
-                    flex: 0 0 auto;
-                    justify-content: center;
-                    text-align: center;
-                    margin-left: 10px;
-                    margin-right:10px;
-                }
-
-                .edit-focus {
-                    margin-left: 20px;
-                }
-
-                .quantite {
-                    flex: 0 0 auto;
-                    width: 40px;
-                    border: none;
-                    text-align: center;
-                    background-color: transparent;
-                }
-
-                .dice {
-                    flex: 0 0 auto;
-                    width: 18px;
-                    margin-left: 10px;
-                    margin-right: 10px;
-                    text-align: center;
-                }
-
-                .width-40 {
-                    width: 40px;
-                }
-
-                .width-80 {
-                    width: 80px;
-                }
-
-            }
-
-            .ordonnances {
-                margin-top: 0px;
-                margin-bottom: 20px;
-
-                .monde {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-
-                    .circle {
-                        flex-basis: 40px;
-                        flex-grow: 0;
-                        flex-shrink: 0;
-                    }
-
-                    .title {
-                        width: 100%;
-                        margin-left: 20px;
-                        display: flex;
-                        flex-direction: row;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        padding-left: 5px;
-                        font-family: 'AJensonPro';
-                        font-size: 20px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-                    }
-
-                }
-
-                .item {
-                    height: 17px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-
-                    .item-name {
-                        margin-left: 20px;
-                    }
-
-                }
-
-            }
-
-        }
 
         .arbre {
 

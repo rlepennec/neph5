@@ -507,17 +507,140 @@
   font-weight: lighter;
   font-style: italic;
 }
-.actor-root .article .tab .voie {
+.actor-root .article .article-body .science .voie {
   margin-top: 10px;
   padding-bottom: 3px;
   font-family: 'AJensonPro';
   font-size: 25px;
   text-align: center;
 }
-.actor-root .article .tab .top {
-  border: 0px;
-  width: 814px;
-  height: 98px;
+.actor-root .article .article-body .science .disabled {
+  color: #a1a1a1;
+}
+.actor-root .article .article-body .science .header {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  justify-content: center;
+}
+.actor-root .article .article-body .science .header .circle {
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.actor-root .article .article-body .science .header .title {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .article-body .science .header .title .item-name {
+  width: 100%;
+  padding-left: 5px;
+}
+.actor-root .article .article-body .science .header .title .item-parameter {
+  flex: 0 0 auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+.actor-root .article .article-body .science .header .title .item-quantite {
+  flex: 0 0 auto;
+  text-align: center;
+}
+.actor-root .article .article-body .science .header .title .dice {
+  flex: 0 0 auto;
+  width: 18px;
+  margin-left: 12px;
+  margin-right: 8px;
+  font-size: 14px;
+  padding-top: 5px;
+}
+.actor-root .article .article-body .science .header .title .width-40 {
+  width: 40px;
+}
+.actor-root .article .article-body .science .header .title .width-80 {
+  width: 80px;
+}
+.actor-root .article .article-body .science .focus {
+  height: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.actor-root .article .article-body .science .focus .item-parameter {
+  flex: 0 0 auto;
+  justify-content: center;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.actor-root .article .article-body .science .focus .edit-focus {
+  margin-left: 20px;
+}
+.actor-root .article .article-body .science .focus .quantite {
+  flex: 0 0 auto;
+  width: 40px;
+  border: none;
+  text-align: center;
+  background-color: transparent;
+}
+.actor-root .article .article-body .science .focus .dice {
+  flex: 0 0 auto;
+  width: 18px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+.actor-root .article .article-body .science .focus .width-40 {
+  width: 40px;
+}
+.actor-root .article .article-body .science .focus .width-80 {
+  width: 80px;
+}
+.actor-root .article .article-body .science .ordonnances {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.actor-root .article .article-body .science .ordonnances .monde {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.actor-root .article .article-body .science .ordonnances .monde .circle {
+  flex-basis: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.actor-root .article .article-body .science .ordonnances .monde .title {
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .article-body .science .ordonnances .item {
+  height: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.actor-root .article .article-body .science .ordonnances .item .item-name {
+  margin-left: 20px;
 }
 .actor-root .article .effectif .header {
   display: flex;
@@ -1462,134 +1585,6 @@
 .actor-root .article .laboratoire .laboratoire-list .actor:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
-}
-.actor-root .article .all-focus .disabled {
-  color: #a1a1a1;
-}
-.actor-root .article .all-focus .header {
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  justify-content: center;
-}
-.actor-root .article .all-focus .header .circle {
-  flex-basis: 40px;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-.actor-root .article .all-focus .header .title {
-  width: 100%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor-root .article .all-focus .header .title .item-name {
-  width: 100%;
-  padding-left: 5px;
-}
-.actor-root .article .all-focus .header .title .item-parameter {
-  flex: 0 0 auto;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-}
-.actor-root .article .all-focus .header .title .item-quantite {
-  flex: 0 0 auto;
-  text-align: center;
-}
-.actor-root .article .all-focus .header .title .dice {
-  flex: 0 0 auto;
-  width: 18px;
-  margin-left: 12px;
-  margin-right: 8px;
-  font-size: 14px;
-  padding-top: 5px;
-}
-.actor-root .article .all-focus .header .title .width-40 {
-  width: 40px;
-}
-.actor-root .article .all-focus .header .title .width-80 {
-  width: 80px;
-}
-.actor-root .article .all-focus .focus {
-  height: 17px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.actor-root .article .all-focus .focus .item-parameter {
-  flex: 0 0 auto;
-  justify-content: center;
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.actor-root .article .all-focus .focus .edit-focus {
-  margin-left: 20px;
-}
-.actor-root .article .all-focus .focus .quantite {
-  flex: 0 0 auto;
-  width: 40px;
-  border: none;
-  text-align: center;
-  background-color: transparent;
-}
-.actor-root .article .all-focus .focus .dice {
-  flex: 0 0 auto;
-  width: 18px;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-}
-.actor-root .article .all-focus .focus .width-40 {
-  width: 40px;
-}
-.actor-root .article .all-focus .focus .width-80 {
-  width: 80px;
-}
-.actor-root .article .all-focus .ordonnances {
-  margin-top: 0px;
-  margin-bottom: 20px;
-}
-.actor-root .article .all-focus .ordonnances .monde {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.actor-root .article .all-focus .ordonnances .monde .circle {
-  flex-basis: 40px;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-.actor-root .article .all-focus .ordonnances .monde .title {
-  width: 100%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 5px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor-root .article .all-focus .ordonnances .item {
-  height: 17px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.actor-root .article .all-focus .ordonnances .item .item-name {
-  margin-left: 20px;
 }
 .actor-root .article .arbre .content {
   position: relative;
