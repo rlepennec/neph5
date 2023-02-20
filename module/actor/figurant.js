@@ -36,7 +36,7 @@ export class FigurantSheet extends BaseSheet {
             tabs: [
                 {
                     navSelector: ".sheet-navigation",
-                    contentSelector: ".sheet-body",
+                    contentSelector: ".article-body",
                     initial: game.user.isGM ? "combat" : "general"
                 }]
         });

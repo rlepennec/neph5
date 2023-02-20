@@ -22,7 +22,7 @@ export class RituelSheet extends NephilimItemSheet {
             classes: ["nephilim", "sheet", "item"],
             resizable: true,
             scrollY: [".tab.description"],
-            tabs: [{navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "description"}]
+            tabs: [{navSelector: ".sheet-navigation", contentSelector: ".article-body", initial: "description"}]
       });
     }
 

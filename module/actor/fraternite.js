@@ -38,7 +38,7 @@ export class FraterniteSheet extends HistoricalSheet {
             tabs: [
                 {
                     navSelector: ".sheet-navigation",
-                    contentSelector: ".sheet-body",
+                    contentSelector: ".article-body",
                     initial: "general"
                 }]
         });
