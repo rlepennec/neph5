@@ -392,14 +392,6 @@
   border: 0px;
   width: 200px;
 }
-.actor-root .article .article-body .columns {
-  column-count: 2;
-}
-.actor-root .article .article-body .columns .column {
-  display: flex;
-  flex-direction: column;
-  height: 500px;
-}
 .actor-root .article .article-body .item-list {
   display: flex;
   flex-direction: column;
