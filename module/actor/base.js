@@ -55,7 +55,6 @@ export class BaseSheet extends ActorSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
-        html.find('.sheet-navigation-choice').click(this._onSideTab.bind(this));
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="combat"] .edit-arme').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .edit-armure').click(this._onEditEmbeddedItem.bind(this));
@@ -84,30 +83,6 @@ export class BaseSheet extends ActorSheet {
             sid: event.currentTarget.attributes["data-sid"].value
         };
         event.dataTransfer.setData('text/plain', JSON.stringify(macro));
-    }
-
-    /**
-     * Move the pin according to the current tab.
-     * @param event The click event.
-     */
-    async _onSideTab(event) {
-        event.preventDefault();
-
-        //const nav = $(event.currentTarget).closest('.sheet-navigation');
-        //$(nav[0]).find('.sheet-navigation-choice').removeClass('active');
-
-        //$(event.currentTarget).closest('.sheet-navigation-choice').addClass('active');
-
-        /*
-        const nav = $(event.currentTarget).closest('.sheet-navigation');
-        //$(nav[0]).find('.sheet-navigation-pin').attr("src", 'systems/neph5e/assets/core/hole.webp');
-        $(nav[0]).find('.sheet-navigation-pin').css('display', 'none');
-        $(nav[0]).find('.sheet-navigation-hole').css('display', null);
-        const choice = $(event.currentTarget).closest('.sheet-navigation-choice');
-        //$(choice[0]).find('.sheet-navigation-pin').attr("src", 'systems/neph5e/assets/core/pin.webp');
-        $(choice[0]).find('.sheet-navigation-pin').css('display', null);
-        $(choice[0]).find('.sheet-navigation-hole').css('display', 'none');
-        */
     }
 
     /**
