@@ -109,8 +109,8 @@
     .article {
         display: flex;
         flex-direction: column;
-        width: 814px;
         margin-left: 10px;
+        width: 100%;
 
         .article-header {
             display: flex;
@@ -296,7 +296,96 @@
                     font-size: 25px;
                     text-align: center;
                 }
-    
+
+                .cercles {
+
+                    .cercle {
+
+                        .cercle-header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+
+                            .cercle-circle {
+                                border: none;
+                                width: 60px;
+                            }
+
+                            .cercle-separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 70px;
+                                top: 46px;
+                                width: calc(100% - 80px);
+                            }
+
+                            .cercle-degre {
+                                position: absolute;
+                                width: 22px;
+                                left: 19px;
+                                top: 24px;
+                                text-align: center;
+                                font-weight: bold;
+                            }
+
+                            .cercle-menu {
+                                display: flex;
+                                flex-direction: row;
+                                position: absolute;
+                                left: 70px;
+                                top: 20px;
+                                width: calc(100% - 80px);
+                                text-align: center;
+
+                                .cercle-name {
+                                    flex: 1 1 auto;
+                                    //background-color: aqua;
+                                }
+
+                                .cercle-percentage {
+                                    flex: 0 0 50px;
+                                    //background-color: green;
+                                }
+
+                                .cercle-element {
+                                    flex: 0 0 50px;
+                                    //background-color: aqua;
+                                }
+
+                                .cercle-focus {
+                                    flex: 0 0 50px;
+                                    //background-color: green;
+                                }
+
+                                .cercle-status {
+                                    flex: 0 0 80px;
+                                    //background-color: aqua;
+                                }
+
+                                .cercle-dice {
+                                    flex: 0 0 50px;
+                                    font-size: 16px;
+                                    margin-top: 4px;
+                                    //background-color: green;
+                                }
+
+                            }
+                        }
+
+                        .cercle-focus {
+
+
+                        }
+
+                    }
+
+                }
+
+
+
                 .disabled {
                     color: #a1a1a1;
                 }
