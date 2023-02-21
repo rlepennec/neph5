@@ -1,10 +1,11 @@
+{{#if (displaySciences actor 'basseMagie' 'hauteMagie' 'grandSecret')}}
+
 <div class="voie">
     {{#with actor.voieMagique}}
     <label>{{name}}</label>
     {{/with}}
 </div>
 
-{{#if (displaySciences actor 'basseMagie' 'hauteMagie' 'grandSecret')}}
 <ol class="item-list">
 
     {{#if (displayScience actor "basseMagie")}}
