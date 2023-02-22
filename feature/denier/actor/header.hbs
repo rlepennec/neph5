@@ -1,27 +1,33 @@
 {{#if (eq degre 0)}}
-<div class="header disabled">
+<div class="cercle disabled">
 {{else}}
-<div class="header">
+<div class="cercle">
 {{/if}}
 
-    <div class="circle">
-        <div class="circleContent">{{degre}}</div>
-    </div>
+    <div class="cercle-header">
 
-    <div class="title">
-        <div class="item-name">
-            <span>{{cercle}}</span>
+        <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
+
+        <img class="cercle-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+        
+        <div class="cercle-degre">{{degre}}</div>
+
+        <div class="cercle-menu">
+
+            <span class="cercle-name">{{cercle}}</span>
+
+            {{#unless (eq degre 0)}}
+
+                <span class="cercle-percentage">{{localize "%"}}</span>
+
+                {{#if sciencesOccultes}}
+                <a class="cercle-dice roll" data-item="{{cercle-id}}"><i class="fas fa-dice-d20"></i></a>
+                {{/if}}
+
+            {{/unless}}
+
         </div>
-        {{#unless (eq degre 0)}}
-        <div class="item-parameter width-40">
-            <span>{{localize "%"}}</span>
-        </div>
-        <div class="item-control dice">
-            {{#if sciencesOccultes}}
-            <a class="roll" data-item="{{cercle-id}}"><i class="fas fa-dice-d20"></i></a>
-            {{/if}}
-        </div>
-        {{/unless}}
+
     </div>
 
 </div>

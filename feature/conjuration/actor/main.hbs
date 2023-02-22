@@ -1,35 +1,42 @@
 {{#if (displaySciences actor 'charmeur' 'dresseur' 'demiurge')}}
-<ol class="item-list">
+<ol class="cercles">
 
     {{#if (displayScience actor "charmeur")}}
     {{#with (science actor "charmeur") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/conjuration/actor/header.hbs" cercle="Charmeur" degre=degre cercle-id="charmeur" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'charmeur') as |item|}}
             {{> "systems/neph5e/feature/conjuration/actor/appel.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "dresseur")}}
     {{#with (science actor "dresseur") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/conjuration/actor/header.hbs" cercle="Dresseur" degre=degre cercle-id="dresseur" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'dresseur') as |item|}}
             {{> "systems/neph5e/feature/conjuration/actor/appel.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "demiurge")}}
     {{#with (science actor "demiurge") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/conjuration/actor/header.hbs" cercle="Démiurge" degre=degre cercle-id="demiurge" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'demiurge') as |item|}}
             {{> "systems/neph5e/feature/conjuration/actor/appel.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
 </ol>
-
 {{else}}
-    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
+{{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
 {{/if}}

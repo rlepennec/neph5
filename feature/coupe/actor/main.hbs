@@ -1,16 +1,22 @@
 {{#if (displaySciencesOf actor 'tekhne' true)}}
-<ol class="item-list">
+<ol class="cercles">
+
     {{#each (cerclesOf 'tekhne' false) as |name key|}}
-        {{#if (displayScience ../actor key)}}
-        {{#with (science ../actor key) as |degre|}}
-            {{> "systems/neph5e/feature/coupe/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
-            {{#each (focus ../../actor key) as |item|}}
-              {{> "systems/neph5e/feature/coupe/actor/tekhne.hbs" item=item degre=degre}}
-            {{/each}}
-        {{/with}}
-        {{/if}}
+    {{#if (displayScience ../actor key)}}
+    {{#with (science ../actor key) as |degre|}}
+    <div class="cercle">
+        {{> "systems/neph5e/feature/coupe/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
+        {{#each (focus ../../actor key) as |item|}}
+            {{> "systems/neph5e/feature/coupe/actor/tekhne.hbs" item=item degre=degre}}
+        {{/each}}
+    </div>
+    {{/with}}
+    {{/if}}
     {{/each}}
+
 </ol>
 {{else}}
-    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
+{{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
 {{/if}}
