@@ -1,11 +1,11 @@
-<div class="voie">
-    {{#with actor.voieAlchimique}}
-    <label>{{name}}</label>
-    {{/with}}
-</div>
-
 {{#if (displaySciences actor 'oeuvreAuNoir' 'oeuvreAuBlanc' 'oeuvreAuRouge')}}
-<ol class="item-list">
+<ol class="cercles">
+
+    {{#with actor.voieAlchimique}}
+    <div class="voie">
+        <label>{{name}}</label>
+    </div>
+    {{/with}}
 
     {{#if (displayScience actor "oeuvreAuNoir")}}
     {{#with (science actor "oeuvreAuNoir") as |degre|}}
@@ -35,7 +35,8 @@
     {{/if}}
 
 </ol>
-
 {{else}}
-    {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
+{{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
 {{/if}}

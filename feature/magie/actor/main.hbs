@@ -13,11 +13,12 @@
     {{/if}}
 
     {{#if (displayScience actor "hauteMagie")}}
+
+    {{#with actor.voieMagique}}
     <div class="voie">
-        {{#with actor.voieMagique}}
         <label>{{name}}</label>
-        {{/with}}
     </div>
+    {{/with}}
 
     {{#with (science actor "hauteMagie") as |degre|}}
     <div class="cercle">
@@ -27,6 +28,7 @@
         {{/each}}
     </div>
     {{/with}}
+
     {{/if}}
 
     {{#if (displayScience actor "grandSecret")}}
