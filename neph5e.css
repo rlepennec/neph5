@@ -531,6 +531,7 @@
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-circle {
   border: none;
   width: 60px;
+  display: hidden;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-separator {
   position: absolute;
@@ -542,11 +543,15 @@
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-degre {
   position: absolute;
-  width: 22px;
-  left: 19px;
-  top: 24px;
+  width: 45px;
+  height: 45px;
+  left: 8px;
+  top: 13px;
   text-align: center;
   font-weight: bold;
+  padding-top: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 1em #d1ba3a70, 0 0 1em #ffb100a3;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu {
   display: flex;
