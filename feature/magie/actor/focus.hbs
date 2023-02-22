@@ -9,9 +9,17 @@
     data-sid="{{item.original.sid}}"
     data-type="sort">
 
-    <div class="item-control">
-        <a class="item-delete"><i class="fas fa-trash"></i></a>
+    {{#unless (eq degre 0)}}
+
+    <div class="dice">
+        <a class="roll-focus" data-id="{{item.original.id}}">
+            {{#unless (eq item.embedded.degre 0)}}
+            <i class="fas fa-dice-d20"></i>
+            {{/unless}}
+        </a>
     </div>
+
+    {{/unless}}
 
     <div class="item-name edit-focus" data-id="{{item.original.id}}">
         <span>{{item.original.name}}</span>
@@ -57,14 +65,6 @@
     {{else}}
     <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
     {{/if}}
-
-    <div class="dice">
-        <a class="roll-focus" data-id="{{item.original.id}}">
-            {{#unless (eq item.embedded.degre 0)}}
-            <i class="fas fa-dice-d20"></i>
-            {{/unless}}
-        </a>
-    </div>
 
     {{/unless}}
 
