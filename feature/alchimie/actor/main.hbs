@@ -10,27 +10,33 @@
     {{#if (displayScience actor "oeuvreAuNoir")}}
     {{#with (science actor "oeuvreAuNoir") as |degre|}}
         {{> "systems/neph5e/feature/alchimie/actor/header.hbs" cercle="Oeuvre au noir" degre=degre cercle-id="oeuvreAuNoir" sciencesOccultes=../sciencesOccultes}}
+        <ol class="cercle-all-focus">
         {{#each (focus ../actor 'oeuvreAuNoir') as |item|}}
-            {{> "systems/neph5e/feature/alchimie/actor/formule.hbs" item=item degre=degre}}
+            {{> "systems/neph5e/feature/alchimie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
+        </ol>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "oeuvreAuBlanc")}}
     {{#with (science actor "oeuvreAuBlanc") as |degre|}}
         {{> "systems/neph5e/feature/alchimie/actor/header.hbs" cercle="Oeuvre au blanc" degre=degre cercle-id="oeuvreAuBlanc" sciencesOccultes=../sciencesOccultes}}
+        <ol class="cercle-all-focus">
         {{#each (focus ../actor 'oeuvreAuBlanc') as |item|}}
-            {{> "systems/neph5e/feature/alchimie/actor/formule.hbs" item=item degre=degre}}
+            {{> "systems/neph5e/feature/alchimie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
+        </ol>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "oeuvreAuRouge")}}
     {{#with (science actor "oeuvreAuRouge") as |degre|}}
         {{> "systems/neph5e/feature/alchimie/actor/header.hbs" cercle="Oeuvre au rouge" degre=degre cercle-id="oeuvreAuRouge" sciencesOccultes=../sciencesOccultes}}
+        <ol class="cercle-all-focus">
         {{#each (focus ../actor 'oeuvreAuRouge') as |item|}}
-            {{> "systems/neph5e/feature/alchimie/actor/formule.hbs" item=item degre=degre}}
+            {{> "systems/neph5e/feature/alchimie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
+        </ol>
     {{/with}}
     {{/if}}
 
