@@ -1,100 +1,121 @@
 {{#if (displaySciences actor 'malkut' 'yesod' 'hod' 'netzach' 'tiphereth' 'geburah' 'chesed' 'binah' 'chokmah' 'kether' )}}
-<ol class="item-list">
-
+<ol class="cercles">
+    
     {{#if (displayScience actor "malkut")}}
     {{#with (science actor "malkut") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Malkut" degre=degre cercle-id="malkut" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'malkut') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
-
+    
     {{#if (displayScience actor "yesod")}}
     {{#with (science actor "yesod") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Yesod" degre=degre cercle-id="yesod" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'yesod') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "hod")}}
     {{#with (science actor "hod") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Hod" degre=degre cercle-id="hod" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'hod') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "netzach")}}
     {{#with (science actor "netzach") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Netzah" degre=degre cercle-id="netzach" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'netzach') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "tiphereth")}}
     {{#with (science actor "tiphereth") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Tiphereth" degre=degre cercle-id="tiphereth" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'tiphereth') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "geburah")}}
     {{#with (science actor "geburah") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Geburah" degre=degre cercle-id="geburah" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'geburah') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "chesed")}}
     {{#with (science actor "chesed") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Chesed" degre=degre cercle-id="chesed" sciencesOccultes=../sciencesOccultes}}
-       {{#each (focus ../actor 'chesed') as |item|}}
+        {{#each (focus ../actor 'chesed') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "binah")}}
     {{#with (science actor "binah") as |degre|}}
-        {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Binah" degre=degre cercle-id="binah" sciencesOccultes=../sciencesOccultes}}
-        {{#each (focus ../actor 'binah') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
-        {{/each}}
+        <div class="cercle">
+            {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Binah" degre=degre cercle-id="binah" sciencesOccultes=../sciencesOccultes}}
+            {{#each (focus ../actor 'binah') as |item|}}
+                {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
+            {{/each}}
+        </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "chokmah")}}
     {{#with (science actor "chokmah") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Chokmah" degre=degre cercle-id="chokmah" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'chokmah') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
     {{#if (displayScience actor "kether")}}
     {{#with (science actor "kether") as |degre|}}
+    <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/header.hbs" sephirah="Kether" degre=degre cercle-id="kether" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'kether') as |item|}}
             {{> "systems/neph5e/feature/kabbale/actor/invocation.hbs" item=item degre=degre}}
         {{/each}}
+    </div>
     {{/with}}
     {{/if}}
 
 </ol>
-
 {{else}}
+
     {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
+
 {{/if}}
 
 {{#with actor.ordonnances as |items|}}
