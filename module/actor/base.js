@@ -241,7 +241,7 @@ export class BaseSheet extends ActorSheet {
                 return new AbstractRollBuilder(this.actor).withKa(element).withScope(scope).create();
             }
             case '.roll-science': {
-                const key = $(event.currentTarget).closest(".roll-science").data("item"); 
+                const key = $(event.currentTarget).closest(".roll").data("item"); 
                 const item = game.items.find(i => i.type === 'science' && i?.system?.key === key);
                 const builder = new AbstractRollBuilder(this.actor).withItem(item);
                 return builder.create();

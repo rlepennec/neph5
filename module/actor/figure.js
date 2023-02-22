@@ -97,8 +97,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="alchimie"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="alchimie"] .change-transporte').change(this._onChangeTransporte.bind(this));
         html.find('div[data-tab="alchimie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="alchimie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="alchimie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="alchimie"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Combat
         html.find('div[data-tab="combat"] .edit-esquive').click(this._onEditEsquive.bind(this));
@@ -110,8 +109,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="conjuration"] .change-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-tab="conjuration"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="conjuration"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="conjuration"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="conjuration"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="conjuration"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Incarnations
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
@@ -133,8 +131,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="kabbale"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="kabbale"] .change-pacte').click(this._onChangePacte.bind(this));
         html.find('div[data-tab="kabbale"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="kabbale"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="kabbale"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="kabbale"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Laboratoire
         html.find('div[data-tab="laboratoire"]').on("drop", this._onDrop.bind(this));
@@ -151,16 +148,14 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="magie"] .change-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-tab="magie"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="magie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="magie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="magie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="magie"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Magie analogique
         html.find('div[data-tab="analogie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="analogie"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="analogie"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="analogie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="analogie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="analogie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="analogie"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Necromancie
         html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
@@ -168,8 +163,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="necromancie"] .change-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-tab="necromancie"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="necromancie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="necromancie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="necromancie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="necromancie"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Nephilim
         html.find('div[data-tab="nephilim"]').on("drop", this._onDrop.bind(this));
@@ -210,43 +204,37 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="baton"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="baton"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="baton"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="baton"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="baton"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Coupe
         html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="coupe"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="coupe"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="coupe"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="coupe"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="coupe"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Denier
         html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="denier"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="denier"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="denier"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="denier"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="denier"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Epee
         html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="epee"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="epee"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="epee"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="epee"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="epee"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Atlanteide
         html.find('div[data-tab="atlanteide"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="atlanteide"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="atlanteide"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="atlanteide"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="atlanteide"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="atlanteide"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Dracomachie
         html.find('div[data-tab="dracomachie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="dracomachie"] .edit-focus').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="dracomachie"] .roll-focus').click(this._onRollFeature.bind(this, 'focus'));
-        html.find('div[data-tab="dracomachie"] .roll-science').click(this._onRollFeature.bind(this, 'science'));
-        html.find('div[data-tab="dracomachie"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="dracomachie"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
