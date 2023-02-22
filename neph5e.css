@@ -514,8 +514,8 @@
   font-weight: lighter;
   font-style: italic;
 }
-.actor-root .article .article-body .science .voie {
-  margin-top: 10px;
+.actor-root .article .article-body .science .cercles .voie {
+  margin-top: 40px;
   padding-bottom: 3px;
   font-family: 'AJensonPro';
   font-size: 25px;
