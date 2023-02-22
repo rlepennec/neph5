@@ -70,7 +70,7 @@ export const preloadTemplates = async function () {
         // Magie
         "systems/neph5e/feature/magie/actor/main.hbs",
         "systems/neph5e/feature/magie/actor/header.hbs",
-        "systems/neph5e/feature/magie/actor/sort.hbs",
+        "systems/neph5e/feature/magie/actor/focus.hbs",
 
         // Analogie
         "systems/neph5e/feature/analogie/actor/main.hbs",

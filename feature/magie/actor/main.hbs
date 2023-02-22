@@ -6,7 +6,7 @@
     <div class="cercle">
         {{> "systems/neph5e/feature/magie/actor/header.hbs" cercle="Basse Magie" degre=degre cercle-id="basseMagie" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'basseMagie') as |item|}}
-            {{> "systems/neph5e/feature/magie/actor/sort.hbs" item=item degre=degre}}
+            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
     </div>
     {{/with}}
@@ -24,7 +24,7 @@
     <div class="cercle">
         {{> "systems/neph5e/feature/magie/actor/header.hbs" cercle="Haute Magie" degre=degre cercle-id="hauteMagie" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'hauteMagie') as |item|}}
-            {{> "systems/neph5e/feature/magie/actor/sort.hbs" item=item degre=degre}}
+            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
     </div>
     {{/with}}
@@ -36,7 +36,7 @@
     <div class="cercle">
         {{> "systems/neph5e/feature/magie/actor/header.hbs" cercle="Grand Secret" degre=degre cercle-id="grandSecret" sciencesOccultes=../sciencesOccultes}}
         {{#each (focus ../actor 'grandSecret') as |item|}}
-            {{> "systems/neph5e/feature/magie/actor/sort.hbs" item=item degre=degre}}
+            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
     </div>
     {{/with}}
