@@ -5,7 +5,7 @@
     {{#if (displayScience ../actor key)}}
     {{#with (science ../actor key) as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/dracomachie/actor/header.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
+        {{> "systems/neph5e/feature/dracomachie/actor/cercle.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
         <ol class="cercle-all-focus">
         {{#each (focus ../../actor key) as |item|}}
             {{> "systems/neph5e/feature/dracomachie/actor/focus.hbs" item=item degre=degre}}

@@ -14,18 +14,18 @@ export const preloadTemplates = async function () {
 
         // Alchimie
         "systems/neph5e/feature/alchimie/actor/main.hbs",
-        "systems/neph5e/feature/alchimie/actor/header.hbs",
+        "systems/neph5e/feature/alchimie/actor/cercle.hbs",
         "systems/neph5e/feature/alchimie/actor/focus.hbs",
         "systems/neph5e/feature/alchimie/actor/construct.hbs",
 
         // Atlanteide
         "systems/neph5e/feature/atlanteide/actor/main.hbs",
-        "systems/neph5e/feature/atlanteide/actor/header.hbs",
+        "systems/neph5e/feature/atlanteide/actor/cercle.hbs",
         "systems/neph5e/feature/atlanteide/actor/focus.hbs",
 
         // Baton
         "systems/neph5e/feature/baton/actor/main.hbs",
-        "systems/neph5e/feature/baton/actor/header.hbs",
+        "systems/neph5e/feature/baton/actor/cercle.hbs",
         "systems/neph5e/feature/baton/actor/focus.hbs",
 
         // Combat
@@ -35,32 +35,32 @@ export const preloadTemplates = async function () {
 
         // Conjuration
         "systems/neph5e/feature/conjuration/actor/main.hbs",
-        "systems/neph5e/feature/conjuration/actor/header.hbs",
+        "systems/neph5e/feature/conjuration/actor/cercle.hbs",
         "systems/neph5e/feature/conjuration/actor/focus.hbs",
 
         // Coupe
         "systems/neph5e/feature/coupe/actor/main.hbs",
-        "systems/neph5e/feature/coupe/actor/header.hbs",
+        "systems/neph5e/feature/coupe/actor/cercle.hbs",
         "systems/neph5e/feature/coupe/actor/focus.hbs",
 
         // Denier
         "systems/neph5e/feature/denier/actor/main.hbs",
-        "systems/neph5e/feature/denier/actor/header.hbs",
+        "systems/neph5e/feature/denier/actor/cercle.hbs",
         "systems/neph5e/feature/denier/actor/focus.hbs",
 
         // Dracomachie
         "systems/neph5e/feature/dracomachie/actor/main.hbs",
-        "systems/neph5e/feature/dracomachie/actor/header.hbs",
+        "systems/neph5e/feature/dracomachie/actor/cercle.hbs",
         "systems/neph5e/feature/dracomachie/actor/focus.hbs",
 
         // Epee
         "systems/neph5e/feature/epee/actor/main.hbs",
-        "systems/neph5e/feature/epee/actor/header.hbs",
+        "systems/neph5e/feature/epee/actor/cercle.hbs",
         "systems/neph5e/feature/epee/actor/focus.hbs",
 
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/main.hbs",
-        "systems/neph5e/feature/kabbale/actor/header.hbs",
+        "systems/neph5e/feature/kabbale/actor/cercle.hbs",
         "systems/neph5e/feature/kabbale/actor/focus.hbs",
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
 
@@ -69,17 +69,17 @@ export const preloadTemplates = async function () {
 
         // Magie
         "systems/neph5e/feature/magie/actor/main.hbs",
-        "systems/neph5e/feature/magie/actor/header.hbs",
+        "systems/neph5e/feature/magie/actor/cercle.hbs",
         "systems/neph5e/feature/magie/actor/focus.hbs",
 
         // Analogie
         "systems/neph5e/feature/analogie/actor/main.hbs",
-        "systems/neph5e/feature/analogie/actor/header.hbs",
+        "systems/neph5e/feature/analogie/actor/cercle.hbs",
         "systems/neph5e/feature/analogie/actor/focus.hbs",
 
         // Necromancie
         "systems/neph5e/feature/necromancie/actor/main.hbs",
-        "systems/neph5e/feature/necromancie/actor/header.hbs",
+        "systems/neph5e/feature/necromancie/actor/cercle.hbs",
         "systems/neph5e/feature/necromancie/actor/focus.hbs",
 
         // Nephilim
