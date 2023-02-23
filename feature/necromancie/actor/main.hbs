@@ -5,7 +5,7 @@
     {{#with (science actor "fossoyeur") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/necromancie/actor/cercle.hbs" cercle="Fossoyeur" degre=degre cercle-id="fossoyeur" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'fossoyeur') as |item|}}
             {{> "systems/neph5e/feature/necromancie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -18,7 +18,7 @@
     {{#with (science actor "embaumeur") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/necromancie/actor/cercle.hbs" cercle="Embaumeur" degre=degre cercle-id="embaumeur" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'embaumeur') as |item|}}
             {{> "systems/neph5e/feature/necromancie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -31,7 +31,7 @@
     {{#with (science actor "imputrescible") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/necromancie/actor/cercle.hbs" cercle="Imputrescible" degre=degre cercle-id="imputrescible" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'imputrescible') as |item|}}
             {{> "systems/neph5e/feature/necromancie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}

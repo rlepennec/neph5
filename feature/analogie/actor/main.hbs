@@ -11,7 +11,7 @@
     {{#with (science actor "comprendre") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Comprendre" degre=degre cercle-id="comprendre" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'comprendre') as |item|}}
             {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -24,7 +24,7 @@
     {{#with (science actor "controler") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Contrôler" degre=degre cercle-id="controler" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'controler') as |item|}}
             {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -37,7 +37,7 @@
     {{#with (science actor "creer") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Créer" degre=degre cercle-id="creer" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'creer') as |item|}}
             {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -50,7 +50,7 @@
     {{#with (science actor "detruire") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Détruire" degre=degre cercle-id="detruire" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'detruire') as |item|}}
             {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -63,7 +63,7 @@
     {{#with (science actor "transformer") as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Transformer" degre=degre cercle-id="transformer" sciencesOccultes=../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../actor 'transformer') as |item|}}
             {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
@@ -77,7 +77,7 @@
     {{#with (science ../actor key) as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../../actor key) as |item|}}
             {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
         {{/each}}

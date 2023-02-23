@@ -6,7 +6,7 @@
     {{#with (science ../actor key) as |degre|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/atlanteide/actor/cercle.hbs" cercle=name degre=degre cercle-id=key sciencesOccultes=../../sciencesOccultes}}
-        <ol class="cercle-all-focus">
+        <ol class="all-focus">
         {{#each (focus ../../actor key) as |item|}}
             {{> "systems/neph5e/feature/atlanteide/actor/focus.hbs" item=item degre=degre}}
         {{/each}}
