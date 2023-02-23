@@ -569,12 +569,12 @@
   text-align: center;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header {
-  background-color: red;
   display: flex;
   flex-direction: row;
   position: relative;
   font-family: 'AJensonPro';
   font-size: 21px;
+  margin-bottom: -10px;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-circle {
   border: none;
@@ -632,7 +632,6 @@
   flex: 0 0 50px;
   font-size: 16px;
   margin-top: 4px;
-  background-color: green;
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus {
   padding-left: 0px;
@@ -642,7 +641,6 @@
   flex-direction: row;
   position: relative;
   text-align: center;
-  background-color: aqua;
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-element {
   margin-left: 20px;
@@ -664,9 +662,10 @@
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-dice {
   flex: 0 0 50px;
-  margin-top: 4px;
   margin-right: 10px;
-  background-color: green;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus:hover {
+  text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .science .disabled {
   color: #a1a1a1;
