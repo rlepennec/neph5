@@ -514,6 +514,53 @@
   font-weight: lighter;
   font-style: italic;
 }
+.actor-root .article .article-body .science {
+  /*
+                .focus {
+                    height: 17px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+    
+                    .item-parameter {
+                        flex: 0 0 auto;
+                        justify-content: center;
+                        text-align: center;
+                        margin-left: 10px;
+                        margin-right:10px;
+                    }
+    
+                    .edit-focus {
+                        margin-left: 20px;
+                    }
+    
+                    .quantite {
+                        flex: 0 0 auto;
+                        width: 40px;
+                        border: none;
+                        text-align: center;
+                        background-color: transparent;
+                    }
+    
+                    .dice {
+                        flex: 0 0 auto;
+                        width: 18px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        text-align: center;
+                    }
+    
+                    .width-40 {
+                        width: 40px;
+                    }
+    
+                    .width-80 {
+                        width: 80px;
+                    }
+    
+                }
+                */
+}
 .actor-root .article .article-body .science .cercles .voie {
   margin-top: 40px;
   padding-bottom: 3px;
@@ -522,6 +569,7 @@
   text-align: center;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header {
+  background-color: red;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -584,6 +632,41 @@
   flex: 0 0 50px;
   font-size: 16px;
   margin-top: 4px;
+  background-color: green;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus {
+  padding-left: 0px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  text-align: center;
+  background-color: aqua;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-element {
+  margin-left: 20px;
+  flex: 0 0 50px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-name {
+  flex: 1 1 auto;
+  text-align: left;
+  padding-left: 20px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-focus {
+  flex: 0 0 50px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-status {
+  flex: 0 0 80px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-difficulty {
+  flex: 0 0 50px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-dice {
+  flex: 0 0 50px;
+  margin-top: 4px;
+  margin-right: 10px;
+  background-color: green;
 }
 .actor-root .article .article-body .science .disabled {
   color: #a1a1a1;
@@ -638,42 +721,6 @@
   width: 40px;
 }
 .actor-root .article .article-body .science .header .title .width-80 {
-  width: 80px;
-}
-.actor-root .article .article-body .science .focus {
-  height: 17px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.actor-root .article .article-body .science .focus .item-parameter {
-  flex: 0 0 auto;
-  justify-content: center;
-  text-align: center;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.actor-root .article .article-body .science .focus .edit-focus {
-  margin-left: 20px;
-}
-.actor-root .article .article-body .science .focus .quantite {
-  flex: 0 0 auto;
-  width: 40px;
-  border: none;
-  text-align: center;
-  background-color: transparent;
-}
-.actor-root .article .article-body .science .focus .dice {
-  flex: 0 0 auto;
-  width: 18px;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-}
-.actor-root .article .article-body .science .focus .width-40 {
-  width: 40px;
-}
-.actor-root .article .article-body .science .focus .width-80 {
   width: 80px;
 }
 .actor-root .article .article-body .science .ordonnances {

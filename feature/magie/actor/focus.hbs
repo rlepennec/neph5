@@ -1,8 +1,8 @@
 <li 
     {{#if (eq degre 0)}}
-    class="item macro focus disabled"
+    class="focus macro disabled"
     {{else}}
-    class="item macro focus"
+    class="focus macro"
     {{/if}}
     data-item-id="{{item.embedded.id}}"
     data-id="{{item.embedded.id}}"
@@ -10,9 +10,9 @@
     data-type="sort">
 
     {{#if (eq item.embedded.degre 0)}}
-    <label class="tooltip item-parameter width-40 disabled">
+    <label class="focus-element tooltip disabled">
     {{else}}
-    <label class="tooltip item-parameter width-40">
+    <label class="focus-element tooltip">
     {{/if}}
     {{#switch item.original.system.element}}
         {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
@@ -24,18 +24,16 @@
     {{/switch}}
     </label>
 
-
-
-    <div class="item-name edit-focus" data-id="{{item.original.id}}">
+    <div class="focus-name edit" data-id="{{item.original.id}}">
         <span>{{item.original.name}}</span>
     </div>
 
     {{#unless (eq degre 0)}}
 
     {{#if (eq item.embedded.degre 0)}}
-    <label class="change-focus item-parameter width-40 disabled" data-id="{{item.embedded.id}}">
+    <label class="focus-focus change disabled" data-id="{{item.embedded.id}}">
     {{else}}
-    <label class="change-focus item-parameter width-40" data-id="{{item.embedded.id}}">
+    <label class="focus-focus change" data-id="{{item.embedded.id}}">
     {{/if}}
     {{#if item.embedded.system.focus}}
     <i class="fa-solid fa-scroll"></i>
@@ -45,17 +43,20 @@
     </label>
 
     {{#if (eq item.embedded.degre 0)}}
-    <label class="change-status item-parameter width-80 disabled" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    <label class="focus-status change disabled" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
     {{else}}
-    <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    <label class="focus-status change" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
     {{/if}}
 
-    <label class="item-parameter width-40">
+    <label class="focus-difficulty">
     {{#unless (eq item.embedded.degre 0)}}
     {{item.embedded.degre}}
     {{/unless}}
     </label>
 
+    <a class="focus-dice roll" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+
+<!--
     <div class="dice">
         <a class="roll-focus" data-id="{{item.original.id}}">
             {{#unless (eq item.embedded.degre 0)}}
@@ -63,7 +64,7 @@
             {{/unless}}
         </a>
     </div>
-
+-->
     {{/unless}}
 
 </li>

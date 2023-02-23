@@ -302,6 +302,7 @@
                     .cercle {
 
                         .cercle-header {
+                            background-color: red;
                             display: flex;
                             flex-direction: row;
                             position: relative;
@@ -373,6 +374,7 @@
                                     flex: 0 0 50px;
                                     font-size: 16px;
                                     margin-top: 4px;
+                                    background-color: green;
                                 }
 
                             }
@@ -380,9 +382,45 @@
                         }
 
                         .all-focus {
+                            padding-left: 0px;
 
-                            .cercle-focus {
-                            
+                            .focus {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                text-align: center;
+                                background-color: aqua;
+
+                                .focus-element {
+                                    margin-left: 20px;
+                                    flex: 0 0 50px;
+                                }
+
+                                .focus-name {
+                                    flex: 1 1 auto;
+                                    text-align: left;
+                                    padding-left: 20px;
+                                }
+
+                                .focus-focus {
+                                    flex: 0 0 50px;
+                                }
+
+                                .focus-status {
+                                    flex: 0 0 80px;
+                                }
+
+                                .focus-difficulty {
+                                    flex: 0 0 50px;
+                                }
+
+                                .focus-dice {
+                                    flex: 0 0 50px;
+                                    margin-top: 4px;
+                                    margin-right: 10px;
+                                    background-color: green;
+                                }
+
                             }
 
                         }
@@ -459,7 +497,7 @@
                     }
     
                 }
-    
+    /*
                 .focus {
                     height: 17px;
                     display: flex;
@@ -503,6 +541,7 @@
                     }
     
                 }
+                */
     
                 .ordonnances {
                     margin-top: 0px;
