@@ -3,7 +3,7 @@
 
     {{#if (displayScience actor "fossoyeur")}}
     {{#with (science actor "fossoyeur") as |degre|}}
-    <div class="cercle"></div>
+    <div class="cercle">
         {{> "systems/neph5e/feature/necromancie/actor/header.hbs" cercle="Fossoyeur" degre=degre cercle-id="fossoyeur" sciencesOccultes=../sciencesOccultes}}
         <ol class="cercle-all-focus">
         {{#each (focus ../actor 'fossoyeur') as |item|}}
@@ -16,7 +16,7 @@
 
     {{#if (displayScience actor "embaumeur")}}
     {{#with (science actor "embaumeur") as |degre|}}
-    <div class="cercle"></div>
+    <div class="cercle">
         {{> "systems/neph5e/feature/necromancie/actor/header.hbs" cercle="Embaumeur" degre=degre cercle-id="embaumeur" sciencesOccultes=../sciencesOccultes}}
         <ol class="cercle-all-focus">
         {{#each (focus ../actor 'embaumeur') as |item|}}

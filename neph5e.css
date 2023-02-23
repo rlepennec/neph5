@@ -551,7 +551,7 @@
   font-weight: bold;
   padding-top: 12px;
   border-radius: 50%;
-  box-shadow: inset 0 0 1em #d1ba3a70, 0 0 1em #ffb100a3;
+  box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu {
   display: flex;
