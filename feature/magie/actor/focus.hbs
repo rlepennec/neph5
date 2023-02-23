@@ -9,7 +9,52 @@
     data-sid="{{item.original.sid}}"
     data-type="sort">
 
+    {{#if (eq item.embedded.degre 0)}}
+    <label class="tooltip item-parameter width-40 disabled">
+    {{else}}
+    <label class="tooltip item-parameter width-40">
+    {{/if}}
+    {{#switch item.original.system.element}}
+        {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
+        {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
+        {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
+        {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
+        {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
+        {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+    {{/switch}}
+    </label>
+
+
+
+    <div class="item-name edit-focus" data-id="{{item.original.id}}">
+        <span>{{item.original.name}}</span>
+    </div>
+
     {{#unless (eq degre 0)}}
+
+    {{#if (eq item.embedded.degre 0)}}
+    <label class="change-focus item-parameter width-40 disabled" data-id="{{item.embedded.id}}">
+    {{else}}
+    <label class="change-focus item-parameter width-40" data-id="{{item.embedded.id}}">
+    {{/if}}
+    {{#if item.embedded.system.focus}}
+    <i class="fa-solid fa-scroll"></i>
+    {{else}}
+    <i class="fa-regular fa-scroll"></i>
+    {{/if}}
+    </label>
+
+    {{#if (eq item.embedded.degre 0)}}
+    <label class="change-status item-parameter width-80 disabled" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    {{else}}
+    <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    {{/if}}
+
+    <label class="item-parameter width-40">
+    {{#unless (eq item.embedded.degre 0)}}
+    {{item.embedded.degre}}
+    {{/unless}}
+    </label>
 
     <div class="dice">
         <a class="roll-focus" data-id="{{item.original.id}}">
@@ -18,53 +63,6 @@
             {{/unless}}
         </a>
     </div>
-
-    {{/unless}}
-
-    <div class="item-name edit-focus" data-id="{{item.original.id}}">
-        <span>{{item.original.name}}</span>
-    </div>
-
-    {{#unless (eq degre 0)}}
-
-    <label class="item-parameter width-40">
-        {{#unless (eq item.embedded.degre 0)}}
-        {{item.embedded.degre}}
-        {{/unless}}
-    </label>
-
-    {{#if (eq item.embedded.degre 0)}}
-    <label class="tooltip item-parameter width-40 disabled">
-    {{else}}
-    <label class="tooltip item-parameter width-40">
-    {{/if}}
-        {{#switch item.original.system.element}}
-            {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
-            {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
-            {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
-            {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
-            {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
-            {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
-        {{/switch}}
-    </label>
-
-    {{#if (eq item.embedded.degre 0)}}
-    <label class="change-focus item-parameter width-40 disabled" data-id="{{item.embedded.id}}">
-    {{else}}
-    <label class="change-focus item-parameter width-40" data-id="{{item.embedded.id}}">
-    {{/if}}
-        {{#if item.embedded.system.focus}}
-        <i class="fa-solid fa-scroll"></i>
-        {{else}}
-        <i class="fa-regular fa-scroll"></i>
-        {{/if}}
-    </label>
-
-    {{#if (eq item.embedded.degre 0)}}
-    <label class="change-status item-parameter width-80 disabled" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
-    {{else}}
-    <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
-    {{/if}}
 
     {{/unless}}
 
