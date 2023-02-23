@@ -392,6 +392,152 @@
   border: 0px;
   width: 200px;
 }
+.actor-root .article .article-body {
+  /*
+            .item-list {
+                display: flex;
+                flex-direction: column;
+                padding: 0 0 0 0;
+    
+                .item-list-header {
+                    display: flex;
+                    flex-direction: row;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+                    justify-content: space-between;
+                    height: 28px;
+                    align-items: center;
+                    border: 1px solid rgba(0, 0, 0, 0.3);
+                    border-radius: 4px;
+                    background-color: rgba(0, 0, 0, 0.05);
+                    color: rgb(25, 24, 19);
+                    font-family: Signika, sans-serif;
+                    font-size: 13px;
+                    font-weight: bold;
+                    margin-top: 20px;
+    
+                    .item-name {
+                        flex: 1  1 auto;
+                        margin-left: 10px;
+                    }
+    
+                    .item-checkbox {
+                        text-align: center;
+                        width: 54px;
+                    }
+    
+                    .item-integer {
+                        text-align: center;
+                        width: 54px;
+                    }
+    
+                    .item-short-string {
+                        text-align: center;
+                        width: 80px;
+                    }
+    
+                    .item-short-string-left {
+                        margin-left: 10px;
+                        width: 50px;
+                    }
+    
+                    .item-string-right {
+                        border:none;
+                        flex: 1  1 auto;
+                        text-align: left;
+                    }
+    
+                    .item-string {
+                        width: 200px;
+                    }
+    
+                    .item-control {
+                        display: flex;
+                        flex-direction: row;
+                        width: 32px;
+                    }
+    
+                }
+    
+                .item {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 0 0 20px;
+                    -webkit-column-break-inside: avoid;
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+    
+                    .item-name {
+                        flex: 1  1 auto;
+                    }
+    
+                    .item-checkbox {
+                        text-align: center;
+                        width: 54px;
+                    }
+    
+                    .item-integer {
+                        text-align: center;
+                        width: 54px;
+                    }
+    
+                    .item-short-string {
+                        text-align: center;
+                        width: 80px;
+                    }
+    
+                    .item-string {
+                        width: 200px;
+                    }
+    
+                    .item-control {
+                        text-align: center;
+                        width: 32px;
+                    }
+    
+                    &:hover {
+                        text-shadow: 0 0 10px #2C606D;
+                        color: #2C606D;
+                    }
+    
+                }
+    
+                .item-summary {
+                    display: flex;
+                    flex-direction: column;
+                    border: 1px solid rgba(0, 0, 0, 0.3);
+                    border-radius: 4px;
+                    margin: 10px 10px 10px 10px;
+                    padding-right: 20px;
+    
+                    .item-property {
+                        display: flex;
+                        flex-direction: row;
+                        font-size: 12px;
+    
+                        .item-property-name {
+                            font-weight: bold;
+                            width: 100px;
+                        }
+    
+                        .item-property-value {
+                            font-weight:lighter;
+                            font-style: italic;
+                        }
+    
+                        .item-property-description {
+                            font-weight:lighter;
+                            font-style: italic;
+                        }
+    
+                    }
+    
+                }
+    
+            }
+*/
+}
 .actor-root .article .article-body .corner-bottom {
   position: absolute;
   right: 0px;
@@ -399,123 +545,75 @@
   border: none;
   width: 120px;
 }
-.actor-root .article .article-body .item-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 0;
-}
-.actor-root .article .article-body .item-list .item-list-header {
-  display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  justify-content: space-between;
-  height: 28px;
-  align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #191813;
-  font-family: Signika, sans-serif;
-  font-size: 13px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-name {
-  flex: 1  1 auto;
-  margin-left: 10px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-checkbox {
-  text-align: center;
-  width: 54px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-integer {
-  text-align: center;
-  width: 54px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-short-string {
-  text-align: center;
-  width: 80px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-short-string-left {
-  margin-left: 10px;
-  width: 50px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-string-right {
-  border: none;
-  flex: 1  1 auto;
-  text-align: left;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-string {
-  width: 200px;
-}
-.actor-root .article .article-body .item-list .item-list-header .item-control {
-  display: flex;
-  flex-direction: row;
-  width: 32px;
-}
-.actor-root .article .article-body .item-list .item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0 0 20px;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-.actor-root .article .article-body .item-list .item .item-name {
-  flex: 1  1 auto;
-}
-.actor-root .article .article-body .item-list .item .item-checkbox {
-  text-align: center;
-  width: 54px;
-}
-.actor-root .article .article-body .item-list .item .item-integer {
-  text-align: center;
-  width: 54px;
-}
-.actor-root .article .article-body .item-list .item .item-short-string {
-  text-align: center;
-  width: 80px;
-}
-.actor-root .article .article-body .item-list .item .item-string {
-  width: 200px;
-}
-.actor-root .article .article-body .item-list .item .item-control {
-  text-align: center;
-  width: 32px;
-}
-.actor-root .article .article-body .item-list .item:hover {
-  text-shadow: 0 0 10px #2C606D;
-  color: #2C606D;
-}
-.actor-root .article .article-body .item-list .item-summary {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  margin: 10px 10px 10px 10px;
-  padding-right: 20px;
-}
-.actor-root .article .article-body .item-list .item-summary .item-property {
-  display: flex;
-  flex-direction: row;
-  font-size: 12px;
-}
-.actor-root .article .article-body .item-list .item-summary .item-property .item-property-name {
-  font-weight: bold;
-  width: 100px;
-}
-.actor-root .article .article-body .item-list .item-summary .item-property .item-property-value {
-  font-weight: lighter;
-  font-style: italic;
-}
-.actor-root .article .article-body .item-list .item-summary .item-property .item-property-description {
-  font-weight: lighter;
-  font-style: italic;
-}
 .actor-root .article .article-body .science {
   /*
+                .disabled {
+                    color: #a1a1a1;
+                }
+    
+                .header {
+                    display: flex;
+                    flex-direction: row;
+                    padding-top: 10px;
+                    justify-content: center;
+    
+                    .circle {
+                        flex-basis: 40px;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                    }
+    
+                    .title {
+                        width: 100%;
+                        margin-left: 20px;
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        font-family: 'AJensonPro';
+                        font-size: 20px;
+                        border-width: 0px 0px 2px 0px;
+                        border-style: solid;
+                        border-color: black;
+    
+                        .item-name {
+                            width: 100%;
+                            padding-left: 5px;
+                        }
+    
+                        .item-parameter {
+                            flex: 0 0 auto;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            text-align: center;
+                        }
+    
+                        .item-quantite {
+                            flex: 0 0 auto;
+                            text-align:center;
+                        }
+                        
+                        .dice {
+                            flex: 0 0 auto;
+                            width: 18px;
+                            margin-left: 12px;
+                            margin-right: 8px;
+                            font-size: 14px;
+                            padding-top: 5px;
+                        }
+    
+                        .width-40 {
+                            width: 40px;
+                        }
+    
+                        .width-80 {
+                            width: 80px;
+                        }
+    
+                    }
+    
+                }
+    
                 .focus {
                     height: 17px;
                     display: flex;
@@ -559,7 +657,7 @@
                     }
     
                 }
-                */
+*/
 }
 .actor-root .article .article-body .science .cercles .voie {
   margin-top: 40px;
@@ -666,61 +764,6 @@
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus:hover {
   text-shadow: 0px 0px 1px black;
-}
-.actor-root .article .article-body .science .disabled {
-  color: #a1a1a1;
-}
-.actor-root .article .article-body .science .header {
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  justify-content: center;
-}
-.actor-root .article .article-body .science .header .circle {
-  flex-basis: 40px;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-.actor-root .article .article-body .science .header .title {
-  width: 100%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor-root .article .article-body .science .header .title .item-name {
-  width: 100%;
-  padding-left: 5px;
-}
-.actor-root .article .article-body .science .header .title .item-parameter {
-  flex: 0 0 auto;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-}
-.actor-root .article .article-body .science .header .title .item-quantite {
-  flex: 0 0 auto;
-  text-align: center;
-}
-.actor-root .article .article-body .science .header .title .dice {
-  flex: 0 0 auto;
-  width: 18px;
-  margin-left: 12px;
-  margin-right: 8px;
-  font-size: 14px;
-  padding-top: 5px;
-}
-.actor-root .article .article-body .science .header .title .width-40 {
-  width: 40px;
-}
-.actor-root .article .article-body .science .header .title .width-80 {
-  width: 80px;
 }
 .actor-root .article .article-body .science .ordonnances {
   margin-top: 0px;
