@@ -627,28 +627,28 @@ export class NephilimActor extends Actor {
                 }
                 switch (weapon.system.type) {
                     case Constants.NATURELLE:
-                        await new Naturelle(this, weapon).initialize();
+                        await new Naturelle(this, weapon).initializeRoll();
                         break;
                     case Constants.MELEE:
-                        await new Melee(this, weapon).initialize();
+                        await new Melee(this, weapon).initializeRoll();
                         break;
                     case Constants.FEU:
                     case Constants.TRAIT:
-                        await new Distance(this, weapon).initialize();
+                        await new Distance(this, weapon).initializeRoll();
                         break;
                 }
                 break;
             }
             case 'lutte': {
                 if (this.lutteCanBePerformed) {
-                    await new Wrestle(this).initialize();
+                    await new Wrestle(this).initializeRoll();
                 }
                 break;
             }
         }
         const feature = builder.create();
         if (feature != null) {
-            await feature.initialize();
+            await feature.initializeRoll();
         }
     }
 

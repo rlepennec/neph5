@@ -113,7 +113,7 @@ export class Wrestle extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
         if (this.actor.isLutteAvailable) {
 
             // Use actor

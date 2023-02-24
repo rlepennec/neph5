@@ -241,7 +241,7 @@ Hooks.once("init", function () {
     Hooks.on("renderChatMessage", async (app, html, data) => {
         const reaction = await OpposedRollBuilder.create(data);
         if (reaction != null) {
-            await reaction.initialize();
+            await reaction.initializeRoll();
             await NephilimChat.unsetFlags(data.message._id);
         }
     });

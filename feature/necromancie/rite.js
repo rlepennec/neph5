@@ -30,7 +30,7 @@ export class Rite extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
 
         const embedded = this.actor.items.find(i => i.sid === this.sid);
 
@@ -39,7 +39,7 @@ export class Rite extends AbstractFeature {
             return;
         }
 
-        return await super.initialize();
+        return await super.initializeRoll();
 
     }
 

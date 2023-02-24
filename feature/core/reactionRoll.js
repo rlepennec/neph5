@@ -76,7 +76,7 @@ export class ReactionRoll extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
         new ActionDialog(this.actor, this)
             .withTitle(this.title)
             .withTemplate("systems/neph5e/feature/core/reaction.hbs")

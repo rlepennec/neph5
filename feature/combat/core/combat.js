@@ -34,7 +34,7 @@ export class Combat {
 
                 switch (skill.type) {
                     case 'competence': {
-                        await new AbstractRollBuilder(this.actor).withItem(skill).create().initialize();
+                        await new AbstractRollBuilder(this.actor).withItem(skill).create().initializeRoll();
                         break;
                     }
                     case 'vecu': {
@@ -43,7 +43,7 @@ export class Combat {
                             ui.notifications.warn("Vous ne possédez pas le vécu nécessaire pour " + (weapon == null ? "lutter" : "utiliser cette arme"));
                             return;
                         }
-                        await new AbstractRollBuilder(this.actor).withItem(item).create().initialize();
+                        await new AbstractRollBuilder(this.actor).withItem(item).create().initializeRoll();
                         break;
                     }
                 }
@@ -51,7 +51,7 @@ export class Combat {
                 break;
 
             case 'figurant':
-                await new Menace(this.actor).initialize();
+                await new Menace(this.actor).initializeRoll();
         }
 
     }

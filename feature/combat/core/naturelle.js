@@ -117,7 +117,7 @@ export class Naturelle extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
         if (this.effects.restrained === false) {
 
             // Use actor

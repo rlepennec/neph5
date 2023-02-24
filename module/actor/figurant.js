@@ -82,7 +82,7 @@ export class FigurantSheet extends BaseSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".roll-vecu").data("item");
         const item = this.actor.items.get(id);
-        await new AbstractRollBuilder(this.actor).withScope('actor').withItem(item).create().initialize();
+        await new AbstractRollBuilder(this.actor).withScope('actor').withItem(item).create().initializeRoll();
         return this;
     }
 
@@ -150,11 +150,11 @@ export class FigurantSheet extends BaseSheet {
     // ---------------------------------------- Roll handlers ----------------------------------------
 
     async _onRollKa(event) {
-        return await new Ka(this.actor, null, null).initialize();
+        return await new Ka(this.actor, null, null).initializeRoll();
     }
 
     async _onRollMenace(event) {
-        return await new Menace(this.actor).initialize();
+        return await new Menace(this.actor).initializeRoll();
     }
 
 }

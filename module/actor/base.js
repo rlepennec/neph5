@@ -99,14 +99,14 @@ export class BaseSheet extends ActorSheet {
         if (weapon?.attackCanBePerformed === true) {
             switch (weapon.system.type) {
                 case Constants.NATURELLE:
-                    await new Naturelle(this.actor, weapon).initialize();
+                    await new Naturelle(this.actor, weapon).initializeRoll();
                     break;
                 case Constants.MELEE:
-                    await new Melee(this.actor, weapon).initialize();
+                    await new Melee(this.actor, weapon).initializeRoll();
                     break;
                 case Constants.FEU:
                 case Constants.TRAIT:
-                    await new Distance(this.actor, weapon).initialize();
+                    await new Distance(this.actor, weapon).initializeRoll();
                     break;
             }
         }
@@ -120,7 +120,7 @@ export class BaseSheet extends ActorSheet {
     async _onWrestle(event) {
         event.preventDefault();
         if (this.actor.lutteCanBePerformed) {
-            await new Wrestle(this.actor).initialize();
+            await new Wrestle(this.actor).initializeRoll();
         }
     }
 

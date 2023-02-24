@@ -30,14 +30,14 @@ export class Sort extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
 
         if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de ce sort");
             return;
         }
 
-        return await super.initialize();
+        return await super.initializeRoll();
 
     }
 

@@ -139,7 +139,7 @@ export class Defense extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
         new DefenseDialog(this.actor, this)
             .withTitle(this.title)
             .withTemplate("systems/neph5e/feature/combat/core/defense.hbs")

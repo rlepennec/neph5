@@ -117,7 +117,7 @@ export class Melee extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
         if (this.weapon.system.used === true && this.effects.restrained === false) {
 
             // Use actor

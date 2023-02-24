@@ -56,7 +56,7 @@ export class Invocation extends AbstractFeature {
     /**
      * @Override
      */
-    async initialize() {
+    async initializeRoll() {
         const embedded = this.actor.items.find(i => i.sid === this.sid);
         if (embedded == null) {
             ui.notifications.warn("Vous ne possédez pas cette invocation");
@@ -66,7 +66,7 @@ export class Invocation extends AbstractFeature {
             ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
             return;
         }
-        return await super.initialize();
+        return await super.initializeRoll();
     }
 
     /**

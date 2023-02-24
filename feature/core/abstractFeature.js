@@ -186,7 +186,7 @@ export class AbstractFeature {
      * Initialize the action. An action dialog is displayed, allowing the user to
      * customize the action roll by adding modifier for example.
      */
-    async initialize() {
+    async initializeRoll() {
         new ActionDialog(this.actor, this)
             .withTitle(this.title)
             .withData(this.data)

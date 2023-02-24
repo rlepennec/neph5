@@ -489,7 +489,7 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).createFromEmbedded(item).initialize();
+        await new FeatureBuilder(this.actor).createFromEmbedded(item).initializeRoll();
         return this;
     }
 
@@ -517,7 +517,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onRollFeature(feature, event) {
         event.preventDefault();
-        await this.createFeature(".roll-" + feature, event).initialize();
+        await this.createFeature(".roll-" + feature, event).initializeRoll();
         return this;
     }
 
