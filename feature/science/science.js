@@ -1,17 +1,8 @@
 import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
-import { Atlanteide } from "../atlanteide/atlanteide.js";
-import { Dracomachie } from "../dracomachie/dracomachie.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
-import { Formule } from "../alchimie/formule.js";
-import { Habitus } from "../analogie/habitus.js";
-import { Invocation } from "../kabbale/invocation.js";
+import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Periode } from "../periode/periode.js";
-import { Pratique } from "../denier/pratique.js";
-import { Rituel } from "../epee/rituel.js";
-import { Tekhne } from "../coupe/tekhne.js";
-import { Technique } from "../baton/technique.js";
-import { Sort } from "../magie/sort.js";
 
 export class Science extends AbstractFeature {
 
@@ -273,45 +264,14 @@ export class Science extends AbstractFeature {
 
         let items = [];
         const cercle = Science.getCercle(science);
-        const ids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
-        for (let item of game.items.filter(i => i.system[cercle?.property] === science && ids.includes(i.sid))) {
-
-            let degre = null;
-            switch (item.type) {
-                case 'atlanteide':
-                    degre = new Atlanteide(actor, item).withPeriode(actor.system.periode).degre;
-                    break; 
-                case 'dracomachie':
-                    degre = new Dracomachie(actor, item).withPeriode(actor.system.periode).degre;
-                    break; 
-                case 'sort':
-                    degre = new Sort(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'habitus':
-                    degre = new Habitus(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'invocation':
-                    degre = new Invocation(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'formule':
-                    degre = new Formule(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'pratique':
-                    degre = new Pratique(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'rituel':
-                    degre = new Rituel(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'technique':
-                    degre = new Technique(actor, item).withPeriode(actor.system.periode).degre;
-                    break;
-                case 'tekhne':
-                    degre = new Tekhne(actor, item).withPeriode(actor.system.periode).degre;
-                    break;               
-
-            }
+        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
+        
+        for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 
             const embedded = actor.items.find(i => i.sid === item.sid);
+            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).createFromEmbedded(embedded);
+            const degre = feature.degre;
+
             if (degre != null) {
                 embedded.degre = degre * 10;
             } else if (item.type === 'formule') {
