@@ -1,8 +1,8 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Fraternite } from "../fraternite/fraternite.js";
 
-export class Periode extends AbstractRoll {
+export class Periode extends AbstractFeature {
 
     /**
      * Constructor.
@@ -137,7 +137,7 @@ export class Periode extends AbstractRoll {
         await this.actor.deleteEmbeddedDocuments('Item', this.actor.items.filter(i => i.system?.periode === this.item.sid).map(i => i.id));
 
         // Delete the embedded periode item
-        await this.actor.deleteEmbeddedDocuments('Item', [AbstractRoll.embedded(this.actor, this.item.sid).id]);
+        await this.actor.deleteEmbeddedDocuments('Item', [AbstractFeature.embedded(this.actor, this.item.sid).id]);
 
         // Update the members of the fraternite if necessary
         if (this.actor.type === 'fraternite') {
@@ -155,7 +155,7 @@ export class Periode extends AbstractRoll {
      * @returns the instance.
      */
     async toggleActive() {
-        const embedded = AbstractRoll.embedded(this.actor, this.sid);
+        const embedded = AbstractFeature.embedded(this.actor, this.sid);
         await embedded.update({ ['system.actif']: !embedded.system.actif });
         return this;
     }
@@ -175,7 +175,7 @@ export class Periode extends AbstractRoll {
     static getOriginals(actor) {
         const periodes = [];
         for (let periode of actor.items.filter(i => i.type === 'periode')) {
-            const original = AbstractRoll.original(periode.sid);
+            const original = AbstractFeature.original(periode.sid);
             periodes.push(original.id);
         }
         return periodes;
@@ -255,7 +255,7 @@ export class Periode extends AbstractRoll {
         const all = [];
         for (let p of periodes) {
 
-            const periode = AbstractRoll.original(p.sid);
+            const periode = AbstractFeature.original(p.sid);
             if (periode == null) {
                 continue;
             }
@@ -264,7 +264,7 @@ export class Periode extends AbstractRoll {
             const items = [];
             for (let type of ['vecu','savoir','quete','arcane','chute','science', 'passe']) {
                 for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
-                    const original = AbstractRoll.original(i.sid);
+                    const original = AbstractFeature.original(i.sid);
                     if (original != null) {
                         items.push({
                             name: original.name,
@@ -279,7 +279,7 @@ export class Periode extends AbstractRoll {
             }
             for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus','pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie']) {
                 for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
-                    const original = AbstractRoll.original(i.sid);
+                    const original = AbstractFeature.original(i.sid);
                     if (original != null) {
                         items.push({
                             name: original.name,

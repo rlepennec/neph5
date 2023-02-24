@@ -1,11 +1,11 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
-export class Pratique extends AbstractRoll {
+export class Pratique extends AbstractFeature {
 
     /**
      * Constructor.

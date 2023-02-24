@@ -1,4 +1,4 @@
-import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
+import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Arcane } from "../../feature/periode/arcane.js";
 import { Aspect } from "../../feature/selenim/aspect.js";

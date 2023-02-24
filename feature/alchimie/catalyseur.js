@@ -1,7 +1,7 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Catalyseur extends AbstractRoll {
+export class Catalyseur extends AbstractFeature {
 
     /**
      * Constructor.
@@ -54,7 +54,7 @@ export class Catalyseur extends AbstractRoll {
      */
     static getAll(actor) {
         let items = [];
-        for (let item of AbstractRoll.items(actor,'catalyseur')) {
+        for (let item of AbstractFeature.items(actor,'catalyseur')) {
             items.push({
                 original: {
                     id: item.original.id,

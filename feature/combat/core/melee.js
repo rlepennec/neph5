@@ -1,4 +1,4 @@
-import { AbstractRoll } from "../../core/abstractRoll.js";
+import { AbstractFeature } from "../../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -14,7 +14,7 @@ import { Rapide } from "../manoeuver/rapide.js";
 import { Standard } from "../manoeuver/standard.js";
 import { Subtile } from "../manoeuver/subtile.js";
 
-export class Melee extends AbstractRoll {
+export class Melee extends AbstractFeature {
 
     /**
      * Constructor.
@@ -88,13 +88,13 @@ export class Melee extends AbstractRoll {
      */
     difficulty(parameters) {
         const data = this.data;
-        return AbstractRoll.toInt(data?.base?.difficulty)
-             + AbstractRoll.toInt(parameters?.modifier)
-             + AbstractRoll.toInt(parameters?.approche)
-             + AbstractRoll.toInt(parameters?.blessures, data.blessures)
-             + AbstractRoll.toInt(data?.foeOnGround?.modifier)
-             + AbstractRoll.toInt(data?.onGround?.modifier)
-             + AbstractRoll.toInt(data?.stunned?.modifier)
+        return AbstractFeature.toInt(data?.base?.difficulty)
+             + AbstractFeature.toInt(parameters?.modifier)
+             + AbstractFeature.toInt(parameters?.approche)
+             + AbstractFeature.toInt(parameters?.blessures, data.blessures)
+             + AbstractFeature.toInt(data?.foeOnGround?.modifier)
+             + AbstractFeature.toInt(data?.onGround?.modifier)
+             + AbstractFeature.toInt(data?.stunned?.modifier)
              + this.weaponModifier(data.weapon)
              + this.manoeuverModifier(parameters);
     }
@@ -103,7 +103,7 @@ export class Melee extends AbstractRoll {
      * @Override
      */
     manoeuverModifier(parameters) {
-        return AbstractRoll.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
+        return AbstractFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
     /**
@@ -111,7 +111,7 @@ export class Melee extends AbstractRoll {
      * @returns the attack modififer.
      */
     weaponModifier(weapon) {
-        return AbstractRoll.toInt(weapon?.system.attack * 10);
+        return AbstractFeature.toInt(weapon?.system.attack * 10);
     }
 
     /**

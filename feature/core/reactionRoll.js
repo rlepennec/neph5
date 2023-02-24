@@ -1,9 +1,9 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDialog } from "./actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
-export class ReactionRoll extends AbstractRoll {
+export class ReactionRoll extends AbstractFeature {
 
     /**
      * Constructor.
@@ -69,8 +69,8 @@ export class ReactionRoll extends AbstractRoll {
      * @Override
      */
     difficulty(parameters) {
-        return AbstractRoll.toInt(this.base * 10)
-             + AbstractRoll.toInt(parameters?.modifier);
+        return AbstractFeature.toInt(this.base * 10)
+             + AbstractFeature.toInt(parameters?.modifier);
     }
 
     /**
@@ -104,7 +104,7 @@ export class ReactionRoll extends AbstractRoll {
      * @Overrides
      */
     sentenceOf(result) {
-        switch (AbstractRoll.winner(this.result, result)) {
+        switch (AbstractFeature.winner(this.result, result)) {
             case Constants.ACTION:
                 return " parvient à ses fins";
             case Constants.REACTION:

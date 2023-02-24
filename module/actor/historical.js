@@ -1,4 +1,4 @@
-import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
+import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { BaseSheet } from "./base.js";
 import { NephilimItemSheet } from "../item/base.js";
 import { Periode } from "../../feature/periode/periode.js";

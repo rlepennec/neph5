@@ -339,7 +339,7 @@ Hooks.once("init", function () {
  *  - module/common/Handlebars.js : static cerclesOf(science, all)
  *    module/common/Templates.js : preloadTemplates
  *  - module/actor/figure.js : async _onDrop(event) & _droppableTabs(type)
- *  - core/abstractRollBuilder.hs : create()
+ *  - core/AbstractRollBuilder.hs : create()
  *  - feature/science/science.js : static getCercle(name) + focus
  *  - feature/periode/periode.js : static getAll(actor)
  * 

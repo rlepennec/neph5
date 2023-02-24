@@ -1,7 +1,7 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 
-export class Noyau extends AbstractRoll {
+export class Noyau extends AbstractFeature {
 
     /**
      * Constructor.

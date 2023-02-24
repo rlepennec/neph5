@@ -1,7 +1,7 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Aspect extends AbstractRoll {
+export class Aspect extends AbstractFeature {
 
     /**
      * Constructor.
@@ -60,7 +60,7 @@ export class Aspect extends AbstractRoll {
         let  aspects = [];
 
         // For each aspects
-        for (let item of AbstractRoll.items(actor,'aspect')) {
+        for (let item of AbstractFeature.items(actor,'aspect')) {
 
             // Update the number of points of the imago.
             size = size + parseInt(item.original.system.degre);
@@ -92,7 +92,7 @@ export class Aspect extends AbstractRoll {
      * @returns the instance.
      */
     async toggleActive() {
-        const embedded = AbstractRoll.embedded(this.actor, this.sid);
+        const embedded = AbstractFeature.embedded(this.actor, this.sid);
         const system = duplicate(embedded.system);
         system.active = !system.active;
         await embedded.update({ ['system']: system });

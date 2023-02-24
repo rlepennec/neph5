@@ -1,13 +1,16 @@
 <li 
     {{#if (eq degre 0)}}
-    class="focus macro disabled"
+    class="focus item macro disabled"
     {{else}}
-    class="focus macro"
+    class="focus item macro"
     {{/if}}
+    data-id="{{item.embedded.id}}">
+    <!--
     data-item-id="{{item.embedded.id}}"
     data-id="{{item.embedded.id}}"
     data-sid="{{item.original.sid}}"
     data-type="sort">
+    -->
 
     {{#if (eq item.embedded.degre 0)}}
     <label class="focus-element tooltip disabled">
@@ -15,12 +18,12 @@
     <label class="focus-element tooltip">
     {{/if}}
     {{#switch item.original.system.element}}
-        {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
-        {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
-        {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
-        {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
-        {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
-        {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+    {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
+    {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
+    {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
+    {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
+    {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
+    {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
     {{/switch}}
     </label>
 

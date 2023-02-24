@@ -1,4 +1,4 @@
-import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
+import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { HistoricalSheet } from "./historical.js";
 

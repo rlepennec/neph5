@@ -1,8 +1,8 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 
-export class Materiae extends AbstractRoll {
+export class Materiae extends AbstractFeature {
 
     /**
      * Constructor.
@@ -57,7 +57,7 @@ export class Materiae extends AbstractRoll {
      */
      static getAll(actor) {
         let items = [];
-        for (let item of AbstractRoll.items(actor,'materiae')) {
+        for (let item of AbstractFeature.items(actor,'materiae')) {
             items.push({
                 original: {
                     id: item.original.id,

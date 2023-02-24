@@ -1,8 +1,8 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 
-export class Metamorphe extends AbstractRoll {
+export class Metamorphe extends AbstractFeature {
 
     /**
      * Constructor.
@@ -106,7 +106,7 @@ export class Metamorphe extends AbstractRoll {
      * @returns the instance.
      */
     async toggleFormed(index) {
-        const embedded = AbstractRoll.embedded(this.actor, this.sid);
+        const embedded = AbstractFeature.embedded(this.actor, this.sid);
         const system = duplicate(embedded.system);
         system.formed[index] = !system.formed[index];
         await embedded.update({ ['system']: system });
@@ -119,7 +119,7 @@ export class Metamorphe extends AbstractRoll {
      * @returns the instance.
      */
     async toggleVisible(index) {
-        const embedded = AbstractRoll.embedded(this.actor, this.sid);
+        const embedded = AbstractFeature.embedded(this.actor, this.sid);
         const system = duplicate(embedded.system);
         system.visible[index] = !system.visible[index];
         await embedded.update({ ['system']: system });

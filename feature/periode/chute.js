@@ -1,9 +1,9 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Periode } from "./periode.js";
 
-export class Chute extends AbstractRoll {
+export class Chute extends AbstractFeature {
 
     /**
      * Constructor.
@@ -91,7 +91,7 @@ export class Chute extends AbstractRoll {
             "systems/neph5e/feature/periode/item/chute.html",
             {
                 system: this.item.system,
-                item: AbstractRoll.original(this.sid),
+                item: AbstractFeature.original(this.sid),
                 periodes: this.detailsFromPeriodes(this.sid),
                 degre: this.degre,
                 next: this.next,

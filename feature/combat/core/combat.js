@@ -1,5 +1,5 @@
 
-import { AbstractRollBuilder } from "../../core/abstractRollBuilder.js";
+import { AbstractRollBuilder } from "../../core/AbstractRollBuilder.js";
 import { Competence } from "../../periode/competence.js";
 import { Menace } from "../core/menace.js";
 import { Vecu } from "../../periode/vecu.js";

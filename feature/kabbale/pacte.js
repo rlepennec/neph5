@@ -1,9 +1,9 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDialog } from "../core/actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
-export class Pacte extends AbstractRoll {
+export class Pacte extends AbstractFeature {
 
     /**
      * Constructor.
@@ -53,8 +53,8 @@ export class Pacte extends AbstractRoll {
      * @Override
      */
     difficulty(parameters) {
-        return AbstractRoll.toInt(this.base * 10)
-             + AbstractRoll.toInt(parameters?.modifier);
+        return AbstractFeature.toInt(this.base * 10)
+             + AbstractFeature.toInt(parameters?.modifier);
     }
 
     /**
@@ -88,7 +88,7 @@ export class Pacte extends AbstractRoll {
      * @Override
      */
     sentenceOf(result) {
-        switch (AbstractRoll.winner(this.result, result)) {
+        switch (AbstractFeature.winner(this.result, result)) {
             case Constants.ACTION:
                 return " parvient à établir un pacte avec la créature";
             case Constants.REACTION:

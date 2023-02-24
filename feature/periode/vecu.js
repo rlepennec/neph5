@@ -1,11 +1,11 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
 import { Game } from "../../module/common/game.js";
 import { Periode } from "./periode.js";
 
-export class Vecu extends AbstractRoll {
+export class Vecu extends AbstractFeature {
 
     /**
      * Constructor.
@@ -199,7 +199,7 @@ export class Vecu extends AbstractRoll {
             {
                 system: this.item.system,
                 elements: Game.pentacle.elements,
-                item: AbstractRoll.original(this.sid)
+                item: AbstractFeature.original(this.sid)
             },
             'ITEM.TypeVecu',
             560,
@@ -241,10 +241,10 @@ export class Vecu extends AbstractRoll {
      */
     static getAll(actor, scope) {
         const vecus = [];
-        const a = AbstractRoll.actor(actor,scope);
+        const a = AbstractFeature.actor(actor,scope);
         if (a != null) {
-            for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractRoll.isActive(actor, v)))) {
-                const original = AbstractRoll.original(v.sid);
+            for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractFeature.isActive(actor, v)))) {
+                const original = AbstractFeature.original(v.sid);
                 if (original != null) {
                     const feature = new Vecu(actor, v, scope);
                     vecus.push({

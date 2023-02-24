@@ -1,4 +1,4 @@
-import { AbstractRoll } from "../../core/abstractRoll.js";
+import { AbstractFeature } from "../../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -10,7 +10,7 @@ import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Projeter } from "../manoeuver/projeter.js";
 
-export class Wrestle extends AbstractRoll {
+export class Wrestle extends AbstractFeature {
 
     /**
      * Constructor.
@@ -93,13 +93,13 @@ export class Wrestle extends AbstractRoll {
      */
     difficulty(parameters) {
         const data = this.data;
-        return AbstractRoll.toInt(data?.base?.difficulty)
-             + AbstractRoll.toInt(parameters?.modifier)
-             + AbstractRoll.toInt(parameters?.approche)
-             + AbstractRoll.toInt(parameters?.blessures, data.blessures)
-             + AbstractRoll.toInt(data?.foeOnGround?.modifier)
-             + AbstractRoll.toInt(data?.onGround?.modifier)
-             + AbstractRoll.toInt(data?.stunned?.modifier) +
+        return AbstractFeature.toInt(data?.base?.difficulty)
+             + AbstractFeature.toInt(parameters?.modifier)
+             + AbstractFeature.toInt(parameters?.approche)
+             + AbstractFeature.toInt(parameters?.blessures, data.blessures)
+             + AbstractFeature.toInt(data?.foeOnGround?.modifier)
+             + AbstractFeature.toInt(data?.onGround?.modifier)
+             + AbstractFeature.toInt(data?.stunned?.modifier) +
              this.manoeuverModifier(parameters);
     }
 
@@ -107,7 +107,7 @@ export class Wrestle extends AbstractRoll {
      * @Override
      */
     manoeuverModifier(parameters) {
-        return AbstractRoll.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
+        return AbstractFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
     /**

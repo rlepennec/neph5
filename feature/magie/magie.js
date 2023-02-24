@@ -1,7 +1,7 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Magie extends AbstractRoll {
+export class Magie extends AbstractFeature {
 
     /**
      * Constructor.

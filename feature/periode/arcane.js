@@ -1,8 +1,8 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Arcane extends AbstractRoll {
+export class Arcane extends AbstractFeature {
 
     /**
      * Constructor.
@@ -79,7 +79,7 @@ export class Arcane extends AbstractRoll {
             "systems/neph5e/feature/periode/item/arcane.html",
             {
                 system: this.item.system,
-                item: AbstractRoll.original(this.sid),
+                item: AbstractFeature.original(this.sid),
                 periodes: this.detailsFromPeriodes(this.sid),
                 degre: this.degre,
                 next: this.next,

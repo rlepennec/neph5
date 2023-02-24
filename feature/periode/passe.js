@@ -1,9 +1,9 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Passe extends AbstractRoll {
+export class Passe extends AbstractFeature {
 
     /**
      * Constructor.
@@ -112,7 +112,7 @@ export class Passe extends AbstractRoll {
             "systems/neph5e/feature/periode/item/passe.html",
             {
                 system: this.item.system,
-                item: AbstractRoll.original(this.sid),
+                item: AbstractFeature.original(this.sid),
                 periodes: this.detailsFromPeriodes(this.sid),
                 degre: this.degre,
                 next: this.next,

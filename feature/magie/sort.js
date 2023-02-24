@@ -1,11 +1,11 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
 
-export class Sort extends AbstractRoll {
+export class Sort extends AbstractFeature {
 
     /**
      * Constructor.
@@ -85,13 +85,14 @@ export class Sort extends AbstractRoll {
      * @Override
      */
     get degre() {
-        if (this.item.system?.voies.length > 0 && this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
+        const original = this.original;
+        if (original.system?.voies.length > 0 && original.system.voies.includes(this.actor.voieMagique?.sid) === false) {
             return 0;
         }
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
+        const item = game.items.find(i => i.system.key === original.system.cercle);
         const science = new Science(this.actor, item).degre;
-        const sort = this.item.system.degre;
-        const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
+        const sort = original.system.degre;
+        const ka = this.actor.getKa(original.system.element === "luneNoire" ? "noyau" : original.system.element);
         return science + ka - sort;
     }
 

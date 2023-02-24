@@ -1,10 +1,10 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { Game } from "../../module/common/game.js";
 
-export class Competence extends AbstractRoll {
+export class Competence extends AbstractFeature {
 
     /**
      * Constructor.
@@ -62,7 +62,7 @@ export class Competence extends AbstractRoll {
      * @Override
      */
     get degre() {
-        return AbstractRoll.sapiencesToDegre(this.sapiences);
+        return AbstractFeature.sapiencesToDegre(this.sapiences);
     }
 
     /**
@@ -72,7 +72,7 @@ export class Competence extends AbstractRoll {
         let total = 0;
         for (let vecu of this.actor.items.filter(v =>
             v.type === 'vecu' &&
-            AbstractRoll.isActive(this.actor, v) &&
+            AbstractFeature.isActive(this.actor, v) &&
             v.system.competences.find(c => c === this.sid) != null)) {
             total = total + CustomHandlebarsHelpers.getSapiences(vecu.system.degre);
         }

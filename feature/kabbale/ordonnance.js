@@ -1,7 +1,7 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Ordonnance extends AbstractRoll {
+export class Ordonnance extends AbstractFeature {
 
     /**
      * Constructor.
@@ -85,8 +85,8 @@ export class Ordonnance extends AbstractRoll {
         let items = [];
 
         // For each ordonnance
-        for (let item of actor.items.filter(o => o.type === 'ordonnance' && AbstractRoll.isActive(actor, o))) {
-            const original = AbstractRoll.original(item.sid);
+        for (let item of actor.items.filter(o => o.type === 'ordonnance' && AbstractFeature.isActive(actor, o))) {
+            const original = AbstractFeature.original(item.sid);
             size++;
             monde = original.system.monde;
             items.push({

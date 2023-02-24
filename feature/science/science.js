@@ -1,4 +1,4 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Atlanteide } from "../atlanteide/atlanteide.js";
 import { Dracomachie } from "../dracomachie/dracomachie.js";
@@ -13,7 +13,7 @@ import { Tekhne } from "../coupe/tekhne.js";
 import { Technique } from "../baton/technique.js";
 import { Sort } from "../magie/sort.js";
 
-export class Science extends AbstractRoll {
+export class Science extends AbstractFeature {
 
     /**
      * Constructor.

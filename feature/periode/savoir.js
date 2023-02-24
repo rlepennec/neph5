@@ -1,9 +1,9 @@
-import { AbstractRoll } from "../core/abstractRoll.js";
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 
-export class Savoir extends AbstractRoll {
+export class Savoir extends AbstractFeature {
 
     /**
      * Constructor.
@@ -113,7 +113,7 @@ export class Savoir extends AbstractRoll {
             {
                 system: this.item.system,
                 elements: Game.pentacle.elements,
-                item: AbstractRoll.original(this.sid),
+                item: AbstractFeature.original(this.sid),
                 periodes: this.detailsFromPeriodes(this.sid),
                 degre: this.degre,
                 next: this.next,

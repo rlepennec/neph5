@@ -1,5 +1,5 @@
-import { AbstractRoll } from "../../feature/core/abstractRoll.js";
-import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
+import { AbstractFeature } from "../../feature/core/AbstractFeature.js";
+import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
@@ -197,7 +197,7 @@ export class BaseSheet extends ActorSheet {
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const scope = li.data("scope");
-        const actor = scope === 'simulacre' ? AbstractRoll.simulacre(this.actor) : this.actor;
+        const actor = scope === 'simulacre' ? AbstractFeature.simulacre(this.actor) : this.actor;
         const item = actor.getEmbeddedDocument('Item', id);
         item.sheet.render(true);
     }
@@ -257,7 +257,7 @@ export class BaseSheet extends ActorSheet {
             default: {
                 const id = $(event.currentTarget).closest(purpose).data("id");
                 const scope = $(event.currentTarget).closest(purpose).data("scope");
-                const item = scope == null ? game.items.get(id) : AbstractRoll.actor(this.actor,scope).items.get(id);
+                const item = scope == null ? game.items.get(id) : AbstractFeature.actor(this.actor,scope).items.get(id);
                 const builder = new AbstractRollBuilder(this.actor).withItem(item);
                 if (scope != null) {
                     builder.withScope(scope);

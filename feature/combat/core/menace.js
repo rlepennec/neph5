@@ -1,8 +1,8 @@
-import { AbstractRoll } from "../../core/abstractRoll.js";
+import { AbstractFeature } from "../../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { Constants } from "../../../module/common/constants.js";
 
-export class Menace extends AbstractRoll {
+export class Menace extends AbstractFeature {
 
     /**
      * Constructor.

@@ -1,4 +1,4 @@
-import { AbstractRollBuilder } from "../../feature/core/abstractRollBuilder.js";
+import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { BaseSheet } from "./base.js";
 import { Ka } from "../../feature/nephilim/ka.js";
 import { Menace } from "../../feature/combat/core/menace.js";

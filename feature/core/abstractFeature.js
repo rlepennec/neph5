@@ -5,7 +5,7 @@ import { Liberer } from "../combat/manoeuver/liberer.js";
 import { ManoeuverBuilder } from "../combat/manoeuver/manoeuverBuilder.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
-export class AbstractRoll {
+export class AbstractFeature {
 
     /**
      * Constructor.
@@ -19,56 +19,56 @@ export class AbstractRoll {
      * @returns the title of the action displayed in the action dialog.
      */
     get title() {
-        throw new Error("AbstactRoll.title not implemented");
+        throw new Error("AbstractFeature.title not implemented");
     }
 
     /**
      * @returns the sentence displayed in the action dialog or in the chat. The sentence will be localized by the action builder.
      */
     get sentence() {
-        throw new Error("AbstactRoll.sentence not implemented");
+        throw new Error("AbstractFeature.sentence not implemented");
     }
 
     /**
      * @returns the data of the action displayed in the action dialog. 
      */
     get data() {
-        throw new Error("AbstactRoll.data not implemented");
+        throw new Error("AbstractFeature.data not implemented");
     }
 
     /**
      * @returns the purpose of the action.
      */
     get purpose() {
-        throw new Error("AbstactRoll.purpose not implemented");
+        throw new Error("AbstractFeature.purpose not implemented");
     }
 
     /**
      * @returns the degre of the action.
      */
     get degre() {
-        throw new Error("AbstactRoll.degre not implemented");
+        throw new Error("AbstractFeature.degre not implemented");
     }
 
     /**
      * Create an embedded item.
      */
     async drop() {
-        throw new Error("AbstactRoll.drop not implemented");
+        throw new Error("AbstractFeature.drop not implemented");
     }
 
     /**
      * Delete the embedded item.
      */
     async delete() {
-        throw new Error("AbstactRoll.delete not implemented");
+        throw new Error("AbstractFeature.delete not implemented");
     }
 
     /**
      * Edit the embedded item.
      */
     async edit() {
-        throw new Error("AbstactRoll.edit not implemented");
+        throw new Error("AbstractFeature.edit not implemented");
     }
 
     /**
@@ -76,6 +76,13 @@ export class AbstractRoll {
      * @param result The roll result.
      */
     async finalize(result) {
+    }
+
+    /**
+     * @returns the original item.
+     */
+    get original() {
+        return this.item == null ? null : game.items.find(i => i.sid === this.item.sid);
     }
 
     /**
@@ -145,8 +152,8 @@ export class AbstractRoll {
      */
     difficulty(parameters) {
 
-        const b = AbstractRoll.toInt(this.data?.base?.difficulty);
-        const f = AbstractRoll.toInt(parameters?.fraternite);
+        const b = AbstractFeature.toInt(this.data?.base?.difficulty);
+        const f = AbstractFeature.toInt(parameters?.fraternite);
 
         let base = null;
         switch (game.settings.get('neph5e', 'fraternitePolicy')) {
@@ -160,9 +167,9 @@ export class AbstractRoll {
         }
 
         return base
-            + AbstractRoll.toInt(parameters?.modifier)
-            + AbstractRoll.toInt(parameters?.approche)
-            + AbstractRoll.toInt(parameters?.blessures, this.data.blessures)
+            + AbstractFeature.toInt(parameters?.modifier)
+            + AbstractFeature.toInt(parameters?.approche)
+            + AbstractFeature.toInt(parameters?.blessures, this.data.blessures)
             + this.modifier(parameters);
 
     }
@@ -252,8 +259,8 @@ export class AbstractRoll {
     resultOf(parameters, roll) {
         const difficulty = this.difficulty(parameters);
         const fail = roll._total === 100 || (roll._total > difficulty && roll._total !== 1);
-        const fumble = AbstractRoll.isDouble(roll._total) && fail;
-        const critical = AbstractRoll.isDouble(roll._total) && !fail;
+        const fumble = AbstractFeature.isDouble(roll._total) && fail;
+        const critical = AbstractFeature.isDouble(roll._total) && !fail;
         const margin = fail ? 0 : Math.floor(roll._total / 10) + (difficulty > 100 ? Math.floor((difficulty - 100) / 10) : 0);
         let sentence = "";
         if (fumble) {
@@ -361,13 +368,13 @@ export class AbstractRoll {
      */
     detailsFromPeriodes(sid) {
         const details = [];
-        const original = AbstractRoll.original(sid);
+        const original = AbstractFeature.original(sid);
         if (original.type === 'competence') {
-            for (let v of this.actor.items.filter(i => i.type === 'vecu' && AbstractRoll.isActive(this.actor, i))) {
+            for (let v of this.actor.items.filter(i => i.type === 'vecu' && AbstractFeature.isActive(this.actor, i))) {
                 const item = game.items.find(i => i.sid === v.sid);
                 if (v.system.competences.find(c => c === sid) != null) {
                     const degre = v.system.degre;
-                    const sapiences = AbstractRoll.degreToSapiences(degre);
+                    const sapiences = AbstractFeature.degreToSapiences(degre);
                     details.push({
                         name: item.name,
                         degre: degre,
@@ -376,7 +383,7 @@ export class AbstractRoll {
             }
         } else {
             for (let item of this.actor.items.filter(i => i.sid === sid)) {
-                const periode = AbstractRoll.embedded(this.actor, item.system.periode);
+                const periode = AbstractFeature.embedded(this.actor, item.system.periode);
                 details.push({
                     name: periode?.name,
                     degre: item.system.degre,
@@ -473,7 +480,7 @@ export class AbstractRoll {
         let cost = 0;
         while (cost <= sapiences) {
             degre = degre + 1;
-            cost = AbstractRoll.degreToSapiences(degre);
+            cost = AbstractFeature.degreToSapiences(degre);
         }
         return degre - 1;
     }
@@ -511,9 +518,9 @@ export class AbstractRoll {
      * @return the item of the actor.
      */
     static embeddedOf(actor, item, scope) {
-        const a = AbstractRoll.actor(actor,scope);
+        const a = AbstractFeature.actor(actor,scope);
         const sid = item.system.id;
-        return AbstractRoll.embedded(a,sid);
+        return AbstractFeature.embedded(a,sid);
     }
 
     /**
@@ -528,7 +535,7 @@ export class AbstractRoll {
                     case 'actor':
                         return actor;
                     case 'simulacre':
-                        return AbstractRoll.simulacre(actor);
+                        return AbstractFeature.simulacre(actor);
                 }
             case 'figurant':
                 switch (scope) {
