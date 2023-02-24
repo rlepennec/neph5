@@ -82,20 +82,23 @@ export class FeatureBuilder {
             default:
                 return null;
         }
-
     }
 
     /**
      * @param item The original item from which to create the feature.
      * @returns the new feature. 
      */
-    createFromOriginal(key) {
-        switch (game.items.find(i => i.system?.key === key)?.type) {
+    createFromOriginal(item) {
+        switch (item?.type) {
             case 'science':
-                return new Science(this.actor, this.item, this.periode);
+                return new Science(this.actor, item, this.periode);
             default:
                 return null;
         };
     }
+
+    /**
+     * game.items.find(i => i.system?.key === key)?.type)
+     */
 
 }

@@ -462,7 +462,7 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * @param science The name of the science.
+     * @param science The key of the science.
      * @returns true if science must be displayed.
      */
     displayScience(science) {

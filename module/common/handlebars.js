@@ -178,7 +178,7 @@ export class CustomHandlebarsHelpers {
     /**
      * @param actor   The actor object.
      * @param science The key of the science.
-     * @returns the level of the science.
+     * @returns the science .
      */
     static science(actor, science) {
         return actor.science(science);
