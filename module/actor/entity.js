@@ -487,6 +487,25 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * TOOD
+     * @param keys The keys of the sciences.
+     * @returns 
+     */
+    sciences(...keys) {
+        const sciences = [];
+        for (let key of keys) {
+            const science = Science.getScience(science);
+            sciences.push({
+                id: original.id,
+                degre: science.degre
+
+            })
+        }
+        return sciences;
+    }
+
+
+    /**
      * @param science The name of the science.
      * @returns the owned focus of the actor. 
      */
