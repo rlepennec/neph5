@@ -145,9 +145,9 @@ export class FigureSheet extends HistoricalSheet {
         
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="magie"] .focus .edit').click(this._onEditFeature.bind(this, 'focus'));
         html.find('div[data-tab="magie"] .change-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-tab="magie"] .change-focus').click(this._onChangeFocus.bind(this));
+        html.find('div[data-tab="magie"] .focus .edit').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="magie"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
         //html.find('div[data-tab="magie"] .cercle .roll').click(this._onRollFeature.bind(this, 'science'));
 
@@ -490,20 +490,23 @@ export class FigureSheet extends HistoricalSheet {
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
         await new FeatureBuilder(this.actor).createFromEmbedded(item).initialize();
-        console.log(item);
-        /*
-        const id = $(event.currentTarget).closest(purpose).data("id");
-        const scope = $(event.currentTarget).closest(purpose).data("scope");
-        const item = scope == null ? game.items.get(id) : AbstractFeature.actor(this.actor,scope).items.get(id);
-        const builder = new AbstractRollBuilder(this.actor).withItem(item);
-        if (scope != null) {
-            builder.withScope(scope);
-        }
-        return builder.create();
-*/
-
         return this;
     }
+
+    /**
+     * Edit the specified embedded item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onEditEmbeddedItem(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest('.item').data('id');
+        const item = this.actor.items.get(id);
+        await new FeatureBuilder(this.actor).createFromEmbedded(item).edit();
+        return this;
+    }
+
+
 
 
     /**

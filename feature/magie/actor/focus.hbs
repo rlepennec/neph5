@@ -27,9 +27,7 @@
     {{/switch}}
     </label>
 
-    <div class="focus-name edit" data-id="{{item.original.id}}">
-        <span>{{item.original.name}}</span>
-    </div>
+    <label class="focus-name edit">{{item.original.name}}</label>
 
     {{#unless (eq degre 0)}}
 
@@ -57,7 +55,7 @@
     {{/unless}}
     </label>
 
-    <a class="focus-dice roll" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
+    <a class="focus-dice roll"><i class="fas fa-dice-d20"></i></a>
 
 <!--
     <div class="dice">

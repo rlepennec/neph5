@@ -32,14 +32,7 @@ export class Sort extends AbstractFeature {
      */
     async initialize() {
 
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas ce sort");
-            return;
-        }
-
-        if (embedded.system.focus !== true && embedded.system.status === 'dechiffre') {
+        if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de ce sort");
             return;
         }
@@ -131,8 +124,8 @@ export class Sort extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/magie/item/sort.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
                 cercles: Game.magie.cercles,
