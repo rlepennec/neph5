@@ -70,7 +70,6 @@ export class FigureSheet extends HistoricalSheet {
             cercles: Game.alchimie.cercles,
             domaines: Game.analogie.domaines,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs'),
-            sciencesOccultes: game.settings.get('neph5e', 'sciencesOccultes'),
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem'),
             editedCapacity: this.editedCapacity,
             simulacre: this.actor.simulacre
@@ -147,7 +146,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="magie"] .change-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-tab="magie"] .change-focus').click(this._onChangeFocus.bind(this));
-        html.find('div[data-tab="magie"] .cercle .roll').click(this._onRollEmbeddedItem.bind(this));
+        html.find('div[data-tab="magie"] .cercle .roll').click(this._onRollOriginalItem.bind(this));
         html.find('div[data-tab="magie"] .focus .open').click(this._onOpenEmbeddedItem.bind(this));
         html.find('div[data-tab="magie"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
         
@@ -479,6 +478,32 @@ export class FigureSheet extends HistoricalSheet {
     }
 
     // -- FEATURE ------------------------------------------------------------------------
+
+    /**
+     * Roll the specified embedded item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onRollOriginalItem(event) {
+        event.preventDefault();
+        //const key = $(event.currentTarget).closest('.item').data('key');
+        //const item = game.items.find(i => i.system?.key === key);
+        await new FeatureBuilder(this.actor).createFromOriginal(item).initializeRoll();
+        return this;
+    }
+
+    /**
+     * Roll the specified embedded item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onRollEmbeddedItem(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest('.item').data('id');
+        const item = this.actor.items.get(id);
+        await new FeatureBuilder(this.actor).createFromEmbedded(item).initializeRoll();
+        return this;
+    }
 
     /**
      * Roll the specified embedded item.

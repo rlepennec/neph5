@@ -50,6 +50,7 @@ export class FeatureBuilder {
     }
 
     /**
+     * @param item The embedded item from which to create the feature.
      * @returns the new feature. 
      */
     createFromEmbedded(item) {
@@ -82,6 +83,19 @@ export class FeatureBuilder {
                 return null;
         }
 
+    }
+
+    /**
+     * @param item The original item from which to create the feature.
+     * @returns the new feature. 
+     */
+    createFromOriginal(key) {
+        switch (game.items.find(i => i.system?.key === key)?.type) {
+            case 'science':
+                return new Science(this.actor, this.item, this.periode);
+            default:
+                return null;
+        };
     }
 
 }

@@ -4,7 +4,7 @@
 <div class="cercle">
 {{/if}}
 
-    <div class="cercle-header">
+    <div class="cercle-header item" data-key="{{key}}">
 
         <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
 
@@ -24,9 +24,7 @@
 
                 <span class="cercle-percentage">{{localize "%"}}</span>
 
-                {{#if sciencesOccultes}}
-                <a class="cercle-dice roll" data-item="{{cercle-id}}"><i class="fas fa-dice-d20"></i></a>
-                {{/if}}
+                <a class="cercle-dice roll"><i class="fas fa-dice-d20"></i></a>
 
             {{/unless}}
 

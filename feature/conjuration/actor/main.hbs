@@ -4,7 +4,7 @@
     {{#if (displayScience actor "charmeur")}}
     {{#with (science actor "charmeur") as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/conjuration/actor/cercle.hbs" cercle="Charmeur" degre=degre cercle-id="charmeur" sciencesOccultes=../sciencesOccultes}}
+        {{> "systems/neph5e/feature/conjuration/actor/cercle.hbs" cercle="Charmeur" degre=degre cercle-id="charmeur"}}
         <ol class="all-focus">
         {{#each (focus ../actor 'charmeur') as |item|}}
             {{> "systems/neph5e/feature/conjuration/actor/focus.hbs" item=item degre=degre}}
@@ -17,7 +17,7 @@
     {{#if (displayScience actor "dresseur")}}
     {{#with (science actor "dresseur") as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/conjuration/actor/cercle.hbs" cercle="Dresseur" degre=degre cercle-id="dresseur" sciencesOccultes=../sciencesOccultes}}
+        {{> "systems/neph5e/feature/conjuration/actor/cercle.hbs" cercle="Dresseur" degre=degre cercle-id="dresseur"}}
         <ol class="all-focus">
         {{#each (focus ../actor 'dresseur') as |item|}}
             {{> "systems/neph5e/feature/conjuration/actor/focus.hbs" item=item degre=degre}}
@@ -30,7 +30,7 @@
     {{#if (displayScience actor "demiurge")}}
     {{#with (science actor "demiurge") as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/conjuration/actor/cercle.hbs" cercle="Démiurge" degre=degre cercle-id="demiurge" sciencesOccultes=../sciencesOccultes}}
+        {{> "systems/neph5e/feature/conjuration/actor/cercle.hbs" cercle="Démiurge" degre=degre cercle-id="demiurge"}}
        <ol class="all-focus">
        {{#each (focus ../actor 'demiurge') as |item|}}
             {{> "systems/neph5e/feature/conjuration/actor/focus.hbs" item=item degre=degre}}

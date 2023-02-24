@@ -1,10 +1,10 @@
 {{#if (displaySciences actor 'basseMagie' 'hauteMagie' 'grandSecret')}}  
 <ol class="cercles">
-    
+
     {{#if (displayScience actor "basseMagie")}}
     {{#with (science actor "basseMagie") as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle="Basse Magie" degre=degre cercle-id="basseMagie" sciencesOccultes=../sciencesOccultes}}
+        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle="Basse Magie" degre=degre cercle-id="basseMagie"}}
         <ol class="all-focus">
         {{#each (focus ../actor 'basseMagie') as |item|}}
             {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=item degre=degre}}
@@ -24,7 +24,7 @@
 
     {{#with (science actor "hauteMagie") as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle="Haute Magie" degre=degre cercle-id="hauteMagie" sciencesOccultes=../sciencesOccultes}}
+        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle="Haute Magie" degre=degre cercle-id="hauteMagie"}}
         <ol class="all-focus">
         {{#each (focus ../actor 'hauteMagie') as |item|}}
             {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=item degre=degre}}
@@ -38,7 +38,7 @@
     {{#if (displayScience actor "grandSecret")}}
     {{#with (science actor "grandSecret") as |degre|}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle="Grand Secret" degre=degre cercle-id="grandSecret" sciencesOccultes=../sciencesOccultes}}
+        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle="Grand Secret" degre=degre cercle-id="grandSecret"}}
         <ol class="all-focus">
         {{#each (focus ../actor 'grandSecret') as |item|}}
             {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=item degre=degre}}
