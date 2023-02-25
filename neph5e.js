@@ -78,6 +78,7 @@ Hooks.once("init", function () {
         displayScience: CustomHandlebarsHelpers.displayScience,
         displaySciences: CustomHandlebarsHelpers.displaySciences,
         displaySciencesOf: CustomHandlebarsHelpers.displaySciencesOf,
+        cercles: CustomHandlebarsHelpers.cercles,
         cerclesOf: CustomHandlebarsHelpers.cerclesOf,
         focus: CustomHandlebarsHelpers.focus,
         numberOfFocus: CustomHandlebarsHelpers.numberOfFocus,

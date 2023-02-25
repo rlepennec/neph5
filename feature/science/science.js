@@ -309,4 +309,72 @@ export class Science extends AbstractFeature {
         return all;
     }
 
+    /**
+     * @param actor   The actor object.
+     * @param cercles The keys of the cercles to get.
+     * @returns the data information about the specified cercles.
+     */
+    static getCerclesOf(actor, science) {
+        const data = [];
+        for (let cercle of cercles) {
+            for (let item of game.items.filter(i => i.type === 'science' && i.system.key === cercle)) {
+                const feature = new Science(actor, item);
+                data[cercle] = {
+                    name: item.name,
+                    sid: item.sid,
+                    id: item.id,
+                    degre: feature.degre,
+                    focus: Science.getFocus(actor, cercle)
+                };
+            }
+        }
+        return data;
+    }
+
+
+    static cercles(actor, science) {
+        const cercles = Science._cerclesOf(science);
+        const data = Science._getCercles(actor, cercles);
+        return data;
+    }
+
+    /**
+     * @param actor   The actor object.
+     * @param cercles The keys of the cercles to get.
+     * @returns the data information about the specified cercles.
+     */
+    static _getCercles(actor, cercles) {
+        const data = {};
+        let display = false;
+        for (let cercle of cercles) {
+            const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
+            if (item != null) {
+                const feature = new Science(actor, item);
+                data[cercle] = {
+                    name: item.name,
+                    sid: item.sid,
+                    id: item.id,
+                    degre: feature.degre,
+                    focus: Science.getFocus(actor, cercle)
+                };
+                data[cercle].display = data[cercle].degre > 0 || data[cercle].focus > 0;
+                if (data[cercle].display === true) {
+                    display = true;
+                }
+            }
+        }
+        data.display = display;
+        return data;
+    }
+
+
+    static _cerclesOf(science) {
+        const data = [];
+        switch (science) {
+            case 'sort':
+                return ['basseMagie', 'hauteMagie', 'grandSecret'];
+        }
+        return data;
+    }
+
 }

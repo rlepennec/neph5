@@ -1,22 +1,22 @@
-{{#if (eq degre 0)}}
+{{#if (eq cercle.degre 0)}}
 <div class="cercle disabled">
 {{else}}
 <div class="cercle">
 {{/if}}
 
-    <div class="cercle-header item" data-key="{{key}}">
+    <div class="cercle-header item" data-id="{{cercle.id}}">
 
         <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
 
         <img class="cercle-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
-        <div class="cercle-degre">{{degre}}</div>
+        <div class="cercle-degre">{{cercle.degre}}</div>
 
         <div class="cercle-menu">
 
-            <span class="cercle-name">{{cercle}}</span>
+            <span class="cercle-name">{{cercle.name}}</span>
 
-            {{#unless (eq degre 0)}}
+            {{#unless (eq cercle.degre 0)}}
 
                 <span class="cercle-focus">{{localize "NEPH5E.focus"}}</span>
 

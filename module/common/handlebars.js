@@ -195,6 +195,15 @@ export class CustomHandlebarsHelpers {
         return actor.displaySciences(keys);
     }
 
+
+
+
+
+    static cercles(actor, science) {
+        return actor.cercles(science);
+    }
+
+
     /**
      * @param science The name of the science for which to retrieve the cercle.
      * @param all     True if all cercles with base, false without base.

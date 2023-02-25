@@ -487,23 +487,12 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * TOOD
-     * @param keys The keys of the sciences.
-     * @returns 
+     * @param science The type 'sort', 'formule' etc...
+     * @returns the information datas about the specified cercles.
      */
-    sciences(...keys) {
-        const sciences = [];
-        for (let key of keys) {
-            const science = Science.getScience(science);
-            sciences.push({
-                id: original.id,
-                degre: science.degre
-
-            })
-        }
-        return sciences;
+    cercles(science) {
+        return Science.cercles(this, science);
     }
-
 
     /**
      * @param science The name of the science.
