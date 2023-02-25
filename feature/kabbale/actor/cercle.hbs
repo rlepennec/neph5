@@ -1,36 +1,32 @@
-{{#if (eq degre 0)}}
-<div class="cercle disabled">
+{{#if (eq cercle.degre 0)}}
+<div class="cercle-header disabled item" data-id="{{cercle.id}}"></div>
 {{else}}
-<div class="cercle">
+<div class="cercle-header item" data-id="{{cercle.id}}">
 {{/if}}
 
-    <div class="cercle-header">
+    <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
 
-        <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
+    <img class="cercle-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+    
+    <div class="cercle-degre">{{cercle.degre}}</div>
 
-        <img class="cercle-separator" src="systems/neph5e/assets/core/separator2.webp"/>
-        
-        <div class="cercle-degre">{{degre}}</div>
+    <div class="cercle-menu">
 
-        <div class="cercle-menu">
+        <span class="cercle-name">{{cercle.name}}</span>
 
-            <span class="cercle-name">{{sephirah}}</span>
+        {{#unless (eq cercle.degre 0)}}
 
-            {{#unless (eq degre 0)}}
+            <span class="cercle-percentage">{{localize "%"}}</span>
 
-                <span class="cercle-percentage">{{localize "%"}}</span>
+            <span class="cercle-pacte">{{localize "NEPH5E.pacte"}}</span>
 
-                <span class="cercle-pacte">{{localize "NEPH5E.pacte"}}</span>
+            <span class="cercle-focus">{{localize "NEPH5E.focus"}}</span>
 
-                <span class="cercle-focus">{{localize "NEPH5E.focus"}}</span>
+            <span class="cercle-status">{{localize "NEPH5E.status"}}</span>
 
-                <span class="cercle-status">{{localize "NEPH5E.status"}}</span>
+            <a class="cercle-dice roll"><i class="fas fa-dice-d20"></i></a>
 
-                <a class="cercle-dice roll" data-item="{{cercle-id}}"><i class="fas fa-dice-d20"></i></a>
-
-            {{/unless}}
-
-        </div>
+        {{/unless}}
 
     </div>
 
