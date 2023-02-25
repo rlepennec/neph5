@@ -85,7 +85,11 @@ Hooks.once("init", function () {
         getMaxMP: CustomHandlebarsHelpers.getMaxMP,
         science: CustomHandlebarsHelpers.science,
         fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
-        isNewMember: CustomHandlebarsHelpers.isNewMember
+        isNewMember: CustomHandlebarsHelpers.isNewMember,
+
+
+        displayScience: CustomHandlebarsHelpers.displayScience,
+        displaySciences: CustomHandlebarsHelpers.displaySciences
     });
 
     Handlebars.registerHelper('switch', function (value, options) {

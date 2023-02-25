@@ -386,4 +386,23 @@ export class CustomHandlebarsHelpers {
         return result;
     }
 
+
+    /**
+     * @param actor    The actor object.
+     * @param sciences The name of the sciences.
+     * @returns true if at least a science must be displayed.
+     */
+    static displaySciences(actor, ...sciences) {
+        console.log('displaySciences');
+    }
+
+    /**
+     * @param actor   The actor object.
+     * @param science The name of the science.
+     * @returns true if science must be displayed.
+     */
+    static displayScience(actor, science) {
+        console.log('displayScience');
+    }
+
 }
