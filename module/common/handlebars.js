@@ -158,24 +158,6 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
-     * @param actor    The actor object.
-     * @param sciences The name of the sciences.
-     * @returns true if at least a science must be displayed.
-     */
-    static displaySciences(actor, ...sciences) {
-        return actor.displaySciences(sciences);
-    }
-
-    /**
-     * @param actor   The actor object.
-     * @param science The name of the science.
-     * @returns true if science must be displayed.
-     */
-    static displayScience(actor, science) {
-        return actor.displayScience(science);
-    }
-
-    /**
      * @param actor   The actor object.
      * @param science The key of the science.
      * @returns the science .
@@ -184,16 +166,7 @@ export class CustomHandlebarsHelpers {
         return actor.science(science);
     }
 
-    /**
-     * @param actor   The actor object.
-     * @param science The name of the science.
-     * @param all     True if all cercles with base, false without base.
-     * @returns true if at least a cercles of the science must be displayed.
-     */
-    static displaySciencesOf(actor, science, all) {
-        const keys = Object.keys(CustomHandlebarsHelpers.cerclesOf(science, all))
-        return actor.displaySciences(keys);
-    }
+
 
 
 

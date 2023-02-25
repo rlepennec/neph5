@@ -1,6 +1,8 @@
-{{#if (displaySciences actor 'charmeur' 'dresseur' 'demiurge')}}
+{{#with (cercles actor "conjuration") as |cercles|}}
+{{#if cercles.display}}  
 <ol class="cercles">
 
+<!--
     {{#if (displayScience actor "charmeur")}}
     {{#with (science actor "charmeur") as |degre|}}
     <div class="cercle">
@@ -39,10 +41,11 @@
     </div>
     {{/with}}
     {{/if}}
-
+-->
 </ol>
 {{else}}
 
 {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
 
 {{/if}}
+{{/with}}

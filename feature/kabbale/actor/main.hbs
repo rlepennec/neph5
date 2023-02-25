@@ -1,135 +1,136 @@
-{{#if (displaySciences actor 'malkut' 'yesod' 'hod' 'netzach' 'tiphereth' 'geburah' 'chesed' 'binah' 'chokmah' 'kether' )}}
+{{#with (cercles actor "kabbale") as |cercles|}}
+{{#if cercles.display}}  
 <ol class="cercles">
-    
-    {{#if (displayScience actor "malkut")}}
-    {{#with (science actor "malkut") as |degre|}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Malkut" degre=degre cercle-id="malkut"}}
-        <ol class="all-focus">
-        {{#each (focus ../actor 'malkut') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/with}}
-    {{/if}}
-    
-    {{#if (displayScience actor "yesod")}}
-    {{#with (science actor "yesod") as |degre|}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Yesod" degre=degre cercle-id="yesod"}}
-        <ol class="all-focus">
-        {{#each (focus ../actor 'yesod') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/with}}
-    {{/if}}
 
-    {{#if (displayScience actor "hod")}}
-    {{#with (science actor "hod") as |degre|}}
+    {{#with cercles.malkut as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Hod" degre=degre cercle-id="hod"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'hod') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "netzach")}}
-    {{#with (science actor "netzach") as |degre|}}
+    {{#with cercles.yesod as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Netzah" degre=degre cercle-id="netzach"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'netzach') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "tiphereth")}}
-    {{#with (science actor "tiphereth") as |degre|}}
+    {{#with cercles.hod as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Tiphereth" degre=degre cercle-id="tiphereth"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'tiphereth') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "geburah")}}
-    {{#with (science actor "geburah") as |degre|}}
+    {{#with cercles.netzach as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Geburah" degre=degre cercle-id="geburah"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'geburah') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "chesed")}}
-    {{#with (science actor "chesed") as |degre|}}
+    {{#with cercles.tiphereth as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Chesed" degre=degre cercle-id="chesed"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'chesed') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
-
-    {{#if (displayScience actor "binah")}}
-    {{#with (science actor "binah") as |degre|}}
-        <div class="cercle">
-            {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Binah" degre=degre cercle-id="binah"}}
-            <ol class="all-focus">
-            {{#each (focus ../actor 'binah') as |item|}}
-                {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
-            {{/each}}
-            </ol>
-        </div>
     {{/with}}
-    {{/if}}
 
-    {{#if (displayScience actor "chokmah")}}
-    {{#with (science actor "chokmah") as |degre|}}
+    {{#with cercles.geburah as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Chokmah" degre=degre cercle-id="chokmah"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'chokmah') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "kether")}}
-    {{#with (science actor "kether") as |degre|}}
+    {{#with cercles.chesed as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" sephirah="Kether" degre=degre cercle-id="kether"}}
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'kether') as |item|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
+
+    {{#with cercles.binah as |cercle|}}
+    {{#if cercle.display}}
+    <div class="cercle">
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
+        <ol class="all-focus">
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
+        {{/each}}
+        </ol>
+    </div>
+    {{/if}}
+    {{/with}}
+
+    {{#with cercles.chokmah as |cercle|}}
+    {{#if cercle.display}}
+    <div class="cercle">
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
+        <ol class="all-focus">
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
+        {{/each}}
+        </ol>
+    </div>
+    {{/if}}
+    {{/with}}
+
+    {{#with cercles.kether as |cercle|}}
+    {{#if cercle.display}}
+    <div class="cercle">
+        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
+        <ol class="all-focus">
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
+        {{/each}}
+        </ol>
+    </div>
+    {{/if}}
+    {{/with}}
 
 </ol>
 {{else}}
@@ -137,6 +138,7 @@
 {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
 
 {{/if}}
+{{/with}}
 
 {{#with actor.ordonnances as |items|}}
 {{#unless (eq items.size 0)}}

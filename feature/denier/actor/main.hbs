@@ -1,6 +1,7 @@
-{{#if (displaySciencesOf actor 'pratique' true)}}
+{{#with (cercles actor "denier") as |cercles|}}
+{{#if cercles.display}}  
 <ol class="cercles">
-
+<!--
     {{#each (cerclesOf 'pratique' false) as |name key|}}
     {{#if (displayScience ../actor key)}}
     {{#with (science ../actor key) as |degre|}}
@@ -15,10 +16,11 @@
     {{/with}}
     {{/if}}
     {{/each}}
-
+-->
 </ol>
 {{else}}
 
 {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
 
 {{/if}}
+{{/with}}

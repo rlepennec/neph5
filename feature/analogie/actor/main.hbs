@@ -1,4 +1,5 @@
-{{#if (displaySciencesOf actor 'analogie' true)}}
+{{#with (cercles actor "analogie") as |cercles|}}
+{{#if cercles.display}}  
 <ol class="cercles">
 
     {{#with actor.voieMagique}}
@@ -7,71 +8,72 @@
     </div>
     {{/with}}
 
-    {{#if (displayScience actor "comprendre")}}
-    {{#with (science actor "comprendre") as |degre|}}
+    {{#with cercles.comprendre as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Comprendre" degre=degre cercle-id="comprendre"}}
+        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'comprendre') as |item|}}
-            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "controler")}}
-    {{#with (science actor "controler") as |degre|}}
+    {{#with cercles.controler as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Contrôler" degre=degre cercle-id="controler"}}
+        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'controler') as |item|}}
-            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "creer")}}
-    {{#with (science actor "creer") as |degre|}}
+    {{#with cercles.creer as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Créer" degre=degre cercle-id="creer"}}
+        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'creer') as |item|}}
-            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "detruire")}}
-    {{#with (science actor "detruire") as |degre|}}
+    {{#with cercles.detruire as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Détruire" degre=degre cercle-id="detruire"}}
+        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'detruire') as |item|}}
-            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
-    {{#if (displayScience actor "transformer")}}
-    {{#with (science actor "transformer") as |degre|}}
+    {{#with cercles.transformer as |cercle|}}
+    {{#if cercle.display}}
     <div class="cercle">
-        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle="Transformer" degre=degre cercle-id="transformer"}}
+        {{> "systems/neph5e/feature/analogie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
-        {{#each (focus ../actor 'transformer') as |item|}}
-            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=item degre=degre}}
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/analogie/actor/focus.hbs" item=focus degre=focus.degre}}
         {{/each}}
         </ol>
     </div>
-    {{/with}}
     {{/if}}
+    {{/with}}
 
+    <!--
     {{#each (cerclesOf 'analogie' false) as |name key|}}
     {{#if (displayScience ../actor key)}}
     {{#with (science ../actor key) as |degre|}}
@@ -86,6 +88,7 @@
     {{/with}}
     {{/if}}
     {{/each}}
+    -->
 
 </ol>
 {{else}}
@@ -93,3 +96,4 @@
 {{> "systems/neph5e/templates/actor/parts/nofocus.hbs"}}
 
 {{/if}}
+{{/with}}

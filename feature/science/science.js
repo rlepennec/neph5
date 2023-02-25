@@ -369,12 +369,34 @@ export class Science extends AbstractFeature {
 
 
     static _cerclesOf(science) {
-        const data = [];
         switch (science) {
-            case 'sort':
+            case 'analogie':
+                return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'];
+            case 'atlanteide':
+                return [];
+            case 'baton':
+                return [];
+            case 'conjuration':
+                return ['charmeur', 'dresseur', 'demiurge'];
+            case 'coupe':
+                return [];
+            case 'denier':
+                return [];
+            case 'dracomachie':
+                return [];
+            case 'epee':
+                return [];
+            case 'formule':
+                return ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];
+            case 'kabbale':
+                return ['malkut', 'yesod', 'hod', 'netzach', 'tiphereth', 'geburah', 'chesed', 'binah', 'chokmah', 'kether'];
+            case 'magie':
                 return ['basseMagie', 'hauteMagie', 'grandSecret'];
+            case 'necromancie':
+                return ['fossoyeur', 'embaumeur', 'imputrescible'];
+            default:
+                return [];
         }
-        return data;
     }
 
 }

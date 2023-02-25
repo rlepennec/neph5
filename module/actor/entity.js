@@ -449,27 +449,6 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * @param sciences The name of the sciences.
-     * @returns true if at least a science must be displayed.
-     */
-    displaySciences(sciences) {
-        for (let science of sciences) {
-            if (this.displayScience(science)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * @param science The key of the science.
-     * @returns true if science must be displayed.
-     */
-    displayScience(science) {
-        return this.science(science) > 0 || this.focus(science).length > 0;
-    }
-
-    /**
      * @param science The name of the science.
      * @returns true if some focus are owned.
      */
