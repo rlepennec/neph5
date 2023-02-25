@@ -146,7 +146,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="magie"] .change-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-tab="magie"] .change-focus').click(this._onChangeFocus.bind(this));
-        html.find('div[data-tab="magie"] .cercle .roll').click(this._onRollOriginalItem.bind(this));
+        html.find('div[data-tab="magie"] .cercle-header .roll').click(this._onRollOriginalItem.bind(this));
         html.find('div[data-tab="magie"] .focus .open').click(this._onOpenEmbeddedItem.bind(this));
         html.find('div[data-tab="magie"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
         
@@ -480,14 +480,14 @@ export class FigureSheet extends HistoricalSheet {
     // -- FEATURE ------------------------------------------------------------------------
 
     /**
-     * Roll the specified embedded item.
+     * Roll the specified original item.
      * @param event The click event.
      * @returns the instance.
      */
     async _onRollOriginalItem(event) {
         event.preventDefault();
-        //const key = $(event.currentTarget).closest('.item').data('key');
-        //const item = game.items.find(i => i.system?.key === key);
+        const id = $(event.currentTarget).closest('.item').data('id');
+        const item = game.items.get(id);
         await new FeatureBuilder(this.actor).createFromOriginal(item).initializeRoll();
         return this;
     }

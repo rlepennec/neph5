@@ -97,8 +97,4 @@ export class FeatureBuilder {
         };
     }
 
-    /**
-     * game.items.find(i => i.system?.key === key)?.type)
-     */
-
 }
