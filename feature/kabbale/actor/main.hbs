@@ -1,9 +1,8 @@
 {{#with (cercles actor "kabbale") as |cercles|}}
-{{#if cercles.display}}  
+{{#if (gt cercles.length 0)}}  
 <ol class="cercles">
 
-    {{#with cercles.malkut as |cercle|}}
-    {{#if cercle.display}}
+    {{#each cercles as |cercle|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
@@ -12,125 +11,7 @@
         {{/each}}
         </ol>
     </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.yesod as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.hod as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.netzach as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.tiphereth as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.geburah as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.chesed as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.binah as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.chokmah as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
-
-    {{#with cercles.kether as |cercle|}}
-    {{#if cercle.display}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/if}}
-    {{/with}}
+    {{/each}}
 
 </ol>
 {{else}}

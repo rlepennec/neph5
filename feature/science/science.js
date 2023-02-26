@@ -344,26 +344,25 @@ export class Science extends AbstractFeature {
      * @returns the data information about the specified cercles.
      */
     static _getCercles(actor, cercles) {
-        const data = {};
-        let display = false;
+        const data = [];
         for (let cercle of cercles) {
             const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
             if (item != null) {
                 const feature = new Science(actor, item);
-                data[cercle] = {
-                    name: item.name,
-                    sid: item.sid,
-                    id: item.id,
-                    degre: feature.degre,
-                    focus: Science.getFocus(actor, cercle)
-                };
-                data[cercle].display = data[cercle].degre > 0 || data[cercle].focus > 0;
-                if (data[cercle].display === true) {
-                    display = true;
+                const degre = feature.degre;
+                const focus = Science.getFocus(actor, cercle);
+                if (degre > 0 || focus.length > 0) {
+                    data.push({
+                        name: item.name,
+                        cercle: cercle,
+                        sid: item.sid,
+                        id: item.id,
+                        degre: degre,
+                        focus: focus
+                    });
                 }
             }
         }
-        data.display = display;
         return data;
     }
 

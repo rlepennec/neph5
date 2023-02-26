@@ -1,9 +1,8 @@
 {{#with (cercles actor "magie") as |cercles|}}
-{{#if cercles.display}}  
+{{#if (gt cercles.length 0)}} 
 <ol class="cercles">
 
-    {{#with cercles.basseMagie as |cercle|}}
-    {{#if cercle.display}}
+    {{#with cercles.[0] as |cercle|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
@@ -12,17 +11,15 @@
         {{/each}}
         </ol>
     </div>
-    {{/if}}
     {{/with}}
 
-    {{#with cercles.hauteMagie as |cercle|}}
-    {{#if cercle.display}}
+    {{#if (gt cercles.length 1)}}
     {{#with ../../actor.voieMagique}}
     <div class="voie">
         <label>{{name}}</label>
     </div>
     {{/with}}
-
+    {{#with cercles.[1] as |cercle|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
@@ -31,11 +28,11 @@
         {{/each}}
         </ol>
     </div>
-    {{/if}}
     {{/with}}
+    {{/if}}
 
-    {{#with cercles.grandSecret as |cercle|}}
-    {{#if cercle.display}}
+    {{#if (gt cercles.length 2)}}
+    {{#with cercles.[2] as |cercle|}}
     <div class="cercle">
         {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
         <ol class="all-focus">
@@ -44,8 +41,8 @@
         {{/each}}
         </ol>
     </div>
-    {{/if}}
     {{/with}}
+    {{/if}}
 
 </ol>
 {{else}}
