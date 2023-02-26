@@ -309,29 +309,12 @@ export class Science extends AbstractFeature {
         return all;
     }
 
+
     /**
      * @param actor   The actor object.
-     * @param cercles The keys of the cercles to get.
+     * @param science The name of the science for which to get the cercles.
      * @returns the data information about the specified cercles.
      */
-    static getCerclesOf(actor, science) {
-        const data = [];
-        for (let cercle of cercles) {
-            for (let item of game.items.filter(i => i.type === 'science' && i.system.key === cercle)) {
-                const feature = new Science(actor, item);
-                data[cercle] = {
-                    name: item.name,
-                    sid: item.sid,
-                    id: item.id,
-                    degre: feature.degre,
-                    focus: Science.getFocus(actor, cercle)
-                };
-            }
-        }
-        return data;
-    }
-
-
     static cercles(actor, science) {
         const cercles = Science._cerclesOf(science);
         const data = Science._getCercles(actor, cercles);
@@ -367,6 +350,11 @@ export class Science extends AbstractFeature {
         return data;
     }
 
+    /**
+     * @param actor  The actor object.
+     * @param cercle The key of the cercle for which to get the voie.
+     * @returns the voie related to the specified cercle.
+     */
     static _getVoie(actor, cercle) {
         switch (cercle) {
             case 'hauteMagie':
@@ -378,7 +366,10 @@ export class Science extends AbstractFeature {
         }
     }
 
-
+    /**
+     * @param science The name of the science for which to get the cercles.
+     * @returns the sorted keys of the cercles.
+     */
     static _cerclesOf(science) {
         switch (science) {
             case 'analogie':
