@@ -2,47 +2,24 @@
 {{#if (gt cercles.length 0)}} 
 <ol class="cercles">
 
-    {{#with cercles.[0] as |cercle|}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/with}}
+    {{#each cercles as |cercle|}}
 
-    {{#if (gt cercles.length 1)}}
-    {{#with ../../actor.voieMagique}}
-    <div class="voie">
-        <label>{{name}}</label>
-    </div>
-    {{/with}}
-    {{#with cercles.[1] as |cercle|}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/with}}
-    {{/if}}
+        {{#if (nonNull cercle.voie)}}
+        <div class="voie">
+            <label>{{cercle.voie.name}}</label>
+        </div>
+        {{/if}}
 
-    {{#if (gt cercles.length 2)}}
-    {{#with cercles.[2] as |cercle|}}
-    <div class="cercle">
-        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
-        <ol class="all-focus">
-        {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus degre=focus.degre}}
-        {{/each}}
-        </ol>
-    </div>
-    {{/with}}
-    {{/if}}
+        <div class="cercle">
+            {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
+            <ol class="all-focus">
+            {{#each cercle.focus as |focus|}}
+                {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus degre=focus.degre}}
+            {{/each}}
+            </ol>
+        </div>
+
+    {{/each}}
 
 </ol>
 {{else}}

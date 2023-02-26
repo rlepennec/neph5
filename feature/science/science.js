@@ -358,12 +358,24 @@ export class Science extends AbstractFeature {
                         sid: item.sid,
                         id: item.id,
                         degre: degre,
-                        focus: focus
+                        focus: focus,
+                        voie: Science._getVoie(actor, cercle)
                     });
                 }
             }
         }
         return data;
+    }
+
+    static _getVoie(actor, cercle) {
+        switch (cercle) {
+            case 'hauteMagie':
+                return actor.voieMagique;
+            case 'oeuvreAuNoir':
+                return actor.voieAlchimique;
+            default:
+                return null;
+        }
     }
 
 
