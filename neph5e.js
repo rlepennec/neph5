@@ -88,8 +88,7 @@ Hooks.once("init", function () {
         isNewMember: CustomHandlebarsHelpers.isNewMember,
 
 
-        displayScience: CustomHandlebarsHelpers.displayScience,
-        displaySciences: CustomHandlebarsHelpers.displaySciences
+        displayScience: CustomHandlebarsHelpers.displayScience
     });
 
     Handlebars.registerHelper('switch', function (value, options) {
