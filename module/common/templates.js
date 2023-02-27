@@ -15,61 +15,16 @@ export const preloadTemplates = async function () {
         // Alchimie
         "systems/neph5e/feature/alchimie/actor/construct.hbs",
 
-        // Atlanteide
-        "systems/neph5e/feature/atlanteide/actor/main.hbs",
-        "systems/neph5e/feature/atlanteide/actor/cercle.hbs",
-        "systems/neph5e/feature/atlanteide/actor/focus.hbs",
-
-        // Baton
-        "systems/neph5e/feature/baton/actor/main.hbs",
-        "systems/neph5e/feature/baton/actor/cercle.hbs",
-        "systems/neph5e/feature/baton/actor/focus.hbs",
-
         // Combat
         "systems/neph5e/feature/combat/actor/main.hbs",
         "systems/neph5e/feature/combat/actor/blessure.hbs",
         "systems/neph5e/feature/combat/actor/etat.hbs",
-
-        // Conjuration
-        "systems/neph5e/feature/conjuration/actor/main.hbs",
-        "systems/neph5e/feature/conjuration/actor/cercle.hbs",
-        "systems/neph5e/feature/conjuration/actor/focus.hbs",
-
-        // Coupe
-        "systems/neph5e/feature/coupe/actor/main.hbs",
-        "systems/neph5e/feature/coupe/actor/cercle.hbs",
-        "systems/neph5e/feature/coupe/actor/focus.hbs",
-
-        // Denier
-        "systems/neph5e/feature/denier/actor/main.hbs",
-        "systems/neph5e/feature/denier/actor/cercle.hbs",
-        "systems/neph5e/feature/denier/actor/focus.hbs",
-
-        // Dracomachie
-        "systems/neph5e/feature/dracomachie/actor/main.hbs",
-        "systems/neph5e/feature/dracomachie/actor/cercle.hbs",
-        "systems/neph5e/feature/dracomachie/actor/focus.hbs",
-
-        // Epee
-        "systems/neph5e/feature/epee/actor/main.hbs",
-        "systems/neph5e/feature/epee/actor/cercle.hbs",
-        "systems/neph5e/feature/epee/actor/focus.hbs",
 
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
 
         // Laboratoire
         "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",
-
-        // Analogie
-        "systems/neph5e/feature/analogie/actor/main.hbs",
-        "systems/neph5e/feature/analogie/actor/cercle.hbs",
-        "systems/neph5e/feature/analogie/actor/focus.hbs",
-
-        // Necromancie
-        "systems/neph5e/feature/necromancie/actor/main.hbs",
-        "systems/neph5e/feature/necromancie/actor/cercle.hbs",
-        "systems/neph5e/feature/necromancie/actor/focus.hbs",
 
         // Nephilim
         "systems/neph5e/feature/nephilim/actor/arcane.hbs",

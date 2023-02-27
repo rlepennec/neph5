@@ -376,10 +376,28 @@ export class Science extends AbstractFeature {
         switch (science) {
             case 'alchimie':
                 return ['elements', 'quantite', 'transporte', 'focus', 'status', 'percentage'];
+            case 'analogie':
+                return ['element', 'focus', 'percentage'];
+            case 'atlanteide':
+                return ['percentage'];
+            case 'baton':
+                return ['percentage'];
+            case 'conjuration':
+                return ['focus', 'status', 'percentage'];
+            case 'coupe':
+                return ['percentage'];
+            case 'denier':
+                return ['percentage'];
+            case 'dracomachie':
+                return ['percentage'];
+            case 'epee':
+                return ['percentage'];
             case 'kabbale':
                 return ['element', 'pacte', 'focus', 'status', 'percentage'];
             case 'magie':
                 return ['element', 'focus', 'status', 'percentage'];
+            case 'necromancie':
+                return ['focus', 'status', 'percentage'];
             default:
                 return [];
         }

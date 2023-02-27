@@ -4,7 +4,7 @@
 
     {{#each data.cercles as |cercle|}}
     <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
-{{log cercle}}
+
         <!-- Display the voie related to the specified cercle if necessary. -->
         {{#if (nonNull cercle.voie)}}
         <label class="voie">{{cercle.voie.name}}</label>
@@ -54,7 +54,7 @@
 
             {{#each cercle.focus as |item|}}
             <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">
-{{log item}}
+
                 <!-- The only element of the focus. -->
                 {{#if (includes ../../header 'element')}}
                 <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
