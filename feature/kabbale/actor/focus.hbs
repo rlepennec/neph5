@@ -1,41 +1,22 @@
+<li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">
 
-<li 
-    {{#if (eq degre 0)}}
-    class="item macro focus disabled"
-    {{else}}
-    class="item macro focus"
-    {{/if}}
-    data-item-id="{{item.embedded.id}}"
-    data-id="{{item.embedded.id}}"
-    data-sid="{{item.original.sid}}"
-    data-type="invocation">
-
-    <div class="item-control">
-        <a class="item-delete"><i class="fas fa-trash"></i></a>
-    </div>
-
-    <div class="item-name edit-focus" data-id="{{item.original.id}}">
-        <span>{{item.original.name}}</span>
-    </div>
-
-    {{#unless (eq degre 0)}}
-
-    <label class="item-parameter width-40">
-        {{item.embedded.degre}}
-    </label>
-
-    <label class="tooltip item-parameter width-40">
+    <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
         {{#switch item.original.system.element}}
-            {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
-            {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
-            {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
-            {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
-            {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
-            {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+        {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
+        {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
+        {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
+        {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
+        {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
+        {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
         {{/switch}}
     </label>
 
-    <label class="change-pacte item-parameter width-40" data-id="{{item.embedded.id}}">
+    <label class="focus-name open">{{item.original.name}}</label>
+
+
+    {{#unless (eq degre 0)}}
+
+    <label class="focus-pacte change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">
         {{#if item.embedded.system.pacte}}
         <i class="fa-solid fa-feather-pointed"></i>
         {{else}}
@@ -43,7 +24,7 @@
         {{/if}}
     </label>
 
-    <label class="change-focus item-parameter width-40" data-id="{{item.embedded.id}}">
+    <label class="focus-focus change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">
         {{#if item.embedded.system.focus}}
         <i class="fa-solid fa-scroll"></i>
         {{else}}
@@ -51,11 +32,11 @@
         {{/if}}
     </label>
 
-    <label class="change-status item-parameter width-80" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label>
+    <label class="focus-status change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">{{item.embedded.getStatus}}</label> 
 
-    <div class="dice">
-        <a class="roll-focus" data-id="{{item.original.id}}"><i class="fas fa-dice-d20"></i></a>
-    </div>
+    <a class="focus-dice roll">
+        <i class="fas fa-dice-d20"></i>
+    </a>
 
     {{/unless}}
 

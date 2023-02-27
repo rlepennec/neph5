@@ -751,6 +751,12 @@
   flex: 1 1 auto;
   text-align: left;
   padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-pacte {
+  flex: 0 0 50px;
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-focus {
   flex: 0 0 50px;
