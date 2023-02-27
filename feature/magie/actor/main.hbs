@@ -5,12 +5,12 @@
     {{#each data.cercles as |cercle|}}
     <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
 
-        <!-- Display the voie if necessary -->
+        <!-- Display the voie related to the specified cercle if necessary. -->
         {{#if (nonNull cercle.voie)}}
         <label class="voie">{{cercle.voie.name}}</label>
         {{/if}}
 
-        <!-- Display the header -->
+        <!-- Display the header above all focus of the cercle. Each science displays specific parameters. -->
         <div class="cercle-header item" data-id="{{cercle.id}}">
 
             <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
@@ -45,7 +45,7 @@
 
         </div>
 
-        <!-- Display all focus -->
+        <!-- Display all focus related to the cercle. -->
         <ol class="all-focus">
         {{#each cercle.focus as |focus|}}
             {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus}}
