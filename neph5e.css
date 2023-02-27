@@ -760,6 +760,12 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-quantite {
+  flex: 0 0 50px;
+}
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-soi {
+  flex: 0 0 50px;
+}
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-pacte {
   flex: 0 0 50px;
 }
