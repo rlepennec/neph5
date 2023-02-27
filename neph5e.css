@@ -659,7 +659,10 @@
                 }
 */
 }
-.actor-root .article .article-body .science .cercles .voie {
+.actor-root .article .article-body .science .cercles .disabled {
+  color: #a1a1a1;
+}
+.actor-root .article .article-body .science .cercles .cercle .voie {
   margin-top: 40px;
   padding-bottom: 3px;
   font-family: 'AJensonPro';
