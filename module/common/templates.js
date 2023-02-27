@@ -13,9 +13,6 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/akasha/actor/vaisseau.hbs",
 
         // Alchimie
-        "systems/neph5e/feature/alchimie/actor/main.hbs",
-        "systems/neph5e/feature/alchimie/actor/cercle.hbs",
-        "systems/neph5e/feature/alchimie/actor/focus.hbs",
         "systems/neph5e/feature/alchimie/actor/construct.hbs",
 
         // Atlanteide

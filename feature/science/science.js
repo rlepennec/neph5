@@ -375,9 +375,9 @@ export class Science extends AbstractFeature {
     static _getHeader(science) {
         switch (science) {
             case 'alchimie':
-                return ['elements', 'focus', 'status'];
+                return ['elements', 'quantite', 'transporte', 'focus', 'status', 'percentage'];
             case 'kabbale':
-                return ['element', 'pacte', 'focus', 'status'];
+                return ['element', 'pacte', 'focus', 'status', 'percentage'];
             case 'magie':
                 return ['element', 'focus', 'status', 'percentage'];
             default:
@@ -424,6 +424,8 @@ export class Science extends AbstractFeature {
      */
     static _cerclesOf(science) {
         switch (science) {
+            case 'alchimie':
+                return ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];
             case 'analogie':
                 return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'];
             case 'atlanteide':
@@ -440,8 +442,6 @@ export class Science extends AbstractFeature {
                 return [];
             case 'epee':
                 return [];
-            case 'formule':
-                return ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];
             case 'kabbale':
                 return ['malkut', 'yesod', 'hod', 'netzach', 'tiphereth', 'geburah', 'chesed', 'binah', 'chokmah', 'kether'];
             case 'magie':
