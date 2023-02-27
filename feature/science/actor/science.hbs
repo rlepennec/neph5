@@ -55,7 +55,7 @@
             {{#each cercle.focus as |item|}}
             <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">
 
-                {{#if (includes ../../header 'elements')}}
+                {{#if (includes ../../header 'element')}}
                 <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
                     {{#switch item.original.system.element}}
                     {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
