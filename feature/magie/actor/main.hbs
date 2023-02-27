@@ -5,12 +5,14 @@
     {{#each data.cercles as |cercle|}}
     <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
 
+        <!-- Display the voie if necessary -->
         {{#if (nonNull cercle.voie)}}
         <div class="voie">
             <label>{{cercle.voie.name}}</label>
         </div>
         {{/if}}
 
+        <!-- Display the header -->
         <div class="cercle-header item" data-id="{{cercle.id}}">
 
             <img class="cercle-circle" src="systems/neph5e/assets/core/circle2.webp"/>
@@ -24,12 +26,18 @@
                 <span class="cercle-name">{{cercle.name}}</span>
 
                 {{#unless (eq cercle.degre 0)}}
-
+                    
+                    {{#if (includes ../header 'focus')}}
                     <span class="cercle-focus">{{localize "NEPH5E.focus"}}</span>
+                    {{/if}}
 
+                    {{#if (includes ../header 'status')}}
                     <span class="cercle-status">{{localize "NEPH5E.status"}}</span>
+                    {{/if}}
 
+                    {{#if (includes ../header 'percentage')}}
                     <span class="cercle-percentage">{{localize "%"}}</span>
+                    {{/if}}
 
                     <a class="cercle-dice roll"><i class="fas fa-dice-d20"></i></a>
 
@@ -39,6 +47,7 @@
 
         </div>
 
+        <!-- Display all focus -->
         <ol class="all-focus">
         {{#each cercle.focus as |focus|}}
             {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus}}
