@@ -668,6 +668,8 @@
   font-family: 'AJensonPro';
   font-size: 25px;
   text-align: center;
+  display: inline-block;
+  width: 100%;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header {
   display: flex;
