@@ -752,6 +752,10 @@
   margin-left: 20px;
   flex: 0 0 50px;
 }
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-elements {
+  margin-left: 20px;
+  flex: 0 0 50px;
+}
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-name {
   flex: 1 1 auto;
   text-align: left;
