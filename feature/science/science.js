@@ -374,10 +374,12 @@ export class Science extends AbstractFeature {
      */
     static _getHeader(science) {
         switch (science) {
-            case 'magie':
-                return ['elements', 'focus', 'status', 'percentage'];
+            case 'alchimie':
+                return [];
             case 'kabbale':
                 return ['elements', 'pacte', 'focus', 'status'];
+            case 'magie':
+                return ['elements', 'focus', 'status', 'percentage'];
             default:
                 return [];
         }

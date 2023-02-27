@@ -59,18 +59,10 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/epee/actor/focus.hbs",
 
         // Kabbale
-        "systems/neph5e/feature/kabbale/actor/main.hbs",
-        "systems/neph5e/feature/kabbale/actor/cercle.hbs",
-        "systems/neph5e/feature/kabbale/actor/focus.hbs",
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
 
         // Laboratoire
         "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",
-
-        // Magie
-        "systems/neph5e/feature/magie/actor/main.hbs",
-        "systems/neph5e/feature/magie/actor/cercle.hbs",
-        "systems/neph5e/feature/magie/actor/focus.hbs",
 
         // Analogie
         "systems/neph5e/feature/analogie/actor/main.hbs",
