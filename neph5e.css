@@ -722,6 +722,9 @@
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-quantite {
   flex: 0 0 50px;
 }
+.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-soi {
+  flex: 0 0 50px;
+}
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-pacte {
   flex: 0 0 50px;
 }
