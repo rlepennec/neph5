@@ -3,29 +3,23 @@
 <ol class="cercles">
 
     {{#each cercles as |cercle|}}
+    <div class="cercle {{#if (eq cercle.degre 8)}}disabled{{/if}}">
 
-        {{#if (eq cercle.degre 8)}}
-        <div class="cercle disabled">
-        {{else}}
-        <div class="cercle">
+        {{#if (nonNull cercle.voie)}}
+        <div class="voie">
+            <label>{{cercle.voie.name}}</label>
+        </div>
         {{/if}}
 
-            {{#if (nonNull cercle.voie)}}
-            <div class="voie">
-                <label>{{cercle.voie.name}}</label>
-            </div>
-            {{/if}}
+        {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
 
-            {{> "systems/neph5e/feature/magie/actor/cercle.hbs" cercle=cercle}}
+        <ol class="all-focus">
+        {{#each cercle.focus as |focus|}}
+            {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus}}
+        {{/each}}
+        </ol>
 
-            <ol class="all-focus">
-            {{#each cercle.focus as |focus|}}
-                {{> "systems/neph5e/feature/magie/actor/focus.hbs" item=focus}}
-            {{/each}}
-            </ol>
-
-        </div>
-
+    </div>
     {{/each}}
 
 </ol>
