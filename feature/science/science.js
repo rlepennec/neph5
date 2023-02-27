@@ -333,7 +333,7 @@ export class Science extends AbstractFeature {
             if (item != null) {
                 const feature = new Science(actor, item);
                 const degre = feature.degre;
-                const focus = Science.getFocus(actor, cercle);
+                const focus = Science._getFocus(actor, cercle);
                 if (degre > 0 || focus.length > 0) {
                     data.push({
                         name: item.name,
@@ -364,6 +364,39 @@ export class Science extends AbstractFeature {
             default:
                 return null;
         }
+    }
+
+    /**
+     * @param actor   The actor object for which to retrieve the focus.
+     * @param science The name of the science.
+     * @returns the owned focus of the actor. 
+     */
+    static _getFocus(actor, science) {
+
+        let items = [];
+        const cercle = Science.getCercle(science);
+        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
+        
+        for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
+
+            const embedded = actor.items.find(i => i.sid === item.sid);
+            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).createFromEmbedded(embedded);
+            const degre = feature.degre;
+
+            if (degre != null) {
+                embedded.degre = degre * 10;
+            } else if (item.type === 'formule') {
+                embedded.degre = null;
+            }
+
+            items.push({
+                original: item,
+                embedded: embedded
+            });
+
+        }
+        return items;
+
     }
 
     /**
