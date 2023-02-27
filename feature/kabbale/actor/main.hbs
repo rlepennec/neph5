@@ -1,15 +1,24 @@
-{{#with (cercles actor "kabbale") as |cercles|}}
-{{#if (gt cercles.length 0)}}  
+{{#with (cercles actor science) as |cercles|}}
+{{#if (gt cercles.length 0)}} 
 <ol class="cercles">
 
     {{#each cercles as |cercle|}}
-    <div class="cercle">
+    <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
+
+        {{#if (nonNull cercle.voie)}}
+        <div class="voie">
+            <label>{{cercle.voie.name}}</label>
+        </div>
+        {{/if}}
+
         {{> "systems/neph5e/feature/kabbale/actor/cercle.hbs" cercle=cercle}}
+
         <ol class="all-focus">
         {{#each cercle.focus as |focus|}}
-            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus degre=focus.degre}}
+            {{> "systems/neph5e/feature/kabbale/actor/focus.hbs" item=focus}}
         {{/each}}
         </ol>
+
     </div>
     {{/each}}
 
