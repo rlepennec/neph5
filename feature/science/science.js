@@ -317,8 +317,10 @@ export class Science extends AbstractFeature {
      */
     static cercles(actor, science) {
         const cercles = Science._cerclesOf(science);
-        const data = Science._getCercles(actor, cercles);
-        return data;
+        return {
+            header: Science._getHeader(science),
+            cercles: Science._getCercles(actor, cercles)
+        }
     }
 
     /**
@@ -363,6 +365,19 @@ export class Science extends AbstractFeature {
                 return actor.voieAlchimique;
             default:
                 return null;
+        }
+    }
+
+    /**
+     * @param science The name of the science.
+     * @returns the header data.
+     */
+    static _getHeader(science) {
+        switch (science) {
+            case 'magie':
+                return ['focus', 'status', 'percentage'];
+            default:
+                return [];
         }
     }
 
