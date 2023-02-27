@@ -376,6 +376,8 @@ export class Science extends AbstractFeature {
         switch (science) {
             case 'magie':
                 return ['elements', 'focus', 'status', 'percentage'];
+            case 'kabbale':
+                return ['elements', 'pacte', 'focus', 'status'];
             default:
                 return [];
         }

@@ -114,6 +114,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/actor/parts/checkbox.hbs",
         "systems/neph5e/templates/actor/parts/top.hbs",
         "systems/neph5e/templates/actor/parts/nofocus.hbs",
+        "systems/neph5e/feature/science/actor/science.hbs",
 
         // Item parts
         "systems/neph5e/templates/item/parts/header/header.hbs",
