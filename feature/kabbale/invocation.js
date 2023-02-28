@@ -1,31 +1,11 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFocus } from "../core/AbstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
 
-export class Invocation extends AbstractFeature {
-
-    /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action.
-     */
-    constructor(actor, item) {
-        super(actor);
-        this.item = item;
-        this.periode = null;
-    }
-
-    /**
-     * The system identifier of the periode to registrer.
-     * @returns the instance.
-     */
-    withPeriode(periode) {
-        this.periode = periode;
-        return this;
-    }
+export class Invocation extends AbstractFocus {
 
     /**
      * @Override
@@ -103,22 +83,19 @@ export class Invocation extends AbstractFeature {
     /**
      * @Override
      */
-    async drop() {
-        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+    async drop(previous) {
 
-            // Previous is used if the focus is moved inside incarnations panel
-            const previous = this.actor.items.find(i => i.sid === this.sid);
+        // Create a new focus or move the focus to the new periode.
+        await new EmbeddedItem(this.actor, this.sid)
+            .withContext("Drop of a sort")
+            .withDeleteExisting()
+            .withData("focus", (previous == null ? false : previous.system.focus))
+            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("pacte", (previous == null ? false : previous.system.pacte))
+            .withData("periode", this.periode)
+            .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')
+            .create();
 
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a sort")
-                .withDeleteExisting()
-                .withData("focus", (previous == null ? false : previous.system.focus))
-                .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
-                .withData("pacte", (previous == null ? false : previous.system.pacte))
-                .withData("periode", this.periode)
-                .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')
-                .create();
-        }
     }
 
     /**

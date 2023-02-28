@@ -1,31 +1,11 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFocus } from "../core/AbstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
 
-export class Formule extends AbstractFeature {
-
-    /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action.
-     */
-    constructor(actor, item) {
-        super(actor);
-        this.item = item;
-        this.periode = null;
-    }
-
-    /**
-     * The system identifier of the periode to registrer.
-     * @returns the instance.
-     */
-    withPeriode(periode) {
-        this.periode = periode;
-        return this;
-    }
+export class Formule extends AbstractFocus {
 
     /**
      * @Override
@@ -58,14 +38,7 @@ export class Formule extends AbstractFeature {
      */
     async initializeRoll() {
 
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas cette formule");
-            return;
-        }
-
-        if (embedded.system.focus !== true && embedded.system.status === 'dechiffre') {
+        if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de cette formule");
             return;
         }
@@ -163,23 +136,20 @@ export class Formule extends AbstractFeature {
     /**
      * @Override
      */
-    async drop() {
-        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+    async drop(previous) {
 
-            // Previous is used if the focus is moved inside incarnations panel
-            const previous = this.actor.items.find(i => i.sid === this.sid);
+        // Create a new focus or move the focus to the new periode.
+        await new EmbeddedItem(this.actor, this.sid)
+            .withContext("Drop of a sort")
+            .withDeleteExisting()
+            .withData("focus", (previous == null ? false : previous.system.focus))
+            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("quantite", 0)
+            .withData("transporte", 0)
+            .withData("periode", this.periode)
+            .withoutData('description', 'degre', 'cercle', 'enonce', 'substance', 'elements', 'aire', 'duree', 'catalyseurs', 'variantes')
+            .create();
 
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a sort")
-                .withDeleteExisting()
-                .withData("focus", (previous == null ? false : previous.system.focus))
-                .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
-                .withData("quantite", 0)
-                .withData("transporte", 0)
-                .withData("periode", this.periode)
-                .withoutData('description', 'degre', 'cercle', 'enonce', 'substance', 'elements', 'aire', 'duree', 'catalyseurs', 'variantes')
-                .create();
-        }
     }
 
     /**

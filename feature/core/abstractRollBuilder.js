@@ -119,13 +119,13 @@ export class AbstractRollBuilder {
             case 'alchimie':
                 return new Alchimie(this.actor, this.item);
             case 'appel':
-                return new Appel(this.actor, this.item).withPeriode(this.periode);
+                return new Appel(this.actor, this.item, this.periode);
             case 'arcane':
                 return new Arcane(this.actor, this.item, this.periode);
             case 'aspect':
                 return new Aspect(this.actor, this.item);
             case 'atlanteide':
-                return new Atlanteide(this.actor, this.item).withPeriode(this.periode);
+                return new Atlanteide(this.actor, this.item, this.periode);
             case 'catalyseur':
                 return new Catalyseur(this.actor, this.item);
             case 'chute':
@@ -133,13 +133,13 @@ export class AbstractRollBuilder {
             case 'competence':
                 return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
             case 'dracomachie':
-                return new Dracomachie(this.actor, this.item).withPeriode(this.periode);
+                return new Dracomachie(this.actor, this.item, this.periode);
             case 'formule':
-                return new Formule(this.actor, this.item).withPeriode(this.periode);
+                return new Formule(this.actor, this.item, this.periode);
             case 'habitus':
-                return new Habitus(this.actor, this.item).withPeriode(this.periode);
+                return new Habitus(this.actor, this.item, this.periode);
             case 'invocation':
-                return new Invocation(this.actor, this.item).withPeriode(this.periode);
+                return new Invocation(this.actor, this.item, this.periode);
             case 'magie':
                 return new Magie(this.actor, this.item);
             case 'materiae':
@@ -151,15 +151,15 @@ export class AbstractRollBuilder {
             case 'periode':
                 return new Periode(this.actor, this.item).withEvent(this.event);
             case 'pratique':
-                return new Pratique(this.actor, this.item).withPeriode(this.periode);
+                return new Pratique(this.actor, this.item, this.periode);
             case 'quete':
                 return new Quete(this.actor, this.item, this.periode);
             case 'ordonnance':
                 return new Ordonnance(this.actor, this.item).withPeriode(this.periode);
             case 'rite':
-                return new Rite(this.actor, this.item).withPeriode(this.periode);
+                return new Rite(this.actor, this.item, this.periode);
             case 'rituel':
-                return new Rituel(this.actor, this.item).withPeriode(this.periode);
+                return new Rituel(this.actor, this.item, this.periode);
             case 'savoir':
                 return new Savoir(this.actor, this.item, this.periode);
             case 'science':
@@ -167,9 +167,9 @@ export class AbstractRollBuilder {
             case 'sort':
                 return new Sort(this.actor, this.item).withPeriode(this.periode);
             case 'technique':
-                return new Technique(this.actor, this.item).withPeriode(this.periode);
+                return new Technique(this.actor, this.item, this.periode);
             case 'tekhne':
-                return new Tekhne(this.actor, this.item).withPeriode(this.periode);
+                return new Tekhne(this.actor, this.item, this.periode);
             case 'vecu':
                 return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
             default:

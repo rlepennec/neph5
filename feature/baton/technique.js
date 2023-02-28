@@ -1,31 +1,11 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFocus } from "../core/AbstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
-export class Technique extends AbstractFeature {
-
-    /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action.
-     */
-    constructor(actor, item) {
-        super(actor);
-        this.item = item;
-        this.periode = null;
-    }
-
-    /**
-     * The system identifier of the periode to registrer.
-     * @returns the instance.
-     */
-    withPeriode(periode) {
-        this.periode = periode;
-        return this;
-    }
+export class Technique extends AbstractFocus {
 
     /**
      * @Override
@@ -85,19 +65,16 @@ export class Technique extends AbstractFeature {
     /**
      * @Override
      */
-    async drop() {
-        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+    async drop(previous) {
 
-            // Previous is used if the focus is moved inside incarnations panel
-            const previous = this.actor.items.find(i => i.sid === this.sid);
+        // Create a new focus or move the focus to the new periode.
+        await new EmbeddedItem(this.actor, this.sid)
+            .withContext("Drop of a technique")
+            .withDeleteExisting()
+            .withData("periode", this.periode)
+            .withoutData('description', 'cercle', 'degre')
+            .create();
 
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a technique")
-                .withDeleteExisting()
-                .withData("periode", this.periode)
-                .withoutData('description', 'cercle', 'degre')
-                .create();
-        }
     }
 
     /**

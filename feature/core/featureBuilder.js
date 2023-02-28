@@ -56,29 +56,29 @@ export class FeatureBuilder {
     createFromEmbedded(item) {
         switch (item?.type) {
             case 'appel':
-                return new Appel(this.actor, item).withPeriode(this.periode);
+                return new Appel(this.actor, item, this.periode);
             case 'atlanteide':
-                return new Atlanteide(this.actor, item).withPeriode(this.periode);
+                return new Atlanteide(this.actor, item, this.periode);
             case 'dracomachie':
-                return new Dracomachie(this.actor, item).withPeriode(this.periode);
+                return new Dracomachie(this.actor, item, this.periode);
             case 'formule':
-                return new Formule(this.actor, item).withPeriode(this.periode);
+                return new Formule(this.actor, item, this.periode);
             case 'habitus':
-                return new Habitus(this.actor, item).withPeriode(this.periode);
+                return new Habitus(this.actor, item, this.periode);
             case 'invocation':
-                return new Invocation(this.actor, item).withPeriode(this.periode);
+                return new Invocation(this.actor, item, this.periode);
             case 'pratique':
-                return new Pratique(this.actor, item).withPeriode(this.periode);
+                return new Pratique(this.actor, item, this.periode);
             case 'rite':
-                return new Rite(this.actor, item).withPeriode(this.periode);
+                return new Rite(this.actor, item, this.periode);
             case 'rituel':
-                return new Rituel(this.actor, item).withPeriode(this.periode);
+                return new Rituel(this.actor, item, this.periode);
             case 'sort':
-                return new Sort(this.actor, item).withPeriode(this.periode);
+                return new Sort(this.actor, item, this.periode);
             case 'technique':
-                return new Technique(this.actor, item).withPeriode(this.periode);
+                return new Technique(this.actor, item, this.periode);
             case 'tekhne':
-                return new Tekhne(this.actor, item).withPeriode(this.periode);
+                return new Tekhne(this.actor, item, this.periode);
             default:
                 return null;
         }

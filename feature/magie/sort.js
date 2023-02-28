@@ -1,31 +1,11 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFocus } from "../core/AbstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
 
-export class Sort extends AbstractFeature {
-
-    /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action.
-     */
-    constructor(actor, item) {
-        super(actor);
-        this.item = item;
-        this.periode = null;
-    }
-
-    /**
-     * The system identifier of the periode to registrer.
-     * @returns the instance.
-     */
-    withPeriode(periode) {
-        this.periode = periode;
-        return this;
-    }
+export class Sort extends AbstractFocus {
 
     /**
      * @Override
@@ -70,13 +50,6 @@ export class Sort extends AbstractFeature {
     /**
      * @Override
      */
-    get purpose() {
-        return this.item;
-    }
-
-    /**
-     * @Override
-     */
     get degre() {
 
         // Retrieve the original focus item
@@ -104,22 +77,8 @@ export class Sort extends AbstractFeature {
     /**
      * @Override
      */
-    async drop() {
+    async drop(previous) {
 
-        // A periode must be defined
-        if (this.periode == null) {
-            return;
-        }
-
-        // The focus must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) != null) {
-            return;
-        }
-
-        // Retrieve the previous periode for which the focus is defined.
-        const previous = this.actor.items.find(i => i.sid === this.sid);
-
-        // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
