@@ -105,20 +105,30 @@ export class Sort extends AbstractFeature {
      * @Override
      */
     async drop() {
-        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
 
-            // Previous is used if the focus is moved inside incarnations panel
-            const previous = this.actor.items.find(i => i.sid === this.sid);
-
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a sort")
-                .withDeleteExisting()
-                .withData("focus", (previous == null ? false : previous.system.focus))
-                .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
-                .withData("periode", this.periode)
-                .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
-                .create();
+        // A periode must be defined
+        if (this.periode == null) {
+            return;
         }
+
+        // The focus must not be defined for the current periode.
+        if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) != null) {
+            return;
+        }
+
+        // Retrieve the previous periode for which the focus is defined.
+        const previous = this.actor.items.find(i => i.sid === this.sid);
+
+        // Create a new focus or move the focus to the new periode.
+        await new EmbeddedItem(this.actor, this.sid)
+            .withContext("Drop of a sort")
+            .withDeleteExisting()
+            .withData("focus", (previous == null ? false : previous.system.focus))
+            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("periode", this.periode)
+            .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
+            .create();
+
     }
 
     /**
