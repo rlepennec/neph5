@@ -37,13 +37,6 @@ export class Habitus extends AbstractFocus {
     /**
      * @Override
      */
-    get purpose() {
-        return this.item;
-    }
-
-    /**
-     * @Override
-     */
     get degre() {
 
         // Retrieve the original focus item
@@ -76,14 +69,6 @@ export class Habitus extends AbstractFocus {
             .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'incantation', 'portee', 'duree')
             .create();
 
-    }
-
-    /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
     }
 
     /**

@@ -36,13 +36,6 @@ export class Rite extends AbstractFocus {
     /**
      * @Override
      */
-    get purpose() {
-        return this.item;
-    }
-
-    /**
-     * @Override
-     */
     get degre() {
 
         // Retrieve the original focus item
@@ -70,14 +63,6 @@ export class Rite extends AbstractFocus {
             .withoutData('description', 'cercle', 'desmos')
             .create();
 
-    }
-
-    /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
     }
 
     /**

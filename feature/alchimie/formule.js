@@ -80,13 +80,6 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    get purpose() {
-        return this.item;
-    }
-
-    /**
-     * @Override
-     */
     get degre() {
 
         // Retrieve the original focus item
@@ -150,14 +143,6 @@ export class Formule extends AbstractFocus {
             .withoutData('description', 'degre', 'cercle', 'enonce', 'substance', 'elements', 'aire', 'duree', 'catalyseurs', 'variantes')
             .create();
 
-    }
-
-    /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
     }
 
     /**

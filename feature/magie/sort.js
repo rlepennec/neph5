@@ -93,14 +93,6 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
-    }
-
-    /**
-     * @Override
-     */
     async edit() {
         await super.edit(
             "systems/neph5e/feature/magie/item/sort.html",
