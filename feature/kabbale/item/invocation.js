@@ -1,6 +1,5 @@
-import { NephilimItemSheet } from "../../../module/item/base.js";
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Game } from "../../../module/common/game.js";
+import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class InvocationSheet extends NephilimItemSheet {
 
@@ -32,39 +31,6 @@ export class InvocationSheet extends NephilimItemSheet {
      */
     get template() {
         return `systems/neph5e/feature/kabbale/item/invocation.html`;
-    }
-
-    static async onEdit(event, actor) {
-
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/feature/kabbale/item/invocation.html", {
-            item: item,
-            system: item.system,
-            debug: game.settings.get('neph5e', 'debug'),
-            elements: Game.kabbale.elements,
-            cercles: Game.kabbale.sephiroth,
-            mondes: Game.kabbale.mondes,
-            difficulty: item.difficulty(actor)
-        });
-
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize('ITEM.TypeInvocation'),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
-
-        }, {
-            width: 560,
-            height: 500
-        }).render(true);
-
     }
 
 }
