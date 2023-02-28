@@ -99,9 +99,8 @@ export class Invocation extends AbstractFocus {
                 system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.kabbale.elements,
-                cercles: Game.kabbale.cercles,
+                cercles: Game.kabbale.sephiroth,
                 mondes: Game.kabbale.mondes,
-                sephiroth: Game.kabbale.sephiroth,
                 difficulty: this.degre
             },
             'ITEM.TypeInvocation',

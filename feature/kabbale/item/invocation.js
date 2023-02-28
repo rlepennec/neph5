@@ -47,9 +47,8 @@ export class InvocationSheet extends NephilimItemSheet {
             system: item.system,
             debug: game.settings.get('neph5e', 'debug'),
             elements: Game.kabbale.elements,
-            cercles: Game.kabbale.cercles,
+            cercles: Game.kabbale.sephiroth,
             mondes: Game.kabbale.mondes,
-            sephiroth: Game.kabbale.sephiroth,
             difficulty: item.difficulty(actor)
         });
 
