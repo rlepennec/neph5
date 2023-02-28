@@ -25,6 +25,14 @@
 
                 {{#unless (eq cercle.degre 0)}}
                     
+                    {{#if (includes ../header 'quantite')}}
+                    <span class="cercle-quantite">{{localize "NEPH5E.quantite"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'transporte')}}
+                    <span class="cercle-transporte">{{localize "NEPH5E.soi"}}</span>
+                    {{/if}}
+
                     {{#if (includes ../header 'pacte')}}
                     <span class="cercle-pacte">{{localize "NEPH5E.pacte"}}</span>
                     {{/if}}
