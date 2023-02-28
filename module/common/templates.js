@@ -52,14 +52,15 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/selenim/actor/aspect.hbs",
         "systems/neph5e/feature/selenim/actor/attributs.hbs",
 
+        // Science
+        "systems/neph5e/feature/science/actor/elements.hbs",
+        "systems/neph5e/feature/science/actor/science.hbs",
+
         // Actor parts
         "systems/neph5e/templates/actor/parts/options.hbs",
         "systems/neph5e/templates/actor/parts/header.hbs",
         "systems/neph5e/templates/actor/parts/checkbox.hbs",
         "systems/neph5e/templates/actor/parts/top.hbs",
-        "systems/neph5e/templates/actor/parts/nofocus.hbs",
-        "systems/neph5e/feature/science/actor/elements.hbs",
-        "systems/neph5e/feature/science/actor/science.hbs",
 
         // Item parts
         "systems/neph5e/templates/item/parts/header/header.hbs",
