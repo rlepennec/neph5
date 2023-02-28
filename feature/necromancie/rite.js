@@ -30,22 +30,6 @@ export class Rite extends AbstractFeature {
     /**
      * @Override
      */
-    async initializeRoll() {
-
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas ce rite");
-            return;
-        }
-
-        return await super.initializeRoll();
-
-    }
-
-    /**
-     * @Override
-     */
     get title() {
         return "Jet de Nécromancie";
     }
@@ -80,10 +64,16 @@ export class Rite extends AbstractFeature {
      * @Override
      */
     get degre() {
+
+        // Retrieve the original focus item
         const original = this.original;
-        const item = game.items.find(i => i.system.key === original.system.cercle);
-        const science = new Science(this.actor, item).degre;
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+
+        // Final result
         return science;
+
     }
 
     /**

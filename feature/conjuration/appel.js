@@ -30,22 +30,6 @@ export class Appel extends AbstractFeature {
     /**
      * @Override
      */
-     async initializeRoll() {
-
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas cet appel");
-            return;
-        }
-
-        return await super.initializeRoll();
-
-    }
-
-    /**
-     * @Override
-     */
     get title() {
         return 'Jet de Conjuration';
     }
@@ -80,9 +64,16 @@ export class Appel extends AbstractFeature {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
-        const science = new Science(this.actor, item).degre;
+
+        // Retrieve the original focus item
+        const original = this.original;
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+
+        // Final result
         return science;
+
     }
 
     /**

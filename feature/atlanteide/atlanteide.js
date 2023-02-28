@@ -30,22 +30,6 @@ export class Atlanteide extends AbstractFeature {
     /**
      * @Override
      */
-    async initializeRoll() {
-
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas ce rituel atlantéide");
-            return;
-        }
-
-        return await super.initializeRoll();
-
-    }
-
-    /**
-     * @Override
-     */
     get title() {
         return "Jet de Rituel Altlantéide";
     }
@@ -80,11 +64,22 @@ export class Atlanteide extends AbstractFeature {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
-        const science = new Science(this.actor, item).degre;
-        const degre = this.item.system.degre;
+
+        // Retrieve the original focus item
+        const original = this.original;
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+
+        // Retrieve the degre of the focus to cast
+        const focus = original.system.degre;
+
+        // Retrieve the degre of the ka used to cast the focus
         const ka = this.actor.ka;
-        return science + ka - degre;
+
+        // Final result
+        return science + ka - focus;
+
     }
 
     /**

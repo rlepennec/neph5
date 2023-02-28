@@ -31,22 +31,6 @@ export class Habitus extends AbstractFeature {
     /**
      * @Override
      */
-    async initializeRoll() {
-
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas cet habitus");
-            return;
-        }
-
-        return await super.initializeRoll();
-
-    }
-
-    /**
-     * @Override
-     */
     get title() {
         return "Jet d'Habitus";
     }
@@ -81,11 +65,22 @@ export class Habitus extends AbstractFeature {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.domaine);
-        const science = new Science(this.actor, item).degre;
-        const sort = this.item.system.degre;
-        const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
-        return science + ka - sort + 1;
+
+        // Retrieve the original focus item
+        const original = this.original;
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.domaine).degre;
+
+        // Retrieve the degre of the focus to cast
+        const focus = original.system.degre;
+
+        // Retrieve the degre of the ka used to cast the focus
+        const ka = this.actor.getKa(original.system.element === "luneNoire" ? "noyau" : original.system.element);
+
+        // Final result
+        return science + ka - focus + 1;
+
     }
 
     /**
