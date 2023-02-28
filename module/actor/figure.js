@@ -89,6 +89,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="science"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
         html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
+        html.find('div[data-family="science"] .focus-pacte').click(this._onChangePacte.bind(this));
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -123,7 +124,7 @@ export class FigureSheet extends HistoricalSheet {
         // Kabbale
         html.find('div[data-tab="kabbale"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
-        html.find('div[data-tab="kabbale"] .change-pacte').click(this._onChangePacte.bind(this));
+        
 
         // Laboratoire
         html.find('div[data-tab="laboratoire"]').on("drop", this._onDrop.bind(this));
@@ -737,11 +738,9 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangePacte(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-pacte").data("id");
+        const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        const system = duplicate(item.system);
-        system.pacte = !system.pacte;
-        await item.update({ ['system']: system });
+        await item.update({ ['system.pacte']: !item.system.pacte });
     }
 
     /**
