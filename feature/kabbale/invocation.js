@@ -10,7 +10,7 @@ export class Invocation extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The original item object, purpose of the action. 
+     * @param item  The embedded item object, purpose of the action.
      */
     constructor(actor, item) {
         super(actor);
@@ -25,6 +25,20 @@ export class Invocation extends AbstractFeature {
     withPeriode(periode) {
         this.periode = periode;
         return this;
+    }
+
+    /**
+     * @Override
+     */
+    async initializeRoll() {
+
+        if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
+            ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
+            return;
+        }
+
+        return await super.initializeRoll();
+
     }
 
     /**
@@ -56,22 +70,6 @@ export class Invocation extends AbstractFeature {
     /**
      * @Override
      */
-    async initializeRoll() {
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-        if (embedded == null) {
-            ui.notifications.warn("Vous ne possédez pas cette invocation");
-            return;
-        }
-        if (embedded.system.focus !== true && embedded.system.status === 'dechiffre') {
-            ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
-            return;
-        }
-        return await super.initializeRoll();
-    }
-
-    /**
-     * @Override
-     */
     get purpose() {
         return this.item;
     }
@@ -80,7 +78,8 @@ export class Invocation extends AbstractFeature {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.sephirah);
+        const original = this.original;
+        const item = game.items.find(i => i.system.key === original.system.sephirah);
         const science = new Science(this.actor, item).degre;
         const ka = this.actor.getKa(this.item.system.element);
         return science + ka;
@@ -90,8 +89,7 @@ export class Invocation extends AbstractFeature {
      * @returns true if a pacte has already be done.
      */
     get pacte() {
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-        return embedded == null ? null : embedded.system.pacte;
+        return this.item.system.pacte;
     }
 
     /**
@@ -130,8 +128,8 @@ export class Invocation extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/kabbale/item/invocation.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.kabbale.elements,
                 cercles: Game.kabbale.cercles,
