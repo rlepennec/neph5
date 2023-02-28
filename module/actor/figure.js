@@ -90,6 +90,8 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
         html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-family="science"] .focus-pacte').click(this._onChangePacte.bind(this));
+        html.find('div[data-family="science"] .focus-quantite').change(this._onChangeQuantite.bind(this));
+        html.find('div[data-family="science"] .focus-transporte').change(this._onChangeTransporte.bind(this));
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -99,8 +101,7 @@ export class FigureSheet extends HistoricalSheet {
 
         // Alchimie
         html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="alchimie"] .change-quantite').change(this._onChangeQuantite.bind(this));
-        html.find('div[data-tab="alchimie"] .change-transporte').change(this._onChangeTransporte.bind(this));
+
 
         // Combat
         html.find('div[data-tab="combat"] .edit-esquive').click(this._onEditEsquive.bind(this));
@@ -706,12 +707,10 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeQuantite(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-quantite").data("id");
+        const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".change-quantite").val();
-        const system = duplicate(item.system);
-        system.quantite = parseInt(value);
-        await item.update({ ['system']: system });
+        const value = $(event.currentTarget).closest(".focus-quantite").val();
+        await item.update({ ['system.quantite']: parseInt(value) });
     }
 
     /**
@@ -722,12 +721,10 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeTransporte(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-transporte").data("id");
+        const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".change-transporte").val();
-        const system = duplicate(item.system);
-        system.transporte = parseInt(value);
-        await item.update({ ['system']: system });
+        const value = $(event.currentTarget).closest(".focus-transporte").val();
+        await item.update({ ['system.transporte']: parseInt(value) });
     }
 
     /**
