@@ -79,7 +79,7 @@ export class Habitus extends AbstractFocus {
                 system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
-                domaines: CustomHandlebarsHelpers.cerclesOf('analogie', true),
+                cercles: CustomHandlebarsHelpers.cerclesOf('analogie', true),
                 difficulty: this.degre
             },
             'ITEM.TypeHabitus',

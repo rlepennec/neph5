@@ -10,7 +10,7 @@ export class HabitusSheet extends NephilimItemSheet {
     getData() {
         const data = super.getData();
         data.elements = Game.elements;
-        data.domaines = CustomHandlebarsHelpers.cerclesOf('analogie', true);
+        data.cercles = CustomHandlebarsHelpers.cerclesOf('analogie', true);
         return data;
     }
 
