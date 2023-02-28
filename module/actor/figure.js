@@ -88,6 +88,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="science"] .focus .open').click(this._onOpenEmbeddedItem.bind(this));
         html.find('div[data-family="science"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
+        html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -97,8 +98,6 @@ export class FigureSheet extends HistoricalSheet {
 
         // Alchimie
         html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="alchimie"] .change-status').click(this._onChangeStatus.bind(this));
-        html.find('div[data-tab="alchimie"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="alchimie"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="alchimie"] .change-transporte').change(this._onChangeTransporte.bind(this));
 
@@ -108,8 +107,6 @@ export class FigureSheet extends HistoricalSheet {
 
         // Conjuration
         html.find('div[data-tab="conjuration"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="conjuration"] .change-status').click(this._onChangeStatus.bind(this));
-        html.find('div[data-tab="conjuration"] .change-focus').click(this._onChangeFocus.bind(this));
 
         // Incarnations
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
@@ -126,8 +123,6 @@ export class FigureSheet extends HistoricalSheet {
         // Kabbale
         html.find('div[data-tab="kabbale"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
-        html.find('div[data-tab="kabbale"] .change-status').click(this._onChangeStatus.bind(this));
-        html.find('div[data-tab="kabbale"] .change-focus').click(this._onChangeFocus.bind(this));
         html.find('div[data-tab="kabbale"] .change-pacte').click(this._onChangePacte.bind(this));
 
         // Laboratoire
@@ -141,17 +136,13 @@ export class FigureSheet extends HistoricalSheet {
         
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="magie"] .change-status').click(this._onChangeStatus.bind(this));
         
         
         // Magie analogique
         html.find('div[data-tab="analogie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="analogie"] .change-focus').click(this._onChangeFocus.bind(this));
 
         // Necromancie
         html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="necromancie"] .change-status').click(this._onChangeStatus.bind(this));
-        html.find('div[data-tab="necromancie"] .change-focus').click(this._onChangeFocus.bind(this));
 
         // Nephilim
         html.find('div[data-tab="nephilim"]').on("drop", this._onDrop.bind(this));
@@ -785,23 +776,21 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeStatus(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-status").data("id");
+        const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        const system = duplicate(item.system);
         switch (item.system.status) {
             case Constants.DECHIFFRE:
-                system.status = Constants.APPRIS;
+                await item.update({ ['system.status']: Constants.APPRIS });
                 break;
             case Constants.APPRIS:
-                system.status = Constants.TATOUE;
+                await item.update({ ['system.status']: Constants.TATOUE });
                 break;
             case Constants.TATOUE:
-                system.status = Constants.DECHIFFRE;
+                await item.update({ ['system.status']: Constants.DECHIFFRE });
                 break;
             default:
                 throw new Error("Status " + item.system.status + " not implemented");
         }
-        await item.update({ ['system']: system });
     }
 
     // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
