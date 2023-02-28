@@ -87,6 +87,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollOriginalItem.bind(this));
         html.find('div[data-family="science"] .focus .open').click(this._onOpenEmbeddedItem.bind(this));
         html.find('div[data-family="science"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
+        html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
 
         // Simulacre
         html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
@@ -141,7 +142,7 @@ export class FigureSheet extends HistoricalSheet {
         // Magie
         html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="magie"] .change-status').click(this._onChangeStatus.bind(this));
-        html.find('div[data-tab="magie"] .change-focus').click(this._onChangeFocus.bind(this));
+        
         
         // Magie analogique
         html.find('div[data-tab="analogie"]').on("drop", this._onDrop.bind(this));
@@ -764,11 +765,9 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeFocus(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-focus").data("id");
+        const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        const system = duplicate(item.system);
-        system.focus = !system.focus;
-        await item.update({ ['system']: system });
+        await item.update({ ['system.focus']: !item.system.focus });
     }
 
     /**

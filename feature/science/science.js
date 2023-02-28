@@ -385,15 +385,15 @@ export class Science extends AbstractFeature {
     static _getHeader(science) {
         switch (science) {
             case 'alchimie':
-                return ['elements', 'quantite', 'transporte', 'focus', 'status', 'percentage'];
+                return ['elements', 'quantite', 'transporte', 'possede', 'status', 'percentage'];
             case 'analogie':
-                return ['element', 'focus', 'percentage'];
+                return ['element', 'possede', 'percentage'];
             case 'atlanteide':
                 return ['percentage'];
             case 'baton':
                 return ['percentage'];
             case 'conjuration':
-                return ['luneNoire', 'focus', 'status'];
+                return ['luneNoire', 'possede', 'status'];
             case 'coupe':
                 return ['percentage'];
             case 'denier':
@@ -403,11 +403,11 @@ export class Science extends AbstractFeature {
             case 'epee':
                 return ['percentage'];
             case 'kabbale':
-                return ['element', 'pacte', 'focus', 'status', 'percentage'];
+                return ['element', 'pacte', 'possede', 'status', 'percentage'];
             case 'magie':
-                return ['element', 'focus', 'status', 'percentage'];
+                return ['element', 'possede', 'status', 'percentage'];
             case 'necromancie':
-                return ['luneNoire', 'focus', 'status'];
+                return ['luneNoire', 'possede', 'status'];
             default:
                 return [];
         }

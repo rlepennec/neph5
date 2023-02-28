@@ -728,7 +728,7 @@
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-pacte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-focus {
+.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-possede {
   flex: 0 0 50px;
 }
 .actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-status {
@@ -773,7 +773,7 @@
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-pacte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-focus {
+.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede {
   flex: 0 0 50px;
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-status {

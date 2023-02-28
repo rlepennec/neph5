@@ -37,8 +37,8 @@
                     <span class="cercle-pacte">{{localize "NEPH5E.pacte"}}</span>
                     {{/if}}
 
-                    {{#if (includes ../header 'focus')}}
-                    <span class="cercle-focus">{{localize "NEPH5E.focus"}}</span>
+                    {{#if (includes ../header 'possede')}}
+                    <span class="cercle-possede">{{localize "NEPH5E.focus"}}</span>
                     {{/if}}
 
                     {{#if (includes ../header 'status')}}
@@ -132,8 +132,8 @@
                 {{/if}}
 
                 <!-- Indicates id the character has the focus. -->
-                {{#if (includes ../../header 'focus')}}
-                <label class="focus-focus change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                {{#if (includes ../../header 'possede')}}
+                <label class="focus-possede {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
                     {{#if item.embedded.system.focus}}
                     <i class="fa-solid fa-scroll"></i>
                     {{else}}
@@ -144,7 +144,7 @@
 
                 <!-- The status of the focus: dechiffre, appris, tatoue. -->
                 {{#if (includes ../../header 'status')}}
-                <label class="focus-status change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.embedded.getStatus}}</label>
+                <label class="focus-status {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.embedded.getStatus}}</label>
                 {{/if}} 
 
                 {{#if (includes ../../header 'percentage')}}
