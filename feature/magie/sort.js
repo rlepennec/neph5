@@ -77,7 +77,7 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async drop(previous) {
+    async _drop(previous) {
 
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")

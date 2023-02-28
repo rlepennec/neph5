@@ -52,7 +52,7 @@ export class Rite extends AbstractFocus {
     /**
      * @Override
      */
-    async drop(previous) {
+    async _drop(previous) {
 
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
