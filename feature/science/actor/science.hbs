@@ -59,12 +59,7 @@
                 {{#if (includes ../../header 'element')}}
                 <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
                     {{#switch item.original.system.element}}
-                        {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
-                        {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
-                        {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
-                        {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
-                        {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
-                        {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+                        {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                     {{/switch}}
                 </label>
                 {{/if}}
@@ -74,24 +69,23 @@
                 <label class="focus-elements {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
                     <div class="tooltip">
                     {{#switch item.original.system.elements.[0]}}
-                        {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
-                        {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
-                        {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
-                        {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
-                        {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
-                        {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+                        {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                     {{/switch}}
                     </div>
                     <div class="tooltip">
                     {{#switch item.original.system.elements.[1]}}
-                        {{#case 'air'}}<i class="fas fa-wind"></i><span class="tooltiptext">{{localize "NEPH5E.air"}}</span>{{/case}}
-                        {{#case 'eau'}}<i class="fas fa-water"></i><span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>{{/case}}
-                        {{#case 'feu'}}<i class="fas fa-fire"></i><span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>{{/case}}
-                        {{#case 'lune'}}<i class="fas fa-moon"></i><span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>{{/case}}
-                        {{#case 'luneNoire'}}<i class="fas fa-circle"></i><span class="tooltiptext">{{localize "NEPH5E.luneNoire"}}</span>{{/case}}
-                        {{#case 'terre'}}<i class="fas fa-seedling"></i><span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>{{/case}}
+                        {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                     {{/switch}}
                     </div>
+                </label>
+                {{/if}}
+
+                <!-- The lune noire element. -->
+                {{#if (includes ../../header 'luneNoire')}}
+                <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    {{#switch 'luneNoire'}}
+                        {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
+                    {{/switch}}
                 </label>
                 {{/if}}
 

@@ -383,7 +383,7 @@ export class Science extends AbstractFeature {
             case 'baton':
                 return ['percentage'];
             case 'conjuration':
-                return ['focus', 'status', 'percentage'];
+                return ['luneNoire', 'focus', 'status', 'percentage'];
             case 'coupe':
                 return ['percentage'];
             case 'denier':
@@ -397,7 +397,7 @@ export class Science extends AbstractFeature {
             case 'magie':
                 return ['element', 'focus', 'status', 'percentage'];
             case 'necromancie':
-                return ['focus', 'status', 'percentage'];
+                return ['luneNoire', 'focus', 'status', 'percentage'];
             default:
                 return [];
         }
