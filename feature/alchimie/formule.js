@@ -191,8 +191,8 @@ export class Formule extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/alchimie/item/formule.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.pentacle.elements,
                 cercles: Game.alchimie.cercles,

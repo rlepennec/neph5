@@ -120,8 +120,8 @@ export class Atlanteide extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/atlanteide/item/atlanteide.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 cercles: CustomHandlebarsHelpers.cerclesOf('atlanteide', true),
                 difficulty: this.degre

@@ -118,8 +118,8 @@ export class Habitus extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/analogie/item/habitus.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
                 domaines: CustomHandlebarsHelpers.cerclesOf('analogie', true),
