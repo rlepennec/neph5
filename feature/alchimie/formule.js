@@ -82,25 +82,23 @@ export class Formule extends AbstractFocus {
      */
     get degre() {
 
-        // Retrieve the original focus item
-        const original = this.original;
-
         // Retrieve the construct used to cast focus according to the current laboratory
         // The construct must be active
-        const construct = this.getConstruct(original);
+        const owner = this.getOwner();
+        const construct = owner == null ? null : owner.getConstruct(this.original.system.substance);
         if (construct?.active !== true) {
             return null;
         }
 
         // Retrieve all elements used to cast the focus
         // All elements must be owned by the construct
-        const ka = original.system.elements.length === 1 ? construct[original.system.elements[0]] ?? 0 : Math.min(construct[original.system.elements[0]] ?? 0, construct[original.system.elements[1]] ?? 0);
+        const ka = this.original.system.elements.length === 1 ? construct[this.original.system.elements[0]] ?? 0 : Math.min(construct[this.original.system.elements[0]] ?? 0, construct[this.original.system.elements[1]] ?? 0);
         if (ka < 1) {
             return null;
         }
 
         // The cercle of the formule must be supported by the construct
-        switch (original.system.cercle) {
+        switch (this.original.system.cercle) {
             case 'oeuvreAuNoir':
                 break;
             case 'oeuvreAuBlanc':
@@ -116,10 +114,10 @@ export class Formule extends AbstractFocus {
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.original.system.cercle).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = original.system.degre;
+        const focus = this.original.system.degre;
 
         // Final result
         return science + ka - focus;
@@ -176,14 +174,6 @@ export class Formule extends AbstractFocus {
         } else {
             return null;
         }
-    }
-
-    /**
-     * @returns the construct used to produced the formule according to the current laboratory.
-     */
-    getConstruct(original) {
-        const owner = this.getOwner();
-        return owner == null ? null : owner.getConstruct(original.system.substance);
     }
 
 }

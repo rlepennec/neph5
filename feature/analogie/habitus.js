@@ -39,17 +39,14 @@ export class Habitus extends AbstractFocus {
      */
     get degre() {
 
-        // Retrieve the original focus item
-        const original = this.original;
-
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, original.system.domaine).degre;
+        const science = Science.scienceOf(this.actor, this.original.system.domaine).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = original.system.degre;
+        const focus = this.original.system.degre;
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(original.system.element === "luneNoire" ? "noyau" : original.system.element);
+        const ka = this.actor.getKa(this.original.system.element === "luneNoire" ? "noyau" : this.original.system.element);
 
         // Final result
         return science + ka - focus + 1;

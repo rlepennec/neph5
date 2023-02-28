@@ -38,14 +38,11 @@ export class Tekhne extends AbstractFocus {
      */
     get degre() {
 
-        // Retrieve the original focus item
-        const original = this.original;
-
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.original.system.cercle).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = original.system.degre;
+        const focus = this.original.system.degre;
 
         // Retrieve the degre of the ka used to cast the focus
         const ka = this.actor.getKa('soleil');

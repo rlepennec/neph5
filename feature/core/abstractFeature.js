@@ -79,13 +79,6 @@ export class AbstractFeature {
     }
 
     /**
-     * @returns the original item.
-     */
-    get original() {
-        return this.item == null ? null : game.items.find(i => i.sid === this.item.sid);
-    }
-
-    /**
      * @returns the fraternite degre.
      */
     get fraternite() {

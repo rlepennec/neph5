@@ -52,14 +52,11 @@ export class Invocation extends AbstractFocus {
      */
     get degre() {
 
-        // Retrieve the original focus item
-        const original = this.original;
-
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, original.system.sephirah).degre;
+        const science = Science.scienceOf(this.actor, this.original.system.sephirah).degre;
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(original.system.element);
+        const ka = this.actor.getKa(this.original.system.element);
 
         // Final result
         return science + ka;

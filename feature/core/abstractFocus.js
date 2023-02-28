@@ -11,6 +11,7 @@ export class AbstractFocus extends AbstractFeature {
     constructor(actor, item, periode) {
         super(actor);
         this.item = item;
+        this.original = item == null ? null : game.items.find(i => i.sid === item.sid);
         this.periode = periode;
     }
 
