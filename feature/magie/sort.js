@@ -78,15 +78,27 @@ export class Sort extends AbstractFeature {
      * @Override
      */
     get degre() {
+
+        // Retrieve the original focus item
         const original = this.original;
+
+        // The sort needs the actor to follow a voie
         if (original.system?.voies.length > 0 && original.system.voies.includes(this.actor.voieMagique?.sid) === false) {
             return 0;
         }
-        const item = game.items.find(i => i.system.key === original.system.cercle);
-        const science = new Science(this.actor, item).degre;
-        const sort = original.system.degre;
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+
+        // Retrieve the degre of the focus to cast
+        const focus = original.system.degre;
+
+        // Retrieve the degre of the ka used to cast the focus
         const ka = this.actor.getKa(original.system.element === "luneNoire" ? "noyau" : original.system.element);
-        return science + ka - sort;
+
+        // Final result
+        return science + ka - focus;
+
     }
 
     /**

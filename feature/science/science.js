@@ -311,6 +311,16 @@ export class Science extends AbstractFeature {
 
 
     /**
+     * @param actor  The actor object.
+     * @param cercle  The name of the cercle.
+     * @returns the science.
+     */
+    static scienceOf(actor, cercle) {
+        const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
+        return item == null ? null : new Science(actor, item);
+    }
+
+    /**
      * @param actor   The actor object.
      * @param science The name of the science for which to get the cercles.
      * @returns the data information about the specified cercles.

@@ -78,11 +78,19 @@ export class Invocation extends AbstractFeature {
      * @Override
      */
     get degre() {
+
+        // Retrieve the original focus item
         const original = this.original;
-        const item = game.items.find(i => i.system.key === original.system.sephirah);
-        const science = new Science(this.actor, item).degre;
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.sephirah).degre;
+
+        // Retrieve the degre of the ka used to cast the focus
         const ka = this.actor.getKa(this.item.system.element);
+
+        // Final result
         return science + ka;
+
     }
 
     /**

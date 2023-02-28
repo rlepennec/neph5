@@ -10,7 +10,7 @@ export class Formule extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
+     * @param item  The embedded item object, purpose of the action.
      */
     constructor(actor, item) {
         super(actor);
@@ -116,23 +116,25 @@ export class Formule extends AbstractFeature {
      */
     get degre() {
 
-        // Retrieve the construct according to the current laboratory
-        const construct = this.getConstruct();
+        // Retrieve the original focus item
+        const original = this.original;
 
+        // Retrieve the construct used to cast focus according to the current laboratory
         // The construct must be active
+        const construct = this.getConstruct(original);
         if (construct?.active !== true) {
             return null;
         }
 
-        // All Ka must be present
-        const elements = this.item.system.elements;
-        const ka = elements.length === 1 ? construct[elements[0]] ?? 0 : Math.min(construct[elements[0]] ?? 0, construct[elements[1]] ?? 0);
+        // Retrieve all elements used to cast the focus
+        // All elements must be owned by the construct
+        const ka = original.system.elements.length === 1 ? construct[original.system.elements[0]] ?? 0 : Math.min(construct[original.system.elements[0]] ?? 0, construct[original.system.elements[1]] ?? 0);
         if (ka < 1) {
             return null;
         }
 
         // The cercle of the formule must be supported by the construct
-        switch (this.item.system.cercle) {
+        switch (original.system.cercle) {
             case 'oeuvreAuNoir':
                 break;
             case 'oeuvreAuBlanc':
@@ -147,11 +149,15 @@ export class Formule extends AbstractFeature {
                 break;
         }
 
-        // Retrieve the degre of the cercle used to create the formule
-        const science = new Science(this.actor, game.items.find(i => i.system.key === this.item.system.cercle)).degre;
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
 
-        // Return the final degre
-        return science + ka - this.item.system.degre;
+        // Retrieve the degre of the focus to cast
+        const focus = original.system.degre;
+
+        // Final result
+        return science + ka - focus;
+
     }
 
     /**
@@ -220,9 +226,9 @@ export class Formule extends AbstractFeature {
     /**
      * @returns the construct used to produced the formule according to the current laboratory.
      */
-    getConstruct() {
+    getConstruct(original) {
         const owner = this.getOwner();
-        return owner == null ? null : owner.getConstruct(this.item.system.substance);
+        return owner == null ? null : owner.getConstruct(original.system.substance);
     }
 
 }

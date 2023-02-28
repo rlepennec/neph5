@@ -10,7 +10,7 @@ export class Technique extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
+     * @param item  The embedded item object, purpose of the action.
      */
     constructor(actor, item) {
         super(actor);
@@ -80,7 +80,8 @@ export class Technique extends AbstractFeature {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
+        const original = this.original;
+        const item = game.items.find(i => i.system.key === original.system.cercle);
         const science = new Science(this.actor, item).degre;
         const degre = this.item.system.degre;
         const ka = this.actor.getKa('soleil');

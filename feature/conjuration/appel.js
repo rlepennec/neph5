@@ -10,7 +10,7 @@ export class Appel extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded object item, purpose of the action. 
+     * @param item  The embedded item object, purpose of the action. 
      */
     constructor(actor, item) {
         super(actor);
@@ -122,8 +122,8 @@ export class Appel extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/conjuration/item/appel.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 cercles: Game.conjuration.cercles,
                 appels: Game.conjuration.appels,

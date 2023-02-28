@@ -11,7 +11,7 @@ export class Habitus extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
+     * @param item  The embedded item object, purpose of the action.
      */
     constructor(actor, item) {
         super(actor);

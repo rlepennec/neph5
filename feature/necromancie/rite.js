@@ -10,7 +10,7 @@ export class Rite extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
+     * @param item  The embedded item object, purpose of the action.
      */
     constructor(actor, item) {
         super(actor);
@@ -80,7 +80,8 @@ export class Rite extends AbstractFeature {
      * @Override
      */
     get degre() {
-        const item = game.items.find(i => i.system.key === this.item.system.cercle);
+        const original = this.original;
+        const item = game.items.find(i => i.system.key === original.system.cercle);
         const science = new Science(this.actor, item).degre;
         return science;
     }
@@ -119,8 +120,8 @@ export class Rite extends AbstractFeature {
         await super.edit(
             "systems/neph5e/feature/necromancie/item/rite.html",
             {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
+                item: this.original,
+                system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 cercles: Game.necromancie.cercles,
                 desmos:Game.necromancie.desmos,
