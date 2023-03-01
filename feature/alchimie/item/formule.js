@@ -134,37 +134,4 @@ export class FormuleSheet extends NephilimItemSheet {
         super._updateObject(event, formData);
     }
 
-    static async onEdit(event, actor) {
-
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/item/formule.html", {
-            item: item,
-            system: item.system,
-            debug: game.settings.get('neph5e', 'debug'),
-            catalyseurs: game.settings.get('neph5e', 'catalyseurs'),
-            elements: Game.pentacle.elements,
-            cercles: Game.alchimie.cercles,
-            substances: Game.alchimie.substances,
-            difficulty: item.difficulty(actor)
-        });
-
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize('ITEM.TypeFormule'),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
-
-        }, {
-            width: 600,
-            height: 500
-        }).render(true);
-
-    }
 }
