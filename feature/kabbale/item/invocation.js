@@ -1,5 +1,6 @@
 import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
+import { Science } from "../../science/science.js";
 
 export class InvocationSheet extends NephilimItemSheet {
 
@@ -9,7 +10,7 @@ export class InvocationSheet extends NephilimItemSheet {
     getData() {
         const data = super.getData();
         data.elements = Game.kabbale.elements;
-        data.cercles = Game.kabbale.cercles;
+        data.cercles = Science.cerclesOf('kabbale');
         data.mondes = Game.kabbale.mondes;
         data.sephiroth = Game.kabbale.sephiroth;
         return data;

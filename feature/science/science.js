@@ -471,12 +471,10 @@ export class Science extends AbstractFeature {
                 return ['basseMagie', 'hauteMagie', 'grandSecret'];
             case 'necromancie':
                 return ['fossoyeur', 'embaumeur', 'imputrescible'];
-
             case 'analogie': {
                 const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
                 return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => addon.system.key));
             }
-
             case 'atlanteide':
             case 'baton':
             case 'coupe':
@@ -486,7 +484,6 @@ export class Science extends AbstractFeature {
                 const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
                 return Array.from(addons, addon => addon.system.key);
             }
-
             default:
                 return [];
         }
