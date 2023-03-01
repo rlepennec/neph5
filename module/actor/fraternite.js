@@ -169,13 +169,7 @@ export class FraterniteSheet extends HistoricalSheet {
                         case 'passe':
                         case 'quete':
                         case 'savoir':
-                        case 'science':
-                        case 'sort':
-                        case 'invocation':
-                        case 'formule':
-                        case 'habitus':
-                        case 'rite':
-                        case 'appel':
+                        case 'science': {
                             const periode = this.editedPeriode;
                             if (periode != null) {
                                 await new AbstractRollBuilder(this.actor)
@@ -186,6 +180,24 @@ export class FraterniteSheet extends HistoricalSheet {
                                     .drop();
                             }
                             break;
+                        }
+                        case 'sort':
+                        case 'invocation':
+                        case 'formule':
+                        case 'habitus':
+                        case 'rite':
+                        case 'appel': {
+                            const periode = this.editedPeriode;
+                            if (periode != null) {
+                                await new AbstractRollBuilder(this.actor)
+                                    .withItem(item)
+                                    .withEvent(event)
+                                    .withPeriode(periode)
+                                    .create()
+                                    .drop();
+                            }
+                            break;
+                        }
                     }
                 }
                 break;

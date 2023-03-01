@@ -290,25 +290,36 @@ export class FigureSheet extends HistoricalSheet {
                                 .create()
                                 .drop();
                             break;
-                        case 'appel':
                         case 'arcane':
-                        case 'atlanteide':
                         case 'chute':
+                        case 'ordonnance':
+                        case 'passe':
+                        case 'quete':
+                        case 'savoir':
+                        case 'science': {
+                            if (periode != null) {
+                                await new AbstractRollBuilder(this.actor)
+                                    .withItem(item)
+                                    .withEvent(event)
+                                    .withPeriode(periode)
+                                    .withManoeuver(this.editedCapacity)
+                                    .create()
+                                    .drop();
+                            }
+                            break;
+                        }
+                        case 'appel':
+                        case 'atlanteide':
                         case 'dracomachie':
                         case 'formule':
                         case 'invocation':
-                        case 'ordonnance':
-                        case 'passe':
                         case 'pratique':
-                        case 'quete':
                         case 'rite':
                         case 'rituel':
                         case 'technique':
                         case 'tekhne':
-                        case 'savoir':
-                        case 'science':
                         case 'sort':
-                        case 'habitus':
+                        case 'habitus': {
                             const periode = this.editedPeriode;
                             if (periode != null) {
                                 await new AbstractRollBuilder(this.actor)
@@ -320,6 +331,7 @@ export class FigureSheet extends HistoricalSheet {
                                     .drop();
                             }
                             break;
+                        }
                     }
                 }
                 break;
