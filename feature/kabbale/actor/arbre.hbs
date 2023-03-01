@@ -1,7 +1,9 @@
 <div class="content">
 
+    <!-- Display the background image. -->
     <img src="systems/neph5e/assets/backgrounds/arbre.webp"/>
 
+    <!-- Display the name and the degre of each sephiroth. -->
     {{#with (cercles actor 'kabbale') as |data|}}
     {{#each data.cercles as |cercle|}}
     <div class="sephiroth {{cercle.cercle}}">
