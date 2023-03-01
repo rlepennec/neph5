@@ -76,7 +76,6 @@ Hooks.once("init", function () {
         isEmptyString: CustomHandlebarsHelpers.isEmptyString,
         isContact: CustomHandlebarsHelpers.isContact,
         cercles: CustomHandlebarsHelpers.cercles,
-        cerclesOf: CustomHandlebarsHelpers.cerclesOf,
         focus: CustomHandlebarsHelpers.focus,
         numberOfFocus: CustomHandlebarsHelpers.numberOfFocus,
         sciences: CustomHandlebarsHelpers.sciences,
@@ -329,16 +328,3 @@ Hooks.once("init", function () {
     }
 
 });
-
-
-/**
- * MEMO
- *  - CSS
- *  - module/common/Handlebars.js : static cerclesOf(science, all)
- *    module/common/Templates.js : preloadTemplates
- *  - module/actor/figure.js : async _onDrop(event) & _droppableTabs(type)
- *  - core/AbstractRollBuilder.hs : create()
- *  - feature/science/science.js : static getCercle(name) + focus
- *  - feature/periode/periode.js : static getAll(actor)
- * 
- */

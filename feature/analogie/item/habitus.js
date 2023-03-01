@@ -1,6 +1,6 @@
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
+import { Science } from "../../science/science.js";
 
 export class HabitusSheet extends NephilimItemSheet {
 
@@ -10,7 +10,7 @@ export class HabitusSheet extends NephilimItemSheet {
     getData() {
         const data = super.getData();
         data.elements = Game.elements;
-        data.cercles = CustomHandlebarsHelpers.cerclesOf('analogie', true);
+        data.cercles = Science.cerclesOf('analogie');
         return data;
     }
 

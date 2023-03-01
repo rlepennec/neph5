@@ -1,7 +1,6 @@
 import { AbstractFocus } from "../core/AbstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
@@ -79,7 +78,7 @@ export class Habitus extends AbstractFocus {
                 system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
-                cercles: CustomHandlebarsHelpers.cerclesOf('analogie', true),
+                cercles: Science.cerclesOf('analogie'),
                 difficulty: this.degre
             },
             'ITEM.TypeHabitus',

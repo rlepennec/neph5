@@ -326,7 +326,7 @@ export class Science extends AbstractFeature {
      * @returns the data information about the specified cercles.
      */
     static cercles(actor, science, options) {
-        const cercles = Science._cerclesOf(science);
+        const cercles = Science.cerclesOf(science);
         return {
             header: Science._getHeader(science),
             cercles: Science._getCercles(actor, cercles, options)
@@ -459,7 +459,7 @@ export class Science extends AbstractFeature {
      * @param science The name of the science for which to get the cercles.
      * @returns the sorted keys of the cercles.
      */
-    static _cerclesOf(science) {
+    static cerclesOf(science) {
         switch (science) {
             case 'alchimie':
                 return ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];

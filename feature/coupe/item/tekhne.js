@@ -1,5 +1,5 @@
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
+import { Science } from "../../science/science.js";
 
 export class TekhneSheet extends NephilimItemSheet {
 
@@ -8,7 +8,7 @@ export class TekhneSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.cercles = CustomHandlebarsHelpers.cerclesOf('tekhne', true);
+        data.cercles = Science.cerclesOf('tekhne');
         return data;
     }
 

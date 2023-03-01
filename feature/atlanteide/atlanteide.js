@@ -1,7 +1,6 @@
 import { AbstractFocus } from "../core/AbstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
@@ -77,7 +76,7 @@ export class Atlanteide extends AbstractFocus {
                 item: this.original,
                 system: this.original.system,
                 debug: game.settings.get('neph5e', 'debug'),
-                cercles: CustomHandlebarsHelpers.cerclesOf('atlanteide', true),
+                cercles: Science.cerclesOf('atlanteide'),
                 difficulty: this.degre
             },
             'ITEM.TypeAtlanteide',
