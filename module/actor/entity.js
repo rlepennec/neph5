@@ -467,10 +467,12 @@ export class NephilimActor extends Actor {
 
     /**
      * @param science The type 'sort', 'formule' etc...
+     * @param options The option parameters:
+     *   - all: if true, all cercles are returned.
      * @returns the information datas about the specified cercles.
      */
-    cercles(science) {
-        return Science.cercles(this, science);
+    cercles(science, options) {
+        return Science.cercles(this, science, options);
     }
 
     /**

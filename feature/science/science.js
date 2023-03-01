@@ -325,20 +325,22 @@ export class Science extends AbstractFeature {
      * @param science The name of the science for which to get the cercles.
      * @returns the data information about the specified cercles.
      */
-    static cercles(actor, science) {
+    static cercles(actor, science, options) {
         const cercles = Science._cerclesOf(science);
         return {
             header: Science._getHeader(science),
-            cercles: Science._getCercles(actor, cercles)
+            cercles: Science._getCercles(actor, cercles, options)
         }
     }
 
     /**
      * @param actor   The actor object.
      * @param cercles The keys of the cercles to get.
+     * @param options The option parameters:
+     *   - all: if true, all cercles are returned.
      * @returns the data information about the specified cercles.
      */
-    static _getCercles(actor, cercles) {
+    static _getCercles(actor, cercles, options) {
         const data = [];
         for (let cercle of cercles) {
             const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
@@ -355,6 +357,13 @@ export class Science extends AbstractFeature {
                         degre: degre,
                         focus: focus,
                         voie: Science._getVoie(actor, cercle)
+                    });
+                } else if (options.all === true) {
+                    data.push({
+                        name: item.name,
+                        cercle: cercle,
+                        sid: item.sid,
+                        id: item.id
                     });
                 }
             }

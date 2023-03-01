@@ -168,12 +168,17 @@ export class CustomHandlebarsHelpers {
 
 
 
-
-
-
-
-    static cercles(actor, science) {
-        return actor.cercles(science);
+    /**
+     * @param actor   The actor object.
+     * @param science The type 'sort', 'formule' etc...
+     * @param all     True, all cercles are returned.
+     * @returns the information datas about the specified cercles.
+     */
+    static cercles(actor, science, all = false) {
+        const options = {
+            all: all
+        }
+        return actor.cercles(science, options);
     }
 
 
