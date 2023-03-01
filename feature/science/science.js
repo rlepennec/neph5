@@ -463,28 +463,30 @@ export class Science extends AbstractFeature {
         switch (science) {
             case 'alchimie':
                 return ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];
-            case 'analogie':
-                return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'];
-            case 'atlanteide':
-                return [];
-            case 'baton':
-                return [];
             case 'conjuration':
                 return ['charmeur', 'dresseur', 'demiurge'];
-            case 'coupe':
-                return [];
-            case 'denier':
-                return [];
-            case 'dracomachie':
-                return [];
-            case 'epee':
-                return [];
             case 'kabbale':
                 return ['malkut', 'yesod', 'hod', 'netzach', 'tiphereth', 'geburah', 'chesed', 'binah', 'chokmah', 'kether'];
             case 'magie':
                 return ['basseMagie', 'hauteMagie', 'grandSecret'];
             case 'necromancie':
                 return ['fossoyeur', 'embaumeur', 'imputrescible'];
+
+            case 'analogie': {
+                const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
+                return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => addon.system.key));
+            }
+
+            case 'atlanteide':
+            case 'baton':
+            case 'coupe':
+            case 'denier':
+            case 'dracomachie':
+            case 'epee': {
+                const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
+                return Array.from(addons, addon => addon.system.key);
+            }
+
             default:
                 return [];
         }
