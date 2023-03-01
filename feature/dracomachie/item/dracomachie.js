@@ -1,5 +1,4 @@
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Science } from "../../science/science.js";
 
 export class DracomachieSheet extends NephilimItemSheet {
 
@@ -8,7 +7,7 @@ export class DracomachieSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.cercles = Science.cerclesOf('dracomachie');
+        data.cercles = super.cerclesOf('dracomachie');
         return data;
     }
 

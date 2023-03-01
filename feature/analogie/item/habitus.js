@@ -1,6 +1,5 @@
 import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Science } from "../../science/science.js";
 
 export class HabitusSheet extends NephilimItemSheet {
 
@@ -10,7 +9,7 @@ export class HabitusSheet extends NephilimItemSheet {
     getData() {
         const data = super.getData();
         data.elements = Game.elements;
-        data.cercles = Science.cerclesOf('analogie');
+        data.cercles = super.cerclesOf('analogie');
         return data;
     }
 

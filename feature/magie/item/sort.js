@@ -1,6 +1,5 @@
 import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Science } from "../../science/science.js";
 
 export class SortSheet extends NephilimItemSheet {
 
@@ -10,7 +9,7 @@ export class SortSheet extends NephilimItemSheet {
     getData() {
         const data = super.getData();
         data.elements = Game.elements;
-        data.cercles = Science.cerclesOf('magie');
+        data.cercles = super.cerclesOf('magie');
         return data;
     }
 

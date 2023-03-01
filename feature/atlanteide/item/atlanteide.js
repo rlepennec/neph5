@@ -1,5 +1,4 @@
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Science } from "../../science/science.js";
 
 export class AtlanteideSheet extends NephilimItemSheet {
 
@@ -8,7 +7,7 @@ export class AtlanteideSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.cercles = Science.cerclesOf('atlanteide');
+        data.cercles = super.cerclesOf('atlanteide');
         return data;
     }
 

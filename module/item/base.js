@@ -1,4 +1,5 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
+import { Science } from "../../feature/science/science.js";
 
 export class NephilimItemSheet extends ItemSheet {
 
@@ -17,6 +18,19 @@ export class NephilimItemSheet extends ItemSheet {
     get template() {
         const path = 'systems/neph5e/templates/item';
         return `${path}/${this.item.type}.html`;
+    }
+
+
+    /**
+     * @param science The name of the science.
+     * @returns the dictionnary of the cercles.
+     */
+    cerclesOf(science) {
+        const cercles = {}
+        for (let cercle of Science.cerclesOf(science)) {
+            cercles[cercle] = game.i18n.localize('NEPH5E.' + cercle);
+        };
+        return cercles;
     }
 
     /** 

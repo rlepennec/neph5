@@ -1,7 +1,6 @@
 import { NephilimItemSheet } from "../../../module/item/base.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Game } from "../../../module/common/game.js";
-import { Science } from "../../science/science.js";
 
 export class FormuleSheet extends NephilimItemSheet {
 
@@ -11,7 +10,7 @@ export class FormuleSheet extends NephilimItemSheet {
     getData() {
         const data = super.getData();
         data.elements = Game.pentacle.elements;
-        data.cercles = Science.cerclesOf('alchimie');
+        data.cercles = super.cerclesOf('alchimie');
         data.substances = Game.alchimie.substances;
         data.catalyseurs = game.settings.get('neph5e', 'catalyseurs');
         return data;

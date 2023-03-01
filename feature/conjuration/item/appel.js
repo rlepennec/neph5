@@ -2,7 +2,6 @@
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 import { Game } from "../../../module/common/game.js";
-import { Science } from "../../science/science.js";
 
 export class AppelSheet extends NephilimItemSheet {
 
@@ -11,7 +10,7 @@ export class AppelSheet extends NephilimItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.cercles = Science.cerclesOf('conjuration');
+        data.cercles = super.cerclesOf('conjuration');
         data.appels = Game.conjuration.appels;
         return data;
     }
