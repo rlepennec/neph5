@@ -1,4 +1,5 @@
 import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { HistoricalSheet } from "./historical.js";
 
@@ -187,14 +188,10 @@ export class FraterniteSheet extends HistoricalSheet {
                         case 'habitus':
                         case 'rite':
                         case 'appel': {
-                            const periode = this.editedPeriode;
-                            if (periode != null) {
-                                await new AbstractRollBuilder(this.actor)
-                                    .withItem(item)
-                                    .withEvent(event)
-                                    .withPeriode(periode)
-                                    .create()
-                                    .drop();
+                            if (this.editedPeriode != null) {
+                                await new FeatureBuilder(this.actor)
+                                    .withPeriode(this.editedPeriode)
+                                    .dropOriginal(item);
                             }
                             break;
                         }

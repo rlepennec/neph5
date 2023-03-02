@@ -1,5 +1,6 @@
 import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { BaseSheet } from "./base.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Ka } from "../../feature/nephilim/ka.js";
 import { Menace } from "../../feature/combat/core/menace.js";
 import { NephilimItemSheet } from "../item/base.js";

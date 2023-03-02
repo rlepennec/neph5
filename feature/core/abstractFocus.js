@@ -30,9 +30,9 @@ export class AbstractFocus extends AbstractFeature {
     }
 
     /**
-     * @Override
+     * @param item The original focus item object.
      */
-    async drop() {
+    async dropOriginal(item) {
 
         // A periode must be defined
         if (this.periode == null) {
@@ -40,23 +40,24 @@ export class AbstractFocus extends AbstractFeature {
         }
 
         // The focus must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) != null) {
+        if (this.actor.items.find(i => i.sid === item.sid && i.system.periode === item.periode) != null) {
             return;
         }
 
-        // Retrieve the previous periode for which the focus is defined.
-        const previous = this.actor.items.find(i => i.sid === this.sid);
+        // Retrieve the previous focus item if already defined.
+        const previous = this.actor.items.find(i => i.sid === item.sid);
 
         // Create a new focus or move the focus to the new periode.
-        await this._drop(previous);
+        await this._drop(item, previous);
 
     }
 
     /**
      * Create a new focus or move the focus to the new periode.
+     * @param item     The original focus item object.
      * @param previous The preivous periode item.
      */
-    async _drop(previous) {
+    async _drop(item, previous) {
         throw new Error("AbstractFocus._drop not implemented");
     }
 

@@ -320,15 +320,10 @@ export class FigureSheet extends HistoricalSheet {
                         case 'tekhne':
                         case 'sort':
                         case 'habitus': {
-                            const periode = this.editedPeriode;
-                            if (periode != null) {
-                                await new AbstractRollBuilder(this.actor)
-                                    .withItem(item)
-                                    .withEvent(event)
-                                    .withPeriode(periode)
-                                    .withManoeuver(this.editedCapacity)
-                                    .create()
-                                    .drop();
+                            if (this.editedPeriode != null) {
+                                await new FeatureBuilder(this.actor)
+                                    .withPeriode(this.editedPeriode)
+                                    .dropOriginal(item);
                             }
                             break;
                         }

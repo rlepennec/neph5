@@ -55,10 +55,10 @@ export class Habitus extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(previous) {
+    async _drop(item, previous) {
         
         // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, this.sid)
+        await new EmbeddedItem(this.actor, item.sid)
             .withContext("Drop of an habitus")
             .withDeleteExisting()
             .withData("periode", this.periode)

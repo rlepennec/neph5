@@ -74,9 +74,9 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(previous) {
+    async _drop(item, previous) {
 
-        await new EmbeddedItem(this.actor, this.sid)
+        await new EmbeddedItem(this.actor, item.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
