@@ -466,119 +466,7 @@
                 }
 
 
-/*
-                .disabled {
-                    color: #a1a1a1;
-                }
-    
-                .header {
-                    display: flex;
-                    flex-direction: row;
-                    padding-top: 10px;
-                    justify-content: center;
-    
-                    .circle {
-                        flex-basis: 40px;
-                        flex-grow: 0;
-                        flex-shrink: 0;
-                    }
-    
-                    .title {
-                        width: 100%;
-                        margin-left: 20px;
-                        display: flex;
-                        flex-direction: row;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-family: 'AJensonPro';
-                        font-size: 20px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-    
-                        .item-name {
-                            width: 100%;
-                            padding-left: 5px;
-                        }
-    
-                        .item-parameter {
-                            flex: 0 0 auto;
-                            margin-left: 10px;
-                            margin-right: 10px;
-                            text-align: center;
-                        }
-    
-                        .item-quantite {
-                            flex: 0 0 auto;
-                            text-align:center;
-                        }
-                        
-                        .dice {
-                            flex: 0 0 auto;
-                            width: 18px;
-                            margin-left: 12px;
-                            margin-right: 8px;
-                            font-size: 14px;
-                            padding-top: 5px;
-                        }
-    
-                        .width-40 {
-                            width: 40px;
-                        }
-    
-                        .width-80 {
-                            width: 80px;
-                        }
-    
-                    }
-    
-                }
-    
-                .focus {
-                    height: 17px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-    
-                    .item-parameter {
-                        flex: 0 0 auto;
-                        justify-content: center;
-                        text-align: center;
-                        margin-left: 10px;
-                        margin-right:10px;
-                    }
-    
-                    .edit-focus {
-                        margin-left: 20px;
-                    }
-    
-                    .quantite {
-                        flex: 0 0 auto;
-                        width: 40px;
-                        border: none;
-                        text-align: center;
-                        background-color: transparent;
-                    }
-    
-                    .dice {
-                        flex: 0 0 auto;
-                        width: 18px;
-                        margin-left: 10px;
-                        margin-right: 10px;
-                        text-align: center;
-                    }
-    
-                    .width-40 {
-                        width: 40px;
-                    }
-    
-                    .width-80 {
-                        width: 80px;
-                    }
-    
-                }
-*/
-    
+   
                 .ordonnances {
                     margin-top: 0px;
                     margin-bottom: 20px;
@@ -639,6 +527,7 @@
                 }
 
                 .sephiroth {
+
                     .title {
                         position: absolute;
                         top: 50%;
@@ -646,6 +535,7 @@
                         font-family: 'NightjarDemi';
                         font-size: 18px;
                     }
+
                     .degre {
                         position: absolute;
                         top: 50%;
@@ -654,6 +544,7 @@
                         font-size: 18px;
                         font-weight: bold;
                     }
+
                 }
 
                 .malkut {
@@ -744,6 +635,65 @@
                     .degre {
                         transform: translate(44px, -284px);
                     }
+                }
+    
+            }
+
+            .vecus {
+
+                .title {
+                    width:794px; margin-left:10px;
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    border-width:0px 0px 2px 0px;
+                    border-style: solid;
+                    border-color: black;
+    
+                    span {
+                        padding-left: 5px;
+                    }
+    
+                }
+    
+                .content {
+                    column-count: 3;
+    
+                    .degre {
+                        width: 20px;
+                    }
+    
+                    .disabled {
+                        color: #a1a1a1;
+                    }
+    
+                }
+    
+                .fcontent {
+                    column-count: 2;
+    
+                    .degre {
+                        text-align: center;
+                        border: none;
+                        border-radius: 50%;
+                        border: 1px solid black;
+                        width: 30px;
+                        height: 30px;
+                        padding-top: 5px;
+                        margin-right: 30px;
+                    }
+    
+                    .disabled {
+                        color: #a1a1a1;
+                    }
+    
+                    li {
+                        margin-bottom: 3px;
+                    }
+    
                 }
     
             }
@@ -1724,64 +1674,7 @@
 
         }
 
-        .vecus {
 
-            .title {
-                width:794px; margin-left:10px;
-                display: flex;
-                flex-direction: row;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                font-family: 'AJensonPro';
-                font-size: 20px;
-                border-width:0px 0px 2px 0px;
-                border-style: solid;
-                border-color: black;
-
-                span {
-                    padding-left: 5px;
-                }
-
-            }
-
-            .content {
-                column-count: 3;
-
-                .degre {
-                    width: 20px;
-                }
-
-                .disabled {
-                    color: #a1a1a1;
-                }
-
-            }
-
-            .fcontent {
-                column-count: 2;
-
-                .degre {
-                    text-align: center;
-                    border: none;
-                    border-radius: 50%;
-                    border: 1px solid black;
-                    width: 30px;
-                    height: 30px;
-                    padding-top: 5px;
-                    margin-right: 30px;
-                }
-
-                .disabled {
-                    color: #a1a1a1;
-                }
-
-                li {
-                    margin-bottom: 3px;
-                }
-
-            }
-
-        }
 
         .laboratoire {
 

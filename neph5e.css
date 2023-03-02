@@ -545,120 +545,6 @@
   border: none;
   width: 120px;
 }
-.actor-root .article .article-body .science {
-  /*
-                .disabled {
-                    color: #a1a1a1;
-                }
-    
-                .header {
-                    display: flex;
-                    flex-direction: row;
-                    padding-top: 10px;
-                    justify-content: center;
-    
-                    .circle {
-                        flex-basis: 40px;
-                        flex-grow: 0;
-                        flex-shrink: 0;
-                    }
-    
-                    .title {
-                        width: 100%;
-                        margin-left: 20px;
-                        display: flex;
-                        flex-direction: row;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-family: 'AJensonPro';
-                        font-size: 20px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-    
-                        .item-name {
-                            width: 100%;
-                            padding-left: 5px;
-                        }
-    
-                        .item-parameter {
-                            flex: 0 0 auto;
-                            margin-left: 10px;
-                            margin-right: 10px;
-                            text-align: center;
-                        }
-    
-                        .item-quantite {
-                            flex: 0 0 auto;
-                            text-align:center;
-                        }
-                        
-                        .dice {
-                            flex: 0 0 auto;
-                            width: 18px;
-                            margin-left: 12px;
-                            margin-right: 8px;
-                            font-size: 14px;
-                            padding-top: 5px;
-                        }
-    
-                        .width-40 {
-                            width: 40px;
-                        }
-    
-                        .width-80 {
-                            width: 80px;
-                        }
-    
-                    }
-    
-                }
-    
-                .focus {
-                    height: 17px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-    
-                    .item-parameter {
-                        flex: 0 0 auto;
-                        justify-content: center;
-                        text-align: center;
-                        margin-left: 10px;
-                        margin-right:10px;
-                    }
-    
-                    .edit-focus {
-                        margin-left: 20px;
-                    }
-    
-                    .quantite {
-                        flex: 0 0 auto;
-                        width: 40px;
-                        border: none;
-                        text-align: center;
-                        background-color: transparent;
-                    }
-    
-                    .dice {
-                        flex: 0 0 auto;
-                        width: 18px;
-                        margin-left: 10px;
-                        margin-right: 10px;
-                        text-align: center;
-                    }
-    
-                    .width-40 {
-                        width: 40px;
-                    }
-    
-                    .width-80 {
-                        width: 80px;
-                    }
-    
-                }
-*/
-}
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
 }
@@ -916,6 +802,50 @@
 }
 .actor-root .article .article-body .arbre .kether .degre {
   transform: translate(44px, -284px);
+}
+.actor-root .article .article-body .vecus .title {
+  width: 794px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor-root .article .article-body .vecus .title span {
+  padding-left: 5px;
+}
+.actor-root .article .article-body .vecus .content {
+  column-count: 3;
+}
+.actor-root .article .article-body .vecus .content .degre {
+  width: 20px;
+}
+.actor-root .article .article-body .vecus .content .disabled {
+  color: #a1a1a1;
+}
+.actor-root .article .article-body .vecus .fcontent {
+  column-count: 2;
+}
+.actor-root .article .article-body .vecus .fcontent .degre {
+  text-align: center;
+  border: none;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 30px;
+  height: 30px;
+  padding-top: 5px;
+  margin-right: 30px;
+}
+.actor-root .article .article-body .vecus .fcontent .disabled {
+  color: #a1a1a1;
+}
+.actor-root .article .article-body .vecus .fcontent li {
+  margin-bottom: 3px;
 }
 .actor-root .article .effectif .header {
   display: flex;
@@ -1579,50 +1509,6 @@
   margin-right: 5px;
   padding-top: 7px;
   width: 260px;
-}
-.actor-root .article .vecus .title {
-  width: 794px;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor-root .article .vecus .title span {
-  padding-left: 5px;
-}
-.actor-root .article .vecus .content {
-  column-count: 3;
-}
-.actor-root .article .vecus .content .degre {
-  width: 20px;
-}
-.actor-root .article .vecus .content .disabled {
-  color: #a1a1a1;
-}
-.actor-root .article .vecus .fcontent {
-  column-count: 2;
-}
-.actor-root .article .vecus .fcontent .degre {
-  text-align: center;
-  border: none;
-  border-radius: 50%;
-  border: 1px solid black;
-  width: 30px;
-  height: 30px;
-  padding-top: 5px;
-  margin-right: 30px;
-}
-.actor-root .article .vecus .fcontent .disabled {
-  color: #a1a1a1;
-}
-.actor-root .article .vecus .fcontent li {
-  margin-bottom: 3px;
 }
 .actor-root .article .laboratoire .construct-images {
   display: flex;
