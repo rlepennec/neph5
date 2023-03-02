@@ -458,7 +458,8 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = game.items.get(id);
-        await new FeatureBuilder(this.actor).createFromOriginal(item).initializeRoll();
+        const feature = await new FeatureBuilder(this.actor).createFromOriginal(item));
+        await feature.initializeRoll();
         return this;
     }
 
@@ -471,20 +472,8 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).createFromEmbedded(item).initializeRoll();
-        return this;
-    }
-
-    /**
-     * Roll the specified embedded item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onRollEmbeddedItem(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).createFromEmbedded(item).initializeRoll();
+        const feature = new FeatureBuilder(this.actor).createFromEmbedded(item);
+        await feature.initializeRoll();
         return this;
     }
 
@@ -500,9 +489,6 @@ export class FigureSheet extends HistoricalSheet {
         await new FeatureBuilder(this.actor).createFromEmbedded(item).edit();
         return this;
     }
-
-
-
 
     /**
      * Roll the specified feature.

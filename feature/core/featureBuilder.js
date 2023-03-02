@@ -145,7 +145,7 @@ export class FeatureBuilder {
     async createFromOriginal(item) {
         switch (item?.type) {
             case 'science':
-                return new Science(this.actor, item, this.periode);
+                return this.createFeature(item?.type, item);
             default:
                 return null;
         };

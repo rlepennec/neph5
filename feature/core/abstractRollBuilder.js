@@ -126,6 +126,7 @@ export class AbstractRollBuilder {
             case 'pratique':
             case 'rite':
             case 'rituel':
+            case 'science':
             case 'sort':
             case 'technique':
             case 'tekhne':
@@ -178,8 +179,8 @@ export class AbstractRollBuilder {
             //     return new Rituel(this.actor, this.item, this.periode);
             case 'savoir':
                 return new Savoir(this.actor, this.item, this.periode);
-            case 'science':
-                return new Science(this.actor, this.item, this.periode);
+            //case 'science':
+            //    return new Science(this.actor, this.item, this.periode);
             // case 'sort':
             //     return new Sort(this.actor, this.item).withPeriode(this.periode);
             // case 'technique':
