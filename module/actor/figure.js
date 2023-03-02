@@ -458,7 +458,7 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = game.items.get(id);
-        const feature = await new FeatureBuilder(this.actor).createFromOriginal(item));
+        const feature = await new FeatureBuilder(this.actor).createFromOriginal(item);
         await feature.initializeRoll();
         return this;
     }

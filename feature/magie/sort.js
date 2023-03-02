@@ -84,7 +84,6 @@ export class Sort extends AbstractFocus {
             .withData("periode", this.periode)
             .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
             .create();
-
     }
 
     /**
