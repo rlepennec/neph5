@@ -543,21 +543,6 @@ export class AbstractFeature {
     }
 
     /**
-     * @param uuid The uuid of the actor or the token.
-     * @returns the actor, null if an error occurs.
-     */
-    static async actorFromUuid(uuid, sync) {
-        let data = sync ? fromUuidSync(uuid) : await fromUuid(uuid);
-        if (data instanceof NephilimActor) {
-            return actor;
-        }
-        if (data instanceof TokenDocument) {
-            return data.actor;
-        }
-        return null;
-    }
-
-    /**
      * @param actor The actor object.
      * @returns the optional simulacre actor object.
      */
