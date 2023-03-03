@@ -59,6 +59,15 @@ export class FeatureBuilder {
     }
 
     /**
+     * @param scope The scope to register, 'actor' or 'simulacre'.
+     * @returns the instance.
+     */
+    withScope(scope) {
+        this.scope = scope;
+        return this;
+    }
+
+    /**
      * @param event The drop event.
      * @returns the instance.
      */

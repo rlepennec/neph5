@@ -486,11 +486,15 @@ export class FigureSheet extends HistoricalSheet {
      * @returns the instance.
      */
     async _onOpenOriginalItem(event) {
-        event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
-        const item = game.items.get(id);
-        await new FeatureBuilder(this.actor).createFromOriginal(item).edit();
-        return this;
+        const scope = $(event.currentTarget).closest('.item').data("scope");
+        const item = scope == null ? game.items.get(id) : AbstractFeature.actor(this.actor,scope).items.get(id);
+        const builder = new FeatureBuilder(this.actor);
+        if (scope != null) {
+            builder.withScope(scope);
+        }
+        const feature = await builder.createFromOriginal(item)
+        await feature.edit();
     }
 
     /**
