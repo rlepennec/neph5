@@ -9,59 +9,33 @@
 
 </div>
 
-<ol class="item-list">
+<ol class="all-vecus">
 
-    <div class="title">
-        <span>{{localize "NEPH5E.quetes"}}</span>
-    </div>
+    {{#each actor.quetes as |item|}}
+    {{#if (ne item.degre 0)}}
+    <li class="vecu item macro" data-id="{{item.id}}" data-item-id="{{item.sid}}" data-type="quete">
 
-    {{#if (eq ../from 'figure')}}
-    <div class="content">
-    {{else}}
-    <div class="fcontent">
-    {{/if}}
-
-        {{#each actor.quetes as |item|}}
-        {{#if (ne item.degre 0)}}
-        <li class="item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="quete">
-
-            {{#if (eq ../../from 'figure')}}
-
-                {{#if ../../actor.system.options.degreGauche}}
-                <label class="degre">{{item.degre}}</label>
-                {{/if}}
-
-                <div class="item-name edit-quete" data-id="{{item.id}}">
-                    <span>{{item.name}}</span>
-                </div>
-
-                {{#unless ../../actor.system.options.degreGauche}}
-                <label class="degre">{{item.degre}}</label>
-                {{/unless}}
-
-                <div class="item-control">
-                    <a class="roll-quete" data-id="{{item.id}}"><i class="fas fa-dice-d20"></i></a>
-                </div>
-
-            {{else}}
-
-                <label class="degre">{{item.degre}}</label>
-
-                <div class="item-name edit-quete" data-id="{{item.id}}">
-                    <span>{{item.name}}</span>
-                </div>
-
-                <div class="item-control">
-                    <a class="roll-quete" data-id="{{item.id}}"><span>+{{fraterniteBonus item.degre}}</span></a>
-                </div>
-
-            {{/if}}
-
-        </li>
+        {{#if ../../actor.system.options.degreGauche}}
+        <label class="vecu-degre">{{item.degre}}</label>
         {{/if}}
-        {{/each}}
 
-    </div>
+        <label class="vecu-name">{{item.name}}</label>
+
+        {{#unless ../../actor.system.options.degreGauche}}
+        <label class="vecu-degre">{{item.degre}}</label>
+        {{/unless}}
+
+        <a class="vecu-dice roll">
+            {{#if (eq ../from 'figure')}}
+            <i class="fas fa-dice-d20"></i>
+            {{else}}
+            <span>+{{fraterniteBonus item.degre}}</span>
+            {{/if}}
+        </a>
+
+    </li>
+    {{/if}}
+    {{/each}}
 
 </ol>
 {{/unless}}

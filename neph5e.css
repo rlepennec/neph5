@@ -809,6 +809,7 @@
   position: relative;
   font-family: 'AJensonPro';
   font-size: 21px;
+  margin-top: 30px;
   margin-bottom: -10px;
 }
 .actor-root .article .article-body .vecus .vecus-header .vecus-puce {
@@ -840,16 +841,21 @@
 .actor-root .article .article-body .vecus .all-vecus .vecu {
   display: flex;
   flex-direction: row;
+  font-family: 'AJensonPro';
+  font-size: 16px;
 }
 .actor-root .article .article-body .vecus .all-vecus .vecu .vecu-degre {
-  flex: 0 0 50px;
+  flex: 0 0 40px;
 }
 .actor-root .article .article-body .vecus .all-vecus .vecu .vecu-name {
   flex: 1 1 auto;
   text-align: left;
 }
 .actor-root .article .article-body .vecus .all-vecus .vecu .vecu-dice {
-  flex: 0 0 50px;
+  flex: 0 0 40px;
+}
+.actor-root .article .article-body .vecus .all-vecus .vecu:hover {
+  text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .vecus .content {
   column-count: 3;
