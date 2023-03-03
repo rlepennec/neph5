@@ -1,10 +1,15 @@
-{{#with actor.savoirs as |items|}}
-{{#unless (isEmptyCollection items)}}
-<ol class="item-list">
+{{#unless (isEmptyCollection actor.savoirs)}}
+<div class="vecus-header">
 
-    <div class="title">
-        <span>{{localize "NEPH5E.savoirs"}}</span>
-    </div>
+    <img class="vecus-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+    <img class="vecus-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+    <span class="vecus-name">{{localize "NEPH5E.savoirs"}}</span>
+
+</div>
+
+<ol class="item-list">
 
     {{#if (eq ../from 'figure')}}
     <div class="content">
@@ -12,7 +17,7 @@
     <div class="fcontent">
     {{/if}}
 
-        {{#each items as |item|}}
+        {{#each actor.savoirs as |item|}}
         {{#if (ne item.degre 0)}}
         <li class="item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="savoir">
 
@@ -56,4 +61,3 @@
 
 </ol>
 {{/unless}}
-{{/with}}
