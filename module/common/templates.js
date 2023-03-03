@@ -37,15 +37,13 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/nephilim/item/metamorphose.hbs",
 
         // Periode
-        "systems/neph5e/feature/periode/actor/main.hbs",
         "systems/neph5e/feature/periode/actor/savoirs.hbs",
         "systems/neph5e/feature/periode/actor/quetes.hbs",
         "systems/neph5e/feature/periode/actor/chutes.hbs",
         "systems/neph5e/feature/periode/actor/passes.hbs",
         "systems/neph5e/feature/periode/actor/competences.hbs",
         "systems/neph5e/feature/periode/actor/incarnations.hbs",
-        "systems/neph5e/feature/science/actor/sciences.hbs",
-
+        
         // Selenim
         "systems/neph5e/feature/selenim/actor/main.hbs",
         "systems/neph5e/feature/selenim/actor/noyau.hbs",
@@ -54,6 +52,7 @@ export const preloadTemplates = async function () {
 
         // Science
         "systems/neph5e/feature/science/actor/elements.hbs",
+        "systems/neph5e/feature/science/actor/sciences.hbs",
         "systems/neph5e/feature/science/actor/science.hbs",
 
         // Actor parts
