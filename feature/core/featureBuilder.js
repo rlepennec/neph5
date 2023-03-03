@@ -50,6 +50,24 @@ export class FeatureBuilder {
     }
 
     /**
+     * @param manoeuver The name of te manoeuver to register, 'esquive' or 'lutte'.
+     * @returns the instance.
+     */
+    withManoeuver(manoeuver) {
+        this.manoeuver = manoeuver;
+        return this;
+    }
+
+    /**
+     * @param event The drop event.
+     * @returns the instance.
+     */
+    withEvent(event) {
+        this.event = event;
+        return this;
+    }
+
+    /**
      * @param type The type of feature to create.
      * @param item The item of the feature.
      * @returns the new feature. 
@@ -60,6 +78,10 @@ export class FeatureBuilder {
                 return new Appel(this.actor, item, this.periode);
             case 'atlanteide':
                 return new Atlanteide(this.actor, item, this.periode);
+            case 'chute':
+                return new Chute(this.actor, item, this.periode);
+            case 'competence':
+                return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
             case 'dracomachie':
                 return new Dracomachie(this.actor, item, this.periode);
             case 'formule':
@@ -68,20 +90,28 @@ export class FeatureBuilder {
                 return new Habitus(this.actor, item, this.periode);
             case 'invocation':
                 return new Invocation(this.actor, item, this.periode);
+            case 'passe':
+                return new Passe(this.actor, item, this.periode);
             case 'pratique':
                 return new Pratique(this.actor, item, this.periode);
+            case 'quete':
+                return new Quete(this.actor, item, this.periode);
             case 'rite':
                 return new Rite(this.actor, item, this.periode);
             case 'rituel':
                 return new Rituel(this.actor, item, this.periode);
             case 'science':
                 return new Science(this.actor, item, this.periode);
+            case 'savoir':
+                return new Savoir(this.actor, item, this.periode);
             case 'sort':
                 return new Sort(this.actor, item, this.periode);
             case 'technique':
                 return new Technique(this.actor, item, this.periode);
             case 'tekhne':
                 return new Tekhne(this.actor, item, this.periode);
+            case 'vecu':
+                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
             default:
                 return null;
         }
@@ -144,7 +174,13 @@ export class FeatureBuilder {
      */
     async createFromOriginal(item) {
         switch (item?.type) {
+            case 'chute':
+            case 'competence':
+            case 'passe':
+            case 'quete':
+            case 'savoir':
             case 'science':
+            case 'vecu':
                 return this.createFeature(item?.type, item);
             default:
                 return null;

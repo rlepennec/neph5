@@ -168,6 +168,9 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="selenim"] .active').click(this._onToggleActive.bind(this));
 
         // Vecus
+        html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenOriginalItem.bind(this));
+
+
         html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditFeature.bind(this, 'competence'));
         html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditFeature.bind(this, 'passe'));
         html.find('div[data-tab="vecus"] .edit-quete').click(this._onEditFeature.bind(this, 'quete'));
@@ -474,6 +477,19 @@ export class FigureSheet extends HistoricalSheet {
         const item = this.actor.items.get(id);
         const feature = new FeatureBuilder(this.actor).createFromEmbedded(item);
         await feature.initializeRoll();
+        return this;
+    }
+
+    /**
+     * Open the specified original item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onOpenOriginalItem(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest('.item').data('id');
+        const item = game.items.get(id);
+        await new FeatureBuilder(this.actor).createFromOriginal(item).edit();
         return this;
     }
 

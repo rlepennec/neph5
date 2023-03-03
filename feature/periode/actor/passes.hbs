@@ -12,6 +12,7 @@
 <ol class="all-vecus">
 
     {{#each actor.passes as |item|}}
+    {{log item}}
     {{#if (ne item.degre 0)}}
     <li class="vecu item macro" data-id="{{item.id}}" data-item-id="{{item.sid}}" data-type="passe">
 
@@ -19,7 +20,7 @@
         <label class="vecu-degre">{{item.degre}}</label>
         {{/if}}
 
-        <label class="vecu-name">{{item.name}}</label>
+        <label class="vecu-name open">{{item.name}}</label>
 
         {{#unless ../../actor.system.options.degreGauche}}
         <label class="vecu-degre">{{item.degre}}</label>

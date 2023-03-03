@@ -834,6 +834,18 @@
 }
 .actor-root .article .article-body .vecus .all-vecus {
   column-count: 3;
+  column-rule-style: solid;
+  column-rule-width: thin;
+  column-gap: 20px;
+  column-rule-color: #c3a049;
+}
+.actor-root .article .article-body .vecus .all-vecus hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #c3a049;
+  margin: 1em 0;
+  padding: 0;
 }
 .actor-root .article .article-body .vecus .all-vecus .disabled {
   color: #a1a1a1;

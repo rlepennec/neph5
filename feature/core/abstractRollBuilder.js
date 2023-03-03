@@ -118,14 +118,19 @@ export class AbstractRollBuilder {
         switch (this?.item?.type) {
             case 'appel':
             case 'atlanteide':
+            case 'competence':
+            case 'chute':
             case 'dracomachie':
             case 'formule':
             case 'habitus':
             case 'invocation':
             case 'magie':
+            case 'passe':
             case 'pratique':
+            case 'quete':
             case 'rite':
             case 'rituel':
+            case 'savoir':
             case 'science':
             case 'sort':
             case 'technique':
@@ -145,10 +150,10 @@ export class AbstractRollBuilder {
             //     return new Atlanteide(this.actor, this.item, this.periode);
             case 'catalyseur':
                 return new Catalyseur(this.actor, this.item);
-            case 'chute':
-                return new Chute(this.actor, this.item, this.periode);
-            case 'competence':
-                return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
+            //case 'chute':
+            //    return new Chute(this.actor, this.item, this.periode);
+            //case 'competence':
+            //    return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
             // case 'dracomachie':
             //     return new Dracomachie(this.actor, this.item, this.periode);
             // case 'formule':
@@ -163,22 +168,22 @@ export class AbstractRollBuilder {
                 return new Materiae(this.actor, this.item);
             case 'metamorphe':
                 return new Metamorphe(this.actor, this.item);
-            case 'passe':
-                return new Passe(this.actor, this.item, this.periode);
+            //case 'passe':
+            //    return new Passe(this.actor, this.item, this.periode);
             case 'periode':
                 return new Periode(this.actor, this.item).withEvent(this.event);
             // case 'pratique':
             //     return new Pratique(this.actor, this.item, this.periode);
-            case 'quete':
-                return new Quete(this.actor, this.item, this.periode);
+            //case 'quete':
+            //    return new Quete(this.actor, this.item, this.periode);
             case 'ordonnance':
                 return new Ordonnance(this.actor, this.item).withPeriode(this.periode);
             // case 'rite':
             //     return new Rite(this.actor, this.item, this.periode);
             // case 'rituel':
             //     return new Rituel(this.actor, this.item, this.periode);
-            case 'savoir':
-                return new Savoir(this.actor, this.item, this.periode);
+            //case 'savoir':
+            //    return new Savoir(this.actor, this.item, this.periode);
             //case 'science':
             //    return new Science(this.actor, this.item, this.periode);
             // case 'sort':
