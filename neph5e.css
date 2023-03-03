@@ -830,21 +830,25 @@
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .vecus .title {
-  width: 794px;
-  margin-left: 10px;
+.actor-root .article .article-body .vecus .all-vecus {
+  column-count: 3;
+}
+.actor-root .article .article-body .vecus .all-vecus .disabled {
+  color: #a1a1a1;
+}
+.actor-root .article .article-body .vecus .all-vecus .vecu {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
 }
-.actor-root .article .article-body .vecus .title span {
-  padding-left: 5px;
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-degre {
+  flex: 0 0 50px;
+}
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-name {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-dice {
+  flex: 0 0 50px;
 }
 .actor-root .article .article-body .vecus .content {
   column-count: 3;

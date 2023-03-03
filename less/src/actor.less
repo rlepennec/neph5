@@ -673,26 +673,39 @@
 
                 }
 
+                .all-vecus {
+                    column-count: 3;
 
-
-                .title {
-                    width:794px; margin-left:10px;
-                    display: flex;
-                    flex-direction: row;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                    font-family: 'AJensonPro';
-                    font-size: 20px;
-                    border-width:0px 0px 2px 0px;
-                    border-style: solid;
-                    border-color: black;
-    
-                    span {
-                        padding-left: 5px;
+                    .disabled {
+                        color: #a1a1a1;
                     }
-    
+
+                    .vecu {
+                        display: flex;
+                        flex-direction: row;
+
+                        .vecu-degre {
+                            flex: 0 0 50px;
+                        }
+
+                        .vecu-name {
+                            flex: 1 1 auto;
+                            text-align: left;
+                        }
+
+                        .vecu-dice {
+                            flex: 0 0 50px;
+                        }
+
+                    }
+
                 }
-    
+
+
+
+
+
+ 
                 .content {
                     column-count: 3;
     
