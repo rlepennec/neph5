@@ -803,6 +803,33 @@
 .actor-root .article .article-body .arbre .kether .degre {
   transform: translate(44px, -284px);
 }
+.actor-root .article .article-body .vecus .vecus-header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-bottom: -10px;
+}
+.actor-root .article .article-body .vecus .vecus-header .vecus-puce {
+  border: none;
+  width: 60px;
+  display: hidden;
+}
+.actor-root .article .article-body .vecus .vecus-header .vecus-separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .vecus .vecus-header .vecus-name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
 .actor-root .article .article-body .vecus .title {
   width: 794px;
   margin-left: 10px;
