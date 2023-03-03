@@ -240,7 +240,12 @@ export class ActionDataBuilder {
         }
 
         if (this.item?.name != null) {
-            data.richSentence = data.richSentence.replaceAll("${item}", this.item.link);
+            if (this.item.actor != null) {
+                const original = game.items.find(i => i.sid === this.item.sid);
+                data.richSentence = data.richSentence.replaceAll("${item}", original.link);
+            } else {
+                data.richSentence = data.richSentence.replaceAll("${item}", this.item.link);
+            }
         } else if (this.ka != null) {
             data.richSentence = data.richSentence.replaceAll("${ka}", this.ka);
         } else if (this.sentence != null) {
