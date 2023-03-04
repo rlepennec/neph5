@@ -71,7 +71,7 @@ export class Combat {
                         return new Competence(this.actor, item).degre;
                     case 'vecu':
                         const vecu = this.actor.items.find(i => i.sid === item.sid);
-                        return vecu == null ? 0 : new Vecu(this.actor, vecu, 'actor').degre;
+                        return vecu == null ? 0 : new Vecu(this.actor, 'actor').withEmbeddedItem(vecu).degre;
                     default:
                         return 0;
                 }

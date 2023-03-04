@@ -135,6 +135,7 @@ export class AbstractRollBuilder {
             case 'sort':
             case 'technique':
             case 'tekhne':
+            case 'vecu':
                 throw new Error("AbstractRollBuilder.create not implemented for " + this?.item?.type);
 
 
@@ -192,8 +193,8 @@ export class AbstractRollBuilder {
             //     return new Technique(this.actor, this.item, this.periode);
             // case 'tekhne':
             //     return new Tekhne(this.actor, this.item, this.periode);
-            case 'vecu':
-                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
+            // case 'vecu':
+            //    return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
 
 
             default:

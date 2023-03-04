@@ -312,7 +312,7 @@ export class FigureSheet extends HistoricalSheet {
                         case 'habitus': {
                             if (this.editedPeriode != null) {
                                 await new FeatureBuilder(this.actor)
-                                    .withOriginalItem(item)
+                                    .withOriginalItem(item.sid)
                                     .withPeriode(this.editedPeriode)
                                     .create()
                                     .drop();
@@ -448,12 +448,12 @@ export class FigureSheet extends HistoricalSheet {
      */
     _createFeature(event) {
         event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const scope = $(event.currentTarget).closest('.item').data("scope");
-        const item = game.items.find(i => i.sid === sid);
-        return new FeatureBuilder(this.actor).withScope(scope).withOriginalItem(item).create();
+        const node = $(event.currentTarget).closest('.item');
+        const id = node.data('id');
+        const sid = node.data('sid');
+        const scope = node.data("scope");
+        return new FeatureBuilder(this.actor).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
     }
-
 
     /**
      * Open the specified embedded item.

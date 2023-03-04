@@ -9,14 +9,31 @@ export class Vecu extends AbstractFeature {
 
     /**
      * Constructor.
-     * @param actor   The actor object which performs the action.
-     * @param item    The original item object, purpose of the action.
-     * @param scope   Indicates if scope is 'actor' or 'simulacre'.
+     * @param actor The actor object which performs the action.
+     * @param scope Indicates if scope is 'actor' or 'simulacre'.
      */
-    constructor(actor, item, scope) {
+    constructor(actor, scope) {
         super(actor);
-        this.item = item;
         this.scope = scope;
+    }
+
+    /**
+     * @param item The original item object, purpose of the action.
+     * @returns 
+     */
+    withOriginalItem(item) {
+        this.item = item;
+        return this;
+    }
+
+    /**
+     * @param item The embedded item object, purpose of the action.
+     * @returns 
+     */
+    withEmbeddedItem(item) {
+        this.embedded = item;
+        this.item = game.items.find(i => i.sid === item.sid);
+        return this;
     }
 
     /**
@@ -97,7 +114,7 @@ export class Vecu extends AbstractFeature {
      * @Override
      */
     get degre() {
-        return this.item.system.degre;
+        return this.embedded.system.degre;
     }
 
     /**
@@ -246,7 +263,7 @@ export class Vecu extends AbstractFeature {
             for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractFeature.isActive(actor, v)))) {
                 const original = AbstractFeature.original(v.sid);
                 if (original != null) {
-                    const feature = new Vecu(actor, v, scope);
+                    const feature = new Vecu(actor, scope).withEmbeddedItem(v).withPeriode(v.system.periode);
                     vecus.push({
                         name: original.name,
                         id: v.id,

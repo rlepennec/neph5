@@ -1,3 +1,4 @@
+import { AbstractFeature } from "../core/abstractFeature.js";
 import { Alchimie } from "../alchimie/alchimie.js";
 import { Appel } from "../conjuration/appel.js";
 import { Arcane } from "../periode/arcane.js";
@@ -41,20 +42,20 @@ export class FeatureBuilder {
     }
 
     /**
-     * @param item The original item to register.
+     * @param sid The system identifier which defines the original item to register.
      * @param the instance.
      */
-    withOriginalItem(item) {
-        this.item = item;
+    withOriginalItem(sid) {
+        this.sid = sid;
         return this;
     }
 
     /**
-     * @param item The embedded item to register.
+     * @param id The identifier which defines the embedded item to register.
      * @param the instance.
      */
-    withEmbeddedItem(item) {
-        this.item = item;
+    withEmbeddedItem(id) {
+        this.id = id;
         return this;
     }
 
@@ -95,48 +96,78 @@ export class FeatureBuilder {
     }
 
     /**
+     * @returns the embedded or original item.
+     */
+    item() {
+
+        // The id defines the embedded item
+        if (this.id != null) {
+            return AbstractFeature.actor(this.actor, this.scope).items.get(this.id);
+        }
+        
+        // The sid defines the original item
+        if (this.sid != null) {
+            return game.items.find(i => i.sid === this.sid);
+        }
+        
+        // No item defined
+        return null;
+
+    }
+
+    /**
      * @returns the new feature. 
      */
     create() {
-        switch (this.item.type) {
+
+        // Retieve the world or the embedded item
+        const item = this.item();
+
+        // Create the feature
+        switch (item?.type) {
             case 'appel':
-                return new Appel(this.actor, this.item, this.periode);
+                return new Appel(this.actor, item, this.periode);
             case 'atlanteide':
-                return new Atlanteide(this.actor, this.item, this.periode);
+                return new Atlanteide(this.actor, item, this.periode);
             case 'chute':
-                return new Chute(this.actor, this.item, this.periode);
+                return new Chute(this.actor, item, this.periode);
             case 'competence':
-                return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
+                return new Competence(this.actor, item).withManoeuver(this.manoeuver);
             case 'dracomachie':
-                return new Dracomachie(this.actor, this.item, this.periode);
+                return new Dracomachie(this.actor, item, this.periode);
             case 'formule':
-                return new Formule(this.actor, this.item, this.periode);
+                return new Formule(this.actor, item, this.periode);
             case 'habitus':
-                return new Habitus(this.actor, this.item, this.periode);
+                return new Habitus(this.actor, item, this.periode);
             case 'invocation':
-                return new Invocation(this.actor, this.item, this.periode);
+                return new Invocation(this.actor, item, this.periode);
             case 'passe':
-                return new Passe(this.actor, this.item, this.periode);
+                return new Passe(this.actor, item, this.periode);
             case 'pratique':
-                return new Pratique(this.actor, this.item, this.periode);
+                return new Pratique(this.actor, item, this.periode);
             case 'quete':
-                return new Quete(this.actor, this.item, this.periode);
+                return new Quete(this.actor, item, this.periode);
             case 'rite':
-                return new Rite(this.actor, this.item, this.periode);
+                return new Rite(this.actor, item, this.periode);
             case 'rituel':
-                return new Rituel(this.actor, this.item, this.periode);
+                return new Rituel(this.actor, item, this.periode);
             case 'science':
-                return new Science(this.actor, this.item, this.periode);
+                return new Science(this.actor, item, this.periode);
             case 'savoir':
-                return new Savoir(this.actor, this.item, this.periode);
+                return new Savoir(this.actor, item, this.periode);
             case 'sort':
-                return new Sort(this.actor, this.item, this.periode);
+                return new Sort(this.actor, item, this.periode);
             case 'technique':
-                return new Technique(this.actor, this.item, this.periode);
+                return new Technique(this.actor, item, this.periode);
             case 'tekhne':
-                return new Tekhne(this.actor, this.item, this.periode);
+                return new Tekhne(this.actor, item, this.periode);
             case 'vecu':
-                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
+                const vecu = new Vecu(this.actor, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
+                if (item.actor == null) {
+                    return vecu.withOriginalItem(item);
+                } else {
+                    return vecu.withEmbeddedItem(item);
+                }
             default:
                 return null;
         }
