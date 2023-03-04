@@ -272,8 +272,8 @@ export class FigureSheet extends HistoricalSheet {
                         case 'metamorphe':
                         case 'periode':
                         case 'vecu':
-                            await new AbstractRollBuilder(this.actor)
-                                .withItem(item)
+                            await new FeatureBuilder(this.actor)
+                                .withItem(item.sid)
                                 .withEvent(event)
                                 .withPeriode(this.editedPeriode)
                                 .withManoeuver(this.editedCapacity)
@@ -287,11 +287,11 @@ export class FigureSheet extends HistoricalSheet {
                         case 'quete':
                         case 'savoir':
                         case 'science': {
-                            if (periode != null) {
-                                await new AbstractRollBuilder(this.actor)
-                                    .withItem(item)
+                            if (this.editedPeriode != null) {
+                                await new FeatureBuilder(this.actor)
+                                    .withOriginalItem(item.sid)
                                     .withEvent(event)
-                                    .withPeriode(periode)
+                                    .withPeriode(this.editedPeriode)
                                     .withManoeuver(this.editedCapacity)
                                     .create()
                                     .drop();

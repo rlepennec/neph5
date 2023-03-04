@@ -40,12 +40,12 @@ export class AbstractFocus extends AbstractFeature {
         }
 
         // The focus must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === item.sid && i.system.periode === item.periode) != null) {
+        if (this.actor.items.find(i => i.sid === this.item.sid && i.system.periode === this.embedded.periode) != null) {
             return;
         }
 
         // Retrieve the previous focus item if already defined.
-        const previous = this.actor.items.find(i => i.sid === item.sid);
+        const previous = this.actor.items.find(i => i.sid === this.item.sid);
 
         // Create a new focus or move the focus to the new periode.
         await this._createEmbeddedItem(previous);
