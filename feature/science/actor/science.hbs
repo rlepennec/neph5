@@ -63,10 +63,10 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
-                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-id="{{item.original.id}}">
+                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-sid="{{item.original.sid}}">
 
                     <!-- The only element of the focus. -->
-                    {{#if (includes ../../header 'element')}}
+                    {{#if (includes ../../header 'element')}}s
                     <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
                         {{#switch item.original.system.element}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}

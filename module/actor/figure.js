@@ -85,7 +85,7 @@ export class FigureSheet extends HistoricalSheet {
 
         // Sciences occultes
         html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollOriginalItem.bind(this));
-        html.find('div[data-family="science"] .focus .open').click(this._onOpenEmbeddedItem.bind(this));
+        html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="science"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
         html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
@@ -116,7 +116,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .current-periode').click(this._onCurrentPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .delete-item').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-periode').click(this._onEditPeriode.bind(this));
-        html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onOpenEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditFeature.bind(this, 'item'));
         html.find('div[data-tab="incarnations"] .change-degre').change(this._onChangeDegre.bind(this));
         html.find('div[data-tab="incarnations"] .active-periode').click(this._onToggleActivePeriode.bind(this));
@@ -175,7 +175,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditFeature.bind(this, 'passe'));
         html.find('div[data-tab="vecus"] .edit-quete').click(this._onEditFeature.bind(this, 'quete'));
         html.find('div[data-tab="vecus"] .edit-savoir').click(this._onEditFeature.bind(this, 'savoir'));
-        html.find('div[data-tab="vecus"] .edit-vecu').click(this._onOpenEmbeddedItem.bind(this));
+        html.find('div[data-tab="vecus"] .edit-vecu').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="vecus"] .edit-chute').click(this._onEditFeature.bind(this, 'chute'));
         //html.find('div[data-tab="vecus"] .roll-competence').click(this._onRollFeature.bind(this, 'competence'));
         //html.find('div[data-tab="vecus"] .roll-passe').click(this._onRollFeature.bind(this, 'passe'));
@@ -504,11 +504,11 @@ export class FigureSheet extends HistoricalSheet {
      * @param event The click event.
      * @returns the instance.
      */
-    async _onOpenEmbeddedItem(event) {
+    async _onOpenItem(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).withEmbeddedItem(item).create().edit();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = game.items.find(i => i.sid === sid);
+        await new FeatureBuilder(this.actor).withOriginalItem(item).create().edit();
         return this;
     }
 
