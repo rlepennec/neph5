@@ -100,6 +100,12 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
 
+
+
+
+
+
+        
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
 
