@@ -83,6 +83,9 @@ export class FigureSheet extends HistoricalSheet {
 
         super.activateListeners(html);
 
+        // General
+        html.find('div[data-tab]').on("drop", this._onDrop.bind(this));
+
         // Sciences occultes
         html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
@@ -93,25 +96,18 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="science"] .focus-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-family="science"] .focus-transporte').change(this._onChangeTransporte.bind(this));
 
-        // Simulacre
-        html.find('div[data-tab="simulacre"]').on("drop", this._onDrop.bind(this));
+        // Vecus
+        html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
+        html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
 
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
-
-        // Alchimie
-        html.find('div[data-tab="alchimie"]').on("drop", this._onDrop.bind(this));
-
 
         // Combat
         html.find('div[data-tab="combat"] .edit-esquive').click(this._onEditEsquive.bind(this));
         html.find('div[data-tab="combat"] .edit-lutte').click(this._onEditLutte.bind(this));
 
-        // Conjuration
-        html.find('div[data-tab="conjuration"]').on("drop", this._onDrop.bind(this));
-
         // Incarnations
-        html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="incarnations"] .delete-periode').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .current-periode').click(this._onCurrentPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .delete-item').click(this._onDeleteEmbeddedItem.bind(this));
@@ -123,12 +119,9 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .display').click(this._onDisplayPeriode.bind(this));
 
         // Kabbale
-        html.find('div[data-tab="kabbale"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
-
         // Laboratoire
-        html.find('div[data-tab="laboratoire"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="laboratoire"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="laboratoire"] .edit-catalyseur').click(this._onEditFeature.bind(this, 'catalyseur'));
         html.find('div[data-tab="laboratoire"] .edit-materiae').click(this._onEditFeature.bind(this, 'materiae'));
@@ -136,18 +129,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="laboratoire"] .actor-delete').click(this._onDeleteLaboratory.bind(this));
         html.find('div[data-tab="laboratoire"] .actor-name').click(this._onActiveLaboratory.bind(this));
         
-        // Magie
-        html.find('div[data-tab="magie"]').on("drop", this._onDrop.bind(this));
-        
-        
-        // Magie analogique
-        html.find('div[data-tab="analogie"]').on("drop", this._onDrop.bind(this));
-
-        // Necromancie
-        html.find('div[data-tab="necromancie"]').on("drop", this._onDrop.bind(this));
-
         // Nephilim
-        html.find('div[data-tab="nephilim"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="nephilim"] .formed').click(this._onToggleFormed.bind(this));
         html.find('div[data-tab="nephilim"] .visible').click(this._onToggleVisible.bind(this));
         html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
@@ -160,34 +142,11 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="nephilim"] .luneNoire').click(this._onLuneNoire.bind(this));
 
         // Selenim
-        html.find('div[data-tab="selenim"]').on("drop", this._onDrop.bind(this));
         html.find('div[data-tab="selenim"] .edit-aspect').click(this._onEditFeature.bind(this, 'aspect'));
         //html.find('div[data-tab="selenim"] .roll-pavane').click(this._onRollFeature.bind(this, 'pavane'));
         //html.find('div[data-tab="selenim"] .roll-noyau').click(this._onRollFeature.bind(this, 'noyau'));
         html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="selenim"] .active').click(this._onToggleActive.bind(this));
-
-        // Vecus
-        html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
-        html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
-
-        // Baton
-        html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
-
-        // Coupe
-        html.find('div[data-tab="coupe"]').on("drop", this._onDrop.bind(this));
-
-        // Denier
-        html.find('div[data-tab="denier"]').on("drop", this._onDrop.bind(this));
-
-        // Epee
-        html.find('div[data-tab="epee"]').on("drop", this._onDrop.bind(this));
-
-        // Atlanteide
-        html.find('div[data-tab="atlanteide"]').on("drop", this._onDrop.bind(this));
-
-        // Dracomachie
-        html.find('div[data-tab="dracomachie"]').on("drop", this._onDrop.bind(this));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
