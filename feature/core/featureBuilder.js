@@ -102,7 +102,7 @@ export class FeatureBuilder {
 
         // The id defines the embedded item
         if (this.id != null) {
-            return AbstractFeature.actor(this.actor, this.scope).items.get(this.id);
+            return this.scopedActor().items.get(this.id);
         }
         
         // The sid defines the original item
@@ -170,6 +170,30 @@ export class FeatureBuilder {
                 }
             default:
                 return null;
+        }
+    }
+
+    /**
+     * @returns the actor object according to the scope.
+     */
+    scopedActor() {
+        switch (this.actor.type) {
+            case 'figure':
+                switch (this.scope) {
+                    case 'actor':
+                        return this.actor;
+                    case 'simulacre':
+                        return game.actors.find(a => a.sid === this.actor.system?.simulacre);
+                }
+            case 'figurant':
+                switch (this.scope) {
+                    case 'actor':
+                        return this.actor;
+                    default:
+                        throw new Error("Vecu.actor scope " + this.scope + " not implemented");
+                }
+            default:
+                throw new Error("Vecu.actor type " + this.actor.type + " not implemented");
         }
     }
 
