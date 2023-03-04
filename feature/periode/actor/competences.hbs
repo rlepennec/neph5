@@ -13,7 +13,7 @@
     <!-- Display the vecus of the simulacre -->
     {{#if (and (nonNull system.simulacre) (eq system.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
     {{#each actor.vecusOfSimulacre as |item|}}
-    <li class="vecu item" data-id="{{item.id}}" data-item-id="{{id}}" data-scope="simulacre">
+    <li class="vecu item" data-sid="{{item.sid}}" data-scope="simulacre">
 
         {{#if ../../actor.system.options.degreGauche}}
         <label class="vecu-degre">{{item.degre}}</label>
@@ -37,7 +37,7 @@
     <!-- Display the vecus of the figure -->
     {{#if (gt actor.vecusOfActor.length 0)}}
     {{#each actor.vecusOfActor as |item|}}
-    <li class="vecu item macro" data-item-id="{{id}}" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="vecu" data-scope="actor">
+    <li class="vecu item macro" data-sid="{{item.sid}}" data-scope="actor">
 
         {{#if ../../actor.system.options.degreGauche}}
         <label class="vecu-degre">{{item.degre}}</label>
@@ -60,7 +60,7 @@
 
     <!-- Display the competences of the figure -->
     {{#each actor.competences as |item|}}
-    <li class="vecu item macro" data-id="{{item.id}}" data-sid="{{item.sid}}" data-type="competence">
+    <li class="vecu item macro" data-sid="{{item.sid}}">
 
         {{#if ../../actor.system.options.degreGauche}}
         <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>

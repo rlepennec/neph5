@@ -168,7 +168,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="selenim"] .active').click(this._onToggleActive.bind(this));
 
         // Vecus
-        html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenOriginalItem.bind(this));
+        html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
 
 
         html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditFeature.bind(this, 'competence'));
@@ -455,6 +455,20 @@ export class FigureSheet extends HistoricalSheet {
     // -- FEATURE ------------------------------------------------------------------------
 
     /**
+     * Open the specified embedded item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onOpenItem(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const scope = $(event.currentTarget).closest('.item').data("scope");
+        const item = game.items.find(i => i.sid === sid);
+        await new FeatureBuilder(this.actor).withScope(scope).withOriginalItem(item).create().edit();
+        return this;
+    }
+
+    /**
      * Roll the specified original item.
      * @param event The click event.
      * @returns the instance.
@@ -464,62 +478,6 @@ export class FigureSheet extends HistoricalSheet {
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = game.items.find(i => i.sid === sid);
         await new FeatureBuilder(this.actor).withOriginalItem(item).create().initializeRoll();
-        return this;
-    }
-
-    /**
-     * Roll the specified embedded item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onRollEmbeddedItem(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
-        const feature = new FeatureBuilder(this.actor).withEmbeddedItem(item).create();
-        await feature.initializeRoll();
-        return this;
-    }
-
-    /**
-     * Open the specified original item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onOpenOriginalItem(event) {
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const scope = $(event.currentTarget).closest('.item').data("scope");
-        const item = scope == null ? game.items.get(id) : AbstractFeature.actor(this.actor,scope).items.get(id);
-        const builder = new FeatureBuilder(this.actor);
-        if (scope != null) {
-            builder.withScope(scope);
-        }
-        const feature = await builder.withOriginalItem(item).create();
-        await feature.edit();
-    }
-
-    /**
-     * Open the specified embedded item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onOpenItem(event) {
-        event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = game.items.find(i => i.sid === sid);
-        await new FeatureBuilder(this.actor).withOriginalItem(item).create().edit();
-        return this;
-    }
-
-    /**
-     * Roll the specified feature.
-     * @param feature The purpose of the roll.
-     * @param event   The click event.
-     * @returns the instance.
-     */
-    async _onRollFeature(feature, event) {
-        event.preventDefault();
-        await this.createFeature(".roll-" + feature, event).initializeRoll();
         return this;
     }
 

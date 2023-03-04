@@ -13,7 +13,7 @@
 
     {{#each actor.chutes as |item|}}
     {{#if (ne item.degre 0)}}
-    <li class="vecu item macro" data-id="{{item.id}}" data-item-id="{{item.sid}}" data-type="chute">
+    <li class="vecu item macro" data-sid="{{item.sid}}">
 
         {{#if ../../actor.system.options.degreGauche}}
         <label class="vecu-degre">{{item.degre}}</label>
