@@ -84,9 +84,9 @@ export class FigureSheet extends HistoricalSheet {
         super.activateListeners(html);
 
         // Sciences occultes
-        html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollOriginalItem.bind(this));
+        html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
-        html.find('div[data-family="science"] .focus .roll').click(this._onRollEmbeddedItem.bind(this));
+        html.find('div[data-family="science"] .focus .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
         html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
         html.find('div[data-family="science"] .focus-pacte').click(this._onChangePacte.bind(this));
@@ -459,12 +459,11 @@ export class FigureSheet extends HistoricalSheet {
      * @param event The click event.
      * @returns the instance.
      */
-    async _onRollOriginalItem(event) {
+    async _onRollItem(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = game.items.get(id);
-        const feature = await new FeatureBuilder(this.actor).withOriginalItem(item).create();
-        await feature.initializeRoll();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = game.items.find(i => i.sid === sid);
+        await new FeatureBuilder(this.actor).withOriginalItem(item).create().initializeRoll();
         return this;
     }
 
