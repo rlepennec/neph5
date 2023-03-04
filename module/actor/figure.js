@@ -169,20 +169,7 @@ export class FigureSheet extends HistoricalSheet {
 
         // Vecus
         html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
-
-
-        html.find('div[data-tab="vecus"] .edit-competence').click(this._onEditFeature.bind(this, 'competence'));
-        html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditFeature.bind(this, 'passe'));
-        html.find('div[data-tab="vecus"] .edit-quete').click(this._onEditFeature.bind(this, 'quete'));
-        html.find('div[data-tab="vecus"] .edit-savoir').click(this._onEditFeature.bind(this, 'savoir'));
-        html.find('div[data-tab="vecus"] .edit-vecu').click(this._onOpenItem.bind(this));
-        html.find('div[data-tab="vecus"] .edit-chute').click(this._onEditFeature.bind(this, 'chute'));
-        //html.find('div[data-tab="vecus"] .roll-competence').click(this._onRollFeature.bind(this, 'competence'));
-        //html.find('div[data-tab="vecus"] .roll-passe').click(this._onRollFeature.bind(this, 'passe'));
-        //html.find('div[data-tab="vecus"] .roll-quete').click(this._onRollFeature.bind(this, 'quete'));
-        //html.find('div[data-tab="vecus"] .roll-savoir').click(this._onRollFeature.bind(this, 'savoir'));
-        //html.find('div[data-tab="vecus"] .roll-vecu').click(this._onRollFeature.bind(this, 'vecu'));
-        //html.find('div[data-tab="vecus"] .roll-chute').click(this._onRollFeature.bind(this, 'chute'));
+        html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
 
         // Baton
         html.find('div[data-tab="baton"]').on("drop", this._onDrop.bind(this));
@@ -455,16 +442,27 @@ export class FigureSheet extends HistoricalSheet {
     // -- FEATURE ------------------------------------------------------------------------
 
     /**
+     * Create the specified feature item.
+     * @param event The click event.
+     * @returns the new feature.
+     */
+    _createFeature(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const scope = $(event.currentTarget).closest('.item').data("scope");
+        const item = game.items.find(i => i.sid === sid);
+        return new FeatureBuilder(this.actor).withScope(scope).withOriginalItem(item).create();
+    }
+
+
+    /**
      * Open the specified embedded item.
      * @param event The click event.
      * @returns the instance.
      */
     async _onOpenItem(event) {
-        event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const scope = $(event.currentTarget).closest('.item').data("scope");
-        const item = game.items.find(i => i.sid === sid);
-        await new FeatureBuilder(this.actor).withScope(scope).withOriginalItem(item).create().edit();
+        const feature = this._createFeature(event);
+        await feature.edit();
         return this;
     }
 
@@ -474,10 +472,8 @@ export class FigureSheet extends HistoricalSheet {
      * @returns the instance.
      */
     async _onRollItem(event) {
-        event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = game.items.find(i => i.sid === sid);
-        await new FeatureBuilder(this.actor).withOriginalItem(item).create().initializeRoll();
+        const feature = this._createFeature(event);
+        await feature.initializeRoll();
         return this;
     }
 

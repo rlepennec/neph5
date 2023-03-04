@@ -136,7 +136,7 @@ export class FeatureBuilder {
             case 'tekhne':
                 return new Tekhne(this.actor, this.item, this.periode);
             case 'vecu':
-                return new Vecu(this.actor, this.this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
+                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
             default:
                 return null;
         }

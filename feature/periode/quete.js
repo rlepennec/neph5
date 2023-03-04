@@ -7,7 +7,7 @@ export class Quete extends AbstractFeature {
     /**
      * Constructor.
      * @param actor   The actor which performs the action.
-     * @param item    The embedded item object, purpose of the action.
+     * @param item    The original item object, purpose of the action.
      * @param periode The optional system identifier of the periode.
      */
     constructor(actor, item, periode) {

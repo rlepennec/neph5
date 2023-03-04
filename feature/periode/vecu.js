@@ -10,7 +10,7 @@ export class Vecu extends AbstractFeature {
     /**
      * Constructor.
      * @param actor   The actor object which performs the action.
-     * @param item    The embedded item object, purpose of the action.
+     * @param item    The original item object, purpose of the action.
      * @param scope   Indicates if scope is 'actor' or 'simulacre'.
      */
     constructor(actor, item, scope) {
@@ -199,7 +199,7 @@ export class Vecu extends AbstractFeature {
             {
                 system: this.item.system,
                 elements: Game.pentacle.elements,
-                item: AbstractFeature.original(this.sid)
+                item: this.item
             },
             'ITEM.TypeVecu',
             560,
