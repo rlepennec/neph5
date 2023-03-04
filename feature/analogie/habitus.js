@@ -39,13 +39,13 @@ export class Habitus extends AbstractFocus {
     get degre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.original.system.domaine).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.domaine).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = this.original.system.degre;
+        const focus = this.item.system.degre;
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(this.original.system.element === "luneNoire" ? "noyau" : this.original.system.element);
+        const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
 
         // Final result
         return science + ka - focus + 1;
@@ -55,10 +55,10 @@ export class Habitus extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(item, previous) {
+    async _createEmbeddedItem(previous) {
         
         // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, item.sid)
+        await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of an habitus")
             .withDeleteExisting()
             .withData("periode", this.periode)
@@ -74,8 +74,8 @@ export class Habitus extends AbstractFocus {
         await super.edit(
             "systems/neph5e/feature/analogie/item/habitus.html",
             {
-                item: this.original,
-                system: this.original.system,
+                item: this.item,
+                system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
                 cercles: Science.cerclesOf('analogie'),

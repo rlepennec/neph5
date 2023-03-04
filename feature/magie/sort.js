@@ -12,7 +12,7 @@ export class Sort extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
+        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de ce sort");
             return;
         }
@@ -53,18 +53,18 @@ export class Sort extends AbstractFocus {
     get degre() {
 
         // The sort needs the actor to follow a voie
-        if (this.original.system?.voies.length > 0 && this.original.system.voies.includes(this.actor.voieMagique?.sid) === false) {
+        if (this.system?.voies.length > 0 && this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
             return 0;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.original.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = this.original.system.degre;
+        const focus = this.item.system.degre;
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(this.original.system.element === "luneNoire" ? "noyau" : this.original.system.element);
+        const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
 
         // Final result
         return science + ka - focus;
@@ -74,9 +74,9 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(item, previous) {
+    async _createEmbeddedItem(previous) {
 
-        await new EmbeddedItem(this.actor, item.sid)
+        await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
@@ -93,8 +93,8 @@ export class Sort extends AbstractFocus {
         await super.edit(
             "systems/neph5e/feature/magie/item/sort.html",
             {
-                item: this.original,
-                system: this.original.system,
+                item: this.item,
+                system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.elements,
                 cercles: Game.magie.cercles,

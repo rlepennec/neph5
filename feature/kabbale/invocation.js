@@ -12,7 +12,7 @@ export class Invocation extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
+        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
             return;
         }
@@ -53,10 +53,10 @@ export class Invocation extends AbstractFocus {
     get degre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.original.system.sephirah).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.sephirah).degre;
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(this.original.system.element);
+        const ka = this.actor.getKa(this.item.system.element);
 
         // Final result
         return science + ka;
@@ -67,16 +67,16 @@ export class Invocation extends AbstractFocus {
      * @returns true if a pacte has already be done.
      */
     get pacte() {
-        return this.item.system.pacte;
+        return this.embedded.system.pacte;
     }
 
     /**
      * @Override
      */
-    async _drop(item, previous) {
+    async _createEmbeddedItem(previous) {
 
         // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, item.sid)
+        await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
@@ -95,8 +95,8 @@ export class Invocation extends AbstractFocus {
         await super.edit(
             "systems/neph5e/feature/kabbale/item/invocation.html",
             {
-                item: this.original,
-                system: this.original.system,
+                item: this.item,
+                system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.kabbale.elements,
                 cercles: Game.kabbale.sephiroth,

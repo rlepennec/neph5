@@ -41,6 +41,24 @@ export class FeatureBuilder {
     }
 
     /**
+     * @param item The original item to register.
+     * @param the instance.
+     */
+    withOriginalItem(item) {
+        this.item = item;
+        return this;
+    }
+
+    /**
+     * @param item The embedded item to register.
+     * @param the instance.
+     */
+    withEmbeddedItem(item) {
+        this.item = item;
+        return this;
+    }
+
+    /**
      * @param periode The system identifier of the periode to register.
      * @returns the instance.
      */
@@ -77,123 +95,51 @@ export class FeatureBuilder {
     }
 
     /**
-     * @param type The type of feature to create.
-     * @param item The item of the feature.
      * @returns the new feature. 
      */
-    createFeature(type, item) {
-        switch (type) {
+    create() {
+        switch (this.item.type) {
             case 'appel':
-                return new Appel(this.actor, item, this.periode);
+                return new Appel(this.actor, this.item, this.periode);
             case 'atlanteide':
-                return new Atlanteide(this.actor, item, this.periode);
+                return new Atlanteide(this.actor, this.item, this.periode);
             case 'chute':
-                return new Chute(this.actor, item, this.periode);
+                return new Chute(this.actor, this.item, this.periode);
             case 'competence':
                 return new Competence(this.actor, this.item).withManoeuver(this.manoeuver);
             case 'dracomachie':
-                return new Dracomachie(this.actor, item, this.periode);
+                return new Dracomachie(this.actor, this.item, this.periode);
             case 'formule':
-                return new Formule(this.actor, item, this.periode);
+                return new Formule(this.actor, this.item, this.periode);
             case 'habitus':
-                return new Habitus(this.actor, item, this.periode);
+                return new Habitus(this.actor, this.item, this.periode);
             case 'invocation':
-                return new Invocation(this.actor, item, this.periode);
+                return new Invocation(this.actor, this.item, this.periode);
             case 'passe':
-                return new Passe(this.actor, item, this.periode);
+                return new Passe(this.actor, this.item, this.periode);
             case 'pratique':
-                return new Pratique(this.actor, item, this.periode);
+                return new Pratique(this.actor, this.item, this.periode);
             case 'quete':
-                return new Quete(this.actor, item, this.periode);
+                return new Quete(this.actor, this.item, this.periode);
             case 'rite':
-                return new Rite(this.actor, item, this.periode);
+                return new Rite(this.actor, this.item, this.periode);
             case 'rituel':
-                return new Rituel(this.actor, item, this.periode);
+                return new Rituel(this.actor, this.item, this.periode);
             case 'science':
-                return new Science(this.actor, item, this.periode);
+                return new Science(this.actor, this.item, this.periode);
             case 'savoir':
-                return new Savoir(this.actor, item, this.periode);
+                return new Savoir(this.actor, this.item, this.periode);
             case 'sort':
-                return new Sort(this.actor, item, this.periode);
+                return new Sort(this.actor, this.item, this.periode);
             case 'technique':
-                return new Technique(this.actor, item, this.periode);
+                return new Technique(this.actor, this.item, this.periode);
             case 'tekhne':
-                return new Tekhne(this.actor, item, this.periode);
+                return new Tekhne(this.actor, this.item, this.periode);
             case 'vecu':
-                return new Vecu(this.actor, this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
+                return new Vecu(this.actor, this.this.item, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
             default:
                 return null;
         }
-    }
-
-    /**
-     * @param item The embedded item from which to create the feature.
-     * @returns the new feature. 
-     */
-    createFromEmbedded(item) {
-        switch (item?.type) {
-
-            case 'appel':
-            case 'atlanteide':
-            case 'dracomachie':
-            case 'formule':
-            case 'habitus':
-            case 'invocation':
-            case 'pratique':
-            case 'rite':
-            case 'rituel':
-            case 'sort':
-            case 'technique':
-            case 'tekhne':
-                return this.createFeature(item?.type, item);
-
-            default:
-                return null;
-        }
-    }
-
-    /**
-     * @param item The original focus item object.
-     */
-    async dropOriginal(item) {
-        switch (item?.type) {
-
-            case 'appel':
-            case 'atlanteide':
-            case 'dracomachie':
-            case 'formule':
-            case 'habitus':
-            case 'invocation':
-            case 'pratique':
-            case 'rite':
-            case 'rituel':
-            case 'sort':
-            case 'technique':
-            case 'tekhne':
-                return this.createFeature(item?.type, null).dropOriginal(item);
-
-            default:
-                return null;
-        }
-    }
-
-    /**
-     * @param item The original item from which to create the feature.
-     * @returns the new feature. 
-     */
-    async createFromOriginal(item) {
-        switch (item?.type) {
-            case 'chute':
-            case 'competence':
-            case 'passe':
-            case 'quete':
-            case 'savoir':
-            case 'science':
-            case 'vecu':
-                return this.createFeature(item?.type, item);
-            default:
-                return null;
-        };
     }
 
 }

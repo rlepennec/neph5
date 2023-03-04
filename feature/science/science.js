@@ -262,14 +262,19 @@ export class Science extends AbstractFeature {
      */
     static getFocus(actor, science) {
 
+        // Intialization
         let items = [];
+
+        // Retrieve the cercle item
         const cercle = Science.getCercle(science);
+
+        // Retrieve 
         const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
         
         for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 
-            const embedded = actor.items.find(i => i.sid === item.sid);
-            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).createFromEmbedded(embedded);
+            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item).create();
+            const embedded = feature.embedded;
             const degre = feature.degre;
 
             if (degre != null) {
@@ -433,20 +438,21 @@ export class Science extends AbstractFeature {
         const cercle = Science.getCercle(science);
         const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
         
-        for (let original of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
+        for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 
-            const embedded = actor.items.find(i => i.sid === original.sid);
-            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).createFromEmbedded(embedded);
+            //const embedded = actor.items.find(i => i.sid === original.sid);
+            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item).create();
+            const embedded = feature.embedded;
             const degre = feature.degre;
 
             if (degre != null) {
                 embedded.degre = degre * 10;
-            } else if (original.type === 'formule') {
+            } else if (item.type === 'formule') {
                 embedded.degre = null;
             }
 
             items.push({
-                original: original,
+                original: item,
                 embedded: embedded
             });
 

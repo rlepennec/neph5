@@ -38,11 +38,8 @@ export class Appel extends AbstractFocus {
      */
     get degre() {
 
-        // Retrieve the original focus item
-        const original = this.original;
-
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, original.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.system.cercle).degre;
 
         // Final result
         return science;
@@ -52,10 +49,10 @@ export class Appel extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(item, previous) {
+    async _createEmbeddedItem(previous) {
 
         // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, item.sid)
+        await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a appel")
             .withDeleteExisting()
             .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
@@ -72,8 +69,8 @@ export class Appel extends AbstractFocus {
         await super.edit(
             "systems/neph5e/feature/conjuration/item/appel.html",
             {
-                item: this.original,
-                system: this.original.system,
+                item: this.item,
+                system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 cercles: Game.conjuration.cercles,
                 appels: Game.conjuration.appels,

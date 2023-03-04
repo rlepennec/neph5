@@ -63,7 +63,7 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
-                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-id="{{item.embedded.id}}">
+                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-id="{{item.original.id}}">
 
                     <!-- The only element of the focus. -->
                     {{#if (includes ../../header 'element')}}

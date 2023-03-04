@@ -38,10 +38,10 @@ export class Tekhne extends AbstractFocus {
     get degre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.original.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = this.original.system.degre;
+        const focus = this.item.system.degre;
 
         // Retrieve the degre of the ka used to cast the focus
         const ka = this.actor.getKa('soleil');
@@ -54,10 +54,10 @@ export class Tekhne extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(item, previous) {
+    async _createEmbeddedItem(previous) {
 
         // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, item.sid)
+        await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a tekhne")
             .withDeleteExisting()
             .withData("periode", this.periode)
@@ -73,8 +73,8 @@ export class Tekhne extends AbstractFocus {
         await super.edit(
             "systems/neph5e/feature/coupe/item/tekhne.html",
             {
-                item: this.original,
-                system: this.original.system,
+                item: this.item,
+                system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 cercles: Science.cerclesOf('tekhne'),
                 difficulty: this.degre

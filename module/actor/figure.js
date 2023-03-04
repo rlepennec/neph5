@@ -325,8 +325,10 @@ export class FigureSheet extends HistoricalSheet {
                         case 'habitus': {
                             if (this.editedPeriode != null) {
                                 await new FeatureBuilder(this.actor)
+                                    .withOriginalItem(item)
                                     .withPeriode(this.editedPeriode)
-                                    .dropOriginal(item);
+                                    .create()
+                                    .drop();
                             }
                             break;
                         }
@@ -461,7 +463,7 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = game.items.get(id);
-        const feature = await new FeatureBuilder(this.actor).createFromOriginal(item);
+        const feature = await new FeatureBuilder(this.actor).withOriginalItem(item).create();
         await feature.initializeRoll();
         return this;
     }
@@ -475,7 +477,7 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        const feature = new FeatureBuilder(this.actor).createFromEmbedded(item);
+        const feature = new FeatureBuilder(this.actor).withEmbeddedItem(item).create();
         await feature.initializeRoll();
         return this;
     }
@@ -493,7 +495,7 @@ export class FigureSheet extends HistoricalSheet {
         if (scope != null) {
             builder.withScope(scope);
         }
-        const feature = await builder.createFromOriginal(item)
+        const feature = await builder.withOriginalItem(item).create();
         await feature.edit();
     }
 
@@ -506,7 +508,7 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest('.item').data('id');
         const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).createFromEmbedded(item).edit();
+        await new FeatureBuilder(this.actor).withEmbeddedItem(item).create().edit();
         return this;
     }
 

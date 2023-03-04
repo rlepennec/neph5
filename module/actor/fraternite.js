@@ -190,8 +190,10 @@ export class FraterniteSheet extends HistoricalSheet {
                         case 'appel': {
                             if (this.editedPeriode != null) {
                                 await new FeatureBuilder(this.actor)
+                                    .withOriginalItem(item)
                                     .withPeriode(this.editedPeriode)
-                                    .dropOriginal(item);
+                                    .create()
+                                    .drop();
                             }
                             break;
                         }

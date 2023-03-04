@@ -5,13 +5,13 @@ export class AbstractFocus extends AbstractFeature {
     /**
      * Constructor.
      * @param actor   The actor which owns the focus.
-     * @param item    The embedded focus item object.
+     * @param item    The original focus item object.
      * @param periode The system identifier of the periode to register.
      */
     constructor(actor, item, periode) {
         super(actor);
         this.item = item;
-        this.original = item == null ? null : game.items.find(i => i.sid === item.sid);
+        this.embedded = actor.items.find(i => i.sid === item.sid);
         this.periode = periode;
     }
 
@@ -30,9 +30,9 @@ export class AbstractFocus extends AbstractFeature {
     }
 
     /**
-     * @param item The original focus item object.
+     * @Override
      */
-    async dropOriginal(item) {
+    async drop() {
 
         // A periode must be defined
         if (this.periode == null) {
@@ -48,17 +48,16 @@ export class AbstractFocus extends AbstractFeature {
         const previous = this.actor.items.find(i => i.sid === item.sid);
 
         // Create a new focus or move the focus to the new periode.
-        await this._drop(item, previous);
+        await this._createEmbeddedItem(previous);
 
     }
 
     /**
-     * Create a new focus or move the focus to the new periode.
-     * @param item     The original focus item object.
-     * @param previous The preivous periode item.
+     * Create a new embedded focus item or move it to the new periode.
+     * @param previous The previous periode item.
      */
-    async _drop(item, previous) {
-        throw new Error("AbstractFocus._drop not implemented");
+    async _createEmbeddedItem(previous) {
+        throw new Error("AbstractFocus._createEmbeddedItem not implemented");
     }
 
 }

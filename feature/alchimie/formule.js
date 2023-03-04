@@ -38,7 +38,7 @@ export class Formule extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.item.system.focus !== true && this.item.system.status === 'dechiffre') {
+        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
             ui.notifications.warn("Vous ne possédez pas le focus de cette formule");
             return;
         }
@@ -56,13 +56,10 @@ export class Formule extends AbstractFocus {
             return;
         }
 
-        // Retrieve the embedded focus
-        const embedded = this.actor.items.find(i => i.sid === this.sid);
-
         // If success, produce 1 dose
         if (result.success === true) {
-            const quantite = embedded.system.quantite + 1;
-            await embedded.update({ ['system.quantite']: quantite });
+            const quantite = this.embedded.system.quantite + 1;
+            await this.embedded.update({ ['system.quantite']: quantite });
 
             // If not critical, spend materiae primae
             if (result.critical === false) {
@@ -85,20 +82,20 @@ export class Formule extends AbstractFocus {
         // Retrieve the construct used to cast focus according to the current laboratory
         // The construct must be active
         const owner = this.getOwner();
-        const construct = owner == null ? null : owner.getConstruct(this.original.system.substance);
+        const construct = owner == null ? null : owner.getConstruct(this.item.system.substance);
         if (construct?.active !== true) {
             return null;
         }
 
         // Retrieve all elements used to cast the focus
         // All elements must be owned by the construct
-        const ka = this.original.system.elements.length === 1 ? construct[this.original.system.elements[0]] ?? 0 : Math.min(construct[this.original.system.elements[0]] ?? 0, construct[this.original.system.elements[1]] ?? 0);
+        const ka = this.item.system.elements.length === 1 ? construct[this.item.system.elements[0]] ?? 0 : Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
         if (ka < 1) {
             return null;
         }
 
         // The cercle of the formule must be supported by the construct
-        switch (this.original.system.cercle) {
+        switch (this.item.system.cercle) {
             case 'oeuvreAuNoir':
                 break;
             case 'oeuvreAuBlanc':
@@ -114,10 +111,10 @@ export class Formule extends AbstractFocus {
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.original.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
 
         // Retrieve the degre of the focus to cast
-        const focus = this.original.system.degre;
+        const focus = this.item.system.degre;
 
         // Final result
         return science + ka - focus;
@@ -127,10 +124,10 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    async _drop(item, previous) {
+    async _createEmbeddedItem(previous) {
 
         // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, item.sid)
+        await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
@@ -150,8 +147,8 @@ export class Formule extends AbstractFocus {
         await super.edit(
             "systems/neph5e/feature/alchimie/item/formule.html",
             {
-                item: this.original,
-                system: this.original.system,
+                item: this.item,
+                system: this.item.system,
                 debug: game.settings.get('neph5e', 'debug'),
                 elements: Game.pentacle.elements,
                 cercles: Game.alchimie.cercles,
