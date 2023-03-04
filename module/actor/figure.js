@@ -721,8 +721,8 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeQuantite(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
         const value = $(event.currentTarget).closest(".focus-quantite").val();
         await item.update({ ['system.quantite']: parseInt(value) });
     }
@@ -735,8 +735,8 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeTransporte(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
         const value = $(event.currentTarget).closest(".focus-transporte").val();
         await item.update({ ['system.transporte']: parseInt(value) });
     }
@@ -749,8 +749,8 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangePacte(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
         await item.update({ ['system.pacte']: !item.system.pacte });
     }
 
@@ -766,8 +766,8 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeFocus(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
         await item.update({ ['system.focus']: !item.system.focus });
     }
 
@@ -786,8 +786,8 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeStatus(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest('.item').data('id');
-        const item = this.actor.items.get(id);
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
         switch (item.system.status) {
             case Constants.DECHIFFRE:
                 await item.update({ ['system.status']: Constants.APPRIS });
