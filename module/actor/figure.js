@@ -404,44 +404,6 @@ export class FigureSheet extends HistoricalSheet {
         await this.render(true);
     }
 
-    // -- FEATURE ------------------------------------------------------------------------
-
-    /**
-     * Create the specified feature item.
-     * @param event The click event.
-     * @returns the new feature.
-     */
-    _createFeature(event) {
-        event.preventDefault();
-        const node = $(event.currentTarget).closest('.item');
-        const id = node.data('id');
-        const sid = node.data('sid');
-        const scope = node.data("scope");
-        return new FeatureBuilder(this.actor).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
-    }
-
-    /**
-     * Open the specified embedded item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onOpenItem(event) {
-        const feature = this._createFeature(event);
-        await feature.edit();
-        return this;
-    }
-
-    /**
-     * Roll the specified original item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onRollItem(event) {
-        const feature = this._createFeature(event);
-        await feature.initializeRoll();
-        return this;
-    }
-
     // -- IMAGO -----------------------------------------------------------------------------
 
     /**
@@ -632,6 +594,62 @@ export class FigureSheet extends HistoricalSheet {
         }
     }
 
+
+
+    // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
+
+    /**
+     * Open the simulacre or the fraternite.
+     * @param event The click event.
+     */
+    async _onOpenActor(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
+        const actor = game.actors.get(id);
+        if (actor != null) {
+            actor.sheet.render(true);
+        }
+    }
+
+    // After refactoring
+    // -------------------------------------------------------------------------
+
+    /**
+     * Create the specified feature item.
+     * @param event The click event.
+     * @returns the new feature.
+     */
+    _createFeature(event) {
+        event.preventDefault();
+        const node = $(event.currentTarget).closest('.item');
+        const id = node.data('id');
+        const sid = node.data('sid');
+        const scope = node.data("scope");
+        return new FeatureBuilder(this.actor).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
+    }
+
+    /**
+     * Open the specified embedded item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onOpenItem(event) {
+        const feature = this._createFeature(event);
+        await feature.edit();
+        return this;
+    }
+
+    /**
+     * Roll the specified original item.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onRollItem(event) {
+        const feature = this._createFeature(event);
+        await feature.initializeRoll();
+        return this;
+    }
+
     /**
      * Set the number of vaisseaux alchimiques.
      * Used by:
@@ -719,21 +737,6 @@ export class FigureSheet extends HistoricalSheet {
                 break;
             default:
                 throw new Error("Status " + item.system.status + " not implemented");
-        }
-    }
-
-    // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
-
-    /**
-     * Open the simulacre or the fraternite.
-     * @param event The click event.
-     */
-    async _onOpenActor(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
-        const actor = game.actors.get(id);
-        if (actor != null) {
-            actor.sheet.render(true);
         }
     }
 
