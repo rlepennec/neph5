@@ -58,6 +58,7 @@ export const preloadTemplates = async function () {
         // Actor parts
         "systems/neph5e/templates/actor/parts/options.hbs",
         "systems/neph5e/templates/actor/parts/header.hbs",
+        "systems/neph5e/templates/actor/parts/check.hbs",
         "systems/neph5e/templates/actor/parts/checkbox.hbs",
         "systems/neph5e/templates/actor/parts/top.hbs",
 
