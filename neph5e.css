@@ -803,6 +803,51 @@
 .actor-root .article .article-body .arbre .kether .degre {
   transform: translate(44px, -284px);
 }
+.actor-root .article .article-body .vecus {
+  /*
+
+
+
+ 
+                .content {
+                    column-count: 3;
+    
+                    .degre {
+                        width: 20px;
+                    }
+    
+                    .disabled {
+                        color: #a1a1a1;
+                    }
+    
+                }
+    
+                .fcontent {
+                    column-count: 2;
+    
+                    .degre {
+                        text-align: center;
+                        border: none;
+                        border-radius: 50%;
+                        border: 1px solid black;
+                        width: 30px;
+                        height: 30px;
+                        padding-top: 5px;
+                        margin-right: 30px;
+                    }
+    
+                    .disabled {
+                        color: #a1a1a1;
+                    }
+    
+                    li {
+                        margin-bottom: 3px;
+                    }
+    
+                }
+
+                */
+}
 .actor-root .article .article-body .vecus .vecus-header {
   display: flex;
   flex-direction: row;
@@ -869,33 +914,63 @@
 .actor-root .article .article-body .vecus .all-vecus .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .vecus .content {
-  column-count: 3;
+.actor-root .article .article-body .options {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
 }
-.actor-root .article .article-body .vecus .content .degre {
-  width: 20px;
+.actor-root .article .article-body .options .options-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-right: 10px;
 }
-.actor-root .article .article-body .vecus .content .disabled {
-  color: #a1a1a1;
+.actor-root .article .article-body .options .options-column .options-group {
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 10px;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
 }
-.actor-root .article .article-body .vecus .fcontent {
-  column-count: 2;
+.actor-root .article .article-body .options .options-column .options-group .options-header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 30px;
+  margin-bottom: -10px;
 }
-.actor-root .article .article-body .vecus .fcontent .degre {
-  text-align: center;
+.actor-root .article .article-body .options .options-column .options-group .options-header .options-puce {
   border: none;
-  border-radius: 50%;
-  border: 1px solid black;
-  width: 30px;
-  height: 30px;
-  padding-top: 5px;
-  margin-right: 30px;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
 }
-.actor-root .article .article-body .vecus .fcontent .disabled {
-  color: #a1a1a1;
+.actor-root .article .article-body .options .options-column .options-group .options-header .options-separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 65px);
 }
-.actor-root .article .article-body .vecus .fcontent li {
-  margin-bottom: 3px;
+.actor-root .article .article-body .options .options-column .options-group .options-header .options-name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list {
+  font-family: 'AJensonPro';
+  font-size: 16px;
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list .option {
+  display: flex;
+  flex-direction: row;
 }
 .actor-root .article .effectif .header {
   display: flex;
@@ -1796,30 +1871,6 @@
 .actor-root .article .laboratoire .laboratoire-list .actor:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
-}
-.actor-root .article .options .columns {
-  display: flex;
-  flex-direction: row;
-  padding-top: 20px;
-}
-.actor-root .article .options .columns .column {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-right: 10px;
-}
-.actor-root .article .options .columns .column .group {
-  width: 100%;
-  margin-left: 20px;
-  margin-top: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor-root .article .options .columns .column .group span {
-  padding-left: 5px;
 }
 .item-root {
   display: flex;

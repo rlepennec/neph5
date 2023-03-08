@@ -1,114 +1,181 @@
+<div class="options">
 {{#if isGM}}
 
-    <div class="columns">
+    <div class="options-column">
 
-        <div class="column">
+        <div class="options-group">
 
-            <div class="group">
-                <span>{{localize "NEPH5E.nephilim"}}</span>
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.nephilim"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.pentacle.nom" name="system.options.nephilim" value=system.options.nephilim}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.pentacle.nom" name="system.options.nephilim" value=system.options.nephilim}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.magie.science" name="system.options.magie" value=system.options.magie}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.magie.science" name="system.options.magie" value=system.options.magie}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.analogie" name="system.options.analogie" value=system.options.analogie}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.analogie" name="system.options.analogie" value=system.options.analogie}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.kabbale.science" name="system.options.kabbale" value=system.options.kabbale}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.kabbale.science" name="system.options.kabbale" value=system.options.kabbale}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.alchimie.science" name="system.options.alchimie" value=system.options.alchimie}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.alchimie.science" name="system.options.alchimie" value=system.options.alchimie}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.dracomachie" name="system.options.dracomachie" value=system.options.dracomachie}}
-
-            </ol>
-
-            <div class="group">
-                <span>{{localize "NEPH5E.selenim"}}</span>
-            </div>
-
-            <ol class="item-list">
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.noyau" name="system.options.selenim" value=system.options.selenim}}
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.necromancie.science" name="system.options.necromancie" value=system.options.necromancie}}
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.conjuration.science" name="system.options.conjuration" value=system.options.conjuration}}
-
-            </ol>
-
-            <div class="group">
-                <span>{{localize "NEPH5E.arcanesMineurs"}}</span>
-            </div>
-
-            <ol class="item-list">
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.baton.baton" name="system.options.baton" value=system.options.baton}}
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.coupe.coupe" name="system.options.coupe" value=system.options.coupe}}
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.denier.denier" name="system.options.denier" value=system.options.denier}}
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.epee.epee" name="system.options.epee" value=system.options.epee}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.dracomachie" name="system.options.dracomachie" value=system.options.dracomachie}}
 
             </ol>
 
         </div>
 
-        <div class="column">
+        <div class="options-group">
 
-            <div class="group">
-                <span>{{localize "NEPH5E.mondeProfane"}}</span>
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.selenim"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.vecus" name="system.options.vecus" value=system.options.vecus}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.noyau" name="system.options.selenim" value=system.options.selenim}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnations" name="system.options.incarnations" value=system.options.incarnations}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.necromancie.science" name="system.options.necromancie" value=system.options.necromancie}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.combat" name="system.options.combat" value=system.options.combat}}
-
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.simulacre" name="system.options.simulacre" value=system.options.simulacre}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.conjuration.science" name="system.options.conjuration" value=system.options.conjuration}}
 
             </ol>
 
-            <div class="group">
-                <span>{{localize "NEPH5E.mondeOcculte"}}</span>
+        </div>
+
+        <div class="options-group">
+
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.arcanesMineurs"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.plansSubtils" name="system.options.akasha" value=system.options.akasha}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.baton.baton" name="system.options.baton" value=system.options.baton}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.fraternites" name="system.options.fraternites" value=system.options.fraternites}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.coupe.coupe" name="system.options.coupe" value=system.options.coupe}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.atlanteide" name="system.options.atlanteide" value=system.options.atlanteide}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.denier.denier" name="system.options.denier" value=system.options.denier}}
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.epee.epee" name="system.options.epee" value=system.options.epee}}
 
             </ol>
 
-            <div class="group">
-                <span>{{localize "NEPH5E.affichage"}}</span>
+        </div>
+
+    </div>
+
+    <div class="options-column">
+
+        <div class="options-group">
+
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.mondeProfane"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.vecus" name="system.options.vecus" value=system.options.vecus}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.incarnations" name="system.options.incarnations" value=system.options.incarnations}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.combat" name="system.options.combat" value=system.options.combat}}
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.simulacre" name="system.options.simulacre" value=system.options.simulacre}}
 
             </ol>
 
-            <div class="group">
-                <span>{{localize "NEPH5E.sciencesOccultes"}}</span>
+        </div>
+
+        <div class="options-group">
+
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.mondeOcculte"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.plansSubtils" name="system.options.akasha" value=system.options.akasha}}
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.fraternites" name="system.options.fraternites" value=system.options.fraternites}}
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.atlanteide" name="system.options.atlanteide" value=system.options.atlanteide}}
+
+            </ol>
+
+        </div>
+
+        <div class="options-group">
+
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
+
+            </div>
+
+            <ol class="options-list">
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+
+            </ol>
+
+        </div>
+
+        <div class="options-group">
+
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.sciencesOccultes"}}</span>
+
+            </div>
+
+            <ol class="options-list">
+
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
 
             </ol>
 
@@ -118,31 +185,47 @@
 
 {{else}}
 
-    <div class="columns">
+    <div class="options-column">
 
-        <div class="column">
+        <div class="options-group">
 
-            <div class="group">
-                <span>{{localize "NEPH5E.affichage"}}</span>
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
 
             </ol>
 
-            <div class="group">
-                <span>{{localize "NEPH5E.sciencesOccultes"}}</span>
+        </div>
+
+        <div class="options-group">
+
+            <div class="options-header">
+
+                <img class="options-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="options-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <span class="options-name">{{localize "NEPH5E.sciencesOccultes"}}</span>
+
             </div>
 
-            <ol class="item-list">
+            <ol class="options-list">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
+                {{> "systems/neph5e/templates/actor/parts/check.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
 
             </ol>
 
@@ -259,3 +342,4 @@
         data-dtype="Boolean"/>
 
 {{/if}}
+</div>
