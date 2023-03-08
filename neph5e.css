@@ -931,9 +931,6 @@
   margin-top: 10px;
   font-family: 'AJensonPro';
   font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
 }
 .actor-root .article .article-body .options .options-column .options-group .options-header {
   display: flex;
@@ -941,7 +938,7 @@
   position: relative;
   font-family: 'AJensonPro';
   font-size: 21px;
-  margin-top: 30px;
+  margin-top: 15px;
   margin-bottom: -10px;
 }
 .actor-root .article .article-body .options .options-column .options-group .options-header .options-puce {
@@ -971,6 +968,23 @@
 .actor-root .article .article-body .options .options-column .options-group .options-list .option {
   display: flex;
   flex-direction: row;
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox {
+  font-style: italic;
+  margin-left: 22px;
+  margin-right: 20px;
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox .checked {
+  display: none;
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
 }
 .actor-root .article .effectif .header {
   display: flex;

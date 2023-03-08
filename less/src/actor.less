@@ -785,9 +785,6 @@
                         margin-top: 10px;
                         font-family: 'AJensonPro';
                         font-size: 20px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
 
                         .options-header {
                             display: flex;
@@ -795,7 +792,7 @@
                             position: relative;
                             font-family: 'AJensonPro';
                             font-size: 21px;
-                            margin-top: 30px;
+                            margin-top: 15px;
                             margin-bottom: -10px;
 
                             .options-puce {
@@ -829,6 +826,31 @@
                             .option {
                                 display: flex;
                                 flex-direction: row;
+
+                                .option-checkbox {
+                                    font-style: italic;
+                                    margin-left: 22px;
+                                    margin-right: 20px;
+                                
+                                    input[type="checkbox"] {
+                                        display:none;
+                                    }
+                                
+                                    .checked {
+                                        display: none;
+                                    }
+                                
+                                    input[type="checkbox"]:checked ~ .checked {
+                                        display: inline-block;
+                                    }
+                                     
+                                    input[type="checkbox"]:checked ~ .unchecked {
+                                        display: none;
+                                    }
+                                
+                                }
+
+
                             }
 
                         }
