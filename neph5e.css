@@ -973,6 +973,8 @@
   font-style: italic;
   margin-left: 22px;
   margin-right: 20px;
+  font-size: 11px;
+  padding-top: 3px;
 }
 .actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"] {
   display: none;
