@@ -988,6 +988,9 @@
 .actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
+.actor-root .article .article-body .options .options-column .options-group .options-list .option:hover {
+  text-shadow: 0px 0px 1px black;
+}
 .actor-root .article .effectif .header {
   display: flex;
   flex-direction: row;
