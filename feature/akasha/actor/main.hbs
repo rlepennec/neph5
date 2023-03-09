@@ -9,16 +9,9 @@
             <img class="akasha-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
             <span class="akasha-name">{{localize "NEPH5E.akasha"}}</span>
-{{log (not actor.system.akasha.nef.active)}}
-{{#if (not actor.system.akasha.nef.active)}}
-<label class="vaisseau disabled" data-type="nef">{{localize "NEPH5E.nef"}}</label>
-{{else}}
-<label class="vaisseau" data-type="nef">{{localize "NEPH5E.nef"}}</label>
-{{/if}}
 
-<!--
             <label class="vaisseau {{#if (not actor.system.akasha.nef.active)}}disabled{{/if}}" data-type="nef">{{localize "NEPH5E.nef"}}</label>
--->
+            
             <input
                 name="actor.system.akasha.nef.active"
                 type="hidden"
