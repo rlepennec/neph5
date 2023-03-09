@@ -100,9 +100,8 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
 
-
-
-
+        // Akasha
+        html.find('div[data-tab="akasha"] .vaisseau').click(this._onToggleVaisseau.bind(this));
 
 
         
@@ -738,6 +737,18 @@ export class FigureSheet extends HistoricalSheet {
             default:
                 throw new Error("Status " + item.system.status + " not implemented");
         }
+    }
+
+
+    /**
+     * Activate or deactivate the vaisseau for akasha.
+     * @param event The click event.
+     */
+    async _onToggleVaisseau(event) {
+        event.preventDefault();
+        const vaisseau = $(event.currentTarget).closest('.vaisseau').data('type');
+        const activated = this.actor.system.akasha[vaisseau].active;
+        await this.actor.update({ ['system.akasha.' + vaisseau + ".active"]: !activated });
     }
 
 }
