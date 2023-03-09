@@ -538,118 +538,119 @@
                             top: 2px;
                             width: calc(100% - 65px);
                         }
+
+                        .vaisseau {
+                            position: absolute;
+                            top: 2px;
+                            right: 30px;
+                        }
+
+                        .vaisseau.disabled {
+                            color: #a1a1a1;
+                        }
+
+                        .vaisseau:hover {
+                            text-shadow: 0px 0px 1px black;
+                        }
+
                     }
 
-                    .akasha-body {
+                    .akasha-directions {
+                        position: relative;
+                        margin-top: 80px;
                         font-family: 'AJensonPro';
                         font-size: 17px;
 
-                        .akasha-directions {
-                            position: relative;
-                            margin-top: 80px;
+                        .cercle {
+                            position: absolute;
+                            border: none;
+                            width: 350px;
+                            transform: translate(25px, 0px);
+                        }
 
-                            .cercle {
-                                position: absolute;
+                        .outils {
+                            position: absolute;
+                            border: none;
+                            width: 250px;
+                            margin-top: 20px;
+                            transform: translate(75px, 47px) rotate(30deg);
+                        }
+
+                        div {
+                            position: absolute;
+                            width: 200px;
+
+                            img {
                                 border: none;
-                                width: 350px;
-                                transform: translate(25px, 0px);
+                                width: 60px;
+                                display: hidden;
                             }
 
-                            .outils {
-                                position: absolute;
-                                border: none;
-                                width: 250px;
-                                margin-top: 20px;
-                                transform: translate(75px, 47px) rotate(30deg);
+                            input {
+                                width: 45px;
+                                height: 45px;
+                                text-align: center;
+                                font-weight: bold;
+                                border-radius: 50%;
+                                transform: translate(-55px, -27px);
                             }
 
-                            div {
-                                position: absolute;
-                                width: 200px;
-
-                                img {
-                                    border: none;
-                                    width: 60px;
-                                    display: hidden;
-                                }
-
-                                input {
-                                    width: 45px;
-                                    height: 45px;
-                                    text-align: center;
-                                    font-weight: bold;
-                                    border-radius: 50%;
-                                    transform: translate(-55px, -27px);
-                                }
-
-                                label {
-                                    width: 150px;
-                                }
-
+                            input:hover {
+                                text-shadow: 0px 0px 1px black;
                             }
 
-                            .zenith {
-                                transform: translate(169px, -20px);
-                                >label {
-                                    position: absolute;
-                                    transform: translate(-105px, -20px);
-                                }
-                            }
-
-                            .orient {
-                                transform: translate(310px, 60px);
-                                >label {
-                                    position: absolute;
-                                    transform: translate(-104px, -22px);
-                                }
-                            }
-
-                            .nadir {
-                                transform: translate(167px, 305px);
-                                >label {
-                                    position: absolute;
-                                    transform: translate(-104px, 70px);
-                                }
-                            }
-
-                            .occident {
-                                transform: translate(25px, 226px);
-                                >label {
-                                    position: absolute;
-                                    transform: translate(-116px, 70px);
-                                }
-                            }
-
-                            .midi {
-                                transform: translate(28px, 62px);
-                                >label {
-                                    position: absolute;
-                                    transform: translate(-99px, -20px);
-                                }
-                            }
-
-                            .septentrion {
-                                transform: translate(307px, 225px);
-                                >label {
-                                    position: absolute;
-                                    transform: translate(-122px, 70px);
-                                }
+                            label {
+                                width: 150px;
                             }
 
                         }
 
-                        .vaisseau {
-                            position: relative;
-                            text-align: right;
-                            font-family: 'AJensonPro';
-                            font-size: 21px;
-                            margin-top: 10px;
-                            margin-right: 25px;
-
-                            .disabled {
-                                color: #a1a1a1;
+                        .zenith {
+                            transform: translate(169px, -20px);
+                            >label {
+                                position: absolute;
+                                transform: translate(-105px, -20px);
                             }
+                        }
 
+                        .orient {
+                            transform: translate(310px, 60px);
+                            >label {
+                                position: absolute;
+                                transform: translate(-104px, -22px);
+                            }
+                        }
+
+                        .nadir {
+                            transform: translate(167px, 305px);
+                            >label {
+                                position: absolute;
+                                transform: translate(-104px, 70px);
+                            }
+                        }
+
+                        .occident {
+                            transform: translate(25px, 226px);
+                            >label {
+                                position: absolute;
+                                transform: translate(-116px, 70px);
+                            }
+                        }
+
+                        .midi {
+                            transform: translate(28px, 62px);
+                            >label {
+                                position: absolute;
+                                transform: translate(-99px, -20px);
+                            }
+                        }
+
+                        .septentrion {
+                            transform: translate(307px, 225px);
+                            >label {
+                                position: absolute;
+                                transform: translate(-122px, 70px);
+                            }
                         }
 
                     }
