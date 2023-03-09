@@ -639,32 +639,15 @@
                         }
 
                         .vaisseau {
-                            display: flex;
-                            flex-direction: row;
+                            position: relative;
+                            text-align: right;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 10px;
+                            margin-right: 25px;
 
-                            .vaisseau-checkbox {
-                                font-style: italic;
-                                margin-left: 22px;
-                                margin-right: 20px;
-                                font-size: 11px;
-                                padding-top: 3px;
-                            
-                                input[type="checkbox"] {
-                                    display:none;
-                                }
-                            
-                                .checked {
-                                    display: none;
-                                }
-                            
-                                input[type="checkbox"]:checked ~ .checked {
-                                    display: inline-block;
-                                }
-                                 
-                                input[type="checkbox"]:checked ~ .unchecked {
-                                    display: none;
-                                }
-                            
+                            .disabled {
+                                color: #a1a1a1;
                             }
 
                         }

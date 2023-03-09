@@ -15,16 +15,15 @@
         <div class="akasha-body">
 
             <div class="vaisseau">
-                <label class="vaisseau-checkbox">
-                    <input
-                        name="system.akasha.nef.active"
-                        type="checkbox"
-                        {{#if actor.system.akasha.nef.active}}checked{{/if}}
-                        data-dtype="Boolean"/>
-                    <i class="far fa-circle unchecked"></i>
-                    <i class="fas fa-circle checked"></i>
-                </label>
-                <label>{{localize "NEPH5E.nef"}}</label>
+
+                <label {{#if actor.system.akasha.nef.active}}class="disabled"{{/if}}>{{localize "NEPH5E.nef"}}</label>
+
+                <input
+                    name="actor.system.akasha.nef.active"
+                    type="hidden"
+                    value="{{actor.system.akasha.nef.active}}"
+                    data-dtype="Boolean"/>
+
             </div>
 
             <div class="akasha-directions">
@@ -114,16 +113,15 @@
         <div class="akasha-body">
 
             <div class="vaisseau">
-                <label class="vaisseau-checkbox">
-                    <input
-                        name="system.akasha.barge.active"
-                        type="checkbox"
-                        {{#if actor.system.akasha.barge.active}}checked{{/if}}
-                        data-dtype="Boolean"/>
-                    <i class="far fa-circle unchecked"></i>
-                    <i class="fas fa-circle checked"></i>
-                </label>
-                <label>{{localize "NEPH5E.barge"}}</label>
+
+                <label {{#if actor.system.akasha.barge.active}}class="disabled"{{/if}}>{{localize "NEPH5E.barge"}}</label>
+
+                <input
+                    name="actor.system.akasha.barge.active"
+                    type="hidden"
+                    value="{{actor.system.akasha.barge.active}}"
+                    data-dtype="Boolean"/>
+
             </div>
 
             <div class="akasha-directions">

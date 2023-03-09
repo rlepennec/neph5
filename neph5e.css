@@ -781,27 +781,15 @@
   transform: translate(-122px, 70px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau {
-  display: flex;
-  flex-direction: row;
+  position: relative;
+  text-align: right;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 10px;
+  margin-right: 25px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox {
-  font-style: italic;
-  margin-left: 22px;
-  margin-right: 20px;
-  font-size: 11px;
-  padding-top: 3px;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"] {
-  display: none;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox .checked {
-  display: none;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"]:checked ~ .checked {
-  display: inline-block;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"]:checked ~ .unchecked {
-  display: none;
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .disabled {
+  color: #a1a1a1;
 }
 .actor-root .article .article-body .vecus .vecus-header {
   display: flex;
