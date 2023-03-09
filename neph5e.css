@@ -698,8 +698,8 @@
   width: calc(100% - 65px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body {
-  position: relative;
-  text-align: center;
+  font-family: 'AJensonPro';
+  font-size: 17px;
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau {
   display: flex;
@@ -725,20 +725,24 @@
   display: none;
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions {
-  margin-top: 150px;
+  position: relative;
+  margin-top: 80px;
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .cercle {
+  position: absolute;
   border: none;
-  width: 400px;
-  transform: translate(0px, -800px);
+  width: 350px;
+  transform: translate(25px, 0px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .outils {
+  position: absolute;
   border: none;
   width: 250px;
   margin-top: 20px;
-  transform: rotate(30deg);
+  transform: translate(75px, 47px) rotate(30deg);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions div {
+  position: absolute;
   width: 200px;
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions div img {
@@ -758,46 +762,46 @@
   width: 150px;
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .zenith {
-  transform: translate(126px, -310px);
+  transform: translate(169px, -20px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .zenith > label {
   position: absolute;
-  transform: translate(-150px, -20px);
+  transform: translate(-105px, -20px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .orient {
-  transform: translate(265px, -315px);
+  transform: translate(310px, 60px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .orient > label {
   position: absolute;
-  transform: translate(-155px, -22px);
+  transform: translate(-104px, -22px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .nadir {
-  transform: translate(125px, -150px);
+  transform: translate(167px, 305px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .nadir > label {
   position: absolute;
-  transform: translate(-150px, 70px);
+  transform: translate(-104px, 70px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .occident {
-  transform: translate(-20px, -325px);
+  transform: translate(25px, 226px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .occident > label {
   position: absolute;
-  transform: translate(-150px, 70px);
+  transform: translate(-116px, 70px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .midi {
-  transform: translate(-20px, -570px);
+  transform: translate(28px, 62px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .midi > label {
   position: absolute;
-  transform: translate(-150px, -20px);
+  transform: translate(-99px, -20px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .septentrion {
-  transform: translate(265px, -490px);
+  transform: translate(307px, 225px);
 }
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .septentrion > label {
   position: absolute;
-  transform: translate(-150px, 70px);
+  transform: translate(-122px, 70px);
 }
 .actor-root .article .article-body .vecus .vecus-header {
   display: flex;
