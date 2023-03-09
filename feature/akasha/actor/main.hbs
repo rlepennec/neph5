@@ -1,54 +1,200 @@
-<div class="content">
+<div class="akasha">
 
-    <div class="column">
+    <div class="akasha-column">
 
-        <div class="sectionTitleUnderline">
-            <span>{{localize "NEPH5E.akasha"}}</span>
+        <div class="akasha-header">
+
+            <img class="akasha-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+            <img class="akasha-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+            <span class="akasha-name">{{localize "NEPH5E.akasha"}}</span>
+
         </div>
 
-        <ol class="item-list">
+        <div class="akasha-body">
 
-            {{> "systems/neph5e/feature/akasha/actor/vaisseau.hbs" name="NEPH5E.nef" input-name="system.akasha.nef.active" input-value=actor.system.akasha.nef.active}}
+            <div class="vaisseau">
+                <label class="vaisseau-checkbox">
+                    <input
+                        name="system.akasha.nef.active"
+                        type="checkbox"
+                        {{#if actor.system.akasha.nef.active}}checked{{/if}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+                <label>{{localize "NEPH5E.nef"}}</label>
+            </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Septentrion" input-name="system.akasha.boussole.septentrion" input-value=actor.system.akasha.boussole.septentrion}}
+            <div class="akasha-directions">
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Orient" input-name="system.akasha.boussole.orient" input-value=actor.system.akasha.boussole.orient}}
+                <img class="outils" src="systems/neph5e/assets/core/boussole.webp"/>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Midi" input-name="system.akasha.boussole.midi" input-value=actor.system.akasha.boussole.midi}}
+                <div class="zenith">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.boussole.zenith"
+                        type="text"
+                        value="{{system.akasha.boussole.zenith}}"
+                        data-dtype="Number"/>
+                    <label>Zenith +{{getLevel actor.system.akasha.boussole.zenith}}</label>
+                </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Occident" input-name="system.akasha.boussole.occident" input-value=actor.system.akasha.boussole.occident}}
+                <div class="orient">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.boussole.orient"
+                        type="text"
+                        value="{{system.akasha.boussole.orient}}"
+                        data-dtype="Number"/>
+                    <label>Orient +{{getLevel actor.system.akasha.boussole.orient}}</label>
+                </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Zenith" input-name="system.akasha.boussole.zenith" input-value=actor.system.akasha.boussole.zenith}}
+                <div class="nadir">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.boussole.nadir"
+                        type="text"
+                        value="{{system.akasha.boussole.nadir}}"
+                        data-dtype="Number"/>
+                    <label>Nadir +{{getLevel actor.system.akasha.boussole.nadir}}</label>
+                </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Nadir" input-name="system.akasha.boussole.nadir" input-value=actor.system.akasha.boussole.nadir}}
+                <div class="occident">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.boussole.occident"
+                        type="text"
+                        value="{{system.akasha.boussole.occident}}"
+                        data-dtype="Number"/>
+                    <label>Occident +{{getLevel actor.system.akasha.boussole.occident}}</label>
+                </div>
 
-        </ol>
+                <div class="midi">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.boussole.midi"
+                        type="text"
+                        value="{{system.akasha.boussole.midi}}"
+                        data-dtype="Number"/>
+                    <label>Midi +{{getLevel actor.system.akasha.boussole.midi}}</label>
+                </div>
+
+                <div class="septentrion">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.boussole.septentrion"
+                        type="text"
+                        value="{{system.akasha.boussole.septentrion}}"
+                        data-dtype="Number"/>
+                    <label>Septentrion +{{getLevel actor.system.akasha.boussole.septentrion}}</label>
+                </div>
+
+                <img class="cercle" src="systems/neph5e/assets/core/circle3.webp"/>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <div class="column">
+    <div class="akasha-column">
 
-        <div class="sectionTitleUnderline">
-            <span>{{localize "NEPH5E.antiTerre"}}</span>
+        <div class="akasha-header">
+
+            <img class="akasha-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+            <img class="akasha-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+            <span class="akasha-name">{{localize "NEPH5E.antiTerre"}}</span>
+
         </div>
 
-        <ol class="item-list">
+        <div class="akasha-body">
 
-            {{> "systems/neph5e/feature/akasha/actor/vaisseau.hbs" name="NEPH5E.barge" input-name="system.akasha.barge.active" input-value=actor.system.akasha.barge.active}}
+            <div class="vaisseau">
+                <label class="vaisseau-checkbox">
+                    <input
+                        name="system.akasha.barge.active"
+                        type="checkbox"
+                        {{#if actor.system.akasha.barge.active}}checked{{/if}}
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+                <label>{{localize "NEPH5E.barge"}}</label>
+            </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Septentrion" input-name="system.akasha.compas.septentrion" input-value=actor.system.akasha.compas.septentrion}}
+            <div class="akasha-directions">
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Orient" input-name="system.akasha.compas.orient" input-value=actor.system.akasha.compas.orient}}
+                <img class="outils" src="systems/neph5e/assets/core/compas.webp"/>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Midi" input-name="system.akasha.compas.midi" input-value=actor.system.akasha.compas.midi}}
+                <div class="zenith">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.compas.zenith"
+                        type="text"
+                        value="{{system.akasha.compas.zenith}}"
+                        data-dtype="Number"/>
+                    <label>Zenith +{{getLevel actor.system.akasha.compas.zenith}}</label>
+                </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Occident" input-name="system.akasha.compas.occident" input-value=actor.system.akasha.compas.occident}}
+                <div class="orient">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.compas.orient"
+                        type="text"
+                        value="{{system.akasha.compas.orient}}"
+                        data-dtype="Number"/>
+                    <label>Orient +{{getLevel actor.system.akasha.compas.orient}}</label>
+                </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Zenith" input-name="system.akasha.compas.zenith" input-value=actor.system.akasha.compas.zenith}}
+                <div class="nadir">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.compas.nadir"
+                        type="text"
+                        value="{{system.akasha.compas.nadir}}"
+                        data-dtype="Number"/>
+                    <label>Nadir +{{getLevel actor.system.akasha.compas.nadir}}</label>
+                </div>
 
-            {{> "systems/neph5e/feature/akasha/actor/direction.hbs" name="Nadir" input-name="system.akasha.compas.nadir" input-value=actor.system.akasha.compas.nadir}}
+                <div class="occident">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.compas.occident"
+                        type="text"
+                        value="{{system.akasha.compas.occident}}"
+                        data-dtype="Number"/>
+                    <label>Occident +{{getLevel actor.system.akasha.compas.occident}}</label>
+                </div>
 
-        </ol>
+                <div class="midi">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.compas.midi"
+                        type="text"
+                        value="{{system.akasha.compas.midi}}"
+                        data-dtype="Number"/>
+                    <label>Midi +{{getLevel actor.system.akasha.compas.midi}}</label>
+                </div>
+
+                <div class="septentrion">
+                    <img src="systems/neph5e/assets/core/circle2.webp"/>
+                    <input
+                        name="system.akasha.compas.septentrion"
+                        type="text"
+                        value="{{system.akasha.compas.septentrion}}"
+                        data-dtype="Number"/>
+                    <label>Septentrion +{{getLevel actor.system.akasha.compas.septentrion}}</label>
+                </div>
+
+                <img class="cercle" src="systems/neph5e/assets/core/circle3.webp"/>
+
+            </div>
+
+        </div>
 
     </div>
 
