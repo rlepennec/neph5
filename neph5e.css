@@ -701,29 +701,6 @@
   font-family: 'AJensonPro';
   font-size: 17px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau {
-  display: flex;
-  flex-direction: row;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox {
-  font-style: italic;
-  margin-left: 22px;
-  margin-right: 20px;
-  font-size: 11px;
-  padding-top: 3px;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"] {
-  display: none;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox .checked {
-  display: none;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"]:checked ~ .checked {
-  display: inline-block;
-}
-.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"]:checked ~ .unchecked {
-  display: none;
-}
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions {
   position: relative;
   margin-top: 80px;
@@ -802,6 +779,29 @@
 .actor-root .article .article-body .akasha .akasha-column .akasha-body .akasha-directions .septentrion > label {
   position: absolute;
   transform: translate(-122px, 70px);
+}
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox {
+  font-style: italic;
+  margin-left: 22px;
+  margin-right: 20px;
+  font-size: 11px;
+  padding-top: 3px;
+}
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox .checked {
+  display: none;
+}
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor-root .article .article-body .akasha .akasha-column .akasha-body .vaisseau .vaisseau-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
 }
 .actor-root .article .article-body .vecus .vecus-header {
   display: flex;

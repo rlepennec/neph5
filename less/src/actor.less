@@ -544,37 +544,6 @@
                         font-family: 'AJensonPro';
                         font-size: 17px;
 
-                        .vaisseau {
-                            display: flex;
-                            flex-direction: row;
-
-                            .vaisseau-checkbox {
-                                font-style: italic;
-                                margin-left: 22px;
-                                margin-right: 20px;
-                                font-size: 11px;
-                                padding-top: 3px;
-                            
-                                input[type="checkbox"] {
-                                    display:none;
-                                }
-                            
-                                .checked {
-                                    display: none;
-                                }
-                            
-                                input[type="checkbox"]:checked ~ .checked {
-                                    display: inline-block;
-                                }
-                                 
-                                input[type="checkbox"]:checked ~ .unchecked {
-                                    display: none;
-                                }
-                            
-                            }
-
-                        }
-
                         .akasha-directions {
                             position: relative;
                             margin-top: 80px;
@@ -665,6 +634,37 @@
                                     position: absolute;
                                     transform: translate(-122px, 70px);
                                 }
+                            }
+
+                        }
+
+                        .vaisseau {
+                            display: flex;
+                            flex-direction: row;
+
+                            .vaisseau-checkbox {
+                                font-style: italic;
+                                margin-left: 22px;
+                                margin-right: 20px;
+                                font-size: 11px;
+                                padding-top: 3px;
+                            
+                                input[type="checkbox"] {
+                                    display:none;
+                                }
+                            
+                                .checked {
+                                    display: none;
+                                }
+                            
+                                input[type="checkbox"]:checked ~ .checked {
+                                    display: inline-block;
+                                }
+                                 
+                                input[type="checkbox"]:checked ~ .unchecked {
+                                    display: none;
+                                }
+                            
                             }
 
                         }
