@@ -77,6 +77,8 @@
 
                     <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
 
+                    <li class="define">Période courante</li>
+
                 </ul>
 
             </div>
@@ -86,10 +88,10 @@
                  style="display: none;"
                  {{/unless}}>
     <!--
-                <ol class="periode-members">
+                <ol class="members">
 
                     {{#each periode.embedded.actors as |actor|}}
-                    <li class="periode-member">
+                    <li class="member">
 
 
 
