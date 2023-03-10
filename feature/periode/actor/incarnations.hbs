@@ -136,14 +136,21 @@
 
                 </ol>
 
-                <ol class="periode-all-focus">
+                <ol class="periode-focus">
 
                     {{#each periode.embedded.items as |item|}}
                     {{#if (isNull item.degre)}}
-                    <li class="periode-focus">
-                        <div class="periode-focus-definition">
-                            <i class="fas fa-scroll"></i>
-                            <label class="periode-focus-name">{{item.name}}</label>
+                    <li class="focus">
+                        <div class="focus-definition">
+
+                            <a><i class="fas fa-scroll"></i></a>
+
+                            <label class="focus-name">{{item.name}}</label>
+
+                            {{#if (eq ../../editedPeriode ../original.sid)}}
+                            <a class="delete"><i class="fas fa-trash"></i></a>
+                            {{/if}}
+
                         </div>
                     </li>
                     {{/if}}
