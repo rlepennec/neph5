@@ -75,6 +75,10 @@
 
                 <img class="periode-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
+                {{#if (eq ../editedPeriode periode.original.sid)}}                
+                <a class="periode-delete"><i class="fas fa-trash"></i></a>
+                {{/if}}
+
                 <label class="periode-name {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <ul class="periode-menu">
@@ -86,10 +90,6 @@
                     <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
 
                 </ul>
-
-                {{#if (eq ../editedPeriode periode.original.sid)}}                
-                <a class="delete"><i class="fas fa-trash"></i></a>
-                {{/if}}
 
             </div>
 
