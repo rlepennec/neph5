@@ -149,7 +149,7 @@ export class HistoricalSheet extends BaseSheet {
         event.preventDefault();
         const root = $(event.currentTarget).closest('.item');
         const sid = root.data('sid');
-        const node = root.find('.incarnations-periode-body').first();
+        const node = root.find('.periode-body').first();
         if (node.css('display') !== 'none') {
             this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
             node.attr("style", "display: none;");

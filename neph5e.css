@@ -862,27 +862,27 @@
 .actor-root .article .article-body .vecus .all-vecus .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode {
+.actor-root .article .article-body .incarnations .periodes .periode {
   display: flex;
   flex-direction: column;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .disabled {
+.actor-root .article .article-body .incarnations .periodes .periode .disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header {
   display: flex;
   flex-direction: row;
   position: relative;
   font-family: 'AJensonPro';
   font-size: 21px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-puce {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-separator {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -890,14 +890,14 @@
   top: 32px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-name {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
   height: 33px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu {
   position: absolute;
   left: 70px;
   top: 25px;
@@ -912,7 +912,7 @@
   box-shadow: 3px 3px 3px #999;
   border: solid 1px #333A40;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu li {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu li {
   max-height: 0;
   overflow: hidden;
   transition: all 0.5s;
@@ -922,27 +922,27 @@
   border: none;
   margin: 0;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-name:hover + .incarnations-periode-menu {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name:hover + .periode-menu {
   display: block;
   z-index: 99;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-name:hover + .incarnations-periode-menu li {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name:hover + .periode-menu li {
   max-height: 15em;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover {
   display: block;
   z-index: 99;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover li {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li {
   max-height: 15em;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover li:hover {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .delete {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .delete {
   right: -20px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus {
   column-count: 3;
   column-rule-style: solid;
   column-rule-width: thin;
@@ -952,49 +952,49 @@
   padding: 10px;
   border-radius: 10px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus .vecu {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus .vecu .definition {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus .vecu .definition .degre {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .degre {
   flex: 0 0 40px;
   border: none;
   text-align: center;
   margin-right: 10px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus .vecu .definition .name {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .name {
   flex: 1 1 auto;
   text-align: left;
   padding-top: 4px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus .vecu .definition .delete {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .delete {
   flex: 0 0 30px;
   border: none;
   text-align: center;
   font-size: 13px;
   padding-top: 6px;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .vecus .vecu:hover {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-all-focus .incarnations-periode-focus {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-all-focus .periode-focus {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
   list-style: none;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-all-focus .incarnations-periode-focus .incarnations-periode-focus-definition {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-all-focus .periode-focus .periode-focus-definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-all-focus .incarnations-periode-focus .incarnations-periode-focus-definition .incarnations-periode-focus-name {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-all-focus .periode-focus .periode-focus-definition .periode-focus-name {
   flex: 1 1 auto;
   text-align: left;
 }

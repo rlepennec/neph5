@@ -65,19 +65,19 @@
 
     {{#each actor.periodes as |periode|}}
     {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
-    <ol class="incarnations-periodes">
+    <ol class="periodes">
 
-        <il class="incarnations-periode item" data-sid="{{periode.original.sid}}">
+        <il class="periode item" data-sid="{{periode.original.sid}}">
 
-            <div class="incarnations-periode-header">
+            <div class="periode-header">
 
-                <img class="incarnations-periode-puce" src="systems/neph5e/assets/core/puce.webp"/>
+                <img class="periode-puce" src="systems/neph5e/assets/core/puce.webp"/>
 
-                <img class="incarnations-periode-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+                <img class="periode-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
-                <label class="incarnations-periode-name {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label class="periode-name {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
-                <ul class="incarnations-periode-menu">
+                <ul class="periode-menu">
 
                     <li class="display">Détails</li>
 
@@ -93,15 +93,15 @@
 
             </div>
 
-            <div class="incarnations-periode-body"
+            <div class="periode-body"
                  {{#unless (or (includes ../elapsedPeriodes periode.original.sid) (eq ../editedPeriode periode.original.sid))}}
                  style="display: none;"
                  {{/unless}}>
     <!--
-                <ol class="incarnations-periode-members">
+                <ol class="periode-members">
 
                     {{#each periode.embedded.actors as |actor|}}
-                    <li class="incarnations-periode-member">
+                    <li class="periode-member">
 
 
 
@@ -136,14 +136,14 @@
 
                 </ol>
 
-                <ol class="incarnations-periode-all-focus">
+                <ol class="periode-all-focus">
 
                     {{#each periode.embedded.items as |item|}}
                     {{#if (isNull item.degre)}}
-                    <li class="incarnations-periode-focus">
-                        <div class="incarnations-periode-focus-definition">
+                    <li class="periode-focus">
+                        <div class="periode-focus-definition">
                             <i class="fas fa-scroll"></i>
-                            <label class="incarnations-periode-focus-name">{{item.name}}</label>
+                            <label class="periode-focus-name">{{item.name}}</label>
                         </div>
                     </li>
                     {{/if}}
