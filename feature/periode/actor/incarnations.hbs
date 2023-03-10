@@ -113,7 +113,7 @@
                                 value="{{item.degre}}"
                                 data-dtype="Number"/>
 
-                            <label class="name">{{item.name}}</label>
+                            <label class="name open">{{item.name}}</label>
 
                             {{#if (eq ../../editedPeriode ../original.sid)}}                
                             <a class="delete"><i class="fas fa-trash"></i></a>
@@ -130,12 +130,12 @@
 
                     {{#each periode.embedded.items as |item|}}
                     {{#if (isNull item.degre)}}
-                    <li class="focus">
+                    <li class="focus item" data-id="{{item.id}}">
                         <div class="focus-definition">
 
                             <a><i class="fas fa-scroll"></i></a>
 
-                            <label class="focus-name">{{item.name}}</label>
+                            <label class="focus-name open">{{item.name}}</label>
 
                             {{#if (eq ../../editedPeriode ../original.sid)}}
                             <a class="delete"><i class="fas fa-trash"></i></a>
