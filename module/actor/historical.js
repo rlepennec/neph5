@@ -36,20 +36,7 @@ export class HistoricalSheet extends BaseSheet {
         }
     }
 
-    /**
-     * Set the degre in the linked item.
-     * @param event The click event.
-     */
-    async _onChangeDegre(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-degre").data("id");
-        const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".change-degre").val();
-        const system = duplicate(item.system);
-        const converted = parseInt(value);
-        system.degre = isNaN(converted) ? 0 : converted;
-        await item.update({ ['system']: system });
-    }
+
 
     /**
      * Edit or unedit the specified periode.
@@ -93,16 +80,7 @@ export class HistoricalSheet extends BaseSheet {
         await this.actor.setCurrentPeriode(feature.sid);
     }
 
-    /**
-     * Show or hide the specified feature.
-     * @param event The click event.
-     */
-    async _onDisplayPeriode(event) {
-        event.preventDefault();
-        const node = $(event.currentTarget).parent().next();
-        const id = node.data('id');
-        await this._updateDisplayPeriode(node, id);
-    }
+
 
 
 
@@ -116,20 +94,6 @@ export class HistoricalSheet extends BaseSheet {
         await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
         this.elapsedPeriodes = this._initialElapsedPeriodes();
         await this.render(true);
-    }
-
-    /**
-     * @param id   The identifier of the periode to display or to show.
-     * @param node The node on which to update the periode.
-     */
-    async _updateDisplayPeriode(node, id) {
-        if (node.css('display') !== 'none') {
-            this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== id);
-            node.attr("style", "display: none;");
-        } else {
-            this.elapsedPeriodes.push(id);
-            node.removeAttr("style");
-        }
     }
 
     /**
@@ -162,6 +126,8 @@ export class HistoricalSheet extends BaseSheet {
     }
 
 
+    //////
+   
     /**
      * Active or deactive the specified periode.
      * @param event The click event. 
@@ -173,5 +139,37 @@ export class HistoricalSheet extends BaseSheet {
         await new AbstractRollBuilder(this.actor).withItem(item).create().toggleActive();
     }
 
+    /**
+     * Show or hide the specified periode.
+     * @param event The click event.
+     */
+    async _onDisplayPeriode(event) {
+        event.preventDefault();
+        const root = $(event.currentTarget).closest('.item');
+        const sid = root.data('sid');
+        const node = root.find('.incarnations-periode-body').first();
+        if (node.css('display') !== 'none') {
+            this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
+            node.attr("style", "display: none;");
+        } else {
+            this.elapsedPeriodes.push(sid);
+            node.removeAttr("style");
+        }
+    }
+
+    /**
+     * Set the degre in the embedded item.
+     * @param event The click event.
+     */
+    async _onChangeDegre(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest(".item").data("id");
+        const item = this.actor.items.get(id);
+        const value = $(event.currentTarget).closest(".change-degre").val();
+        const system = duplicate(item.system);
+        const converted = parseInt(value);
+        system.degre = isNaN(converted) ? 0 : converted;
+        await item.update({ ['system']: system });
+    }
 
 }

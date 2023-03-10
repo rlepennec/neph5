@@ -840,19 +840,23 @@
   color: #a1a1a1;
 }
 .actor-root .article .article-body .vecus .all-vecus .vecu {
-  display: flex;
-  flex-direction: row;
+  display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
+  width: 100%;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-degre {
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition .vecu-degre {
   flex: 0 0 40px;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-name {
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition .vecu-name {
   flex: 1 1 auto;
   text-align: left;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-dice {
+.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition .vecu-dice {
   flex: 0 0 40px;
 }
 .actor-root .article .article-body .vecus .all-vecus .vecu:hover {
@@ -1111,6 +1115,35 @@
   max-height: 15em;
 }
 .actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover li:hover {
+  text-shadow: 0px 0px 1px black;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus {
+  column-count: 3;
+  column-rule-style: solid;
+  column-rule-width: thin;
+  column-gap: 20px;
+  column-rule-color: #c3a049;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus .incarnations-periode-vecu {
+  display: inline-block;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  width: 100%;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus .incarnations-periode-vecu .incarnations-periode-vecu-definition {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus .incarnations-periode-vecu .incarnations-periode-vecu-definition .incarnations-periode-vecu-name {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus .incarnations-periode-vecu .incarnations-periode-vecu-definition .incarnations-periode-vecu-degre {
+  flex: 0 0 40px;
+  border: none;
+  text-align: center;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus .incarnations-periode-vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .options {

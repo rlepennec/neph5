@@ -15,23 +15,27 @@
     {{#if (ne item.degre 0)}}
     <li class="vecu item macro" data-sid="{{item.sid}}">
 
-        {{#if ../../actor.system.options.degreGauche}}
-        <label class="vecu-degre">{{item.degre}}</label>
-        {{/if}}
+        <div class="vecu-definition">
 
-        <label class="vecu-name open">{{item.name}}</label>
-
-        {{#unless ../../actor.system.options.degreGauche}}
-        <label class="vecu-degre">{{item.degre}}</label>
-        {{/unless}}
-
-        <a class="vecu-dice roll">
-            {{#if (eq ../from 'figure')}}
-            <i class="fas fa-dice-d20"></i>
-            {{else}}
-            <span>+{{fraterniteBonus item.degre}}</span>
+            {{#if ../../actor.system.options.degreGauche}}
+            <label class="vecu-degre">{{item.degre}}</label>
             {{/if}}
-        </a>
+
+            <label class="vecu-name open">{{item.name}}</label>
+
+            {{#unless ../../actor.system.options.degreGauche}}
+            <label class="vecu-degre">{{item.degre}}</label>
+            {{/unless}}
+
+            <a class="vecu-dice roll">
+                {{#if (eq ../from 'figure')}}
+                <i class="fas fa-dice-d20"></i>
+                {{else}}
+                <span>+{{fraterniteBonus item.degre}}</span>
+                {{/if}}
+            </a>
+
+        </div>
 
     </li>
     {{/if}}

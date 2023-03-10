@@ -105,8 +105,8 @@ export class FigureSheet extends HistoricalSheet {
 
         // Incarnations
         html.find('div[data-tab="incarnations"] .activate').click(this._onToggleActivePeriode.bind(this));
-
-
+        html.find('div[data-tab="incarnations"] .change-degre').change(this._onChangeDegre.bind(this));
+        html.find('div[data-tab="incarnations"] .display').click(this._onDisplayPeriode.bind(this));
 
 
         // Fraternites
@@ -123,9 +123,8 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .edit-periode').click(this._onEditPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditFeature.bind(this, 'item'));
-        html.find('div[data-tab="incarnations"] .change-degre').change(this._onChangeDegre.bind(this));
-        html.find('div[data-tab="incarnations"] .active-periode').click(this._onToggleActivePeriode.bind(this));
-        html.find('div[data-tab="incarnations"] .display').click(this._onDisplayPeriode.bind(this));
+        
+        
 
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));

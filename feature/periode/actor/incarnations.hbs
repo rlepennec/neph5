@@ -79,7 +79,7 @@
 
                 <ul class="incarnations-periode-menu">
 
-                    <li>Détails</li>
+                    <li class="display">Détails</li>
 
                     <li>Editer</li>
 
@@ -90,39 +90,55 @@
                 </ul>
 
             </div>
-<!--
-            <ol class="incarnations-periode-members">
 
-                {{#each periode.embedded.actors as |actor|}}
-                <li class="incarnations-periode-member">
+            <div class="incarnations-periode-body"
+                 {{#unless (or (includes ../elapsedPeriodes periode.original.id) (eq ../editedPeriode periode.original.sid))}}
+                 style="display: none;"
+                 {{/unless}}>
+    <!--
+                <ol class="incarnations-periode-members">
 
-
-
-                </li>
-                {{/each}}
-
-            </ol>
-
-            <ol class="incarnations-periode-vecus">
-
-                <li class="incarnations-periode-vecus">
+                    {{#each periode.embedded.actors as |actor|}}
+                    <li class="incarnations-periode-member">
 
 
 
-                </li>
+                    </li>
+                    {{/each}}
 
-            </ol>
+                </ol>
+    -->
+                <ol class="incarnations-periode-vecus">
 
-            <ol class="incarnations-periode-all-focus">
+                    {{#each periode.embedded.items as |item|}}
+                    {{#unless (isNull item.degre)}}
+                    <li class="incarnations-periode-vecu item" data-id="{{item.id}}">
+                        <div class="incarnations-periode-vecu-definition">
+                            <label class="incarnations-periode-vecu-name">{{item.name}}</label>
+                            <input
+                                class="incarnations-periode-vecu-degre change-degre"
+                                type="number"
+                                value="{{item.degre}}"
+                                data-dtype="Number"/>
+                        </div>
+                    </li>
+                    {{/unless}}
+                    {{/each}}
 
-                <li class="incarnations-periode-focus">
+                </ol>
+    <!--
+                <ol class="incarnations-periode-all-focus">
+
+                    <li class="incarnations-periode-focus">
 
 
 
-                </li>
+                    </li>
+
+                </div>
+-->
 
             </div>
--->
 
         </il>
 
