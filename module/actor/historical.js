@@ -50,15 +50,7 @@ export class HistoricalSheet extends BaseSheet {
 
     }
 
-    /**
-     * Set the specified current periode.
-     * @param event The click event.
-     */
-    async _onCurrentPeriode(event) {
-        event.preventDefault();
-        const feature = this.createFeature(".item", event);
-        await this.actor.setCurrentPeriode(feature.sid);
-    }
+
 
 
 
@@ -98,6 +90,16 @@ export class HistoricalSheet extends BaseSheet {
 
     //////
    
+    /**
+     * Set the current periode.
+     * @param event The click event.
+     */
+    async _onCurrentPeriode(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        await this.actor.setCurrentPeriode(sid);
+    }
+
     /**
      * Refresh the periodes details according to the option update.
      * @param event The click event.
