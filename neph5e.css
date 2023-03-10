@@ -662,13 +662,13 @@
   flex-direction: row;
   padding-top: 20px;
 }
-.actor-root .article .article-body .akasha .akasha-column {
+.actor-root .article .article-body .akasha .column {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header {
+.actor-root .article .article-body .akasha .column .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -677,13 +677,13 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header .akasha-puce {
+.actor-root .article .article-body .akasha .column .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header .akasha-separator {
+.actor-root .article .article-body .akasha .column .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -691,52 +691,52 @@
   top: 32px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header .akasha-name {
+.actor-root .article .article-body .akasha .column .header .name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header .vaisseau {
+.actor-root .article .article-body .akasha .column .header .vaisseau {
   position: absolute;
   top: 2px;
   right: 30px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header .vaisseau.disabled {
+.actor-root .article .article-body .akasha .column .header .vaisseau.disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-header .vaisseau:hover {
+.actor-root .article .article-body .akasha .column .header .vaisseau:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions {
+.actor-root .article .article-body .akasha .column .directions {
   position: relative;
   margin-top: 80px;
   font-family: 'AJensonPro';
   font-size: 17px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .cercle {
+.actor-root .article .article-body .akasha .column .directions .cercle {
   position: absolute;
   border: none;
   width: 350px;
   transform: translate(25px, 0px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .outils {
+.actor-root .article .article-body .akasha .column .directions .outils {
   position: absolute;
   border: none;
   width: 250px;
   margin-top: 20px;
   transform: translate(75px, 47px) rotate(30deg);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions div {
+.actor-root .article .article-body .akasha .column .directions div {
   position: absolute;
   width: 200px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions div img {
+.actor-root .article .article-body .akasha .column .directions div img {
   border: none;
   width: 60px;
   display: hidden;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions div input {
+.actor-root .article .article-body .akasha .column .directions div input {
   width: 45px;
   height: 45px;
   text-align: center;
@@ -744,51 +744,51 @@
   border-radius: 50%;
   transform: translate(-55px, -27px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions div input:hover {
+.actor-root .article .article-body .akasha .column .directions div input:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions div label {
+.actor-root .article .article-body .akasha .column .directions div label {
   width: 150px;
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .zenith {
+.actor-root .article .article-body .akasha .column .directions .zenith {
   transform: translate(169px, -20px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .zenith > label {
+.actor-root .article .article-body .akasha .column .directions .zenith > label {
   position: absolute;
   transform: translate(-105px, -20px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .orient {
+.actor-root .article .article-body .akasha .column .directions .orient {
   transform: translate(310px, 60px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .orient > label {
+.actor-root .article .article-body .akasha .column .directions .orient > label {
   position: absolute;
   transform: translate(-104px, -22px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .nadir {
+.actor-root .article .article-body .akasha .column .directions .nadir {
   transform: translate(167px, 305px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .nadir > label {
+.actor-root .article .article-body .akasha .column .directions .nadir > label {
   position: absolute;
   transform: translate(-104px, 70px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .occident {
+.actor-root .article .article-body .akasha .column .directions .occident {
   transform: translate(25px, 226px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .occident > label {
+.actor-root .article .article-body .akasha .column .directions .occident > label {
   position: absolute;
   transform: translate(-116px, 70px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .midi {
+.actor-root .article .article-body .akasha .column .directions .midi {
   transform: translate(28px, 62px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .midi > label {
+.actor-root .article .article-body .akasha .column .directions .midi > label {
   position: absolute;
   transform: translate(-99px, -20px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .septentrion {
+.actor-root .article .article-body .akasha .column .directions .septentrion {
   transform: translate(307px, 225px);
 }
-.actor-root .article .article-body .akasha .akasha-column .akasha-directions .septentrion > label {
+.actor-root .article .article-body .akasha .column .directions .septentrion > label {
   position: absolute;
   transform: translate(-122px, 70px);
 }
@@ -861,184 +861,6 @@
 }
 .actor-root .article .article-body .vecus .all-vecus .vecu:hover {
   text-shadow: 0px 0px 1px black;
-}
-.actor-root .article .article-body .incarnations {
-  /*
-                .incarnations-header {
-                    display: flex;
-                    flex-direction: row;
-                    flex: 0 0 auto;
-                    align-items: center;
-                    justify-content: space-between;
-                    margin-top: 10px;
-                    font-family: 'AJensonPro';
-                    font-size: 20px;
-                    background-color: transparent;
-                    border: 0px;
-    
-                    .periode-courante {
-                        display: flex;
-                        flex-direction: row;
-                        width: 100%;
-                        text-align: center;
-                        font-family: 'NightjarDemi';
-                        font-size: 20px;
-                        margin-top: 5px;
-                        margin-right: 40px;
-                        
-                        label.noperiode {
-                            color: indianred;
-                            width: 100%;
-                        }
-    
-                        .tooltip {
-                            width: 100%;
-                        }
-    
-                    }
-    
-                    .all-points {
-                        display: flex;
-                        flex-direction: row;
-    
-                        .points {
-                            width: 60px;
-                            text-align: center;
-    
-                            input.middle {
-                                vertical-align: middle;
-                            }
-    
-                            input {
-                                text-align: center;
-                                border: none;
-                                border-radius: 50%;
-                                border: 1px solid black;
-                                width: 35px;
-                                height: 35px;
-                            }
-    
-                        }
-    
-                    }
-    
-                }
-    
-                .helpPeriode {
-                    display: flex;
-                    flex-direction: column;
-                    margin-top: 200px; 
-                    text-align: center;
-                    color: indianred;
-    
-                    label {
-                        margin-left: 100px;
-                        margin-right: 100px;
-                    }
-    
-                    i {
-                        margin-top: 50px;
-                    }
-    
-                }
-    
-                .incarnations-periodes {
-    
-                    .incarnations-periode {
-                        margin-top: 20px;
-                        margin-bottom: 10px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-                    }
-    
-                    .item {
-    
-                        .edit-periode {
-                            margin-right: 10px;
-                        }
-    
-                        .display {
-                            font-family: 'AJensonPro';
-                            font-size: 18px;
-                            flex: 1 1 auto;
-                        }
-    
-                        .action {
-                            margin-left: 50px;
-                            display: flex;
-                            flex-direction: row-reverse;
-    
-                            .delete-periode {
-                                text-align: center;
-                                width: 32px;
-                            }
-    
-                        }
-    
-                        .current-periode {
-                            text-align: center;
-                            width: 32px;
-                        }
-                        
-                    }
-    
-                    .item-content {
-    
-                        .item {
-                            margin-left: 10px;
-    
-                            .scroll {
-                                text-align: center;
-                                width: 30px;
-                                height: 30px;
-                                margin-right: 10px;
-                                margin-top: 1px;
-                                margin-bottom: 1px;
-    
-                                i {
-                                    margin-top: 7px;
-                                }
-    
-                            }
-    
-                            .degre {
-    
-                                input {
-                                    text-align: center;
-                                    border-radius: 50%;
-                                    width: 30px;
-                                    height: 30px;
-                                    margin-right: 10px;
-                                    margin-top: 1px;
-                                    margin-bottom: 1px;
-                                }
-    
-                            }
-    
-                            .edit-vecu {
-                                flex: 1 1 auto;
-                            }
-    
-                            .edit-item {
-                                flex: 1 1 auto;
-                            }
-    
-                            .edit-actor {
-                                flex: 1 1 auto;
-                            }
-    
-                            .delete {
-                                text-align: center;
-                                width: 32px;
-                            }
-    
-                        }
-    
-                    }
-    
-                }
-                */
 }
 .actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode {
   display: flex;
