@@ -951,6 +951,7 @@
   border: solid 1px #333A40;
   padding: 10px;
   border-radius: 10px;
+  width: calc(100% - 10px);
 }
 .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu {
   display: inline-block;
