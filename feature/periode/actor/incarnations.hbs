@@ -67,7 +67,7 @@
                 <a class="periode-delete"><i class="fas fa-trash"></i></a>
                 {{/if}}
 
-                <label class="periode-name {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label class="periode-name {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <ul class="periode-menu">
 

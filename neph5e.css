@@ -893,6 +893,10 @@
 .actor-root .article .article-body .incarnations .periodes .periode .disabled {
   color: #a1a1a1;
 }
+.actor-root .article .article-body .incarnations .periodes .periode .current {
+  font-size: 23px;
+  font-weight: bold;
+}
 .actor-root .article .article-body .incarnations .periodes .periode .periode-header {
   display: flex;
   flex-direction: row;
