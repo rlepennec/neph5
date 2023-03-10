@@ -11,7 +11,7 @@ export class HistoricalSheet extends BaseSheet {
     constructor(...args) {
         super(...args);
         this.editedPeriode = null;
-        this.elapsedPeriodes = this._initialElapsedPeriodes();
+        this.elapsedPeriodes = this._elapsedPeriodes();
     }
 
     /**
@@ -24,19 +24,7 @@ export class HistoricalSheet extends BaseSheet {
         });
     }
 
-    /**
-     * @return the elapsed periodes according to the user option and the history.
-     */
-    _initialElapsedPeriodes() {
-        const periodes = [];
-        if (this.actor.system.options.incarnationsOuvertes == true) {
-            for (let periode of this.actor.items.filter(i => i.type === 'periode')) {
-                periodes.push(periode.sid);
-            }
-        }
-         return periodes;
 
-    }
 
 
 
@@ -84,7 +72,7 @@ export class HistoricalSheet extends BaseSheet {
         event.preventDefault();
         const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
         await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
-        this.elapsedPeriodes = this._initialElapsedPeriodes();
+        this.elapsedPeriodes = this._elapsedPeriodes();
         await this.render(true);
     }
 
@@ -120,6 +108,13 @@ export class HistoricalSheet extends BaseSheet {
 
     //////
    
+    /**
+     * @return the system identifiers of all periodes if option has been set.
+     */
+    _elapsedPeriodes() {
+        return this.actor.system.options.incarnationsOuvertes === true ? this.actor.items.filter(i => i.type === 'periode').map(i => i.sid) : [];
+    }
+
     /**
      * Set the edition status of the specified periode.
      * Only one periode can be edited at once.
