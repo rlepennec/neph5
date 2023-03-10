@@ -1,56 +1,44 @@
 <div class="incarnations">
 
+    {{#if (eq from "figure")}}
     <div class="incarnations-header">
 
-        <div class="periode-courante">
-            {{#if (isNull actor.system.periode)}}
-            <label class="noperiode">{{actor.currentPeriode}}</label>
-            {{else}}
-            <div class="tooltip">
-                <label class="periode">{{actor.currentPeriode}}</label>
-                <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
-            </div>
-            {{/if}}
+        <div class="points tooltip">
+            <img src="systems/neph5e/assets/core/circle2.webp"/>
+            <input
+                class="middle"
+                name="system.pointsIncarnations"
+                placeholder="0"
+                type="text"
+                value="{{system.pointsIncarnations}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
         </div>
 
-        {{#if (eq from "figure")}}
-        <div class="all-points">
-
-            <div class="tooltip points">
-                <input
-                    class="middle"
-                    name="system.pointsIncarnations"
-                    placeholder="0"
-                    type="text"
-                    value="{{system.pointsIncarnations}}"
-                    data-dtype="Number"/>
-                <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
-            </div>
-
-            <div class="tooltip points">
-                <input
-                    name="system.sapienceDepensee"
-                    placeholder="0"
-                    type="text"
-                    value="{{system.sapienceDepensee}}"
-                    data-dtype="Number"/>
-                <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
-            </div>
-
-            <div class="tooltip points">
-                <input
-                    name="system.sapience"
-                    placeholder="0"
-                    type="text"
-                    value="{{system.sapience}}"
-                    data-dtype="Number"/>
-                <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
-            </div>
-
+        <div class="points tooltip">
+            <img src="systems/neph5e/assets/core/circle2.webp"/>
+            <input
+                name="system.sapienceDepensee"
+                placeholder="0"
+                type="text"
+                value="{{system.sapienceDepensee}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
         </div>
-        {{/if}}
 
+        <div class="points tooltip">
+            <img src="systems/neph5e/assets/core/circle2.webp"/>
+            <input
+                name="system.sapience"
+                placeholder="0"
+                type="text"
+                value="{{system.sapience}}"
+                data-dtype="Number"/>
+            <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
+        </div>
+        
     </div>
+    {{/if}}
 
     {{#if actor.noPeriodes}}
     <div class="helpPeriode">
