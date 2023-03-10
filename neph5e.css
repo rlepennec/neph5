@@ -1146,6 +1146,21 @@
 .actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-vecus .incarnations-periode-vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-all-focus .incarnations-periode-focus {
+  display: inline-block;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  width: 100%;
+  list-style: none;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-all-focus .incarnations-periode-focus .incarnations-periode-focus-definition {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-body .incarnations-periode-all-focus .incarnations-periode-focus .incarnations-periode-focus-definition .incarnations-periode-focus-name {
+  flex: 1 1 auto;
+  text-align: left;
+}
 .actor-root .article .article-body .options {
   display: flex;
   flex-direction: row;

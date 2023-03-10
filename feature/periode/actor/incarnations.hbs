@@ -126,17 +126,21 @@
                     {{/each}}
 
                 </ol>
-    <!--
+
                 <ol class="incarnations-periode-all-focus">
 
+                    {{#each periode.embedded.items as |item|}}
+                    {{#if (isNull item.degre)}}
                     <li class="incarnations-periode-focus">
-
-
-
+                        <div class="incarnations-periode-focus-definition">
+                            <i class="fas fa-scroll"></i>
+                            <label class="incarnations-periode-focus-name">{{item.name}}</label>
+                        </div>
                     </li>
+                    {{/if}}
+                    {{/each}}
 
-                </div>
--->
+                </ol>
 
             </div>
 
