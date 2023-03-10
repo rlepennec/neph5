@@ -39,16 +39,7 @@ export class HistoricalSheet extends BaseSheet {
     }
 
 
-    /**
-     * Edit or unedit the specified periode.
-     * @param event The click event.
-     */
-    async _onEditPeriode(event) {
-        event.preventDefault();
-        const feature = this.createFeature(".item", event);
-        this.editedPeriode = this.editedPeriode === feature.sid ? null : feature.sid;
-        await this.render(true);
-    }
+
 
     /**
      * Delete the specified periode.
@@ -130,10 +121,23 @@ export class HistoricalSheet extends BaseSheet {
     //////
    
     /**
-     * Active or deactive the specified periode.
+     * Set the edition status of the specified periode.
+     * Only one periode can be edited at once.
+     * @param event The click event.
+     */
+    async _onEditPeriode(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        this.editedPeriode = this.editedPeriode === sid ? null : sid;
+        await this.render(true);
+    }
+
+    /**
+     * Set the activated status status of the specified periode.
+     * Only GM can activate or deactivate a periode manually.
      * @param event The click event. 
      */
-    async _onToggleActivePeriode(event) {
+    async _onActivatePeriode(event) {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);

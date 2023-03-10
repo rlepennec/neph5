@@ -75,7 +75,7 @@ export class FraterniteSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditOriginalItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-actor').click(this._onEditActor.bind(this));
         html.find('div[data-tab="incarnations"] .change-degre').change(this._onChangeDegre.bind(this));
-        html.find('div[data-tab="incarnations"] .active-periode').click(this._onToggleActivePeriode.bind(this));
+        html.find('div[data-tab="incarnations"] .active-periode').click(this._onActivatePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .display').click(this._onDisplayPeriode.bind(this));
 
         // Options

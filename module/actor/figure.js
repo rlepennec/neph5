@@ -104,9 +104,17 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="akasha"] .vaisseau').click(this._onToggleVaisseau.bind(this));
 
         // Incarnations
-        html.find('div[data-tab="incarnations"] .activate').click(this._onToggleActivePeriode.bind(this));
+        html.find('div[data-tab="incarnations"] .activate').click(this._onActivatePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .change-degre').change(this._onChangeDegre.bind(this));
         html.find('div[data-tab="incarnations"] .display').click(this._onDisplayPeriode.bind(this));
+        html.find('div[data-tab="incarnations"] .edit').click(this._onEditPeriode.bind(this));
+
+        // Options
+        html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
+
+
+
+
 
 
         // Fraternites
@@ -120,7 +128,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .delete-periode').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .current-periode').click(this._onCurrentPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .delete-item').click(this._onDeleteEmbeddedItem.bind(this));
-        html.find('div[data-tab="incarnations"] .edit-periode').click(this._onEditPeriode.bind(this));
+        
         html.find('div[data-tab="incarnations"] .edit-vecu').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditFeature.bind(this, 'item'));
         
@@ -156,8 +164,6 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="selenim"] .active').click(this._onToggleActive.bind(this));
 
-        // Options
-        html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
 
         html.find('div[data-tab="vecus"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
