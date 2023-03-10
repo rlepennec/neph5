@@ -813,7 +813,6 @@
                                 box-shadow: 3px 3px 3px #999;
                                 border: solid 1px #333A40;
 
-
                                 li {
                                     max-height:0;
                                     overflow: hidden;
@@ -854,6 +853,10 @@
 
                             }
 
+                            .delete {
+                                right: -20px;
+                            }
+
                         }
 
                         .incarnations-periode-body {
@@ -872,6 +875,9 @@
                                 column-rule-width: thin;
                                 column-gap: 20px;
                                 column-rule-color: #c3a049;
+                                border: solid 1px #333A40;
+                                padding: 10px;
+                                border-radius: 10px;
 
                                 .incarnations-periode-vecu {
                                     display:inline-block;
@@ -879,20 +885,29 @@
                                     font-size: 16px;
                                     width: 100%;
 
-                                    .incarnations-periode-vecu-definition {
+                                    .definition {
                                         display: flex;
                                         flex-direction: row;
                                         
 
-                                        .incarnations-periode-vecu-name {
+                                        .name {
                                             flex: 1 1 auto;
                                             text-align: left;
+                                            padding-top: 4px;
                                         }
 
-                                        .incarnations-periode-vecu-degre {
+                                        .degre {
                                             flex: 0 0 40px;
                                             border: none;
                                             text-align: center;
+                                        }
+
+                                        .delete {
+                                            flex: 0 0 30px;
+                                            border: none;
+                                            text-align: center;
+                                            font-size: 13px;
+                                            padding-top: 6px;
                                         }
 
                                     }

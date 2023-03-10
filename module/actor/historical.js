@@ -64,17 +64,7 @@ export class HistoricalSheet extends BaseSheet {
 
 
 
-    /**
-     * Used to elapse or colapse all periodes in incarnations.
-     * @param event The click event.
-     */
-    async _onChangePeriodesDisplay(event) {
-        event.preventDefault();
-        const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
-        await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
-        this.elapsedPeriodes = this._elapsedPeriodes();
-        await this.render(true);
-    }
+
 
     /**
      * @param event The drop event.
@@ -108,6 +98,18 @@ export class HistoricalSheet extends BaseSheet {
 
     //////
    
+    /**
+     * Refresh the periodes details according to the option update.
+     * @param event The click event.
+     */
+    async _onChangePeriodesDisplay(event) {
+        event.preventDefault();
+        const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
+        await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
+        this.elapsedPeriodes = this._elapsedPeriodes();
+        await this.render(true);
+    }
+
     /**
      * @return the system identifiers of all periodes if option has been set.
      */

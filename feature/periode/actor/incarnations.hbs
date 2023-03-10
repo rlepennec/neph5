@@ -85,9 +85,11 @@
 
                     <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
 
-                    <li class="delete">Supprimer</li>
-
                 </ul>
+
+                {{#if (eq ../editedPeriode periode.original.sid)}}                
+                <a class="delete"><i class="fas fa-trash"></i></a>
+                {{/if}}
 
             </div>
 
@@ -113,13 +115,20 @@
                     {{#each periode.embedded.items as |item|}}
                     {{#unless (isNull item.degre)}}
                     <li class="incarnations-periode-vecu item" data-id="{{item.id}}">
-                        <div class="incarnations-periode-vecu-definition">
-                            <label class="incarnations-periode-vecu-name">{{item.name}}</label>
+                        <div class="definition">
+
                             <input
-                                class="incarnations-periode-vecu-degre change-degre"
+                                class="degre change-degre"
                                 type="number"
                                 value="{{item.degre}}"
                                 data-dtype="Number"/>
+
+                            <label class="name">{{item.name}}</label>
+
+                            {{#if (eq ../../editedPeriode ../original.sid)}}                
+                            <a class="delete"><i class="fas fa-trash"></i></a>
+                            {{/if}}
+
                         </div>
                     </li>
                     {{/unless}}
