@@ -155,7 +155,22 @@
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+                <li class="option">
+
+                    <label class="option-checkbox">
+                        <input
+                            {{#if system.options.incarnationsOuvertes}}checked{{/if}}
+                            class="incarnationsOuvertes"
+                            name="system.options.incarnationsOuvertes"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label>{{localize "NEPH5E.incarnationsOuvertes"}}</label>
+
+                </li>
 
             </ol>
 

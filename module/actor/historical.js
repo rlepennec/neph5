@@ -1,7 +1,6 @@
 import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { BaseSheet } from "./base.js";
 import { NephilimItemSheet } from "../item/base.js";
-import { Periode } from "../../feature/periode/periode.js";
 
 export class HistoricalSheet extends BaseSheet {
 
@@ -29,13 +28,15 @@ export class HistoricalSheet extends BaseSheet {
      * @return the elapsed periodes according to the user option and the history.
      */
     _initialElapsedPeriodes() {
+        const periodes = [];
         if (this.actor.system.options.incarnationsOuvertes == true) {
-            return Periode.getOriginals(this.actor)
-        } else {
-            return [];
+            for (let periode of this.actor.items.filter(i => i.type === 'periode')) {
+                periodes.push(periode.sid);
+            }
         }
-    }
+         return periodes;
 
+    }
 
 
     /**
