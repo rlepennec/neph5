@@ -858,6 +858,258 @@
 .actor-root .article .article-body .vecus .all-vecus .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor-root .article .article-body .incarnations {
+  /*
+                .incarnations-header {
+                    display: flex;
+                    flex-direction: row;
+                    flex: 0 0 auto;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: 10px;
+                    font-family: 'AJensonPro';
+                    font-size: 20px;
+                    background-color: transparent;
+                    border: 0px;
+    
+                    .periode-courante {
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        text-align: center;
+                        font-family: 'NightjarDemi';
+                        font-size: 20px;
+                        margin-top: 5px;
+                        margin-right: 40px;
+                        
+                        label.noperiode {
+                            color: indianred;
+                            width: 100%;
+                        }
+    
+                        .tooltip {
+                            width: 100%;
+                        }
+    
+                    }
+    
+                    .all-points {
+                        display: flex;
+                        flex-direction: row;
+    
+                        .points {
+                            width: 60px;
+                            text-align: center;
+    
+                            input.middle {
+                                vertical-align: middle;
+                            }
+    
+                            input {
+                                text-align: center;
+                                border: none;
+                                border-radius: 50%;
+                                border: 1px solid black;
+                                width: 35px;
+                                height: 35px;
+                            }
+    
+                        }
+    
+                    }
+    
+                }
+    
+                .helpPeriode {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 200px; 
+                    text-align: center;
+                    color: indianred;
+    
+                    label {
+                        margin-left: 100px;
+                        margin-right: 100px;
+                    }
+    
+                    i {
+                        margin-top: 50px;
+                    }
+    
+                }
+    
+                .incarnations-periodes {
+    
+                    .incarnations-periode {
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                        border-width: 0px 0px 2px 0px;
+                        border-style: solid;
+                        border-color: black;
+                    }
+    
+                    .item {
+    
+                        .edit-periode {
+                            margin-right: 10px;
+                        }
+    
+                        .display {
+                            font-family: 'AJensonPro';
+                            font-size: 18px;
+                            flex: 1 1 auto;
+                        }
+    
+                        .action {
+                            margin-left: 50px;
+                            display: flex;
+                            flex-direction: row-reverse;
+    
+                            .delete-periode {
+                                text-align: center;
+                                width: 32px;
+                            }
+    
+                        }
+    
+                        .current-periode {
+                            text-align: center;
+                            width: 32px;
+                        }
+                        
+                    }
+    
+                    .item-content {
+    
+                        .item {
+                            margin-left: 10px;
+    
+                            .scroll {
+                                text-align: center;
+                                width: 30px;
+                                height: 30px;
+                                margin-right: 10px;
+                                margin-top: 1px;
+                                margin-bottom: 1px;
+    
+                                i {
+                                    margin-top: 7px;
+                                }
+    
+                            }
+    
+                            .degre {
+    
+                                input {
+                                    text-align: center;
+                                    border-radius: 50%;
+                                    width: 30px;
+                                    height: 30px;
+                                    margin-right: 10px;
+                                    margin-top: 1px;
+                                    margin-bottom: 1px;
+                                }
+    
+                            }
+    
+                            .edit-vecu {
+                                flex: 1 1 auto;
+                            }
+    
+                            .edit-item {
+                                flex: 1 1 auto;
+                            }
+    
+                            .edit-actor {
+                                flex: 1 1 auto;
+                            }
+    
+                            .delete {
+                                text-align: center;
+                                width: 32px;
+                            }
+    
+                        }
+    
+                    }
+    
+                }
+                */
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode {
+  display: flex;
+  flex-direction: column;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-puce {
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+  height: 33px;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu {
+  position: absolute;
+  left: 70px;
+  top: 25px;
+  width: 200px;
+  list-style: none;
+  display: none;
+  background-color: #729EBF;
+  background-image: -webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+  background-image: linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+  border-radius: 6px;
+  margin-bottom: 2px;
+  box-shadow: 3px 3px 3px #999;
+  border: solid 1px #333A40;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu li {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+  border-radius: 0;
+  background: #444;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-name:hover + .incarnations-periode-menu {
+  display: block;
+  z-index: 99;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-name:hover + .incarnations-periode-menu li {
+  max-height: 15em;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover {
+  display: block;
+  z-index: 99;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover li {
+  max-height: 15em;
+}
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header .incarnations-periode-menu:hover li:hover {
+  text-shadow: 0px 0px 1px black;
+}
 .actor-root .article .article-body .options {
   display: flex;
   flex-direction: row;
@@ -1418,132 +1670,6 @@
 .actor-root .article .nephilim .content .right .stase .sectionRow .sectionTitle input {
   border: none;
   background-color: transparent;
-}
-.actor-root .article .incarnations .header {
-  display: flex;
-  flex-direction: row;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  background-color: transparent;
-  border: 0px;
-}
-.actor-root .article .incarnations .header .periode-courante {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  text-align: center;
-  font-family: 'NightjarDemi';
-  font-size: 20px;
-  margin-top: 5px;
-  margin-right: 40px;
-}
-.actor-root .article .incarnations .header .periode-courante label.noperiode {
-  color: indianred;
-  width: 100%;
-}
-.actor-root .article .incarnations .header .periode-courante .tooltip {
-  width: 100%;
-}
-.actor-root .article .incarnations .header .all-points {
-  display: flex;
-  flex-direction: row;
-}
-.actor-root .article .incarnations .header .all-points .points {
-  width: 60px;
-  text-align: center;
-}
-.actor-root .article .incarnations .header .all-points .points input.middle {
-  vertical-align: middle;
-}
-.actor-root .article .incarnations .header .all-points .points input {
-  text-align: center;
-  border: none;
-  border-radius: 50%;
-  border: 1px solid black;
-  width: 35px;
-  height: 35px;
-}
-.actor-root .article .incarnations .helpPeriode {
-  display: flex;
-  flex-direction: column;
-  margin-top: 200px;
-  text-align: center;
-  color: indianred;
-}
-.actor-root .article .incarnations .helpPeriode label {
-  margin-left: 100px;
-  margin-right: 100px;
-}
-.actor-root .article .incarnations .helpPeriode i {
-  margin-top: 50px;
-}
-.actor-root .article .incarnations .item-list .periode {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor-root .article .incarnations .item-list .item .edit-periode {
-  margin-right: 10px;
-}
-.actor-root .article .incarnations .item-list .item .display {
-  font-family: 'AJensonPro';
-  font-size: 18px;
-  flex: 1 1 auto;
-}
-.actor-root .article .incarnations .item-list .item .action {
-  margin-left: 50px;
-  display: flex;
-  flex-direction: row-reverse;
-}
-.actor-root .article .incarnations .item-list .item .action .delete-periode {
-  text-align: center;
-  width: 32px;
-}
-.actor-root .article .incarnations .item-list .item .current-periode {
-  text-align: center;
-  width: 32px;
-}
-.actor-root .article .incarnations .item-list .item-content .item {
-  margin-left: 10px;
-}
-.actor-root .article .incarnations .item-list .item-content .item .scroll {
-  text-align: center;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.actor-root .article .incarnations .item-list .item-content .item .scroll i {
-  margin-top: 7px;
-}
-.actor-root .article .incarnations .item-list .item-content .item .degre input {
-  text-align: center;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.actor-root .article .incarnations .item-list .item-content .item .edit-vecu {
-  flex: 1 1 auto;
-}
-.actor-root .article .incarnations .item-list .item-content .item .edit-item {
-  flex: 1 1 auto;
-}
-.actor-root .article .incarnations .item-list .item-content .item .edit-actor {
-  flex: 1 1 auto;
-}
-.actor-root .article .incarnations .item-list .item-content .item .delete {
-  text-align: center;
-  width: 32px;
 }
 .actor-root .article .laboratoire .construct-images {
   display: flex;

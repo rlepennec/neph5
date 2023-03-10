@@ -1,193 +1,128 @@
-<div class="header">
+<div class="incarnations">
 
-    <div class="periode-courante">
-        {{#if (isNull actor.system.periode)}}
-        <label class="noperiode">{{actor.currentPeriode}}</label>
-        {{else}}
-        <div class="tooltip">
-            <label class="periode">{{actor.currentPeriode}}</label>
-            <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
-        </div>
-        {{/if}}
-    </div>
+    <div class="incarnations-header">
 
-    {{#if (eq from "figure")}}
-    <div class="all-points">
-
-        <div class="tooltip points">
-            <input
-                class="middle"
-                name="system.pointsIncarnations"
-                placeholder="0"
-                type="text"
-                value="{{system.pointsIncarnations}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
-        </div>
-
-        <div class="tooltip points">
-            <input
-                name="system.sapienceDepensee"
-                placeholder="0"
-                type="text"
-                value="{{system.sapienceDepensee}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
-        </div>
-
-        <div class="tooltip points">
-            <input
-                name="system.sapience"
-                placeholder="0"
-                type="text"
-                value="{{system.sapience}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
-        </div>
-
-    </div>
-    {{/if}}
-
-</div>
-
-{{#if actor.noPeriodes}}
-<div class="helpPeriode">
-    {{#if (eq from "figure")}}
-    <label>{{localize 'NEPH5E.aideIncarnations'}}</label>
-    {{else}}
-    <label>{{localize 'NEPH5E.aideHistorique'}}</label>
-    {{/if}}
-    <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
-</div>
-{{/if}}
-
-{{#with actor.periodes as |items|}}
-{{#each items as |periode|}}
-{{#unless (and (not ../../isGM) (not periode.embedded.actif))}}
-<ol class="item-list">
-
-    <li class="item draggable periode" data-id="{{periode.original.id}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
-
-        <a
-            {{#if (eq ../../actor.system.periode periode.original.sid)}}
-            class="current-periode"
+        <div class="periode-courante">
+            {{#if (isNull actor.system.periode)}}
+            <label class="noperiode">{{actor.currentPeriode}}</label>
             {{else}}
-            class="current-periode grey"
-            {{/if}}
-            ><i class="fa-solid fa-star-of-life"></i></a>
-
-        <label class="edit-periode" data-id="{{periode.original.id}}">
-            {{#if (eq ../../editedPeriode periode.original.sid)}}
-            <i class="fas fa-edit"></i>
-            {{else}}
-            <i class="far fa-edit"></i>
-            {{/if}}
-        </label>
-
-        <div class="display">
-            <span>{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</span>
-        </div>
-
-        <div class="action">
-
-            {{#if (eq ../../editedPeriode periode.original.sid)}}
-            <a class="delete-periode"><i class="fas fa-trash"></i></a>
-
-            {{else}}
-
-            <label class="active-periode" data-id="{{periode.original.id}}">
-                {{#if ../../isGM}}
-                {{#if periode.embedded.actif}}
-                <i class="fa-solid fa-feather-pointed"></i>
-                {{else}}
-                <i class="fa-regular fa-feather-pointed"></i>
-                {{/if}}
-                {{/if}}
-            </label>
-
-            {{/if}}
-
-        </div>
-
-    </li>
-
-    <div
-
-        {{#if (and (not ../../isGM) (not periode.embedded.actif))}}
-        style="display: none;"
-        {{else}}
-            {{#unless (or (includes ../../elapsedPeriodes periode.original.id) (eq ../../editedPeriode periode.original.sid))}}
-            style="display: none;"
-            {{/unless}}
-        {{/if}}
-
-        class="item-content"
-        data-id="{{periode.original.id}}">
-
-        {{#each periode.embedded.actors as |actor|}}
-        <li class="item" data-actor-id="{{actor.id}}" data-periode-sid="{{../original.sid}}">
-
-            <div class="scroll">
-                {{#if (isNewMember ../../../actor actor.id ../original.sid)}}
-                <i class="fa-solid fa-user-plus"></i>
-                {{else}}
-                <i class="fa-solid fa-user-minus"></i>
-                {{/if}}
-            </div>          
-
-            <div class="edit-actor" data-id="{{actor.id}}" data-sid="{{actor.sid}}" data-type="{{actor.type}}">
-                <span>{{actor.name}}</span>
-            </div>
-
-            {{#if (eq ../../../editedPeriode ../original.sid)}}                
-            <div class="delete">
-                <a class="delete-actor" data-id="{{actor.id}}"><i class="fas fa-trash"></i></a>
+            <div class="tooltip">
+                <label class="periode">{{actor.currentPeriode}}</label>
+                <span class="tooltiptext">{{localize "NEPH5E.periodeCourante"}}</span>
             </div>
             {{/if}}
+        </div>
 
-        </li>
-        {{/each}}
+        {{#if (eq from "figure")}}
+        <div class="all-points">
 
-        {{#each periode.embedded.items as |item|}}
-        <li class="item" data-item-id="{{item.id}}">
-
-            {{#if (isNull item.degre)}}
-            <div data-id="{{item.id}}" class="scroll">
-                <i class="fas fa-scroll"></i>
-            </div>
-            {{else}}
-            <div data-id="{{item.id}}" class="degre">
+            <div class="tooltip points">
                 <input
-                    class="change-degre"
-                    data-id="{{item.id}}"
-                    type="number"
-                    value="{{item.degre}}"
+                    class="middle"
+                    name="system.pointsIncarnations"
+                    placeholder="0"
+                    type="text"
+                    value="{{system.pointsIncarnations}}"
                     data-dtype="Number"/>
+                <span class="tooltiptext">{{localize "NEPH5E.pointsIncarnations"}}</span>
             </div>
-            {{/if}}
 
-            {{#if (eq item.type 'vecu')}}
-            <div class="edit-vecu" data-id="{{item.id}}" data-type="{{item.type}}">
-                <span>{{item.name}}</span>
+            <div class="tooltip points">
+                <input
+                    name="system.sapienceDepensee"
+                    placeholder="0"
+                    type="text"
+                    value="{{system.sapienceDepensee}}"
+                    data-dtype="Number"/>
+                <span class="tooltiptext">{{localize "NEPH5E.sapienceDepensee"}}</span>
             </div>
-            {{else}}
-            <div class="edit-item" data-id="{{item.wid}}" data-type="{{item.type}}">
-                <span>{{item.name}}</span>
-            </div>
-            {{/if}}
 
-            {{#if (eq ../../../editedPeriode ../original.sid)}}                
-            <div class="delete">
-                <a class="delete-item" data-id="{{item.id}}"><i class="fas fa-trash"></i></a>
+            <div class="tooltip points">
+                <input
+                    name="system.sapience"
+                    placeholder="0"
+                    type="text"
+                    value="{{system.sapience}}"
+                    data-dtype="Number"/>
+                <span class="tooltiptext">{{localize "NEPH5E.sapienceCourante"}}</span>
             </div>
-            {{/if}}
 
-        </li>
-        {{/each}}
+        </div>
+        {{/if}}
 
     </div>
-    
-</ol>
-{{/unless}}
-{{/each}}
-{{/with}}
+
+    {{#if actor.noPeriodes}}
+    <div class="helpPeriode">
+        {{#if (eq from "figure")}}
+        <label>{{localize 'NEPH5E.aideIncarnations'}}</label>
+        {{else}}
+        <label>{{localize 'NEPH5E.aideHistorique'}}</label>
+        {{/if}}
+        <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+    </div>
+    {{/if}}
+
+    {{#each actor.periodes as |periode|}}
+    {{#unless (and (not ../../isGM) (not periode.embedded.actif))}}
+    <ol class="incarnations-periodes">
+
+        <il class="incarnations-periode">
+
+            <div class="incarnations-periode-header">
+
+                <img class="incarnations-periode-puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+                <img class="incarnations-periode-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+                <label class="incarnations-periode-name">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+
+                <ul class="incarnations-periode-menu">
+                    <li>Editer</li>
+                    <li>Détails</li>
+                    <li>Activer</li>
+                </ul>
+
+
+            </div>
+<!--
+            <ol class="incarnations-periode-members">
+
+                {{#each periode.embedded.actors as |actor|}}
+                <li class="incarnations-periode-member">
+
+
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+            <ol class="incarnations-periode-vecus">
+
+                <li class="incarnations-periode-vecus">
+
+
+
+                </li>
+
+            </ol>
+
+            <ol class="incarnations-periode-all-focus">
+
+                <li class="incarnations-periode-focus">
+
+
+
+                </li>
+
+            </div>
+-->
+
+        </il>
+
+    </ol>
+    {{/unless}}
+    {{/each}}
+
+</div>
