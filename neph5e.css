@@ -1040,6 +1040,9 @@
   display: flex;
   flex-direction: column;
 }
+.actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .disabled {
+  color: #a1a1a1;
+}
 .actor-root .article .article-body .incarnations .incarnations-periodes .incarnations-periode .incarnations-periode-header {
   display: flex;
   flex-direction: row;

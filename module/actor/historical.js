@@ -104,16 +104,7 @@ export class HistoricalSheet extends BaseSheet {
         await this._updateDisplayPeriode(node, id);
     }
 
-    /**
-     * Active or deactive the specified periode.
-     * @param event The click event. 
-     */
-    async _onToggleActivePeriode(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".active-periode").data("id");
-        const item = game.items.get(id);
-        await new AbstractRollBuilder(this.actor).withItem(item).create().toggleActive();
-    }
+
 
     /**
      * Used to elapse or colapse all periodes in incarnations.
@@ -169,5 +160,18 @@ export class HistoricalSheet extends BaseSheet {
         await this.createFeature(".edit-" + feature, event).edit();
         return this;
     }
+
+
+    /**
+     * Active or deactive the specified periode.
+     * @param event The click event. 
+     */
+    async _onToggleActivePeriode(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
+        await new AbstractRollBuilder(this.actor).withItem(item).create().toggleActive();
+    }
+
 
 }

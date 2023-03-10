@@ -64,10 +64,10 @@
     {{/if}}
 
     {{#each actor.periodes as |periode|}}
-    {{#unless (and (not ../../isGM) (not periode.embedded.actif))}}
+    {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
     <ol class="incarnations-periodes">
 
-        <il class="incarnations-periode">
+        <il class="incarnations-periode item" data-sid="{{periode.original.sid}}">
 
             <div class="incarnations-periode-header">
 
@@ -75,14 +75,19 @@
 
                 <img class="incarnations-periode-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
-                <label class="incarnations-periode-name">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label class="incarnations-periode-name {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <ul class="incarnations-periode-menu">
-                    <li>Editer</li>
-                    <li>Détails</li>
-                    <li>Activer</li>
-                </ul>
 
+                    <li>Détails</li>
+
+                    <li>Editer</li>
+
+                    <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
+
+                    <li>Supprimer</li>
+
+                </ul>
 
             </div>
 <!--

@@ -103,8 +103,12 @@ export class FigureSheet extends HistoricalSheet {
         // Akasha
         html.find('div[data-tab="akasha"] .vaisseau').click(this._onToggleVaisseau.bind(this));
 
+        // Incarnations
+        html.find('div[data-tab="incarnations"] .activate').click(this._onToggleActivePeriode.bind(this));
 
-        
+
+
+
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
 
