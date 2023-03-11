@@ -1100,6 +1100,9 @@
 .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor-root .article .article-body .incarnations .periodes .periode:hover {
+  cursor: default;
+}
 .actor-root .article .article-body .options {
   display: flex;
   flex-direction: row;
