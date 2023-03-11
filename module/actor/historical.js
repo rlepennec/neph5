@@ -169,7 +169,7 @@ export class HistoricalSheet extends BaseSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".item").data("id");
         const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".change-degre").val();
+        const value = $(event.currentTarget).closest(".set").val();
         const system = duplicate(item.system);
         const converted = parseInt(value);
         system.degre = isNaN(converted) ? 0 : converted;

@@ -74,7 +74,7 @@ export class FraterniteSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .edit-periode').click(this._onEditPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditOriginalItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-actor').click(this._onEditActor.bind(this));
-        html.find('div[data-tab="incarnations"] .change-degre').change(this._onChangeDegre.bind(this));
+        html.find('div[data-tab="incarnations"] .set').change(this._onChangeDegre.bind(this));
         html.find('div[data-tab="incarnations"] .active-periode').click(this._onActivatePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .display').click(this._onDisplayPeriode.bind(this));
 
@@ -127,9 +127,9 @@ export class FraterniteSheet extends HistoricalSheet {
      */
     async _onChangeDegre(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".change-degre").data("id");
+        const id = $(event.currentTarget).closest(".set").data("id");
         const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".change-degre").val();
+        const value = $(event.currentTarget).closest(".set").val();
         const system = duplicate(item.system);
         system.degre = parseInt(value);
         await item.update({ ['system']: system });
