@@ -932,6 +932,13 @@
   width: calc(100% - 65px);
   height: 33px;
 }
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: 200px;
+  height: 33px;
+}
 .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu {
   position: absolute;
   left: 70px;
@@ -958,11 +965,11 @@
   border: none;
   padding-left: 10px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name:hover + .periode-menu {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu {
   display: block;
   z-index: 99;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name:hover + .periode-menu li {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu li {
   max-height: 15em;
 }
 .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover {
