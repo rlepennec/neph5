@@ -1,4 +1,3 @@
-import { AbstractFeature } from "../core/abstractFeature.js";
 import { Alchimie } from "../alchimie/alchimie.js";
 import { Appel } from "../conjuration/appel.js";
 import { Arcane } from "../periode/arcane.js";

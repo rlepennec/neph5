@@ -1,5 +1,5 @@
-import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { BaseSheet } from "./base.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { NephilimItemSheet } from "../item/base.js";
 
 export class HistoricalSheet extends BaseSheet {
@@ -139,8 +139,7 @@ export class HistoricalSheet extends BaseSheet {
     async _onActivatePeriode(event) {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
-        await new AbstractRollBuilder(this.actor).withItem(item).create().toggleActive();
+        await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
     }
 
     /**
