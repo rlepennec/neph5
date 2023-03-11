@@ -7,12 +7,12 @@ export class Periode extends AbstractFeature {
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The original item object, purpose of the action. 
+     * @param item  The original item object. 
      */
     constructor(actor, item) {
         super(actor);
         this.item = item;
-        this.event = null;
+        this.embedded = actor.items.find(i => i.sid === item.sid);
     }
 
     /**

@@ -243,7 +243,7 @@ export class FigureSheet extends HistoricalSheet {
                         case 'periode':
                         case 'vecu':
                             await new FeatureBuilder(this.actor)
-                                .withItem(item.sid)
+                                .withOriginalItem(item.sid)
                                 .withEvent(event)
                                 .withPeriode(this.editedPeriode)
                                 .withManoeuver(this.editedCapacity)

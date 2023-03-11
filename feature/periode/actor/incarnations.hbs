@@ -53,9 +53,9 @@
 
     {{#each actor.periodes as |periode|}}
     {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
-    <ol class="periodes">
+    <ol class="periodes item-list">
 
-        <il class="periode item" data-sid="{{periode.original.sid}}">
+        <li class="periode draggable item" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
 
             <div class="periode-header">
 
@@ -164,7 +164,7 @@
 
             </div>
 
-        </il>
+        </li>
 
     </ol>
     {{/unless}}

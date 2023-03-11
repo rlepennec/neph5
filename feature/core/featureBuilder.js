@@ -143,6 +143,8 @@ export class FeatureBuilder {
                 return new Invocation(this.actor, item, this.periode);
             case 'passe':
                 return new Passe(this.actor, item, this.periode);
+            case 'periode':
+                return new Periode(this.actor, item).withEvent(this.event);
             case 'pratique':
                 return new Pratique(this.actor, item, this.periode);
             case 'quete':

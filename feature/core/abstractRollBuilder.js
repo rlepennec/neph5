@@ -126,6 +126,7 @@ export class AbstractRollBuilder {
             case 'invocation':
             case 'magie':
             case 'passe':
+            case 'periode':
             case 'pratique':
             case 'quete':
             case 'rite':
@@ -171,8 +172,8 @@ export class AbstractRollBuilder {
                 return new Metamorphe(this.actor, this.item);
             //case 'passe':
             //    return new Passe(this.actor, this.item, this.periode);
-            case 'periode':
-                return new Periode(this.actor, this.item).withEvent(this.event);
+            //case 'periode':
+            //    return new Periode(this.actor, this.item).withEvent(this.event);
             // case 'pratique':
             //     return new Pratique(this.actor, this.item, this.periode);
             //case 'quete':
