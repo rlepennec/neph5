@@ -79,7 +79,9 @@
 
                     <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
 
+                    {{#unless (eq ../actor.system.periode periode.original.sid)}}
                     <li class="define">Période courante</li>
+                    {{/unless}}
 
                 </ul>
 
