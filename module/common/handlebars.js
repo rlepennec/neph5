@@ -200,16 +200,6 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
-     * @param fraternite The fraternite actor object.
-     * @param actor      The actor identifier.
-     * @param periode    The periode system identifier.
-     * @returns true if new member for the periode (in), false is out
-     */
-    static isNewMember(fraternite, actor, periode) {
-        return fraternite.isNewMember(actor, periode);
-    }
-
-    /**
      * @returns all sciences names.
      */
     static sciences() {

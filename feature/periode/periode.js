@@ -291,7 +291,8 @@ export class Periode extends AbstractFeature {
                         id: original.id,
                         sid: original.sid,
                         name: original.name,
-                        status: fa.status
+                        status: fa.status,
+                        newer: actor.isNewMember(original.id, p.sid)
                     });
                 }
             }

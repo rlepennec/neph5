@@ -112,7 +112,7 @@
                     <li class="member actor" data-id="{{actor.id}}">
                     <div class="definition">
 
-                        <i class="fa-solid {{#if (isNewMember ../../actor actor.id ../original.sid)}}fa-user-plus{{else}}fa-user-minus{{/if}}"></i>
+                        <i class="fa-solid {{#if actor.newer}}fa-user-plus{{else}}fa-user-minus{{/if}}"></i>
 
                         <label class="name open">{{actor.name}}</label>
 
