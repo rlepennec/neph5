@@ -98,6 +98,7 @@ export class HistoricalSheet extends BaseSheet {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.item').data('sid');
         await this.actor.setCurrentPeriode(sid);
+        await this.render(true);
     }
 
     /**
@@ -140,6 +141,7 @@ export class HistoricalSheet extends BaseSheet {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.item').data('sid');
         await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
+        await this.render(true);
     }
 
     /**
@@ -158,6 +160,7 @@ export class HistoricalSheet extends BaseSheet {
             this.elapsedPeriodes.push(sid);
             node.removeAttr("style");
         }
+        await this.render(true);
     }
 
     /**
