@@ -104,10 +104,37 @@
 
                 </ol>
     -->
+
+                {{#unless (isEmptyCollection periode.embedded.actors)}}
+                <ol class="members">
+
+                    {{#each periode.embedded.actors as |actor|}}
+                    <li class="member actor" data-id="{{actor.id}}">
+                        <div class="definition">
+
+                            {{#if (isNewMember ../../actor actor.id ../original.sid)}}
+                            <i class="fa-solid fa-user-plus"></i>
+                            {{else}}
+                            <i class="fa-solid fa-user-minus"></i>
+                            {{/if}}
+
+                            <label class="name open">{{actor.name}}</label>
+
+                            {{#if (eq ../../editedPeriode ../original.sid)}}
+                            <a class="delete"><i class="fas fa-trash"></i></a>
+                            {{/if}}
+
+                        </div>
+                    </li>
+                    {{/each}}
+
+                </ol>
+                {{/unless}}
+
+                {{#unless (isEmptyCollection periode.embedded.vecus)}}
                 <ol class="vecus">
 
-                    {{#each periode.embedded.items as |item|}}
-                    {{#unless (isNull item.degre)}}
+                    {{#each periode.embedded.vecus as |item|}}
                     <li class="vecu item" data-id="{{item.id}}">
                         <div class="definition">
 
@@ -125,15 +152,15 @@
 
                         </div>
                     </li>
-                    {{/unless}}
                     {{/each}}
 
                 </ol>
+                {{/unless}}
 
+                {{#unless (isEmptyCollection periode.embedded.focus)}}
                 <ol class="periode-focus">
 
-                    {{#each periode.embedded.items as |item|}}
-                    {{#if (isNull item.degre)}}
+                    {{#each periode.embedded.focus as |item|}}
                     <li class="focus item" data-id="{{item.id}}">
                         <div class="focus-definition">
 
@@ -147,10 +174,10 @@
 
                         </div>
                     </li>
-                    {{/if}}
                     {{/each}}
 
                 </ol>
+                {{/unless}}
 
             </div>
 

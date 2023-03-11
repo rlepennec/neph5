@@ -242,18 +242,19 @@ export class Periode extends AbstractFeature {
         const all = [];
         for (let p of periodes) {
 
+            // Retrieve the periode of the world
             const periode = AbstractFeature.original(p.sid);
             if (periode == null) {
                 continue;
             }
 
-            // Create all linked items
-            const items = [];
+            // Create all embedded items
+            const vecus = [];
             for (let type of ['vecu','savoir','quete','arcane','chute','science', 'passe']) {
                 for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
                     const original = AbstractFeature.original(i.sid);
                     if (original != null) {
-                        items.push({
+                        vecus.push({
                             name: original.name,
                             type: original.type,
                             id: i.id,
@@ -264,11 +265,13 @@ export class Periode extends AbstractFeature {
                     }
                 }
             }
+
+            const focus = [];
             for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus','pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie']) {
                 for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
                     const original = AbstractFeature.original(i.sid);
                     if (original != null) {
-                        items.push({
+                        focus.push({
                             name: original.name,
                             type: original.type,
                             id: i.id,
@@ -305,6 +308,8 @@ export class Periode extends AbstractFeature {
                 embedded: {
                     id: p.id,
                     actif: p.system.actif,
+                    vecus: vecus,
+                    focus: focus,
                     items: items,
                     actors: actors
                 }
