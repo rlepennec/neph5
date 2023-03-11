@@ -389,13 +389,6 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * @returns the true if no periodes. 
-     */
-    get noPeriodes() {
-        return Periode.getAll(this).length === 0;
-    }
-
-    /**
      * @returns the data to display. 
      */
     get quetes() {

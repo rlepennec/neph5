@@ -40,7 +40,7 @@
     </div>
     {{/if}}
 
-    {{#if actor.noPeriodes}}
+    {{#if (isEmptyCollection actor.periodes)}}
     <div class="helpPeriode">
         {{#if (eq from "figure")}}
         <label>{{localize 'NEPH5E.aideIncarnations'}}</label>
