@@ -75,7 +75,7 @@
 
                     <li class="display">Détails</li>
 
-                    <li class="edit">Editer</li>
+                    <li class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Affichery{{else}}Editer{{/if}}</li>
 
                     <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
 
@@ -91,19 +91,6 @@
                  {{#unless (or (includes ../elapsedPeriodes periode.original.sid) (eq ../editedPeriode periode.original.sid))}}
                  style="display: none;"
                  {{/unless}}>
-    <!--
-                <ol class="members">
-
-                    {{#each periode.embedded.actors as |actor|}}
-                    <li class="member">
-
-
-
-                    </li>
-                    {{/each}}
-
-                </ol>
-    -->
 
                 {{#unless (isEmptyCollection periode.embedded.actors)}}
                 <ol class="members">
