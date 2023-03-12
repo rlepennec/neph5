@@ -253,7 +253,7 @@ export class Vecu extends HistoricalFeature {
             for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractFeature.isActive(actor, v)))) {
                 const original = AbstractFeature.original(v.sid);
                 if (original != null) {
-                    const feature = new Vecu(actor, scope).withEmbeddedItem(v).withPeriode(v.system.periode);
+                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(v.system.periode);
                     vecus.push({
                         name: original.name,
                         id: v.id,
