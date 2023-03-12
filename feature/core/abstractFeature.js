@@ -82,16 +82,7 @@ export class AbstractFeature {
      * @returns the fraternite degre.
      */
     get fraternite() {
-        let degre = 0;
-        if (this.actor.system?.options?.fraternites === true) {
-            for (let f of this.actor.fraternites.filter(a => a.system.options.active === true)) {
-                const d = new FeatureBuilder(f).withOriginalItem(this.item.sid).create().degre;
-                if (d != null && d > degre) {
-                    degre = d;
-                }
-            }
-        }
-        return degre;
+        return this.actor.fraternite(this.item.sid);
     }
 
     /**

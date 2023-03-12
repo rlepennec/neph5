@@ -82,7 +82,7 @@ export class FigurantSheet extends BaseSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".roll-vecu").data("item");
         const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).withScope('actor').withItem(item).create().initializeRoll();
+        await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
         return this;
     }
 
@@ -125,7 +125,7 @@ export class FigurantSheet extends BaseSheet {
                     await super._onDrop(event);
                     break;
                 case 'vecu':
-                    await new FeatureBuilder(this.actor).withItem(item).withEvent(event).withPeriode(item.system.periode).create().drop();
+                    await new FeatureBuilder(this.actor).withOriginalItem(item.sid).withEvent(event).withPeriode(item.system.periode).create().drop();
                     break;
             }
         }

@@ -113,25 +113,4 @@ export class Passe extends HistoricalFeature {
         )
     }
 
-    /**
-     * Get the passes according to the specified character and the active periodes.
-     * @param actor The actor object.
-     * @returns the passes to display in the character sheet.
-     */
-    static getAll(actor) {
-        const all = [];
-        for (let s of game.items.filter(i => i.type === 'passe')) {
-            const feature = new Passe(actor).withItem(s);
-            if (feature.degre !== 0) {
-                all.push({
-                    name: feature.name,
-                    sid: feature.sid,
-                    id: s.id,
-                    degre: feature.degre
-                });
-            }
-        }
-        return all;
-    }
-
 }

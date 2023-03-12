@@ -422,7 +422,7 @@ export class FigureSheet extends HistoricalSheet {
         const id = $(event.currentTarget).closest(".formed").data("id");
         const item = game.items.get(id);
         const index = $(event.currentTarget).closest(".formed").data("index");
-        await new FeatureBuilder(this.actor).withItem(item).create().toggleFormed(index);
+        await new FeatureBuilder(this.actor).withOriginalItem(item.sid).create().toggleFormed(index);
     }
 
     // -- METAMORPHE ------------------------------------------------------------------------
@@ -436,7 +436,7 @@ export class FigureSheet extends HistoricalSheet {
         const id = $(event.currentTarget).closest(".visible").data("id");
         const item = game.items.get(id);
         const index = $(event.currentTarget).closest(".visible").data("index");
-        await new FeatureBuilder(this.actor).withItem(item).create().toggleVisible(index);
+        await new FeatureBuilder(this.actor).withOriginalItem(item.sid).create().toggleVisible(index);
     }
 
     /**
@@ -447,7 +447,7 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".active").data("id");
         const item = game.items.get(id);
-        await new FeatureBuilder(this.actor).withItem(item).create().toggleActive();
+        await new FeatureBuilder(this.actor).withOriginalItem(item.sid).create().toggleActive();
     }
 
     // -- CHUTES ------------------------------------------------------------------------

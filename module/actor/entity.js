@@ -9,16 +9,14 @@ import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { Game } from "../common/game.js";
+import { HistoricalFeature } from "../../feature/core/historicalFeature.js";
 import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
 import { Materiae } from "../../feature/alchimie/materiae.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
-import { Passe } from "../../feature/periode/passe.js";
 import { Periode } from "../../feature/periode/periode.js";
-import { Quete } from "../../feature/periode/quete.js";
-import { Savoir } from "../../feature/periode/savoir.js";
 import { Science } from "../../feature/science/science.js";
 import { Vecu } from "../../feature/periode/vecu.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
@@ -297,7 +295,7 @@ export class NephilimActor extends Actor {
      * @returns the data to display. 
      */
     get chutes() {
-        return Chute.getAll(this);
+        return HistoricalFeature.getAll(this, 'chute');
     }
 
     /**
@@ -367,7 +365,7 @@ export class NephilimActor extends Actor {
      * @returns the data to display. 
      */
     get passes() {
-        return Passe.getAll(this);
+        return HistoricalFeature.getAll(this, 'passe');
     }
 
     /**
@@ -392,21 +390,21 @@ export class NephilimActor extends Actor {
      * @returns the data to display. 
      */
     get quetes() {
-        return Quete.getAll(this);
+        return HistoricalFeature.getAll(this, 'quete');
     }
 
     /**
      * @returns the data to display. 
      */
     get savoirs() {
-        return Savoir.getAll(this);
+        return HistoricalFeature.getAll(this, 'savoir');
     }
 
     /**
      * @returns the data to display. 
      */
     get sciences() {
-        return Science.getAll(this);
+        return HistoricalFeature.getAll(this, 'science');
     }
 
     /**
@@ -421,6 +419,23 @@ export class NephilimActor extends Actor {
      */
     get vecusOfSimulacre() {
         return Vecu.getAll(this, 'simulacre');
+    }
+
+    /**
+     * @param sid The system identifier of the item for which to retrieve the degre of the fraternite.
+     * @returns the fraternite degre for the specified item.
+     */
+    fraternite(sid) {
+        let degre = 0;
+        if (this.system?.options?.fraternites === true) {
+            for (let f of this.fraternites.filter(a => a.system.options.active === true)) {
+                const d = new FeatureBuilder(f).withOriginalItem(sid).create().degre;
+                if (d != null && d > degre) {
+                    degre = d;
+                }
+            }
+        }
+        return degre;
     }
 
     /**
@@ -572,7 +587,7 @@ export class NephilimActor extends Actor {
             case 'technique': {
                 const item = game.items.find(i => i.sid === sid);
                 builder = new FeatureBuilder(this)
-                    .withItem(item)
+                    .withOriginalItem(item.sid)
                     .withScope('actor')
                     .withPeriode(this.system.periode);
                 break;
@@ -580,7 +595,7 @@ export class NephilimActor extends Actor {
             case 'vecu': {
                 const item = this.items.find(i => i.id === id);
                 builder = new FeatureBuilder(this)
-                    .withItem(item)
+                    .withEmbeddedItem(item.id)
                     .withScope('actor')
                     .withPeriode(this.system.periode);
                 break;

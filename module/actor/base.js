@@ -243,7 +243,7 @@ export class BaseSheet extends ActorSheet {
             case '.roll-science': {
                 const key = $(event.currentTarget).closest(".roll").data("item"); 
                 const item = game.items.find(i => i.type === 'science' && i?.system?.key === key);
-                const builder = new FeatureBuilder(this.actor).withItem(item);
+                const builder = new FeatureBuilder(this.actor).withOriginalItem(item.sid);
                 return builder.create();
             }
             case '.roll-noyau': {
@@ -257,12 +257,17 @@ export class BaseSheet extends ActorSheet {
             default: {
                 const id = $(event.currentTarget).closest(purpose).data("id");
                 const scope = $(event.currentTarget).closest(purpose).data("scope");
-                const item = scope == null ? game.items.get(id) : AbstractFeature.actor(this.actor,scope).items.get(id);
-                const builder = new FeatureBuilder(this.actor).withItem(item);
-                if (scope != null) {
+
+                if (scope == null) {
+                    const item = game.items.get(id);
+                    const builder = new FeatureBuilder(this.actor).withOriginalItem(item.sid);
+                    return builder.create();
+                } else {
+                    const item = AbstractFeature.actor(this.actor,scope).items.get(id);
+                    const builder = new FeatureBuilder(this.actor).withEmbeddedItem(item.id);
                     builder.withScope(scope);
+                    return builder.create();
                 }
-                return builder.create();
             }
         }
     }

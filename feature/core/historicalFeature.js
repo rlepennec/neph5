@@ -1,4 +1,5 @@
 import { AbstractFeature } from "./AbstractFeature.js";
+import { FeatureBuilder } from "./featureBuilder.js";
 
 export class HistoricalFeature extends AbstractFeature {
 
@@ -62,6 +63,27 @@ export class HistoricalFeature extends AbstractFeature {
      */
     get degre() {
         return this.degreFromPeriodes(this.sid);
+    }
+
+    /**
+     * @param actor The actor object.
+     * @param type  The type of item.
+     * @returns all features to display in the actor sheet according to the active periodes.
+     */
+    static getAll(actor, type) {
+        const features = [];
+        for (let item of game.items.filter(i => i.type === type)) {
+            const feature = new FeatureBuilder(actor).withOriginalItem(item.sid).create();
+            if (feature.degre !== 0) {
+                features.push({
+                    name: feature.name,
+                    sid: feature.sid,
+                    id: item.id,
+                    degre: feature.degre
+                });
+            }
+        }
+        return features;
     }
 
 }

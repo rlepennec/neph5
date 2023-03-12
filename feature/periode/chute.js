@@ -94,27 +94,6 @@ export class Chute extends HistoricalFeature {
     }
 
     /**
-     * Get the chutes according to the specified character and the active periodes.
-     * @param actor The actor object.
-     * @returns the arcanes to display in the character sheet.
-     */
-    static getAll(actor) {
-        const all = [];
-        for (let s of game.items.filter(i => i.type === 'chute')) {
-            const feature = new Chute(actor).withItem(s);
-            if (feature.degre !== 0) {
-                all.push({
-                    name: feature.name,
-                    sid: feature.sid,
-                    id: s.id,
-                    degre: feature.degre
-                });
-            }
-        }
-        return all;
-    }
-
-    /**
      * @param actor The actor object.
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */

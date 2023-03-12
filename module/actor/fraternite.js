@@ -159,7 +159,7 @@ export class FraterniteSheet extends HistoricalSheet {
                     switch(item.type) {
                         case 'periode':
                             await new FeatureBuilder(this.actor)
-                                .withItem(item)
+                                .withOriginalItem(item.sid)
                                 .withEvent(event)
                                 .withPeriode(this.editedPeriode)
                                 .create()
@@ -173,7 +173,7 @@ export class FraterniteSheet extends HistoricalSheet {
                             const periode = this.editedPeriode;
                             if (periode != null) {
                                 await new FeatureBuilder(this.actor)
-                                    .withItem(item)
+                                    .withOriginalItem(item.sid)
                                     .withEvent(event)
                                     .withPeriode(periode)
                                     .create()
