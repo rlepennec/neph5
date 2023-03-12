@@ -73,7 +73,9 @@
 
                 <ul class="periode-menu">
 
+                    {{#unless (eq ../editedPeriode periode/original.sid)}}
                     <li class="display">Détails</li>
+                    {{/unless}}
 
                     <li class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Afficher{{else}}Editer{{/if}}</li>
 
