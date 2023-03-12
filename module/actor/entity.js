@@ -782,7 +782,7 @@ export class NephilimActor extends Actor {
         if (item != null) {
             switch (item.type) {
                 case 'periode':
-                    await this.deletePeriode(item);
+                    await this.deletePeriode(item.sid);
                     break;
                 case 'vecu':
                     await this.deleteVecu(item);
@@ -818,10 +818,10 @@ export class NephilimActor extends Actor {
 
     /**
      * Deletes the specified periode.
-     * @param item The The original or embedded periode item to delete.
+     * @param sid The ystem identifier of the periode to delete.
      */
-    async deletePeriode(item) {
-        const original = game.items.find(i => i.sid === item.sid);
+    async deletePeriode(sid) {
+        const original = game.items.find(i => i.sid === sid);
         if (original != null) {
             await new Periode(this, original).delete();
         }
