@@ -225,7 +225,7 @@ export class FeatureBuilder {
     }
 
     /**
-     * @returns the actor object according to the scope.
+     * @returns the actor itself or the simulacre of the actor depending on the scope.
      */
     scopedActor() {
         switch (this.actor.type) {
