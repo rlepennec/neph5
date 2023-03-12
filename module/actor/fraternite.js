@@ -67,7 +67,7 @@ export class FraterniteSheet extends HistoricalSheet {
 
         // Historique
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="incarnations"] .delete-periode').click(this._onDeletePeriode.bind(this));
+        html.find('div[data-tab="incarnations"] .periode-delete').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .current-periode').click(this._onCurrentPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .delete-item').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="incarnations"] .delete-actor').click(this._onDeleteActor.bind(this));

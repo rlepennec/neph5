@@ -110,6 +110,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .edit').click(this._onEditPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .define').click(this._onCurrentPeriode.bind(this));
         html.find('div[data-tab="incarnations"] .open').click(this._onOpenItem.bind(this));
+        html.find('div[data-tab="incarnations"] .periode-delete').click(this._onDeletePeriode.bind(this));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
@@ -127,7 +128,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="combat"] .edit-lutte').click(this._onEditLutte.bind(this));
 
         // Incarnations
-        html.find('div[data-tab="incarnations"] .delete-periode').click(this._onDeletePeriode.bind(this));
+        
         html.find('div[data-tab="incarnations"] .delete-item').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditFeature.bind(this, 'item'));
         

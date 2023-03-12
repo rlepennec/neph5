@@ -821,9 +821,9 @@ export class NephilimActor extends Actor {
      * @param item The The original or embedded periode item to delete.
      */
     async deletePeriode(item) {
-        const embedded = this.items.find(i => i.sid === item.sid);
-        if (embedded != null) {
-            await new Periode(this, embedded).delete();
+        const original = game.items.find(i => i.sid === item.sid);
+        if (original != null) {
+            await new Periode(this, original).delete();
         }
     }
  

@@ -29,26 +29,7 @@ export class HistoricalSheet extends BaseSheet {
 
 
 
-    /**
-     * Delete the specified periode.
-     * @param event The click event.
-     */
-    async _onDeletePeriode(event) {
 
-        event.preventDefault();
-
-        // Retrieve the data
-        const feature = this.createFeature(".item", event);
-        const periode = this.actor.items.find(i => i.sid === feature.item.sid);
-
-        // Update the periode edition options
-        this.editedPeriode = this.editedPeriode === feature.sid ? null : this.editedPeriode;
-        this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== feature.item.id);
-
-        // Used to remove vecus & combat options
-        await this.actor.deletePeriode(periode);
-
-    }
 
 
 
@@ -130,6 +111,27 @@ export class HistoricalSheet extends BaseSheet {
         const sid = $(event.currentTarget).closest('.item').data('sid');
         this.editedPeriode = this.editedPeriode === sid ? null : sid;
         await this.render(true);
+    }
+
+    /**
+     * Delete the specified periode.
+     * @param event The click event.
+     */
+    async _onDeletePeriode(event) {
+
+        event.preventDefault();
+
+        // Retrieve the data
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const original = game.items.find(i => i.sid === sid);
+
+        // Update the periode edition options
+        this.editedPeriode = this.editedPeriode === sid ? null : this.editedPeriode;
+        this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
+
+        // Used to remove vecus & combat options
+        await this.actor.deletePeriode(original);
+
     }
 
     /**

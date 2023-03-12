@@ -924,6 +924,10 @@
   height: 30px;
   font-size: 16px;
   padding-top: 6px;
+  z-index: 99;
+}
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-delete:hover {
+  background-color: #729EBF;
 }
 .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name {
   position: absolute;
