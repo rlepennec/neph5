@@ -118,7 +118,7 @@ export class Periode extends AbstractFeature {
             // Update the next previous periode
             const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.item.sid);
             if (next != null) {
-                await next.update({ ["system.previous"]: this.item.system.previous });
+                await next.update({ ["system.previous"]: this.embedded.system.previous });
             }
 
             // Remove the current actor periode if necessary

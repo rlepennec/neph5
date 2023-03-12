@@ -130,7 +130,7 @@ export class HistoricalSheet extends BaseSheet {
         this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
 
         // Used to remove vecus & combat options
-        await this.actor.deletePeriode(original);
+        await this.actor.deletePeriode(original.sid);
 
     }
 
