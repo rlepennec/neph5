@@ -1,20 +1,20 @@
 import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
+import { HistoricalFeature } from "../core/historicalFeature.js";
 
-export class Savoir extends AbstractFeature {
+export class Savoir extends HistoricalFeature {
 
     /**
      * Constructor.
      * @param actor   The actor which performs the action.
-     * @param item    The original item object, purpose of the action.
+     * @param item    The original item object. 
      * @param periode The optional system identifier of the periode.
      */
     constructor(actor, item, periode) {
-        super(actor);
-        this.item = item;
-        this.periode = periode;
+        super(actor, item, periode);
         this.attachPeriode = true;
     }
 
@@ -40,22 +40,8 @@ export class Savoir extends AbstractFeature {
             .withItem(this.item)
             .withBase(this.item.name, this.degre)
             .withFraternite(this.fraternite)
-            .withBlessures('magique')
+            .withBlessures(Constants.MAGICAL)
             .export();
-    }
-
-    /**
-     * @Override
-     */
-    get purpose() {
-        return this.item;
-    }
-
-    /**
-     * @Override
-     */
-    get degre() {
-        return this.degreFromPeriodes(this.sid);
     }
 
     /**
