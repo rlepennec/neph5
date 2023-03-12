@@ -817,8 +817,7 @@ export class NephilimActor extends Actor {
     }   
 
     /**
-     * Deletes the specified periode.
-     * @param sid The ystem identifier of the periode to delete.
+     * @param sid The system identifier of the periode to delete.
      */
     async deletePeriode(sid) {
         const original = game.items.find(i => i.sid === sid);
@@ -829,7 +828,6 @@ export class NephilimActor extends Actor {
  
     /**
      * @param sid The system identifier of current periode to set.
-     * @returns the instance.
      */
     async setCurrentPeriode(sid) {
         await this.update({ ["system.periode"]: sid });
