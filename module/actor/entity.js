@@ -455,7 +455,7 @@ export class NephilimActor extends Actor {
      */
     science(science) {
         const i = Science.getScience(science);
-        return new Science(this, i).degre;
+        return new Science(this).withItem(i).degre;
     }
 
     /**
@@ -804,7 +804,7 @@ export class NephilimActor extends Actor {
     async deleteVecu(item) {
         const embedded = this.items.find(i => i.sid === item.sid);
         if (embedded != null) {
-            await new Vecu(this, 'actor').withEmbeddedItem(embedded).delete();
+            await new Vecu(this, 'actor').withItem(embedded).delete();
         }
     }
 

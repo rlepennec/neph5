@@ -8,12 +8,26 @@ export class Arcane extends HistoricalFeature {
 
     /**
      * Constructor.
-     * @param actor   The actor which performs the action.
-     * @param item    The original item object. 
-     * @param periode The optional system identifier of the periode.
+     * @param actor The actor which performs the action.
      */
-    constructor(actor, item, periode) {
-        super(actor, item, periode);
+    constructor(actor) {
+        super(actor);
+    }
+
+    /**
+     * @Override
+     */
+    withItem(item) {
+        super.withItem(item);
+        return this;
+    }
+
+    /**
+     * @Override
+     */
+    withPeriode(periode) {
+        super.withPeriode(periode);
+        return this;
     }
 
     /**
@@ -85,7 +99,7 @@ export class Arcane extends HistoricalFeature {
     static getAll(actor) {
         const all = [];
         for (let s of game.items.filter(i => i.type === 'arcane')) {
-            const feature = new Arcane(actor, s);
+            const feature = new Arcane(actor).withItem(s);
             all.push({
                 name: feature.name,
                 sid: feature.sid,

@@ -3,9 +3,10 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
 import { Game } from "../../module/common/game.js";
+import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "./periode.js";
 
-export class Vecu extends AbstractFeature {
+export class Vecu extends HistoricalFeature {
 
     /**
      * Constructor.
@@ -18,21 +19,10 @@ export class Vecu extends AbstractFeature {
     }
 
     /**
-     * @param item The original item object, purpose of the action.
-     * @returns 
+     * @Override
      */
-    withOriginalItem(item) {
-        this.item = item;
-        return this;
-    }
-
-    /**
-     * @param item The embedded item object, purpose of the action.
-     * @returns 
-     */
-    withEmbeddedItem(item) {
-        this.embedded = item;
-        this.item = game.items.find(i => i.sid === item.sid);
+    withItem(item) {
+        super.withItem(item);
         return this;
     }
 

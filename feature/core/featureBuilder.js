@@ -154,7 +154,7 @@ export class FeatureBuilder {
             case 'appel':
                 return new Appel(this.actor, item, this.periode);
             case 'arcane':
-                return new Arcane(this.actor, item, this.periode);
+                return new Arcane(this.actor).withPeriode(this.periode).withItem(item);
             case 'aspect':
                 return new Aspect(this.actor, item);
             case 'atlanteide':
@@ -162,7 +162,7 @@ export class FeatureBuilder {
             case 'catalyseur':
                 return new Catalyseur(this.actor, item);
             case 'chute':
-                return new Chute(this.actor, item, this.periode);
+                return new Chute(this.actor).withPeriode(this.periode).withItem(item);
             case 'competence':
                 return new Competence(this.actor, item).withManoeuver(this.manoeuver);
             case 'dracomachie':
@@ -182,21 +182,21 @@ export class FeatureBuilder {
             case 'ordonnance':
                 return new Ordonnance(this.actor, item).withPeriode(this.periode);
             case 'passe':
-                return new Passe(this.actor, item, this.periode);
+                return new Passe(this.actor).withPeriode(this.periode).withItem(item);
             case 'periode':
                 return new Periode(this.actor, item).withEvent(this.event);
             case 'pratique':
                 return new Pratique(this.actor, item, this.periode);
             case 'quete':
-                return new Quete(this.actor, item, this.periode);
+                return new Quete(this.actor).withPeriode(this.periode).withItem(item);
             case 'rite':
                 return new Rite(this.actor, item, this.periode);
             case 'rituel':
                 return new Rituel(this.actor, item, this.periode);
             case 'science':
-                return new Science(this.actor, item, this.periode);
+                return new Science(this.actor).withPeriode(this.periode).withItem(item);
             case 'savoir':
-                return new Savoir(this.actor, item, this.periode);
+                return new Savoir(this.actor).withPeriode(this.periode).withItem(item);
             case 'sort':
                 return new Sort(this.actor, item, this.periode);
             case 'technique':
@@ -204,12 +204,7 @@ export class FeatureBuilder {
             case 'tekhne':
                 return new Tekhne(this.actor, item, this.periode);
             case 'vecu':
-                const vecu = new Vecu(this.actor, this.scope).withPeriode(this.periode).withManoeuver(this.manoeuver).withEvent(this.event);
-                if (item.actor == null) {
-                    return vecu.withOriginalItem(item);
-                } else {
-                    return vecu.withEmbeddedItem(item);
-                }
+                return new Vecu(this.actor, this.scope).withPeriode(this.periode).withItem(item).withManoeuver(this.manoeuver).withEvent(this.event);
             default:
                 if (this.ka != null) {
                     return new Ka(this.actor, this.ka, this.scope);

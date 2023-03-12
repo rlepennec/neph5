@@ -85,7 +85,7 @@ export class AbstractFeature {
         let degre = 0;
         if (this.actor.system?.options?.fraternites === true) {
             for (let f of this.actor.fraternites.filter(a => a.system.options.active === true)) {
-                const d = this.clone(f, this.item).degre;
+                const d = new FeatureBuilder(f).withOriginalItem(this.item.sid).create().degre;
                 if (d != null && d > degre) {
                     degre = d;
                 }

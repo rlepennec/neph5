@@ -1,22 +1,35 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
+import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "../periode/periode.js";
 
-export class Science extends AbstractFeature {
+export class Science extends HistoricalFeature {
 
     /**
      * Constructor.
-     * @param actor   The actor which performs the action.
-     * @param item    The original item object, purpose of the action.
-     * @param periode The optional system identifier of the periode.
+     * @param actor The actor which performs the action.
      */
-    constructor(actor, item, periode) {
+    constructor(actor) {
         super(actor);
-        this.item = item;
-        this.periode = periode;
         this.attachPeriode = true;
+    }
+
+    /**
+     * @Override
+     */
+    withItem(item) {
+        super.withItem(item);
+        return this;
+    }
+
+    /**
+     * The system identifier of the periode to registrer.
+     * @returns the instance.
+     */
+    withPeriode(periode) {
+        this.periode = periode;
+        return this;
     }
 
     /**
@@ -57,16 +70,6 @@ export class Science extends AbstractFeature {
      */
     get degre() {
         return this.degreFromPeriodes(this.sid);
-    }
-
-    /**
-     * @param actor   The actor which performs the action.
-     * @param item    The embedded item object, purpose of the action.
-     * @param periode The optional system identifier of the periode.
-     * @returns a new instance.
-     */
-    clone(actor, item, periode) {
-        return new Science(actor, item, periode);
     }
 
     /**
@@ -301,7 +304,7 @@ export class Science extends AbstractFeature {
     static getAll(actor) {
         const all = [];
         for (let s of game.items.filter(i => i.type === 'science')) {
-            const feature = new Science(actor, s);
+            const feature = new Science(actor).withItem(s);
             if (feature.degre !== 0) {
                 all.push({
                     name: feature.name,
@@ -322,7 +325,7 @@ export class Science extends AbstractFeature {
      */
     static scienceOf(actor, cercle) {
         const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
-        return item == null ? null : new Science(actor, item);
+        return item == null ? null : new Science(actor).withItem(item);
     }
 
     /**
@@ -350,7 +353,7 @@ export class Science extends AbstractFeature {
         for (let cercle of cercles) {
             const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
             if (item != null) {
-                const feature = new Science(actor, item);
+                const feature = new Science(actor).withItem(item);
                 const degre = feature.degre;
                 const focus = Science._getFocus(actor, cercle);
                 if (degre > 0 || focus.length > 0) {

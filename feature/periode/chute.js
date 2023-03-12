@@ -9,12 +9,26 @@ export class Chute extends HistoricalFeature {
 
     /**
      * Constructor.
-     * @param actor   The actor which performs the action.
-     * @param item    The original item object. 
-     * @param periode The optional system identifier of the periode.
+     * @param actor The actor which performs the action.
      */
-    constructor(actor, item, periode) {
-        super(actor, item, periode);
+    constructor(actor) {
+        super(actor);
+    }
+
+    /**
+     * @Override
+     */
+    withItem(item) {
+        super.withItem(item);
+        return this;
+    }
+    
+    /**
+     * @Override
+     */
+    withPeriode(periode) {
+        super.withPeriode(periode);
+        return this;
     }
 
     /**
@@ -41,16 +55,6 @@ export class Chute extends HistoricalFeature {
             .withFraternite(this.fraternite)
             .withBlessures(Constants.MAGICAL)
             .export();
-    }
-
-    /**
-     * @param actor   The actor which performs the action.
-     * @param item    The embedded item object, purpose of the action.
-     * @param periode The optional system identifier of the periode.
-     * @returns a new instance.
-     */
-    clone(actor, item, periode) {
-        return new Chute(actor, item, periode);
     }
 
     /**
@@ -97,7 +101,7 @@ export class Chute extends HistoricalFeature {
     static getAll(actor) {
         const all = [];
         for (let s of game.items.filter(i => i.type === 'chute')) {
-            const feature = new Chute(actor, s);
+            const feature = new Chute(actor).withItem(s);
             if (feature.degre !== 0) {
                 all.push({
                     name: feature.name,
