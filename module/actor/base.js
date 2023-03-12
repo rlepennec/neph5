@@ -183,8 +183,8 @@ export class BaseSheet extends ActorSheet {
      */
     async _onDeleteEmbeddedItem(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const item = this.actor.items.get(li.data("item-id"));
+        const id = $(event.currentTarget).closest(".item").data("id");
+        const item = this.actor.items.get(id);
         await this.actor.deleteEmbeddedItem(item);
     }
 

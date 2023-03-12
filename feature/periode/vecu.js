@@ -230,18 +230,18 @@ export class Vecu extends AbstractFeature {
     async delete() {
 
         // Delete the vecu
-        await this.actor.deleteEmbeddedDocuments('Item', [this.item.id]);
+        await this.actor.deleteEmbeddedDocuments('Item', [this.embedded.id]);
 
         // Delete embedded weapons which use the vecu
-        for (let o of this.actor.items.filter(i => i.type === 'arme' && i.system?.competence === this.item.sid)) {
+        for (let o of this.actor.items.filter(i => i.type === 'arme' && i.system?.competence === this.embedded.sid)) {
             await this.actor.deleteEmbeddedDocuments('Item', [o.id]);
         }
 
         // Update actor manoeuvres, lutte and esquive
         if (this.actor.type === 'figure') {
             const manoeuvres = duplicate(this.actor.system.manoeuvres);
-            manoeuvres.esquive = manoeuvres.esquive === this.item.sid ? null : manoeuvres.esquive;
-            manoeuvres.lutte = manoeuvres.lutte === this.item.sid ? null : manoeuvres.lutte;
+            manoeuvres.esquive = manoeuvres.esquive === this.embedded.sid ? null : manoeuvres.esquive;
+            manoeuvres.lutte = manoeuvres.lutte === this.embedded.sid ? null : manoeuvres.lutte;
             await this.actor.update({['system.manoeuvres']: manoeuvres});
         }
 

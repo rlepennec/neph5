@@ -64,7 +64,7 @@
                 <img class="periode-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
                 {{#if (eq ../editedPeriode periode.original.sid)}}                
-                <a class="periode-delete"><i class="fas fa-trash"></i></a>
+                <label class="fas fa-trash delete"></label>
                 {{/if}}
 
                 <label class="periode-name {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
@@ -132,7 +132,7 @@
                         <label class="name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}                
-                        <a class="delete"><i class="fas fa-trash"></i></a>
+                        <label class="fas fa-trash delete"></label>
                         {{/if}}
 
                     </div>
