@@ -1,4 +1,3 @@
-import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { HistoricalSheet } from "./historical.js";
@@ -159,7 +158,7 @@ export class FraterniteSheet extends HistoricalSheet {
                     // Drop the new resource
                     switch(item.type) {
                         case 'periode':
-                            await new AbstractRollBuilder(this.actor)
+                            await new FeatureBuilder(this.actor)
                                 .withItem(item)
                                 .withEvent(event)
                                 .withPeriode(this.editedPeriode)
@@ -173,7 +172,7 @@ export class FraterniteSheet extends HistoricalSheet {
                         case 'science': {
                             const periode = this.editedPeriode;
                             if (periode != null) {
-                                await new AbstractRollBuilder(this.actor)
+                                await new FeatureBuilder(this.actor)
                                     .withItem(item)
                                     .withEvent(event)
                                     .withPeriode(periode)

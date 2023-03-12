@@ -1,5 +1,5 @@
 import { AbstractFeature } from "../../feature/core/AbstractFeature.js";
-import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
@@ -238,27 +238,27 @@ export class BaseSheet extends ActorSheet {
             case '.roll-ka': {
                 const element = $(event.currentTarget).closest(purpose).data("element");
                 const scope = $(event.currentTarget).closest(purpose).data("scope"); 
-                return new AbstractRollBuilder(this.actor).withKa(element).withScope(scope).create();
+                return new FeatureBuilder(this.actor).withKa(element).withScope(scope).create();
             }
             case '.roll-science': {
                 const key = $(event.currentTarget).closest(".roll").data("item"); 
                 const item = game.items.find(i => i.type === 'science' && i?.system?.key === key);
-                const builder = new AbstractRollBuilder(this.actor).withItem(item);
+                const builder = new FeatureBuilder(this.actor).withItem(item);
                 return builder.create();
             }
             case '.roll-noyau': {
-                const builder = new AbstractRollBuilder(this.actor).withNoyau();
+                const builder = new FeatureBuilder(this.actor).withNoyau();
                 return builder.create();
             }
             case '.roll-pavane': {
-                const builder = new AbstractRollBuilder(this.actor).withPavane();
+                const builder = new FeatureBuilder(this.actor).withPavane();
                 return builder.create();
             }
             default: {
                 const id = $(event.currentTarget).closest(purpose).data("id");
                 const scope = $(event.currentTarget).closest(purpose).data("scope");
                 const item = scope == null ? game.items.get(id) : AbstractFeature.actor(this.actor,scope).items.get(id);
-                const builder = new AbstractRollBuilder(this.actor).withItem(item);
+                const builder = new FeatureBuilder(this.actor).withItem(item);
                 if (scope != null) {
                     builder.withScope(scope);
                 }

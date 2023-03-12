@@ -1,5 +1,5 @@
 
-import { AbstractRollBuilder } from "../../core/AbstractRollBuilder.js";
+import { FeatureBuilder } from "../../core/featureBuilder.js";
 import { Competence } from "../../periode/competence.js";
 import { Menace } from "../core/menace.js";
 import { Vecu } from "../../periode/vecu.js";
@@ -34,7 +34,7 @@ export class Combat {
 
                 switch (skill.type) {
                     case 'competence': {
-                        await new AbstractRollBuilder(this.actor).withItem(skill).create().initializeRoll();
+                        await new FeatureBuilder(this.actor).withItem(skill).create().initializeRoll();
                         break;
                     }
                     case 'vecu': {
@@ -43,7 +43,7 @@ export class Combat {
                             ui.notifications.warn("Vous ne possédez pas le vécu nécessaire pour " + (weapon == null ? "lutter" : "utiliser cette arme"));
                             return;
                         }
-                        await new AbstractRollBuilder(this.actor).withItem(item).create().initializeRoll();
+                        await new FeatureBuilder(this.actor).withItem(item).create().initializeRoll();
                         break;
                     }
                 }

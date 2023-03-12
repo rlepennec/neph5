@@ -1,4 +1,3 @@
-import { AbstractRollBuilder } from "../../feature/core/AbstractRollBuilder.js";
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Arcane } from "../../feature/periode/arcane.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
@@ -7,6 +6,7 @@ import { Chute } from "../../feature/periode/chute.js";
 import { Competence } from "../../feature/periode/competence.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { Game } from "../common/game.js";
 import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
@@ -571,7 +571,7 @@ export class NephilimActor extends Actor {
             case 'tekhne':
             case 'technique': {
                 const item = game.items.find(i => i.sid === sid);
-                builder = new AbstractRollBuilder(this)
+                builder = new FeatureBuilder(this)
                     .withItem(item)
                     .withScope('actor')
                     .withPeriode(this.system.periode);
@@ -579,25 +579,25 @@ export class NephilimActor extends Actor {
             }
             case 'vecu': {
                 const item = this.items.find(i => i.id === id);
-                builder = new AbstractRollBuilder(this)
+                builder = new FeatureBuilder(this)
                     .withItem(item)
                     .withScope('actor')
                     .withPeriode(this.system.periode);
                 break;
             }
             case 'ka': {
-                builder = new AbstractRollBuilder(this)
+                builder = new FeatureBuilder(this)
                     .withKa(id)
                     .withScope('actor');
                 break;
             }
             case 'noyau': {
-                builder = new AbstractRollBuilder(this)
+                builder = new FeatureBuilder(this)
                     .withNoyau();
                 break;
             }
             case 'pavane': {
-                builder = new AbstractRollBuilder(this)
+                builder = new FeatureBuilder(this)
                     .withPavane();
                 break;
             }

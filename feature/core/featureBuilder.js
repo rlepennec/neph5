@@ -95,6 +95,31 @@ export class FeatureBuilder {
     }
 
     /**
+     * @param ka The ka element.
+     * @returns the instance.
+     */
+    withKa(ka) {
+        this.ka = ka;
+        return this;
+    }
+
+    /**
+     * @returns the instance.
+     */
+    withNoyau() {
+        this.noyau = true;
+        return this;
+    }
+
+    /**
+     * @returns the instance.
+     */
+    withPavane() {
+        this.pavane = true;
+        return this;
+    }
+
+    /**
      * @returns the embedded or original item.
      */
     item() {
@@ -119,15 +144,23 @@ export class FeatureBuilder {
      */
     create() {
 
-        // Retieve the world or the embedded item
+        // Retrieve the world or the embedded item
         const item = this.item();
 
         // Create the feature
         switch (item?.type) {
+            case 'alchimie':
+                return new Alchimie(this.actor, item);
             case 'appel':
                 return new Appel(this.actor, item, this.periode);
+            case 'arcane':
+                return new Arcane(this.actor, item, this.periode);
+            case 'aspect':
+                return new Aspect(this.actor, item);
             case 'atlanteide':
                 return new Atlanteide(this.actor, item, this.periode);
+            case 'catalyseur':
+                return new Catalyseur(this.actor, item);
             case 'chute':
                 return new Chute(this.actor, item, this.periode);
             case 'competence':
@@ -140,6 +173,14 @@ export class FeatureBuilder {
                 return new Habitus(this.actor, item, this.periode);
             case 'invocation':
                 return new Invocation(this.actor, item, this.periode);
+            case 'magie':
+                return new Magie(this.actor, item);
+            case 'materiae':
+                return new Materiae(this.actor, item);
+            case 'metamorphe':
+                return new Metamorphe(this.actor, item);
+            case 'ordonnance':
+                return new Ordonnance(this.actor, item).withPeriode(this.periode);
             case 'passe':
                 return new Passe(this.actor, item, this.periode);
             case 'periode':
@@ -170,6 +211,15 @@ export class FeatureBuilder {
                     return vecu.withEmbeddedItem(item);
                 }
             default:
+                if (this.ka != null) {
+                    return new Ka(this.actor, this.ka, this.scope);
+                }
+                if (this.noyau != null) {
+                    return new Noyau(this.actor);
+                }
+                if (this.pavane != null) {
+                    return new Pavane(this.actor);
+                }
                 return null;
         }
     }
