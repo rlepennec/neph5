@@ -1,16 +1,14 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { SimpleFeature } from "../core/SimpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Alchimie extends AbstractFeature {
+export class Alchimie extends SimpleFeature {
 
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
      */
     constructor(actor, item) {
         super(actor);
-        this.item = item;
     }
 
     /**

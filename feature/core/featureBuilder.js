@@ -150,17 +150,17 @@ export class FeatureBuilder {
         // Create the feature
         switch (item?.type) {
             case 'alchimie':
-                return new Alchimie(this.actor, item);
+                return new Alchimie(this.actor).withItem(item);
             case 'appel':
                 return new Appel(this.actor).withPeriode(this.periode).withItem(item);
             case 'arcane':
                 return new Arcane(this.actor).withPeriode(this.periode).withItem(item);
             case 'aspect':
-                return new Aspect(this.actor, item);
+                return new Aspect(this.actor).withItem(item);
             case 'atlanteide':
                 return new Atlanteide(this.actor).withPeriode(this.periode).withItem(item);
             case 'catalyseur':
-                return new Catalyseur(this.actor, item);
+                return new Catalyseur(this.actor).withItem(item);
             case 'chute':
                 return new Chute(this.actor).withPeriode(this.periode).withItem(item);
             case 'competence':
@@ -174,11 +174,11 @@ export class FeatureBuilder {
             case 'invocation':
                 return new Invocation(this.actor).withPeriode(this.periode).withItem(item);
             case 'magie':
-                return new Magie(this.actor, item);
+                return new Magie(this.actor).withItem(item);
             case 'materiae':
-                return new Materiae(this.actor, item);
+                return new Materiae(this.actor).withItem(item);
             case 'metamorphe':
-                return new Metamorphe(this.actor, item);
+                return new Metamorphe(this.actor).withItem(item);
             case 'ordonnance':
                 return new Ordonnance(this.actor, item).withPeriode(this.periode);
             case 'passe':

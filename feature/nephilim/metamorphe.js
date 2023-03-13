@@ -1,17 +1,15 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { SimpleFeature } from "../core/SimpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 
-export class Metamorphe extends AbstractFeature {
+export class Metamorphe extends SimpleFeature {
 
     /**
      * Constructor.
      * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
      */
-    constructor(actor, item) {
+    constructor(actor) {
         super(actor);
-        this.item = item;
     }
 
     /**

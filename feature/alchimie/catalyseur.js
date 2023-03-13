@@ -1,16 +1,14 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { SimpleFeature } from "../core/SimpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
-export class Catalyseur extends AbstractFeature {
+export class Catalyseur extends SimpleFeature {
 
     /**
      * Constructor.
-     * @param actor The actor which performs the action.
-     * @param item  The embedded item object, purpose of the action. 
+     * @param actor The actor which performs the action. 
      */
     constructor(actor, item) {
         super(actor);
-        this.item = item;
     }
 
     /**
