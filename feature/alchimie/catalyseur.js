@@ -1,3 +1,4 @@
+import { AbstractFeature } from "../core/AbstractFeature.js";
 import { SimpleFeature } from "../core/SimpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
