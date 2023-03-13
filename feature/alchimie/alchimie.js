@@ -22,12 +22,4 @@ export class Alchimie extends SimpleFeature {
             .create();
     }
 
-    /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmItem(this.sid);
-        return this;
-    }
-
 }

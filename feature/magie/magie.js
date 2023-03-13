@@ -22,12 +22,4 @@ export class Magie extends SimpleFeature {
             .create();
     }
 
-    /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
-    }
-
 }
