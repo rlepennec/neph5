@@ -5,14 +5,50 @@ export class AbstractFocus extends AbstractFeature {
     /**
      * Constructor.
      * @param actor   The actor which owns the focus.
-     * @param item    The original focus item object.
-     * @param periode The system identifier of the periode to register.
      */
-    constructor(actor, item, periode) {
+    constructor(actor) {
         super(actor);
+    }
+
+    /**
+     * @param item The original or embedded item object, purpose of the action.
+     * @returns the instance.
+     */
+    withItem(item) {
+        if (item.actor == null) {
+            return this.withOriginalItem(item);
+        } else {
+            return this.withEmbeddedItem(item);
+        }
+    }
+
+    /**
+     * @param item The original item object, purpose of the action.
+     * @returns the instance.
+     */
+    withOriginalItem(item) {
         this.item = item;
-        this.embedded = actor.items.find(i => i.sid === item.sid);
+        this.embedded = this.actor.items.find(i => i.sid === item.sid);
+        return this;
+    }
+
+    /**
+     * @param item The embedded item object, purpose of the action.
+     * @returns the instance.
+     */
+    withEmbeddedItem(item) {
+        this.embedded = item;
+        this.item = game.items.find(i => i.sid === item.sid);
+        return this;
+    }
+
+    /**
+     * @param periode The system identifier of the periode to registrer.
+     * @returns the instance.
+     */
+    withPeriode(periode) {
         this.periode = periode;
+        return this;
     }
 
     /**

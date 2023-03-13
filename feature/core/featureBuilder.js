@@ -152,13 +152,13 @@ export class FeatureBuilder {
             case 'alchimie':
                 return new Alchimie(this.actor, item);
             case 'appel':
-                return new Appel(this.actor, item, this.periode);
+                return new Appel(this.actor).withPeriode(this.periode).withItem(item);
             case 'arcane':
                 return new Arcane(this.actor).withPeriode(this.periode).withItem(item);
             case 'aspect':
                 return new Aspect(this.actor, item);
             case 'atlanteide':
-                return new Atlanteide(this.actor, item, this.periode);
+                return new Atlanteide(this.actor).withPeriode(this.periode).withItem(item);
             case 'catalyseur':
                 return new Catalyseur(this.actor, item);
             case 'chute':
@@ -166,13 +166,13 @@ export class FeatureBuilder {
             case 'competence':
                 return new Competence(this.actor, item).withManoeuver(this.manoeuver);
             case 'dracomachie':
-                return new Dracomachie(this.actor, item, this.periode);
+                return new Dracomachie(this.actor).withPeriode(this.periode).withItem(item);
             case 'formule':
-                return new Formule(this.actor, item, this.periode);
+                return new Formule(this.actor).withPeriode(this.periode).withItem(item);
             case 'habitus':
-                return new Habitus(this.actor, item, this.periode);
+                return new Habitus(this.actor).withPeriode(this.periode).withItem(item);
             case 'invocation':
-                return new Invocation(this.actor, item, this.periode);
+                return new Invocation(this.actor).withPeriode(this.periode).withItem(item);
             case 'magie':
                 return new Magie(this.actor, item);
             case 'materiae':
@@ -186,23 +186,23 @@ export class FeatureBuilder {
             case 'periode':
                 return new Periode(this.actor, item).withEvent(this.event);
             case 'pratique':
-                return new Pratique(this.actor, item, this.periode);
+                return new Pratique(this.actor).withPeriode(this.periode).withItem(item);
             case 'quete':
                 return new Quete(this.actor).withPeriode(this.periode).withItem(item);
             case 'rite':
-                return new Rite(this.actor, item, this.periode);
+                return new Rite(this.actor).withPeriode(this.periode).withItem(item);
             case 'rituel':
-                return new Rituel(this.actor, item, this.periode);
+                return new Rituel(this.actor).withPeriode(this.periode).withItem(item);
             case 'science':
                 return new Science(this.actor).withPeriode(this.periode).withItem(item);
             case 'savoir':
                 return new Savoir(this.actor).withPeriode(this.periode).withItem(item);
             case 'sort':
-                return new Sort(this.actor, item, this.periode);
+                return new Sort(this.actor).withPeriode(this.periode).withItem(item);
             case 'technique':
-                return new Technique(this.actor, item, this.periode);
+                return new Technique(this.actor).withPeriode(this.periode).withItem(item);
             case 'tekhne':
-                return new Tekhne(this.actor, item, this.periode);
+                return new Tekhne(this.actor).withPeriode(this.periode).withItem(item);
             case 'vecu':
                 return new Vecu(this.actor, this.scope).withPeriode(this.periode).withItem(item).withManoeuver(this.manoeuver).withEvent(this.event);
             default:

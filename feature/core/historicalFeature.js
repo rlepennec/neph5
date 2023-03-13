@@ -43,7 +43,7 @@ export class HistoricalFeature extends AbstractFeature {
     }
     
     /**
-     * The system identifier of the periode to registrer.
+     * @param periode The system identifier of the periode to registrer.
      * @returns the instance.
      */
     withPeriode(periode) {
