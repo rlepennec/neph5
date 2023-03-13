@@ -66,14 +66,13 @@ export class HistoricalFeature extends AbstractFeature {
     }
 
     /**
-     * @param actor The actor object.
-     * @param type  The type of item.
+     * @param type The type of item.
      * @returns all features to display in the actor sheet according to the active periodes.
      */
-    static getAll(actor, type) {
+    getAll(type) {
         const features = [];
         for (let item of game.items.filter(i => i.type === type)) {
-            const feature = new FeatureBuilder(actor).withOriginalItem(item.sid).create();
+            const feature = new FeatureBuilder(this.actor).withOriginalItem(item.sid).create();
             if (feature.degre !== 0) {
                 features.push({
                     name: feature.name,
