@@ -111,28 +111,21 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .open').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="incarnations"] .periode-header .delete').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .vecu .delete').click(this._onDeleteEmbeddedItem.bind(this));
-        //html.find('div[data-tab="incarnations"] .edit-item').click(this._onEditFeature.bind(this, 'item'));
-
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
 
-
-
-
-
-
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
 
+
+
+
+        
         // Combat
         html.find('div[data-tab="combat"] .edit-esquive').click(this._onEditEsquive.bind(this));
         html.find('div[data-tab="combat"] .edit-lutte').click(this._onEditLutte.bind(this));
 
-        // Incarnations
-        
-
-        
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
@@ -605,18 +598,7 @@ export class FigureSheet extends HistoricalSheet {
 
     // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
 
-    /**
-     * Open the simulacre or the fraternite.
-     * @param event The click event.
-     */
-    async _onOpenActor(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
-        const actor = game.actors.get(id);
-        if (actor != null) {
-            actor.sheet.render(true);
-        }
-    }
+
 
     // After refactoring
     // -------------------------------------------------------------------------
@@ -634,6 +616,21 @@ export class FigureSheet extends HistoricalSheet {
         let scope = node.data("scope");
         scope = scope == null ? "actor" : scope;
         return new FeatureBuilder(this.actor).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
+    }
+
+    /**
+     * Open the specified actor, simulacre or the fraternite.
+     * @param event The click event.
+     * @returns the instance.
+     */
+    async _onOpenActor(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
+        const actor = game.actors.get(id);
+        if (actor != null) {
+            actor.sheet.render(true);
+        }
+        return this;
     }
 
     /**
