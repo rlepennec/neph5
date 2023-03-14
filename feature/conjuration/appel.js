@@ -39,7 +39,7 @@ export class Appel extends AbstractFocus {
     get degre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
 
         // Final result
         return science;
