@@ -667,10 +667,15 @@
 .actor-root .article .article-body .ordonnances .all-ordonnances {
   padding-left: 0px;
 }
+.actor-root .article .article-body .ordonnances .all-ordonnances .ordonnance {
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  margin-top: 20px;
+}
 .actor-root .article .article-body .ordonnances .all-ordonnances .ordonnance .ordonnance-title {
   display: flex;
   flex-direction: row;
-  font-family: 'AJensonPro';
 }
 .actor-root .article .article-body .ordonnances .all-ordonnances .ordonnance .ordonnance-title .ordonnances-puce {
   border: none;
@@ -687,6 +692,12 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 20px;
+}
+.actor-root .article .article-body .ordonnances .all-ordonnances .ordonnance .ordonnance-description {
+  list-style: none;
+  width: calc(100% - 100px);
+  margin-left: 85px;
+  font-size: 15px;
 }
 .actor-root .article .article-body .akasha {
   display: flex;
