@@ -22,6 +22,7 @@ export const preloadTemplates = async function () {
 
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
+        "systems/neph5e/feature/kabbale/actor/ordonnances.hbs",
 
         // Laboratoire
         "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",

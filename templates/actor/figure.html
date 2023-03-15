@@ -80,6 +80,13 @@
                     <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
                     <img class="sheet-navigation-hole" src="systems/neph5e/assets/core/hole.webp"/>
                 </div>
+                {{#if (gt actor.ordonnances.items.length 0)}}
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="ordonnances">{{localize "NEPH5E.ordonnances"}}</a>
+                    <img class="sheet-navigation-pin" src="systems/neph5e/assets/core/pin.webp"/>
+                    <img class="sheet-navigation-hole" src="systems/neph5e/assets/core/hole.webp"/>
+                </div>
+                {{/if}}
                 {{/if}}
 
                 {{#if (eq system.options.alchimie true)}}
@@ -257,6 +264,9 @@
                 </div>
                 <div class="tab" data-group="primary" data-tab="arbre">
                     {{> "systems/neph5e/feature/kabbale/actor/arbre.hbs"}}
+                </div>
+                <div class="tab" data-group="primary" data-tab="ordonnances">
+                    {{> "systems/neph5e/feature/kabbale/actor/ordonnances.hbs"}}
                 </div>
                 {{/if}}
         
