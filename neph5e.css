@@ -540,7 +540,6 @@
   text-align: center;
 }
 .actor-root .article .article-body .arbre img {
-  margin-left: 90px;
   border: 0px;
   width: 600px;
   height: 795px;
@@ -561,64 +560,64 @@
   font-weight: bold;
 }
 .actor-root .article .article-body .arbre .malkut .title {
-  transform: translate(17px, 320px);
+  transform: translate(-28px, 320px);
 }
 .actor-root .article .article-body .arbre .malkut .degre {
-  transform: translate(44px, 340px);
+  transform: translate(2px, 340px);
 }
 .actor-root .article .article-body .arbre .yesod .title {
-  transform: translate(25px, 165px);
+  transform: translate(-23px, 165px);
 }
 .actor-root .article .article-body .arbre .yesod .degre {
-  transform: translate(44px, 185px);
+  transform: translate(2px, 185px);
 }
 .actor-root .article .article-body .arbre .hod .title {
-  transform: translate(-105px, 85px);
+  transform: translate(-151px, 86px);
 }
 .actor-root .article .article-body .arbre .hod .degre {
-  transform: translate(-91px, 105px);
+  transform: translate(-135px, 105px);
 }
 .actor-root .article .article-body .arbre .netzach .title {
-  transform: translate(148px, 85px);
+  transform: translate(102px, 86px);
 }
 .actor-root .article .article-body .arbre .netzach .degre {
-  transform: translate(182px, 105px);
+  transform: translate(138px, 105px);
 }
 .actor-root .article .article-body .arbre .tiphereth .title {
-  transform: translate(2px, 8px);
+  transform: translate(-42px, 8px);
 }
 .actor-root .article .article-body .arbre .tiphereth .degre {
-  transform: translate(44px, 27px);
+  transform: translate(2px, 27px);
 }
 .actor-root .article .article-body .arbre .geburah .title {
-  transform: translate(-128px, -70px);
+  transform: translate(-172px, -72px);
 }
 .actor-root .article .article-body .arbre .geburah .degre {
-  transform: translate(-94px, -48px);
+  transform: translate(-135px, -54px);
 }
 .actor-root .article .article-body .arbre .chesed .title {
-  transform: translate(151px, -70px);
+  transform: translate(108px, -72px);
 }
 .actor-root .article .article-body .arbre .chesed .degre {
-  transform: translate(182px, -48px);
+  transform: translate(138px, -54px);
 }
 .actor-root .article .article-body .arbre .binah .title {
-  transform: translate(-113px, -225px);
+  transform: translate(-158px, -230px);
 }
 .actor-root .article .article-body .arbre .binah .degre {
-  transform: translate(-94px, -205px);
+  transform: translate(-135px, -211px);
 }
 .actor-root .article .article-body .arbre .chokmah .title {
-  transform: translate(143px, -225px);
+  transform: translate(97px, -230px);
 }
 .actor-root .article .article-body .arbre .chokmah .degre {
-  transform: translate(182px, -205px);
+  transform: translate(138px, -211px);
 }
 .actor-root .article .article-body .arbre .kether .title {
-  transform: translate(17px, -305px);
+  transform: translate(-28px, -309px);
 }
 .actor-root .article .article-body .arbre .kether .degre {
-  transform: translate(44px, -284px);
+  transform: translate(2px, -289px);
 }
 .actor-root .article .article-body .ordonnances .ordonnances-header {
   display: flex;
