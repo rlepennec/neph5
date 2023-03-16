@@ -453,6 +453,16 @@
   top: 2px;
   width: calc(100% - 65px);
 }
+.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 64px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line {
+  display: flex;
+  flex-direction: row;
+}
 .actor-root .article .article-body .combat .dommages .dommages-column.left {
   margin-right: 10px;
 }
@@ -461,6 +471,9 @@
 }
 .actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-header .dommages-name {
   left: 70px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-body {
+  left: 35px;
 }
 .actor-root .article .article-body .combat .dommages .dommages-column.right {
   margin-left: 10px;
@@ -475,6 +488,10 @@
 }
 .actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-name {
   text-align: right;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-body {
+  text-align: right;
+  left: 35px;
 }
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
