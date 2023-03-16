@@ -399,6 +399,83 @@
   border: none;
   width: 120px;
 }
+.actor-root .article .article-body .combat {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+.actor-root .article .article-body .combat .dommages {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+}
+.actor-root .article .article-body .combat .dommages .dommages-triangle {
+  position: absolute;
+  display: block;
+  border: none;
+  width: 200px;
+  left: 50%;
+  top: 15px;
+  margin-left: -100px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header .dommages-puce {
+  position: absolute;
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header .dommages-separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  top: 32px;
+  width: calc(100% - 90px);
+}
+.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header .dommages-name {
+  position: absolute;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.left {
+  margin-right: 10px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-header .dommages-separator {
+  left: 55px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-header .dommages-name {
+  left: 70px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.right {
+  margin-left: 10px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-puce {
+  right: 0px;
+  transform: rotateY(180deg);
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-separator {
+  right: 55px;
+  width: calc(100% - 100px);
+}
+.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-name {
+  text-align: right;
+}
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
 }
@@ -1342,128 +1419,6 @@
 .actor-root .article .foptions .item-list .item .delete {
   text-align: center;
   width: 32px;
-}
-.actor-root .article .combat .figurant {
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-}
-.actor-root .article .combat .figurant .sectionTitleUnderline {
-  padding-left: 5px;
-  width: 95%;
-  margin: 10px 20px 10px 20px;
-}
-.actor-root .article .combat .figurant .item-list .menace input {
-  text-align: center;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.actor-root .article .combat .figurant .item-list .ka input {
-  text-align: center;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.actor-root .article .combat .figurant .item-list .vecu input {
-  text-align: center;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.actor-root .article .combat .content {
-  display: flex;
-  flex-direction: row;
-  padding-top: 20px;
-}
-.actor-root .article .combat .content .column {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-right: 10px;
-}
-.actor-root .article .combat .content .column .dommages {
-  display: flex;
-  flex-direction: row;
-  flex: none;
-  padding-top: 10px;
-  justify-content: center;
-}
-.actor-root .article .combat .content .column .dommages .sectionTitleUnderline {
-  padding-left: 5px;
-  width: 100%;
-  margin: 10px 0px 10px 20px;
-}
-.actor-root .article .combat .content .column .dommages .sectionTitleUnderline span {
-  margin-right: 20px;
-}
-.actor-root .article .combat .content .column .dommages .sectionTitleUnderline .dommage-checkbox {
-  font-size: 14px;
-}
-.actor-root .article .combat .content .column .dommages .sectionTitleUnderline .additional {
-  margin-left: 20px;
-}
-.actor-root .article .combat .content .column .title {
-  display: flex;
-  flex-direction: row;
-  flex: none;
-  padding-left: 5px;
-  margin: 10px 0px 10px 20px;
-}
-.actor-root .article .combat .content .column .bonus li {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 5px;
-}
-.actor-root .article .combat .content .column .bonus li input {
-  width: 30px;
-  height: 30px;
-  margin-left: 30px;
-  margin-right: 10px;
-  text-align: center;
-  border-radius: 50%;
-  flex-basis: 30px;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-.actor-root .article .combat .content .column .bonus li label {
-  padding-top: 9px;
-  margin-left: 10px;
-}
-.actor-root .article .combat .content .column .actions .roll {
-  text-align: center;
-  width: 32px;
-  margin-left: 12px;
-  margin-right: 10px;
-}
-.actor-root .article .combat .content .column .capacites .item .item-control {
-  margin-left: 12px;
-  margin-right: 10px;
-}
-.actor-root .article .combat .content .column .capacites .item .item-name span.esquive {
-  margin-right: 5px;
-}
-.actor-root .article .combat .content .column .capacites .item .item-name span.lutte {
-  margin-right: 20px;
-}
-.actor-root .article .combat .content .column .capacites .item i {
-  margin-right: 15px;
-}
-.actor-root .article .combat .content .column .equipement .item .delete {
-  margin-left: 12px;
-  margin-right: 10px;
 }
 .actor-root .article .nofocus {
   display: flex;
