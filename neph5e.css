@@ -410,6 +410,143 @@
   position: relative;
   width: 60%;
   background-color: transparent;
+  /*
+                    .dommages-column {
+                        display: flex;
+                        flex-direction: column;
+                        width: 50%;
+
+                        .dommages-header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: -10px;
+
+                            .dommages-puce {
+                                position: absolute;
+                                border: none;
+                                width: 60px;
+                                display: hidden;
+                                background-color: transparent;
+                            }
+
+                            .dommages-separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                top: 32px;
+                                width: calc(100% - 90px);
+                            }
+
+                            .dommages-name {
+                                position: absolute;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        .dommages-body {
+                            display: flex;
+                            flex-direction: column;
+                            position: relative;
+                            top: 64px;
+                            font-family: 'AJensonPro';
+                            
+                            .dommages-line {
+                                display: flex;
+                                flex-direction: row;
+
+                                span {
+                                    font-size: 16px;
+                                }
+
+                                .dommages-checkbox {
+                                    font-style: italic;
+                                    margin-left: 22px;
+                                    margin-right: 20px;
+                                    font-size: 11px;
+                                    padding-top: 3px;
+                                
+                                    .checked {
+                                        display: none;
+                                    }
+
+                                    input[type="checkbox"] {
+                                        display:none;
+                                    }
+                                
+                                    input[type="checkbox"]:checked ~ .checked {
+                                        display: inline-block;
+                                    }
+                                     
+                                    input[type="checkbox"]:checked ~ .unchecked {
+                                        display: none;
+                                    }
+                                
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    .dommages-column.left {
+                        margin-right: 10px;
+
+                        .dommages-header {
+
+                            .dommages-puce {
+                            }
+
+                            .dommages-separator {
+                                left: 55px;
+                            }
+
+                            .dommages-name {
+                                left: 70px;
+                            }
+
+                        }
+
+                        .dommages-body {
+                            left: 35px;
+                        }
+
+                    }
+
+                    .dommages-column.right {
+                        margin-left: 10px;
+
+                        .dommages-header {
+
+                            .dommages-puce {
+                                right: 0px;
+                                transform: rotateY(180deg);
+                            }
+
+                            .dommages-separator {
+                                right: 55px;
+                                width: calc(100% - 100px);
+                            }
+
+                            .dommages-name {
+                                text-align: right;
+                            }
+
+                        }
+
+                        .dommages-body {
+                            text-align: right;
+                            left: 35px;
+                        }
+
+                    }
+                    */
 }
 .actor-root .article .article-body .combat .dommages .dommages-triangle {
   position: absolute;
@@ -417,15 +554,31 @@
   border: none;
   width: 200px;
   left: 50%;
-  top: 15px;
+  top: 10px;
   margin-left: -100px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column {
+.actor-root .article .article-body .combat .dommages .dommages-titles {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  left: 50%;
+  top: 61px;
+  margin-left: -106px;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+}
+.actor-root .article .article-body .combat .dommages .dommages-titles .dommages-title {
+  text-align: center;
+}
+.actor-root .article .article-body .combat .dommages .dommages-physiques {
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 50%;
+  margin-right: 10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header {
+.actor-root .article .article-body .combat .dommages .dommages-physiques > .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -434,87 +587,57 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header .dommages-puce {
+.actor-root .article .article-body .combat .dommages .dommages-physiques > .header > .puce {
   position: absolute;
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header .dommages-separator {
+.actor-root .article .article-body .combat .dommages .dommages-physiques > .header > .separator {
   position: absolute;
   border: none;
   height: 4px;
   top: 32px;
   width: calc(100% - 90px);
+  left: 55px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-header .dommages-name {
+.actor-root .article .article-body .combat .dommages .dommages-physiques > .header > .name {
   position: absolute;
   top: 2px;
   width: calc(100% - 65px);
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 64px;
-  font-family: 'AJensonPro';
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line {
-  display: flex;
-  flex-direction: row;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line span {
-  font-size: 16px;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line .dommages-checkbox {
-  font-style: italic;
-  margin-left: 22px;
-  margin-right: 20px;
-  font-size: 11px;
-  padding-top: 3px;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line .dommages-checkbox .checked {
-  display: none;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line .dommages-checkbox input[type="checkbox"] {
-  display: none;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line .dommages-checkbox input[type="checkbox"]:checked ~ .checked {
-  display: inline-block;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column .dommages-body .dommages-line .dommages-checkbox input[type="checkbox"]:checked ~ .unchecked {
-  display: none;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column.left {
-  margin-right: 10px;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-header .dommages-separator {
-  left: 55px;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-header .dommages-name {
   left: 70px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column.left .dommages-body {
-  left: 35px;
+.actor-root .article .article-body .combat .dommages .dommages-magiques {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-right: 10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column.right {
-  margin-left: 10px;
+.actor-root .article .article-body .combat .dommages .dommages-magiques > .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-puce {
-  right: 0px;
-  transform: rotateY(180deg);
+.actor-root .article .article-body .combat .dommages .dommages-magiques > .header > .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  top: 32px;
+  width: calc(100% - 30px);
+  left: 290px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-separator {
-  right: 55px;
-  width: calc(100% - 100px);
-}
-.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-header .dommages-name {
+.actor-root .article .article-body .combat .dommages .dommages-magiques > .header > .name {
+  position: absolute;
+  top: 2px;
+  width: calc(100% - 65px);
+  left: 310px;
   text-align: right;
-}
-.actor-root .article .article-body .combat .dommages .dommages-column.right .dommages-body {
-  text-align: right;
-  left: 35px;
 }
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
