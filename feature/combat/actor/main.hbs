@@ -16,39 +16,93 @@
 
             </div>
 
-            <div class="dommages-body">
+            <ol class="dommages-body">
 
-                <div class="dommages-line">
+                <li class="dommages-line">
 
-                    <span>{{localize "NEPH5E.dommages"}}</span>
+                    <span class="title">{{localize "NEPH5E.dommages"}}</span>
 
-                </div>
+                    <label class="dommages-checkbox">
+                        <input
+                            {{#if system.dommage.physique._1}}checked{{/if}}
+                            name="system.dommage.physique._1"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
 
-                <div class="dommages-line">
+                    <label class="dommages-checkbox">
+                        <input
+                            {{#if system.dommage.physique._2}}checked{{/if}}
+                            name="system.dommage.physique._2"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
 
-                    <span>{{localize "NEPH5E.blessureMineure"}}</span>
+                    <label class="dommages-checkbox">
+                        <input
+                            {{#if system.dommage.physique._3}}checked{{/if}}
+                            name="system.dommage.physique._3"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
 
-                </div>
+                    {{#if (gt system.ka.terre 4)}}
+                    <label class="dommages-checkbox">
+                        <input
+                            {{#if system.dommage.physique._4}}checked{{/if}}
+                            name="system.dommage.physique._4"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    {{/if}}
 
-                <div class="dommages-line">
+                    {{#if (gt system.ka.terre 9)}}
+                    <label class="dommages-checkbox">
+                        <input
+                            {{#if system.dommage.physique._5}}checked{{/if}}
+                            name="system.dommage.physique._5"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    {{/if}}
 
-                    <span>{{localize "NEPH5E.blessureSerieuse"}}</span>
+                </li>
 
-                </div>
+                <li class="dommages-line">
 
-                <div class="dommages-line">
+                    <span class="title">{{localize "NEPH5E.blessureMineure"}}</span>
 
-                    <span>{{localize "NEPH5E.blessureGrave"}}</span>
+                </li>
 
-                </div>
+                <li class="dommages-line">
 
-                <div class="dommages-line">
+                    <span class="title">{{localize "NEPH5E.blessureSerieuse"}}</span>
 
-                    <span>{{localize "NEPH5E.blessureMortelle"}}</span>
+                </li>
 
-                </div>
+                <li class="dommages-line">
 
-            </div>
+                    <span class="title">{{localize "NEPH5E.blessureGrave"}}</span>
+
+                </li>
+
+                <li class="dommages-line">
+
+                    <span class="title" >{{localize "NEPH5E.blessureMortelle"}}</span>
+
+                </li>
+
+            </ol>
 
         </div>
 
@@ -56,47 +110,16 @@
 
             <div class="dommages-header">
 
-                <img class="dommages-puce" src="systems/neph5e/assets/core/puce.webp"/>
-
                 <img class="dommages-separator" src="systems/neph5e/assets/core/separator2.webp"/>
 
                 <span class="dommages-name">{{localize "NEPH5E.magique"}}</span>
 
             </div>
 
-            <div class="dommages-body">
+            <ol class="dommages-body">
 
-                <div class="dommages-line">
-
-                    <span>{{localize "NEPH5E.dommages"}}</span>
-
-                </div>
-
-                <div class="dommages-line">
-
-                    <span>{{localize "NEPH5E.blessureMineure"}}</span>
-
-                </div>
-
-                <div class="dommages-line">
-
-                    <span>{{localize "NEPH5E.blessureSerieuse"}}</span>
-
-                </div>
-
-                <div class="dommages-line">
-
-                    <span>{{localize "NEPH5E.blessureGrave"}}</span>
-
-                </div>
-
-                <div class="dommages-line">
-
-                    <span>{{localize "NEPH5E.blessureMortelle"}}</span>
-
-                </div>
                 
-            </div>
+            </ol>
 
         </div>
 
