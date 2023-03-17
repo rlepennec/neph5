@@ -145,320 +145,326 @@
             }
 
             .combat {
+                padding-top: 20px;
                 display: flex;
                 flex-direction: row;
-                padding-top: 20px;
 
-                .dommages {
+                .left {
                     display: flex;
-                    flex-direction: row;
-                    position: relative;
+                    flex-direction: column;
                     width: 60%;
-                    background-color: transparent;
-                    
-                    >img {
-                        position: absolute;
-                        display: block;
-                        border: none;
-                        width: 200px;
-                        left: 50%;
-                        top: 10px;
-                        margin-left: -100px;
-                    }
 
-                    >ol {
-                        position: absolute;
+                    .dommages {
                         display: flex;
-                        flex-direction: column;
-                        width: 200px;
-                        left: 50%;
-                        top: 61px;
-                        margin-left: -106px;
-                        font-family: 'AJensonPro';
-                        font-size: 16px;
-
-                        >li {
-                            text-align: center;
-                            list-style: none;
+                        flex-direction: row;
+                        position: relative;
+                        background-color: transparent;
+                        
+                        >img {
+                            position: absolute;
+                            display: block;
+                            border: none;
+                            width: 200px;
+                            left: 50%;
+                            top: 10px;
+                            margin-left: -100px;
                         }
 
-                    }
+                        >ol {
+                            position: absolute;
+                            display: flex;
+                            flex-direction: column;
+                            width: 200px;
+                            left: 50%;
+                            top: 61px;
+                            margin-left: -106px;
+                            font-family: 'AJensonPro';
+                            font-size: 16px;
 
-                    .physiques {
-                        position: absolute;
-                        display: flex;
-                        flex-direction: column;
-                        width: 50%;
-                        margin-right: 10px;
-
-                        .modifier {
-
-                            img {
-                                position: absolute;
-                                display: block;
-                                border: none;
-                                width: 80px;
-                                top: 95px;
-                                margin-left: 20px;
-                            }
-
-                            label {
-                                position: absolute;
-                                display: block;
-                                width: 67px;
-                                top: 127px;
-                                margin-left: 27px;
+                            >li {
                                 text-align: center;
-                                font-family: 'AJensonPro';
-                                font-size: 19px;
+                                list-style: none;
                             }
+
                         }
 
-                        .header {
+                        .physiques {
+                            position: absolute;
                             display: flex;
-                            flex-direction: row;
-                            position: relative;
-                            font-family: 'AJensonPro';
-                            font-size: 21px;
-                            margin-top: 15px;
-                            margin-bottom: -10px;
+                            flex-direction: column;
+                            width: 50%;
+                            margin-right: 10px;
 
-                            .puce {
-                                position: absolute;
-                                border: none;
-                                width: 60px;
-                                background-color: transparent;
-                            
-                            }
+                            .modifier {
 
-                            .separator {
-                                position: absolute;
-                                border: none;
-                                height: 4px;
-                                top: 32px;
-                                width: calc(100% - 95px);
-                                left: 55px;
-                            
-                            }
-
-                            .name {
-                                position: absolute;
-                                top: 2px;
-                                width: calc(100% - 65px);
-                                left: 70px;
-                            
-                            }
-                        }
-
-                        .body {
-                            position: relative;
-                            top: 56px;
-
-                            .checkboxes {
-                                display: flex;
-                                flex-direction: row;
-                                height: 19px;
-                                width: 30px;
-
-                                .checkbox {
-                                    flex: 0 0 auto;
-                                    width: 34px;
-                                    
-                                    .checked {
-                                        display: none;
-                                    }
-
-                                    input[type="checkbox"] {
-                                        display:none;
-                                    }
-
-                                    input[type="checkbox"]:checked ~ .checked {
-                                        display: inline-block;
-                                    }
-                                     
-                                    input[type="checkbox"]:checked ~ .unchecked {
-                                        display: none;
-                                    }
-                                }
-
-                                .checkbox.n1  {
-                                    font-size: 11px;
-                                    .tooltiptext {
-                                        font-size: 11px;
-                                    }
-                                }
-
-                                .checkbox.n2  {
-                                    font-size: 16px;
-                                    .tooltiptext {
-                                        font-size: 11px;
-                                    }
-                                }
-
-                                .checkbox.n3  {
-                                    font-size: 20px;
-                                    .tooltiptext {
-                                        font-size: 11px;
-                                    }
-                                }
-
-                            }
-
-                            .checkboxes:nth-child(2) {
-                                margin-left: 125px;
-                            }
-
-                            .checkboxes:nth-child(3) {
-                                margin-left: 115px;
-                            }
-
-                            .checkboxes:nth-child(4) {
-                                margin-left: 104px;
-                            }
-
-                            .checkboxes:nth-child(5) {
-                                margin-left: 92px;
-                            }
-
-                        }
-
-                    }
-
-                    .magiques {
-                        position: absolute;
-                        display: flex;
-                        flex-direction: column;
-                        width: 50%;
-                        left: 50%;
-
-                        .header {
-                            display: flex;
-                            flex-direction: row;
-                            position: relative;
-                            font-family: 'AJensonPro';
-                            font-size: 21px;
-                            margin-top: 15px;
-                            margin-bottom: -10px;
-
-                            .separator {
-                                position: absolute;
-                                border: none;
-                                height: 4px;
-                                top: 32px;
-                                width: calc(100% - 30px);
-                                left: 45px;
-                            
-                            }
-
-                            .name {
-                                position: absolute;
-                                top: 2px;
-                                width: calc(100% - 65px);
-                                left: 65px;
-                                text-align: right;
-                            
-                            }
-
-                        }
-
-                        .modifier {
-
-                            img {
-                                position: absolute;
-                                display: block;
-                                border: none;
-                                width: 80px;
-                                top: 95px;
-                                margin-left: calc(100% - 97px);
-                            }
-
-                            label {
-                                position: absolute;
-                                display: block;
-                                top: 127px;
-                                width: calc(100% - 101px);
-                                left: 65px;
-                                text-align: right;
-                                font-family: 'AJensonPro';
-                                font-size: 19px;
-                            }
-
-                        }
-
-                        .body {
-                            position: relative;
-                            top: 56px;
-
-                            .checkboxes {
-                                display: flex;
-                                flex-direction: row;
-                                font-size: 11px;
-                                height: 19px;
-                                width: 30px;
-                                text-align: right;
-
-                                .checkbox {
-                                    flex: 0 0 auto;
+                                img {
+                                    position: absolute;
+                                    display: block;
+                                    border: none;
+                                    width: 80px;
+                                    top: 95px;
                                     margin-left: 20px;
-                                    
-                                    .checked {
-                                        display: none;
-                                    }
-
-                                    input[type="checkbox"] {
-                                        display:none;
-                                    }
-
-                                    input[type="checkbox"]:checked ~ .checked {
-                                        display: inline-block;
-                                    }
-                                     
-                                    input[type="checkbox"]:checked ~ .unchecked {
-                                        display: none;
-                                    }
                                 }
 
-                                .checkbox.n1  {
+                                label {
+                                    position: absolute;
+                                    display: block;
+                                    width: 67px;
+                                    top: 127px;
+                                    margin-left: 27px;
+                                    text-align: center;
+                                    font-family: 'AJensonPro';
+                                    font-size: 19px;
+                                }
+                            }
+
+                            .header {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                font-family: 'AJensonPro';
+                                font-size: 21px;
+                                margin-top: 15px;
+                                margin-bottom: -10px;
+
+                                .puce {
+                                    position: absolute;
+                                    border: none;
+                                    width: 60px;
+                                    background-color: transparent;
+                                
+                                }
+
+                                .separator {
+                                    position: absolute;
+                                    border: none;
+                                    height: 4px;
+                                    top: 32px;
+                                    width: calc(100% - 95px);
+                                    left: 55px;
+                                
+                                }
+
+                                .name {
+                                    position: absolute;
+                                    top: 2px;
+                                    width: calc(100% - 65px);
+                                    left: 70px;
+                                
+                                }
+                            }
+
+                            .body {
+                                position: relative;
+                                top: 56px;
+
+                                .checkboxes {
+                                    display: flex;
+                                    flex-direction: row;
+                                    height: 19px;
+                                    width: 30px;
+
+                                    .checkbox {
+                                        flex: 0 0 auto;
+                                        width: 34px;
+                                        
+                                        .checked {
+                                            display: none;
+                                        }
+
+                                        input[type="checkbox"] {
+                                            display:none;
+                                        }
+
+                                        input[type="checkbox"]:checked ~ .checked {
+                                            display: inline-block;
+                                        }
+                                        
+                                        input[type="checkbox"]:checked ~ .unchecked {
+                                            display: none;
+                                        }
+                                    }
+
+                                    .checkbox.n1  {
+                                        font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    .checkbox.n2  {
+                                        font-size: 16px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    .checkbox.n3  {
+                                        font-size: 20px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                }
+
+                                .checkboxes:nth-child(2) {
+                                    margin-left: 125px;
+                                }
+
+                                .checkboxes:nth-child(3) {
+                                    margin-left: 115px;
+                                }
+
+                                .checkboxes:nth-child(4) {
+                                    margin-left: 104px;
+                                }
+
+                                .checkboxes:nth-child(5) {
+                                    margin-left: 92px;
+                                }
+
+                            }
+
+                        }
+
+                        .magiques {
+                            position: absolute;
+                            display: flex;
+                            flex-direction: column;
+                            width: 50%;
+                            left: 50%;
+
+                            .header {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                font-family: 'AJensonPro';
+                                font-size: 21px;
+                                margin-top: 15px;
+                                margin-bottom: -10px;
+
+                                .separator {
+                                    position: absolute;
+                                    border: none;
+                                    height: 4px;
+                                    top: 32px;
+                                    width: calc(100% - 30px);
+                                    left: 45px;
+                                
+                                }
+
+                                .name {
+                                    position: absolute;
+                                    top: 2px;
+                                    width: calc(100% - 65px);
+                                    left: 65px;
+                                    text-align: right;
+                                
+                                }
+
+                            }
+
+                            .modifier {
+
+                                img {
+                                    position: absolute;
+                                    display: block;
+                                    border: none;
+                                    width: 80px;
+                                    top: 95px;
+                                    margin-left: calc(100% - 97px);
+                                }
+
+                                label {
+                                    position: absolute;
+                                    display: block;
+                                    top: 127px;
+                                    width: calc(100% - 101px);
+                                    left: 65px;
+                                    text-align: right;
+                                    font-family: 'AJensonPro';
+                                    font-size: 19px;
+                                }
+
+                            }
+
+                            .body {
+                                position: relative;
+                                top: 56px;
+
+                                .checkboxes {
+                                    display: flex;
+                                    flex-direction: row;
                                     font-size: 11px;
-                                    .tooltiptext {
-                                        font-size: 11px;
+                                    height: 19px;
+                                    width: 30px;
+                                    text-align: right;
+
+                                    .checkbox {
+                                        flex: 0 0 auto;
+                                        margin-left: 20px;
+                                        
+                                        .checked {
+                                            display: none;
+                                        }
+
+                                        input[type="checkbox"] {
+                                            display:none;
+                                        }
+
+                                        input[type="checkbox"]:checked ~ .checked {
+                                            display: inline-block;
+                                        }
+                                        
+                                        input[type="checkbox"]:checked ~ .unchecked {
+                                            display: none;
+                                        }
                                     }
+
+                                    .checkbox.n1  {
+                                        font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    .checkbox.n2  {
+                                        font-size: 16px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    .checkbox.n3  {
+                                        font-size: 20px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
                                 }
 
-                                .checkbox.n2  {
-                                    font-size: 16px;
-                                    .tooltiptext {
-                                        font-size: 11px;
-                                    }
+                                .checkboxes:nth-child(1) {
+                                    margin-left: calc(100% - 181px);
                                 }
 
-                                .checkbox.n3  {
-                                    font-size: 20px;
-                                    .tooltiptext {
-                                        font-size: 11px;
-                                    }
+                                .checkboxes:nth-child(2) {
+                                    margin-left: calc(100% - 171px);
                                 }
 
-                            }
+                                .checkboxes:nth-child(3) {
+                                    margin-left: calc(100% - 161px);
+                                }
 
-                            .checkboxes:nth-child(1) {
-                                margin-left: calc(100% - 181px);
-                            }
+                                .checkboxes:nth-child(4) {
+                                    margin-left: calc(100% - 150px);
+                                }
 
-                            .checkboxes:nth-child(2) {
-                                margin-left: calc(100% - 171px);
-                            }
+                                .checkboxes:nth-child(5) {
+                                    margin-left: calc(100% - 139px);
+                                }
 
-                            .checkboxes:nth-child(3) {
-                                margin-left: calc(100% - 161px);
-                            }
-
-                            .checkboxes:nth-child(4) {
-                                margin-left: calc(100% - 150px);
-                            }
-
-                            .checkboxes:nth-child(5) {
-                                margin-left: calc(100% - 139px);
                             }
 
                         }
@@ -467,7 +473,7 @@
 
                 }
 
-                .etats {
+                .right {
                     display: flex;
                     flex-direction: column;
                     width: 40%;
