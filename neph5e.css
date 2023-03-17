@@ -582,13 +582,13 @@
   border: none;
   width: 80px;
   top: 95px;
-  margin-left: calc(100% - 65px);
+  margin-left: calc(100% - 97px);
 }
 .actor-root .article .article-body .combat .dommages .magiques .modifier label {
   position: absolute;
   display: block;
   top: 127px;
-  width: calc(100% - 65px);
+  width: calc(100% - 101px);
   left: 65px;
   text-align: right;
   font-family: 'AJensonPro';
