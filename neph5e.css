@@ -603,7 +603,7 @@
   flex-direction: row;
   font-size: 11px;
   height: 19px;
-  width: 100%;
+  width: 30px;
   text-align: right;
 }
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes .checkbox {
@@ -641,24 +641,19 @@
   font-size: 11px;
 }
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes:nth-child(1) {
-  width: 30px;
-  margin-left: calc(100% - 174px);
+  margin-left: calc(100% - 181px);
 }
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes:nth-child(2) {
-  width: 30px;
-  margin-left: calc(100% - 163px);
+  margin-left: calc(100% - 171px);
 }
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes:nth-child(3) {
-  width: 30px;
-  margin-left: calc(100% - 152px);
+  margin-left: calc(100% - 161px);
 }
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes:nth-child(4) {
-  width: 30px;
-  margin-left: calc(100% - 141px);
+  margin-left: calc(100% - 150px);
 }
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes:nth-child(5) {
-  width: 30px;
-  margin-left: calc(100% - 129px);
+  margin-left: calc(100% - 139px);
 }
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
