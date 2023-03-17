@@ -579,7 +579,7 @@
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .combat .dommages .physiques > img {
+.actor-root .article .article-body .combat .dommages .physiques .modifier img {
   position: absolute;
   display: block;
   border: none;
@@ -587,6 +587,16 @@
   left: 50%;
   top: 95px;
   margin-left: -114px;
+}
+.actor-root .article .article-body .combat .dommages .physiques .modifier label {
+  position: absolute;
+  display: block;
+  width: 80px;
+  left: 50%;
+  top: 95px;
+  margin-left: -114px;
+  font-family: 'AJensonPro';
+  font-size: 16px;
 }
 .actor-root .article .article-body .combat .dommages .physiques > .header {
   display: flex;
