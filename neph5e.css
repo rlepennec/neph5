@@ -691,6 +691,36 @@
   top: 2px;
   width: calc(100% - 65px);
 }
+.actor-root .article .article-body .combat .etats .body {
+  font-family: 'AJensonPro';
+  font-size: 16px;
+}
+.actor-root .article .article-body .combat .etats .body .etat {
+  display: flex;
+  flex-direction: row;
+}
+.actor-root .article .article-body .combat .etats .body .etat .checkbox {
+  margin-left: 22px;
+  margin-right: 20px;
+  padding-top: 3px;
+  font-size: 11px;
+  flex: 0 0 auto;
+}
+.actor-root .article .article-body .combat .etats .body .etat .checkbox .checked {
+  display: none;
+}
+.actor-root .article .article-body .combat .etats .body .etat .checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor-root .article .article-body .combat .etats .body .etat .checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor-root .article .article-body .combat .etats .body .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
+.actor-root .article .article-body .combat .etats .body .etat:hover {
+  text-shadow: 0px 0px 1px black;
+}
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
 }

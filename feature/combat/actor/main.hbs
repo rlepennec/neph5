@@ -284,6 +284,58 @@
 
         </div>
 
+        <ol class="body">
+
+            <li class="etat">
+
+                <label class="checkbox">
+                    <input
+                        {{#if actor.desoriente}}checked{{/if}}
+                        name="actor.desoriente"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label>{{localize "NEPH5E.desoriente"}}</label>
+
+            </li>
+
+            <li class="etat">
+
+                <label class="checkbox">
+                    <input
+                        {{#if actor.immobilise}}checked{{/if}}
+                        name="immobilise"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label>{{localize "NEPH5E.immobilise"}}</label>
+
+            </li>
+
+            <li class="etat">
+
+                <label class="checkbox">
+                    <input
+                        {{#if actor.projete}}checked{{/if}}
+                        name="projete"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label>{{localize "NEPH5E.aTerre"}}</label>
+
+            </li>
+
+        </ol>
+
     </div>
 
 </div>
