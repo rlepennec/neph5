@@ -609,6 +609,56 @@
   width: calc(100% - 65px);
   left: 70px;
 }
+.actor-root .article .article-body .combat .dommages .physiques > .body {
+  position: relative;
+  left: 100%;
+  top: 56px;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes {
+  display: flex;
+  flex-direction: row-reverse;
+  font-style: italic;
+  font-size: 11px;
+  height: 19px;
+  width: 100%;
+  text-align: right;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes > .checkbox {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes > .checkbox .checked {
+  display: none;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes > .checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes > .checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes > .checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes:nth-child(1) {
+  width: 30px;
+  margin-left: -140px;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes:nth-child(2) {
+  width: 30px;
+  margin-left: -151px;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes:nth-child(3) {
+  width: 30px;
+  margin-left: -162px;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes:nth-child(4) {
+  width: 30px;
+  margin-left: -173px;
+}
+.actor-root .article .article-body .combat .dommages .physiques > .body .checkboxes:nth-child(5) {
+  width: 30px;
+  margin-left: -184px;
+}
 .actor-root .article .article-body .combat .dommages .magiques {
   position: absolute;
   display: flex;

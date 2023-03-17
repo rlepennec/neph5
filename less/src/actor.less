@@ -229,6 +229,66 @@
                         }
 
                         >.body {
+                            position: relative;
+                            left: 100%;
+                            top: 56px;
+
+                            .checkboxes {
+                                display: flex;
+                                flex-direction: row-reverse;
+                                font-style: italic;
+                                font-size: 11px;
+                                height: 19px;
+                                width: 100%;
+                                text-align: right;
+
+                                >.checkbox {
+                                    flex: 0 0 auto;
+                                    margin-left: 20px;
+                                    
+                                    .checked {
+                                        display: none;
+                                    }
+
+                                    input[type="checkbox"] {
+                                        display:none;
+                                    }
+
+                                    input[type="checkbox"]:checked ~ .checked {
+                                        display: inline-block;
+                                    }
+                                     
+                                    input[type="checkbox"]:checked ~ .unchecked {
+                                        display: none;
+                                    }
+                                }
+
+                            }
+
+                            .checkboxes:nth-child(1) {
+                                width: 30px;
+                                margin-left: -140px;
+                            }
+
+                            .checkboxes:nth-child(2) {
+                                width: 30px;
+                                margin-left: -151px;
+                            }
+
+                            .checkboxes:nth-child(3) {
+                                width: 30px;
+                                margin-left: -162px;
+                            }
+
+                            .checkboxes:nth-child(4) {
+                                width: 30px;
+                                margin-left: -173px;
+                            }
+
+                            .checkboxes:nth-child(5) {
+                                width: 30px;
+                                margin-left: -184px;
+                            }
 
 
                         }
