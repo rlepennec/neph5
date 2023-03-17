@@ -548,7 +548,7 @@
                     }
                     */
 }
-.actor-root .article .article-body .combat .dommages .dommages-triangle {
+.actor-root .article .article-body .combat .dommages > img {
   position: absolute;
   display: block;
   border: none;
@@ -557,7 +557,7 @@
   top: 10px;
   margin-left: -100px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-titles {
+.actor-root .article .article-body .combat .dommages > ol {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -568,17 +568,18 @@
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-titles .dommages-title {
+.actor-root .article .article-body .combat .dommages > ol > li {
   text-align: center;
+  list-style: none;
 }
-.actor-root .article .article-body .combat .dommages .dommages-physiques {
+.actor-root .article .article-body .combat .dommages .physiques {
   position: absolute;
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-physiques > .header {
+.actor-root .article .article-body .combat .dommages .physiques > .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -587,35 +588,35 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-physiques > .header > .puce {
+.actor-root .article .article-body .combat .dommages .physiques > .header > .puce {
   position: absolute;
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
 }
-.actor-root .article .article-body .combat .dommages .dommages-physiques > .header > .separator {
+.actor-root .article .article-body .combat .dommages .physiques > .header > .separator {
   position: absolute;
   border: none;
   height: 4px;
   top: 32px;
-  width: calc(100% - 90px);
+  width: calc(100% - 95px);
   left: 55px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-physiques > .header > .name {
+.actor-root .article .article-body .combat .dommages .physiques > .header > .name {
   position: absolute;
   top: 2px;
   width: calc(100% - 65px);
   left: 70px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-magiques {
+.actor-root .article .article-body .combat .dommages .magiques {
   position: absolute;
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-magiques > .header {
+.actor-root .article .article-body .combat .dommages .magiques > .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -624,19 +625,19 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .dommages .dommages-magiques > .header > .separator {
+.actor-root .article .article-body .combat .dommages .magiques > .header > .separator {
   position: absolute;
   border: none;
   height: 4px;
   top: 32px;
   width: calc(100% - 30px);
-  left: 290px;
+  left: calc(100% + 45px);
 }
-.actor-root .article .article-body .combat .dommages .dommages-magiques > .header > .name {
+.actor-root .article .article-body .combat .dommages .magiques > .header > .name {
   position: absolute;
   top: 2px;
   width: calc(100% - 65px);
-  left: 310px;
+  left: calc(100% + 65px);
   text-align: right;
 }
 .actor-root .article .article-body .science .cercles .disabled {

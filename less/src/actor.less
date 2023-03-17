@@ -156,7 +156,7 @@
                     width: 60%;
                     background-color: transparent;
                     
-                    .dommages-triangle {
+                    >img {
                         position: absolute;
                         display: block;
                         border: none;
@@ -166,7 +166,7 @@
                         margin-left: -100px;
                     }
 
-                    .dommages-titles {
+                    >ol {
                         position: absolute;
                         display: flex;
                         flex-direction: column;
@@ -177,13 +177,14 @@
                         font-family: 'AJensonPro';
                         font-size: 16px;
 
-                        .dommages-title {
+                        >li {
                             text-align: center;
+                            list-style: none;
                         }
 
                     }
 
-                    .dommages-physiques {
+                    .physiques {
                         position: absolute;
                         display: flex;
                         flex-direction: column;
@@ -226,9 +227,15 @@
                             
                             }
                         }
+
+                        >.body {
+
+
+                        }
+
                     }
 
-                    .dommages-magiques {
+                    .magiques {
                         position: absolute;
                         display: flex;
                         flex-direction: column;
