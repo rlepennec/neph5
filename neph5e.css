@@ -725,6 +725,10 @@
 .actor-root .article .article-body .combat .right .body .etat:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor-root .article .article-body .combat .right .body .capacite {
+  display: flex;
+  flex-direction: row;
+}
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
 }
