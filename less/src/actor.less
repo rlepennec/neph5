@@ -198,24 +198,23 @@
                                 display: block;
                                 border: none;
                                 width: 80px;
-                                left: 50%;
                                 top: 95px;
-                                margin-left: -114px;
+                                margin-left: 20px;
                             }
 
                             label {
                                 position: absolute;
                                 display: block;
-                                width: 80px;
-                                left: 50%;
+                                width: 67px;
                                 top: 127px;
-                                margin-left: -92px;
+                                margin-left: 27px;
+                                text-align: center;
                                 font-family: 'AJensonPro';
                                 font-size: 19px;
                             }
                         }
 
-                        >.header {
+                        .header {
                             display: flex;
                             flex-direction: row;
                             position: relative;
@@ -224,16 +223,15 @@
                             margin-top: 15px;
                             margin-bottom: -10px;
 
-                            >.puce {
+                            .puce {
                                 position: absolute;
                                 border: none;
                                 width: 60px;
-                                display: hidden;
                                 background-color: transparent;
                             
                             }
 
-                            >.separator {
+                            .separator {
                                 position: absolute;
                                 border: none;
                                 height: 4px;
@@ -243,7 +241,7 @@
                             
                             }
 
-                            >.name {
+                            .name {
                                 position: absolute;
                                 top: 2px;
                                 width: calc(100% - 65px);
@@ -252,23 +250,18 @@
                             }
                         }
 
-                        >.body {
+                        .body {
                             position: relative;
-                            left: 100%;
                             top: 56px;
 
                             .checkboxes {
                                 display: flex;
-                                flex-direction: row-reverse;
-                                font-style: italic;
-                                font-size: 11px;
+                                flex-direction: row;
                                 height: 19px;
-                                width: 100%;
-                                text-align: right;
 
-                                >.checkbox {
+                                .checkbox {
                                     flex: 0 0 auto;
-                                    margin-left: 20px;
+                                    width: 34px;
                                     
                                     .checked {
                                         display: none;
@@ -287,49 +280,51 @@
                                     }
                                 }
 
-                                >.checkbox:nth-child(2)  {
-                                    font-size: 14px;
+                                .checkbox.n1  {
+                                    font-size: 11px;
                                     .tooltiptext {
                                         font-size: 11px;
                                     }
                                 }
 
-                                >.checkbox:nth-child(3)  {
-                                    font-size: 18px;
+                                .checkbox.n2  {
+                                    font-size: 16px;
                                     .tooltiptext {
                                         font-size: 11px;
                                     }
                                 }
 
-                                .tooltiptext {
-                                    font-style: normal;
+                                .checkbox.n3  {
+                                    font-size: 20px;
+                                    .tooltiptext {
+                                        font-size: 11px;
+                                    }
                                 }
 
                             }
 
                             .checkboxes:nth-child(1) {
                                 width: 30px;
-                                margin-left: -140px;
                             }
 
                             .checkboxes:nth-child(2) {
                                 width: 30px;
-                                margin-left: -151px;
+                                margin-left: 125px;
                             }
 
                             .checkboxes:nth-child(3) {
                                 width: 30px;
-                                margin-left: -162px;
+                                margin-left: 115px;
                             }
 
                             .checkboxes:nth-child(4) {
                                 width: 30px;
-                                margin-left: -173px;
+                                margin-left: 104px;
                             }
 
                             .checkboxes:nth-child(5) {
                                 width: 30px;
-                                margin-left: -184px;
+                                margin-left: 92px;
                             }
 
                         }
@@ -343,7 +338,7 @@
                         width: 50%;
                         left: 50%;
 
-                        >.header {
+                        .header {
                             display: flex;
                             flex-direction: row;
                             position: relative;
@@ -352,7 +347,7 @@
                             margin-top: 15px;
                             margin-bottom: -10px;
 
-                            >.separator {
+                            .separator {
                                 position: absolute;
                                 border: none;
                                 height: 4px;
@@ -362,7 +357,7 @@
                             
                             }
 
-                            >.name {
+                            .name {
                                 position: absolute;
                                 top: 2px;
                                 width: calc(100% - 65px);
@@ -397,21 +392,21 @@
 
                         }
 
-                        >.body {
+                        .body {
                             position: relative;
                             left: 100%;
                             top: 56px;
 
                             .checkboxes {
                                 display: flex;
-                                flex-direction: row-reverse;
+                                flex-direction: row;
                                 font-style: italic;
                                 font-size: 11px;
                                 height: 19px;
                                 width: 100%;
                                 text-align: right;
 
-                                >.checkbox {
+                                .checkbox {
                                     flex: 0 0 auto;
                                     margin-left: 20px;
                                     
@@ -432,14 +427,14 @@
                                     }
                                 }
 
-                                >.checkbox:nth-child(2)  {
+                                .checkbox:nth-child(2)  {
                                     font-size: 14px;
                                     .tooltiptext {
                                         font-size: 11px;
                                     }
                                 }
 
-                                >.checkbox:nth-child(3)  {
+                                .checkbox:nth-child(3)  {
                                     font-size: 18px;
                                     .tooltiptext {
                                         font-size: 11px;

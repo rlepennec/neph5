@@ -41,50 +41,9 @@
             <ol class="body">
 
                 <li class="checkboxes">
-                    <label class="checkbox tooltip">
-                        <span class="tooltiptext">1</span>
-                        <input
-                            {{#if system.dommage.physique._1}}checked{{/if}}
-                            name="system.dommage.physique._1"
-                            type="checkbox"
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="checkbox tooltip">
-                        <span class="tooltiptext">2</span>
-                        <input
-                            {{#if system.dommage.physique._2}}checked{{/if}}
-                            name="system.dommage.physique._2"
-                            type="checkbox"
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    <label class="checkbox tooltip">
-                        <span class="tooltiptext">3</span>
-                        <input
-                            {{#if system.dommage.physique._3}}checked{{/if}}
-                            name="system.dommage.physique._3"
-                            type="checkbox"
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    {{#if (gt system.ka.terre 4)}}
-                    <label class="checkbox tooltip">
-                        <span class="tooltiptext">1</span>
-                        <input
-                            {{#if system.dommage.physique._4}}checked{{/if}}
-                            name="system.dommage.physique._4"
-                            type="checkbox"
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-                    {{/if}}
+
                     {{#if (gt system.ka.terre 9)}}
-                    <label class="checkbox tooltip">
+                    <label class="checkbox n1 tooltip">
                         <span class="tooltiptext">1</span>
                         <input
                             {{#if system.dommage.physique._5}}checked{{/if}}
@@ -95,6 +54,53 @@
                         <i class="fas fa-circle checked"></i>
                     </label>
                     {{/if}}
+
+                    {{#if (gt system.ka.terre 4)}}
+                    <label class="checkbox n1 tooltip">
+                        <span class="tooltiptext">1</span>
+                        <input
+                            {{#if system.dommage.physique._4}}checked{{/if}}
+                            name="system.dommage.physique._4"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+                    {{/if}}
+
+                    <label class="checkbox n3 tooltip">
+                        <span class="tooltiptext">3</span>
+                        <input
+                            {{#if system.dommage.physique._3}}checked{{/if}}
+                            name="system.dommage.physique._3"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label class="checkbox n2 tooltip">
+                        <span class="tooltiptext">2</span>
+                        <input
+                            {{#if system.dommage.physique._2}}checked{{/if}}
+                            name="system.dommage.physique._2"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label class="checkbox n1 tooltip">
+                        <span class="tooltiptext">1</span>
+                        <input
+                            {{#if system.dommage.physique._1}}checked{{/if}}
+                            name="system.dommage.physique._1"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
                 </li>
 
                 <li class="checkboxes">
