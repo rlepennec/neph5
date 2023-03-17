@@ -343,6 +343,64 @@
 
         </ol>
 
+        <div class="header">
+
+            <img class="puce" src="systems/neph5e/assets/core/puce.webp"/>
+
+            <img class="separator" src="systems/neph5e/assets/core/separator2.webp"/>
+
+            <span class="name">{{localize "NEPH5E.capacites"}}</span>
+
+        </div>
+
+        <ol class="body">
+
+            <li class="capacite esquive">
+
+                <div class="edit">
+                    {{#if (eq editedCapacity 'esquive')}}
+                    <i class="fas fa-edit"></i>
+                    {{else}}
+                    <i class="far fa-edit"></i>
+                    {{/if}}
+                </div>
+
+                <div class="item-name">
+                    {{#if actor.isEsquiveAvailable}}
+                    <span class="esquive">{{localize "NEPH5E.esquive"}}</span>
+                    <i class="fas fa-caret-right"></i>
+                    <span>{{actor.esquive}}</span>
+                    {{else}}
+                    <span class="indianred">{{localize "NEPH5E.esquive"}} </span>
+                    {{/if}}
+                </div>
+
+            </li>
+
+            <li class="capacite lutte">
+
+                <div class="edit">
+                    {{#if (eq editedCapacity 'lutte')}}
+                    <i class="fas fa-edit"></i>
+                    {{else}}
+                    <i class="far fa-edit"></i>
+                    {{/if}}
+                </div>
+
+                <div class="item-name">
+                    {{#if actor.isLutteAvailable}}
+                    <span class="lutte">{{localize "NEPH5E.lutte"}}</span>
+                    <i class="fas fa-caret-right"></i>
+                    <span>{{actor.lutte}}</span>
+                    {{else}}
+                    <span class="indianred">{{localize "NEPH5E.lutte"}}</span>
+                    {{/if}}
+                </div>
+
+            </li>
+
+        </ol>
+
     </div>
 
 </div>
