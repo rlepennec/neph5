@@ -467,6 +467,49 @@
 
                 }
 
+                .etats {
+                    display: flex;
+                    flex-direction: column;
+                    width: 40%;
+                    margin-right: 10px;
+                    margin-left: 40px;
+
+                    .header {
+                        display: flex;
+                        flex-direction: row;
+                        position: relative;
+                        font-family: 'AJensonPro';
+                        font-size: 21px;
+                        margin-top: 15px;
+                        margin-bottom: -10px;
+
+                        .puce {
+                            border: none;
+                            width: 60px;
+                            display: hidden;
+                            background-color: transparent;
+                        }
+    
+                        .separator {
+                            position: absolute;
+                            border: none;
+                            height: 4px;
+                            left: 55px;
+                            top: 32px;
+                            width: calc(100% - 65px);
+                        }
+    
+                        .name {
+                            position: absolute;
+                            left: 70px;
+                            top: 2px;
+                            width: calc(100% - 65px);
+                        }
+
+                    }
+
+                }
+
             }
 
             .science {

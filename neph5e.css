@@ -655,6 +655,42 @@
 .actor-root .article .article-body .combat .dommages .magiques .body .checkboxes:nth-child(5) {
   margin-left: calc(100% - 139px);
 }
+.actor-root .article .article-body .combat .etats {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin-right: 10px;
+  margin-left: 40px;
+}
+.actor-root .article .article-body .combat .etats .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+.actor-root .article .article-body .combat .etats .header .puce {
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+}
+.actor-root .article .article-body .combat .etats .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .combat .etats .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
 }
