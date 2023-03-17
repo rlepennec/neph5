@@ -410,143 +410,6 @@
   position: relative;
   width: 60%;
   background-color: transparent;
-  /*
-                    .dommages-column {
-                        display: flex;
-                        flex-direction: column;
-                        width: 50%;
-
-                        .dommages-header {
-                            display: flex;
-                            flex-direction: row;
-                            position: relative;
-                            font-family: 'AJensonPro';
-                            font-size: 21px;
-                            margin-top: 15px;
-                            margin-bottom: -10px;
-
-                            .dommages-puce {
-                                position: absolute;
-                                border: none;
-                                width: 60px;
-                                display: hidden;
-                                background-color: transparent;
-                            }
-
-                            .dommages-separator {
-                                position: absolute;
-                                border: none;
-                                height: 4px;
-                                top: 32px;
-                                width: calc(100% - 90px);
-                            }
-
-                            .dommages-name {
-                                position: absolute;
-                                top: 2px;
-                                width: calc(100% - 65px);
-                            }
-
-                        }
-
-                        .dommages-body {
-                            display: flex;
-                            flex-direction: column;
-                            position: relative;
-                            top: 64px;
-                            font-family: 'AJensonPro';
-                            
-                            .dommages-line {
-                                display: flex;
-                                flex-direction: row;
-
-                                span {
-                                    font-size: 16px;
-                                }
-
-                                .dommages-checkbox {
-                                    font-style: italic;
-                                    margin-left: 22px;
-                                    margin-right: 20px;
-                                    font-size: 11px;
-                                    padding-top: 3px;
-                                
-                                    .checked {
-                                        display: none;
-                                    }
-
-                                    input[type="checkbox"] {
-                                        display:none;
-                                    }
-                                
-                                    input[type="checkbox"]:checked ~ .checked {
-                                        display: inline-block;
-                                    }
-                                     
-                                    input[type="checkbox"]:checked ~ .unchecked {
-                                        display: none;
-                                    }
-                                
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                    .dommages-column.left {
-                        margin-right: 10px;
-
-                        .dommages-header {
-
-                            .dommages-puce {
-                            }
-
-                            .dommages-separator {
-                                left: 55px;
-                            }
-
-                            .dommages-name {
-                                left: 70px;
-                            }
-
-                        }
-
-                        .dommages-body {
-                            left: 35px;
-                        }
-
-                    }
-
-                    .dommages-column.right {
-                        margin-left: 10px;
-
-                        .dommages-header {
-
-                            .dommages-puce {
-                                right: 0px;
-                                transform: rotateY(180deg);
-                            }
-
-                            .dommages-separator {
-                                right: 55px;
-                                width: calc(100% - 100px);
-                            }
-
-                            .dommages-name {
-                                text-align: right;
-                            }
-
-                        }
-
-                        .dommages-body {
-                            text-align: right;
-                            left: 35px;
-                        }
-
-                    }
-                    */
 }
 .actor-root .article .article-body .combat .dommages > img {
   position: absolute;
@@ -593,10 +456,10 @@
   display: block;
   width: 80px;
   left: 50%;
-  top: 95px;
-  margin-left: -114px;
+  top: 127px;
+  margin-left: -92px;
   font-family: 'AJensonPro';
-  font-size: 16px;
+  font-size: 19px;
 }
 .actor-root .article .article-body .combat .dommages .physiques > .header {
   display: flex;
@@ -698,7 +561,7 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  margin-right: 10px;
+  left: 50%;
 }
 .actor-root .article .article-body .combat .dommages .magiques > .header {
   display: flex;
@@ -715,14 +578,89 @@
   height: 4px;
   top: 32px;
   width: calc(100% - 30px);
-  left: calc(100% + 45px);
+  left: 45px;
 }
 .actor-root .article .article-body .combat .dommages .magiques > .header > .name {
   position: absolute;
   top: 2px;
   width: calc(100% - 65px);
-  left: calc(100% + 65px);
+  left: 65px;
   text-align: right;
+}
+.actor-root .article .article-body .combat .dommages .magiques .modifier img {
+  position: absolute;
+  display: block;
+  border: none;
+  width: 80px;
+  top: 95px;
+  margin-left: calc(100% - 65px);
+}
+.actor-root .article .article-body .combat .dommages .magiques .modifier label {
+  position: absolute;
+  display: block;
+  top: 127px;
+  width: calc(100% - 65px);
+  left: 65px;
+  text-align: right;
+  font-family: 'AJensonPro';
+  font-size: 19px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body {
+  position: relative;
+  left: 100%;
+  top: 56px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes {
+  display: flex;
+  flex-direction: row-reverse;
+  font-style: italic;
+  font-size: 11px;
+  height: 19px;
+  width: 100%;
+  text-align: right;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox .checked {
+  display: none;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox:nth-child(2) {
+  font-size: 14px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox:nth-child(2) .tooltiptext {
+  font-size: 11px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox:nth-child(3) {
+  font-size: 18px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes > .checkbox:nth-child(3) .tooltiptext {
+  font-size: 11px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes .tooltiptext {
+  font-style: normal;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes:nth-child(1) {
+  width: 30px;
+  margin-left: -140px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes:nth-child(2) {
+  width: 30px;
+  margin-left: -151px;
+}
+.actor-root .article .article-body .combat .dommages .magiques > .body .checkboxes:nth-child(3) {
+  width: 30px;
+  margin-left: -162px;
 }
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
