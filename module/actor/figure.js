@@ -114,6 +114,7 @@ export class FigureSheet extends HistoricalSheet {
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
+        html.find('div[data-tab="options"] .theme').change(this._onChangeTheme.bind(this));
 
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
@@ -200,6 +201,15 @@ export class FigureSheet extends HistoricalSheet {
             li.addEventListener("dragstart", event => this.addMacroData(event), false);
         });
 
+    }
+
+    async _onChangeTheme(event) {
+        event.preventDefault();
+
+        const v = $(event.currentTarget).closest('.theme').val();
+
+        document.documentElement.className = v;
+        const i = 0;
     }
 
     /**
