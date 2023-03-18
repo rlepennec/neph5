@@ -205,7 +205,8 @@
                 "chronologieDescendante": false,
                 "degreGauche": false,
                 "incarnationsOuvertes": false,
-                "gestionLaboratoire": false
+                "gestionLaboratoire": false,
+                "theme": "auto"
             }
         },
         "fraternite": {
@@ -218,7 +219,8 @@
             "options": {
                 "active": true,
                 "chronologieDescendante": false,
-                "incarnationsOuvertes": false
+                "incarnationsOuvertes": false,
+                "theme": "auto"
             }
         }
     },
