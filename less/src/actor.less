@@ -606,10 +606,25 @@
                     .bonus {
                         font-family: 'AJensonPro';
                         font-size: 16px;
+                        position: relative;
 
-                        li {
+                        >img {
+                            position: absolute;
+                            left: calc(50% - 52px);
+                            top: 50px;
+                            width: 120px;
+                            border: none;
+                        }
+
+                        div {
+                            position: absolute;
                             display: flex;
                             flex-direction: row;
+
+                            label {
+                                position: absolute;
+                                width: 150px;
+                            }
 
                             img {
                                 border: none;
@@ -632,13 +647,44 @@
                                 text-shadow: 0px 0px 1px black;
                             }
 
-                            label {
-                                width: 150px;
-                                padding-top: 19px;
-                                margin-left: -19px;
-                            }
-
                         }
+
+                        .mouvement {
+                            top: calc(50% - -185px);
+                            left: calc(50% - 31px);
+                            label {
+                                top: calc(50% - -25px);
+                                left: calc(50% - 46px);
+                            }
+                        }
+
+                        .initiative {
+                            top: calc(50% - 3px);
+                            left: calc(50% - 31px);
+                            label {
+                                top: calc(50% - 7px);
+                                left: calc(50% - -20px);
+                            }
+                        }
+
+                        .dommages {
+                            top: calc(50% - -91px);
+                            left: calc(50% - 120px);
+                            label {
+                                top: calc(50% - -24px);
+                                left: calc(50% - 37px);
+                            }
+                        }
+
+                        .protection {
+                            top: calc(50% - -91px);
+                            left: calc(50% - -57px);
+                            label {
+                                top: calc(50% - -23px);
+                                left: calc(50% - 41px);
+                            }
+                        }
+
                     }
 
                 }

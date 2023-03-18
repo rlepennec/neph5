@@ -334,6 +334,8 @@ export class CustomHandlebarsHelpers {
                 return 'systems/neph5e/assets/core/boussole.webp';
             case 'compas':
                 return 'systems/neph5e/assets/core/compas.webp';
+            case 'losange':
+                return 'systems/neph5e/assets/core/losange.webp';
         }
     }
 

@@ -381,47 +381,49 @@
 
         </div>
 
-        <ol class="bonus">
+        <div class="bonus">
 
-            <li>
+            <img src="{{imagePath 'losange'}}"/>
+
+            <div class="mouvement">
+                <label>{{localize "NEPH5E.mouvement"}}</label>
                 <img src="{{imagePath 'circle'}}"/>
                 <input
                     name="system.bonus.mouvement"
                     type="text"
                     value="{{actor.system.bonus.mouvement}}"
                     data-dtype="Number"/>
-                <label>{{localize "NEPH5E.mouvement"}}</label>
-            </li>
+            </div>
 
-            <li>
+            <div class="initiative">
+                <label>{{localize "NEPH5E.initiative"}}</label>
                 <img src="{{imagePath 'circle'}}"/>
                 <input
                     name="system.bonus.initiative"
                     type="text"
                     value="{{actor.system.bonus.initiative}}"
                     data-dtype="Number"/>
-                <label>{{localize "NEPH5E.initiative"}}</label>
-            </li>
+            </div>
 
-            <li>
+            <div class="dommages">
+                <label>{{localize "NEPH5E.dommages"}}</label>
                 <img src="{{imagePath 'circle'}}"/>
                 <input
                     name="system.bonus.dommage"
                     type="text"
                     value="{{actor.system.bonus.dommage}}"
                     data-dtype="Number"/>
-                <label>{{localize "NEPH5E.dommages"}}</label>
-            </li>
+            </div>
 
-            <li>
+            <div class="protection">
+                <label>{{localize "NEPH5E.protection"}}</label>
                 <img src="{{imagePath 'circle'}}"/>
                 <input
                     name="system.bonus.protection"
                     type="text"
                     value="{{actor.system.bonus.protection}}"
                     data-dtype="Number"/>
-                <label>{{localize "NEPH5E.protection"}}</label>
-            </li>
+            </div>
 
         </ol>
 
