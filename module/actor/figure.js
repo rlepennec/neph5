@@ -118,13 +118,16 @@ export class FigureSheet extends HistoricalSheet {
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
 
+        // Combat
+        html.find('div[data-tab="combat"] .capacites .esquive').click(this._onEditCapacity.bind(this, 'esquive'));
+        html.find('div[data-tab="combat"] .capacites .lutte').click(this._onEditCapacity.bind(this, 'lutte'));
+
+
 
 
 
         
-        // Combat
-        html.find('div[data-tab="combat"] .edit-esquive').click(this._onEditEsquive.bind(this));
-        html.find('div[data-tab="combat"] .edit-lutte').click(this._onEditLutte.bind(this));
+
 
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
@@ -384,25 +387,7 @@ export class FigureSheet extends HistoricalSheet {
 
     // -- COMBAT-- ------------------------------------------------------------------------
 
-    /**
-     * Edit or unedit the esquive capacity.
-     * @param event The click event.
-     */
-     async _onEditEsquive(event) {
-        event.preventDefault();
-        this.editedCapacity = this.editedCapacity === 'esquive' ? null : 'esquive';
-        await this.render(true);
-    }
-    
-    /**
-     * Edit or unedit the lutte capacity.
-     * @param event The click event.
-     */
-     async _onEditLutte(event) {
-        event.preventDefault();
-        this.editedCapacity = this.editedCapacity === 'lutte' ? null : 'lutte';
-        await this.render(true);
-    }
+
 
     // -- IMAGO -----------------------------------------------------------------------------
 
@@ -755,6 +740,18 @@ export class FigureSheet extends HistoricalSheet {
         const vaisseau = $(event.currentTarget).closest('.vaisseau').data('type');
         const activated = this.actor.system.akasha[vaisseau].active;
         await this.actor.update({ ['system.akasha.' + vaisseau + ".active"]: !activated });
+    }
+
+
+    /**
+     * Edit or unedit the specified capacity.
+     * @param capacity The capacity to edit, 'esquive' or 'lutte'
+     * @param event The click event.
+     */
+    async _onEditCapacity(capacity, event) {
+        event.preventDefault();
+        this.editedCapacity = this.editedCapacity === capacity ? null : capacity;
+        await this.render(true);
     }
 
 }

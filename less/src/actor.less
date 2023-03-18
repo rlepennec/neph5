@@ -514,7 +514,7 @@
 
                     }
 
-                    .body {
+                    .etats {
                         font-family: 'AJensonPro';
                         font-size: 16px;
 
@@ -553,10 +553,38 @@
                             text-shadow: 0px 0px 1px black;
                         }
 
+                    }
+
+                    .capacites {
+                        font-family: 'AJensonPro';
+                        font-size: 16px;
+
                         .capacite {
                             display: flex;
                             flex-direction: row;
+                            height: 22px;
 
+                            .fa-edit {
+                                margin-left: 22px;
+                                margin-right: 20px;
+                                padding-top: 3px;
+                                font-size: 11px;
+                                flex: 0 0 auto;
+                            }
+
+                            label:first-of-type {
+                                width: 55px;
+                                flex: 0 0 auto;
+                            }
+
+                            i {
+                                width: 20px;
+                            }
+
+                        }
+
+                        .capacite:hover {
+                            text-shadow: 0px 0px 1px black;
                         }
 
                     }

@@ -695,39 +695,61 @@
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .combat .right .body {
+.actor-root .article .article-body .combat .right .etats {
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .right .body .etat {
+.actor-root .article .article-body .combat .right .etats .etat {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .combat .right .body .etat .checkbox {
+.actor-root .article .article-body .combat .right .etats .etat .checkbox {
   margin-left: 22px;
   margin-right: 20px;
   padding-top: 3px;
   font-size: 11px;
   flex: 0 0 auto;
 }
-.actor-root .article .article-body .combat .right .body .etat .checkbox .checked {
+.actor-root .article .article-body .combat .right .etats .etat .checkbox .checked {
   display: none;
 }
-.actor-root .article .article-body .combat .right .body .etat .checkbox input[type="checkbox"] {
+.actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"] {
   display: none;
 }
-.actor-root .article .article-body .combat .right .body .etat .checkbox input[type="checkbox"]:checked ~ .checked {
+.actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor-root .article .article-body .combat .right .body .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor-root .article .article-body .combat .right .body .etat:hover {
+.actor-root .article .article-body .combat .right .etats .etat:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .body .capacite {
+.actor-root .article .article-body .combat .right .capacites {
+  font-family: 'AJensonPro';
+  font-size: 16px;
+}
+.actor-root .article .article-body .combat .right .capacites .capacite {
   display: flex;
   flex-direction: row;
+  height: 22px;
+}
+.actor-root .article .article-body .combat .right .capacites .capacite .fa-edit {
+  margin-left: 22px;
+  margin-right: 20px;
+  padding-top: 3px;
+  font-size: 11px;
+  flex: 0 0 auto;
+}
+.actor-root .article .article-body .combat .right .capacites .capacite label:first-of-type {
+  width: 55px;
+  flex: 0 0 auto;
+}
+.actor-root .article .article-body .combat .right .capacites .capacite i {
+  width: 20px;
+}
+.actor-root .article .article-body .combat .right .capacites .capacite:hover {
+  text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;

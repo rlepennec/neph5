@@ -288,7 +288,7 @@
 
         </div>
 
-        <ol class="body">
+        <ol class="etats">
 
             <li class="etat">
 
@@ -353,50 +353,20 @@
 
         </div>
 
-        <ol class="body">
+        <ol class="capacites">
 
             <li class="capacite esquive">
-
-                <div class="edit">
-                    {{#if (eq editedCapacity 'esquive')}}
-                    <i class="fas fa-edit"></i>
-                    {{else}}
-                    <i class="far fa-edit"></i>
-                    {{/if}}
-                </div>
-
-                <div class="item-name">
-                    {{#if actor.isEsquiveAvailable}}
-                    <span class="esquive">{{localize "NEPH5E.esquive"}}</span>
-                    <i class="fas fa-caret-right"></i>
-                    <span>{{actor.esquive}}</span>
-                    {{else}}
-                    <span class="indianred">{{localize "NEPH5E.esquive"}} </span>
-                    {{/if}}
-                </div>
-
+                <i class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
+                <label {{#unless actor.isEsquiveAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
+                <i class="fas fa-caret-right"></i>
+                <label>{{actor.esquive}}</label>
             </li>
 
             <li class="capacite lutte">
-
-                <div class="edit">
-                    {{#if (eq editedCapacity 'lutte')}}
-                    <i class="fas fa-edit"></i>
-                    {{else}}
-                    <i class="far fa-edit"></i>
-                    {{/if}}
-                </div>
-
-                <div class="item-name">
-                    {{#if actor.isLutteAvailable}}
-                    <span class="lutte">{{localize "NEPH5E.lutte"}}</span>
-                    <i class="fas fa-caret-right"></i>
-                    <span>{{actor.lutte}}</span>
-                    {{else}}
-                    <span class="indianred">{{localize "NEPH5E.lutte"}}</span>
-                    {{/if}}
-                </div>
-
+                <i class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
+                <label {{#unless actor.isLutteAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
+                <i class="fas fa-caret-right"></i>
+                <label>{{actor.lutte}}</label>
             </li>
 
         </ol>
