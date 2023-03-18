@@ -1,3 +1,15 @@
+:root,
+
+    :root.soleil {
+        --column-color: #c3a049;
+        --active-tab-color: rgb(78, 57, 4);
+    }
+
+    :root.feu {
+        --column-color: #ff6600;
+        --active-tab-color: #ff6600;;
+    }
+
 .actor-root {
     display: flex;
     flex-direction: row;
@@ -51,7 +63,7 @@
                 }
 
                 .sheet-navigation-tab.active {
-                    color: rgb(78, 57, 4);
+                    color: var(--active-tab-color);
                     ~ .sheet-navigation-hole {
                         visibility: hidden;
                         opacity: 0;
@@ -1211,7 +1223,7 @@
                         display: block;
                         height: 1px;
                         border: 0;
-                        border-top: 1px solid #c3a049;
+                        border-top: 1px solid var(--column-color);
                         margin: 1em 0;
                         padding: 0;
                     }
@@ -1465,7 +1477,7 @@
                                 column-rule-style: solid;
                                 column-rule-width: thin;
                                 column-gap: 20px;
-                                column-rule-color: #c3a049;
+                                column-rule-color: var(--column-color);
                                 border: solid 1px #333A40;
                                 padding: 10px;
                                 border-radius: 10px;
