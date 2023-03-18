@@ -274,6 +274,122 @@
 
         </div>
 
+        <div class="equipement">
+
+            <div class="header">
+
+                <img class="puce" src="{{imagePath 'puce'}}"/>
+
+                <img class="separator" src="{{imagePath 'separator'}}"/>
+
+                <span class="name">{{localize "NEPH5E.equipement"}}</span>
+
+            </div>
+
+            <ol>
+
+                <li>
+
+                    <i class="icon fa-solid fa-hand-fist"></i>
+
+                    <label class="name {{#if (eq actor.lutteCanBePerformed false)}}grey{{/if}}">{{localize "NEPH5E.lutte"}}</label>
+
+                    <i class="fas fa-dice-d20 {{#unless (eq actor.lutteCanBePerformed true)}}grey{{/unless}}"></i>                        </i>
+
+
+<!--
+
+<i class="fa-duotone fa-gun"></i>
+<i class="fa-solid fa-sword"></i>
+<i class="fa-solid fa-shield"></i>
+<i class="fa-solid fa-hand-fist"></i>
+<i class="fa-solid fa-bow-arrow"></i>
+<i class="fa-solid fa-paw-claws"></i>
+
+                icone arme/armure/
+                roll
+                delete
+                hand
+                <weapon>
+                <parade></parade>-->
+
+                </li>
+
+                {{#with actor.weapons as |weapons|}}
+
+                    {{#each weapons.naturelle as |item|}}
+                    <li>
+                        <i class="icon fa-solid fa-hand-fist"></i>
+
+                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+
+                        <i class="fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+
+                        <i class="fas fa-trash"></i>
+
+                    </li>
+                    {{/each}}
+
+                    {{#each weapons.melee as |item|}}
+                    <li>
+
+                        <i class="icon fa-solid fa-sword"></i>
+                        
+                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        
+                        <i class="fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+
+                        <i class="fas fa-trash"></i>
+
+                    {{/each}}
+
+                    {{#each weapons.trait as |item|}}
+                    <li>
+
+                        <i class="icon fa-solid fa-bow-arrow"></i>
+
+                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        
+                        <i class="fas fa-spinner {{#if (or (isNull ../actor.tokenOf) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}grey{{/if}}"></i>
+
+                        <i class="fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
+
+                        <i class="fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+
+                        <i class="fas fa-trash"></i>
+
+                    </li>
+                    {{/each}}
+
+                    {{#each weapons.feu as |item|}}
+                    <li>
+
+                        <i class="icon fa-duotone fa-gun"></i>
+
+                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        
+                        <i class="fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+
+                        <i class="fas fa-trash"></i>
+
+                    </li>
+                    {{/each}}
+
+                {{/with}}
+
+
+                {{#each actor.armors as |item|}}
+                <li>
+                    <i class="icon fa-solid fa-shield"></i>
+                    <label class="name">{{item.name}}</label>
+                    <i class="fas fa-trash"></i>
+                </li>
+                {{/each}}
+
+            </ol>
+
+        </div>
+
     </div>
 
     <div class="right">

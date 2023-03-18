@@ -670,6 +670,49 @@
 .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(5) {
   margin-left: calc(100% - 139px);
 }
+.actor-root .article .article-body .combat .left .equipement {
+  margin-top: 200px;
+}
+.actor-root .article .article-body .combat .left .equipement .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+.actor-root .article .article-body .combat .left .equipement .header .puce {
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+}
+.actor-root .article .article-body .combat .left .equipement .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 40px);
+}
+.actor-root .article .article-body .combat .left .equipement .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .combat .left .equipement li {
+  display: flex;
+  flex-direction: row;
+  height: 22px;
+}
+.actor-root .article .article-body .combat .left .equipement li .icon {
+  width: 30px;
+}
+.actor-root .article .article-body .combat .left .equipement li .name {
+  width: 200px;
+}
 .actor-root .article .article-body .combat .right {
   display: flex;
   flex-direction: column;

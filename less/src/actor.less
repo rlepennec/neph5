@@ -485,6 +485,67 @@
 
                     }
 
+                    .equipement {
+                        margin-top: 200px;
+
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: -10px;
+
+                            .puce {
+                                border: none;
+                                width: 60px;
+                                display: hidden;
+                                background-color: transparent;
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 40px);
+                            }
+        
+                            .name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        li {
+                            display: flex;
+                            flex-direction: row;
+                            height: 22px;
+
+                            .icon {
+                                width: 30px;
+                            }
+
+                            .name {
+                                width: 200px;
+                            }
+
+                            .fa-dice-d20 {
+                                width: 40px;
+                            }
+
+                            .fa-trash {
+                                width: 40px;
+                            }
+                        }
+
+                    }
+
                 }
 
                 .right {

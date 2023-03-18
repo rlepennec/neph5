@@ -682,6 +682,30 @@ export class NephilimActor extends Actor {
         }
     }
 
+
+
+    get weapons() {
+
+        const equipments = {
+            naturelle: [],
+            melee: [],
+            trait: [],
+            feu: []
+        };
+
+        for (let item of this.items.filter(i => i.type === 'arme')) {
+            equipments[item.system.type].push(item);
+        }
+
+        return equipments;
+
+    }
+
+    get armors() {
+        return this.items.filter(i => i.type === 'armure');
+    }
+
+
     // ----------------------------------------------------------------------------------------------
 
     /**
