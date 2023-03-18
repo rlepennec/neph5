@@ -9,8 +9,6 @@ export const preloadTemplates = async function () {
 
         // Akasha
         "systems/neph5e/feature/akasha/actor/main.hbs",
-        "systems/neph5e/feature/akasha/actor/direction.hbs",
-        "systems/neph5e/feature/akasha/actor/vaisseau.hbs",
 
         // Alchimie
         "systems/neph5e/feature/alchimie/actor/construct.hbs",
