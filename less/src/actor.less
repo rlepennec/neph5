@@ -3,11 +3,13 @@
     :root.soleil {
         --column-color: #c3a049;
         --active-tab-color: rgb(78, 57, 4);
+        --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
     }
 
     :root.feu {
         --column-color: #ff6600;
-        --active-tab-color: #ff6600;;
+        --active-tab-color: #ff6600;
+        --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
     }
 
 .actor-root {
@@ -22,7 +24,7 @@
         left: 0px;
         content: "";
         background:
-            url("../../systems/neph5e/assets/core/archeo-vertical.webp");
+            var(--side-background);
             -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
     }
 
