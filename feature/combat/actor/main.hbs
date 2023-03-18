@@ -164,7 +164,7 @@
 
                 <div class="header">
 
-                    <img class="separator" {{imagePath 'separator'}}/>
+                    <img class="separator" src="{{imagePath 'separator'}}"/>
 
                     <span class="name">{{localize "NEPH5E.magique"}}</span>
 
@@ -383,9 +383,46 @@
 
         <ol class="bonus">
 
+            <li>
+                <img src="{{imagePath 'circle'}}"/>
+                <input
+                    name="system.bonus.mouvement"
+                    type="text"
+                    value="{{actor.system.bonus.mouvement}}"
+                    data-dtype="Number"/>
+                <label>{{localize "NEPH5E.mouvement"}}</label>
+            </li>
 
+            <li>
+                <img src="{{imagePath 'circle'}}"/>
+                <input
+                    name="system.bonus.initiative"
+                    type="text"
+                    value="{{actor.system.bonus.initiative}}"
+                    data-dtype="Number"/>
+                <label>{{localize "NEPH5E.initiative"}}</label>
+            </li>
 
-            
+            <li>
+                <img src="{{imagePath 'circle'}}"/>
+                <input
+                    name="system.bonus.dommage"
+                    type="text"
+                    value="{{actor.system.bonus.dommage}}"
+                    data-dtype="Number"/>
+                <label>{{localize "NEPH5E.dommages"}}</label>
+            </li>
+
+            <li>
+                <img src="{{imagePath 'circle'}}"/>
+                <input
+                    name="system.bonus.protection"
+                    type="text"
+                    value="{{actor.system.bonus.protection}}"
+                    data-dtype="Number"/>
+                <label>{{localize "NEPH5E.protection"}}</label>
+            </li>
+
         </ol>
 
     </div>

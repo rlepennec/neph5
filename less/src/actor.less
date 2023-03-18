@@ -607,7 +607,38 @@
                         font-family: 'AJensonPro';
                         font-size: 16px;
 
+                        li {
+                            display: flex;
+                            flex-direction: row;
 
+                            img {
+                                border: none;
+                                width: 48px;
+                                display: hidden;
+                                margin-left: 15px;
+                            }
+
+                            input {
+                                flex: 0 0 auto;
+                                width: 35px;
+                                height: 35px;
+                                text-align: center;
+                                font-weight: bold;
+                                border-radius: 50%;
+                                transform: translate(-41px, 11px);
+                            }
+
+                            input:hover {
+                                text-shadow: 0px 0px 1px black;
+                            }
+
+                            label {
+                                width: 150px;
+                                padding-top: 19px;
+                                margin-left: -19px;
+                            }
+
+                        }
                     }
 
                 }
