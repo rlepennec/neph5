@@ -318,6 +318,8 @@ export class CustomHandlebarsHelpers {
      */
     static imagePath(object) {
         switch (object) {
+            case 'arbre':
+                return 'systems/neph5e/assets/backgrounds/arbre.webp';
             case 'separator':
                 return 'systems/neph5e/assets/core/separator2.webp';
             case 'puce':
