@@ -326,6 +326,12 @@ export class CustomHandlebarsHelpers {
                 return 'systems/neph5e/assets/core/circle2.webp';
             case 'triangle':
                 return 'systems/neph5e/assets/core/triangle.webp';
+            case 'directions':
+                return 'systems/neph5e/assets/core/circle3.webp';
+            case 'boussole':
+                return 'systems/neph5e/assets/core/boussole.webp';
+            case 'compas':
+                return 'systems/neph5e/assets/core/compas.webp';
         }
     }
 
