@@ -304,28 +304,13 @@
 
                     <i class="delete"></i>
 
-<!--
-
-<i class="fa-duotone fa-gun"></i>
-<i class="fa-solid fa-sword"></i>
-<i class="fa-solid fa-shield"></i>
-<i class="fa-solid fa-hand-fist"></i>
-<i class="fa-solid fa-bow-arrow"></i>
-<i class="fa-solid fa-paw-claws"></i>
-
-                icone arme/armure/
-                roll
-                delete
-                hand
-                <weapon>
-                <parade></parade>-->
-
                 </li>
 
                 {{#with actor.weapons as |weapons|}}
 
                     {{#each weapons.naturelle as |item|}}
                     <li data-id="{{item.id}}">
+                        
                         <i class="icon fa-solid fa-hand-fist"></i>
 
                         <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>

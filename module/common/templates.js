@@ -15,9 +15,7 @@ export const preloadTemplates = async function () {
 
         // Combat
         "systems/neph5e/feature/combat/actor/main.hbs",
-        "systems/neph5e/feature/combat/actor/blessure.hbs",
-        "systems/neph5e/feature/combat/actor/etat.hbs",
-
+    
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
         "systems/neph5e/feature/kabbale/actor/ordonnances.hbs",
