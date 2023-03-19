@@ -313,7 +313,7 @@
 
                         <i class="icon fa-solid fa-hand-fist"></i>
 
-                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
 
                         <i class="usage"></i>
 
@@ -329,11 +329,11 @@
                     {{/each}}
 
                     {{#each weapons.melee as |item|}}
-                    <li>
+                    <li data-id="{{item.id}}">
 
                         <i class="icon fa-solid fa-sword"></i>
                         
-                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
                         
                         <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
 
@@ -348,11 +348,11 @@
                     {{/each}}
 
                     {{#each weapons.trait as |item|}}
-                    <li>
+                    <li data-id="{{item.id}}">
 
                         <i class="icon fa-solid fa-bow-arrow"></i>
 
-                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
                         
                         <i class="usage fa-hand-paper {{#if item.system.used}}fas{{else}}far{{/if}}"></i>
 
@@ -378,11 +378,11 @@
                     {{/each}}
 
                     {{#each weapons.feu as |item|}}
-                    <li>
+                    <li data-id="{{item.id}}">
 
                         <i class="icon fa-duotone fa-gun"></i>
 
-                        <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
 
                         <i class="usage fa-hand-paper {{#if item.system.used}}fas{{else}}far{{/if}}"></i>
 
@@ -405,7 +405,7 @@
 
                     <i class="icon fa-solid fa-shield"></i>
 
-                    <label class="name">{{item.name}}</label>
+                    <label class="open name">{{item.name}}</label>
 
                     <i class="usage fa-hand-paper {{#if item.system.used}}fas{{else}}far{{/if}}"></i>
 
@@ -444,14 +444,14 @@
             <ol>
 
                 <li class="menace">
-                    <i class="fas fa-dice-d20"></i>
-                    <label>{{localize "NEPH5E.menace"}}</label>
                     <img src="{{imagePath 'circle'}}"/>
                     <input
                         name="system.menace"
                         type="text"
                         value="{{actor.system.menace}}"
                         data-dtype="Number"/>
+                    <label>{{localize "NEPH5E.menace"}}</label>
+                    <i class="roll fas fa-dice-d20"></i>
                 </li>
 
                 <li class="ka">
@@ -462,21 +462,21 @@
                         value="{{actor.system.ka}}"
                         data-dtype="Number"/>
                     <label>{{localize "NEPH5E.ka"}}</label>
-                    <i class="fas fa-dice-d20"></i>
+                    <i class="roll fas fa-dice-d20"></i>
                 </li>
 
                 {{#each actor.items as |item id|}}
                 {{#if (eq item.type 'vecu')}}
-                <li class="vecu">
+                <li class="vecu" data-id="{{item.id}}">
                     <img src="{{imagePath 'circle'}}"/>
                     <input
-                        name="system.ka"
+                        name="item.system.degre"
                         type="text"
-                        value="{{actor.system.ka}}"
+                        value="{{item.system.degre}}"
                         data-dtype="Number"/>
                     <label>{{item.name}}</label>
-                    <i class="fas fa-dice-d20"></i>
-                    <i class="fas fa-trash"></i>
+                    <i class="roll fas fa-dice-d20"></i>
+                    <i class="delete fas fa-trash"></i>
                 </li>
                 {{/if}}
                 {{/each}}

@@ -55,10 +55,12 @@ export class BaseSheet extends ActorSheet {
      */
     activateListeners(html) {
         super.activateListeners(html);
+        html.find('div[data-tab="combat"] .equipement .open').click(this._onEditEmbeddedEquipment.bind(this));
+        html.find('div[data-tab="combat"] .equipement .delete').click(this._onDeleteEmbeddedEquipment.bind(this));
+
+
+        
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="combat"] .edit-arme').click(this._onEditEmbeddedItem.bind(this));
-        html.find('div[data-tab="combat"] .edit-armure').click(this._onEditEmbeddedItem.bind(this));
-        html.find('div[data-tab="combat"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .attack').click(this._onAttack.bind(this));
         html.find('div[data-tab="combat"] .wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="combat"] #viser').click(this._onViser.bind(this));
@@ -314,6 +316,32 @@ export class BaseSheet extends ActorSheet {
             return null;
         }
     
+    }
+
+    // Used by refactoring
+
+    /**
+     * Edit the specified embedded equipment item.
+     * @param event The click event.
+     */
+    async _onEditEmbeddedEquipment(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents("li");
+        const id = li.data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        item.sheet.render(true);
+    }
+
+    /**
+     * Delete the specified embedded equipment item.
+     * @param event The click event.
+     */
+    async _onDeleteEmbeddedEquipment(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents("li");
+        const id = li.data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        await this.actor.deleteEmbeddedItem(item);
     }
 
 }
