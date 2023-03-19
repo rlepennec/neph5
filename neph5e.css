@@ -708,10 +708,28 @@
   height: 22px;
 }
 .actor-root .article .article-body .combat .left .equipement li .icon {
-  width: 30px;
+  width: 8%;
 }
 .actor-root .article .article-body .combat .left .equipement li .name {
-  width: 200px;
+  width: 52%;
+}
+.actor-root .article .article-body .combat .left .equipement li .usage {
+  width: 8%;
+}
+.actor-root .article .article-body .combat .left .equipement li .reload {
+  width: 8%;
+}
+.actor-root .article .article-body .combat .left .equipement li .aim {
+  width: 8%;
+}
+.actor-root .article .article-body .combat .left .equipement li .roll {
+  width: 8%;
+}
+.actor-root .article .article-body .combat .left .equipement li .delete {
+  width: 8%;
+}
+.actor-root .article .article-body .combat .left .equipement li:hover {
+  text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .combat .right {
   display: flex;
