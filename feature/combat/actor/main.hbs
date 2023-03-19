@@ -443,26 +443,30 @@
 
             <ol>
 
-                <li class="menace">
-                    <img src="{{imagePath 'circle'}}"/>
-                    <input
-                        name="system.menace"
-                        type="text"
-                        value="{{actor.system.menace}}"
-                        data-dtype="Number"/>
-                    <label>{{localize "NEPH5E.menace"}}</label>
-                    <i class="fas fa-dice-d20"></i>
-                </li>
+                <li class="base">
 
-                <li class="ka">
-                    <img src="{{imagePath 'circle'}}"/>
-                    <input
-                        name="system.ka"
-                        type="text"
-                        value="{{actor.system.ka}}"
-                        data-dtype="Number"/>
-                    <label>{{localize "NEPH5E.menace"}}</label>
-                    <i class="fas fa-dice-d20"></i>
+                    <div class="menace">
+                        <i class="fas fa-dice-d20"></i>
+                        <label>{{localize "NEPH5E.menace"}}</label>
+                        <img src="{{imagePath 'circle'}}"/>
+                        <input
+                            name="system.menace"
+                            type="text"
+                            value="{{actor.system.menace}}"
+                            data-dtype="Number"/>
+                    </div>
+
+                    <div class="ka">
+                        <img src="{{imagePath 'circle'}}"/>
+                        <input
+                            name="system.ka"
+                            type="text"
+                            value="{{actor.system.ka}}"
+                            data-dtype="Number"/>
+                        <label>{{localize "NEPH5E.ka"}}</label>
+                        <i class="fas fa-dice-d20"></i>
+                    </div>
+
                 </li>
 
                 {{#each actor.items as |item id|}}
@@ -486,153 +490,165 @@
         </div>
         {{/if}}
 
-        <div class="header">
+        <div class="etats">
 
-            <img class="puce" src="{{imagePath 'puce'}}"/>
+            <div class="header">
 
-            <img class="separator" src="{{imagePath 'separator'}}"/>
+                <img class="puce" src="{{imagePath 'puce'}}"/>
 
-            <span class="name">{{localize "NEPH5E.etats"}}</span>
+                <img class="separator" src="{{imagePath 'separator'}}"/>
+
+                <span class="name">{{localize "NEPH5E.etats"}}</span>
+
+            </div>
+
+            <ol>
+
+                <li class="etat">
+
+                    <label class="checkbox">
+                        <input
+                            {{#if actor.desoriente}}checked{{/if}}
+                            id="desoriente"
+                            name="desoriente"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label>{{localize "NEPH5E.desoriente"}}</label>
+
+                </li>
+
+                <li class="etat">
+
+                    <label class="checkbox">
+                        <input
+                            {{#if actor.immobilise}}checked{{/if}}
+                            id="immobilise"
+                            name="immobilise"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label>{{localize "NEPH5E.immobilise"}}</label>
+
+                </li>
+
+                <li class="etat">
+
+                    <label class="checkbox">
+                        <input
+                            {{#if actor.projete}}checked{{/if}}
+                            id="projete"
+                            name="projete"
+                            type="checkbox"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label>{{localize "NEPH5E.aTerre"}}</label>
+
+                </li>
+
+            </ol>
 
         </div>
-
-        <ol class="etats">
-
-            <li class="etat">
-
-                <label class="checkbox">
-                    <input
-                        {{#if actor.desoriente}}checked{{/if}}
-                        id="desoriente"
-                        name="desoriente"
-                        type="checkbox"
-                        data-dtype="Boolean"/>
-                    <i class="far fa-circle unchecked"></i>
-                    <i class="fas fa-circle checked"></i>
-                </label>
-
-                <label>{{localize "NEPH5E.desoriente"}}</label>
-
-            </li>
-
-            <li class="etat">
-
-                <label class="checkbox">
-                    <input
-                        {{#if actor.immobilise}}checked{{/if}}
-                        id="immobilise"
-                        name="immobilise"
-                        type="checkbox"
-                        data-dtype="Boolean"/>
-                    <i class="far fa-circle unchecked"></i>
-                    <i class="fas fa-circle checked"></i>
-                </label>
-
-                <label>{{localize "NEPH5E.immobilise"}}</label>
-
-            </li>
-
-            <li class="etat">
-
-                <label class="checkbox">
-                    <input
-                        {{#if actor.projete}}checked{{/if}}
-                        id="projete"
-                        name="projete"
-                        type="checkbox"
-                        data-dtype="Boolean"/>
-                    <i class="far fa-circle unchecked"></i>
-                    <i class="fas fa-circle checked"></i>
-                </label>
-
-                <label>{{localize "NEPH5E.aTerre"}}</label>
-
-            </li>
-
-        </ol>
 
         {{#if (eq actor.type 'figure')}}
-        <div class="header">
+        <div class="capacites">
 
-            <img class="puce" src="{{imagePath 'puce'}}"/>
+            <div class="header">
 
-            <img class="separator" src="{{imagePath 'separator'}}"/>
+                <img class="puce" src="{{imagePath 'puce'}}"/>
 
-            <span class="name">{{localize "NEPH5E.capacites"}}</span>
+                <img class="separator" src="{{imagePath 'separator'}}"/>
+
+                <span class="name">{{localize "NEPH5E.capacites"}}</span>
+
+            </div>
+
+            <ol>
+
+                <li class="capacite esquive">
+                    <i class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
+                    <label {{#unless actor.isEsquiveAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
+                    <i class="fas fa-caret-right"></i>
+                    <label>{{actor.esquive}}</label>
+                </li>
+
+                <li class="capacite lutte">
+                    <i class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
+                    <label {{#unless actor.isLutteAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
+                    <i class="fas fa-caret-right"></i>
+                    <label>{{actor.lutte}}</label>
+                </li>
+
+            </ol>
 
         </div>
-
-        <ol class="capacites">
-
-            <li class="capacite esquive">
-                <i class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
-                <label {{#unless actor.isEsquiveAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
-                <i class="fas fa-caret-right"></i>
-                <label>{{actor.esquive}}</label>
-            </li>
-
-            <li class="capacite lutte">
-                <i class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
-                <label {{#unless actor.isLutteAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
-                <i class="fas fa-caret-right"></i>
-                <label>{{actor.lutte}}</label>
-            </li>
-
-        </ol>
         {{/if}}
-
-        <div class="header">
-
-            <img class="puce" src="{{imagePath 'puce'}}"/>
-
-            <img class="separator" src="{{imagePath 'separator'}}"/>
-
-            <span class="name">{{localize "NEPH5E.bonus"}}</span>
-
-        </div>
 
         <div class="bonus">
 
-            <img src="{{imagePath 'losange'}}"/>
+            <div class="header">
 
-            <div class="mouvement">
-                <label>{{localize "NEPH5E.mouvement"}}</label>
-                <img src="{{imagePath 'circle'}}"/>
-                <input
-                    name="system.bonus.mouvement"
-                    type="text"
-                    value="{{actor.system.bonus.mouvement}}"
-                    data-dtype="Number"/>
+                <img class="puce" src="{{imagePath 'puce'}}"/>
+
+                <img class="separator" src="{{imagePath 'separator'}}"/>
+
+                <span class="name">{{localize "NEPH5E.bonus"}}</span>
+
             </div>
 
-            <div class="initiative">
-                <label>{{localize "NEPH5E.initiative"}}</label>
-                <img src="{{imagePath 'circle'}}"/>
-                <input
-                    name="system.bonus.initiative"
-                    type="text"
-                    value="{{actor.system.bonus.initiative}}"
-                    data-dtype="Number"/>
-            </div>
+            <div class="body">
 
-            <div class="dommages">
-                <label>{{localize "NEPH5E.dommages"}}</label>
-                <img src="{{imagePath 'circle'}}"/>
-                <input
-                    name="system.bonus.dommage"
-                    type="text"
-                    value="{{actor.system.bonus.dommage}}"
-                    data-dtype="Number"/>
-            </div>
+                <img src="{{imagePath 'losange'}}"/>
 
-            <div class="protection">
-                <label>{{localize "NEPH5E.protection"}}</label>
-                <img src="{{imagePath 'circle'}}"/>
-                <input
-                    name="system.bonus.protection"
-                    type="text"
-                    value="{{actor.system.bonus.protection}}"
-                    data-dtype="Number"/>
+                <div class="mouvement">
+                    <label>{{localize "NEPH5E.mouvement"}}</label>
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.bonus.mouvement"
+                        type="text"
+                        value="{{actor.system.bonus.mouvement}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="initiative">
+                    <label>{{localize "NEPH5E.initiative"}}</label>
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.bonus.initiative"
+                        type="text"
+                        value="{{actor.system.bonus.initiative}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="dommages">
+                    <label>{{localize "NEPH5E.dommages"}}</label>
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.bonus.dommage"
+                        type="text"
+                        value="{{actor.system.bonus.dommage}}"
+                        data-dtype="Number"/>
+                </div>
+
+                <div class="protection">
+                    <label>{{localize "NEPH5E.protection"}}</label>
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.bonus.protection"
+                        type="text"
+                        value="{{actor.system.bonus.protection}}"
+                        data-dtype="Number"/>
+                </div>
+
             </div>
 
         </div>

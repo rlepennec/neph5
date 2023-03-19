@@ -571,6 +571,7 @@
                     margin-right: 10px;
                     margin-left: 40px;
 
+                    
                     .header {
                         display: flex;
                         flex-direction: row;
@@ -607,9 +608,9 @@
 
                     .caracteristiques {
                         position: relative;
+                        margin-bottom: 35px;
 
                         li {
-                            position: absolute;
                             display: flex;
                             flex-direction: row;
                             list-style: none;
@@ -620,20 +621,100 @@
                             }
 
                             img {
+                                position: absolute;
                                 border: none;
                                 width: 48px;
                                 display: hidden;
-                                margin-left: 15px;
                             }
 
                             input {
+                                position: absolute;
                                 flex: 0 0 auto;
                                 width: 35px;
                                 height: 35px;
                                 text-align: center;
                                 font-weight: bold;
                                 border-radius: 50%;
-                                transform: translate(-41px, 11px);
+                                border: none;
+                            }
+
+                            i {
+                                position: absolute;
+                            }
+
+                        }
+
+                        li.base {
+                            width: 100%;
+
+                            .menace {
+                                width: 100%;
+
+                                i {
+                                    left: 102px;
+                                    top: 89px;
+                                }
+
+                                label {
+                                    left: 100px;
+                                    top: 69px;
+                                }
+
+                                input {
+                                    left: 52px;
+                                    top: 71px;
+                                }
+
+                                img {
+                                    left: 31px;
+                                    top: 60px;
+                                }
+
+                            }
+
+                            .menace:hover {
+                                text-shadow: 0px 0px 1px black;
+                            }
+
+                            .ka {
+                                width: 100%;
+
+                                i {
+                                    left: calc(100% - 79px);
+                                    top: 89px;
+                                }
+
+                                label {
+                                    left: calc(100% - 78px);
+                                    top: 69px;
+                                }
+
+                                input {
+                                    left: calc(100% - 50px);
+                                    top: 71px;
+                                }
+
+                                img {
+                                    left: calc(100% - 71px);
+                                    top: 60px;
+                                }
+
+                            }
+
+                            .ka:hover {
+                                text-shadow: 0px 0px 1px black;
+                            }
+
+                            img {
+                                margin-left: 15px;
+                            }
+
+                        }
+
+                        li.vecu {
+
+                            img {
+                                margin-left: 15px;
                             }
 
                             input:hover {
@@ -720,85 +801,90 @@
                     }
 
                     .bonus {
-                        font-family: 'AJensonPro';
-                        font-size: 16px;
-                        position: relative;
 
-                        >img {
-                            position: absolute;
-                            left: calc(50% - 52px);
-                            top: 50px;
-                            width: 120px;
-                            border: none;
-                        }
+                        .body {
+                            font-family: 'AJensonPro';
+                            font-size: 16px;
+                            position: relative;
 
-                        div {
-                            position: absolute;
-                            display: flex;
-                            flex-direction: row;
-
-                            label {
+                            >img {
                                 position: absolute;
-                                width: 150px;
-                            }
-
-                            img {
+                                left: calc(50% - 52px);
+                                top: 50px;
+                                width: 120px;
                                 border: none;
-                                width: 48px;
-                                display: hidden;
-                                margin-left: 15px;
                             }
 
-                            input {
-                                flex: 0 0 auto;
-                                width: 35px;
-                                height: 35px;
-                                text-align: center;
-                                font-weight: bold;
-                                border-radius: 50%;
-                                transform: translate(-41px, 11px);
+                            div {
+                                position: absolute;
+                                display: flex;
+                                flex-direction: row;
+
+                                label {
+                                    position: absolute;
+                                    width: 150px;
+                                }
+
+                                img {
+                                    border: none;
+                                    width: 48px;
+                                    display: hidden;
+                                    margin-left: 15px;
+                                }
+
+                                input {
+                                    flex: 0 0 auto;
+                                    width: 35px;
+                                    height: 35px;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    border-radius: 50%;
+                                    transform: translate(-41px, 11px);
+                                    border: none;
+                                }
+
+                                input:hover {
+                                    text-shadow: 0px 0px 1px black;
+                                }
+
                             }
 
-                            input:hover {
-                                text-shadow: 0px 0px 1px black;
+                            .mouvement {
+                                top: calc(50% - -185px);
+                                left: calc(50% - 31px);
+                                label {
+                                    top: calc(50% - -25px);
+                                    left: calc(50% - 46px);
+                                }
                             }
 
-                        }
-
-                        .mouvement {
-                            top: calc(50% - -185px);
-                            left: calc(50% - 31px);
-                            label {
-                                top: calc(50% - -25px);
-                                left: calc(50% - 46px);
+                            .initiative {
+                                top: calc(50% - 3px);
+                                left: calc(50% - 31px);
+                                label {
+                                    top: calc(50% - 7px);
+                                    left: calc(50% - -20px);
+                                }
                             }
-                        }
 
-                        .initiative {
-                            top: calc(50% - 3px);
-                            left: calc(50% - 31px);
-                            label {
-                                top: calc(50% - 7px);
-                                left: calc(50% - -20px);
+                            .dommages {
+                                top: calc(50% - -91px);
+                                left: calc(50% - 120px);
+                                label {
+                                    top: calc(50% - -24px);
+                                    left: calc(50% - 37px);
+                                }
                             }
-                        }
 
-                        .dommages {
-                            top: calc(50% - -91px);
-                            left: calc(50% - 120px);
-                            label {
-                                top: calc(50% - -24px);
-                                left: calc(50% - 37px);
+                            .protection {
+                                top: calc(50% - -91px);
+                                left: calc(50% - -57px);
+                                label {
+                                    top: calc(50% - -23px);
+                                    left: calc(50% - 41px);
+                                }
                             }
-                        }
 
-                        .protection {
-                            top: calc(50% - -91px);
-                            left: calc(50% - -57px);
-                            label {
-                                top: calc(50% - -23px);
-                                left: calc(50% - 41px);
-                            }
                         }
 
                     }

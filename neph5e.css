@@ -769,9 +769,9 @@
 }
 .actor-root .article .article-body .combat .right .caracteristiques {
   position: relative;
+  margin-bottom: 35px;
 }
 .actor-root .article .article-body .combat .right .caracteristiques li {
-  position: absolute;
   display: flex;
   flex-direction: row;
   list-style: none;
@@ -781,21 +781,78 @@
   width: 150px;
 }
 .actor-root .article .article-body .combat .right .caracteristiques li img {
+  position: absolute;
   border: none;
   width: 48px;
   display: hidden;
-  margin-left: 15px;
 }
 .actor-root .article .article-body .combat .right .caracteristiques li input {
+  position: absolute;
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
   text-align: center;
   font-weight: bold;
   border-radius: 50%;
-  transform: translate(-41px, 11px);
+  border: none;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li input:hover {
+.actor-root .article .article-body .combat .right .caracteristiques li i {
+  position: absolute;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base {
+  width: 100%;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .menace {
+  width: 100%;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .menace i {
+  left: 102px;
+  top: 89px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .menace label {
+  left: 100px;
+  top: 69px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .menace input {
+  left: 52px;
+  top: 71px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .menace img {
+  left: 31px;
+  top: 60px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .menace:hover {
+  text-shadow: 0px 0px 1px black;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .ka {
+  width: 100%;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .ka i {
+  left: calc(100% - 79px);
+  top: 89px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .ka label {
+  left: calc(100% - 78px);
+  top: 69px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .ka input {
+  left: calc(100% - 50px);
+  top: 71px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .ka img {
+  left: calc(100% - 71px);
+  top: 60px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base .ka:hover {
+  text-shadow: 0px 0px 1px black;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.base img {
+  margin-left: 15px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.vecu img {
+  margin-left: 15px;
+}
+.actor-root .article .article-body .combat .right .caracteristiques li.vecu input:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .combat .right .etats {
@@ -854,34 +911,34 @@
 .actor-root .article .article-body .combat .right .capacites .capacite:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .bonus {
+.actor-root .article .article-body .combat .right .bonus .body {
   font-family: 'AJensonPro';
   font-size: 16px;
   position: relative;
 }
-.actor-root .article .article-body .combat .right .bonus > img {
+.actor-root .article .article-body .combat .right .bonus .body > img {
   position: absolute;
   left: calc(50% - 52px);
   top: 50px;
   width: 120px;
   border: none;
 }
-.actor-root .article .article-body .combat .right .bonus div {
+.actor-root .article .article-body .combat .right .bonus .body div {
   position: absolute;
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .combat .right .bonus div label {
+.actor-root .article .article-body .combat .right .bonus .body div label {
   position: absolute;
   width: 150px;
 }
-.actor-root .article .article-body .combat .right .bonus div img {
+.actor-root .article .article-body .combat .right .bonus .body div img {
   border: none;
   width: 48px;
   display: hidden;
   margin-left: 15px;
 }
-.actor-root .article .article-body .combat .right .bonus div input {
+.actor-root .article .article-body .combat .right .bonus .body div input {
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
@@ -889,39 +946,40 @@
   font-weight: bold;
   border-radius: 50%;
   transform: translate(-41px, 11px);
+  border: none;
 }
-.actor-root .article .article-body .combat .right .bonus div input:hover {
+.actor-root .article .article-body .combat .right .bonus .body div input:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .bonus .mouvement {
+.actor-root .article .article-body .combat .right .bonus .body .mouvement {
   top: calc(50% - -185px);
   left: calc(50% - 31px);
 }
-.actor-root .article .article-body .combat .right .bonus .mouvement label {
+.actor-root .article .article-body .combat .right .bonus .body .mouvement label {
   top: calc(50% - -25px);
   left: calc(50% - 46px);
 }
-.actor-root .article .article-body .combat .right .bonus .initiative {
+.actor-root .article .article-body .combat .right .bonus .body .initiative {
   top: calc(50% - 3px);
   left: calc(50% - 31px);
 }
-.actor-root .article .article-body .combat .right .bonus .initiative label {
+.actor-root .article .article-body .combat .right .bonus .body .initiative label {
   top: calc(50% - 7px);
   left: calc(50% - -20px);
 }
-.actor-root .article .article-body .combat .right .bonus .dommages {
+.actor-root .article .article-body .combat .right .bonus .body .dommages {
   top: calc(50% - -91px);
   left: calc(50% - 120px);
 }
-.actor-root .article .article-body .combat .right .bonus .dommages label {
+.actor-root .article .article-body .combat .right .bonus .body .dommages label {
   top: calc(50% - -24px);
   left: calc(50% - 37px);
 }
-.actor-root .article .article-body .combat .right .bonus .protection {
+.actor-root .article .article-body .combat .right .bonus .body .protection {
   top: calc(50% - -91px);
   left: calc(50% - -57px);
 }
-.actor-root .article .article-body .combat .right .bonus .protection label {
+.actor-root .article .article-body .combat .right .bonus .body .protection label {
   top: calc(50% - -23px);
   left: calc(50% - 41px);
 }
