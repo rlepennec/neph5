@@ -607,118 +607,94 @@
                     }
 
                     .caracteristiques {
-                        position: relative;
-                        margin-bottom: 35px;
+                        margin-bottom: 10px;
 
-                        li {
-                            display: flex;
-                            flex-direction: row;
-                            list-style: none;
-
-                            label {
-                                position: absolute;
-                                width: 150px;
-                            }
-
-                            img {
-                                position: absolute;
-                                border: none;
-                                width: 48px;
-                                display: hidden;
-                            }
-
-                            input {
-                                position: absolute;
-                                flex: 0 0 auto;
-                                width: 35px;
-                                height: 35px;
-                                text-align: center;
-                                font-weight: bold;
-                                border-radius: 50%;
-                                border: none;
-                            }
-
-                            i {
-                                position: absolute;
-                            }
-
-                        }
-
-                        li.base {
-                            width: 100%;
-
-                            .menace {
+                        ol {
+                            
+                            li {
+                                position: relative;
+                                display: flex;
+                                flex-direction: row;
+                                list-style: none;
                                 width: 100%;
-
-                                i {
-                                    left: 102px;
-                                    top: 89px;
-                                }
+                                height: 35px;
 
                                 label {
-                                    left: 100px;
-                                    top: 69px;
+                                    position: absolute;
+                                    top: 19px;
+                                }
+
+                                img {
+                                    position: absolute;
+                                    border: none;
+                                    width: 48px;
+                                    display: hidden;
                                 }
 
                                 input {
-                                    left: 52px;
-                                    top: 71px;
+                                    position: absolute;
+                                    flex: 0 0 auto;
+                                    width: 35px;
+                                    height: 35px;
+                                    top: 10px;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    border-radius: 50%;
+                                    border: none;
+                                    background-color: transparent; 
+                                }
+
+                                i {
+                                    position: absolute;
+                                    
+                                }
+
+                                .fa-dice-d20 {
+                                    left: calc(100% - 23px);
+                                    top: 20px;
+                                }
+
+                                .fa-trash {
+                                    left: calc(100% - 47px);
+                                    top: 20px;
+                                }
+
+                            }
+
+                            li:hover {
+                                text-shadow: 0px 0px 1px black;
+                            }
+
+                            li:nth-child(1n) {
+
+                                label {
+                                    left: 90px;
+                                }
+
+                                input {
+                                    left: 37px;
                                 }
 
                                 img {
                                     left: 31px;
-                                    top: 60px;
                                 }
 
                             }
 
-                            .menace:hover {
-                                text-shadow: 0px 0px 1px black;
-                            }
-
-                            .ka {
-                                width: 100%;
-
-                                i {
-                                    left: calc(100% - 79px);
-                                    top: 89px;
-                                }
+                            li:nth-child(2n) {
 
                                 label {
-                                    left: calc(100% - 78px);
-                                    top: 69px;
+                                    left: 130px;
                                 }
 
                                 input {
-                                    left: calc(100% - 50px);
-                                    top: 71px;
+                                    left: 78px;
                                 }
 
                                 img {
-                                    left: calc(100% - 71px);
-                                    top: 60px;
+                                    left: 72px;
                                 }
 
-                            }
-
-                            .ka:hover {
-                                text-shadow: 0px 0px 1px black;
-                            }
-
-                            img {
-                                margin-left: 15px;
-                            }
-
-                        }
-
-                        li.vecu {
-
-                            img {
-                                margin-left: 15px;
-                            }
-
-                            input:hover {
-                                text-shadow: 0px 0px 1px black;
                             }
 
                         }
@@ -841,6 +817,7 @@
                                     border-radius: 50%;
                                     transform: translate(-41px, 11px);
                                     border: none;
+                                    background-color: transparent;
                                 }
 
                                 input:hover {

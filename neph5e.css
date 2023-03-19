@@ -768,92 +768,69 @@
   width: calc(100% - 65px);
 }
 .actor-root .article .article-body .combat .right .caracteristiques {
-  position: relative;
-  margin-bottom: 35px;
+  margin-bottom: 10px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li {
+.actor-root .article .article-body .combat .right .caracteristiques ol li {
+  position: relative;
   display: flex;
   flex-direction: row;
   list-style: none;
+  width: 100%;
+  height: 35px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li label {
+.actor-root .article .article-body .combat .right .caracteristiques ol li label {
   position: absolute;
-  width: 150px;
+  top: 19px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li img {
+.actor-root .article .article-body .combat .right .caracteristiques ol li img {
   position: absolute;
   border: none;
   width: 48px;
   display: hidden;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li input {
+.actor-root .article .article-body .combat .right .caracteristiques ol li input {
   position: absolute;
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
+  top: 10px;
   text-align: center;
   font-weight: bold;
   border-radius: 50%;
   border: none;
+  background-color: transparent;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li i {
+.actor-root .article .article-body .combat .right .caracteristiques ol li i {
   position: absolute;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base {
-  width: 100%;
+.actor-root .article .article-body .combat .right .caracteristiques ol li .fa-dice-d20 {
+  left: calc(100% - 23px);
+  top: 20px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .menace {
-  width: 100%;
+.actor-root .article .article-body .combat .right .caracteristiques ol li .fa-trash {
+  left: calc(100% - 47px);
+  top: 20px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .menace i {
-  left: 102px;
-  top: 89px;
+.actor-root .article .article-body .combat .right .caracteristiques ol li:hover {
+  text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .menace label {
-  left: 100px;
-  top: 69px;
+.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) label {
+  left: 90px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .menace input {
-  left: 52px;
-  top: 71px;
+.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) input {
+  left: 37px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .menace img {
+.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) img {
   left: 31px;
-  top: 60px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .menace:hover {
-  text-shadow: 0px 0px 1px black;
+.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) label {
+  left: 130px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .ka {
-  width: 100%;
+.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) input {
+  left: 78px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques li.base .ka i {
-  left: calc(100% - 79px);
-  top: 89px;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.base .ka label {
-  left: calc(100% - 78px);
-  top: 69px;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.base .ka input {
-  left: calc(100% - 50px);
-  top: 71px;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.base .ka img {
-  left: calc(100% - 71px);
-  top: 60px;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.base .ka:hover {
-  text-shadow: 0px 0px 1px black;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.base img {
-  margin-left: 15px;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.vecu img {
-  margin-left: 15px;
-}
-.actor-root .article .article-body .combat .right .caracteristiques li.vecu input:hover {
-  text-shadow: 0px 0px 1px black;
+.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) img {
+  left: 72px;
 }
 .actor-root .article .article-body .combat .right .etats {
   font-family: 'AJensonPro';
@@ -947,6 +924,7 @@
   border-radius: 50%;
   transform: translate(-41px, 11px);
   border: none;
+  background-color: transparent;
 }
 .actor-root .article .article-body .combat .right .bonus .body div input:hover {
   text-shadow: 0px 0px 1px black;
