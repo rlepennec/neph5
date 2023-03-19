@@ -310,7 +310,7 @@
 
                     {{#each weapons.naturelle as |item|}}
                     <li data-id="{{item.id}}">
-                        
+
                         <i class="icon fa-solid fa-hand-fist"></i>
 
                         <label class="name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
@@ -428,6 +428,64 @@
 
     <div class="right">
 
+        {{#if (eq actor.type 'figurant')}}
+        <div class="caracteristiques">
+
+            <div class="header">
+
+                <img class="puce" src="{{imagePath 'puce'}}"/>
+
+                <img class="separator" src="{{imagePath 'separator'}}"/>
+
+                <span class="name">{{localize "NEPH5E.caracteristiques"}}</span>
+
+            </div>
+
+            <ol>
+
+                <li class="menace">
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.menace"
+                        type="text"
+                        value="{{actor.system.menace}}"
+                        data-dtype="Number"/>
+                    <label>{{localize "NEPH5E.menace"}}</label>
+                    <i class="fas fa-dice-d20"></i>
+                </li>
+
+                <li class="ka">
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.ka"
+                        type="text"
+                        value="{{actor.system.ka}}"
+                        data-dtype="Number"/>
+                    <label>{{localize "NEPH5E.menace"}}</label>
+                    <i class="fas fa-dice-d20"></i>
+                </li>
+
+                {{#each actor.items as |item id|}}
+                {{#if (eq item.type 'vecu')}}
+                <li class="vecu">
+                    <img src="{{imagePath 'circle'}}"/>
+                    <input
+                        name="system.ka"
+                        type="text"
+                        value="{{actor.system.ka}}"
+                        data-dtype="Number"/>
+                    <label>{{item.name}}</label>
+                    <i class="fas fa-dice-d20"></i>
+                    <i class="fas fa-trash"></i>
+                </li>
+                {{/if}}
+                {{/each}}
+
+            </ol>
+
+        </div>
+        {{/if}}
+
         <div class="header">
 
             <img class="puce" src="{{imagePath 'puce'}}"/>
@@ -493,6 +551,7 @@
 
         </ol>
 
+        {{#if (eq actor.type 'figure')}}
         <div class="header">
 
             <img class="puce" src="{{imagePath 'puce'}}"/>
@@ -520,6 +579,7 @@
             </li>
 
         </ol>
+        {{/if}}
 
         <div class="header">
 

@@ -48,85 +48,10 @@
                     {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}
                 </div>
 
-                <div class="tab combat" data-group="primary" data-tab="combat">
-
-                    <div class="figurant">
-
-                        <div class="sectionTitleUnderline">
-                            <span>{{localize "NEPH5E.caracteristiques"}}</span>
-                        </div>
-
-                        <ol class="item-list">
-
-                            <li class="item menace" data-item-id="{{system.id}}" data-item-type="menace">
-                    
-                                <input
-                                    class="item-integer"
-                                    name="system.menace"
-                                    type="text"
-                                    value="{{system.menace}}"
-                                    data-dtype="Number"/>
-                    
-                                <label class="item-name">{{localize "NEPH5E.menace"}}</label>
-                    
-                                <div class="item-control">
-                                    <a class="roll-menace"><i class="fas fa-dice-d20"></i></a>
-                                </div>
-                    
-                            </li>
-                    
-                            <li class="item ka" data-item-id="{{system.id}}" data-item-type="ka">
-                    
-                                <input
-                                    class="item-integer"
-                                    name="system.ka"
-                                    type="text"
-                                    value="{{system.ka}}"
-                                    data-dtype="Number"/>
-                    
-                                <label class="item-name">{{localize "NEPH5E.ka"}}</label>
-                    
-                                <div class="item-control">
-                                    <a class="roll-ka"><i class="fas fa-dice-d20"></i></a>
-                                </div>
-                    
-                            </li>
-                    
-                            {{#each actor.items as |item id|}}
-                            {{#if (eq item.type 'vecu')}}
-                            <li class="item vecu" data-item-id="{{item.id}}" data-item-type="{{item.type}}" data-simulacre-uuid="{{../system.id}}">
-                    
-                                <input
-                                    class="item-integer degre-vecu"
-                                    name="item.system.degre"
-                                    type="text"
-                                    value="{{item.system.degre}}"
-                                    data-dtype="Number"/>
-                    
-                                <div class="item-name edit-vecu" data-item="{{item.id}}">
-                                    <span>{{item.name}}</span>
-                                </div>
-                    
-                                <div class="item-control" data-item="{{item.id}}">
-                                    <a class="delete-vecu"><i class="fas fa-trash"></i></a>
-                                </div>
-                    
-                                <div class="item-control">
-                                    <a class="roll-vecu" data-item="{{item.id}}"><i class="fas fa-dice-d20"></i></a>
-                                </div>
-                    
-                            </li>
-                            {{/if}}
-                            {{/each}}
-                    
-                        </ol>
-
-                    </div>
-
+                <div class="tab" data-group="primary" data-tab="combat">
                     {{> "systems/neph5e/feature/combat/actor/main.hbs"}}
-
                 </div>
-        
+
             </section>
 
         </div>
