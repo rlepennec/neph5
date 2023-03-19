@@ -728,6 +728,9 @@
 .actor-root .article .article-body .combat .left .equipement li .delete {
   width: 8%;
 }
+.actor-root .article .article-body .combat .left .equipement li .empty {
+  width: 8%;
+}
 .actor-root .article .article-body .combat .left .equipement li:hover {
   text-shadow: 0px 0px 1px black;
 }
