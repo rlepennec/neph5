@@ -481,7 +481,7 @@
   display: block;
   border: none;
   width: 80px;
-  height: 80px;
+  height: 85px;
   top: 95px;
   margin-left: 20px;
   background-color: transparent;
@@ -607,6 +607,7 @@
   top: 32px;
   width: calc(100% - 30px);
   left: 45px;
+  content: var(--img-separator);
 }
 .actor-root .article .article-body .combat .left .dommages .magiques .header .name {
   position: absolute;
@@ -620,7 +621,7 @@
   display: block;
   border: none;
   width: 80px;
-  height: 80px;
+  height: 85px;
   top: 95px;
   margin-left: calc(100% - 97px);
   background-color: transparent;
@@ -813,11 +814,13 @@
   position: absolute;
   top: 19px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li img {
+.actor-root .article .article-body .combat .right .caracteristiques ol li .circle {
   position: absolute;
   border: none;
   width: 48px;
+  height: 51px;
   display: hidden;
+  content: var(--img-circle);
 }
 .actor-root .article .article-body .combat .right .caracteristiques ol li input {
   position: absolute;
@@ -926,8 +929,8 @@
 }
 .actor-root .article .article-body .combat .right .bonus .body .losange {
   position: absolute;
-  left: calc(50% - 53px);
-  top: 42px;
+  left: calc(50% - 51px);
+  top: 48px;
   width: 120px;
   border: none;
   content: var(--img-losange);
@@ -944,6 +947,7 @@
 .actor-root .article .article-body .combat .right .bonus .body div .circle {
   border: none;
   width: 48px;
+  height: 51px;
   display: hidden;
   margin-left: 15px;
   content: var(--img-circle);
@@ -955,7 +959,7 @@
   text-align: center;
   font-weight: bold;
   border-radius: 50%;
-  transform: translate(-38px, 5px);
+  transform: translate(-39px, 8px);
   border: none;
   background-color: transparent;
 }

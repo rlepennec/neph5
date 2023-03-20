@@ -444,7 +444,7 @@
             <ol>
 
                 <li class="menace">
-                    <img src="{{imagePath 'circle'}}"/>
+                    <img class="circle"/>
                     <input
                         name="system.menace"
                         type="text"
@@ -455,7 +455,7 @@
                 </li>
 
                 <li class="ka">
-                    <img src="{{imagePath 'circle'}}"/>
+                    <img class="circle"/>
                     <input
                         name="system.ka"
                         type="text"
@@ -468,7 +468,7 @@
                 {{#each actor.items as |item id|}}
                 {{#if (eq item.type 'vecu')}}
                 <li class="vecu" data-id="{{item.id}}">
-                    <img src="{{imagePath 'circle'}}"/>
+                    <img class="circle"/>
                     <input
                         name="item.system.degre"
                         type="text"
