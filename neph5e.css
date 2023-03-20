@@ -1377,18 +1377,28 @@
   font-family: 'AJensonPro';
   font-size: 17px;
 }
-.actor-root .article .article-body .akasha .column .directions .cercle {
+.actor-root .article .article-body .akasha .column .directions .directions {
   position: absolute;
   border: none;
   width: 350px;
-  transform: translate(25px, 0px);
+  transform: translate(25px, -81px);
+  content: var(--img-directions);
 }
-.actor-root .article .article-body .akasha .column .directions .outils {
+.actor-root .article .article-body .akasha .column .directions .boussole {
   position: absolute;
   border: none;
   width: 250px;
   margin-top: 20px;
   transform: translate(75px, 47px) rotate(30deg);
+  content: var(--img-boussole);
+}
+.actor-root .article .article-body .akasha .column .directions .compas {
+  position: absolute;
+  border: none;
+  width: 250px;
+  margin-top: 20px;
+  transform: translate(75px, 47px) rotate(30deg);
+  content: var(--img-compas);
 }
 .actor-root .article .article-body .akasha .column .directions div {
   position: absolute;
