@@ -1010,7 +1010,7 @@
   display: inline-block;
   width: 100%;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header {
+.actor-root .article .article-body .science .cercles .cercle .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1018,32 +1018,37 @@
   font-size: 21px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-circle {
+.actor-root .article .article-body .science .cercles .cercle .header .circle {
+  position: absolute;
   border: none;
   width: 60px;
+  height: 65px;
   display: hidden;
+  background-color: transparent;
+  content: var(--img-circle);
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-separator {
+.actor-root .article .article-body .science .cercles .cercle .header .separator {
   position: absolute;
   border: none;
   height: 4px;
   left: 70px;
   top: 46px;
   width: calc(100% - 80px);
+  content: var(--img-separator);
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-degre {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-degre {
   position: absolute;
   width: 45px;
   height: 45px;
   left: 8px;
-  top: 13px;
+  top: 10px;
   text-align: center;
   font-weight: bold;
   padding-top: 12px;
   border-radius: 50%;
   box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -1052,34 +1057,35 @@
   width: calc(100% - 80px);
   text-align: center;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-name {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-name {
   flex: 1 1 auto;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-percentage {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-percentage {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-quantite {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-quantite {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-transporte {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-transporte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-pacte {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-pacte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-possede {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-possede {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-status {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-status {
   flex: 0 0 80px;
 }
-.actor-root .article .article-body .science .cercles .cercle .cercle-header .cercle-menu .cercle-dice {
+.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-dice {
   flex: 0 0 50px;
   font-size: 16px;
   margin-top: 4px;
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus {
   padding-left: 0px;
+  padding-top: 70px;
 }
 .actor-root .article .article-body .science .cercles .cercle .all-focus .focus {
   display: flex;

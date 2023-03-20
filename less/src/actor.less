@@ -926,7 +926,7 @@
                             width: 100%;
                         }
 
-                        .cercle-header {
+                        .header {
                             display: flex;
                             flex-direction: row;
                             position: relative;
@@ -934,19 +934,24 @@
                             font-size: 21px;
                             margin-bottom: -10px;
 
-                            .cercle-circle {
+                            .circle {
+                                position: absolute;
                                 border: none;
                                 width: 60px;
+                                height: 65px;
                                 display: hidden;
+                                background-color: transparent;
+                                content: var(--img-circle);
                             }
 
-                            .cercle-separator {
+                            .separator {
                                 position: absolute;
                                 border: none;
                                 height: 4px;
                                 left: 70px;
                                 top: 46px;
                                 width: calc(100% - 80px);
+                                content: var(--img-separator);
                             }
 
                             .cercle-degre {
@@ -954,7 +959,7 @@
                                 width: 45px;
                                 height: 45px;
                                 left: 8px;
-                                top: 13px;
+                                top: 10px;
                                 text-align: center;
                                 font-weight: bold;
                                 padding-top: 12px;
@@ -1011,6 +1016,7 @@
 
                         .all-focus {
                             padding-left: 0px;
+                            padding-top: 70px;
 
                             .focus {
                                 display: flex;
