@@ -287,7 +287,7 @@
   --img-arbre: url("../../systems/neph5e/assets/core/arbre.webp");
   --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
   --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
-  --img-circle: url("../../systems/neph5e/assets/core/separator2.webp");
+  --img-circle: url("../../systems/neph5e/assets/core/circle2.webp");
   --img-directions: url("../../systems/neph5e/assets/core/circle3.webp");
   --img-boussole: url("../../systems/neph5e/assets/core/boussole.webp");
   --img-compas: url("../../systems/neph5e/assets/core/compas.webp");
@@ -912,12 +912,13 @@
   font-size: 16px;
   position: relative;
 }
-.actor-root .article .article-body .combat .right .bonus .body > img {
+.actor-root .article .article-body .combat .right .bonus .body .losange {
   position: absolute;
-  left: calc(50% - 52px);
-  top: 50px;
+  left: calc(50% - 53px);
+  top: 42px;
   width: 120px;
   border: none;
+  content: var(--img-losange);
 }
 .actor-root .article .article-body .combat .right .bonus .body div {
   position: absolute;
@@ -928,11 +929,12 @@
   position: absolute;
   width: 150px;
 }
-.actor-root .article .article-body .combat .right .bonus .body div img {
+.actor-root .article .article-body .combat .right .bonus .body div .circle {
   border: none;
   width: 48px;
   display: hidden;
   margin-left: 15px;
+  content: var(--img-circle);
 }
 .actor-root .article .article-body .combat .right .bonus .body div input {
   flex: 0 0 auto;
@@ -941,7 +943,7 @@
   text-align: center;
   font-weight: bold;
   border-radius: 50%;
-  transform: translate(-41px, 11px);
+  transform: translate(-38px, 5px);
   border: none;
   background-color: transparent;
 }
