@@ -5,7 +5,7 @@
         --active-tab-color: rgb(78, 57, 4);
         --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
         --img-triangle: url("../../systems/neph5e/assets/core/triangle.webp");
-        --img-arbre: url("../../systems/neph5e/assets/core/arbre.webp");
+        --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/arbre.webp");
         --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
         --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
         --img-circle: url("../../systems/neph5e/assets/core/circle2.webp");
@@ -20,7 +20,7 @@
         --active-tab-color: #ff6600;
         --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
         --img-triangle: url("../../systems/neph5e/assets/core/a.webp");
-        --img-arbre: url("../../systems/neph5e/assets/core/a.webp");
+        --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/a.webp");
         --img-separator: url("../../systems/neph5e/assets/core/a.webp");
         --img-puce: url("../../systems/neph5e/assets/core/a.webp");
         --img-circle: url("../../systems/neph5e/assets/core/a.webp");
@@ -1096,10 +1096,11 @@
                 position: relative;
                 text-align: center;
 
-                img {
+                .arbre-vie {
                     border: 0px;
                     width: 600px;
                     height: 795px;
+                    content: var(--img-arbre-vie);
                 }
 
                 .sephiroth {
