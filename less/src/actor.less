@@ -6,6 +6,7 @@
         --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
         --img-triangle: url("../../systems/neph5e/assets/core/triangle.webp");
         --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/arbre.webp");
+        --img-article-separator: url("../../systems/neph5e/assets/core/separator.webp");
         --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
         --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
         --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
@@ -14,6 +15,7 @@
         --img-boussole: url("../../systems/neph5e/assets/core/boussole.webp");
         --img-compas: url("../../systems/neph5e/assets/core/compas.webp");
         --img-losange: url("../../systems/neph5e/assets/core/losange.webp");
+        --img-corner: url("../../systems/neph5e/assets/core/corner.webp");
     }
 
     :root.feu {
@@ -22,6 +24,7 @@
         --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
         --img-triangle: url("../../systems/neph5e/assets/core/a.webp");
         --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/a.webp");
+        --img-article-separator: url("../../systems/neph5e/assets/core/a.webp");
         --img-separator: url("../../systems/neph5e/assets/core/a.webp");
         --img-puce: url("../../systems/neph5e/assets/core/a.webp");
         --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
@@ -30,6 +33,7 @@
         --img-boussole: url("../../systems/neph5e/assets/core/a.webp");
         --img-compas: url("../../systems/neph5e/assets/core/a.webp");
         --img-losange: url("../../systems/neph5e/assets/core/a.webp");
+        --img-corner: url("../../systems/neph5e/assets/core/a.webp");
 
     }
 
@@ -162,21 +166,24 @@
                 vertical-align: middle;
             }
 
-            .article-sepatator {
+            .article-separator {
                 border: 0px;
                 width: 200px;
+                content: var(--img-article-separator);
+
             }
 
         }
 
         .article-body {
 
-            .corner-bottom {
+            .article-corner {
                 position: absolute;
                 right: 0px;
                 bottom: 0px;
                 border: none;
                 width: 120px;
+                content: var(--img-corner);
             }
 
             .combat {
@@ -1920,7 +1927,7 @@
                         font-family: 'AJensonPro';
                         font-size: 20px;
 
-                        .options-header {
+                        .header {
                             display: flex;
                             flex-direction: row;
                             position: relative;
@@ -1929,20 +1936,22 @@
                             margin-top: 15px;
                             margin-bottom: -10px;
 
-                            .options-puce {
+                            .puce {
                                 border: none;
                                 width: 60px;
                                 display: hidden;
                                 background-color: transparent;
+                                content: var(--img-puce);
                             }
         
-                            .options-separator {
+                            .separator {
                                 position: absolute;
                                 border: none;
                                 height: 4px;
                                 left: 55px;
                                 top: 32px;
                                 width: calc(100% - 65px);
+                                content: var(--img-separator);
                             }
         
                             .options-name {
@@ -1973,7 +1982,7 @@
 
                         }
 
-                        .options-list {
+                        .body {
                             font-family: 'AJensonPro';
                             font-size: 16px;
 

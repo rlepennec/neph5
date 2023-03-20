@@ -285,6 +285,7 @@
   --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
   --img-triangle: url("../../systems/neph5e/assets/core/triangle.webp");
   --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/arbre.webp");
+  --img-article-separator: url("../../systems/neph5e/assets/core/separator.webp");
   --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
   --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
   --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
@@ -293,6 +294,7 @@
   --img-boussole: url("../../systems/neph5e/assets/core/boussole.webp");
   --img-compas: url("../../systems/neph5e/assets/core/compas.webp");
   --img-losange: url("../../systems/neph5e/assets/core/losange.webp");
+  --img-corner: url("../../systems/neph5e/assets/core/corner.webp");
 }
 :root.feu {
   --column-color: #ff6600;
@@ -300,6 +302,7 @@
   --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
   --img-triangle: url("../../systems/neph5e/assets/core/a.webp");
   --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/a.webp");
+  --img-article-separator: url("../../systems/neph5e/assets/core/a.webp");
   --img-separator: url("../../systems/neph5e/assets/core/a.webp");
   --img-puce: url("../../systems/neph5e/assets/core/a.webp");
   --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
@@ -308,6 +311,7 @@
   --img-boussole: url("../../systems/neph5e/assets/core/a.webp");
   --img-compas: url("../../systems/neph5e/assets/core/a.webp");
   --img-losange: url("../../systems/neph5e/assets/core/a.webp");
+  --img-corner: url("../../systems/neph5e/assets/core/a.webp");
 }
 .actor-root {
   display: flex;
@@ -419,16 +423,18 @@
   font-size: 35px;
   vertical-align: middle;
 }
-.actor-root .article .article-header .article-sepatator {
+.actor-root .article .article-header .article-separator {
   border: 0px;
   width: 200px;
+  content: var(--img-article-separator);
 }
-.actor-root .article .article-body .corner-bottom {
+.actor-root .article .article-body .article-corner {
   position: absolute;
   right: 0px;
   bottom: 0px;
   border: none;
   width: 120px;
+  content: var(--img-corner);
 }
 .actor-root .article .article-body .combat {
   padding-top: 20px;
@@ -1786,7 +1792,7 @@
   font-family: 'AJensonPro';
   font-size: 20px;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-header {
+.actor-root .article .article-body .options .options-column .options-group .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1795,27 +1801,29 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-header .options-puce {
+.actor-root .article .article-body .options .options-column .options-group .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
+  content: var(--img-puce);
 }
-.actor-root .article .article-body .options .options-column .options-group .options-header .options-separator {
+.actor-root .article .article-body .options .options-column .options-group .header .separator {
   position: absolute;
   border: none;
   height: 4px;
   left: 55px;
   top: 32px;
   width: calc(100% - 65px);
+  content: var(--img-separator);
 }
-.actor-root .article .article-body .options .options-column .options-group .options-header .options-name {
+.actor-root .article .article-body .options .options-column .options-group .header .options-name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .options .options-column .options-group .options-header .theme {
+.actor-root .article .article-body .options .options-column .options-group .header .theme {
   border: none;
   outline: 0px;
   background-color: transparent;
@@ -1829,37 +1837,37 @@
   margin-left: calc(100% - 185px);
   z-index: 99;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-header .theme:hover {
+.actor-root .article .article-body .options .options-column .options-group .header .theme:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list {
+.actor-root .article .article-body .options .options-column .options-group .body {
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option {
+.actor-root .article .article-body .options .options-column .options-group .body .option {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox {
+.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox {
   font-style: italic;
   margin-left: 22px;
   margin-right: 20px;
   font-size: 11px;
   padding-top: 3px;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"] {
+.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"] {
   display: none;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox .checked {
+.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox .checked {
   display: none;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"]:checked ~ .checked {
+.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option .option-checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor-root .article .article-body .options .options-column .options-group .options-list .option:hover {
+.actor-root .article .article-body .options .options-column .options-group .body .option:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .effectif .header {
