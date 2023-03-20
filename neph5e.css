@@ -1010,7 +1010,7 @@
   color: #a1a1a1;
 }
 .actor-root .article .article-body .science .cercles .cercle .voie {
-  margin-top: 40px;
+  margin-top: 10px;
   padding-bottom: 3px;
   font-family: 'AJensonPro';
   font-size: 25px;
@@ -1054,7 +1054,6 @@
   font-weight: bold;
   padding-top: 12px;
   border-radius: 50%;
-  box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
 }
 .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu {
   display: flex;
