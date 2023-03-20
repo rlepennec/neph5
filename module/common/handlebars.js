@@ -312,29 +312,4 @@ export class CustomHandlebarsHelpers {
         return result;
     }
 
-    /**
-     * @param object The object to display: 'separator'
-     * @returns the path of the image to display.
-     */
-    static imagePath(object) {
-        switch (object) {
-            case 'arbre':
-                return 'systems/neph5e/assets/backgrounds/arbre.webp';
-            case 'separator':
-                return 'systems/neph5e/assets/core/separator2.webp';
-            case 'puce':
-                return 'systems/neph5e/assets/core/puce.webp';
-            case 'circle':
-                return 'systems/neph5e/assets/core/circle2.webp';
-            case 'directions':
-                return 'systems/neph5e/assets/core/circle3.webp';
-            case 'boussole':
-                return 'systems/neph5e/assets/core/boussole.webp';
-            case 'compas':
-                return 'systems/neph5e/assets/core/compas.webp';
-            case 'losange':
-                return 'systems/neph5e/assets/core/losange.webp';
-        }
-    }
-
 }

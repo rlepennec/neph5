@@ -72,7 +72,6 @@ Hooks.once("init", function () {
         getLevel: CustomHandlebarsHelpers.getLevel,
         getSapiences: CustomHandlebarsHelpers.getSapiences,
         getNextCost: CustomHandlebarsHelpers.getNextCost,
-        imagePath: CustomHandlebarsHelpers.imagePath,
         isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
         isEmptyString: CustomHandlebarsHelpers.isEmptyString,
         isContact: CustomHandlebarsHelpers.isContact,
