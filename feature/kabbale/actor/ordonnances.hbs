@@ -1,32 +1,32 @@
 {{#with actor.ordonnances as |ordonnances|}}
 <div class="ordonnances">
 
-    <div class="ordonnances-header">
+    <div class="header">
 
-        <img class="ordonnances-circle" src="systems/neph5e/assets/core/circle2.webp"/>
+        <img class="circle"/>
 
-        <img class="ordonnances-separator" src="systems/neph5e/assets/core/separator2.webp"/>
+        <img class="separator"/>
 
-        <div class="ordonnances-degre">{{ordonnances.items.length}}</div>
+        <div class="degre">{{ordonnances.items.length}}</div>
 
-        <div class="ordonnances-monde">{{ordonnances.monde}}</div>
+        <div class="monde">{{ordonnances.monde}}</div>
 
     </div>
 
-    <ol class="all-ordonnances">
+    <ol class="body">
 
         {{#each ordonnances.items as |item|}}
         <li class="ordonnance">
 
-            <div class="ordonnance-title">
+            <div class="title">
 
-                <img class="ordonnances-puce" src="systems/neph5e/assets/core/pin.webp"/>
+                <img class="pin"/>
 
-                <div class="ordonnance-name">{{item.original.name}}</div>
+                <div class="name">{{item.original.name}}</div>
 
             </div>
 
-            <div class="ordonnance-description">{{html (enrichHTML item.original.description ../owner)}}</div>
+            <div class="description">{{html (enrichHTML item.original.description ../owner)}}</div>
 
         </li>
         {{/each}}

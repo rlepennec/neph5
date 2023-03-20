@@ -8,6 +8,7 @@
         --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/arbre.webp");
         --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
         --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
+        --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
         --img-circle: url("../../systems/neph5e/assets/core/circle2.webp");
         --img-directions: url("../../systems/neph5e/assets/core/circle3.webp");
         --img-boussole: url("../../systems/neph5e/assets/core/boussole.webp");
@@ -23,6 +24,7 @@
         --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/a.webp");
         --img-separator: url("../../systems/neph5e/assets/core/a.webp");
         --img-puce: url("../../systems/neph5e/assets/core/a.webp");
+        --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
         --img-circle: url("../../systems/neph5e/assets/core/a.webp");
         --img-directions: url("../../systems/neph5e/assets/core/a.webp");
         --img-boussole: url("../../systems/neph5e/assets/core/a.webp");
@@ -1218,7 +1220,7 @@
 
             .ordonnances {
 
-                .ordonnances-header {
+                .header {
                     display: flex;
                     flex-direction: row;
                     position: relative;
@@ -1226,22 +1228,26 @@
                     font-size: 21px;
                     margin-bottom: -10px;
 
-                    .ordonnances-circle {
+                    .circle {
+                        position: absolute;
                         border: none;
                         width: 60px;
+                        height: 65px;
                         display: hidden;
+                        content: var(--img-circle);
                     }
 
-                    .ordonnances-separator {
+                    .separator {
                         position: absolute;
                         border: none;
                         height: 4px;
                         left: 70px;
                         top: 46px;
                         width: calc(100% - 80px);
+                        content: var(--img-separator);
                     }
 
-                    .ordonnances-degre {
+                    .degre {
                         position: absolute;
                         width: 45px;
                         height: 45px;
@@ -1254,7 +1260,7 @@
                         box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
                     }
 
-                    .ordonnances-monde {
+                    .monde {
                         display: flex;
                         flex-direction: row;
                         flex: 1 1 auto;
@@ -1268,8 +1274,9 @@
 
                 }
 
-                .all-ordonnances {
+                .body {
                     padding-left: 0px;
+                    padding-top: 70px;
 
                     .ordonnance {
                         display: flex;
@@ -1277,19 +1284,20 @@
                         font-family: 'AJensonPro';
                         margin-top: 20px;
 
-                        .ordonnance-title {
+                        .title {
                             display: flex;
                             flex-direction: row;
 
-                            .ordonnances-puce {
+                            .pin {
                                 border: none;
                                 width: 26px;
                                 margin-left: 50px;
                                 display: hidden;
                                 background-color: transparent;
+                                content: var(--img-pin);
                             }
 
-                            .ordonnance-name {
+                            .name {
                                 flex: 1 1 auto;
                                 text-align: left;
                                 padding-left: 20px;
@@ -1301,7 +1309,7 @@
 
                         }
 
-                        .ordonnance-description {
+                        .description {
                             list-style: none;
                             width: calc(100% - 100px);
                             margin-left: 85px;
