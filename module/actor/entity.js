@@ -662,49 +662,67 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * Use or unused the specified item.
-     * @param item The item to modify.
+     * Toggle the usage of the specified equipment item.
+     * States are not used --> attack --> parade --> not used
+     * @param item The item for which to toggle the usage.
      */
-    async useItem(item) {
+    async toggleEquipmentUsage(item) {
         const used = item.system.used;
-        await item.update({ ['system.used']: !used });
+        switch (item.type) {
+
+            case 'armure':
+                await item.update({ ['system.used']: !used });
+                break;
+
+            case 'arme':
+                if (item.system.type === 'melee') {
+                    const parade = item.system.parade;
+                    
+                    // Not used to attack weapon
+                    if (used === false) {
+                        await item.update({ ['system.used']: true });
+                        await item.update({ ['system.parade']: false });
+
+                    // Attack weapon to parade weapon
+                    } else if (parade === false) {
+                            await item.update({ ['system.used']: true });
+                            for (let arme of this.items.filter(i => i.type === 'arme' && i.id !== item.id)) {
+                                await arme.update({ ['system.parade']: false });
+                            }
+                            await item.update({ ['system.parade']: true });
+
+                    // Parade weapon to not used
+                    } else {
+                        await item.update({ ['system.used']: false });
+                        await item.update({ ['system.parade']: false });
+                        
+                    }
+
+                } else {
+                    await item.update({ ['system.used']: !used });
+                }
+                break;
+
+        }
     }
 
     /**
-     * Use the specified item as defense weapon or not.
-     * @param item The item object used for defense.
+     * @returns all embedded weapons sorted by type.
      */
-    async toggleDefenseWeapon(item) {
-        const parade = item.system.parade;
-        await item.update({ ['system.parade']: !parade });
-        for (let arme of this.items.filter(i => i.type === 'arme' && i.id !== item.id)) {
-            await arme.update({ ['system.parade']: false });
-        }
-    }
-
-
-
     get weapons() {
-
-        const equipments = {
-            naturelle: [],
-            melee: [],
-            trait: [],
-            feu: []
-        };
-
+        const equipments = {naturelle: [], melee: [], trait: [], feu: [] };
         for (let item of this.items.filter(i => i.type === 'arme')) {
             equipments[item.system.type].push(item);
         }
-
         return equipments;
-
     }
 
+    /**
+     * @returns all embedded armors .
+     */
     get armors() {
         return this.items.filter(i => i.type === 'armure');
     }
-
 
     // ----------------------------------------------------------------------------------------------
 

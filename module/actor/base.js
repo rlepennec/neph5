@@ -57,16 +57,14 @@ export class BaseSheet extends ActorSheet {
         super.activateListeners(html);
         html.find('div[data-tab="combat"] .equipement .open').click(this._onEditEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .equipement .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-
+        html.find('div[data-tab="combat"] .equipement .roll').click(this._onAttack.bind(this));
+        html.find('div[data-tab="combat"] .equipement .usage').click(this._onUsage.bind(this));
 
 
         html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="combat"] .attack').click(this._onAttack.bind(this));
         html.find('div[data-tab="combat"] .wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="combat"] #viser').click(this._onViser.bind(this));
         html.find('div[data-tab="combat"] #recharger').click(this._onRecharger.bind(this));
-        html.find('div[data-tab="combat"] .item-use').click(this._onUseItem.bind(this));
-        html.find('div[data-tab="combat"] .item-parade').click(this._onParadeItem.bind(this));
         html.find('div[data-tab="combat"] #desoriente').click(this._onEffect.bind(this, 'stun'));
         html.find('div[data-tab="combat"] #immobilise').click(this._onEffect.bind(this, 'restrain'));
         html.find('div[data-tab="combat"] #projete').click(this._onEffect.bind(this, 'prone'));
@@ -87,33 +85,7 @@ export class BaseSheet extends ActorSheet {
         event.dataTransfer.setData('text/plain', JSON.stringify(macro));
     }
 
-    /**
-     * Attack with a melee or a ranged weapon.
-     * @param event The click event.
-     */
-    async _onAttack(event) {
 
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const weapon = this.actor.items.get(id);
-
-        if (weapon?.attackCanBePerformed === true) {
-            switch (weapon.system.type) {
-                case Constants.NATURELLE:
-                    await new Naturelle(this.actor, weapon).initializeRoll();
-                    break;
-                case Constants.MELEE:
-                    await new Melee(this.actor, weapon).initializeRoll();
-                    break;
-                case Constants.FEU:
-                case Constants.TRAIT:
-                    await new Distance(this.actor, weapon).initializeRoll();
-                    break;
-            }
-        }
-
-    }
 
     /**
      * Attack with a wrestle manoeuver.
@@ -126,27 +98,7 @@ export class BaseSheet extends ActorSheet {
         }
     }
 
-    /**
-     * @param event The event to handle.
-     */
-    async _onUseItem(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = this.actor.items.get(id);
-        await this.actor.useItem(item);
-    }
 
-    /**
-     * @param event The event to handle.
-     */
-    async _onParadeItem(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = this.actor.items.get(id);
-        await this.actor.toggleDefenseWeapon(item);
-    }
 
     /**
      * @param event The event to handle.
@@ -342,6 +294,43 @@ export class BaseSheet extends ActorSheet {
         const id = li.data("id");
         const item = this.actor.getEmbeddedDocument('Item', id);
         await this.actor.deleteEmbeddedItem(item);
+    }
+
+    /**
+     * Attack with a melee or a ranged weapon.
+     * @param event The click event.
+     */
+    async _onAttack(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents("li");
+        const id = li.data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        if (item?.attackCanBePerformed === true) {
+            switch (item.system.type) {
+                case Constants.NATURELLE:
+                    await new Naturelle(this.actor, item).initializeRoll();
+                    break;
+                case Constants.MELEE:
+                    await new Melee(this.actor, item).initializeRoll();
+                    break;
+                case Constants.FEU:
+                case Constants.TRAIT:
+                    await new Distance(this.actor, item).initializeRoll();
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Set the usage of the melee or the ranged weapon.
+     * @param event The click event.
+     */
+    async _onUsage(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents("li");
+        const id = li.data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        await this.actor.toggleEquipmentUsage(item);
     }
 
 }
