@@ -4,7 +4,7 @@
     <div class="incarnations-header">
 
         <div class="points tooltip">
-            <img src="{{imagePath 'circle'}}"/>
+            <img class="circle"/>
             <input
                 class="middle"
                 name="system.pointsIncarnations"
@@ -16,7 +16,7 @@
         </div>
 
         <div class="points tooltip">
-            <img src="{{imagePath 'circle'}}"/>
+            <img class="circle"/>
             <input
                 name="system.sapienceDepensee"
                 placeholder="0"
@@ -27,7 +27,7 @@
         </div>
 
         <div class="points tooltip">
-            <img src="{{imagePath 'circle'}}"/>
+            <img class="circle"/>
             <input
                 name="system.sapience"
                 placeholder="0"
@@ -59,9 +59,9 @@
 
             <div class="periode-header">
 
-                <img class="periode-puce" src="{{imagePath 'puce'}}"/>
+                <img class="puce"/>
 
-                <img class="periode-separator" src="{{imagePath 'separator'}}"/>
+                <img class="separator"/>
 
                 {{#if (eq ../editedPeriode periode.original.sid)}}                
                 <label class="fas fa-trash delete"></label>

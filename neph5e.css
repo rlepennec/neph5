@@ -1527,10 +1527,13 @@
 .actor-root .article .article-body .incarnations .incarnations-header .points {
   margin-right: -35px;
 }
-.actor-root .article .article-body .incarnations .incarnations-header .points img {
+.actor-root .article .article-body .incarnations .incarnations-header .points .circle {
   border: none;
   width: 60px;
+  height: 65px;
   display: hidden;
+  background-color: transparent;
+  content: var(--img-circle);
 }
 .actor-root .article .article-body .incarnations .incarnations-header .points input {
   width: 45px;
@@ -1561,19 +1564,21 @@
   font-family: 'AJensonPro';
   font-size: 21px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-puce {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
+  content: var(--img-puce);
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-separator {
+.actor-root .article .article-body .incarnations .periodes .periode .periode-header .separator {
   position: absolute;
   border: none;
   height: 4px;
   left: 55px;
   top: 32px;
   width: calc(100% - 65px);
+  content: var(--img-separator);
 }
 .actor-root .article .article-body .incarnations .periodes .periode .periode-header .delete {
   position: absolute;

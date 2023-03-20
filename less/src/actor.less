@@ -1588,10 +1588,13 @@
                     .points {
                         margin-right: -35px;
 
-                        img {
+                        .circle {
                             border: none;
                             width: 60px;
+                            height: 65px;
                             display: hidden;
+                            background-color: transparent;
+                            content: var(--img-circle);
                         }
 
                         input {
@@ -1633,20 +1636,22 @@
                             font-family: 'AJensonPro';
                             font-size: 21px;
 
-                            .periode-puce {
+                            .puce {
                                 border: none;
                                 width: 60px;
                                 display: hidden;
                                 background-color: transparent;
+                                content: var(--img-puce);
                             }
 
-                            .periode-separator {
+                            .separator {
                                 position: absolute;
                                 border: none;
                                 height: 4px;
                                 left: 55px;
                                 top: 32px;
                                 width: calc(100% - 65px);
+                                content: var(--img-separator);
                             }
 
                             .delete {
