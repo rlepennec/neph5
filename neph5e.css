@@ -508,6 +508,7 @@
   border: none;
   width: 60px;
   background-color: transparent;
+  content: var(--img-puce);
 }
 .actor-root .article .article-body .combat .left .dommages .physiques .header .separator {
   position: absolute;
@@ -516,6 +517,7 @@
   top: 32px;
   width: calc(100% - 95px);
   left: 55px;
+  content: var(--img-separator);
 }
 .actor-root .article .article-body .combat .left .dommages .physiques .header .name {
   position: absolute;
@@ -706,6 +708,7 @@
   width: 60px;
   display: hidden;
   background-color: transparent;
+  content: var(--img-puce);
 }
 .actor-root .article .article-body .combat .left .equipement .header .separator {
   position: absolute;
@@ -714,6 +717,7 @@
   left: 55px;
   top: 32px;
   width: calc(100% - 40px);
+  content: var(--img-separator);
 }
 .actor-root .article .article-body .combat .left .equipement .header .name {
   position: absolute;
@@ -771,6 +775,7 @@
   width: 60px;
   display: hidden;
   background-color: transparent;
+  content: var(--img-puce);
 }
 .actor-root .article .article-body .combat .right .header .separator {
   position: absolute;
@@ -779,6 +784,7 @@
   left: 55px;
   top: 32px;
   width: calc(100% - 65px);
+  content: var(--img-separator);
 }
 .actor-root .article .article-body .combat .right .header .name {
   position: absolute;
