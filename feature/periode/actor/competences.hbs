@@ -1,14 +1,14 @@
-<div class="vecus-header">
+<div class="header">
 
-    <img class="vecus-puce" src="{{imagePath 'puce'}}"/>
+    <img class="puce"/>
 
-    <img class="vecus-separator" src="{{imagePath 'separator'}}"/>
+    <img class="separator"/>
 
     <span class="vecus-name">{{localize "NEPH5E.competencesEtVecus"}}</span>
 
 </div>
 
-<ol class="all-vecus">
+<ol class="body">
 
     <!-- Display the vecus of the simulacre -->
     {{#if (and (nonNull system.simulacre) (eq system.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}

@@ -365,7 +365,7 @@ export class NephilimActor extends Actor {
      * @returns the data to display. 
      */
     get passes() {
-        new HistoricalFeature(this).getAll('passe');
+        return new HistoricalFeature(this).getAll('passe');
     }
 
     /**
@@ -390,21 +390,21 @@ export class NephilimActor extends Actor {
      * @returns the data to display. 
      */
     get quetes() {
-        new HistoricalFeature(this).getAll('passe');
+        return new HistoricalFeature(this).getAll('quete');
     }
 
     /**
      * @returns the data to display. 
      */
     get savoirs() {
-        new HistoricalFeature(this).getAll('savoir');
+        return new HistoricalFeature(this).getAll('savoir');
     }
 
     /**
      * @returns the data to display. 
      */
     get sciences() {
-        new HistoricalFeature(this).getAll('science');
+        return new HistoricalFeature(this).getAll('science');
     }
 
     /**

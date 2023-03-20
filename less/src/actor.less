@@ -1472,7 +1472,7 @@
 
             .vecus {
 
-                .vecus-header {
+                .header {
                     display: flex;
                     flex-direction: row;
                     position: relative;
@@ -1481,20 +1481,22 @@
                     margin-top: 30px;
                     margin-bottom: -10px;
 
-                    .vecus-puce {
+                    .puce {
                         border: none;
                         width: 60px;
                         display: hidden;
                         background-color: transparent;
+                        content: var(--img-puce);
                     }
 
-                    .vecus-separator {
+                    .separator {
                         position: absolute;
                         border: none;
                         height: 4px;
                         left: 55px;
                         top: 32px;
                         width: calc(100% - 65px);
+                        content: var(--img-separator);
                     }
 
                     .vecus-name {
@@ -1506,7 +1508,7 @@
 
                 }
 
-                .all-vecus {
+                .body {
                     column-count: 3;
                     column-rule-style: solid;
                     column-rule-width: thin;

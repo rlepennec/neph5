@@ -1432,7 +1432,7 @@
   position: absolute;
   transform: translate(-122px, 70px);
 }
-.actor-root .article .article-body .vecus .vecus-header {
+.actor-root .article .article-body .vecus .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1441,34 +1441,36 @@
   margin-top: 30px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .vecus .vecus-header .vecus-puce {
+.actor-root .article .article-body .vecus .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
+  content: var(--img-puce);
 }
-.actor-root .article .article-body .vecus .vecus-header .vecus-separator {
+.actor-root .article .article-body .vecus .header .separator {
   position: absolute;
   border: none;
   height: 4px;
   left: 55px;
   top: 32px;
   width: calc(100% - 65px);
+  content: var(--img-separator);
 }
-.actor-root .article .article-body .vecus .vecus-header .vecus-name {
+.actor-root .article .article-body .vecus .header .vecus-name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .vecus .all-vecus {
+.actor-root .article .article-body .vecus .body {
   column-count: 3;
   column-rule-style: solid;
   column-rule-width: thin;
   column-gap: 20px;
   column-rule-color: #c3a049;
 }
-.actor-root .article .article-body .vecus .all-vecus hr {
+.actor-root .article .article-body .vecus .body hr {
   display: block;
   height: 1px;
   border: 0;
@@ -1476,30 +1478,30 @@
   margin: 1em 0;
   padding: 0;
 }
-.actor-root .article .article-body .vecus .all-vecus .disabled {
+.actor-root .article .article-body .vecus .body .disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu {
+.actor-root .article .article-body .vecus .body .vecu {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition {
+.actor-root .article .article-body .vecus .body .vecu .vecu-definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition .vecu-degre {
+.actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-degre {
   flex: 0 0 40px;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition .vecu-name {
+.actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-name {
   flex: 1 1 auto;
   text-align: left;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu .vecu-definition .vecu-dice {
+.actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-dice {
   flex: 0 0 40px;
 }
-.actor-root .article .article-body .vecus .all-vecus .vecu:hover {
+.actor-root .article .article-body .vecus .body .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .incarnations .incarnations-header {

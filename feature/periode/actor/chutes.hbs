@@ -1,15 +1,15 @@
 {{#unless (isEmptyCollection actor.chutes)}}
-<div class="vecus-header">
+<div class="header">
 
-    <img class="vecus-puce" src="{{imagePath 'puce'}}"/>
+    <img class="puce"/>
 
-    <img class="vecus-separator" src="{{imagePath 'separator'}}"/>
+    <img class="separator"/>
 
     <span class="vecus-name">{{localize "NEPH5E.chutes"}}</span>
 
 </div>
 
-<ol class="all-vecus">
+<ol class="body">
 
     {{#each actor.chutes as |item|}}
     {{#if (ne item.degre 0)}}
