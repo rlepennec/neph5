@@ -476,13 +476,16 @@
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .modifier img {
+.actor-root .article .article-body .combat .left .dommages .physiques .modifier .circle {
   position: absolute;
   display: block;
   border: none;
   width: 80px;
+  height: 80px;
   top: 95px;
   margin-left: 20px;
+  background-color: transparent;
+  content: var(--img-circle);
 }
 .actor-root .article .article-body .combat .left .dommages .physiques .modifier label {
   position: absolute;
@@ -612,13 +615,16 @@
   left: 65px;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .modifier img {
+.actor-root .article .article-body .combat .left .dommages .magiques .modifier .circle {
   position: absolute;
   display: block;
   border: none;
   width: 80px;
+  height: 80px;
   top: 95px;
   margin-left: calc(100% - 97px);
+  background-color: transparent;
+  content: var(--img-circle);
 }
 .actor-root .article .article-body .combat .left .dommages .magiques .modifier label {
   position: absolute;
