@@ -1394,10 +1394,13 @@
   position: absolute;
   width: 200px;
 }
-.actor-root .article .article-body .akasha .column .directions div img {
+.actor-root .article .article-body .akasha .column .directions div .circle {
   border: none;
   width: 60px;
+  height: 65px;
   display: hidden;
+  background-color: transparent;
+  content: var(--img-circle);
 }
 .actor-root .article .article-body .akasha .column .directions div input {
   width: 45px;
