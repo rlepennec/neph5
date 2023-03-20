@@ -1343,6 +1343,7 @@
   width: 60px;
   display: hidden;
   background-color: transparent;
+  content: var(--img-puce);
 }
 .actor-root .article .article-body .akasha .column .header .separator {
   position: absolute;
@@ -1351,6 +1352,7 @@
   left: 55px;
   top: 32px;
   width: calc(100% - 65px);
+  content: var(--img-separator);
 }
 .actor-root .article .article-body .akasha .column .header .name {
   position: absolute;
