@@ -283,11 +283,29 @@
   --column-color: #c3a049;
   --active-tab-color: #4e3904;
   --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
+  --img-triangle: url("../../systems/neph5e/assets/core/triangle.webp");
+  --img-arbre: url("../../systems/neph5e/assets/core/arbre.webp");
+  --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
+  --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
+  --img-circle: url("../../systems/neph5e/assets/core/separator2.webp");
+  --img-directions: url("../../systems/neph5e/assets/core/circle3.webp");
+  --img-boussole: url("../../systems/neph5e/assets/core/boussole.webp");
+  --img-compas: url("../../systems/neph5e/assets/core/compas.webp");
+  --img-losange: url("../../systems/neph5e/assets/core/losange.webp");
 }
 :root.feu {
   --column-color: #ff6600;
   --active-tab-color: #ff6600;
   --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
+  --img-triangle: url("../../systems/neph5e/assets/core/a.webp");
+  --img-arbre: url("../../systems/neph5e/assets/core/a.webp");
+  --img-separator: url("../../systems/neph5e/assets/core/a.webp");
+  --img-puce: url("../../systems/neph5e/assets/core/a.webp");
+  --img-circle: url("../../systems/neph5e/assets/core/a.webp");
+  --img-directions: url("../../systems/neph5e/assets/core/a.webp");
+  --img-boussole: url("../../systems/neph5e/assets/core/a.webp");
+  --img-compas: url("../../systems/neph5e/assets/core/a.webp");
+  --img-losange: url("../../systems/neph5e/assets/core/a.webp");
 }
 .actor-root {
   display: flex;
@@ -426,7 +444,7 @@
   position: relative;
   background-color: transparent;
 }
-.actor-root .article .article-body .combat .left .dommages > img {
+.actor-root .article .article-body .combat .left .dommages .triangle {
   position: absolute;
   display: block;
   border: none;
@@ -434,6 +452,7 @@
   left: 50%;
   top: 10px;
   margin-left: -100px;
+  content: var(--img-triangle);
 }
 .actor-root .article .article-body .combat .left .dommages > ol {
   position: absolute;
@@ -726,9 +745,6 @@
   width: 8%;
 }
 .actor-root .article .article-body .combat .left .equipement li .delete {
-  width: 8%;
-}
-.actor-root .article .article-body .combat .left .equipement li .empty {
   width: 8%;
 }
 .actor-root .article .article-body .combat .left .equipement li:hover {
