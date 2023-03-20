@@ -61,7 +61,8 @@ export class BaseSheet extends ActorSheet {
         html.find('div[data-tab="combat"] .equipement .usage').click(this._onUsage.bind(this));
 
 
-        html.find('div[data-tab="combat"]').on("drop", this._onDrop.bind(this));
+        
+
         html.find('div[data-tab="combat"] .wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="combat"] #viser').click(this._onViser.bind(this));
         html.find('div[data-tab="combat"] #recharger').click(this._onRecharger.bind(this));
@@ -271,6 +272,7 @@ export class BaseSheet extends ActorSheet {
     }
 
     // Used by refactoring
+    // --------------------------------------------------
 
     /**
      * Edit the specified embedded equipment item.
