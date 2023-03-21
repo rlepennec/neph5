@@ -332,8 +332,7 @@
                     <li data-id="{{item.id}}">
 
                         <i class="icon fa-solid fa-sword"></i>
-                        {{log item.attackCanBePerformed}}
-                        {{log item.name}}
+
                         <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
                         
                         <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
