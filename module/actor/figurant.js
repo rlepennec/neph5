@@ -55,7 +55,11 @@ export class FigurantSheet extends BaseSheet {
      * @override
      */
     activateListeners(html) {
+
         super.activateListeners(html);
+
+        super.activateCombatListeners(html);
+
         html.find('div[data-tab="combat"] .delete-vecu').click(this._onDeleteEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .degre-vecu').change(this._onDegreVecu.bind(this));
@@ -63,6 +67,7 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .roll-ka').click(this._onRollKa.bind(this));
         html.find('div[data-tab="combat"] .roll-menace').click(this._onRollMenace.bind(this));
         html.find('div[data-tab="combat"] .roll-vecu').click(this._onRollVecu.bind(this));
+
     }
 
     async _onDegreVecu(event) {

@@ -51,18 +51,17 @@ export class BaseSheet extends ActorSheet {
     }
 
     /**
-     * @override
+     * Activate listeners about the combat panel used by figure and figurant actors.
+     * @param html The html content to listen
      */
-    activateListeners(html) {
-        super.activateListeners(html);
+    activateCombatListeners(html) {
+
         html.find('div[data-tab="combat"] .equipement .open').click(this._onEditEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .equipement .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .equipement .roll').click(this._onAttack.bind(this));
         html.find('div[data-tab="combat"] .equipement .usage').click(this._onUsage.bind(this));
 
-
-        
-
+        // WIP
         html.find('div[data-tab="combat"] .wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="combat"] #viser').click(this._onViser.bind(this));
         html.find('div[data-tab="combat"] #recharger').click(this._onRecharger.bind(this));
@@ -73,6 +72,7 @@ export class BaseSheet extends ActorSheet {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.addMacroData(event), false);
         });
+
     }
 
     addMacroData(event) {

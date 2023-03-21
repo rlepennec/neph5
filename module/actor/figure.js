@@ -82,6 +82,8 @@ export class FigureSheet extends HistoricalSheet {
 
         super.activateListeners(html);
 
+        super.activateCombatListeners(html);
+
         // General
         html.find('div[data-tab]').on("drop", this._onDrop.bind(this));
 
@@ -126,11 +128,6 @@ export class FigureSheet extends HistoricalSheet {
 
 
 
-
-
-
-        
-        
 
 
         // Kabbale
