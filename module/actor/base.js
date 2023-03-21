@@ -56,10 +56,14 @@ export class BaseSheet extends ActorSheet {
      */
     activateCombatListeners(html) {
 
-        html.find('div[data-tab="combat"] .equipement .open').click(this._onEditEmbeddedEquipment.bind(this));
-        html.find('div[data-tab="combat"] .equipement .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-        html.find('div[data-tab="combat"] .equipement .roll').click(this._onAttack.bind(this));
-        html.find('div[data-tab="combat"] .equipement .usage').click(this._onUsage.bind(this));
+        html.find('div[data-tab="combat"] .armes .open').click(this._onEditEmbeddedEquipment.bind(this));
+        html.find('div[data-tab="combat"] .armes .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
+        html.find('div[data-tab="combat"] .armes .roll').click(this._onAttack.bind(this));
+        html.find('div[data-tab="combat"] .armes .usage').click(this._onUsage.bind(this));
+
+        html.find('div[data-tab="combat"] .armures .open').click(this._onEditEmbeddedEquipment.bind(this));
+        html.find('div[data-tab="combat"] .armures .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
+        html.find('div[data-tab="combat"] .armures .usage').click(this._onUsage.bind(this));
 
         // WIP
         html.find('div[data-tab="combat"] .wrestle').click(this._onWrestle.bind(this));

@@ -706,10 +706,10 @@
 .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(5) {
   margin-left: calc(100% - 139px);
 }
-.actor-root .article .article-body .combat .left .equipement {
+.actor-root .article .article-body .combat .left .armes {
   margin-top: 200px;
 }
-.actor-root .article .article-body .combat .left .equipement .header {
+.actor-root .article .article-body .combat .left .armes .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -718,14 +718,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .left .equipement .header .puce {
+.actor-root .article .article-body .combat .left .armes .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .combat .left .equipement .header .separator {
+.actor-root .article .article-body .combat .left .armes .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -734,39 +734,92 @@
   width: calc(100% - 40px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .combat .left .equipement .header .name {
+.actor-root .article .article-body .combat .left .armes .header .name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .combat .left .equipement li {
+.actor-root .article .article-body .combat .left .armes li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor-root .article .article-body .combat .left .equipement li .icon {
-  width: 8%;
+.actor-root .article .article-body .combat .left .armes li .delete {
+  width: 10%;
 }
-.actor-root .article .article-body .combat .left .equipement li .name {
-  width: 52%;
+.actor-root .article .article-body .combat .left .armes li .name {
+  width: 50%;
 }
-.actor-root .article .article-body .combat .left .equipement li .usage {
-  width: 8%;
+.actor-root .article .article-body .combat .left .armes li .reload {
+  width: 10%;
+  text-align: right;
 }
-.actor-root .article .article-body .combat .left .equipement li .reload {
-  width: 8%;
+.actor-root .article .article-body .combat .left .armes li .aim {
+  width: 10%;
+  text-align: right;
 }
-.actor-root .article .article-body .combat .left .equipement li .aim {
-  width: 8%;
+.actor-root .article .article-body .combat .left .armes li .roll {
+  width: 10%;
+  text-align: right;
 }
-.actor-root .article .article-body .combat .left .equipement li .roll {
-  width: 8%;
+.actor-root .article .article-body .combat .left .armes li .usage {
+  width: 10%;
+  text-align: right;
 }
-.actor-root .article .article-body .combat .left .equipement li .delete {
-  width: 8%;
+.actor-root .article .article-body .combat .left .armes li:hover {
+  text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .left .equipement li:hover {
+.actor-root .article .article-body .combat .left .armures {
+  margin-top: 20px;
+}
+.actor-root .article .article-body .combat .left .armures .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+.actor-root .article .article-body .combat .left .armures .header .puce {
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+.actor-root .article .article-body .combat .left .armures .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 40px);
+  content: var(--img-separator);
+}
+.actor-root .article .article-body .combat .left .armures .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor-root .article .article-body .combat .left .armures li {
+  display: flex;
+  flex-direction: row;
+  height: 22px;
+}
+.actor-root .article .article-body .combat .left .armures li .delete {
+  width: 10%;
+}
+.actor-root .article .article-body .combat .left .armures li .name {
+  width: 80%;
+}
+.actor-root .article .article-body .combat .left .armures li .usage {
+  width: 10%;
+  text-align: right;
+}
+.actor-root .article .article-body .combat .left .armures li:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor-root .article .article-body .combat .right {

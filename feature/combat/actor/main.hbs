@@ -274,7 +274,7 @@
 
         </div>
 
-        <div class="equipement">
+        <div class="armes">
 
             <div class="header">
 
@@ -282,7 +282,7 @@
 
                 <img class="separator"/>
 
-                <span class="name">{{localize "NEPH5E.equipement"}}</span>
+                <span class="name">{{localize "NEPH5E.arme"}}</span>
 
             </div>
 
@@ -290,19 +290,17 @@
 
                 <li>
 
-                    <i class="icon fa-solid fa-hand-fist"></i>
+                    <i class="delete"></i>
 
-                    <label class="name {{#if (eq actor.lutteCanBePerformed false)}}grey{{/if}}">{{localize "NEPH5E.lutte"}}</label>
-
-                    <i class="usage"></i>
+                    <label class="name">{{localize "NEPH5E.lutte"}}</label>
 
                     <i class="reload"></i>
 
                     <i class="aim"></i>
 
-                    <i class="roll fas fa-dice-d20 {{#unless (eq actor.lutteCanBePerformed true)}}grey{{/unless}}"></i>                        </i>
+                    <i class="roll fas fa-dice-d20 {{#unless (eq actor.lutteCanBePerformed true)}}grey{{/unless}}"></i>
 
-                    <i class="delete"></i>
+                    <i class="usage fa-solid fa-hand-fist"></i>
 
                 </li>
 
@@ -311,11 +309,9 @@
                     {{#each weapons.naturelle as |item|}}
                     <li data-id="{{item.id}}">
 
-                        <i class="icon fa-solid fa-hand-fist"></i>
+                        <i class="delete fas fa-trash"></i>
 
-                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
-
-                        <i class="usage"></i>
+                        <label class="open name">{{item.name}}</label>
 
                         <i class="reload"></i>
 
@@ -323,7 +319,7 @@
 
                         <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
 
-                        <i class="delete fas fa-trash"></i>
+                        <i class="usage fa-solid fa-hand-fist"></i>
 
                     </li>
                     {{/each}}
@@ -331,31 +327,27 @@
                     {{#each weapons.melee as |item|}}
                     <li data-id="{{item.id}}">
 
-                        <i class="icon fa-solid fa-sword"></i>
-
-                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
+                        <i class="delete fas fa-trash"></i>
                         
-                        <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
-
+                        <label class="open name">{{item.name}}</label>
+                        
                         <i class="reload"></i>
 
                         <i class="aim"></i>
 
                         <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.attackCanBePerformed false) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
 
-                        <i class="delete fas fa-trash"></i>
+                        <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
 
                     {{/each}}
 
                     {{#each weapons.trait as |item|}}
                     <li data-id="{{item.id}}">
 
-                        <i class="icon fa-solid fa-bow-arrow"></i>
+                        <i class="delete fas fa-trash"></i>
 
-                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
-                        
-                        <i class="usage fa-hand-paper {{#if item.system.used}}fas{{else}}far{{/if}}"></i>
-
+                        <label class="open name">{{item.name}}</label>
+                        <!--
                         <div class="tooltip">
                             <i class="reload fas fa-spinner {{#if (or (isNull ../actor.tokenOf) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}grey{{/if}}"></i>
                             <span class="tooltiptext">Munitions: {{item.numberOfMunitionsLeft}}/{{item.system.munitions}}</span>
@@ -365,14 +357,14 @@
                             <i class="viser fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
                             <span class="tooltiptext">Visée: {{item.system.visee}}/3</span>
                         </div>
-
+-->
                         <i class="reload fas fa-spinner {{#if (or (isNull ../actor.tokenOf) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}grey{{/if}}"></i>
 
                         <i class="aim fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
 
                         <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
 
-                        <i class="delete fas fa-trash"></i>
+                        <i class="usage {{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i>
 
                     </li>
                     {{/each}}
@@ -380,11 +372,9 @@
                     {{#each weapons.feu as |item|}}
                     <li data-id="{{item.id}}">
 
-                        <i class="icon fa-duotone fa-gun"></i>
+                        <i class="delete fas fa-trash"></i>
 
-                        <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
-
-                        <i class="usage fa-hand-paper {{#if item.system.used}}fas{{else}}far{{/if}}"></i>
+                        <label class="open name">{{item.name}}</label>
 
                         <i class="reload"></i>
 
@@ -392,30 +382,39 @@
 
                         <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
 
-                        <i class="delete fas fa-trash"></i>
+                        <i class="usage {{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i>
 
                     </li>
                     {{/each}}
 
                 {{/with}}
 
+            </ol>
+
+        </div>
+
+       <div class="armures">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="name">{{localize "NEPH5E.armure"}}</span>
+
+            </div>
+
+            <ol>
 
                 {{#each actor.armors as |item|}}
                 <li data-id="{{item.id}}">
 
-                    <i class="icon fa-solid fa-shield"></i>
+                    <i class="delete fas fa-trash"></i>
 
                     <label class="open name">{{item.name}}</label>
 
-                    <i class="usage fa-hand-paper {{#if item.system.used}}fas{{else}}far{{/if}}"></i>
-
-                    <i class="reload"></i>
-
-                    <i class="aim"></i>
-
-                     <i class="roll"></i>
-
-                    <i class="delete fas fa-trash"></i>
+                    <i class="usage fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i>
 
                 </li>
                 {{/each}}
