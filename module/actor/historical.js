@@ -24,21 +24,6 @@ export class HistoricalSheet extends BaseSheet {
         });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @param event The drop event.
      * @returns the dropped object. 

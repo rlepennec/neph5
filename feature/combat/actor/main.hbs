@@ -332,7 +332,8 @@
                     <li data-id="{{item.id}}">
 
                         <i class="icon fa-solid fa-sword"></i>
-                        
+                        {{log item.attackCanBePerformed}}
+                        {{log item.name}}
                         <label class="open name {{#if (or (not item.system.used) ../actor.immobilise (eq item.attackCanBePerformed false))}}grey{{/if}}">{{item.name}}</label>
                         
                         <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
@@ -341,7 +342,7 @@
 
                         <i class="aim"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+                        <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.attackCanBePerformed false) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
 
                         <i class="delete fas fa-trash"></i>
 
