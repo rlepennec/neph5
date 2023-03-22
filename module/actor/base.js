@@ -311,7 +311,7 @@ export class BaseSheet extends ActorSheet {
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
         const item = this.actor.getEmbeddedDocument('Item', id);
-        if (item?.attackCanBePerformed === true) {
+        if (item?.attackAvailable === true) {
             switch (item.system.type) {
                 case Constants.NATURELLE:
                     await new Naturelle(this.actor, item).initializeRoll();

@@ -618,7 +618,7 @@ export class NephilimActor extends Actor {
             }
             case 'weapon-attack': {
                 const weapon = this.items.get(id);
-                if (weapon.attackCanBePerformed === false) {
+                if (weapon.attackAvailable === false) {
                     ui.notifications.warn("Vous ne pouvez pas attaquer avec cette arme.");
                     return;
                 }

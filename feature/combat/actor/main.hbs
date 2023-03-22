@@ -317,7 +317,7 @@
 
                         <i class="aim"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
                         <i class="usage fa-solid fa-hand-fist"></i>
 
@@ -335,7 +335,7 @@
 
                         <i class="aim"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.attackCanBePerformed false) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
                         <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
 
@@ -362,7 +362,7 @@
 
                         <i class="aim fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
                         <i class="usage {{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i>
 
@@ -380,7 +380,7 @@
 
                         <i class="aim"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) ../actor.immobilise (and (nonNull ../actor.tokenOf) (isNull ../actor.target)))}}grey{{/if}}"></i>
+                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
                         <i class="usage {{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i>
 

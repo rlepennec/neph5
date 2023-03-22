@@ -344,25 +344,37 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * Asserts the item is a weapon embedded to the actor which want to perform the manoeuver.
-     * @returns true if the attack manoeuver can be performed with this weapon.
+     * Indicates if the roll dice can be clicked on the combat panel.
+     * @returns true if the attack roll can be performed with the item.
      */
-    get attackCanBePerformed() {
-        if (this.system.used === false) {
+    get attackAvailable() {
+
+        // Item must be an embedded and used weapon
+        if (this?.type !== 'arme' || this.actor == null || this.system.used !== true) {
             return false;
         }
-        if (this.actor.immobilise) {
+
+        // Actor must be free
+        if (this.actor.immobilise === true) {
             return false;
         }
-        if (this.system.type === Constants.FEU) {
-            if (this.numberOfMunitionsLeft === 0) {
+
+        // The actor token has selected a token target
+        if (this.actor.tokenOf != null && this.actor.target == null) {
+            return false;
+        }
+
+        switch (this.type) {
+            case 'naturelle':
+            case 'melee':
+            case 'trait':
+                return true;
+            case 'feu':
+                return this.numberOfMunitionsLeft > 0;
+            default:
                 return false;
-            }
         }
-        if (this.actor.tokenOf == null) {
-            return true;
-        }
-        return this.actor.target !== null;
+
     }
 
 }
