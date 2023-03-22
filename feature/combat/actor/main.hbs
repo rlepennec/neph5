@@ -354,13 +354,13 @@
                         </div>
 
                         <div class="tooltip">
-                            <i class="viser fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
+                            <i class="viser fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.aimAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
                             <span class="tooltiptext">Visée: {{item.system.visee}}/3</span>
                         </div>
 -->
-                        <i class="reload fas fa-spinner {{#if (or (isNull ../actor.tokenOf) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}grey{{/if}}"></i>
+                        <i class="reload fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
 
-                        <i class="aim fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.viserAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
+                        <i class="aim fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
 
                         <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
@@ -376,9 +376,9 @@
 
                         <label class="open name">{{item.name}}</label>
 
-                        <i class="reload"></i>
+                        <i class="reload fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
 
-                        <i class="aim"></i>
+                        <i class="aim fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
 
                         <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 

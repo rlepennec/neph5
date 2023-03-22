@@ -313,14 +313,6 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * @param weapon The weapon item object.
-     * @returns the number of munitions left of the weapon item.
-     */
-    get numberOfMunitionsLeft() {
-        return this.system.munitions - this.system.tire;
-    }
-
-    /**
      * @return the status of the item, which can be dechiffre, appris or tatoue.
      */
     get getStatus() {
@@ -334,13 +326,82 @@ export class NephilimItem extends Item {
         return new Periode(this.actor, this).actif();
     }
 
+
+
     /**
-     * Asserts the item is a ranged weapon embedded to the actor which want to perform the manoeuver.
-     * @returns true if the viser manoeuver can be performed with this weapon.
+     * @returns the number of munitions left of the weapon item.
      */
-    get viserAvailable() {
-        const action = new Distance(this.actor, this);
-        return new Viser().canBePerformed(action);
+    get numberOfMunitionsLeft() {
+        return this.system.munitions - this.system.tire;
+    }
+
+    /**
+     * Indicates if the item can be reloaded using the combat panel.
+     * @returns true if the reload manoeuver can be performed with the item.
+     */
+    get reloadAvailable() {
+
+        // Item must be an embedded and used weapon
+        if (this?.type !== 'arme' || this.actor == null || this.system.used !== true) {
+            return false;
+        }
+
+        // Actor must be free
+        if (this.actor.immobilise === true) {
+            return false;
+        }
+
+        // The actor token has been selected
+        if (this.actor.tokenOf == null) {
+            return false;
+        }
+
+        switch (this.system.type) {
+
+            case 'trait':
+            case 'feu':
+                return this.system.tire > 0;
+
+            default:
+                return false;
+
+        }
+
+    }
+
+    /**
+     * Indicates if the item can be used to aim at a target using the combat panel.
+     * @returns true if the aim manoeuver can be performed with the item.
+     */
+    get aimAvailable() {
+
+        // Item must be an embedded and used weapon
+        if (this?.type !== 'arme' || this.actor == null || this.system.used !== true) {
+            return false;
+        }
+
+        // Actor must be free
+        if (this.actor.immobilise === true) {
+            return false;
+        }
+
+        // The actor token has selected a token target
+        if (this.actor.tokenOf == null || this.actor.target == null) {
+            return false;
+        }
+
+        switch (this.system.type) {
+
+            case 'trait':
+            case 'feu':
+                const action = new Distance(this.actor, this);
+                return new Viser().canBePerformed(action);
+
+            default:
+                return false;
+
+        }
+
     }
 
     /**
@@ -365,14 +426,18 @@ export class NephilimItem extends Item {
         }
 
         switch (this.system.type) {
+
             case 'naturelle':
             case 'melee':
             case 'trait':
                 return true;
+
             case 'feu':
                 return this.numberOfMunitionsLeft > 0;
+
             default:
                 return false;
+
         }
 
     }
