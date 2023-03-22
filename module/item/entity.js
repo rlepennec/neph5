@@ -358,13 +358,13 @@ export class NephilimItem extends Item {
         if (this.actor.immobilise === true) {
             return false;
         }
-
+        
         // The actor token has selected a token target
-        if (this.actor.tokenOf != null && this.actor.target == null) {
+        if (this.actor.tokenOf == null || this.actor.target == null) {
             return false;
         }
 
-        switch (this.type) {
+        switch (this.system.type) {
             case 'naturelle':
             case 'melee':
             case 'trait':
