@@ -288,7 +288,7 @@
 
             <ol>
 
-                <li>
+                <li data-id="wrestle">
 
                     <i class="delete"></i>
 
@@ -306,91 +306,91 @@
 
                 {{#with actor.weapons as |weapons|}}
 
-                    {{#each weapons.naturelle as |item|}}
-                    <li data-id="{{item.id}}">
+                {{#each weapons.naturelle as |item|}}
+                <li data-id="{{item.id}}">
 
-                        <i class="delete fas fa-trash"></i>
+                    <i class="delete fas fa-trash"></i>
 
-                        <label class="open name">{{item.name}}</label>
+                    <label class="open name">{{item.name}}</label>
 
-                        <i class="reload"></i>
+                    <i class="reload"></i>
 
-                        <i class="aim"></i>
+                    <i class="aim"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
+                    <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
-                        <i class="usage fa-solid fa-hand-fist"></i>
+                    <i class="usage fa-solid fa-hand-fist"></i>
 
-                    </li>
-                    {{/each}}
+                </li>
+                {{/each}}
 
-                    {{#each weapons.melee as |item|}}
-                    <li data-id="{{item.id}}">
+                {{#each weapons.melee as |item|}}
+                <li data-id="{{item.id}}">
 
-                        <i class="delete fas fa-trash"></i>
-                        
-                        <label class="open name">{{item.name}}</label>
-                        
-                        <i class="reload"></i>
+                    <i class="delete fas fa-trash"></i>
+                    
+                    <label class="open name">{{item.name}}</label>
+                    
+                    <i class="reload"></i>
 
-                        <i class="aim"></i>
+                    <i class="aim"></i>
 
-                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
+                    <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
-                        <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
+                    <i class="usage {{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i>
 
-                    {{/each}}
+                {{/each}}
 
-                    {{#each weapons.trait as |item|}}
-                    <li data-id="{{item.id}}">
+                {{#each weapons.trait as |item|}}
+                <li data-id="{{item.id}}">
 
-                        <i class="delete fas fa-trash"></i>
+                    <i class="delete fas fa-trash"></i>
 
-                        <label class="open name">{{item.name}}</label>
+                    <label class="open name">{{item.name}}</label>
 
-                        <i class="reload"></i>
+                    <i class="reload"></i>
 
-                        <div class="tooltip aim">
-                            <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
-                            <div class="tooltiptext">
-                                <label>Visée: {{item.system.visee}}/3</label>
-                            </div>
+                    <div class="tooltip aim">
+                        <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
+                        <div class="tooltiptext">
+                            <label>Visée: {{item.system.visee}}/3</label>
                         </div>
+                    </div>
 
-                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
+                    <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
-                        <i class="usage {{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i>
+                    <i class="usage {{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i>
 
-                    </li>
-                    {{/each}}
+                </li>
+                {{/each}}
 
-                    {{#each weapons.feu as |item|}}
-                    <li data-id="{{item.id}}">
+                {{#each weapons.feu as |item|}}
+                <li data-id="{{item.id}}">
 
-                        <i class="delete fas fa-trash"></i>
+                    <i class="delete fas fa-trash"></i>
 
-                        <label class="open name">{{item.name}}</label>
+                    <label class="open name">{{item.name}}</label>
 
-                        <div class="tooltip reload">
-                            <i class="fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
-                            <div class="tooltiptext">
-                                <label>Munitions: {{minus item.system.munitions item.system.tire}}/{{item.system.munitions}}</label>
-                            </div>
+                    <div class="tooltip reload">
+                        <i class="fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
+                        <div class="tooltiptext">
+                            <label>Munitions: {{minus item.system.munitions item.system.tire}}/{{item.system.munitions}}</label>
                         </div>
+                    </div>
 
-                        <div class="tooltip aim">
-                            <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
-                            <div class="tooltiptext">
-                                <label>Visée: {{item.system.visee}}/3</label>
-                            </div>
+                    <div class="tooltip aim">
+                        <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
+                        <div class="tooltiptext">
+                            <label>Visée: {{item.system.visee}}/3</label>
                         </div>
+                    </div>
 
-                        <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
+                    <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
-                        <i class="usage {{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i>
+                    <i class="usage {{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i>
 
-                    </li>
-                    {{/each}}
+                </li>
+                {{/each}}
 
                 {{/with}}
 

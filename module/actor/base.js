@@ -66,9 +66,13 @@ export class BaseSheet extends ActorSheet {
         html.find('div[data-tab="combat"] .armures .usage').click(this._onUsage.bind(this));
 
         // WIP
-        html.find('div[data-tab="combat"] .wrestle').click(this._onWrestle.bind(this));
         html.find('div[data-tab="combat"] #viser').click(this._onViser.bind(this));
+
+
         html.find('div[data-tab="combat"] #recharger').click(this._onRecharger.bind(this));
+
+
+
         html.find('div[data-tab="combat"] #desoriente').click(this._onEffect.bind(this, 'stun'));
         html.find('div[data-tab="combat"] #immobilise').click(this._onEffect.bind(this, 'restrain'));
         html.find('div[data-tab="combat"] #projete').click(this._onEffect.bind(this, 'prone'));
@@ -91,17 +95,6 @@ export class BaseSheet extends ActorSheet {
     }
 
 
-
-    /**
-     * Attack with a wrestle manoeuver.
-     * @param event The click event.
-     */
-    async _onWrestle(event) {
-        event.preventDefault();
-        if (this.actor.lutteCanBePerformed) {
-            await new Wrestle(this.actor).initializeRoll();
-        }
-    }
 
 
 
@@ -307,24 +300,36 @@ export class BaseSheet extends ActorSheet {
      * @param event The click event.
      */
     async _onAttack(event) {
+
         event.preventDefault();
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        if (item?.attackAvailable === true) {
-            switch (item.system.type) {
-                case Constants.NATURELLE:
-                    await new Naturelle(this.actor, item).initializeRoll();
-                    break;
-                case Constants.MELEE:
-                    await new Melee(this.actor, item).initializeRoll();
-                    break;
-                case Constants.FEU:
-                case Constants.TRAIT:
-                    await new Distance(this.actor, item).initializeRoll();
-                    break;
+
+        // Wrestle roll attack
+        if (id === 'wrestle') {
+            if (this.actor.lutteCanBePerformed) {
+                await new Wrestle(this.actor).initializeRoll();
+            }
+
+        // Weapon roll attack
+        } else {
+            const item = this.actor.getEmbeddedDocument('Item', id);
+            if (item?.attackAvailable === true) {
+                switch (item.system.type) {
+                    case Constants.NATURELLE:
+                        await new Naturelle(this.actor, item).initializeRoll();
+                        break;
+                    case Constants.MELEE:
+                        await new Melee(this.actor, item).initializeRoll();
+                        break;
+                    case Constants.FEU:
+                    case Constants.TRAIT:
+                        await new Distance(this.actor, item).initializeRoll();
+                        break;
+                }
             }
         }
+
     }
 
     /**
