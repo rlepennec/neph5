@@ -246,9 +246,8 @@
 :root.soleil {
   --column-color: #c3a049;
   --active-tab-color: #4e3904;
-  --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
-  --img-triangle: url("../../systems/neph5e/assets/core/triangle.webp");
-  --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/arbre.webp");
+  --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
+  --img-triangle: url("../../systems/neph5e/assets/skins/soleil/img-triangle.webp");
   --img-article-separator: url("../../systems/neph5e/assets/core/separator.webp");
   --img-separator: url("../../systems/neph5e/assets/core/separator2.webp");
   --img-puce: url("../../systems/neph5e/assets/core/puce.webp");
@@ -263,9 +262,8 @@
 :root.feu {
   --column-color: #ff6600;
   --active-tab-color: #ff6600;
-  --side-background: url("../../systems/neph5e/assets/core/archeo-vertical.webp");
+  --side-background: url("../../systems/neph5e/assets/skins/air/a.webp");
   --img-triangle: url("../../systems/neph5e/assets/core/a.webp");
-  --img-arbre-vie: url("../../systems/neph5e/assets/backgrounds/a.webp");
   --img-article-separator: url("../../systems/neph5e/assets/core/a.webp");
   --img-separator: url("../../systems/neph5e/assets/core/a.webp");
   --img-puce: url("../../systems/neph5e/assets/core/a.webp");
@@ -1212,7 +1210,6 @@
   border: 0px;
   width: 600px;
   height: 795px;
-  content: var(--img-arbre-vie);
 }
 .actor-root .article .article-body .arbre .sephiroth .title {
   position: absolute;
