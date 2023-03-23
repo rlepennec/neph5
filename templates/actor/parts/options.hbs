@@ -147,10 +147,11 @@
 
                 <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
 
-                <select class="theme" name="system.options.theme">
-                    <option value="auto">Automatique</option>
-                    <option value="feu">Feu</option>
+                <select class="theme" name="system.options.theme" value="{{system.options.theme}}">
+                {{#select system.options.theme}}
+                    <option value="air">Air</option>
                     <option value="soleil">Soleil</option>
+                {{/select}}
                 </select>
 
             </div>
