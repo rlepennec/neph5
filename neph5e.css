@@ -282,15 +282,15 @@
 .actor .window-content {
   background: var(--img-background) repeat;
 }
-.actor-root {
+.actor .window-content .actor-root {
   display: flex;
   flex-direction: row;
 }
-.actor-root .tooltip {
+.actor .window-content .actor-root .tooltip {
   position: relative;
   display: inline-block;
 }
-.actor-root .tooltip .tooltiptext {
+.actor .window-content .actor-root .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -308,7 +308,7 @@
   opacity: 0;
   transition: opacity 0.3s;
 }
-.actor-root .tooltip .tooltiptext:after {
+.actor .window-content .actor-root .tooltip .tooltiptext:after {
   content: "";
   position: absolute;
   top: 100%;
@@ -318,15 +318,15 @@
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
-.actor-root .tooltip:hover .tooltiptext {
+.actor .window-content .actor-root .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
-.actor-root .hoverable:hover {
+.actor .window-content .actor-root .hoverable:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }
-.actor-root .side::before {
+.actor .window-content .actor-root .side::before {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -336,7 +336,7 @@
   background: var(--side-background);
   -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
 }
-.actor-root .side {
+.actor .window-content .actor-root .side {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -346,13 +346,13 @@
   font-size: 23px;
   font-weight: bolder;
 }
-.actor-root .side .image {
+.actor .window-content .actor-root .side .image {
   margin-top: 25px;
   width: 150px;
   border: 0px;
   position: relative;
 }
-.actor-root .side .sheet-navigation {
+.actor .window-content .actor-root .side .sheet-navigation {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -362,28 +362,28 @@
   position: relative;
   margin-bottom: 5px;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice {
   display: flex;
   flex-direction: row;
   position: relative;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab {
   width: 170px;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active {
   color: var(--active-tab-color);
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active ~ .sheet-navigation-hole {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab.active ~ .sheet-navigation-hole {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0s linear;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab:not(.active) ~ .sheet-navigation-pin {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-tab:not(.active) ~ .sheet-navigation-pin {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s linear;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-pin {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-pin {
   position: absolute;
   top: 7px;
   left: 161px;
@@ -394,7 +394,7 @@
   transition: visibility 0.3s, opacity 0.3s linear;
   content: var(--img-pin);
 }
-.actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-hole {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-hole {
   position: absolute;
   top: 7px;
   left: 161px;
@@ -405,27 +405,27 @@
   transition: visibility 0.3s, opacity 0.3s linear;
   content: var(--img-hole);
 }
-.actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
   text-shadow: 0px 0px 3px black;
 }
-.actor-root .side .sheet-navigation .sheet-navigation-image {
+.actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-image {
   margin-top: 20px;
   width: 50px;
   border: 0px;
   position: relative;
 }
-.actor-root .article {
+.actor .window-content .actor-root .article {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
   width: 100%;
 }
-.actor-root .article .article-header {
+.actor .window-content .actor-root .article .article-header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.actor-root .article .article-header .article-title {
+.actor .window-content .actor-root .article .article-header .article-title {
   resize: none;
   text-align: center;
   border: 0px;
@@ -434,12 +434,12 @@
   font-size: 35px;
   vertical-align: middle;
 }
-.actor-root .article .article-header .article-separator {
+.actor .window-content .actor-root .article .article-header .article-separator {
   border: 0px;
   width: 200px;
   content: var(--img-article-separator);
 }
-.actor-root .article .article-body .article-corner {
+.actor .window-content .actor-root .article .article-body .article-corner {
   position: absolute;
   right: 0px;
   bottom: 0px;
@@ -447,23 +447,23 @@
   width: 120px;
   content: var(--img-corner);
 }
-.actor-root .article .article-body .combat {
+.actor .window-content .actor-root .article .article-body .combat {
   padding-top: 20px;
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .combat .left {
+.actor .window-content .actor-root .article .article-body .combat .left {
   display: flex;
   flex-direction: column;
   width: 60%;
 }
-.actor-root .article .article-body .combat .left .dommages {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages {
   display: flex;
   flex-direction: row;
   position: relative;
   background-color: transparent;
 }
-.actor-root .article .article-body .combat .left .dommages .triangle {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .triangle {
   position: absolute;
   display: block;
   border: none;
@@ -473,7 +473,7 @@
   margin-left: -100px;
   content: var(--img-triangle);
 }
-.actor-root .article .article-body .combat .left .dommages > ol {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages > ol {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -484,18 +484,18 @@
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .left .dommages > ol > li {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages > ol > li {
   text-align: center;
   list-style: none;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques {
   position: absolute;
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .modifier .circle {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .modifier .circle {
   position: absolute;
   display: block;
   border: none;
@@ -506,7 +506,7 @@
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .modifier label {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .modifier label {
   position: absolute;
   display: block;
   width: 67px;
@@ -516,7 +516,7 @@
   font-family: 'AJensonPro';
   font-size: 19px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .header {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -525,14 +525,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .header .puce {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header .puce {
   position: absolute;
   border: none;
   width: 60px;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .header .separator {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -541,77 +541,77 @@
   left: 55px;
   content: var(--img-separator);
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .header .name {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header .name {
   position: absolute;
   top: 2px;
   width: calc(100% - 65px);
   left: 70px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body {
   position: relative;
   top: 56px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes {
   display: flex;
   flex-direction: row;
   height: 19px;
   width: 30px;
   margin-left: 70px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox {
   flex: 0 0 auto;
   width: 34px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox .checked {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox .checked {
   display: none;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"] {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"] {
   display: none;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .checked {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n1 {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n1 {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n1 .tooltiptext {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n1 .tooltiptext {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n2 {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n2 {
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n2 .tooltiptext {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n2 .tooltiptext {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n3 {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n3 {
   font-size: 20px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n3 .tooltiptext {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n3 .tooltiptext {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(2) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(2) {
   margin-left: 125px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(3) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(3) {
   margin-left: 115px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(4) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(4) {
   margin-left: 104px;
 }
-.actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(5) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(5) {
   margin-left: 92px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques {
   position: absolute;
   display: flex;
   flex-direction: column;
   width: 50%;
   left: 50%;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .header {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -620,7 +620,7 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .header .separator {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -629,14 +629,14 @@
   left: 45px;
   content: var(--img-separator);
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .header .name {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .header .name {
   position: absolute;
   top: 2px;
   width: calc(100% - 65px);
   left: 65px;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .modifier .circle {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .modifier .circle {
   position: absolute;
   display: block;
   border: none;
@@ -647,7 +647,7 @@
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .modifier label {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .modifier label {
   position: absolute;
   display: block;
   top: 127px;
@@ -657,11 +657,11 @@
   font-family: 'AJensonPro';
   font-size: 19px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body {
   position: relative;
   top: 56px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes {
   display: flex;
   flex-direction: row;
   font-size: 11px;
@@ -669,59 +669,59 @@
   width: 30px;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox {
   flex: 0 0 auto;
   margin-left: 20px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox .checked {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox .checked {
   display: none;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"] {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"] {
   display: none;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .checked {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n1 {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n1 {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n1 .tooltiptext {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n1 .tooltiptext {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n2 {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n2 {
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n2 .tooltiptext {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n2 .tooltiptext {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n3 {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n3 {
   font-size: 20px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n3 .tooltiptext {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n3 .tooltiptext {
   font-size: 11px;
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(1) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(1) {
   margin-left: calc(100% - 181px);
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(2) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(2) {
   margin-left: calc(100% - 171px);
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(3) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(3) {
   margin-left: calc(100% - 161px);
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(4) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(4) {
   margin-left: calc(100% - 150px);
 }
-.actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(5) {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(5) {
   margin-left: calc(100% - 139px);
 }
-.actor-root .article .article-body .combat .left .armes {
+.actor .window-content .actor-root .article .article-body .combat .left .armes {
   margin-top: 200px;
 }
-.actor-root .article .article-body .combat .left .armes .header {
+.actor .window-content .actor-root .article .article-body .combat .left .armes .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -730,14 +730,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .left .armes .header .puce {
+.actor .window-content .actor-root .article .article-body .combat .left .armes .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .combat .left .armes .header .separator {
+.actor .window-content .actor-root .article .article-body .combat .left .armes .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -746,46 +746,46 @@
   width: calc(100% - 40px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .combat .left .armes .header .name {
+.actor .window-content .actor-root .article .article-body .combat .left .armes .header .name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .combat .left .armes li {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor-root .article .article-body .combat .left .armes li .delete {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li .delete {
   width: 10%;
 }
-.actor-root .article .article-body .combat .left .armes li .name {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li .name {
   width: 50%;
 }
-.actor-root .article .article-body .combat .left .armes li .reload {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li .reload {
   width: 10%;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .armes li .aim {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li .aim {
   width: 10%;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .armes li .roll {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li .roll {
   width: 10%;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .armes li .usage {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li .usage {
   width: 10%;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .armes li:hover {
+.actor .window-content .actor-root .article .article-body .combat .left .armes li:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .left .armures {
+.actor .window-content .actor-root .article .article-body .combat .left .armures {
   margin-top: 20px;
 }
-.actor-root .article .article-body .combat .left .armures .header {
+.actor .window-content .actor-root .article .article-body .combat .left .armures .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -794,14 +794,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .left .armures .header .puce {
+.actor .window-content .actor-root .article .article-body .combat .left .armures .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .combat .left .armures .header .separator {
+.actor .window-content .actor-root .article .article-body .combat .left .armures .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -810,38 +810,38 @@
   width: calc(100% - 40px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .combat .left .armures .header .name {
+.actor .window-content .actor-root .article .article-body .combat .left .armures .header .name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .combat .left .armures li {
+.actor .window-content .actor-root .article .article-body .combat .left .armures li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor-root .article .article-body .combat .left .armures li .delete {
+.actor .window-content .actor-root .article .article-body .combat .left .armures li .delete {
   width: 10%;
 }
-.actor-root .article .article-body .combat .left .armures li .name {
+.actor .window-content .actor-root .article .article-body .combat .left .armures li .name {
   width: 80%;
 }
-.actor-root .article .article-body .combat .left .armures li .usage {
+.actor .window-content .actor-root .article .article-body .combat .left .armures li .usage {
   width: 10%;
   text-align: right;
 }
-.actor-root .article .article-body .combat .left .armures li:hover {
+.actor .window-content .actor-root .article .article-body .combat .left .armures li:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right {
+.actor .window-content .actor-root .article .article-body .combat .right {
   display: flex;
   flex-direction: column;
   width: 40%;
   margin-right: 10px;
   margin-left: 40px;
 }
-.actor-root .article .article-body .combat .right .header {
+.actor .window-content .actor-root .article .article-body .combat .right .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -850,14 +850,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .combat .right .header .puce {
+.actor .window-content .actor-root .article .article-body .combat .right .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .combat .right .header .separator {
+.actor .window-content .actor-root .article .article-body .combat .right .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -866,16 +866,16 @@
   width: calc(100% - 65px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .combat .right .header .name {
+.actor .window-content .actor-root .article .article-body .combat .right .header .name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .combat .right .caracteristiques {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques {
   margin-bottom: 10px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -883,11 +883,11 @@
   width: 100%;
   height: 35px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li label {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li label {
   position: absolute;
   top: 19px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li .circle {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li .circle {
   position: absolute;
   border: none;
   width: 48px;
@@ -895,7 +895,7 @@
   display: hidden;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li input {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li input {
   position: absolute;
   flex: 0 0 auto;
   width: 35px;
@@ -907,100 +907,100 @@
   border: none;
   background-color: transparent;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li i {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li i {
   position: absolute;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li .fa-dice-d20 {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li .fa-dice-d20 {
   left: calc(100% - 23px);
   top: 20px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li .fa-trash {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li .fa-trash {
   left: calc(100% - 47px);
   top: 20px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:hover {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) label {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) label {
   left: 90px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) input {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) input {
   left: 37px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) img {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) img {
   left: 31px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) label {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) label {
   left: 130px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) input {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) input {
   left: 78px;
 }
-.actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) img {
+.actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) img {
   left: 72px;
 }
-.actor-root .article .article-body .combat .right .etats {
+.actor .window-content .actor-root .article .article-body .combat .right .etats {
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .right .etats .etat {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .combat .right .etats .etat .checkbox {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox {
   margin-left: 22px;
   margin-right: 20px;
   padding-top: -5px;
   font-size: 11px;
   flex: 0 0 auto;
 }
-.actor-root .article .article-body .combat .right .etats .etat .checkbox .checked {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox .checked {
   display: none;
 }
-.actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"] {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"] {
   display: none;
 }
-.actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .checked {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor-root .article .article-body .combat .right .etats .etat:hover {
+.actor .window-content .actor-root .article .article-body .combat .right .etats .etat:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .capacites {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites {
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .combat .right .capacites .capacite {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor-root .article .article-body .combat .right .capacites .capacite .fa-edit {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite .fa-edit {
   margin-left: 22px;
   margin-right: 20px;
   padding-top: 3px;
   font-size: 11px;
   flex: 0 0 auto;
 }
-.actor-root .article .article-body .combat .right .capacites .capacite label:first-of-type {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite label:first-of-type {
   width: 55px;
   flex: 0 0 auto;
 }
-.actor-root .article .article-body .combat .right .capacites .capacite i {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite i {
   width: 20px;
 }
-.actor-root .article .article-body .combat .right .capacites .capacite:hover {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .bonus .body {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body {
   font-family: 'AJensonPro';
   font-size: 16px;
   position: relative;
 }
-.actor-root .article .article-body .combat .right .bonus .body .losange {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .losange {
   position: absolute;
   left: calc(50% - 51px);
   top: 48px;
@@ -1008,16 +1008,16 @@
   border: none;
   content: var(--img-losange);
 }
-.actor-root .article .article-body .combat .right .bonus .body div {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body div {
   position: absolute;
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .combat .right .bonus .body div label {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body div label {
   position: absolute;
   width: 150px;
 }
-.actor-root .article .article-body .combat .right .bonus .body div .circle {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body div .circle {
   border: none;
   width: 48px;
   height: 51px;
@@ -1025,7 +1025,7 @@
   margin-left: 15px;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .combat .right .bonus .body div input {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body div input {
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
@@ -1036,45 +1036,45 @@
   border: none;
   background-color: transparent;
 }
-.actor-root .article .article-body .combat .right .bonus .body div input:hover {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body div input:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .combat .right .bonus .body .mouvement {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .mouvement {
   top: calc(50% - -185px);
   left: calc(50% - 31px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .mouvement label {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .mouvement label {
   top: calc(50% - -25px);
   left: calc(50% - 46px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .initiative {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .initiative {
   top: calc(50% - 3px);
   left: calc(50% - 31px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .initiative label {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .initiative label {
   top: calc(50% - 7px);
   left: calc(50% - -20px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .dommages {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .dommages {
   top: calc(50% - -91px);
   left: calc(50% - 120px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .dommages label {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .dommages label {
   top: calc(50% - -24px);
   left: calc(50% - 37px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .protection {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .protection {
   top: calc(50% - -91px);
   left: calc(50% - -57px);
 }
-.actor-root .article .article-body .combat .right .bonus .body .protection label {
+.actor .window-content .actor-root .article .article-body .combat .right .bonus .body .protection label {
   top: calc(50% - -23px);
   left: calc(50% - 41px);
 }
-.actor-root .article .article-body .science .cercles .disabled {
+.actor .window-content .actor-root .article .article-body .science .cercles .disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .science .cercles .cercle .voie {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .voie {
   margin-top: 10px;
   padding-bottom: 3px;
   font-family: 'AJensonPro';
@@ -1083,7 +1083,7 @@
   display: inline-block;
   width: 100%;
 }
-.actor-root .article .article-body .science .cercles .cercle .header {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1091,7 +1091,7 @@
   font-size: 21px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .circle {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .circle {
   position: absolute;
   border: none;
   width: 60px;
@@ -1100,7 +1100,7 @@
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .science .cercles .cercle .header .separator {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -1109,7 +1109,7 @@
   width: calc(100% - 80px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-degre {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-degre {
   position: absolute;
   width: 45px;
   height: 45px;
@@ -1120,7 +1120,7 @@
   padding-top: 12px;
   border-radius: 50%;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -1129,51 +1129,51 @@
   width: calc(100% - 80px);
   text-align: center;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-name {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-name {
   flex: 1 1 auto;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-percentage {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-percentage {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-quantite {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-quantite {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-transporte {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-transporte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-pacte {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-pacte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-possede {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-possede {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-status {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-status {
   flex: 0 0 80px;
 }
-.actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-dice {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .cercle-menu .cercle-dice {
   flex: 0 0 50px;
   font-size: 16px;
   margin-top: 4px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus {
   padding-left: 0px;
   padding-top: 70px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus {
   display: flex;
   flex-direction: row;
   position: relative;
   text-align: center;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-element {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-element {
   margin-left: 20px;
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-elements {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-elements {
   margin-left: 20px;
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-name {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-name {
   flex: 1 1 auto;
   text-align: left;
   padding-left: 20px;
@@ -1181,54 +1181,54 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-quantite {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-quantite {
   flex: 0 0 50px;
   margin-top: -5px;
   border: none;
   background-color: transparent;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-transporte {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-transporte {
   flex: 0 0 50px;
   margin-top: -5px;
   border: none;
   background-color: transparent;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-pacte {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-pacte {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-status {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-status {
   flex: 0 0 80px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-difficulty {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-difficulty {
   flex: 0 0 50px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-dice {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-dice {
   flex: 0 0 50px;
   margin-right: 10px;
 }
-.actor-root .article .article-body .science .cercles .cercle .all-focus .focus:hover {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .arbre {
+.actor .window-content .actor-root .article .article-body .arbre {
   position: relative;
   text-align: center;
 }
-.actor-root .article .article-body .arbre .arbre-vie {
+.actor .window-content .actor-root .article .article-body .arbre .arbre-vie {
   border: 0px;
   width: 600px;
   height: 795px;
 }
-.actor-root .article .article-body .arbre .sephiroth .title {
+.actor .window-content .actor-root .article .article-body .arbre .sephiroth .title {
   position: absolute;
   top: 50%;
   left: 50%;
   font-family: 'NightjarDemi';
   font-size: 18px;
 }
-.actor-root .article .article-body .arbre .sephiroth .degre {
+.actor .window-content .actor-root .article .article-body .arbre .sephiroth .degre {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1236,67 +1236,67 @@
   font-size: 18px;
   font-weight: bold;
 }
-.actor-root .article .article-body .arbre .malkut .title {
+.actor .window-content .actor-root .article .article-body .arbre .malkut .title {
   transform: translate(-28px, 320px);
 }
-.actor-root .article .article-body .arbre .malkut .degre {
+.actor .window-content .actor-root .article .article-body .arbre .malkut .degre {
   transform: translate(2px, 340px);
 }
-.actor-root .article .article-body .arbre .yesod .title {
+.actor .window-content .actor-root .article .article-body .arbre .yesod .title {
   transform: translate(-23px, 165px);
 }
-.actor-root .article .article-body .arbre .yesod .degre {
+.actor .window-content .actor-root .article .article-body .arbre .yesod .degre {
   transform: translate(2px, 185px);
 }
-.actor-root .article .article-body .arbre .hod .title {
+.actor .window-content .actor-root .article .article-body .arbre .hod .title {
   transform: translate(-151px, 86px);
 }
-.actor-root .article .article-body .arbre .hod .degre {
+.actor .window-content .actor-root .article .article-body .arbre .hod .degre {
   transform: translate(-135px, 105px);
 }
-.actor-root .article .article-body .arbre .netzach .title {
+.actor .window-content .actor-root .article .article-body .arbre .netzach .title {
   transform: translate(102px, 86px);
 }
-.actor-root .article .article-body .arbre .netzach .degre {
+.actor .window-content .actor-root .article .article-body .arbre .netzach .degre {
   transform: translate(138px, 105px);
 }
-.actor-root .article .article-body .arbre .tiphereth .title {
+.actor .window-content .actor-root .article .article-body .arbre .tiphereth .title {
   transform: translate(-42px, 8px);
 }
-.actor-root .article .article-body .arbre .tiphereth .degre {
+.actor .window-content .actor-root .article .article-body .arbre .tiphereth .degre {
   transform: translate(2px, 27px);
 }
-.actor-root .article .article-body .arbre .geburah .title {
+.actor .window-content .actor-root .article .article-body .arbre .geburah .title {
   transform: translate(-172px, -72px);
 }
-.actor-root .article .article-body .arbre .geburah .degre {
+.actor .window-content .actor-root .article .article-body .arbre .geburah .degre {
   transform: translate(-135px, -54px);
 }
-.actor-root .article .article-body .arbre .chesed .title {
+.actor .window-content .actor-root .article .article-body .arbre .chesed .title {
   transform: translate(108px, -72px);
 }
-.actor-root .article .article-body .arbre .chesed .degre {
+.actor .window-content .actor-root .article .article-body .arbre .chesed .degre {
   transform: translate(138px, -54px);
 }
-.actor-root .article .article-body .arbre .binah .title {
+.actor .window-content .actor-root .article .article-body .arbre .binah .title {
   transform: translate(-158px, -230px);
 }
-.actor-root .article .article-body .arbre .binah .degre {
+.actor .window-content .actor-root .article .article-body .arbre .binah .degre {
   transform: translate(-135px, -211px);
 }
-.actor-root .article .article-body .arbre .chokmah .title {
+.actor .window-content .actor-root .article .article-body .arbre .chokmah .title {
   transform: translate(97px, -230px);
 }
-.actor-root .article .article-body .arbre .chokmah .degre {
+.actor .window-content .actor-root .article .article-body .arbre .chokmah .degre {
   transform: translate(138px, -211px);
 }
-.actor-root .article .article-body .arbre .kether .title {
+.actor .window-content .actor-root .article .article-body .arbre .kether .title {
   transform: translate(-28px, -309px);
 }
-.actor-root .article .article-body .arbre .kether .degre {
+.actor .window-content .actor-root .article .article-body .arbre .kether .degre {
   transform: translate(2px, -289px);
 }
-.actor-root .article .article-body .ordonnances .header {
+.actor .window-content .actor-root .article .article-body .ordonnances .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1304,7 +1304,7 @@
   font-size: 21px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .ordonnances .header .circle {
+.actor .window-content .actor-root .article .article-body .ordonnances .header .circle {
   position: absolute;
   border: none;
   width: 60px;
@@ -1312,7 +1312,7 @@
   display: hidden;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .ordonnances .header .separator {
+.actor .window-content .actor-root .article .article-body .ordonnances .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -1321,7 +1321,7 @@
   width: calc(100% - 80px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .ordonnances .header .degre {
+.actor .window-content .actor-root .article .article-body .ordonnances .header .degre {
   position: absolute;
   width: 45px;
   height: 45px;
@@ -1333,7 +1333,7 @@
   border-radius: 50%;
   box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
 }
-.actor-root .article .article-body .ordonnances .header .monde {
+.actor .window-content .actor-root .article .article-body .ordonnances .header .monde {
   display: flex;
   flex-direction: row;
   flex: 1 1 auto;
@@ -1344,21 +1344,21 @@
   font-family: 'NightjarDemi';
   font-size: 27px;
 }
-.actor-root .article .article-body .ordonnances .body {
+.actor .window-content .actor-root .article .article-body .ordonnances .body {
   padding-left: 0px;
   padding-top: 70px;
 }
-.actor-root .article .article-body .ordonnances .body .ordonnance {
+.actor .window-content .actor-root .article .article-body .ordonnances .body .ordonnance {
   display: flex;
   flex-direction: column;
   font-family: 'AJensonPro';
   margin-top: 20px;
 }
-.actor-root .article .article-body .ordonnances .body .ordonnance .title {
+.actor .window-content .actor-root .article .article-body .ordonnances .body .ordonnance .title {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .ordonnances .body .ordonnance .title .pin {
+.actor .window-content .actor-root .article .article-body .ordonnances .body .ordonnance .title .pin {
   border: none;
   width: 26px;
   margin-left: 50px;
@@ -1366,7 +1366,7 @@
   background-color: transparent;
   content: var(--img-pin);
 }
-.actor-root .article .article-body .ordonnances .body .ordonnance .title .name {
+.actor .window-content .actor-root .article .article-body .ordonnances .body .ordonnance .title .name {
   flex: 1 1 auto;
   text-align: left;
   padding-left: 20px;
@@ -1375,24 +1375,24 @@
   text-overflow: ellipsis;
   font-size: 20px;
 }
-.actor-root .article .article-body .ordonnances .body .ordonnance .description {
+.actor .window-content .actor-root .article .article-body .ordonnances .body .ordonnance .description {
   list-style: none;
   width: calc(100% - 100px);
   margin-left: 85px;
   font-size: 15px;
 }
-.actor-root .article .article-body .akasha {
+.actor .window-content .actor-root .article .article-body .akasha {
   display: flex;
   flex-direction: row;
   padding-top: 20px;
 }
-.actor-root .article .article-body .akasha .column {
+.actor .window-content .actor-root .article .article-body .akasha .column {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .akasha .column .header {
+.actor .window-content .actor-root .article .article-body .akasha .column .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1401,14 +1401,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .akasha .column .header .puce {
+.actor .window-content .actor-root .article .article-body .akasha .column .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .akasha .column .header .separator {
+.actor .window-content .actor-root .article .article-body .akasha .column .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -1417,37 +1417,37 @@
   width: calc(100% - 65px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .akasha .column .header .name {
+.actor .window-content .actor-root .article .article-body .akasha .column .header .name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .akasha .column .header .vaisseau {
+.actor .window-content .actor-root .article .article-body .akasha .column .header .vaisseau {
   position: absolute;
   top: 2px;
   right: 30px;
 }
-.actor-root .article .article-body .akasha .column .header .vaisseau.disabled {
+.actor .window-content .actor-root .article .article-body .akasha .column .header .vaisseau.disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .akasha .column .header .vaisseau:hover {
+.actor .window-content .actor-root .article .article-body .akasha .column .header .vaisseau:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .akasha .column .directions {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions {
   position: relative;
   margin-top: 80px;
   font-family: 'AJensonPro';
   font-size: 17px;
 }
-.actor-root .article .article-body .akasha .column .directions .directions {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .directions {
   position: absolute;
   border: none;
   width: 350px;
   transform: translate(25px, -81px);
   content: var(--img-directions);
 }
-.actor-root .article .article-body .akasha .column .directions .boussole {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .boussole {
   position: absolute;
   border: none;
   width: 250px;
@@ -1455,7 +1455,7 @@
   transform: translate(75px, 47px) rotate(30deg);
   content: var(--img-boussole);
 }
-.actor-root .article .article-body .akasha .column .directions .compas {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .compas {
   position: absolute;
   border: none;
   width: 250px;
@@ -1463,11 +1463,11 @@
   transform: translate(75px, 47px) rotate(30deg);
   content: var(--img-compas);
 }
-.actor-root .article .article-body .akasha .column .directions div {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions div {
   position: absolute;
   width: 200px;
 }
-.actor-root .article .article-body .akasha .column .directions div .circle {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions div .circle {
   border: none;
   width: 60px;
   height: 65px;
@@ -1475,7 +1475,7 @@
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .akasha .column .directions div input {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions div input {
   width: 45px;
   height: 45px;
   text-align: center;
@@ -1483,55 +1483,55 @@
   border-radius: 50%;
   transform: translate(-55px, -27px);
 }
-.actor-root .article .article-body .akasha .column .directions div input:hover {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions div input:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .akasha .column .directions div label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions div label {
   width: 150px;
 }
-.actor-root .article .article-body .akasha .column .directions .zenith {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .zenith {
   transform: translate(169px, -20px);
 }
-.actor-root .article .article-body .akasha .column .directions .zenith > label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .zenith > label {
   position: absolute;
   transform: translate(-105px, -20px);
 }
-.actor-root .article .article-body .akasha .column .directions .orient {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .orient {
   transform: translate(310px, 60px);
 }
-.actor-root .article .article-body .akasha .column .directions .orient > label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .orient > label {
   position: absolute;
   transform: translate(-104px, -22px);
 }
-.actor-root .article .article-body .akasha .column .directions .nadir {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .nadir {
   transform: translate(167px, 305px);
 }
-.actor-root .article .article-body .akasha .column .directions .nadir > label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .nadir > label {
   position: absolute;
   transform: translate(-104px, 70px);
 }
-.actor-root .article .article-body .akasha .column .directions .occident {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .occident {
   transform: translate(25px, 226px);
 }
-.actor-root .article .article-body .akasha .column .directions .occident > label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .occident > label {
   position: absolute;
   transform: translate(-116px, 70px);
 }
-.actor-root .article .article-body .akasha .column .directions .midi {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .midi {
   transform: translate(28px, 62px);
 }
-.actor-root .article .article-body .akasha .column .directions .midi > label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .midi > label {
   position: absolute;
   transform: translate(-99px, -20px);
 }
-.actor-root .article .article-body .akasha .column .directions .septentrion {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .septentrion {
   transform: translate(307px, 225px);
 }
-.actor-root .article .article-body .akasha .column .directions .septentrion > label {
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .septentrion > label {
   position: absolute;
   transform: translate(-122px, 70px);
 }
-.actor-root .article .article-body .vecus .header {
+.actor .window-content .actor-root .article .article-body .vecus .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1540,14 +1540,14 @@
   margin-top: 30px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .vecus .header .puce {
+.actor .window-content .actor-root .article .article-body .vecus .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .vecus .header .separator {
+.actor .window-content .actor-root .article .article-body .vecus .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -1556,20 +1556,20 @@
   width: calc(100% - 65px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .vecus .header .vecus-name {
+.actor .window-content .actor-root .article .article-body .vecus .header .vecus-name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .vecus .body {
+.actor .window-content .actor-root .article .article-body .vecus .body {
   column-count: 3;
   column-rule-style: solid;
   column-rule-width: thin;
   column-gap: 20px;
   column-rule-color: #c3a049;
 }
-.actor-root .article .article-body .vecus .body hr {
+.actor .window-content .actor-root .article .article-body .vecus .body hr {
   display: block;
   height: 1px;
   border: 0;
@@ -1577,41 +1577,41 @@
   margin: 1em 0;
   padding: 0;
 }
-.actor-root .article .article-body .vecus .body .disabled {
+.actor .window-content .actor-root .article .article-body .vecus .body .disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .vecus .body .vecu {
+.actor .window-content .actor-root .article .article-body .vecus .body .vecu {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
 }
-.actor-root .article .article-body .vecus .body .vecu .vecu-definition {
+.actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-degre {
+.actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-degre {
   flex: 0 0 40px;
 }
-.actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-name {
+.actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-name {
   flex: 1 1 auto;
   text-align: left;
 }
-.actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-dice {
+.actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-dice {
   flex: 0 0 40px;
 }
-.actor-root .article .article-body .vecus .body .vecu:hover {
+.actor .window-content .actor-root .article .article-body .vecus .body .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .incarnations-header {
+.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header {
   margin-top: -36px;
   margin-bottom: 20px;
   margin-left: 20px;
 }
-.actor-root .article .article-body .incarnations .incarnations-header .points {
+.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points {
   margin-right: -35px;
 }
-.actor-root .article .article-body .incarnations .incarnations-header .points .circle {
+.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points .circle {
   border: none;
   width: 60px;
   height: 65px;
@@ -1619,7 +1619,7 @@
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor-root .article .article-body .incarnations .incarnations-header .points input {
+.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points input {
   width: 45px;
   height: 45px;
   text-align: center;
@@ -1627,35 +1627,35 @@
   border-radius: 50%;
   transform: translate(-55px, -27px);
 }
-.actor-root .article .article-body .incarnations .incarnations-header .points input:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points input:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .periodes .periode {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode {
   display: flex;
   flex-direction: column;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .disabled {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .disabled {
   color: #a1a1a1;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .current {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .current {
   font-size: 23px;
   font-weight: bold;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header {
   display: flex;
   flex-direction: row;
   position: relative;
   font-family: 'AJensonPro';
   font-size: 21px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .puce {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .separator {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -1664,7 +1664,7 @@
   width: calc(100% - 65px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .delete {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .delete {
   position: absolute;
   right: 28px;
   height: 30px;
@@ -1672,14 +1672,14 @@
   padding-top: 6px;
   z-index: 99;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
   height: 33px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone {
   position: absolute;
   right: 37px;
   top: 2px;
@@ -1688,7 +1688,7 @@
   text-align: right;
   padding-right: 20px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu {
   position: absolute;
   right: 20px;
   top: 15px;
@@ -1704,7 +1704,7 @@
   border: solid 1px #333A40;
   font-size: 16px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu li {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu li {
   max-height: 0;
   overflow: hidden;
   transition: all 0.5s;
@@ -1714,61 +1714,61 @@
   border: none;
   padding-left: 10px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu {
   display: block;
   z-index: 99;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu li {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu li {
   max-height: 15em;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover {
   display: block;
   z-index: 99;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li {
   max-height: 15em;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members {
   border: solid 1px #333A40;
   padding: 10px;
   border-radius: 10px;
   width: calc(100% - 10px);
   margin-bottom: 20px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
   list-style: none;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition .fa-solid {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition .fa-solid {
   flex: 0 0 40px;
   text-align: center;
   margin-right: 7px;
   font-size: 13px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition .name {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition .name {
   flex: 1 1 auto;
   text-align: left;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition .fa-trash {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member .definition .fa-trash {
   flex: 0 0 40px;
   text-align: center;
   font-size: 13px;
   margin-right: 10px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus {
   column-count: 3;
   column-rule-style: solid;
   column-rule-width: thin;
@@ -1780,97 +1780,97 @@
   width: calc(100% - 10px);
   margin-bottom: 20px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .degre {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .degre {
   flex: 0 0 40px;
   border: none;
   text-align: center;
   margin-right: 5px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .name {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .name {
   flex: 1 1 auto;
   text-align: left;
   padding-top: 4px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .delete {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .delete {
   flex: 0 0 30px;
   border: none;
   text-align: center;
   font-size: 13px;
   padding-top: 6px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus {
   border: solid 1px #333A40;
   padding: 10px;
   border-radius: 10px;
   width: calc(100% - 10px);
   margin-bottom: 20px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus {
   display: inline-block;
   font-family: 'AJensonPro';
   font-size: 16px;
   width: 100%;
   list-style: none;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-scroll {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-scroll {
   flex: 0 0 40px;
   text-align: center;
   margin-left: 10px;
   margin-right: 22px;
   font-size: 13px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .focus-name {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .focus-name {
   flex: 1 1 auto;
   text-align: left;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-trash {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-trash {
   flex: 0 0 40px;
   text-align: center;
   font-size: 13px;
   margin-right: 10px;
 }
-.actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .incarnations .periodes .periode:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode:hover {
   cursor: default;
 }
-.actor-root .article .article-body .options {
+.actor .window-content .actor-root .article .article-body .options {
   display: flex;
   flex-direction: row;
   padding-top: 20px;
 }
-.actor-root .article .article-body .options .options-column {
+.actor .window-content .actor-root .article .article-body .options .options-column {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-right: 10px;
 }
-.actor-root .article .article-body .options .options-column .options-group {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group {
   width: 100%;
   margin-left: 20px;
   margin-top: 10px;
   font-family: 'AJensonPro';
   font-size: 20px;
 }
-.actor-root .article .article-body .options .options-column .options-group .header {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -1879,14 +1879,14 @@
   margin-top: 15px;
   margin-bottom: -10px;
 }
-.actor-root .article .article-body .options .options-column .options-group .header .puce {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .puce {
   border: none;
   width: 60px;
   display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor-root .article .article-body .options .options-column .options-group .header .separator {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -1895,13 +1895,13 @@
   width: calc(100% - 65px);
   content: var(--img-separator);
 }
-.actor-root .article .article-body .options .options-column .options-group .header .options-name {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .options-name {
   position: absolute;
   left: 70px;
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor-root .article .article-body .options .options-column .options-group .header .theme {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .theme {
   border: none;
   outline: 0px;
   background-color: transparent;
@@ -1915,51 +1915,51 @@
   margin-left: calc(100% - 185px);
   z-index: 99;
 }
-.actor-root .article .article-body .options .options-column .options-group .header .theme:hover {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .theme:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .article-body .options .options-column .options-group .body {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body {
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option {
   display: flex;
   flex-direction: row;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox {
   font-style: italic;
   margin-left: 22px;
   margin-right: 20px;
   font-size: 11px;
   padding-top: 3px;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"] {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"] {
   display: none;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox .checked {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox .checked {
   display: none;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"]:checked ~ .checked {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor-root .article .article-body .options .options-column .options-group .body .option:hover {
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor-root .article .effectif .header {
+.actor .window-content .actor-root .article .effectif .header {
   display: flex;
   flex-direction: row;
   padding-top: 10px;
   justify-content: center;
 }
-.actor-root .article .effectif .header .circle {
+.actor .window-content .actor-root .article .effectif .header .circle {
   flex-basis: 40px;
   flex-grow: 0;
   flex-shrink: 0;
 }
-.actor-root .article .effectif .header .title {
+.actor .window-content .actor-root .article .effectif .header .title {
   width: 100%;
   margin-left: 20px;
   display: flex;
@@ -1972,32 +1972,32 @@
   border-style: solid;
   border-color: black;
 }
-.actor-root .article .effectif .header .title .item-name {
+.actor .window-content .actor-root .article .effectif .header .title .item-name {
   width: 100%;
   padding-left: 5px;
 }
-.actor-root .article .effectif .membre {
+.actor .window-content .actor-root .article .effectif .membre {
   height: 17px;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
 }
-.actor-root .article .effectif .membre .edit-actor {
+.actor .window-content .actor-root .article .effectif .membre .edit-actor {
   margin-left: 20px;
   width: 70%;
 }
-.actor-root .article .effectif .membre .edit-status {
+.actor .window-content .actor-root .article .effectif .membre .edit-status {
   margin-left: 20px;
   width: 30%;
 }
-.actor-root .article .ressources .header {
+.actor .window-content .actor-root .article .ressources .header {
   display: flex;
   flex-direction: row;
   padding-top: 10px;
   justify-content: center;
 }
-.actor-root .article .ressources .header .title {
+.actor .window-content .actor-root .article .ressources .header .title {
   width: 100%;
   margin-left: 20px;
   display: flex;
@@ -2010,28 +2010,28 @@
   border-style: solid;
   border-color: black;
 }
-.actor-root .article .ressources .header .title .item-name {
+.actor .window-content .actor-root .article .ressources .header .title .item-name {
   width: 100%;
   padding-left: 5px;
 }
-.actor-root .article .ressources .item-list .item {
+.actor .window-content .actor-root .article .ressources .item-list .item {
   margin-left: 10px;
   margin-bottom: 10px;
 }
-.actor-root .article .ressources .item-list .item .edit-item {
+.actor .window-content .actor-root .article .ressources .item-list .item .edit-item {
   flex: 1 1 auto;
   margin-left: 30px;
 }
-.actor-root .article .ressources .item-list .item .item-control {
+.actor .window-content .actor-root .article .ressources .item-list .item .item-control {
   margin-right: 20px;
 }
-.actor-root .article .foptions .header {
+.actor .window-content .actor-root .article .foptions .header {
   display: flex;
   flex-direction: row;
   padding-top: 10px;
   justify-content: center;
 }
-.actor-root .article .foptions .header .title {
+.actor .window-content .actor-root .article .foptions .header .title {
   width: 100%;
   margin-left: 20px;
   display: flex;
@@ -2044,14 +2044,14 @@
   border-style: solid;
   border-color: black;
 }
-.actor-root .article .foptions .header .title .item-name {
+.actor .window-content .actor-root .article .foptions .header .title .item-name {
   width: 100%;
   padding-left: 5px;
 }
-.actor-root .article .foptions .item-list .item {
+.actor .window-content .actor-root .article .foptions .item-list .item {
   margin-left: 10px;
 }
-.actor-root .article .foptions .item-list .item .degre input {
+.actor .window-content .actor-root .article .foptions .item-list .item .degre input {
   text-align: center;
   border-radius: 50%;
   width: 30px;
@@ -2060,68 +2060,68 @@
   margin-top: 1px;
   margin-bottom: 1px;
 }
-.actor-root .article .foptions .item-list .item .edit-item {
+.actor .window-content .actor-root .article .foptions .item-list .item .edit-item {
   flex: 1 1 auto;
 }
-.actor-root .article .foptions .item-list .item .delete {
+.actor .window-content .actor-root .article .foptions .item-list .item .delete {
   text-align: center;
   width: 32px;
 }
-.actor-root .article .nofocus {
+.actor .window-content .actor-root .article .nofocus {
   display: flex;
   flex-direction: column;
   margin-top: 200px;
   text-align: center;
   color: indianred;
 }
-.actor-root .article .nofocus label {
+.actor .window-content .actor-root .article .nofocus label {
   margin-left: 100px;
   margin-right: 100px;
 }
-.actor-root .article .nofocus i {
+.actor .window-content .actor-root .article .nofocus i {
   margin-top: 50px;
 }
-.actor-root .article .selenim .content {
+.actor .window-content .actor-root .article .selenim .content {
   display: flex;
   flex-direction: row;
   padding-top: 20px;
 }
-.actor-root .article .selenim .content .left {
+.actor .window-content .actor-root .article .selenim .content .left {
   display: flex;
   flex-direction: column;
   width: 500px;
 }
-.actor-root .article .selenim .content .left .noyau {
+.actor .window-content .actor-root .article .selenim .content .left .noyau {
   position: relative;
   text-align: center;
   margin-left: 40px;
 }
-.actor-root .article .selenim .content .left .noyau img {
+.actor .window-content .actor-root .article .selenim .content .left .noyau img {
   border: 0px;
 }
-.actor-root .article .selenim .content .left .noyau .macro .dice.noyau {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .dice.noyau {
   transform: translate(-40px, 115px);
 }
-.actor-root .article .selenim .content .left .noyau .macro .dice.pavane {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .dice.pavane {
   transform: translate(-90px, -100px);
 }
-.actor-root .article .selenim .content .left .noyau .macro .dice {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .dice {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor-root .article .selenim .content .left .noyau .macro .tooltip.pavane {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .tooltip.pavane {
   transform: translate(-80px, -105px);
 }
-.actor-root .article .selenim .content .left .noyau .macro .tooltip.noyau {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .tooltip.noyau {
   transform: translate(-30px, 110px);
 }
-.actor-root .article .selenim .content .left .noyau .macro .tooltip {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .tooltip {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor-root .article .selenim .content .left .noyau .macro .tooltip input {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .macro .tooltip input {
   background-color: transparent;
   font-size: 20px;
   font-weight: bold;
@@ -2129,18 +2129,18 @@
   width: 40px;
   text-align: center;
 }
-.actor-root .article .selenim .content .left .noyau .tooltip.reserveCourante {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .tooltip.reserveCourante {
   transform: translate(60px, 80px);
 }
-.actor-root .article .selenim .content .left .noyau .tooltip.reserveMaximale {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .tooltip.reserveMaximale {
   transform: translate(100px, 80px);
 }
-.actor-root .article .selenim .content .left .noyau .tooltip {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .tooltip {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor-root .article .selenim .content .left .noyau .tooltip input {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .tooltip input {
   background-color: transparent;
   font-size: 20px;
   font-weight: bold;
@@ -2148,7 +2148,7 @@
   width: 40px;
   text-align: center;
 }
-.actor-root .article .selenim .content .left .noyau .separator {
+.actor .window-content .actor-root .article .selenim .content .left .noyau .separator {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2157,59 +2157,59 @@
   font-weight: bold;
   text-align: center;
 }
-.actor-root .article .selenim .content .right {
+.actor .window-content .actor-root .article .selenim .content .right {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-left: 20px;
 }
-.actor-root .article .selenim .content .right .imago .item-list .item .item-delete {
+.actor .window-content .actor-root .article .selenim .content .right .imago .item-list .item .item-delete {
   text-align: center;
   width: 32px;
   margin-left: 13px;
   margin-right: 10px;
 }
-.actor-root .article .nephilim .content {
+.actor .window-content .actor-root .article .nephilim .content {
   display: flex;
   flex-direction: row;
   padding-top: 20px;
 }
-.actor-root .article .nephilim .content .left {
+.actor .window-content .actor-root .article .nephilim .content .left {
   display: flex;
   flex-direction: column;
   width: 500px;
 }
-.actor-root .article .nephilim .content .left .pentacle {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle {
   position: relative;
   text-align: center;
   margin-left: 40px;
 }
-.actor-root .article .nephilim .content .left .pentacle img {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle img {
   border: 0px;
   width: 380px;
   height: 378px;
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip.air {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.air {
   transform: translate(150px, -85px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip.eau {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.eau {
   transform: translate(120px, 140px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip.feu {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.feu {
   transform: translate(-60px, -180px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip.lune {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.lune {
   transform: translate(-130px, 150px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip.terre {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.terre {
   transform: translate(-210px, -20px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .tooltip input {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip input {
   background-color: transparent;
   font-size: 20px;
   font-weight: bold;
@@ -2217,33 +2217,33 @@
   width: 40px;
   text-align: center;
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .dice.air {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.air {
   transform: translate(140px, -80px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .dice.eau {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.eau {
   transform: translate(110px, 145px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .dice.feu {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.feu {
   transform: translate(-70px, -175px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .dice.lune {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.lune {
   transform: translate(-140px, 155px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .dice.terre {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.terre {
   transform: translate(-220px, -15px);
 }
-.actor-root .article .nephilim .content .left .pentacle .macro .dice {
+.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor-root .article .nephilim .content .left .chutes .title {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .title {
   margin-top: 20px;
   border-width: 0px 0px 2px 0px;
   border-style: solid;
   border-color: black;
 }
-.actor-root .article .nephilim .content .left .chutes .title span {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .title span {
   margin-left: 5px;
   padding-bottom: 4px;
   border: none;
@@ -2251,13 +2251,13 @@
   font-family: 'AJensonPro';
   font-size: 20px;
 }
-.actor-root .article .nephilim .content .left .chutes .article {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article {
   padding-top: 10px;
   display: flex;
   flex-direction: column;
   padding: 0 0 0 0;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -2267,61 +2267,61 @@
   page-break-inside: avoid;
   break-inside: avoid;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .tooltip {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .tooltip {
   flex: 0 0 70px;
   margin-right: 100px;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .name {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .name {
   flex: 0 0 100px;
   margin-right: 70px;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .degres {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .degres {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   flex: 0 0 auto;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .l3 {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l3 {
   margin-left: 3px;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .l3r {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l3r {
   margin-left: 3px;
   color: indianred;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .l6 {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l6 {
   margin-left: 6px;
 }
-.actor-root .article .nephilim .content .left .chutes .article .item .l6r {
+.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l6r {
   margin-left: 6px;
   color: indianred;
 }
-.actor-root .article .nephilim .content .right {
+.actor .window-content .actor-root .article .nephilim .content .right {
   display: flex;
   flex-direction: column;
   width: 314px;
 }
-.actor-root .article .nephilim .content .right .stase .sectionRow .circle input {
+.actor .window-content .actor-root .article .nephilim .content .right .stase .sectionRow .circle input {
   border: none;
   background-color: transparent;
   transform: translate(2px, 14px);
   text-align: center;
 }
-.actor-root .article .nephilim .content .right .stase .sectionRow .sectionTitle input {
+.actor .window-content .actor-root .article .nephilim .content .right .stase .sectionRow .sectionTitle input {
   border: none;
   background-color: transparent;
 }
-.actor-root .article .laboratoire .construct-images {
+.actor .window-content .actor-root .article .laboratoire .construct-images {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
   margin-bottom: 10px;
   justify-content: space-evenly;
 }
-.actor-root .article .laboratoire .construct-images img {
+.actor .window-content .actor-root .article .laboratoire .construct-images img {
   border: none;
   height: 90px;
 }
-.actor-root .article .laboratoire .constructs .header {
+.actor .window-content .actor-root .article .laboratoire .constructs .header {
   width: 814px;
   display: flex;
   flex-direction: row;
@@ -2333,27 +2333,27 @@
   border-style: solid;
   border-color: black;
 }
-.actor-root .article .laboratoire .constructs .header .name {
+.actor .window-content .actor-root .article .laboratoire .constructs .header .name {
   padding-left: 5px;
   width: 100%;
 }
-.actor-root .article .laboratoire .constructs .header .parameter {
+.actor .window-content .actor-root .article .laboratoire .constructs .header .parameter {
   flex: 0 0 auto;
   text-align: center;
 }
-.actor-root .article .laboratoire .constructs .header .width-40 {
+.actor .window-content .actor-root .article .laboratoire .constructs .header .width-40 {
   width: 40px;
 }
-.actor-root .article .laboratoire .constructs .header .width-80 {
+.actor .window-content .actor-root .article .laboratoire .constructs .header .width-80 {
   width: 80px;
 }
-.actor-root .article .laboratoire .constructs .header .width-135 {
+.actor .window-content .actor-root .article .laboratoire .constructs .header .width-135 {
   width: 135px;
 }
-.actor-root .article .laboratoire .constructs .item {
+.actor .window-content .actor-root .article .laboratoire .constructs .item {
   padding-left: 10px;
 }
-.actor-root .article .laboratoire .constructs .item .hand-checkbox {
+.actor .window-content .actor-root .article .laboratoire .constructs .item .hand-checkbox {
   flex: 0 0 auto;
   justify-content: center;
   text-align: center;
@@ -2361,7 +2361,7 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-.actor-root .article .laboratoire .constructs .item .element {
+.actor .window-content .actor-root .article .laboratoire .constructs .item .element {
   width: 40px;
   height: 24px;
   padding-top: 1px;
@@ -2370,20 +2370,20 @@
   text-align: center;
   background-color: transparent;
 }
-.actor-root .article .laboratoire .constructs .item .degre {
+.actor .window-content .actor-root .article .laboratoire .constructs .item .degre {
   text-align: center;
   width: 135px;
 }
-.actor-root .article .laboratoire .constructs .item .degre select {
+.actor .window-content .actor-root .article .laboratoire .constructs .item .degre select {
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-.actor-root .article .laboratoire .constructs .item .substance {
+.actor .window-content .actor-root .article .laboratoire .constructs .item .substance {
   text-align: center;
   width: 80px;
 }
-.actor-root .article .laboratoire .materiae-header {
+.actor .window-content .actor-root .article .laboratoire .materiae-header {
   width: 814px;
   margin-top: 30px;
   display: flex;
@@ -2396,19 +2396,19 @@
   font-family: 'AJensonPro';
   font-size: 20px;
 }
-.actor-root .article .laboratoire .materiae-header .name {
+.actor .window-content .actor-root .article .laboratoire .materiae-header .name {
   padding-left: 5px;
   width: 100%;
   transform: translate(0px, 7px);
 }
-.actor-root .article .laboratoire .materiae-header .element {
+.actor .window-content .actor-root .article .laboratoire .materiae-header .element {
   flex: 0 0 auto;
   padding-top: 7px;
   width: 30px;
   text-align: center;
   transform: translate(0px, -5px);
 }
-.actor-root .article .laboratoire .materiae-header .quantite {
+.actor .window-content .actor-root .article .laboratoire .materiae-header .quantite {
   font-size: 14px;
   flex: 0 0 auto;
   width: 30px;
@@ -2418,7 +2418,7 @@
   border-radius: 50%;
   transform: translate(0px, -5px);
 }
-.actor-root .article .laboratoire .materiae-header .maximum {
+.actor .window-content .actor-root .article .laboratoire .materiae-header .maximum {
   font-size: 14px;
   flex: 0 0 auto;
   width: 30px;
@@ -2427,7 +2427,7 @@
   text-align: center;
   transform: translate(0px, -5px);
 }
-.actor-root .article .laboratoire .materiae-header .lastMaximum {
+.actor .window-content .actor-root .article .laboratoire .materiae-header .lastMaximum {
   font-size: 14px;
   flex: 0 0 auto;
   width: 30px;
@@ -2435,41 +2435,41 @@
   text-align: center;
   transform: translate(0px, -5px);
 }
-.actor-root .article .laboratoire .materiae-list {
+.actor .window-content .actor-root .article .laboratoire .materiae-list {
   column-count: 2;
   column-fill: balance;
   column-gap: 10%;
 }
-.actor-root .article .laboratoire .materiae-list .item {
+.actor .window-content .actor-root .article .laboratoire .materiae-list .item {
   height: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
   break-inside: avoid-column;
 }
-.actor-root .article .laboratoire .materiae-list .item .element {
+.actor .window-content .actor-root .article .laboratoire .materiae-list .item .element {
   padding-top: 3px;
   margin-left: 10px;
   margin-right: 30px;
 }
-.actor-root .article .laboratoire .materiae-list .item .item-delete {
+.actor .window-content .actor-root .article .laboratoire .materiae-list .item .item-delete {
   width: 32px;
 }
-.actor-root .article .laboratoire .materiae-list .item .item-name {
+.actor .window-content .actor-root .article .laboratoire .materiae-list .item .item-name {
   width: 100%;
 }
-.actor-root .article .laboratoire .materiae-list .item .change-quantite {
+.actor .window-content .actor-root .article .laboratoire .materiae-list .item .change-quantite {
   width: 25px;
   height: 25px;
   margin-right: 10px;
   text-align: center;
   border-radius: 50%;
 }
-.actor-root .article .laboratoire .materiae-list .item:hover {
+.actor .window-content .actor-root .article .laboratoire .materiae-list .item:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }
-.actor-root .article .laboratoire .catalyseur-header {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-header {
   width: 814px;
   margin-top: 30px;
   display: flex;
@@ -2481,32 +2481,32 @@
   font-family: 'AJensonPro';
   font-size: 20px;
 }
-.actor-root .article .laboratoire .catalyseur-header span {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-header span {
   padding-left: 5px;
 }
-.actor-root .article .laboratoire .catalyseur-list {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-list {
   column-count: 3;
   column-fill: balance;
   column-gap: 10%;
 }
-.actor-root .article .laboratoire .catalyseur-list .item {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item {
   height: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
   break-inside: avoid-column;
 }
-.actor-root .article .laboratoire .catalyseur-list .item .item-delete {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item .item-delete {
   width: 32px;
 }
-.actor-root .article .laboratoire .catalyseur-list .item .item-name {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item .item-name {
   width: 100%;
 }
-.actor-root .article .laboratoire .catalyseur-list .item:hover {
+.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }
-.actor-root .article .laboratoire .laboratoire-header {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-header {
   width: 814px;
   margin-top: 30px;
   display: flex;
@@ -2518,32 +2518,32 @@
   font-family: 'AJensonPro';
   font-size: 20px;
 }
-.actor-root .article .laboratoire .laboratoire-header span {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-header span {
   padding-left: 5px;
 }
-.actor-root .article .laboratoire .laboratoire-list {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-list {
   column-count: 1;
   column-fill: balance;
   column-gap: 10%;
 }
-.actor-root .article .laboratoire .laboratoire-list .actor {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor {
   height: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
   break-inside: avoid-column;
 }
-.actor-root .article .laboratoire .laboratoire-list .actor .actor-delete {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor .actor-delete {
   width: 32px;
 }
-.actor-root .article .laboratoire .laboratoire-list .actor .actor-active {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor .actor-active {
   width: 32px;
   padding-top: 3px;
 }
-.actor-root .article .laboratoire .laboratoire-list .actor .actor-name {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor .actor-name {
   width: 100%;
 }
-.actor-root .article .laboratoire .laboratoire-list .actor:hover {
+.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor:hover {
   text-shadow: 0 0 10px #2C606D;
   color: #2C606D;
 }
