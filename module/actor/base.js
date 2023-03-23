@@ -67,34 +67,15 @@ export class BaseSheet extends ActorSheet {
         html.find('div[data-tab="combat"] .armures .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armures .usage').click(this._onUsage.bind(this));
 
-        // WIP
+        html.find('div[data-tab="combat"] .etat input').click(this._onEffect.bind(this));
 
-
-
-        
-
-
-
-        html.find('div[data-tab="combat"] #desoriente').click(this._onEffect.bind(this, 'stun'));
-        html.find('div[data-tab="combat"] #immobilise').click(this._onEffect.bind(this, 'restrain'));
-        html.find('div[data-tab="combat"] #projete').click(this._onEffect.bind(this, 'prone'));
         html.find('div[data-tab="combat"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
     }
 
-    addMacroData(event) {
-        this._onDragStart(event);
-        let macro = {
-            process: "macro",
-            type: event.currentTarget.attributes["data-type"].value,
-            id: event.currentTarget.attributes["data-id"].value,
-            sid: event.currentTarget.attributes["data-sid"].value
-        };
-        event.dataTransfer.setData('text/plain', JSON.stringify(macro));
-    }
 
 
 
@@ -102,12 +83,8 @@ export class BaseSheet extends ActorSheet {
 
 
 
-    /**
-     * @param event The event to handle.
-     */
-    async _onEffect(id, event) {
-        this.actor.updateEffect(id);
-    }
+
+
 
 
 
@@ -254,6 +231,48 @@ export class BaseSheet extends ActorSheet {
     // --------------------------------------------------
 
     /**
+     * Add the specified macro. It can be used to:
+     *   - wrestle
+     *   - attack with a weapon
+     * @param event 
+     */
+    onAddMacro(event) {
+
+        // Retrieve basic data
+        this._onDragStart(event);
+        const node = $(event.currentTarget);
+        const type = node.data("macro");
+
+        let data = {
+            process: "macro",
+        };
+
+        switch (type) {
+
+            // A macro which used an embedded item
+            case 'item':
+                data.id = node.data("id");
+                const item = this.actor.getEmbeddedDocument('Item', data.id);
+                data.type = item.type;
+                data.sid = item.sid;
+                break;
+
+            // A combat macro used to wrestle
+            case 'wrestle':
+                data.type = type;
+                break;
+
+            default:
+                return;
+
+        }
+
+        // Add the macro
+        event.dataTransfer.setData('text/plain', JSON.stringify(data));
+
+    }
+
+    /**
      * Edit the specified embedded equipment item.
      * @param event The click event.
      */
@@ -350,6 +369,17 @@ export class BaseSheet extends ActorSheet {
         const item = this.actor.getEmbeddedDocument('Item', id);
         const action = new Distance(this.actor, item);
         await new Recharger().apply(action);
+    }
+
+    /**
+     * Toggle the specified effect which can be restrain, prone and stun.
+     * @param event The event to handle.
+     */
+    async _onEffect(event) {
+        event.preventDefault();
+        const etat = $(event.currentTarget).parents(".etat");
+        const id = etat.data("id");
+        await this.actor.updateEffect(id);
     }
 
 }

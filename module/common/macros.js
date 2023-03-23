@@ -12,6 +12,7 @@ export class Macros {
         let name = null;
         let img = null;
         switch (data.type) {
+            case 'arme':
             case 'appel':
             case 'atlanteide':
             case 'chute':
@@ -30,12 +31,11 @@ export class Macros {
             case 'tekhne':
             case 'technique':
             case 'vecu':
-            case 'weapon-attack':
                 const item = game.items.find(i => i.sid === data.sid);
                 name = item?.name;
                 img = item?.img;
                 break;
-            case 'lutte':
+            case 'wrestle':
                 name = "Lutte";
                 img = "systems/neph5e/assets/icons/lutte.webp";
                 break;

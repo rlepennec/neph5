@@ -163,42 +163,42 @@ export class FigureSheet extends HistoricalSheet {
 
         html.find('div[data-tab="vecus"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="nephilim"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="selenim"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="alchimie"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="kabbale"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="magie"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="necromancie"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
         html.find('div[data-tab="conjuration"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.addMacroData(event), false);
+            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
     }

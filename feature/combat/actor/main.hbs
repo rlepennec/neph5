@@ -288,7 +288,7 @@
 
             <ol>
 
-                <li data-id="wrestle">
+                <li class="macro" data-id="wrestle" data-macro="wrestle">
 
                     <i class="delete"></i>
 
@@ -307,7 +307,7 @@
                 {{#with actor.weapons as |weapons|}}
 
                 {{#each weapons.naturelle as |item|}}
-                <li data-id="{{item.id}}">
+                <li class="macro" data-id="{{item.id}}" data-macro="item">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -325,7 +325,7 @@
                 {{/each}}
 
                 {{#each weapons.melee as |item|}}
-                <li data-id="{{item.id}}">
+                <li class="macro" data-id="{{item.id}}" data-macro="item">
 
                     <i class="delete fas fa-trash"></i>
                     
@@ -342,7 +342,7 @@
                 {{/each}}
 
                 {{#each weapons.trait as |item|}}
-                <li data-id="{{item.id}}">
+                <li class="macro" data-id="{{item.id}}" data-macro="item">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -365,7 +365,7 @@
                 {{/each}}
 
                 {{#each weapons.feu as |item|}}
-                <li data-id="{{item.id}}">
+                <li class="macro" data-id="{{item.id}}" data-macro="item">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -504,7 +504,7 @@
 
             <ol>
 
-                <li class="etat">
+                <li class="etat" data-id="stun">
 
                     <label class="checkbox">
                         <input
@@ -521,12 +521,11 @@
 
                 </li>
 
-                <li class="etat">
+                <li class="etat" data-id="restrain">
 
                     <label class="checkbox">
                         <input
                             {{#if actor.immobilise}}checked{{/if}}
-                            id="immobilise"
                             name="immobilise"
                             type="checkbox"
                             data-dtype="Boolean"/>
@@ -538,12 +537,11 @@
 
                 </li>
 
-                <li class="etat">
+                <li class="etat" data-id="prone">
 
                     <label class="checkbox">
                         <input
                             {{#if actor.projete}}checked{{/if}}
-                            id="projete"
                             name="projete"
                             type="checkbox"
                             data-dtype="Boolean"/>

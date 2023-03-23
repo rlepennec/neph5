@@ -616,7 +616,7 @@ export class NephilimActor extends Actor {
                     .withPavane();
                 break;
             }
-            case 'weapon-attack': {
+            case 'arme': {
                 const weapon = this.items.get(id);
                 if (weapon.attackAvailable === false) {
                     ui.notifications.warn("Vous ne pouvez pas attaquer avec cette arme.");
@@ -636,7 +636,7 @@ export class NephilimActor extends Actor {
                 }
                 break;
             }
-            case 'lutte': {
+            case 'wrestle': {
                 if (this.lutteCanBePerformed) {
                     await new Wrestle(this).initializeRoll();
                 }
