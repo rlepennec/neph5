@@ -253,27 +253,29 @@
   --img-compas: url("../../systems/neph5e/assets/skins/soleil/compas.webp");
   --img-corner: url("../../systems/neph5e/assets/skins/soleil/corner.webp");
   --img-directions: url("../../systems/neph5e/assets/skins/soleil/directions.webp");
+  --img-hole: url("../../systems/neph5e/assets/skins/soleil/hole.webp");
   --img-losange: url("../../systems/neph5e/assets/skins/soleil/losange.webp");
+  --img-pin: url("../../systems/neph5e/assets/skins/soleil/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/soleil/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/soleil/separator.webp");
   --img-triangle: url("../../systems/neph5e/assets/skins/soleil/triangle.webp");
-  --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
 }
 :root.feu {
   --column-color: #ff6600;
   --active-tab-color: #ff6600;
-  --side-background: url("../../systems/neph5e/assets/skins/air/a.webp");
-  --img-triangle: url("../../systems/neph5e/assets/core/a.webp");
-  --img-article-separator: url("../../systems/neph5e/assets/core/a.webp");
-  --img-separator: url("../../systems/neph5e/assets/core/a.webp");
-  --img-puce: url("../../systems/neph5e/assets/core/a.webp");
-  --img-pin: url("../../systems/neph5e/assets/core/pin.webp");
-  --img-circle: url("../../systems/neph5e/assets/core/a.webp");
-  --img-directions: url("../../systems/neph5e/assets/core/a.webp");
-  --img-boussole: url("../../systems/neph5e/assets/core/a.webp");
-  --img-compas: url("../../systems/neph5e/assets/core/a.webp");
-  --img-losange: url("../../systems/neph5e/assets/core/a.webp");
-  --img-corner: url("../../systems/neph5e/assets/core/a.webp");
+  --side-background: url("../../systems/neph5e/assets/skins/air/side-background.webp");
+  --img-article-separator: url("../../systems/neph5e/assets/skins/air/article-separator.webp");
+  --img-boussole: url("../../systems/neph5e/assets/skins/air/boussole.webp");
+  --img-circle: url("../../systems/neph5e/assets/skins/air/circle.webp");
+  --img-compas: url("../../systems/neph5e/assets/skins/air/compas.webp");
+  --img-corner: url("../../systems/neph5e/assets/skins/air/corner.webp");
+  --img-directions: url("../../systems/neph5e/assets/skins/air/directions.webp");
+  --img-hole: url("../../systems/neph5e/assets/skins/air/hole.webp");
+  --img-losange: url("../../systems/neph5e/assets/skins/air/losange.webp");
+  --img-pin: url("../../systems/neph5e/assets/skins/air/pin.webp");
+  --img-puce: url("../../systems/neph5e/assets/skins/air/puce.webp");
+  --img-separator: url("../../systems/neph5e/assets/skins/air/separator.webp");
+  --img-triangle: url("../../systems/neph5e/assets/skins/air/triangle.webp");
 }
 .actor-root {
   display: flex;
@@ -385,6 +387,7 @@
   visibility: visible;
   opacity: 1;
   transition: visibility 0.3s, opacity 0.3s linear;
+  content: var(--img-pin);
 }
 .actor-root .side .sheet-navigation .sheet-navigation-choice .sheet-navigation-hole {
   position: absolute;
@@ -395,6 +398,7 @@
   visibility: visible;
   opacity: 1;
   transition: visibility 0.3s, opacity 0.3s linear;
+  content: var(--img-hole);
 }
 .actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
   text-shadow: 0px 0px 3px black;
