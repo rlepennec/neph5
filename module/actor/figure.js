@@ -201,6 +201,8 @@ export class FigureSheet extends HistoricalSheet {
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
+        document.documentElement.className = this.actor.system.options.theme;
+
     }
 
     async _onChangeTheme(event) {
