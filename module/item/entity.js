@@ -358,8 +358,8 @@ export class NephilimItem extends Item {
 
         switch (this.system.type) {
 
-            case 'trait':
-            case 'feu':
+            case Constants.TRAIT:
+            case Constants.FEU:
                 return this.system.tire > 0;
 
             default:
@@ -392,8 +392,8 @@ export class NephilimItem extends Item {
 
         switch (this.system.type) {
 
-            case 'trait':
-            case 'feu':
+            case Constants.TRAIT:
+            case Constants.FEU:
                 const action = new Distance(this.actor, this);
                 return new Viser().canBePerformed(action);
 
@@ -419,7 +419,7 @@ export class NephilimItem extends Item {
         if (this.actor.immobilise === true) {
             return false;
         }
-        
+
         // The actor token has selected a token target
         if (this.actor.tokenOf == null || this.actor.target == null) {
             return false;
@@ -427,19 +427,19 @@ export class NephilimItem extends Item {
 
         switch (this.system.type) {
 
-            case 'naturelle':
-            case 'melee':
-            case 'trait':
+            case Constants.NATURELLE:
+            case Constants.MELEE:
+            case Constants.TRAIT:
                 return true;
 
-            case 'feu':
-                return this.numberOfMunitionsLeft > 0;
+            case Constants.FEU:
+                return this.system.munitions - this.system.tire > 0;
 
             default:
                 return false;
 
         }
-
+        
     }
 
 }

@@ -376,7 +376,10 @@
 
                         <label class="open name">{{item.name}}</label>
 
-                        <i class="reload fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
+                        <div class="tooltip">
+                            <i class="reload fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
+                            <label class="tooltiptext">Munitions: {{minus item.system.munitions item.system.tire}}/{{item.system.munitions}}</label>
+                        </div>
 
                         <i class="aim fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
 
