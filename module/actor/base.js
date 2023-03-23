@@ -60,16 +60,18 @@ export class BaseSheet extends ActorSheet {
         html.find('div[data-tab="combat"] .armes .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armes .roll').click(this._onAttack.bind(this));
         html.find('div[data-tab="combat"] .armes .usage').click(this._onUsage.bind(this));
+        html.find('div[data-tab="combat"] .armes .aim').click(this._onAim.bind(this));
+        html.find('div[data-tab="combat"] .armes .reload').click(this._onReload.bind(this));
 
         html.find('div[data-tab="combat"] .armures .open').click(this._onEditEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armures .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armures .usage').click(this._onUsage.bind(this));
 
         // WIP
-        html.find('div[data-tab="combat"] #viser').click(this._onViser.bind(this));
 
 
-        html.find('div[data-tab="combat"] #recharger').click(this._onRecharger.bind(this));
+
+        
 
 
 
@@ -98,17 +100,7 @@ export class BaseSheet extends ActorSheet {
 
 
 
-    /**
-     * @param event The event to handle.
-     */
-    async _onViser(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const weapon = this.actor.items.get(id);
-        const action = new Distance(this.actor, weapon);
-        await new Viser().apply(action);
-    }
+
 
     /**
      * @param event The event to handle.
@@ -117,17 +109,7 @@ export class BaseSheet extends ActorSheet {
         this.actor.updateEffect(id);
     }
 
-    /**
-     * @param event The event to handle.
-     */
-    async _onRecharger(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const weapon = this.actor.items.get(id);
-        const action = new Distance(this.actor, weapon);
-        await new Recharger().apply(action);
-    }
+
 
     /**
      * Delete the specified embedded item.
@@ -342,6 +324,32 @@ export class BaseSheet extends ActorSheet {
         const id = li.data("id");
         const item = this.actor.getEmbeddedDocument('Item', id);
         await this.actor.toggleEquipmentUsage(item);
+    }
+
+    /**
+     * Aim at the specified target.
+     * @param event The event to handle.
+     */
+    async _onAim(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents("li");
+        const id = li.data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        const action = new Distance(this.actor, item);
+        await new Viser().apply(action);
+    }
+
+    /**
+     * Reload the specified fire weapon.
+     * @param event The event to handle.
+     */
+    async _onReload(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents("li");
+        const id = li.data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        const action = new Distance(this.actor, item);
+        await new Recharger().apply(action);
     }
 
 }
