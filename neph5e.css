@@ -551,6 +551,7 @@
   flex-direction: row;
   height: 19px;
   width: 30px;
+  margin-left: 70px;
 }
 .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox {
   flex: 0 0 auto;
@@ -944,7 +945,7 @@
 .actor-root .article .article-body .combat .right .etats .etat .checkbox {
   margin-left: 22px;
   margin-right: 20px;
-  padding-top: 3px;
+  padding-top: -5px;
   font-size: 11px;
   flex: 0 0 auto;
 }

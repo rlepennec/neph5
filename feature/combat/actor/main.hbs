@@ -347,20 +347,15 @@
                         <i class="delete fas fa-trash"></i>
 
                         <label class="open name">{{item.name}}</label>
-                        <!--
-                        <div class="tooltip">
-                            <i class="reload fas fa-spinner {{#if (or (isNull ../actor.tokenOf) (not item.system.used) (eq item.system.tire 0) ../actor.immobilise)}}grey{{/if}}"></i>
-                            <span class="tooltiptext">Munitions: {{item.numberOfMunitionsLeft}}/{{item.system.munitions}}</span>
-                        </div>
 
-                        <div class="tooltip">
-                            <i class="viser fas fa-crosshairs {{#if (or (not item.system.used) (eq item.numberOfMunitionsLeft 0) (eq item.aimAvailable false) ../actor.immobilise)}}grey{{/if}}"></i>
-                            <span class="tooltiptext">Visée: {{item.system.visee}}/3</span>
-                        </div>
--->
-                        <i class="reload fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
+                        <i class="reload"></i>
 
-                        <i class="aim fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
+                        <div class="tooltip aim">
+                            <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
+                            <div class="tooltiptext">
+                                <label>Visée: {{item.system.visee}}/3</label>
+                            </div>
+                        </div>
 
                         <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
@@ -376,12 +371,19 @@
 
                         <label class="open name">{{item.name}}</label>
 
-                        <div class="tooltip">
-                            <i class="reload fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
-                            <label class="tooltiptext">Munitions: {{minus item.system.munitions item.system.tire}}/{{item.system.munitions}}</label>
+                        <div class="tooltip reload">
+                            <i class="fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
+                            <div class="tooltiptext">
+                                <label>Munitions: {{minus item.system.munitions item.system.tire}}/{{item.system.munitions}}</label>
+                            </div>
                         </div>
 
-                        <i class="aim fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
+                        <div class="tooltip aim">
+                            <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
+                            <div class="tooltiptext">
+                                <label>Visée: {{item.system.visee}}/3</label>
+                            </div>
+                        </div>
 
                         <i class="roll fas fa-dice-d20 {{#if (eq item.attackAvailable false) }}grey{{/if}}"></i>
 
