@@ -7,7 +7,7 @@
             <img class='triangle'/>
 
             <ol>
-
+<!--
                 <li>{{localize "NEPH5E.dommages"}}</li>
 
                 <li>{{localize "NEPH5E.mineure"}}</li>
@@ -17,20 +17,229 @@
                 <li>{{localize "NEPH5E.grave"}}</li>
 
                 <li>{{localize "NEPH5E.mortelle"}}</li>
-
+-->
             </ol>
 
             <div class="header">
 
-                    <img class="puce"/>
+                <img class="puce"/>
 
-                    <img class="separator physique"/>
+                <img class="separator physique"/>
 
-                    <span class="name physique">{{localize "NEPH5E.physique"}}</span>
+                <span class="name physique">{{localize "NEPH5E.physique"}}</span>
 
-                    <img class="separator magique"/>
+                <img class="separator magique"/>
 
-                    <span class="name magique">{{localize "NEPH5E.magique"}}</span>
+                <span class="name magique">{{localize "NEPH5E.magique"}}</span>
+
+            </div>
+<!--
+            <div class="dommage">
+
+                {{#if (gt system.ka.terre 9)}}
+                <label class="checkbox physique n1 tooltip">
+                    <span class="tooltiptext">1</span>
+                    <input
+                        {{#if system.dommage.physique._5}}checked{{/if}}
+                        name="system.dommage.physique._5"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+                {{/if}}
+
+                {{#if (gt system.ka.terre 4)}}
+                <label class="checkbox physique n1 tooltip">
+                    <span class="tooltiptext">1</span>
+                    <input
+                        {{#if system.dommage.physique._4}}checked{{/if}}
+                        name="system.dommage.physique._4"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+                {{/if}}
+
+                <label class="checkbox physique n3 tooltip">
+                    <span class="tooltiptext">3</span>
+                    <input
+                        {{#if system.dommage.physique._3}}checked{{/if}}
+                        name="system.dommage.physique._3"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="checkbox physique n2 tooltip">
+                    <span class="tooltiptext">2</span>
+                    <input
+                        {{#if system.dommage.physique._2}}checked{{/if}}
+                        name="system.dommage.physique._2"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="checkbox physique n1 tooltip">
+                    <span class="tooltiptext">1</span>
+                    <input
+                        {{#if system.dommage.physique._1}}checked{{/if}}
+                        name="system.dommage.physique._1"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="title">{{localize "NEPH5E.mineure"}}</label>
+
+                <label class="checkbox magique n1 tooltip">
+                    <span class="tooltiptext">1</span>
+                    <input
+                        {{#if system.dommage.magique._1}}checked{{/if}}
+                        name="system.dommage.magique._1"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="checkbox magique n2 tooltip">
+                    <span class="tooltiptext">2</span>
+                    <input
+                        {{#if system.dommage.magique._2}}checked{{/if}}
+                        name="system.dommage.magique._2"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="checkbox magique n3 tooltip">
+                    <span class="tooltiptext">3</span>
+                    <input
+                        {{#if system.dommage.magique._3}}checked{{/if}}
+                        name="system.dommage.magique._3"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+            </div>
+-->
+
+            <div class="mineure">
+
+                <label class="checkbox tooltip physique">
+                    <span class="tooltiptext">2</span>
+                    <input
+                        {{#if system.dommage.physique.mineure}}checked{{/if}}
+                        name="system.dommage.physique.mineure"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="title">{{localize "NEPH5E.mineure"}}</label>
+
+                <label class="checkbox tooltip magique">
+                    <span class="tooltiptext">2</span>
+                    <input
+                        {{#if system.dommage.magique.mineure}}checked{{/if}}
+                        name="system.dommage.magique.mineure"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+            </div>
+
+            <div class="serieuse">
+
+                <label class="checkbox tooltip physique">
+                    <span class="tooltiptext">4</span>
+                    <input
+                        {{#if system.dommage.physique.serieuse}}checked{{/if}}
+                        name="system.dommage.physique.serieuse"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="title">{{localize "NEPH5E.serieuse"}}</label>
+
+                <label class="checkbox tooltip magique">
+                    <span class="tooltiptext">4</span>
+                    <input
+                        {{#if system.dommage.magique.serieuse}}checked{{/if}}
+                        name="system.dommage.magique.serieuse"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+            </div>
+
+            <div class="grave">
+
+                <label class="checkbox tooltip physique">
+                    <span class="tooltiptext">6</span>
+                    <input
+                        {{#if system.dommage.physique.grave}}checked{{/if}}
+                        name="system.dommage.physique.grave"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="title">{{localize "NEPH5E.grave"}}</label>
+
+                <label class="checkbox tooltip magique">
+                    <span class="tooltiptext">6</span>
+                    <input
+                        {{#if system.dommage.magique.grave}}checked{{/if}}
+                        name="system.dommage.magique.grave"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+            </div>
+
+            <div class="mortelle">
+
+                <label class="checkbox tooltip physique">
+                    <input
+                        {{#if system.dommage.physique.mortelle}}checked{{/if}}
+                        name="system.dommage.physique.mortelle"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
+
+                <label class="title">{{localize "NEPH5E.mortelle"}}</label>
+
+                <label class="checkbox tooltip magique">
+                    <input
+                        {{#if system.dommage.magique.mortelle}}checked{{/if}}
+                        name="system.dommage.magique.mortelle"
+                        type="checkbox"
+                        data-dtype="Boolean"/>
+                    <i class="far fa-circle unchecked"></i>
+                    <i class="fas fa-circle checked"></i>
+                </label>
 
             </div>
 
@@ -47,6 +256,12 @@
                 
                 <ol class="body">
 
+
+
+
+
+
+<!--
                     <li class="checkboxes">
 
                         {{#if (gt system.ka.terre 9)}}
@@ -122,44 +337,9 @@
                             <i class="fas fa-circle checked"></i>
                         </label>
                     </li>
+-->
 
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <span class="tooltiptext">4</span>
-                            <input
-                                {{#if system.dommage.physique.serieuse}}checked{{/if}}
-                                name="system.dommage.physique.serieuse"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
 
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <span class="tooltiptext">6</span>
-                            <input
-                                {{#if system.dommage.physique.grave}}checked{{/if}}
-                                name="system.dommage.physique.grave"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
-
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <input
-                                {{#if system.dommage.physique.mortelle}}checked{{/if}}
-                                name="system.dommage.physique.mortelle"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
 
                 </ol>
 
@@ -176,7 +356,7 @@
                 </div>
 
                 <ol class="body">
-
+<!--
                     <li class="checkboxes">
 
                         <label class="checkbox n1 tooltip">
@@ -226,44 +406,7 @@
                             <i class="fas fa-circle checked"></i>
                         </label>
                     </li>
-
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <span class="tooltiptext">4</span>
-                            <input
-                                {{#if system.dommage.magique.serieuse}}checked{{/if}}
-                                name="system.dommage.magique.serieuse"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
-
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <span class="tooltiptext">6</span>
-                            <input
-                                {{#if system.dommage.magique.grave}}checked{{/if}}
-                                name="system.dommage.magique.grave"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
-
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <input
-                                {{#if system.dommage.magique.mortelle}}checked{{/if}}
-                                name="system.dommage.magique.mortelle"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
+-->
 
                 </ol>
 

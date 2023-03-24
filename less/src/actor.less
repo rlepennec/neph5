@@ -273,7 +273,8 @@
                                     margin-left: -100px;
                                     content: var(--img-triangle)
                                 }
-        
+
+                                /*
                                 >ol {
                                     position: absolute;
                                     display: flex;
@@ -291,9 +292,9 @@
                                     }
         
                                 }
+                                */
         
                                 .header {
-
                                     display: flex;
                                     flex-direction: row;
                                     margin-right: 10px;
@@ -345,6 +346,155 @@
 
                                 }
 
+                                .checkbox {
+                                    flex: 0 0 auto;
+                                    width: 34px;
+                                    
+                                    .checked {
+                                        display: none;
+                                    }
+            
+                                    input[type="checkbox"] {
+                                        display:none;
+                                    }
+            
+                                    input[type="checkbox"]:checked ~ .checked {
+                                        display: inline-block;
+                                    }
+                                    
+                                    input[type="checkbox"]:checked ~ .unchecked {
+                                        display: none;
+                                    }
+                                }
+
+                                .checkbox.n1  {
+                                    font-size: 11px;
+                                    .tooltiptext {
+                                        font-size: 11px;
+                                    }
+                                }
+
+                                .checkbox.n2  {
+                                    font-size: 16px;
+                                    .tooltiptext {
+                                        font-size: 11px;
+                                    }
+                                }
+
+                                .checkbox.n3  {
+                                    font-size: 20px;
+                                    .tooltiptext {
+                                        font-size: 11px;
+                                    }
+                                }
+
+                                .mineure {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+                                    
+                                    .checkbox.physique {
+                                        position: absolute;
+                                        top: 56px;
+                                        left: calc(50% - 45px);
+                                    }
+
+                                    .title {
+                                        position: absolute;
+                                        top: 54px;
+                                        left: calc(50% - 27px);
+                                        font-size: 16px;
+                                    }
+
+                                    .checkbox.magique {
+                                        position: absolute;
+                                        top: 56px;
+                                        left: calc(50% + 38px);
+                                    }
+
+                                }
+
+                                .serieuse {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+                                    
+                                    .checkbox.physique {
+                                        position: absolute;
+                                        top: 76px;
+                                        left: calc(50% - 45px);
+                                    }
+
+                                    .title {
+                                        position: absolute;
+                                        top: 74px;
+                                        left: calc(50% - 27px);
+                                        font-size: 16px;
+                                    }
+
+                                    .checkbox.magique {
+                                        position: absolute;
+                                        top: 76px;
+                                        left: calc(50% + 38px);
+                                    }
+
+                                }
+
+                                .grave {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+                                    
+                                    .checkbox.physique {
+                                        position: absolute;
+                                        top: 96px;
+                                        left: calc(50% - 45px);
+                                    }
+
+                                    .title {
+                                        position: absolute;
+                                        top: 94px;
+                                        left: calc(50% - 27px);
+                                        font-size: 16px;
+                                    }
+
+                                    .checkbox.magique {
+                                        position: absolute;
+                                        top: 96px;
+                                        left: calc(50% + 38px);
+                                    }
+
+                                }
+
+                                .mortelle {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+                                    
+                                    .checkbox.physique {
+                                        position: absolute;
+                                        top: 116px;
+                                        left: calc(50% - 45px);
+                                    }
+
+                                    .title {
+                                        position: absolute;
+                                        top: 114px;
+                                        left: calc(50% - 27px);
+                                        font-size: 16px;
+                                    }
+
+                                    .checkbox.magique {
+                                        position: absolute;
+                                        top: 116px;
+                                        left: calc(50% + 38px);
+                                    }
+
+                                }
 
                                 .physiques {
                                     position: absolute;
