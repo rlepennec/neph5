@@ -590,6 +590,9 @@
   margin-left: 6px;
   color: indianred;
 }
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute:hover {
+  text-shadow: 0px 0px 3px black;
+}
 .actor .window-content .actor-root .article .article-body .nephilim .right {
   display: flex;
   flex-direction: column;
