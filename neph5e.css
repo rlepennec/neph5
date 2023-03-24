@@ -704,6 +704,9 @@
 .actor .window-content .actor-root .article .article-body .nephilim .right .attributs .attribut:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor .window-content .actor-root .article .article-body .nephilim .right .stase.header-with-value {
+  margin-bottom: 10px;
+}
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase.header-with-value .name {
   font-size: 16px;
 }

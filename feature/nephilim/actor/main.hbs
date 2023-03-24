@@ -448,6 +448,29 @@
 
         </ol>
 
+        <div class="stase header-with-value">
+
+            <img class="circle"/>
+
+            <input
+                class="degre"
+                name="system.stase.ka"
+                type="text"
+                value="{{system.stase.ka}}"
+                data-dtype="Number"/>
+
+            <img class="separator"/>
+
+            <input
+                class="name"
+                name="system.stase.description"
+                type="text"
+                value="{{system.stase.description}}"
+                data-dtype="String"
+                placeholder="Stase"/>
+
+        </div>
+
         {{#with actor.metamorphe as |item|}}
         <div class="header-with-value">
 
@@ -482,37 +505,20 @@
         </ol>
         {{/with}}
 
-        <div class="stase header-with-value">
+        {{#with actor.arcanes as |items|}}
+        {{#unless (isEmptyCollection items)}}
+        <div class="header">
 
-            <img class="circle"/>
-
-            <input
-                class="degre"
-                name="system.stase.ka"
-                type="text"
-                value="{{system.stase.ka}}"
-                data-dtype="Number"/>
+            <img class="puce"/>
 
             <img class="separator"/>
 
-            <input
-                class="name"
-                name="system.stase.description"
-                type="text"
-                value="{{system.stase.description}}"
-                data-dtype="String"
-                placeholder="Stase"/>
+            <label class="name">{{localize "NEPH5E.arcanes"}}</label>
 
         </div>
+        {{/unless}}
+        {{/with}}
 
-
-
-
-
-<!--
-
-        {{> "systems/neph5e/feature/nephilim/actor/arcane.hbs"}}
--->
     </div>
 
 </div>
