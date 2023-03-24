@@ -483,6 +483,9 @@
   position: absolute;
   font-size: 16px;
 }
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .line:hover {
+  text-shadow: 0px 0px 1px black;
+}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header {
   font-size: 21px;
   font-family: 'AJensonPro';
