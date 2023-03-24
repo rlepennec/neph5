@@ -317,7 +317,7 @@
                     <div class="tooltip aim">
                         <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
                         <div class="tooltiptext">
-                            <label>Visée: {{item.system.visee}}/3</label>
+                            <label>Le nombre de round de visée est de {{item.system.visee}} sur 3.</label>
                         </div>
                     </div>
 
@@ -338,14 +338,14 @@
                     <div class="tooltip reload">
                         <i class="fas fa-spinner {{#if (eq item.reloadAvailable false) }}grey{{/if}}"></i>
                         <div class="tooltiptext">
-                            <label>Munitions: {{minus item.system.munitions item.system.tire}}/{{item.system.munitions}}</label>
+                            <label>Le nombre de munitions de l'arme est de {{minus item.system.munitions item.system.tire}} sur {{item.system.munitions}}.</label>
                         </div>
                     </div>
 
                     <div class="tooltip aim">
                         <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}grey{{/if}}"></i>
                         <div class="tooltiptext">
-                            <label>Visée: {{item.system.visee}}/3</label>
+                            <label>Le nombre de round de visée est de {{item.system.visee}} sur 3.</label>
                         </div>
                     </div>
 
