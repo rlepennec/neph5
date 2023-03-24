@@ -125,6 +125,15 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="combat"] .capacites .esquive').click(this._onEditCapacity.bind(this, 'esquive'));
         html.find('div[data-tab="combat"] .capacites .lutte').click(this._onEditCapacity.bind(this, 'lutte'));
 
+        // Nephilim
+        html.find('div[data-tab="nephilim"] .khaiba').click(this._onChute.bind(this, 'khaiba'));
+        html.find('div[data-tab="nephilim"] .narcose').click(this._onChute.bind(this, 'narcose'));
+        html.find('div[data-tab="nephilim"] .ombre').click(this._onChute.bind(this, 'ombre'));
+        html.find('div[data-tab="nephilim"] .luneNoire').click(this._onChute.bind(this, 'luneNoire'));
+        html.find('div[data-tab="nephilim"] .formed').click(this._onToggleMetamorphose.bind(this, 'formed'));
+        html.find('div[data-tab="nephilim"] .visible').click(this._onToggleMetamorphose.bind(this, 'visible'));
+        html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
+
 
 
 
@@ -142,16 +151,10 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="laboratoire"] .actor-name').click(this._onActiveLaboratory.bind(this));
         
         // Nephilim
-        html.find('div[data-tab="nephilim"] .formed').click(this._onToggleFormed.bind(this));
-        html.find('div[data-tab="nephilim"] .visible').click(this._onToggleVisible.bind(this));
-        html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
         html.find('div[data-tab="nephilim"] .edit-arcane').click(this._onEditFeature.bind(this, 'arcane'));
         //html.find('div[data-tab="nephilim"] .roll-arcane').click(this._onRollFeature.bind(this, 'arcane'));
         //html.find('div[data-tab="nephilim"] .roll-ka').click(this._onRollFeature.bind(this, 'ka'));
-        html.find('div[data-tab="nephilim"] .khaiba').click(this._onKhaiba.bind(this));
-        html.find('div[data-tab="nephilim"] .narcose').click(this._onNarcose.bind(this));
-        html.find('div[data-tab="nephilim"] .ombre').click(this._onOmbre.bind(this));
-        html.find('div[data-tab="nephilim"] .luneNoire').click(this._onLuneNoire.bind(this));
+
 
         // Selenim
         html.find('div[data-tab="selenim"] .edit-aspect').click(this._onEditFeature.bind(this, 'aspect'));
@@ -397,36 +400,25 @@ export class FigureSheet extends HistoricalSheet {
         }
     }
 
-    // -- COMBAT-- ------------------------------------------------------------------------
-
-
-
-    // -- IMAGO -----------------------------------------------------------------------------
-
     /**
      * Set the specified metamorphose to be formed or not.
+     * @param property The property to toggle, formed or visible.
      * @param event The click event.
      */
-    async _onToggleFormed(event) {
+    async _onToggleMetamorphose(property, event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".formed").data("id");
+        const id = $(event.currentTarget).closest(".metamorphose").data("id");
         const item = game.items.get(id);
-        const index = $(event.currentTarget).closest(".formed").data("index");
-        await new FeatureBuilder(this.actor).withOriginalItem(item.sid).create().toggleFormed(index);
-    }
-
-    // -- METAMORPHE ------------------------------------------------------------------------
-
-    /**
-     * Set the specified metamorphose to be visible or not.
-     * @param event The click event.
-     */
-    async _onToggleVisible(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".visible").data("id");
-        const item = game.items.get(id);
-        const index = $(event.currentTarget).closest(".visible").data("index");
-        await new FeatureBuilder(this.actor).withOriginalItem(item.sid).create().toggleVisible(index);
+        const index = $(event.currentTarget).closest(".metamorphose").data("index");
+        const feature = new FeatureBuilder(this.actor).withOriginalItem(item.sid).create()
+        switch (property) {
+            case 'formed':
+                await feature.toggleFormed(index);
+                return;
+            case 'visible':
+                await feature.toggleVisible(index);
+                return;
+        }  
     }
 
     /**
@@ -443,51 +435,38 @@ export class FigureSheet extends HistoricalSheet {
     // -- CHUTES ------------------------------------------------------------------------
 
     /**
-     * Set the specified khaiba.
+     * Set the specified chute.
+     * @param type  The type of chute to set: khaiba, narcose, ombre, luneNoire.
      * @param event The click event.
      */
-    async _onKhaiba(event) {
-        event.preventDefault();
-        if (this.actor.system.periode != null) {
-            const chute = Chute.getKhaiba(this.actor);
-            await this._onChute(event, 'khaiba', chute.degre, true);
-        }
-    }
+    async _onChute(type, event) {
 
-    /**
-     * Set the specified narcose.
-     * @param event The click event.
-     */
-     async _onNarcose(event) {
         event.preventDefault();
-        if (this.actor.system.periode != null) {
-            const chute = Chute.getNarcose(this.actor);
-            await this._onChute(event, 'narcose', chute.degre, false);
-        }
-    }
 
-    /**
-     * Set the specified ombre.
-     * @param event The click event.
-     */
-     async _onOmbre(event) {
-        event.preventDefault();
-        if (this.actor.system.periode != null) {
-            const chute = Chute.getOmbre(this.actor);
-            await this._onChute(event, 'ombre', chute.degre, false);
+        if (this.actor.system.periode == null) {
+            return;
         }
-    }
 
-    /**
-     * Set the specified lune noire.
-     * @param event The click event.
-     */
-    async _onLuneNoire(event) {
-        event.preventDefault();
-        if (this.actor.system.periode != null) {
-            const chute = Chute.getLuneNoire(this.actor);
-            await this._onChute(event, 'luneNoire', chute.degre, false);
+        let chute = null;
+        switch (type) {
+            case 'khaiba':
+                chute = Chute.getKhaiba(this.actor);
+                break;
+            case 'narcose':
+                chute = Chute.getNarcose(this.actor);
+                break;
+            case 'ombre':
+                chute = Chute.getOmbre(this.actor);
+                break;
+            case 'luneNoire':
+                chute = Chute.getLuneNoire(this.actor);
+                break;
+            default:
+                return;
         }
+
+        await this._onDegreChute(event, type, chute.degre, true);
+
     }
 
     /**
@@ -496,7 +475,7 @@ export class FigureSheet extends HistoricalSheet {
      * @param key   The key of the chute item.
      * @param degre The degre of the chute to set.
      */
-    async _onChute(event, key, degre, find) {
+    async _onDegreChute(event, key, degre, find) {
 
         // Retrieve the degre on which the user has clicked
         const id = $(event.currentTarget).closest("." + key).data("id");

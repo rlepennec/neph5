@@ -289,6 +289,56 @@
 
                         }
 
+                        .header-with-value {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-bottom: -10px;
+
+                            .circle {
+                                border: none;
+                                width: 60px;
+                                height: 65px;
+                                background-color: transparent;
+                                content: var(--img-circle);
+                            }
+
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 70px;
+                                top: 46px;
+                                width: 100%;
+                                content: var(--img-separator);
+                            }
+
+                            .degre {
+                                position: absolute;
+                                width: 45px;
+                                height: 45px;
+                                left: 8px;
+                                top: 10px;
+                                text-align: center;
+                                font-weight: bold;
+                                padding-top: 12px;
+                                border-radius: 50%;
+                            }
+
+                            .name {
+                                display: flex;
+                                flex-direction: row;
+                                position: absolute;
+                                left: 70px;
+                                top: 17px;
+                                text-align: center;
+                                flex: 1 1 auto;
+                            }
+
+                        }
+
                         .left {
                             display: flex;
                             flex-direction: column;
@@ -432,8 +482,28 @@
                         .right {
                             display: flex;
                             flex-direction: column;
-                            width: 314px;
+                            margin-left: 40px;
+                            margin-right: 20px;
+                            width: calc(100% - 580px);
+
+                            .metamorphoses {
         
+                                .metamorphose {
+                                    margin-left: 10px;
+                                    margin-bottom: 10px;
+                                    list-style: none;
+                
+                                    .formed {
+                                        width: 30px;
+                                    }
+
+
+                
+                                }
+                
+                            }
+
+
                             .stase {
         
                                 .sectionRow {
@@ -452,6 +522,7 @@
                                             border: none;
                                             background-color: transparent;
                                         }
+
                                     }
         
                                 }
