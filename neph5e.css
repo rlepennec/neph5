@@ -914,6 +914,7 @@
 .actor .window-content .actor-root .article .article-body .combat .right .etats {
   font-family: 'AJensonPro';
   font-size: 16px;
+  margin-top: -13px;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .etats .etat {
   display: flex;
