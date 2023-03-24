@@ -813,6 +813,7 @@ export class NephilimActor extends Actor {
     }
 
     /**
+     * @param type The type of wounds to take into account, physical or magical.
      * @returns the wounds modifier.
      */
     getWoundsModifier(type) {
@@ -825,6 +826,14 @@ export class NephilimActor extends Actor {
             }
         }
         return modifier;
+    }
+
+    get physicalModifier() {
+        return this.getWoundsModifier(Constants.PHYSICAL);
+    }
+
+    get magicalModifier() {
+        return this.getWoundsModifier(Constants.MAGICAL);
     }
 
     getSentence(quality, self) {

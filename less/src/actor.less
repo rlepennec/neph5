@@ -306,85 +306,79 @@
                                         content: var(--img-puce);
                                     }
 
-                                    .separator.physique {
+                                    .separator {
                                         position: absolute;
                                         border: none;
                                         height: 4px;
                                         top: 33px;
-                                        width: calc(50% - 99px);
-                                        left: 57px;
                                         content: var(--img-separator);
-                                    }
-    
-                                    .name.physique {
-                                        position: absolute;
-                                        top: 2px;
-                                        width: calc(100% - 65px);
-                                        left: 70px;
+
+                                        &.physique {
+                                            width: calc(50% - 99px);
+                                            left: 57px;
+                                        }
+
+                                        &.magique {
+
+                                            width: calc(50% - 30px);
+                                            left: calc(50% + 45px);
+                                        }
                                     }
 
-                                    .separator.magique {
-                                        position: absolute;
-                                        border: none;
-                                        height: 4px;
-                                        top: 32px;
-                                        width: calc(50% - 30px);
-                                        left: calc(50% + 45px);
-                                        content: var(--img-separator);
-                                    }
-    
-                                    .name.magique {
+                                    .name {
                                         position: absolute;
                                         top: 2px;
-                                        width: calc(100% - 65px);
-                                        left: 65px;
-                                        text-align: right;
-                                    }
 
-                                    .circle.physique {
+                                        &.physique {
+                                            width: calc(100% - 65px);
+                                            left: 70px;
+                                        }
+
+                                        &.magique {
+                                            width: calc(100% - 65px);
+                                            left: 65px;
+                                            text-align: right;
+                                        }
+
+                                    }
+   
+                                    .circle {
                                         position: absolute;
                                         display: block;
                                         border: none;
                                         width: 80px;
                                         height: 85px;
                                         top: 81px;
-                                        left: calc(50% - 214px);
                                         background-color: transparent;
                                         content: var(--img-circle);
+
+                                        &.physique {
+                                            left: calc(50% - 214px);
+                                        }
+
+                                        &.magique {
+                                            left: calc(50% - -141px);
+                                        }
+
                                     }
-    
-                                    .modifier.physique {
+
+                                    .modifier {
                                         position: absolute;
                                         display: block;
                                         width: 67px;
                                         top: 113px;
-                                        left: calc(50% - 207px);
                                         text-align: center;
                                         font-size: 19px;
-                                    }
 
-                                    .circle.magique {
-                                        position: absolute;
-                                        display: block;
-                                        border: none;
-                                        width: 80px;
-                                        height: 85px;
-                                        top: 81px;
-                                        left: calc(50% - -141px);
-                                        background-color: transparent;
-                                        content: var(--img-circle);
-                                    }
+                                        &.physique {
+                                            left: calc(50% - 207px);
+                                        }
     
-                                    .modifier.magique {
-                                        position: absolute;
-                                        display: block;
-                                        top: 113px;
-                                        width: 67px;
-                                        left: calc(50% + 135px);
-                                        text-align: right;
-                                        font-size: 19px;
-                                    }
+                                        &.magique {
+                                            left: calc(50% + 149px);
+                                        }
 
+                                    }
 
                                 }
 

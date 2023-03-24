@@ -501,76 +501,63 @@
   background-color: transparent;
   content: var(--img-puce);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator.physique {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator {
   position: absolute;
   border: none;
   height: 4px;
   top: 33px;
-  width: calc(50% - 99px);
-  left: 57px;
   content: var(--img-separator);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .name.physique {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator.physique {
+  width: calc(50% - 99px);
+  left: 57px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator.magique {
+  width: calc(50% - 30px);
+  left: calc(50% + 45px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .name {
   position: absolute;
   top: 2px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .name.physique {
   width: calc(100% - 65px);
   left: 70px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator.magique {
-  position: absolute;
-  border: none;
-  height: 4px;
-  top: 32px;
-  width: calc(50% - 30px);
-  left: calc(50% + 45px);
-  content: var(--img-separator);
-}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header .name.magique {
-  position: absolute;
-  top: 2px;
   width: calc(100% - 65px);
   left: 65px;
   text-align: right;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle.physique {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle {
   position: absolute;
   display: block;
   border: none;
   width: 80px;
   height: 85px;
   top: 81px;
-  left: calc(50% - 214px);
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .modifier.physique {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle.physique {
+  left: calc(50% - 214px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle.magique {
+  left: calc(50% - -141px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .modifier {
   position: absolute;
   display: block;
   width: 67px;
   top: 113px;
-  left: calc(50% - 207px);
   text-align: center;
   font-size: 19px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle.magique {
-  position: absolute;
-  display: block;
-  border: none;
-  width: 80px;
-  height: 85px;
-  top: 81px;
-  left: calc(50% - -141px);
-  background-color: transparent;
-  content: var(--img-circle);
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .modifier.physique {
+  left: calc(50% - 207px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header .modifier.magique {
-  position: absolute;
-  display: block;
-  top: 113px;
-  width: 67px;
-  left: calc(50% + 135px);
-  text-align: right;
-  font-size: 19px;
+  left: calc(50% + 149px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox {
   flex: 0 0 auto;
