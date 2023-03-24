@@ -488,6 +488,50 @@
   text-align: center;
   list-style: none;
 }
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .puce {
+  border: none;
+  width: 60px;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator.physique {
+  position: absolute;
+  border: none;
+  height: 4px;
+  top: 33px;
+  width: calc(50% - 99px);
+  left: 57px;
+  content: var(--img-separator);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .name.physique {
+  position: absolute;
+  top: 2px;
+  width: calc(100% - 65px);
+  left: 70px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .separator.magique {
+  position: absolute;
+  border: none;
+  height: 4px;
+  top: 32px;
+  width: calc(50% - 30px);
+  left: calc(50% + 45px);
+  content: var(--img-separator);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .name.magique {
+  position: absolute;
+  top: 2px;
+  width: calc(100% - 65px);
+  left: 65px;
+  text-align: right;
+}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques {
   position: absolute;
   display: flex;
@@ -515,37 +559,6 @@
   text-align: center;
   font-family: 'AJensonPro';
   font-size: 19px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  font-family: 'AJensonPro';
-  font-size: 21px;
-  margin-top: 15px;
-  margin-bottom: -10px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header .puce {
-  position: absolute;
-  border: none;
-  width: 60px;
-  background-color: transparent;
-  content: var(--img-puce);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header .separator {
-  position: absolute;
-  border: none;
-  height: 4px;
-  top: 32px;
-  width: calc(100% - 95px);
-  left: 55px;
-  content: var(--img-separator);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .header .name {
-  position: absolute;
-  top: 2px;
-  width: calc(100% - 65px);
-  left: 70px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body {
   position: relative;
@@ -610,31 +623,6 @@
   flex-direction: column;
   width: 50%;
   left: 50%;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .header {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  font-family: 'AJensonPro';
-  font-size: 21px;
-  margin-top: 15px;
-  margin-bottom: -10px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .header .separator {
-  position: absolute;
-  border: none;
-  height: 4px;
-  top: 32px;
-  width: calc(100% - 30px);
-  left: 45px;
-  content: var(--img-separator);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .header .name {
-  position: absolute;
-  top: 2px;
-  width: calc(100% - 65px);
-  left: 65px;
-  text-align: right;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .modifier .circle {
   position: absolute;

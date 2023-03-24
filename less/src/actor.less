@@ -292,6 +292,60 @@
         
                                 }
         
+                                .header {
+
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+
+                                    .puce {
+                                        border: none;
+                                        width: 60px;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                    }
+
+                                    .separator.physique {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        top: 33px;
+                                        width: calc(50% - 99px);
+                                        left: 57px;
+                                        content: var(--img-separator);
+                                    }
+    
+                                    .name.physique {
+                                        position: absolute;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                        left: 70px;
+                                    
+                                    }
+
+                                    .separator.magique {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        top: 32px;
+                                        width: calc(50% - 30px);
+                                        left: calc(50% + 45px);
+                                        content: var(--img-separator);
+                                    }
+    
+                                    .name.magique {
+                                        position: absolute;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                        left: 65px;
+                                        text-align: right;
+                                    }
+
+                                }
+
+
                                 .physiques {
                                     position: absolute;
                                     display: flex;
@@ -324,44 +378,7 @@
                                             font-size: 19px;
                                         }
                                     }
-        
-                                    .header {
-                                        display: flex;
-                                        flex-direction: row;
-                                        position: relative;
-                                        font-family: 'AJensonPro';
-                                        font-size: 21px;
-                                        margin-top: 15px;
-                                        margin-bottom: -10px;
-        
-                                        .puce {
-                                            position: absolute;
-                                            border: none;
-                                            width: 60px;
-                                            background-color: transparent;
-                                            content: var(--img-puce);
-                                        }
-        
-                                        .separator {
-                                            position: absolute;
-                                            border: none;
-                                            height: 4px;
-                                            top: 32px;
-                                            width: calc(100% - 95px);
-                                            left: 55px;
-                                            content: var(--img-separator);
-                                        
-                                        }
-        
-                                        .name {
-                                            position: absolute;
-                                            top: 2px;
-                                            width: calc(100% - 65px);
-                                            left: 70px;
-                                        
-                                        }
-                                    }
-        
+                
                                     .body {
                                         position: relative;
                                         top: 56px;
@@ -443,36 +460,7 @@
                                     flex-direction: column;
                                     width: 50%;
                                     left: 50%;
-        
-                                    .header {
-                                        display: flex;
-                                        flex-direction: row;
-                                        position: relative;
-                                        font-family: 'AJensonPro';
-                                        font-size: 21px;
-                                        margin-top: 15px;
-                                        margin-bottom: -10px;
-        
-                                        .separator {
-                                            position: absolute;
-                                            border: none;
-                                            height: 4px;
-                                            top: 32px;
-                                            width: calc(100% - 30px);
-                                            left: 45px;
-                                            content: var(--img-separator);
-                                        }
-        
-                                        .name {
-                                            position: absolute;
-                                            top: 2px;
-                                            width: calc(100% - 65px);
-                                            left: 65px;
-                                            text-align: right;
-                                        }
-        
-                                    }
-        
+                
                                     .modifier {
         
                                         .circle {
