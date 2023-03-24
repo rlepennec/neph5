@@ -479,6 +479,10 @@
   margin-right: 10px;
   font-family: 'AJensonPro';
 }
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .line .title {
+  position: absolute;
+  font-size: 16px;
+}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header {
   font-size: 21px;
 }
@@ -607,9 +611,13 @@
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n5 .tooltiptext {
   font-size: 11px;
 }
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .title {
+  top: 45px;
+  left: calc(50% - 27px);
+}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox {
   position: absolute;
-  top: 56px;
+  top: 44px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n5 {
   left: calc(50% - 165px);
@@ -635,15 +643,13 @@
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique.n3 {
   left: calc(50% + 98px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .title {
-  position: absolute;
-  top: 34px;
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .title {
+  top: 70px;
   left: calc(50% - 27px);
-  font-size: 16px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox {
   position: absolute;
-  top: 56px;
+  top: 59px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox.physique {
   left: calc(50% - 45px);
@@ -651,59 +657,47 @@
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox.magique {
   left: calc(50% + 38px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .title {
-  position: absolute;
-  top: 54px;
-  left: calc(50% - 27px);
-  font-size: 16px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .checkbox.physique {
-  position: absolute;
-  top: 76px;
-  left: calc(50% - 45px);
-}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .title {
-  position: absolute;
-  top: 74px;
+  top: 95px;
   left: calc(50% - 27px);
-  font-size: 16px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .checkbox.magique {
-  position: absolute;
-  top: 76px;
-  left: calc(50% + 38px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .checkbox.physique {
-  position: absolute;
-  top: 96px;
-  left: calc(50% - 45px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .title {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .checkbox {
   position: absolute;
   top: 94px;
-  left: calc(50% - 27px);
-  font-size: 16px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .checkbox.magique {
-  position: absolute;
-  top: 96px;
-  left: calc(50% + 38px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .checkbox.physique {
-  position: absolute;
-  top: 116px;
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .checkbox.physique {
   left: calc(50% - 45px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .title {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .checkbox.magique {
+  left: calc(50% + 38px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .title {
+  top: 120px;
+  left: calc(50% - 19px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .checkbox {
   position: absolute;
-  top: 114px;
-  left: calc(50% - 27px);
-  font-size: 16px;
+  top: 119px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .checkbox.physique {
+  left: calc(50% - 84px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .checkbox.magique {
+  left: calc(50% + 78px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .title {
+  top: 145px;
+  left: calc(50% - 26px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .checkbox {
+  position: absolute;
+  top: 144px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .checkbox.physique {
+  left: calc(50% - 99px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .checkbox.magique {
-  position: absolute;
-  top: 116px;
-  left: calc(50% + 38px);
+  left: calc(50% + 93px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armes {
   margin-top: 200px;
