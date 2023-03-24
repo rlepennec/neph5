@@ -61,7 +61,7 @@ export class Viser extends AbstractManoeuver {
     canBePerformed(action) {
         return action.actor != null &&
                action.target != null &&
-               action.weapon.system.munitions - action.weapon.system.tire > 0 &&
+              (action.weapon.system !== 'feu' || action.weapon.system.munitions - action.weapon.system.tire > 0) &&
               (action.weapon.system.cible !== action.target.id || action.weapon.system.visee < 3);
         
     }
