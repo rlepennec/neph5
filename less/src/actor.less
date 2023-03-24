@@ -246,11 +246,243 @@
                         width: 120px;
                         content: var(--img-corner);
                     }
-        
-                    .combat {
+
+                    .nephilim {
+                        flex-direction: row;
+                        display: flex;
                         padding-top: 20px;
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: -10px;
+                            width: 100%;
+
+                            .puce {
+                                border: none;
+                                width: 60px;
+                                display: hidden;
+                                background-color: transparent;
+                                content: var(--img-puce);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 40px);
+                                content: var(--img-separator);
+                            }
+        
+                            .name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        .left {
+                            display: flex;
+                            flex-direction: column;
+                            width: 450px;
+        
+                            .pentacle {
+                                position: relative;
+                                text-align: center;
+                                margin-left: 55px;
+        
+
+                                img {
+                                    border: 0px;
+                                    width: 380px;
+                                    height: 378px;
+                                }
+        
+                                .macro {
+        
+                                    .tooltip.air {
+                                        transform: translate(150px, -85px);
+                                    }
+        
+                                    .tooltip.eau {
+                                        transform: translate(120px, 140px);
+                                    }
+        
+                                    .tooltip.feu {
+                                        transform: translate(-60px, -180px);
+                                    }
+        
+                                    .tooltip.lune {
+                                        transform: translate(-130px, 150px);
+                                    }
+        
+                                    .tooltip.terre {
+                                        transform: translate(-210px, -20px);
+                                    }
+        
+                                    .tooltip {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+        
+                                        input {
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            font-weight: bold;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
+                                    }
+        
+                                    .dice.air {
+                                        transform: translate(140px, -80px);
+                                    }
+        
+                                    .dice.eau {
+                                        transform: translate(110px, 145px);
+                                    }
+        
+                                    .dice.feu {
+                                        transform: translate(-70px, -175px);
+                                    }
+        
+                                    .dice.lune {
+                                        transform: translate(-140px, 155px);
+                                    }
+        
+                                    .dice.terre {
+                                        transform: translate(-220px, -15px);
+                                    }
+        
+                                    .dice {
+                                        position: absolute; 
+                                        top: 50%;
+                                        left: 50%;
+                                    }
+        
+                                }
+                            }
+        
+                            .chutes {
+        
+                                .title {
+                                    margin-top: 20px;
+                                    border-width: 0px 0px 2px 0px;
+                                    border-style: solid;
+                                    border-color: black;
+        
+                                    span {
+                                        margin-left: 5px;
+                                        padding-bottom: 4px;
+                                        border: none;
+                                        background-color: transparent;
+                                        font-family: 'AJensonPro';
+                                        font-size: 20px;
+                                    }
+                                }
+        
+                                .article {
+                                    padding-top: 10px;
+                                    display: flex;
+                                    flex-direction: column;
+                                    padding: 0 0 0 0;
+        
+                                    .item {
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: nowrap;
+                                        align-items: center;
+                                        padding: 0 0 0 20px;
+                                        -webkit-column-break-inside: avoid;
+                                        page-break-inside: avoid;
+                                        break-inside: avoid;
+        
+                                        .tooltip {
+                                            flex: 0 0 70px;
+                                            margin-right: 100px;
+                                        }
+        
+                                        .name {
+                                            flex: 0 0 100px;
+                                            margin-right: 70px;
+                                        }
+        
+                                        .degres {
+                                            display: flex;
+                                            flex-direction: row;
+                                            flex-wrap: nowrap;
+                                            flex: 0 0 auto;
+                                        }
+        
+                                        .l3 {
+                                            margin-left: 3px;
+                                        }
+        
+                                        .l3r {
+                                            margin-left: 3px;
+                                            color: indianred;
+                                        }
+        
+                                        .l6 {
+                                            margin-left: 6px;
+                                        }
+        
+                                        .l6r {
+                                            margin-left: 6px;
+                                            color: indianred;
+                                        }
+        
+                                    }
+                                }
+                            }
+                        }
+        
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            width: 314px;
+        
+                            .stase {
+        
+                                .sectionRow {
+        
+                                    .circle {
+                                        input {
+                                            border:none;
+                                            background-color:transparent;
+                                            transform: translate(2px, 14px);
+                                            text-align: center;
+                                        }
+                                    }
+        
+                                    .sectionTitle {
+                                        input {
+                                            border: none;
+                                            background-color: transparent;
+                                        }
+                                    }
+        
+                                }
+        
+                            }
+        
+                        }
+            
+                    }
+
+                    .combat {
                         display: flex;
                         flex-direction: row;
+                        padding-top: 20px;
         
                         .left {
                             display: flex;
@@ -2494,202 +2726,7 @@
         
                 }
         
-                .nephilim {
-        
-                    .content {
-                        display: flex;
-                        flex-direction: row;
-                        padding-top: 20px;
-        
-                        .left {
-                            display: flex;
-                            flex-direction: column;
-                            width: 500px;
-        
-                            .pentacle {
-                                position: relative;
-                                text-align: center;
-                                margin-left: 40px;
-        
-                                img {
-                                    border: 0px;
-                                    width: 380px;
-                                    height: 378px
-                                }
-        
-                                .macro {
-        
-                                    .tooltip.air {
-                                        transform: translate(150px, -85px);
-                                    }
-        
-                                    .tooltip.eau {
-                                        transform: translate(120px, 140px);
-                                    }
-        
-                                    .tooltip.feu {
-                                        transform: translate(-60px, -180px);
-                                    }
-        
-                                    .tooltip.lune {
-                                        transform: translate(-130px, 150px);
-                                    }
-        
-                                    .tooltip.terre {
-                                        transform: translate(-210px, -20px);
-                                    }
-        
-                                    .tooltip {
-                                        position: absolute;
-                                        top: 50%;
-                                        left: 50%;
-        
-                                        input {
-                                            background-color: transparent;
-                                            font-size: 20px;
-                                            font-weight: bold;
-                                            border: 0px;
-                                            width: 40px;
-                                            text-align: center;
-                                        }
-                                    }
-        
-                                    .dice.air {
-                                        transform: translate(140px, -80px);
-                                    }
-        
-                                    .dice.eau {
-                                        transform: translate(110px, 145px);
-                                    }
-        
-                                    .dice.feu {
-                                        transform: translate(-70px, -175px);
-                                    }
-        
-                                    .dice.lune {
-                                        transform: translate(-140px, 155px);
-                                    }
-        
-                                    .dice.terre {
-                                        transform: translate(-220px, -15px);
-                                    }
-        
-                                    .dice {
-                                        position: absolute; 
-                                        top: 50%;
-                                        left: 50%;
-                                    }
-        
-                                }
-                            }
-        
-                            .chutes {
-        
-                                .title {
-                                    margin-top: 20px;
-                                    border-width: 0px 0px 2px 0px;
-                                    border-style: solid;
-                                    border-color: black;
-        
-                                    span {
-                                        margin-left: 5px;
-                                        padding-bottom: 4px;
-                                        border: none;
-                                        background-color: transparent;
-                                        font-family: 'AJensonPro';
-                                        font-size: 20px;
-                                    }
-                                }
-        
-                                .article {
-                                    padding-top: 10px;
-                                    display: flex;
-                                    flex-direction: column;
-                                    padding: 0 0 0 0;
-        
-                                    .item {
-                                        display: flex;
-                                        flex-direction: row;
-                                        flex-wrap: nowrap;
-                                        align-items: center;
-                                        padding: 0 0 0 20px;
-                                        -webkit-column-break-inside: avoid;
-                                        page-break-inside: avoid;
-                                        break-inside: avoid;
-        
-                                        .tooltip {
-                                            flex: 0 0 70px;
-                                            margin-right: 100px;
-                                        }
-        
-                                        .name {
-                                            flex: 0 0 100px;
-                                            margin-right: 70px;
-                                        }
-        
-                                        .degres {
-                                            display: flex;
-                                            flex-direction: row;
-                                            flex-wrap: nowrap;
-                                            flex: 0 0 auto;
-                                        }
-        
-                                        .l3 {
-                                            margin-left: 3px;
-                                        }
-        
-                                        .l3r {
-                                            margin-left: 3px;
-                                            color: indianred;
-                                        }
-        
-                                        .l6 {
-                                            margin-left: 6px;
-                                        }
-        
-                                        .l6r {
-                                            margin-left: 6px;
-                                            color: indianred;
-                                        }
-        
-                                    }
-                                }
-                            }
-                        }
-        
-                        .right {
-                            display: flex;
-                            flex-direction: column;
-                            width: 314px;
-        
-                            .stase {
-        
-                                .sectionRow {
-        
-                                    .circle {
-                                        input {
-                                            border:none;
-                                            background-color:transparent;
-                                            transform: translate(2px, 14px);
-                                            text-align: center;
-                                        }
-                                    }
-        
-                                    .sectionTitle {
-                                        input {
-                                            border: none;
-                                            background-color: transparent;
-                                        }
-                                    }
-        
-                                }
-        
-                            }
-        
-                        }
-                    }
-        
-                }
+
         
         
         

@@ -449,10 +449,183 @@
   width: 120px;
   content: var(--img-corner);
 }
-.actor .window-content .actor-root .article .article-body .combat {
+.actor .window-content .actor-root .article .article-body .nephilim {
+  flex-direction: row;
+  display: flex;
   padding-top: 20px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .header {
   display: flex;
   flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+  width: 100%;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .header .puce {
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 40px);
+  content: var(--img-separator);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle {
+  position: relative;
+  text-align: center;
+  margin-left: 55px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle img {
+  border: 0px;
+  width: 380px;
+  height: 378px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.air {
+  transform: translate(150px, -85px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.eau {
+  transform: translate(120px, 140px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.feu {
+  transform: translate(-60px, -180px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.lune {
+  transform: translate(-130px, 150px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.terre {
+  transform: translate(-210px, -20px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip input {
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  border: 0px;
+  width: 40px;
+  text-align: center;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.air {
+  transform: translate(140px, -80px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.eau {
+  transform: translate(110px, 145px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.feu {
+  transform: translate(-70px, -175px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.lune {
+  transform: translate(-140px, 155px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.terre {
+  transform: translate(-220px, -15px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .title {
+  margin-top: 20px;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: black;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .title span {
+  margin-left: 5px;
+  padding-bottom: 4px;
+  border: none;
+  background-color: transparent;
+  font-family: 'AJensonPro';
+  font-size: 20px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 0;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0 0 0 20px;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .tooltip {
+  flex: 0 0 70px;
+  margin-right: 100px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .name {
+  flex: 0 0 100px;
+  margin-right: 70px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .degres {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l3 {
+  margin-left: 3px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l3r {
+  margin-left: 3px;
+  color: indianred;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l6 {
+  margin-left: 6px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l6r {
+  margin-left: 6px;
+  color: indianred;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right {
+  display: flex;
+  flex-direction: column;
+  width: 314px;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right .stase .sectionRow .circle input {
+  border: none;
+  background-color: transparent;
+  transform: translate(2px, 14px);
+  text-align: center;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right .stase .sectionRow .sectionTitle input {
+  border: none;
+  background-color: transparent;
+}
+.actor .window-content .actor-root .article .article-body .combat {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left {
   display: flex;
@@ -2141,147 +2314,6 @@
   width: 32px;
   margin-left: 13px;
   margin-right: 10px;
-}
-.actor .window-content .actor-root .article .nephilim .content {
-  display: flex;
-  flex-direction: row;
-  padding-top: 20px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left {
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle {
-  position: relative;
-  text-align: center;
-  margin-left: 40px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle img {
-  border: 0px;
-  width: 380px;
-  height: 378px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.air {
-  transform: translate(150px, -85px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.eau {
-  transform: translate(120px, 140px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.feu {
-  transform: translate(-60px, -180px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.lune {
-  transform: translate(-130px, 150px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip.terre {
-  transform: translate(-210px, -20px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .tooltip input {
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: bold;
-  border: 0px;
-  width: 40px;
-  text-align: center;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.air {
-  transform: translate(140px, -80px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.eau {
-  transform: translate(110px, 145px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.feu {
-  transform: translate(-70px, -175px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.lune {
-  transform: translate(-140px, 155px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice.terre {
-  transform: translate(-220px, -15px);
-}
-.actor .window-content .actor-root .article .nephilim .content .left .pentacle .macro .dice {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .title {
-  margin-top: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .title span {
-  margin-left: 5px;
-  padding-bottom: 4px;
-  border: none;
-  background-color: transparent;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article {
-  padding-top: 10px;
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 0;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  padding: 0 0 0 20px;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .tooltip {
-  flex: 0 0 70px;
-  margin-right: 100px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .name {
-  flex: 0 0 100px;
-  margin-right: 70px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .degres {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  flex: 0 0 auto;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l3 {
-  margin-left: 3px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l3r {
-  margin-left: 3px;
-  color: indianred;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l6 {
-  margin-left: 6px;
-}
-.actor .window-content .actor-root .article .nephilim .content .left .chutes .article .item .l6r {
-  margin-left: 6px;
-  color: indianred;
-}
-.actor .window-content .actor-root .article .nephilim .content .right {
-  display: flex;
-  flex-direction: column;
-  width: 314px;
-}
-.actor .window-content .actor-root .article .nephilim .content .right .stase .sectionRow .circle input {
-  border: none;
-  background-color: transparent;
-  transform: translate(2px, 14px);
-  text-align: center;
-}
-.actor .window-content .actor-root .article .nephilim .content .right .stase .sectionRow .sectionTitle input {
-  border: none;
-  background-color: transparent;
 }
 .actor .window-content .actor-root .article .laboratoire .construct-images {
   display: flex;

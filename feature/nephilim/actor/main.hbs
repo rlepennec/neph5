@@ -1,10 +1,407 @@
-<div class="content">
+<div class="nephilim">
 
     <div class="left">
 
-        {{> "systems/neph5e/feature/nephilim/actor/pentacle.hbs"}}
+        <div class="header">
 
-        {{> "systems/neph5e/feature/nephilim/actor/chutes.hbs"}}
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <span class="name">{{localize "NEPH5E.pentacle.nom"}}</span>
+
+        </div>
+
+        <div class="pentacle">
+
+            <img src="systems/neph5e/assets/core/pentacle.webp"/>
+
+            <div class="macro" data-id="air" data-sid="air" data-type="ka">
+                <div class="tooltip air">
+                    <input
+                        name="system.ka.air"
+                        type="text"
+                        value="{{system.ka.air}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.air"}}</span>
+                </div>
+                <div class="dice air">
+                    <a class="roll-ka" data-element="air" data-scope="actor"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </div>
+
+            <div class="macro" data-id="eau" data-sid="eau" data-type="ka">
+                <div class="tooltip eau">
+                    <input
+                        name="system.ka.eau"
+                        type="text"
+                        value="{{system.ka.eau}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
+                </div>
+                <div class="dice eau">
+                    <a class="roll-ka" data-element="eau" data-scope="actor"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </div>
+
+            <div class="macro" data-id="feu" data-sid="feu" data-type="ka">
+                <div class="tooltip feu">
+                    <input
+                        name="system.ka.feu"
+                        type="text"
+                        value="{{system.ka.feu}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
+                </div>
+                <div class="dice feu">
+                    <a class="roll-ka" data-element="feu" data-scope="actor"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </div>
+
+            <div class="macro" data-id="lune" data-sid="lune" data-type="ka">
+                <div class="tooltip lune">
+                    <input
+                        name="system.ka.lune"
+                        type="text"
+                        value="{{system.ka.lune}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
+                </div>
+                <div class="dice lune">
+                    <a class="roll-ka" data-element="lune" data-scope="actor"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </div>
+
+            <div class="macro" data-id="terre" data-sid="terre" data-type="ka">
+                <div class="tooltip terre">
+                    <input
+                        name="system.ka.terre"
+                        type="text"
+                        value="{{system.ka.terre}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
+                </div>
+                <div class="dice terre">
+                    <a class="roll-ka" data-element="terre" data-scope="actor"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="header">
+
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <span class="name">{{localize "NEPH5E.chutes"}}</span>
+
+        </div>
+
+        <div class="chutes">
+
+            <ol class="article">
+
+                {{#with actor.khaiba as |chute|}}
+                <li class="item">
+
+                    <div class="tooltip">
+                        <span>{{localize "NEPH5E.khaiba"}}</span>
+                        {{#if (gt chute.degre 0)}}
+                        <span class="tooltiptext">{{chute.name}}</span>
+                        {{/if}}
+                    </div>
+
+                    <div class="degres">
+
+                        {{#if (gte chute.degre 1)}}
+                        <i class="fa-solid fa-circle khaiba" data-id="1"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba" data-id="1"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 2)}}
+                        <i class="fa-solid fa-circle khaiba l3" data-id="2"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l3" data-id="2"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 3)}}
+                        <i class="fa-solid fa-circle khaiba l3" data-id="3"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l3" data-id="3"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 4)}}
+                        <i class="fa-solid fa-circle khaiba l3" data-id="4"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l3" data-id="4"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 5)}}
+                        <i class="fa-solid fa-circle khaiba l6" data-id="5"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l6" data-id="5"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 6)}}
+                        <i class="fa-solid fa-circle khaiba l3" data-id="6"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l3" data-id="6"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 7)}}
+                        <i class="fa-solid fa-circle khaiba l3" data-id="7"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l3" data-id="7"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 8)}}
+                        <i class="fa-solid fa-circle khaiba l6r" data-id="8"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l6r" data-id="8"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 9)}}
+                        <i class="fa-solid fa-circle khaiba l3r" data-id="9"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l3r" data-id="9"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 10)}}
+                        <i class="fa-solid fa-circle khaiba l6r" data-id="10"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle khaiba l6r" data-id="10"></i>
+                        {{/if}}
+
+                </li>
+                {{/with}}
+
+                {{#with actor.narcose as |chute|}}
+                <li class="item">
+
+                    <div class="name">
+                        <span>{{localize "NEPH5E.narcose"}}</span>
+                    </div>
+
+                    <div class="degres">
+
+                        {{#if (gte chute.degre 1)}}
+                        <i class="fa-solid fa-circle narcose" data-id="1"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose" data-id="1"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 2)}}
+                        <i class="fa-solid fa-circle narcose l3" data-id="2"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l3" data-id="2"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 3)}}
+                        <i class="fa-solid fa-circle narcose l3" data-id="3"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l3" data-id="3"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 4)}}
+                        <i class="fa-solid fa-circle narcose l3" data-id="4"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l3" data-id="4"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 5)}}
+                        <i class="fa-solid fa-circle narcose l6" data-id="5"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l6" data-id="5"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 6)}}
+                        <i class="fa-solid fa-circle narcose l3" data-id="6"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l3" data-id="6"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 7)}}
+                        <i class="fa-solid fa-circle narcose l3" data-id="7"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l3" data-id="7"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 8)}}
+                        <i class="fa-solid fa-circle narcose l6r" data-id="8"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l6r" data-id="8"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 9)}}
+                        <i class="fa-solid fa-circle narcose l3r" data-id="9"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l3r" data-id="9"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 10)}}
+                        <i class="fa-solid fa-circle narcose l6r" data-id="10"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle narcose l6r" data-id="10"></i>
+                        {{/if}}
+                    
+                    </div>
+
+                </li>
+                {{/with}}
+
+                {{#with actor.ombre as |chute|}}
+                <li class="item">
+
+                    <div class="name">
+                        <span>{{localize "NEPH5E.ombre"}}</span>
+                    </div>
+
+                    <div class="degres">
+
+                        {{#if (gte chute.degre 1)}}
+                        <i class="fa-solid fa-circle ombre" data-id="1"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre" data-id="1"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 2)}}
+                        <i class="fa-solid fa-circle ombre l3" data-id="2"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l3" data-id="2"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 3)}}
+                        <i class="fa-solid fa-circle ombre l3" data-id="3"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l3" data-id="3"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 4)}}
+                        <i class="fa-solid fa-circle ombre l3" data-id="4"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l3" data-id="4"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 5)}}
+                        <i class="fa-solid fa-circle ombre l6" data-id="5"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l6" data-id="5"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 6)}}
+                        <i class="fa-solid fa-circle ombre l3" data-id="6"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l3" data-id="6"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 7)}}
+                        <i class="fa-solid fa-circle ombre l3" data-id="7"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l3" data-id="7"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 8)}}
+                        <i class="fa-solid fa-circle ombre l6r" data-id="8"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l6r" data-id="8"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 9)}}
+                        <i class="fa-solid fa-circle ombre l3r" data-id="9"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l3r" data-id="9"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 10)}}
+                        <i class="fa-solid fa-circle ombre l6r" data-id="10"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle ombre l6r" data-id="10"></i>
+                        {{/if}}
+
+                    </div>
+
+                </li>
+                {{/with}}
+
+                {{#with actor.luneNoire as |chute|}}
+                <li class="item">
+
+                    <div class="name">
+                        <span>{{localize "NEPH5E.entropieLunaire"}}</span>
+                    </div>
+
+                    <div class="degres">
+
+                        {{#if (gte chute.degre 1)}}
+                        <i class="fa-solid fa-circle luneNoire" data-id="1"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire" data-id="1"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 2)}}
+                        <i class="fa-solid fa-circle luneNoire l3" data-id="2"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l3" data-id="2"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 3)}}
+                        <i class="fa-solid fa-circle luneNoire l3" data-id="3"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l3" data-id="3"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 4)}}
+                        <i class="fa-solid fa-circle luneNoire l3" data-id="4"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l3" data-id="4"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 5)}}
+                        <i class="fa-solid fa-circle luneNoire l6" data-id="5"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l6" data-id="5"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 6)}}
+                        <i class="fa-solid fa-circle luneNoire l3" data-id="6"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l3" data-id="6"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 7)}}
+                        <i class="fa-solid fa-circle luneNoire l3" data-id="7"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l3" data-id="7"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 8)}}
+                        <i class="fa-solid fa-circle luneNoire l6r" data-id="8"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l6r" data-id="8"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 9)}}
+                        <i class="fa-solid fa-circle luneNoire l3r" data-id="9"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l3r" data-id="9"></i>
+                        {{/if}}
+
+                        {{#if (gte chute.degre 10)}}
+                        <i class="fa-solid fa-circle luneNoire l6r" data-id="10"></i>
+                        {{else}}
+                        <i class="fa-regular fa-circle luneNoire l6r" data-id="10"></i>
+                        {{/if}}
+                    
+                    </div>
+
+                </li>
+                {{/with}}
+
+            </ol>
+
+        </div>
 
     </div>
 
