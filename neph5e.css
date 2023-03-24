@@ -1671,6 +1671,13 @@
   text-align: right;
   padding-right: 20px;
 }
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu {
+  display: block;
+  z-index: 99;
+}
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu li {
+  max-height: 15em;
+}
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu {
   position: absolute;
   right: 20px;
@@ -1706,13 +1713,6 @@
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover li:hover {
   text-shadow: 0px 0px 1px black;
-}
-.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu {
-  display: block;
-  z-index: 99;
-}
-.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone:hover + .periode-menu li {
-  max-height: 15em;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members {
   border: solid 1px #333A40;
