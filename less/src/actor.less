@@ -517,7 +517,7 @@
                                     }
 
                                     .name {
-                                        width: calc(100% - 50px);
+                                        width: calc(100% - 60px);
                                     }
 
                                     &:hover {
@@ -560,7 +560,6 @@
                 
                             }
 
-
                             .stase.header-with-value {
                                 margin-bottom: 10px;
         
@@ -574,6 +573,38 @@
         
                             }
         
+                            .arcanes {
+                                display: flex;
+                                flex-direction: column;
+        
+                                .arcane {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .value {
+                                        width: 40px;
+                                        flex: 0 0 auto;
+                                    }
+
+                                    .name {
+                                        width: calc(100% - 70px);
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px black;
+                                    }
+
+                                }
+                
+                            }
+
                         }
             
                     }

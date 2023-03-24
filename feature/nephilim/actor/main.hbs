@@ -392,6 +392,41 @@
 
     <div class="right">
 
+        {{#with actor.arcanes as |items|}}
+        {{#unless (isEmptyCollection items)}}
+        <div class="header">
+
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <label class="name">{{localize "NEPH5E.arcanes"}}</label>
+
+        </div>
+
+        <ol class="arcanes">
+
+            {{#each items as |item|}}
+            {{#if (ne item.degre 0)}}
+            <li class="arcane" data-id="{{item.id}}">
+
+                <label class="value">{{item.degre}}</label>
+
+                <div class="name open">
+                    <span>{{item.name}}</span>
+                </div>
+
+                <a class="roll"><i class="fas fa-dice-d20"></i></a>
+  
+            </li>
+            {{/if}}
+            {{/each}}
+
+        </ol>
+
+        {{/unless}}
+        {{/with}}
+
         <div class="header">
 
             <img class="puce"/>
@@ -503,20 +538,6 @@
             {{/each}}
 
         </ol>
-        {{/with}}
-
-        {{#with actor.arcanes as |items|}}
-        {{#unless (isEmptyCollection items)}}
-        <div class="header">
-
-            <img class="puce"/>
-
-            <img class="separator"/>
-
-            <label class="name">{{localize "NEPH5E.arcanes"}}</label>
-
-        </div>
-        {{/unless}}
         {{/with}}
 
     </div>
