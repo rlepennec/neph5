@@ -392,63 +392,6 @@
 
     <div class="right">
 
-        {{#with actor.metamorphe as |item|}}
-        <div class="header-with-value">
-
-            <img class="circle"/>
-
-            <div class="degre">{{item.size}}</div>
-
-            <img class="separator"/>
-
-            {{#if item}}
-            <label class="name open" data-id="{{item.id}}">{{item.name}}</label>
-            {{else}}
-            <label class="name">{{localize "ITEM.TypeMetamorphe"}}</label>
-            {{/if}}
-
-        </div>
-
-        <ol class="metamorphoses">
-
-            {{#each item.metamorphoses as |metamorphose|}}
-            <li class="metamorphose" data-id="{{../id}}" data-index="{{@index}}">
-
-                <i class="formed fa-circle {{#if metamorphose.formed}}fas{{else}}far{{/if}}" ></i>
-
-                <label class="name {{#unless metamorphose.formed}}grey{{/unless}}">{{metamorphose.name}}</label>
-
-                <i class="visible {{#if metamorphose.formed}}fas {{#if metamorphose.visible}}fa-eye-slash{{else}}fa-eye{{/if}}{{else}}hidden{{/if}}"></i>
-
-            </li>
-            {{/each}}
-
-        </ol>
-        {{/with}}
-
-        <div class="header-with-value">
-
-            <img class="circle"/>
-
-            <input
-                class="degre"
-                name="system.stase.ka"
-                type="text"
-                value="{{system.stase.ka}}"
-                data-dtype="Number"/>
-
-            <img class="separator"/>
-
-            <input
-                class="name"
-                name="system.stase.description"
-                type="text"
-                value="{{system.stase.description}}"
-                data-dtype="String"
-                placeholder="Stase"/>
-
-        </div>
-
         <div class="header">
 
             <img class="puce"/>
@@ -505,12 +448,68 @@
 
         </ol>
 
+        {{#with actor.metamorphe as |item|}}
+        <div class="header-with-value">
+
+            <img class="circle"/>
+
+            <div class="degre">{{item.size}}</div>
+
+            <img class="separator"/>
+
+            {{#if item}}
+            <label class="name open" data-id="{{item.id}}">{{item.name}}</label>
+            {{else}}
+            <label class="name">{{localize "ITEM.TypeMetamorphe"}}</label>
+            {{/if}}
+
+        </div>
+
+        <ol class="metamorphoses">
+
+            {{#each item.metamorphoses as |metamorphose|}}
+            <li class="metamorphose" data-id="{{../id}}" data-index="{{@index}}">
+
+                <i class="formed fa-circle {{#if metamorphose.formed}}fas{{else}}far{{/if}}" ></i>
+
+                <label class="name {{#unless metamorphose.formed}}grey{{/unless}}">{{metamorphose.name}}</label>
+
+                <i class="visible {{#if metamorphose.formed}}fas {{#if metamorphose.visible}}fa-eye-slash{{else}}fa-eye{{/if}}{{else}}hidden{{/if}}"></i>
+
+            </li>
+            {{/each}}
+
+        </ol>
+        {{/with}}
+
+        <div class="stase header-with-value">
+
+            <img class="circle"/>
+
+            <input
+                class="degre"
+                name="system.stase.ka"
+                type="text"
+                value="{{system.stase.ka}}"
+                data-dtype="Number"/>
+
+            <img class="separator"/>
+
+            <input
+                class="name"
+                name="system.stase.description"
+                type="text"
+                value="{{system.stase.description}}"
+                data-dtype="String"
+                placeholder="Stase"/>
+
+        </div>
+
+
+
 
 
 <!--
-        {{> "systems/neph5e/feature/nephilim/actor/stase.hbs"}}
-
-        {{> "systems/neph5e/feature/nephilim/actor/attributs.hbs"}}
 
         {{> "systems/neph5e/feature/nephilim/actor/arcane.hbs"}}
 -->
