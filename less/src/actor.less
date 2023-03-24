@@ -298,7 +298,6 @@
                                 position: relative;
                                 text-align: center;
                                 margin-left: 55px;
-        
 
                                 img {
                                     border: 0px;
@@ -307,27 +306,7 @@
                                 }
         
                                 .macro {
-        
-                                    .tooltip.air {
-                                        transform: translate(150px, -85px);
-                                    }
-        
-                                    .tooltip.eau {
-                                        transform: translate(120px, 140px);
-                                    }
-        
-                                    .tooltip.feu {
-                                        transform: translate(-60px, -180px);
-                                    }
-        
-                                    .tooltip.lune {
-                                        transform: translate(-130px, 150px);
-                                    }
-        
-                                    .tooltip.terre {
-                                        transform: translate(-210px, -20px);
-                                    }
-        
+
                                     .tooltip {
                                         position: absolute;
                                         top: 50%;
@@ -341,32 +320,54 @@
                                             width: 40px;
                                             text-align: center;
                                         }
+
+                                        &.air {
+                                            transform: translate(150px, -85px);
+                                        }
+            
+                                        &.eau {
+                                            transform: translate(120px, 140px);
+                                        }
+            
+                                        &.feu {
+                                            transform: translate(-60px, -180px);
+                                        }
+            
+                                        &.lune {
+                                            transform: translate(-130px, 150px);
+                                        }
+            
+                                        &.terre {
+                                            transform: translate(-210px, -20px);
+                                        }
+
                                     }
-        
-                                    .dice.air {
-                                        transform: translate(140px, -80px);
-                                    }
-        
-                                    .dice.eau {
-                                        transform: translate(110px, 145px);
-                                    }
-        
-                                    .dice.feu {
-                                        transform: translate(-70px, -175px);
-                                    }
-        
-                                    .dice.lune {
-                                        transform: translate(-140px, 155px);
-                                    }
-        
-                                    .dice.terre {
-                                        transform: translate(-220px, -15px);
-                                    }
-        
+
                                     .dice {
                                         position: absolute; 
                                         top: 50%;
                                         left: 50%;
+
+                                        &.air {
+                                            transform: translate(140px, -80px);
+                                        }
+            
+                                        &.eau {
+                                            transform: translate(110px, 145px);
+                                        }
+            
+                                        &.feu {
+                                            transform: translate(-70px, -175px);
+                                        }
+            
+                                        &.lune {
+                                            transform: translate(-140px, 155px);
+                                        }
+            
+                                        &.terre {
+                                            transform: translate(-220px, -15px);
+                                        }
+
                                     }
         
                                 }

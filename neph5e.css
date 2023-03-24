@@ -501,6 +501,19 @@
   width: 380px;
   height: 378px;
 }
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip input {
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  border: 0px;
+  width: 40px;
+  text-align: center;
+}
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.air {
   transform: translate(150px, -85px);
 }
@@ -516,18 +529,10 @@
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip.terre {
   transform: translate(-210px, -20px);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice {
   position: absolute;
   top: 50%;
   left: 50%;
-}
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .tooltip input {
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: bold;
-  border: 0px;
-  width: 40px;
-  text-align: center;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.air {
   transform: translate(140px, -80px);
@@ -543,11 +548,6 @@
 }
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.terre {
   transform: translate(-220px, -15px);
-}
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice {
-  position: absolute;
-  top: 50%;
-  left: 50%;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .left .chutes .title {
   margin-top: 20px;
