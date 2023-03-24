@@ -549,27 +549,13 @@
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .macro .dice.terre {
   transform: translate(-220px, -15px);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .title {
-  margin-top: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .title span {
-  margin-left: 5px;
-  padding-bottom: 4px;
-  border: none;
-  background-color: transparent;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes {
   padding-top: 10px;
   display: flex;
   flex-direction: column;
   padding: 0 0 0 0;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -579,31 +565,28 @@
   page-break-inside: avoid;
   break-inside: avoid;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .tooltip {
-  flex: 0 0 70px;
-  margin-right: 100px;
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .name {
+  flex: 0 0 200px;
+  margin-right: calc(100% - 415px);
+  margin-left: 30px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .name {
-  flex: 0 0 100px;
-  margin-right: 70px;
-}
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .degres {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .degres {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l3 {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l3 {
   margin-left: 3px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l3r {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l3r {
   margin-left: 3px;
   color: indianred;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l6 {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l6 {
   margin-left: 6px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .article .item .l6r {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l6r {
   margin-left: 6px;
   color: indianred;
 }

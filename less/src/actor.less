@@ -374,76 +374,54 @@
                             }
         
                             .chutes {
-        
-                                .title {
-                                    margin-top: 20px;
-                                    border-width: 0px 0px 2px 0px;
-                                    border-style: solid;
-                                    border-color: black;
-        
-                                    span {
-                                        margin-left: 5px;
-                                        padding-bottom: 4px;
-                                        border: none;
-                                        background-color: transparent;
-                                        font-family: 'AJensonPro';
-                                        font-size: 20px;
-                                    }
-                                }
-        
-                                .article {
-                                    padding-top: 10px;
+                                padding-top: 10px;
+                                display: flex;
+                                flex-direction: column;
+                                padding: 0 0 0 0;
+    
+                                .chute {
                                     display: flex;
-                                    flex-direction: column;
-                                    padding: 0 0 0 0;
-        
-                                    .item {
+                                    flex-direction: row;
+                                    flex-wrap: nowrap;
+                                    align-items: center;
+                                    padding: 0 0 0 20px;
+                                    -webkit-column-break-inside: avoid;
+                                    page-break-inside: avoid;
+                                    break-inside: avoid;
+       
+                                    .name {
+                                        flex: 0 0 200px;
+                                        margin-right: calc(100% - 415px);
+                                        margin-left: 30px;
+                                    }
+    
+                                    .degres {
                                         display: flex;
                                         flex-direction: row;
                                         flex-wrap: nowrap;
-                                        align-items: center;
-                                        padding: 0 0 0 20px;
-                                        -webkit-column-break-inside: avoid;
-                                        page-break-inside: avoid;
-                                        break-inside: avoid;
-        
-                                        .tooltip {
-                                            flex: 0 0 70px;
-                                            margin-right: 100px;
-                                        }
-        
-                                        .name {
-                                            flex: 0 0 100px;
-                                            margin-right: 70px;
-                                        }
-        
-                                        .degres {
-                                            display: flex;
-                                            flex-direction: row;
-                                            flex-wrap: nowrap;
-                                            flex: 0 0 auto;
-                                        }
-        
-                                        .l3 {
-                                            margin-left: 3px;
-                                        }
-        
-                                        .l3r {
-                                            margin-left: 3px;
-                                            color: indianred;
-                                        }
-        
-                                        .l6 {
-                                            margin-left: 6px;
-                                        }
-        
-                                        .l6r {
-                                            margin-left: 6px;
-                                            color: indianred;
-                                        }
-        
+                                        flex: 0 0 auto;
                                     }
+    
+                                    .l3 {
+                                        margin-left: 3px;
+                                    }
+    
+                                    .l3r {
+                                        margin-left: 3px;
+                                        color: indianred;
+                                    }
+    
+                                    .l6 {
+                                        margin-left: 6px;
+                                    }
+    
+                                    .l6r {
+                                        margin-left: 6px;
+                                        color: indianred;
+                                    }
+    
                                 }
+
                             }
                         }
         
