@@ -320,11 +320,13 @@
                                 width: 45px;
                                 height: 45px;
                                 left: 8px;
-                                top: 10px;
+                                top: 9px;
                                 text-align: center;
                                 font-weight: bold;
                                 padding-top: 12px;
                                 border-radius: 50%;
+                                background-color: transparent;
+                                border: none;
                             }
 
                             .name {
@@ -333,8 +335,11 @@
                                 position: absolute;
                                 left: 70px;
                                 top: 17px;
-                                text-align: center;
+                                text-align: left;
                                 flex: 1 1 auto;
+                                border: none;
+                                background-color: transparent;
+                                width: calc(100% - 70px);
                             }
 
                         }
@@ -508,6 +513,38 @@
                                     .formed {
                                         font-size: 11px;
                                         width: 30px;
+                                        flex: 0 0 auto;
+                                    }
+
+                                    .name {
+                                        width: calc(100% - 50px);
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px black;
+                                    }
+
+                                }
+                
+                            }
+
+                            .attributs {
+                                display: flex;
+                                flex-direction: column;
+        
+                                .attribut {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .value {
+                                        width: 40px;
                                         flex: 0 0 auto;
                                     }
 

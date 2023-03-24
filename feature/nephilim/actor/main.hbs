@@ -424,8 +424,88 @@
             {{/each}}
 
         </ol>
-
         {{/with}}
+
+        <div class="header-with-value">
+
+            <img class="circle"/>
+
+            <input
+                class="degre"
+                name="system.stase.ka"
+                type="text"
+                value="{{system.stase.ka}}"
+                data-dtype="Number"/>
+
+            <img class="separator"/>
+
+            <input
+                class="name"
+                name="system.stase.description"
+                type="text"
+                value="{{system.stase.description}}"
+                data-dtype="String"
+                placeholder="Stase"/>
+
+        </div>
+
+        <div class="header">
+
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <label class="name">{{localize "NEPH5E.attributs"}}</label>
+
+        </div>
+
+        <ol class="attributs">
+
+            <li class="attribut">
+                <label class="value">{{actor.initiative}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.initiative"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.mouvement}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.mouvement"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.dommage}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.bonusDommage"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.perspicacite}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.perspicacite"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.recuperation}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.recuperation"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.voile}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.voile"}}</label>
+                </div>
+            </li>
+
+        </ol>
+
+
 
 <!--
         {{> "systems/neph5e/feature/nephilim/actor/stase.hbs"}}
