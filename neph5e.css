@@ -473,11 +473,13 @@
   margin-left: -100px;
   content: var(--img-triangle);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .header {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .line {
   display: flex;
   flex-direction: row;
   margin-right: 10px;
   font-family: 'AJensonPro';
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header {
   font-size: 21px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header .puce {
@@ -605,11 +607,9 @@
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n5 .tooltiptext {
   font-size: 11px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox {
+  position: absolute;
+  top: 56px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n5 {
   left: calc(50% - 165px);
@@ -626,20 +626,6 @@
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n1 {
   left: calc(50% - 45px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique {
-  position: absolute;
-  top: 56px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .title {
-  position: absolute;
-  top: 34px;
-  left: calc(50% - 27px);
-  font-size: 16px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique {
-  position: absolute;
-  top: 56px;
-}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique.n1 {
   left: calc(50% + 38px);
 }
@@ -649,33 +635,27 @@
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique.n3 {
   left: calc(50% + 98px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .title {
+  position: absolute;
+  top: 34px;
+  left: calc(50% - 27px);
+  font-size: 16px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox.physique {
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox {
   position: absolute;
   top: 56px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox.physique {
   left: calc(50% - 45px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox.magique {
+  left: calc(50% + 38px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .title {
   position: absolute;
   top: 54px;
   left: calc(50% - 27px);
   font-size: 16px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure .checkbox.magique {
-  position: absolute;
-  top: 56px;
-  left: calc(50% + 38px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .serieuse .checkbox.physique {
   position: absolute;
@@ -693,12 +673,6 @@
   top: 76px;
   left: calc(50% + 38px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .grave {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
-}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .grave .checkbox.physique {
   position: absolute;
   top: 96px;
@@ -714,12 +688,6 @@
   position: absolute;
   top: 96px;
   left: calc(50% + 38px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mortelle .checkbox.physique {
   position: absolute;

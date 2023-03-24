@@ -274,11 +274,14 @@
                                     content: var(--img-triangle)
                                 }
         
-                                .header {
+                                .line {
                                     display: flex;
                                     flex-direction: row;
                                     margin-right: 10px;
                                     font-family: 'AJensonPro';
+                                }
+
+                                .header {
                                     font-size: 21px;
 
                                     .puce {
@@ -392,72 +395,90 @@
                                     input[type="checkbox"]:checked ~ .unchecked {
                                         display: none;
                                     }
-                                }
 
-                                .checkbox.n1  {
-                                    font-size: 11px;
-                                    .tooltiptext {
+                                    &.n1 {
                                         font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
                                     }
-                                }
 
-                                .checkbox.n2  {
-                                    font-size: 16px;
-                                    .tooltiptext {
-                                        font-size: 11px;
+                                    &.n2 {
+                                        font-size: 16px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
                                     }
-                                }
 
-                                .checkbox.n3  {
-                                    font-size: 20px;
-                                    .tooltiptext {
-                                        font-size: 11px;
+                                    &.n3 {
+                                        font-size: 20px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
                                     }
-                                }
 
-                                .checkbox.n4  {
-                                    font-size: 11px;
-                                    .tooltiptext {
+                                    &.n4 {
                                         font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
                                     }
-                                }
 
-                                .checkbox.n5  {
-                                    font-size: 11px;
-                                    .tooltiptext {
+                                    &.n5 {
                                         font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
                                     }
+
                                 }
 
                                 .dommage {
-                                    display: flex;
-                                    flex-direction: row;
-                                    margin-right: 10px;
-                                    font-family: 'AJensonPro';
 
-                                    .checkbox.physique.n5 {
-                                        left: calc(50% - 165px);
-                                    }
-
-                                    .checkbox.physique.n4 {
-                                        left: calc(50% - 135px);
-                                    }
-
-                                    .checkbox.physique.n3 {
-                                        left: calc(50% - 105px);
-                                    }
-
-                                    .checkbox.physique.n2 {
-                                        left: calc(50% - 75px);
-                                    }
-
-                                    .checkbox.physique.n1 {
-                                        left: calc(50% - 45px);
-                                    }
-
-                                    .checkbox.physique {
+                                    .checkbox {
                                         position: absolute;
                                         top: 56px;
+
+                                        &.physique {
+
+                                            &.n5 {
+                                                left: calc(50% - 165px);
+                                            }
+        
+                                            &.n4 {
+                                                left: calc(50% - 135px);
+                                            }
+        
+                                            &.n3 {
+                                                left: calc(50% - 105px);
+                                            }
+        
+                                            &.n2 {
+                                                left: calc(50% - 75px);
+                                            }
+        
+                                            &.n1 {
+                                                left: calc(50% - 45px);
+                                            }
+
+                                        }
+
+                                        &.magique {
+    
+                                            &.n1 {
+                                                left: calc(50% + 38px);
+                                            }
+        
+                                            &.n2 {
+                                                left: calc(50% + 68px);
+                                            }
+        
+                                            &.n3 {
+                                                left: calc(50% + 98px);
+                                            }
+    
+                                        }
+
                                     }
 
                                     .title {
@@ -467,35 +488,24 @@
                                         font-size: 16px;
                                     }
 
-                                    .checkbox.magique {
-                                        position: absolute;
-                                        top: 56px;
-                                    }
 
-                                    .checkbox.magique.n1 {
-                                        left: calc(50% + 38px);
-                                    }
-
-                                    .checkbox.magique.n2 {
-                                        left: calc(50% + 68px);
-                                    }
-
-                                    .checkbox.magique.n3 {
-                                        left: calc(50% + 98px);
-                                    }
 
                                 }
 
                                 .mineure {
-                                    display: flex;
-                                    flex-direction: row;
-                                    margin-right: 10px;
-                                    font-family: 'AJensonPro';
                                     
-                                    .checkbox.physique {
+                                    .checkbox {
                                         position: absolute;
                                         top: 56px;
-                                        left: calc(50% - 45px);
+                                    
+                                        &.physique {
+                                            left: calc(50% - 45px);
+                                        }
+
+                                        &.magique {
+                                            left: calc(50% + 38px);
+                                        }
+
                                     }
 
                                     .title {
@@ -505,19 +515,9 @@
                                         font-size: 16px;
                                     }
 
-                                    .checkbox.magique {
-                                        position: absolute;
-                                        top: 56px;
-                                        left: calc(50% + 38px);
-                                    }
-
                                 }
 
                                 .serieuse {
-                                    display: flex;
-                                    flex-direction: row;
-                                    margin-right: 10px;
-                                    font-family: 'AJensonPro';
                                     
                                     .checkbox.physique {
                                         position: absolute;
@@ -541,11 +541,7 @@
                                 }
 
                                 .grave {
-                                    display: flex;
-                                    flex-direction: row;
-                                    margin-right: 10px;
-                                    font-family: 'AJensonPro';
-                                    
+;                                    
                                     .checkbox.physique {
                                         position: absolute;
                                         top: 96px;
@@ -568,10 +564,6 @@
                                 }
 
                                 .mortelle {
-                                    display: flex;
-                                    flex-direction: row;
-                                    margin-right: 10px;
-                                    font-family: 'AJensonPro';
                                     
                                     .checkbox.physique {
                                         position: absolute;
