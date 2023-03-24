@@ -462,25 +462,6 @@
   flex-direction: row;
   position: relative;
   background-color: transparent;
-  /*
-                                >ol {
-                                    position: absolute;
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 200px;
-                                    left: 50%;
-                                    top: 61px;
-                                    margin-left: -106px;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-        
-                                    >li {
-                                        text-align: center;
-                                        list-style: none;
-                                    }
-        
-                                }
-                                */
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .triangle {
   position: absolute;
@@ -536,6 +517,48 @@
   left: 65px;
   text-align: right;
 }
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle.physique {
+  position: absolute;
+  display: block;
+  border: none;
+  width: 80px;
+  height: 85px;
+  top: 95px;
+  margin-left: 20px;
+  background-color: transparent;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .modifier.physique {
+  position: absolute;
+  display: block;
+  width: 67px;
+  top: 127px;
+  margin-left: 27px;
+  text-align: center;
+  font-family: 'AJensonPro';
+  font-size: 19px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .circle.magique {
+  position: absolute;
+  display: block;
+  border: none;
+  width: 80px;
+  height: 85px;
+  top: 95px;
+  margin-left: calc(100% - 97px);
+  background-color: transparent;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .header .modifier.magique {
+  position: absolute;
+  display: block;
+  top: 127px;
+  width: calc(100% - 101px);
+  left: 65px;
+  text-align: right;
+  font-family: 'AJensonPro';
+  font-size: 19px;
+}
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox {
   flex: 0 0 auto;
   width: 34px;
@@ -569,6 +592,62 @@
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n3 .tooltiptext {
   font-size: 11px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n4 {
+  font-size: 11px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n4 .tooltiptext {
+  font-size: 11px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n5 {
+  font-size: 11px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .checkbox.n5 .tooltiptext {
+  font-size: 11px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+  font-family: 'AJensonPro';
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n5 {
+  left: calc(50% - 165px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n4 {
+  left: calc(50% - 135px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n3 {
+  left: calc(50% - 105px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n2 {
+  left: calc(50% - 75px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique.n1 {
+  left: calc(50% - 45px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.physique {
+  position: absolute;
+  top: 56px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .title {
+  position: absolute;
+  top: 34px;
+  left: calc(50% - 27px);
+  font-size: 16px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique {
+  position: absolute;
+  top: 56px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique.n1 {
+  left: calc(50% + 38px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique.n2 {
+  left: calc(50% + 68px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .dommages .dommage .checkbox.magique.n3 {
+  left: calc(50% + 98px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .mineure {
   display: flex;
@@ -657,180 +736,6 @@
   position: absolute;
   top: 116px;
   left: calc(50% + 38px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin-right: 10px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .modifier .circle {
-  position: absolute;
-  display: block;
-  border: none;
-  width: 80px;
-  height: 85px;
-  top: 95px;
-  margin-left: 20px;
-  background-color: transparent;
-  content: var(--img-circle);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .modifier label {
-  position: absolute;
-  display: block;
-  width: 67px;
-  top: 127px;
-  margin-left: 27px;
-  text-align: center;
-  font-family: 'AJensonPro';
-  font-size: 19px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body {
-  position: relative;
-  top: 56px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes {
-  display: flex;
-  flex-direction: row;
-  height: 19px;
-  width: 30px;
-  margin-left: 70px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox {
-  flex: 0 0 auto;
-  width: 34px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox .checked {
-  display: none;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"] {
-  display: none;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .checked {
-  display: inline-block;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .unchecked {
-  display: none;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n1 {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n1 .tooltiptext {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n2 {
-  font-size: 16px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n2 .tooltiptext {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n3 {
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes .checkbox.n3 .tooltiptext {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(2) {
-  margin-left: 125px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(3) {
-  margin-left: 115px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(4) {
-  margin-left: 104px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .physiques .body .checkboxes:nth-child(5) {
-  margin-left: 92px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  left: 50%;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .modifier .circle {
-  position: absolute;
-  display: block;
-  border: none;
-  width: 80px;
-  height: 85px;
-  top: 95px;
-  margin-left: calc(100% - 97px);
-  background-color: transparent;
-  content: var(--img-circle);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .modifier label {
-  position: absolute;
-  display: block;
-  top: 127px;
-  width: calc(100% - 101px);
-  left: 65px;
-  text-align: right;
-  font-family: 'AJensonPro';
-  font-size: 19px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body {
-  position: relative;
-  top: 56px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes {
-  display: flex;
-  flex-direction: row;
-  font-size: 11px;
-  height: 19px;
-  width: 30px;
-  text-align: right;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox {
-  flex: 0 0 auto;
-  margin-left: 20px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox .checked {
-  display: none;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"] {
-  display: none;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .checked {
-  display: inline-block;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox input[type="checkbox"]:checked ~ .unchecked {
-  display: none;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n1 {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n1 .tooltiptext {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n2 {
-  font-size: 16px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n2 .tooltiptext {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n3 {
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes .checkbox.n3 .tooltiptext {
-  font-size: 11px;
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(1) {
-  margin-left: calc(100% - 181px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(2) {
-  margin-left: calc(100% - 171px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(3) {
-  margin-left: calc(100% - 161px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(4) {
-  margin-left: calc(100% - 150px);
-}
-.actor .window-content .actor-root .article .article-body .combat .left .dommages .magiques .body .checkboxes:nth-child(5) {
-  margin-left: calc(100% - 139px);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armes {
   margin-top: 200px;

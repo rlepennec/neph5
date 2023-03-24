@@ -6,20 +6,6 @@
 
             <img class='triangle'/>
 
-            <ol>
-<!--
-                <li>{{localize "NEPH5E.dommages"}}</li>
-
-                <li>{{localize "NEPH5E.mineure"}}</li>
-
-                <li>{{localize "NEPH5E.serieuse"}}</li>
-
-                <li>{{localize "NEPH5E.grave"}}</li>
-
-                <li>{{localize "NEPH5E.mortelle"}}</li>
--->
-            </ol>
-
             <div class="header">
 
                 <img class="puce"/>
@@ -32,12 +18,20 @@
 
                 <span class="name magique">{{localize "NEPH5E.magique"}}</span>
 
+                <img class="circle physique"/>
+
+                <label class="modifier physique">-50%</label>
+
+                <img class="circle magique"/>
+
+                <label class="modifier magique">-50%</label>
+
             </div>
-<!--
+
             <div class="dommage">
 
                 {{#if (gt system.ka.terre 9)}}
-                <label class="checkbox physique n1 tooltip">
+                <label class="checkbox physique n5 tooltip">
                     <span class="tooltiptext">1</span>
                     <input
                         {{#if system.dommage.physique._5}}checked{{/if}}
@@ -50,7 +44,7 @@
                 {{/if}}
 
                 {{#if (gt system.ka.terre 4)}}
-                <label class="checkbox physique n1 tooltip">
+                <label class="checkbox physique n4 tooltip">
                     <span class="tooltiptext">1</span>
                     <input
                         {{#if system.dommage.physique._4}}checked{{/if}}
@@ -95,7 +89,7 @@
                     <i class="fas fa-circle checked"></i>
                 </label>
 
-                <label class="title">{{localize "NEPH5E.mineure"}}</label>
+                <label class="title">{{localize "NEPH5E.dommages"}}</label>
 
                 <label class="checkbox magique n1 tooltip">
                     <span class="tooltiptext">1</span>
@@ -131,7 +125,7 @@
                 </label>
 
             </div>
--->
+
 
             <div class="mineure">
 
@@ -240,175 +234,6 @@
                     <i class="far fa-circle unchecked"></i>
                     <i class="fas fa-circle checked"></i>
                 </label>
-
-            </div>
-
-
-            <div class="physiques">
-
-                <div class="modifier">
-
-                    <img class="circle"/>
-
-                    <label>-50%</label>
-
-                </div>
-                
-                <ol class="body">
-
-
-
-
-
-
-<!--
-                    <li class="checkboxes">
-
-                        {{#if (gt system.ka.terre 9)}}
-                        <label class="checkbox n1 tooltip">
-                            <span class="tooltiptext">1</span>
-                            <input
-                                {{#if system.dommage.physique._5}}checked{{/if}}
-                                name="system.dommage.physique._5"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                        {{/if}}
-
-                        {{#if (gt system.ka.terre 4)}}
-                        <label class="checkbox n1 tooltip">
-                            <span class="tooltiptext">1</span>
-                            <input
-                                {{#if system.dommage.physique._4}}checked{{/if}}
-                                name="system.dommage.physique._4"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                        {{/if}}
-
-                        <label class="checkbox n3 tooltip">
-                            <span class="tooltiptext">3</span>
-                            <input
-                                {{#if system.dommage.physique._3}}checked{{/if}}
-                                name="system.dommage.physique._3"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-
-                        <label class="checkbox n2 tooltip">
-                            <span class="tooltiptext">2</span>
-                            <input
-                                {{#if system.dommage.physique._2}}checked{{/if}}
-                                name="system.dommage.physique._2"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-
-                        <label class="checkbox n1 tooltip">
-                            <span class="tooltiptext">1</span>
-                            <input
-                                {{#if system.dommage.physique._1}}checked{{/if}}
-                                name="system.dommage.physique._1"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-
-                    </li>
-
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <span class="tooltiptext">2</span>
-                            <input
-                                {{#if system.dommage.physique.mineure}}checked{{/if}}
-                                name="system.dommage.physique.mineure"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
--->
-
-
-
-                </ol>
-
-            </div>
-
-            <div class="magiques">
-
-                <div class="modifier">
-
-                    <img class="circle"/>
-
-                    <label>-50%</label>
-
-                </div>
-
-                <ol class="body">
-<!--
-                    <li class="checkboxes">
-
-                        <label class="checkbox n1 tooltip">
-                            <span class="tooltiptext">1</span>
-                            <input
-                                {{#if system.dommage.magique._1}}checked{{/if}}
-                                name="system.dommage.magique._1"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-
-                        <label class="checkbox n2 tooltip">
-                            <span class="tooltiptext">2</span>
-                            <input
-                                {{#if system.dommage.magique._2}}checked{{/if}}
-                                name="system.dommage.magique._2"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-
-                        <label class="checkbox n3 tooltip">
-                            <span class="tooltiptext">3</span>
-                            <input
-                                {{#if system.dommage.magique._3}}checked{{/if}}
-                                name="system.dommage.magique._3"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-
-                    </li>
-
-                    <li class="checkboxes">
-                        <label class="checkbox tooltip">
-                            <span class="tooltiptext">2</span>
-                            <input
-                                {{#if system.dommage.magique.mineure}}checked{{/if}}
-                                name="system.dommage.magique.mineure"
-                                type="checkbox"
-                                data-dtype="Boolean"/>
-                            <i class="far fa-circle unchecked"></i>
-                            <i class="fas fa-circle checked"></i>
-                        </label>
-                    </li>
--->
-
-                </ol>
 
             </div>
 

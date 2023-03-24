@@ -273,26 +273,6 @@
                                     margin-left: -100px;
                                     content: var(--img-triangle)
                                 }
-
-                                /*
-                                >ol {
-                                    position: absolute;
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 200px;
-                                    left: 50%;
-                                    top: 61px;
-                                    margin-left: -106px;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-        
-                                    >li {
-                                        text-align: center;
-                                        list-style: none;
-                                    }
-        
-                                }
-                                */
         
                                 .header {
                                     display: flex;
@@ -344,6 +324,53 @@
                                         text-align: right;
                                     }
 
+                                    .circle.physique {
+                                        position: absolute;
+                                        display: block;
+                                        border: none;
+                                        width: 80px;
+                                        height: 85px;
+                                        top: 95px;
+                                        margin-left: 20px;
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+                                    }
+    
+                                    .modifier.physique {
+                                        position: absolute;
+                                        display: block;
+                                        width: 67px;
+                                        top: 127px;
+                                        margin-left: 27px;
+                                        text-align: center;
+                                        font-family: 'AJensonPro';
+                                        font-size: 19px;
+                                    }
+
+                                    .circle.magique {
+                                        position: absolute;
+                                        display: block;
+                                        border: none;
+                                        width: 80px;
+                                        height: 85px;
+                                        top: 95px;
+                                        margin-left: calc(100% - 97px);
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+                                    }
+    
+                                    .modifier.magique {
+                                        position: absolute;
+                                        display: block;
+                                        top: 127px;
+                                        width: calc(100% - 101px);
+                                        left: 65px;
+                                        text-align: right;
+                                        font-family: 'AJensonPro';
+                                        font-size: 19px;
+                                    }
+
+
                                 }
 
                                 .checkbox {
@@ -386,6 +413,77 @@
                                     .tooltiptext {
                                         font-size: 11px;
                                     }
+                                }
+
+                                .checkbox.n4  {
+                                    font-size: 11px;
+                                    .tooltiptext {
+                                        font-size: 11px;
+                                    }
+                                }
+
+                                .checkbox.n5  {
+                                    font-size: 11px;
+                                    .tooltiptext {
+                                        font-size: 11px;
+                                    }
+                                }
+
+                                .dommage {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+
+                                    .checkbox.physique.n5 {
+                                        left: calc(50% - 165px);
+                                    }
+
+                                    .checkbox.physique.n4 {
+                                        left: calc(50% - 135px);
+                                    }
+
+                                    .checkbox.physique.n3 {
+                                        left: calc(50% - 105px);
+                                    }
+
+                                    .checkbox.physique.n2 {
+                                        left: calc(50% - 75px);
+                                    }
+
+                                    .checkbox.physique.n1 {
+                                        left: calc(50% - 45px);
+                                    }
+
+                                    .checkbox.physique {
+                                        position: absolute;
+                                        top: 56px;
+                                    }
+
+                                    .title {
+                                        position: absolute;
+                                        top: 34px;
+                                        left: calc(50% - 27px);
+                                        font-size: 16px;
+                                    }
+
+                                    .checkbox.magique {
+                                        position: absolute;
+                                        top: 56px;
+                                    }
+
+                                    .checkbox.magique.n1 {
+                                        left: calc(50% + 38px);
+                                    }
+
+                                    .checkbox.magique.n2 {
+                                        left: calc(50% + 68px);
+                                    }
+
+                                    .checkbox.magique.n3 {
+                                        left: calc(50% + 98px);
+                                    }
+
                                 }
 
                                 .mineure {
@@ -494,228 +592,6 @@
                                         left: calc(50% + 38px);
                                     }
 
-                                }
-
-                                .physiques {
-                                    position: absolute;
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 50%;
-                                    margin-right: 10px;
-        
-                                    .modifier {
-        
-                                        .circle {
-                                            position: absolute;
-                                            display: block;
-                                            border: none;
-                                            width: 80px;
-                                            height: 85px;
-                                            top: 95px;
-                                            margin-left: 20px;
-                                            background-color: transparent;
-                                            content: var(--img-circle);
-                                        }
-        
-                                        label {
-                                            position: absolute;
-                                            display: block;
-                                            width: 67px;
-                                            top: 127px;
-                                            margin-left: 27px;
-                                            text-align: center;
-                                            font-family: 'AJensonPro';
-                                            font-size: 19px;
-                                        }
-                                    }
-                
-                                    .body {
-                                        position: relative;
-                                        top: 56px;
-        
-                                        .checkboxes {
-                                            display: flex;
-                                            flex-direction: row;
-                                            height: 19px;
-                                            width: 30px;
-                                            margin-left: 70px;
-        
-                                            .checkbox {
-                                                flex: 0 0 auto;
-                                                width: 34px;
-                                                
-                                                .checked {
-                                                    display: none;
-                                                }
-        
-                                                input[type="checkbox"] {
-                                                    display:none;
-                                                }
-        
-                                                input[type="checkbox"]:checked ~ .checked {
-                                                    display: inline-block;
-                                                }
-                                                
-                                                input[type="checkbox"]:checked ~ .unchecked {
-                                                    display: none;
-                                                }
-                                            }
-        
-                                            .checkbox.n1  {
-                                                font-size: 11px;
-                                                .tooltiptext {
-                                                    font-size: 11px;
-                                                }
-                                            }
-        
-                                            .checkbox.n2  {
-                                                font-size: 16px;
-                                                .tooltiptext {
-                                                    font-size: 11px;
-                                                }
-                                            }
-        
-                                            .checkbox.n3  {
-                                                font-size: 20px;
-                                                .tooltiptext {
-                                                    font-size: 11px;
-                                                }
-                                            }
-        
-                                        }
-        
-                                        .checkboxes:nth-child(2) {
-                                            margin-left: 125px;
-                                        }
-        
-                                        .checkboxes:nth-child(3) {
-                                            margin-left: 115px;
-                                        }
-        
-                                        .checkboxes:nth-child(4) {
-                                            margin-left: 104px;
-                                        }
-        
-                                        .checkboxes:nth-child(5) {
-                                            margin-left: 92px;
-                                        }
-        
-                                    }
-        
-                                }
-        
-                                .magiques {
-                                    position: absolute;
-                                    display: flex;
-                                    flex-direction: column;
-                                    width: 50%;
-                                    left: 50%;
-                
-                                    .modifier {
-        
-                                        .circle {
-                                            position: absolute;
-                                            display: block;
-                                            border: none;
-                                            width: 80px;
-                                            height: 85px;
-                                            top: 95px;
-                                            margin-left: calc(100% - 97px);
-                                            background-color: transparent;
-                                            content: var(--img-circle);
-                                        }
-        
-                                        label {
-                                            position: absolute;
-                                            display: block;
-                                            top: 127px;
-                                            width: calc(100% - 101px);
-                                            left: 65px;
-                                            text-align: right;
-                                            font-family: 'AJensonPro';
-                                            font-size: 19px;
-                                        }
-        
-                                    }
-        
-                                    .body {
-                                        position: relative;
-                                        top: 56px;
-        
-                                        .checkboxes {
-                                            display: flex;
-                                            flex-direction: row;
-                                            font-size: 11px;
-                                            height: 19px;
-                                            width: 30px;
-                                            text-align: right;
-        
-                                            .checkbox {
-                                                flex: 0 0 auto;
-                                                margin-left: 20px;
-                                                
-                                                .checked {
-                                                    display: none;
-                                                }
-        
-                                                input[type="checkbox"] {
-                                                    display:none;
-                                                }
-        
-                                                input[type="checkbox"]:checked ~ .checked {
-                                                    display: inline-block;
-                                                }
-                                                
-                                                input[type="checkbox"]:checked ~ .unchecked {
-                                                    display: none;
-                                                }
-                                            }
-        
-                                            .checkbox.n1  {
-                                                font-size: 11px;
-                                                .tooltiptext {
-                                                    font-size: 11px;
-                                                }
-                                            }
-        
-                                            .checkbox.n2  {
-                                                font-size: 16px;
-                                                .tooltiptext {
-                                                    font-size: 11px;
-                                                }
-                                            }
-        
-                                            .checkbox.n3  {
-                                                font-size: 20px;
-                                                .tooltiptext {
-                                                    font-size: 11px;
-                                                }
-                                            }
-        
-                                        }
-        
-                                        .checkboxes:nth-child(1) {
-                                            margin-left: calc(100% - 181px);
-                                        }
-        
-                                        .checkboxes:nth-child(2) {
-                                            margin-left: calc(100% - 171px);
-                                        }
-        
-                                        .checkboxes:nth-child(3) {
-                                            margin-left: calc(100% - 161px);
-                                        }
-        
-                                        .checkboxes:nth-child(4) {
-                                            margin-left: calc(100% - 150px);
-                                        }
-        
-                                        .checkboxes:nth-child(5) {
-                                            margin-left: calc(100% - 139px);
-                                        }
-        
-                                    }
-        
                                 }
         
                             }
