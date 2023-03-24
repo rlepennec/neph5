@@ -1002,6 +1002,7 @@
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques {
   margin-bottom: 10px;
+  margin-top: -13px;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li {
   position: relative;
