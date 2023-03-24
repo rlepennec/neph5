@@ -522,6 +522,7 @@ export class FigureSheet extends HistoricalSheet {
                 .withoutData('description')
                 .withoutAlreadyEmbeddedError()
                 .create();
+
         } else {
             const value = (id === 1 && degre == 1) ? (chute.system.degre - degre) : (chute.system.degre + id - degre);
             await chute.update({ ['system.degre']: value }); 

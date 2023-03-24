@@ -507,7 +507,7 @@
   height: 4px;
   left: 70px;
   top: 46px;
-  width: 100%;
+  width: calc(100% - 70px);
   content: var(--img-separator);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .header-with-value .degre {
@@ -645,18 +645,34 @@
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  margin-right: 20px;
-  width: calc(100% - 580px);
+  margin-right: 10px;
+  width: calc(100% - 500px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses {
+  display: flex;
+  flex-direction: column;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose {
+  display: flex;
+  flex-direction: row;
   margin-left: 10px;
   list-style: none;
   font-family: 'AJensonPro';
   font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .formed {
   font-size: 11px;
   width: 30px;
+  flex: 0 0 auto;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .name {
+  width: calc(100% - 50px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose:hover {
+  text-shadow: 0px 0px 1px black;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .sectionRow .circle input {
   border: none;
