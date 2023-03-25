@@ -1,16 +1,158 @@
-<div class="content">
+<div class="selenim">
 
     <div class="left">
 
-        {{> "systems/neph5e/feature/selenim/actor/noyau.hbs"}}
+        <div class="header">
+
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <span class="name">{{localize "NEPH5E.noyau"}}</span>
+
+        </div>
+
+        <div class="noyau">
+
+            <img src="systems/neph5e/assets/core/noyau.webp"/>
+
+            <div class="macro" data-id="pavane" data-sid="pavane" data-type="pavane">
+                <div class="dice pavane">
+                    <a class="roll-pavane"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="tooltip pavane">
+                    <input
+                        name="system.ka.pavane"
+                        type="text"
+                        value="{{system.ka.pavane}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.pavane"}}</span>
+                </div>
+            </div>
+
+            <div class="macro" data-id="noyau" data-sid="noyau" data-type="noyau">
+                <div class="dice noyau">
+                    <a class="roll-noyau"><i class="fas fa-dice-d20"></i></a>
+                </div>
+                <div class="tooltip noyau">
+                    <input
+                        name="system.ka.noyau"
+                        type="text"
+                        value="{{system.ka.noyau}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.noyau"}}</span>
+                </div>
+            </div>
+
+            <div class="tooltip reserveCourante">
+                <input
+                    name="system.ka.reserveCourante"
+                    type="text"
+                    value="{{system.ka.reserveCourante}}"
+                    data-dtype="Number"/>
+                <span class="tooltiptext">{{localize "NEPH5E.reserveCourante"}}</span>
+            </div>
+            <label class="separator">/</label>
+            <div class="tooltip reserveMaximale">
+                <input
+                    name="system.ka.reserve"
+                    type="text"
+                    value="{{system.ka.reserve}}"
+                    data-dtype="Number"/>
+                <span class="tooltiptext">{{localize "NEPH5E.reserveMaximale"}}</span>
+            </div>
+
+        </div>
 
     </div>
 
     <div class="right">
 
-        {{> "systems/neph5e/feature/selenim/actor/aspect.hbs"}}
+        <div class="header">
 
-        {{> "systems/neph5e/feature/selenim/actor/attributs.hbs"}}
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <label class="name">{{localize "NEPH5E.attributs"}}</label>
+
+        </div>
+
+        <ol class="attributs">
+
+            <li class="attribut">
+                <label class="value">{{actor.initiative}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.initiative"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.mouvement}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.mouvement"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.dommage}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.bonusDommage"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.perspicacite}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.perspicacite"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.recuperation}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.recuperation"}}</label>
+                </div>
+            </li>
+
+            <li class="attribut">
+                <label class="value">{{actor.voile}}</label>
+                <div class="name">
+                    <label>{{localize "NEPH5E.voile"}}</label>
+                </div>
+            </li>
+
+        </ol>
+
+        {{#with actor.imago as |item|}}
+        <div class="stase header-with-value">
+
+            <img class="circle"/>
+
+            <label class="degre">{{item.size}}</label>
+
+            <img class="separator"/>
+
+            <label class="name">{{localize "NEPH5E.imago"}}</label>
+
+        </div>
+
+        <ol class="aspects">
+
+            {{#each item.aspects as |aspect|}}
+            <li class="aspect" data-id="{{aspect.embedded.id}}">
+
+                <label class="active fas {{#if aspect.embedded.active}}fa-eye-slash{{else}}fa-eye{{/if}}"></label>
+
+                <label class="name open">{{aspect.original.name}}</label>
+
+                <i class="fas fa-trash delete"></i>
+
+            </li>
+            {{/each}}
+
+        </ol>
+        {{/with}}
 
     </div>
 
