@@ -1866,7 +1866,7 @@
   width: 100%;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct {
-  position: relative;
+  position: absolute;
   width: 400px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img {
@@ -1878,8 +1878,6 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.artefact {
   width: 51px;
-  top: 9px;
-  left: 5px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.circle {
   border: none;
@@ -1893,13 +1891,9 @@
   position: relative;
   font-family: 'AJensonPro';
   font-size: 26px;
-  top: -46px;
-  left: 7px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct select {
   position: relative;
-  top: -25px;
-  left: -76px;
   font-family: 'AJensonPro';
   font-size: 19px;
   border: none;
@@ -1954,9 +1948,85 @@
   text-align: center;
   background-color: transparent;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor {
+  top: 561px;
+  left: calc(50% + -264px);
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor .artefact {
+  top: -7px;
+  left: 247px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor select {
+  top: 115px;
+  left: -133px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor .name {
+  top: 89px;
+  left: -56px;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic {
-  top: 0px;
-  left: 0px;
+  top: 571px;
+  left: calc(50% + 80px);
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic .artefact {
+  top: -13px;
+  left: 84px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic select {
+  top: 112px;
+  left: 160px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic .name {
+  top: 85px;
+  left: 251px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel {
+  top: 217px;
+  left: calc(50% + 190px);
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel .artefact {
+  top: 193px;
+  left: 36px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel select {
+  top: -84px;
+  left: 25px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel .name {
+  top: -108px;
+  left: 96px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue {
+  top: 313px;
+  left: calc(50% - 365px);
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue .artefact {
+  top: 118px;
+  left: 298px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue select {
+  top: -25px;
+  left: -76px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue .name {
+  top: -46px;
+  left: 7px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset {
+  top: 133px;
+  left: calc(50% - 100px);
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset .artefact {
+  top: 230px;
+  left: 167px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset select {
+  top: -25px;
+  left: -76px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset .name {
+  top: -46px;
+  left: 7px;
 }
 .actor .window-content .actor-root .article .article-body .akasha {
   display: flex;

@@ -2,9 +2,85 @@
 
     <div class="constructs">
 
+        <div class="construct athanor">
+
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/athanor.webp"/>
+
+            <label class="name">{{localize "NEPH5E.alchimie.constructs.athanor"}}</label>
+
+            <select name="system.alchimie.constructs.athanor.degre">
+            {{#select degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+
+            <div class="elements">
+
+                <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+
+                <div class="element tooltip air">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.air}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                </div>
+
+                <div class="element tooltip eau">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.eau}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
+                </div>
+
+                <div class="element tooltip feu">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.feu}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
+                </div>
+
+                <div class="element tooltip lune">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.lune}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
+                </div>
+
+                <div class="element tooltip terre">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.terre}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="construct alambic">
 
-            
             <img class="artefact" src="systems/neph5e/assets/backgrounds/alambic.webp"/>
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.alambic"}}</label>
@@ -72,6 +148,237 @@
                         name="system.alchimie.constructs.alambic.terre"
                         type="text"
                         value="{{system.alchimie.constructs.alambic.terre}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="construct aludel">
+
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/aludel.webp"/>
+
+            <label class="name">{{localize "NEPH5E.alchimie.constructs.aludel"}}</label>
+
+            <select name="system.alchimie.constructs.aludel.degre">
+            {{#select degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+
+            <div class="elements">
+
+                <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+
+                <div class="element tooltip air">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.air}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                </div>
+
+                <div class="element tooltip eau">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.eau}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
+                </div>
+
+                <div class="element tooltip feu">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.feu}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
+                </div>
+
+                <div class="element tooltip lune">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.lune}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
+                </div>
+
+                <div class="element tooltip terre">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.terre}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="construct cornue">
+
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/cornue.webp"/>
+
+            <label class="name">{{localize "NEPH5E.alchimie.constructs.cornue"}}</label>
+
+            <select name="system.alchimie.constructs.cornue.degre">
+            {{#select degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+
+            <div class="elements">
+
+                <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+
+                <div class="element tooltip air">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.air}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                </div>
+
+                <div class="element tooltip eau">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.eau}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
+                </div>
+
+                <div class="element tooltip feu">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.feu}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
+                </div>
+
+                <div class="element tooltip lune">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.lune}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
+                </div>
+
+                <div class="element tooltip terre">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.terre}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="construct creuset">
+
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/creuset.webp"/>
+
+            <label class="name">{{localize "NEPH5E.alchimie.constructs.creuset"}}</label>
+
+            <select name="system.alchimie.constructs.creuset.degre">
+            {{#select degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+
+            <div class="elements">
+
+                <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+
+                <div class="element tooltip air">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.air}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                </div>
+
+                <div class="element tooltip eau">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.eau}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
+                </div>
+
+                <div class="element tooltip feu">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.feu}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
+                </div>
+
+                <div class="element tooltip lune">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.lune}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
+                </div>
+
+                <div class="element tooltip terre">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.terre}}"
                         data-dtype="Number"/>
                     <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
                 </div>
