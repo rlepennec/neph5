@@ -327,6 +327,7 @@
                                 border-radius: 50%;
                                 background-color: transparent;
                                 border: none;
+                                font-size: 20px;
                             }
 
                             .name {
@@ -694,6 +695,7 @@
                                 border-radius: 50%;
                                 background-color: transparent;
                                 border: none;
+                                font-size: 20px;
                             }
 
                             .name {
@@ -720,47 +722,25 @@
                                 position: relative;
                                 text-align: center;
                                 margin-left: 55px;
+                                font-family: 'AJensonPro';
 
                                 img {
                                     border: 0px;
                                 }
         
                                 .macro {
-            
-                                    .dice.noyau {
-                                        transform: translate(-40px, 115px);
-                                    }
-        
-                                    .dice.pavane {
-                                        transform: translate(-90px, -100px);
-                                    }
-        
+
                                     .dice {
                                         position: absolute;
                                         top: 50%;
-                                        left: 50%
-                                    }
-        
-                                    .tooltip.pavane {
-                                        transform: translate(-80px, -105px);
-                                    }
-        
-                                    .tooltip.noyau {
-                                        transform: translate(-30px, 110px);
-                                    }
-        
-                                    .tooltip {
-                                        position: absolute;
-                                        top: 50%;
                                         left: 50%;
-        
-                                        input {
-                                            background-color: transparent;
-                                            font-size: 20px;
-                                            font-weight: bold;
-                                            border: 0px;
-                                            width: 40px;
-                                            text-align: center;
+
+                                        &.noyau {
+                                            transform: translate(-120px, 115px);
+                                        }
+            
+                                        &.pavane {
+                                            transform: translate(-90px, -100px);
                                         }
 
                                     }
@@ -772,6 +752,14 @@
                                     top: 50%; 
                                     left: 50%;
         
+                                    &.pavane {
+                                        transform: translate(-80px, -105px);
+                                    }
+        
+                                    &.noyau {
+                                        transform: translate(-110px, 110px);
+                                    }
+
                                     &.reserveCourante {
                                         transform: translate(60px, 80px);
                                     }
