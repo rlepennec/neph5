@@ -36,9 +36,6 @@ export const preloadTemplates = async function () {
         
         // Selenim
         "systems/neph5e/feature/selenim/actor/main.hbs",
-        "systems/neph5e/feature/selenim/actor/noyau.hbs",
-        "systems/neph5e/feature/selenim/actor/aspect.hbs",
-        "systems/neph5e/feature/selenim/actor/attributs.hbs",
 
         // Science
         "systems/neph5e/feature/science/actor/elements.hbs",
