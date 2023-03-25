@@ -3,28 +3,81 @@
     <div class="constructs">
 
         <div class="construct alambic">
-            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+
+            
             <img class="artefact" src="systems/neph5e/assets/backgrounds/alambic.webp"/>
-        </div>
 
-        <div class="construct aludel">
-            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
-            <img class="artefact" src="systems/neph5e/assets/backgrounds/aludel.webp"/>
-        </div>
+            <label class="name">{{localize "NEPH5E.alchimie.constructs.alambic"}}</label>
 
-        <div class="construct athanor">
-            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
-            <img class="artefact" src="systems/neph5e/assets/backgrounds/athanor.webp"/>
-        </div>
+            <select name="system.alchimie.constructs.alambic.degre">
+            {{#select degre}}
+                {{#each cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
 
-        <div class="construct cornue">
-            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
-            <img class="artefact" src="systems/neph5e/assets/backgrounds/cornue.webp"/>
-        </div>
+            <div class="elements">
 
-        <div class="construct creuset">
-            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
-            <img class="artefact" src="systems/neph5e/assets/backgrounds/creuset.webp"/>
+                <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+
+                <div class="element tooltip air">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.air}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                </div>
+
+                <div class="element tooltip eau">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.eau}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
+                </div>
+
+                <div class="element tooltip feu">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.feu}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
+                </div>
+
+                <div class="element tooltip lune">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.lune}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
+                </div>
+
+                <div class="element tooltip terre">
+                    <img class="circle"/>
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.terre}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
+                </div>
+
+            </div>
+
         </div>
 
     </div>

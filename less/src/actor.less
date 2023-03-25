@@ -2093,106 +2093,116 @@
                             .construct {
                                 position: relative;
                                 width: 400px;
+                                border: 1px solid black;
 
                                 img {
-                                    border: none;
                                     position: relative;
+                                    border: none;
 
                                     &.pentacle {
                                         width: 200px;
+                                        top: 0px;
+                                        left: 0px;
                                     }
 
                                     &.artefact {
                                         width: 50px;
                                     }
 
+                                    &.circle {
+                                        border: none;
+                                        width: 50px;
+                                        height: 51px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+                                    }
+
                                 }
 
-                                &.alambic {
-                                    background-color: #729EBF;
-                                    top: 0px;
-                                    left: 0px;
+                                .name {
+                                    position: relative;
+                                    font-size: 11px;
+                                }
+
+                                select {
+
+                                }
+
+                                .elements {
+                                    position: relative;
+                                    left: 100px;
 
                                     .pentacle {
+                                        width: 200px;
                                         top: 0px;
                                         left: 0px;
+                                    }
+
+                                    .element {
+                                        position: relative;
+                                        width: 52px;
+                                        height: 52px;
+
+                                        .circle {
+                                            top: 2px;
+                                            left: 0px;
+                                        }
+
+                                        input {
+                                            top: -41px;
+                                            left: 6px;
+                                        }
+
+                                    }
+
+                                    .air {
+                                        top: -90px;
+                                        left: -28px;
                                     }
     
-                                    .artefact {
-                                        top: 0px;
-                                        left: 0px;
-                                    }
-        
-                                }
-
-                                &.aludel {
-                                    background-color: #729EBF;
-                                    top: 0px;
-                                    left: 0px;
-
-                                    .pentacle {
-                                        top: 0px;
-                                        left: 0px;
+                                    .eau {
+                                        top: 41px;
+                                        left: -110px;
                                     }
     
-                                    .artefact {
-                                        top: 0px;
-                                        left: 0px;
-                                    }
-        
-                                }
-
-                                &.athanor {
-                                    background-color: #729EBF;
-                                    top: 0px;
-                                    left: 0px;
-
-                                    .pentacle {
-                                        top: 0px;
-                                        left: 0px;
+                                    .feu {
+                                        top: -164px;
+                                        left: -243px;
                                     }
     
-                                    .artefact {
-                                        top: 0px;
-                                        left: 0px;
-                                    }
-        
-                                }
-
-                                &.cornue {
-                                    background-color: #729EBF;
-                                    top: 0px;
-                                    left: 0px;
-
-                                    .pentacle {
-                                        top: 0px;
-                                        left: 0px;
+                                    .lune {
+                                        top: -29px;
+                                        left: 9px;
                                     }
     
-                                    .artefact {
-                                        top: 0px;
-                                        left: 0px;
+                                    .terre {
+                                        top: -155px;
+                                        left: -97px;
                                     }
-        
+
                                 }
 
-                                &.creuset {
-                                    background-color: #729EBF;
-                                    top: 0px;
-                                    left: 0px;
+                                .tooltip {
 
-                                    .pentacle {
-                                        top: 0px;
-                                        left: 0px;
+                                    input {
+                                        position: relative;
+                                        border: none;
+                                        width: 40px;
+                                        text-align: center;
+                                        background-color: transparent;
                                     }
-    
-                                    .artefact {
-                                        top: 0px;
-                                        left: 0px;
-                                    }
-        
+
                                 }
 
+
+
+                            }
+
+                            .alambic {
+                                background-color: #729EBF;
+                                top: 0px;
+                                left: 0px;    
                             }
 
                         }

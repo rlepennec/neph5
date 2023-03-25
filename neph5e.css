@@ -1868,79 +1868,83 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct {
   position: relative;
   width: 400px;
+  border: 1px solid black;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img {
-  border: none;
   position: relative;
+  border: none;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.pentacle {
   width: 200px;
+  top: 0px;
+  left: 0px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.artefact {
   width: 50px;
 }
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.alambic {
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.circle {
+  border: none;
+  width: 50px;
+  height: 51px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .name {
+  position: relative;
+  font-size: 11px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements {
+  position: relative;
+  left: 100px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .pentacle {
+  width: 200px;
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .element {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .element .circle {
+  top: 2px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .element input {
+  top: -41px;
+  left: 6px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .air {
+  top: -90px;
+  left: -28px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .eau {
+  top: 41px;
+  left: -110px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .feu {
+  top: -164px;
+  left: -243px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .lune {
+  top: -29px;
+  left: 9px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .terre {
+  top: -155px;
+  left: -97px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .tooltip input {
+  position: relative;
+  border: none;
+  width: 40px;
+  text-align: center;
+  background-color: transparent;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic {
   background-color: #729EBF;
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.alambic .pentacle {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.alambic .artefact {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.aludel {
-  background-color: #729EBF;
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.aludel .pentacle {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.aludel .artefact {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.athanor {
-  background-color: #729EBF;
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.athanor .pentacle {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.athanor .artefact {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.cornue {
-  background-color: #729EBF;
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.cornue .pentacle {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.cornue .artefact {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.creuset {
-  background-color: #729EBF;
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.creuset .pentacle {
-  top: 0px;
-  left: 0px;
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.creuset .artefact {
   top: 0px;
   left: 0px;
 }
