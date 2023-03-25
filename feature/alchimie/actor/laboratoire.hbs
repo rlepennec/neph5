@@ -1,293 +1,33 @@
-<div class="construct-images">
+<div class="laboratoire">
 
-    {{#with (laboratoryOwner actor) as |actor|}}
+    <div class="constructs">
 
-        {{#if actor.system.alchimie.constructs.cornue.active}}
-        <img src="systems/neph5e/assets/backgrounds/cornue.webp"/>
-        {{/if}}
+        <div class="construct alambic">
+            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/alambic.webp"/>
+        </div>
 
-        {{#if actor.system.alchimie.constructs.creuset.active}}
-        <img src="systems/neph5e/assets/backgrounds/creuset.webp"/>
-        {{/if}}
+        <div class="construct aludel">
+            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/aludel.webp"/>
+        </div>
 
-        {{#if actor.system.alchimie.constructs.athanor.active}}
-        <img src="systems/neph5e/assets/backgrounds/athanor.webp"/>
-        {{/if}}
+        <div class="construct athanor">
+            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/athanor.webp"/>
+        </div>
 
-        {{#if actor.system.alchimie.constructs.aludel.active}}
-        <img src="systems/neph5e/assets/backgrounds/aludel.webp"/>
-        {{/if}}
+        <div class="construct cornue">
+            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/cornue.webp"/>
+        </div>
 
-        {{#if actor.system.alchimie.constructs.alambic.active}}
-        <img src="systems/neph5e/assets/backgrounds/alambic.webp"/>
-        {{/if}}
+        <div class="construct creuset">
+            <img class="pentacle" src="systems/neph5e/assets/core/pentacle.webp"/>
+            <img class="artefact" src="systems/neph5e/assets/backgrounds/creuset.webp"/>
+        </div>
 
-    {{/with}}
+    </div>
+
 
 </div>
-
-<ol class="item-list constructs">
-
-    <div class="header">
-        <span class="name">{{localize "NEPH5E.constructs"}}</span>
-        <div class="tooltip parameter width-40">
-            <i class="fas fa-wind"></i>
-            <span class="tooltiptext">{{localize "NEPH5E.air"}}</span>
-        </div>
-        <div class="tooltip parameter width-40">
-            <i class="fas fa-water"></i>
-            <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
-        </div>
-        <div class="tooltip parameter width-40">
-            <i class="fas fa-fire"></i>
-            <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
-        </div>
-        <div class="tooltip parameter width-40">
-            <i class="fas fa-moon"></i>
-            <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
-        </div>
-        <div class="tooltip parameter width-40">
-            <i class="fas fa-seedling"></i>
-            <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
-        </div>
-        <div class="parameter width-135">
-            <span>Oeuvre</span>
-        </div>
-        <div class="parameter width-80">
-            <span>Substance</span>
-        </div>
-        <div class="parameter width-80">
-            <span>Vaisseau</span>
-        </div>
-    </div>
-
-    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
-        construct="cornue"
-        active=actor.system.alchimie.constructs.cornue.active
-        air=actor.system.alchimie.constructs.cornue.air
-        eau=actor.system.alchimie.constructs.cornue.eau
-        feu=actor.system.alchimie.constructs.cornue.feu
-        lune=actor.system.alchimie.constructs.cornue.lune
-        terre=actor.system.alchimie.constructs.cornue.terre
-        degre=actor.system.alchimie.constructs.cornue.degre
-        cercles=cercles
-        substance="ambre"
-        vaisseau="ampoule" }}
-
-    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
-        construct="creuset"
-        active=actor.system.alchimie.constructs.creuset.active
-        air=actor.system.alchimie.constructs.creuset.air
-        eau=actor.system.alchimie.constructs.creuset.eau
-        feu=actor.system.alchimie.constructs.creuset.feu
-        lune=actor.system.alchimie.constructs.creuset.lune
-        terre=actor.system.alchimie.constructs.creuset.terre
-        degre=actor.system.alchimie.constructs.creuset.degre
-        cercles=cercles
-        substance="metal"
-        vaisseau="pyxide" }}
-
-    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
-        construct="athanor"
-        active=actor.system.alchimie.constructs.athanor.active
-        air=actor.system.alchimie.constructs.athanor.air
-        eau=actor.system.alchimie.constructs.athanor.eau
-        feu=actor.system.alchimie.constructs.athanor.feu
-        lune=actor.system.alchimie.constructs.athanor.lune
-        terre=actor.system.alchimie.constructs.athanor.terre
-        degre=actor.system.alchimie.constructs.athanor.degre
-        cercles=cercles
-        substance="poudre"
-        vaisseau="cartouche" }}
-
-    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
-        construct="aludel"
-        active=actor.system.alchimie.constructs.aludel.active
-        air=actor.system.alchimie.constructs.aludel.air
-        eau=actor.system.alchimie.constructs.aludel.eau
-        feu=actor.system.alchimie.constructs.aludel.feu
-        lune=actor.system.alchimie.constructs.aludel.lune
-        terre=actor.system.alchimie.constructs.aludel.terre
-        degre=actor.system.alchimie.constructs.aludel.degre
-        cercles=cercles
-        substance="vapeur"
-        vaisseau="flacon" }}
-
-    {{> "systems/neph5e/feature/alchimie/actor/construct.hbs"
-        construct="alambic"
-        active=actor.system.alchimie.constructs.alambic.active
-        air=actor.system.alchimie.constructs.alambic.air
-        eau=actor.system.alchimie.constructs.alambic.eau
-        feu=actor.system.alchimie.constructs.alambic.feu
-        lune=actor.system.alchimie.constructs.alambic.lune
-        terre=actor.system.alchimie.constructs.alambic.terre
-        degre=actor.system.alchimie.constructs.alambic.degre
-        cercles=cercles
-        substance="liqueur"
-        vaisseau="fiole" }}
-
-</ol>
-
-<div class="materiae-header">
-
-    <span class="name">{{localize "NEPH5E.materiaePrimae"}}</span>
-
-    <div class="tooltip element">
-        <i class="fas fa-wind"></i>
-        <span class="tooltiptext">{{localize "NEPH5E.air"}}</span>
-    </div>
-
-    <input
-        class="item-integer quantite"
-        name="system.alchimie.primae.air.quantite"
-        type="text"
-        value="{{actor.system.alchimie.primae.air.quantite}}"
-        data-dtype="Number"/>
-
-    <span class="maximum">/ {{getMaxMP actor 'air'}}</span>
-    
-    <div class="tooltip element">
-        <i class="fas fa-water"></i>
-        <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
-    </div>
-
-    <input
-        class="item-integer quantite"
-        name="system.alchimie.primae.eau.quantite"
-        type="text"
-        value="{{actor.system.alchimie.primae.eau.quantite}}"
-        data-dtype="Number"/>
-
-    <span class="maximum">/ {{getMaxMP actor 'eau'}}</span>
-
-    <div class="tooltip element">
-        <i class="fas fa-fire"></i>
-        <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
-    </div>
-
-    <input
-        class="item-integer quantite"
-        name="system.alchimie.primae.feu.quantite"
-        type="text"
-        value="{{actor.system.alchimie.primae.feu.quantite}}"
-        data-dtype="Number"/>
-
-    <span class="maximum">/ {{getMaxMP actor 'feu'}}</span>
-
-    <div class="tooltip element">
-        <i class="fas fa-moon"></i>
-        <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
-    </div>
-
-    <input
-        class="item-integer quantite"
-        name="system.alchimie.primae.lune.quantite"
-        type="text"
-        value="{{actor.system.alchimie.primae.lune.quantite}}"
-        data-dtype="Number"/>
-
-    <span class="maximum">/ {{getMaxMP actor 'lune'}}</span>
-
-    <div class="tooltip element">
-        <i class="fas fa-seedling"></i>
-        <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
-    </div>
-
-    <input
-        class="item-integer quantite"
-        name="system.alchimie.primae.terre.quantite"
-        type="text"
-        value="{{actor.system.alchimie.primae.terre.quantite}}"
-        data-dtype="Number"/>
-
-    <span class="lastMaximum">/ {{getMaxMP actor 'terre'}}</span>
-
-</div>
-
-<ol class="materiae-list">
-
-    {{#each actor.materiae as |item|}}
-    <li class="item" data-item-id="{{item.embedded.id}}">
-
-        <a class="item-delete" data-id="{{item.embedded.id}}"><i class="fas fa-trash"></i></a>
-
-        <div class="element">
-        {{#switch item.original.element}}
-            {{#case 'air'}}<i class="fas fa-wind"></i>{{/case}}
-            {{#case 'eau'}}<i class="fas fa-water"></i>{{/case}}
-            {{#case 'feu'}}<i class="fas fa-fire"></i>{{/case}}
-            {{#case 'lune'}}<i class="fas fa-moon"></i>{{/case}}
-            {{#case 'luneNoire'}}<i class="fas fa-circle"></i>{{/case}}
-            {{#case 'terre'}}<i class="fas fa-seedling"></i>{{/case}}
-        {{/switch}}
-        </div>
-
-        <div class="item-name edit-materiae" data-id="{{item.original.id}}">
-            <span>{{item.original.name}}</span>
-        </div>
-
-        <div data-id="{{item.embedded.id}}">
-            <input
-                class="change-quantite"
-                data-id="{{item.embedded.id}}"
-                type="number"
-                value="{{item.embedded.quantite}}"
-                data-dtype="Number"/>
-        </div>
-
-    </li>
-    {{/each}}
-
-</ol>
-
-{{#if catalyseurs}}
-<div class="catalyseur-header">
-    <span>{{localize "NEPH5E.catalyseurs"}}</span>
-</div>
-
-<ol class="catalyseur-list">
-
-    {{#each actor.catalyseurs as |item|}}
-    <li class="item" data-item-id="{{item.embedded.id}}">
-
-        <a class="item-delete" data-id="{{item.embedded.id}}"><i class="fas fa-trash"></i></a>
-
-        <div class="item-name edit-catalyseur" data-id="{{item.original.id}}">
-            <span>{{item.original.name}}</span>
-        </div>
-
-    </li>
-    {{/each}}
-
-</ol>
-{{/if}}
-
-<div class="laboratoire-header">
-    <span>{{localize "NEPH5E.laboratoires"}}</span>
-</div>
-
-<ol class="laboratoire-list">
-
-    {{#each actor.laboratoires as |item|}}
-    <li class="actor hoverable flexrow-start" data-actor-id="{{item.id}}">
-
-        <div class="mright actor-delete">
-            <a><i class="fas fa-trash"></i></a>
-        </div>
-
-        <div class="mright actor-active">
-            {{#if active}}
-            <a><i class="fa-solid fa-feather-pointed"></i></a>
-            {{else}}
-            <span></span>
-            {{/if}}
-        </div>
-
-        <div>
-            <span class="actor-name">{{item.name}}</span>
-        </div>
-
-    </li>
-    {{/each}}
-
-</ol>

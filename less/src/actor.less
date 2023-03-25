@@ -2081,7 +2081,124 @@
                         }
         
                     }
+
+                    .laboratoire {
+                        display: flex;
+                        flex-direction: columns;
+                        padding-top: 20px;
+
+                        .constructs {
+                            width: 100%;
+
+                            .construct {
+                                position: relative;
+                                width: 400px;
+
+                                img {
+                                    border: none;
+                                    position: relative;
+
+                                    &.pentacle {
+                                        width: 200px;
+                                    }
+
+                                    &.artefact {
+                                        width: 50px;
+                                    }
+
+                                }
+
+                                &.alambic {
+                                    background-color: #729EBF;
+                                    top: 0px;
+                                    left: 0px;
+
+                                    .pentacle {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+    
+                                    .artefact {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
         
+                                }
+
+                                &.aludel {
+                                    background-color: #729EBF;
+                                    top: 0px;
+                                    left: 0px;
+
+                                    .pentacle {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+    
+                                    .artefact {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+        
+                                }
+
+                                &.athanor {
+                                    background-color: #729EBF;
+                                    top: 0px;
+                                    left: 0px;
+
+                                    .pentacle {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+    
+                                    .artefact {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+        
+                                }
+
+                                &.cornue {
+                                    background-color: #729EBF;
+                                    top: 0px;
+                                    left: 0px;
+
+                                    .pentacle {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+    
+                                    .artefact {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+        
+                                }
+
+                                &.creuset {
+                                    background-color: #729EBF;
+                                    top: 0px;
+                                    left: 0px;
+
+                                    .pentacle {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+    
+                                    .artefact {
+                                        top: 0px;
+                                        left: 0px;
+                                    }
+        
+                                }
+
+                            }
+
+                        }
+
+                    }
+
                     .akasha {
                         display: flex;
                         flex-direction: row;
@@ -2992,301 +3109,7 @@
         
                 }
 
-                .laboratoire {
-        
-                    .construct-images {
-                        display: flex;
-                        flex-direction: row;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        justify-content: space-evenly;
-        
-                        img {
-                            border: none;
-                            height: 90px;
-                        }
-                    }
-        
-                    .constructs {
-        
-                        .header {
-                            width: 814px;
-                            display: flex;
-                            flex-direction: row;
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            font-family: 'AJensonPro';
-                            font-size: 20px;
-                            border-width: 0px 0px 2px 0px;
-                            border-style: solid;
-                            border-color: black;
-        
-                            .name {
-                                padding-left: 5px;
-                                width: 100%;
-                            }
-            
-                            .parameter {
-                                flex: 0 0 auto;
-                                text-align: center;
-                            }
-            
-                            .width-40 {
-                                width: 40px;
-                            }
-            
-                            .width-80 {
-                                width: 80px;
-                            }
-            
-                            .width-135 {
-                                width: 135px;
-                            }
-        
-                        }
-        
-                        .item {
-                            padding-left: 10px;
-        
-                            .hand-checkbox {
-                                flex: 0 0 auto;
-                                justify-content: center;
-                                text-align: center;
-                                width: 40px;
-                                margin-left: 10px;
-                                margin-right: 10px;
-                            }
-        
-                            .element {
-                                width: 40px;
-                                height: 24px;
-                                padding-top: 1px;
-                                padding-bottom: 1px;
-                                border: none;
-                                text-align: center;
-                                background-color: transparent;
-                            }
-        
-                            .degre {
-                                text-align: center;
-                                width: 135px;
-        
-                                select {
-                                    border: none;
-                                    outline: 0px;
-                                    background-color: transparent;
-                                }
-        
-                            }
-        
-                            .substance {
-                                text-align: center;
-                                width: 80px;
-                            }
-        
-                        }
-        
-                    }
-        
-                    .materiae-header {
-                        width: 814px;
-                        margin-top: 30px;
-                        display: flex;
-                        flex-direction: row;
-                        padding-top: 10px;
-                        justify-content: center;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-                        font-family: 'AJensonPro';
-                        font-size: 20px;
-        
-                        .name {
-                            padding-left: 5px;
-                            width: 100%;
-                            transform: translate(0px, 7px);
-                        }
-        
-                        .element {
-                            flex: 0 0 auto;
-                            padding-top: 7px;
-                            width: 30px;
-                            text-align: center;
-                            transform:translate(0px, -5px);
-                        }
-        
-                        .quantite {
-                            font-size: 14px;
-                            flex: 0 0 auto;
-                            width: 30px;
-                            height: 30px;
-                            margin-right: 0px;
-                            text-align: center;
-                            border-radius: 50%;
-                            transform:translate(0px, -5px);
-                        }
-        
-                        .maximum {
-                            font-size: 14px;
-                            flex: 0 0 auto;
-                            width: 30px;
-                            height: 30px;
-                            margin-right: 38px;
-                            text-align: center;
-                            transform:translate(0px, -5px);
-                        }
-        
-                        .lastMaximum {
-                            font-size: 14px;
-                            flex: 0 0 auto;
-                            width: 30px;
-                            height: 30px;
-                            text-align: center;
-                            transform:translate(0px, -5px);
-                        }
-        
-                    }
-        
-                    .materiae-list {
-                        column-count: 2;
-                        column-fill: balance;
-                        column-gap: 10%;
-        
-                        .item {
-                            height: 30px;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            break-inside: avoid-column;
-        
-                            .element {
-                                padding-top: 3px;
-                                margin-left: 10px;
-                                margin-right: 30px;
-                            }
-        
-                            .item-delete {
-                                width: 32px;
-                            }
-        
-                            .item-name {
-                                width: 100%;
-                            }
-        
-                            .change-quantite {
-                                width: 25px;
-                                height: 25px;
-                                margin-right: 10px;
-                                text-align: center;
-                                border-radius: 50%;
-                            }
-        
-                            &:hover {
-                                text-shadow: 0 0 10px #2C606D;
-                                color: #2C606D;
-                            }
-        
-                        }
-        
-                    }
-        
-                    .catalyseur-header {
-                        width: 814px;
-                        margin-top: 30px;
-                        display: flex;
-                        flex-direction: row;
-                        padding-top: 10px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-                        font-family: 'AJensonPro';
-                        font-size: 20px;
-        
-                        span {
-                            padding-left: 5px;
-                        }
-                    }
-        
-                    .catalyseur-list {
-                        column-count: 3;
-                        column-fill: balance;
-                        column-gap: 10%;
-        
-                        .item {
-                            height: 30px;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            break-inside: avoid-column;
-        
-                            .item-delete {
-                                width: 32px;
-                            }
-        
-                            .item-name {
-                                width: 100%;
-                            }
-        
-                            &:hover {
-                                text-shadow: 0 0 10px #2C606D;
-                                color: #2C606D;
-                            }
-        
-                        }
-        
-                    }
-        
-                    .laboratoire-header {
-                        width: 814px;
-                        margin-top: 30px;
-                        display: flex;
-                        flex-direction: row;
-                        padding-top: 10px;
-                        border-width: 0px 0px 2px 0px;
-                        border-style: solid;
-                        border-color: black;
-                        font-family: 'AJensonPro';
-                        font-size: 20px;
-        
-                        span {
-                            padding-left: 5px;
-                        }
-                    }
-        
-                    .laboratoire-list {
-                        column-count: 1;
-                        column-fill: balance;
-                        column-gap: 10%;
-        
-                        .actor {
-                            height: 30px;
-                            display: flex;
-                            flex-direction: row;
-                            align-items: center;
-                            break-inside: avoid-column;
-        
-                            .actor-delete {
-                                width: 32px;
-                            }
-        
-                            .actor-active {
-                                width: 32px;
-                                padding-top: 3px;
-                            }
-        
-                            .actor-name {
-                                width: 100%;
-                            }
-        
-                            &:hover {
-                                text-shadow: 0 0 10px #2C606D;
-                                color: #2C606D;
-                            }
-        
-                        }
-                    }
-        
-                }
+
         
         
             }

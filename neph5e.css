@@ -1857,6 +1857,93 @@
   margin-left: 85px;
   font-size: 15px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire {
+  display: flex;
+  flex-direction: columns;
+  padding-top: 20px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs {
+  width: 100%;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct {
+  position: relative;
+  width: 400px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img {
+  border: none;
+  position: relative;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.pentacle {
+  width: 200px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.artefact {
+  width: 50px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.alambic {
+  background-color: #729EBF;
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.alambic .pentacle {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.alambic .artefact {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.aludel {
+  background-color: #729EBF;
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.aludel .pentacle {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.aludel .artefact {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.athanor {
+  background-color: #729EBF;
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.athanor .pentacle {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.athanor .artefact {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.cornue {
+  background-color: #729EBF;
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.cornue .pentacle {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.cornue .artefact {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.creuset {
+  background-color: #729EBF;
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.creuset .pentacle {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct.creuset .artefact {
+  top: 0px;
+  left: 0px;
+}
 .actor .window-content .actor-root .article .article-body .akasha {
   display: flex;
   flex-direction: row;
@@ -2556,243 +2643,6 @@
 }
 .actor .window-content .actor-root .article .nofocus i {
   margin-top: 50px;
-}
-.actor .window-content .actor-root .article .laboratoire .construct-images {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  justify-content: space-evenly;
-}
-.actor .window-content .actor-root .article .laboratoire .construct-images img {
-  border: none;
-  height: 90px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .header {
-  width: 814px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .header .name {
-  padding-left: 5px;
-  width: 100%;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .header .parameter {
-  flex: 0 0 auto;
-  text-align: center;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .header .width-40 {
-  width: 40px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .header .width-80 {
-  width: 80px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .header .width-135 {
-  width: 135px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .item {
-  padding-left: 10px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .item .hand-checkbox {
-  flex: 0 0 auto;
-  justify-content: center;
-  text-align: center;
-  width: 40px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .item .element {
-  width: 40px;
-  height: 24px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  border: none;
-  text-align: center;
-  background-color: transparent;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .item .degre {
-  text-align: center;
-  width: 135px;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .item .degre select {
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-}
-.actor .window-content .actor-root .article .laboratoire .constructs .item .substance {
-  text-align: center;
-  width: 80px;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-header {
-  width: 814px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  justify-content: center;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-header .name {
-  padding-left: 5px;
-  width: 100%;
-  transform: translate(0px, 7px);
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-header .element {
-  flex: 0 0 auto;
-  padding-top: 7px;
-  width: 30px;
-  text-align: center;
-  transform: translate(0px, -5px);
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-header .quantite {
-  font-size: 14px;
-  flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
-  margin-right: 0px;
-  text-align: center;
-  border-radius: 50%;
-  transform: translate(0px, -5px);
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-header .maximum {
-  font-size: 14px;
-  flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
-  margin-right: 38px;
-  text-align: center;
-  transform: translate(0px, -5px);
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-header .lastMaximum {
-  font-size: 14px;
-  flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  transform: translate(0px, -5px);
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list {
-  column-count: 2;
-  column-fill: balance;
-  column-gap: 10%;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list .item {
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  break-inside: avoid-column;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list .item .element {
-  padding-top: 3px;
-  margin-left: 10px;
-  margin-right: 30px;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list .item .item-delete {
-  width: 32px;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list .item .item-name {
-  width: 100%;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list .item .change-quantite {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  text-align: center;
-  border-radius: 50%;
-}
-.actor .window-content .actor-root .article .laboratoire .materiae-list .item:hover {
-  text-shadow: 0 0 10px #2C606D;
-  color: #2C606D;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-header {
-  width: 814px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-header span {
-  padding-left: 5px;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-list {
-  column-count: 3;
-  column-fill: balance;
-  column-gap: 10%;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item {
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  break-inside: avoid-column;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item .item-delete {
-  width: 32px;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item .item-name {
-  width: 100%;
-}
-.actor .window-content .actor-root .article .laboratoire .catalyseur-list .item:hover {
-  text-shadow: 0 0 10px #2C606D;
-  color: #2C606D;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-header {
-  width: 814px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-header span {
-  padding-left: 5px;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-list {
-  column-count: 1;
-  column-fill: balance;
-  column-gap: 10%;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor {
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  break-inside: avoid-column;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor .actor-delete {
-  width: 32px;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor .actor-active {
-  width: 32px;
-  padding-top: 3px;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor .actor-name {
-  width: 100%;
-}
-.actor .window-content .actor-root .article .laboratoire .laboratoire-list .actor:hover {
-  text-shadow: 0 0 10px #2C606D;
-  color: #2C606D;
 }
 .item-root {
   display: flex;
