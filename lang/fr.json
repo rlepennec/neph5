@@ -611,9 +611,9 @@
             "science": "Alchimie",
             "effets": "Formules",
             "cercles": {
-                "oeuvreAuNoir": "Noir",
-                "oeuvreAuBlanc": "Blanc",
-                "oeuvreAuRouge": "Rouge"
+                "oeuvreAuNoir": "Oeuvre au Noir",
+                "oeuvreAuBlanc": "Oeuvre au Blanc",
+                "oeuvreAuRouge": "Oeuvre au Rouge"
             },
             "construct": "Construct",
             "constructs": {
