@@ -1868,7 +1868,6 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct {
   position: relative;
   width: 400px;
-  border: 1px solid black;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img {
   position: relative;
@@ -1876,11 +1875,11 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.pentacle {
   width: 200px;
-  top: 0px;
-  left: 0px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.artefact {
-  width: 50px;
+  width: 51px;
+  top: 9px;
+  left: 5px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.circle {
   border: none;
@@ -1892,16 +1891,28 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .name {
   position: relative;
-  font-size: 11px;
+  font-family: 'AJensonPro';
+  font-size: 26px;
+  top: -46px;
+  left: 7px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct select {
+  position: relative;
+  top: -25px;
+  left: -76px;
+  font-family: 'AJensonPro';
+  font-size: 19px;
+  border: none;
+  background-color: transparent;
+  z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements {
   position: relative;
-  left: 100px;
+  left: 93px;
+  top: -46px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .pentacle {
   width: 200px;
-  top: 0px;
-  left: 0px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .element {
   position: relative;
@@ -1944,7 +1955,6 @@
   background-color: transparent;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic {
-  background-color: #729EBF;
   top: 0px;
   left: 0px;
 }
