@@ -299,11 +299,11 @@
   padding: 5px;
   border-radius: 6px;
   position: absolute;
-  z-index: 1;
+  z-index: 200;
   bottom: 125%;
   left: 50%;
   margin-left: -60px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s;
   background-image: linear-gradient(to bottom, #e2e0d2 0%, #8b4b0e 100%);
   box-shadow: 3px 3px 3px #999;
@@ -1941,6 +1941,9 @@
   top: -155px;
   left: -97px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .tooltip {
+  z-index: 99;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .tooltip input {
   position: relative;
   border: none;
@@ -1950,15 +1953,11 @@
   z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .tooltip .tooltiptext {
-  z-index: 99;
+  z-index: 200;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor {
   top: 579px;
   left: calc(50% - 236px);
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor .artefact {
-  top: -30px;
-  left: 251px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor select {
   top: 115px;
@@ -1968,13 +1967,13 @@
   top: 91px;
   left: -74px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor > .tooltip {
+  top: -30px;
+  left: 251px;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic {
   top: 565px;
   left: calc(50% + 68px);
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic .artefact {
-  top: -24px;
-  left: 81px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic select {
   top: 127px;
@@ -1984,13 +1983,13 @@
   top: 105px;
   left: 245px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .alambic > .tooltip {
+  top: -24px;
+  left: 81px;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel {
   top: 225px;
   left: calc(50% + 169px);
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel .artefact {
-  top: 160px;
-  left: 12px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel select {
   top: -84px;
@@ -2000,13 +1999,13 @@
   top: -108px;
   left: 96px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .aludel > .tooltip {
+  top: 160px;
+  left: 12px;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue {
   top: 326px;
   left: calc(50% - 346px);
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue .artefact {
-  top: 124px;
-  left: 319px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue select {
   top: -18px;
@@ -2016,13 +2015,13 @@
   top: -40px;
   left: -8px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .cornue > .tooltip {
+  top: 124px;
+  left: 319px;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset {
   top: 133px;
   left: calc(50% - 100px);
-}
-.actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset .artefact {
-  top: 248px;
-  left: 174px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset select {
   top: -20px;
@@ -2031,6 +2030,10 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset .name {
   top: -45px;
   left: -5px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .creuset > .tooltip {
+  top: 247px;
+  left: 169px;
 }
 .actor .window-content .actor-root .article .article-body .akasha {
   display: flex;
