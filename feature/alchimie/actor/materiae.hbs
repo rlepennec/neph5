@@ -1,0 +1,153 @@
+<div class="materiae">
+
+    <div class="left">
+
+        <div class="header">
+
+            <img class="puce"/>
+
+            <img class="separator"/>
+
+            <span class="name">{{localize "NEPH5E.materiaePrimae"}}</span>
+
+        </div>
+
+        <div class="pentacle">
+
+            <img src="systems/neph5e/assets/core/pentacle.webp"/>
+
+            <div class="tooltip air">
+
+                <input
+                    name="system.alchimie.primae.air.quantite"
+                    type="text"
+                    value="{{actor.system.alchimie.primae.air.quantite}}"
+                    data-dtype="Number"/>
+                <label class="maximum">/ {{getMaxMP actor 'air'}}</label>
+                <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+            </div>
+
+            <div class="tooltip eau">
+                <input
+                    name="system.alchimie.primae.eau.quantite"
+                    type="text"
+                    value="{{actor.system.alchimie.primae.eau.quantite}}"
+                    data-dtype="Number"/>
+                <label class="maximum">/ {{getMaxMP actor 'eau'}}</label>
+                <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
+            </div>
+
+            <div class="tooltip feu">
+                <input
+                    name="system.alchimie.primae.feu.quantite"
+                    type="text"
+                    value="{{actor.system.alchimie.primae.feu.quantite}}"
+                    data-dtype="Number"/>
+                <label class="maximum">/ {{getMaxMP actor 'feu'}}</label>
+                <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
+            </div>
+
+            <div class="tooltip lune">
+                <input
+                    name="system.alchimie.primae.lune.quantite"
+                    type="text"
+                    value="{{actor.system.alchimie.primae.lune.quantite}}"
+                    data-dtype="Number"/>
+                <label class="maximum">/ {{getMaxMP actor 'lune'}}</label>
+                <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
+            </div>
+
+            <div class="tooltip terre">
+                <input
+                    name="system.alchimie.primae.terre.quantite"
+                    type="text"
+                    value="{{actor.system.alchimie.primae.terre.quantite}}"
+                    data-dtype="Number"/>
+                <label class="maximum">/ {{getMaxMP actor 'terre'}}</label>
+                <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="materiae-primae">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <label class="name">{{localize "NEPH5E.materiae"}}</label>
+
+            </div>
+
+            <ol class="body">
+
+                {{#each actor.materiae as |item|}}
+                <li class="materiae" data-id="{{item.embedded.id}}">
+
+                    <i class="delete fas fa-trash"></i>
+
+                    <i class="element fas 
+                    {{#switch item.original.element}}
+                        {{#case 'air'}}fa-wind{{/case}}
+                        {{#case 'eau'}}fa-wate{{/case}}
+                        {{#case 'feu'}}fa-fire{{/case}}
+                        {{#case 'lune'}}fa-moon{{/case}}
+                        {{#case 'luneNoire'}}fa-circle{{/case}}
+                        {{#case 'terre'}}fa-seedling{{/case}}
+                    {{/switch}}"></i>
+
+                    <label class="name open">{{item.original.name}}</label>
+
+                    <input
+                        class="change-quantite"
+                        type="number"
+                        value="{{item.embedded.quantite}}"
+                        data-dtype="Number"/>
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+        </div>
+
+        {{#if catalyseurs}}
+        <div class="catalyseurs">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <label class="name">{{localize "NEPH5E.catalyseurs"}}</label>
+
+            </div>
+
+            <ol class="body">
+
+                {{#each actor.catalyseurs as |item|}}
+                <li class="catalyseur" data-id="{{item.embedded.id}}">
+
+                    <i class="delete fas fa-trash"></i>
+
+                    <label class="name open">{{item.original.name}}</label>
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+
+        </div>
+
+    </div>   
+    {{/if}}
+
+</div>

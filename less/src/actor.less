@@ -2314,6 +2314,216 @@
 
                     }
 
+                    .materiae {
+                        flex-direction: row;
+                        display: flex;
+                        padding-top: 20px;
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: -10px;
+                            width: 100%;
+
+                            .puce {
+                                border: none;
+                                width: 60px;
+                                display: hidden;
+                                background-color: transparent;
+                                content: var(--img-puce);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 55px);
+                                content: var(--img-separator);
+                            }
+        
+                            .name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        .left {
+                            display: flex;
+                            flex-direction: column;
+                            width: 450px;
+        
+                            .pentacle {
+                                position: relative;
+                                text-align: center;
+                                margin-left: 55px;
+
+                                img {
+                                    border: 0px;
+                                    width: 380px;
+                                    height: 378px;
+                                }
+        
+                                .macro {
+
+                                    .tooltip {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+        
+                                        input {
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            font-weight: bold;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
+
+                                        &.air {
+                                            transform: translate(150px, -85px);
+                                        }
+            
+                                        &.eau {
+                                            transform: translate(120px, 140px);
+                                        }
+            
+                                        &.feu {
+                                            transform: translate(-60px, -180px);
+                                        }
+            
+                                        &.lune {
+                                            transform: translate(-130px, 150px);
+                                        }
+            
+                                        &.terre {
+                                            transform: translate(-210px, -20px);
+                                        }
+
+                                    }
+
+                                    .dice {
+                                        position: absolute; 
+                                        top: 50%;
+                                        left: 50%;
+
+                                        &.air {
+                                            transform: translate(140px, -80px);
+                                        }
+            
+                                        &.eau {
+                                            transform: translate(110px, 145px);
+                                        }
+            
+                                        &.feu {
+                                            transform: translate(-70px, -175px);
+                                        }
+            
+                                        &.lune {
+                                            transform: translate(-140px, 155px);
+                                        }
+            
+                                        &.terre {
+                                            transform: translate(-220px, -15px);
+                                        }
+
+                                    }
+        
+                                }        
+
+                            }
+
+                        }
+        
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 40px;
+                            margin-right: 10px;
+                            width: calc(100% - 500px);
+
+                            .body {
+                                display: flex;
+                                flex-direction: column;
+        
+                                .materiae {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .element {
+                                        font-size: 13px;
+                                        width: 40px;
+                                        flex: 0 0 auto;
+                                        margin-top: 4px;
+                                    }
+
+                                    .name {
+                                        width: calc(100% - 65px);
+                                    }
+
+                                    .delete {
+                                        font-size: 13px;
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px black;
+                                    }
+
+                                }
+                
+                                .catalyseur {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .formed {
+                                        font-size: 13px;
+                                        width: 40px;
+                                        flex: 0 0 auto;
+                                        margin-top: 4px;
+                                    }
+
+                                    .name {
+                                        width: calc(100% - 65px);
+                                    }
+
+                                    .delete {
+                                        font-size: 13px;
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px black;
+                                    }
+
+                                }
+
+                            }
+
+                        }
+            
+                    }
+
                     .akasha {
                         display: flex;
                         flex-direction: row;

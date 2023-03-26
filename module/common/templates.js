@@ -22,6 +22,7 @@ export const preloadTemplates = async function () {
 
         // Laboratoire
         "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",
+        "systems/neph5e/feature/alchimie/actor/materiae.hbs",
 
         // Nephilim
         "systems/neph5e/feature/nephilim/actor/main.hbs",

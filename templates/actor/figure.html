@@ -100,6 +100,11 @@
                     <img class="sheet-navigation-pin"/>
                     <img class="sheet-navigation-hole"/>
                 </div>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="materiae">{{localize "NEPH5E.materiae"}}</a>
+                    <img class="sheet-navigation-pin"/>
+                    <img class="sheet-navigation-hole"/>
+                </div>
                 {{/if}}
 
                 {{#if (eq system.options.dracomachie true)}}
@@ -276,6 +281,9 @@
                 </div>
                 <div class="tab" data-group="primary" data-tab="laboratoire">
                     {{> "systems/neph5e/feature/alchimie/actor/laboratoire.hbs"}}
+                </div>
+                <div class="tab" data-group="primary" data-tab="materiae">
+                    {{> "systems/neph5e/feature/alchimie/actor/materiae.hbs"}}
                 </div>
                 {{/if}}
 
