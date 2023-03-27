@@ -3,36 +3,32 @@
     <div class="laboratoires">
 
         <ol>
-        {{#each actor.laboratoires as |item|}}
-        <li class="actor hoverable flexrow-start" data-actor-id="{{item.id}}">
 
-            <div class="mright actor-delete">
-                <a><i class="fas fa-trash"></i></a>
-            </div>
+            {{#each actor.laboratoires as |item|}}
+            <li class="actor hoverable flexrow-start" data-actor-id="{{item.id}}">
 
-            <div class="mright actor-active">
-                {{#if active}}
-                <a><i class="fa-solid fa-feather-pointed"></i></a>
-                {{else}}
-                <span></span>
-                {{/if}}
-            </div>
+                <i class="delete fas fa-trash"></i>
 
-            <div>
-                <span class="actor-name">{{item.name}}</span>
-            </div>
+                <div class="mright actor-active">
+                    {{#if active}}
+                    <a><i class="fa-solid fa-feather-pointed"></i></a>
+                    {{else}}
+                    <span></span>
+                    {{/if}}
+                </div>
 
-        </li>
-        {{/each}}
+                <label class="actor-name">{{item.name}}</label>
+
+            </li>
+            {{/each}}
+
         </ol>
-
-</ol>
 
     </div>
 
     <div class="constructs">
 
-        <div class="construct creuset">
+        <div class="construct creuset {{#unless actor.system.alchimie.constructs.creuset.active}}disabled{{/unless}}">
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.creuset"}}</label>
 
@@ -107,7 +103,7 @@
 
         </div>
 
-        <div class="construct aludel">
+        <div class="construct aludel {{#unless actor.system.alchimie.constructs.aludel.active}}disabled{{/unless}}">
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.aludel"}}</label>
 
@@ -182,7 +178,7 @@
 
         </div>
 
-        <div class="construct cornue">
+        <div class="construct cornue {{#unless actor.system.alchimie.constructs.cornue.active}}disabled{{/unless}}">
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.cornue"}}</label>
 
@@ -257,7 +253,7 @@
 
         </div>
 
-        <div class="construct alambic">
+        <div class="construct alambic {{#unless actor.system.alchimie.constructs.alambic.active}}disabled{{/unless}}">
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.alambic"}}</label>
 
@@ -332,7 +328,7 @@
 
         </div>
 
-        <div class="construct athanor">
+        <div class="construct athanor {{#unless actor.system.alchimie.constructs.athanor.active}}disabled{{/unless}}">
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.athanor"}}</label>
 
@@ -410,27 +406,27 @@
         <div class="artefacts">
 
             <div class="athanor tooltip">
-                <img src="systems/neph5e/assets/backgrounds/athanor.webp"/>
+                <img src="systems/neph5e/assets/backgrounds/athanor.webp" {{#unless actor.system.alchimie.constructs.athanor.active}}class="disabled"{{/unless}}/>
                 <label class="tooltiptext">{{localize "NEPH5E.athanor"}}</label>
             </div>
 
             <div class="alambic tooltip">
-                <img src="systems/neph5e/assets/backgrounds/alambic.webp"/>
+                <img src="systems/neph5e/assets/backgrounds/alambic.webp" {{#unless actor.system.alchimie.constructs.alambic.active}}class="disabled"{{/unless}}/>
                 <label class="tooltiptext">{{localize "NEPH5E.alambic"}}</label>
             </div>
 
             <div class="aludel tooltip">
-                <img src="systems/neph5e/assets/backgrounds/aludel.webp"/>
+                <img src="systems/neph5e/assets/backgrounds/aludel.webp" {{#unless actor.system.alchimie.constructs.aludel.active}}class="disabled"{{/unless}}/>
                 <label class="tooltiptext">{{localize "NEPH5E.aludel"}}</label>
             </div>
 
             <div class="cornue tooltip">
-                <img src="systems/neph5e/assets/backgrounds/cornue.webp"/>
+                <img src="systems/neph5e/assets/backgrounds/cornue.webp" {{#unless actor.system.alchimie.constructs.cornue.active}}class="disabled"{{/unless}}/>
                 <label class="tooltiptext">{{localize "NEPH5E.cornue"}}</label>
             </div>
 
             <div class="creuset tooltip">
-                <img src="systems/neph5e/assets/backgrounds/creuset.webp"/>
+                <img src="systems/neph5e/assets/backgrounds/creuset.webp" {{#unless actor.system.alchimie.constructs.creuset.active}}class="disabled"{{/unless}}/>
                 <label class="tooltiptext">{{localize "NEPH5E.creuset"}}</label>
             </div>
 
