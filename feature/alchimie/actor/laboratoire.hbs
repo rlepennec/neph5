@@ -1,5 +1,35 @@
 <div class="laboratoire">
 
+    <div class="laboratoires">
+
+        <ol>
+        {{#each actor.laboratoires as |item|}}
+        <li class="actor hoverable flexrow-start" data-actor-id="{{item.id}}">
+
+            <div class="mright actor-delete">
+                <a><i class="fas fa-trash"></i></a>
+            </div>
+
+            <div class="mright actor-active">
+                {{#if active}}
+                <a><i class="fa-solid fa-feather-pointed"></i></a>
+                {{else}}
+                <span></span>
+                {{/if}}
+            </div>
+
+            <div>
+                <span class="actor-name">{{item.name}}</span>
+            </div>
+
+        </li>
+        {{/each}}
+        </ol>
+
+</ol>
+
+    </div>
+
     <div class="constructs">
 
         <div class="construct creuset">

@@ -1862,6 +1862,9 @@
   flex-direction: columns;
   padding-top: 20px;
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .laboratoires {
+  position: absolute;
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs {
   width: 100%;
 }
