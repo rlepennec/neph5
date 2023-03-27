@@ -134,11 +134,6 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="nephilim"] .visible').click(this._onToggleMetamorphose.bind(this, 'visible'));
         html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
 
-
-
-
-
-
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
@@ -146,6 +141,10 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
 
 
+
+
+
+        
         html.find('div[data-tab="laboratoire"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="laboratoire"] .edit-catalyseur').click(this._onEditFeature.bind(this, 'catalyseur'));
         html.find('div[data-tab="laboratoire"] .edit-materiae').click(this._onEditFeature.bind(this, 'materiae'));
