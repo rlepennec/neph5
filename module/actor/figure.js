@@ -143,6 +143,9 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
         // Laboratoire
+        html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
+
+
         html.find('div[data-tab="laboratoire"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="laboratoire"] .edit-catalyseur').click(this._onEditFeature.bind(this, 'catalyseur'));
         html.find('div[data-tab="laboratoire"] .edit-materiae').click(this._onEditFeature.bind(this, 'materiae'));
@@ -734,7 +737,6 @@ export class FigureSheet extends HistoricalSheet {
         await this.actor.update({ ['system.akasha.' + vaisseau + ".active"]: !activated });
     }
 
-
     /**
      * Edit or unedit the specified capacity.
      * @param capacity The capacity to edit, 'esquive' or 'lutte'
@@ -744,6 +746,17 @@ export class FigureSheet extends HistoricalSheet {
         event.preventDefault();
         this.editedCapacity = this.editedCapacity === capacity ? null : capacity;
         await this.render(true);
+    }
+
+    /**
+     * Activate or deactivate the specified construct.
+     * @param event The click event.
+     */
+    async _onConstruct(event) {
+        event.preventDefault();
+        const construct = $(event.currentTarget).closest('.tooltip').data('type');
+        const activated = this.actor.system.alchimie.constructs[construct].active;
+        await this.actor.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
     }
 
 }
