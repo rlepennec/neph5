@@ -2,7 +2,10 @@
 
     <div class="laboratoires">
 
-        <label class="zone">...</label>
+        <label>Laboratoire de</label>
+        {{#with (laboratoryOwner actor) as |actor|}}
+        <label class="zone">{{actor.name}} ...</label>
+        {{/with}}
 
         <ol class="menu">
 
@@ -16,7 +19,7 @@
 
     </div>
 
-    {{#with (laboratoryOwner actor) as |actor|}}    
+    {{#with (laboratoryOwner actor) as |actor|}}
     <div class="constructs">
 
         <div class="construct creuset {{#unless actor.system.alchimie.constructs.creuset.active}}disabled{{/unless}}">
