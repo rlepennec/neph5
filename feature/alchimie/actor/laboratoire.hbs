@@ -2,23 +2,13 @@
 
     <div class="laboratoires">
 
-        <ol>
+        <label class="zone">...</label>
 
-            {{#each actor.laboratoires as |item|}}
-            <li class="actor hoverable flexrow-start" data-actor-id="{{item.id}}">
+        <ol class="menu">
 
-                <i class="delete fas fa-trash"></i>
-
-                <div class="mright actor-active">
-                    {{#if active}}
-                    <a><i class="fa-solid fa-feather-pointed"></i></a>
-                    {{else}}
-                    <span></span>
-                    {{/if}}
-                </div>
-
-                <label class="actor-name">{{item.name}}</label>
-
+            {{#each actor.laboratoires as |item|}}         
+            <li data-id="{{item.id}}">
+               <label class="name">{{item.name}}</label>
             </li>
             {{/each}}
 
@@ -26,6 +16,7 @@
 
     </div>
 
+    {{#with (laboratoryOwner actor) as |actor|}}    
     <div class="constructs">
 
         <div class="construct creuset {{#unless actor.system.alchimie.constructs.creuset.active}}disabled{{/unless}}">
@@ -34,7 +25,7 @@
 
             <select name="actor.system.alchimie.constructs.creuset.degre">
             {{#select degre}}
-                {{#each cercles as |name label|}}
+                {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
@@ -109,7 +100,7 @@
 
             <select name="actor.system.alchimie.constructs.aludel.degre">
             {{#select degre}}
-                {{#each cercles as |name label|}}
+                {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
@@ -184,7 +175,7 @@
 
             <select name="actor.system.alchimie.constructs.cornue.degre">
             {{#select degre}}
-                {{#each cercles as |name label|}}
+                {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
@@ -259,7 +250,7 @@
 
             <select name="actor.system.alchimie.constructs.alambic.degre">
             {{#select degre}}
-                {{#each cercles as |name label|}}
+                {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
@@ -334,7 +325,7 @@
 
             <select name="actor.system.alchimie.constructs.athanor.degre">
             {{#select degre}}
-                {{#each cercles as |name label|}}
+                {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
@@ -433,6 +424,6 @@
         </div>
 
     </div>
-
-
+    
+{{/with}}
 </div>
