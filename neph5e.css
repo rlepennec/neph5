@@ -1865,7 +1865,7 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires {
   position: absolute;
   top: 105px;
-  left: 690px;
+  left: calc(50% + 10px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone {
   font-family: 'AJensonPro';
