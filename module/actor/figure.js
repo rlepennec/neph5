@@ -139,8 +139,8 @@ export class FigureSheet extends HistoricalSheet {
         
         // Laboratoire
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
-
-
+        html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
+        html.find('div[data-tab="laboratoire"] .select').click(this._onDeleteLaboratory.bind(this));
 
 
 
@@ -552,26 +552,7 @@ export class FigureSheet extends HistoricalSheet {
         }
     }
 
-    /**
-     * Delete the specified laboratory.
-     * @param event The click event.
-     */
-    async _onDeleteLaboratory(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".actor");
-        const sid = li.data("actor-id");
-        const actor = game.actors.find(i => i.sid === sid);
-        if (actor != null) {
-            const laboratoires = this.actor.system.alchimie.laboratoires;
-            if (laboratoires.includes(actor.sid)) {
-                const labs = laboratoires.filter(i => i !== actor.sid);
-                await this.actor.update({ ['system.alchimie.laboratoires']: labs });
-            }
-            if (this.actor.system.alchimie.courant === actor.sid) {
-                await this.actor.update({ ['system.alchimie.courant']: null });
-            }
-        }
-    }
+
 
 
 
@@ -756,6 +737,41 @@ export class FigureSheet extends HistoricalSheet {
         const construct = $(event.currentTarget).closest('.tooltip').data('type');
         const activated = this.actor.system.alchimie.constructs[construct].active;
         await this.actor.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
+    }
+
+    /**
+     * Select the specified laboratory.
+     * @param event The click event.
+     */
+    async _onSelectLaboratory(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.select').data('sid');
+        if (sid == null) {
+            await this.actor.update({ ['system.alchimie.courant']: null });
+        } else {
+            await this.actor.update({ ['system.alchimie.courant']: sid });
+        }
+    }
+
+    /**
+     * Delete the specified laboratory.
+     * @param event The click event.
+     */
+    async _onDeleteLaboratory(event) {
+        event.preventDefault();
+        const li = $(event.currentTarget).parents(".actor");
+        const sid = li.data("actor-id");
+        const actor = game.actors.find(i => i.sid === sid);
+        if (actor != null) {
+            const laboratoires = this.actor.system.alchimie.laboratoires;
+            if (laboratoires.includes(actor.sid)) {
+                const labs = laboratoires.filter(i => i !== actor.sid);
+                await this.actor.update({ ['system.alchimie.laboratoires']: labs });
+            }
+            if (this.actor.system.alchimie.courant === actor.sid) {
+                await this.actor.update({ ['system.alchimie.courant']: null });
+            }
+        }
     }
 
 }

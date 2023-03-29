@@ -9,14 +9,14 @@
         <ol class="menu">
 
             {{#each actor.laboratoires as |item|}}
-            {{#if (ne actor.system.alchimie.courant item.id)}}    
-            <li class="name" data-id="{{item.id}}">{{item.name}}</li>
+            {{#if (ne ../actor.system.alchimie.courant item.id)}}    
+            <li class="name select"data-sid="{{item.id}}">{{item.name}}</li>
             {{/if}}
             {{/each}}
 
             {{#if (nonNull actor.system.alchimie.courant)}}
-            <li class="name" data-id="self">{{actor.name}}</li>
-            <li class="name" data-id="delete">Supprimer</li>
+            <li class="name select">{{actor.name}}</li>
+            <li class="name delete">Supprimer</li>
             {{/if}}
 
         </ol>
