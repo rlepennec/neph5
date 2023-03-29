@@ -732,9 +732,11 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onConstruct(event) {
         event.preventDefault();
-        const construct = $(event.currentTarget).closest('.tooltip').data('type');
-        const activated = this.actor.system.alchimie.constructs[construct].active;
-        await this.actor.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
+        if (this.actor.system.alchimie.courant == null) {
+            const construct = $(event.currentTarget).closest('.tooltip').data('type');
+            const activated = this.actor.system.alchimie.constructs[construct].active;
+            await this.actor.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
+        }
     }
 
     /**
