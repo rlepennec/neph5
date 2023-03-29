@@ -140,7 +140,7 @@ export class FigureSheet extends HistoricalSheet {
         // Laboratoire
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
         html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
-        html.find('div[data-tab="laboratoire"] .select').click(this._onDeleteLaboratory.bind(this));
+        html.find('div[data-tab="laboratoire"] .delete').click(this._onDeleteLaboratory.bind(this));
 
 
 
@@ -149,8 +149,6 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="laboratoire"] .edit-catalyseur').click(this._onEditFeature.bind(this, 'catalyseur'));
         html.find('div[data-tab="laboratoire"] .edit-materiae').click(this._onEditFeature.bind(this, 'materiae'));
         html.find('div[data-tab="laboratoire"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
-        html.find('div[data-tab="laboratoire"] .actor-delete').click(this._onDeleteLaboratory.bind(this));
-        html.find('div[data-tab="laboratoire"] .actor-name').click(this._onActiveLaboratory.bind(this));
         
         // Nephilim
         html.find('div[data-tab="nephilim"] .edit-arcane').click(this._onEditFeature.bind(this, 'arcane'));
@@ -746,11 +744,7 @@ export class FigureSheet extends HistoricalSheet {
     async _onSelectLaboratory(event) {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.select').data('sid');
-        if (sid == null) {
-            await this.actor.update({ ['system.alchimie.courant']: null });
-        } else {
-            await this.actor.update({ ['system.alchimie.courant']: sid });
-        }
+        await this.actor.update({ ['system.alchimie.courant']: sid == null ? null : sid });
     }
 
     /**
@@ -759,19 +753,10 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onDeleteLaboratory(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents(".actor");
-        const sid = li.data("actor-id");
-        const actor = game.actors.find(i => i.sid === sid);
-        if (actor != null) {
-            const laboratoires = this.actor.system.alchimie.laboratoires;
-            if (laboratoires.includes(actor.sid)) {
-                const labs = laboratoires.filter(i => i !== actor.sid);
-                await this.actor.update({ ['system.alchimie.laboratoires']: labs });
-            }
-            if (this.actor.system.alchimie.courant === actor.sid) {
-                await this.actor.update({ ['system.alchimie.courant']: null });
-            }
-        }
+        const sid = this.actor.system.alchimie.courant;
+        const labs = this.actor.system.alchimie.laboratoires.filter(i => i !== sid);
+        await this.actor.update({ ['system.alchimie.laboratoires']: labs });
+        await this.actor.update({ ['system.alchimie.courant']: null });
     }
 
 }
