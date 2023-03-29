@@ -17,8 +17,13 @@
 
             {{#if (nonNull actor.system.alchimie.courant)}}
             <li class="name select">{{actor.name}}</li>
-            <li class="name delete">Supprimer</li>
             {{/if}}
+
+            {{#each actor.laboratoires as |item|}}
+            {{#if (eq ../actor.system.alchimie.courant item.id)}} 
+            <li class="name delete"><i class="fas fa-trash"></i> {{item.name}}</li>
+            {{/if}}
+            {{/each}}
 
         </ol>
         {{/unless}}

@@ -1883,7 +1883,7 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .menu {
   position: relative;
-  top: -10px;
+  top: -12px;
   left: 30px;
   width: 160px;
   list-style: none;
@@ -1907,6 +1907,9 @@
   box-shadow: none;
   border: none;
   padding-left: 10px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .menu li i {
+  font-size: 14px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .menu:hover {
   display: block;
