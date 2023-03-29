@@ -2510,40 +2510,101 @@
                                     height: 378px;
                                 }
         
-                                .macro {
+                                .element {
+
+                                    .circle {
+                                        position: absolute;
+                                        border: none;
+                                        width: 50px;
+                                        height: 51px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+
+                                        &.air {
+                                            top: 94px;
+                                            left: 324px;
+                                        }
+
+                                        &.eau {
+                                            top: 284px;
+                                            left: 311px;
+                                        }
+
+                                        &.feu {
+                                            top: 7px;
+                                            left: 115px;
+                                        }
+
+                                        &.lune {
+                                            top: 341px;
+                                            left: 85px;
+                                        }
+
+                                        &.terre {
+                                            top: 161px;
+                                            left: -26px;
+                                        }
+
+                                    }
+
+                                    .maximum {
+                                        position: absolute;
+                                        font-size: 20px;
+
+                                        &.air {
+                                            transform: translate(173px, -261px);
+                                        }
+            
+                                        &.eau {
+                                            transform: translate(160px, -72px);
+                                        }
+            
+                                        &.feu {
+                                            transform: translate(-33px, -377px);
+                                        }
+            
+                                        &.lune {
+                                            transform: translate(-66px, -16px);
+                                        }
+            
+                                        &.terre {
+                                            transform: translate(-196px, -175px);
+                                        }
+
+                                    }
 
                                     .tooltip {
                                         position: absolute;
                                         top: 50%;
                                         left: 50%;
-        
+
                                         input {
                                             background-color: transparent;
                                             font-size: 20px;
-                                            font-weight: bold;
                                             border: 0px;
                                             width: 40px;
                                             text-align: center;
                                         }
 
                                         &.air {
-                                            transform: translate(150px, -85px);
+                                            transform: translate(133px, -85px);
                                         }
             
                                         &.eau {
-                                            transform: translate(120px, 140px);
+                                            transform: translate(119px, 105px);
                                         }
             
                                         &.feu {
-                                            transform: translate(-60px, -180px);
+                                            transform: translate(-75px, -173px);
                                         }
             
                                         &.lune {
-                                            transform: translate(-130px, 150px);
+                                            transform: translate(-106px, 162px);
                                         }
             
                                         &.terre {
-                                            transform: translate(-210px, -20px);
+                                            transform: translate(-217px, -19px);
                                         }
 
                                     }

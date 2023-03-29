@@ -16,55 +16,69 @@
 
             <img src="systems/neph5e/assets/core/pentacle.webp"/>
 
-            <div class="tooltip air">
-
-                <input
-                    name="system.alchimie.primae.air.quantite"
-                    type="text"
-                    value="{{actor.system.alchimie.primae.air.quantite}}"
-                    data-dtype="Number"/>
-                <label class="maximum">/ {{getMaxMP actor 'air'}}</label>
-                <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+            <div class="element">
+                <img class="circle air"/>
+                <div class="tooltip air">
+                    <input
+                        name="system.alchimie.primae.air.quantite"
+                        type="text"
+                        value="{{actor.system.alchimie.primae.air.quantite}}"
+                        data-dtype="Number"/>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                </div>
+                <label class="maximum air">/ {{getMaxMP actor 'air'}}</label>
             </div>
 
-            <div class="tooltip eau">
-                <input
-                    name="system.alchimie.primae.eau.quantite"
-                    type="text"
-                    value="{{actor.system.alchimie.primae.eau.quantite}}"
-                    data-dtype="Number"/>
-                <label class="maximum">/ {{getMaxMP actor 'eau'}}</label>
-                <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
+            <div class="element">
+                <img class="circle eau"/>
+                <div class="tooltip eau">
+                    <input
+                        name="system.alchimie.primae.eau.quantite"
+                        type="text"
+                        value="{{actor.system.alchimie.primae.eau.quantite}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
+                </div>
+                <label class="maximum eau">/ {{getMaxMP actor 'eau'}}</label>
             </div>
 
-            <div class="tooltip feu">
-                <input
-                    name="system.alchimie.primae.feu.quantite"
-                    type="text"
-                    value="{{actor.system.alchimie.primae.feu.quantite}}"
-                    data-dtype="Number"/>
-                <label class="maximum">/ {{getMaxMP actor 'feu'}}</label>
-                <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
+            <div class="element">
+                <img class="circle feu"/>
+                <div class="tooltip feu">
+                    <input
+                        name="system.alchimie.primae.feu.quantite"
+                        type="text"
+                        value="{{actor.system.alchimie.primae.feu.quantite}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
+                </div>
+                <label class="maximum feu">/ {{getMaxMP actor 'feu'}}</label>
             </div>
 
-            <div class="tooltip lune">
-                <input
-                    name="system.alchimie.primae.lune.quantite"
-                    type="text"
-                    value="{{actor.system.alchimie.primae.lune.quantite}}"
-                    data-dtype="Number"/>
-                <label class="maximum">/ {{getMaxMP actor 'lune'}}</label>
-                <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
+            <div class="element">
+                <img class="circle lune"/>
+                <div class="tooltip lune">
+                    <input
+                        name="system.alchimie.primae.lune.quantite"
+                        type="text"
+                        value="{{actor.system.alchimie.primae.lune.quantite}}"
+                        data-dtype="Number"/>                    
+                    <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
+                </div>
+                <label class="maximum lune">/ {{getMaxMP actor 'lune'}}</label>
             </div>
 
-            <div class="tooltip terre">
-                <input
-                    name="system.alchimie.primae.terre.quantite"
-                    type="text"
-                    value="{{actor.system.alchimie.primae.terre.quantite}}"
-                    data-dtype="Number"/>
-                <label class="maximum">/ {{getMaxMP actor 'terre'}}</label>
-                <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
+            <div class="element">
+                <img class="circle terre"/>
+                <div class="tooltip terre">
+                    <input
+                        name="system.alchimie.primae.terre.quantite"
+                        type="text"
+                        value="{{actor.system.alchimie.primae.terre.quantite}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
+                </div>
+                <label class="maximum terre">/ {{getMaxMP actor 'terre'}}</label>
             </div>
 
         </div>
