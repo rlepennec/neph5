@@ -2,17 +2,14 @@
 
     <div class="laboratoires">
 
-        <label>Laboratoire de</label>
         {{#with (laboratoryOwner actor) as |actor|}}
-        <label class="zone">{{actor.name}} ...</label>
+        <label class="zone">Laboratoire de {{actor.name}}</label>
         {{/with}}
 
         <ol class="menu">
 
             {{#each actor.laboratoires as |item|}}         
-            <li data-id="{{item.id}}">
-               <label class="name">{{item.name}}</label>
-            </li>
+            <li class="name" data-id="{{item.id}}">{{item.name}}</li>
             {{/each}}
 
         </ol>

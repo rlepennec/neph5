@@ -1864,17 +1864,15 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires {
   position: absolute;
-  z-index: 99;
+  top: 105px;
+  left: 690px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone {
-  left: 206px;
-  top: 96px;
-  width: 48px;
-  height: 33px;
-  text-align: right;
-  padding-right: 20px;
   font-family: 'AJensonPro';
-  font-size: 21px;
+  font-size: 24px;
+}
+.actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone:hover {
+  text-shadow: 0px 0px 1px black;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone:hover + .menu {
   display: block;
@@ -1884,8 +1882,9 @@
   max-height: 15em;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .menu {
-  left: 206px;
-  top: 96px;
+  position: relative;
+  top: -10px;
+  left: 30px;
   width: 160px;
   list-style: none;
   display: none;
@@ -1897,6 +1896,7 @@
   box-shadow: 3px 3px 3px #999;
   border: solid 1px #333A40;
   font-size: 16px;
+  z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .menu li {
   max-height: 0;
