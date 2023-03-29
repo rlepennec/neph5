@@ -1864,8 +1864,8 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires {
   position: absolute;
-  top: 105px;
-  left: calc(50% + 10px);
+  top: 110px;
+  left: calc(50% + 165px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone {
   font-family: 'AJensonPro';
@@ -2022,27 +2022,27 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .artefacts .athanor {
   position: relative;
   top: 349px;
-  left: 360px;
+  left: calc(50% - 57px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .artefacts .alambic {
   position: relative;
   top: 349px;
-  left: 395px;
+  left: calc(50% - 16px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .artefacts .aludel {
   position: relative;
   top: 266px;
-  left: 390px;
+  left: calc(50% - 27px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .artefacts .cornue {
   position: relative;
   top: 257px;
-  left: 150px;
+  left: calc(50% - 261px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .artefacts .creuset {
   position: relative;
   top: 189px;
-  left: 186px;
+  left: calc(50% - 242px);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .athanor {
   top: 613px;

@@ -6,6 +6,7 @@
         <label class="zone">Laboratoire de {{actor.name}}</label>
         {{/with}}
 
+        {{#unless (isEmptyCollection actor.laboratoires)}}
         <ol class="menu">
 
             {{#each actor.laboratoires as |item|}}
@@ -20,6 +21,7 @@
             {{/if}}
 
         </ol>
+        {{/unless}}
 
     </div>
 
