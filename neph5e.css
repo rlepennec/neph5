@@ -2143,7 +2143,6 @@
 .actor .window-content .actor-root .article .article-body .materiae {
   flex-direction: row;
   display: flex;
-  padding-top: 20px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .header {
   display: flex;
@@ -2311,15 +2310,23 @@
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .materiae .element {
   font-size: 13px;
-  width: 40px;
   flex: 0 0 auto;
-  margin-top: 4px;
+  margin-top: 2px;
+  text-align: right;
+  margin-left: 5px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .materiae .name {
-  width: calc(100% - 65px);
+  width: 100%;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .materiae .delete {
   font-size: 13px;
+  width: 30px;
+}
+.actor .window-content .actor-root .article .article-body .materiae .right .body .materiae .quantite {
+  border: none;
+  width: 50px;
+  text-align: center;
+  margin-top: -4px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .materiae:hover {
   text-shadow: 0px 0px 1px black;
@@ -2335,17 +2342,12 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .materiae .right .body .catalyseur .formed {
-  font-size: 13px;
-  width: 40px;
-  flex: 0 0 auto;
-  margin-top: 4px;
-}
 .actor .window-content .actor-root .article .article-body .materiae .right .body .catalyseur .name {
-  width: calc(100% - 65px);
+  width: 100%;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .catalyseur .delete {
   font-size: 13px;
+  width: 30px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .catalyseur:hover {
   text-shadow: 0px 0px 1px black;

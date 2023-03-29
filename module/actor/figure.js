@@ -353,7 +353,7 @@ export class FigureSheet extends HistoricalSheet {
                 return ['magie'];
             case 'catalyseur':
             case 'materiae':
-                return ['laboratoire'];
+                return ['materiae'];
             case 'metamorphe':
                 return ['nephilim'];
             case 'vecu':
