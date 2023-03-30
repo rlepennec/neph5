@@ -548,8 +548,12 @@ export class NephilimActor extends Actor {
 
      /**
      * Create the specified feature.
-     * @param type The purpose 
-     *   - arcane
+     * @param type The type of macro which can be 
+     *   - ka      with id in [air, eau, feu, lune, terre, soleil, ka]
+     *   - item    with sid
+     *   - wrestle without id or sid
+     *   - 
+     * 
      *   - chute
      *   - competence
      *   - ka 
