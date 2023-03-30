@@ -53,6 +53,7 @@ export class Metamorphe extends SimpleFeature {
 
         // Initialization
         let id = null;
+        let sid = null;
         let name = game.i18n.localize('NEPH5E.metamorphe');
         let size = 0;
         let  metamorphoses = [];
@@ -70,6 +71,7 @@ export class Metamorphe extends SimpleFeature {
             const original = game.items.find(i => i.sid === embedded.sid);
             if (original != null) {
                 id = original.id;
+                sid = original.sid;
                 name = original.name;
                 size = embedded?.system.formed.filter(v => v === true).length;
                 for (let i=0; i<10; i++) {
@@ -85,6 +87,7 @@ export class Metamorphe extends SimpleFeature {
         // Build product
         return {
             id: id,
+            sid: sid,
             name: name,
             size: size,
             metamorphoses: metamorphoses
