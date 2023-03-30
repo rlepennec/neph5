@@ -342,8 +342,6 @@ export class FigureSheet extends HistoricalSheet {
         }
     }
 
-    // -------------------------------------> Item edition
-
     // Roll combat
     async _onRoll(event) {
         const li = $(event.currentTarget).parents(".item");
@@ -378,10 +376,6 @@ export class FigureSheet extends HistoricalSheet {
                 return;
         }  
     }
-
-
-
-    // -- CHUTES ------------------------------------------------------------------------
 
     /**
      * Set the specified chute.
@@ -479,8 +473,6 @@ export class FigureSheet extends HistoricalSheet {
 
     }
 
-    // -- SORT, INVOCATION, FORMULE, RITE, APPEL --------------------------------------------
-
     /**
      * Active the specified laboratory.
      * @param event The click event.
@@ -498,17 +490,6 @@ export class FigureSheet extends HistoricalSheet {
             }
         }
     }
-
-
-
-
-
-    // -- SIMULACRE & FRATERNITE -------------------------------------------------------------------------
-
-
-
-    // After refactoring
-    // -------------------------------------------------------------------------
 
     /**
      * Set the specified aspect of the imago to be active or not.
