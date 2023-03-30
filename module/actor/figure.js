@@ -149,12 +149,13 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
         html.find('div[data-tab="laboratoire"] .delete').click(this._onDeleteLaboratory.bind(this));
         html.find('div[data-tab="materiae"] .open').click(this._onOpenItem.bind(this));
+        html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
 
 /////////////
         
         
-        html.find('div[data-tab="laboratoire"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
+
         
         // Nephilim
         
