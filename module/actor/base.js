@@ -262,6 +262,7 @@ export class BaseSheet extends ActorSheet {
                 data.type = type;
                 break;
 
+            // A ka macro
             case 'ka':
                 data.type = type;
                 data.id = node.data("id");
