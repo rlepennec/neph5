@@ -206,16 +206,20 @@ export class FeatureBuilder {
             case 'vecu':
                 return new Vecu(this.actor, this.scope).withPeriode(this.periode).withItem(item).withManoeuver(this.manoeuver).withEvent(this.event);
             default:
-                if (this.ka != null) {
-                    return new Ka(this.actor, this.ka, this.scope);
+                switch (this.ka) {
+                    case 'noyau':
+                        return new Noyau(this.actor);
+                    case 'pavane':
+                        return new Pavane(this.actor);
+                    case 'air':
+                    case 'eau':
+                    case 'feu':
+                    case 'lune':
+                    case 'terre':
+                        return new Ka(this.actor, this.ka, this.scope);
+                    default:
+                        return null;
                 }
-                if (this.noyau != null) {
-                    return new Noyau(this.actor);
-                }
-                if (this.pavane != null) {
-                    return new Pavane(this.actor);
-                }
-                return null;
         }
     }
 

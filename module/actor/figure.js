@@ -137,6 +137,9 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="nephilim"] .arcane .dice').click(this._onRollItem.bind(this));
         html.find('div[data-tab="nephilim"] .open').click(this._onOpenItem.bind(this));
 
+        // Selenim
+        html.find('div[data-tab="selenim"] .element .dice').click(this._onRollKa.bind(this));
+
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
