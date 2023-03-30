@@ -106,7 +106,7 @@ export class FigureSheet extends HistoricalSheet {
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
-        html.find('div[data-tab="options"] .theme').change(this._onChangeTheme.bind(this));
+        html.find('div[data-tab="options"] .theme').change(this._onChangeSkin.bind(this));
 
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
@@ -154,58 +154,25 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="materiae"] .open').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
-        // Macro
-        html.find('div[data-tab="vecus"] .macro').each((i, li) => {
+        // Macros
+        html.find('div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
-        html.find('div[data-tab="nephilim"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
-        html.find('div[data-tab="selenim"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
-        html.find('div[data-tab="alchimie"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
-        html.find('div[data-tab="kabbale"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
-        html.find('div[data-tab="magie"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
-        html.find('div[data-tab="necromancie"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
-        html.find('div[data-tab="conjuration"] .macro').each((i, li) => {
-            li.setAttribute("draggable", true);
-            li.addEventListener("dragstart", event => this.onAddMacro(event), false);
-        });
-
+        // Initialize the actor sheet skin
         document.documentElement.className = this.actor.system.options.theme;
 
     }
 
-    async _onChangeTheme(event) {
+    /**
+     * Set the skin of the actor sheet.
+     * @param event The click event.
+     */
+    async _onChangeSkin(event) {
         event.preventDefault();
-
-        const v = $(event.currentTarget).closest('.theme').val();
-
-        document.documentElement.className = v;
-        const i = 0;
+        const skin = $(event.currentTarget).closest('.theme').val();
+        document.documentElement.className = skin == null ? 'soleil' : skin;
     }
 
     /**
