@@ -546,36 +546,40 @@
   text-align: center;
   margin-left: 55px;
   margin-bottom: 30px;
+  margin-top: 20px;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle img {
   border: 0px;
   width: 380px;
   height: 378px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements {
+  list-style: none;
+}
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element {
   position: absolute;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element.air {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.air {
   top: 92px;
   left: 341px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element.eau {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.eau {
   top: 298px;
   left: 334px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element.feu {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.feu {
   top: 7px;
   left: 115px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element.lune {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.lune {
   top: 361px;
   left: 95px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element.terre {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.terre {
   top: 179px;
   left: -23px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element .circle {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .circle {
   position: relative;
   border: none;
   width: 80px;
@@ -586,18 +590,18 @@
   max-width: none;
   content: var(--img-circle);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element .dice {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .dice {
   position: absolute;
   top: 10px;
   left: -3px;
   font-size: 14px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element .tooltip {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .tooltip {
   position: absolute;
   left: 13px;
   top: 4px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .element .tooltip input {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .tooltip input {
   background-color: transparent;
   font-size: 20px;
   border: 0px;
@@ -2511,6 +2515,8 @@
 }
 .actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-dice {
   flex: 0 0 40px;
+  font-size: 14px;
+  padding-top: 2px;
 }
 .actor .window-content .actor-root .article .article-body .vecus .body .vecu:hover {
   text-shadow: 0px 0px 1px black;

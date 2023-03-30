@@ -262,6 +262,11 @@ export class BaseSheet extends ActorSheet {
                 data.type = type;
                 break;
 
+            case 'ka':
+                data.type = type;
+                data.id = node.data("id");
+                break;
+
             default:
                 return;
 

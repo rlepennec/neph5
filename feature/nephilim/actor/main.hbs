@@ -16,70 +16,74 @@
 
             <img src="systems/neph5e/assets/core/pentacle.webp"/>
 
-            <div class="element macro air" data-id="air">
-                <img class="circle"/>
-                <div class="tooltip">
-                    <input
-                        name="system.ka.air"
-                        type="text"
-                        value="{{system.ka.air}}"
-                        data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.air"}}</span>
-                </div>
-                <a class="dice"><i class="fas fa-dice-d20"></i></a>
-            </div>
+            <ol class="elements">
 
-            <div class="element macro eau" data-id="eau">
-                <img class="circle"/>
-                <div class="tooltip">
-                    <input
-                        name="system.ka.eau"
-                        type="text"
-                        value="{{system.ka.eau}}"
-                        data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
-                </div>
-                <a class="dice"><i class="fas fa-dice-d20"></i></a>
-            </div>
+                <li class="element macro air" data-macro="ka" data-id="air">
+                    <img class="circle"/>
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.air"
+                            type="text"
+                            value="{{system.ka.air}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.air"}}</span>
+                    </div>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                </li>
 
-            <div class="element macro feu" data-id="feu">
-                <img class="circle"/>
-                <div class="tooltip">
-                    <input
-                        name="system.ka.feu"
-                        type="text"
-                        value="{{system.ka.feu}}"
-                        data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
-                </div>
-                <a class="dice"><i class="fas fa-dice-d20"></i></a>
-            </div>
+                <li class="element macro eau" data-macro="ka" data-id="eau">
+                    <img class="circle"/>
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.eau"
+                            type="text"
+                            value="{{system.ka.eau}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
+                    </div>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                </li>
 
-            <div class="element macro lune" data-id="lune">
-                <img class="circle"/>
-                <div class="tooltip">
-                    <input
-                        name="system.ka.lune"
-                        type="text"
-                        value="{{system.ka.lune}}"
-                        data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
-                </div>
-                <a class="dice"><i class="fas fa-dice-d20"></i></a>
-            </div>
+                <li class="element macro feu" data-macro="ka" data-id="feu">
+                    <img class="circle"/>
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.feu"
+                            type="text"
+                            value="{{system.ka.feu}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
+                    </div>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                </li>
 
-            <div class="element macro terre" data-id="terre">
-                <img class="circle"/>
-                <div class="tooltip">
-                    <input
-                        name="system.ka.terre"
-                        type="text"
-                        value="{{system.ka.terre}}"
-                        data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
-                </div>
-                <a class="dice"><i class="fas fa-dice-d20"></i></a>
-            </div>
+                <li class="element macro lune" data-macro="ka" data-id="lune">
+                    <img class="circle"/>
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.lune"
+                            type="text"
+                            value="{{system.ka.lune}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
+                    </div>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                </li>
+
+                <li class="element macro terre" data-macro="ka" data-id="terre">
+                    <img class="circle"/>
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.terre"
+                            type="text"
+                            value="{{system.ka.terre}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
+                    </div>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                </li>
+
+            </ol>
 
         </div>
 
