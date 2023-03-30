@@ -133,6 +133,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="nephilim"] .formed').click(this._onToggleMetamorphose.bind(this, 'formed'));
         html.find('div[data-tab="nephilim"] .visible').click(this._onToggleMetamorphose.bind(this, 'visible'));
         html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
+        html.find('div[data-tab="nephilim"] .element .dice').click(this._onRollKa.bind(this));
 
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
@@ -561,6 +562,14 @@ export class FigureSheet extends HistoricalSheet {
     // After refactoring
     // -------------------------------------------------------------------------
 
+    async _onRollKa(event) {
+        event.preventDefault();
+        const element = $(event.currentTarget).closest('.element').data('id');
+        const feature = new FeatureBuilder(this.actor).withScope('actor').withKa(element).create();
+        await feature.initializeRoll();
+        return this;
+    }
+
     /**
      * Create the specified feature item.
      * @param event The click event.
@@ -702,7 +711,6 @@ export class FigureSheet extends HistoricalSheet {
                 throw new Error("Status " + item.system.status + " not implemented");
         }
     }
-
 
     /**
      * Activate or deactivate the vaisseau for akasha.
