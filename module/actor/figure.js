@@ -144,6 +144,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
         // Laboratoire
+        html.find('div[data-tab="alchimie"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
         html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
         html.find('div[data-tab="laboratoire"] .delete').click(this._onDeleteLaboratory.bind(this));
@@ -152,7 +153,7 @@ export class FigureSheet extends HistoricalSheet {
 
 /////////////
         
-        html.find('div[data-tab="laboratoire"] .change-quantite').change(this._onChangeQuantite.bind(this));
+        
         html.find('div[data-tab="laboratoire"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
         
         // Nephilim
