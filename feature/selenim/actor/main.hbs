@@ -145,9 +145,9 @@
         <ol class="aspects">
 
             {{#each item.aspects as |aspect|}}
-            <li class="aspect" data-id="{{aspect.embedded.id}}">
+            <li class="aspect item" data-sid="{{aspect.original.sid}}">
 
-                <label class="active fas {{#if aspect.embedded.active}}fa-eye-slash{{else}}fa-eye{{/if}}"></label>
+                <label class="visible fas {{#if aspect.embedded.active}}fa-eye-slash{{else}}fa-eye{{/if}}"></label>
 
                 <label class="name open">{{aspect.original.name}}</label>
 

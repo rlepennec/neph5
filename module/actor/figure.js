@@ -87,16 +87,6 @@ export class FigureSheet extends HistoricalSheet {
         // General
         html.find('div[data-tab]').on("drop", this._onDrop.bind(this));
 
-        // Sciences occultes
-        html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollItem.bind(this));
-        html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
-        html.find('div[data-family="science"] .focus .roll').click(this._onRollItem.bind(this));
-        html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
-        html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
-        html.find('div[data-family="science"] .focus-pacte').click(this._onChangePacte.bind(this));
-        html.find('div[data-family="science"] .focus-quantite').change(this._onChangeQuantite.bind(this));
-        html.find('div[data-family="science"] .focus-transporte').change(this._onChangeTransporte.bind(this));
-
         // Vecus
         html.find('div[data-family="vecus"] .vecu .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
@@ -139,11 +129,24 @@ export class FigureSheet extends HistoricalSheet {
 
         // Selenim
         html.find('div[data-tab="selenim"] .element .dice').click(this._onRollKa.bind(this));
+        html.find('div[data-tab="selenim"] .aspect .open').click(this._onOpenItem.bind(this));
+        html.find('div[data-tab="selenim"] .aspect .delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="selenim"] .visible').click(this._onToggleAspect.bind(this));
+
+        // Sciences occultes
+        html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollItem.bind(this));
+        html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
+        html.find('div[data-family="science"] .focus .roll').click(this._onRollItem.bind(this));
+        html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
+        html.find('div[data-family="science"] .focus-status').click(this._onChangeStatus.bind(this));
+        html.find('div[data-family="science"] .focus-pacte').click(this._onChangePacte.bind(this));
+        html.find('div[data-family="science"] .focus-quantite').change(this._onChangeQuantite.bind(this));
+        html.find('div[data-family="science"] .focus-transporte').change(this._onChangeTransporte.bind(this));
 
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
-        // Laboratoire
+        // Alchimie
         html.find('div[data-tab="alchimie"] .change-quantite').change(this._onChangeQuantite.bind(this));
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
         html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
@@ -151,24 +154,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="materiae"] .open').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
-
-/////////////
-        
-        
-
-        
-        // Nephilim
-        
-
-
-        // Selenim
-        html.find('div[data-tab="selenim"] .edit-aspect').click(this._onEditFeature.bind(this, 'aspect'));
-        //html.find('div[data-tab="selenim"] .roll-pavane').click(this._onRollFeature.bind(this, 'pavane'));
-        //html.find('div[data-tab="selenim"] .roll-noyau').click(this._onRollFeature.bind(this, 'noyau'));
-        html.find('div[data-tab="selenim"] .item-delete').click(this._onDeleteEmbeddedItem.bind(this));
-        html.find('div[data-tab="selenim"] .active').click(this._onToggleActive.bind(this));
-
-
+        // Macro
         html.find('div[data-tab="vecus"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
@@ -426,16 +412,7 @@ export class FigureSheet extends HistoricalSheet {
         }  
     }
 
-    /**
-     * Set the specified aspect of the imago to be active or not.
-     * @param event The click event.
-     */
-    async _onToggleActive(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".active").data("id");
-        const item = game.items.get(id);
-        await new FeatureBuilder(this.actor).withOriginalItem(item.sid).create().toggleActive();
-    }
+
 
     // -- CHUTES ------------------------------------------------------------------------
 
@@ -566,6 +543,20 @@ export class FigureSheet extends HistoricalSheet {
     // After refactoring
     // -------------------------------------------------------------------------
 
+    /**
+     * Set the specified aspect of the imago to be active or not.
+     * @param event The click event.
+     */
+    async _onToggleAspect(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest(".item").data("sid");
+        await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
+    }
+
+    /**
+     * Roll the specified ka.
+     * @param event The click event.
+     */
     async _onRollKa(event) {
         event.preventDefault();
         const element = $(event.currentTarget).closest('.element').data('id');

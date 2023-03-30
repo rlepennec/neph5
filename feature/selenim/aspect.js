@@ -68,6 +68,7 @@ export class Aspect extends SimpleFeature {
             aspects.push({
                 original: {
                     id: item.original.id,
+                    sid: item.original.sid,
                     name: item.original.name
                 },
                 embedded: {
