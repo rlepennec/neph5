@@ -249,9 +249,15 @@ export class BaseSheet extends ActorSheet {
 
         switch (data.type) {
 
-            // A macro which used an embedded item
+            // A macro which used an original item
             case 'item':
                 data.sid = node.data("sid");
+                break;
+
+            // A macro about vecu item
+            case 'vecu':
+                data.sid = node.data("sid");
+                data.id = node.data("id");
                 break;
 
             // A combat macro used to wrestle

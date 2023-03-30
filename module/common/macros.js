@@ -12,19 +12,33 @@ export class Macros {
         let name = null;
         let img = null;
         switch (data.type) {
-            case 'item':
+
+            case 'item': {
                 const item = game.items.find(i => i.sid === data.sid);
                 name = item?.name;
                 img = item?.img;
                 break;
-            case 'wrestle':
+            }
+                
+            case 'vecu': {
+                const item = game.items.find(i => i.sid === data.sid);
+                name = item?.name;
+                img = item?.img;
+                break;
+            }
+
+            case 'wrestle': {
                 name = "Lutte";
                 img = "systems/neph5e/assets/icons/lutte.webp";
                 break;
-            case 'ka':
+            }
+
+            case 'ka': {
                 name = "Ka " + data.id;
                 img = "systems/neph5e/assets/icons/ka.webp";
                 break;
+            }
+
             case 'noyau':
                 name = "Noyau";
                 img = "systems/neph5e/assets/icons/noyau.webp";
