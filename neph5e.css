@@ -546,110 +546,6 @@
   text-align: center;
   margin-left: 55px;
   margin-bottom: 30px;
-  /*
-                                .macro {
-
-                                    .tooltip {
-                                        position: absolute;
-                                        top: 50%;
-                                        left: 50%;
-        
-                                        input {
-                                            background-color: transparent;
-                                            font-size: 20px;
-                                            font-weight: bold;
-                                            border: 0px;
-                                            width: 40px;
-                                            text-align: center;
-                                        }
-
-                                        &.air {
-                                            transform: translate(133px, -85px);
-                                        }
-            
-                                        &.eau {
-                                            transform: translate(119px, 105px);
-                                        }
-            
-                                        &.feu {
-                                            transform: translate(-75px, -173px);
-                                        }
-            
-                                        &.lune {
-                                            transform: translate(-106px, 162px);
-                                        }
-            
-                                        &.terre {
-                                            transform: translate(-217px, -19px);
-                                        }
-
-                                    }
-
-                                    .circle {
-                                        position: absolute;
-                                        border: none;
-                                        width: 50px;
-                                        height: 51px;
-                                        display: hidden;
-                                        background-color: transparent;
-                                        content: var(--img-circle);
-
-                                        &.air {
-                                            top: 94px;
-                                            left: 324px;
-                                        }
-
-                                        &.eau {
-                                            top: 284px;
-                                            left: 311px;
-                                        }
-
-                                        &.feu {
-                                            top: 7px;
-                                            left: 115px;
-                                        }
-
-                                        &.lune {
-                                            top: 341px;
-                                            left: 85px;
-                                        }
-
-                                        &.terre {
-                                            top: 161px;
-                                            left: -26px;
-                                        }
-
-                                    }
-
-                                    .dice {
-                                        position: absolute;
-                                        top: 50%;
-                                        left: 50%;
-
-                                        &.air {
-                                            transform: translate(174px, -92px);
-                                        }
-            
-                                        &.eau {
-                                            transform: translate(159px, 125px);
-                                        }
-            
-                                        &.feu {
-                                            transform: translate(-95px, -166px);
-                                        }
-            
-                                        &.lune {
-                                            transform: translate(-125px, 180px);
-                                        }
-            
-                                        &.terre {
-                                            transform: translate(-232px, 4px);
-                                        }
-
-                                    }
-        
-                                }
-                                */
 }
 .actor .window-content .actor-root .article .article-body .nephilim .left .pentacle img {
   border: 0px;
@@ -782,13 +678,17 @@
   font-size: 13px;
   width: 40px;
   flex: 0 0 auto;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .name {
   width: calc(100% - 65px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .visible {
   font-size: 13px;
+  margin-top: 3px;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose:hover {
   text-shadow: 0px 0px 1px black;
@@ -848,6 +748,10 @@
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane .name {
   width: calc(100% - 70px);
+}
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane .dice {
+  font-size: 14px;
+  padding-top: 4px;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane:hover {
   text-shadow: 0px 0px 1px black;
