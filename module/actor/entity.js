@@ -582,7 +582,7 @@ export class NephilimActor extends Actor {
             case 'vecu': {
                 builder = new FeatureBuilder(this)
                     .withEmbeddedItem(id)
-                    .withScope('actor')
+                    .withScope(this.items.get(id) != null ? 'actor' : 'simulacre')
                     .withPeriode(this.system.periode);
                 break;
             }
