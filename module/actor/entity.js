@@ -661,7 +661,13 @@ export class NephilimActor extends Actor {
      * @param item The item for which to toggle the usage.
      */
     async toggleEquipmentUsage(item) {
+
+        if (item == null) {
+            return;
+        }
+
         const used = item.system.used;
+
         switch (item.type) {
 
             case 'armure':
@@ -698,6 +704,7 @@ export class NephilimActor extends Actor {
                 break;
 
         }
+
     }
 
     /**
