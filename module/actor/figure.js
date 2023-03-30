@@ -29,8 +29,8 @@ export class FigureSheet extends HistoricalSheet {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 1030,
-            height: 850,
+            width: 1070,
+            height: 950,
             classes: ["nephilim", "sheet", "actor"],
             resizable: true,
             scrollY: [
@@ -154,8 +154,6 @@ export class FigureSheet extends HistoricalSheet {
         
         // Nephilim
         html.find('div[data-tab="nephilim"] .edit-arcane').click(this._onEditFeature.bind(this, 'arcane'));
-        //html.find('div[data-tab="nephilim"] .roll-arcane').click(this._onRollFeature.bind(this, 'arcane'));
-        //html.find('div[data-tab="nephilim"] .roll-ka').click(this._onRollFeature.bind(this, 'ka'));
 
 
         // Selenim
