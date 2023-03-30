@@ -545,6 +545,7 @@
   position: relative;
   text-align: center;
   margin-left: 55px;
+  margin-bottom: 30px;
   /*
                                 .macro {
 
@@ -2264,6 +2265,7 @@
   position: relative;
   text-align: center;
   margin-left: 55px;
+  top: 20px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle img {
   border: 0px;
