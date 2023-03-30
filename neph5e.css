@@ -2191,58 +2191,49 @@
   width: 380px;
   height: 378px;
 }
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle {
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element {
   position: absolute;
-  border: none;
-  width: 50px;
-  height: 51px;
-  display: hidden;
-  background-color: transparent;
-  content: var(--img-circle);
 }
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle.air {
-  top: 94px;
-  left: 324px;
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.air {
+  top: 92px;
+  left: 341px;
 }
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle.eau {
-  top: 284px;
-  left: 311px;
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.eau {
+  top: 298px;
+  left: 334px;
 }
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle.feu {
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.feu {
   top: 7px;
   left: 115px;
 }
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle.lune {
-  top: 341px;
-  left: 85px;
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.lune {
+  top: 361px;
+  left: 95px;
 }
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle.terre {
-  top: 161px;
-  left: -26px;
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.terre {
+  top: 179px;
+  left: -23px;
+}
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle {
+  position: relative;
+  border: none;
+  width: 80px;
+  height: 85px;
+  top: -25px;
+  left: -25px;
+  background-color: transparent;
+  max-width: none;
+  content: var(--img-circle);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum {
   position: absolute;
-  font-size: 20px;
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum.air {
-  transform: translate(173px, -261px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum.eau {
-  transform: translate(160px, -72px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum.feu {
-  transform: translate(-33px, -377px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum.lune {
-  transform: translate(-66px, -16px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum.terre {
-  transform: translate(-196px, -175px);
+  font-size: 16px;
+  top: 11px;
+  left: 21px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  left: -11px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip input {
   background-color: transparent;
@@ -2250,41 +2241,6 @@
   border: 0px;
   width: 40px;
   text-align: center;
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip.air {
-  transform: translate(133px, -85px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip.eau {
-  transform: translate(119px, 105px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip.feu {
-  transform: translate(-75px, -173px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip.lune {
-  transform: translate(-106px, 162px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip.terre {
-  transform: translate(-217px, -19px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .dice {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .dice.air {
-  transform: translate(140px, -80px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .dice.eau {
-  transform: translate(110px, 145px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .dice.feu {
-  transform: translate(-70px, -175px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .dice.lune {
-  transform: translate(-140px, 155px);
-}
-.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .dice.terre {
-  transform: translate(-220px, -15px);
 }
 .actor .window-content .actor-root .article .article-body .materiae .right {
   display: flex;
