@@ -568,26 +568,9 @@ export class NephilimActor extends Actor {
     async processMacro(type, id, sid) {
         let builder = null;
         switch (type) {
-            case 'appel':
-            case 'atlanteide':
-            case 'chute':
-            case 'competence':
-            case 'dracomachie':
-            case 'formule':
-            case 'habitus':
-            case 'invocation':
-            case 'quete':
-            case 'passe':
-            case 'pratique':
-            case 'rite':
-            case 'rituel':
-            case 'savoir':
-            case 'sort':
-            case 'tekhne':
-            case 'technique': {
-                const item = game.items.find(i => i.sid === sid);
+            case 'item': {
                 builder = new FeatureBuilder(this)
-                    .withOriginalItem(item.sid)
+                    .withOriginalItem(sid)
                     .withScope('actor')
                     .withPeriode(this.system.periode);
                 break;

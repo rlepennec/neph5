@@ -12,25 +12,7 @@ export class Macros {
         let name = null;
         let img = null;
         switch (data.type) {
-            case 'arme':
-            case 'appel':
-            case 'atlanteide':
-            case 'chute':
-            case 'competence':
-            case 'dracomachie':
-            case 'formule':
-            case 'habitus':
-            case 'invocation':
-            case 'quete':
-            case 'passe':
-            case 'pratique':
-            case 'rite':
-            case 'rituel':
-            case 'savoir':
-            case 'sort':
-            case 'tekhne':
-            case 'technique':
-            case 'vecu':
+            case 'item':
                 const item = game.items.find(i => i.sid === data.sid);
                 name = item?.name;
                 img = item?.img;

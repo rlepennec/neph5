@@ -241,30 +241,25 @@ export class BaseSheet extends ActorSheet {
         // Retrieve basic data
         this._onDragStart(event);
         const node = $(event.currentTarget);
-        const type = node.data("macro");
 
         let data = {
             process: "macro",
+            type: node.data("macro")
         };
 
-        switch (type) {
+        switch (data.type) {
 
             // A macro which used an embedded item
             case 'item':
-                data.id = node.data("id");
-                const item = this.actor.getEmbeddedDocument('Item', data.id);
-                data.type = item.type;
-                data.sid = item.sid;
+                data.sid = node.data("sid");
                 break;
 
             // A combat macro used to wrestle
             case 'wrestle':
-                data.type = type;
                 break;
 
             // A ka macro
             case 'ka':
-                data.type = type;
                 data.id = node.data("id");
                 break;
 
