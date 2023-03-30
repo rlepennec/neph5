@@ -856,10 +856,70 @@
   position: relative;
   text-align: center;
   margin-left: 55px;
+  margin-top: 30px;
   font-family: 'AJensonPro';
 }
 .actor .window-content .actor-root .article .article-body .selenim .left .noyau img {
   border: 0px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements {
+  list-style: none;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element {
+  position: absolute;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.noyau {
+  top: 0px;
+  left: 0px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.pavane {
+  top: 32px;
+  left: 307px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves {
+  top: 248px;
+  left: 183px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves .circle {
+  width: 115px;
+  height: 125px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves .tooltip {
+  top: -56px;
+  left: -58px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves .separator {
+  top: -55px;
+  left: -65px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .circle {
+  position: relative;
+  border: none;
+  width: 80px;
+  height: 85px;
+  top: -25px;
+  left: -25px;
+  background-color: transparent;
+  max-width: none;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .dice {
+  position: absolute;
+  top: 10px;
+  left: -3px;
+  font-size: 14px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .tooltip {
+  position: absolute;
+  left: 13px;
+  top: 4px;
+}
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .tooltip input {
+  background-color: transparent;
+  font-size: 20px;
+  border: 0px;
+  width: 40px;
+  text-align: left;
 }
 .actor .window-content .actor-root .article .article-body .selenim .left .noyau .macro .dice {
   position: absolute;
