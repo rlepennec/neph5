@@ -271,7 +271,7 @@
                 {{#with actor.weapons as |weapons|}}
 
                 {{#each weapons.naturelle as |item|}}
-                <li class="macro" data-id="{{item.id}}" data-macro="item">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -289,7 +289,7 @@
                 {{/each}}
 
                 {{#each weapons.melee as |item|}}
-                <li class="macro" data-id="{{item.id}}" data-macro="item">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
 
                     <i class="delete fas fa-trash"></i>
                     
@@ -306,7 +306,7 @@
                 {{/each}}
 
                 {{#each weapons.trait as |item|}}
-                <li class="macro" data-id="{{item.id}}" data-macro="item">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -329,7 +329,7 @@
                 {{/each}}
 
                 {{#each weapons.feu as |item|}}
-                <li class="macro" data-id="{{item.id}}" data-macro="item">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
 
                     <i class="delete fas fa-trash"></i>
 

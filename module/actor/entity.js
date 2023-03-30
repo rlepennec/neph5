@@ -572,6 +572,7 @@ export class NephilimActor extends Actor {
     async processMacro(type, id, sid) {
         let builder = null;
         switch (type) {
+
             case 'item': {
                 builder = new FeatureBuilder(this)
                     .withOriginalItem(sid)
@@ -579,6 +580,7 @@ export class NephilimActor extends Actor {
                     .withPeriode(this.system.periode);
                 break;
             }
+
             case 'vecu': {
                 builder = new FeatureBuilder(this)
                     .withEmbeddedItem(id)
@@ -586,23 +588,27 @@ export class NephilimActor extends Actor {
                     .withPeriode(this.system.periode);
                 break;
             }
+
             case 'ka': {
                 builder = new FeatureBuilder(this)
                     .withKa(id)
                     .withScope('actor');
                 break;
             }
+
             case 'noyau': {
                 builder = new FeatureBuilder(this)
                     .withNoyau();
                 break;
             }
+
             case 'pavane': {
                 builder = new FeatureBuilder(this)
                     .withPavane();
                 break;
             }
-            case 'arme': {
+
+            case 'weapon': {
                 const weapon = this.items.get(id);
                 if (weapon.attackAvailable === false) {
                     ui.notifications.warn("Vous ne pouvez pas attaquer avec cette arme.");
@@ -622,12 +628,14 @@ export class NephilimActor extends Actor {
                 }
                 break;
             }
+
             case 'wrestle': {
                 if (this.lutteCanBePerformed) {
                     await new Wrestle(this).initializeRoll();
                 }
                 break;
             }
+
         }
         const feature = builder.create();
         if (feature != null) {

@@ -264,6 +264,11 @@ export class BaseSheet extends ActorSheet {
             case 'wrestle':
                 break;
 
+            case 'weapon':
+                data.actor = node.data("actor");
+                data.id = node.data("id");
+                break;
+
             // A ka macro
             case 'ka':
                 data.id = node.data("id");

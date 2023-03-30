@@ -33,6 +33,14 @@ export class Macros {
                 break;
             }
 
+            case 'weapon': {
+                const actor = game.actors.get(data.actor);
+                const item = actor.items.find(i => i.id === data.id);
+                name = item?.name;
+                img = item?.img;
+                break;
+            }
+
             case 'ka': {
                 name = "Ka " + data.id;
                 img = "systems/neph5e/assets/icons/ka.webp";
