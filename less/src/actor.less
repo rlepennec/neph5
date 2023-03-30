@@ -354,13 +354,79 @@
                                 position: relative;
                                 text-align: center;
                                 margin-left: 55px;
+                                margin-bottom: 30px;
 
                                 img {
                                     border: 0px;
                                     width: 380px;
                                     height: 378px;
                                 }
+
+                                .element {
+                                    position: absolute;
+
+                                    &.air {
+                                        top: 92px;
+                                        left: 341px;
+                                    }
+
+                                    &.eau {
+                                        top: 298px;
+                                        left: 334px;
+                                    }
+
+                                    &.feu {
+                                        top: 7px;
+                                        left: 115px;
+                                    }
+
+                                    &.lune {
+                                        top: 361px;
+                                        left: 95px;
+                                    }
+
+                                    &.terre {
+                                        top: 179px;
+                                        left: -23px;
+                                    }
+
+                                    .circle {
+                                        position: relative;
+                                        border: none;
+                                        width: 80px;
+                                        height: 85px;
+                                        top: -25px;
+                                        left: -25px;
+                                        background-color: transparent;
+                                        max-width: none;
+                                        content: var(--img-circle);
+                                    }
+
+                                    .dice {
+                                        position: absolute;
+                                        top: 10px;
+                                        left: -3px;
+                                        font-size: 14px;
+                                    }
+
+                                    .tooltip {
+                                        position: absolute;
+                                        left: 13px;
+                                        top: 4px;
+
+                                        input {
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: left;
+                                        }
+
+                                    }
         
+                                }
+
+/*
                                 .macro {
 
                                     .tooltip {
@@ -463,6 +529,7 @@
                                     }
         
                                 }
+                                */
                             }
         
                             .chutes {
