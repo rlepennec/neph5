@@ -63,7 +63,7 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
-                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-sid="{{item.original.sid}}">
+                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
 
                     <!-- The only element of the focus. -->
                     {{#if (includes ../../header 'element')}}
@@ -158,15 +158,6 @@
                         <i class="fas fa-dice-d20"></i>
                     </a>
 
-                <!--
-                    <div class="dice">
-                        <a class="roll-focus" data-id="{{item.original.id}}">
-                            {{#unless (eq item.embedded.degre 0)}}
-                            <i class="fas fa-dice-d20"></i>
-                            {{/unless}}
-                        </a>
-                    </div>
-                -->
                     {{/unless}}
 
                 </li>
