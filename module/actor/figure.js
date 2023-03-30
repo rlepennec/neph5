@@ -134,6 +134,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="nephilim"] .visible').click(this._onToggleMetamorphose.bind(this, 'visible'));
         html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
         html.find('div[data-tab="nephilim"] .element .dice').click(this._onRollKa.bind(this));
+        html.find('div[data-tab="nephilim"] .arcane .dice').click(this._onRollItem.bind(this));
 
         // Kabbale
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
