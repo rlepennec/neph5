@@ -1,44 +1,35 @@
-EFFECTIF
 <div class="effectif">
 
     {{#each actor.membres as |group|}}
+    <div class="group">
 
-    <div class="header">
+        <div class="header">
 
-        <div class="circle">
-            <div class="circleContent">{{group.size}}</div>
+            <img class="circle"/>
+
+            <div class="degre">{{group.size}}</div>
+
+            <img class="separator"/>
+
+            <label class="name">{{#if (eq group.status "membres")}}{{localize "NEPH5E.membres"}}{{else}}{{group.status}}{{/if}}</label>
+
         </div>
 
-        <div class="title">
-            <div class="item-name">
-                {{#if (eq group.status "membres")}}
-                <span>{{localize "NEPH5E.membres"}}</span>
-                {{else}}
-                <span>{{group.status}}</span>
-                {{/if}}
-            </div>
-        </div>
+        <ol class="body">
+
+            {{#each group.membres as |membre|}}
+            <li class="membre item" data-id="{{membre.id}}">
+
+                <a class="icon"><i class="fa-solid fa-user"></i></a>
+            
+                <label class="name open">{{membre.name}}</label>
+
+            </li>
+            {{/each}}
+
+        </ol>
 
     </div>
+    {{/each}}
 
-    <ol class="item-list">
-        {{#each group.membres as |membre|}}
-        <li class="item membre" data-actor-id="{{membre.id}}" data-status="{{../status}}">
-
-            <div class="item-control">
-                <a class="item-delete"><i class="fa-solid fa-user"></i></a>
-            </div>
-        
-            <div class="item-name edit-actor">
-                <span>{{membre.name}}</span>
-            </div>
-
-            <div class="item-name edit-status">
-                <span>{{membre.status}}</span>
-            </div>
-
-        </li>
-        {{/each}}
-    </ol>
-
-{{/each}}
+</div>

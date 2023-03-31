@@ -74,49 +74,7 @@
                 </div>
 
                 <div class="tab effectif" data-group="primary" data-tab="effectif">
-
-                    {{#each actor.membres as |group|}}
-
-                    <div class="header">
-
-                        <div class="circle">
-                            <div class="circleContent">{{group.size}}</div>
-                        </div>
-
-                        <div class="title">
-                            <div class="item-name">
-                                {{#if (eq group.status "membres")}}
-                                <span>{{localize "NEPH5E.membres"}}</span>
-                                {{else}}
-                                <span>{{group.status}}</span>
-                                {{/if}}
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <ol class="item-list">
-                        {{#each group.membres as |membre|}}
-                        <li class="item membre" data-actor-id="{{membre.id}}" data-status="{{../status}}">
-
-                            <div class="item-control">
-                                <a class="item-delete"><i class="fa-solid fa-user"></i></a>
-                            </div>
-                        
-                            <div class="item-name edit-actor">
-                                <span>{{membre.name}}</span>
-                            </div>
-
-                            <div class="item-name edit-status">
-                                <span>{{membre.status}}</span>
-                            </div>
-
-                        </li>
-                        {{/each}}
-                    </ol>
-
-                    {{/each}}
-
+                    {{> "systems/neph5e/feature/fraternite/actor/effectif.hbs" from="fraternite"}}
                 </div>
         
                 <div class="tab" data-group="primary" data-tab="vecus">

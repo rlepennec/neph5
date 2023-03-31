@@ -52,8 +52,7 @@ export class FraterniteSheet extends HistoricalSheet {
 
         // Effectif
         html.find('div[data-tab="effectif"]').on("drop", this._onDrop.bind(this));
-        html.find('div[data-tab="effectif"] .edit-actor').click(this._onEditActor.bind(this));
-        html.find('div[data-tab="effectif"] .item-delete').click(this._onDeleteActor.bind(this));
+        html.find('div[data-tab="effectif"] .open').click(this._onEditActor.bind(this));
 
         // Connaissances
         html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditFeature.bind(this, 'passe'));
@@ -102,7 +101,7 @@ export class FraterniteSheet extends HistoricalSheet {
     async _onEditActor(event) {
         event.preventDefault();
         const li = $(event.currentTarget).closest(".item");
-        const id = li.data("actor-id");
+        const id = li.data("id");
         const actor = game.actors.get(id);
         await actor.sheet.render(true);
     }
