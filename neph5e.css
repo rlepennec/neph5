@@ -262,6 +262,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/soleil/triangle.webp");
   --img-combat-bonus-margin-top: 0px;
   --img-combat-bonus-losange-top: 48px;
+  --img-options-body-margin-top: 0px;
 }
 :root.air {
   --column-color: #5dd5f3;
@@ -282,6 +283,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/air/triangle.webp");
   --img-combat-bonus-margin-top: 0px;
   --img-combat-bonus-losange-top: 48px;
+  --img-options-body-margin-top: 0px;
 }
 :root.eau {
   --column-color: #5dd5f3;
@@ -302,6 +304,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/eau/triangle.webp");
   --img-combat-bonus-margin-top: 0px;
   --img-combat-bonus-losange-top: 48px;
+  --img-options-body-margin-top: 0px;
 }
 :root.feu {
   --column-color: #5dd5f3;
@@ -322,6 +325,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/feu/triangle.webp");
   --img-combat-bonus-margin-top: 0px;
   --img-combat-bonus-losange-top: 48px;
+  --img-options-body-margin-top: 0px;
 }
 :root.lune {
   --column-color: #5dd5f3;
@@ -342,6 +346,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/lune/triangle.webp");
   --img-combat-bonus-margin-top: 0px;
   --img-combat-bonus-losange-top: 48px;
+  --img-options-body-margin-top: 0px;
 }
 :root.lune-noire {
   --column-color: #5e6061;
@@ -362,6 +367,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/lune-noire/triangle.webp");
   --img-combat-bonus-margin-top: 10px;
   --img-combat-bonus-losange-top: 57px;
+  --img-options-body-margin-top: -23px;
 }
 :root.terre {
   --column-color: #5dd5f3;
@@ -382,6 +388,7 @@
   --img-triangle: url("../../systems/neph5e/assets/skins/terre/triangle.webp");
   --img-combat-bonus-margin-top: 0px;
   --img-combat-bonus-losange-top: 48px;
+  --img-options-body-margin-top: 0px;
 }
 .actor .window-content {
   background: var(--img-background) repeat;
@@ -3094,6 +3101,7 @@
   font-family: 'AJensonPro';
   font-size: 16px;
   list-style: none;
+  margin-top: var(--img-options-body-margin-top);
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option {
   display: flex;
