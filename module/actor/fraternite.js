@@ -34,7 +34,7 @@ export class FraterniteSheet extends HistoricalSheet {
                 ".tab.vecus",
                 ".tab.connaissances",
                 ".tab.incarnations",
-                ".tab.foptions"],
+                ".tab.options"],
             tabs: [
                 {
                     navSelector: ".sheet-navigation",
