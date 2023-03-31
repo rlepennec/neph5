@@ -69,6 +69,8 @@ export class FraterniteSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .open').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="incarnations"] .periode-header .delete').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .vecu .delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .focus .delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .member .delete').click(this._onDeleteActor.bind(this));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
@@ -103,10 +105,9 @@ export class FraterniteSheet extends HistoricalSheet {
      */
     async _onDeleteActor(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).closest(".item");
-        const id = li.data("actor-id");
-        const periode = li.data("periode-sid");
+        const id = $(event.currentTarget).closest(".actor").data("id");
         const actor = game.actors.get(id);
+        const periode = $(event.currentTarget).closest(".periode").data("sid");
         await new Fraternite(this.actor).deleteMember(actor, periode);
     }
 
