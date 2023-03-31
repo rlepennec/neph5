@@ -2978,6 +2978,7 @@
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group fieldset {
   border: none;
+  margin-left: 10px;
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body {
   font-family: 'AJensonPro';
