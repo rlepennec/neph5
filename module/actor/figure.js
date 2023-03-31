@@ -514,47 +514,6 @@ export class FigureSheet extends HistoricalSheet {
     }
 
     /**
-     * Create the specified feature item.
-     * @param event The click event.
-     * @returns the new feature.
-     */
-    _createFeature(event) {
-        event.preventDefault();
-        const node = $(event.currentTarget).closest('.item');
-        const id = node.data('id');
-        const sid = node.data('sid');
-        let scope = node.data("scope");
-        scope = scope == null ? "actor" : scope;
-        return new FeatureBuilder(this.actor).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
-    }
-
-    /**
-     * Open the specified actor, simulacre or the fraternite.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onOpenActor(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
-        const actor = game.actors.get(id);
-        if (actor != null) {
-            actor.sheet.render(true);
-        }
-        return this;
-    }
-
-    /**
-     * Open the specified embedded item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onOpenItem(event) {
-        const feature = this._createFeature(event);
-        await feature.edit();
-        return this;
-    }
-
-    /**
      * Roll the specified original item.
      * @param event The click event.
      * @returns the instance.

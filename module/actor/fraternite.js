@@ -55,13 +55,10 @@ export class FraterniteSheet extends HistoricalSheet {
         html.find('div[data-tab="effectif"] .open').click(this._onEditActor.bind(this));
 
         // Connaissances
-        html.find('div[data-tab="vecus"] .edit-passe').click(this._onEditFeature.bind(this, 'passe'));
-        html.find('div[data-tab="vecus"] .edit-quete').click(this._onEditFeature.bind(this, 'quete'));
-        html.find('div[data-tab="vecus"] .edit-savoir').click(this._onEditFeature.bind(this, 'savoir'));
-        html.find('div[data-tab="vecus"] .edit-chute').click(this._onEditFeature.bind(this, 'chute'));
+        html.find('div[data-tab="vecus"] .vecu .open').click(this._onEditOriginalItem.bind(this));
 
         // Ressources
-        html.find('div[data-tab="ressources"] .edit-focus').click(this._onEditOriginalItem.bind(this));
+        html.find('div[data-tab="ressources"] .open').click(this._onEditOriginalItem.bind(this));
 
         // Historique
         html.find('div[data-tab="incarnations"]').on("drop", this._onDrop.bind(this));
@@ -87,10 +84,8 @@ export class FraterniteSheet extends HistoricalSheet {
      */
     async _onEditOriginalItem(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const embedded = this.actor.getEmbeddedDocument('Item', id);
-        const item = game.items.find(i => i.sid === embedded.sid);
+        const sid = $(event.currentTarget).closest(".item").data("sid");
+        const item = game.items.find(i => i.sid === sid);
         item?.sheet.render(true);
     }
 
@@ -100,8 +95,7 @@ export class FraterniteSheet extends HistoricalSheet {
      */
     async _onEditActor(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).closest(".item");
-        const id = li.data("id");
+        const id = $(event.currentTarget).closest(".item").data("id");
         const actor = game.actors.get(id);
         await actor.sheet.render(true);
     }
