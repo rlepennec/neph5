@@ -2597,6 +2597,11 @@
   background-color: transparent;
   content: var(--img-circle);
 }
+.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points .tooltiptext {
+  bottom: 100%;
+  left: 29%;
+  font-size: 14px;
+}
 .actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points input {
   width: 45px;
   height: 45px;

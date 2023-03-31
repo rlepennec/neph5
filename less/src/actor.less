@@ -3007,7 +3007,13 @@
                                     background-color: transparent;
                                     content: var(--img-circle);
                                 }
-        
+
+                                .tooltiptext {
+                                    bottom: 100%;
+                                    left: 29%;
+                                    font-size: 14px;
+                                }
+
                                 input {
                                     width: 45px;
                                     height: 45px;
@@ -3015,12 +3021,12 @@
                                     font-weight: bold;
                                     border-radius: 50%;
                                     transform: translate(-55px, -27px);
+                                    
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px black;
+                                    }
                                 }
-        
-                                input:hover {
-                                    text-shadow: 0px 0px 1px black;
-                                }
-        
+
                             }
         
                         }
