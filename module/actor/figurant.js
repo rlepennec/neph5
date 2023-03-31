@@ -60,19 +60,21 @@ export class FigurantSheet extends BaseSheet {
 
         super.activateCombatListeners(html);
 
-        html.find('div[data-tab="combat"] .delete-vecu').click(this._onDeleteEmbeddedItem.bind(this));
-        html.find('div[data-tab="combat"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
-        html.find('div[data-tab="combat"] .degre-vecu').change(this._onDegreVecu.bind(this));
-        html.find('div[data-tab="combat"] .item-edit').click(this._onEditItem.bind(this));
         html.find('div[data-tab="combat"] .ka .roll').click(this._onRollKa.bind(this));
         html.find('div[data-tab="combat"] .menace .roll').click(this._onRollMenace.bind(this));
         html.find('div[data-tab="combat"] .vecu .roll').click(this._onRollVecu.bind(this));
+        html.find('div[data-tab="combat"] .vecu .open').click(this._onEditVecu.bind(this));
+        html.find('div[data-tab="combat"] .vecu .delete').click(this._onDeleteVecu.bind(this));
+        html.find('div[data-tab="combat"] .vecu input').change(this._onDegreVecu.bind(this));
 
     }
 
+    /**
+     * Update the specified vecu.
+     * @param event The click event.
+     */
     async _onDegreVecu(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
+        const id = $(event.currentTarget).closest(".vecu").data("id");
         const degre = parseInt(event.currentTarget.value);
         const item = this.actor.items.get(id);
         await item.update({"system.degre": degre});
@@ -81,28 +83,33 @@ export class FigurantSheet extends BaseSheet {
     /**
      * Roll the specified vecu.
      * @param event The click event.
-     * @returns the instance.
      */
     async _onRollVecu(event) {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".vecu").data("id");
         const item = this.actor.items.get(id);
         await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
-        return this;
     }
 
-    async _onEditItem(event) {
+    /**
+     * Edit the specified item.
+     * @param event The click event.
+     */
+    async _onEditVecu(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
+        const id = $(event.currentTarget).closest(".vecu").data("id");
         const item = this.actor.getEmbeddedDocument('Item', id);
         await item.sheet.render(true);
     }
 
-    async _onDeleteItem(event) {
+    /**
+     * Delete the specified item.
+     * @param event The click event.
+     */
+    async _onDeleteVecu(event) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        return await this.actor.deleteEmbeddedDocuments('Item', [li.data("item-id")]);
+        const id = $(event.currentTarget).closest(".vecu").data("id");
+        await this.actor.deleteEmbeddedDocuments('Item', [id]);
     }
 
     /**
