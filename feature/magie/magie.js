@@ -1,4 +1,4 @@
-import { SimpleFeature } from "../core/SimpleFeature.js";
+import { SimpleFeature } from "../core/simpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
 export class Magie extends SimpleFeature {

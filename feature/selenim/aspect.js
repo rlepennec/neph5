@@ -1,5 +1,5 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
-import { SimpleFeature } from "../core/SimpleFeature.js";
+import { AbstractFeature } from "../core/abstractFeature.js";
+import { SimpleFeature } from "../core/simpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
 export class Aspect extends SimpleFeature {

@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 
 export class Noyau extends AbstractFeature {

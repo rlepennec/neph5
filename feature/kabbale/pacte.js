@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDialog } from "../core/actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { NephilimChat } from "../../module/common/chat.js";
