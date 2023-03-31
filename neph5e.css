@@ -2976,6 +2976,9 @@
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .theme:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor .window-content .actor-root .article .article-body .options .options-column .options-group fieldset {
+  border: none;
+}
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body {
   font-family: 'AJensonPro';
   font-size: 16px;
