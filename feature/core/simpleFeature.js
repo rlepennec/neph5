@@ -1,4 +1,4 @@
-import { AbstractFeature } from "./AbstractFeature.js";
+import { AbstractFeature } from "./abstractFeature.js";
 
 export class SimpleFeature extends AbstractFeature {
 

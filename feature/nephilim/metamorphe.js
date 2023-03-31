@@ -1,8 +1,8 @@
 
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFeature } from "../core/abstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
-import { SimpleFeature } from "../core/SimpleFeature.js";
+import { SimpleFeature } from "../core/simpleFeature.js";
 
 export class Metamorphe extends SimpleFeature {
 

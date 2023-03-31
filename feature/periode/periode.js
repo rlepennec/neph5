@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../core/AbstractFeature.js";
+import { AbstractFeature } from "../core/abstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Fraternite } from "../fraternite/fraternite.js";
 
