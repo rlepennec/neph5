@@ -43,8 +43,15 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/science/actor/sciences.hbs",
         "systems/neph5e/feature/science/actor/science.hbs",
 
+        // Figure
+        "systems/neph5e/feature/figure/actor/options.hbs",
+    
+        // Fraternite
+        "systems/neph5e/feature/fraternite/actor/effectif.hbs",
+        "systems/neph5e/feature/fraternite/actor/ressources.hbs",
+        "systems/neph5e/feature/fraternite/actor/options.hbs",
+
         // Actor parts
-        "systems/neph5e/templates/actor/parts/options.hbs",
         "systems/neph5e/templates/actor/parts/header.hbs",
         "systems/neph5e/templates/actor/parts/option.hbs",
         "systems/neph5e/templates/actor/parts/checkbox.hbs",
