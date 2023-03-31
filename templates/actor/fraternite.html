@@ -73,11 +73,11 @@
                     {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}
                 </div>
 
-                <div class="tab effectif" data-group="primary" data-tab="effectif">
+                <div class="tab" data-group="primary" data-tab="effectif">
                     {{> "systems/neph5e/feature/fraternite/actor/effectif.hbs" from="fraternite"}}
                 </div>
         
-                <div class="tab" data-group="primary" data-tab="vecus">
+                <div class="tab" data-group="primary" data-tab="vecus" data-family="vecus">
                     <div class="vecus">
                         {{> "systems/neph5e/feature/periode/actor/savoirs.hbs" from="fraternite"}}
                         {{> "systems/neph5e/feature/periode/actor/quetes.hbs" from="fraternite"}}
@@ -87,11 +87,11 @@
                     </div>
                 </div>
 
-                <div class="tab incarnations" data-group="primary" data-tab="incarnations">
+                <div class="tab" data-group="primary" data-tab="incarnations">
                     {{> "systems/neph5e/feature/periode/actor/incarnations.hbs" from="fraternite"}}
                 </div>
 
-                <div class="tab ressources" data-group="primary" data-tab="ressources">
+                <div class="tab" data-group="primary" data-tab="ressources">
                     {{> "systems/neph5e/feature/fraternite/actor/ressources.hbs" from="fraternite"}}
                 </div>
                 
