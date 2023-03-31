@@ -1,34 +1,53 @@
-OPTIONS
 <div class="options">
 
-    <div class="header">
-        <div class="title">
-            <div class="item-name">
-                <span>{{localize "NEPH5E.options"}}</span>
+    <div class="options-column">
+
+        <div class="options-group">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="options-name">{{localize "NEPH5E.fraternite"}}</span>
+
             </div>
+
+            <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.active" name="system.options.active" value=system.options.active}}
+
+            </ol>
+
         </div>
+
     </div>
 
-    <ol class="item-list">
+    <div class="options-column">
 
-        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.active" name="system.options.active" value=system.options.active}}
+        <div class="options-group">
 
-    </ol>
+            <div class="header">
 
-    <div class="header">
-        <div class="title">
-            <div class="item-name">
-                <span>{{localize "NEPH5E.affichage"}}</span>
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
+
             </div>
+
+            <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+
+                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+
+            </ol>
+
         </div>
+
     </div>
-
-    <ol class="item-list">
-
-        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
-
-        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
-
-    </ol>
 
 </div>

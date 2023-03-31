@@ -175,38 +175,8 @@
 
                 </div>
                 
-                <div class="tab foptions" data-group="primary" data-tab="options">
-
-                    <div class="header">
-                        <div class="title">
-                            <div class="item-name">
-                                <span>{{localize "NEPH5E.options"}}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <ol class="item-list">
-
-                        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.active" name="system.options.active" value=system.options.active}}
-   
-                    </ol>
-
-                    <div class="header">
-                        <div class="title">
-                            <div class="item-name">
-                                <span>{{localize "NEPH5E.affichage"}}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <ol class="item-list">
-
-                        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
-       
-                        {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
-    
-                    </ol>
-
+                <div class="tab" data-group="primary" data-tab="options">
+                    {{> "systems/neph5e/feature/fraternite/actor/options.hbs" from="fraternite"}}
                 </div>
 
             </section>
