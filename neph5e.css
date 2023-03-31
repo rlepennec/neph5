@@ -886,6 +886,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane .value {
   width: 40px;
