@@ -83,6 +83,26 @@
 
         </div>
 
+        <div class="options-group">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="options-name">{{localize "NEPH5E.sciencesOccultes"}}</span>
+
+            </div>
+
+            <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
+
+            </ol>
+
+        </div>
+
     </div>
 
     <div class="options-column">
@@ -145,6 +165,64 @@
 
                 <img class="separator"/>
 
+                <span class="options-name">{{localize "NEPH5E.theme"}}</span>
+
+            </div>
+
+            <fieldset class="body">
+
+                <div class="option">
+                    <input class="option-checkbox" type="radio" name="system.options.theme" value="soleil" {{#if (eq system.options.theme "soleil")}}checked{{/if}}/>
+                    <label for="system.options.theme">Soleil</label>
+                </div>
+    
+                <div class="option">
+                    <input class="option-checkbox" type="radio" name="system.options.theme" value="air" {{#if (eq system.options.theme "air")}}checked{{/if}}>
+                    <label for="system.options.theme">Air</label>
+                </div>
+
+            </fieldset>
+
+        </div>
+
+        <div class="options-group">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
+
+            </div>
+
+            <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+
+            </ol>
+
+        </div>
+
+    </div>
+
+{{else}}
+
+    <div class="options-column">
+
+        <div class="options-group">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
                 <span class="options-name">{{localize "NEPH5E.sciencesOccultes"}}</span>
 
             </div>
@@ -195,58 +273,6 @@
 
                 <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
 
-            </div>
-
-            <ol class="body">
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
-
-            </ol>
-
-        </div>
-
-
-
-    </div>
-
-{{else}}
-
-    <div class="options-column">
-
-        <div class="options-group">
-
-            <div class="header">
-
-                <img class="puce"/>
-
-                <img class="separator"/>
-
-                <span class="options-name">{{localize "NEPH5E.sciencesOccultes"}}</span>
-
-            </div>
-
-            <ol class="body">
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
-
-            </ol>
-
-        </div>
-
-        <div class="options-group">
-
-            <div class="header">
-
-                <img class="puce"/>
-
-                <img class="separator"/>
-
-                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
-
                 <select class="theme" name="system.options.theme">
                     <option value="auto">Automatique</option>
                     <option value="feu">Feu</option>
@@ -262,12 +288,6 @@
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
-
-                <!--li class="option theme">
-
-
-
-                </li-->
 
             </ol>
 
