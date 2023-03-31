@@ -96,8 +96,8 @@
     }
 
     :root.lune-noire {
-        --column-color: #5dd5f3;
-        --active-tab-color: #5dd5f3;
+        --column-color: #5e6061;
+        --active-tab-color: #383a3a;
         --side-background: url("../../systems/neph5e/assets/skins/lune-noire/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/lune-noire/article-separator.webp");
         --img-background: url("../../systems/neph5e/assets/skins/lune-noire/background.webp");
@@ -1791,6 +1791,7 @@
                                             display: hidden;
                                             margin-left: 15px;
                                             content: var(--img-circle);
+                                            background-color: transparent;
                                         }
         
                                         input {
@@ -1800,7 +1801,7 @@
                                             text-align: center;
                                             font-weight: bold;
                                             border-radius: 50%;
-                                            transform: translate(-39px, 8px);
+                                            transform: translate(-41px, 8px);
                                             border: none;
                                             background-color: transparent;
                                         }
@@ -3110,12 +3111,14 @@
                                 }
 
                                 input {
+                                    border: none;
                                     width: 45px;
                                     height: 45px;
                                     text-align: center;
                                     font-weight: bold;
                                     border-radius: 50%;
                                     transform: translate(-55px, -27px);
+                                    background-color: transparent;
                                     
                                     &:hover {
                                         text-shadow: 0px 0px 1px black;
