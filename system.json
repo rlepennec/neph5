@@ -8,8 +8,10 @@
             "name": "Kartaj"
         }
     ],
-    "minimumCoreVersion": "10.284",
-    "compatibleCoreVersion": "10.291",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10"
+    },
     "esmodules": [
         "neph5e.js"
     ],
