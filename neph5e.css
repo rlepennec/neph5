@@ -421,64 +421,6 @@
   flex-direction: column;
   margin-left: 10px;
   width: 100%;
-  /*
-                .effectif {
-        
-                    .header {
-                        display: flex;
-                        flex-direction: row;
-                        padding-top: 10px;
-                        justify-content: center;
-        
-                        .circle {
-                            flex-basis: 40px;
-                            flex-grow: 0;
-                            flex-shrink: 0;
-                        }
-        
-                        .title {
-                            width: 100%;
-                            margin-left: 20px;
-                            display: flex;
-                            flex-direction: row;
-                            margin-top: 10px;
-                            margin-bottom: 10px;
-                            font-family: 'AJensonPro';
-                            font-size: 20px;
-                            border-width: 0px 0px 2px 0px;
-                            border-style: solid;
-                            border-color: black;
-        
-                            .item-name {
-                                width: 100%;
-                                padding-left: 5px;
-                            }
-        
-                        }
-        
-                    }
-        
-                    .membre {
-                        height: 17px;
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        margin-bottom: 10px;
-        
-                        .edit-actor {
-                            margin-left: 20px;
-                            width: 70%;
-                        }
-        
-                        .edit-status {
-                            margin-left: 20px;
-                            width: 30%;
-                        }
-        
-                    }
-        
-                }
-                */
 }
 .actor .window-content .actor-root .article .article-header {
   display: flex;
@@ -2888,7 +2830,7 @@
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode:hover {
   cursor: default;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .header {
+.actor .window-content .actor-root .article .article-body .groups .group .header {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -2896,14 +2838,14 @@
   font-size: 21px;
   margin-bottom: -10px;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .header .circle {
+.actor .window-content .actor-root .article .article-body .groups .group .header .circle {
   border: none;
   width: 60px;
   height: 65px;
   background-color: transparent;
   content: var(--img-circle);
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .header .separator {
+.actor .window-content .actor-root .article .article-body .groups .group .header .separator {
   position: absolute;
   border: none;
   height: 4px;
@@ -2912,7 +2854,7 @@
   width: calc(100% - 70px);
   content: var(--img-separator);
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .header .degre {
+.actor .window-content .actor-root .article .article-body .groups .group .header .degre {
   position: absolute;
   width: 45px;
   height: 45px;
@@ -2926,7 +2868,7 @@
   border: none;
   font-size: 20px;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .header .name {
+.actor .window-content .actor-root .article .article-body .groups .group .header .name {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -2938,10 +2880,10 @@
   background-color: transparent;
   width: calc(100% - 70px);
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .body {
+.actor .window-content .actor-root .article .article-body .groups .group .body {
   list-style: none;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .body .membre {
+.actor .window-content .actor-root .article .article-body .groups .group .body .item {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
@@ -2952,14 +2894,15 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .body .membre .name {
+.actor .window-content .actor-root .article .article-body .groups .group .body .item .name {
   width: 100%;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .body .membre .icon {
+.actor .window-content .actor-root .article .article-body .groups .group .body .item .icon {
   font-size: 13px;
   width: 30px;
+  margin-right: 20px;
 }
-.actor .window-content .actor-root .article .article-body .effectif .group .body .membre:hover {
+.actor .window-content .actor-root .article .article-body .groups .group .body .item:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor .window-content .actor-root .article .article-body .options {
@@ -3058,82 +3001,6 @@
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option:hover {
   text-shadow: 0px 0px 1px black;
-}
-.actor .window-content .actor-root .article .ressources .header {
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  justify-content: center;
-}
-.actor .window-content .actor-root .article .ressources .header .title {
-  width: 100%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor .window-content .actor-root .article .ressources .header .title .item-name {
-  width: 100%;
-  padding-left: 5px;
-}
-.actor .window-content .actor-root .article .ressources .item-list .item {
-  margin-left: 10px;
-  margin-bottom: 10px;
-}
-.actor .window-content .actor-root .article .ressources .item-list .item .edit-item {
-  flex: 1 1 auto;
-  margin-left: 30px;
-}
-.actor .window-content .actor-root .article .ressources .item-list .item .item-control {
-  margin-right: 20px;
-}
-.actor .window-content .actor-root .article .foptions .header {
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
-  justify-content: center;
-}
-.actor .window-content .actor-root .article .foptions .header .title {
-  width: 100%;
-  margin-left: 20px;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: 'AJensonPro';
-  font-size: 20px;
-  border-width: 0px 0px 2px 0px;
-  border-style: solid;
-  border-color: black;
-}
-.actor .window-content .actor-root .article .foptions .header .title .item-name {
-  width: 100%;
-  padding-left: 5px;
-}
-.actor .window-content .actor-root .article .foptions .item-list .item {
-  margin-left: 10px;
-}
-.actor .window-content .actor-root .article .foptions .item-list .item .degre input {
-  text-align: center;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-.actor .window-content .actor-root .article .foptions .item-list .item .edit-item {
-  flex: 1 1 auto;
-}
-.actor .window-content .actor-root .article .foptions .item-list .item .delete {
-  text-align: center;
-  width: 32px;
 }
 .actor .window-content .actor-root .article .nofocus {
   display: flex;

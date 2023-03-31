@@ -1,40 +1,37 @@
-RESSOURCES
-<div class="ressources">
+<div class="ressources groups">
 
     {{#each (sciences) as |science|}}
     {{#with (numberOfFocus ../actor science) as |size|}}
     {{#if (gt size 0)}}
-    <div class="header">
+    <div class="group">
 
-        <div class="circle">
-            <div class="circleContent">{{size}}</div>
+        <div class="header">
+
+            <img class="circle"/>
+
+            <div class="degre">{{size}}</div>
+
+            <img class="separator"/>
+
+            <label class="name">{{localize (concat "NEPH5E." science)}}</label>
+
         </div>
 
-        <div class="title">
-            <div class="item-name">
-                <span>{{localize (concat "NEPH5E." science)}}</span>
-            </div>
-        </div>
+        <ol class="body">
+
+            {{#each (focus ../../actor science) as |focus|}}
+            <li class="item" data-id="{{membre.id}}">
+
+                <a class="icon"><i class="fas fa-scroll"></i></a>
+            
+                <label class="name open">{{focus.original.name}}</label>
+
+            </li>
+            {{/each}}
+
+        </ol>
 
     </div>
-
-    <ol class="item-list">
-
-        {{#each (focus ../../actor science) as |focus|}}
-        <li class="item science" data-item-id="{{focus.embedded.id}}">
-
-            <div class="item-control">
-                <a class="item-delete"><i class="fas fa-scroll"></i></a>
-            </div>
-        
-            <div class="item-name edit-focus">
-                <span>{{focus.original.name}}</span>
-            </div>
-
-        </li>
-        {{/each}}
-        
-    </ol>
     {{/if}}
     {{/with}}
     {{/each}}

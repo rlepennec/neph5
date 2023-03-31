@@ -92,45 +92,7 @@
                 </div>
 
                 <div class="tab ressources" data-group="primary" data-tab="ressources">
-
-                    {{#each (sciences) as |science|}}
-                    {{#with (numberOfFocus ../actor science) as |size|}}
-                    {{#if (gt size 0)}}
-                    <div class="header">
-
-                        <div class="circle">
-                            <div class="circleContent">{{size}}</div>
-                        </div>
-
-                        <div class="title">
-                            <div class="item-name">
-                                <span>{{localize (concat "NEPH5E." science)}}</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <ol class="item-list">
-
-                        {{#each (focus ../../actor science) as |focus|}}
-                        <li class="item science" data-item-id="{{focus.embedded.id}}">
-
-                            <div class="item-control">
-                                <a class="item-delete"><i class="fas fa-scroll"></i></a>
-                            </div>
-                        
-                            <div class="item-name edit-focus">
-                                <span>{{focus.original.name}}</span>
-                            </div>
-
-                        </li>
-                        {{/each}}
-                        
-                    </ol>
-                    {{/if}}
-                    {{/with}}
-                    {{/each}}
-
+                    {{> "systems/neph5e/feature/fraternite/actor/ressources.hbs" from="fraternite"}}
                 </div>
                 
                 <div class="tab" data-group="primary" data-tab="options">
