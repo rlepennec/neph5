@@ -64,9 +64,9 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .edit-vecu').click(this._onEditEmbeddedItem.bind(this));
         html.find('div[data-tab="combat"] .degre-vecu').change(this._onDegreVecu.bind(this));
         html.find('div[data-tab="combat"] .item-edit').click(this._onEditItem.bind(this));
-        html.find('div[data-tab="combat"] .roll-ka').click(this._onRollKa.bind(this));
-        html.find('div[data-tab="combat"] .roll-menace').click(this._onRollMenace.bind(this));
-        html.find('div[data-tab="combat"] .roll-vecu').click(this._onRollVecu.bind(this));
+        html.find('div[data-tab="combat"] .ka .roll').click(this._onRollKa.bind(this));
+        html.find('div[data-tab="combat"] .menace .roll').click(this._onRollMenace.bind(this));
+        html.find('div[data-tab="combat"] .vecu .roll').click(this._onRollVecu.bind(this));
 
     }
 
@@ -85,7 +85,7 @@ export class FigurantSheet extends BaseSheet {
      */
     async _onRollVecu(event) {
         event.preventDefault();
-        const id = $(event.currentTarget).closest(".roll-vecu").data("item");
+        const id = $(event.currentTarget).closest(".vecu").data("id");
         const item = this.actor.items.get(id);
         await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
         return this;
