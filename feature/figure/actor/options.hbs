@@ -172,13 +172,38 @@
             <fieldset class="body">
 
                 <div class="option">
-                    <input class="option-checkbox" type="radio" name="system.options.theme" value="soleil" {{#if (eq system.options.theme "soleil")}}checked{{/if}}/>
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="air" {{#if (eq system.options.theme "air")}}checked{{/if}}>
+                    <label for="system.options.theme">Air</label>
+                </div>
+
+                <div class="option">
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="eau" {{#if (eq system.options.theme "eau")}}checked{{/if}}/>
+                    <label for="system.options.theme">Eau</label>
+                </div>
+
+                <div class="option">
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="feu" {{#if (eq system.options.theme "feu")}}checked{{/if}}/>
+                    <label for="system.options.theme">Feu</label>
+                </div>
+
+                <div class="option">
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="lune" {{#if (eq system.options.theme "lune")}}checked{{/if}}/>
+                    <label for="system.options.theme">Lune</label>
+                </div>
+
+                <div class="option">
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="lune-noire" {{#if (eq system.options.theme "lune-noire")}}checked{{/if}}/>
+                    <label for="system.options.theme">Lune noire</label>
+                </div>
+
+                <div class="option">
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="soleil" {{#if (eq system.options.theme "soleil")}}checked{{/if}}/>
                     <label for="system.options.theme">Soleil</label>
                 </div>
-    
+
                 <div class="option">
-                    <input class="option-checkbox" type="radio" name="system.options.theme" value="air" {{#if (eq system.options.theme "air")}}checked{{/if}}>
-                    <label for="system.options.theme">Air</label>
+                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="terre" {{#if (eq system.options.theme "terre")}}checked{{/if}}/>
+                    <label for="system.options.theme">Terre</label>
                 </div>
 
             </fieldset>
