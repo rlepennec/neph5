@@ -18,6 +18,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/soleil/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/soleil/triangle.webp");
         --img-combat-bonus-margin-top: 0px;
+        --img-combat-bonus-losange-top: 48px;
     }
 
     :root.air {
@@ -38,6 +39,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/air/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/air/triangle.webp");
         --img-combat-bonus-margin-top: 0px;
+        --img-combat-bonus-losange-top: 48px;
     }
 
     :root.eau {
@@ -58,6 +60,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/eau/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/eau/triangle.webp");
         --img-combat-bonus-margin-top: 0px;
+        --img-combat-bonus-losange-top: 48px;
     }
 
     :root.feu {
@@ -78,6 +81,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/feu/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/feu/triangle.webp");
         --img-combat-bonus-margin-top: 0px;
+        --img-combat-bonus-losange-top: 48px;
     }
 
     :root.lune {
@@ -98,6 +102,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/lune/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/lune/triangle.webp");
         --img-combat-bonus-margin-top: 0px;
+        --img-combat-bonus-losange-top: 48px;
     }
 
     :root.lune-noire {
@@ -118,6 +123,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/lune-noire/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/lune-noire/triangle.webp");
         --img-combat-bonus-margin-top: 10px;
+        --img-combat-bonus-losange-top: 57px;
     }
 
     :root.terre {
@@ -138,6 +144,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/terre/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/terre/triangle.webp");
         --img-combat-bonus-margin-top: 0px;
+        --img-combat-bonus-losange-top: 48px;
     }
 
 .actor
@@ -1776,7 +1783,7 @@
                                     .losange {
                                         position: absolute;
                                         left: calc(50% - 51px);
-                                        top: 48px;
+                                        top: var(--img-combat-bonus-losange-top);
                                         width: 120px;
                                         border: none;
                                         content: var(--img-losange);
