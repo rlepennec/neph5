@@ -1,9 +1,13 @@
 # 1.3.2
+Amélioration des fiches de personnages
+Ajout de la gestion de thèmes pour les fiches de personnages
 Renommage de la chute Lune Noire en Entropie lunaire
 Correction d'une anomalie lors de la suppression des degrés dans le panneau Incarnations
 Correction d'une anomalie sur la manoeuvre permettant de viser avec une arme
+Correction d'une anomalie pour le cout des Materiae Primae
 Affichage des parametres Quantités, Focus, Status des formules alchimiques même si la formule ne peut être créée
 Impossibilité de lancer des sorts d'une voie magique incompatible 
+Ajout d'une option pour utiliser le métamorphe lors du lancé de sort
 Ajout du nombre maximum de materia primae dans l'onglet laboratoire
 Ajout d'une aide pour l'expérience
 Ajout des pratiques synarques
