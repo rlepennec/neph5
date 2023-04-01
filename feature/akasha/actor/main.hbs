@@ -22,9 +22,10 @@
 
         <div class="directions">
 
-            {{#if actor.system.akasha.nef.active}}
-            <img class="boussole"/>
-            {{/if}}
+            <div class="nef tooltip" data-type="nef">
+                <img class="activate {{#unless actor.system.akasha.nef.active}}disabled{{/unless}}"/>
+                <label class="tooltiptext">{{localize "NEPH5E.nef"}}</label>
+            </div>
 
             <div class="zenith">
                 <img class="circle"/>
@@ -112,9 +113,10 @@
 
         <div class="directions">
 
-            {{#if actor.system.akasha.barge.active}}
-            <img class="compas"/>
-            {{/if}}
+            <div class="barge tooltip" data-type="barge">
+                <img class="activate {{#unless actor.system.akasha.barge.active}}disabled{{/unless}}"/>
+                <label class="tooltiptext">{{localize "NEPH5E.barge"}}</label>
+            </div>
 
             <div class="zenith">
                 <img class="circle"/>
