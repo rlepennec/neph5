@@ -316,7 +316,7 @@
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
-  --options-body-margin-top: 0px;
+  --options-body-margin-top: -31px;
 }
 :root.feu {
   --column-color: #5dd5f3;
@@ -341,7 +341,7 @@
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
-  --options-body-margin-top: 0px;
+  --options-body-margin-top: -25px;
 }
 :root.lune {
   --column-color: #5dd5f3;
