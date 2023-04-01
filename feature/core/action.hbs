@@ -104,6 +104,20 @@
         </tr>
         {{/if}}
 
+        {{#if (nonNull metamorphe)}}
+        {{log .}}
+        <tr>
+            <td>
+                <select id="metamorphe" name="metamorphe">
+                    <option value="ignore">{{localize 'NEPH5E.ignorerMetamorphe'}}</option>
+                    <option value="apply">{{localize 'NEPH5E.appliquerMetamorphe'}}</option>
+                </select>
+            </td>
+            <td class="value" id="metamorpheModifier">0</td>
+            <td class="percentage">%</td>
+        </tr>
+        {{/if}}
+
     </table>
 
 </form>

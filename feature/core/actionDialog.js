@@ -95,6 +95,7 @@ export class ActionDialog extends AbstractDialog {
         html.find("#fraternite").change(this._onSelectFraternite.bind(this));
         html.find("#blessures").change(this._onSelectBlessures.bind(this));
         html.find("#approche").change(this._onSelectApproche.bind(this));
+        html.find("#metamorphe").change(this._onSelectMetamorphe.bind(this));
         html.find("#roll").click(this._onRoll.bind(this));
         html.find("#details").click(this._onDetails.bind(this));
     }
@@ -158,6 +159,19 @@ export class ActionDialog extends AbstractDialog {
     }
 
     /**
+     * Handle the metamorphe use change.
+     * @param event The event to handle.
+     */
+    async _onSelectMetamorphe(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const metamorphe = parameters.metamorphe;
+        const difficulty = this.action.difficulty(parameters);
+        $('#metamorpheModifier').html("<span>" + metamorphe + "<span>");
+        $('#difficulty').html("<span>" + difficulty + "%<span>");
+    }
+
+    /**
      * Handle the click to roll action.
      * @param event The event to handle.
      */
@@ -177,6 +191,7 @@ export class ActionDialog extends AbstractDialog {
             blessures: this._blessures(),
             fraternite: this._fraternite(),
             approche: this._approche(),
+            metamorphe:this._metamorphe(),
             ka: this._ka(),
             opposed: this._opposed(),
             shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1
@@ -226,6 +241,15 @@ export class ActionDialog extends AbstractDialog {
         if (approche == null) return 0;
         const element = approche.replaceAll('NEPH5E.','').replaceAll('pentacle.elements.','');
         return element === 'none' ? 0 : this.object.getKa(element) * 10;
+    }
+
+    /**
+     * @returns the optional metamorphe modifier.
+     */
+    _metamorphe() {
+        const selector = this.form.querySelector("#metamorphe");
+        const metamorphe = selector == null || selector?.value === 'ignore' ? 0 : this.data.metamorphe;
+        return metamorphe;
     }
 
     /**

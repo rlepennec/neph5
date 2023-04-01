@@ -46,6 +46,7 @@ export class ActionDataBuilder {
         this.recharger = null;
         this.attack = null;
         this.fraternite = 0;
+        this.metamorphe = null;
     }
 
     /**
@@ -81,6 +82,15 @@ export class ActionDataBuilder {
      */
     withFraternite(fraternite) {
         this.fraternite = fraternite;
+        return this;
+    }
+
+    /**
+     * @param metamorphe The metamorphe bonus to register.
+     * @returns the instance.
+     */
+    withMetamorphe(metamorphe) {
+        this.metamorphe = metamorphe > 0 ? metamorphe : null;
         return this;
     }
 
@@ -266,6 +276,10 @@ export class ActionDataBuilder {
 
         data.fraternite = this.fraternite * 10;
 
+        if (this.metamorphe != null) {
+            data.metamorphe = this.metamorphe * 10;
+        }
+
         if (this.blessures != null) {
             data.blessures = this.actor.getWoundsModifier(this.blessures);
         }
@@ -319,6 +333,7 @@ export class ActionDataBuilder {
         }
 
         return data;
+
     }
 
     /**

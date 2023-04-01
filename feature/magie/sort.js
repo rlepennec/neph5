@@ -44,6 +44,7 @@ export class Sort extends AbstractFocus {
             .withItem(this.item)
             .withBase('Sort', this.degre)
             .withBlessures('magique')
+            .withMetamorphe(this.actor.metamorphe.visibles)
             .export();
     }
 

@@ -56,6 +56,7 @@ export class Metamorphe extends SimpleFeature {
         let sid = null;
         let name = game.i18n.localize('NEPH5E.metamorphe');
         let size = 0;
+        let visibles = 0;
         let  metamorphoses = [];
         for (let i=0; i<10; i++) {
             metamorphoses.push({
@@ -74,6 +75,7 @@ export class Metamorphe extends SimpleFeature {
                 sid = original.sid;
                 name = original.name;
                 size = embedded?.system.formed.filter(v => v === true).length;
+                visibles = embedded?.system.visible.filter(v => v === true).length;
                 for (let i=0; i<10; i++) {
                     metamorphoses[i] = {
                         name: original.system.metamorphoses[i].name,
@@ -90,6 +92,7 @@ export class Metamorphe extends SimpleFeature {
             sid: sid,
             name: name,
             size: size,
+            visibles: visibles,
             metamorphoses: metamorphoses
         }
 
