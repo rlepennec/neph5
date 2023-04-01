@@ -46,7 +46,10 @@
             ],
             "menace": 3,
             "ka": 3,
-            "description": ""
+            "description": "",
+            "options": {
+                "theme": "soleil"
+            }
         },
         "figure": {
             "templates": [
@@ -206,7 +209,7 @@
                 "degreGauche": false,
                 "incarnationsOuvertes": false,
                 "gestionLaboratoire": false,
-                "theme": "auto"
+                "theme": "soleil"
             }
         },
         "fraternite": {
