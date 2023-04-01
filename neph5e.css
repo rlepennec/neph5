@@ -1005,47 +1005,47 @@
   flex-direction: column;
   width: 450px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body {
   position: relative;
   text-align: center;
   margin-left: 55px;
   margin-top: 30px;
   font-family: 'AJensonPro';
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau img {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body img {
   border: 0px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements {
   list-style: none;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element {
   position: absolute;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.noyau {
-  top: 0px;
-  left: 0px;
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.noyau {
+  top: 3px;
+  left: 92px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.pavane {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.pavane {
   top: 32px;
   left: 307px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.reserves {
   top: 248px;
   left: 183px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves .circle {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.reserves .circle {
   width: 115px;
   height: 125px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves .tooltip {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.reserves .tooltip {
   top: -56px;
   left: -58px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element.reserves .separator {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.reserves .separator {
   top: -55px;
   left: -65px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .circle {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element .circle {
   position: relative;
   border: none;
   width: 80px;
@@ -1056,53 +1056,53 @@
   max-width: none;
   content: var(--img-circle);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .dice {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element .dice {
   position: absolute;
   top: 10px;
   left: -3px;
   font-size: 14px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .tooltip {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element .tooltip {
   position: absolute;
   left: 13px;
   top: 4px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .elements .element .tooltip input {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element .tooltip input {
   background-color: transparent;
   font-size: 20px;
   border: 0px;
   width: 40px;
   text-align: left;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .macro .dice {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .macro .dice {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .macro .dice.noyau {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .macro .dice.noyau {
   transform: translate(-120px, 115px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .macro .dice.pavane {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .macro .dice.pavane {
   transform: translate(-90px, -100px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .tooltip {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .tooltip {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .tooltip.pavane {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .tooltip.pavane {
   transform: translate(-80px, -105px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .tooltip.noyau {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .tooltip.noyau {
   transform: translate(-110px, 110px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .tooltip.reserveCourante {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .tooltip.reserveCourante {
   transform: translate(60px, 80px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .tooltip.reserveMaximale {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .tooltip.reserveMaximale {
   transform: translate(100px, 80px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .tooltip input {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .tooltip input {
   background-color: transparent;
   font-size: 20px;
   font-weight: bold;
@@ -1110,7 +1110,7 @@
   width: 40px;
   text-align: center;
 }
-.actor .window-content .actor-root .article .article-body .selenim .left .noyau .separator {
+.actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .separator {
   position: absolute;
   top: 50%;
   left: 50%;

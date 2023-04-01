@@ -2,70 +2,74 @@
 
     <div class="left">
 
-        <div class="header">
-
-            <img class="puce"/>
-
-            <img class="separator"/>
-
-            <span class="name">{{localize "NEPH5E.noyau"}}</span>
-
-        </div>
-
         <div class="noyau">
 
-            <img src="systems/neph5e/assets/core/noyau.webp"/>
+            <div class="header">
 
-            <ol class="elements">
+                <img class="puce"/>
 
-                <li class="element macro pavane" data-macro="ka" data-id="pavane">
-                    <img class="circle"/>
-                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
-                    <div class="tooltip">
-                        <input
-                            name="system.ka.pavane"
-                            type="text"
-                            value="{{system.ka.pavane}}"
-                            data-dtype="Number"/>
-                        <span class="tooltiptext">{{localize "NEPH5E.pavane"}}</span>
-                    </div>
-                </li>
+                <img class="separator"/>
 
-                <li class="element macro noyau" data-macro="ka" data-id="noyau">
-                    <img class="circle"/>
-                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
-                    <div class="tooltip">
-                        <input
-                            name="system.ka.noyau"
-                            type="text"
-                            value="{{system.ka.noyau}}"
-                            data-dtype="Number"/>
-                        <span class="tooltiptext">{{localize "NEPH5E.noyau"}}</span>
-                    </div>
-                </li>
+                <span class="name">{{localize "NEPH5E.noyau"}}</span>
 
-                <li class="element reserves">
-                    <img class="circle"/>
-                    <div class="tooltip reserveCourante">
-                        <input
-                            name="system.ka.reserveCourante"
-                            type="text"
-                            value="{{system.ka.reserveCourante}}"
-                            data-dtype="Number"/>
-                        <span class="tooltiptext">{{localize "NEPH5E.reserveCourante"}}</span>
-                    </div>
-                    <label class="separator">/</label>
-                    <div class="tooltip reserveMaximale">
-                        <input
-                            name="system.ka.reserve"
-                            type="text"
-                            value="{{system.ka.reserve}}"
-                            data-dtype="Number"/>
-                        <span class="tooltiptext">{{localize "NEPH5E.reserveMaximale"}}</span>
-                    </div>
-                </li>
+            </div>
 
-            </ol>
+            <div class="body">
+
+                <img src="systems/neph5e/assets/core/noyau.webp"/>
+
+                <ol class="elements">
+
+                    <li class="element macro pavane" data-macro="ka" data-id="pavane">
+                        <img class="circle"/>
+                        <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                        <div class="tooltip">
+                            <input
+                                name="system.ka.pavane"
+                                type="text"
+                                value="{{system.ka.pavane}}"
+                                data-dtype="Number"/>
+                            <span class="tooltiptext">{{localize "NEPH5E.pavane"}}</span>
+                        </div>
+                    </li>
+
+                    <li class="element macro noyau" data-macro="ka" data-id="noyau">
+                        <img class="circle"/>
+                        <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                        <div class="tooltip">
+                            <input
+                                name="system.ka.noyau"
+                                type="text"
+                                value="{{system.ka.noyau}}"
+                                data-dtype="Number"/>
+                            <span class="tooltiptext">{{localize "NEPH5E.noyau"}}</span>
+                        </div>
+                    </li>
+
+                    <li class="element reserves">
+                        <img class="circle"/>
+                        <div class="tooltip reserveCourante">
+                            <input
+                                name="system.ka.reserveCourante"
+                                type="text"
+                                value="{{system.ka.reserveCourante}}"
+                                data-dtype="Number"/>
+                            <span class="tooltiptext">{{localize "NEPH5E.reserveCourante"}}</span>
+                        </div>
+                        <label class="separator">/</label>
+                        <div class="tooltip reserveMaximale">
+                            <input
+                                name="system.ka.reserve"
+                                type="text"
+                                value="{{system.ka.reserve}}"
+                                data-dtype="Number"/>
+                            <span class="tooltiptext">{{localize "NEPH5E.reserveMaximale"}}</span>
+                        </div>
+                    </li>
+
+                </ol>
+
+            </div>
 
         </div>
 

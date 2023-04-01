@@ -903,150 +903,154 @@
                             width: 450px;
         
                             .noyau {
-                                position: relative;
-                                text-align: center;
-                                margin-left: 55px;
-                                margin-top: 30px;
-                                font-family: 'AJensonPro';
 
-                                img {
-                                    border: 0px;
-                                }
+                                .body {
+                                    position: relative;
+                                    text-align: center;
+                                    margin-left: 55px;
+                                    margin-top: 30px;
+                                    font-family: 'AJensonPro';
 
-                                .elements {
-                                    list-style: none;
+                                    img {
+                                        border: 0px;
+                                    }
 
-                                    .element {
-                                        position: absolute;
+                                    .elements {
+                                        list-style: none;
 
-                                        &.noyau {
-                                            top: 0px;
-                                            left: 0px;
-                                        }
+                                        .element {
+                                            position: absolute;
 
-                                        &.pavane {
-                                            top: 32px;
-                                            left: 307px;
-                                        }
+                                            &.noyau {
+                                                top: 3px;
+                                                left: 92px;
+                                            }
 
-                                        &.reserves {
-                                            top: 248px;
-                                            left: 183px;
+                                            &.pavane {
+                                                top: 32px;
+                                                left: 307px;
+                                            }
+
+                                            &.reserves {
+                                                top: 248px;
+                                                left: 183px;
+
+                                                .circle {
+                                                    width: 115px;
+                                                    height: 125px;
+                                                }
+
+                                                .tooltip {
+                                                    top: -56px;
+                                                    left: -58px;
+                                                }
+
+                                                .separator {
+                                                    top: -55px;
+                                                    left: -65px;
+                                                }
+
+                                            }
 
                                             .circle {
-                                                width: 115px;
-                                                height: 125px;
+                                                position: relative;
+                                                border: none;
+                                                width: 80px;
+                                                height: 85px;
+                                                top: -25px;
+                                                left: -25px;
+                                                background-color: transparent;
+                                                max-width: none;
+                                                content: var(--img-circle);
+                                            }
+
+                                            .dice {
+                                                position: absolute;
+                                                top: 10px;
+                                                left: -3px;
+                                                font-size: 14px;
                                             }
 
                                             .tooltip {
-                                                top: -56px;
-                                                left: -58px;
-                                            }
+                                                position: absolute;
+                                                left: 13px;
+                                                top: 4px;
 
-                                            .separator {
-                                                top: -55px;
-                                                left: -65px;
+                                                input {
+                                                    background-color: transparent;
+                                                    font-size: 20px;
+                                                    border: 0px;
+                                                    width: 40px;
+                                                    text-align: left;
+                                                }
+
                                             }
 
                                         }
 
-                                        .circle {
-                                            position: relative;
-                                            border: none;
-                                            width: 80px;
-                                            height: 85px;
-                                            top: -25px;
-                                            left: -25px;
-                                            background-color: transparent;
-                                            max-width: none;
-                                            content: var(--img-circle);
-                                        }
+                                    }
+
+                                    .macro {
 
                                         .dice {
                                             position: absolute;
-                                            top: 10px;
-                                            left: -3px;
-                                            font-size: 14px;
-                                        }
+                                            top: 50%;
+                                            left: 50%;
 
-                                        .tooltip {
-                                            position: absolute;
-                                            left: 13px;
-                                            top: 4px;
-
-                                            input {
-                                                background-color: transparent;
-                                                font-size: 20px;
-                                                border: 0px;
-                                                width: 40px;
-                                                text-align: left;
+                                            &.noyau {
+                                                transform: translate(-120px, 115px);
+                                            }
+                
+                                            &.pavane {
+                                                transform: translate(-90px, -100px);
                                             }
 
                                         }
+            
+                                    }
+                    
+                                    .tooltip {
+                                        position: absolute;
+                                        top: 50%; 
+                                        left: 50%;
+            
+                                        &.pavane {
+                                            transform: translate(-80px, -105px);
+                                        }
+            
+                                        &.noyau {
+                                            transform: translate(-110px, 110px);
+                                        }
+
+                                        &.reserveCourante {
+                                            transform: translate(60px, 80px);
+                                        }
+
+                                        &.reserveMaximale {
+                                            transform: translate(100px, 80px);
+                                        }
+
+                                        input {
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            font-weight: bold;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
 
                                     }
 
-                                }
-
-                                .macro {
-
-                                    .dice {
+                                    .separator {
                                         position: absolute;
                                         top: 50%;
                                         left: 50%;
-
-                                        &.noyau {
-                                            transform: translate(-120px, 115px);
-                                        }
-            
-                                        &.pavane {
-                                            transform: translate(-90px, -100px);
-                                        }
-
-                                    }
-        
-                                }
-                
-                                .tooltip {
-                                    position: absolute;
-                                    top: 50%; 
-                                    left: 50%;
-        
-                                    &.pavane {
-                                        transform: translate(-80px, -105px);
-                                    }
-        
-                                    &.noyau {
-                                        transform: translate(-110px, 110px);
-                                    }
-
-                                    &.reserveCourante {
-                                        transform: translate(60px, 80px);
-                                    }
-
-                                    &.reserveMaximale {
-                                        transform: translate(100px, 80px);
-                                    }
-
-                                    input {
-                                        background-color: transparent;
+                                        transform: translate(97px, 80px);
                                         font-size: 20px;
                                         font-weight: bold;
-                                        border: 0px;
-                                        width: 40px;
                                         text-align: center;
                                     }
 
-                                }
-
-                                .separator {
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    transform: translate(97px, 80px);
-                                    font-size: 20px;
-                                    font-weight: bold;
-                                    text-align: center;
                                 }
 
                             }
