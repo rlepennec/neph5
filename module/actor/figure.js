@@ -615,7 +615,7 @@ export class FigureSheet extends HistoricalSheet {
     }
 
     /**
-     * Activate or deactivate the vaisseau for akasha.
+     * Toggle the state of the specified vaisseau used to travel.
      * @param event The click event.
      */
     async _onToggleVaisseau(event) {
