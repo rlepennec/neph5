@@ -2554,17 +2554,6 @@
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor .window-content .actor-root .article .article-body .akasha .column .header .vaisseau {
-  position: absolute;
-  top: 2px;
-  right: 30px;
-}
-.actor .window-content .actor-root .article .article-body .akasha .column .header .vaisseau.disabled {
-  color: #a1a1a1;
-}
-.actor .window-content .actor-root .article .article-body .akasha .column .header .vaisseau:hover {
-  text-shadow: 0px 0px 1px black;
-}
 .actor .window-content .actor-root .article .article-body .akasha .column .directions {
   position: relative;
   margin-top: 80px;

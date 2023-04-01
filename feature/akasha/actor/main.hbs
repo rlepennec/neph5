@@ -8,21 +8,13 @@
 
             <img class="separator"/>
 
-            <span class="name">{{localize "NEPH5E.akasha"}}</span>
-
-            <label class="vaisseau {{#if (not actor.system.akasha.nef.active)}}disabled{{/if}}" data-type="nef">{{localize "NEPH5E.nef"}}</label>
-            
-            <input
-                name="actor.system.akasha.nef.active"
-                type="hidden"
-                value="{{actor.system.akasha.nef.active}}"
-                data-dtype="Boolean"/>
+            <label class="name">{{localize "NEPH5E.akasha"}}</label>
 
         </div>
 
         <div class="directions">
 
-            <div class="nef tooltip" data-type="nef">
+            <div class="vaisseau nef tooltip" data-type="nef">
                 <img class="activate {{#unless actor.system.akasha.nef.active}}disabled{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.nef"}}</label>
             </div>
@@ -99,21 +91,13 @@
 
             <img class="separator"/>
 
-            <span class="name">{{localize "NEPH5E.antiTerre"}}</span>
-
-            <label class="vaisseau {{#if (not actor.system.akasha.barge.active)}}disabled{{/if}}" data-type="barge">{{localize "NEPH5E.barge"}}</label>
-
-            <input
-                name="actor.system.akasha.barge.active"
-                type="hidden"
-                value="{{actor.system.akasha.barge.active}}"
-                data-dtype="Boolean"/>
+            <label class="name">{{localize "NEPH5E.antiTerre"}}</label>
 
         </div>
 
         <div class="directions">
 
-            <div class="barge tooltip" data-type="barge">
+            <div class="vaisseau barge tooltip" data-type="barge">
                 <img class="activate {{#unless actor.system.akasha.barge.active}}disabled{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.barge"}}</label>
             </div>

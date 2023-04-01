@@ -92,7 +92,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-family="vecus"] .vecu .roll').click(this._onRollItem.bind(this));
 
         // Akasha
-        html.find('div[data-tab="akasha"] .vaisseau').click(this._onToggleVaisseau.bind(this));
+        html.find('div[data-tab="akasha"] .activate').click(this._onToggleVaisseau.bind(this));
 
         // Incarnations
         html.find('div[data-tab="incarnations"] .activate').click(this._onActivatePeriode.bind(this));
