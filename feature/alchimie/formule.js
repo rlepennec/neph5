@@ -64,8 +64,7 @@ export class Formule extends AbstractFocus {
             // If not critical, spend materiae primae
             if (result.critical === false) {
                 for (let element of this.item.system.elements) {
-                    const current = this.actor.system.alchimie.primae[element].quantite - 1;
-                    const quantite = current < 0 ? 0 : current;
+                    const quantite = Math.max(0, this.actor.system.alchimie.primae[element].quantite - this.item.system.degre);
                     await this.actor.update({ ['system.alchimie.primae.' + element + ".quantite"]: quantite });
                 }
             }
