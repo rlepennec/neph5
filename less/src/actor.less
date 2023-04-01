@@ -23,6 +23,10 @@
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --options-body-margin-top: 0px;
+        --akasha-boussole-transform: translate(91px, 80px) rotate(30deg);
+        --akasha-boussole-width: 218px;
+        --akasha-compas-transform: translate(101px, 87px) rotate(30deg);
+        --akasha-compas-width: 200px;
     }
 
     :root.air {
@@ -48,6 +52,8 @@
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --options-body-margin-top: 0px;
+        --akasha-boussole-transform: translate(119px, 100px) rotate(0deg);
+        --akasha-boussole-width: 163px;
     }
 
     :root.eau {
@@ -73,6 +79,8 @@
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --options-body-margin-top: -31px;
+        --akasha-boussole-transform: translate(119px, 100px) rotate(0deg);
+        --akasha-boussole-width: 163px;
     }
 
     :root.feu {
@@ -98,6 +106,8 @@
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --options-body-margin-top: -25px;
+        --akasha-boussole-transform: translate(119px, 100px) rotate(0deg);
+        --akasha-boussole-width: 163px;
     }
 
     :root.lune {
@@ -123,6 +133,8 @@
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --options-body-margin-top: 0px;
+        --akasha-boussole-transform: translate(119px, 100px) rotate(0deg);
+        --akasha-boussole-width: 163px;
     }
 
     :root.lune-noire {
@@ -148,6 +160,8 @@
         --combat-bonus-margin-top: -16px;
         --combat-bonus-losange-top: 57px;
         --options-body-margin-top: -23px;
+        --akasha-boussole-transform: translate(119px, 100px) rotate(0deg);
+        --akasha-boussole-width: 163px;
     }
 
     :root.terre {
@@ -173,6 +187,8 @@
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --options-body-margin-top: 0px;
+        --akasha-boussole-transform: translate(119px, 100px) rotate(0deg);
+        --akasha-boussole-width: 163px;
     }
 
 .actor
@@ -2929,18 +2945,16 @@
                                 .boussole {
                                     position: absolute;
                                     border: none;
-                                    width: 250px;
-                                    margin-top: 20px;
-                                    transform: translate(75px, 47px) rotate(30deg);
+                                    width: var(--akasha-boussole-width);
+                                    transform: var(--akasha-boussole-transform);
                                     content: var(--img-boussole);
                                 }
         
                                 .compas {
                                     position: absolute;
                                     border: none;
-                                    width: 250px;
-                                    margin-top: 20px;
-                                    transform: translate(75px, 47px) rotate(30deg);
+                                    width: var(--akasha-compas-width);
+                                    transform: var(--akasha-compas-transform);
                                     content: var(--img-compas);
                                 }
         
