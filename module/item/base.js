@@ -28,7 +28,12 @@ export class NephilimItemSheet extends ItemSheet {
     cerclesOf(science) {
         const cercles = {}
         for (let cercle of Science.cerclesOf(science)) {
-            cercles[cercle] = game.i18n.localize('NEPH5E.' + cercle);
+            if (cercle.includes('@')) {
+                const item = game.items.find(i => i.system.key === cercle);
+                cercles[cercle] = item != null ? item.name : cercle.split('@')[1];
+            } else {
+                cercles[cercle] = game.i18n.localize('NEPH5E.' + cercle);
+            }
         };
         return cercles;
     }

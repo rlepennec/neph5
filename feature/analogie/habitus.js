@@ -30,6 +30,7 @@ export class Habitus extends AbstractFocus {
             .withItem(this.item)
             .withBase('Habitus', this.degre)
             .withBlessures('magique')
+            .withMetamorphe(this.actor.metamorphe.visibles)
             .export();
     }
 
