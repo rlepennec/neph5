@@ -655,100 +655,112 @@
                             margin-right: 10px;
                             width: calc(100% - 500px);
 
-                            .metamorphoses {
-                                display: flex;
-                                flex-direction: column;
-        
-                                .metamorphose {
+                            .metamorphe {
+                            
+                                .metamorphoses {
                                     display: flex;
-                                    flex-direction: row;
-                                    margin-left: 10px;
-                                    list-style: none;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-                                    overflow: hidden; 
-                                    white-space: nowrap; 
-                                    text-overflow: ellipsis;
-                
-                                    .formed {
-                                        font-size: 13px;
-                                        width: 40px;
-                                        flex: 0 0 auto;
-                                        margin-top: 3px;
-                                        padding-left: 1px;
-                                    }
+                                    flex-direction: column;
 
-                                    .name {
-                                        width: calc(100% - 65px);
+                                    .metamorphose {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
                                         overflow: hidden; 
                                         white-space: nowrap; 
                                         text-overflow: ellipsis;
-                                    }
 
-                                    .visible {
-                                        font-size: 13px;
-                                        margin-top: 3px;
-                                    }
+                                        .formed {
+                                            font-size: 13px;
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                            margin-top: 3px;
+                                            padding-left: 1px;
+                                        }
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        .name {
+                                            width: calc(100% - 65px);
+                                            overflow: hidden; 
+                                            white-space: nowrap; 
+                                            text-overflow: ellipsis;
+                                        }
+
+                                        .visible {
+                                            font-size: 13px;
+                                            margin-top: 3px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px black;
+                                        }
+
                                     }
 
                                 }
-                
+
                             }
 
                             .attributs {
-                                display: flex;
-                                flex-direction: column;
-                                margin-top: var(--nephilim-margin-top);
-        
-                                .attribut {
+
+                                .body {
                                     display: flex;
-                                    flex-direction: row;
-                                    margin-left: 10px;
-                                    list-style: none;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-                                    overflow: hidden; 
-                                    white-space: nowrap; 
-                                    text-overflow: ellipsis;
-                
-                                    .value {
-                                        width: 40px;
-                                        flex: 0 0 auto;
-                                    }
+                                    flex-direction: column;
+                                    margin-top: var(--nephilim-margin-top);
+            
+                                    .attribut {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                    
+                                        .value {
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                        }
 
-                                    .name {
-                                        width: calc(100% - 50px);
-                                    }
+                                        .name {
+                                            width: calc(100% - 50px);
+                                        }
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px black;
+                                        }
+
                                     }
 
                                 }
                 
                             }
 
-                            .stase.header-with-value {
-                                margin-bottom: 10px;
-        
-                                .name {
-                                    font-size: 16px;
+                            .stase {
+
+                                .header-with-value {
+                                    margin-bottom: 10px;
+
+                                    .name {
+                                        font-size: 16px;
+                                    }
+
+                                    .degre {
+                                        margin-top: -4px;
+                                    }
+
                                 }
 
-                                .degre {
-                                    margin-top: -4px;
-                                }
-        
                             }
         
                             .arcanes {
                                 display: flex;
                                 flex-direction: column;
                                 margin-top: var(--nephilim-margin-top);
-        
+
                                 .arcane {
                                     display: flex;
                                     flex-direction: row;
@@ -760,7 +772,7 @@
                                     white-space: nowrap; 
                                     text-overflow: ellipsis;
                                     z-index: 99;
-                
+
                                     .value {
                                         width: 40px;
                                         flex: 0 0 auto;
@@ -1048,70 +1060,78 @@
                             margin-right: 10px;
                             width: calc(100% - 500px);
 
-                            .aspects {
-                                display: flex;
-                                flex-direction: column;
-        
-                                .aspect {
+                            .imago {
+
+                                .body {
                                     display: flex;
-                                    flex-direction: row;
-                                    margin-left: 10px;
-                                    list-style: none;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-                                    overflow: hidden; 
-                                    white-space: nowrap; 
-                                    text-overflow: ellipsis;
-                
-                                    .visible {
-                                        font-size: 13px;
-                                        width: 40px;
-                                        flex: 0 0 auto;
-                                        margin-top: 4px;
-                                    }
+                                    flex-direction: column;
+            
+                                    .aspect {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                    
+                                        .visible {
+                                            font-size: 13px;
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                            margin-top: 4px;
+                                        }
 
-                                    .name {
-                                        width: calc(100% - 65px);
-                                    }
+                                        .name {
+                                            width: calc(100% - 65px);
+                                        }
 
-                                    .delete {
-                                        font-size: 13px;
-                                    }
+                                        .delete {
+                                            font-size: 13px;
+                                        }
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px black;
-                                    }
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px black;
+                                        }
 
+                                    }
+                    
                                 }
-                
+
                             }
 
                             .attributs {
-                                display: flex;
-                                flex-direction: column;
-        
-                                .attribut {
+
+                                .body {
                                     display: flex;
-                                    flex-direction: row;
-                                    margin-left: 10px;
-                                    list-style: none;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-                                    overflow: hidden; 
-                                    white-space: nowrap; 
-                                    text-overflow: ellipsis;
-                
-                                    .value {
-                                        width: 40px;
-                                        flex: 0 0 auto;
-                                    }
+                                    flex-direction: column;
+            
+                                    .attribut {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                    
+                                        .value {
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                        }
 
-                                    .name {
-                                        width: calc(100% - 50px);
-                                    }
+                                        .name {
+                                            width: calc(100% - 50px);
+                                        }
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px black;
+                                        }
+
                                     }
 
                                 }

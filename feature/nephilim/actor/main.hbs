@@ -424,118 +424,130 @@
         {{/unless}}
         {{/with}}
 
-        <div class="header">
+        <div class="attributs">
 
-            <img class="puce"/>
+            <div class="header">
 
-            <img class="separator"/>
+                <img class="puce"/>
 
-            <label class="name">{{localize "NEPH5E.attributs"}}</label>
+                <img class="separator"/>
 
-        </div>
+                <label class="name">{{localize "NEPH5E.attributs"}}</label>
 
-        <ol class="attributs">
+            </div>
 
-            <li class="attribut">
-                <label class="value">{{actor.initiative}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.initiative"}}</label>
-                </div>
-            </li>
+            <ol class="body">
 
-            <li class="attribut">
-                <label class="value">{{actor.mouvement}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.mouvement"}}</label>
-                </div>
-            </li>
+                <li class="attribut">
+                    <label class="value">{{actor.initiative}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.initiative"}}</label>
+                    </div>
+                </li>
 
-            <li class="attribut">
-                <label class="value">{{actor.dommage}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.bonusDommage"}}</label>
-                </div>
-            </li>
+                <li class="attribut">
+                    <label class="value">{{actor.mouvement}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.mouvement"}}</label>
+                    </div>
+                </li>
 
-            <li class="attribut">
-                <label class="value">{{actor.perspicacite}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.perspicacite"}}</label>
-                </div>
-            </li>
+                <li class="attribut">
+                    <label class="value">{{actor.dommage}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.bonusDommage"}}</label>
+                    </div>
+                </li>
 
-            <li class="attribut">
-                <label class="value">{{actor.recuperation}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.recuperation"}}</label>
-                </div>
-            </li>
+                <li class="attribut">
+                    <label class="value">{{actor.perspicacite}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.perspicacite"}}</label>
+                    </div>
+                </li>
 
-            <li class="attribut">
-                <label class="value">{{actor.voile}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.voile"}}</label>
-                </div>
-            </li>
+                <li class="attribut">
+                    <label class="value">{{actor.recuperation}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.recuperation"}}</label>
+                    </div>
+                </li>
 
-        </ol>
+                <li class="attribut">
+                    <label class="value">{{actor.voile}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.voile"}}</label>
+                    </div>
+                </li>
 
-        <div class="stase header-with-value">
-
-            <img class="circle"/>
-
-            <input
-                class="degre"
-                name="system.stase.ka"
-                type="text"
-                value="{{system.stase.ka}}"
-                data-dtype="Number"/>
-
-            <img class="separator"/>
-
-            <input
-                class="name"
-                name="system.stase.description"
-                type="text"
-                value="{{system.stase.description}}"
-                data-dtype="String"
-                placeholder="Stase"/>
+            </ol>
 
         </div>
 
-        {{#with actor.metamorphe as |item|}}
-        <div class="header-with-value">
+        <div class="stase">
+        
+            <div class="header-with-value">
 
-            <img class="circle"/>
+                <img class="circle"/>
 
-            <div class="degre">{{item.size}}</div>
+                <input
+                    class="degre"
+                    name="system.stase.ka"
+                    type="text"
+                    value="{{system.stase.ka}}"
+                    data-dtype="Number"/>
 
-            <img class="separator"/>
+                <img class="separator"/>
 
-            {{#if item}}
-            <label class="name">{{item.name}}</label>
-            {{else}}
-            <label class="name">{{localize "ITEM.TypeMetamorphe"}}</label>
-            {{/if}}
+                <input
+                    class="name"
+                    name="system.stase.description"
+                    type="text"
+                    value="{{system.stase.description}}"
+                    data-dtype="String"
+                    placeholder="Stase"/>
+
+            </div>
 
         </div>
 
-        <ol class="metamorphoses">
+        <div class="metamorphe">
 
-            {{#each item.metamorphoses as |metamorphose|}}
-            <li class="metamorphose" data-id="{{../id}}" data-index="{{@index}}">
+            {{#with actor.metamorphe as |item|}}
+            <div class="header-with-value">
 
-                <i class="formed fa-circle {{#if metamorphose.formed}}fas{{else}}far{{/if}}" ></i>
+                <img class="circle"/>
 
-                <label class="name {{#unless metamorphose.formed}}grey{{/unless}}">{{metamorphose.name}}</label>
+                <div class="degre">{{item.size}}</div>
 
-                <i class="visible {{#if metamorphose.formed}}fas {{#if metamorphose.visible}}fa-eye-slash{{else}}fa-eye{{/if}}{{else}}hidden{{/if}}"></i>
+                <img class="separator"/>
 
-            </li>
-            {{/each}}
+                {{#if item}}
+                <label class="name">{{item.name}}</label>
+                {{else}}
+                <label class="name">{{localize "ITEM.TypeMetamorphe"}}</label>
+                {{/if}}
 
-        </ol>
-        {{/with}}
+            </div>
+
+            <ol class="metamorphoses">
+
+                {{#each item.metamorphoses as |metamorphose|}}
+                <li class="metamorphose" data-id="{{../id}}" data-index="{{@index}}">
+
+                    <i class="formed fa-circle {{#if metamorphose.formed}}fas{{else}}far{{/if}}" ></i>
+
+                    <label class="name {{#unless metamorphose.formed}}grey{{/unless}}">{{metamorphose.name}}</label>
+
+                    <i class="visible {{#if metamorphose.formed}}fas {{#if metamorphose.visible}}fa-eye-slash{{else}}fa-eye{{/if}}{{else}}hidden{{/if}}"></i>
+
+                </li>
+                {{/each}}
+
+            </ol>
+            {{/with}}
+
+        </div>
 
     </div>
 

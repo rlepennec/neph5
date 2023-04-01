@@ -812,11 +812,11 @@
   margin-right: 10px;
   width: calc(100% - 500px);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses {
   display: flex;
   flex-direction: column;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
@@ -827,32 +827,32 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .formed {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose .formed {
   font-size: 13px;
   width: 40px;
   flex: 0 0 auto;
   margin-top: 3px;
   padding-left: 1px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .name {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose .name {
   width: calc(100% - 65px);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose .visible {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose .visible {
   font-size: 13px;
   margin-top: 3px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphoses .metamorphose:hover {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .attributs {
+.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body {
   display: flex;
   flex-direction: column;
   margin-top: var(--nephilim-margin-top);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .attribut {
+.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body .attribut {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
@@ -863,23 +863,23 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .attribut .value {
+.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body .attribut .value {
   width: 40px;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .attribut .name {
+.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body .attribut .name {
   width: calc(100% - 50px);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .attribut:hover {
+.actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body .attribut:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .stase.header-with-value {
+.actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value {
   margin-bottom: 10px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .stase.header-with-value .name {
+.actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .name {
   font-size: 16px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .stase.header-with-value .degre {
+.actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .degre {
   margin-top: -4px;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes {
@@ -1126,11 +1126,11 @@
   margin-right: 10px;
   width: calc(100% - 500px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .aspects {
+.actor .window-content .actor-root .article .article-body .selenim .right .imago .body {
   display: flex;
   flex-direction: column;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .aspects .aspect {
+.actor .window-content .actor-root .article .article-body .selenim .right .imago .body .aspect {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
@@ -1141,26 +1141,26 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .aspects .aspect .visible {
+.actor .window-content .actor-root .article .article-body .selenim .right .imago .body .aspect .visible {
   font-size: 13px;
   width: 40px;
   flex: 0 0 auto;
   margin-top: 4px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .aspects .aspect .name {
+.actor .window-content .actor-root .article .article-body .selenim .right .imago .body .aspect .name {
   width: calc(100% - 65px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .aspects .aspect .delete {
+.actor .window-content .actor-root .article .article-body .selenim .right .imago .body .aspect .delete {
   font-size: 13px;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .aspects .aspect:hover {
+.actor .window-content .actor-root .article .article-body .selenim .right .imago .body .aspect:hover {
   text-shadow: 0px 0px 1px black;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .attributs {
+.actor .window-content .actor-root .article .article-body .selenim .right .attributs .body {
   display: flex;
   flex-direction: column;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .attributs .attribut {
+.actor .window-content .actor-root .article .article-body .selenim .right .attributs .body .attribut {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
@@ -1171,14 +1171,14 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .attributs .attribut .value {
+.actor .window-content .actor-root .article .article-body .selenim .right .attributs .body .attribut .value {
   width: 40px;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .attributs .attribut .name {
+.actor .window-content .actor-root .article .article-body .selenim .right .attributs .body .attribut .name {
   width: calc(100% - 50px);
 }
-.actor .window-content .actor-root .article .article-body .selenim .right .attributs .attribut:hover {
+.actor .window-content .actor-root .article .article-body .selenim .right .attributs .body .attribut:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor .window-content .actor-root .article .article-body .combat {

@@ -73,90 +73,98 @@
 
     <div class="right">
 
-        <div class="header">
+        <div class="attributs">
 
-            <img class="puce"/>
+            <div class="header">
 
-            <img class="separator"/>
+                <img class="puce"/>
 
-            <label class="name">{{localize "NEPH5E.attributs"}}</label>
+                <img class="separator"/>
+
+                <label class="name">{{localize "NEPH5E.attributs"}}</label>
+
+            </div>
+
+            <ol class="body">
+
+                <li class="attribut">
+                    <label class="value">{{actor.initiative}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.initiative"}}</label>
+                    </div>
+                </li>
+
+                <li class="attribut">
+                    <label class="value">{{actor.mouvement}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.mouvement"}}</label>
+                    </div>
+                </li>
+
+                <li class="attribut">
+                    <label class="value">{{actor.dommage}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.bonusDommage"}}</label>
+                    </div>
+                </li>
+
+                <li class="attribut">
+                    <label class="value">{{actor.perspicacite}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.perspicacite"}}</label>
+                    </div>
+                </li>
+
+                <li class="attribut">
+                    <label class="value">{{actor.recuperation}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.recuperation"}}</label>
+                    </div>
+                </li>
+
+                <li class="attribut">
+                    <label class="value">{{actor.voile}}</label>
+                    <div class="name">
+                        <label>{{localize "NEPH5E.voile"}}</label>
+                    </div>
+                </li>
+
+            </ol>
 
         </div>
-
-        <ol class="attributs">
-
-            <li class="attribut">
-                <label class="value">{{actor.initiative}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.initiative"}}</label>
-                </div>
-            </li>
-
-            <li class="attribut">
-                <label class="value">{{actor.mouvement}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.mouvement"}}</label>
-                </div>
-            </li>
-
-            <li class="attribut">
-                <label class="value">{{actor.dommage}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.bonusDommage"}}</label>
-                </div>
-            </li>
-
-            <li class="attribut">
-                <label class="value">{{actor.perspicacite}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.perspicacite"}}</label>
-                </div>
-            </li>
-
-            <li class="attribut">
-                <label class="value">{{actor.recuperation}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.recuperation"}}</label>
-                </div>
-            </li>
-
-            <li class="attribut">
-                <label class="value">{{actor.voile}}</label>
-                <div class="name">
-                    <label>{{localize "NEPH5E.voile"}}</label>
-                </div>
-            </li>
-
-        </ol>
 
         {{#with actor.imago as |item|}}
-        <div class="stase header-with-value">
+        <div class="imago">
 
-            <img class="circle"/>
+            <div class="header-with-value">
 
-            <label class="degre">{{item.size}}</label>
+                <img class="circle"/>
 
-            <img class="separator"/>
+                <label class="degre">{{item.size}}</label>
 
-            <label class="name">{{localize "NEPH5E.imago"}}</label>
+                <img class="separator"/>
+
+                <label class="name">{{localize "NEPH5E.imago"}}</label>
+
+            </div>
+
+            <ol class="body">
+
+                {{#each item.aspects as |aspect|}}
+                <li class="aspect item" data-sid="{{aspect.original.sid}}">
+
+                    <label class="visible fas {{#if aspect.embedded.active}}fa-eye-slash{{else}}fa-eye{{/if}}"></label>
+
+                    <label class="name open">{{aspect.original.name}}</label>
+
+                    <i class="fas fa-trash delete"></i>
+
+                </li>
+                {{/each}}
+
+            </ol>
 
         </div>
-
-        <ol class="aspects">
-
-            {{#each item.aspects as |aspect|}}
-            <li class="aspect item" data-sid="{{aspect.original.sid}}">
-
-                <label class="visible fas {{#if aspect.embedded.active}}fa-eye-slash{{else}}fa-eye{{/if}}"></label>
-
-                <label class="name open">{{aspect.original.name}}</label>
-
-                <i class="fas fa-trash delete"></i>
-
-            </li>
-            {{/each}}
-
-        </ol>
         {{/with}}
 
     </div>
