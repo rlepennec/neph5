@@ -67,15 +67,11 @@
                 <label class="fas fa-trash delete"></label>
                 {{/if}}
 
-                <label class="periode-name {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label class="periode-name display {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <label class="periode-zone">...</label>
 
                 <ul class="periode-menu">
-
-                    {{#unless (eq ../editedPeriode periode/original.sid)}}
-                    <li class="display">Détails</li>
-                    {{/unless}}
 
                     <li class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Afficher{{else}}Editer{{/if}}</li>
 
