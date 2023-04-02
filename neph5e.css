@@ -372,7 +372,7 @@
   --akasha-nef-width: 163px;
 }
 :root.lune {
-  --background: radial-gradient(circle at 118% -9%, #fdfdfe 19%, #6a6a6a 23%, #484848 100%),
+  --background: radial-gradient(circle at 118% -9%, #fdfdfe 19%, rgba(106, 106, 106, 0.9) 23%, rgba(72, 72, 72, 0.1) 100%),
             url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
@@ -404,7 +404,7 @@
   --akasha-nef-width: 163px;
 }
 :root.lune-noire {
-  --background: radial-gradient(circle at 118% -9%, rgba(2, 0, 36, 0) 0%, #000000 20%, #79798f 25%, #ffffff 100%),
+  --background: radial-gradient(circle at 118% -9%, #020024 0%, rgba(0, 0, 0, 0.9) 20%, rgba(121, 121, 143, 0.2) 25%, rgba(255, 255, 255, 0.1) 100%),
             url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
