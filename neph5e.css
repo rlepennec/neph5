@@ -244,11 +244,13 @@
 }
 :root,
 :root.soleil {
+  --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
+  --font-color: #191813;
+  --shadow-navigation-color: black;
   --column-color: #c3a049;
   --active-tab-color: #4e3904;
   --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/soleil/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/soleil/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/soleil/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/soleil/compas.webp");
@@ -272,11 +274,13 @@
   --akasha-barge-width: 200px;
 }
 :root.air {
+  --background: url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --font-color: #191813;
+  --shadow-navigation-color: black;
   --column-color: #5dd5f3;
   --active-tab-color: #5dd5f3;
   --side-background: url("../../systems/neph5e/assets/skins/air/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/air/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/air/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/air/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/air/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/air/compas.webp");
@@ -298,11 +302,13 @@
   --akasha-nef-width: 163px;
 }
 :root.eau {
+  --background: url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --font-color: #191813;
+  --shadow-navigation-color: black;
   --column-color: #5dd5f3;
   --active-tab-color: #5dd5f3;
   --side-background: url("../../systems/neph5e/assets/skins/eau/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/eau/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/eau/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/eau/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/eau/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/eau/compas.webp");
@@ -324,11 +330,13 @@
   --akasha-nef-width: 163px;
 }
 :root.feu {
-  --column-color: #5dd5f3;
-  --active-tab-color: #5dd5f3;
+  --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
+  --font-color: #ad521d;
+  --shadow-navigation-color: black;
+  --column-color: #ad521d;
+  --active-tab-color: #ad521d;
   --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/feu/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/feu/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/feu/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/feu/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/feu/compas.webp");
@@ -350,11 +358,13 @@
   --akasha-nef-width: 163px;
 }
 :root.lune {
+  --background: url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --font-color: #191813;
+  --shadow-navigation-color: black;
   --column-color: #5dd5f3;
   --active-tab-color: #5dd5f3;
   --side-background: url("../../systems/neph5e/assets/skins/lune/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/lune/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/lune/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/lune/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/lune/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/lune/compas.webp");
@@ -376,11 +386,13 @@
   --akasha-nef-width: 163px;
 }
 :root.lune-noire {
+  --background: url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --font-color: #191813;
+  --shadow-navigation-color: black;
   --column-color: #5e6061;
   --active-tab-color: #383a3a;
   --side-background: url("../../systems/neph5e/assets/skins/lune-noire/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/lune-noire/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/lune-noire/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/lune-noire/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/lune-noire/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/lune-noire/compas.webp");
@@ -402,11 +414,13 @@
   --akasha-nef-width: 163px;
 }
 :root.terre {
+  --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
+  --font-color: #191813;
+  --shadow-navigation-color: black;
   --column-color: #5dd5f3;
   --active-tab-color: #5dd5f3;
   --side-background: url("../../systems/neph5e/assets/skins/terre/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/terre/article-separator.webp");
-  --img-background: url("../../systems/neph5e/assets/skins/terre/background.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/terre/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/terre/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/terre/compas.webp");
@@ -428,7 +442,8 @@
   --akasha-nef-width: 163px;
 }
 .actor .window-content {
-  background: var(--img-background) repeat;
+  background: var(--background);
+  color: var(--font-color);
 }
 .actor .window-content .actor-root {
   display: flex;
@@ -556,7 +571,7 @@
   content: var(--img-hole);
 }
 .actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
-  text-shadow: 0px 0px 3px black;
+  text-shadow: 0px 0px 3px vat(--shadow-navigation-color);
 }
 .actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-image {
   margin-top: 20px;
