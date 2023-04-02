@@ -127,6 +127,26 @@ export class Chute extends HistoricalFeature {
 
     /**
      * @param actor The actor object.
+     * @param type  The type of the chute: khaiba, narcose, ombre, luneNoire.
+     * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
+     */
+    static getChute(actor, type) {
+        switch (type) {
+            case 'khaiba':
+                return Chute.getKhaiba(actor);
+            case 'narcose':
+                return Chute.getNarcose(actor);
+            case 'ombre':
+                return Chute.getOmbre(actor);
+            case 'luneNoire':
+                return Chute.getLuneNoire(actor);
+            default:
+                return;
+        }
+    }
+
+    /**
+     * @param actor The actor object.
      * @param key   The key of the chute to retrieve.
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */

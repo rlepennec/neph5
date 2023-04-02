@@ -386,71 +386,41 @@ export class FigureSheet extends HistoricalSheet {
 
         event.preventDefault();
 
+        // A current periode must be defined to attach the chute to set
         if (this.actor.system.periode == null) {
             return;
         }
 
-        let chute = null;
-        switch (type) {
-            case 'khaiba':
-                chute = Chute.getKhaiba(this.actor);
-                break;
-            case 'narcose':
-                chute = Chute.getNarcose(this.actor);
-                break;
-            case 'ombre':
-                chute = Chute.getOmbre(this.actor);
-                break;
-            case 'luneNoire':
-                chute = Chute.getLuneNoire(this.actor);
-                break;
-            default:
-                return;
-        }
-
-        await this._onDegreChute(event, type, chute.degre, true);
-
-    }
-
-    /**
-     * 
-     * @param event The click event.
-     * @param key   The key of the chute item.
-     * @param degre The degre of the chute to set.
-     */
-    async _onDegreChute(event, key, degre, find) {
+        // Retrieve the current degre of the chute according to the current periode
+        const degre = Chute.getChute(this.actor, type).degre;
 
         // Retrieve the degre on which the user has clicked
-        const id = $(event.currentTarget).closest("." + key).data("id");
+        const id = $(event.currentTarget).closest("." + type).data("id");
 
         // Create or update current chute according to the current periode, first chute by default
-        let chute = this.actor.items.find(i => i.type === "chute" && i.system.key === key && i.system.periode === this.actor.system.periode);
+        let chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
         if (chute == null) {
 
-            // Look for a previous chute wih same key to get the chute item. Use to retrieve the type of khaiba 
-            if (find === true) {
+            // Look for a previous chute wih same type to get the chute item. Use to retrieve the type of khaiba 
+            // If no chute during the current periode, reload the past to find a chute
+            for (let periode of Periode.getSorted(this.actor, false, true)) {
 
-                // If no chute during the current periode, reload the past to find a chute
-                for (let periode of Periode.getSorted(this.actor, false, true)) {
+                // Skip the current periode bacause already processed
+                if (periode === this.actor.system.periode) {
+                    continue;
+                }
 
-                    // Skip the current periode bacause already processed
-                    if (periode === this.actor.system.periode) {
-                        continue;
-                    }
-
-                    // Look for the first chute of the periode
-                    chute = this.actor.items.find(i => i.type === "chute" && i.system.key === key && i.system.periode === periode.sid);
-                    if (chute != null) {
-                        break;
-                    }
-
+                // Look for the first chute of the periode
+                chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === periode.sid);
+                if (chute != null) {
+                    break;
                 }
 
             }
 
             // No chute has been found, create a default one
             if (chute == null) {
-                chute = game.items.find(i => i.type === 'chute' && i.system.key === key);
+                chute = game.items.find(i => i.type === 'chute' && i.system.key === type);
                 if (chute == null) {
                     ui.notifications.warn("Veuillez copier les chutes du pack système dans votre monde");
                     return;
@@ -461,7 +431,7 @@ export class FigureSheet extends HistoricalSheet {
             await new EmbeddedItem(this.actor, chute.sid)
                 .withData("periode", this.actor.system.periode)
                 .withData("degre", value)
-                .withData("key", key)
+                .withData("key", type)
                 .withoutData('description')
                 .withoutAlreadyEmbeddedError()
                 .create();
