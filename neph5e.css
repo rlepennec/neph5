@@ -332,7 +332,7 @@
 :root.feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
   --font-color: #ad521d;
-  --shadow-navigation-color: black;
+  --shadow-navigation-color: #520303;
   --column-color: #ad521d;
   --active-tab-color: #ad521d;
   --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
@@ -571,7 +571,7 @@
   content: var(--img-hole);
 }
 .actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-tab:hover {
-  text-shadow: 0px 0px 3px vat(--shadow-navigation-color);
+  text-shadow: 0px 0px 3px var(--shadow-navigation-color);
 }
 .actor .window-content .actor-root .side .sheet-navigation .sheet-navigation-image {
   margin-top: 20px;
