@@ -3,9 +3,12 @@
     :root.soleil {
         --background : url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
         --font-color: #191813;
+        --font-side-color: #191813;
+        --font-side-selected-color:rgb(78, 57, 4);
         --shadow-navigation-color: black;
+        --font-disabled-color:#a1a1a1;
+        --font-article-title: -internal-light-dark(black, white);
         --column-color: #c3a049;
-        --active-tab-color: rgb(78, 57, 4);
         --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/soleil/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/soleil/boussole.webp");
@@ -34,9 +37,12 @@
     :root.air {
         --background : url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
         --font-color: #191813;
+        --font-side-color: #191813;
+        --font-side-selected-color:#a1a1a1;
         --shadow-navigation-color: black;
+        --font-disabled-color:#a1a1a1;
+        --font-article-title: -internal-light-dark(black, white);
         --column-color: #5dd5f3;
-        --active-tab-color: #5dd5f3;
         --side-background: url("../../systems/neph5e/assets/skins/air/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/air/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/air/boussole.webp");
@@ -63,9 +69,12 @@
     :root.eau {
         --background : url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
         --font-color: #191813;
+        --font-side-color: #191813;
+        --font-side-selected-color:#a1a1a1;
         --shadow-navigation-color: black;
+        --font-disabled-color:#a1a1a1;
+        --font-article-title: -internal-light-dark(black, white);
         --column-color: #5dd5f3;
-        --active-tab-color: #5dd5f3;
         --side-background: url("../../systems/neph5e/assets/skins/eau/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/eau/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/eau/boussole.webp");
@@ -92,9 +101,12 @@
     :root.feu {
         --background : url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
         --font-color: #ad521d;
+        --font-side-color: #b58468;
+        --font-side-selected-color: #362102;
         --shadow-navigation-color: rgb(82, 3, 3);
+        --font-disabled-color: #e3c394;
+        --font-article-title: #ad521d;
         --column-color: #ad521d;
-        --active-tab-color: #ad521d;
         --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/feu/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/feu/boussole.webp");
@@ -121,9 +133,12 @@
     :root.lune {
         --background : url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
         --font-color: #191813;
+        --font-side-color: #191813;
+        --font-side-selected-color:#a1a1a1;
         --shadow-navigation-color: black;
+        --font-disabled-color:#a1a1a1;
+        --font-article-title: -internal-light-dark(black, white);
         --column-color: #5dd5f3;
-        --active-tab-color: #5dd5f3;
         --side-background: url("../../systems/neph5e/assets/skins/lune/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/lune/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/lune/boussole.webp");
@@ -150,9 +165,12 @@
     :root.lune-noire {
         --background : url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
         --font-color: #191813;
+        --font-side-color: #191813;
+        --font-side-selected-color:#383a3a;
         --shadow-navigation-color: black;
+        --font-disabled-color:#a1a1a1;
+        --font-article-title: -internal-light-dark(black, white);
         --column-color: #5e6061;
-        --active-tab-color: #383a3a;
         --side-background: url("../../systems/neph5e/assets/skins/lune-noire/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/lune-noire/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/lune-noire/boussole.webp");
@@ -179,9 +197,12 @@
     :root.terre {
         --background : url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
         --font-color: #191813;
+        --font-side-color: #191813;
+        --font-side-selected-color:#a1a1a1;
         --shadow-navigation-color: black;
+        --font-disabled-color:#a1a1a1;
+        --font-article-title: -internal-light-dark(black, white);
         --column-color: #5dd5f3;
-        --active-tab-color: #5dd5f3;
         --side-background: url("../../systems/neph5e/assets/skins/terre/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/terre/article-separator.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/terre/boussole.webp");
@@ -289,6 +310,7 @@
                 font-family: 'AJensonPro';
                 font-size: 23px;
                 font-weight: bolder;
+                color: var(--font-side-color);
         
                 .image {
                     margin-top: 25px;
@@ -317,7 +339,7 @@
                         }
         
                         .sheet-navigation-tab.active {
-                            color: var(--active-tab-color);
+                            color: var(--font-side-selected-color);
                             ~ .sheet-navigation-hole {
                                 visibility: hidden;
                                 opacity: 0;
@@ -392,6 +414,7 @@
                         background-color: transparent;
                         font-family: 'NightjarDemi';
                         font-size: 35px;
+                        color: var(--font-article-title);
                         vertical-align: middle;
                     }
         
@@ -1964,7 +1987,7 @@
                         .cercles {
         
                             .disabled {
-                                color: #a1a1a1;
+                                color: var(--font-disabled-color);
                             }
         
                             .cercle {
@@ -3160,7 +3183,7 @@
                             }
         
                             .disabled {
-                                color: #a1a1a1;
+                                color: var(--font-disabled-color);
                             }
         
                             .vecu {
@@ -3255,7 +3278,7 @@
                                 }
 
                                 .disabled {
-                                    color: #a1a1a1;
+                                    color: var(--font-disabled-color);
                                 }
 
                                 .current {
