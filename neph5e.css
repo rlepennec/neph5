@@ -277,7 +277,8 @@
   --akasha-barge-width: 200px;
 }
 :root.air {
-  --background: url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
+            url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
@@ -308,7 +309,8 @@
   --akasha-nef-width: 163px;
 }
 :root.eau {
-  --background: url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+            url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
@@ -370,7 +372,8 @@
   --akasha-nef-width: 163px;
 }
 :root.lune {
-  --background: url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --background: radial-gradient(circle at 118% -9%, #fdfdfe 19%, #6a6a6a 23%, #484848 100%),
+            url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
@@ -401,7 +404,8 @@
   --akasha-nef-width: 163px;
 }
 :root.lune-noire {
-  --background: url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --background: radial-gradient(circle at 118% -9%, rgba(2, 0, 36, 0) 0%, #000000 20%, #79798f 25%, #ffffff 100%),
+            url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #383a3a;
