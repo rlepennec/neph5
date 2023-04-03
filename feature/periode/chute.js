@@ -98,7 +98,7 @@ export class Chute extends HistoricalFeature {
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */
     static getKhaiba(actor) {
-        return Chute._getChute(actor, 'khaiba');
+        return Chute.getChute(actor, 'khaiba');
     }
 
     /**
@@ -106,7 +106,7 @@ export class Chute extends HistoricalFeature {
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */
     static getNarcose(actor) {
-        return Chute._getChute(actor, 'narcose');
+        return Chute.getChute(actor, 'narcose');
     }
 
     /**
@@ -114,7 +114,7 @@ export class Chute extends HistoricalFeature {
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */
     static getOmbre(actor) {
-        return Chute._getChute(actor, 'ombre');
+        return Chute.getChute(actor, 'ombre');
     }
 
     /**
@@ -122,7 +122,7 @@ export class Chute extends HistoricalFeature {
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */
     static getLuneNoire(actor) {
-        return Chute._getChute(actor, 'luneNoire');
+        return Chute.getChute(actor, 'luneNoire');
     }
 
     /**
@@ -131,30 +131,10 @@ export class Chute extends HistoricalFeature {
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */
     static getChute(actor, type) {
-        switch (type) {
-            case 'khaiba':
-                return Chute.getKhaiba(actor);
-            case 'narcose':
-                return Chute.getNarcose(actor);
-            case 'ombre':
-                return Chute.getOmbre(actor);
-            case 'luneNoire':
-                return Chute.getLuneNoire(actor);
-            default:
-                return;
-        }
-    }
-
-    /**
-     * @param actor The actor object.
-     * @param key   The key of the chute to retrieve.
-     * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
-     */
-    static _getChute(actor, key) {
         let degre = 0;
         let name = null;
         for (let periode of Periode.getSorted(actor, true, true, actor.system.periode)) {
-            const chute = actor.items.find(i => i.type === 'chute' && i.system.key === key && i.system.periode === periode.sid);
+            const chute = actor.items.find(i => i.type === 'chute' && i.system.key === type && i.system.periode === periode.sid);
             if (chute != null) {
                 if (name == null) {
                     name = chute.name;
