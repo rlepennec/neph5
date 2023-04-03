@@ -90,7 +90,7 @@ export class Periode extends AbstractFeature {
         const previous = this.actor.items.find(i => i.type === 'periode' && i.system.previous === parentId);
 
         // A move is done
-        if (moved.system.previous !== parentId && moved.sid !== parentId) {
+        if (moved.system.previous !== parentId && moved.sid !== parentId && moved.sid !== previous?.sid) {
             await Periode.setPrevious(next, moved.system.previous);
             await Periode.setPrevious(moved, parentId);
             await Periode.setPrevious(previous, this.sid);
