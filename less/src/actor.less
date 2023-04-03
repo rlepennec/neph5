@@ -32,6 +32,11 @@
         --akasha-nef-width: 218px;
         --akasha-barge-transform: translate(101px, 87px) rotate(30deg);
         --akasha-barge-width: 200px;
+        --science-circle-width: 60px;
+        --science-circle-height: 65px;
+        --science-degre-left: 8px;
+        --science-degre-top: 10px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
     :root.air {
@@ -66,6 +71,11 @@
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
+        --science-circle-width: 69px;
+        --science-circle-height: 65px;
+        --science-degre-left: 8px;
+        --science-degre-top: 10px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
     :root.eau {
@@ -100,6 +110,11 @@
         --options-body-margin-top: -31px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
+        --science-circle-width: 60px;
+        --science-circle-height: 65px;
+        --science-degre-left: 8px;
+        --science-degre-top: 10px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
     :root.feu {
@@ -132,6 +147,11 @@
         --options-body-margin-top: -25px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
+        --science-circle-width: 69px;
+        --science-circle-height: 77px;
+        --science-degre-left: 15px;
+        --science-degre-top: 16px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
     :root.lune {
@@ -166,6 +186,11 @@
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
+        --science-circle-width: 60px;
+        --science-circle-height: 65px;
+        --science-degre-left: 8px;
+        --science-degre-top: 10px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
     :root.lune-noire {
@@ -200,6 +225,11 @@
         --options-body-margin-top: -23px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
+        --science-circle-width: 60px;
+        --science-circle-height: 62px;
+        --science-degre-left: 8px;
+        --science-degre-top: 10px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
     :root.terre {
@@ -232,6 +262,11 @@
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
+        --science-circle-width: 60px;
+        --science-circle-height: 65px;
+        --science-degre-left: 8px;
+        --science-degre-top: 10px;
+        --science-focus-shadow: text-shadow: 0px 0px 1px black;
     }
 
 .actor
@@ -947,7 +982,7 @@
                             display: flex;
                             flex-direction: column;
                             width: 450px;
-        
+
                             .noyau {
 
                                 .body {
@@ -2021,8 +2056,8 @@
                                     .circle {
                                         position: absolute;
                                         border: none;
-                                        width: 60px;
-                                        height: 65px;
+                                        width: var(--science-circle-width);
+                                        height: var(--science-circle-height);
                                         display: hidden;
                                         background-color: transparent;
                                         content: var(--img-circle);
@@ -2042,8 +2077,8 @@
                                         position: absolute;
                                         width: 45px;
                                         height: 45px;
-                                        left: 8px;
-                                        top: 10px;
+                                        left: var(--science-degre-left);
+                                        top: var(--science-degre-top);
                                         text-align: center;
                                         font-weight: bold;
                                         padding-top: 12px;
@@ -2164,7 +2199,7 @@
                                     }
         
                                     .focus:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: var(--science-focus-shadow);
                                     }
         
                                 }
