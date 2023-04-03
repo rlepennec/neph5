@@ -52,6 +52,7 @@ export class Materiae extends SimpleFeature {
             items.push({
                 original: {
                     id: item.original.id,
+                    sid: item.original.sid,
                     name: item.original.name,
                     element: item.original.system.element
                 },

@@ -147,7 +147,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
         // Alchimie
-        html.find('div[data-tab="alchimie"] .change-quantite').change(this._onChangeQuantite.bind(this));
+        html.find('div[data-tab="materiae"] .quantite').change(this._onChangeMateriae.bind(this));
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
         html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
         html.find('div[data-tab="laboratoire"] .delete').click(this._onDeleteLaboratory.bind(this));
@@ -639,6 +639,18 @@ export class FigureSheet extends HistoricalSheet {
         const labs = this.actor.system.alchimie.laboratoires.filter(i => i !== sid);
         await this.actor.update({ ['system.alchimie.laboratoires']: labs });
         await this.actor.update({ ['system.alchimie.courant']: null });
+    }
+
+    /**
+     * Set the number of materiae.
+     * @param event The click event.
+     */
+    async _onChangeMateriae(event) {
+        event.preventDefault();
+        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const item = this.actor.items.find(i => i.sid === sid);
+        const value = $(event.currentTarget).closest(".quantite").val();
+        await item.update({ ['system.quantite']: parseInt(value) });
     }
 
 }
