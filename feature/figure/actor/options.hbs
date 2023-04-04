@@ -228,7 +228,22 @@
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+                <li class="option">
+
+                    <label class="option-checkbox">
+                        <input
+                            {{#if system.options.incarnationsOuvertes}}checked{{/if}}
+                            name="system.options.incarnationsOuvertes"
+                            type="checkbox"
+                            class="incarnationsOuvertes"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label>{{localize "NEPH5E.incarnationsOuvertes"}}</label>
+
+                </li>
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.locked" name="system.options.locked" value=system.options.locked}}
 
@@ -260,7 +275,22 @@
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+                <li class="option">
+
+                    <label class="option-checkbox">
+                        <input
+                            {{#if system.options.incarnationsOuvertes}}checked{{/if}}
+                            name="system.options.incarnationsOuvertes"
+                            type="checkbox"
+                            class="incarnationsOuvertes"
+                            data-dtype="Boolean"/>
+                        <i class="far fa-circle unchecked"></i>
+                        <i class="fas fa-circle checked"></i>
+                    </label>
+
+                    <label>{{localize "NEPH5E.incarnationsOuvertes"}}</label>
+
+                </li>
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.locked" name="system.options.locked" value=system.options.locked}}
 
