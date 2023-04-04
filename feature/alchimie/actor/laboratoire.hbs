@@ -21,7 +21,10 @@
 
             {{#each actor.laboratoires as |item|}}
             {{#if (eq ../actor.system.alchimie.courant item.id)}} 
-            <li class="name delete"><i class="fas fa-trash"></i> {{item.name}}</li>
+            <li class="name delete">
+                <label>{{item.name}}</label>
+                <i class="fas fa-trash"></i>
+            </li>
             {{/if}}
             {{/each}}
 
