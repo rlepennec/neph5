@@ -20,6 +20,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if actor.locked}}disabled{{/if}}
                         name="system.alchimie.primae.air.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.air.quantite}}"
@@ -33,6 +34,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if actor.locked}}disabled{{/if}}
                         name="system.alchimie.primae.eau.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.eau.quantite}}"
@@ -46,6 +48,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if actor.locked}}disabled{{/if}}
                         name="system.alchimie.primae.feu.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.feu.quantite}}"
@@ -59,6 +62,7 @@
                 <img class="circle lune"/>
                 <div class="tooltip lune">
                     <input
+                        {{#if actor.locked}}disabled{{/if}}
                         name="system.alchimie.primae.lune.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.lune.quantite}}"
@@ -72,6 +76,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if actor.locked}}disabled{{/if}}
                         name="system.alchimie.primae.terre.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.terre.quantite}}"
@@ -109,6 +114,7 @@
                     <label class="name open">{{item.original.name}}</label>
 
                     <input
+                        {{#if actor.locked}}disabled{{/if}}
                         class="quantite"
                         type="number"
                         value="{{item.embedded.quantite}}"
