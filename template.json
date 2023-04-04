@@ -209,7 +209,8 @@
                 "degreGauche": false,
                 "incarnationsOuvertes": false,
                 "gestionLaboratoire": false,
-                "theme": "soleil"
+                "theme": "soleil",
+                "locked": false
             }
         },
         "fraternite": {
@@ -223,7 +224,8 @@
                 "active": true,
                 "chronologieDescendante": false,
                 "incarnationsOuvertes": false,
-                "theme": "soleil"
+                "theme": "soleil",
+                "locked": false
             }
         }
     },

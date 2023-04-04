@@ -546,7 +546,11 @@ export class NephilimActor extends Actor {
         return protection;
     }
 
-     /**
+    get locked() {
+        return this.system.options.locked;
+    }
+
+    /**
      * Create the specified feature.
      * @param type The type of macro which can be 
      *   - ka      with id in [air, eau, feu, lune, terre, soleil, ka]

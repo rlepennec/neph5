@@ -16,7 +16,7 @@
 
             <ol class="body">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.active" name="system.options.active" value=system.options.active}}
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.active" name="system.options.active" value=system.options.active}}
 
             </ol>
 
@@ -40,9 +40,11 @@
 
             <ol class="body">
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
 
-                {{> "systems/neph5e/templates/actor/parts/checkbox.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" class="incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.locked" name="system.options.locked" value=system.options.locked}}
 
             </ol>
 
