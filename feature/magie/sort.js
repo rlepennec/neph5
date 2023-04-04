@@ -54,7 +54,7 @@ export class Sort extends AbstractFocus {
     get degre() {
 
         // The sort needs the actor to follow a voie
-        if (this.system?.voies.length > 0 && this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
+        if (this.item.system?.voies.length > 0 && this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
             return 0;
         }
 
