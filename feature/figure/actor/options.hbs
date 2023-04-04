@@ -248,6 +248,30 @@
 
                 <img class="separator"/>
 
+                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
+
+            </div>
+
+            <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
+
+            </ol>
+
+        </div>
+
+        <div class="options-group">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
                 <span class="options-name">{{localize "NEPH5E.sciencesOccultes"}}</span>
 
             </div>
@@ -259,6 +283,10 @@
             </ol>
 
         </div>
+
+    </div>
+
+    <div class="options-column">
 
         <div class="options-group">
 
@@ -310,30 +338,6 @@
                 </div>
 
             </fieldset>
-
-        </div>
-
-        <div class="options-group">
-
-            <div class="header">
-
-                <img class="puce"/>
-
-                <img class="separator"/>
-
-                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
-
-            </div>
-
-            <ol class="body">
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
-
-            </ol>
 
         </div>
 
