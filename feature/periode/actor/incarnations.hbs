@@ -6,6 +6,7 @@
         <div class="points tooltip">
             <img class="circle"/>
             <input
+                {{#if actor.locked}}disabled{{/if}}
                 class="middle"
                 name="system.pointsIncarnations"
                 placeholder="0"
@@ -18,6 +19,7 @@
         <div class="points tooltip">
             <img class="circle"/>
             <input
+                {{#if actor.locked}}disabled{{/if}}
                 name="system.sapienceDepensee"
                 placeholder="0"
                 type="text"
@@ -29,6 +31,7 @@
         <div class="points tooltip">
             <img class="circle"/>
             <input
+                {{#if actor.locked}}disabled{{/if}}
                 name="system.sapience"
                 placeholder="0"
                 type="text"
@@ -120,6 +123,7 @@
                     <div class="definition">
 
                         <input
+                            {{#unless (eq ../../editedPeriode ../original.sid)}}disabled{{/unless}}
                             class="degre set"
                             type="number"
                             value="{{item.degre}}"
