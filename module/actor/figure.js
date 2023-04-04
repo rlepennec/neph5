@@ -612,7 +612,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onConstruct(event) {
         event.preventDefault();
-        if (this.actor.system.alchimie.courant == null) {
+        if (this.actor.system.alchimie.courant == null && this.actor.locked === false) {
             const construct = $(event.currentTarget).closest('.tooltip').data('type');
             const activated = this.actor.system.alchimie.constructs[construct].active;
             await this.actor.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
