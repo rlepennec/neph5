@@ -100,7 +100,7 @@
                     {{/if}}
 
                     <!-- The name of the focus. -->
-                    <label class="focus-name open">{{item.original.name}}</label>
+                    <label class="focus-name open {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.original.name}}</label>
 
                     {{#unless (eq item.embedded.degre 0)}}
 
