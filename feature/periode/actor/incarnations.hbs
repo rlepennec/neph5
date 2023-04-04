@@ -75,7 +75,7 @@
 
                     <li class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Afficher{{else}}Editer{{/if}}</li>
 
-                    <li class="activate">{{#if (and ../isGM periode.embedded.actif)}}Désactiver{{else}}Activer{{/if}}</li>
+                    {{#if ../isGM}}<li class="activate">{{#if periode.embedded.actif}}Désactiver{{else}}Activer{{/if}}</li>{{/if}}
 
                     {{#unless (eq ../actor.system.periode periode.original.sid)}}
                     <li class="define">Période courante</li>

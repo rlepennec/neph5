@@ -155,8 +155,8 @@ export class Periode extends AbstractFeature {
      * @returns the instance.
      */
     async toggleActive() {
-        const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        await embedded.update({ ['system.actif']: !embedded.system.actif });
+        const actif = this.embedded.system.actif;
+        await this.embedded.update({ ['system.actif']: !actif });
         return this;
     }
 
