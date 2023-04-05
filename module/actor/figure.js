@@ -147,11 +147,11 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="kabbale"] .edit-ordonnance').click(this._onEditFeature.bind(this, 'ordonnance'));
         
         // Alchimie
-        html.find('div[data-tab="materiae"] .quantite').change(this._onChangeMateriae.bind(this));
         html.find('div[data-tab="laboratoire"] .activate').click(this._onConstruct.bind(this));
         html.find('div[data-tab="laboratoire"] .select').click(this._onSelectLaboratory.bind(this));
         html.find('div[data-tab="laboratoire"] .delete').click(this._onDeleteLaboratory.bind(this));
         html.find('div[data-tab="materiae"] .open').click(this._onOpenItem.bind(this));
+        html.find('div[data-tab="materiae"] .quantite').change(this._onChangeMateriae.bind(this));
         html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Macros
@@ -199,11 +199,9 @@ export class FigureSheet extends HistoricalSheet {
                     // Process the drop
                     switch(item.type) {
                         case 'arme':
-                            if (this.actor.locked) return;
                             await super._onDropWeapon(event, item);
                             break;
                         case 'armure':
-                            if (this.actor.locked) return;
                             await super._onDrop(event);
                             break;
                         case 'alchimie':
@@ -484,6 +482,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onToggleAspect(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest(".item").data("sid");
         await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
     }
@@ -519,6 +518,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeQuantite(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         const value = $(event.currentTarget).closest(".focus-quantite").val();
@@ -533,6 +533,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeTransporte(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         const value = $(event.currentTarget).closest(".focus-transporte").val();
@@ -547,6 +548,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangePacte(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         await item.update({ ['system.pacte']: !item.system.pacte });
@@ -564,6 +566,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeFocus(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         await item.update({ ['system.focus']: !item.system.focus });
@@ -584,6 +587,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeStatus(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         switch (item.system.status) {
@@ -607,6 +611,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onToggleVaisseau(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const vaisseau = $(event.currentTarget).closest('.vaisseau').data('type');
         const activated = this.actor.system.akasha[vaisseau].active;
         await this.actor.update({ ['system.akasha.' + vaisseau + ".active"]: !activated });
@@ -619,7 +624,6 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onEditCapacity(capacity, event) {
         event.preventDefault();
-        if (this.actor.locked) return;
         this.editedCapacity = this.editedCapacity === capacity ? null : capacity;
         await this.render(true);
     }
@@ -630,6 +634,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onConstruct(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         if (this.actor.system.alchimie.courant == null && this.actor.locked === false) {
             const construct = $(event.currentTarget).closest('.tooltip').data('type');
             const activated = this.actor.system.alchimie.constructs[construct].active;
@@ -643,6 +648,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onSelectLaboratory(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.select').data('sid');
         await this.actor.update({ ['system.alchimie.courant']: sid == null ? null : sid });
     }
@@ -653,6 +659,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onDeleteLaboratory(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = this.actor.system.alchimie.courant;
         const labs = this.actor.system.alchimie.laboratoires.filter(i => i !== sid);
         await this.actor.update({ ['system.alchimie.laboratoires']: labs });
@@ -665,6 +672,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onChangeMateriae(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         const value = $(event.currentTarget).closest(".quantite").val();

@@ -114,7 +114,7 @@
                     <label class="name open">{{item.original.name}}</label>
 
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        {{#if ../actor.locked}}disabled{{/if}}
                         class="quantite"
                         type="number"
                         value="{{item.embedded.quantite}}"
