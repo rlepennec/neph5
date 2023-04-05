@@ -199,19 +199,30 @@ export class FigureSheet extends HistoricalSheet {
                     // Process the drop
                     switch(item.type) {
                         case 'arme':
+                            if (this.actor.locked) return;
                             await super._onDropWeapon(event, item);
                             break;
                         case 'armure':
+                            if (this.actor.locked) return;
                             await super._onDrop(event);
                             break;
                         case 'alchimie':
                         case 'aspect':
                         case 'catalyseur':
-                        case 'competence':
                         case 'magie':
                         case 'materiae':
                         case 'metamorphe':
                         case 'periode':
+                            if (this.actor.locked) return;
+                            await new FeatureBuilder(this.actor)
+                                .withOriginalItem(item.sid)
+                                .withEvent(event)
+                                .withPeriode(this.editedPeriode)
+                                .withManoeuver(this.editedCapacity)
+                                .create()
+                                .drop();
+                            break;
+                        case 'competence':
                         case 'vecu':
                             await new FeatureBuilder(this.actor)
                                 .withOriginalItem(item.sid)

@@ -121,7 +121,7 @@ export class Competence extends AbstractFeature {
     async drop() {
 
         // Process the drop on the manoeuver definition
-        if (this.manoeuver != null) {
+        if (this.manoeuver != null && this.actor.locked === false) {
             await this.actor.update({ ['system.manoeuvres.' + this.manoeuver]: this.sid });
         }
 
