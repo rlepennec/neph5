@@ -302,6 +302,7 @@ export class BaseSheet extends ActorSheet {
      */
     async _onDeleteEmbeddedEquipment(event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
         const item = this.actor.getEmbeddedDocument('Item', id);

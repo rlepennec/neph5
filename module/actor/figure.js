@@ -608,6 +608,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onEditCapacity(capacity, event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         this.editedCapacity = this.editedCapacity === capacity ? null : capacity;
         await this.render(true);
     }
