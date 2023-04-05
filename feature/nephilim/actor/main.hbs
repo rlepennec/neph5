@@ -496,6 +496,7 @@
                 <img class="circle"/>
 
                 <input
+                    {{#if actor.locked}}disabled{{/if}}
                     class="degre"
                     name="system.stase.ka"
                     type="text"
@@ -505,6 +506,7 @@
                 <img class="separator"/>
 
                 <input
+                    {{#if actor.locked}}disabled{{/if}}
                     class="name"
                     name="system.stase.description"
                     type="text"

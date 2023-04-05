@@ -363,6 +363,7 @@ export class FigureSheet extends HistoricalSheet {
      */
     async _onToggleMetamorphose(property, event) {
         event.preventDefault();
+        if (this.actor.locked) return;
         const id = $(event.currentTarget).closest(".metamorphose").data("id");
         const item = game.items.get(id);
         const index = $(event.currentTarget).closest(".metamorphose").data("index");
@@ -385,6 +386,11 @@ export class FigureSheet extends HistoricalSheet {
     async _onChute(type, event) {
 
         event.preventDefault();
+
+        // The acor must not be locked
+        if (this.actor.locked) {
+            return;
+        }
 
         // A current periode must be defined to attach the chute to set
         if (this.actor.system.periode == null) {
