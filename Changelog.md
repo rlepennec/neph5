@@ -7,7 +7,7 @@ Correction d'une anomalie sur la manoeuvre permettant de viser avec une arme
 Correction d'une anomalie pour le cout des Materiae Primae
 Affichage des parametres Quantités, Focus, Status des formules alchimiques même si la formule ne peut être créée
 Impossibilité de lancer des sorts d'une voie magique incompatible
-Ajout d'une option de vérouillage de la fiche de personnage 
+Ajout d'une option de verrouillage de la fiche de personnage 
 Ajout d'une option pour utiliser le métamorphe lors du lancé de sort
 Ajout du nombre maximum de materia primae dans l'onglet laboratoire
 Ajout d'une aide pour l'expérience
