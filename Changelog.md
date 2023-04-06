@@ -1,4 +1,6 @@
 # 1.3.3
+Correction d'une anomalie empêchant le drop de vécu
+Impossibilité de lancer une formule si la quantité de materiae primae est insuffisante
 
 # 1.3.2
 Refonte des fiches de personnages
