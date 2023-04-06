@@ -43,6 +43,13 @@ export class Formule extends AbstractFocus {
             return;
         }
 
+        for (let element of this.item.system.elements) {
+            if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
+                ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
+                return;
+            }
+        }
+
         return await super.initializeRoll();
 
     }
