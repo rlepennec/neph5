@@ -1,5 +1,4 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "../periode/periode.js";
@@ -12,7 +11,6 @@ export class Science extends HistoricalFeature {
      */
     constructor(actor) {
         super(actor);
-        this.attachPeriode = true;
     }
 
     /**
@@ -70,40 +68,6 @@ export class Science extends HistoricalFeature {
      */
     get degre() {
         return this.degreFromPeriodes(this.sid);
-    }
-
-    /**
-     * Set no periode is attached to the savoir.
-     * @returns the instance.
-     */
-    withoutPeriode() {
-        this.attachPeriode = false;
-        return this;
-    }
-
-    /**
-     * @Override
-     */
-    async drop() {
-        if (this.attachPeriode === true) {
-            if (this.periode != null &&
-                this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
-                await new EmbeddedItem(this.actor, this.sid)
-                    .withContext("Drop of a science on periode " + this.periode)
-                    .withData("degre", 0)
-                    .withData("periode", this.periode)
-                    .withoutData('description')
-                    .withoutAlreadyEmbeddedError()
-                    .create();
-            }
-        } else {
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a science")
-                .withData("degre", 0)
-                .withoutData('description')
-                .withoutAlreadyEmbeddedError()
-                .create();
-        }
     }
 
     /**

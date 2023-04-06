@@ -1,7 +1,6 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "./periode.js";
 
@@ -55,22 +54,6 @@ export class Chute extends HistoricalFeature {
             .withFraternite(this.fraternite)
             .withBlessures(Constants.MAGICAL)
             .export();
-    }
-
-    /**
-     * @Override
-     */
-    async drop() {
-        if (this.periode != null &&
-            this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
-            await new EmbeddedItem(this.actor, this.sid)
-                .withContext("Drop of a chute on periode " + this.periode)
-                .withData("degre", 0)
-                .withData("periode", this.periode)
-                .withoutData('description')
-                .withoutAlreadyEmbeddedError()
-                .create();
-        }
     }
 
     /**

@@ -1,7 +1,6 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Game } from "../../module/common/game.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 
@@ -13,7 +12,6 @@ export class Savoir extends HistoricalFeature {
      */
     constructor(actor) {
         super(actor);
-        this.attachPeriode = true;
     }
 
     /**
@@ -56,42 +54,6 @@ export class Savoir extends HistoricalFeature {
             .withFraternite(this.fraternite)
             .withBlessures(Constants.MAGICAL)
             .export();
-    }
-
-    /**
-     * Set no periode is attached to the savoir.
-     * @returns the instance.
-     */
-    withoutPeriode() {
-        this.attachPeriode = false;
-        return this;
-    }
-
-    /**
-     * @Override
-     */
-    async drop() {
-        if (this.attachPeriode === true) {
-            if (this.periode != null &&
-                this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
-                await new EmbeddedItem(this.actor, this.sid)
-                    .withContext("Drop of a savoir on periode " + this.periode)
-                    .withData("degre", 0)
-                    .withData("periode", this.periode)
-                    .withoutData('description')
-                    .withoutAlreadyEmbeddedError()
-                    .create();
-            }
-        } else {
-            if (this.actor.items.find(i => i.sid === this.sid) == null) {
-                await new EmbeddedItem(this.actor, this.sid)
-                    .withContext("Drop of a savoir")
-                    .withData("degre", 0)
-                    .withoutData('description')
-                    .withoutAlreadyEmbeddedError()
-                    .create();
-            }
-        }
     }
 
     /**

@@ -1,4 +1,5 @@
 import { AbstractFeature } from "./abstractFeature.js";
+import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { FeatureBuilder } from "./featureBuilder.js";
 
 export class HistoricalFeature extends AbstractFeature {
@@ -63,6 +64,21 @@ export class HistoricalFeature extends AbstractFeature {
      */
     get degre() {
         return this.degreFromPeriodes(this.sid);
+    }
+
+    /**
+     * @Override
+     */
+    async drop() {
+        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+            await new EmbeddedItem(this.actor, this.sid)
+                .withContext("Drop of the item " + this.sid + " on periode " + this.periode)
+                .withData("degre", 0)
+                .withData("periode", this.periode)
+                .withoutData('description')
+                .withoutAlreadyEmbeddedError()
+                .create();
+        }
     }
 
     /**

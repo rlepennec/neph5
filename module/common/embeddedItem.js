@@ -21,7 +21,7 @@ export class EmbeddedItem {
     }
 
     /**
-     * @param {*} context The context to set.
+     * @param context The context to set.
      * @returns the instance.
      */
     withContext(context) {
