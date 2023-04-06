@@ -1,3 +1,5 @@
+# 1.3.3
+
 # 1.3.2
 Refonte des fiches de personnages
 Gestion de thèmes
