@@ -153,10 +153,6 @@ export class Vecu extends HistoricalFeature {
         // Process the drop on the incarnations for figure
         if (currentTab === 'incarnations') {
 
-            if (this.editedPeriode == null) {
-                return;
-            }
-
             // Drop the vecu with the related periode if none in current edition
             if (this.periode == null) {
 
