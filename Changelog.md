@@ -1,3 +1,6 @@
+# 1.3.4
+Correction d'une anomalie quand l'option catalyseurs est désactivée
+
 # 1.3.3
 Correction d'une anomalie empêchant le drop de vécu
 Impossibilité de lancer une formule si la quantité de materiae primae est insuffisante
