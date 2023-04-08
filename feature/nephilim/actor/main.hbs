@@ -531,7 +531,7 @@
 
         </div>
 
-        <div class="metamorphe">
+        <div class="metamorphe item" data-sid="{{actor.metamorphe.sid}}">
 
             {{#with actor.metamorphe as |item|}}
             <div class="header-with-value">
@@ -543,7 +543,7 @@
                 <img class="separator"/>
 
                 {{#if item}}
-                <label class="name">{{item.name}}</label>
+                <label class="name open">{{item.name}}</label>
                 {{else}}
                 <label class="name">{{localize "ITEM.TypeMetamorphe"}}</label>
                 {{/if}}

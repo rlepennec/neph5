@@ -924,6 +924,9 @@
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose:hover {
   text-shadow: 0px 0px 1px black;
 }
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .header-with-value .name:hover {
+  text-shadow: 0px 0px 1px black;
+}
 .actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body {
   display: flex;
   flex-direction: column;

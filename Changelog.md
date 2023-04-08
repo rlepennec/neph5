@@ -1,5 +1,7 @@
 # 1.3.5
 Entropie lunaire en option dans le groupe Selenim
+Correction d'une anomalie sur l'édition des fraternités
+Correction d'une anomalie sur l'édition des métamorphes
 
 # 1.3.4
 Correction d'une anomalie quand l'option catalyseurs est désactivée

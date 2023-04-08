@@ -122,7 +122,6 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="nephilim"] .luneNoire').click(this._onChute.bind(this, 'luneNoire'));
         html.find('div[data-tab="nephilim"] .formed').click(this._onToggleMetamorphose.bind(this, 'formed'));
         html.find('div[data-tab="nephilim"] .visible').click(this._onToggleMetamorphose.bind(this, 'visible'));
-        html.find('div[data-tab="nephilim"] .edit-metamorphe').click(this._onEditFeature.bind(this, 'metamorphe'));
         html.find('div[data-tab="nephilim"] .element .dice').click(this._onRollKa.bind(this));
         html.find('div[data-tab="nephilim"] .arcane .roll').click(this._onRollItem.bind(this));
         html.find('div[data-tab="nephilim"] .open').click(this._onOpenItem.bind(this));

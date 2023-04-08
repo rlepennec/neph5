@@ -52,9 +52,6 @@ export class HistoricalSheet extends BaseSheet {
         await this.createFeature(".edit-" + feature, event).edit();
         return this;
     }
-
-
-    //////
    
     /**
      * Set the current periode.
