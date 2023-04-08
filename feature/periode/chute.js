@@ -116,6 +116,7 @@ export class Chute extends HistoricalFeature {
     static getChute(actor, type) {
         let degre = 0;
         let name = null;
+        let sid = null;
         for (let periode of Periode.getSorted(actor, true, true, actor.system.periode)) {
             const chute = actor.items.find(i => i.type === 'chute' && i.system.key === type && i.system.periode === periode.sid);
             if (chute != null) {
@@ -123,11 +124,13 @@ export class Chute extends HistoricalFeature {
                     name = chute.name;
                 }
                 degre = degre + chute.system.degre;
+                sid = chute.sid;
             }
         }
         return {
             'degre': degre,
-            'name': name
+            'name': name,
+            'sid': sid
         };
     }
 

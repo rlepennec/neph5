@@ -415,25 +415,11 @@ export class FigureSheet extends HistoricalSheet {
         let chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
         if (chute == null) {
 
-            // Look for a previous chute wih same type to get the chute item. Use to retrieve the type of khaiba 
-            // If no chute during the current periode, reload the past to find a chute
-            for (let periode of Periode.getSorted(this.actor, false, true)) {
-
-                // Skip the current periode bacause already processed
-                if (periode === this.actor.system.periode) {
-                    continue;
-                }
-
-                // Look for the first chute of the periode
-                chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === periode.sid);
-                if (chute != null) {
-                    break;
-                }
-
-            }
-
+            // Look for a previous chute wih same type to get the chute item. Use to retrieve the type of khaiba
+            chute = Chute.getKhaiba(this.actor);
+          
             // No chute has been found, create a default one
-            if (chute == null) {
+            if (chute.sid == null) {
                 chute = game.items.find(i => i.type === 'chute' && i.system.key === type);
                 if (chute == null) {
                     ui.notifications.warn("Veuillez copier les chutes du pack système dans votre monde");
