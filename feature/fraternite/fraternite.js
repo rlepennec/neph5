@@ -34,7 +34,7 @@ export class Fraternite {
      */
     isActiveMember(actor) {
         let active = null;
-        for (let periode of Periode.getSorted(this.actor, true, null, this.actor.system.periode)) {
+        for (let periode of Periode.getChronological(this.actor, true, null, this.actor.system.periode)) {
             const found = this.actor.system.effectif.find(m => m.periode === periode.sid && m.actor === actor.sid);
             if (found != null) {
                 if (active === null) {
@@ -66,7 +66,7 @@ export class Fraternite {
      */
     membresWithStatus(status) {
         let membres = [];
-        for (let periode of Periode.getSorted(this.actor, true, null, this.actor.system.periode)) {
+        for (let periode of Periode.getChronological(this.actor, true, null, this.actor.system.periode)) {
             for (let membre of this.actor.system.effectif.filter(m => m.status === status && m.periode === periode.sid)) {
                 const actor = membres.find(m => m.sid === membre.actor);
                 if (actor == null) {
@@ -145,7 +145,7 @@ export class Fraternite {
     isNewMember(actor, periode) {
         const member = game.actors.get(actor);
         let move = null;
-        for (let p of Periode.getSorted(this.actor, true, null, periode)) {
+        for (let p of Periode.getChronological(this.actor, true, null, periode)) {
             if (this.actor.system.effectif.find(m => m.actor === member.sid && m.periode === p.sid) != null) {
                 if (move == null) {
                     move = true;

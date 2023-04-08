@@ -164,7 +164,7 @@ export class Periode extends AbstractFeature {
      * @returns true if the periode is active according to his activation and the current one.
      */
     actif() {
-        const p = Periode.getSorted(this.actor, true, true, this.actor.system.periode).find(i => i.sid === this.sid);
+        const p = Periode.getChronological(this.actor, true, true, this.actor.system.periode).find(i => i.sid === this.sid);
         return p != null && p.system.actif === true;
     }
 
@@ -175,7 +175,7 @@ export class Periode extends AbstractFeature {
      * @param last   The identifier of the last periode included, null if no limit.
      * @returns an sorted array of periodes items objects.
      */
-    static getSorted(actor, chrono, actif, last) {
+    static getChronological(actor, chrono, actif, last) {
 
         // Retrieve if the display order must be inverted
         const inverse = ((chrono === true && actor.system.options.chronologieDescendante === false)
@@ -236,7 +236,7 @@ export class Periode extends AbstractFeature {
     static getAll(actor) {
 
         // Sort periodes to display
-        const periodes = Periode.getSorted(actor, null, null);
+        const periodes = Periode.getChronological(actor, null, null);
 
         // Process periodes to display.
         const all = [];
