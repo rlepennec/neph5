@@ -236,6 +236,7 @@ export class FeatureBuilder {
                         return game.actors.find(a => a.sid === this.actor.system?.simulacre);
                 }
             case 'figurant':
+            case 'fraternite':
                 switch (this.scope) {
                     case 'actor':
                         return this.actor;
