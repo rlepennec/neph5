@@ -766,45 +766,45 @@
   flex-direction: column;
   width: 450px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body {
   position: relative;
   text-align: center;
   margin-left: 55px;
   margin-bottom: 30px;
   margin-top: 20px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle img {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body img {
   border: 0px;
   width: 380px;
   height: 378px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements {
   list-style: none;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element {
   position: absolute;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.air {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element.air {
   top: 92px;
   left: 341px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.eau {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element.eau {
   top: 298px;
   left: 334px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.feu {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element.feu {
   top: 7px;
   left: 115px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.lune {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element.lune {
   top: 361px;
   left: 95px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element.terre {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element.terre {
   top: 179px;
   left: -23px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .circle {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element .circle {
   position: relative;
   border: none;
   width: 80px;
@@ -815,18 +815,18 @@
   max-width: none;
   content: var(--img-circle);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .dice {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element .dice {
   position: absolute;
   top: 10px;
   left: -3px;
   font-size: 14px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .tooltip {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element .tooltip {
   position: absolute;
   left: 13px;
   top: 4px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .elements .element .tooltip input {
+.actor .window-content .actor-root .article .article-body .nephilim .left .pentacle .body .elements .element .tooltip input {
   background-color: transparent;
   font-size: 20px;
   border: 0px;
