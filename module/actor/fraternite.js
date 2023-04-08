@@ -112,20 +112,6 @@ export class FraterniteSheet extends HistoricalSheet {
     }
 
     /**
-     * Set the degre in the linked item.
-     * @param event The click event.
-     */
-    async _onChangeDegre(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".set").data("id");
-        const item = this.actor.items.get(id);
-        const value = $(event.currentTarget).closest(".set").val();
-        const system = duplicate(item.system);
-        system.degre = parseInt(value);
-        await item.update({ ['system']: system });
-    }
-
-    /**
      * Drop the specified object.
      * @param event The drop event.
      */
