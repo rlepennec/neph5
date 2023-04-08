@@ -416,7 +416,7 @@ export class FigureSheet extends HistoricalSheet {
         if (chute == null) {
 
             // Look for a previous chute wih same type to get the chute item. Use to retrieve the type of khaiba
-            chute = Chute.getKhaiba(this.actor);
+            chute = Chute.getChute(this.actor, type);
           
             // No chute has been found, create a default one
             if (chute.sid == null) {
