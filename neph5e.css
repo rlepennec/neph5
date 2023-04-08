@@ -833,13 +833,13 @@
   width: 40px;
   text-align: left;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body {
   display: flex;
   flex-direction: column;
   padding: 0 0 0 0;
   margin-top: var(--nephilim-margin-top);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -852,12 +852,12 @@
   font-size: 16px;
   z-index: 99;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .name {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute .name {
   flex: 0 0 200px;
   margin-right: calc(100% - 410px);
   margin-left: 30px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .degres {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute .degres {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -865,21 +865,21 @@
   margin-top: -2px;
   font-size: 14px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l3 {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute .l3 {
   margin-left: 3px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l3r {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute .l3r {
   margin-left: 3px;
   color: indianred;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l6 {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute .l6 {
   margin-left: 6px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute .l6r {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute .l6r {
   margin-left: 6px;
   color: indianred;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .chute:hover {
+.actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body .chute:hover {
   text-shadow: 0px 0px 3px black;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right {
@@ -959,12 +959,12 @@
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .degre {
   margin-top: -4px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes {
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body {
   display: flex;
   flex-direction: column;
   margin-top: var(--nephilim-margin-top);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane {
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body .arcane {
   display: flex;
   flex-direction: row;
   margin-left: 10px;
@@ -976,18 +976,18 @@
   text-overflow: ellipsis;
   z-index: 99;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane .value {
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body .arcane .value {
   width: 40px;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane .name {
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body .arcane .name {
   width: calc(100% - 70px);
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane .dice {
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body .arcane .dice {
   font-size: 14px;
   padding-top: 4px;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .arcane:hover {
+.actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body .arcane:hover {
   text-shadow: 0px 0px 1px black;
 }
 .actor .window-content .actor-root .article .article-body .selenim {

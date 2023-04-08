@@ -673,59 +673,63 @@
                             }
         
                             .chutes {
-                                display: flex;
-                                flex-direction: column;
-                                padding: 0 0 0 0;
-                                margin-top: var(--nephilim-margin-top); 
-    
-                                .chute {
+
+                                .body {
                                     display: flex;
-                                    flex-direction: row;
-                                    flex-wrap: nowrap;
-                                    align-items: center;
-                                    padding: 0 0 0 20px;
-                                    -webkit-column-break-inside: avoid;
-                                    page-break-inside: avoid;
-                                    break-inside: avoid;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-                                    z-index: 99;
-       
-                                    .name {
-                                        flex: 0 0 200px;
-                                        margin-right: calc(100% - 410px);
-                                        margin-left: 30px;
-                                    }
-    
-                                    .degres {
+                                    flex-direction: column;
+                                    padding: 0 0 0 0;
+                                    margin-top: var(--nephilim-margin-top); 
+        
+                                    .chute {
                                         display: flex;
                                         flex-direction: row;
                                         flex-wrap: nowrap;
-                                        flex: 0 0 auto;
-                                        margin-top: -2px;
-                                        font-size: 14px;
-                                    }
-    
-                                    .l3 {
-                                        margin-left: 3px;
-                                    }
-    
-                                    .l3r {
-                                        margin-left: 3px;
-                                        color: indianred;
-                                    }
-    
-                                    .l6 {
-                                        margin-left: 6px;
-                                    }
-    
-                                    .l6r {
-                                        margin-left: 6px;
-                                        color: indianred;
-                                    }
-    
-                                    &:hover {
-                                        text-shadow: 0px 0px 3px black;
+                                        align-items: center;
+                                        padding: 0 0 0 20px;
+                                        -webkit-column-break-inside: avoid;
+                                        page-break-inside: avoid;
+                                        break-inside: avoid;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        z-index: 99;
+        
+                                        .name {
+                                            flex: 0 0 200px;
+                                            margin-right: calc(100% - 410px);
+                                            margin-left: 30px;
+                                        }
+        
+                                        .degres {
+                                            display: flex;
+                                            flex-direction: row;
+                                            flex-wrap: nowrap;
+                                            flex: 0 0 auto;
+                                            margin-top: -2px;
+                                            font-size: 14px;
+                                        }
+        
+                                        .l3 {
+                                            margin-left: 3px;
+                                        }
+        
+                                        .l3r {
+                                            margin-left: 3px;
+                                            color: indianred;
+                                        }
+        
+                                        .l6 {
+                                            margin-left: 6px;
+                                        }
+        
+                                        .l6r {
+                                            margin-left: 6px;
+                                            color: indianred;
+                                        }
+        
+                                        &:hover {
+                                            text-shadow: 0px 0px 3px black;
+                                        }
+
                                     }
 
                                 }
@@ -842,42 +846,46 @@
                             }
         
                             .arcanes {
-                                display: flex;
-                                flex-direction: column;
-                                margin-top: var(--nephilim-margin-top);
 
-                                .arcane {
+                                .body {
                                     display: flex;
-                                    flex-direction: row;
-                                    margin-left: 10px;
-                                    list-style: none;
-                                    font-family: 'AJensonPro';
-                                    font-size: 16px;
-                                    overflow: hidden; 
-                                    white-space: nowrap; 
-                                    text-overflow: ellipsis;
-                                    z-index: 99;
+                                    flex-direction: column;
+                                    margin-top: var(--nephilim-margin-top);
 
-                                    .value {
-                                        width: 40px;
-                                        flex: 0 0 auto;
+                                    .arcane {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                                        z-index: 99;
+
+                                        .value {
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                        }
+
+                                        .name {
+                                            width: calc(100% - 70px);
+                                        }
+
+                                        .dice {
+                                            font-size: 14px;
+                                            padding-top: 4px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px black;
+                                        }
+
                                     }
-
-                                    .name {
-                                        width: calc(100% - 70px);
-                                    }
-
-                                    .dice {
-                                        font-size: 14px;
-                                        padding-top: 4px;
-                                    }
-
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px black;
-                                    }
-
+                    
                                 }
-                
+
                             }
 
                         }
