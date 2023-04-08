@@ -75,13 +75,15 @@ export class Metamorphe extends SimpleFeature {
                 sid = original.sid;
                 name = original.name;
                 size = embedded?.system.formed.filter(v => v === true).length;
-                visibles = embedded?.system.visible.filter(v => v === true).length;
                 for (let i=0; i<10; i++) {
                     metamorphoses[i] = {
                         name: original.system.metamorphoses[i].name,
                         formed: embedded.system.formed[i],
                         visible: embedded.system.visible[i]
                     };
+                    if (embedded.system.formed[i] === true && embedded.system.visible[i] == true) {
+                        visibles = visibles + 1;
+                    }
                 }
             }
         }
