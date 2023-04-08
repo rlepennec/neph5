@@ -76,18 +76,6 @@ export class BaseSheet extends ActorSheet {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Delete the specified embedded item.
      * @param event The click event.
