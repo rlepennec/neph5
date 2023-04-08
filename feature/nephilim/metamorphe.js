@@ -42,7 +42,7 @@ export class Metamorphe extends SimpleFeature {
             },
             'ITEM.TypeMetamorphe',
             560,
-            650
+            800
         )
     }
 
