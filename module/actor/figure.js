@@ -391,47 +391,10 @@ export class FigureSheet extends HistoricalSheet {
      * @param event The click event.
      */
     async _onChute(type, event) {
-
         event.preventDefault();
-
-        // The actor must be unlocked and a current periode must be defined to attach the chute to set
-        if (this.actor.locked || this.actor.system.periode == null) {
-            return;
+        if (!this.actor.locked && this.actor.system.periode != null) {
+            await new Chute(this.actor).setDegre(type, $(event.currentTarget).closest("." + type).data("id"));
         }
-
-        // Retrieve the previous chute according to the current periode
-        const previousChute = Chute.getChute(this.actor, type);
-
-        // Retrieve the degre on which the user has clicked
-        const degre = $(event.currentTarget).closest("." + type).data("id");
-
-        // Create or update current chute according to the current periode, first chute by default
-        const chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
-
-        // Create a new chute
-        if (chute == null) {
-
-            // Retrieve the sid of the world chute item from which to create the new chute
-            const sid = previousChute.sid ?? game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid;
-            if (sid == null) {
-                ui.notifications.warn(game.i18n.localize("NEPH5E.warning.chutes"));
-                return;
-            }
-
-            // Create the new embedded actor item
-            await new EmbeddedItem(this.actor, sid)
-                .withData("periode", this.actor.system.periode)
-                .withData("degre", degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
-                .withData("key", type)
-                .withoutData('description')
-                .withoutAlreadyEmbeddedError()
-                .create();
-
-        // Update the current chute
-        } else {
-            await chute.update({ ['system.degre']: chute.system.degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre) }); 
-        }
-
     }
 
     /**

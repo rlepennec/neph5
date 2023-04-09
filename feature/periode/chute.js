@@ -132,4 +132,45 @@ export class Chute extends HistoricalFeature {
 
     }
 
+    /**
+     * Set the final degre of the specified chute. The degre of the current periode is computed according
+     * to the degres of the previous periodes.
+     * @param type  The type of chute to update: khaiba, narcose, ombre, luneNoire.
+     * @param degre The final degre to set.
+     */
+    async setDegre(type, degre) {
+
+        // Retrieve the previous chute according to the current periode
+        const previousChute = Chute.getChute(this.actor, type);
+
+        // Create or update current chute according to the current periode, first chute by default
+        const chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
+
+        // Create a new chute
+        if (chute == null) {
+
+            // Retrieve the sid of the world chute item from which to create the new chute
+            const sid = previousChute.sid ?? game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid;
+            if (sid == null) {
+                ui.notifications.warn(game.i18n.localize("NEPH5E.warning.chutes"));
+                return;
+            }
+
+            // Create the new embedded actor item
+            await new EmbeddedItem(this.actor, sid)
+                .withData("periode", this.actor.system.periode)
+                .withData("degre", degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
+                .withData("key", type)
+                .withoutData('description')
+                .withoutAlreadyEmbeddedError()
+                .create();
+
+        // Update the current chute
+        } else {
+            await chute.update({ ['system.degre']: chute.system.degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre) }); 
+        }
+
+    }
+
+
 }
