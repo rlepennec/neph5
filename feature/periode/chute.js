@@ -114,24 +114,22 @@ export class Chute extends HistoricalFeature {
      * @returns the degre and the name of chute according to the specified actor, actives periodes and current one.
      */
     static getChute(actor, type) {
-        let degre = 0;
-        let name = null;
-        let sid = null;
+
+        let _chute = { degre: 0, name: null, sid: null };
+
         for (let periode of Periode.getChronological(actor, true, true, actor.system.periode)) {
             const chute = actor.items.find(i => i.type === 'chute' && i.system.key === type && i.system.periode === periode.sid);
             if (chute != null) {
-                if (name == null) {
-                    name = chute.name;
+                _chute = {
+                    degre: _chute.degre + chute.system.degre,
+                    name: chute.name,
+                    sid: chute.sid
                 }
-                degre = degre + chute.system.degre;
-                sid = chute.sid;
             }
         }
-        return {
-            'degre': degre,
-            'name': name,
-            'sid': sid
-        };
+
+        return _chute;
+
     }
 
 }

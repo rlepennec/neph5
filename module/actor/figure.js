@@ -395,18 +395,13 @@ export class FigureSheet extends HistoricalSheet {
 
         event.preventDefault();
 
-        // The acor must not be locked
-        if (this.actor.locked) {
+        // The actor must be unlocked and a current periode must be defined to attach the chute to set
+        if (this.actor.locked || this.actor.system.periode == null) {
             return;
         }
 
-        // A current periode must be defined to attach the chute to set
-        if (this.actor.system.periode == null) {
-            return;
-        }
-
-        // Retrieve the current degre of the chute according to the current periode
-        const degre = Chute.getChute(this.actor, type).degre;
+        // Retrieve the previous chute according to the current periode
+        const previousChute = Chute.getChute(this.actor, type);
 
         // Retrieve the degre on which the user has clicked
         const id = $(event.currentTarget).closest("." + type).data("id");
@@ -416,7 +411,7 @@ export class FigureSheet extends HistoricalSheet {
         if (chute == null) {
 
             // Look for a previous chute wih same type to get the chute item. Use to retrieve the type of khaiba
-            chute = Chute.getChute(this.actor, type);
+            chute = previousChute;
           
             // No chute has been found, create a default one
             if (chute.sid == null) {
@@ -427,7 +422,7 @@ export class FigureSheet extends HistoricalSheet {
                 }
             }
 
-            const value = (id === 1 && degre == 1) ? -1 : (id - degre);
+            const value = (id === 1 && previousChute.degre == 1) ? -1 : (id - previousChute.degre);
             await new EmbeddedItem(this.actor, chute.sid)
                 .withData("periode", this.actor.system.periode)
                 .withData("degre", value)
@@ -437,7 +432,7 @@ export class FigureSheet extends HistoricalSheet {
                 .create();
 
         } else {
-            const value = (id === 1 && degre == 1) ? (chute.system.degre - degre) : (chute.system.degre + id - degre);
+            const value = (id === 1 && previousChute.degre == 1) ? (chute.system.degre - previousChute.degre) : (chute.system.degre + id - previousChute.degre);
             await chute.update({ ['system.degre']: value }); 
         }
 
