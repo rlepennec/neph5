@@ -4,7 +4,6 @@ import { EmbeddedItem } from "../common/embeddedItem.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Game } from "../common/game.js";
 import { HistoricalSheet } from "./historical.js";
-import { Periode } from "../../feature/periode/periode.js";
 
 export class FigureSheet extends HistoricalSheet {
 
@@ -404,35 +403,33 @@ export class FigureSheet extends HistoricalSheet {
         const previousChute = Chute.getChute(this.actor, type);
 
         // Retrieve the degre on which the user has clicked
-        const id = $(event.currentTarget).closest("." + type).data("id");
+        const degre = $(event.currentTarget).closest("." + type).data("id");
 
         // Create or update current chute according to the current periode, first chute by default
-        let chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
+        const chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
+
+        // Create a new chute
         if (chute == null) {
 
-            // Look for a previous chute wih same type to get the chute item. Use to retrieve the type of khaiba
-            chute = previousChute;
-          
-            // No chute has been found, create a default one
-            if (previousChute.sid == null) {
-                chute = game.items.find(i => i.type === 'chute' && i.system.key === type);
-                if (chute == null) {
-                    ui.notifications.warn("Veuillez copier les chutes du pack système dans votre monde");
-                    return;
-                }
+            // Retrieve the sid of the world chute item from which to create the new chute
+            const sid = previousChute.sid ?? game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid;
+            if (sid == null) {
+                ui.notifications.warn(game.i18n.localize("NEPH5E.warning.chutes"));
+                return;
             }
 
-            const value = (id === 1 && previousChute.degre == 1) ? -1 : (id - previousChute.degre);
-            await new EmbeddedItem(this.actor, chute.sid)
+            // Create the new embedded actor item
+            await new EmbeddedItem(this.actor, sid)
                 .withData("periode", this.actor.system.periode)
-                .withData("degre", value)
+                .withData("degre", degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
                 .withData("key", type)
                 .withoutData('description')
                 .withoutAlreadyEmbeddedError()
                 .create();
 
+        // Update the current chute
         } else {
-            await chute.update({ ['system.degre']: chute.system.degre - previousChute.degre + (id === previousChute.degre ? 0 : id) }); 
+            await chute.update({ ['system.degre']: chute.system.degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre) }); 
         }
 
     }

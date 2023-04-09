@@ -517,6 +517,9 @@
         "visibilite": "Visibilité",
         "voies": "Voies",
         "voile": "Voile",
+        "warning": {
+            "chutes": "Veuillez copier les chutes du pack système dans votre monde"
+        },
         "yesod": "Yesod",
         "zakai": "Zakaï",
 
