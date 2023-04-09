@@ -387,8 +387,8 @@ export class FigureSheet extends HistoricalSheet {
     }
 
     /**
-     * Set the specified chute.
-     * @param type  The type of chute to set: khaiba, narcose, ombre, luneNoire.
+     * Set the degre of the specified chute.
+     * @param type  The type of chute to update: khaiba, narcose, ombre, luneNoire.
      * @param event The click event.
      */
     async _onChute(type, event) {
