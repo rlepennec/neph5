@@ -407,11 +407,7 @@ export class FigureSheet extends HistoricalSheet {
         const sid = li.data("actor-id");
         const actor = game.actors.find(i => i.sid === sid);
         if (actor != null) {
-            if (this.actor.system.alchimie.courant === actor.sid) {
-                await this.actor.update({ ['system.alchimie.courant']: null });
-            } else {
-                await this.actor.update({ ['system.alchimie.courant']: actor.sid });
-            }
+            await this.actor.update({ ['system.alchimie.courant']: this.actor.system.alchimie.courant === actor.sid ? null : actor.sid});
         }
     }
 
