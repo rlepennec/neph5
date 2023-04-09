@@ -414,7 +414,7 @@ export class FigureSheet extends HistoricalSheet {
             chute = previousChute;
           
             // No chute has been found, create a default one
-            if (chute.sid == null) {
+            if (previousChute.sid == null) {
                 chute = game.items.find(i => i.type === 'chute' && i.system.key === type);
                 if (chute == null) {
                     ui.notifications.warn("Veuillez copier les chutes du pack système dans votre monde");
@@ -432,8 +432,7 @@ export class FigureSheet extends HistoricalSheet {
                 .create();
 
         } else {
-            const degre = (id === previousChute.degre) ? (chute.system.degre - previousChute.degre) : (chute.system.degre + id - previousChute.degre);
-            await chute.update({ ['system.degre']: degre }); 
+            await chute.update({ ['system.degre']: chute.system.degre - previousChute.degre + (id === previousChute.degre ? 0 : id) }); 
         }
 
     }
