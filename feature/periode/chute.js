@@ -138,7 +138,7 @@ export class Chute extends HistoricalFeature {
      * @param type  The type of chute to update: khaiba, narcose, ombre, luneNoire.
      * @param degre The final degre to set.
      */
-    async setDegre(type, degre) {
+    async set(type, degre) {
 
         // Retrieve the previous chute according to the current periode
         const previousChute = Chute.getChute(this.actor, type);

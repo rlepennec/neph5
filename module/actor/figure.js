@@ -393,7 +393,7 @@ export class FigureSheet extends HistoricalSheet {
     async _onChute(type, event) {
         event.preventDefault();
         if (!this.actor.locked && this.actor.system.periode != null) {
-            await new Chute(this.actor).setDegre(type, $(event.currentTarget).closest("." + type).data("id"));
+            await new Chute(this.actor).set(type, $(event.currentTarget).closest("." + type).data("id"));
         }
     }
 
