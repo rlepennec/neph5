@@ -432,8 +432,8 @@ export class FigureSheet extends HistoricalSheet {
                 .create();
 
         } else {
-            const value = (id === 1 && previousChute.degre == 1) ? (chute.system.degre - previousChute.degre) : (chute.system.degre + id - previousChute.degre);
-            await chute.update({ ['system.degre']: value }); 
+            const degre = (id === previousChute.degre) ? (chute.system.degre - previousChute.degre) : (chute.system.degre + id - previousChute.degre);
+            await chute.update({ ['system.degre']: degre }); 
         }
 
     }
