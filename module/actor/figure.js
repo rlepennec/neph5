@@ -102,6 +102,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="incarnations"] .open').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="incarnations"] .periode-header .delete').click(this._onDeletePeriode.bind(this));
         html.find('div[data-tab="incarnations"] .vecu .delete').click(this._onDeleteEmbeddedItem.bind(this));
+        html.find('div[data-tab="incarnations"] .focus .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
