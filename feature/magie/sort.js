@@ -53,16 +53,19 @@ export class Sort extends AbstractFocus {
      */
     get degre() {
 
-        // The sort needs the actor to follow a voie
-        if (this.item.system?.voies.length > 0 && this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
-            return 0;
-        }
-
         // Retrieve the degre of the cercle used to cast the focus
         const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
 
         // Retrieve the degre of the focus to cast
         const focus = this.item.system.degre;
+
+        // The sort needs the actor to follow a voie
+        if (this.item.system?.voies.length > 0 &&
+            this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
+            if ( Math.ceil(focus/2) >= Math.ceil(science/2) ) {
+                return 0;
+            }
+        }
 
         // Retrieve the degre of the ka used to cast the focus
         const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
