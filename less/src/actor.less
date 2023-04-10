@@ -102,6 +102,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/eau/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/eau/triangle.webp");
         --nephilim-margin-top: 0px;
+        --nephilim-color-chute: indianred;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -119,7 +120,7 @@
 
     :root.feu {
         --background : url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
-        --font-color: #ad521d;
+        --font-color: #e37e00;
         --font-side-color: #b58468;
         --font-side-selected-color: #362102;
         --shadow-navigation-color: rgb(82, 3, 3);
@@ -139,6 +140,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/feu/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/feu/triangle.webp");
         --nephilim-margin-top: 0px;
+        --nephilim-color-chute: #ff6409;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -178,6 +180,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/lune/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/lune/triangle.webp");
         --nephilim-margin-top: 0px;
+        --nephilim-color-chute: indianred;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -216,7 +219,8 @@
         --img-puce: url("../../systems/neph5e/assets/skins/lune-noire/puce.webp");
         --img-separator: url("../../systems/neph5e/assets/skins/lune-noire/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/lune-noire/triangle.webp");
-        --nephilim-margin-top: -10px; 
+        --nephilim-margin-top: -10px;
+        --nephilim-color-chute: indianred;
         --combat-arme-bottom: -28px;
         --combat-armure-bottom: -25px;
         --combat-header-bottom: -27px;
@@ -254,6 +258,7 @@
         --img-separator: url("../../systems/neph5e/assets/skins/terre/separator.webp");
         --img-triangle: url("../../systems/neph5e/assets/skins/terre/triangle.webp");
         --nephilim-margin-top: 0px;
+        --nephilim-color-chute: indianred;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -497,9 +502,10 @@
                             width: 100%;
 
                             .puce {
+                                position: relative;
+                                top: -16px;
                                 border: none;
                                 width: 60px;
-                                display: hidden;
                                 background-color: transparent;
                                 content: var(--img-puce);
                             }
@@ -714,7 +720,7 @@
         
                                         .l3r {
                                             margin-left: 3px;
-                                            color: indianred;
+                                            color: var(--nephilim-color-chute);
                                         }
         
                                         .l6 {
@@ -723,11 +729,11 @@
         
                                         .l6r {
                                             margin-left: 6px;
-                                            color: indianred;
+                                            color: var(--nephilim-color-chute);
                                         }
         
                                         &:hover {
-                                            text-shadow: 0px 0px 3px black;
+                                            text-shadow: 0px 0px 3px var(--font-color);
                                         }
 
                                     }
