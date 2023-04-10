@@ -412,7 +412,7 @@
   --font-side-color: #b58468;
   --font-side-selected-color: #362102;
   --shadow-navigation-color: #520303;
-  --font-disabled-color: #e3c394;
+  --font-disabled-color: #c3ad8d;
   --font-article-title: #ad521d;
   --column-color: #ad521d;
   --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
@@ -1044,6 +1044,9 @@
   font-size: 13px;
   margin-top: 3px;
 }
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose.disabled {
+  color: var(--font-disabled-color);
+}
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose:hover {
   text-shadow: 0px 0px 1px black;
 }
@@ -1081,9 +1084,11 @@
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .name {
   font-size: 16px;
+  color: var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .degre {
   margin-top: -4px;
+  color: var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body {
   display: flex;
