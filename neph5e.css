@@ -2115,6 +2115,10 @@
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede {
   flex: 0 0 50px;
 }
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede.disabled {
+  flex: 0 0 222px;
+  text-align: left;
+}
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-status {
   flex: 0 0 80px;
 }

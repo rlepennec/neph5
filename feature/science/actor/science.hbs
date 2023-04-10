@@ -25,6 +25,10 @@
 
                     <span class="cercle-name">{{cercle.name}}</span>
 
+                    {{#if (includes ../header 'possede')}}
+                    <span class="cercle-possede">{{localize "NEPH5E.focus"}}</span>
+                    {{/if}}
+
                     {{#unless (eq cercle.degre 0)}}
                         
                         {{#if (includes ../header 'quantite')}}
@@ -37,10 +41,6 @@
 
                         {{#if (includes ../header 'pacte')}}
                         <span class="cercle-pacte">{{localize "NEPH5E.pacte"}}</span>
-                        {{/if}}
-
-                        {{#if (includes ../header 'possede')}}
-                        <span class="cercle-possede">{{localize "NEPH5E.focus"}}</span>
                         {{/if}}
 
                         {{#if (includes ../header 'status')}}
@@ -102,6 +102,17 @@
                     <!-- The name of the focus. -->
                     <label class="focus-name open {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.original.name}}</label>
 
+                    <!-- Indicates id the character has the focus. -->
+                    {{#if (includes ../../header 'possede')}}
+                    <label class="focus-possede {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                        {{#if item.embedded.system.focus}}
+                        <i class="fa-solid fa-scroll"></i>
+                        {{else}}
+                        <i class="fa-regular fa-scroll"></i>
+                        {{/if}}
+                    </label>
+                    {{/if}}
+
                     {{#unless (eq item.embedded.degre 0)}}
 
                     <!-- The quantity produced by the laboratory. -->
@@ -131,17 +142,6 @@
                         <i class="fa-solid fa-feather-pointed"></i>
                         {{else}}
                         <i class="fa-regular fa-feather-pointed"></i>
-                        {{/if}}
-                    </label>
-                    {{/if}}
-
-                    <!-- Indicates id the character has the focus. -->
-                    {{#if (includes ../../header 'possede')}}
-                    <label class="focus-possede {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
-                        {{#if item.embedded.system.focus}}
-                        <i class="fa-solid fa-scroll"></i>
-                        {{else}}
-                        <i class="fa-regular fa-scroll"></i>
                         {{/if}}
                     </label>
                     {{/if}}
