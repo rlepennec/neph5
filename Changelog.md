@@ -2,6 +2,7 @@
 Correction d'une anomalie sur la suppression d'un aspect
 Correction et amélioration de l'affectation des chutes
 Correction d'une anomalie sur la suppression de focus
+Modification des conditions de lancé de sorts de Haute Magie
 
 # 1.3.5
 Entropie lunaire en option dans le groupe Selenim
