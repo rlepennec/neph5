@@ -58,6 +58,7 @@
         --science-degre-left: 8px;
         --science-degre-top: 10px;
         --science-focus-shadow: 0px 0px 1px black;
+        --vecus-top-puce: 0px;
     }
 
     :root.air {
@@ -118,6 +119,7 @@
         --science-degre-left: 8px;
         --science-degre-top: 10px;
         --science-focus-shadow: text-shadow: 0px 0px 1px black;
+        --vecus-top-puce: 0px;
     }
 
     :root.eau {
@@ -178,6 +180,7 @@
         --science-degre-left: 8px;
         --science-degre-top: 10px;
         --science-focus-shadow: text-shadow: 0px 0px 1px black;
+        --vecus-top-puce: 0px;
     }
 
     :root.feu {
@@ -236,6 +239,7 @@
         --science-degre-left: 15px;
         --science-degre-top: 16px;
         --science-focus-shadow: text-shadow: 0px 0px 1px black;
+        --vecus-top-puce: -15px;
     }
 
     :root.lune {
@@ -296,6 +300,7 @@
         --science-degre-left: 8px;
         --science-degre-top: 10px;
         --science-focus-shadow: text-shadow: 0px 0px 1px black;
+        --vecus-top-puce: 0px;
     }
 
     :root.lune-noire {
@@ -356,6 +361,7 @@
         --science-degre-left: 8px;
         --science-degre-top: 10px;
         --science-focus-shadow: text-shadow: 0px 0px 1px black;
+        --vecus-top-puce: 0px;
     }
 
     :root.terre {
@@ -414,6 +420,7 @@
         --science-degre-left: 8px;
         --science-degre-top: 10px;
         --science-focus-shadow: text-shadow: 0px 0px 1px black;
+        --vecus-top-puce: 0px;
     }
 
 .actor
@@ -3381,6 +3388,8 @@
                             margin-bottom: -10px;
         
                             .puce {
+                                position: relative;
+                                top: var(--vecus-top-puce);
                                 border: none;
                                 width: 60px;
                                 display: hidden;

@@ -1,94 +1,98 @@
-<div class="header">
+<div class="competences">
 
-    <img class="puce"/>
+    <div class="header">
 
-    <img class="separator"/>
+        <img class="puce"/>
 
-    <span class="vecus-name">{{localize "NEPH5E.competencesEtVecus"}}</span>
+        <img class="separator"/>
+
+        <span class="vecus-name">{{localize "NEPH5E.competencesEtVecus"}}</span>
+
+    </div>
+
+    <ol class="body">
+
+        <!-- Display the vecus of the simulacre -->
+        {{#if (and (nonNull system.simulacre) (eq system.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
+        {{#each actor.vecusOfSimulacre as |item|}}
+        <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}" data-scope="simulacre">
+
+            <div class="vecu-definition">
+
+                {{#if ../../actor.system.options.degreGauche}}
+                <label class="vecu-degre">{{item.degre}}</label>
+                {{/if}}
+
+                <label class="vecu-name open">{{item.name}}</label>
+
+                {{#unless ../../actor.system.options.degreGauche}}
+                <label class="vecu-degre">{{item.degre}}</label>
+                {{/unless}}
+
+                <a class="vecu-dice roll">
+                    <i class="fas fa-dice-d20"></i>
+                </a>
+
+            </div>
+
+        </li>
+        {{/each}}
+        <hr>
+        {{/if}}
+        
+        <!-- Display the vecus of the figure -->
+        {{#if (gt actor.vecusOfActor.length 0)}}
+        {{#each actor.vecusOfActor as |item|}}
+        <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}">
+
+            <div class="vecu-definition">
+
+                {{#if ../../actor.system.options.degreGauche}}
+                <label class="vecu-degre">{{item.degre}}</label>
+                {{/if}}
+
+                <label class="vecu-name open">{{item.name}}</label>
+
+                {{#unless ../../actor.system.options.degreGauche}}
+                <label class="vecu-degre">{{item.degre}}</label>
+                {{/unless}}
+
+                <a class="vecu-dice roll">
+                    <i class="fas fa-dice-d20"></i>
+                </a>
+
+            </div>
+
+        </li>
+        {{/each}}
+        <hr>
+        {{/if}}
+
+        <!-- Display the competences of the figure -->
+        {{#each actor.competences as |item|}}
+        <li class="vecu item macro" data-macro="item" data-sid="{{item.sid}}">
+
+            <div class="vecu-definition">
+
+                {{#if ../../actor.system.options.degreGauche}}
+                <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>
+                {{/if}}
+
+                <label class="vecu-name open {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.name}}</label>
+
+                {{#unless ../../actor.system.options.degreGauche}}
+                <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>
+                {{/unless}}
+
+                <a class="vecu-dice roll">
+                    <i class="fas fa-dice-d20"></i>
+                </a>
+
+            </div>
+
+        </li>
+        {{/each}}
+
+    </ol>
 
 </div>
-
-<ol class="body">
-
-    <!-- Display the vecus of the simulacre -->
-    {{#if (and (nonNull system.simulacre) (eq system.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
-    {{#each actor.vecusOfSimulacre as |item|}}
-    <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}" data-scope="simulacre">
-
-        <div class="vecu-definition">
-
-            {{#if ../../actor.system.options.degreGauche}}
-            <label class="vecu-degre">{{item.degre}}</label>
-            {{/if}}
-
-            <label class="vecu-name open">{{item.name}}</label>
-
-            {{#unless ../../actor.system.options.degreGauche}}
-            <label class="vecu-degre">{{item.degre}}</label>
-            {{/unless}}
-
-            <a class="vecu-dice roll">
-                <i class="fas fa-dice-d20"></i>
-            </a>
-
-        </div>
-
-    </li>
-    {{/each}}
-    <hr>
-    {{/if}}
-    
-    <!-- Display the vecus of the figure -->
-    {{#if (gt actor.vecusOfActor.length 0)}}
-    {{#each actor.vecusOfActor as |item|}}
-    <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}">
-
-        <div class="vecu-definition">
-
-            {{#if ../../actor.system.options.degreGauche}}
-            <label class="vecu-degre">{{item.degre}}</label>
-            {{/if}}
-
-            <label class="vecu-name open">{{item.name}}</label>
-
-            {{#unless ../../actor.system.options.degreGauche}}
-            <label class="vecu-degre">{{item.degre}}</label>
-            {{/unless}}
-
-            <a class="vecu-dice roll">
-                <i class="fas fa-dice-d20"></i>
-            </a>
-
-        </div>
-
-    </li>
-    {{/each}}
-    <hr>
-    {{/if}}
-
-    <!-- Display the competences of the figure -->
-    {{#each actor.competences as |item|}}
-    <li class="vecu item macro" data-macro="item" data-sid="{{item.sid}}">
-
-        <div class="vecu-definition">
-
-            {{#if ../../actor.system.options.degreGauche}}
-            <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>
-            {{/if}}
-
-            <label class="vecu-name open {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.name}}</label>
-
-            {{#unless ../../actor.system.options.degreGauche}}
-            <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>
-            {{/unless}}
-
-            <a class="vecu-dice roll">
-                <i class="fas fa-dice-d20"></i>
-            </a>
-
-        </div>
-
-    </li>
-    {{/each}}
-
-</ol>

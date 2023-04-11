@@ -301,6 +301,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --science-focus-shadow: 0px 0px 1px black;
+  --vecus-top-puce: 0px;
 }
 :root.air {
   --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
@@ -359,6 +360,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --science-focus-shadow: text-shadow: 0px 0px 1px black;
+  --vecus-top-puce: 0px;
 }
 :root.eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
@@ -417,6 +419,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --science-focus-shadow: text-shadow: 0px 0px 1px black;
+  --vecus-top-puce: 0px;
 }
 :root.feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
@@ -474,6 +477,7 @@
   --science-degre-left: 15px;
   --science-degre-top: 16px;
   --science-focus-shadow: text-shadow: 0px 0px 1px black;
+  --vecus-top-puce: -15px;
 }
 :root.lune {
   --background: radial-gradient(circle at 118% -9%, #fdfdfe 19%, rgba(106, 106, 106, 0.9) 23%, rgba(72, 72, 72, 0.1) 100%),
@@ -532,6 +536,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --science-focus-shadow: text-shadow: 0px 0px 1px black;
+  --vecus-top-puce: 0px;
 }
 :root.lune-noire {
   --background: radial-gradient(circle at 118% -9%, #020024 0%, rgba(0, 0, 0, 0.9) 20%, rgba(121, 121, 143, 0.2) 25%, rgba(255, 255, 255, 0.1) 100%),
@@ -590,6 +595,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --science-focus-shadow: text-shadow: 0px 0px 1px black;
+  --vecus-top-puce: 0px;
 }
 :root.terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
@@ -647,6 +653,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --science-focus-shadow: text-shadow: 0px 0px 1px black;
+  --vecus-top-puce: 0px;
 }
 .actor .window-content {
   background: var(--background);
@@ -2922,6 +2929,8 @@
   margin-bottom: -10px;
 }
 .actor .window-content .actor-root .article .article-body .vecus .header .puce {
+  position: relative;
+  top: var(--vecus-top-puce);
   border: none;
   width: 60px;
   display: hidden;
