@@ -308,6 +308,14 @@
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
+  --combat-bonus-mouvement-top: calc(50% - -185px);
+  --combat-bonus-mouvement-left: calc(50% - 31px);
+  --combat-bonus-initiative-top: calc(50% - 3px);
+  --combat-bonus-initiative-left: calc(50% - 31px);
+  --combat-bonus-dommages-top: calc(50% - -91px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% - -91px);
+  --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(91px, 80px) rotate(30deg);
   --akasha-nef-width: 218px;
@@ -386,6 +394,14 @@
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
+  --combat-bonus-mouvement-top: calc(50% - -185px);
+  --combat-bonus-mouvement-left: calc(50% - 31px);
+  --combat-bonus-initiative-top: calc(50% - 3px);
+  --combat-bonus-initiative-left: calc(50% - 31px);
+  --combat-bonus-dommages-top: calc(50% - -91px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% - -91px);
+  --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -462,6 +478,14 @@
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
+  --combat-bonus-mouvement-top: calc(50% - -185px);
+  --combat-bonus-mouvement-left: calc(50% - 31px);
+  --combat-bonus-initiative-top: calc(50% - 3px);
+  --combat-bonus-initiative-left: calc(50% - 31px);
+  --combat-bonus-dommages-top: calc(50% - -91px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% - -91px);
+  --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: -31px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -537,6 +561,14 @@
   --combat-bonus-circle-height: 67px;
   --combat-bonus-input-width: 31px;
   --combat-bonus-input-height: 53px;
+  --combat-bonus-mouvement-top: calc(50% - -158px);
+  --combat-bonus-mouvement-left: calc(50% - 36px);
+  --combat-bonus-initiative-top: calc(50% - 10px);
+  --combat-bonus-initiative-left: calc(50% - 36px);
+  --combat-bonus-dommages-top: calc(50% + 74px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% + 74px);
+  --combat-bonus-protection-left: calc(50% + 51px);
   --options-body-margin-top: -25px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -613,6 +645,14 @@
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
+  --combat-bonus-mouvement-top: calc(50% - -185px);
+  --combat-bonus-mouvement-left: calc(50% - 31px);
+  --combat-bonus-initiative-top: calc(50% - 3px);
+  --combat-bonus-initiative-left: calc(50% - 31px);
+  --combat-bonus-dommages-top: calc(50% - -91px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% - -91px);
+  --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -689,6 +729,14 @@
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
+  --combat-bonus-mouvement-top: calc(50% - -185px);
+  --combat-bonus-mouvement-left: calc(50% - 31px);
+  --combat-bonus-initiative-top: calc(50% - 3px);
+  --combat-bonus-initiative-left: calc(50% - 31px);
+  --combat-bonus-dommages-top: calc(50% - -91px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% - -91px);
+  --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: -23px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -764,6 +812,14 @@
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
+  --combat-bonus-mouvement-top: calc(50% - -185px);
+  --combat-bonus-mouvement-left: calc(50% - 31px);
+  --combat-bonus-initiative-top: calc(50% - 3px);
+  --combat-bonus-initiative-left: calc(50% - 31px);
+  --combat-bonus-dommages-top: calc(50% - -91px);
+  --combat-bonus-dommages-left: calc(50% - 120px);
+  --combat-bonus-protection-top: calc(50% - -91px);
+  --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -2119,8 +2175,8 @@
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body div input {
   color: var(--font-color);
   flex: 0 0 auto;
-  width: 35px;
-  height: 35px;
+  width: var(--combat-bonus-input-width);
+  height: var(--combat-bonus-input-height);
   text-align: center;
   font-weight: bold;
   border-radius: 50%;
@@ -2132,32 +2188,32 @@
   text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .mouvement {
-  top: calc(50% - -185px);
-  left: calc(50% - 31px);
+  top: var(--combat-bonus-mouvement-top);
+  left: var(--combat-bonus-mouvement-left);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .mouvement label {
   top: calc(50% - -25px);
   left: calc(50% - 46px);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .initiative {
-  top: calc(50% - 3px);
-  left: calc(50% - 31px);
+  top: var(--combat-bonus-initiative-top);
+  left: var(--combat-bonus-initiative-left);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .initiative label {
   top: calc(50% - 7px);
   left: calc(50% - -20px);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .dommages {
-  top: calc(50% - -91px);
-  left: calc(50% - 120px);
+  top: var(--combat-bonus-dommages-top);
+  left: var(--combat-bonus-dommages-left);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .dommages label {
   top: calc(50% - -24px);
   left: calc(50% - 37px);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .protection {
-  top: calc(50% - -91px);
-  left: calc(50% - -57px);
+  top: var(--combat-bonus-protection-top);
+  left: var(--combat-bonus-protection-left);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .protection label {
   top: calc(50% - -23px);
