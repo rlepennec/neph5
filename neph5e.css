@@ -300,7 +300,6 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
-  --science-focus-shadow: 0px 0px 1px black;
   --vecus-top-puce: 0px;
 }
 :root.air {
@@ -359,7 +358,6 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
-  --science-focus-shadow: text-shadow: 0px 0px 1px black;
   --vecus-top-puce: 0px;
 }
 :root.eau {
@@ -418,7 +416,6 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
-  --science-focus-shadow: text-shadow: 0px 0px 1px black;
   --vecus-top-puce: 0px;
 }
 :root.feu {
@@ -476,7 +473,6 @@
   --science-circle-height: 77px;
   --science-degre-left: 15px;
   --science-degre-top: 16px;
-  --science-focus-shadow: text-shadow: 0px 0px 1px black;
   --vecus-top-puce: -15px;
 }
 :root.lune {
@@ -535,7 +531,6 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
-  --science-focus-shadow: text-shadow: 0px 0px 1px black;
   --vecus-top-puce: 0px;
 }
 :root.lune-noire {
@@ -594,7 +589,6 @@
   --science-circle-height: 62px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
-  --science-focus-shadow: text-shadow: 0px 0px 1px black;
   --vecus-top-puce: 0px;
 }
 :root.terre {
@@ -652,7 +646,6 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
-  --science-focus-shadow: text-shadow: 0px 0px 1px black;
   --vecus-top-puce: 0px;
 }
 .actor .window-content {
@@ -2166,11 +2159,12 @@
   margin-right: 10px;
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus:hover {
-  text-shadow: var(--science-focus-shadow);
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .arbre {
   position: relative;
   text-align: center;
+  color: #191813;
 }
 .actor .window-content .actor-root .article .article-body .arbre .arbre-vie {
   border: 0px;
