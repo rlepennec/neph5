@@ -306,6 +306,8 @@
   --combat-bonus-losange-top: 48px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
+  --combat-bonus-input-width: 35px;
+  --combat-bonus-input-height: 35px;
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(91px, 80px) rotate(30deg);
   --akasha-nef-width: 218px;
@@ -382,6 +384,8 @@
   --combat-bonus-losange-top: 48px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
+  --combat-bonus-input-width: 35px;
+  --combat-bonus-input-height: 35px;
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -456,6 +460,8 @@
   --combat-bonus-losange-top: 48px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
+  --combat-bonus-input-width: 35px;
+  --combat-bonus-input-height: 35px;
   --options-body-margin-top: -31px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -529,6 +535,8 @@
   --combat-bonus-losange-top: 48px;
   --combat-bonus-circle-width: 56px;
   --combat-bonus-circle-height: 67px;
+  --combat-bonus-input-width: 31px;
+  --combat-bonus-input-height: 53px;
   --options-body-margin-top: -25px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -603,6 +611,8 @@
   --combat-bonus-losange-top: 48px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
+  --combat-bonus-input-width: 35px;
+  --combat-bonus-input-height: 35px;
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -677,6 +687,8 @@
   --combat-bonus-losange-top: 57px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
+  --combat-bonus-input-width: 35px;
+  --combat-bonus-input-height: 35px;
   --options-body-margin-top: -23px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -750,6 +762,8 @@
   --combat-bonus-losange-top: 48px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
+  --combat-bonus-input-width: 35px;
+  --combat-bonus-input-height: 35px;
   --options-body-margin-top: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
