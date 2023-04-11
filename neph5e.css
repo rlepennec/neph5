@@ -282,6 +282,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
   --nephilim-left-terre: -23px;
+  --selenim-width-circle: 115px;
+  --selenim-height-circle: 115px;
+  --selenim-top-circle: -25px;
+  --selenim-left-circle: -25px;
   --combat-arme-bottom: -10px;
   --combat-armure-bottom: -10px;
   --combat-header-bottom: -10px;
@@ -338,6 +342,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
   --nephilim-left-terre: -23px;
+  --selenim-width-circle: 115px;
+  --selenim-height-circle: 115px;
+  --selenim-top-circle: -25px;
+  --selenim-left-circle: -25px;
   --combat-arme-bottom: -10px;
   --combat-armure-bottom: -10px;
   --combat-header-bottom: -10px;
@@ -392,6 +400,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
   --nephilim-left-terre: -23px;
+  --selenim-width-circle: 115px;
+  --selenim-height-circle: 115px;
+  --selenim-top-circle: -25px;
+  --selenim-left-circle: -25px;
   --combat-arme-bottom: -10px;
   --combat-armure-bottom: -10px;
   --combat-header-bottom: -10px;
@@ -445,6 +457,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 168px;
   --nephilim-left-terre: -30px;
+  --selenim-width-circle: 150px;
+  --selenim-height-circle: 168px;
+  --selenim-top-circle: -45px;
+  --selenim-left-circle: -44px;
   --combat-arme-bottom: -10px;
   --combat-armure-bottom: -10px;
   --combat-header-bottom: -10px;
@@ -499,6 +515,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
   --nephilim-left-terre: -23px;
+  --selenim-width-circle: 115px;
+  --selenim-height-circle: 115px;
+  --selenim-top-circle: -25px;
+  --selenim-left-circle: -25px;
   --combat-arme-bottom: -10px;
   --combat-armure-bottom: -10px;
   --combat-header-bottom: -10px;
@@ -553,6 +573,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
   --nephilim-left-terre: -23px;
+  --selenim-width-circle: 115px;
+  --selenim-height-circle: 115px;
+  --selenim-top-circle: -25px;
+  --selenim-left-circle: -25px;
   --combat-arme-bottom: -28px;
   --combat-armure-bottom: -25px;
   --combat-header-bottom: -27px;
@@ -606,6 +630,10 @@
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
   --nephilim-left-terre: -23px;
+  --selenim-width-circle: 115px;
+  --selenim-height-circle: 115px;
+  --selenim-top-circle: -25px;
+  --selenim-left-circle: -25px;
   --combat-arme-bottom: -10px;
   --combat-armure-bottom: -10px;
   --combat-header-bottom: -10px;
@@ -1048,10 +1076,10 @@
   color: var(--font-disabled-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .header-with-value .name:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body {
   display: flex;
@@ -1077,7 +1105,7 @@
   width: calc(100% - 50px);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .attributs .body .attribut:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value {
   margin-bottom: 10px;
@@ -1119,7 +1147,7 @@
   padding-top: 4px;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body .arcane:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .selenim {
   flex-direction: row;
@@ -1242,8 +1270,8 @@
   left: 183px;
 }
 .actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.reserves .circle {
-  width: 115px;
-  height: 125px;
+  width: var(--selenim-width-circle);
+  height: var(--selenim-height-circle);
 }
 .actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element.reserves .tooltip {
   top: -56px;
@@ -1256,10 +1284,10 @@
 .actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element .circle {
   position: relative;
   border: none;
-  width: 80px;
-  height: 85px;
-  top: -25px;
-  left: -25px;
+  width: var(--nephilim-width-circle);
+  height: var(--nephilim-height-circle);
+  top: var(--selenim-top-circle);
+  left: var(--selenim-left-circle);
   background-color: transparent;
   max-width: none;
   content: var(--img-circle);
@@ -1276,6 +1304,7 @@
   top: 4px;
 }
 .actor .window-content .actor-root .article .article-body .selenim .left .noyau .body .elements .element .tooltip input {
+  color: var(--font-color);
   background-color: transparent;
   font-size: 20px;
   border: 0px;
@@ -1362,7 +1391,7 @@
   font-size: 13px;
 }
 .actor .window-content .actor-root .article .article-body .selenim .right .imago .body .aspect:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .selenim .right .attributs .body {
   display: flex;
@@ -1387,7 +1416,7 @@
   width: calc(100% - 50px);
 }
 .actor .window-content .actor-root .article .article-body .selenim .right .attributs .body .attribut:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat {
   display: flex;
@@ -1426,7 +1455,7 @@
   font-size: 16px;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .line:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header {
   display: flex;
@@ -1695,7 +1724,7 @@
   text-align: right;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armes li:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armures .header {
   display: flex;
@@ -1744,7 +1773,7 @@
   text-align: right;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armures li:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right {
   display: flex;
@@ -1832,7 +1861,7 @@
   top: 20px;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) label {
   left: 90px;
@@ -1881,7 +1910,7 @@
   display: none;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .etats .etat:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .capacites {
   font-family: 'AJensonPro';
@@ -1907,7 +1936,7 @@
   width: 20px;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body {
   font-family: 'AJensonPro';
@@ -1953,7 +1982,7 @@
   background-color: transparent;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body div input:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .mouvement {
   top: calc(50% - -185px);
@@ -2316,7 +2345,7 @@
   font-size: 24px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone:hover + .menu {
   display: block;
@@ -2373,7 +2402,7 @@
   max-height: 15em;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .menu:hover li:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs {
   width: 100%;
@@ -2711,7 +2740,7 @@
   margin-top: -4px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .materiae:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .catalyseur {
   display: flex;
@@ -2732,7 +2761,7 @@
   width: 30px;
 }
 .actor .window-content .actor-root .article .article-body .materiae .right .body .catalyseur:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .akasha {
   display: flex;
@@ -2836,7 +2865,7 @@
   background-color: transparent;
 }
 .actor .window-content .actor-root .article .article-body .akasha .column .directions div input:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .akasha .column .directions div label {
   width: 150px;
@@ -2955,7 +2984,7 @@
   padding-top: 2px;
 }
 .actor .window-content .actor-root .article .article-body .vecus .body .vecu:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .incarnations-header {
   margin-top: -36px;
@@ -2989,7 +3018,7 @@
   background-color: transparent;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points input:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode {
   display: flex;
@@ -3041,7 +3070,7 @@
   height: 33px;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-name:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-zone {
   position: absolute;
@@ -3086,7 +3115,7 @@
   padding-left: 10px;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu li:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-header .periode-menu:hover {
   display: block;
@@ -3130,7 +3159,7 @@
   margin-right: 10px;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .members .member:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus {
   column-count: 3;
@@ -3173,7 +3202,7 @@
   padding-top: 6px;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus {
   border: solid 1px #333A40;
@@ -3211,9 +3240,9 @@
   margin-right: 10px;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
-.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode:hover {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes:hover {
   cursor: default;
 }
 .actor .window-content .actor-root .article .article-body .groups .group .header {
@@ -3289,7 +3318,7 @@
   margin-right: 20px;
 }
 .actor .window-content .actor-root .article .article-body .groups .group .body .item:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .options {
   display: flex;
@@ -3355,7 +3384,7 @@
   z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .theme:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group fieldset {
   border: none;
@@ -3392,7 +3421,7 @@
   display: none;
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option:hover {
-  text-shadow: 0px 0px 1px black;
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .nofocus {
   display: flex;

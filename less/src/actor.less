@@ -39,6 +39,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 179px;
         --nephilim-left-terre: -23px;
+        --selenim-width-circle: 115px;
+        --selenim-height-circle: 115px;
+        --selenim-top-circle: -25px;
+        --selenim-left-circle: -25px;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -97,6 +101,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 179px;
         --nephilim-left-terre: -23px;
+        --selenim-width-circle: 115px;
+        --selenim-height-circle: 115px;
+        --selenim-top-circle: -25px;
+        --selenim-left-circle: -25px;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -153,6 +161,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 179px;
         --nephilim-left-terre: -23px;
+        --selenim-width-circle: 115px;
+        --selenim-height-circle: 115px;
+        --selenim-top-circle: -25px;
+        --selenim-left-circle: -25px;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -207,6 +219,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 168px;
         --nephilim-left-terre: -30px;
+        --selenim-width-circle: 150px;
+        --selenim-height-circle: 168px;
+        --selenim-top-circle: -45px;
+        --selenim-left-circle: -44px;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -263,6 +279,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 179px;
         --nephilim-left-terre: -23px;
+        --selenim-width-circle: 115px;
+        --selenim-height-circle: 115px;
+        --selenim-top-circle: -25px;
+        --selenim-left-circle: -25px;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -319,6 +339,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 179px;
         --nephilim-left-terre: -23px;
+        --selenim-width-circle: 115px;
+        --selenim-height-circle: 115px;
+        --selenim-top-circle: -25px;
+        --selenim-left-circle: -25px;
         --combat-arme-bottom: -28px;
         --combat-armure-bottom: -25px;
         --combat-header-bottom: -27px;
@@ -373,6 +397,10 @@
         --nephilim-left-lune: 95px;
         --nephilim-top-terre: 179px;
         --nephilim-left-terre: -23px;
+        --selenim-width-circle: 115px;
+        --selenim-height-circle: 115px;
+        --selenim-top-circle: -25px;
+        --selenim-left-circle: -25px;
         --combat-arme-bottom: -10px;
         --combat-armure-bottom: -10px;
         --combat-header-bottom: -10px;
@@ -909,7 +937,7 @@
                                         }
 
                                         &:hover {
-                                            text-shadow: 0px 0px 1px black;
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
 
                                     }
@@ -919,7 +947,7 @@
                                 .header-with-value {
 
                                     .name:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
 
                                 }
@@ -954,7 +982,7 @@
                                         }
 
                                         &:hover {
-                                            text-shadow: 0px 0px 1px black;
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
 
                                     }
@@ -1016,7 +1044,7 @@
                                         }
 
                                         &:hover {
-                                            text-shadow: 0px 0px 1px black;
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
 
                                     }
@@ -1166,8 +1194,8 @@
                                                 left: 183px;
 
                                                 .circle {
-                                                    width: 115px;
-                                                    height: 125px;
+                                                    width: var(--selenim-width-circle);
+                                                    height: var(--selenim-height-circle);
                                                 }
 
                                                 .tooltip {
@@ -1185,10 +1213,10 @@
                                             .circle {
                                                 position: relative;
                                                 border: none;
-                                                width: 80px;
-                                                height: 85px;
-                                                top: -25px;
-                                                left: -25px;
+                                                width: var(--nephilim-width-circle);
+                                                height: var(--nephilim-height-circle);
+                                                top: var(--selenim-top-circle);
+                                                left: var(--selenim-left-circle);
                                                 background-color: transparent;
                                                 max-width: none;
                                                 content: var(--img-circle);
@@ -1207,6 +1235,7 @@
                                                 top: 4px;
 
                                                 input {
+                                                    color: var(--font-color);
                                                     background-color: transparent;
                                                     font-size: 20px;
                                                     border: 0px;
@@ -1327,7 +1356,7 @@
                                         }
 
                                         &:hover {
-                                            text-shadow: 0px 0px 1px black;
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
 
                                     }
@@ -1363,7 +1392,7 @@
                                         }
 
                                         &:hover {
-                                            text-shadow: 0px 0px 1px black;
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
 
                                     }
@@ -1415,7 +1444,7 @@
                                     }
 
                                     &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
 
                                 }
@@ -1783,11 +1812,11 @@
                                         width: 10%;
                                         text-align: right;
                                     }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
         
-                                }
-        
-                                li:hover {
-                                    text-shadow: 0px 0px 1px black;
                                 }
         
                             }
@@ -1848,10 +1877,10 @@
                                         text-align: right;
                                     }
         
-                                }
-        
-                                li:hover {
-                                    text-shadow: 0px 0px 1px black;
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+
                                 }
         
                             }
@@ -1956,11 +1985,11 @@
                                             left: calc(100% - 47px);
                                             top: 20px;
                                         }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
         
-                                    }
-        
-                                    li:hover {
-                                        text-shadow: 0px 0px 1px black;
                                     }
         
                                     li:nth-child(1n) {
@@ -2032,11 +2061,11 @@
                                         }
         
                                     }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
         
-                                }
-        
-                                .etat:hover {
-                                    text-shadow: 0px 0px 1px black;
                                 }
         
                             }
@@ -2066,11 +2095,11 @@
                                     i {
                                         width: 20px;
                                     }
-        
-                                }
-        
-                                .capacite:hover {
-                                    text-shadow: 0px 0px 1px black;
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+
                                 }
         
                             }
@@ -2122,10 +2151,11 @@
                                             transform: translate(-41px, 8px);
                                             border: none;
                                             background-color: transparent;
-                                        }
-        
-                                        input:hover {
-                                            text-shadow: 0px 0px 1px black;
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
                                         }
         
                                     }
@@ -2349,11 +2379,11 @@
                                             flex: 0 0 50px;
                                             margin-right: 10px;
                                         }
-        
-                                    }
-        
-                                    .focus:hover {
-                                        text-shadow: var(--science-focus-shadow);
+
+                                        &:hover {
+                                            text-shadow: var(--science-focus-shadow);
+                                        }
+
                                     }
         
                                 }
@@ -2606,7 +2636,7 @@
                                 font-size: 24px;
 
                                 &:hover {
-                                    text-shadow: 0px 0px 1px black;
+                                    text-shadow: 0px 0px 1px var(--font-color);
 
                                     +.menu {
                                         display: block;
@@ -2677,7 +2707,7 @@
                                     }
     
                                     li:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
     
                                 }
@@ -3110,7 +3140,7 @@
                                     }
 
                                     &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
 
                                 }
@@ -3136,7 +3166,7 @@
                                     }
 
                                     &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
 
                                 }
@@ -3272,12 +3302,13 @@
                                         transform: translate(-55px, -27px);
                                         border: none;
                                         background-color: transparent;
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
                                     }
-        
-                                    input:hover {
-                                        text-shadow: 0px 0px 1px black;
-                                    }
-        
+
                                     label {
                                         width: 150px;
                                     }
@@ -3422,13 +3453,13 @@
                                     }
         
                                 }
-        
+
+                                &:hover {
+                                    text-shadow: 0px 0px 1px var(--font-color);
+                                }
+
                             }
-        
-                            .vecu:hover {
-                                text-shadow: 0px 0px 1px black;
-                            }
-        
+
                         }
             
                     }
@@ -3469,7 +3500,7 @@
                                     background-color: transparent;
                                     
                                     &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
                                 }
 
@@ -3534,7 +3565,7 @@
                                         height: 33px;
 
                                         &:hover {
-                                            text-shadow: 0px 0px 1px black;
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
 
                                     }
@@ -3591,7 +3622,7 @@
                                             padding-left: 10px;
 
                                             &:hover {
-                                                text-shadow: 0px 0px 1px black;
+                                                text-shadow: 0px 0px 1px var(--font-color);
                                             }
 
                                         }
@@ -3650,13 +3681,13 @@
                                                 }
         
                                             }
-        
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
                                         }
-        
-                                        .member:hover {
-                                            text-shadow: 0px 0px 1px black;
-                                        }
-        
+
                                     }
         
                                     .vecus {
@@ -3703,16 +3734,15 @@
                                                 }
         
                                             }
-        
-                                        }
-        
-                                        .vecu:hover {
-                                            text-shadow: 0px 0px 1px black;
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
                                         }
         
                                     }
-        
-        
+
                                     .periode-focus {
                                         border: solid 1px #333A40;
                                         padding: 10px;
@@ -3752,11 +3782,11 @@
                                                 }
         
                                             }
-        
-                                        }
-        
-                                        .focus:hover {
-                                            text-shadow: 0px 0px 1px black;
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
                                         }
         
                                     }
@@ -3764,11 +3794,11 @@
                                 }
         
                             }
-        
-                            .periode:hover {
+
+                            &:hover {
                                 cursor: default;
                             }
-        
+
                         }
             
                     }
@@ -3858,7 +3888,7 @@
                                     }
 
                                     &:hover {
-                                        text-shadow: 0px 0px 1px black;
+                                        text-shadow: 0px 0px 1px var(--font-color);
                                     }
                                     
                                 }
@@ -3934,10 +3964,11 @@
                                         font-size: 16px;
                                         margin-left: calc(100% - 185px);
                                         z-index: 99;
-                                    }
-        
-                                    .theme:hover {
-                                        text-shadow: 0px 0px 1px black;
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
                                     }
         
                                 }
@@ -3982,11 +4013,11 @@
                                             }
                                         
                                         }
-        
-                                    }
-        
-                                    .option:hover {
-                                        text-shadow: 0px 0px 1px black;
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
                                     }
         
                                 }
