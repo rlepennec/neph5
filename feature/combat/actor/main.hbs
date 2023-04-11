@@ -538,14 +538,14 @@
 
                 <li class="capacite esquive">
                     <i class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
-                    <label {{#unless actor.isEsquiveAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
+                    <label {{#unless actor.isEsquiveAvailable}}class="undefined"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
                     <i class="fas fa-caret-right"></i>
                     <label>{{actor.esquive}}</label>
                 </li>
 
                 <li class="capacite lutte">
                     <i class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
-                    <label {{#unless actor.isLutteAvailable}}class="indianred"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
+                    <label {{#unless actor.isLutteAvailable}}class="undefined"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
                     <i class="fas fa-caret-right"></i>
                     <label>{{actor.lutte}}</label>
                 </li>

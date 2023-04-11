@@ -2036,6 +2036,9 @@
   flex-direction: row;
   height: 22px;
 }
+.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite .undefined {
+  color: var(--nephilim-color-chute);
+}
 .actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite .fa-edit {
   margin-left: 22px;
   margin-right: 20px;
