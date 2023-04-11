@@ -313,6 +313,7 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
+  --kabbale-arbre-color: #191813;
   --puce-top: 0px;
 }
 :root.air {
@@ -384,6 +385,7 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
+  --kabbale-arbre-color: #191813;
   --puce-top: 0px;
 }
 :root.eau {
@@ -455,6 +457,7 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
+  --kabbale-arbre-color: #191813;
   --puce-top: 0px;
 }
 :root.feu {
@@ -525,6 +528,7 @@
   --science-circle-height: 77px;
   --science-degre-left: 15px;
   --science-degre-top: 16px;
+  --kabbale-arbre-color: #4c1905;
   --puce-top: -15px;
 }
 :root.lune {
@@ -596,6 +600,7 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
+  --kabbale-arbre-color: #191813;
   --puce-top: 0px;
 }
 :root.lune-noire {
@@ -667,6 +672,7 @@
   --science-circle-height: 62px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
+  --kabbale-arbre-color: #191813;
   --puce-top: 0px;
 }
 :root.terre {
@@ -737,6 +743,7 @@
   --science-circle-height: 65px;
   --science-degre-left: 8px;
   --science-degre-top: 10px;
+  --kabbale-arbre-color: #191813;
   --puce-top: 0px;
 }
 .actor .window-content {
@@ -1519,6 +1526,9 @@
   flex-direction: row;
   padding-top: 20px;
 }
+.actor .window-content .actor-root .article .article-body .combat .disabled {
+  color: var(--font-disabled-color);
+}
 .actor .window-content .actor-root .article .article-body .combat .left {
   display: flex;
   flex-direction: column;
@@ -1944,6 +1954,7 @@
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li input {
   position: absolute;
   flex: 0 0 auto;
+  color: var(--font-color);
   width: 35px;
   height: 35px;
   top: 10px;
@@ -2066,15 +2077,16 @@
   width: 150px;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body div .circle {
+  position: relative;
   border: none;
   width: 48px;
   height: 51px;
-  display: hidden;
   margin-left: 15px;
   content: var(--img-circle);
   background-color: transparent;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body div input {
+  color: var(--font-color);
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
@@ -2268,7 +2280,7 @@
 .actor .window-content .actor-root .article .article-body .arbre {
   position: relative;
   text-align: center;
-  color: #191813;
+  color: var(--kabbale-arbre-color);
 }
 .actor .window-content .actor-root .article .article-body .arbre .arbre-vie {
   border: 0px;

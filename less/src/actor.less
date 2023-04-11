@@ -70,6 +70,7 @@
         --science-circle-height: 65px;
         --science-degre-left: 8px;
         --science-degre-top: 10px;
+        --kabbale-arbre-color: #191813;
         --puce-top: 0px;
     }
 
@@ -143,6 +144,7 @@
         --science-circle-height: 65px;
         --science-degre-left: 8px;
         --science-degre-top: 10px;
+        --kabbale-arbre-color: #191813;
         --puce-top: 0px;
     }
 
@@ -216,6 +218,7 @@
         --science-circle-height: 65px;
         --science-degre-left: 8px;
         --science-degre-top: 10px;
+        --kabbale-arbre-color: #191813;
         --puce-top: 0px;
     }
 
@@ -287,6 +290,7 @@
         --science-circle-height: 77px;
         --science-degre-left: 15px;
         --science-degre-top: 16px;
+        --kabbale-arbre-color: #4c1905;
         --puce-top: -15px;
     }
 
@@ -360,6 +364,7 @@
         --science-circle-height: 65px;
         --science-degre-left: 8px;
         --science-degre-top: 10px;
+        --kabbale-arbre-color: #191813;
         --puce-top: 0px;
     }
 
@@ -433,6 +438,7 @@
         --science-circle-height: 62px;
         --science-degre-left: 8px;
         --science-degre-top: 10px;
+        --kabbale-arbre-color: #191813;
         --puce-top: 0px;
     }
 
@@ -504,6 +510,7 @@
         --science-circle-height: 65px;
         --science-degre-left: 8px;
         --science-degre-top: 10px;
+        --kabbale-arbre-color: #191813;
         --puce-top: 0px;
     }
 
@@ -1506,7 +1513,11 @@
                         display: flex;
                         flex-direction: row;
                         padding-top: 20px;
-        
+
+                        .disabled {
+                            color: var(--font-disabled-color);
+                        }
+
                         .left {
                             display: flex;
                             flex-direction: column;
@@ -2066,6 +2077,7 @@
                                         input {
                                             position: absolute;
                                             flex: 0 0 auto;
+                                            color: var(--font-color);
                                             width: 35px;
                                             height: 35px;
                                             top: 10px;
@@ -2237,16 +2249,17 @@
                                         }
         
                                         .circle {
+                                            position: relative;
                                             border: none;
                                             width: 48px;
                                             height: 51px;
-                                            display: hidden;
                                             margin-left: 15px;
                                             content: var(--img-circle);
                                             background-color: transparent;
                                         }
         
                                         input {
+                                            color: var(--font-color);
                                             flex: 0 0 auto;
                                             width: 35px;
                                             height: 35px;
@@ -2502,7 +2515,7 @@
                     .arbre {
                         position: relative;
                         text-align: center;
-                        color: #191813;
+                        color: var(--kabbale-arbre-color);
         
                         .arbre-vie {
                             border: 0px;
