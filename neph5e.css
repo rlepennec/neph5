@@ -296,8 +296,11 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 10px;
   --selenim-element-dice-left: -3px;
-  --combat-arme-bottom: -10px;
-  --combat-armure-bottom: -10px;
+  --selenim-imago-width: 60px;
+  --selenim-imago-height: 65px;
+  --selenim-imago-top: 0px;
+  --selenim-imago-left: 0px;
+  --selenim-imago-bottom: 7px;
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
@@ -366,8 +369,11 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 10px;
   --selenim-element-dice-left: -3px;
-  --combat-arme-bottom: -10px;
-  --combat-armure-bottom: -10px;
+  --selenim-imago-width: 60px;
+  --selenim-imago-height: 65px;
+  --selenim-imago-top: 0px;
+  --selenim-imago-left: 0px;
+  --selenim-imago-bottom: -10px;
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
@@ -434,8 +440,11 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 10px;
   --selenim-element-dice-left: -3px;
-  --combat-arme-bottom: -10px;
-  --combat-armure-bottom: -10px;
+  --selenim-imago-width: 60px;
+  --selenim-imago-height: 65px;
+  --selenim-imago-top: 0px;
+  --selenim-imago-left: 0px;
+  --selenim-imago-bottom: -10px;
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
@@ -501,9 +510,12 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 7px;
   --selenim-element-dice-left: -8px;
-  --combat-arme-bottom: -10px;
-  --combat-armure-bottom: -10px;
-  --combat-header-bottom: -10px;
+  --selenim-imago-width: 80px;
+  --selenim-imago-height: 98px;
+  --selenim-imago-top: -17px;
+  --selenim-imago-left: -21px;
+  --selenim-imago-bottom: -28px;
+  --combat-header-bottom: -26px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
   --options-body-margin-top: -25px;
@@ -569,8 +581,11 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 10px;
   --selenim-element-dice-left: -3px;
-  --combat-arme-bottom: -10px;
-  --combat-armure-bottom: -10px;
+  --selenim-imago-width: 60px;
+  --selenim-imago-height: 65px;
+  --selenim-imago-top: 0px;
+  --selenim-imago-left: 0px;
+  --selenim-imago-bottom: -10px;
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
@@ -637,8 +652,11 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 10px;
   --selenim-element-dice-left: -3px;
-  --combat-arme-bottom: -28px;
-  --combat-armure-bottom: -25px;
+  --selenim-imago-width: 60px;
+  --selenim-imago-height: 65px;
+  --selenim-imago-top: 0px;
+  --selenim-imago-left: 0px;
+  --selenim-imago-bottom: -10px;
   --combat-header-bottom: -27px;
   --combat-bonus-margin-top: -16px;
   --combat-bonus-losange-top: 57px;
@@ -704,8 +722,11 @@
   --selenim-element-tooltip-left: 13px;
   --selenim-element-dice-top: 10px;
   --selenim-element-dice-left: -3px;
-  --combat-arme-bottom: -10px;
-  --combat-armure-bottom: -10px;
+  --selenim-imago-width: 60px;
+  --selenim-imago-height: 65px;
+  --selenim-imago-top: 0px;
+  --selenim-imago-left: 0px;
+  --selenim-imago-bottom: -10px;
   --combat-header-bottom: -10px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-top: 48px;
@@ -1264,12 +1285,15 @@
   position: relative;
   font-family: 'AJensonPro';
   font-size: 21px;
-  margin-bottom: -10px;
+  margin-bottom: var(--selenim-imago-bottom);
 }
 .actor .window-content .actor-root .article .article-body .selenim .header-with-value .circle {
+  position: relative;
   border: none;
-  width: 60px;
-  height: 65px;
+  width: var(--selenim-imago-width);
+  height: var(--selenim-imago-height);
+  top: var(--selenim-imago-top);
+  left: var(--selenim-imago-left);
   background-color: transparent;
   content: var(--img-circle);
 }
@@ -1537,6 +1561,8 @@
   font-family: 'AJensonPro';
 }
 .actor .window-content .actor-root .article .article-body .combat .left .dommages .header .puce {
+  position: relative;
+  top: var(--puce-top);
   border: none;
   width: 60px;
   background-color: transparent;
@@ -1744,9 +1770,11 @@
   font-family: 'AJensonPro';
   font-size: 21px;
   margin-top: 15px;
-  margin-bottom: var(--combat-arme-bottom);
+  margin-bottom: var(--combat-header-bottom);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armes .header .puce {
+  position: relative;
+  top: var(--puce-top);
   border: none;
   width: 60px;
   display: hidden;
@@ -1805,9 +1833,11 @@
   font-family: 'AJensonPro';
   font-size: 21px;
   margin-top: 15px;
-  margin-bottom: var(--combat-armure-bottom);
+  margin-bottom: var(--combat-header-bottom);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armures .header .puce {
+  position: relative;
+  top: var(--puce-top);
   border: none;
   width: 60px;
   display: hidden;
@@ -1864,6 +1894,8 @@
   margin-bottom: var(--combat-header-bottom);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .header .puce {
+  position: relative;
+  top: var(--puce-top);
   border: none;
   width: 60px;
   display: hidden;
