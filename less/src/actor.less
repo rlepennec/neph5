@@ -59,6 +59,11 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: 7px;
         --combat-header-bottom: -10px;
+        --combat-dommages-circle-top: 81px;
+        --combat-dommages-circle-width: 80px;
+        --combat-dommages-circle-height: 85px;
+        --combat-dommages-physique-left: calc(50% - 190px);
+        --combat-dommages-magique-left: calc(50% + 166px);
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -147,6 +152,11 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -10px;
+        --combat-dommages-circle-top: 81px;
+        --combat-dommages-circle-width: 80px;
+        --combat-dommages-circle-height: 85px;
+        --combat-dommages-physique-left: calc(50% - 190px);
+        --combat-dommages-magique-left: calc(50% + 166px);
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -233,6 +243,11 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -10px;
+        --combat-dommages-circle-top: 81px;
+        --combat-dommages-circle-width: 80px;
+        --combat-dommages-circle-height: 85px;
+        --combat-dommages-physique-left: calc(50% - 190px);
+        --combat-dommages-magique-left: calc(50% + 166px);
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -317,6 +332,11 @@
         --selenim-imago-left: -21px;
         --selenim-imago-bottom: -28px;
         --combat-header-bottom: -26px;
+        --combat-dommages-circle-top: 71px;
+        --combat-dommages-circle-width: 94px;
+        --combat-dommages-circle-height: 105px;
+        --combat-dommages-physique-left: calc(50% - 199px);
+        --combat-dommages-magique-left: calc(50% + 155px);   
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 56px;
@@ -403,6 +423,11 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -10px;
+        --combat-dommages-circle-top: 81px;
+        --combat-dommages-circle-width: 80px;
+        --combat-dommages-circle-height: 85px;
+        --combat-dommages-physique-left: calc(50% - 190px);
+        --combat-dommages-magique-left: calc(50% + 166px);
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -489,6 +514,11 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -27px;
+        --combat-dommages-circle-top: 81px;
+        --combat-dommages-circle-width: 80px;
+        --combat-dommages-circle-height: 85px;
+        --combat-dommages-physique-left: calc(50% - 190px);
+        --combat-dommages-magique-left: calc(50% + 166px);
         --combat-bonus-margin-top: -16px;
         --combat-bonus-losange-top: 57px;
         --combat-bonus-circle-width: 48px;
@@ -573,6 +603,11 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px; 
         --combat-header-bottom: -10px;
+        --combat-dommages-circle-top: 81px;
+        --combat-dommages-circle-width: 80px;
+        --combat-dommages-circle-height: 85px;
+        --combat-dommages-physique-left: calc(50% - 190px);
+        --combat-dommages-magique-left: calc(50% + 166px);
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -1697,18 +1732,18 @@
                                         position: absolute;
                                         display: block;
                                         border: none;
-                                        width: 80px;
-                                        height: 85px;
-                                        top: 81px;
+                                        width: var(--combat-dommages-circle-width);
+                                        height: var(--combat-dommages-circle-height);
+                                        top: var(--combat-dommages-circle-top);
                                         background-color: transparent;
                                         content: var(--img-circle);
 
                                         &.physique {
-                                            left: calc(50% - 190px);
+                                            left: var(--combat-dommages-physique-left);
                                         }
 
                                         &.magique {
-                                            left: calc(50% + 166px);
+                                            left: var(--combat-dommages-magique-left);
                                         }
 
                                     }
