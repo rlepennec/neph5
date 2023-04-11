@@ -61,6 +61,8 @@
         --combat-header-bottom: -10px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
+        --combat-bonus-circle-width: 48px;
+        --combat-bonus-circle-height: 51px;
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(91px, 80px) rotate(30deg);
         --akasha-nef-width: 218px;
@@ -137,6 +139,8 @@
         --combat-header-bottom: -10px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
+        --combat-bonus-circle-width: 48px;
+        --combat-bonus-circle-height: 51px;
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
@@ -211,6 +215,8 @@
         --combat-header-bottom: -10px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
+        --combat-bonus-circle-width: 48px;
+        --combat-bonus-circle-height: 51px;
         --options-body-margin-top: -31px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
@@ -283,6 +289,8 @@
         --combat-header-bottom: -26px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
+        --combat-bonus-circle-width: 56px;
+        --combat-bonus-circle-height: 67px;
         --options-body-margin-top: -25px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
@@ -357,6 +365,8 @@
         --combat-header-bottom: -10px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
+        --combat-bonus-circle-width: 48px;
+        --combat-bonus-circle-height: 51px;
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
@@ -431,6 +441,8 @@
         --combat-header-bottom: -27px;
         --combat-bonus-margin-top: -16px;
         --combat-bonus-losange-top: 57px;
+        --combat-bonus-circle-width: 48px;
+        --combat-bonus-circle-height: 51px;
         --options-body-margin-top: -23px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
@@ -503,6 +515,8 @@
         --combat-header-bottom: -10px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
+        --combat-bonus-circle-width: 48px;
+        --combat-bonus-circle-height: 51px;
         --options-body-margin-top: 0px;
         --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
         --akasha-nef-width: 163px;
@@ -2251,17 +2265,17 @@
                                             position: absolute;
                                             width: 150px;
                                         }
-        
+
                                         .circle {
                                             position: relative;
                                             border: none;
-                                            width: 48px;
-                                            height: 51px;
+                                            width: var(--combat-bonus-circle-width);
+                                            height: var(--combat-bonus-circle-height);
                                             margin-left: 15px;
-                                            content: var(--img-circle);
                                             background-color: transparent;
+                                            content: var(--img-circle);
                                         }
-        
+
                                         input {
                                             color: var(--font-color);
                                             flex: 0 0 auto;
