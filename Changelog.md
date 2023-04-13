@@ -1,4 +1,5 @@
 # 1.3.7
+Mise au point du skin feu
 
 # 1.3.6
 Correction d'une anomalie sur la suppression d'un aspect
