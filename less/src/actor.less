@@ -65,6 +65,9 @@
         --combat-dommages-circle-height: 85px;
         --combat-dommages-physique-left: calc(50% - 190px);
         --combat-dommages-magique-left: calc(50% + 166px);
+        --combat-triangle-width: 200px;
+        --combat-triangle-top: 10px;
+        --combat-triangle-left: -70px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -159,6 +162,9 @@
         --combat-dommages-circle-height: 85px;
         --combat-dommages-physique-left: calc(50% - 190px);
         --combat-dommages-magique-left: calc(50% + 166px);
+        --combat-triangle-width: 200px;
+        --combat-triangle-top: 10px;
+        --combat-triangle-left: -70px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -251,6 +257,9 @@
         --combat-dommages-circle-height: 85px;
         --combat-dommages-physique-left: calc(50% - 190px);
         --combat-dommages-magique-left: calc(50% + 166px);
+        --combat-triangle-width: 200px;
+        --combat-triangle-top: 10px;
+        --combat-triangle-left: -70px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -340,7 +349,10 @@
         --combat-dommages-circle-width: 94px;
         --combat-dommages-circle-height: 105px;
         --combat-dommages-physique-left: calc(50% - 199px);
-        --combat-dommages-magique-left: calc(50% + 155px);   
+        --combat-dommages-magique-left: calc(50% + 155px);
+        --combat-triangle-width: 300px;
+        --combat-triangle-top: -40px;
+        --combat-triangle-left: -117px; 
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 56px;
@@ -433,6 +445,9 @@
         --combat-dommages-circle-height: 85px;
         --combat-dommages-physique-left: calc(50% - 190px);
         --combat-dommages-magique-left: calc(50% + 166px);
+        --combat-triangle-width: 200px;
+        --combat-triangle-top: 10px;
+        --combat-triangle-left: -70px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -525,6 +540,9 @@
         --combat-dommages-circle-height: 85px;
         --combat-dommages-physique-left: calc(50% - 190px);
         --combat-dommages-magique-left: calc(50% + 166px);
+        --combat-triangle-width: 200px;
+        --combat-triangle-top: 10px;
+        --combat-triangle-left: -70px;
         --combat-bonus-margin-top: -16px;
         --combat-bonus-losange-top: 57px;
         --combat-bonus-circle-width: 48px;
@@ -615,6 +633,9 @@
         --combat-dommages-circle-height: 85px;
         --combat-dommages-physique-left: calc(50% - 190px);
         --combat-dommages-magique-left: calc(50% + 166px);
+        --combat-triangle-width: 200px;
+        --combat-triangle-top: 10px;
+        --combat-triangle-left: -70px;
         --combat-bonus-margin-top: 0px;
         --combat-bonus-losange-top: 48px;
         --combat-bonus-circle-width: 48px;
@@ -1659,10 +1680,10 @@
                                     position: absolute;
                                     display: block;
                                     border: none;
-                                    width: 200px;
                                     left: 50%;
-                                    top: 10px;
-                                    margin-left: -70px;
+                                    width: var(--combat-triangle-width);
+                                    top: var(--combat-triangle-top);
+                                    margin-left: var(--combat-triangle-left);
                                     content: var(--img-triangle)
                                 }
         
