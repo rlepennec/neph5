@@ -825,7 +825,7 @@
 }
 :root.terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
-  --font-color: #191813;
+  --font-color: #113203;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
   --shadow-navigation-color: black;
@@ -888,12 +888,12 @@
   --combat-dommages-circle-height: 85px;
   --combat-dommages-physique-left: calc(50% - 190px);
   --combat-dommages-magique-left: calc(50% + 166px);
-  --combat-triangle-width: 200px;
-  --combat-triangle-top: 10px;
-  --combat-triangle-left: -70px;
-  --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-top: 48px;
-  --combat-bonus-circle-width: 48px;
+  --combat-triangle-width: 247px;
+  --combat-triangle-top: -27px;
+  --combat-triangle-left: -93px;
+  --combat-bonus-margin-top: 20px;
+  --combat-bonus-losange-top: 61px;
+  --combat-bonus-circle-width: 51px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
   --combat-bonus-input-height: 35px;
@@ -906,7 +906,7 @@
   --combat-bonus-protection-top: calc(50% - -91px);
   --combat-bonus-protection-left: calc(50% - -57px);
   --options-body-margin-top: 0px;
-  --options-body-margin-bottom: 15px;
+  --options-body-margin-bottom: 0px;
   --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
   --akasha-nef-width: 163px;
   --akasha-barge-transform: translate(101px, 87px) rotate(30deg);
