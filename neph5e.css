@@ -666,7 +666,7 @@
   --vecu-header-bottom: -10px;
 }
 :root.lune {
-  --background: radial-gradient(circle at 118% -14%, #fdfdfe 19%, rgba(106, 106, 106, 0.9) 23%, rgba(72, 72, 72, 0.1) 100%),
+  --background: radial-gradient(circle at 118% -87%, #fdfdfe 19%, rgba(106, 106, 106, 0.5) 23%, rgba(72, 72, 72, 0.1) 100%),
             url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
@@ -1128,7 +1128,6 @@
   width: 100%;
 }
 .actor .window-content .actor-root .article .article-header {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1148,16 +1147,17 @@
   width: 200px;
   content: var(--img-article-separator);
 }
-.actor .window-content .actor-root .article .article-header .article-header-corner {
+.actor .window-content .actor-root .article .article-body .article-upper-corner {
   position: absolute;
   background-color: transparent;
-  border: 0px;
-  content: var(--img-article-corner);
-  left: calc(77%);
-  top: -595px;
+  right: 0px;
+  top: 30px;
+  width: 150px;
   overflow: hidden;
+  border: none;
+  content: var(--img-article-corner);
 }
-.actor .window-content .actor-root .article .article-body .article-corner {
+.actor .window-content .actor-root .article .article-body .article-bottom-corner {
   position: absolute;
   right: 0px;
   bottom: 0px;

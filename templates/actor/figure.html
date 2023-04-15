@@ -215,8 +215,6 @@
 
             <div class="article-header">
 
-                <img class="article-header-corner"/>
-
                 <textarea spellcheck="false" class="article-title" name="name" class="name" rows="1">{{actor.name}}</textarea>
 
                 <img class="article-separator"/>
@@ -225,7 +223,9 @@
 
             <section class="article-body">
 
-                <img class="article-corner"/>
+                <img class="article-upper-corner"/>
+
+                <img class="article-bottom-corner"/>
 
                 <div class="tab" data-group="primary" data-tab="description">
                     {{editor (enrichHTML system.description owner) target="system.description" button=true owner=owner editable=editable}}

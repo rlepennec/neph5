@@ -430,7 +430,7 @@
 
     :root.lune {
         --background :
-            radial-gradient(circle at 118% -14%, rgba(253,253,254,1) 19%, rgba(106,106,106,0.9) 23%, rgba(72,72,72,0.1) 100%),
+            radial-gradient(circle at 118% -87%, #fdfdfe 19%, rgba(106, 106, 106, 0.5) 23%, rgba(72, 72, 72, 0.1) 100%),
             url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
         --font-color: #191813;
         --font-side-color: #191813;
@@ -927,7 +927,6 @@
                 width: 100%;
         
                 .article-header {
-                    position: relative;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -950,21 +949,22 @@
         
                     }
 
-                    .article-header-corner {
-                        position: absolute;
-                        background-color: transparent;
-                        border: 0px;
-                        content: var(--img-article-corner);
-                        left: calc(77%);
-                        top: -595px;
-                        overflow: hidden;
-                    }
-
                 }
         
                 .article-body {
-        
-                    .article-corner {
+
+                    .article-upper-corner {
+                        position: absolute;
+                        background-color: transparent;
+                        right: 0px;
+                        top: 30px;
+                        width: 150px;
+                        overflow: hidden;
+                        border: none;
+                        content: var(--img-article-corner);
+                    }
+
+                    .article-bottom-corner {
                         position: absolute;
                         right: 0px;
                         bottom: 0px;
