@@ -11,6 +11,7 @@
         --column-color: #c3a049;
         --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/soleil/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/soleil/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/soleil/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/soleil/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/soleil/compas.webp");
@@ -118,6 +119,7 @@
         --column-color: #5dd5f3;
         --side-background: url("../../systems/neph5e/assets/skins/air/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/air/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/air/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/air/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/air/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/air/compas.webp");
@@ -225,6 +227,7 @@
         --column-color: #5dd5f3;
         --side-background: url("../../systems/neph5e/assets/skins/eau/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/eau/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/eau/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/eau/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/eau/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/eau/compas.webp");
@@ -330,6 +333,7 @@
         --column-color: #ad521d;
         --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/feu/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/feu/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/feu/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/feu/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/feu/compas.webp");
@@ -426,7 +430,7 @@
 
     :root.lune {
         --background :
-            radial-gradient(circle at 118% -9%, rgba(253,253,254,1) 19%, rgba(106,106,106,0.9) 23%, rgba(72,72,72,0.1) 100%),
+            radial-gradient(circle at 118% -14%, rgba(253,253,254,1) 19%, rgba(106,106,106,0.9) 23%, rgba(72,72,72,0.1) 100%),
             url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
         --font-color: #191813;
         --font-side-color: #191813;
@@ -434,9 +438,10 @@
         --shadow-navigation-color: black;
         --font-disabled-color:#a1a1a1;
         --font-article-title: -internal-light-dark(black, white);
-        --column-color: #5dd5f3;
+        --column-color: #191813;
         --side-background: url("../../systems/neph5e/assets/skins/lune/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/lune/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/lune/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/lune/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/lune/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/lune/compas.webp");
@@ -544,6 +549,7 @@
         --column-color: #5e6061;
         --side-background: url("../../systems/neph5e/assets/skins/lune-noire/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/lune-noire/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/lune-noire/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/lune-noire/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/lune-noire/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/lune-noire/compas.webp");
@@ -649,6 +655,7 @@
         --column-color: #113203;
         --side-background: url("../../systems/neph5e/assets/skins/terre/side-background.webp");
         --img-article-separator: url("../../systems/neph5e/assets/skins/terre/article-separator.webp");
+        --img-article-corner: url("../../systems/neph5e/assets/skins/terre/article-corner.webp");
         --img-nef: url("../../systems/neph5e/assets/skins/terre/boussole.webp");
         --img-circle: url("../../systems/neph5e/assets/skins/terre/circle.webp");
         --img-barge: url("../../systems/neph5e/assets/skins/terre/compas.webp");
@@ -790,13 +797,13 @@
             
                 }
             
+                &:hover .tooltiptext {
+                    visibility: visible;
+                    opacity: 1;
+                }
+
             }
         
-            .tooltip:hover .tooltiptext {
-                visibility: visible;
-                opacity: 1;
-            }
-            
             .hoverable {
         
                 &:hover {
@@ -804,18 +811,6 @@
                     color: #2C606D;
                 }
             
-            }
-        
-            .side::before {
-                position: absolute;
-                top: 0px;
-                right: 0px;
-                bottom: 0px;
-                left: 0px;
-                content: "";
-                background:
-                    var(--side-background);
-                    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
             }
         
             .side {
@@ -910,7 +905,19 @@
                     }
         
                 }
-        
+
+                &::before {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    left: 0px;
+                    content: "";
+                    background:
+                        var(--side-background);
+                        -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
+                }
+
             }
         
             .article {
@@ -920,6 +927,7 @@
                 width: 100%;
         
                 .article-header {
+                    position: relative;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -941,7 +949,17 @@
                         content: var(--img-article-separator);
         
                     }
-        
+
+                    .article-header-corner {
+                        position: absolute;
+                        background-color: transparent;
+                        border: 0px;
+                        content: var(--img-article-corner);
+                        left: calc(77%);
+                        top: -595px;
+                        overflow: hidden;
+                    }
+
                 }
         
                 .article-body {
