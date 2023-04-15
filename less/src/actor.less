@@ -62,6 +62,9 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: 7px;
         --combat-header-bottom: -10px;
+        --combat-carac-width: 48px;
+        --combat-carac-input-width: 35px;
+        --combat-carac-input-top: 10px;
         --combat-armures-bottom : -10px;
         --combat-dommages-circle-top: 81px;
         --combat-dommages-circle-width: 80px;
@@ -166,6 +169,9 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -10px;
+        --combat-carac-width: 48px;
+        --combat-carac-input-width: 35px;
+        --combat-carac-input-top: 10px;
         --combat-armures-bottom : -10px;
         --combat-dommages-circle-top: 81px;
         --combat-dommages-circle-width: 80px;
@@ -270,6 +276,9 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -10px;
+        --combat-carac-width: 48px;
+        --combat-carac-input-width: 35px;
+        --combat-carac-input-top: 10px;
         --combat-armures-bottom : -10px;
         --combat-dommages-circle-top: 81px;
         --combat-dommages-circle-width: 80px;
@@ -372,6 +381,9 @@
         --selenim-imago-left: -21px;
         --selenim-imago-bottom: -28px;
         --combat-header-bottom: -26px;
+        --combat-carac-width: 44px;
+        --combat-carac-input-width: 35px;
+        --combat-carac-input-top: 10px;
         --combat-armures-bottom : -14px;
         --combat-dommages-circle-top: 71px;
         --combat-dommages-circle-width: 94px;
@@ -476,6 +488,9 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -10px;
+        --combat-carac-width: 48px;
+        --combat-carac-input-width: 35px;
+        --combat-carac-input-top: 10px;
         --combat-armures-bottom : -10px;
         --combat-dommages-circle-top: 81px;
         --combat-dommages-circle-width: 80px;
@@ -580,6 +595,9 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px;
         --combat-header-bottom: -27px;
+        --combat-carac-width: 48px;
+        --combat-carac-input-width: 35px;
+        --combat-carac-input-top: 10px;
         --combat-armures-bottom : -27px;
         --combat-dommages-circle-top: 81px;
         --combat-dommages-circle-width: 80px;
@@ -682,6 +700,9 @@
         --selenim-imago-left: 0px;
         --selenim-imago-bottom: -10px; 
         --combat-header-bottom: -10px;
+        --combat-carac-width: 51px;
+        --combat-carac-input-width: 39px;
+        --combat-carac-input-top: 8px;
         --combat-armures-bottom : -10px;
         --combat-dommages-circle-top: 81px;
         --combat-dommages-circle-width: 90px;
@@ -2276,9 +2297,8 @@
                                         .circle {
                                             position: absolute;
                                             border: none;
-                                            width: 48px;
+                                            width: var(--combat-carac-width);
                                             height: 51px;
-                                            display: hidden;
                                             content: var(--img-circle);
                                         }
         
@@ -2286,9 +2306,9 @@
                                             position: absolute;
                                             flex: 0 0 auto;
                                             color: var(--font-color);
-                                            width: 35px;
+                                            width: var(--combat-carac-input-width);
+                                            top: var(--combat-carac-input-top);
                                             height: 35px;
-                                            top: 10px;
                                             text-align: center;
                                             font-weight: bold;
                                             border-radius: 50%;
