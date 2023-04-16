@@ -349,6 +349,16 @@
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -27px;
+  --laboratoire-eau-top: 49px;
+  --laboratoire-eau-left: -141px;
+  --laboratoire-feu-top: -145px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -57px;
+  --laboratoire-lune-left: -14px;
+  --laboratoire-terre-top: -175px;
+  --laboratoire-terre-left: -78px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -475,6 +485,16 @@
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -27px;
+  --laboratoire-eau-top: 49px;
+  --laboratoire-eau-left: -141px;
+  --laboratoire-feu-top: -145px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -57px;
+  --laboratoire-lune-left: -14px;
+  --laboratoire-terre-top: -175px;
+  --laboratoire-terre-left: -78px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -601,6 +621,16 @@
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -27px;
+  --laboratoire-eau-top: 49px;
+  --laboratoire-eau-left: -141px;
+  --laboratoire-feu-top: -145px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -57px;
+  --laboratoire-lune-left: -14px;
+  --laboratoire-terre-top: -175px;
+  --laboratoire-terre-left: -78px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -726,6 +756,16 @@
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 55px;
   --laboratoire-circle-width: 50px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -34px;
+  --laboratoire-eau-top: 45px;
+  --laboratoire-eau-left: -144px;
+  --laboratoire-feu-top: -137px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -62px;
+  --laboratoire-lune-left: -13px;
+  --laboratoire-terre-top: -178px;
+  --laboratoire-terre-left: -76px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -852,6 +892,16 @@
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -27px;
+  --laboratoire-eau-top: 49px;
+  --laboratoire-eau-left: -141px;
+  --laboratoire-feu-top: -145px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -57px;
+  --laboratoire-lune-left: -14px;
+  --laboratoire-terre-top: -175px;
+  --laboratoire-terre-left: -78px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -978,6 +1028,16 @@
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -27px;
+  --laboratoire-eau-top: 49px;
+  --laboratoire-eau-left: -141px;
+  --laboratoire-feu-top: -145px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -57px;
+  --laboratoire-lune-left: -14px;
+  --laboratoire-terre-top: -175px;
+  --laboratoire-terre-left: -78px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -1103,6 +1163,16 @@
   --vecu-header-bottom: -3px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 53px;
+  --laboratoire-air-top: -44px;
+  --laboratoire-air-left: -27px;
+  --laboratoire-eau-top: 49px;
+  --laboratoire-eau-left: -141px;
+  --laboratoire-feu-top: -145px;
+  --laboratoire-feu-left: -213px;
+  --laboratoire-lune-top: -57px;
+  --laboratoire-lune-left: -14px;
+  --laboratoire-terre-top: -175px;
+  --laboratoire-terre-left: -78px;
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 293px;
@@ -2970,24 +3040,24 @@
   left: 6px;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .air {
-  top: -44px;
-  left: -27px;
+  top: var(--laboratoire-air-top);
+  left: var(--laboratoire-air-left);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .eau {
-  top: 49px;
-  left: -141px;
+  top: var(--laboratoire-eau-top);
+  left: var(--laboratoire-eau-left);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .feu {
-  top: -145px;
-  left: -213px;
+  top: var(--laboratoire-feu-top);
+  left: var(--laboratoire-feu-left);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .lune {
-  top: -57px;
-  left: -14px;
+  top: var(--laboratoire-lune-top);
+  left: var(--laboratoire-lune-left);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .elements .terre {
-  top: -175px;
-  left: -78px;
+  top: var(--laboratoire-terre-top);
+  left: var(--laboratoire-terre-left);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct .tooltip {
   z-index: 99;
