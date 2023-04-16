@@ -347,6 +347,26 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-circle-height: 51px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 298px;
+  --materiae-eau-left: 334px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 80px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -17px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 14px;
 }
 :root.air {
   --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
@@ -453,6 +473,26 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-circle-height: 51px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 298px;
+  --materiae-eau-left: 334px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 80px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -17px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 14px;
 }
 :root.eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
@@ -559,6 +599,26 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-circle-height: 51px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 298px;
+  --materiae-eau-left: 334px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 80px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -17px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 14px;
 }
 :root.feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
@@ -664,6 +724,26 @@
   --kabbale-arbre-color: #4c1905;
   --puce-top: -15px;
   --vecu-header-bottom: -10px;
+  --laboratoire-circle-height: 55px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 298px;
+  --materiae-eau-left: 334px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 80px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -17px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 14px;
 }
 :root.lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
@@ -770,6 +850,26 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-circle-height: 51px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 298px;
+  --materiae-eau-left: 334px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 80px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -17px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 14px;
 }
 :root.lune-noire {
   --background: radial-gradient(circle at 118% -9%, #020024 0%, rgba(0, 0, 0, 0.9) 20%, rgba(121, 121, 143, 0.2) 25%, rgba(255, 255, 255, 0.1) 100%),
@@ -876,6 +976,26 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-circle-height: 51px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 298px;
+  --materiae-eau-left: 334px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 80px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -17px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 14px;
 }
 :root.terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
@@ -981,6 +1101,26 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -3px;
+  --laboratoire-circle-height: 51px;
+  --laboratoire-circle-width: 50px;
+  --materiae-air-top: 92px;
+  --materiae-air-left: 341px;
+  --materiae-eau-top: 293px;
+  --materiae-eau-left: 329px;
+  --materiae-feu-top: 7px;
+  --materiae-feu-left: 115px;
+  --materiae-lune-top: 361px;
+  --materiae-lune-left: 95px;
+  --materiae-terre-top: 179px;
+  --materiae-terre-left: -23px;
+  --materiae-circle-width: 86px;
+  --materiae-circle-height: 85px;
+  --materiae-circle-top: -25px;
+  --materiae-circle-left: -25px;
+  --materiae-input-top: 0px;
+  --materiae-input-left: -12px;
+  --materiae-maximum-top: 11px;
+  --materiae-maximum-left: 19px;
 }
 .actor .window-content {
   background: var(--background);
@@ -2789,8 +2929,8 @@
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.circle {
   border: none;
-  width: 50px;
-  height: 51px;
+  width: var(--laboratoire-circle-width);
+  height: var(--laboratoire-circle-height);
   display: hidden;
   background-color: transparent;
   content: var(--img-circle);
@@ -2857,6 +2997,7 @@
   border: none;
   width: 40px;
   text-align: center;
+  color: var(--font-color);
   background-color: transparent;
   z-index: 99;
 }
@@ -3015,32 +3156,32 @@
   position: absolute;
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.air {
-  top: 92px;
-  left: 341px;
+  top: var(--materiae-air-top);
+  left: var(--materiae-air-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.eau {
-  top: 298px;
-  left: 334px;
+  top: var(--materiae-eau-top);
+  left: var(--materiae-eau-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.feu {
-  top: 7px;
-  left: 115px;
+  top: var(--materiae-feu-top);
+  left: var(--materiae-feu-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.lune {
-  top: 361px;
-  left: 95px;
+  top: var(--materiae-lune-top);
+  left: var(--materiae-lune-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element.terre {
-  top: 179px;
-  left: -23px;
+  top: var(--materiae-terre-top);
+  left: var(--materiae-terre-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .circle {
   position: relative;
   border: none;
-  width: 80px;
-  height: 85px;
-  top: -25px;
-  left: -25px;
+  width: var(--materiae-circle-width);
+  height: var(--materiae-circle-height);
+  top: var(--materiae-circle-top);
+  left: var(--materiae-circle-left);
   background-color: transparent;
   max-width: none;
   content: var(--img-circle);
@@ -3048,14 +3189,16 @@
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .maximum {
   position: absolute;
   font-size: 16px;
-  top: 11px;
-  left: 14px;
+  top: var(--materiae-maximum-top);
+  left: var(--materiae-maximum-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip {
   position: absolute;
-  left: -17px;
+  top: var(--materiae-input-top);
+  left: var(--materiae-input-left);
 }
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip input {
+  color: var(--font-color);
   background-color: transparent;
   font-size: 20px;
   border: 0px;
