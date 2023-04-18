@@ -4,7 +4,7 @@ import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 import { Macros } from "./module/common/macros.js";
 import { MigrationTools } from "./module/migration/migration.js";
 import { NephilimChat } from "./module/common/chat.js";
-//import { CustomTinyMCE } from "./module/common/customTinyMCE.js";
+import { CustomTinyMCE } from "./module/common/customTinyMCE.js";
 
 import { NephilimItem } from "./module/item/entity.js";
 import { NephilimActor } from "./module/actor/entity.js";
@@ -57,7 +57,7 @@ Hooks.once("init", function () {
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
     CONFIG.Canvas.layers.nephilim = { layerClass: ControlsLayer, group: "primary" };
-    //CONFIG.TinyMCE = CustomTinyMCE.CONFIG;
+    CONFIG.TinyMCE = CustomTinyMCE.CONFIG;
 
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
@@ -236,9 +236,9 @@ Hooks.once("init", function () {
 
     });
 
-    // Apply the skin
+    // Handle the actor sheet creation to apply the defined or the default skin
     Hooks.on("renderActorSheet", (app, html, data) => {
-        const skin = data.actor.system.options.theme;
+        const skin = data.actor.system?.options?.theme;
         $(html[0])
             .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin terre")
             .addClass( "skin-" + (skin == null ? 'soleil' : skin));
