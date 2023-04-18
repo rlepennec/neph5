@@ -1,6 +1,5 @@
 import { Chute } from "../../feature/periode/chute.js";
 import { Constants } from "../common/constants.js";
-import { EmbeddedItem } from "../common/embeddedItem.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Game } from "../common/game.js";
 import { HistoricalSheet } from "./historical.js";
@@ -30,7 +29,7 @@ export class FigureSheet extends HistoricalSheet {
         return mergeObject(super.defaultOptions, {
             width: 1070,
             height: 950,
-            classes: ["nephilim", "sheet", "actor"],
+            classes: ["nephilim", "sheet", "actor" ],
             resizable: true,
             scrollY: [
                 ".tab.description",
@@ -106,7 +105,7 @@ export class FigureSheet extends HistoricalSheet {
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
-        html.find('div[data-tab="options"] .theme').change(this._onChangeSkin.bind(this));
+        html.find('div[data-tab="options"] .theme').change(this.onChangeSkin.bind(this));
 
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
@@ -159,19 +158,6 @@ export class FigureSheet extends HistoricalSheet {
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
 
-        // Initialize the actor sheet skin
-        document.documentElement.className = this.actor.system.options.theme;
-
-    }
-
-    /**
-     * Set the skin of the actor sheet.
-     * @param event The click event.
-     */
-    async _onChangeSkin(event) {
-        event.preventDefault();
-        const skin = $(event.currentTarget).closest('.theme').val();
-        document.documentElement.className = skin == null ? 'soleil' : skin;
     }
 
     /**

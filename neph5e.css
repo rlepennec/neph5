@@ -242,8 +242,7 @@
   border-style: solid;
   border-color: black;
 }
-:root,
-:root.soleil {
+.skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
@@ -388,9 +387,9 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-:root.air {
+.skin-air {
   --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
-            url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+        url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
@@ -534,9 +533,9 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-:root.eau {
+.actor.skin-eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-            url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+        url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
@@ -680,7 +679,7 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-:root.feu {
+.actor.skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
   --font-color: #e37e00;
   --font-side-color: #b58468;
@@ -825,9 +824,9 @@
   --materiae-maximum-top: 28px;
   --materiae-maximum-left: 30px;
 }
-:root.lune {
+.skin-skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
-            url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+        url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --font-color: #fafafa;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
@@ -860,7 +859,7 @@
   --nephilim-left-element: 13px;
   --nephilim-top-element: 4px;
   --nephilim-width-circle: 80px;
-  --nephilim-height-circle: 85px;
+  --nephilim-height-circle: 81px;
   --nephilim-top-air: 92px;
   --nephilim-left-air: 341px;
   --nephilim-top-eau: 298px;
@@ -971,9 +970,9 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-:root.lune-noire {
+.skin-lune-noire {
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
-            url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+        url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #383a3a;
@@ -1117,7 +1116,7 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-:root.terre {
+.skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
   --font-color: #113203;
   --font-side-color: #191813;

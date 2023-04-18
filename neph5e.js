@@ -236,6 +236,14 @@ Hooks.once("init", function () {
 
     });
 
+    // Apply the skin
+    Hooks.on("renderActorSheet", (app, html, data) => {
+        const skin = data.actor.system.options.theme;
+        $(html[0])
+            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin terre")
+            .addClass( "skin-" + (skin == null ? 'soleil' : skin));
+    });
+
     // Handle chat message for opposed rolls, especially combat system
     Hooks.on("renderChatMessage", async (app, html, data) => {
         const reaction = await OpposedRollBuilder.create(data);

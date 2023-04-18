@@ -115,6 +115,19 @@ export class BaseSheet extends ActorSheet {
     }
 
     /**
+     * Set the skin of the actor sheet.
+     * @param event The click event.
+     */
+    async onChangeSkin(event) {
+        event.preventDefault();
+        const skin = $(event.currentTarget).closest('.theme').val();
+        $(event.currentTarget)
+            .closest("#FigureSheet-Actor-" + this.actor.id)
+            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin terre")
+            .addClass( "skin-" + (skin == null ? 'soleil' : skin));
+    }
+
+    /**
      * Create the specified feature.
      * @param purpose The purpose 
      *   - arcane
