@@ -245,6 +245,7 @@
 .skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
   --font-color: #191813;
+  --font-editor-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #4e3904;
   --shadow-navigation-color: black;
@@ -391,6 +392,7 @@
   --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
         url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --font-color: #191813;
+  --font-editor-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
   --shadow-navigation-color: black;
@@ -533,10 +535,11 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-.actor.skin-eau {
+.skin-eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
         url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --font-color: #191813;
+  --font-editor-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
   --shadow-navigation-color: black;
@@ -679,9 +682,10 @@
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
 }
-.actor.skin-feu {
+.skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
   --font-color: #e37e00;
+  --font-editor-color: #e37e00;
   --font-side-color: #b58468;
   --font-side-selected-color: #362102;
   --shadow-navigation-color: #520303;
@@ -824,10 +828,11 @@
   --materiae-maximum-top: 28px;
   --materiae-maximum-left: 30px;
 }
-.skin-skin-lune {
+.skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
         url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --font-color: #fafafa;
+  --font-editor-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #a1a1a1;
   --shadow-navigation-color: black;
@@ -974,6 +979,7 @@
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
         url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --font-color: #191813;
+  --font-editor-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: #383a3a;
   --shadow-navigation-color: black;
@@ -1119,6 +1125,7 @@
 .skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
   --font-color: #113203;
+  --font-editor-color: #191813;
   --font-side-color: #191813;
   --font-side-selected-color: ##9eb58f;
   --shadow-navigation-color: #113203;

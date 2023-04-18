@@ -1,3 +1,7 @@
+.mce-content-body {
+    color: red;
+}
+
 h1 {
     Background-image: URL(../../../systems/torgeternity/images/tab-header.webp);
     background-repeat: no-repeat;
