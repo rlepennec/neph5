@@ -322,7 +322,9 @@
   --combat-triangle-top: 10px;
   --combat-triangle-left: -70px;
   --combat-bonus-margin-top: 0px;
+  --combat-bonus-losange-left: calc(50% - 51px);
   --combat-bonus-losange-top: 48px;
+  --combat-bonus-losange-width: 120px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
@@ -471,7 +473,9 @@
   --combat-triangle-top: 10px;
   --combat-triangle-left: -70px;
   --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-top: 48px;
+  --combat-bonus-losange-left: calc(50% - 36px);
+  --combat-bonus-losange-top: 55px;
+  --combat-bonus-losange-width: 90px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
@@ -619,7 +623,9 @@
   --combat-triangle-top: -40px;
   --combat-triangle-left: -117px;
   --combat-bonus-margin-top: 0px;
+  --combat-bonus-losange-left: calc(50% - 51px);
   --combat-bonus-losange-top: 48px;
+  --combat-bonus-losange-width: 120px;
   --combat-bonus-circle-width: 56px;
   --combat-bonus-circle-height: 67px;
   --combat-bonus-input-width: 31px;
@@ -768,7 +774,9 @@
   --combat-triangle-top: -25px;
   --combat-triangle-left: -95px;
   --combat-bonus-margin-top: 0px;
+  --combat-bonus-losange-left: calc(50% - 51px);
   --combat-bonus-losange-top: 48px;
+  --combat-bonus-losange-width: 120px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
@@ -917,7 +925,9 @@
   --combat-triangle-top: -25px;
   --combat-triangle-left: -95px;
   --combat-bonus-margin-top: -16px;
+  --combat-bonus-losange-left: calc(50% - 51px);
   --combat-bonus-losange-top: 57px;
+  --combat-bonus-losange-width: 120px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
@@ -1065,7 +1075,9 @@
   --combat-triangle-top: 10px;
   --combat-triangle-left: -70px;
   --combat-bonus-margin-top: 0px;
+  --combat-bonus-losange-left: calc(50% - 51px);
   --combat-bonus-losange-top: 48px;
+  --combat-bonus-losange-width: 120px;
   --combat-bonus-circle-width: 48px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 35px;
@@ -1213,7 +1225,9 @@
   --combat-triangle-top: -27px;
   --combat-triangle-left: -93px;
   --combat-bonus-margin-top: 20px;
+  --combat-bonus-losange-left: calc(50% - 51px);
   --combat-bonus-losange-top: 61px;
+  --combat-bonus-losange-width: 120px;
   --combat-bonus-circle-width: 51px;
   --combat-bonus-circle-height: 51px;
   --combat-bonus-input-width: 32px;
@@ -2609,9 +2623,9 @@
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body .losange {
   position: absolute;
-  left: calc(50% - 51px);
+  left: var(--combat-bonus-losange-left);
   top: var(--combat-bonus-losange-top);
-  width: 120px;
+  width: var(--combat-bonus-losange-width);
   border: none;
   content: var(--img-losange);
 }
