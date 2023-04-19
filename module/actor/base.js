@@ -133,7 +133,7 @@ export class BaseSheet extends ActorSheet {
         const skin = $(event.currentTarget).closest('.theme').val();
         $(event.currentTarget)
             .closest(".actor")
-            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin terre")
+            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin-terre")
             .addClass( "skin-" + (skin == null ? 'soleil' : skin));
     }
 

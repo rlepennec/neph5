@@ -247,7 +247,7 @@ Hooks.once("init", function () {
     Hooks.on("renderActorSheet", (app, html, data) => {
         const skin = data.actor.system?.options?.theme;
         $(html[0])
-            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin terre")
+            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin-terre")
             .addClass( "skin-" + (skin == null ? 'soleil' : skin));
     });
 
