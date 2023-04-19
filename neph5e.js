@@ -4,7 +4,6 @@ import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 import { Macros } from "./module/common/macros.js";
 import { MigrationTools } from "./module/migration/migration.js";
 import { NephilimChat } from "./module/common/chat.js";
-import { MCE } from "./module/common/mce.js";
 
 import { NephilimItem } from "./module/item/entity.js";
 import { NephilimActor } from "./module/actor/entity.js";
@@ -57,7 +56,15 @@ Hooks.once("init", function () {
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
     CONFIG.Canvas.layers.nephilim = { layerClass: ControlsLayer, group: "primary" };
-    CONFIG.TinyMCE = MCE.CONFIG;
+    CONFIG.TinyMCE = {
+        branding: false,
+        menubar: false,
+        statusbar: false,
+        content_css: ["systems/neph5e/module/common/mce.css"],
+        plugins: "lists image table code save link",
+        toolbar: "styles bullist numlist image table hr link removeformat code save",
+        save_enablewhendirty: true
+    };
 
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
