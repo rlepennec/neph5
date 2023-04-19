@@ -469,9 +469,9 @@
   --combat-dommages-circle-height: 85px;
   --combat-dommages-physique-left: calc(50% - 190px);
   --combat-dommages-magique-left: calc(50% + 166px);
-  --combat-triangle-width: 200px;
-  --combat-triangle-top: 10px;
-  --combat-triangle-left: -70px;
+  --combat-triangle-width: 223px;
+  --combat-triangle-top: -17px;
+  --combat-triangle-left: -74px;
   --combat-bonus-margin-top: 0px;
   --combat-bonus-losange-left: calc(50% - 36px);
   --combat-bonus-losange-top: 55px;
