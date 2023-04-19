@@ -60,6 +60,8 @@ export class FigurantSheet extends BaseSheet {
 
         super.activateCombatListeners(html);
 
+        super.activateOptionListeners(html);
+
         html.find('div[data-tab="combat"] .ka .roll').click(this._onRollKa.bind(this));
         html.find('div[data-tab="combat"] .menace .roll').click(this._onRollMenace.bind(this));
         html.find('div[data-tab="combat"] .vecu .roll').click(this._onRollVecu.bind(this));

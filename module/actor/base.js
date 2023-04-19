@@ -51,6 +51,16 @@ export class BaseSheet extends ActorSheet {
     }
 
     /**
+     * Activate listeners about the options panel.
+     * @param html The html content to listen
+     */
+    activateOptionListeners(html) {
+
+        html.find('div[data-tab="options"] .theme').change(this.onChangeSkin.bind(this));
+
+    }
+
+    /**
      * Activate listeners about the combat panel used by figure and figurant actors.
      * @param html The html content to listen
      */

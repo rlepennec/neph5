@@ -47,6 +47,9 @@ export const preloadTemplates = async function () {
         // Figure
         "systems/neph5e/feature/figure/actor/options.hbs",
     
+        // Figurant
+        "systems/neph5e/feature/figurant/actor/options.hbs",
+
         // Fraternite
         "systems/neph5e/feature/fraternite/actor/effectif.hbs",
         "systems/neph5e/feature/fraternite/actor/ressources.hbs",

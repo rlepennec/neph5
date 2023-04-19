@@ -82,6 +82,8 @@ export class FigureSheet extends HistoricalSheet {
 
         super.activateCombatListeners(html);
 
+        super.activateOptionListeners(html);
+
         // General
         html.find('div[data-tab]').on("drop", this._onDrop.bind(this));
 
@@ -105,7 +107,6 @@ export class FigureSheet extends HistoricalSheet {
 
         // Options
         html.find('div[data-tab="options"] .incarnationsOuvertes').change(this._onChangePeriodesDisplay.bind(this));
-        html.find('div[data-tab="options"] .theme').change(this.onChangeSkin.bind(this));
 
         // Fraternites
         html.find('.sheet-navigation-tab[data-tab="actor"]').click(this._onOpenActor.bind(this));
