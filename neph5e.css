@@ -272,6 +272,8 @@
   --nephilim-header-bottom: -10px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
+  --nephilim-circle-height: 65px;
+  --nephilim-stase-margin-top: -4px;
   --nephilim-color-chute: indianred;
   --nephilim-left-dice: -3px;
   --nephilim-top-dice: 10px;
@@ -419,6 +421,8 @@
   --nephilim-header-bottom: -10px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
+  --nephilim-circle-height: 65px;
+  --nephilim-stase-margin-top: -4px;
   --nephilim-color-chute: indianred;
   --nephilim-left-dice: -3px;
   --nephilim-top-dice: 10px;
@@ -565,6 +569,8 @@
   --nephilim-header-bottom: -10px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
+  --nephilim-circle-height: 65px;
+  --nephilim-stase-margin-top: -4px;
   --nephilim-color-chute: #ff6409;
   --nephilim-left-dice: 7px;
   --nephilim-top-dice: 25px;
@@ -712,6 +718,8 @@
   --nephilim-header-bottom: -10px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
+  --nephilim-circle-height: 60px;
+  --nephilim-stase-margin-top: -6px;
   --nephilim-color-chute: 191813;
   --nephilim-left-dice: -3px;
   --nephilim-top-dice: 10px;
@@ -776,7 +784,7 @@
   --options-body-margin-top: 0px;
   --options-body-margin-bottom: -10px;
   --akasha-circle-width: 60px;
-  --akasha-nef-transform: translate(119px, 100px) rotate(0deg);
+  --akasha-nef-transform: translate(119px, 85px) rotate(0deg);
   --akasha-nef-width: 163px;
   --akasha-barge-transform: translate(101px, 87px) rotate(30deg);
   --akasha-barge-width: 200px;
@@ -786,7 +794,7 @@
   --science-degre-left: 8px;
   --science-degre-top: 7px;
   --kabbale-arbre-color: #191813;
-  --puce-top: 0px;
+  --puce-top: -6px;
   --vecu-header-bottom: -10px;
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
@@ -860,6 +868,8 @@
   --nephilim-header-input-left: 8px;
   --nephilim-color-chute: indianred;
   --nephilim-circle-width: 60px;
+  --nephilim-circle-height: 65px;
+  --nephilim-stase-margin-top: -4px;
   --nephilim-left-dice: -3px;
   --nephilim-top-dice: 10px;
   --nephilim-left-element: 13px;
@@ -1005,6 +1015,8 @@
   --nephilim-header-bottom: -10px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
+  --nephilim-circle-height: 65px;
+  --nephilim-stase-margin-top: -4px;
   --nephilim-color-chute: indianred;
   --nephilim-left-dice: -3px;
   --nephilim-top-dice: 10px;
@@ -1151,6 +1163,8 @@
   --nephilim-header-bottom: 2px;
   --nephilim-header-input-left: 12px;
   --nephilim-circle-width: 66px;
+  --nephilim-circle-height: 65px;
+  --nephilim-stase-margin-top: -4px;
   --nephilim-color-chute: black;
   --nephilim-left-dice: -3px;
   --nephilim-top-dice: 10px;
@@ -1458,7 +1472,7 @@
 }
 .actor .window-content .actor-root .article .article-body .nephilim .header .puce {
   position: relative;
-  top: -16px;
+  top: var(--puce-top);
   border: none;
   width: 60px;
   background-color: transparent;
@@ -1490,7 +1504,7 @@
 .actor .window-content .actor-root .article .article-body .nephilim .header-with-value .circle {
   border: none;
   width: var(--nephilim-circle-width);
-  height: 65px;
+  height: var(--nephilim-circle-height);
   background-color: transparent;
   content: var(--img-circle);
 }
@@ -1735,7 +1749,7 @@
   color: var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .degre {
-  margin-top: -4px;
+  margin-top: var(--nephilim-stase-margin-top);
   color: var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body {
