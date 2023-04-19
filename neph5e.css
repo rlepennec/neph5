@@ -245,6 +245,7 @@
 .skin-air {
   --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
         url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
   --font-side-color: #191813;
@@ -352,28 +353,29 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-labs-left: calc(50% + 215px);
   --laboratoire-circle-height: 51px;
-  --laboratoire-circle-width: 50px;
-  --laboratoire-air-top: -44px;
-  --laboratoire-air-left: -27px;
-  --laboratoire-eau-top: 49px;
-  --laboratoire-eau-left: -141px;
+  --laboratoire-circle-width: 52px;
+  --laboratoire-air-top: -45px;
+  --laboratoire-air-left: -32px;
+  --laboratoire-eau-top: 45px;
+  --laboratoire-eau-left: -145px;
   --laboratoire-feu-top: -145px;
   --laboratoire-feu-left: -213px;
   --laboratoire-lune-top: -57px;
-  --laboratoire-lune-left: -14px;
+  --laboratoire-lune-left: -8px;
   --laboratoire-terre-top: -175px;
-  --laboratoire-terre-left: -78px;
-  --laboratoire-athanor-top: 349px;
-  --laboratoire-athanor-left: calc(50% - 57px);
-  --laboratoire-alambic-top: 349px;
-  --laboratoire-alambic-left: calc(50% - 16px);
-  --laboratoire-aludel-top: 266px;
-  --laboratoire-aludel-left: calc(50% - 27px);
-  --laboratoire-cornue-top: 257px;
-  --laboratoire-cornue-left: calc(50% - 261px);
-  --laboratoire-creuset-top: 189px;
-  --laboratoire-creuset-left: calc(50% - 242px);
+  --laboratoire-terre-left: -75px;
+  --laboratoire-athanor-top: 334px;
+  --laboratoire-athanor-left: calc(50% - 69px);
+  --laboratoire-alambic-top: 330px;
+  --laboratoire-alambic-left: calc(50% - 31px);
+  --laboratoire-aludel-top: 255px;
+  --laboratoire-aludel-left: calc(50% - 32px);
+  --laboratoire-cornue-top: 240px;
+  --laboratoire-cornue-left: calc(50% - 275px);
+  --laboratoire-creuset-top: 159px;
+  --laboratoire-creuset-left: calc(50% - 245px);
   --materiae-air-top: 92px;
   --materiae-air-left: 341px;
   --materiae-eau-top: 298px;
@@ -396,6 +398,7 @@
 .skin-eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
         url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --article-separator-margin-top: 0px;
   --font-color: #0d273d;
   --font-editor-color: #191813;
   --font-side-color: #191813;
@@ -503,6 +506,7 @@
   --kabbale-arbre-color: #191813;
   --puce-top: -10px;
   --vecu-header-bottom: -19px;
+  --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
   --laboratoire-air-top: -44px;
@@ -546,6 +550,7 @@
 }
 .skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
+  --article-separator-margin-top: -20px;
   --font-color: #e37e00;
   --font-editor-color: #e37e00;
   --font-side-color: #b58468;
@@ -653,6 +658,7 @@
   --kabbale-arbre-color: #4c1905;
   --puce-top: -15px;
   --vecu-header-bottom: -10px;
+  --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 55px;
   --laboratoire-circle-width: 50px;
   --laboratoire-air-top: -44px;
@@ -697,6 +703,7 @@
 .skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
         url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --article-separator-margin-top: 0px;
   --font-color: #fafafa;
   --font-editor-color: #191813;
   --font-side-color: #191813;
@@ -804,6 +811,7 @@
   --kabbale-arbre-color: #191813;
   --puce-top: -6px;
   --vecu-header-bottom: -10px;
+  --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
   --laboratoire-air-top: -44px;
@@ -848,6 +856,7 @@
 .skin-lune-noire {
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
         url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
   --font-side-color: #191813;
@@ -955,6 +964,7 @@
   --kabbale-arbre-color: #191813;
   --puce-top: -15px;
   --vecu-header-bottom: -10px;
+  --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
   --laboratoire-air-top: -44px;
@@ -998,6 +1008,7 @@
 }
 .skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
+  --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
   --font-side-color: #191813;
@@ -1105,6 +1116,7 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -10px;
+  --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
   --laboratoire-air-top: -44px;
@@ -1148,6 +1160,7 @@
 }
 .skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
+  --article-separator-margin-top: 0px;
   --font-color: #113203;
   --font-editor-color: #191813;
   --font-side-color: #191813;
@@ -1255,6 +1268,7 @@
   --kabbale-arbre-color: #191813;
   --puce-top: 0px;
   --vecu-header-bottom: -3px;
+  --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 53px;
   --laboratoire-air-top: -44px;
@@ -1459,6 +1473,7 @@
 .actor .window-content .actor-root .article .article-header .article-separator {
   border: 0px;
   width: 200px;
+  margin-top: var(--article-separator-margin-top);
   content: var(--img-article-separator);
 }
 .actor .window-content .actor-root .article .article-body .article-upper-corner {
@@ -3016,7 +3031,7 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires {
   position: absolute;
   top: 110px;
-  left: calc(50% + 165px);
+  left: var(--laboratoire-labs-left);
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .laboratoires .zone {
   font-family: 'AJensonPro';
