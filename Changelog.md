@@ -1,3 +1,5 @@
+# 1.3.9
+
 # 1.3.8
 Application des skins par personnage
 Amélioration des skins
