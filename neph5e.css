@@ -279,8 +279,8 @@
   --nephilim-top-dice: 10px;
   --nephilim-left-element: 13px;
   --nephilim-top-element: 4px;
-  --nephilim-width-circle: 80px;
-  --nephilim-height-circle: 85px;
+  --nephilim-width-circle: 94px;
+  --nephilim-height-circle: 86px;
   --nephilim-top-air: 92px;
   --nephilim-left-air: 341px;
   --nephilim-top-eau: 298px;
@@ -464,11 +464,11 @@
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
   --combat-armures-bottom: -12px;
-  --combat-dommages-circle-top: 81px;
-  --combat-dommages-circle-width: 80px;
-  --combat-dommages-circle-height: 85px;
-  --combat-dommages-physique-left: calc(50% - 190px);
-  --combat-dommages-magique-left: calc(50% + 166px);
+  --combat-dommages-circle-top: 79px;
+  --combat-dommages-circle-width: 85px;
+  --combat-dommages-circle-height: 87px;
+  --combat-dommages-physique-left: calc(50% - 193px);
+  --combat-dommages-magique-left: calc(50% + 163px);
   --combat-triangle-width: 223px;
   --combat-triangle-top: -17px;
   --combat-triangle-left: -74px;
