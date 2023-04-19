@@ -1,6 +1,7 @@
 # 1.3.8
 Application des skins par personnage
 Amélioration des skins
+Configuration des couleurs du tinyMCE Editor
 
 # 1.3.7
 Mise au point du skin feu
