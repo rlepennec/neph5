@@ -5089,8 +5089,9 @@ form.combat div.hiddable #description {
   --color-shadow-highlight: #f5f4f4;
   --color-border-highlight-alt: #f5f4f4;
   --color-shadow: #bebdbd;
+  font-family: 'AJensonPro';
 }
-#interface #ui-left #controls ol.main-controls li {
+#interface #ui-left #controls li {
   width: 40px;
   height: 40px;
   border-radius: 22px;
@@ -5098,26 +5099,26 @@ form.combat div.hiddable #description {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
-  font-family: 'AJensonPro';
   font-size: 17px;
 }
-#interface #ui-left #controls ol.main-controls li:hover {
-  -webkit-box-shadow: 0 0 5px 5px var(--color-shadow);
-  -moz-box-shadow: 0 0 5px 5px var(--color-shadow);
-  box-shadow: 0 0 5px 5px var(--color-shadow);
+#interface #ui-left #controls li:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
-#interface #ui-left #controls ol.main-controls li i {
+#interface #ui-left #controls li i {
   margin-top: 11px;
-}
-#interface #ui-left #controls ol.main-controls li.active {
-  border: 2px solid var(--color-border-highlight-alt);
 }
 #interface #ui-left #players {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
-  font-family: 'AJensonPro';
   font-size: 17px;
+}
+#interface #ui-left #players:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
 #interface #ui-middle #ui-top #navigation #nav-toggle {
   background: var(--background);
@@ -5130,8 +5131,12 @@ form.combat div.hiddable #description {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
-  font-family: 'AJensonPro';
   font-size: 17px;
+}
+#interface #ui-middle #ui-top #navigation li:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
 #interface #ui-middle #ui-bottom #hotbar #action-bar li {
   background: var(--background);
@@ -5159,13 +5164,22 @@ form.combat div.hiddable #description {
   opacity: var(--opacity);
   --color-widget: #f5f4f4;
   --color-widget-background: #051732;
-  font-family: 'AJensonPro';
   font-size: 17px;
 }
 #interface #ui-right #sidebar button {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
+}
+#interface #ui-right #sidebar button:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+}
+#interface #ui-right #sidebar #sidebar-tabs a:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
 .package-configuration {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");

@@ -8,38 +8,31 @@
     --color-border-highlight-alt: #f5f4f4;
     --color-shadow: #bebdbd;
 
+    font-family: 'AJensonPro';
+
 
     #ui-left {
 
         #controls {
 
-            ol.main-controls {
+            li {
+                width: 40px;
+                height: 40px;
+                border-radius: 22px;
+                color: var(--color-border-highlight);
+                background: var(--background);
+                background-size: var(--background-size);
+                opacity: var(--opacity);
+                font-size: 17px;
 
-                li {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 22px;
-                    color: var(--color-border-highlight);
-                    background: var(--background);
-                    background-size: var(--background-size);
-                    opacity: var(--opacity);
-                    font-family: 'AJensonPro';
-                    font-size: 17px;
+                &:hover {
+                    -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                }
 
-                    &:hover {
-                        -webkit-box-shadow: 0 0 5px 5px var(--color-shadow);
-                        -moz-box-shadow: 0 0 5px 5px var(--color-shadow);
-                        box-shadow: 0 0 5px 5px var(--color-shadow);
-                    }
-
-                    i {
-                        margin-top: 11px;
-                    }
-
-                    &.active {
-                        border: 2px solid var(--color-border-highlight-alt);
-                    }
-
+                i {
+                    margin-top: 11px;
                 }
 
             }
@@ -51,8 +44,14 @@
             background: var(--background);
             background-size: var(--background-size);
             opacity: var(--opacity);
-            font-family: 'AJensonPro';
             font-size: 17px;
+
+            &:hover {
+                -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+            }
+
         }
 
     }
@@ -75,8 +74,14 @@
                     background: var(--background);
                     background-size: var(--background-size);
                     opacity: var(--opacity);
-                    font-family: 'AJensonPro';
                     font-size: 17px;
+
+                    &:hover {
+                        -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                        -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                        box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    }
+
                 }
 
             }
@@ -131,13 +136,29 @@
             opacity: var(--opacity);
             --color-widget: #f5f4f4;
             --color-widget-background: #051732;
-            font-family: 'AJensonPro';
             font-size: 17px;
 
             button {
                 color: var(--color-widget);
                 border-radius: 6px;
                 background: var(--color-widget-background);
+
+                &:hover {
+                    -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                }
+
+            }
+
+            #sidebar-tabs {
+
+                a:hover {
+                    -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                }
+
             }
 
         }
