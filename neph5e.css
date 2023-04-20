@@ -5215,5 +5215,5 @@ form.combat div.hiddable #description {
   background-color: var(--color-widget);
 }
 .package-configuration .window-content input[type=checkbox]:checked {
-  background-color: var(--color-text-dark-secondary);
+  background-color: #150e4c;
 }
