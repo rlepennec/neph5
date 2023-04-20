@@ -1,5 +1,9 @@
 #interface {
 
+    --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+    --background-size: cover;
+    --opacity: 0.9;
+
     #ui-left {
 
         #controls {
@@ -9,13 +13,11 @@
                 li {
                     width: 40px;
                     height: 40px;
-                    color: #6b6a66;
                     border-radius: 22px;
-                    background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
-
-                    &.active {
-                        color: #191813;
-                    }
+                    color: #f5f4f4;
+                    background: var(--background);
+                    background-size: var(--background-size);
+                    opacity: var(--opacity);
 
                     &:hover {
                         -webkit-box-shadow: 0 0 5px 5px #bebdbd;
@@ -33,21 +35,120 @@
 
         }
 
+
+        #players {
+            background: var(--background);
+            background-size: var(--background-size);
+            opacity: var(--opacity);
+        }
+
     }
 
-    #ui-right {
-        background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
+    #ui-middle {
+        
+        #ui-top {
 
-        .app {
-            background: none;
-            color: #6b6a66;
+            #navigation {
+                
+                #nav-toggle {
+                    background: var(--background);
+                    background-size: var(--background-size);
+                    opacity: var(--opacity);
+                }
 
-            .active {
-                color: #191813;
+                li {
+                    background: var(--background);
+                    background-size: var(--background-size);
+                    opacity: var(--opacity);
+                }
+
+            }
+        }
+
+        #ui-bottom {
+
+            #hotbar {
+                
+                #action-bar {
+
+                    li {
+                        background: var(--background);
+                        background-size: var(--background-size);
+                        opacity: var(--opacity);
+
+                        .macro-key {
+                            background: var(--background);
+                            background-size: var(--background-size);
+                            opacity: var(--opacity);
+                        }
+                    }
+
+                    #hotbar-page-controls {
+
+                        .page-number {
+                            background: var(--background);
+                            background-size: var(--background-size);
+                            opacity: var(--opacity);
+                        }
+
+                    }
+                }
+
+                a {
+                    background: var(--background);
+                    background-size: var(--background-size);
+                    opacity: var(--opacity);
+                }
+
             }
 
         }
 
+    }
+
+    #ui-right {
+        
+        #sidebar {
+            background: var(--background) no-repeat;
+            background-size: cover;
+            opacity: var(--opacity);
+        }
+
+    }
+
+}
+
+.package-configuration {
+
+    --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+    --background-size: cover;
+    --opacity: 0.9;
+    --color-text-dark-secondary: #8a8888;
+    --color-text-dark-primary: #f5f4f4;
+    --color-border-light-primary: #f5f4f4;
+    --color-underline-header: #c9c6b1;
+    --color-widget: #f5f4f4;
+
+    .window-content {
+        background: var(--background);
+        background-size: var(--background-size);
+        opacity: var(--opacity);
+
+        button {
+            color: var(--color-widget);
+            border-radius: 6px;
+            background: transparent;
+        }
+
+        select {
+            color: var(--color-widget);
+            border-radius: 6px;
+        }
+
+        input[type=checkbox] {
+            color: var(--color-widget);
+            border-radius: 50%;
+        }
     }
 
 }
