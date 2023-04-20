@@ -1,19 +1,25 @@
 <form class="chat">
 
+    <img class="chat-sender" src="{{actor.img}}" />
+
     <div class="chat-header">
-        <img class="chat-image" src="{{actor.img}}" />
-        <span class="chat-title">{{richSentence}}</span>
-        <img class="chat-image" src="{{img}}" />
+        <label class="chat-title">{{richSentence}}</label>
     </div>
+
+    <div class="border-top"></div>
+
+    <div class="border-left"></div>
 
     {{#if (nonNull difficulty)}}
     <div class="chat-body">
-        <i class="fa-solid fa-dice-d20"></i>
-        <span>{{total}}</span>
-        {{#if (nonNull impact)}}
-        <i class="fas fa-heart-broken"></i>
-        <span> {{impact}}</span>
-        {{/if}}
+        <div class="chat-dice-result">
+            <i class="fa-solid fa-dice-d20"></i>
+            <span>{{total}}</span>
+            {{#if (nonNull impact)}}
+            <i class="fas fa-heart-broken"></i>
+            <span> {{impact}}</span>
+            {{/if}}
+        </div>
     </div>
     {{/if}}
 
@@ -22,5 +28,7 @@
         <span>{{actor.name}} {{result}}</span>
     </div>
     {{/if}}
+
+    <img class="chat-receiver" src="{{img}}" />
 
 </form>

@@ -4445,80 +4445,126 @@
   margin-left: 10px;
 }
 .chat-message {
-  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
+  background-size: cover;
   font-family: 'AJensonProLtDisp';
   font-size: 15px;
 }
 .chat-message .message-header {
-  font-family: 'NightjarDemi';
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 16px;
 }
-.chat-message .chat {
-  display: flex;
-  flex-direction: column;
-  border: 3px solid rgba(0, 0, 0, 0.7);
-  border-radius: 4px;
+.chat-message .message-header .message-sender {
+  margin-left: 55px;
+  margin-top: 5px;
 }
-.chat-message .chat .chat-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 4px;
-  margin: 10px;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+.chat-message .message-content {
+  position: relative;
+  margin-top: 5px;
 }
-.chat-message .chat .chat-header .chat-image {
-  margin: 10px;
+.chat-message .message-content .chat-sender {
+  position: relative;
+  top: -28px;
+  left: -2px;
   height: 50px;
   width: 50px;
   border: none;
-  flex: 0;
-  border-radius: 4px;
 }
-.chat-message .chat .chat-header .chat-title {
-  font-size: 16px;
-  font-style: bold;
+.chat-message .message-content .chat-receiver {
+  position: relative;
+  top: -70px;
+  left: calc(100% - 60px);
+  height: 50px;
+  width: 50px;
+  border: none;
+}
+.chat-message .message-content .chat {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
+  border-right: 2px solid rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+}
+.chat-message .message-content .chat .border-top {
+  position: absolute;
+  border-top: 2px solid rgba(0, 0, 0, 0.7);
+  top: 0px;
+  left: 56px;
+  width: calc(100% - 59px);
+}
+.chat-message .message-content .chat .border-left {
+  position: absolute;
+  border-left: 2px solid rgba(0, 0, 0, 0.7);
+  height: calc(100% - 25px);
+  top: 22px;
+}
+.chat-message .message-content .chat .chat-header {
+  display: flex;
+  margin: -30px 10px 10px 10px;
+  border-radius: 6px;
+}
+.chat-message .message-content .chat .chat-header .chat-title {
+  font-size: 19px;
   text-align: center;
   flex: 1;
 }
-.chat-message .chat .chat-header .chat-title a {
+.chat-message .message-content .chat .chat-header .chat-title a {
   background: none;
   border: none;
   white-space: normal;
   word-break: normal;
+  font-size: 16px;
 }
-.chat-message .chat .chat-body.opposition {
+.chat-message .message-content .chat .chat-body.opposition {
   margin-top: 20px;
 }
-.chat-message .chat .chat-body {
-  margin: 10px;
-  font-size: 16px;
+.chat-message .message-content .chat .chat-body {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
   text-align: center;
+  width: 100%;
+  margin: 0px 10px 0px 10px;
 }
-.chat-message .chat .chat-body .fa-dice-d20 {
+.chat-message .message-content .chat .chat-body .chat-image {
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0 0 auto;
+  border-radius: 4px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.chat-message .message-content .chat .chat-body .chat-dice-result {
+  width: 100%;
+  padding-top: 15px;
+}
+.chat-message .message-content .chat .chat-body .fa-dice-d20 {
   margin-right: 5px;
 }
-.chat-message .chat .chat-body .fa-heart-broken {
+.chat-message .message-content .chat .chat-body .fa-heart-broken {
   margin-left: 30px;
 }
-.chat-message .chat .chat-body .fa-heart-broken.opposition {
+.chat-message .message-content .chat .chat-body .fa-heart-broken.opposition {
   margin-left: 30px;
   margin-right: 5px;
 }
-.chat-message .chat .chat-body .chat-description {
+.chat-message .message-content .chat .chat-body .chat-description {
   font-style: bold;
 }
-.chat-message .chat .chat-body .chat-details {
+.chat-message .message-content .chat .chat-body .chat-details {
   font-size: 11px;
   font-style: italic;
 }
-.chat-message .chat .chat-body .fa-right.opposition {
+.chat-message .message-content .chat .chat-body .fa-right.opposition {
   margin-right: 5px;
 }
-.chat-message .chat .chat-body .fa-shield.opposition {
+.chat-message .message-content .chat .chat-body .fa-shield.opposition {
   margin-left: 30px;
   margin-right: 5px;
 }
-.chat-message .chat .effects {
+.chat-message .message-content .chat .effects {
   text-align: center;
   margin-bottom: 20px;
 }
