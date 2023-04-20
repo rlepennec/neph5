@@ -270,7 +270,7 @@
   --incarnations-menu-first-color: #7ccff0;
   --incarnations-menu-second-color: #e2e0d2;
   --nephilim-margin-top: 0px;
-  --nephilim-header-bottom: -10px;
+  --nephilim-header-bottom: -12px;
   --nephilim-header-input-left: 13px;
   --nephilim-circle-width: 70px;
   --nephilim-circle-height: 65px;
@@ -309,7 +309,7 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -10px;
+  --combat-header-bottom: -17px;
   --combat-carac-width: 48px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
@@ -423,7 +423,7 @@
   --incarnations-menu-first-color: #19a4db;
   --incarnations-menu-second-color: #e2e0d2;
   --nephilim-margin-top: 0px;
-  --nephilim-header-bottom: -19px;
+  --nephilim-header-bottom: -25px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
   --nephilim-circle-height: 65px;
@@ -462,7 +462,7 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -30px;
+  --combat-header-bottom: -19px;
   --combat-carac-width: 48px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
@@ -504,8 +504,8 @@
   --science-degre-left: 8px;
   --science-degre-top: 10px;
   --kabbale-arbre-color: #191813;
-  --puce-top: -10px;
-  --vecu-header-bottom: -19px;
+  --puce-top: -16px;
+  --vecu-header-bottom: -25px;
   --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
@@ -575,7 +575,7 @@
   --incarnations-menu-first-color: #dbc73b;
   --incarnations-menu-second-color: #f95101;
   --nephilim-margin-top: 0px;
-  --nephilim-header-bottom: -10px;
+  --nephilim-header-bottom: -15px;
   --nephilim-header-input-left: 8px;
   --nephilim-circle-width: 60px;
   --nephilim-circle-height: 65px;
@@ -881,7 +881,7 @@
   --incarnations-menu-first-color: #191813;
   --incarnations-menu-second-color: #e2e0d2;
   --nephilim-margin-top: -10px;
-  --nephilim-header-bottom: -10px;
+  --nephilim-header-bottom: -20px;
   --nephilim-header-input-left: 8px;
   --nephilim-color-chute: indianred;
   --nephilim-circle-width: 60px;
@@ -963,7 +963,7 @@
   --science-degre-top: 8px;
   --kabbale-arbre-color: #191813;
   --puce-top: -15px;
-  --vecu-header-bottom: -10px;
+  --vecu-header-bottom: -25px;
   --laboratoire-labs-left: calc(50% + 165px);
   --laboratoire-circle-height: 51px;
   --laboratoire-circle-width: 50px;
@@ -3303,9 +3303,10 @@
   width: 100%;
 }
 .actor .window-content .actor-root .article .article-body .materiae .header .puce {
+  position: relative;
   border: none;
   width: 60px;
-  display: hidden;
+  top: var(--puce-top);
   background-color: transparent;
   content: var(--img-puce);
 }
@@ -3480,6 +3481,8 @@
   margin-bottom: -10px;
 }
 .actor .window-content .actor-root .article .article-body .akasha .column .header .puce {
+  position: relative;
+  top: var(--puce-top);
   border: none;
   width: 60px;
   background-color: transparent;
@@ -3696,7 +3699,6 @@
   border: none;
   width: 60px;
   height: 65px;
-  display: hidden;
   background-color: transparent;
   content: var(--img-circle);
 }
@@ -4049,9 +4051,10 @@
   margin-bottom: var(--options-body-margin-bottom);
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .header .puce {
+  position: relative;
+  top: var(--puce-top);
   border: none;
   width: 60px;
-  display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }

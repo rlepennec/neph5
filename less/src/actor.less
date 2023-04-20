@@ -2601,9 +2601,10 @@
                             width: 100%;
 
                             .puce {
+                                position: relative;
                                 border: none;
                                 width: 60px;
-                                display: hidden;
+                                top: var(--puce-top);
                                 background-color: transparent;
                                 content: var(--img-puce);
                             }
@@ -2818,6 +2819,8 @@
                                 margin-bottom: -10px;
         
                                 .puce {
+                                    position: relative;
+                                    top: var(--puce-top);
                                     border: none;
                                     width: 60px;
                                     background-color: transparent;
@@ -3100,7 +3103,6 @@
                                     border: none;
                                     width: 60px;
                                     height: 65px;
-                                    display: hidden;
                                     background-color: transparent;
                                     content: var(--img-circle);
                                 }
@@ -3552,9 +3554,10 @@
                                     margin-bottom: var(--options-body-margin-bottom);
         
                                     .puce {
+                                        position: relative;
+                                        top: var(--puce-top);
                                         border: none;
                                         width: 60px;
-                                        display: hidden;
                                         background-color: transparent;
                                         content: var(--img-puce);
                                     }
