@@ -3,30 +3,41 @@
     --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
     --background-size: cover;
     --opacity: 0.9;
+    --color-border-highlight: #f5f4f4;
+    --color-shadow-highlight: #f5f4f4;
+    --color-border-highlight-alt: #f5f4f4;
+    --color-shadow: #bebdbd;
+
 
     #ui-left {
 
         #controls {
 
-            ol.control-tools {
+            ol.main-controls {
 
                 li {
                     width: 40px;
                     height: 40px;
                     border-radius: 22px;
-                    color: #f5f4f4;
+                    color: var(--color-border-highlight);
                     background: var(--background);
                     background-size: var(--background-size);
                     opacity: var(--opacity);
+                    font-family: 'AJensonPro';
+                    font-size: 17px;
 
                     &:hover {
-                        -webkit-box-shadow: 0 0 5px 5px #bebdbd;
-                        -moz-box-shadow: 0 0 5px 5px #bebdbd;
-                        box-shadow: 0 0 5px 5px #bebdbd;
+                        -webkit-box-shadow: 0 0 5px 5px var(--color-shadow);
+                        -moz-box-shadow: 0 0 5px 5px var(--color-shadow);
+                        box-shadow: 0 0 5px 5px var(--color-shadow);
                     }
 
                     i {
-                        margin-top: 8px;
+                        margin-top: 11px;
+                    }
+
+                    &.active {
+                        border: 2px solid var(--color-border-highlight-alt);
                     }
 
                 }
@@ -40,6 +51,8 @@
             background: var(--background);
             background-size: var(--background-size);
             opacity: var(--opacity);
+            font-family: 'AJensonPro';
+            font-size: 17px;
         }
 
     }
@@ -54,12 +67,16 @@
                     background: var(--background);
                     background-size: var(--background-size);
                     opacity: var(--opacity);
+                    font-family: 'AJensonPro';
+                    font-size: 17px;
                 }
 
                 li {
                     background: var(--background);
                     background-size: var(--background-size);
                     opacity: var(--opacity);
+                    font-family: 'AJensonPro';
+                    font-size: 17px;
                 }
 
             }
@@ -112,6 +129,17 @@
             background: var(--background) no-repeat;
             background-size: cover;
             opacity: var(--opacity);
+            --color-widget: #f5f4f4;
+            --color-widget-background: #051732;
+            font-family: 'AJensonPro';
+            font-size: 17px;
+
+            button {
+                color: var(--color-widget);
+                border-radius: 6px;
+                background: var(--color-widget-background);
+            }
+
         }
 
     }
@@ -128,6 +156,7 @@
     --color-border-light-primary: #f5f4f4;
     --color-underline-header: #c9c6b1;
     --color-widget: #f5f4f4;
+    --color-widget-background: #051732;
 
     .window-content {
         background: var(--background);
@@ -137,18 +166,28 @@
         button {
             color: var(--color-widget);
             border-radius: 6px;
-            background: transparent;
+            background: var(--color-widget-background);
         }
 
         select {
             color: var(--color-widget);
             border-radius: 6px;
+            background: var(--color-widget-background);
         }
 
         input[type=checkbox] {
             color: var(--color-widget);
+            border: 3px solid var(--color-widget);
             border-radius: 50%;
+            -webkit-appearance: none;
+            background-color: var(--color-widget);
+
+            &:checked {
+                background-color: var(--color-text-dark-secondary);
+            }
+
         }
+
     }
 
 }

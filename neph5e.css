@@ -5085,38 +5085,53 @@ form.combat div.hiddable #description {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
   --opacity: 0.9;
+  --color-border-highlight: #f5f4f4;
+  --color-shadow-highlight: #f5f4f4;
+  --color-border-highlight-alt: #f5f4f4;
+  --color-shadow: #bebdbd;
 }
-#interface #ui-left #controls ol.control-tools li {
+#interface #ui-left #controls ol.main-controls li {
   width: 40px;
   height: 40px;
   border-radius: 22px;
-  color: #f5f4f4;
+  color: var(--color-border-highlight);
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
+  font-family: 'AJensonPro';
+  font-size: 17px;
 }
-#interface #ui-left #controls ol.control-tools li:hover {
-  -webkit-box-shadow: 0 0 5px 5px #bebdbd;
-  -moz-box-shadow: 0 0 5px 5px #bebdbd;
-  box-shadow: 0 0 5px 5px #bebdbd;
+#interface #ui-left #controls ol.main-controls li:hover {
+  -webkit-box-shadow: 0 0 5px 5px var(--color-shadow);
+  -moz-box-shadow: 0 0 5px 5px var(--color-shadow);
+  box-shadow: 0 0 5px 5px var(--color-shadow);
 }
-#interface #ui-left #controls ol.control-tools li i {
-  margin-top: 8px;
+#interface #ui-left #controls ol.main-controls li i {
+  margin-top: 11px;
+}
+#interface #ui-left #controls ol.main-controls li.active {
+  border: 2px solid var(--color-border-highlight-alt);
 }
 #interface #ui-left #players {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
+  font-family: 'AJensonPro';
+  font-size: 17px;
 }
 #interface #ui-middle #ui-top #navigation #nav-toggle {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
+  font-family: 'AJensonPro';
+  font-size: 17px;
 }
 #interface #ui-middle #ui-top #navigation li {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
+  font-family: 'AJensonPro';
+  font-size: 17px;
 }
 #interface #ui-middle #ui-bottom #hotbar #action-bar li {
   background: var(--background);
@@ -5142,6 +5157,15 @@ form.combat div.hiddable #description {
   background: var(--background) no-repeat;
   background-size: cover;
   opacity: var(--opacity);
+  --color-widget: #f5f4f4;
+  --color-widget-background: #051732;
+  font-family: 'AJensonPro';
+  font-size: 17px;
+}
+#interface #ui-right #sidebar button {
+  color: var(--color-widget);
+  border-radius: 6px;
+  background: var(--color-widget-background);
 }
 .package-configuration {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
@@ -5152,6 +5176,7 @@ form.combat div.hiddable #description {
   --color-border-light-primary: #f5f4f4;
   --color-underline-header: #c9c6b1;
   --color-widget: #f5f4f4;
+  --color-widget-background: #051732;
 }
 .package-configuration .window-content {
   background: var(--background);
@@ -5161,13 +5186,20 @@ form.combat div.hiddable #description {
 .package-configuration .window-content button {
   color: var(--color-widget);
   border-radius: 6px;
-  background: transparent;
+  background: var(--color-widget-background);
 }
 .package-configuration .window-content select {
   color: var(--color-widget);
   border-radius: 6px;
+  background: var(--color-widget-background);
 }
 .package-configuration .window-content input[type=checkbox] {
   color: var(--color-widget);
+  border: 3px solid var(--color-widget);
   border-radius: 50%;
+  -webkit-appearance: none;
+  background-color: var(--color-widget);
+}
+.package-configuration .window-content input[type=checkbox]:checked {
+  background-color: var(--color-text-dark-secondary);
 }
