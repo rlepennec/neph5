@@ -12,23 +12,24 @@
 
     </div>
 
-    <!--
     {{#if (nonNull difficulty)}}
-    <div class="chat-dice">
+    <div class="chat-roll">
+
         <i class="fa-solid fa-dice-d20"></i>
+
         <label>{{total}}</label>
+
         {{#if (nonNull impact)}}
         <i class="fas fa-heart-broken"></i>
         <label> {{impact}}</label>
         {{/if}}
+
     </div>
     {{/if}}
 
+
     {{#if (nonNull result)}}
-    <div class="chat-result">
-        <label>{{actor.name}} {{result}}</label>
-    </div>
+    <label class="chat-result">{{actor.name}} {{result}}</label>
     {{/if}}
-    -->
 
 </form>

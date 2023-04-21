@@ -4467,6 +4467,8 @@
 .chat-message .message-content {
   position: relative;
   margin-top: 5px;
+  font-family: 'AJensonPro';
+  font-size: 16px;
 }
 .chat-message .message-content .chat {
   display: flex;
@@ -4512,6 +4514,24 @@
   width: 50px;
   border: none;
   border-radius: 13px;
+}
+.chat-message .message-content .chat .chat-roll {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: -40px 10px 10px 0px;
+}
+.chat-message .message-content .chat .chat-roll .fa-dice-d20 {
+  margin-right: 5px;
+}
+.chat-message .message-content .chat .chat-roll .fa-heart-broken {
+  margin-left: 30px;
+}
+.chat-message .message-content .chat .chat-result {
+  margin: 0px 10px 10px 0px;
+  text-align: center;
 }
 .chat-message .message-content .chat .chat-body.opposition {
   margin-top: 20px;
