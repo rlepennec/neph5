@@ -1,4 +1,5 @@
 .chat-message {
+    --background-side-chat: url("../../systems/neph5e/assets/backgrounds/background-side-chat.webp");
     background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
     font-family: 'AJensonProLtDisp';
     font-size: 15px;
@@ -9,7 +10,7 @@
         font-size: 16px;
 
         .message-sender {
-            margin-left: 55px;
+            margin-left: 63px;
             margin-top: 5px;
         }
 
@@ -28,10 +29,119 @@
         font-family: 'AJensonPro';
         font-size: 16px;
 
+        .border-top {
+            position: absolute;
+            border-top: 2px solid rgba(0, 0, 0, 0.7);
+            left: 60px;
+            width: calc(100% - 60px);
+            top: -4px;
+        }
+
         .chat {
             display: flex;
+            flex-direction: row;
+
+            .side {
+                position: relative;
+                /*
+                background: url(../../systems/neph5e/assets/backgrounds/background-side-chat.webp);
+                /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0))); 
+                background-size: cover;
+                width: 75px;
+                height: 220px;
+                top: -35px;
+                left: -5px;*/
+                
+
+                .chat-sender {
+                    position: absolute;
+                    width: 50px;
+                    height: 50px;
+                    border: none;
+                    top: 10px;
+                    left: 4px;
+                }
+
+                .chat-receiver {
+                    position: absolute;
+                    width: 50px;
+                    top: 80px;
+                    left: 4px;
+                    border: none;
+                    border-radius: 6px;
+                }
+
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+
+                .side-image {
+                    position: absolute;
+                    background: url(../../systems/neph5e/assets/backgrounds/background-side-chat.webp);
+                    background-size: cover;
+                    width: 75px;
+                    height: 220px;
+                    top: -35px;
+                    left: -5px;
+                }
+
+                .chat-sentence {
+                    font-size: 15px;
+                    margin: 10px 10px 10px 10px;
+
+                    a {
+                        background: none;
+                        border: none;
+                        white-space: normal;
+                        word-break: normal;
+                    }
+
+                }
+
+                .chat-roll {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    margin: 10px 10px 10px 10px;
+    
+                    .fa-dice-d20 {
+                        margin-right: 5px;
+                    }
+    
+                    .fa-heart-broken {
+                        margin-left: 30px;
+                    }
+    
+                }
+    
+                .chat-result {
+                    margin: 0px 10px 10px 0px;
+                    text-align: center;
+                }
+
+            }
+
+
+/*
+
+            display: flex;
             flex-direction: column;
-            
+
+            .side {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+                background:
+                    url("../../systems/neph5e/assets/backgrounds/background-side-chat.webp");
+                    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
+            }
+
             .chat-sender {
                 top: -25px;
                 left: 0px;
@@ -72,9 +182,11 @@
 
                 .chat-receiver {
                     width: 50px;
+                    height: 100%;
                     border: none;
                     border-radius: 13px;
-                    margin-left: 15px;
+                    margin-left: 20px;
+                    margin-right: -10px;
                 }
 
             }
@@ -168,7 +280,7 @@
                 text-align: center;
                 margin-bottom: 20px;
             }
-
+*/
         }
 
     }
