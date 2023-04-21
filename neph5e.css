@@ -4498,7 +4498,7 @@
   margin: 0px 10px 10px 10px;
 }
 .chat-message .message-content .chat .chat-purpose .chat-sentence {
-  font-size: 19px;
+  font-size: 17px;
   text-align: center;
   flex: 1;
   background: transparent;
@@ -4514,6 +4514,7 @@
   width: 50px;
   border: none;
   border-radius: 13px;
+  margin-left: 15px;
 }
 .chat-message .message-content .chat .chat-roll {
   position: relative;
