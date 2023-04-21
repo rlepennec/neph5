@@ -4491,8 +4491,7 @@
 .chat-message .message-content .chat .chat-purpose {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin: -25px 10px 10px 10px;
+  margin: -10px 10px 10px 10px;
 }
 .chat-message .message-content .chat .chat-purpose .chat-sentence {
   font-size: 17px;
