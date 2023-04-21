@@ -1,6 +1,5 @@
 .chat-message {
-    background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
-    background-size: cover;
+    background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
     font-family: 'AJensonProLtDisp';
     font-size: 15px;
 
@@ -14,37 +13,31 @@
             margin-top: 5px;
         }
 
+        .message-metadata {
+            flex: 2;
+            text-align: right;
+            font-size: 14px;
+            margin-top: 5px
+        }
+
     }
 
     .message-content {
         position: relative;
         margin-top: 5px;
 
-        .chat-sender {
-            position: relative;
-            top: -28px;
-            left: -2px;
-            height: 50px;
-            width: 50px;
-            border: none;
-        }
-
-        .chat-receiver {
-            position: relative;
-            top: -41px;
-            left: calc(100% - 57px);
-            height: 50px;
-            width: 50px;
-            border: none;
-            border-radius: 6px;
-        }
-
         .chat {
             display: flex;
             flex-direction: column;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.7);
-            border-right: 2px solid rgba(0, 0, 0, 0.7);
-            border-radius: 6px;
+            
+            .chat-sender {
+                position: relative;
+                top: -30px;
+                left: 0px;
+                height: 50px;
+                width: 50px;
+                border: none;
+            }
 
             .border-top {
                 position: absolute;
@@ -54,24 +47,20 @@
                 width: calc(100% - 59px);
             }
 
-            .border-left {
-                position: absolute;
-                border-left: 2px solid rgba(0, 0, 0, 0.7);
-                height: calc(100% - 25px);
-                top: 22px;
-            }
-
-            .chat-header {
+            .chat-purpose {
+                position: relative;
                 display: flex;
-                margin: -77px 10px 10px 10px;
-                border-radius: 6px;
-                width: calc(77%);
+                flex-direction: row;
+                top: -30px;
+                align-items: center;
+                margin: 0px 10px 10px 0px;
 
-                .chat-title {
+                .chat-sentence {
                     font-size: 19px;
                     text-align: center;
                     flex: 1;
-    
+                    background: transparent;
+
                     a {
                         background: none;
                         border: none;
@@ -79,11 +68,19 @@
                         word-break: normal;
                         font-size: 17px;
                     }
-    
+
                 }
-    
+
+                .chat-receiver {
+                    width: 50px;
+                    border: none;
+                    border-radius: 13px;
+                }
+
             }
-            
+    
+
+
             .chat-body.opposition {
                 margin-top: 20px;
             }
