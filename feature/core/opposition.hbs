@@ -1,31 +1,46 @@
 <form class="chat">
 
-    <div class="chat-body opposition">
+    <img class="chat-sender" src="{{actor.img}}" />
+
+    <div class="border-top"></div>
+
+    <div class="chat-purpose">
+
+        <label class="chat-sentence">{{sentence}}</label>
+
+        <img class="chat-receiver" src="{{img}}" />
+
+    </div>
+
+    {{#if (nonNull difficulty)}}
+    <div class="chat-roll">
 
         <i class="fa-solid fa-dice-d20"></i>
-        <span>{{total}}</span>
+
+        <label>{{total}}</label>
+
+        {{#if (nonNull impact)}}
+        <i class="fas fa-heart-broken"></i>
+        <label> {{impact}}</label>
+        {{/if}}
 
         {{#unless (isNull absorption)}}
         {{#if (nonNull absorption.modifier)}}
         <i class="fas fa-shield opposition"></i>
-        <span> {{absorption.modifier}}</span>
+        <label> {{absorption.modifier}}</label>
         {{else}}
         <i class="fas fa-heart-broken opposition"></i>
         <i class="fa-solid fa-right opposition"></i>
-        <span> {{absorption.fix}}</span>
+        <label> {{absorption.fix}}</label>
         {{/if}}
         {{/unless}}
 
     </div>
+    {{/if}}
 
-    {{#unless (isEmptyString effects)}}
-    <div class="effects">{{effects}}</div>
-    {{/unless}}
 
-    <div class="chat-header">
-        <img class="chat-image" src="{{actor.img}}" />
-        <span class="chat-title">{{actor.name}} {{sentence}}</span>
-        <img class="chat-image" src="{{img}}" />
-    </div>
+    {{#if (nonNull result)}}
+    <label class="chat-result">{{actor.name}} {{result}}</label>
+    {{/if}}
 
 </form>
