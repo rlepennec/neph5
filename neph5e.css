@@ -622,7 +622,7 @@
   --selenim-imago-top: -17px;
   --selenim-imago-left: -21px;
   --selenim-imago-bottom: -28px;
-  --combat-header-bottom: -26px;
+  --combat-header-bottom: -16px;
   --combat-carac-width: 44px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
@@ -2525,6 +2525,8 @@
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li label {
   position: absolute;
   top: 19px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li .circle {
   position: absolute;
@@ -2562,6 +2564,7 @@
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) label {
   left: 90px;
+  width: calc(100% - 150px);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(1n) input {
   left: 37px;
@@ -2571,6 +2574,7 @@
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) label {
   left: 130px;
+  width: calc(100% - 185px);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .caracteristiques ol li:nth-child(2n) input {
   left: 78px;
@@ -3686,6 +3690,8 @@
 .actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-name {
   flex: 1 1 auto;
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .actor .window-content .actor-root .article .article-body .vecus .body .vecu .vecu-definition .vecu-dice {
   flex: 0 0 40px;
@@ -3904,6 +3910,8 @@
   flex: 1 1 auto;
   text-align: left;
   padding-top: 4px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .vecus .vecu .definition .delete {
   flex: 0 0 30px;
