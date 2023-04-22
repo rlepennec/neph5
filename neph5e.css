@@ -4456,7 +4456,7 @@
   font-size: 16px;
 }
 .chat-message .message-header .message-sender {
-  margin-left: 63px;
+  margin-left: 70px;
   margin-top: 5px;
 }
 .chat-message .message-header .message-metadata {
@@ -4470,13 +4470,6 @@
   margin-top: 5px;
   font-family: 'AJensonPro';
   font-size: 16px;
-}
-.chat-message .message-content .border-top {
-  position: absolute;
-  border-top: 2px solid rgba(0, 0, 0, 0.7);
-  left: 60px;
-  width: calc(100% - 60px);
-  top: -4px;
 }
 .chat-message .message-content .chat {
   display: flex;
@@ -4637,30 +4630,38 @@
             }
 */
 }
+.chat-message .message-content .chat .side-background {
+  position: absolute;
+  background: url(../../systems/neph5e/assets/backgrounds/background-side-chat.webp);
+  background-size: cover;
+  opacity: 0.8;
+  width: 65px;
+  height: calc(100% + 40px);
+  top: -35px;
+  left: -5px;
+}
+.chat-message .message-content .chat .border-top {
+  position: absolute;
+  border-top: 2px solid rgba(0, 0, 0, 0.7);
+  left: 60px;
+  width: calc(100% - 60px);
+  top: -4px;
+}
 .chat-message .message-content .chat .side {
-  position: relative;
-  /*
-                background: url(../../systems/neph5e/assets/backgrounds/background-side-chat.webp);
-                /* -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0))); 
-                background-size: cover;
-                width: 75px;
-                height: 220px;
-                top: -35px;
-                left: -5px;*/
+  width: 65px;
 }
 .chat-message .message-content .chat .side .chat-sender {
   position: absolute;
   width: 50px;
   height: 50px;
   border: none;
-  top: 10px;
-  left: 4px;
+  top: -30px;
 }
 .chat-message .message-content .chat .side .chat-receiver {
   position: absolute;
-  width: 50px;
-  top: 80px;
-  left: 4px;
+  width: 45px;
+  bottom: 0px;
+  left: 5px;
   border: none;
   border-radius: 6px;
 }
@@ -4669,15 +4670,6 @@
   flex-direction: column;
   text-align: center;
   width: 100%;
-}
-.chat-message .message-content .chat .content .side-image {
-  position: absolute;
-  background: url(../../systems/neph5e/assets/backgrounds/background-side-chat.webp);
-  background-size: cover;
-  width: 75px;
-  height: 220px;
-  top: -35px;
-  left: -5px;
 }
 .chat-message .message-content .chat .content .chat-sentence {
   font-size: 15px;
