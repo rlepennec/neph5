@@ -1,4 +1,8 @@
 # 1.3.9
+Fin de définition des skins
+Amélioration de l'affichage du panneau général
+Amélioration de l'affichage du chat
+Correction d'une anomalie sur la gestion du skin de terre
 
 # 1.3.8
 Application des skins par personnage
