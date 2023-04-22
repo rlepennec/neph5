@@ -6,17 +6,17 @@
 
     <div class="side">
 
-        <img class="chat-sender" src="{{actor.img}}" />
+        <img class="chat-sender" src="{{img}}" />
 
-        <img class="chat-receiver" src="{{img}}" />
+        <img class="chat-receiver" src="{{actor.img}}" />
 
     </div>
 
     <div class="content">
 
-        <label class="chat-sentence">{{sentence}}</label>
+        <label class="chat-sentence">{{richSentence}}</label>
 
-        {{#if (nonNull difficulty)}}
+        {{#if (nonNull total)}}
         <div class="chat-roll">
 
             <i class="fa-solid fa-dice-d20"></i>

@@ -16,7 +16,7 @@
 
         <label class="chat-sentence">{{richSentence}}</label>
 
-        {{#if (nonNull difficulty)}}
+        {{#if (nonNull total)}}
         <div class="chat-roll">
 
             <i class="fa-solid fa-dice-d20"></i>
@@ -27,6 +27,17 @@
             <i class="fas fa-heart-broken"></i>
             <label> {{impact}}</label>
             {{/if}}
+
+            {{#unless (isNull absorption)}}
+            {{#if (nonNull absorption.modifier)}}
+            <i class="fas fa-shield opposition"></i>
+            <label> {{absorption.modifier}}</label>
+            {{else}}
+            <i class="fas fa-heart-broken opposition"></i>
+            <i class="fa-solid fa-right opposition"></i>
+            <label> {{absorption.fix}}</label>
+            {{/if}}
+            {{/unless}}
 
         </div>
         {{/if}}

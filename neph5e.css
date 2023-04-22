@@ -4469,7 +4469,7 @@
   position: relative;
   margin-top: 5px;
   font-family: 'AJensonPro';
-  font-size: 16px;
+  font-size: 15px;
 }
 .chat-message .message-content .chat {
   display: flex;
@@ -4691,6 +4691,9 @@
   margin-right: 5px;
 }
 .chat-message .message-content .chat .content .chat-roll .fa-heart-broken {
+  margin-left: 30px;
+}
+.chat-message .message-content .chat .content .chat-roll .fa-shield {
   margin-left: 30px;
 }
 .chat-message .message-content .chat .content .chat-result {

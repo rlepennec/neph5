@@ -89,10 +89,10 @@ export class ReactionRoll extends AbstractFeature {
      */
     async apply(result) {
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/opposition.hbs")
+            .withTemplate("systems/neph5e/feature/core/actionChat.hbs")
             .withData({
                 actor: this.actor,
-                sentence: this.sentenceOf(result),
+                richSentence: this.sentenceOf(result),
                 img: this.img,
                 total: result.roll._total,
             })
