@@ -16,12 +16,13 @@
 
         <label class="chat-sentence">{{richSentence}}</label>
 
-        {{#if (nonNull total)}}
-        <div class="chat-roll">
 
+        <div class="chat-details">
+
+            {{#if (nonNull total)}}
             <i class="fa-solid fa-dice-d20"></i>
-
             <label>{{total}}</label>
+            {{/if}}
 
             {{#if (nonNull impact)}}
             <i class="fas fa-heart-broken"></i>
@@ -39,8 +40,17 @@
             {{/if}}
             {{/unless}}
 
+            {{#if (nonNull aim)}}
+            <i class="fas fa-crosshairs"></i>
+            <label>{{aim}}</label>
+            {{/if}}
+
+            {{#if (nonNull reload)}}
+            <i class="fas fa-spinner"></i>
+            <label>{{reload}}</label>
+            {{/if}}
+
         </div>
-        {{/if}}
 
 
         {{#if (nonNull result)}}

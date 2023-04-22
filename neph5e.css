@@ -4681,20 +4681,26 @@
   white-space: normal;
   word-break: normal;
 }
-.chat-message .message-content .chat .content .chat-roll {
+.chat-message .message-content .chat .content .chat-details {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 10px 10px 10px 10px;
 }
-.chat-message .message-content .chat .content .chat-roll .fa-dice-d20 {
+.chat-message .message-content .chat .content .chat-details .fa-dice-d20 {
   margin-right: 5px;
 }
-.chat-message .message-content .chat .content .chat-roll .fa-heart-broken {
+.chat-message .message-content .chat .content .chat-details .fa-heart-broken {
   margin-left: 30px;
 }
-.chat-message .message-content .chat .content .chat-roll .fa-shield {
+.chat-message .message-content .chat .content .chat-details .fa-shield {
   margin-left: 30px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-crosshairs {
+  margin-right: 5px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-spinner {
+  margin-right: 5px;
 }
 .chat-message .message-content .chat .content .chat-result {
   margin: 10px 10px 10px 10px;
