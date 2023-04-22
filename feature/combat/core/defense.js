@@ -160,7 +160,7 @@ export class Defense extends AbstractFeature {
         
         // Display result in chat
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/actionChat.hbs")
+            .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
                 richSentence: this.sentenceOf(winner),

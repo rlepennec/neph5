@@ -199,7 +199,7 @@ export class AbstractFeature {
             data.sentence = "tente de" + data.sentence;
         }
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/actionChat.hbs")
+            .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
                 sentence: data.sentence,

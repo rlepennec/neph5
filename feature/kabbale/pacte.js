@@ -73,7 +73,7 @@ export class Pacte extends AbstractFeature {
      */
     async apply(result) {
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/actionChat.hbs")
+            .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
                 richSentence: this.sentenceOf(result),

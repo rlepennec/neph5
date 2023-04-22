@@ -42,7 +42,7 @@ export class Recharger extends AbstractManoeuver {
         await action.weapon.update({ ['system.tire']: 0 });
 
         await new NephilimChat(action.actor)
-            .withTemplate("systems/neph5e/feature/core/actionChat.hbs")
+            .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: action.actor,
                 sentence: game.i18n.localize('NEPH5E.manoeuvres.recharger.sentence').replaceAll("${arme}", action.weapon.name),
