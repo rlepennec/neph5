@@ -1,48 +1,52 @@
 <form class="chat">
 
-    <img class="side"/>
-
-    <img class="chat-sender" src="{{actor.img}}" />
+    <div class="side-background"></div>
 
     <div class="border-top"></div>
 
-    <div class="chat-purpose">
+    <div class="side">
 
-        <label class="chat-sentence">{{sentence}}</label>
+        <img class="chat-sender" src="{{actor.img}}" />
 
         <img class="chat-receiver" src="{{img}}" />
 
     </div>
 
-    {{#if (nonNull difficulty)}}
-    <div class="chat-roll">
+    <div class="content">
 
-        <i class="fa-solid fa-dice-d20"></i>
+        <label class="chat-sentence">{{sentence}}</label>
 
-        <label>{{total}}</label>
+        {{#if (nonNull difficulty)}}
+        <div class="chat-roll">
 
-        {{#if (nonNull impact)}}
-        <i class="fas fa-heart-broken"></i>
-        <label> {{impact}}</label>
+            <i class="fa-solid fa-dice-d20"></i>
+
+            <label>{{total}}</label>
+
+            {{#if (nonNull impact)}}
+            <i class="fas fa-heart-broken"></i>
+            <label> {{impact}}</label>
+            {{/if}}
+
+            {{#unless (isNull absorption)}}
+            {{#if (nonNull absorption.modifier)}}
+            <i class="fas fa-shield opposition"></i>
+            <label> {{absorption.modifier}}</label>
+            {{else}}
+            <i class="fas fa-heart-broken opposition"></i>
+            <i class="fa-solid fa-right opposition"></i>
+            <label> {{absorption.fix}}</label>
+            {{/if}}
+            {{/unless}}
+
+        </div>
         {{/if}}
 
-        {{#unless (isNull absorption)}}
-        {{#if (nonNull absorption.modifier)}}
-        <i class="fas fa-shield opposition"></i>
-        <label> {{absorption.modifier}}</label>
-        {{else}}
-        <i class="fas fa-heart-broken opposition"></i>
-        <i class="fa-solid fa-right opposition"></i>
-        <label> {{absorption.fix}}</label>
+
+        {{#if (nonNull result)}}
+        <label class="chat-result">{{actor.name}} {{result}}</label>
         {{/if}}
-        {{/unless}}
 
     </div>
-    {{/if}}
-
-
-    {{#if (nonNull result)}}
-    <label class="chat-result">{{actor.name}} {{result}}</label>
-    {{/if}}
 
 </form>
