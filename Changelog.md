@@ -1,4 +1,7 @@
 # 1.3.10
+Correction du skin feu
+Amélioration de l'affichage de noms vécus trop long
+Amélioration de l'affichage du panneau général
 
 # 1.3.9
 Fin de définition des skins
