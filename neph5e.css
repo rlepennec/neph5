@@ -5259,9 +5259,6 @@ form.combat div.hiddable #description {
 .recherche table tr td:nth-child(1) {
   font-weight: bold;
 }
-.recherche table tr td:nth-child(2n) {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
-}
 .recherche table tr:nth-child(1) {
   font-family: 'Nightjar';
   font-size: 16px;
