@@ -5365,7 +5365,11 @@ form.combat div.hiddable #description {
   -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
-.package-configuration {
+.package-configuration,
+#combat-config,
+#folder-create,
+#module-management,
+#world-config {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
   --opacity: 0.9;
@@ -5376,28 +5380,48 @@ form.combat div.hiddable #description {
   --color-widget: #f5f4f4;
   --color-widget-background: #051732;
 }
-.package-configuration .window-content {
+.package-configuration .window-content,
+#combat-config .window-content,
+#folder-create .window-content,
+#module-management .window-content,
+#world-config .window-content {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
 }
-.package-configuration .window-content button {
+.package-configuration .window-content button,
+#combat-config .window-content button,
+#folder-create .window-content button,
+#module-management .window-content button,
+#world-config .window-content button {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
 }
-.package-configuration .window-content select {
+.package-configuration .window-content select,
+#combat-config .window-content select,
+#folder-create .window-content select,
+#module-management .window-content select,
+#world-config .window-content select {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
 }
-.package-configuration .window-content input[type=checkbox] {
+.package-configuration .window-content input[type=checkbox],
+#combat-config .window-content input[type=checkbox],
+#folder-create .window-content input[type=checkbox],
+#module-management .window-content input[type=checkbox],
+#world-config .window-content input[type=checkbox] {
   color: var(--color-widget);
   border: 3px solid var(--color-widget);
   border-radius: 50%;
   -webkit-appearance: none;
   background-color: var(--color-widget);
 }
-.package-configuration .window-content input[type=checkbox]:checked {
+.package-configuration .window-content input[type=checkbox]:checked,
+#combat-config .window-content input[type=checkbox]:checked,
+#folder-create .window-content input[type=checkbox]:checked,
+#module-management .window-content input[type=checkbox]:checked,
+#world-config .window-content input[type=checkbox]:checked {
   background-color: #150e4c;
 }
