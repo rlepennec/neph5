@@ -58,13 +58,15 @@
     }
     
     .article {
+        --font-color: #191813;
+
         display: flex;
         flex-direction: column;
         flex-basis: 100%;
         font-family: 'AJensonPro';
         background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
         background-size: cover;
-        color: #191813;
+        color: var(--font-color);
         margin: 2px;
 
         .header {
@@ -165,6 +167,7 @@
                             appearance: none;
                             text-align-last: center;
                             align-items: center;
+                            color: var(--font-color);
 
                             .option {
                                 text-align: center;
@@ -179,10 +182,12 @@
                             text-align: center;
                             border-radius: 50%;
                             align-items: center;
+                            color: var(--font-color);
                         }
 
                         .label {
                             margin-top: 4px;
+                            color: var(--font-color);
                         }
 
                         .placeholder {
@@ -193,6 +198,7 @@
                             margin-top: 4px;
                             border: 0;
                             background: transparent;
+                            color: var(--font-color);
                         }
 
                     }
@@ -245,6 +251,7 @@
                             text-align: center;
                             border-radius: 50%;
                             align-items: center;
+                            color: var(--font-color);
                         }
 
                     }
@@ -260,16 +267,19 @@
                 vertical-align: middle;
                 font-size: 16px;
                 font-family: 'AJensonPro';
+                color: var(--font-color);
 
                 .title {
                     flex: 0 0 auto;
                     font-weight: bold;
                     padding-top: 3px;
+                    color: var(--font-color);
                 }
 
                 .value {
                     border: 0;
                     background: transparent;
+                    color: var(--font-color);
                 }
 
             }
@@ -385,6 +395,7 @@
                         border: 0;
                         background: transparent;
                         padding-bottom: 13px;
+                        color: var(--font-color);
                     }
 
                 }

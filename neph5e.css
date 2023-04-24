@@ -4184,13 +4184,14 @@
   border-radius: 6px;
 }
 .item-root .article {
+  --font-color: #191813;
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
   font-family: 'AJensonPro';
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   background-size: cover;
-  color: #191813;
+  color: var(--font-color);
   margin: 2px;
 }
 .item-root .article .header {
@@ -4280,6 +4281,7 @@
   appearance: none;
   text-align-last: center;
   align-items: center;
+  color: var(--font-color);
 }
 .item-root .article .body .main .data .value .select .option {
   text-align: center;
@@ -4292,9 +4294,11 @@
   text-align: center;
   border-radius: 50%;
   align-items: center;
+  color: var(--font-color);
 }
 .item-root .article .body .main .data .value .label {
   margin-top: 4px;
+  color: var(--font-color);
 }
 .item-root .article .body .main .data .value .placeholder {
   color: indianred;
@@ -4303,6 +4307,7 @@
   margin-top: 4px;
   border: 0;
   background: transparent;
+  color: var(--font-color);
 }
 .item-root .article .body .main .label {
   display: flex;
@@ -4345,6 +4350,7 @@
   text-align: center;
   border-radius: 50%;
   align-items: center;
+  color: var(--font-color);
 }
 .item-root .article .body .input {
   display: flex;
@@ -4353,15 +4359,18 @@
   vertical-align: middle;
   font-size: 16px;
   font-family: 'AJensonPro';
+  color: var(--font-color);
 }
 .item-root .article .body .input .title {
   flex: 0 0 auto;
   font-weight: bold;
   padding-top: 3px;
+  color: var(--font-color);
 }
 .item-root .article .body .input .value {
   border: 0;
   background: transparent;
+  color: var(--font-color);
 }
 .item-root .article .body .list {
   vertical-align: middle;
@@ -4447,6 +4456,7 @@
   border: 0;
   background: transparent;
   padding-bottom: 13px;
+  color: var(--font-color);
 }
 .item-root .article .body .description .add span {
   margin-left: 10px;
