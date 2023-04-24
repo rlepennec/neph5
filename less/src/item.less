@@ -39,12 +39,12 @@
             }
     
         }
-    
-    }
 
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
+        &:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    
     }
 
     .side {
@@ -84,14 +84,16 @@
                     height: 100%;
                     width: 100%;
                     font-family:'NightjarDemi';
-                    background:
-                        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-                        url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+                    border: none;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
 
                 .image {
                     flex: 0 0 auto;
-                    margin-left: 10px
+                    margin-left: 10px;
+                    border-radius: 6px;
                 }
 
             }
