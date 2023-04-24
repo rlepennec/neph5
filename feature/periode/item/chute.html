@@ -10,19 +10,23 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            {{> "systems/neph5e/templates/item/parts/body/chronology.hbs" title='NEPH5E.periode'}}
+            <div class="body">
 
-            {{#if (and debug isGM)}}
-            <div class="key">
-            {{else}}
-            <div class="key hidden">
-            {{/if}}
+                {{> "systems/neph5e/templates/item/parts/body/chronology.hbs" title='NEPH5E.periode'}}
 
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
+                {{#if (and debug isGM)}}
+                <div class="key">
+                {{else}}
+                <div class="key hidden">
+                {{/if}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
+
+                </div>
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

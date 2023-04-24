@@ -10,26 +10,30 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+                <div class="main">
+
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+
+                </div>
+
+                <ol class="metamorphoses">
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[0].name" value=system.metamorphoses.[0].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[1].name" value=system.metamorphoses.[1].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[2].name" value=system.metamorphoses.[2].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[3].name" value=system.metamorphoses.[3].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[4].name" value=system.metamorphoses.[4].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[5].name" value=system.metamorphoses.[5].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[6].name" value=system.metamorphoses.[6].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[7].name" value=system.metamorphoses.[7].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[8].name" value=system.metamorphoses.[8].name}}
+                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[9].name" value=system.metamorphoses.[9].name}}
+                </ol>
+                
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <ol class="metamorphoses">
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[0].name" value=system.metamorphoses.[0].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[1].name" value=system.metamorphoses.[1].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[2].name" value=system.metamorphoses.[2].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[3].name" value=system.metamorphoses.[3].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[4].name" value=system.metamorphoses.[4].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[5].name" value=system.metamorphoses.[5].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[6].name" value=system.metamorphoses.[6].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[7].name" value=system.metamorphoses.[7].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[8].name" value=system.metamorphoses.[8].name}}
-                {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[9].name" value=system.metamorphoses.[9].name}}
-            </ol>
-            
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

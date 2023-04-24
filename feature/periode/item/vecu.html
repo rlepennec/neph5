@@ -10,93 +10,97 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
-                {{> "systems/neph5e/templates/item/parts/header/label.hbs" tooltip="NEPH5E.periode" style="padding-top:4px;" value=system.periode class="hoverable edit-periode"}}
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
-            </div>
+            <div class="body">
 
-            {{#if item.isEmbedded}}
-            <table class="table-center">
-                <tr>
-                    <th>{{localize 'NEPH5E.degre'}}</th>
-                    <th>{{localize 'NEPH5E.sapience'}}</th>
-                </tr>
-                <tr>
-                    <td>{{system.degre}}</td>
-                    <td>{{getNextCost system.degre}}</td>
-                </tr>
-            </table>
-            {{/if}}
+                <div class="main">
+                    {{> "systems/neph5e/templates/item/parts/header/label.hbs" tooltip="NEPH5E.periode" style="padding-top:4px;" value=system.periode class="hoverable edit-periode"}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+                </div>
 
-            {{#unless (isEmptyCollection system.competences)}}
-            <ol class="column-2 line-bottom">
-
-                {{#each system.competences as |competence|}}
-                <li class="item hoverable flexrow-start" data-item-id="{{competence}}">
-
-                    <input
-                        name="system.competences.[{{@index}}]"
-                        type="hidden"
-                        value="{{competence}}"
-                        data-dtype="String"/>
-
-                    <div class="mright">
-                        <a><i class="delete-competence fas fa-trash"></i></a>
-                    </div>
-
-                    {{#with (getItem competence)}}
-                    <div class="edit-competence">
-                        <span class="hoverable" data-item-id="{{competence}}">{{name}}</span>
-                    </div>
-                    {{/with}}
-
-                </li>
-                {{/each}}
-
-            </ol>
-            {{/unless}}
-
-            {{#if item.isEmbedded}}
-            <ol class="mtop">
-
-                {{#each system.mnemos as |mnemos|}}
-                <li class="item hoverable flexrow-start" data-item-id="{{@index}}">
-
-                    <div class="mright">
-                        <a><i class="delete-mnemos fas fa-trash"></i></a>
-                    </div>
-
-                    <input
-                        class="input-text"
-                        name="system.mnemos.[{{@index}}]"
-                        type="text"
-                        value="{{mnemos}}"
-                        data-dtype="String"/>
-
-                </li>
-                {{/each}}
-                
-                {{#if (isEmptyCollection system.mnemos)}}
-                <li class="item hoverable flexrow-start">
-                {{else}}
-                <li class="item hoverable flexrow-start mtop">
+                {{#if item.isEmbedded}}
+                <table class="table-center">
+                    <tr>
+                        <th>{{localize 'NEPH5E.degre'}}</th>
+                        <th>{{localize 'NEPH5E.sapience'}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{system.degre}}</td>
+                        <td>{{getNextCost system.degre}}</td>
+                    </tr>
+                </table>
                 {{/if}}
-                    <div class="mright">
-                        <a><i class="add-mnemos fas fa-plus"></i></a>
-                    </div>
-                    <span>{{localize 'NEPH5E.mnemos'}}</span>
-                </li>
 
-            </ol>
-            {{/if}}
+                {{#unless (isEmptyCollection system.competences)}}
+                <ol class="column-2 line-bottom">
 
-            {{#if item.isEmbedded}}
-            <div class="no-scrollbar mtop mborder">
-                {{html (enrichHTML item.description owner)}}
+                    {{#each system.competences as |competence|}}
+                    <li class="item hoverable flexrow-start" data-item-id="{{competence}}">
+
+                        <input
+                            name="system.competences.[{{@index}}]"
+                            type="hidden"
+                            value="{{competence}}"
+                            data-dtype="String"/>
+
+                        <div class="mright">
+                            <a><i class="delete-competence fas fa-trash"></i></a>
+                        </div>
+
+                        {{#with (getItem competence)}}
+                        <div class="edit-competence">
+                            <span class="hoverable" data-item-id="{{competence}}">{{name}}</span>
+                        </div>
+                        {{/with}}
+
+                    </li>
+                    {{/each}}
+
+                </ol>
+                {{/unless}}
+
+                {{#if item.isEmbedded}}
+                <ol class="mtop">
+
+                    {{#each system.mnemos as |mnemos|}}
+                    <li class="item hoverable flexrow-start" data-item-id="{{@index}}">
+
+                        <div class="mright">
+                            <a><i class="delete-mnemos fas fa-trash"></i></a>
+                        </div>
+
+                        <input
+                            class="input-text"
+                            name="system.mnemos.[{{@index}}]"
+                            type="text"
+                            value="{{mnemos}}"
+                            data-dtype="String"/>
+
+                    </li>
+                    {{/each}}
+                    
+                    {{#if (isEmptyCollection system.mnemos)}}
+                    <li class="item hoverable flexrow-start">
+                    {{else}}
+                    <li class="item hoverable flexrow-start mtop">
+                    {{/if}}
+                        <div class="mright">
+                            <a><i class="add-mnemos fas fa-plus"></i></a>
+                        </div>
+                        <span>{{localize 'NEPH5E.mnemos'}}</span>
+                    </li>
+
+                </ol>
+                {{/if}}
+
+                {{#if item.isEmbedded}}
+                <div class="no-scrollbar mtop mborder">
+                    {{html (enrichHTML item.description owner)}}
+                </div>
+                {{else}}
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+                {{/if}}
+
             </div>
-            {{else}}
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-            {{/if}}
 
         </div>
 

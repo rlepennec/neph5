@@ -63,6 +63,9 @@
         margin: 10px;
         flex-basis: 100%;
         font-family: 'AJensonPro';
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
+        background-size: cover;
+        color: #191813;
 
         .header {
 
@@ -106,286 +109,290 @@
 
         }
 
-        .line-bottom {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid black;
-            padding-bottom: 14px;
-        }
+        .body {
 
-        .input-text {
-            border: 0;
-            background: transparent;
-            vertical-align: top;
-            height: 16px;
-        }
+            .line-bottom {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid black;
+                padding-bottom: 14px;
+            }
 
-        .main {
-            display: flex;
-            flex-direction: row;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            justify-content: space-evenly;
-            border-bottom: 1px solid black;
-            padding-bottom: 8px;
+            .input-text {
+                border: 0;
+                background: transparent;
+                vertical-align: top;
+                height: 16px;
+            }
 
-            .data {
+            .main {
                 display: flex;
-                flex-direction: column;
-                flex-basis: content;
-                text-align: center;
-                font-size: large;
-                font-family:'AJensonPro';
+                flex-direction: row;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                justify-content: space-evenly;
+                border-bottom: 1px solid black;
+                padding-bottom: 8px;
 
-                .value {
-                    border: 0;
-                    outline: 0;
-                    height: 30px;
-                    vertical-align: middle;
+                .data {
+                    display: flex;
+                    flex-direction: column;
+                    flex-basis: content;
+                    text-align: center;
+                    font-size: large;
+                    font-family:'AJensonPro';
 
-                    .select {
-                        border: none;
-                        outline: 0px;
-                        background-color: transparent;
-                        margin-top: 4px;
-                        width: 120%;
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
-                        appearance: none;
-                        text-align-last: center;
-                        align-items: center;
-
-                        .option {
-                            text-align: center;
-                        }
-                    }
-
-                    .number {
-                        flex: 0 0 auto;
-                        width: 35px;
-                        height: 35px;
-                        margin-left: 10px;
-                        text-align: center;
-                        border-radius: 50%;
-                        align-items: center;
-                    }
-
-                    .label {
-                        margin-top: 4px;
-                    }
-
-                    .placeholder {
-                        color: indianred;  
-                    }
-
-                    .text {
-                        margin-top: 4px;
+                    .value {
                         border: 0;
-                        background: transparent;
+                        outline: 0;
+                        height: 30px;
+                        vertical-align: middle;
+
+                        .select {
+                            border: none;
+                            outline: 0px;
+                            background-color: transparent;
+                            margin-top: 4px;
+                            width: 120%;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            text-align-last: center;
+                            align-items: center;
+
+                            .option {
+                                text-align: center;
+                            }
+                        }
+
+                        .number {
+                            flex: 0 0 auto;
+                            width: 35px;
+                            height: 35px;
+                            margin-left: 10px;
+                            text-align: center;
+                            border-radius: 50%;
+                            align-items: center;
+                        }
+
+                        .label {
+                            margin-top: 4px;
+                        }
+
+                        .placeholder {
+                            color: indianred;  
+                        }
+
+                        .text {
+                            margin-top: 4px;
+                            border: 0;
+                            background: transparent;
+                        }
+
+                    }
+
+                }
+
+                .label {
+                    display: flex;
+                    flex-direction: row;
+                    height: 26px;
+                    vertical-align: middle;
+                    font-family: 'AJensonPro';
+
+                    .title {
+                        flex: 0 0 auto;
+                        font-weight: bold;
+                        margin-right: 5px;
+                    }
+
+                }
+
+            }
+            
+            .row {
+                display: flex;
+                flex-direction: row;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                justify-content: space-evenly;
+
+                .data {
+                    display: flex;
+                    flex-direction: column;
+                    flex-basis: content;
+                    text-align: center;
+                    font-size: 16px;
+                    font-family:'AJensonPro';
+
+                    .value {
+                        border: 0;
+                        outline: 0;
+                        height: 30px;
+                        vertical-align: middle;
+
+                        .number {
+                            flex: 0 0 auto;
+                            width: 40px;
+                            height: 40px;
+                            margin-left: 10px;
+                            text-align: center;
+                            border-radius: 50%;
+                            align-items: center;
+                        }
+
                     }
 
                 }
 
             }
 
-            .label {
+            .input {
                 display: flex;
                 flex-direction: row;
                 height: 26px;
                 vertical-align: middle;
+                font-size: 16px;
                 font-family: 'AJensonPro';
 
                 .title {
                     flex: 0 0 auto;
                     font-weight: bold;
-                    margin-right: 5px;
+                    padding-top: 3px;
+                }
+
+                .value {
+                    border: 0;
+                    background: transparent;
                 }
 
             }
 
-        }
-        
-        .row {
-            display: flex;
-            flex-direction: row;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            justify-content: space-evenly;
-
-            .data {
-                display: flex;
-                flex-direction: column;
-                flex-basis: content;
-                text-align: center;
+            .list {
+                vertical-align: middle;
+                font-family: 'AJensonPro';
                 font-size: 16px;
+
+                .title {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 26px;
+                    font-weight: bold;
+                }
+
+                .item {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    height: 26px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+            }
+
+            .checkbox {
+                display: flex;
+                flex-direction: row;
+                height: 26px;
+                vertical-align: middle;
+                font-size: 16px;
+                font-family: 'AJensonPro';
+
+                input[type="checkbox"] {
+                    display:none;
+                }
+            
+                .checked {
+                    display: none;
+                }
+            
+                input[type="checkbox"]:checked ~ .checked {
+                    display: inline-block;
+                }
+                    
+                input[type="checkbox"]:checked ~ .unchecked {
+                    display: none;
+                }
+
+                i {
+                    margin-left: 50px;
+                    margin-right: 10px;
+                }
+
+            }
+
+            .key {
+                color: indianred;
+                margin-top: 20px;
+                font-family: 'Gill Sans';
+            }
+
+            .chronology {
+                margin-top: 10px;
                 font-family:'AJensonPro';
 
-                .value {
-                    border: 0;
-                    outline: 0;
-                    height: 30px;
-                    vertical-align: middle;
+                tr {
 
-                    .number {
-                        flex: 0 0 auto;
-                        width: 40px;
-                        height: 40px;
-                        margin-left: 10px;
+                    td.periode-name {
+                        padding-left: 10px;
+                    }
+
+                    td.periode {
                         text-align: center;
-                        border-radius: 50%;
-                        align-items: center;
+                    }
+
+                    td.infos {
+                        text-align: center;
+                        font-weight: bold;
                     }
 
                 }
 
             }
 
-        }
-
-        .input {
-            display: flex;
-            flex-direction: row;
-            height: 26px;
-            vertical-align: middle;
-            font-size: 16px;
-            font-family: 'AJensonPro';
-
-            .title {
-                flex: 0 0 auto;
-                font-weight: bold;
-                padding-top: 3px;
-            }
-
-            .value {
-                border: 0;
-                background: transparent;
-            }
-
-        }
-
-        .list {
-            vertical-align: middle;
-            font-family: 'AJensonPro';
-            font-size: 16px;
-
-            .title {
+            .difficulte {
                 display: flex;
                 flex-direction: row;
-                align-items: center;
                 height: 26px;
-                font-weight: bold;
-            }
+                font-family:'AJensonPro';
 
-            .item {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                height: 26px;
-                margin-top: 0px;
-                margin-bottom: 0px;
-            }
-
-        }
-
-        .checkbox {
-            display: flex;
-            flex-direction: row;
-            height: 26px;
-            vertical-align: middle;
-            font-size: 16px;
-            font-family: 'AJensonPro';
-
-            input[type="checkbox"] {
-                display:none;
-            }
-        
-            .checked {
-                display: none;
-            }
-        
-            input[type="checkbox"]:checked ~ .checked {
-                display: inline-block;
-            }
-                
-            input[type="checkbox"]:checked ~ .unchecked {
-                display: none;
-            }
-
-            i {
-                margin-left: 50px;
-                margin-right: 10px;
-            }
-
-        }
-
-        .key {
-            color: indianred;
-            margin-top: 20px;
-            font-family: 'Gill Sans';
-        }
-
-        .chronology {
-            margin-top: 10px;
-            font-family:'AJensonPro';
-
-            tr {
-
-                td.periode-name {
-                    padding-left: 10px;
-                }
-
-                td.periode {
-                    text-align: center;
-                }
-
-                td.infos {
-                    text-align: center;
+                span:nth-child(1) {
                     font-weight: bold;
+                    padding-top: 4px;
+                }
+
+                span:nth-child(2) {
+                    margin-left: 5px;
+                    padding-top: 4px;
                 }
 
             }
 
-        }
+            .metamorphoses {
+                margin-top: 10px;
 
-        .difficulte {
-            display: flex;
-            flex-direction: row;
-            height: 26px;
-            font-family:'AJensonPro';
+                li {
 
-            span:nth-child(1) {
-                font-weight: bold;
-                padding-top: 4px;
-            }
+                    input {
+                        border: 0;
+                        background: transparent;
+                        padding-bottom: 13px;
+                    }
 
-            span:nth-child(2) {
-                margin-left: 5px;
-                padding-top: 4px;
-            }
-
-        }
-
-        .metamorphoses {
-            margin-top: 10px;
-
-            li {
-
-                input {
-                    border: 0;
-                    background: transparent;
-                    padding-bottom: 13px;
                 }
 
             }
 
-        }
+            .description {
 
-        .description {
+                .add {
 
-            .add {
+                    span {
+                        margin-left: 10px;
+                    }
 
-                span {
-                    margin-left: 10px;
                 }
 
             }

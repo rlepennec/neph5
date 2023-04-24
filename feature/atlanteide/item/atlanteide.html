@@ -10,17 +10,21 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.atlanteide" collection=cercles name="system.cercle" value=system.cercle}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.atlanteide" collection=cercles name="system.cercle" value=system.cercle}}
+
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+
+                </div>
+
+                <hr>
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <hr>
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

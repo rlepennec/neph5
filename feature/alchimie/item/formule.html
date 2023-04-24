@@ -10,37 +10,41 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.oeuvre" collection=cercles name="system.cercle" value=system.cercle}}
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.substance" collection=substances name="system.substance" value=system.substance}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.oeuvre" collection=cercles name="system.cercle" value=system.cercle}}
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.elements.[0]" value=system.elements.[0]}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.substance" collection=substances name="system.substance" value=system.substance}}
 
-                {{#if (eq system.cercle "oeuvreAuBlanc")}}
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.elements.[1]" value=system.elements.[1]}}
-                {{/if}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.elements.[0]" value=system.elements.[0]}}
+
+                    {{#if (eq system.cercle "oeuvreAuBlanc")}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.elements.[1]" value=system.elements.[1]}}
+                    {{/if}}
+
+                </div>
+
+                <hr>
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.enonce" name="system.enonce" value=system.enonce type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.aire" name="system.aire" value=system.aire type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/list.hbs" title="NEPH5E.variantes" values=system.variantes names="system.variantes" edit="edit-variante" delete="delete-variante"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/list.hbs" display=catalyseurs title="NEPH5E.catalyseurs" values=system.catalyseurs names="system.catalyseurs" delete="delete-catalyseur"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <hr>
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.enonce" name="system.enonce" value=system.enonce type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.aire" name="system.aire" value=system.aire type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/list.hbs" title="NEPH5E.variantes" values=system.variantes names="system.variantes" edit="edit-variante" delete="delete-variante"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/list.hbs" display=catalyseurs title="NEPH5E.catalyseurs" values=system.catalyseurs names="system.catalyseurs" delete="delete-catalyseur"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

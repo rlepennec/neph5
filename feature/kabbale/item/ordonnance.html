@@ -10,13 +10,17 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main center">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.mondeKabbale" collection=mondes name="system.monde" value=system.monde}}
+                <div class="main center">
+
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.mondeKabbale" collection=mondes name="system.monde" value=system.monde}}
+
+                </div>
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

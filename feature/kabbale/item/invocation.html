@@ -10,29 +10,33 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.sephirah" collection=cercles name="system.sephirah" value=system.sephirah}}
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.mondeKabbale" collection=mondes name="system.monde" value=system.monde}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.sephirah" collection=cercles name="system.sephirah" value=system.sephirah}}
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.mondeKabbale" collection=mondes name="system.monde" value=system.monde}}
+
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+
+                </div>
+
+                <hr>
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.portee" name="system.portee" value=system.portee type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.visibilite" name="system.visibilite" value=system.visibilite type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <hr>
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.portee" name="system.portee" value=system.portee type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.visibilite" name="system.visibilite" value=system.visibilite type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

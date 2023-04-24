@@ -10,11 +10,15 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            {{#if (nonNull readOnly)}}
-            {{html item.system.description}}
-            {{else}}
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-            {{/if}}
+            <div class="body">
+
+                {{#if (nonNull readOnly)}}
+                {{html item.system.description}}
+                {{else}}
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+                {{/if}}
+
+            </div>
 
         </div>
 

@@ -10,15 +10,19 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.physique" tooltip="NEPH5E.protection" name="system.physique" value=system.physique}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.magique" tooltip="NEPH5E.protection" name="system.magique" value=system.magique}}
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.physique" tooltip="NEPH5E.protection" name="system.physique" value=system.physique}}
+
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.magique" tooltip="NEPH5E.protection" name="system.magique" value=system.magique}}
+
+                </div>
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

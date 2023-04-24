@@ -10,19 +10,23 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.cercle" collection=cercles name="system.cercle" value=system.cercle}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.desmos" collection=desmos name="system.desmos" value=system.desmos}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.cercle" collection=cercles name="system.cercle" value=system.cercle}}
+
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.desmos" collection=desmos name="system.desmos" value=system.desmos}}
+
+                </div>
+
+                <hr>
+
+                {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+            
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <hr>
-
-            {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
-        
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

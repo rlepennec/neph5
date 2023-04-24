@@ -10,35 +10,39 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/text.hbs" name="system.contexte" value=system.contexte class="edit-contexte" style="width:300px" tooltip="Lieu" placeholder="Lieu"}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/text.hbs" name="system.aube" value=system.aube style="width:100px" tooltip="Epoque" placeholder="Epoque"}}
+                    {{> "systems/neph5e/templates/item/parts/header/text.hbs" name="system.contexte" value=system.contexte class="edit-contexte" style="width:300px" tooltip="Lieu" placeholder="Lieu"}}
+
+                    {{> "systems/neph5e/templates/item/parts/header/text.hbs" name="system.aube" value=system.aube style="width:100px" tooltip="Epoque" placeholder="Epoque"}}
+
+                </div>
+
+                <ol class="column-2">
+
+                    {{#each vecus as |vecu|}}
+                    <li class="item hoverable flexrow-start" data-item-id="{{vecu}}">
+
+                        <div class="mright">
+                            <a><i class="delete-vecu fas fa-trash"></i></a>
+                        </div>
+
+                        {{#with (getItem vecu)}}
+                        <div class="edit-vecu">
+                            <span data-item-id="{{vecu}}">{{name}}</span>
+                        </div>
+                        {{/with}}
+
+                    </li>
+                    {{/each}}
+
+                </ol>
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <ol class="column-2">
-
-                {{#each vecus as |vecu|}}
-                <li class="item hoverable flexrow-start" data-item-id="{{vecu}}">
-
-                    <div class="mright">
-                        <a><i class="delete-vecu fas fa-trash"></i></a>
-                    </div>
-
-                    {{#with (getItem vecu)}}
-                    <div class="edit-vecu">
-                        <span data-item-id="{{vecu}}">{{name}}</span>
-                    </div>
-                    {{/with}}
-
-                </li>
-                {{/each}}
-
-            </ol>
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 

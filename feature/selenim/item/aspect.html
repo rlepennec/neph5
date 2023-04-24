@@ -10,19 +10,23 @@
 
             {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
-            <div class="main">
+            <div class="body">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.construction" name="system.degre" value=system.degre}}
+                <div class="main">
 
-                {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.activation" name="system.activation" value=system.activation}}
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.construction" name="system.degre" value=system.degre}}
+
+                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.activation" name="system.activation" value=system.activation}}
+
+                </div>
+
+                <hr>
+
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
+
+                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
             </div>
-
-            <hr>
-
-            {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
-
-            {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 
         </div>
 
