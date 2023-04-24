@@ -4176,7 +4176,11 @@
   opacity: 1;
 }
 .item-root .side {
-  margin: 10px;
+  flex: 0 0 auto;
+  width: 60px;
+}
+.item-root .side img {
+  width: 100%;
 }
 .item-root .article {
   display: flex;
