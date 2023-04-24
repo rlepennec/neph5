@@ -4186,12 +4186,12 @@
 .item-root .article {
   display: flex;
   flex-direction: column;
-  margin: 10px;
   flex-basis: 100%;
   font-family: 'AJensonPro';
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   background-size: cover;
   color: #191813;
+  margin: 2px;
 }
 .item-root .article .header {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
@@ -4229,6 +4229,10 @@
   flex: 0 0 auto;
   margin: 6px;
   border-radius: 6px;
+}
+.item-root .article .body {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .item-root .article .body .line-bottom {
   margin-top: 10px;
