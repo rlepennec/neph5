@@ -4227,7 +4227,7 @@
 }
 .item-root .article .header .title .image {
   flex: 0 0 auto;
-  margin-left: 10px;
+  margin: 6px;
   border-radius: 6px;
 }
 .item-root .article .body .line-bottom {
