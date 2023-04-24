@@ -5348,7 +5348,7 @@ form.combat div.hiddable #description {
   -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
-.window-app:not(.sheet.item,.sheet.actor) {
+.window-app:not(.sheet.actor) {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
   --opacity: 0.9;
@@ -5359,46 +5359,46 @@ form.combat div.hiddable #description {
   --color-widget: #f5f4f4;
   --color-widget-background: #051732;
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content {
+.window-app:not(.sheet.actor) .window-content {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content .journal-sidebar {
+.window-app:not(.sheet.actor) .window-content .journal-sidebar {
   background: var(--background);
   background-size: cover;
   font-family: 'MinionPro';
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content .journal-sidebar .pages-list {
+.window-app:not(.sheet.actor) .window-content .journal-sidebar .pages-list {
   color: var(--color-text-dark-primary);
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content .journal-entry-content {
+.window-app:not(.sheet.actor) .window-content .journal-entry-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   background-size: cover;
   font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content .journal-entry-content .title {
+.window-app:not(.sheet.actor) .window-content .journal-entry-content .title {
   color: #191813;
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content button {
+.window-app:not(.sheet.actor) .window-content button {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content select {
+.window-app:not(.sheet.actor) .window-content select {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content input[type=checkbox] {
+.window-app:not(.sheet.actor) .window-content input[type=checkbox] {
   color: var(--color-widget);
   border: 3px solid var(--color-widget);
   border-radius: 50%;
   -webkit-appearance: none;
   background-color: var(--color-widget);
 }
-.window-app:not(.sheet.item,.sheet.actor) .window-content input[type=checkbox]:checked {
+.window-app:not(.sheet.actor) .window-content input[type=checkbox]:checked {
   background-color: #150e4c;
 }
