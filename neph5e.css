@@ -5403,6 +5403,7 @@ form.combat div.hiddable #description {
   --color-underline-header: #c9c6b1;
   --color-widget: #f5f4f4;
   --color-widget-background: #051732;
+  --color-shadow: #bebdbd;
 }
 .window-app:not(.sheet.actor) .window-content {
   background: var(--background);
@@ -5447,10 +5448,20 @@ form.combat div.hiddable #description {
   border-radius: 6px;
   background: var(--color-widget-background);
 }
+.window-app:not(.sheet.actor) .window-content button:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+}
 .window-app:not(.sheet.actor) .window-content select {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
+}
+.window-app:not(.sheet.actor) .window-content select:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
 .window-app:not(.sheet.actor) .window-content select option {
   background: var(--color-widget-background);
@@ -5464,4 +5475,9 @@ form.combat div.hiddable #description {
 }
 .window-app:not(.sheet.actor) .window-content input[type=checkbox]:checked {
   background-color: #150e4c;
+}
+.window-app:not(.sheet.actor) .window-content input[type=checkbox]:hover {
+  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }

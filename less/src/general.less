@@ -176,6 +176,7 @@
     --color-underline-header: #c9c6b1;
     --color-widget: #f5f4f4;
     --color-widget-background: #051732;
+    --color-shadow: #bebdbd;
 
     .window-content {
         background: var(--background);
@@ -230,12 +231,25 @@
             color: var(--color-widget);
             border-radius: 6px;
             background: var(--color-widget-background);
+
+            &:hover {
+                -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+            }
+
         }
 
         select {
             color: var(--color-widget);
             border-radius: 6px;
             background: var(--color-widget-background);
+
+            &:hover {
+                -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+            }
 
             option {
                 background: var(--color-widget-background);
@@ -251,6 +265,12 @@
 
             &:checked {
                 background-color: #150e4c;
+            }
+
+            &:hover {
+                -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                box-shadow: 0 0 2px 2px var(--color-shadow) inset;
             }
 
         }
