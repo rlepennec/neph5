@@ -1,4 +1,5 @@
 # 1.3.11
+Amélioration de l'affichage du mce editor
 
 # 1.3.10
 Correction d'un bug sur la mise à jour du laboratoire
