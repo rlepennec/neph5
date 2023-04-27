@@ -40,13 +40,23 @@
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.creuset"}}</label>
 
-            <select name="actor.system.alchimie.constructs.creuset.degre" {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}} disabled{{/if}}>
-            {{#select degre}}
+            {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            <select name="actor.system.alchimie.constructs.creuset.degre" disabled>
+            {{#select actor.system.alchimie.constructs.creuset.degre}}
                 {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
             </select>
+            {{else}}
+            <select name="system.alchimie.constructs.creuset.degre">
+            {{#select system.alchimie.constructs.creuset.degre}}
+                {{#each ../cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+            {{/if}}
 
             <div class="elements">
 
@@ -165,13 +175,24 @@
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.aludel"}}</label>
 
-            <select name="actor.system.alchimie.constructs.aludel.degre" {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}} disabled{{/if}}>
-            {{#select degre}}
+            {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            <select name="actor.system.alchimie.constructs.aludel.degre" disabled>
+            {{#select actor.system.alchimie.constructs.aludel.degre}}
                 {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
             </select>
+            {{else}}
+            <select name="system.alchimie.constructs.aludel.degre">
+            {{#select system.alchimie.constructs.aludel.degre}}
+                {{#each ../cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+            {{/if}}
+
 
             <div class="elements">
 
@@ -290,13 +311,24 @@
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.cornue"}}</label>
 
-            <select name="actor.system.alchimie.constructs.cornue.degre" {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}} disabled{{/if}}>
-            {{#select degre}}
+            {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            <select name="actor.system.alchimie.constructs.cornue.degre" disabled>
+            {{#select actor.system.alchimie.constructs.cornue.degre}}
                 {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
             </select>
+            {{else}}
+            <select name="system.alchimie.constructs.cornue.degre">
+            {{#select system.alchimie.constructs.cornue.degre}}
+                {{#each ../cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+            {{/if}}
+
 
             <div class="elements">
 
@@ -415,13 +447,23 @@
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.alambic"}}</label>
 
-            <select name="actor.system.alchimie.constructs.alambic.degre" {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}} disabled{{/if}}>
-            {{#select degre}}
+            {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            <select name="actor.system.alchimie.constructs.alambic.degre" disabled>
+            {{#select actor.system.alchimie.constructs.alambic.degre}}
                 {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
             </select>
+            {{else}}
+            <select name="system.alchimie.constructs.alambic.degre">
+            {{#select system.alchimie.constructs.alambic.degre}}
+                {{#each ../cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+            {{/if}}
 
             <div class="elements">
 
@@ -540,13 +582,24 @@
 
             <label class="name">{{localize "NEPH5E.alchimie.constructs.athanor"}}</label>
 
-            <select name="actor.system.alchimie.constructs.athanor.degre" {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}} disabled{{/if}}>
-            {{#select degre}}
+            {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            <select name="actor.system.alchimie.constructs.athanor.degre" disabled>
+            {{#select actor.system.alchimie.constructs.athanor.degre}}
                 {{#each ../cercles as |name label|}}
                 <option value="{{label}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
             </select>
+            {{else}}
+            <select name="system.alchimie.constructs.athanor.degre">
+            {{#select system.alchimie.constructs.athanor.degre}}
+                {{#each ../cercles as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}}
+            </select>
+            {{/if}}
+
 
             <div class="elements">
 
