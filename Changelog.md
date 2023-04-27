@@ -5,6 +5,7 @@ Correction des objets non clickable dans l'onglet combat
 Correction d'un bug d'affichage sur le menu des scènes
 Amélioration de l'affichage de noms vécus trop long
 Amélioration de l'affichage du panneau général
+Amélioration de l'affichage des items
 
 # 1.3.9
 Fin de définition des skins
