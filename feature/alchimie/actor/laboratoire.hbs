@@ -54,71 +54,106 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.creuset.air"
                         type="text"
                         value="{{actor.system.alchimie.constructs.creuset.air}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.air}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
                 </div>
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.creuset.eau"
                         type="text"
                         value="{{actor.system.alchimie.constructs.creuset.eau}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.eau}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
                 </div>
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.creuset.feu"
                         type="text"
                         value="{{actor.system.alchimie.constructs.creuset.feu}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.feu}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
                 </div>
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.creuset.lune"
                         type="text"
                         value="{{actor.system.alchimie.constructs.creuset.lune}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.lune}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
                 </div>
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.creuset.terre"
                         type="text"
                         value="{{actor.system.alchimie.constructs.creuset.terre}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.creuset.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.creuset.terre}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
                 </div>
 
@@ -144,71 +179,106 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.aludel.air"
                         type="text"
                         value="{{actor.system.alchimie.constructs.aludel.air}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.air}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
                 </div>
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.aludel.eau"
                         type="text"
                         value="{{actor.system.alchimie.constructs.aludel.eau}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.eau}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
                 </div>
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.aludel.feu"
                         type="text"
                         value="{{actor.system.alchimie.constructs.aludel.feu}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.feu}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
                 </div>
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.aludel.lune"
                         type="text"
                         value="{{actor.system.alchimie.constructs.aludel.lune}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.lune}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
                 </div>
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.aludel.terre"
                         type="text"
                         value="{{actor.system.alchimie.constructs.aludel.terre}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.aludel.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.aludel.terre}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
                 </div>
 
@@ -234,71 +304,106 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.cornue.air"
                         type="text"
                         value="{{actor.system.alchimie.constructs.cornue.air}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.air}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
                 </div>
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.cornue.eau"
                         type="text"
                         value="{{actor.system.alchimie.constructs.cornue.eau}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.eau}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
                 </div>
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.cornue.feu"
                         type="text"
                         value="{{actor.system.alchimie.constructs.cornue.feu}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.feu}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
                 </div>
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.cornue.lune"
                         type="text"
                         value="{{actor.system.alchimie.constructs.cornue.lune}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.lune}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
                 </div>
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.cornue.terre"
                         type="text"
                         value="{{actor.system.alchimie.constructs.cornue.terre}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.cornue.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.cornue.terre}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
                 </div>
 
@@ -324,71 +429,106 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.alambic.air"
                         type="text"
                         value="{{actor.system.alchimie.constructs.alambic.air}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.air}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
                 </div>
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.alambic.eau"
                         type="text"
                         value="{{actor.system.alchimie.constructs.alambic.eau}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.eau}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
                 </div>
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.alambic.feu"
                         type="text"
                         value="{{actor.system.alchimie.constructs.alambic.feu}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.feu}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
                 </div>
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.alambic.lune"
                         type="text"
                         value="{{actor.system.alchimie.constructs.alambic.lune}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.lune}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
                 </div>
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.alambic.terre"
                         type="text"
                         value="{{actor.system.alchimie.constructs.alambic.terre}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.alambic.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.alambic.terre}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
                 </div>
 
@@ -414,71 +554,106 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.athanor.air"
                         type="text"
                         value="{{actor.system.alchimie.constructs.athanor.air}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.air"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.air}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
                 </div>
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.athanor.eau"
                         type="text"
                         value="{{actor.system.alchimie.constructs.athanor.eau}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.eau"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.eau}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.eau"}}</label>
                 </div>
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.athanor.feu"
                         type="text"
                         value="{{actor.system.alchimie.constructs.athanor.feu}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.feu"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.feu}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.feu"}}</label>
                 </div>
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.athanor.lune"
                         type="text"
                         value="{{actor.system.alchimie.constructs.athanor.lune}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.lune"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.lune}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.lune"}}</label>
                 </div>
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
+                    {{#if (or (eq ../actor.locked true) (nonNull ../actor.system.alchimie.courant))}}
                     <input
-                        {{#if actor.locked}}disabled{{/if}}
+                        disabled
                         class="degre"
                         name="actor.system.alchimie.constructs.athanor.terre"
                         type="text"
                         value="{{actor.system.alchimie.constructs.athanor.terre}}"
-                        data-dtype="Number"
-                        {{#if (nonNull ../actor.system.alchimie.courant)}} disabled{{/if}}
-                        />
+                        data-dtype="Number" />
+                    {{else}}
+                    <input
+                        class="degre"
+                        name="system.alchimie.constructs.athanor.terre"
+                        type="text"
+                        value="{{system.alchimie.constructs.athanor.terre}}"
+                        data-dtype="Number" />
+                    {{/if}}
                     <label class="tooltiptext">{{localize "NEPH5E.terre"}}</label>
                 </div>
 
