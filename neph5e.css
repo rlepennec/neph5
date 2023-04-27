@@ -5428,6 +5428,20 @@ form.combat div.hiddable #description {
 .window-app:not(.sheet.actor) .window-content .journal-entry-content .title {
   color: #191813;
 }
+.window-app:not(.sheet.actor) .window-content .editor .editor-content {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+  padding: 10px;
+}
+.window-app:not(.sheet.actor) .window-content .editor textarea {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  color: #191813;
+  padding: 10px;
+}
 .window-app:not(.sheet.actor) .window-content button {
   color: var(--color-widget);
   border-radius: 6px;
