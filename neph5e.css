@@ -5322,14 +5322,12 @@ form.combat div.hiddable #description {
 #interface #ui-middle #ui-top #navigation #nav-toggle {
   background: var(--background);
   background-size: var(--background-size);
-  opacity: var(--opacity);
   font-family: 'AJensonPro';
   font-size: 17px;
 }
 #interface #ui-middle #ui-top #navigation li {
   background: var(--background);
   background-size: var(--background-size);
-  opacity: var(--opacity);
   font-size: 17px;
 }
 #interface #ui-middle #ui-top #navigation li:hover {
