@@ -1,5 +1,8 @@
 # 1.3.10
+Correction d'un bug sur la mise à jour du laboratoire
 Correction du skin feu
+Correction des objets non clickable dans l'onglet combat
+Correction d'un bug d'affichage sur le menu des scènes
 Amélioration de l'affichage de noms vécus trop long
 Amélioration de l'affichage du panneau général
 
