@@ -1364,7 +1364,6 @@
                                         top: var(--puce-top);
                                         border: none;
                                         width: 60px;
-                                        display: hidden;
                                         background-color: transparent;
                                         content: var(--img-puce);
                                     }
@@ -1387,46 +1386,52 @@
                                     }
         
                                 }
-        
-                                li {
-                                    display: flex;
-                                    flex-direction: row;
-                                    height: 22px;
-        
-                                    .delete {
-                                        width: 10%;
-                                    }
-        
-                                    .name {
-                                        width: 50%;
-                                    }
-        
-                                    .reload {
-                                        width: 10%;
-                                        text-align: right;
-                                    }
-        
-                                    .aim {
-                                        width: 10%;
-                                        text-align: right;
-                                    }
-        
-                                    .roll {
-                                        width: 10%;
-                                        text-align: right;
-                                    }
-        
-                                    .usage {
-                                        width: 10%;
-                                        text-align: right;
+
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    li {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+            
+                                        .delete {
+                                            width: 10%;
+                                        }
+            
+                                        .name {
+                                            width: 50%;
+                                        }
+            
+                                        .reload {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        .aim {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        .roll {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        .usage {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+            
                                     }
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px var(--font-color);
-                                    }
-        
                                 }
-        
+
                             }
         
                             .armures {
@@ -1468,27 +1473,33 @@
                                     }
         
                                 }
-        
-                                li {
-                                    display: flex;
-                                    flex-direction: row;
-                                    height: 22px;
-        
-                                    .delete {
-                                        width: 10%;
-                                    }
-        
-                                    .name {
-                                        width: 80%;
-                                    }
-        
-                                    .usage {
-                                        width: 10%;
-                                        text-align: right;
-                                    }
-        
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px var(--font-color);
+
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    li {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+            
+                                        .delete {
+                                            width: 10%;
+                                        }
+            
+                                        .name {
+                                            width: 80%;
+                                        }
+            
+                                        .usage {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
                                     }
 
                                 }
@@ -1649,39 +1660,45 @@
                                 font-size: 16px;
                                 margin-top: -13px;
         
-                                .etat {
-                                    display: flex;
-                                    flex-direction: row;
-        
-                                    .checkbox {
-                                        margin-left: 22px;
-                                        margin-right: 20px;
-                                        padding-top: -5px;
-                                        font-size: 11px;
-                                        flex: 0 0 auto;
-        
-                                        .checked {
-                                            display: none;
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    .etat {
+                                        display: flex;
+                                        flex-direction: row;
+            
+                                        .checkbox {
+                                            margin-left: 22px;
+                                            margin-right: 20px;
+                                            padding-top: -5px;
+                                            font-size: 11px;
+                                            flex: 0 0 auto;
+            
+                                            .checked {
+                                                display: none;
+                                            }
+            
+                                            input[type="checkbox"] {
+                                                display: none;
+                                            }
+            
+                                            input[type="checkbox"]:checked ~ .checked {
+                                                display: inline-block;
+                                            }
+                                            
+                                            input[type="checkbox"]:checked ~ .unchecked {
+                                                display: none;
+                                            }
+            
                                         }
-        
-                                        input[type="checkbox"] {
-                                            display: none;
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
                                         }
-        
-                                        input[type="checkbox"]:checked ~ .checked {
-                                            display: inline-block;
-                                        }
-                                        
-                                        input[type="checkbox"]:checked ~ .unchecked {
-                                            display: none;
-                                        }
-        
+            
                                     }
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px var(--font-color);
-                                    }
-        
                                 }
         
                             }
@@ -1689,35 +1706,41 @@
                             .capacites {
                                 font-family: 'AJensonPro';
                                 font-size: 16px;
-        
-                                .capacite {
-                                    display: flex;
-                                    flex-direction: row;
-                                    height: 22px;
-        
-                                    .undefined {
-                                        color: var(--nephilim-color-chute);
-                                    }
 
-                                    .fa-edit {
-                                        margin-left: 22px;
-                                        margin-right: 20px;
-                                        padding-top: 3px;
-                                        font-size: 11px;
-                                        flex: 0 0 auto;
-                                    }
-        
-                                    label:first-of-type {
-                                        width: 55px;
-                                        flex: 0 0 auto;
-                                    }
-        
-                                    i {
-                                        width: 20px;
-                                    }
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
 
-                                    &:hover {
-                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    .capacite {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+            
+                                        .undefined {
+                                            color: var(--nephilim-color-chute);
+                                        }
+
+                                        .fa-edit {
+                                            margin-left: 22px;
+                                            margin-right: 20px;
+                                            padding-top: 3px;
+                                            font-size: 11px;
+                                            flex: 0 0 auto;
+                                        }
+            
+                                        label:first-of-type {
+                                            width: 55px;
+                                            flex: 0 0 auto;
+                                        }
+            
+                                        i {
+                                            width: 20px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
                                     }
 
                                 }

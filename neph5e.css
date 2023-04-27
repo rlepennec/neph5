@@ -447,11 +447,11 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -19px;
+  --combat-header-bottom: -30px;
   --combat-carac-width: 48px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -12px;
+  --combat-armures-bottom: -30px;
   --combat-dommages-circle-top: 79px;
   --combat-dommages-circle-width: 85px;
   --combat-dommages-circle-height: 87px;
@@ -599,7 +599,7 @@
   --selenim-imago-top: -17px;
   --selenim-imago-left: -21px;
   --selenim-imago-bottom: -28px;
-  --combat-header-bottom: -16px;
+  --combat-header-bottom: -22px;
   --combat-carac-width: 44px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
@@ -752,7 +752,7 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -10px;
+  --combat-header-bottom: -14px;
   --combat-carac-width: 48px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
@@ -905,11 +905,11 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -19px;
+  --combat-header-bottom: -28px;
   --combat-carac-width: 48px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -15px;
+  --combat-armures-bottom: -19px;
   --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 80px;
   --combat-dommages-circle-height: 85px;
@@ -1057,11 +1057,11 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: 7px;
-  --combat-header-bottom: -10px;
+  --combat-header-bottom: -20px;
   --combat-carac-width: 48px;
   --combat-carac-input-width: 35px;
   --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -10px;
+  --combat-armures-bottom: -7px;
   --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 80px;
   --combat-dommages-circle-height: 85px;
@@ -1209,11 +1209,11 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -10px;
+  --combat-header-bottom: -3px;
   --combat-carac-width: 52px;
   --combat-carac-input-width: 39px;
   --combat-carac-input-top: 8px;
-  --combat-armures-bottom: -10px;
+  --combat-armures-bottom: 3px;
   --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 90px;
   --combat-dommages-circle-height: 85px;
@@ -2347,7 +2347,6 @@
   top: var(--puce-top);
   border: none;
   width: 60px;
-  display: hidden;
   background-color: transparent;
   content: var(--img-puce);
 }
@@ -2366,34 +2365,38 @@
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol {
+  position: relative;
+  z-index: 99;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li .delete {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li .delete {
   width: 10%;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li .name {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li .name {
   width: 50%;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li .reload {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li .reload {
   width: 10%;
   text-align: right;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li .aim {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li .aim {
   width: 10%;
   text-align: right;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li .roll {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li .roll {
   width: 10%;
   text-align: right;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li .usage {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li .usage {
   width: 10%;
   text-align: right;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armes li:hover {
+.actor .window-content .actor-root .article .article-body .combat .left .armes ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .left .armures .header {
@@ -2429,22 +2432,26 @@
   top: 2px;
   width: calc(100% - 65px);
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armures li {
+.actor .window-content .actor-root .article .article-body .combat .left .armures ol {
+  position: relative;
+  z-index: 99;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .armures ol li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armures li .delete {
+.actor .window-content .actor-root .article .article-body .combat .left .armures ol li .delete {
   width: 10%;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armures li .name {
+.actor .window-content .actor-root .article .article-body .combat .left .armures ol li .name {
   width: 80%;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armures li .usage {
+.actor .window-content .actor-root .article .article-body .combat .left .armures ol li .usage {
   width: 10%;
   text-align: right;
 }
-.actor .window-content .actor-root .article .article-body .combat .left .armures li:hover {
+.actor .window-content .actor-root .article .article-body .combat .left .armures ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right {
@@ -2564,59 +2571,67 @@
   font-size: 16px;
   margin-top: -13px;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol {
+  position: relative;
+  z-index: 99;
+}
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat {
   display: flex;
   flex-direction: row;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat .checkbox {
   margin-left: 22px;
   margin-right: 20px;
   padding-top: -5px;
   font-size: 11px;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox .checked {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat .checkbox .checked {
   display: none;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"] {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat .checkbox input[type="checkbox"] {
   display: none;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .checked {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .etats .etat:hover {
+.actor .window-content .actor-root .article .article-body .combat .right .etats ol .etat:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .capacites {
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol {
+  position: relative;
+  z-index: 99;
+}
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol .capacite {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite .undefined {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol .capacite .undefined {
   color: var(--nephilim-color-chute);
 }
-.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite .fa-edit {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol .capacite .fa-edit {
   margin-left: 22px;
   margin-right: 20px;
   padding-top: 3px;
   font-size: 11px;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite label:first-of-type {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol .capacite label:first-of-type {
   width: 55px;
   flex: 0 0 auto;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite i {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol .capacite i {
   width: 20px;
 }
-.actor .window-content .actor-root .article .article-body .combat .right .capacites .capacite:hover {
+.actor .window-content .actor-root .article .article-body .combat .right .capacites ol .capacite:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .combat .right .bonus .body {
