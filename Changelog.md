@@ -3,6 +3,7 @@ Correction d'un bug sur la mise à jour du laboratoire
 Correction du skin feu
 Correction des objets non clickable dans l'onglet combat
 Correction d'un bug d'affichage sur le menu des scènes
+Correction d'un bug d'affichage sur les icones de mataeria primae de type eau
 Amélioration de l'affichage de noms vécus trop long
 Amélioration de l'affichage du panneau général
 Amélioration de l'affichage des items
