@@ -181,6 +181,7 @@
         background: var(--background);
         background-size: var(--background-size);
         opacity: var(--opacity);
+        box-shadow: 0 0 10px 0px #f5f4f4 inset;
 
         .journal-sidebar {
             background: var(--background);
@@ -215,6 +216,10 @@
             color: var(--color-widget);
             border-radius: 6px;
             background: var(--color-widget-background);
+
+            option {
+                background: var(--color-widget-background);
+            }
         }
 
         input[type=checkbox] {

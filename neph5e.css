@@ -5408,6 +5408,7 @@ form.combat div.hiddable #description {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
+  box-shadow: 0 0 10px 0px #f5f4f4 inset;
 }
 .window-app:not(.sheet.actor) .window-content .journal-sidebar {
   background: var(--background);
@@ -5435,6 +5436,9 @@ form.combat div.hiddable #description {
 .window-app:not(.sheet.actor) .window-content select {
   color: var(--color-widget);
   border-radius: 6px;
+  background: var(--color-widget-background);
+}
+.window-app:not(.sheet.actor) .window-content select option {
   background: var(--color-widget-background);
 }
 .window-app:not(.sheet.actor) .window-content input[type=checkbox] {
