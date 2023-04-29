@@ -48,6 +48,10 @@
     "SETTINGS.catalyseursDesc": "Les catalyseurs alchimiques apparaitront dans l'onglet Laboratoire",
     "SETTINGS.sciencesOccultes": "Sciences Occultes",
     "SETTINGS.sciencesOccultesDesc": "Permet d'effectuer des jets de Sciences Occultes",
+    "SETTINGS.modifierPolicy": "Choix des modificateurs",
+    "SETTINGS.modifierPolicyDesc": "Permet de définir comment entrer les modificateurs",
+    "SETTINGS.extraChatMessages": "Messages du tchat",
+    "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
 
     "NEPH5E": {
         "absorption": "Absorption",

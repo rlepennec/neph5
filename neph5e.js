@@ -333,8 +333,28 @@ Hooks.once("init", function () {
               'bonus': 'Bonus'
             },
             default: 'standard'
-          });
-          game.settings.register('neph5e', 'debug', {
+        });
+        game.settings.register('neph5e', 'modifierPolicy', {
+            config: true,
+            name: game.i18n.localize('SETTINGS.modifierPolicy'),
+            hint: game.i18n.localize('SETTINGS.modifierPolicyDesc'),
+            scope: "world",
+            type: String,
+            choices: {
+              'clavier': 'Clavier',
+              'liste': 'Liste'
+            },
+            default: 'liste'
+        });
+        game.settings.register('neph5e', 'extraChatMessages', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.extraChatMessages'),
+            hint: game.i18n.localize('SETTINGS.extraChatMessagesDesc'),
+            type: Boolean,
+            default: true
+        });
+        game.settings.register('neph5e', 'debug', {
             config: true,
             scope: 'world',
             name: game.i18n.localize('SETTINGS.debug'),

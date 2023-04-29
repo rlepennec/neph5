@@ -166,8 +166,6 @@ export class CustomHandlebarsHelpers {
         return actor.science(science);
     }
 
-
-
     /**
      * @param actor   The actor object.
      * @param science The type 'sort', 'formule' etc...
