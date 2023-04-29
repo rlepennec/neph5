@@ -1,5 +1,7 @@
 # 1.3.12
 Amélioration de l'affichage
+Ajout d'une option pour afficher des informations complémentaires dans le tchat
+Ajout d'une option pour gérer les modificateurs sous forme d'une liste
 
 # 1.3.11
 Amélioration de l'affichage du mce editor
