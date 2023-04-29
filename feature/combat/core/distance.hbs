@@ -97,7 +97,23 @@
         <tr>
             <td class="label">Modificateur</td>
             <td id="manoeuverModifier">
+                {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
                 <input id="modifier" type="Number" value="0"/>
+                {{else}}
+                <select id="modifier">
+                    <option value="50">50</option>
+                    <option value="40">40</option>
+                    <option value="30">30</option>
+                    <option value="20">20</option>
+                    <option value="10">10</option>
+                    <option value="0">0</option>
+                    <option value="-10">-10</option>
+                    <option value="-20">-20</option>
+                    <option value="-30">-30</option>
+                    <option value="-40">-40</option>
+                    <option value="-50">-50</option>
+                </select>
+                {{/if}}
             </td>
             <td>%</td>
         </tr>

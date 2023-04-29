@@ -93,6 +93,7 @@ Hooks.once("init", function () {
         getMaxMP: CustomHandlebarsHelpers.getMaxMP,
         science: CustomHandlebarsHelpers.science,
         fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
+        getSystemOption: CustomHandlebarsHelpers.getSystemOption,
         minus: (v1, v2) => v1 - v2,
     });
 

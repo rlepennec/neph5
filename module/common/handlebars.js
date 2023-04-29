@@ -291,6 +291,14 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param option The identifier of the option to retrieve.
+     * @returns the option value.
+     */
+    static getSystemOption(option) {
+        return game.settings.get('neph5e', option);
+    }
+
+    /**
      * Defines a fast UUID generator compliant with RFC4122 version 4.
      */
     static UUID() {
