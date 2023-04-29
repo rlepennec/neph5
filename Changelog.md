@@ -1,4 +1,5 @@
 # 1.3.12
+Amélioration de l'affichage
 
 # 1.3.11
 Amélioration de l'affichage du mce editor
