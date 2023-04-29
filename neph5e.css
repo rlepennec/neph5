@@ -4231,6 +4231,7 @@
   font-size: 20px;
   text-align: center;
   margin-bottom: 10px;
+  padding-bottom: 9px;
   padding-left: 10px;
   padding-right: 10px;
   height: 100%;
@@ -4243,7 +4244,7 @@
 }
 .item-root .article .header .title .image {
   flex: 0 0 auto;
-  margin: 6px;
+  margin: 0px 6px 6px 6px;
   border-radius: 6px;
 }
 .item-root .article .body {
@@ -4299,6 +4300,7 @@
   color: var(--font-color);
 }
 .item-root .article .body .main .data .value .select .option {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   text-align: center;
 }
 .item-root .article .body .main .data .value .number {
