@@ -4890,6 +4890,16 @@
   border: none;
   background-color: transparent;
 }
+.reaction .table tr td .slider {
+  display: flex;
+  flex-direction: row;
+}
+.reaction .table tr td .slider input {
+  margin-right: 20px;
+}
+.reaction .table tr td .slider label {
+  width: 40px;
+}
 .reaction .table tr .base-name {
   width: 65%;
   text-align: left;
