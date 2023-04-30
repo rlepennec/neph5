@@ -208,6 +208,7 @@ export class AbstractFeature {
                 difficulty: result.difficulty,
                 total: result.roll._total,
                 result: result.sentence,
+                extra: result.extra,
                 impact: this.impact()
             })
             .withRoll(result.roll)
@@ -251,7 +252,7 @@ export class AbstractFeature {
         if (fumble) {
             sentence = "échoue de façon désastreuse";
         } else if (fail) {
-                sentence = "échoue";
+            sentence = "échoue";
         } else {
             sentence = "réussit";
             if (critical) {
@@ -269,8 +270,21 @@ export class AbstractFeature {
             fumble: fumble,
             critical: critical,
             margin: margin,
-            sentence: sentence
+            sentence: sentence,
+            extra: game.settings.get('neph5e', 'extraChatMessages') === true ? this.extraChatSentence(fumble, fail, critical, margin) : null
         }
+    }
+
+    /**
+     * May be override.
+     * @param fumble   True if fumble.
+     * @param fail     True if failed.
+     * @param critical True if critical success.
+     * @param margin   The margin success.
+     * @returns the extra chat sentence to display if necessary.
+     */
+    extraChatSentence(fumble, fail, critical, margin) {
+        return null;
     }
 
     /**

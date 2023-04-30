@@ -57,6 +57,10 @@
         <label class="chat-result">{{actor.name}} {{result}}</label>
         {{/if}}
 
+        {{#if (nonNull extra)}}
+        <label class="chat-extra">{{extra}}</label>
+        {{/if}}
+
     </div>
 
 </form>

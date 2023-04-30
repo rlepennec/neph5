@@ -110,4 +110,17 @@ export class Sort extends AbstractFocus {
         )
     }
 
+    /**
+     * @Override
+     */
+    extraChatSentence(fumble, fail, critical, margin) {
+        if (fumble === true) {
+            return game.i18n.localize('NEPH5E.fumbleSort');
+        }
+        if (critical === true) {
+            return game.i18n.localize('NEPH5E.criticalSort');
+        }
+        return game.i18n.localize('NEPH5E.criticalSort');
+    }
+
 }
