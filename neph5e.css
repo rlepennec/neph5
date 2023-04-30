@@ -4786,6 +4786,16 @@
   border: none;
   background-color: transparent;
 }
+.action .table tr td .slider {
+  display: flex;
+  flex-direction: row;
+}
+.action .table tr td .slider input {
+  margin-right: 20px;
+}
+.action .table tr td .slider label {
+  width: 40px;
+}
 .action .table tr .base-name {
   width: 65%;
   text-align: left;

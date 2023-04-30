@@ -78,8 +78,10 @@
                 </select>
                 {{/if}}
                 {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
-                <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
-                <label id="sliderModifier">0</label>
+                <div class="slider">
+                    <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+                    <label id="sliderModifier">0</label>
+                </div>
                 {{/if}}
             </td>
             <td class="percentage">%</td>
