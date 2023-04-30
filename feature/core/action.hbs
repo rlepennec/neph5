@@ -61,7 +61,8 @@
             <td class="value">
                 {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
                 <input id="modifier" type="Number" value="0"/>
-                {{else}}
+                {{/if}}
+                {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
                 <select id="modifier">
                     <option value="50">50</option>
                     <option value="40">40</option>
@@ -75,6 +76,10 @@
                     <option value="-40">-40</option>
                     <option value="-50">-50</option>
                 </select>
+                {{/if}}
+                {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
+                <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+                <label id="sliderModifier">0</label>
                 {{/if}}
             </td>
             <td class="percentage">%</td>

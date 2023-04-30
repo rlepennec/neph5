@@ -343,7 +343,8 @@ Hooks.once("init", function () {
             type: String,
             choices: {
               'clavier': 'Clavier',
-              'liste': 'Liste'
+              'liste': 'Liste',
+              'slider': "Slider"
             },
             default: 'liste'
         });

@@ -115,8 +115,10 @@ export class ActionDialog extends AbstractDialog {
      */
     async _onSetModifier(event) {
         event.preventDefault();
-        const difficulty = this.action.difficulty(this.parameters());
+        const parameters = this.parameters();
+        const difficulty = this.action.difficulty(parameters);
         $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#sliderModifier').html("<label id='sliderModifier'>" + parameters.modifier + "<label>");
     }
 
     /**
