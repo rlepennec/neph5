@@ -120,7 +120,7 @@ export class Sort extends AbstractFocus {
         if (critical === true) {
             return game.i18n.localize('NEPH5E.criticalSort');
         }
-        return game.i18n.localize('NEPH5E.criticalSort');
+        return null;
     }
 
 }
