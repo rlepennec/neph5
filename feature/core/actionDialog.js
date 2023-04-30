@@ -92,6 +92,7 @@ export class ActionDialog extends AbstractDialog {
     activateListeners(html) {
         super.activateListeners(html);
         html.find("#modifier").change(this._onSetModifier.bind(this));
+        html.find("#modifier").on('input', this._onSetModifier.bind(this));
         html.find("#fraternite").change(this._onSelectFraternite.bind(this));
         html.find("#blessures").change(this._onSelectBlessures.bind(this));
         html.find("#approche").change(this._onSelectApproche.bind(this));
