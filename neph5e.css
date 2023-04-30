@@ -4775,6 +4775,10 @@
   border: none;
   outline: 0px;
   background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: right;
 }
 .action .table tr td input {
   text-align: right;
