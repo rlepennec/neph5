@@ -24,7 +24,7 @@
                 background-size: var(--background-size);
                 opacity: var(--opacity);
                 font-size: 17px;
-                box-shadow: 0 0 10px #444 inset;
+                box-shadow: 0 0 5px #444 inset;
 
                 &:hover {
                     -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
@@ -46,6 +46,7 @@
             background-size: var(--background-size);
             opacity: var(--opacity);
             font-size: 17px;
+            box-shadow: 0 0 5px #444 inset;
 
             &:hover {
                 -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
@@ -68,12 +69,22 @@
                     background-size: var(--background-size);
                     font-family: 'AJensonPro';
                     font-size: 17px;
+                    box-shadow: 0 0 5px #444 inset;
                 }
 
                 li {
                     background: var(--background);
                     background-size: var(--background-size);
                     font-size: 17px;
+                    box-shadow: 0 0 5px #444 inset;
+
+                    .scene-players {
+
+                        .scene-player {
+                            //box-shadow: 0 0 0px #ffffff inset;
+                            color: #ffffff;
+                        }
+                    }
 
                     &:hover {
                         -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
@@ -152,10 +163,16 @@
 
             #sidebar-tabs {
 
-                a:hover {
-                    -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-                    -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-                    box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                a {
+                    box-shadow: 0 0 5px #444 inset;
+                    border: 1px solid var(--color-border-dark);
+
+                    &:hover {
+                        -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                        -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                        box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+                    }
+
                 }
 
             }
@@ -182,7 +199,8 @@
         background: var(--background);
         background-size: var(--background-size);
         opacity: var(--opacity);
-        box-shadow: 0 0 10px 0px #f5f4f4 inset;
+        box-shadow: 0 0 3px 0px #f5f4f4 inset;
+        padding: 2px;
 
         .journal-sidebar {
             background: var(--background);
@@ -231,6 +249,7 @@
             color: var(--color-widget);
             border-radius: 6px;
             background: var(--color-widget-background);
+            border: 1px solid var(--color-border-dark);
 
             &:hover {
                 -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
