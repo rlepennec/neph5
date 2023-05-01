@@ -1362,6 +1362,27 @@
   border: 0px;
   position: relative;
 }
+.actor .window-content .actor-root .side .lock-checkbox {
+  margin-left: 130px;
+  margin-top: -22px;
+  font-size: 19px;
+  z-index: 99;
+}
+.actor .window-content .actor-root .side .lock-checkbox input[type="checkbox"] {
+  display: none;
+}
+.actor .window-content .actor-root .side .lock-checkbox .checked {
+  display: none;
+}
+.actor .window-content .actor-root .side .lock-checkbox input[type="checkbox"]:checked ~ .checked {
+  display: inline-block;
+}
+.actor .window-content .actor-root .side .lock-checkbox input[type="checkbox"]:checked ~ .unchecked {
+  display: none;
+}
+.actor .window-content .actor-root .side .lock-checkbox:hover {
+  text-shadow: 0px 0px 3px var(--font-color);
+}
 .actor .window-content .actor-root .side .sheet-navigation {
   display: flex;
   flex-direction: column;

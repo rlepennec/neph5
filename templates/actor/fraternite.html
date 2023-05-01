@@ -12,6 +12,17 @@
         
             <img class="image" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
 
+            <label class="lock-checkbox">
+                <input
+                    name="system.options.locked"
+                    value="{{system.options.locked}}"
+                    type="checkbox"
+                    {{checked system.options.locked}}
+                    data-dtype="Boolean"/>
+                <i class="fa-solid fa-lock-open unchecked"></i>
+                <i class="fa-solid fa-lock checked"></i>
+            </label>
+
             <nav class="sheet-navigation" data-group="primary">
                 
                 <div class="sheet-navigation-choice active">
