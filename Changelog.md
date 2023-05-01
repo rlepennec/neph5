@@ -1,5 +1,6 @@
 # 1.3.12
 Amélioration de l'affichage
+Amélioration de l'accessibilité du verouillage des acteurs
 Ajout d'une option pour afficher des informations complémentaires dans le tchat
 Ajout d'une option pour gérer les modificateurs sous forme d'une liste
 
