@@ -4610,20 +4610,6 @@
   margin: 10px 10px 10px 10px;
   text-align: center;
 }
-.roll-before {
-  border: 3px solid rgba(0, 0, 0, 0.7);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-}
-.roll-before .image {
-  width: 30%;
-  height: auto;
-}
-.roll-before .title {
-  background-color: lightcoral;
-  text-align: center;
-}
 .action {
   display: flex;
   flex-direction: column;
