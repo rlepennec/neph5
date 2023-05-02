@@ -154,7 +154,7 @@ export class AbstractFeature {
             + AbstractFeature.toInt(parameters?.modifier)
             + AbstractFeature.toInt(parameters?.approche)
             + AbstractFeature.toInt(parameters?.blessures, this.data.blessures)
-            + AbstractFeature.toInt(parameters?.metamorphe, this.data.metamorphe)
+            + AbstractFeature.toInt(parameters?.metamorphe, 0)
             + this.modifier(parameters);
 
     }

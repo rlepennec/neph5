@@ -1,4 +1,5 @@
 # 1.3.12
+Correction d'une anomalie sur le calcul de lancé de sort
 Amélioration de l'affichage
 Amélioration de l'accessibilité du verouillage des acteurs
 Ajout d'une option pour afficher des informations complémentaires dans le tchat
