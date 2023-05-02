@@ -2,7 +2,6 @@ import { AbstractFocus } from "../core/abstractFocus.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
-import { Game } from "../../module/common/game.js";
 import { Science } from "../science/science.js";
 
 export class Formule extends AbstractFocus {

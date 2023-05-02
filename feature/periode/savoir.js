@@ -1,7 +1,5 @@
-import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { Game } from "../../module/common/game.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 
 export class Savoir extends HistoricalFeature {

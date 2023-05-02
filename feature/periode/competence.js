@@ -2,7 +2,6 @@ import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
-import { Game } from "../../module/common/game.js";
 
 export class Competence extends AbstractFeature {
 
