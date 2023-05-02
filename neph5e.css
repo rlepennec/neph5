@@ -5044,6 +5044,7 @@ form.combat div.hiddable #description {
   --color-shadow-highlight: #f5f4f4;
   --color-border-highlight-alt: #f5f4f4;
   --color-shadow: #bebdbd;
+  --box-shadow: 0 0 4px 3px var(--color-shadow) inset;
   font-family: 'AJensonPro';
 }
 #interface #ui-left #controls li {
@@ -5058,9 +5059,9 @@ form.combat div.hiddable #description {
   box-shadow: 0 0 5px #444 inset;
 }
 #interface #ui-left #controls li:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 #interface #ui-left #controls li i {
   margin-top: 11px;
@@ -5074,9 +5075,9 @@ form.combat div.hiddable #description {
 }
 #interface #ui-left #players .player:hover,
 #interface #ui-left #players h3:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 #interface #ui-middle #ui-top #navigation li:not(.scene-player),
 #interface #ui-middle #ui-top #navigation #nav-toggle {
@@ -5087,9 +5088,19 @@ form.combat div.hiddable #description {
 }
 #interface #ui-middle #ui-top #navigation li:not(.scene-player):hover,
 #interface #ui-middle #ui-top #navigation #nav-toggle:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+}
+#interface #ui-middle #ui-bottom #hotbar #hotbar-directory-controls {
+  background: var(--background);
+  background-size: var(--background-size);
+  opacity: var(--opacity);
+}
+#interface #ui-middle #ui-bottom #hotbar #hotbar-directory-controls:hover {
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 #interface #ui-middle #ui-bottom #hotbar #action-bar li {
   background: var(--background);
@@ -5125,18 +5136,18 @@ form.combat div.hiddable #description {
   background: var(--color-widget-background);
 }
 #interface #ui-right #sidebar button:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 #interface #ui-right #sidebar #sidebar-tabs a {
   box-shadow: 0 0 5px #444 inset;
   border: 1px solid var(--color-border-dark);
 }
 #interface #ui-right #sidebar #sidebar-tabs a:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 .window-app:not(.sheet.actor) {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
@@ -5196,9 +5207,9 @@ form.combat div.hiddable #description {
   border: 1px solid var(--color-border-dark);
 }
 .window-app:not(.sheet.actor) .window-content button:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 .window-app:not(.sheet.actor) .window-content select {
   color: var(--color-widget);
@@ -5206,9 +5217,9 @@ form.combat div.hiddable #description {
   background: var(--color-widget-background);
 }
 .window-app:not(.sheet.actor) .window-content select:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
 .window-app:not(.sheet.actor) .window-content select option {
   background: var(--color-widget-background);
@@ -5224,7 +5235,7 @@ form.combat div.hiddable #description {
   background-color: #150e4c;
 }
 .window-app:not(.sheet.actor) .window-content input[type=checkbox]:hover {
-  -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
-  box-shadow: 0 0 2px 2px var(--color-shadow) inset;
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
 }
