@@ -48,7 +48,7 @@
             font-size: 17px;
             box-shadow: 0 0 5px #444 inset;
 
-            &:hover {
+            .player:hover,h3:hover {
                 -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
                 -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
                 box-shadow: 0 0 2px 2px var(--color-shadow) inset;
@@ -63,16 +63,8 @@
         #ui-top {
 
             #navigation {
-                
-                #nav-toggle {
-                    background: var(--background);
-                    background-size: var(--background-size);
-                    font-family: 'AJensonPro';
-                    font-size: 17px;
-                    box-shadow: 0 0 5px #444 inset;
-                }
 
-                li:not(.scene-player) {
+                li:not(.scene-player), #nav-toggle {
                     background: var(--background);
                     background-size: var(--background-size);
                     font-size: 17px;

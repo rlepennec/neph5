@@ -5072,25 +5072,21 @@ form.combat div.hiddable #description {
   font-size: 17px;
   box-shadow: 0 0 5px #444 inset;
 }
-#interface #ui-left #players:hover {
+#interface #ui-left #players .player:hover,
+#interface #ui-left #players h3:hover {
   -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   box-shadow: 0 0 2px 2px var(--color-shadow) inset;
 }
+#interface #ui-middle #ui-top #navigation li:not(.scene-player),
 #interface #ui-middle #ui-top #navigation #nav-toggle {
   background: var(--background);
   background-size: var(--background-size);
-  font-family: 'AJensonPro';
   font-size: 17px;
   box-shadow: 0 0 5px #444 inset;
 }
-#interface #ui-middle #ui-top #navigation li:not(.scene-player) {
-  background: var(--background);
-  background-size: var(--background-size);
-  font-size: 17px;
-  box-shadow: 0 0 5px #444 inset;
-}
-#interface #ui-middle #ui-top #navigation li:not(.scene-player):hover {
+#interface #ui-middle #ui-top #navigation li:not(.scene-player):hover,
+#interface #ui-middle #ui-top #navigation #nav-toggle:hover {
   -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   box-shadow: 0 0 2px 2px var(--color-shadow) inset;
