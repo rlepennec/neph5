@@ -4167,7 +4167,6 @@
 }
 .item .window-content .item-root .side img {
   width: 100%;
-  border-radius: 6px;
 }
 .item .window-content .item-root .article {
   --font-color: #191813;
@@ -4178,7 +4177,7 @@
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   background-size: cover;
   color: var(--font-color);
-  margin: 2px;
+  margin: 1px;
 }
 .item .window-content .item-root .article .header {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
