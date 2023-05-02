@@ -443,7 +443,7 @@ export class BaseSheet extends ActorSheet {
      */
     async _onOpenItem(event) {
         const feature = this._createFeature(event);
-        await feature.edit();
+        await feature.editEmbeddedItem();
         return this;
     }
 

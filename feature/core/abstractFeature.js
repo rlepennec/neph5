@@ -65,10 +65,23 @@ export class AbstractFeature {
     }
 
     /**
+     * @return the data from the embedded item.
+     */
+    getEmbeddedData() {
+        return {};
+    }
+
+    /**
      * Edit the embedded item.
      */
-    async edit() {
-        throw new Error("AbstractFeature.edit not implemented");
+    async editEmbeddedItem() {
+        const sheet = this.item.sheet.withEmbeddedData(this.getEmbeddedData());
+        if (sheet.rendered) {
+            sheet.bringToTop();
+            sheet.maximize();
+        } else {
+            sheet.render(true);
+        }
     }
 
     /**

@@ -205,38 +205,6 @@ export class Vecu extends HistoricalFeature {
     /**
      * @Override
      */
-    /*
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/periode/item/vecu.html",
-            {
-                system: this.item.system,
-                elements: Game.pentacle.elements,
-                item: this.item
-            },
-            'ITEM.TypeVecu',
-            560,
-            500
-        )
-    }
-    */
-
-    /**
-     * @Override
-     */
-    async edit() {
-        const sheet = this.item.sheet;
-        if (sheet.rendered) {
-            sheet.bringToTop();
-            sheet.maximize();
-        } else {
-            sheet.render(true);
-        }
-    }
-
-    /**
-     * @Override
-     */
     async delete() {
 
         // Delete the vecu

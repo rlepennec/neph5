@@ -59,22 +59,13 @@ export class Savoir extends HistoricalFeature {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/periode/item/savoir.html",
-            {
-                system: this.item.system,
-                elements: Game.pentacle.elements,
-                item: AbstractFeature.original(this.sid),
-                periodes: this.detailsFromPeriodes(this.sid),
-                degre: this.degre,
-                next: this.next,
-                readOnly: this.degre === null
-            },
-            'ITEM.TypeSavoir',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            periodes: this.detailsFromPeriodes(this.sid),
+            degre: this.degre,
+            next: this.next,
+            readOnly: this.degre === null
+        }
     }
 
 }

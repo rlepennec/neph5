@@ -105,16 +105,6 @@ export class Competence extends AbstractFeature {
             readOnly: this.degre === null
         }
     }
-    
-    async edit() {
-        const sheet = this.item.sheet.withEmbeddedData(this.getEmbeddedData());
-        if (sheet.rendered) {
-            sheet.bringToTop();
-            sheet.maximize();
-        } else {
-            sheet.render(true);
-        }
-    }
 
     /**
      * @Override
