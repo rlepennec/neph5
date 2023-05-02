@@ -90,6 +90,13 @@ export class Metamorphe extends SimpleFeature {
     }
 
     /**
+     * @Override
+     */
+    getEmbeddedData() {
+        return Metamorphe.getAll(this.actor);
+    }
+
+    /**
      * Set the specified metamorphose to be formed or not.
      * @param index The index of the metamorphose.
      * @returns the instance.

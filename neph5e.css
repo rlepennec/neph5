@@ -4109,13 +4109,13 @@
 .actor .window-content .actor-root .article .nofocus i {
   margin-top: 50px;
 }
-.item {
+.item .window-content {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
-}
-.item .window-content {
+  --box-shadow: 0 0 4px 1px #414048 inset;
+  --color-shadow-primary: #151156;
   background: var(--background);
-  color: var(--font-color);
+  color: #191813;
   opacity: var(--opacity);
   box-shadow: 0 0 3px 0px #f5f4f4 inset;
   padding: 2px;
@@ -4132,8 +4132,8 @@
 .item .window-content .item-root .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: #555;
-  color: #fff;
+  background: var(--background);
+  color: #f5f4f4;
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
@@ -4169,14 +4169,13 @@
   width: 100%;
 }
 .item .window-content .item-root .article {
-  --font-color: #191813;
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
   font-family: 'AJensonPro';
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   background-size: cover;
-  color: var(--font-color);
+  color: #191813;
   margin: 1px;
 }
 .item .window-content .item-root .article .header {
@@ -4222,7 +4221,7 @@
 .item .window-content .item-root .article .body .line-bottom {
   margin-top: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #151156;
   padding-bottom: 14px;
 }
 .item .window-content .item-root .article .body .input-text {
@@ -4237,7 +4236,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   justify-content: space-evenly;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #151156;
   padding-bottom: 8px;
 }
 .item .window-content .item-root .article .body .main .data {
@@ -4265,10 +4264,13 @@
   appearance: none;
   text-align-last: center;
   align-items: center;
-  color: var(--font-color);
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
 }
 .item .window-content .item-root .article .body .main .data .value .select .option {
-  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-color: antiquewhite;
   text-align: center;
 }
 .item .window-content .item-root .article .body .main .data .value .number {
@@ -4277,13 +4279,16 @@
   height: 35px;
   margin-left: 10px;
   text-align: center;
-  border-radius: 50%;
   align-items: center;
-  color: var(--font-color);
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  padding-top: 3px;
 }
 .item .window-content .item-root .article .body .main .data .value .label {
   margin-top: 4px;
-  color: var(--font-color);
+  color: #191813;
 }
 .item .window-content .item-root .article .body .main .data .value .placeholder {
   color: indianred;
@@ -4292,7 +4297,7 @@
   margin-top: 4px;
   border: 0;
   background: transparent;
-  color: var(--font-color);
+  color: #191813;
 }
 .item .window-content .item-root .article .body .main .label {
   display: flex;
@@ -4333,9 +4338,12 @@
   height: 40px;
   margin-left: 10px;
   text-align: center;
-  border-radius: 50%;
   align-items: center;
-  color: var(--font-color);
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  padding-top: 3px;
 }
 .item .window-content .item-root .article .body .input {
   display: flex;
@@ -4344,18 +4352,18 @@
   vertical-align: middle;
   font-size: 16px;
   font-family: 'AJensonPro';
-  color: var(--font-color);
+  color: #191813;
 }
 .item .window-content .item-root .article .body .input .title {
   flex: 0 0 auto;
   font-weight: bold;
   padding-top: 3px;
-  color: var(--font-color);
+  color: #191813;
 }
 .item .window-content .item-root .article .body .input .value {
   border: 0;
   background: transparent;
-  color: var(--font-color);
+  color: #191813;
 }
 .item .window-content .item-root .article .body .list {
   vertical-align: middle;
@@ -4441,7 +4449,7 @@
   border: 0;
   background: transparent;
   padding-bottom: 13px;
-  color: var(--font-color);
+  color: #191813;
 }
 .item .window-content .item-root .article .body .description .add span {
   margin-left: 10px;

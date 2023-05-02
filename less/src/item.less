@@ -1,10 +1,13 @@
 .item {
-    --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
-    --background-size: cover;
 
     .window-content {
+        --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+        --background-size: cover;
+        --box-shadow: 0 0 4px 1px #414048 inset;
+        --color-shadow-primary: #151156;
+
         background: var(--background);
-        color: var(--font-color);
+        color: #191813;
         opacity: var(--opacity);
         box-shadow: 0 0 3px 0px #f5f4f4 inset;
         padding: 2px;
@@ -21,8 +24,8 @@
                 .tooltiptext {
                     visibility: hidden;
                     width: 120px;
-                    background-color: #555;
-                    color: #fff;
+                    background: var(--background);
+                    color: #f5f4f4;
                     text-align: center;
                     padding: 5px 0;
                     border-radius: 6px;
@@ -68,15 +71,13 @@
             }
             
             .article {
-                --font-color: #191813;
-
                 display: flex;
                 flex-direction: column;
                 flex-basis: 100%;
                 font-family: 'AJensonPro';
                 background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
                 background-size: cover;
-                color: var(--font-color);
+                color: #191813;
                 margin: 1px;
 
                 .header {
@@ -131,7 +132,7 @@
                     .line-bottom {
                         margin-top: 10px;
                         margin-bottom: 10px;
-                        border-bottom: 1px solid black;
+                        border-bottom: 1px solid #151156;
                         padding-bottom: 14px;
                     }
 
@@ -148,7 +149,7 @@
                         margin-top: 10px;
                         margin-bottom: 10px;
                         justify-content: space-evenly;
-                        border-bottom: 1px solid black;
+                        border-bottom: 1px solid #151156;
                         padding-bottom: 8px;
 
                         .data {
@@ -176,10 +177,13 @@
                                     appearance: none;
                                     text-align-last: center;
                                     align-items: center;
-                                    color: var(--font-color);
+                                    color: #191813;
+                                    border: 1px solid #151156;
+                                    border-radius: 10px;
+                                    box-shadow: var(--box-shadow);
 
                                     .option {
-                                        background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+                                        background-color: antiquewhite;
                                         text-align: center;
                                     }
                                 }
@@ -190,14 +194,17 @@
                                     height: 35px;
                                     margin-left: 10px;
                                     text-align: center;
-                                    border-radius: 50%;
                                     align-items: center;
-                                    color: var(--font-color);
+                                    color: #191813;
+                                    border: 1px solid #151156;
+                                    border-radius: 50%;
+                                    box-shadow: var(--box-shadow);
+                                    padding-top: 3px;
                                 }
 
                                 .label {
                                     margin-top: 4px;
-                                    color: var(--font-color);
+                                    color: #191813;
                                 }
 
                                 .placeholder {
@@ -208,7 +215,7 @@
                                     margin-top: 4px;
                                     border: 0;
                                     background: transparent;
-                                    color: var(--font-color);
+                                    color: #191813;
                                 }
 
                             }
@@ -261,7 +268,11 @@
                                     text-align: center;
                                     border-radius: 50%;
                                     align-items: center;
-                                    color: var(--font-color);
+                                    color: #191813;
+                                    border: 1px solid #151156;
+                                    border-radius: 50%;
+                                    box-shadow: var(--box-shadow);
+                                    padding-top: 3px;
                                 }
 
                             }
@@ -277,19 +288,20 @@
                         vertical-align: middle;
                         font-size: 16px;
                         font-family: 'AJensonPro';
-                        color: var(--font-color);
+                        color: #191813;
+                        
 
                         .title {
                             flex: 0 0 auto;
                             font-weight: bold;
                             padding-top: 3px;
-                            color: var(--font-color);
+                            color: #191813;
                         }
 
                         .value {
                             border: 0;
                             background: transparent;
-                            color: var(--font-color);
+                            color: #191813;
                         }
 
                     }
@@ -405,7 +417,7 @@
                                 border: 0;
                                 background: transparent;
                                 padding-bottom: 13px;
-                                color: var(--font-color);
+                                color: #191813;
                             }
 
                         }
