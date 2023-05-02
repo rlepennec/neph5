@@ -69,20 +69,11 @@ export class Technique extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/baton/item/technique.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Science.cerclesOf('technique'),
-                difficulty: this.degre
-            },
-            'ITEM.TypeTechnique',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Science.cerclesOf('technique'),
+            difficulty: this.degre
+        }
     }
 
 }

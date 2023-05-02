@@ -149,22 +149,13 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/alchimie/item/formule.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                elements: Game.pentacle.elements,
-                cercles: Game.alchimie.cercles,
-                substances: Game.alchimie.substances,
-                difficulty: this.degre
-            },
-            'ITEM.TypeFormule',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            elements: Game.pentacle.elements,
+            cercles: Game.alchimie.cercles,
+            substances: Game.alchimie.substances,
+            difficulty: this.degre
+        }
     }
 
     /**

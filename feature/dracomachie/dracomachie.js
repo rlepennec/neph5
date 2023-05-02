@@ -69,20 +69,11 @@ export class Dracomachie extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/dracomachie/item/dracomachie.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Science.cerclesOf('dracomachie'),
-                difficulty: this.degre
-            },
-            'ITEM.TypeDracomachie',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Science.cerclesOf('dracomachie'),
+            difficulty: this.degre
+        }
     }
 
 }

@@ -30,20 +30,11 @@ export class Metamorphe extends SimpleFeature {
     /**
      * @Override
      */
-     async edit() {
-        await super.edit(
-            "systems/neph5e/feature/nephilim/item/metamorphe.html",
-            {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
-                elements : Game.pentacle.elements,
-                debug: game.settings.get('neph5e', 'debug'),
-                readOnly: true
-            },
-            'ITEM.TypeMetamorphe',
-            560,
-            800
-        )
+    getEmbeddedData() {
+        return {
+            elements : Game.pentacle.elements,
+            readOnly: true
+        }
     }
 
     /**

@@ -25,19 +25,10 @@ export class Catalyseur extends SimpleFeature {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/alchimie/item/catalyseur.html",
-            {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                readOnly: true
-            },
-            'ITEM.TypeCatalyseur',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            readOnly: true
+        }
     }
 
     /**

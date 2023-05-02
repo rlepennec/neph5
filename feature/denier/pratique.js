@@ -66,25 +66,14 @@ export class Pratique extends AbstractFocus {
 
     }
 
-
-
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/denier/item/pratique.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Science.cerclesOf('pratique'),
-                difficulty: this.degre
-            },
-            'ITEM.TypePratique',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Science.cerclesOf('pratique'),
+            difficulty: this.degre
+        }
     }
 
 }

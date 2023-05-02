@@ -69,20 +69,11 @@ export class Tekhne extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/coupe/item/tekhne.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Science.cerclesOf('tekhne'),
-                difficulty: this.degre
-            },
-            'ITEM.TypeTekhne',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Science.cerclesOf('tekhne'),
+            difficulty: this.degre
+        }
     }
 
 }

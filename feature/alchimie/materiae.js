@@ -27,20 +27,10 @@ export class Materiae extends SimpleFeature {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/alchimie/item/materiae.html",
-            {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
-                elements: Game.pentacle.elements,
-                debug: game.settings.get('neph5e', 'debug'),
-                readOnly: true
-            },
-            'ITEM.TypeMateriae',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            readOnly: true
+        }
     }
 
     /**

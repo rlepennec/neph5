@@ -34,19 +34,10 @@ export class Aspect extends SimpleFeature {
     /**
      * @Override
      */
-     async edit() {
-        await super.edit(
-            "systems/neph5e/feature/selenim/item/aspect.html",
-            {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                difficulty: 0
-            },
-            'ITEM.TypeAspect',
-            600,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            difficulty: 0
+        }
     }
 
     /**

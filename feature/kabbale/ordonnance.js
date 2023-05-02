@@ -59,19 +59,10 @@ export class Ordonnance extends AbstractFeature {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/kabbale/item/ordonnance.html",
-            {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                readOnly: true
-            },
-            'ITEM.TypeOrdonnance',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            readOnly: true
+        }
     }
 
     /**

@@ -65,21 +65,12 @@ export class Appel extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/conjuration/item/appel.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Game.conjuration.cercles,
-                appels: Game.conjuration.appels,
-                difficulty: this.degre
-            },
-            'ITEM.TypeAppel',
-            600,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Game.conjuration.cercles,
+            appels: Game.conjuration.appels,
+            difficulty: this.degre
+        }
     }
 
 }

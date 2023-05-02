@@ -93,21 +93,12 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/magie/item/sort.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                elements: Game.elements,
-                cercles: Game.magie.cercles,
-                difficulty: this.degre
-            },
-            'ITEM.TypeSort',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            elements: Game.elements,
+            cercles: Game.magie.cercles,
+            difficulty: this.degre
+        }
     }
 
     /**

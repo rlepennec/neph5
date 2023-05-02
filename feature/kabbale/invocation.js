@@ -91,22 +91,13 @@ export class Invocation extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/kabbale/item/invocation.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                elements: Game.kabbale.elements,
-                cercles: Game.kabbale.sephiroth,
-                mondes: Game.kabbale.mondes,
-                difficulty: this.degre
-            },
-            'ITEM.TypeInvocation',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            elements: Game.kabbale.elements,
+            cercles: Game.kabbale.sephiroth,
+            mondes: Game.kabbale.mondes,
+            difficulty: this.degre
+        }
     }
 
 }

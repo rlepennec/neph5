@@ -71,12 +71,6 @@ export class Science extends HistoricalFeature {
     }
 
     /**
-     * @Override
-     */
-    async edit() {
-    }
-
-    /**
      * @param key The key of the science.
      * @returns the specified world item, null if not found. 
      */

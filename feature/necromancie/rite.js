@@ -65,21 +65,12 @@ export class Rite extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/necromancie/item/rite.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Game.necromancie.cercles,
-                desmos: Game.necromancie.desmos,
-                difficulty: this.degre
-            },
-            'ITEM.TypeRite',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Game.necromancie.cercles,
+            desmos: Game.necromancie.desmos,
+            difficulty: this.degre
+        }
     }
 
 }

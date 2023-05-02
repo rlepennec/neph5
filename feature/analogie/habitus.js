@@ -71,21 +71,12 @@ export class Habitus extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/analogie/item/habitus.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                elements: Game.elements,
-                cercles: Science.cerclesOf('analogie'),
-                difficulty: this.degre
-            },
-            'ITEM.TypeHabitus',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            elements: Game.elements,
+            cercles: Science.cerclesOf('analogie'),
+            difficulty: this.degre
+        }
     }
 
 }

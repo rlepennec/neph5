@@ -69,20 +69,11 @@ export class Atlanteide extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/atlanteide/item/atlanteide.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Science.cerclesOf('atlanteide'),
-                difficulty: this.degre
-            },
-            'ITEM.TypeAtlanteide',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Science.cerclesOf('atlanteide'),
+            difficulty: this.degre
+        }
     }
 
 }

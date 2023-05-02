@@ -69,20 +69,11 @@ export class Rituel extends AbstractFocus {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/coupe/item/rituel.html",
-            {
-                item: this.item,
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                cercles: Science.cerclesOf('rituel'),
-                difficulty: this.degre
-            },
-            'ITEM.TypeRituel',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            cercles: Science.cerclesOf('rituel'),
+            difficulty: this.degre
+        }
     }
 
 }
