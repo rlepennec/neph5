@@ -71,7 +71,6 @@ export class Technique extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Science.cerclesOf('technique'),
             difficulty: this.degre
         }
     }

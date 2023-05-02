@@ -71,7 +71,6 @@ export class Atlanteide extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Science.cerclesOf('atlanteide'),
             difficulty: this.degre
         }
     }

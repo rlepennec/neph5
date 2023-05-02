@@ -101,7 +101,6 @@ export class Competence extends AbstractFeature {
             degre: this.degre,
             sapience: this.sapiences,
             next: this.next,
-            elements: Game.pentacle.elements,
             readOnly: this.degre === null
         }
     }

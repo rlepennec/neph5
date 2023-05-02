@@ -93,9 +93,6 @@ export class Invocation extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            elements: Game.kabbale.elements,
-            cercles: Game.kabbale.sephiroth,
-            mondes: Game.kabbale.mondes,
             difficulty: this.degre
         }
     }

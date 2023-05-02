@@ -71,7 +71,6 @@ export class Dracomachie extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Science.cerclesOf('dracomachie'),
             difficulty: this.degre
         }
     }

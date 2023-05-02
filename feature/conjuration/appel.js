@@ -67,8 +67,6 @@ export class Appel extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Game.conjuration.cercles,
-            appels: Game.conjuration.appels,
             difficulty: this.degre
         }
     }

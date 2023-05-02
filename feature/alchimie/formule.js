@@ -151,9 +151,6 @@ export class Formule extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            elements: Game.pentacle.elements,
-            cercles: Game.alchimie.cercles,
-            substances: Game.alchimie.substances,
             difficulty: this.degre
         }
     }

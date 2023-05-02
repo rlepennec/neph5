@@ -71,7 +71,6 @@ export class Rituel extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Science.cerclesOf('rituel'),
             difficulty: this.degre
         }
     }

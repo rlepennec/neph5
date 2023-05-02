@@ -71,7 +71,6 @@ export class Tekhne extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Science.cerclesOf('tekhne'),
             difficulty: this.degre
         }
     }

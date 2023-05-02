@@ -2,7 +2,6 @@ import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
-import { Game } from "../../module/common/game.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "./periode.js";
 

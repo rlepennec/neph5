@@ -67,8 +67,6 @@ export class Rite extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            cercles: Game.necromancie.cercles,
-            desmos: Game.necromancie.desmos,
             difficulty: this.degre
         }
     }

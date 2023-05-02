@@ -32,7 +32,6 @@ export class Metamorphe extends SimpleFeature {
      */
     getEmbeddedData() {
         return {
-            elements : Game.pentacle.elements,
             readOnly: true
         }
     }

@@ -95,8 +95,6 @@ export class Sort extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            elements: Game.elements,
-            cercles: Game.magie.cercles,
             difficulty: this.degre
         }
     }

@@ -73,8 +73,6 @@ export class Habitus extends AbstractFocus {
      */
     getEmbeddedData() {
         return {
-            elements: Game.elements,
-            cercles: Science.cerclesOf('analogie'),
             difficulty: this.degre
         }
     }
