@@ -6,13 +6,13 @@ export class InvocationSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.elements = Game.kabbale.elements;
-        data.cercles = super.cerclesOf('kabbale');
-        data.mondes = Game.kabbale.mondes;
-        data.sephiroth = Game.kabbale.sephiroth;
-        return data;
+    getOriginalData() {
+        return {
+            elements: Game.kabbale.elements,
+            cercles: super.cerclesOf('kabbale'),
+            mondes: Game.kabbale.mondes,
+            sephiroth: Game.kabbale.sephiroth
+        }
     }
 
     /** 

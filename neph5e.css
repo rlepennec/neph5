@@ -4109,16 +4109,27 @@
 .actor .window-content .actor-root .article .nofocus i {
   margin-top: 50px;
 }
-.item-root {
+.item {
+  --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  --background-size: cover;
+}
+.item .window-content {
+  background: var(--background);
+  color: var(--font-color);
+  opacity: var(--opacity);
+  box-shadow: 0 0 3px 0px #f5f4f4 inset;
+  padding: 2px;
+}
+.item .window-content .item-root {
   display: flex;
   flex-direction: row;
   font-family: 'AJensonPro';
 }
-.item-root .tooltip {
+.item .window-content .item-root .tooltip {
   position: relative;
   display: inline-block;
 }
-.item-root .tooltip .tooltiptext {
+.item .window-content .item-root .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -4136,7 +4147,7 @@
   opacity: 0;
   transition: opacity 0.3s;
 }
-.item-root .tooltip .tooltiptext:after {
+.item .window-content .item-root .tooltip .tooltiptext:after {
   content: "";
   position: absolute;
   top: 100%;
@@ -4146,19 +4157,19 @@
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
-.item-root .tooltip:hover .tooltiptext {
+.item .window-content .item-root .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
-.item-root .side {
+.item .window-content .item-root .side {
   flex: 0 0 auto;
   width: 60px;
 }
-.item-root .side img {
+.item .window-content .item-root .side img {
   width: 100%;
   border-radius: 6px;
 }
-.item-root .article {
+.item .window-content .item-root .article {
   --font-color: #191813;
   display: flex;
   flex-direction: column;
@@ -4169,31 +4180,28 @@
   color: var(--font-color);
   margin: 2px;
 }
-.item-root .article .header {
+.item .window-content .item-root .article .header {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   background-size: cover;
   color: #f5f4f4;
   box-shadow: 0 0 6px 2px #f5f4f4 inset;
 }
-.item-root .article .header .uuid {
+.item .window-content .item-root .article .header .uuid {
   margin-bottom: 5px;
   text-align: center;
   color: indianred;
   font-weight: bold;
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
-.item-root .article .header .title {
+.item .window-content .item-root .article .header .title {
   display: flex;
   flex-direction: row;
   height: 60px;
 }
-.item-root .article .header .title .name {
+.item .window-content .item-root .article .header .title .name {
   font-size: 20px;
   text-align: center;
-  margin-bottom: 10px;
-  padding-bottom: 9px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0px 10px 2px 10px;
   height: 100%;
   width: 100%;
   font-family: 'NightjarDemi';
@@ -4201,29 +4209,30 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: #f5f4f4;
 }
-.item-root .article .header .title .image {
+.item .window-content .item-root .article .header .title .image {
   flex: 0 0 auto;
   margin: 6px 6px 6px 6px;
   border-radius: 6px;
 }
-.item-root .article .body {
+.item .window-content .item-root .article .body {
   margin-left: 10px;
   margin-right: 10px;
 }
-.item-root .article .body .line-bottom {
+.item .window-content .item-root .article .body .line-bottom {
   margin-top: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid black;
   padding-bottom: 14px;
 }
-.item-root .article .body .input-text {
+.item .window-content .item-root .article .body .input-text {
   border: 0;
   background: transparent;
   vertical-align: top;
   height: 16px;
 }
-.item-root .article .body .main {
+.item .window-content .item-root .article .body .main {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
@@ -4232,7 +4241,7 @@
   border-bottom: 1px solid black;
   padding-bottom: 8px;
 }
-.item-root .article .body .main .data {
+.item .window-content .item-root .article .body .main .data {
   display: flex;
   flex-direction: column;
   flex-basis: content;
@@ -4240,13 +4249,13 @@
   font-size: large;
   font-family: 'AJensonPro';
 }
-.item-root .article .body .main .data .value {
+.item .window-content .item-root .article .body .main .data .value {
   border: 0;
   outline: 0;
   height: 30px;
   vertical-align: middle;
 }
-.item-root .article .body .main .data .value .select {
+.item .window-content .item-root .article .body .main .data .value .select {
   border: none;
   outline: 0px;
   background-color: transparent;
@@ -4259,11 +4268,11 @@
   align-items: center;
   color: var(--font-color);
 }
-.item-root .article .body .main .data .value .select .option {
+.item .window-content .item-root .article .body .main .data .value .select .option {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   text-align: center;
 }
-.item-root .article .body .main .data .value .number {
+.item .window-content .item-root .article .body .main .data .value .number {
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
@@ -4273,39 +4282,39 @@
   align-items: center;
   color: var(--font-color);
 }
-.item-root .article .body .main .data .value .label {
+.item .window-content .item-root .article .body .main .data .value .label {
   margin-top: 4px;
   color: var(--font-color);
 }
-.item-root .article .body .main .data .value .placeholder {
+.item .window-content .item-root .article .body .main .data .value .placeholder {
   color: indianred;
 }
-.item-root .article .body .main .data .value .text {
+.item .window-content .item-root .article .body .main .data .value .text {
   margin-top: 4px;
   border: 0;
   background: transparent;
   color: var(--font-color);
 }
-.item-root .article .body .main .label {
+.item .window-content .item-root .article .body .main .label {
   display: flex;
   flex-direction: row;
   height: 26px;
   vertical-align: middle;
   font-family: 'AJensonPro';
 }
-.item-root .article .body .main .label .title {
+.item .window-content .item-root .article .body .main .label .title {
   flex: 0 0 auto;
   font-weight: bold;
   margin-right: 5px;
 }
-.item-root .article .body .row {
+.item .window-content .item-root .article .body .row {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
   margin-bottom: 10px;
   justify-content: space-evenly;
 }
-.item-root .article .body .row .data {
+.item .window-content .item-root .article .body .row .data {
   display: flex;
   flex-direction: column;
   flex-basis: content;
@@ -4313,13 +4322,13 @@
   font-size: 16px;
   font-family: 'AJensonPro';
 }
-.item-root .article .body .row .data .value {
+.item .window-content .item-root .article .body .row .data .value {
   border: 0;
   outline: 0;
   height: 30px;
   vertical-align: middle;
 }
-.item-root .article .body .row .data .value .number {
+.item .window-content .item-root .article .body .row .data .value .number {
   flex: 0 0 auto;
   width: 40px;
   height: 40px;
@@ -4329,7 +4338,7 @@
   align-items: center;
   color: var(--font-color);
 }
-.item-root .article .body .input {
+.item .window-content .item-root .article .body .input {
   display: flex;
   flex-direction: row;
   height: 26px;
@@ -4338,30 +4347,30 @@
   font-family: 'AJensonPro';
   color: var(--font-color);
 }
-.item-root .article .body .input .title {
+.item .window-content .item-root .article .body .input .title {
   flex: 0 0 auto;
   font-weight: bold;
   padding-top: 3px;
   color: var(--font-color);
 }
-.item-root .article .body .input .value {
+.item .window-content .item-root .article .body .input .value {
   border: 0;
   background: transparent;
   color: var(--font-color);
 }
-.item-root .article .body .list {
+.item .window-content .item-root .article .body .list {
   vertical-align: middle;
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.item-root .article .body .list .title {
+.item .window-content .item-root .article .body .list .title {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 26px;
   font-weight: bold;
 }
-.item-root .article .body .list .item {
+.item .window-content .item-root .article .body .list .item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -4369,7 +4378,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.item-root .article .body .checkbox {
+.item .window-content .item-root .article .body .checkbox {
   display: flex;
   flex-direction: row;
   height: 26px;
@@ -4377,65 +4386,65 @@
   font-size: 16px;
   font-family: 'AJensonPro';
 }
-.item-root .article .body .checkbox input[type="checkbox"] {
+.item .window-content .item-root .article .body .checkbox input[type="checkbox"] {
   display: none;
 }
-.item-root .article .body .checkbox .checked {
+.item .window-content .item-root .article .body .checkbox .checked {
   display: none;
 }
-.item-root .article .body .checkbox input[type="checkbox"]:checked ~ .checked {
+.item .window-content .item-root .article .body .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.item-root .article .body .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.item .window-content .item-root .article .body .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.item-root .article .body .checkbox i {
+.item .window-content .item-root .article .body .checkbox i {
   margin-left: 50px;
   margin-right: 10px;
 }
-.item-root .article .body .key {
+.item .window-content .item-root .article .body .key {
   color: indianred;
   margin-top: 20px;
   font-family: 'Gill Sans';
 }
-.item-root .article .body .chronology {
+.item .window-content .item-root .article .body .chronology {
   margin-top: 10px;
   font-family: 'AJensonPro';
 }
-.item-root .article .body .chronology tr td.periode-name {
+.item .window-content .item-root .article .body .chronology tr td.periode-name {
   padding-left: 10px;
 }
-.item-root .article .body .chronology tr td.periode {
+.item .window-content .item-root .article .body .chronology tr td.periode {
   text-align: center;
 }
-.item-root .article .body .chronology tr td.infos {
+.item .window-content .item-root .article .body .chronology tr td.infos {
   text-align: center;
   font-weight: bold;
 }
-.item-root .article .body .difficulte {
+.item .window-content .item-root .article .body .difficulte {
   display: flex;
   flex-direction: row;
   height: 26px;
   font-family: 'AJensonPro';
 }
-.item-root .article .body .difficulte span:nth-child(1) {
+.item .window-content .item-root .article .body .difficulte span:nth-child(1) {
   font-weight: bold;
   padding-top: 4px;
 }
-.item-root .article .body .difficulte span:nth-child(2) {
+.item .window-content .item-root .article .body .difficulte span:nth-child(2) {
   margin-left: 5px;
   padding-top: 4px;
 }
-.item-root .article .body .metamorphoses {
+.item .window-content .item-root .article .body .metamorphoses {
   margin-top: 10px;
 }
-.item-root .article .body .metamorphoses li input {
+.item .window-content .item-root .article .body .metamorphoses li input {
   border: 0;
   background: transparent;
   padding-bottom: 13px;
   color: var(--font-color);
 }
-.item-root .article .body .description .add span {
+.item .window-content .item-root .article .body .description .add span {
   margin-left: 10px;
 }
 .chat-message {
@@ -5149,7 +5158,7 @@ form.combat div.hiddable #description {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
-.window-app:not(.sheet.actor) {
+.window-app:not(.sheet.actor,.sheet.item) {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
   --opacity: 0.9;
@@ -5161,32 +5170,32 @@ form.combat div.hiddable #description {
   --color-widget-background: #051732;
   --color-shadow: #bebdbd;
 }
-.window-app:not(.sheet.actor) .window-content {
+.window-app:not(.sheet.actor,.sheet.item) .window-content {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
   box-shadow: 0 0 3px 0px #f5f4f4 inset;
   padding: 2px;
 }
-.window-app:not(.sheet.actor) .window-content .journal-sidebar {
+.window-app:not(.sheet.actor,.sheet.item) .window-content .journal-sidebar {
   background: var(--background);
   background-size: cover;
   font-family: 'MinionPro';
 }
-.window-app:not(.sheet.actor) .window-content .journal-sidebar .pages-list {
+.window-app:not(.sheet.actor,.sheet.item) .window-content .journal-sidebar .pages-list {
   color: var(--color-text-dark-primary);
 }
-.window-app:not(.sheet.actor) .window-content .journal-entry-content {
+.window-app:not(.sheet.actor,.sheet.item) .window-content .journal-entry-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   background-size: cover;
   font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
 }
-.window-app:not(.sheet.actor) .window-content .journal-entry-content .title {
+.window-app:not(.sheet.actor,.sheet.item) .window-content .journal-entry-content .title {
   color: #191813;
 }
-.window-app:not(.sheet.actor) .window-content .editor .editor-content {
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor .editor-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   background-size: cover;
   font-family: 'AJensonProLtDisp';
@@ -5194,47 +5203,47 @@ form.combat div.hiddable #description {
   color: #191813;
   padding: 10px;
 }
-.window-app:not(.sheet.actor) .window-content .editor textarea {
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor textarea {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   background-size: cover;
   color: #191813;
   padding: 10px;
 }
-.window-app:not(.sheet.actor) .window-content button {
+.window-app:not(.sheet.actor,.sheet.item) .window-content button {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
   border: 1px solid var(--color-border-dark);
 }
-.window-app:not(.sheet.actor) .window-content button:hover {
+.window-app:not(.sheet.actor,.sheet.item) .window-content button:hover {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
-.window-app:not(.sheet.actor) .window-content select {
+.window-app:not(.sheet.actor,.sheet.item) .window-content select {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
 }
-.window-app:not(.sheet.actor) .window-content select:hover {
+.window-app:not(.sheet.actor,.sheet.item) .window-content select:hover {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
-.window-app:not(.sheet.actor) .window-content select option {
+.window-app:not(.sheet.actor,.sheet.item) .window-content select option {
   background: var(--color-widget-background);
 }
-.window-app:not(.sheet.actor) .window-content input[type=checkbox] {
+.window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox] {
   color: var(--color-widget);
   border: 3px solid var(--color-widget);
   border-radius: 50%;
   -webkit-appearance: none;
   background-color: var(--color-widget);
 }
-.window-app:not(.sheet.actor) .window-content input[type=checkbox]:checked {
+.window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox]:checked {
   background-color: #150e4c;
 }
-.window-app:not(.sheet.actor) .window-content input[type=checkbox]:hover {
+.window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox]:hover {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);

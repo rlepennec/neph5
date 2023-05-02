@@ -6,10 +6,10 @@ export class OrdonnanceSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.mondes = Game.kabbale.mondes;
-        return data;
+    getOriginalData() {
+        return {
+            mondes: Game.kabbale.mondes
+        }
     }
 
     /** 

@@ -10,6 +10,7 @@ export class NephilimItemSheet extends ItemSheet {
     constructor(...args) {
         super(...args);
         this.options.submitOnClose = true;
+        this.embeddedData = {};
     }
 
     /**
@@ -43,10 +44,30 @@ export class NephilimItemSheet extends ItemSheet {
      */
     getData() {
         const data = super.getData();
-        data.system = data.item.system;
-        data.isGM = game.user.isGM;
-        data.debug = game.settings.get('neph5e', 'debug');
+        mergeObject(data, {
+            system: data.item.system,
+            isGM: game.user.isGM,
+            debug: game.settings.get('neph5e', 'debug')
+        })
+        mergeObject(data, this.getOriginalData());
+        mergeObject(data, this.embeddedData);
         return data;
+    }
+
+    /**
+     * @returns the data from the original item.
+     */
+    getOriginalData() {
+        return {}; 
+    }
+
+    /**
+     * @param data The data of the embedded item to set.
+     * @returns the instance.
+     */
+    withEmbeddedData(data) {
+        this.embeddedData = data; 
+        return this;
     }
 
     /** 

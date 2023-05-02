@@ -5,10 +5,10 @@ export class TechniqueSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('technique');
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('technique')
+        }
     }
 
     /** 

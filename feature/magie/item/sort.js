@@ -6,11 +6,11 @@ export class SortSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.elements = Game.elements;
-        data.cercles = super.cerclesOf('magie');
-        return data;
+    getOriginalData() {
+        return {
+            elements: Game.elements,
+            cercles: super.cerclesOf('magie')
+        }
     }
 
     /** 

@@ -8,11 +8,11 @@ export class AppelSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('conjuration');
-        data.appels = Game.conjuration.appels;
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('conjuration'),
+            appels: Game.conjuration.appels
+        }
     }
 
     /** 

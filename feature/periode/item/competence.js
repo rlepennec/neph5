@@ -6,10 +6,10 @@ export class CompetenceSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.elements = Game.pentacle.elements;
-        return data;
+    getOriginalData() {
+        return {
+            elements: Game.pentacle.elements
+        }
     }
 
     /** 

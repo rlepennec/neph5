@@ -95,24 +95,25 @@ export class Competence extends AbstractFeature {
     /**
      * @Override
      */
+    getEmbeddedData() {
+        return {
+            periodes: this.detailsFromPeriodes(this.sid),
+            degre: this.degre,
+            sapience: this.sapiences,
+            next: this.next,
+            elements: Game.pentacle.elements,
+            readOnly: this.degre === null
+        }
+    }
+    
     async edit() {
-        await super.edit(
-            "systems/neph5e/feature/periode/item/competence.html",
-            {
-                item: game.items.get(this.item._id),
-                system: this.item.system,
-                debug: game.settings.get('neph5e', 'debug'),
-                periodes: this.detailsFromPeriodes(this.sid),
-                degre: this.degre,
-                sapience: this.sapiences,
-                next: this.next,
-                elements: Game.pentacle.elements,
-                readOnly: this.degre === null
-            },
-            'ITEM.TypeCompetence',
-            560,
-            500
-        )
+        const sheet = this.item.sheet.withEmbeddedData(this.getEmbeddedData());
+        if (sheet.rendered) {
+            sheet.bringToTop();
+            sheet.maximize();
+        } else {
+            sheet.render(true);
+        }
     }
 
     /**

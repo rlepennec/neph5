@@ -6,10 +6,10 @@ export class PeriodeSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.vecus = this._getVecus(data.system.id);
-        return data;
+    getOriginalData() {
+        return {
+            vecus: this._getVecus(this.item.system.id)
+        }
     }
 
     /** 

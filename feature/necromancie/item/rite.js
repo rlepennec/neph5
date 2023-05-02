@@ -7,11 +7,11 @@ export class RiteSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('necromancie');
-        data.desmos = Game.necromancie.desmos;
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('necromancie'),
+            desmos: Game.necromancie.desmos
+        }
     }
 
     /** 

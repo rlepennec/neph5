@@ -5,10 +5,10 @@ export class AtlanteideSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('atlanteide');
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('atlanteide')
+        }
     }
 
     /** 

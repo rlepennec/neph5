@@ -7,13 +7,13 @@ export class FormuleSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.elements = Game.pentacle.elements;
-        data.cercles = super.cerclesOf('alchimie');
-        data.substances = Game.alchimie.substances;
-        data.catalyseurs = game.settings.get('neph5e', 'catalyseurs');
-        return data;
+    getOriginalData() {
+        return {
+            elements: Game.pentacle.elements,
+            cercles: super.cerclesOf('alchimie'),
+            substances: Game.alchimie.substances,
+            catalyseurs: game.settings.get('neph5e', 'catalyseurs')
+        }
     }
 
     /** 

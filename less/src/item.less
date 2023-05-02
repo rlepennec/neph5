@@ -1,203 +1,293 @@
-.item-root {
-    display: flex;
-    flex-direction: row;
-    font-family: 'AJensonPro';
+.item {
+    --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+    --background-size: cover;
 
-    .tooltip {
-        position: relative;
-        display: inline-block;
-    
-        .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-          
-            /* Position the tooltip text */
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -60px;
-          
-            /* Fade in tooltip */
-            opacity: 0;
-            transition: opacity 0.3s;
-    
-            &:after {
-                content: "";
-                position: absolute;
-                top: 100%;
-                left: 50%;
-                margin-left: -5px;
-                border-width: 5px;
-                border-style: solid;
-                border-color: #555 transparent transparent transparent;
-            }
-    
-        }
-
-        &:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-    
-    }
-
-    .side {
-        flex: 0 0 auto;
-        width: 60px;
-
-        img {
-            width: 100%;
-            border-radius: 6px;
-        }
-    }
-    
-    .article {
-        --font-color: #191813;
-
-        display: flex;
-        flex-direction: column;
-        flex-basis: 100%;
-        font-family: 'AJensonPro';
-        background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
-        background-size: cover;
+    .window-content {
+        background: var(--background);
         color: var(--font-color);
-        margin: 2px;
+        opacity: var(--opacity);
+        box-shadow: 0 0 3px 0px #f5f4f4 inset;
+        padding: 2px;
 
-        .header {
-            background: url("../../systems/neph5e/assets/backgrounds/p.webp");
-            background-size: cover;
-            color: #f5f4f4;
-            box-shadow: 0 0 6px 2px #f5f4f4 inset;
+        .item-root {
+            display: flex;
+            flex-direction: row;
+            font-family: 'AJensonPro';
 
-            .uuid {
-                margin-bottom: 5px;
-                text-align: center;
-                color: indianred;
-                font-weight: bold;
-                background:
-                    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-                    url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
-            }
-
-            .title {
-                display: flex;
-                flex-direction: row;
-                height: 60px;
-
-                .name {
-                    font-size: 20px;
+            .tooltip {
+                position: relative;
+                display: inline-block;
+            
+                .tooltiptext {
+                    visibility: hidden;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
                     text-align: center;
-                    margin-bottom: 10px;
-                    padding-bottom: 9px;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    height: 100%;
-                    width: 100%;
-                    font-family:'NightjarDemi';
-                    border: none;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                
+                    /* Position the tooltip text */
+                    position: absolute;
+                    z-index: 1;
+                    bottom: 125%;
+                    left: 50%;
+                    margin-left: -60px;
+                
+                    /* Fade in tooltip */
+                    opacity: 0;
+                    transition: opacity 0.3s;
+            
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        margin-left: -5px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: #555 transparent transparent transparent;
+                    }
+            
                 }
 
-                .image {
-                    flex: 0 0 auto;
-                    margin: 6px 6px 6px 6px;
+                &:hover .tooltiptext {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            
+            }
+
+            .side {
+                flex: 0 0 auto;
+                width: 60px;
+
+                img {
+                    width: 100%;
                     border-radius: 6px;
                 }
-
             }
+            
+            .article {
+                --font-color: #191813;
 
-        }
-
-        .body {
-            margin-left: 10px;
-            margin-right: 10px;
-
-            .line-bottom {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                border-bottom: 1px solid black;
-                padding-bottom: 14px;
-            }
-
-            .input-text {
-                border: 0;
-                background: transparent;
-                vertical-align: top;
-                height: 16px;
-            }
-
-            .main {
                 display: flex;
-                flex-direction: row;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                justify-content: space-evenly;
-                border-bottom: 1px solid black;
-                padding-bottom: 8px;
+                flex-direction: column;
+                flex-basis: 100%;
+                font-family: 'AJensonPro';
+                background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
+                background-size: cover;
+                color: var(--font-color);
+                margin: 2px;
 
-                .data {
-                    display: flex;
-                    flex-direction: column;
-                    flex-basis: content;
-                    text-align: center;
-                    font-size: large;
-                    font-family:'AJensonPro';
+                .header {
+                    background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+                    background-size: cover;
+                    color: #f5f4f4;
+                    box-shadow: 0 0 6px 2px #f5f4f4 inset;
 
-                    .value {
-                        border: 0;
-                        outline: 0;
-                        height: 30px;
-                        vertical-align: middle;
+                    .uuid {
+                        margin-bottom: 5px;
+                        text-align: center;
+                        color: indianred;
+                        font-weight: bold;
+                        background:
+                            linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                            url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
+                    }
 
-                        .select {
+                    .title {
+                        display: flex;
+                        flex-direction: row;
+                        height: 60px;
+
+                        .name {
+                            font-size: 20px;
+                            text-align: center;
+                            padding: 0px 10px 2px 10px;
+                            height: 100%;
+                            width: 100%;
+                            font-family:'NightjarDemi';
                             border: none;
-                            outline: 0px;
-                            background-color: transparent;
-                            margin-top: 4px;
-                            width: 120%;
-                            -webkit-appearance: none;
-                            -moz-appearance: none;
-                            appearance: none;
-                            text-align-last: center;
-                            align-items: center;
-                            color: var(--font-color);
-
-                            .option {
-                                background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
-                                text-align: center;
-                            }
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            color: #f5f4f4;
                         }
 
-                        .number {
+                        .image {
                             flex: 0 0 auto;
-                            width: 35px;
-                            height: 35px;
-                            margin-left: 10px;
+                            margin: 6px 6px 6px 6px;
+                            border-radius: 6px;
+                        }
+
+                    }
+
+                }
+
+                .body {
+                    margin-left: 10px;
+                    margin-right: 10px;
+
+                    .line-bottom {
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        border-bottom: 1px solid black;
+                        padding-bottom: 14px;
+                    }
+
+                    .input-text {
+                        border: 0;
+                        background: transparent;
+                        vertical-align: top;
+                        height: 16px;
+                    }
+
+                    .main {
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        justify-content: space-evenly;
+                        border-bottom: 1px solid black;
+                        padding-bottom: 8px;
+
+                        .data {
+                            display: flex;
+                            flex-direction: column;
+                            flex-basis: content;
                             text-align: center;
-                            border-radius: 50%;
-                            align-items: center;
-                            color: var(--font-color);
+                            font-size: large;
+                            font-family:'AJensonPro';
+
+                            .value {
+                                border: 0;
+                                outline: 0;
+                                height: 30px;
+                                vertical-align: middle;
+
+                                .select {
+                                    border: none;
+                                    outline: 0px;
+                                    background-color: transparent;
+                                    margin-top: 4px;
+                                    width: 120%;
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    text-align-last: center;
+                                    align-items: center;
+                                    color: var(--font-color);
+
+                                    .option {
+                                        background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+                                        text-align: center;
+                                    }
+                                }
+
+                                .number {
+                                    flex: 0 0 auto;
+                                    width: 35px;
+                                    height: 35px;
+                                    margin-left: 10px;
+                                    text-align: center;
+                                    border-radius: 50%;
+                                    align-items: center;
+                                    color: var(--font-color);
+                                }
+
+                                .label {
+                                    margin-top: 4px;
+                                    color: var(--font-color);
+                                }
+
+                                .placeholder {
+                                    color: indianred;  
+                                }
+
+                                .text {
+                                    margin-top: 4px;
+                                    border: 0;
+                                    background: transparent;
+                                    color: var(--font-color);
+                                }
+
+                            }
+
                         }
 
                         .label {
-                            margin-top: 4px;
+                            display: flex;
+                            flex-direction: row;
+                            height: 26px;
+                            vertical-align: middle;
+                            font-family: 'AJensonPro';
+
+                            .title {
+                                flex: 0 0 auto;
+                                font-weight: bold;
+                                margin-right: 5px;
+                            }
+
+                        }
+
+                    }
+                    
+                    .row {
+                        display: flex;
+                        flex-direction: row;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        justify-content: space-evenly;
+
+                        .data {
+                            display: flex;
+                            flex-direction: column;
+                            flex-basis: content;
+                            text-align: center;
+                            font-size: 16px;
+                            font-family:'AJensonPro';
+
+                            .value {
+                                border: 0;
+                                outline: 0;
+                                height: 30px;
+                                vertical-align: middle;
+
+                                .number {
+                                    flex: 0 0 auto;
+                                    width: 40px;
+                                    height: 40px;
+                                    margin-left: 10px;
+                                    text-align: center;
+                                    border-radius: 50%;
+                                    align-items: center;
+                                    color: var(--font-color);
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    .input {
+                        display: flex;
+                        flex-direction: row;
+                        height: 26px;
+                        vertical-align: middle;
+                        font-size: 16px;
+                        font-family: 'AJensonPro';
+                        color: var(--font-color);
+
+                        .title {
+                            flex: 0 0 auto;
+                            font-weight: bold;
+                            padding-top: 3px;
                             color: var(--font-color);
                         }
 
-                        .placeholder {
-                            color: indianred;  
-                        }
-
-                        .text {
-                            margin-top: 4px;
+                        .value {
                             border: 0;
                             background: transparent;
                             color: var(--font-color);
@@ -205,211 +295,134 @@
 
                     }
 
-                }
-
-                .label {
-                    display: flex;
-                    flex-direction: row;
-                    height: 26px;
-                    vertical-align: middle;
-                    font-family: 'AJensonPro';
-
-                    .title {
-                        flex: 0 0 auto;
-                        font-weight: bold;
-                        margin-right: 5px;
-                    }
-
-                }
-
-            }
-            
-            .row {
-                display: flex;
-                flex-direction: row;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                justify-content: space-evenly;
-
-                .data {
-                    display: flex;
-                    flex-direction: column;
-                    flex-basis: content;
-                    text-align: center;
-                    font-size: 16px;
-                    font-family:'AJensonPro';
-
-                    .value {
-                        border: 0;
-                        outline: 0;
-                        height: 30px;
+                    .list {
                         vertical-align: middle;
+                        font-family: 'AJensonPro';
+                        font-size: 16px;
 
-                        .number {
-                            flex: 0 0 auto;
-                            width: 40px;
-                            height: 40px;
-                            margin-left: 10px;
-                            text-align: center;
-                            border-radius: 50%;
+                        .title {
+                            display: flex;
+                            flex-direction: row;
                             align-items: center;
-                            color: var(--font-color);
+                            height: 26px;
+                            font-weight: bold;
+                        }
+
+                        .item {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            height: 26px;
+                            margin-top: 0px;
+                            margin-bottom: 0px;
                         }
 
                     }
 
-                }
+                    .checkbox {
+                        display: flex;
+                        flex-direction: row;
+                        height: 26px;
+                        vertical-align: middle;
+                        font-size: 16px;
+                        font-family: 'AJensonPro';
 
-            }
-
-            .input {
-                display: flex;
-                flex-direction: row;
-                height: 26px;
-                vertical-align: middle;
-                font-size: 16px;
-                font-family: 'AJensonPro';
-                color: var(--font-color);
-
-                .title {
-                    flex: 0 0 auto;
-                    font-weight: bold;
-                    padding-top: 3px;
-                    color: var(--font-color);
-                }
-
-                .value {
-                    border: 0;
-                    background: transparent;
-                    color: var(--font-color);
-                }
-
-            }
-
-            .list {
-                vertical-align: middle;
-                font-family: 'AJensonPro';
-                font-size: 16px;
-
-                .title {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    height: 26px;
-                    font-weight: bold;
-                }
-
-                .item {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    height: 26px;
-                    margin-top: 0px;
-                    margin-bottom: 0px;
-                }
-
-            }
-
-            .checkbox {
-                display: flex;
-                flex-direction: row;
-                height: 26px;
-                vertical-align: middle;
-                font-size: 16px;
-                font-family: 'AJensonPro';
-
-                input[type="checkbox"] {
-                    display:none;
-                }
-            
-                .checked {
-                    display: none;
-                }
-            
-                input[type="checkbox"]:checked ~ .checked {
-                    display: inline-block;
-                }
+                        input[type="checkbox"] {
+                            display:none;
+                        }
                     
-                input[type="checkbox"]:checked ~ .unchecked {
-                    display: none;
-                }
+                        .checked {
+                            display: none;
+                        }
+                    
+                        input[type="checkbox"]:checked ~ .checked {
+                            display: inline-block;
+                        }
+                            
+                        input[type="checkbox"]:checked ~ .unchecked {
+                            display: none;
+                        }
 
-                i {
-                    margin-left: 50px;
-                    margin-right: 10px;
-                }
+                        i {
+                            margin-left: 50px;
+                            margin-right: 10px;
+                        }
 
-            }
-
-            .key {
-                color: indianred;
-                margin-top: 20px;
-                font-family: 'Gill Sans';
-            }
-
-            .chronology {
-                margin-top: 10px;
-                font-family:'AJensonPro';
-
-                tr {
-
-                    td.periode-name {
-                        padding-left: 10px;
                     }
 
-                    td.periode {
-                        text-align: center;
+                    .key {
+                        color: indianred;
+                        margin-top: 20px;
+                        font-family: 'Gill Sans';
                     }
 
-                    td.infos {
-                        text-align: center;
-                        font-weight: bold;
+                    .chronology {
+                        margin-top: 10px;
+                        font-family:'AJensonPro';
+
+                        tr {
+
+                            td.periode-name {
+                                padding-left: 10px;
+                            }
+
+                            td.periode {
+                                text-align: center;
+                            }
+
+                            td.infos {
+                                text-align: center;
+                                font-weight: bold;
+                            }
+
+                        }
+
                     }
 
-                }
+                    .difficulte {
+                        display: flex;
+                        flex-direction: row;
+                        height: 26px;
+                        font-family:'AJensonPro';
 
-            }
+                        span:nth-child(1) {
+                            font-weight: bold;
+                            padding-top: 4px;
+                        }
 
-            .difficulte {
-                display: flex;
-                flex-direction: row;
-                height: 26px;
-                font-family:'AJensonPro';
+                        span:nth-child(2) {
+                            margin-left: 5px;
+                            padding-top: 4px;
+                        }
 
-                span:nth-child(1) {
-                    font-weight: bold;
-                    padding-top: 4px;
-                }
-
-                span:nth-child(2) {
-                    margin-left: 5px;
-                    padding-top: 4px;
-                }
-
-            }
-
-            .metamorphoses {
-                margin-top: 10px;
-
-                li {
-
-                    input {
-                        border: 0;
-                        background: transparent;
-                        padding-bottom: 13px;
-                        color: var(--font-color);
                     }
 
-                }
+                    .metamorphoses {
+                        margin-top: 10px;
 
-            }
+                        li {
 
-            .description {
+                            input {
+                                border: 0;
+                                background: transparent;
+                                padding-bottom: 13px;
+                                color: var(--font-color);
+                            }
 
-                .add {
+                        }
 
-                    span {
-                        margin-left: 10px;
+                    }
+
+                    .description {
+
+                        .add {
+
+                            span {
+                                margin-left: 10px;
+                            }
+
+                        }
+
                     }
 
                 }

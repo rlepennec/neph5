@@ -5,10 +5,10 @@ export class TekhneSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('tekhne');
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('tekhne')
+        }
     }
 
     /** 

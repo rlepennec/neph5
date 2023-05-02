@@ -5,10 +5,10 @@ export class DracomachieSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('dracomachie');
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('dracomachie')
+        }
     }
 
     /** 

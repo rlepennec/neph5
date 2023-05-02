@@ -5,10 +5,10 @@ export class PratiqueSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.cercles = super.cerclesOf('pratique', true);
-        return data;
+    getOriginalData() {
+        return {
+            cercles: super.cerclesOf('pratique', true)
+        }
     }
 
     /** 

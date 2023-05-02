@@ -6,15 +6,13 @@ export class ArmeSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getData() {
-        const data = super.getData();
-        data.types = {
+    getOriginalData() {
+        return { types: {
             naturelle: "NEPH5E.armes.naturelle",
             melee:     "NEPH5E.armes.melee",
             trait:     "NEPH5E.armes.trait",
             feu:       "NEPH5E.armes.feu"
-        };
-        return data;
+        }}
     }
 
     /** 
