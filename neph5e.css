@@ -5084,16 +5084,13 @@ form.combat div.hiddable #description {
   font-size: 17px;
   box-shadow: 0 0 5px #444 inset;
 }
-#interface #ui-middle #ui-top #navigation li {
+#interface #ui-middle #ui-top #navigation li:not(.scene-player) {
   background: var(--background);
   background-size: var(--background-size);
   font-size: 17px;
   box-shadow: 0 0 5px #444 inset;
 }
-#interface #ui-middle #ui-top #navigation li .scene-players .scene-player {
-  color: #ffffff;
-}
-#interface #ui-middle #ui-top #navigation li:hover {
+#interface #ui-middle #ui-top #navigation li:not(.scene-player):hover {
   -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   -moz-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
   box-shadow: 0 0 2px 2px var(--color-shadow) inset;

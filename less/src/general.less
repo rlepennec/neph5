@@ -59,7 +59,7 @@
     }
 
     #ui-middle {
-        
+
         #ui-top {
 
             #navigation {
@@ -72,19 +72,11 @@
                     box-shadow: 0 0 5px #444 inset;
                 }
 
-                li {
+                li:not(.scene-player) {
                     background: var(--background);
                     background-size: var(--background-size);
                     font-size: 17px;
                     box-shadow: 0 0 5px #444 inset;
-
-                    .scene-players {
-
-                        .scene-player {
-                            //box-shadow: 0 0 0px #ffffff inset;
-                            color: #ffffff;
-                        }
-                    }
 
                     &:hover {
                         -webkit-box-shadow: 0 0 2px 2px var(--color-shadow) inset;
