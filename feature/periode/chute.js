@@ -60,21 +60,13 @@ export class Chute extends HistoricalFeature {
     /**
      * @Override
      */
-    async edit() {
-        await super.edit(
-            "systems/neph5e/feature/periode/item/chute.html",
-            {
-                system: this.item.system,
-                item: AbstractFeature.original(this.sid),
-                periodes: this.detailsFromPeriodes(this.sid),
-                degre: this.degre,
-                next: this.next,
-                readOnly: this.degre === null
-            },
-            'ITEM.TypeChute',
-            560,
-            500
-        )
+    getEmbeddedData() {
+        return {
+            periodes: this.detailsFromPeriodes(this.sid),
+            degre: this.degre,
+            next: this.next,
+            readOnly: this.degre === null
+        }
     }
 
     /**
