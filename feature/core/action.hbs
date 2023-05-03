@@ -15,6 +15,11 @@
         </div>
 
         <div class="type">
+        {{#if opposed}}
+
+            <span>{{localize 'NEPH5E.jetOpposition'}}</span>
+
+        {{else}}
 
             {{#switch type}}
             {{#case 'none'}}
@@ -44,6 +49,7 @@
             </select>
             {{/if}}
 
+        {{/if}}
         </div>
 
     </div>
@@ -69,7 +75,7 @@
                     <option value="30">30</option>
                     <option value="20">20</option>
                     <option value="10">10</option>
-                    <option value="0">0</option>
+                    <option value="0" selected>0</option>
                     <option value="-10">-10</option>
                     <option value="-20">-20</option>
                     <option value="-30">-30</option>
@@ -87,6 +93,7 @@
             <td class="percentage">%</td>
         </tr>
 
+        {{#unless opposed}}
         {{#unless (eq fraternite 0)}}
         <tr>
             <td>
@@ -139,6 +146,7 @@
             <td class="percentage">%</td>
         </tr>
         {{/if}}
+        {{/unless}}
 
     </table>
 

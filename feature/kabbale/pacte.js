@@ -45,7 +45,8 @@ export class Pacte extends AbstractFeature {
             base: {
                 name: 'Opposition',
                 difficulty: this.base * 10
-            }
+            },
+            opposed: true
         }
     }
 
@@ -63,7 +64,7 @@ export class Pacte extends AbstractFeature {
     async initializeRoll() {
         new ActionDialog(this.actor, this)
             .withTitle(this.title)
-            .withTemplate("systems/neph5e/feature/core/reaction.hbs")
+            .withTemplate("systems/neph5e/feature/core/action.hbs")
             .withData(this.data)
             .render(true);
     }

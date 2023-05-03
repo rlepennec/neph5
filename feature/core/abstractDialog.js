@@ -69,6 +69,7 @@ export class AbstractDialog extends FormApplication {
     getData(options) {
         const data = duplicate(this.data);
         data.owner =  this.object.id;
+        data.opposed = false;
         return data;
     }
 
