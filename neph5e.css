@@ -4577,6 +4577,8 @@
 .action {
   --box-shadow: 0 0 4px 1px #414048 inset;
   --color-shadow-primary: #151156;
+  --color-widget-background: none;
+  --color-widget: #191813;
   display: flex;
   flex-direction: column;
 }
@@ -4696,6 +4698,13 @@
   -moz-appearance: none;
   appearance: none;
   text-align: right;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.action .body .table tr td select option {
+  text-align: center;
 }
 .action .body .table tr td input {
   text-align: right;
