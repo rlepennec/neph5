@@ -51,29 +51,16 @@
         .roll {
             display: flex;
             flex-direction: row;
+            position: relative;
             margin-top: 10px;
             font-size: 15px;
-
-            #difficulty {
-                flex: 0 0 auto;
-                padding-left: 70px;
-                padding-top: 4px;
-                padding-right:10px;
-            }
-
-            .item-control {
-                flex: 0 0 auto;
-                width: 20px;
-                padding-top: 5px;
-                padding-right: 100px;
-            }
 
             .type {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-evenly;
+                margin-left: 175px;
 
-                #rollType {
+                select {
                     flex: 0 0 auto;
                     border: none;
                     outline: 0px;
@@ -91,7 +78,6 @@
                     box-shadow: var(--box-shadow);
 
                     option {
-                        background-color: antiquewhite;
                         text-align: center;
                     }
 
@@ -114,6 +100,24 @@
                     outline: 0px;
                     background-color: transparent;
                     width: 80px;
+                }
+
+            }
+
+            .dice {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                left: 35%;
+
+                #difficulty {
+                    flex: 0 0 auto;
+                    padding: 4px 10px 0px 4px;
+                }
+
+                .item-control {
+                    flex: 0 0 auto;
+                    padding: 5px 0px 0px 0px;
                 }
 
             }

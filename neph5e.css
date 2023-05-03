@@ -4621,27 +4621,16 @@
 .action .body .roll {
   display: flex;
   flex-direction: row;
+  position: relative;
   margin-top: 10px;
   font-size: 15px;
-}
-.action .body .roll #difficulty {
-  flex: 0 0 auto;
-  padding-left: 70px;
-  padding-top: 4px;
-  padding-right: 10px;
-}
-.action .body .roll .item-control {
-  flex: 0 0 auto;
-  width: 20px;
-  padding-top: 5px;
-  padding-right: 100px;
 }
 .action .body .roll .type {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  margin-left: 175px;
 }
-.action .body .roll .type #rollType {
+.action .body .roll .type select {
   flex: 0 0 auto;
   border: none;
   outline: 0px;
@@ -4658,11 +4647,10 @@
   border-radius: 10px;
   box-shadow: var(--box-shadow);
 }
-.action .body .roll .type #rollType option {
-  background-color: antiquewhite;
+.action .body .roll .type select option {
   text-align: center;
 }
-.action .body .roll .type #rollType:hover {
+.action .body .roll .type select:hover {
   text-shadow: 0px 0px 1px #191813;
 }
 .action .body .roll .type span {
@@ -4677,6 +4665,20 @@
   outline: 0px;
   background-color: transparent;
   width: 80px;
+}
+.action .body .roll .dice {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  left: 35%;
+}
+.action .body .roll .dice #difficulty {
+  flex: 0 0 auto;
+  padding: 4px 10px 0px 4px;
+}
+.action .body .roll .dice .item-control {
+  flex: 0 0 auto;
+  padding: 5px 0px 0px 0px;
 }
 .action .body .table {
   width: 100%;

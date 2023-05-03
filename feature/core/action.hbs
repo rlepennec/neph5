@@ -10,12 +10,6 @@
 
         <div class="roll">
 
-            <span id="difficulty">{{difficulty}}%</span>
-
-            <div class="item-control">
-                <a id="roll"><i class="fas fa-dice-d20"></i></a>
-            </div>
-
             <div class="type">
             {{#if opposed}}
 
@@ -52,6 +46,16 @@
                 {{/if}}
 
             {{/if}}
+            </div>
+
+            <div class="dice">
+
+                <label id="difficulty">{{difficulty}}%</label>
+
+                <div class="item-control">
+                    <a id="roll"><i class="fas fa-dice-d20"></i></a>
+                </div>
+
             </div>
 
         </div>
