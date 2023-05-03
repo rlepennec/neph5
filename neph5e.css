@@ -4173,6 +4173,7 @@
   flex-direction: column;
   flex-basis: 100%;
   font-family: 'AJensonPro';
+  font-size: 18px;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   background-size: cover;
   color: #191813;
@@ -4244,7 +4245,6 @@
   flex-direction: column;
   flex-basis: content;
   text-align: center;
-  font-size: large;
   font-family: 'AJensonPro';
 }
 .item .window-content .item-root .article .body .main .data .value {
@@ -4252,6 +4252,7 @@
   outline: 0;
   height: 30px;
   vertical-align: middle;
+  font-size: 18px;
 }
 .item .window-content .item-root .article .body .main .data .value .select {
   border: none;
@@ -4305,6 +4306,7 @@
   height: 26px;
   vertical-align: middle;
   font-family: 'AJensonPro';
+  font-size: 18px;
 }
 .item .window-content .item-root .article .body .main .label .title {
   flex: 0 0 auto;
@@ -4315,7 +4317,7 @@
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   justify-content: space-evenly;
 }
 .item .window-content .item-root .article .body .row .data {
@@ -4331,6 +4333,7 @@
   outline: 0;
   height: 30px;
   vertical-align: middle;
+  font-size: 18px;
 }
 .item .window-content .item-root .article .body .row .data .value .number {
   flex: 0 0 auto;
@@ -4350,7 +4353,7 @@
   flex-direction: row;
   height: 26px;
   vertical-align: middle;
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'AJensonPro';
   color: #191813;
 }
@@ -4368,7 +4371,7 @@
 .item .window-content .item-root .article .body .list {
   vertical-align: middle;
   font-family: 'AJensonPro';
-  font-size: 16px;
+  font-size: 18px;
 }
 .item .window-content .item-root .article .body .list .title {
   display: flex;
@@ -4390,7 +4393,7 @@
   flex-direction: row;
   height: 26px;
   vertical-align: middle;
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'AJensonPro';
 }
 .item .window-content .item-root .article .body .checkbox input[type="checkbox"] {
@@ -4450,6 +4453,11 @@
   background: transparent;
   padding-bottom: 13px;
   color: #191813;
+}
+.item .window-content .item-root .article .body .description {
+  margin: 10px 0px 0px 0px;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
 }
 .item .window-content .item-root .article .body .description .add span {
   margin-left: 10px;
