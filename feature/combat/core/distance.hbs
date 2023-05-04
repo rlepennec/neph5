@@ -164,40 +164,60 @@
             </div>
 
             <div class="line hiddable" style="display:none;">
-                <td id="vecu" class="label">{{base.name}}</td>
-                <td id="base">{{base.difficulty}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label id="vecu">{{base.name}}</label>
+                </div>
+                <div class="line-value">
+                    <label id="base">{{base.difficulty}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
 
             {{#if (nonNull onGround)}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize onGround.label}}</td>
-                <td>{{onGround.modifier}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{localize onGround.label}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{onGround.modifier}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
             {{#if (nonNull foeOnGround)}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize foeOnGround.label}}</td>
-                <td>{{foeOnGround.modifier}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{localize foeOnGround.label}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{foeOnGround.modifier}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
             {{#if (nonNull stunned)}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize stunned.label}}</td>
-                <td>{{stunned.modifier}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{localize stunned.label}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{stunned.modifier}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
             {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{weapon.name}}</td>
-                <td>{{weapon.system.attack}}0</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{weapon.name}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{weapon.system.attack}}0</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
