@@ -641,10 +641,14 @@ export class NephilimActor extends Actor {
             }
 
         }
-        const feature = builder.create();
-        if (feature != null) {
-            await feature.initializeRoll();
+
+        if (builder != null) {
+            const feature = builder.create();
+            if (feature != null) {
+                await feature.initializeRoll();
+            }
         }
+
     }
 
     async updateEffect(id) {
