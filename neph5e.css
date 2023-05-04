@@ -4649,7 +4649,7 @@
 .action .body .roll .parameters {
   display: flex;
   flex-direction: row;
-  width: 440px;
+  width: 420px;
   justify-content: space-evenly;
 }
 .action .body .roll .parameters .type {
@@ -4669,10 +4669,14 @@
   background-color: transparent;
   width: 40px;
 }
-.action .body .roll #roll {
+.action .body .roll .dice {
+  border: none;
   flex: 0 0 auto;
   padding: 5px 0px 0px 0px;
-  width: 60px;
+  width: 80px;
+}
+.action .body .roll .dice label {
+  padding-right: 5px;
 }
 .action .body .table {
   width: 100%;
