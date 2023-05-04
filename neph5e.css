@@ -4588,6 +4588,8 @@
   outline: 0px;
   background-color: transparent;
   margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -4688,7 +4690,10 @@
 .action .body .table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.action .body .table tr td #approche {
+.action .body .table tr td #approche,
+.action .body .table tr td #blessures,
+.action .body .table tr td #metamorphe,
+.action .body .table tr td #fraternite {
   margin-left: 10px;
 }
 .action .body .table tr td input {
