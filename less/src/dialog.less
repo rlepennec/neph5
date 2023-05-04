@@ -99,7 +99,7 @@
             .parameters {
                 display: flex;
                 flex-direction: row;
-                width: 420px;
+                width: 390px;
                 justify-content: space-evenly;
 
                 .type {
@@ -126,14 +126,18 @@
             }
 
             .dice {
-                flex: 0 0 auto;
                 border: none;
                 flex: 0 0 auto;
-                padding: 7px 0px 0px 0px;
-                width: 80px;
+                padding: 7px 25px 0px 0px;
+                width: 120px;
+                text-align: right;
 
                 label {
                     padding-left: 17px;
+                }
+
+                #difficulty {
+                    width: 40px;
                 }
 
             }
@@ -174,6 +178,8 @@
                         height:11px;
                         width: 160px;
                         margin-left: 20px;
+                        padding-left: 1px;
+                        padding-right: 1px;
                     }
 
                 }
@@ -187,6 +193,10 @@
                     #modifier {
                         text-align: right;
                         width: 60px;
+                    }
+
+                    .base-percentage {
+                        margin-right: 15px;
                     }
 
                     .percentage {

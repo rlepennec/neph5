@@ -4664,7 +4664,7 @@
 .action .body .roll .parameters {
   display: flex;
   flex-direction: row;
-  width: 420px;
+  width: 390px;
   justify-content: space-evenly;
 }
 .action .body .roll .parameters .type {
@@ -4687,11 +4687,15 @@
 .action .body .roll .dice {
   border: none;
   flex: 0 0 auto;
-  padding: 7px 0px 0px 0px;
-  width: 80px;
+  padding: 7px 25px 0px 0px;
+  width: 120px;
+  text-align: right;
 }
 .action .body .roll .dice label {
   padding-left: 17px;
+}
+.action .body .roll .dice #difficulty {
+  width: 40px;
 }
 .action .body .lines {
   display: flex;
@@ -4771,6 +4775,8 @@
   height: 11px;
   width: 160px;
   margin-left: 20px;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 .action .body .lines .line .line-value {
   display: flex;
@@ -4781,6 +4787,9 @@
 .action .body .lines .line .line-value #modifier {
   text-align: right;
   width: 60px;
+}
+.action .body .lines .line .line-value .base-percentage {
+  margin-right: 15px;
 }
 .action .body .lines .line .line-value .percentage {
   margin-top: 7px;
