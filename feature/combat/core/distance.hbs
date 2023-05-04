@@ -124,28 +124,32 @@
 
             {{#unless (eq blessures 0)}}
             <div class="line">
-                <td class="blessures">
+                <div class="line-title">
                     <select id="blessures" name="blessures">
-                        <option value="apply">Appliquer les blessures</option>
-                        <option value="ignore">Ignorer les blessures</option>
+                        <option value="apply">{{localize 'NEPH5E.appliquerBlessures'}}</option>
+                        <option value="ignore">{{localize 'NEPH5E.ignorerBlessures'}}</option>
                     </select>
-                </td>
-                <td id="blessuresModifier">{{blessures}}</td>
-                <td>%</td>
+                </div>
+                <div class="line-value">
+                    <label id="blessuresModifier">{{blessures}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/unless}}
 
             {{#if (nonNull approches)}}
             <div class="line">
-                <td class="approche">
+                <div class="line-title">
                     <select id="approche" name="approche">
                         {{#each approches as |approche|}}
                         <option value="{{approche.name}}">{{approche.label}}</option>
                         {{/each}}
                     </select>
-                </td>
-                <td id="approcheModifier">0</td>
-                <td>%</td>
+                </div>
+                <div class="line-value">
+                    <label id="approcheModifier">{{blessures}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
