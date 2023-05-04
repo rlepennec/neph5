@@ -4814,19 +4814,17 @@ form.combat select {
   border: 1px solid #151156;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
-  /*
-        &#rollType, &#element, &#modifier, &#fraternite, &#blessures, &#approche, &#metamorphe {
-
-            option {
-                background: none;
-                background-color: antiquewhite;
-            }
-
-        }
-        */
 }
 form.combat select option {
   text-align: center;
+}
+form.combat select#manoeuver option,
+form.combat select#rollType option,
+form.combat select#modifier option,
+form.combat select#blessures option,
+form.combat select#approche option {
+  background: none;
+  background-color: antiquewhite;
 }
 form.combat select:hover:not([disabled]) {
   text-shadow: 0px 0px 1px #191813;
@@ -4873,6 +4871,7 @@ form.combat .body {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
   background-size: cover;
   color: #191813;
+  height: 100%;
 }
 form.combat .body .roll {
   display: flex;
