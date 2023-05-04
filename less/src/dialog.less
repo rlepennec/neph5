@@ -126,8 +126,10 @@
             }
 
             .dice {
-                border: none;
+                display: flex;
+                flex-direction: row;
                 flex: 0 0 auto;
+                border: none;
                 padding: 7px 25px 0px 0px;
                 width: 120px;
                 text-align: right;
@@ -136,8 +138,14 @@
                     padding-left: 17px;
                 }
 
-                #difficulty {
+                #roll {
+                    flex: 0 0 auto;
                     width: 40px;
+                }
+
+                #difficulty {
+                    flex: 0 0 auto;
+                    width: 54px;
                 }
 
             }

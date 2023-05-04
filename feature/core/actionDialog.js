@@ -119,7 +119,7 @@ export class ActionDialog extends AbstractDialog {
         event.preventDefault();
         const parameters = this.parameters();
         const difficulty = this.action.difficulty(parameters);
-        $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#difficulty').html(difficulty + "%");
         $('#sliderModifier').html("<label id='sliderModifier'>" + parameters.modifier + "<label>");
     }
 
@@ -133,7 +133,7 @@ export class ActionDialog extends AbstractDialog {
         const fraternite = parameters.fraternite;
         const difficulty = this.action.difficulty(parameters);
         $('#fraterniteModifier').html("<span>" + fraternite + "<span>");
-        $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#difficulty').html(difficulty + "%");
     }
 
     /**
@@ -146,7 +146,7 @@ export class ActionDialog extends AbstractDialog {
         const blessures = parameters.blessures;
         const difficulty = this.action.difficulty(parameters);
         $('#blessuresModifier').html("<span>" + blessures + "<span>");
-        $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#difficulty').html(difficulty + "%");
     }
 
     /**
@@ -159,7 +159,7 @@ export class ActionDialog extends AbstractDialog {
         const approche = parameters.approche;
         const difficulty = this.action.difficulty(parameters);
         $('#approcheModifier').html("<span>" + approche + "<span>");
-        $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#difficulty').html(difficulty + "%");
     }
 
     /**
@@ -171,7 +171,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         const ka = parameters.ka;
         const difficulty = this.action.difficulty(parameters);
-        $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#difficulty').html(difficulty + "%");
     }
 
     /**
@@ -184,7 +184,7 @@ export class ActionDialog extends AbstractDialog {
         const metamorphe = parameters.metamorphe;
         const difficulty = this.action.difficulty(parameters);
         $('#metamorpheModifier').html("<span>" + metamorphe + "<span>");
-        $('#difficulty').html("<span>" + difficulty + "%<span>");
+        $('#difficulty').html(difficulty + "%");
     }
 
     /**

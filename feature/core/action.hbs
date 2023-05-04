@@ -68,52 +68,68 @@
                 </div>
             </div>
 
-            {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
-            <div class="line">
-                <div class="line-title">
-                    <label>Modificateur</label>
-                </div>
-                <div class="line-value">
-                    <input id="modifier" type="Number" value="0"/>
-                    <label class="percentage base-percentage">%</label>
-                </div>
-            </div>
-            {{/if}}
+            {{#if opposed}}
 
-            {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
-            <div class="line">
-                <div class="line-title">
-                    <label>Modificateur</label>
+                <div class="line">
+                    <div class="line-title">
+                        <label>Modificateur</label>
+                    </div>
+                    <div class="line-value">
+                        <input id="modifier" type="Number" value="0"/>
+                        <label class="percentage base-percentage">%</label>
+                    </div>
                 </div>
-                <div class="line-value">
-                    <select id="modifier">
-                        <option value="50">50%</option>
-                        <option value="40">40%</option>
-                        <option value="30">30%</option>
-                        <option value="20">20%</option>
-                        <option value="10">10%</option>
-                        <option value="0" selected>0%</option>
-                        <option value="-10">-10%</option>
-                        <option value="-20">-20%</option>
-                        <option value="-30">-30%</option>
-                        <option value="-40">-40%</option>
-                        <option value="-50">-50%</option>
-                    </select>
-                </div>
-            </div>
-            {{/if}}
 
-            {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
-            <div class="line">
-                <div class="line-title">
-                    <label>Modificateur</label>
-                    <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+            {{else}}
+
+                {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
+                <div class="line">
+                    <div class="line-title">
+                        <label>Modificateur</label>
+                    </div>
+                    <div class="line-value">
+                        <input id="modifier" type="Number" value="0"/>
+                        <label class="percentage base-percentage">%</label>
+                    </div>
                 </div>
-                <div class="line-value">
-                    <label id="sliderModifier">0</label>
-                    <label class="base-percentage">%</label>
+                {{/if}}
+
+                {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
+                <div class="line">
+                    <div class="line-title">
+                        <label>Modificateur</label>
+                    </div>
+                    <div class="line-value">
+                        <select id="modifier">
+                            <option value="50">50%</option>
+                            <option value="40">40%</option>
+                            <option value="30">30%</option>
+                            <option value="20">20%</option>
+                            <option value="10">10%</option>
+                            <option value="0" selected>0%</option>
+                            <option value="-10">-10%</option>
+                            <option value="-20">-20%</option>
+                            <option value="-30">-30%</option>
+                            <option value="-40">-40%</option>
+                            <option value="-50">-50%</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+                {{/if}}
+
+                {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
+                <div class="line">
+                    <div class="line-title">
+                        <label>Modificateur</label>
+                        <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+                    </div>
+                    <div class="line-value">
+                        <label id="sliderModifier">0</label>
+                        <label class="base-percentage">%</label>
+                    </div>
+                </div>
+                {{/if}}
+
             {{/if}}
 
             {{#unless opposed}}
