@@ -75,29 +75,53 @@
                 <td>%</td>
             </div>
 
+            {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
             <div class="line">
-                <td class="label">Modificateur</td>
-                <td id="manoeuverModifier">
-                    {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
+                <div class="line-title">
+                    <label>Modificateur</label>
+                </div>
+                <div class="line-value">
                     <input id="modifier" type="Number" value="0"/>
-                    {{else}}
-                    <select id="modifier">
-                        <option value="50">50</option>
-                        <option value="40">40</option>
-                        <option value="30">30</option>
-                        <option value="20">20</option>
-                        <option value="10">10</option>
-                        <option value="0">0</option>
-                        <option value="-10">-10</option>
-                        <option value="-20">-20</option>
-                        <option value="-30">-30</option>
-                        <option value="-40">-40</option>
-                        <option value="-50">-50</option>
-                    </select>
-                    {{/if}}
-                </td>
-                <td>%</td>
+                    <label class="percentage base-percentage">%</label>
+                </div>
             </div>
+            {{/if}}
+
+            {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
+            <div class="line">
+                <div class="line-title">
+                    <label>Modificateur</label>
+                </div>
+                <div class="line-value">
+                    <select id="modifier">
+                        <option value="50">50%</option>
+                        <option value="40">40%</option>
+                        <option value="30">30%</option>
+                        <option value="20">20%</option>
+                        <option value="10">10%</option>
+                        <option value="0" selected>0%</option>
+                        <option value="-10">-10%</option>
+                        <option value="-20">-20%</option>
+                        <option value="-30">-30%</option>
+                        <option value="-40">-40%</option>
+                        <option value="-50">-50%</option>
+                    </select>
+                </div>
+            </div>
+            {{/if}}
+
+            {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
+            <div class="line">
+                <div class="line-title">
+                    <label>Modificateur</label>
+                    <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+                </div>
+                <div class="line-value">
+                    <label id="sliderModifier">0</label>
+                    <label class="base-percentage">%</label>
+                </div>
+            </div>
+            {{/if}}
 
             {{#unless (eq blessures 0)}}
             <div class="line">
@@ -131,40 +155,60 @@
             {{/if}}
 
             <div class="line hiddable" style="display:none;">
-                <td id="vecu" class="label">{{base.name}}</td>
-                <td id="base">{{base.difficulty}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label id="vecu">{{base.name}}</label>
+                </div>
+                <div class="line-value">
+                    <label id="base">{{base.difficulty}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
 
             {{#if (nonNull onGround)}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize onGround.label}}</td>
-                <td>{{onGround.modifier}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{localize onGround.label}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{onGround.modifier}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
             {{#if (nonNull foeOnGround)}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize foeOnGround.label}}</td>
-                <td>{{foeOnGround.modifier}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{localize foeOnGround.label}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{foeOnGround.modifier}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
             {{#if (nonNull stunned)}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize stunned.label}}</td>
-                <td>{{stunned.modifier}}</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{localize stunned.label}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{stunned.modifier}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
             {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{weapon.name}}</td>
-                <td>{{weapon.system.attack}}0</td>
-                <td>%</td>
+                <div class="line-title">
+                    <label>{{weapon.name}}</label>
+                </div>
+                <div class="line-value">
+                    <label>{{weapon.system.attack}}0</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/if}}
 
