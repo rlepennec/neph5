@@ -4612,7 +4612,7 @@
   background: none;
   background-color: antiquewhite;
 }
-.action select:hover {
+.action select:hover:not([disabled]) {
   text-shadow: 0px 0px 1px #191813;
 }
 .action input {
