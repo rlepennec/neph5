@@ -4984,6 +4984,11 @@ form.combat .body .lines .line .line-title .slider {
   padding-left: 1px;
   padding-right: 1px;
 }
+form.combat .body .lines .line .line-title #times {
+  padding-top: 10px;
+  margin-left: 10px;
+  width: 200px;
+}
 form.combat .body .lines .line .line-value {
   display: flex;
   flex-direction: row;

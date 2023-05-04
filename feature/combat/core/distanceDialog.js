@@ -97,7 +97,7 @@ export class DistanceDialog extends CombatDialog {
         const modifier = this.action.manoeuverModifier(parameters);
         const difficulty = this.action.difficulty(parameters);
         $('#manoeuverModifier').html(modifier);
-        $('#difficulty').html(difficulty);
+        $('#difficulty').html(difficulty+"%");
 
     }
 

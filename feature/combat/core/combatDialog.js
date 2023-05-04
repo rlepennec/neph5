@@ -100,7 +100,7 @@ export class CombatDialog extends ActionDialog {
         const difficulty = this.action.difficulty(parameters);
         const description = game.i18n.localize("NEPH5E.manoeuvres." + parameters.manoeuver + ".description");
 
-        $('#difficulty').html(difficulty);
+        $('#difficulty').html(difficulty+"%");
         $('#description').html(description);
         $("#approche").html(approches);
         $('#approcheModifier').html("0");
