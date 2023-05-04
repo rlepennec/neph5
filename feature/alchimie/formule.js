@@ -37,7 +37,7 @@ export class Formule extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+        if (this.embedded == null || (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre')) {
             ui.notifications.warn("Vous ne possédez pas le focus de cette formule");
             return;
         }
