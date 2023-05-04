@@ -63,6 +63,13 @@ export class Invocation extends AbstractFocus {
     }
 
     /**
+     * @Override
+     */
+    modifier(parameters) {
+        return parameters == null ? this.actor.getKa('air') : parameters.ka;
+    }
+
+    /**
      * @returns true if a pacte has already be done.
      */
     get pacte() {

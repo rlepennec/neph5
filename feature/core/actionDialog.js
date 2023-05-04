@@ -82,7 +82,7 @@ export class ActionDialog extends AbstractDialog {
     getData(options) {
         const data = duplicate(this.data);
         data.owner = this.object.id;
-        data.difficulty = this.action.difficulty();
+        data.difficulty = this.action.difficulty(this.parameters());
         return data;
     }
 
@@ -96,6 +96,7 @@ export class ActionDialog extends AbstractDialog {
         html.find("#fraternite").change(this._onSelectFraternite.bind(this));
         html.find("#blessures").change(this._onSelectBlessures.bind(this));
         html.find("#approche").change(this._onSelectApproche.bind(this));
+        html.find("#element").change(this._onSelectElement.bind(this));
         html.find("#metamorphe").change(this._onSelectMetamorphe.bind(this));
         html.find("#roll").click(this._onRoll.bind(this));
         html.find("#details").click(this._onDetails.bind(this));
@@ -162,6 +163,18 @@ export class ActionDialog extends AbstractDialog {
     }
 
     /**
+     * Handle the element change.
+     * @param event The event to handle.
+     */
+    async _onSelectElement(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const ka = parameters.ka;
+        const difficulty = this.action.difficulty(parameters);
+        $('#difficulty').html("<span>" + difficulty + "%<span>");
+    }
+
+    /**
      * Handle the metamorphe use change.
      * @param event The event to handle.
      */
@@ -205,7 +218,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns the selected manoeuver.
      */
     _manoeuver() {
-        const selector = this.form.querySelector("#manoeuver");
+        const selector = this.form?.querySelector("#manoeuver");
         return selector?.value;
     }
 
@@ -213,7 +226,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns the current action modifier.
      */
     _modifier() {
-        const modifier = parseInt(this.form.querySelector("#modifier")?.value);
+        const modifier = parseInt(this.form?.querySelector("#modifier")?.value);
         return isNaN(modifier) ? 0 : modifier;
     }
 
@@ -221,7 +234,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns the current fraternite modifier if activated.
      */
     _fraternite() {
-        const selector = this.form.querySelector("#fraternite");
+        const selector = this.form?.querySelector("#fraternite");
         const fraternite = selector == null || selector?.value === 'ignore' ? 0 : this.data.fraternite;
         return fraternite;
     }
@@ -230,7 +243,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns the current wound modifier if activated.
      */
     _blessures() {
-        const selector = this.form.querySelector("#blessures");
+        const selector = this.form?.querySelector("#blessures");
         const blessures = selector == null || selector?.value === 'ignore' ? 0 : this.data.blessures;
         return blessures;
     }
@@ -239,7 +252,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns the optional approche modifier.
      */
     _approche() {
-        const selector = this.form.querySelector("#approche");
+        const selector = this.form?.querySelector("#approche");
         const approche =  selector?.value;
         if (approche == null) return 0;
         const element = approche.replaceAll('NEPH5E.','').replaceAll('pentacle.elements.','');
@@ -250,7 +263,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns the optional metamorphe modifier.
      */
     _metamorphe() {
-        const selector = this.form.querySelector("#metamorphe");
+        const selector = this.form?.querySelector("#metamorphe");
         const metamorphe = selector == null || selector?.value === 'ignore' ? 0 : this.data.metamorphe;
         return metamorphe;
     }
@@ -259,15 +272,15 @@ export class ActionDialog extends AbstractDialog {
      * @returns the current ka modifier used for invocations.
      */
     _ka() {
-        const selector = this.form.querySelector("#element");
-        return this.data.selectElement ? selector != null && actor.getKa(this.form.querySelector("#element")?.value) : 0;
+        const selector = this.form?.querySelector("#element");
+        return this.actor.getKa(selector == null ? 'air' : selector?.value) * 10;
     }
 
     /**
      * @returns true if opposed action, false for simple action.
      */
     _opposed() {
-        return this.data.opposed ? true : this.data.simple ? false : this.form.querySelector("#rollType")?.value === 'opposed';
+        return this.data.opposed ? true : this.data.simple ? false : this.form?.querySelector("#rollType")?.value === 'opposed';
     }
 
     /**
@@ -275,7 +288,7 @@ export class ActionDialog extends AbstractDialog {
      * @returns true if the shot is checked. 
      */
     _shot(shot) {
-        const selector = this.form.querySelector("#shot"+shot);
+        const selector = this.form?.querySelector("#shot"+shot);
         return shot === 1 ? true : selector == null ? false : selector.checked;
     }
 
