@@ -4672,11 +4672,11 @@
 .action .body .roll .dice {
   border: none;
   flex: 0 0 auto;
-  padding: 5px 0px 0px 0px;
+  padding: 7px 0px 0px 0px;
   width: 80px;
 }
 .action .body .roll .dice label {
-  padding-right: 5px;
+  padding-left: 5px;
 }
 .action .body .table {
   width: 100%;
@@ -4687,6 +4687,9 @@
 }
 .action .body .table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
+}
+.action .body .table tr td #approche {
+  margin-left: 10px;
 }
 .action .body .table tr td input {
   text-align: right;
@@ -4715,7 +4718,7 @@
   padding-left: 20px;
 }
 .action .body .table tr .value {
-  width: 25%;
+  width: 27%;
   text-align: right;
   flex: 0 0 auto;
 }
