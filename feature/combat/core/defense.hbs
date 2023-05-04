@@ -44,7 +44,7 @@
 
             {{#unless (isEmptyCollection manoeuvers)}}
             <div class="line">
-                <td class="manoeuver">
+                <div class="line-title">
                     <select id="manoeuver" name="manoeuver">
                         {{#each manoeuvers as |manoeuver|}}
                         <option
@@ -82,9 +82,11 @@
                             <i class="fa-solid fa-shield checked"></i>
                         </label>
                     </div>
-                </td>
-                <td id="manoeuverModifier">0</td>
-                <td>%</td>
+                </div>
+                <div class="line-value">
+                    <label id="manoeuverModifier">0</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
             {{/unless}}
 

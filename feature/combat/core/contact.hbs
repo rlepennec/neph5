@@ -60,7 +60,7 @@
         <div class="lines">
 
             <div class="line">
-                <td class="manoeuver">
+                <div class="line-title">
                     <select id="manoeuver" name="manoeuver">
                         {{#each manoeuvers as |manoeuver|}}
                         <option
@@ -70,9 +70,11 @@
                             value="{{manoeuver.id}}">{{manoeuver.name}}</option>
                         {{/each}}
                     </select>
-                </td>
-                <td id="manoeuverModifier">0</td>
-                <td>%</td>
+                </div>
+                <div class="line-value">
+                    <label id="manoeuverModifier">0</label>
+                    <label class="base-percentage">%</label>
+                </div>
             </div>
 
             {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
