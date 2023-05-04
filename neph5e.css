@@ -4584,15 +4584,14 @@
 }
 .action select {
   flex: 0 0 auto;
-  border: none;
   outline: 0px;
   background-color: transparent;
   margin-top: 4px;
   padding-left: 10px;
   padding-right: 10px;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   text-align-last: center;
   align-items: center;
   color: #191813;
@@ -4605,6 +4604,20 @@
 }
 .action select:hover {
   text-shadow: 0px 0px 1px #191813;
+}
+.action input {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
 }
 .action .header {
   display: flex;
@@ -4678,70 +4691,92 @@
   width: 80px;
 }
 .action .body .roll .dice label {
-  padding-left: 5px;
+  padding-left: 17px;
 }
-.action .body .table {
-  width: 100%;
-  table-layout: fixed;
+.action .body .lines {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
 }
-.action .body .table tr {
-  height: 35px;
-}
-.action .body .table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-.action .body .table tr td #approche,
-.action .body .table tr td #blessures,
-.action .body .table tr td #metamorphe,
-.action .body .table tr td #fraternite {
-  margin-left: 10px;
-}
-.action .body .table tr td input {
-  flex: 0 0 auto;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-  margin-top: 4px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align-last: center;
-  align-items: center;
-  color: #191813;
-  border: 1px solid #151156;
-  border-radius: 10px;
-  box-shadow: var(--box-shadow);
-}
-.action .body .table tr td .slider {
+.action .body .lines .line {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+  /*
+                    #approche, #blessures, #metamorphe, #fraternite {
+                        margin-left: 10px;
+                    }
+                    */
+  /*
+                    .slider {
+                        display: flex;
+                        flex-direction: row;
+
+                        input {
+                            margin-right: 20px;
+                        }
+
+                        label {
+                            width: 40px;
+                        }
+
+                    }
+                    */
+  /*
+                .base-name {
+                    width: 65%;
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+                .modifier {
+                    width: 65%;
+                    text-align: left;
+                    padding-left: 20px;
+                }
+
+                .value {
+                    width: 27%;
+                    text-align: right;
+                    flex: 0 0 auto;
+                }
+
+                .percentage {
+                    width: 10%;
+                    text-align: left;
+                    flex: 0 0 auto;
+                    padding-top: 5px; 
+                    flex: 0 0 auto;
+                    width: auto;
+                }
+                */
 }
-.action .body .table tr td .slider input {
-  margin-right: 20px;
+.action .body .lines .line:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
 }
-.action .body .table tr td .slider label {
-  width: 40px;
+.action .body .lines .line:nth-child(1) {
+  border-top: 2px solid #151156;
 }
-.action .body .table tr .base-name {
-  width: 65%;
-  text-align: left;
-  padding-left: 20px;
+.action .body .lines .line .line-title {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
 }
-.action .body .table tr .modifier {
-  width: 65%;
-  text-align: left;
-  padding-left: 20px;
+.action .body .lines .line .line-title label {
+  padding-left: 2px;
 }
-.action .body .table tr .value {
-  width: 27%;
-  text-align: right;
-  flex: 0 0 auto;
+.action .body .lines .line .line-title .slider {
+  height: 11px;
+  width: 160px;
+  margin-left: 20px;
 }
-.action .body .table tr .percentage {
-  width: 10%;
-  text-align: left;
-  padding-top: 5px;
-  flex: 0 0 auto;
-  width: auto;
+.action .body .lines .line .line-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
 }
 .mnemos .article .id {
   width: 100%;

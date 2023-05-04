@@ -53,105 +53,135 @@
                 <a id="roll"><i class="fas fa-dice-d20"></i></a>
                 <label id="difficulty">{{difficulty}}%</label>
             </div>
-            
 
         </div>
 
-        <table class="table">
+        <div class="lines">
 
-            <tr>
-                <td class="base-name">{{base.name}}</td>
-                <td class="value" id="base">{{base.difficulty}}</td>
-                <td class="percentage">%</td>
-            </tr>
+            <div class="line">
+                <div class="line-title">
+                    <label>{{base.name}}</label>
+                </div>
+                <div class="line-value">
+                    <label id="base">{{base.difficulty}}</label>
+                    <label>%</label>
+                </div>
+            </div>
 
-            <tr>
-                <td class="modifier">Modificateur</td>
-                <td class="value">
-                    {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
+            {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
+            <div class="line">
+                <div class="line-title">
+                    <label>Modificateur</label>
+                </div>
+                <div class="line-value">
                     <input id="modifier" type="Number" value="0"/>
-                    {{/if}}
-                    {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
+                    <label>%</label>
+                </div>
+            </div>
+            {{/if}}
+
+            {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
+            <div class="line">
+                <div class="line-title">
+                    <label>Modificateur</label>
+                </div>
+                <div class="line-value">
                     <select id="modifier">
-                        <option value="50">50</option>
-                        <option value="40">40</option>
-                        <option value="30">30</option>
-                        <option value="20">20</option>
-                        <option value="10">10</option>
-                        <option value="0" selected>0</option>
-                        <option value="-10">-10</option>
-                        <option value="-20">-20</option>
-                        <option value="-30">-30</option>
-                        <option value="-40">-40</option>
-                        <option value="-50">-50</option>
+                        <option value="50">50%</option>
+                        <option value="40">40%</option>
+                        <option value="30">30%</option>
+                        <option value="20">20%</option>
+                        <option value="10">10%</option>
+                        <option value="0" selected>0%</option>
+                        <option value="-10">-10%</option>
+                        <option value="-20">-20%</option>
+                        <option value="-30">-30%</option>
+                        <option value="-40">-40%</option>
+                        <option value="-50">-50%</option>
                     </select>
-                    {{/if}}
-                    {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
-                    <div class="slider">
-                        <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
-                        <label id="sliderModifier">0</label>
-                    </div>
-                    {{/if}}
-                </td>
-                <td class="percentage">%</td>
-            </tr>
+                </div>
+            </div>
+            {{/if}}
+
+            {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
+            <div class="line">
+                <div class="line-title">
+                    <label>Modificateur</label>
+                    <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+                </div>
+                <div class="line-value">
+                    <label id="sliderModifier">0</label>
+                    <label>%</label>
+                </div>
+            </div>
+            {{/if}}
 
             {{#unless opposed}}
+
             {{#unless (eq fraternite 0)}}
-            <tr>
-                <td>
+            <div class="line">
+                <div class="line-title">
                     <select id="fraternite" name="fraternite">
                         <option value="ignore">{{localize 'NEPH5E.ignorerFraternite'}}</option>
                         <option value="apply">{{localize 'NEPH5E.appliquerFraternite'}}</option>
                     </select>
-                </td>
-                <td class="value" id="fraterniteModifier">0</td>
-                <td class="percentage">%</td>
-            </tr>
+                </div>
+                <div class="line-value">
+                    <label id="fraterniteModifier">0</label>
+                    <label>%</label>
+                </div>
+            </div>
             {{/unless}}
 
             {{#unless (eq blessures 0)}}
-            <tr>
-                <td>
+            <div class="line">
+                <div class="line-title">
                     <select id="blessures" name="blessures">
                         <option value="apply">{{localize 'NEPH5E.appliquerBlessures'}}</option>
                         <option value="ignore">{{localize 'NEPH5E.ignorerBlessures'}}</option>
                     </select>
-                </td>
-                <td class="value" id="blessuresModifier">{{blessures}}</td>
-                <td class="percentage">%</td>
-            </tr>
+                </div>
+                <div class="line-value">
+                    <label id="blessuresModifier">{{blessures}}</label>
+                    <label>%</label>
+                </div>
+            </div>
             {{/unless}}
 
             {{#if (nonNull approches)}}
-            <tr>
-                <td>
+            <div class="line">
+                <div class="line-title">
                     <select id="approche" name="approche">
                         {{#each approches as |approche|}}
                         <option value="{{approche.name}}">{{approche.label}}</option>
                         {{/each}}
                     </select>
-                </td>
-                <td class="value" id="approcheModifier">0</td>
-                <td class="percentage">%</td>
-            </tr>
+                </div>
+                <div class="line-value">
+                    <label id="approcheModifier">{{blessures}}</label>
+                    <label>%</label>
+                </div>
+            </div>
             {{/if}}
 
             {{#if (nonNull metamorphe)}}
-            <tr>
-                <td>
+            <div class="line">
+                <div class="line-title">
                     <select id="metamorphe" name="metamorphe">
                         <option value="ignore">{{localize 'NEPH5E.ignorerMetamorphe'}}</option>
                         <option value="apply">{{localize 'NEPH5E.appliquerMetamorphe'}}</option>
                     </select>
-                </td>
-                <td class="value" id="metamorpheModifier">0</td>
-                <td class="percentage">%</td>
-            </tr>
+                </div>
+                <div class="line-value">
+                    <label id="metamorpheModifier">0</label>
+                    <label>%</label>
+                </div>
+            </div>
             {{/if}}
+
             {{/unless}}
 
-        </table>
+        </div>
     
     </div>
 
