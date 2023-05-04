@@ -4582,6 +4582,28 @@
   display: flex;
   flex-direction: column;
 }
+.action select {
+  flex: 0 0 auto;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.action select option {
+  text-align: center;
+}
+.action select:hover {
+  text-shadow: 0px 0px 1px #191813;
+}
 .action .header {
   display: flex;
   flex-direction: row;
@@ -4630,29 +4652,6 @@
   flex-direction: row;
   margin-left: 175px;
 }
-.action .body .roll .type select {
-  flex: 0 0 auto;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-  margin-top: 4px;
-  width: 120%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-align-last: center;
-  align-items: center;
-  color: #191813;
-  border: 1px solid #151156;
-  border-radius: 10px;
-  box-shadow: var(--box-shadow);
-}
-.action .body .roll .type select option {
-  text-align: center;
-}
-.action .body .roll .type select:hover {
-  text-shadow: 0px 0px 1px #191813;
-}
 .action .body .roll .type span {
   flex: 0 0 auto;
   margin-left: 67px;
@@ -4689,24 +4688,6 @@
 }
 .action .body .table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
-}
-.action .body .table tr td select {
-  padding-left: 15px;
-  flex: 0 0 auto;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-align: right;
-  color: #191813;
-  border: 1px solid #151156;
-  border-radius: 10px;
-  box-shadow: var(--box-shadow);
-}
-.action .body .table tr td select option {
-  text-align: center;
 }
 .action .body .table tr td input {
   text-align: right;
