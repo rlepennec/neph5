@@ -4839,17 +4839,68 @@
   margin-top: 10px;
 }
 form.combat {
+  --box-shadow: 0 0 4px 1px #414048 inset;
+  --color-shadow-primary: #151156;
+  --color-widget-background: none;
+  --color-widget: #191813;
   display: flex;
   flex-direction: column;
+}
+form.combat select {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  /*
+        &#rollType, &#element, &#modifier, &#fraternite, &#blessures, &#approche, &#metamorphe {
+
+            option {
+                background: none;
+                background-color: antiquewhite;
+            }
+
+        }
+        */
+}
+form.combat select option {
+  text-align: center;
+}
+form.combat select:hover:not([disabled]) {
+  text-shadow: 0px 0px 1px #191813;
+}
+form.combat input {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
 }
 form.combat .header {
   display: flex;
   flex-direction: row;
-  flex-grow: 0;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  margin: 10px;
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
 }
 form.combat .header img {
   margin: 10px;
@@ -4857,6 +4908,7 @@ form.combat .header img {
   width: 50px;
   border: none;
   flex: 0;
+  border-radius: 4px;
 }
 form.combat .header span {
   font-size: 16px;
@@ -4865,7 +4917,12 @@ form.combat .header span {
   flex: 1;
   font-family: 'NightjarDemi';
 }
-form.combat .roll {
+form.combat .body {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
+  background-size: cover;
+  color: #191813;
+}
+form.combat .body .roll {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -4873,55 +4930,55 @@ form.combat .roll {
   height: 20px;
   flex-grow: 0;
 }
-form.combat .roll .dice {
+form.combat .body .roll .dice {
   display: flex;
   flex-direction: row;
 }
-form.combat .roll .dice #difficulty {
+form.combat .body .roll .dice #difficulty {
   padding-top: 4px;
   text-align: right;
 }
-form.combat .roll .dice .roll-dice {
+form.combat .body .roll .dice .roll-dice {
   margin-left: 10px;
   padding-top: 5px;
 }
-form.combat .roll .impact {
+form.combat .body .roll .impact {
   display: flex;
   flex-direction: row;
 }
-form.combat .roll .impact #impact {
+form.combat .body .roll .impact #impact {
   padding-top: 4px;
   text-align: right;
 }
-form.combat .roll .impact .heart {
+form.combat .body .roll .impact .heart {
   margin-left: 10px;
   padding-top: 5px;
 }
-form.combat .roll .absorption {
+form.combat .body .roll .absorption {
   display: flex;
   flex-direction: row;
 }
-form.combat .roll .absorption #absorption {
+form.combat .body .roll .absorption #absorption {
   padding-top: 4px;
   text-align: right;
 }
-form.combat .roll .absorption .shield {
+form.combat .body .roll .absorption .shield {
   margin-left: 10px;
   padding-top: 5px;
 }
-form.combat .roll .type select {
+form.combat .body .roll .type select {
   flex: 0 0 auto;
   width: 100px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-form.combat .roll #details {
+form.combat .body .roll #details {
   width: 20px;
   padding-top: 5px;
   padding-right: 20px;
 }
-form.combat table {
+form.combat .body table {
   table-layout: fixed;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -4929,75 +4986,75 @@ form.combat table {
   width: 464px;
   flex-grow: 0;
 }
-form.combat table tr {
+form.combat .body table tr {
   height: 35px;
 }
-form.combat table tr td:nth-child(1) {
+form.combat .body table tr td:nth-child(1) {
   width: 380px;
 }
-form.combat table tr td:nth-child(1).manoeuver {
+form.combat .body table tr td:nth-child(1).manoeuver {
   display: flex;
   flex-direction: row;
 }
-form.combat table tr td:nth-child(1).manoeuver select {
+form.combat .body table tr td:nth-child(1).manoeuver select {
   padding-left: 15px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-form.combat table tr td:nth-child(1).manoeuver select option {
+form.combat .body table tr td:nth-child(1).manoeuver select option {
   width: 140px;
 }
-form.combat table tr td:nth-child(1).manoeuver #times {
+form.combat .body table tr td:nth-child(1).manoeuver #times {
   padding-top: 5px;
   padding-left: 30px;
 }
-form.combat table tr td:nth-child(1).manoeuver #times #shot-1 {
+form.combat .body table tr td:nth-child(1).manoeuver #times #shot-1 {
   font-size: 14px;
   margin-right: 5px;
 }
-form.combat table tr td:nth-child(1).manoeuver #times label {
+form.combat .body table tr td:nth-child(1).manoeuver #times label {
   font-size: 14px;
 }
-form.combat table tr td:nth-child(1).blessures {
+form.combat .body table tr td:nth-child(1).blessures {
   display: flex;
   flex-direction: row;
 }
-form.combat table tr td:nth-child(1).blessures select {
+form.combat .body table tr td:nth-child(1).blessures select {
   padding-left: 15px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-form.combat table tr td:nth-child(1).approche {
+form.combat .body table tr td:nth-child(1).approche {
   display: flex;
   flex-direction: row;
 }
-form.combat table tr td:nth-child(1).approche select {
+form.combat .body table tr td:nth-child(1).approche select {
   padding-left: 15px;
   border: none;
   outline: 0px;
   background-color: transparent;
 }
-form.combat table tr td:nth-child(2) {
+form.combat .body table tr td:nth-child(2) {
   width: 50px;
   text-align: right;
 }
-form.combat table tr td:nth-child(2) #modifier {
+form.combat .body table tr td:nth-child(2) #modifier {
   text-align: right;
   margin-right: -3px;
   border: none;
   background-color: transparent;
 }
-form.combat table tr td:nth-child(3) {
+form.combat .body table tr td:nth-child(3) {
   width: 34px;
   text-align: left;
 }
-form.combat table tr td.label {
+form.combat .body table tr td.label {
   text-align: left;
   padding-left: 20px;
 }
-form.combat div.hiddable {
+form.combat .body div.hiddable {
   display: flex;
   width: 96%;
   height: 80px;
@@ -5007,7 +5064,7 @@ form.combat div.hiddable {
   border-radius: 4px;
   padding: 10px;
 }
-form.combat div.hiddable #description {
+form.combat .body div.hiddable #description {
   margin: auto;
   text-align: center;
 }

@@ -8,191 +8,195 @@
         {{/unless}}
     </div>
 
-    <div class="roll">
+    <div class="body">
 
-        <div class="dice">
-            <div id="difficulty">{{difficulty}}%</div>
-            <div class="roll-dice">
-                <a id="roll"><i class="fas fa-dice-d20"></i></a>
-            </div>
-        </div>
+        <div class="roll">
 
-        <div class="impact">
-            <div id="impact">{{impact}}</div>
-            <div class="heart">
-                <i class="fas fa-heart-broken"></i>
-            </div>
-        </div>
-
-        <div class="type">
-
-            {{#switch type}}
-            {{#case 'none'}}
-            <select id="rollType" name="rollType">
-                <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
-                <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
-            </select>
-            {{/case}}
-            {{#case 'simple'}}
-            <select id="rollType" name="rollType" disabled>
-                <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
-            </select>
-            {{/case}}
-            {{#case 'opposed'}}
-            <select id="rollType" name="rollType" disabled>
-                <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
-            </select>
-            {{/case}}
-            {{/switch}}
-
-        </div>
-
-        <div id="details" class="item-control">
-            <span><i class="fas fa-search"></i></span>
-        </div>
-
-    </div>
-
-    <table>
-
-        <tr>
-            <td class="manoeuver">
-                <select id="manoeuver" name="manoeuver">
-                    {{#each manoeuvers as |manoeuver|}}
-                    <option
-                        {{#if (eq manoeuver.id 'tirer')}}
-                        selected
-                        {{/if}}
-                        value="{{manoeuver.id}}">{{manoeuver.name}}</option>
-                    {{/each}}
-                </select>
-                <div id='times'>
-                    <i id='shot-1' style='visibility:hidden' class='fas fa-crosshairs checked'></i>
-                    <label class='dommage-checkbox' id='shot-2' style='visibility:hidden'> 
-                        <input class='item-checkbox' id='shot2' type='checkbox' data-dtype='Boolean'/>
-                        <i class='far fa-circle unchecked'></i>
-                        <i class='fas fa-crosshairs checked'></i>
-                    </label>
-                    <label class='dommage-checkbox' id='shot-3' style='visibility:hidden'> 
-                        <input class='item-checkbox' id='shot3' type='checkbox' data-dtype='Boolean'/>
-                        <i class='far fa-circle unchecked'></i>
-                        <i class='fas fa-crosshairs checked'></i>
-                    </label>
-                    <label class='dommage-checkbox' id='shot-4' style='visibility:hidden'> 
-                        <input class='item-checkbox' id='shot4' type='checkbox' data-dtype='Boolean'/>
-                        <i class='far fa-circle unchecked'></i>
-                        <i class='fas fa-crosshairs checked'></i>
-                    </label>
-                    <label class='dommage-checkbox' id='shot-5' style='visibility:hidden'> 
-                        <input class='item-checkbox' id='shot5' type='checkbox' data-dtype='Boolean'/>
-                        <i class='far fa-circle unchecked'></i>
-                        <i class='fas fa-crosshairs checked'></i>
-                    </label>
+            <div class="dice">
+                <div id="difficulty">{{difficulty}}%</div>
+                <div class="roll-dice">
+                    <a id="roll"><i class="fas fa-dice-d20"></i></a>
                 </div>
-            </td>
-            <td id="manoeuverModifier">0</td>
-            <td>%</td>
-        </tr>
+            </div>
 
-        <tr>
-            <td class="label">Modificateur</td>
-            <td id="manoeuverModifier">
-                {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
-                <input id="modifier" type="Number" value="0"/>
-                {{else}}
-                <select id="modifier">
-                    <option value="50">50</option>
-                    <option value="40">40</option>
-                    <option value="30">30</option>
-                    <option value="20">20</option>
-                    <option value="10">10</option>
-                    <option value="0">0</option>
-                    <option value="-10">-10</option>
-                    <option value="-20">-20</option>
-                    <option value="-30">-30</option>
-                    <option value="-40">-40</option>
-                    <option value="-50">-50</option>
+            <div class="impact">
+                <div id="impact">{{impact}}</div>
+                <div class="heart">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+            </div>
+
+            <div class="type">
+
+                {{#switch type}}
+                {{#case 'none'}}
+                <select id="rollType" name="rollType">
+                    <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+                    <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
                 </select>
-                {{/if}}
-            </td>
-            <td>%</td>
-        </tr>
-
-        {{#unless (eq blessures 0)}}
-        <tr>
-            <td class="blessures">
-                <select id="blessures" name="blessures">
-                    <option value="apply">Appliquer les blessures</option>
-                    <option value="ignore">Ignorer les blessures</option>
+                {{/case}}
+                {{#case 'simple'}}
+                <select id="rollType" name="rollType" disabled>
+                    <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
                 </select>
-            </td>
-            <td id="blessuresModifier">{{blessures}}</td>
-            <td>%</td>
-        </tr>
-        {{/unless}}
-
-        {{#if (nonNull approches)}}
-        <tr>
-            <td class="approche">
-                <select id="approche" name="approche">
-                    {{#each approches as |approche|}}
-                    <option value="{{approche.name}}">{{approche.label}}</option>
-                    {{/each}}
+                {{/case}}
+                {{#case 'opposed'}}
+                <select id="rollType" name="rollType" disabled>
+                    <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
                 </select>
-            </td>
-            <td id="approcheModifier">0</td>
-            <td>%</td>
-        </tr>
-        {{/if}}
+                {{/case}}
+                {{/switch}}
 
-        <tr class="hiddable" style="display:none;">
-            <td class="label">{{localize "NEPH5E.manoeuvres.viser.name"}}</td>
-            <td id="visee">{{visee}}</td>
-            <td>%</td>
-        </tr>
+            </div>
 
-        <tr class="hiddable" style="display:none;">
-            <td id="vecu" class="label">{{base.name}}</td>
-            <td id="base">{{base.difficulty}}</td>
-            <td>%</td>
-        </tr>
+            <div id="details" class="item-control">
+                <span><i class="fas fa-search"></i></span>
+            </div>
 
-        {{#if (nonNull onGround)}}
-        <tr class="hiddable" style="display:none;">
-            <td class="label">{{localize onGround.label}}</td>
-            <td>{{onGround.modifier}}</td>
-            <td>%</td>
-        </tr>
-        {{/if}}
+        </div>
 
-        {{#if (nonNull foeOnGround)}}
-        <tr class="hiddable" style="display:none;">
-            <td class="label">{{localize foeOnGround.label}}</td>
-            <td>{{foeOnGround.modifier}}</td>
-            <td>%</td>
-        </tr>
-        {{/if}}
+        <table>
 
-        {{#if (nonNull stunned)}}
-        <tr class="hiddable" style="display:none;">
-            <td class="label">{{localize stunned.label}}</td>
-            <td>{{stunned.modifier}}</td>
-            <td>%</td>
-        </tr>
-        {{/if}}
+            <tr>
+                <td class="manoeuver">
+                    <select id="manoeuver" name="manoeuver">
+                        {{#each manoeuvers as |manoeuver|}}
+                        <option
+                            {{#if (eq manoeuver.id 'tirer')}}
+                            selected
+                            {{/if}}
+                            value="{{manoeuver.id}}">{{manoeuver.name}}</option>
+                        {{/each}}
+                    </select>
+                    <div id='times'>
+                        <i id='shot-1' style='visibility:hidden' class='fas fa-crosshairs checked'></i>
+                        <label class='dommage-checkbox' id='shot-2' style='visibility:hidden'> 
+                            <input class='item-checkbox' id='shot2' type='checkbox' data-dtype='Boolean'/>
+                            <i class='far fa-circle unchecked'></i>
+                            <i class='fas fa-crosshairs checked'></i>
+                        </label>
+                        <label class='dommage-checkbox' id='shot-3' style='visibility:hidden'> 
+                            <input class='item-checkbox' id='shot3' type='checkbox' data-dtype='Boolean'/>
+                            <i class='far fa-circle unchecked'></i>
+                            <i class='fas fa-crosshairs checked'></i>
+                        </label>
+                        <label class='dommage-checkbox' id='shot-4' style='visibility:hidden'> 
+                            <input class='item-checkbox' id='shot4' type='checkbox' data-dtype='Boolean'/>
+                            <i class='far fa-circle unchecked'></i>
+                            <i class='fas fa-crosshairs checked'></i>
+                        </label>
+                        <label class='dommage-checkbox' id='shot-5' style='visibility:hidden'> 
+                            <input class='item-checkbox' id='shot5' type='checkbox' data-dtype='Boolean'/>
+                            <i class='far fa-circle unchecked'></i>
+                            <i class='fas fa-crosshairs checked'></i>
+                        </label>
+                    </div>
+                </td>
+                <td id="manoeuverModifier">0</td>
+                <td>%</td>
+            </tr>
 
-        {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
-        <tr class="hiddable" style="display:none;">
-            <td class="label">{{weapon.name}}</td>
-            <td>{{weapon.system.attack}}0</td>
-            <td>%</td>
-        </tr>
-        {{/if}}
+            <tr>
+                <td class="label">Modificateur</td>
+                <td id="manoeuverModifier">
+                    {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
+                    <input id="modifier" type="Number" value="0"/>
+                    {{else}}
+                    <select id="modifier">
+                        <option value="50">50</option>
+                        <option value="40">40</option>
+                        <option value="30">30</option>
+                        <option value="20">20</option>
+                        <option value="10">10</option>
+                        <option value="0">0</option>
+                        <option value="-10">-10</option>
+                        <option value="-20">-20</option>
+                        <option value="-30">-30</option>
+                        <option value="-40">-40</option>
+                        <option value="-50">-50</option>
+                    </select>
+                    {{/if}}
+                </td>
+                <td>%</td>
+            </tr>
 
-    </table>
+            {{#unless (eq blessures 0)}}
+            <tr>
+                <td class="blessures">
+                    <select id="blessures" name="blessures">
+                        <option value="apply">Appliquer les blessures</option>
+                        <option value="ignore">Ignorer les blessures</option>
+                    </select>
+                </td>
+                <td id="blessuresModifier">{{blessures}}</td>
+                <td>%</td>
+            </tr>
+            {{/unless}}
 
-    <div class="hiddable">
-        <p id="description">{{localize "NEPH5E.manoeuvres.tirer.description"}}</p>
+            {{#if (nonNull approches)}}
+            <tr>
+                <td class="approche">
+                    <select id="approche" name="approche">
+                        {{#each approches as |approche|}}
+                        <option value="{{approche.name}}">{{approche.label}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td id="approcheModifier">0</td>
+                <td>%</td>
+            </tr>
+            {{/if}}
+
+            <tr class="hiddable" style="display:none;">
+                <td class="label">{{localize "NEPH5E.manoeuvres.viser.name"}}</td>
+                <td id="visee">{{visee}}</td>
+                <td>%</td>
+            </tr>
+
+            <tr class="hiddable" style="display:none;">
+                <td id="vecu" class="label">{{base.name}}</td>
+                <td id="base">{{base.difficulty}}</td>
+                <td>%</td>
+            </tr>
+
+            {{#if (nonNull onGround)}}
+            <tr class="hiddable" style="display:none;">
+                <td class="label">{{localize onGround.label}}</td>
+                <td>{{onGround.modifier}}</td>
+                <td>%</td>
+            </tr>
+            {{/if}}
+
+            {{#if (nonNull foeOnGround)}}
+            <tr class="hiddable" style="display:none;">
+                <td class="label">{{localize foeOnGround.label}}</td>
+                <td>{{foeOnGround.modifier}}</td>
+                <td>%</td>
+            </tr>
+            {{/if}}
+
+            {{#if (nonNull stunned)}}
+            <tr class="hiddable" style="display:none;">
+                <td class="label">{{localize stunned.label}}</td>
+                <td>{{stunned.modifier}}</td>
+                <td>%</td>
+            </tr>
+            {{/if}}
+
+            {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
+            <tr class="hiddable" style="display:none;">
+                <td class="label">{{weapon.name}}</td>
+                <td>{{weapon.system.attack}}0</td>
+                <td>%</td>
+            </tr>
+            {{/if}}
+
+        </table>
+
+        <div class="hiddable">
+            <p id="description">{{localize "NEPH5E.manoeuvres.tirer.description"}}</p>
+        </div>
+
     </div>
 
 </form>

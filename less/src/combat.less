@@ -1,15 +1,73 @@
 form.combat {
+    --box-shadow: 0 0 4px 1px #414048 inset;
+    --color-shadow-primary: #151156;
+    --color-widget-background: none;
+    --color-widget: #191813;
+
     display: flex;
     flex-direction: column;
+
+    select {
+        flex: 0 0 auto;
+        outline: 0px;
+        background-color: transparent;
+        margin-top: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-align-last: center;
+        align-items: center;
+        color: #191813;
+        border: 1px solid #151156;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+
+        option {
+            text-align: center;
+        }
+
+        /*
+        &#rollType, &#element, &#modifier, &#fraternite, &#blessures, &#approche, &#metamorphe {
+
+            option {
+                background: none;
+                background-color: antiquewhite;
+            }
+
+        }
+        */
+
+        &:hover:not([disabled]) {
+            text-shadow: 0px 0px 1px #191813;
+        }
+
+    }
+
+    input {
+        flex: 0 0 auto;
+        outline: 0px;
+        background-color: transparent;
+        margin-top: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align-last: center;
+        align-items: center;
+        color: #191813;
+        border: 1px solid #151156;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+    }
 
     .header {
         display: flex;
         flex-direction: row;
-        flex-grow: 0;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        margin: 10px;
+        background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+        background-size: cover;
+        color: #f5f4f4;
+        box-shadow: 0 0 6px 2px #f5f4f4 inset;
 
         img {
             margin: 10px;
@@ -17,6 +75,7 @@ form.combat {
             width: 50px;
             border: none;
             flex: 0;
+            border-radius: 4px;
         }
 
         span {
@@ -24,200 +83,207 @@ form.combat {
             font-style: bold;
             text-align: center;
             flex: 1;
-            font-family:'NightjarDemi';
+            font-family: 'NightjarDemi';
         }
 
     }
 
-    .roll {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        height: 20px;
-        flex-grow: 0;
+    .body {
+        background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
+        background-size: cover;
+        color: #191813;
 
-        .dice {
+        .roll {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            height: 20px;
+            flex-grow: 0;
 
-            #difficulty {
-                padding-top: 4px;
-                text-align: right;
-            }
-
-            .roll-dice {
-                margin-left: 10px;
-                padding-top: 5px;
-            }
-
-        }
-
-        .impact {
-            display: flex;
-            flex-direction: row;
-
-            #impact {
-                padding-top: 4px;
-                text-align: right;
-            }
-
-            .heart {
-                margin-left: 10px;
-                padding-top: 5px;
-            }
-
-        }
-
-        .absorption {
-            display: flex;
-            flex-direction: row;
-
-            #absorption {
-                padding-top: 4px;
-                text-align: right;
-            }
-
-            .shield {
-                margin-left: 10px;
-                padding-top: 5px;
-            }
-
-        }
-
-        .type {
- 
-            select {
-                flex: 0 0 auto;
-                width: 100px;
-                border: none;
-                outline: 0px;
-                background-color: transparent;
-            }
-
-        }
-
-        #details {
-            width: 20px;
-            padding-top: 5px;
-            padding-right: 20px;
-        }
-
-    }
-
-    table {
-        table-layout: fixed;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: 10px;
-        width: 464px;
-        flex-grow: 0;
-
-        tr {
-            height: 35px;
-
-            td:nth-child(1) {
-                width: 380px;
-            }
-
-            td:nth-child(1).manoeuver {
+            .dice {
                 display: flex;
                 flex-direction: row;
 
-                select {
-                    padding-left: 15px;
-                    border: none;
-                    outline: 0px;
-                    background-color: transparent;
-
-                    option {
-                        width: 140px;
-                    }
-                }
-
-                #times {
-                    padding-top: 5px;
-                    padding-left: 30px;
-
-                    #shot-1 {
-                        font-size: 14px;
-                        margin-right: 5px;
-                    }
-
-                    label {
-                        font-size: 14px;
-                    }
-
-                }
-
-            }
-
-            td:nth-child(1).blessures {
-                display: flex;
-                flex-direction: row;
-
-                select {
-                    padding-left: 15px;
-                    border: none;
-                    outline: 0px;
-                    background-color: transparent;
-                }
-
-            }
-
-            td:nth-child(1).approche {
-                display: flex;
-                flex-direction: row;
-
-                select {
-                    padding-left: 15px;
-                    border: none;
-                    outline: 0px;
-                    background-color: transparent;
-                }
-
-            }
-
-            td:nth-child(2) {
-                width: 50px;
-                text-align: right;
-
-                #modifier {
+                #difficulty {
+                    padding-top: 4px;
                     text-align: right;
-                    margin-right: -3px;
+                }
+
+                .roll-dice {
+                    margin-left: 10px;
+                    padding-top: 5px;
+                }
+
+            }
+
+            .impact {
+                display: flex;
+                flex-direction: row;
+
+                #impact {
+                    padding-top: 4px;
+                    text-align: right;
+                }
+
+                .heart {
+                    margin-left: 10px;
+                    padding-top: 5px;
+                }
+
+            }
+
+            .absorption {
+                display: flex;
+                flex-direction: row;
+
+                #absorption {
+                    padding-top: 4px;
+                    text-align: right;
+                }
+
+                .shield {
+                    margin-left: 10px;
+                    padding-top: 5px;
+                }
+
+            }
+
+            .type {
+    
+                select {
+                    flex: 0 0 auto;
+                    width: 100px;
                     border: none;
+                    outline: 0px;
                     background-color: transparent;
                 }
 
             }
 
-            td:nth-child(3) {
-                width: 34px;
-                text-align: left;
-            }
-
-            td.label {
-                text-align: left;
-                padding-left: 20px; 
+            #details {
+                width: 20px;
+                padding-top: 5px;
+                padding-right: 20px;
             }
 
         }
 
-    }
+        table {
+            table-layout: fixed;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            width: 464px;
+            flex-grow: 0;
 
-    div.hiddable {
-        display: flex;
-        width: 96%;
-        height: 80px;
-        margin: auto;
-        font-style: italic;
-        border: solid 1px;
-        border-radius: 4px;
-        padding: 10px;
+            tr {
+                height: 35px;
 
-        #description {
+                td:nth-child(1) {
+                    width: 380px;
+                }
+
+                td:nth-child(1).manoeuver {
+                    display: flex;
+                    flex-direction: row;
+
+                    select {
+                        padding-left: 15px;
+                        border: none;
+                        outline: 0px;
+                        background-color: transparent;
+
+                        option {
+                            width: 140px;
+                        }
+                    }
+
+                    #times {
+                        padding-top: 5px;
+                        padding-left: 30px;
+
+                        #shot-1 {
+                            font-size: 14px;
+                            margin-right: 5px;
+                        }
+
+                        label {
+                            font-size: 14px;
+                        }
+
+                    }
+
+                }
+
+                td:nth-child(1).blessures {
+                    display: flex;
+                    flex-direction: row;
+
+                    select {
+                        padding-left: 15px;
+                        border: none;
+                        outline: 0px;
+                        background-color: transparent;
+                    }
+
+                }
+
+                td:nth-child(1).approche {
+                    display: flex;
+                    flex-direction: row;
+
+                    select {
+                        padding-left: 15px;
+                        border: none;
+                        outline: 0px;
+                        background-color: transparent;
+                    }
+
+                }
+
+                td:nth-child(2) {
+                    width: 50px;
+                    text-align: right;
+
+                    #modifier {
+                        text-align: right;
+                        margin-right: -3px;
+                        border: none;
+                        background-color: transparent;
+                    }
+
+                }
+
+                td:nth-child(3) {
+                    width: 34px;
+                    text-align: left;
+                }
+
+                td.label {
+                    text-align: left;
+                    padding-left: 20px; 
+                }
+
+            }
+
+        }
+
+        div.hiddable {
+            display: flex;
+            width: 96%;
+            height: 80px;
             margin: auto;
-            text-align: center;
+            font-style: italic;
+            border: solid 1px;
+            border-radius: 4px;
+            padding: 10px;
+
+            #description {
+                margin: auto;
+                text-align: center;
+            }
+
         }
 
     }
