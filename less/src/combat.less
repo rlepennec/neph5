@@ -96,75 +96,165 @@ form.combat {
         .roll {
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            height: 20px;
-            flex-grow: 0;
+            margin-top: 10px;
+            font-size: 15px;
+
+            .parameters {
+                display: flex;
+                flex-direction: row;
+                width: 390px;
+                justify-content: space-evenly;
+
+                .type {
+                    display: flex;
+                    flex-direction: row;
+
+                    label {
+                        flex: 0 0 auto;
+                        margin-left: 67px;
+                        margin-right: 5px;
+                        padding-top: 5px;
+                    }
+
+                }
+
+                #element {
+                    flex: 0 0 auto;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+                    width: 70px;
+                }
+
+                .impact {
+                    display: flex;
+                    flex-direction: row;
+    
+                    #impact {
+                        padding-top: 4px;
+                        text-align: right;
+                    }
+    
+                    .heart {
+                        margin-left: 10px;
+                        padding-top: 5px;
+                    }
+    
+                }
+    
+                .absorption {
+                    display: flex;
+                    flex-direction: row;
+    
+                    #absorption {
+                        padding-top: 4px;
+                        text-align: right;
+                    }
+    
+                    .shield {
+                        margin-left: 10px;
+                        padding-top: 5px;
+                    }
+    
+                }
+
+                #details {
+                    width: 20px;
+                    padding-top: 5px;
+                    padding-right: 20px;
+                }
+
+            }
 
             .dice {
                 display: flex;
                 flex-direction: row;
+                flex: 0 0 auto;
+                border: none;
+                padding: 7px 25px 0px 0px;
+                width: 120px;
+                text-align: right;
+
+                label {
+                    padding-left: 17px;
+                }
+
+                #roll {
+                    flex: 0 0 auto;
+                    width: 40px;
+                }
 
                 #difficulty {
-                    padding-top: 4px;
-                    text-align: right;
-                }
-
-                .roll-dice {
-                    margin-left: 10px;
-                    padding-top: 5px;
-                }
-
-            }
-
-            .impact {
-                display: flex;
-                flex-direction: row;
-
-                #impact {
-                    padding-top: 4px;
-                    text-align: right;
-                }
-
-                .heart {
-                    margin-left: 10px;
-                    padding-top: 5px;
-                }
-
-            }
-
-            .absorption {
-                display: flex;
-                flex-direction: row;
-
-                #absorption {
-                    padding-top: 4px;
-                    text-align: right;
-                }
-
-                .shield {
-                    margin-left: 10px;
-                    padding-top: 5px;
-                }
-
-            }
-
-            .type {
-    
-                select {
                     flex: 0 0 auto;
-                    width: 100px;
-                    border: none;
-                    outline: 0px;
-                    background-color: transparent;
+                    width: 54px;
                 }
 
             }
 
-            #details {
-                width: 20px;
-                padding-top: 5px;
-                padding-right: 20px;
+        }
+
+        .lines {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 10px 10px 10px;
+
+            .line {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 35px;
+                width: 100%;
+                
+
+                &:nth-child(even) {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+
+                &:nth-child(1) {
+                    border-top: 2px solid #151156;
+                }
+
+                .line-title {
+                    display: flex;
+                    flex-direction: row;
+                    width: 90%;
+
+                    label {
+                        padding-left: 2px;
+                    }
+
+                    .slider {
+                        height:11px;
+                        width: 160px;
+                        margin-left: 20px;
+                        padding-left: 1px;
+                        padding-right: 1px;
+                    }
+
+                }
+
+                .line-value {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    width: 100%;
+
+                    #modifier {
+                        text-align: right;
+                        width: 60px;
+                    }
+
+                    .base-percentage {
+                        margin-right: 15px;
+                    }
+
+                    .percentage {
+                        margin-top: 7px;
+                        margin-left: 5px;
+                    }
+
+                }
+
             }
 
         }

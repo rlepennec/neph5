@@ -4877,58 +4877,130 @@ form.combat .body {
 form.combat .body .roll {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 15px;
+}
+form.combat .body .roll .parameters {
+  display: flex;
+  flex-direction: row;
+  width: 390px;
   justify-content: space-evenly;
-  height: 20px;
-  flex-grow: 0;
+}
+form.combat .body .roll .parameters .type {
+  display: flex;
+  flex-direction: row;
+}
+form.combat .body .roll .parameters .type label {
+  flex: 0 0 auto;
+  margin-left: 67px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+form.combat .body .roll .parameters #element {
+  flex: 0 0 auto;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+  width: 70px;
+}
+form.combat .body .roll .parameters .impact {
+  display: flex;
+  flex-direction: row;
+}
+form.combat .body .roll .parameters .impact #impact {
+  padding-top: 4px;
+  text-align: right;
+}
+form.combat .body .roll .parameters .impact .heart {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+form.combat .body .roll .parameters .absorption {
+  display: flex;
+  flex-direction: row;
+}
+form.combat .body .roll .parameters .absorption #absorption {
+  padding-top: 4px;
+  text-align: right;
+}
+form.combat .body .roll .parameters .absorption .shield {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+form.combat .body .roll .parameters #details {
+  width: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
 }
 form.combat .body .roll .dice {
   display: flex;
   flex-direction: row;
+  flex: 0 0 auto;
+  border: none;
+  padding: 7px 25px 0px 0px;
+  width: 120px;
+  text-align: right;
+}
+form.combat .body .roll .dice label {
+  padding-left: 17px;
+}
+form.combat .body .roll .dice #roll {
+  flex: 0 0 auto;
+  width: 40px;
 }
 form.combat .body .roll .dice #difficulty {
-  padding-top: 4px;
-  text-align: right;
-}
-form.combat .body .roll .dice .roll-dice {
-  margin-left: 10px;
-  padding-top: 5px;
-}
-form.combat .body .roll .impact {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body .roll .impact #impact {
-  padding-top: 4px;
-  text-align: right;
-}
-form.combat .body .roll .impact .heart {
-  margin-left: 10px;
-  padding-top: 5px;
-}
-form.combat .body .roll .absorption {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body .roll .absorption #absorption {
-  padding-top: 4px;
-  text-align: right;
-}
-form.combat .body .roll .absorption .shield {
-  margin-left: 10px;
-  padding-top: 5px;
-}
-form.combat .body .roll .type select {
   flex: 0 0 auto;
-  width: 100px;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
+  width: 54px;
 }
-form.combat .body .roll #details {
-  width: 20px;
-  padding-top: 5px;
-  padding-right: 20px;
+form.combat .body .lines {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+}
+form.combat .body .lines .line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+}
+form.combat .body .lines .line:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+form.combat .body .lines .line:nth-child(1) {
+  border-top: 2px solid #151156;
+}
+form.combat .body .lines .line .line-title {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+form.combat .body .lines .line .line-title label {
+  padding-left: 2px;
+}
+form.combat .body .lines .line .line-title .slider {
+  height: 11px;
+  width: 160px;
+  margin-left: 20px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+form.combat .body .lines .line .line-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+form.combat .body .lines .line .line-value #modifier {
+  text-align: right;
+  width: 60px;
+}
+form.combat .body .lines .line .line-value .base-percentage {
+  margin-right: 15px;
+}
+form.combat .body .lines .line .line-value .percentage {
+  margin-top: 7px;
+  margin-left: 5px;
 }
 form.combat .body table {
   table-layout: fixed;
