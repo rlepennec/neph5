@@ -152,7 +152,7 @@
                     {{/if}} 
 
                     {{#if (includes ../../header 'percentage')}}
-                    <label class="focus-difficulty">{{item.embedded.degre}}</label>
+                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (eq item.original.system.element 'choix')}}+{{/if}}</label>
                     {{/if}}
 
                     <!-- The percentage to succeed to use the focus. -->

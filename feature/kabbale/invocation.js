@@ -55,7 +55,7 @@ export class Invocation extends AbstractFocus {
         const science = Science.scienceOf(this.actor, this.item.system.sephirah).degre;
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(this.item.system.element);
+        const ka = this.item.system.element === 'choix' ? 0 : this.actor.getKa(this.item.system.element);
 
         // Final result
         return science + ka;
