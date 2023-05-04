@@ -33,7 +33,6 @@ export class ActionDataBuilder {
         this.type = Constants.NONE;
         this.item = null;
         this.ka = null;
-        this.selectElement = null;
         this.img = null;
         this.base = null;
         this.blessures = null;
@@ -129,15 +128,6 @@ export class ActionDataBuilder {
      */
     withKa(ka) {
         this.ka = ka;
-        return this;
-    }
-
-    /**
-     * @param select True if an element must be selected.
-     * @return the instance.
-     */
-    withSelectElement(select) {
-        this.selectElement = select;
         return this;
     }
 
@@ -244,6 +234,7 @@ export class ActionDataBuilder {
 
         let data = {
             actor: this.actor,
+            item: this.item,
             sentence: this.actor.name + " " + game.i18n.localize(this.sentence),
             richSentence: game.i18n.localize(this.sentence),
             type: this.type,
@@ -285,8 +276,6 @@ export class ActionDataBuilder {
         }
 
         data.fraternite = this.fraternite * 10;
-
-        data.selectElement = this.selectElement;
 
         if (this.metamorphe != null) {
             data.metamorphe = this.metamorphe * 10;
