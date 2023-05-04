@@ -4725,54 +4725,6 @@
   align-items: center;
   height: 35px;
   width: 100%;
-  /*
-                    #approche, #blessures, #metamorphe, #fraternite {
-                        margin-left: 10px;
-                    }
-                    */
-  /*
-                    .slider {
-                        display: flex;
-                        flex-direction: row;
-
-                        input {
-                            margin-right: 20px;
-                        }
-
-                        label {
-                            width: 40px;
-                        }
-
-                    }
-                    */
-  /*
-                .base-name {
-                    width: 65%;
-                    text-align: left;
-                    padding-left: 20px;
-                }
-
-                .modifier {
-                    width: 65%;
-                    text-align: left;
-                    padding-left: 20px;
-                }
-
-                .value {
-                    width: 27%;
-                    text-align: right;
-                    flex: 0 0 auto;
-                }
-
-                .percentage {
-                    width: 10%;
-                    text-align: left;
-                    flex: 0 0 auto;
-                    padding-top: 5px; 
-                    flex: 0 0 auto;
-                    width: auto;
-                }
-                */
 }
 .action .body .lines .line:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
