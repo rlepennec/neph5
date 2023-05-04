@@ -30,7 +30,11 @@
 
                 {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.visibilite" name="system.visibilite" value=system.visibilite type="String"}}
 
-                {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+                {{#if (nonNull difficulty)}}
+                <div class="difficulte">
+                    <span>{{localize "NEPH5E.difficulte"}} : </span><span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
+                </div>
+                {{/if}}
 
                 {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 

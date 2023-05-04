@@ -1,5 +1,6 @@
 # 1.3.12
 Correction d'une anomalie sur le calcul de lancé de sort
+Correction d'une anomalie sur les invocations avec élement au choix
 Amélioration de l'affichage
 Amélioration de l'accessibilité du verouillage des acteurs
 Ajout d'une option pour afficher des informations complémentaires dans le tchat
