@@ -4602,6 +4602,16 @@
 .action select option {
   text-align: center;
 }
+.action select#rollType option,
+.action select#element option,
+.action select#modifier option,
+.action select#fraternite option,
+.action select#blessures option,
+.action select#approche option,
+.action select#metamorphe option {
+  background: none;
+  background-color: antiquewhite;
+}
 .action select:hover {
   text-shadow: 0px 0px 1px #191813;
 }
