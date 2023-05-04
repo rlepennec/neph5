@@ -154,10 +154,14 @@
             {{/if}}
 
             <div class="line hiddable" style="display:none;">
-                <td class="label">{{localize "NEPH5E.manoeuvres.viser.name"}}</td>
-                <td id="visee">{{visee}}</td>
-                <td>%</td>
-            </tr>
+                <div class="line-title">
+                    <label>{{localize "NEPH5E.manoeuvres.viser.name"}}</label>
+                </div>
+                <div class="line-value">
+                    <label id="visee">{{visee}}</label>
+                    <label class="base-percentage">%</label>
+                </div>
+            </div>
 
             <div class="line hiddable" style="display:none;">
                 <td id="vecu" class="label">{{base.name}}</td>
