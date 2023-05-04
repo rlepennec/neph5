@@ -4643,41 +4643,36 @@
 .action .body .roll {
   display: flex;
   flex-direction: row;
-  position: relative;
   margin-top: 10px;
   font-size: 15px;
 }
-.action .body .roll .type {
+.action .body .roll .parameters {
   display: flex;
   flex-direction: row;
-  margin-left: 175px;
+  width: 440px;
+  justify-content: space-evenly;
 }
-.action .body .roll .type span {
+.action .body .roll .parameters .type {
+  display: flex;
+  flex-direction: row;
+}
+.action .body .roll .parameters .type label {
   flex: 0 0 auto;
   margin-left: 67px;
   margin-right: 5px;
   padding-top: 5px;
 }
-.action .body .roll .type #element {
+.action .body .roll .parameters #element {
   flex: 0 0 auto;
   border: none;
   outline: 0px;
   background-color: transparent;
-  width: 80px;
+  width: 40px;
 }
-.action .body .roll .dice {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  left: 35%;
-}
-.action .body .roll .dice #difficulty {
-  flex: 0 0 auto;
-  padding: 4px 10px 0px 4px;
-}
-.action .body .roll .dice .item-control {
+.action .body .roll #roll {
   flex: 0 0 auto;
   padding: 5px 0px 0px 0px;
+  width: 60px;
 }
 .action .body .table {
   width: 100%;

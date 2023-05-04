@@ -10,52 +10,46 @@
 
         <div class="roll">
 
-            <div class="type">
-            {{#if opposed}}
+            <div class="parameters">
 
-                <span>{{localize 'NEPH5E.jetOpposition'}}</span>
-
-            {{else}}
-
-                {{#switch type}}
-                {{#case 'none'}}
-                <select id="rollType" name="rollType">
-                    <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
-                    <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
-                </select>
-                {{/case}}
-                {{#case 'simple'}}
-                <select id="rollType" name="rollType" disabled>
-                    <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
-                </select>
-                {{/case}}
-                {{#case 'opposed'}}
-                <select id="rollType" name="rollType" disabled>
-                    <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
-                </select>
-                {{/case}}
-                {{/switch}}
-
-            {{/if}}
-            </div>
-
-            {{#if (eq item.system.element 'choix')}}
-            <select id="element" name="element">
-                <option value='air'>{{localize "NEPH5E.air"}}</option>
-                <option value='eau'>{{localize 'NEPH5E.eau'}}</option>
-                <option value='feu'>{{localize 'NEPH5E.feu'}}</option>
-                <option value='lune'>{{localize 'NEPH5E.lune'}}</option>
-                <option value='terre'>{{localize 'NEPH5E.terre'}}</option>
-            </select>
-            {{/if}}
-
-            <div class="dice">
-
-                <div class="item-control">
-                    <a id="roll"><i class="fas fa-dice-d20"></i></a>
+                <div class="type">
+                {{#if opposed}}
+                    <label>{{localize 'NEPH5E.jetOpposition'}}</label>
+                {{else}}
+                    {{#switch type}}
+                    {{#case 'none'}}
+                    <select id="rollType" name="rollType">
+                        <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
+                        <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+                    </select>
+                    {{/case}}
+                    {{#case 'simple'}}
+                    <select id="rollType" name="rollType" disabled>
+                        <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
+                    </select>
+                    {{/case}}
+                    {{#case 'opposed'}}
+                    <select id="rollType" name="rollType" disabled>
+                        <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+                    </select>
+                    {{/case}}
+                    {{/switch}}
+                {{/if}}
                 </div>
 
+                {{#if (eq item.system.element 'choix')}}
+                <select id="element" name="element">
+                    <option value='air'>{{localize "NEPH5E.air"}}</option>
+                    <option value='eau'>{{localize 'NEPH5E.eau'}}</option>
+                    <option value='feu'>{{localize 'NEPH5E.feu'}}</option>
+                    <option value='lune'>{{localize 'NEPH5E.lune'}}</option>
+                    <option value='terre'>{{localize 'NEPH5E.terre'}}</option>
+                </select>
+                {{/if}}
+
             </div>
+
+            <a id="roll"><i class="fas fa-dice-d20"></i></a>
 
         </div>
 

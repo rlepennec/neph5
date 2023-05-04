@@ -77,20 +77,26 @@
         .roll {
             display: flex;
             flex-direction: row;
-            position: relative;
             margin-top: 10px;
             font-size: 15px;
 
-            .type {
+            .parameters {
                 display: flex;
                 flex-direction: row;
-                margin-left: 175px;
+                width: 440px;
+                justify-content: space-evenly;
 
-                span {
-                    flex: 0 0 auto;
-                    margin-left: 67px;
-                    margin-right: 5px;
-                    padding-top: 5px;
+                .type {
+                    display: flex;
+                    flex-direction: row;
+
+                    label {
+                        flex: 0 0 auto;
+                        margin-left: 67px;
+                        margin-right: 5px;
+                        padding-top: 5px;
+                    }
+
                 }
 
                 #element {
@@ -98,27 +104,15 @@
                     border: none;
                     outline: 0px;
                     background-color: transparent;
-                    width: 80px;
+                    width: 40px;
                 }
 
             }
 
-            .dice {
-                display: flex;
-                flex-direction: row;
-                position: relative;
-                left: 35%;
-
-                #difficulty {
-                    flex: 0 0 auto;
-                    padding: 4px 10px 0px 4px;
-                }
-
-                .item-control {
-                    flex: 0 0 auto;
-                    padding: 5px 0px 0px 0px;
-                }
-
+            #roll {
+                flex: 0 0 auto;
+                padding: 5px 0px 0px 0px;
+                width: 60px;
             }
 
         }
