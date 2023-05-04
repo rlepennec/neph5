@@ -4780,7 +4780,11 @@
 }
 .action .body .lines .line .line-value #modifier {
   text-align: right;
-  width: 40px;
+  width: 60px;
+}
+.action .body .lines .line .line-value .percentage {
+  margin-top: 7px;
+  margin-left: 5px;
 }
 .mnemos .article .id {
   width: 100%;
