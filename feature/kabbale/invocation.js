@@ -40,6 +40,7 @@ export class Invocation extends AbstractFocus {
     get data() {
         return new ActionDataBuilder(this)
             .withType(this.pacte ? Constants.SIMPLE : Constants.OPPOSED)
+            .withSelectElement(this.item.system.element === 'choix')
             .withItem(this.item)
             .withBase('Invocation', this.degre)
             .withBlessures('magique')

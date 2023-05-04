@@ -1,5 +1,5 @@
 <form class="action">
-
+{{log .}}
     <div class="header">
         <img class="actor" src="{{actor.img}}"/>
         <span class="sentence">{{sentence}}</span>
@@ -36,17 +36,17 @@
                 {{/case}}
                 {{/switch}}
 
-                {{#if selectElement}}
-                <span>Elément:</span>
-                <select id="element" name="element">
-                    {{#each elements as |name label|}}
-                    <option value="{{label}}">{{localize name}}</option>
-                    {{/each}}
-                </select>
-                {{/if}}
-
             {{/if}}
             </div>
+
+            {{#if selectElement}}
+            <label>Elément:</label>
+            <select id="element" name="element">
+                {{#each elements as |name label|}}
+                <option value="{{label}}">{{localize name}}</option>
+                {{/each}}
+            </select>
+            {{/if}}
 
             <div class="dice">
 
@@ -63,7 +63,7 @@
             <tr>
                 <td class="base-name"></td>
                 <td class="value" id="difficulty">{{difficulty}}</td>
-                <td class="percentage">%</td>
+                <td class="percentage"></td>
             </tr>
 
             <tr>
