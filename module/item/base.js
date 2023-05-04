@@ -51,6 +51,7 @@ export class NephilimItemSheet extends ItemSheet {
         })
         mergeObject(data, this.getOriginalData());
         mergeObject(data, this.embeddedData);
+        this.embeddedData = {};
         return data;
     }
 

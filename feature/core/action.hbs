@@ -50,8 +50,6 @@
 
             <div class="dice">
 
-                <label id="difficulty">{{difficulty}}%</label>
-
                 <div class="item-control">
                     <a id="roll"><i class="fas fa-dice-d20"></i></a>
                 </div>
@@ -63,8 +61,14 @@
         <table class="table">
 
             <tr>
-                <td class="base-name">{{base.name}}</th>
-                <td class="value" id="base">{{base.difficulty}}</th>
+                <td class="base-name"></td>
+                <td class="value" id="difficulty">{{difficulty}}</td>
+                <td class="percentage">%</td>
+            </tr>
+
+            <tr>
+                <td class="base-name">{{base.name}}</td>
+                <td class="value" id="base">{{base.difficulty}}</td>
                 <td class="percentage">%</td>
             </tr>
 
