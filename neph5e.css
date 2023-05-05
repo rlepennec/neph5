@@ -4963,6 +4963,10 @@ form.combat .body .lines .line {
   height: 35px;
   width: 100%;
 }
+form.combat .body .lines .line.hiddable {
+  border: none;
+  padding: 0px;
+}
 form.combat .body .lines .line:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
 }
@@ -5006,88 +5010,11 @@ form.combat .body .lines .line .line-value .percentage {
   margin-top: 7px;
   margin-left: 5px;
 }
-form.combat .body table {
-  table-layout: fixed;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  width: 464px;
-  flex-grow: 0;
-}
-form.combat .body table tr {
-  height: 35px;
-}
-form.combat .body table tr td:nth-child(1) {
-  width: 380px;
-}
-form.combat .body table tr td:nth-child(1).manoeuver {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body table tr td:nth-child(1).manoeuver select {
-  padding-left: 15px;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-}
-form.combat .body table tr td:nth-child(1).manoeuver select option {
-  width: 140px;
-}
-form.combat .body table tr td:nth-child(1).manoeuver #times {
-  padding-top: 5px;
-  padding-left: 30px;
-}
-form.combat .body table tr td:nth-child(1).manoeuver #times #shot-1 {
-  font-size: 14px;
-  margin-right: 5px;
-}
-form.combat .body table tr td:nth-child(1).manoeuver #times label {
-  font-size: 14px;
-}
-form.combat .body table tr td:nth-child(1).blessures {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body table tr td:nth-child(1).blessures select {
-  padding-left: 15px;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-}
-form.combat .body table tr td:nth-child(1).approche {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body table tr td:nth-child(1).approche select {
-  padding-left: 15px;
-  border: none;
-  outline: 0px;
-  background-color: transparent;
-}
-form.combat .body table tr td:nth-child(2) {
-  width: 50px;
-  text-align: right;
-}
-form.combat .body table tr td:nth-child(2) #modifier {
-  text-align: right;
-  margin-right: -3px;
-  border: none;
-  background-color: transparent;
-}
-form.combat .body table tr td:nth-child(3) {
-  width: 34px;
-  text-align: left;
-}
-form.combat .body table tr td.label {
-  text-align: left;
-  padding-left: 20px;
-}
 form.combat .body div.hiddable {
   display: flex;
   width: 96%;
   height: 80px;
   margin: auto;
-  font-style: italic;
   border: solid 1px;
   border-radius: 4px;
   padding: 10px;

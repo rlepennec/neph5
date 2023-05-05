@@ -204,6 +204,10 @@ form.combat {
                 height: 35px;
                 width: 100%;
                 
+                &.hiddable {
+                    border: none;
+                    padding: 0px;
+                }
 
                 &:nth-child(even) {
                     background-color: rgba(255, 255, 255, 0.2);
@@ -264,112 +268,11 @@ form.combat {
 
         }
 
-        table {
-            table-layout: fixed;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-left: 10px;
-            width: 464px;
-            flex-grow: 0;
-
-            tr {
-                height: 35px;
-
-                td:nth-child(1) {
-                    width: 380px;
-                }
-
-                td:nth-child(1).manoeuver {
-                    display: flex;
-                    flex-direction: row;
-
-                    select {
-                        padding-left: 15px;
-                        border: none;
-                        outline: 0px;
-                        background-color: transparent;
-
-                        option {
-                            width: 140px;
-                        }
-                    }
-
-                    #times {
-                        padding-top: 5px;
-                        padding-left: 30px;
-
-                        #shot-1 {
-                            font-size: 14px;
-                            margin-right: 5px;
-                        }
-
-                        label {
-                            font-size: 14px;
-                        }
-
-                    }
-
-                }
-
-                td:nth-child(1).blessures {
-                    display: flex;
-                    flex-direction: row;
-
-                    select {
-                        padding-left: 15px;
-                        border: none;
-                        outline: 0px;
-                        background-color: transparent;
-                    }
-
-                }
-
-                td:nth-child(1).approche {
-                    display: flex;
-                    flex-direction: row;
-
-                    select {
-                        padding-left: 15px;
-                        border: none;
-                        outline: 0px;
-                        background-color: transparent;
-                    }
-
-                }
-
-                td:nth-child(2) {
-                    width: 50px;
-                    text-align: right;
-
-                    #modifier {
-                        text-align: right;
-                        margin-right: -3px;
-                        border: none;
-                        background-color: transparent;
-                    }
-
-                }
-
-                td:nth-child(3) {
-                    width: 34px;
-                    text-align: left;
-                }
-
-                td.label {
-                    text-align: left;
-                    padding-left: 20px; 
-                }
-
-            }
-
-        }
-
         div.hiddable {
             display: flex;
             width: 96%;
             height: 80px;
             margin: auto;
-            font-style: italic;
             border: solid 1px;
             border-radius: 4px;
             padding: 10px;
