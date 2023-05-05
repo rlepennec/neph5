@@ -4947,7 +4947,7 @@ form.combat .body .roll .dice label {
 }
 form.combat .body .roll .dice #roll {
   flex: 0 0 auto;
-  width: 40px;
+  width: 52px;
 }
 form.combat .body .roll .dice #difficulty {
   flex: 0 0 auto;
