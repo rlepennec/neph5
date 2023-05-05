@@ -11,6 +11,7 @@ export class Desarmer extends AbstractManoeuver {
     constructor() {
         super(Desarmer.ID, Constants.PARADE);
         this.withApproches(['lune', 'ka']);
+        this.withShots(0, -20, -40, -60, -80, -100);
     }
 
     /**

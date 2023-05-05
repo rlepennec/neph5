@@ -12,6 +12,7 @@ export class Contrer extends AbstractManoeuver {
     constructor() {
         super(Contrer.ID,  Constants.PARADE);
         this.withApproches(['feu','terre', 'ka']);
+        this.withShots(0, -20, -40, -60, -80, -100);
     }
 
     /**

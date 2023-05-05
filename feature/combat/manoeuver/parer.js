@@ -12,6 +12,7 @@ export class Parer extends AbstractManoeuver {
     constructor() {
         super(Parer.ID, Constants.PARADE);
         this.withApproches(['feu','terre', 'ka']);
+        this.withShots(0, -20, -40, -60, -80, -100);
         this.withAbsorption({modifier: 2});
     }
 

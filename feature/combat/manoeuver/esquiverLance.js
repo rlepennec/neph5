@@ -11,6 +11,7 @@ export class EsquiverLance extends AbstractManoeuver {
     constructor() {
         super(EsquiverLance.ID, Constants.DODGE);
         this.withApproches(['eau', 'ka']);
+        this.withShots(0, -20, -40, -60, -80, -100);
         this.withAbsorption({fix: 0});
     }
 
