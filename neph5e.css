@@ -4629,6 +4629,14 @@
   border-radius: 10px;
   box-shadow: var(--box-shadow);
 }
+.action input[type="range"]::-webkit-slider-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
+.action input[type="range"]::-moz-range-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
 .action .header {
   display: flex;
   flex-direction: row;
@@ -4843,6 +4851,14 @@ form.combat input {
   border-radius: 10px;
   box-shadow: var(--box-shadow);
 }
+form.combat input[type="range"]::-webkit-slider-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
+form.combat input[type="range"]::-moz-range-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
 form.combat .header {
   display: flex;
   flex-direction: row;
@@ -4981,7 +4997,7 @@ form.combat .body .lines .line .line-title label {
   padding-left: 2px;
 }
 form.combat .body .lines .line .line-title .slider {
-  height: 11px;
+  height: 10px;
   width: 160px;
   margin-left: 20px;
   padding-left: 1px;
