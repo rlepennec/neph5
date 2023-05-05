@@ -1,4 +1,5 @@
 import { CombatDialog } from "./combatDialog.js";
+import { Eviter } from "../manoeuver/eviter.js";
 
 export class DefenseDialog extends CombatDialog {
 
@@ -9,6 +10,7 @@ export class DefenseDialog extends CombatDialog {
      */
     constructor(actor, action) {
         super(actor, action);
+        this.defaultManoeuver = Eviter.ID;
     }
 
     /**

@@ -1,4 +1,5 @@
 import { CombatDialog } from "../core/combatDialog.js";
+import { Tirer } from "../manoeuver/tirer.js";
 
 export class DistanceDialog extends CombatDialog {
 
@@ -9,6 +10,7 @@ export class DistanceDialog extends CombatDialog {
      */
     constructor(actor, action) {
         super(actor, action);
+        this.defaultManoeuver = Tirer.ID;
     }
 
     /**

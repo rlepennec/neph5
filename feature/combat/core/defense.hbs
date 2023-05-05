@@ -14,13 +14,6 @@
 
             <div class="parameters">
 
-                <div class="absorption">
-                    <div id="absorption">1 </div>
-                    <div class="shield">
-                        <i class="fas fa-shield"></i>
-                    </div>
-                </div>
-
                 <div class="type">
                     <select id="rollType" name="rollType" disabled>
                         <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
@@ -217,9 +210,7 @@
 
         </div>
 
-        <div class="hiddable">
-            <p id="description">{{localize "NEPH5E.manoeuvres.eviter.description"}}</p>
-        </div>
+        <p id="description" class="hiddable">{{html description}}</p>
 
     </div>
 

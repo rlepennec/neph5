@@ -14,6 +14,7 @@ export class CombatDialog extends ActionDialog {
      */
     constructor(actor, action) {
         super(actor, action);
+        this.defaultManoeuver = Standard.ID;
     }
 
     /**
@@ -75,7 +76,7 @@ export class CombatDialog extends ActionDialog {
         const data = super.getData(options);
         data.impact = this.action.impact(Standard.ID);
         data.absorption = this.action.absorption(Eviter.ID);
-        data.description = CombatDialog.getManoeuverDescription(Standard.ID, data.impact, data.absorption);
+        data.description = CombatDialog.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
         return data;
     }
 
@@ -97,7 +98,7 @@ export class CombatDialog extends ActionDialog {
     static getManoeuverDescription(manoeuver, impact, absorption) {
         let sentence = game.i18n.localize("NEPH5E.manoeuvres." + manoeuver + ".description");
         sentence = sentence.replaceAll("${impact}", CustomHandlebarsHelpers.html("<span>" + impact + " <i class='fas fa-heart-broken'></i></span>"));
-        sentence = sentence.replaceAll("${absorption}", absorption);
+        sentence = sentence.replaceAll("${absorption}", CustomHandlebarsHelpers.html("<span>" + absorption + " <i class='fas fa-shield'></i></span>"));
         return sentence;
     }
 
