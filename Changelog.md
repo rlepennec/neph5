@@ -1,3 +1,5 @@
+# 1.3.13
+
 # 1.3.12
 Correction d'une anomalie sur le calcul de lancé de sort
 Correction d'une anomalie sur les invocations avec élement au choix
