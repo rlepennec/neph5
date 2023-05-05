@@ -4876,8 +4876,10 @@ form.combat .body {
 form.combat .body .roll {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  margin: 10px 10px 0px 10px;
   font-size: 15px;
+  border-bottom: 2px solid #151156;
+  padding-bottom: 15px;
 }
 form.combat .body .roll .parameters {
   display: flex;
@@ -4970,9 +4972,6 @@ form.combat .body .lines .line.hiddable {
 form.combat .body .lines .line:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
 }
-form.combat .body .lines .line:nth-child(1) {
-  border-top: 2px solid #151156;
-}
 form.combat .body .lines .line .line-title {
   display: flex;
   flex-direction: row;
@@ -5011,12 +5010,8 @@ form.combat .body .lines .line .line-value .percentage {
   margin-left: 5px;
 }
 form.combat .body p.hiddable {
-  width: 96%;
-  height: 80px;
-  border: solid 1px;
-  border-radius: 4px;
   padding: 10px;
-  margin: auto;
+  margin: 40px 10px 10px 10px;
   text-align: center;
 }
 .ephemeride table tr td {

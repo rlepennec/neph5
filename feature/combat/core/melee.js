@@ -129,7 +129,7 @@ export class Melee extends AbstractFeature {
                 new CombatDialog(this.actor, this)
                     .withTitle(this.title)
                     .withTemplate("systems/neph5e/feature/combat/core/contact.hbs")
-                    .withHeight(450)
+                    .withHeight(465)
                     .withData(this.data)
                     .render(true);
             }

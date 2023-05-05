@@ -282,7 +282,7 @@
             "frapper": {
                 "name": "Frapper",
                 "sentence": "tente de frapper avec ${arme}",
-                "description": "Une attaque normale. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Une attaque normale occasionnant ${impact} dommages."
             },
             "fuir": {
                 "name": "Fuir",
@@ -312,7 +312,7 @@
             "multiple": {
                 "name": "Tir multiple",
                 "sentence": "tente un tir avec ${arme}",
-                "description": "Tir de 2 à 5 coups. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Tir de 2 à 5 coups. chaque coup occasionne ${impact} dommages."
             },
             "parer": {
                 "name": "Parer",
@@ -337,17 +337,17 @@
             "puissante": {
                 "name": "Attaque puissante",
                 "sentence": "tente une attaque puissante avec ${arme}",
-                "description": "Si l'attaque réussit, +2 aux dommages. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Si l'attaque réussit, cette manoeuvre occasionne ${impact} dommages."
             },
             "rafale": {
                 "name": "Tir en rafale",
                 "sentence": "tente de tirer en rafale avec ${arme}",
-                "description": "Tir une rafale continue qui vide le chargeur. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Tir une rafale continue qui vide le chargeur et occasionne ${impact} dommages."
             },
             "rapide": {
                 "name": "Attaque rapide",
                 "sentence": "tente une attaque rapide avec ${arme}",
-                "description": "Deux attaques à -20% mais pas de défense autorisée ce round. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Deux attaques à -20% mais pas de défense autorisée ce round. Chaque coup manoeuvre occasionne ${impact} dommages."
             },
             "recharger": {
                 "name": "Recharger son arme",
@@ -362,7 +362,7 @@
             "standard": {
                 "name": "Attaque standard",
                 "sentence": "tente une attaque standard avec ${arme}",
-                "description": "Une attaque normale. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Une attaque normale occasionnant ${impact} dommages."
             },
             "subtile": {
                 "name": "Attaque subtile",
@@ -372,7 +372,7 @@
             "tirer": {
                 "name": "Tir",
                 "sentence": "tente un tir avec ${arme}",
-                "description": "Tirer un coup. Cette manoeuvre occasionne ${impact} dommages."
+                "description": "Tirer un coup occasionnant ${impact} dommages."
             },
             "viser": {
                 "name": "Viser",

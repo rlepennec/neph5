@@ -1,5 +1,6 @@
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActionDialog } from "../../core/actionDialog.js";
+import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Eviter } from "../manoeuver/eviter.js";
 import { Standard } from "../manoeuver/standard.js";
@@ -73,7 +74,7 @@ export class CombatDialog extends ActionDialog {
     getData(options) {
         const data = super.getData(options);
         data.impact = this.action.impact(Standard.ID);
-        data.absorption = this._absorption(Eviter.ID);
+        data.absorption = this.action.absorption(Eviter.ID);
         data.description = CombatDialog.getManoeuverDescription(Standard.ID, data.impact, data.absorption);
         return data;
     }
@@ -95,7 +96,7 @@ export class CombatDialog extends ActionDialog {
      */
     static getManoeuverDescription(manoeuver, impact, absorption) {
         let sentence = game.i18n.localize("NEPH5E.manoeuvres." + manoeuver + ".description");
-        sentence = sentence.replaceAll("${impact}", impact);
+        sentence = sentence.replaceAll("${impact}", CustomHandlebarsHelpers.html("<span>" + impact + " <i class='fas fa-heart-broken'></i></span>"));
         sentence = sentence.replaceAll("${absorption}", absorption);
         return sentence;
     }
@@ -133,30 +134,12 @@ export class CombatDialog extends ActionDialog {
             }
             case Constants.DODGE:
             case Constants.PARADE: {
-                const absorption = this._absorption(parameters.manoeuver);
+                const absorption = this.action.absorption(manoeuver);
                 $('#description').html(CombatDialog.getManoeuverDescription(parameters.manoeuver, 0, absorption));
                 break;
             }
         }
 
-    }
-
-    /**
-     * 
-     */
-    _absorption(manoeuver) {
-        const absorption = this.action.absorption(manoeuver);
-        if (absorption == null) {
-            return '';
-        }
-        if (absorption.hasOwnProperty('modifier')) {
-            return absorption.modifier.toString() + '<i class="fas fa-shield" style="margin-left:5px"></i>';
-        }
-        if (absorption.hasOwnProperty('fix')) {
-            return '<i class="fas fa-heart-broken" style="margin-right:5px"></i>' +
-                   '<i class="fa-solid fa-right" style="margin-right:5px"></i>' + 
-                   absorption.fix.toString();
-        }
     }
 
     /**
