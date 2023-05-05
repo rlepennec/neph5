@@ -4654,11 +4654,11 @@
   flex: 0;
 }
 .action .header .sentence {
-  font-size: 16px;
+  font-size: 20px;
   font-style: bold;
   text-align: center;
   flex: 1;
-  font-family: 'NightjarDemi';
+  font-family: 'AJensonProLtDisp';
 }
 .action .header .target {
   margin: 10px;
@@ -4877,11 +4877,11 @@ form.combat .header img {
   border-radius: 4px;
 }
 form.combat .header span {
-  font-size: 16px;
+  font-size: 20px;
   font-style: bold;
   text-align: center;
   flex: 1;
-  font-family: 'NightjarDemi';
+  font-family: 'AJensonProLtDisp';
 }
 form.combat .body {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
@@ -5029,6 +5029,8 @@ form.combat .body p.hiddable {
   padding: 10px;
   margin: 40px 10px 10px 10px;
   text-align: center;
+  font-size: 18px;
+  font-family: 'AJensonProLtDisp';
 }
 .ephemeride table tr td {
   font-family: 'AJensonPro';
