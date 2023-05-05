@@ -257,17 +257,17 @@
             "esquiver": {
                 "name": "Esquiver",
                 "sentence": " esquiver l'attaque",
-                "description": "Une réussite permet d’ignorer tous les dommages de l’attaque"
+                "description": "Une réussite permet d’ignorer tous les dommages de l’attaque."
             },
             "esquiverProjectile": {
                 "name": "Esquiver Projectile",
                 "sentence": " esquiver l'attaque",
-                "description": "En cas de réussite, aucun dommage. La cible doit voir le lanceur lancer l’arme"
+                "description": "En cas de réussite, aucun dommage. La cible doit voir le lanceur lancer l’arme."
             },
             "etrange": {
                 "name": "Attaque étrange",
                 "sentence": "tente une attaque étrange avec ${arme}",
-                "description": "Si l'attaque réussit, l'adversaire subit un malus de -20% à toutes actions au prochain round."
+                "description": "Si l'attaque réussit, l'adversaire subit un malus de -20% à toutes actions au prochain round. Cette manoeuvre occasionne ${impact} dommages."
             },
             "eviter": {
                 "name": "Eviter",
@@ -277,12 +277,12 @@
             "force": {
                 "name": "Attaque en force",
                 "sentence": "tente une attaque en force avec ${arme}",
-                "description": "Pas de défense autorisée ce round."
+                "description": "Pas de défense autorisée ce round. Cette manoeuvre occasionne ${impact} dommages."
             },
             "frapper": {
                 "name": "Frapper",
                 "sentence": "tente de frapper avec ${arme}",
-                "description": "Une attaque normale."
+                "description": "Une attaque normale. Cette manoeuvre occasionne ${impact} dommages."
             },
             "fuir": {
                 "name": "Fuir",
@@ -292,17 +292,17 @@
             "immobiliser": {
                 "name": "Immobiliser",
                 "sentence": "tente une immobilisation",
-                "description": "La cible est immobilisée et prisonnière. L’attaquant peut infliger un degré de dommage à chaque fin de round"
+                "description": "La cible est immobilisée et prisonnière. L’attaquant peut infliger un degré de dommage à chaque fin de round."
             },
             "instinctif": {
                 "name": "Tir instinctif",
                 "sentence": "tente un tir instinctif avec ${arme}",
-                "description": "Tir à -40% sans viser lorsqu’un combattant est engagé en mêlée."
+                "description": "Tir à -40% sans viser lorsqu’un combattant est engagé en mêlée. Cette manoeuvre occasionne ${impact} dommages."
             },
             "lancer": {
                 "name": "Lancer son arme",
                 "sentence": "tente de lancer ${arme}",
-                "description": "Attaquer avec une arme propulsée par la force du simulacre ou d’une créature."
+                "description": "Attaquer avec une arme propulsée par la force du simulacre ou d’une créature. Cette manoeuvre occasionne ${impact} dommages."
             },
             "liberer": {
                 "name": "Se libérer",
@@ -312,7 +312,7 @@
             "multiple": {
                 "name": "Tir multiple",
                 "sentence": "tente un tir avec ${arme}",
-                "description": "Tir de 2 à 5 coups."
+                "description": "Tir de 2 à 5 coups. Cette manoeuvre occasionne ${impact} dommages."
             },
             "parer": {
                 "name": "Parer",
@@ -332,22 +332,22 @@
             "projeter": {
                 "name": "Faire tomber",
                 "sentence": "tente une projection",
-                "description": "La cible est projetée au sol à 2 m et reçoit un degré de blessure en ignorant les armures."
+                "description": "La cible est projetée au sol à 2 m et reçoit un degré de blessure en ignorant les armures. Cette manoeuvre occasionne ${impact} dommages."
             },
             "puissante": {
                 "name": "Attaque puissante",
                 "sentence": "tente une attaque puissante avec ${arme}",
-                "description": "Si l'attaque réussit, +2 aux dommages."
+                "description": "Si l'attaque réussit, +2 aux dommages. Cette manoeuvre occasionne ${impact} dommages."
             },
             "rafale": {
                 "name": "Tir en rafale",
                 "sentence": "tente de tirer en rafale avec ${arme}",
-                "description": "Tir une rafale continue qui vide le chargeur"
+                "description": "Tir une rafale continue qui vide le chargeur. Cette manoeuvre occasionne ${impact} dommages."
             },
             "rapide": {
                 "name": "Attaque rapide",
                 "sentence": "tente une attaque rapide avec ${arme}",
-                "description": "Deux attaques à -20% mais pas de défense autorisée ce round."
+                "description": "Deux attaques à -20% mais pas de défense autorisée ce round. Cette manoeuvre occasionne ${impact} dommages."
             },
             "recharger": {
                 "name": "Recharger son arme",
@@ -357,22 +357,22 @@
             "salve": {
                 "name": "Tir en salve",
                 "sentence": "tente de tirer une salve avec ${arme}",
-                "description": "Tir de 1 à 3 salves."
+                "description": "Tir de 1 à 3 salves. Cette manoeuvre occasionne ${impact} dommages."
             },
             "standard": {
                 "name": "Attaque standard",
                 "sentence": "tente une attaque standard avec ${arme}",
-                "description": "Une attaque normale."
+                "description": "Une attaque normale. Cette manoeuvre occasionne ${impact} dommages."
             },
             "subtile": {
                 "name": "Attaque subtile",
                 "sentence": "tente une attaque subtile avec ${arme}",
-                "description": "L'adversaire subit un malus de -40% à sa defense."
+                "description": "L'adversaire subit un malus de -40% à sa defense. Cette manoeuvre occasionne ${impact} dommages."
             },
             "tirer": {
                 "name": "Tir",
                 "sentence": "tente un tir avec ${arme}",
-                "description": "Tirer un coup"
+                "description": "Tirer un coup. Cette manoeuvre occasionne ${impact} dommages."
             },
             "viser": {
                 "name": "Viser",

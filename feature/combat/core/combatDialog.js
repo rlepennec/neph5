@@ -74,6 +74,7 @@ export class CombatDialog extends ActionDialog {
         const data = super.getData(options);
         data.impact = this.action.impact(Standard.ID);
         data.absorption = this._absorption(Eviter.ID);
+        data.description = CombatDialog.getManoeuverDescription(Standard.ID, data.impact, data.absorption);
         return data;
     }
 
@@ -83,6 +84,20 @@ export class CombatDialog extends ActionDialog {
     activateListeners(html) {
         super.activateListeners(html);
         html.find("#manoeuver").change(this._onSelectManoeuver.bind(this));
+    }
+
+    /**
+     * 
+     * @param manoeuver  The identifier of the manoeuver.
+     * @param impact     The impact of the attack.
+     * @param absorption The absorption of the defense.
+     * @return the sentence used to describe the manoeuver.
+     */
+    static getManoeuverDescription(manoeuver, impact, absorption) {
+        let sentence = game.i18n.localize("NEPH5E.manoeuvres." + manoeuver + ".description");
+        sentence = sentence.replaceAll("${impact}", impact);
+        sentence = sentence.replaceAll("${absorption}", absorption);
+        return sentence;
     }
 
     /**
@@ -98,10 +113,8 @@ export class CombatDialog extends ActionDialog {
         const base = this._base();
         const approches = this._approches(parameters.manoeuver);
         const difficulty = this.action.difficulty(parameters);
-        const description = game.i18n.localize("NEPH5E.manoeuvres." + parameters.manoeuver + ".description");
-
+        
         $('#difficulty').html(difficulty+"%");
-        $('#description').html(description);
         $("#approche").html(approches);
         $('#approcheModifier').html("0");
         $('#vecu').html(base.name);
@@ -114,12 +127,14 @@ export class CombatDialog extends ActionDialog {
             case Constants.STRIKE:
             case Constants.THROW:
             case Constants.TACTIC: {
-                $('#impact').html(this.action.impact(parameters.manoeuver));
+                const impact = this.action.impact(parameters.manoeuver);
+                $('#description').html(CombatDialog.getManoeuverDescription(parameters.manoeuver, impact, 0));
                 break;
             }
             case Constants.DODGE:
             case Constants.PARADE: {
-                $('#absorption').html(this._absorption(parameters.manoeuver));
+                const absorption = this._absorption(parameters.manoeuver);
+                $('#description').html(CombatDialog.getManoeuverDescription(parameters.manoeuver, 0, absorption));
                 break;
             }
         }

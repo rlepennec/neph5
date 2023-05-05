@@ -5010,16 +5010,12 @@ form.combat .body .lines .line .line-value .percentage {
   margin-top: 7px;
   margin-left: 5px;
 }
-form.combat .body div.hiddable {
-  display: flex;
+form.combat .body p.hiddable {
   width: 96%;
   height: 80px;
-  margin: auto;
   border: solid 1px;
   border-radius: 4px;
   padding: 10px;
-}
-form.combat .body div.hiddable #description {
   margin: auto;
   text-align: center;
 }
