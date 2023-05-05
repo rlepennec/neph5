@@ -135,7 +135,7 @@ export class CombatDialog extends ActionDialog {
             }
             case Constants.DODGE:
             case Constants.PARADE: {
-                const absorption = this.action.absorption(manoeuver);
+                const absorption = this.action.absorption(parameters.manoeuver);
                 $('#description').html(CombatDialog.getManoeuverDescription(parameters.manoeuver, 0, absorption));
                 break;
             }

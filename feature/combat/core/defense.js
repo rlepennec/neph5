@@ -143,6 +143,7 @@ export class Defense extends AbstractFeature {
         new DefenseDialog(this.actor, this)
             .withTitle(this.title)
             .withTemplate("systems/neph5e/feature/combat/core/defense.hbs")
+            .withHeight(465)
             .withData(this.data)
             .render(true);
     }
