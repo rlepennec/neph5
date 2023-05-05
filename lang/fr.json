@@ -237,22 +237,22 @@
             "bloquer": {
                 "name": "Bloquer",
                 "sentence": " bloquer l'attaque",
-                "description": "En cas de réussite, les dommages sont réduits de 2 degrés."
+                "description": "En cas de réussite, les dommages sont réduits de 2 <i class='fa-solid fa-shield'></i> degrés."
             },
             "contrer": {
                 "name": "Contre-attaquer",
                 "sentence": " parer l'attaque et s'apprête à riposter",
-                "description": "Le Défenseur contre-attaque avec une arme de mêlée ou sans arme. Il doit réussi le test de défense + un test attaque standard. Si échec, dommages reçus +2."
+                "description": "Le Défenseur contre-attaque avec une arme de mêlée ou sans arme. Si la défense est réussie, le défenseur peut contre-attaquer avec attaque standard. Dans le cas contraire les dommages reçus sont majorés de 2 <i class='fas fa-heart-broken'></i> dommages."
             },
             "desarmer": {
                 "name": "Désarmer",
                 "sentence": " parer et désarmer son adversaire",
-                "description": "Défense à -40% si avec arme, à -80% sans arme. Si réussie, l’attaquant est désarmé. Sinon dommages +2."
+                "description": "Défense à -40% si avec arme, à -80% sans arme. Si la défense est réussie, l’attaquant est désarmé. Dans le cas contraire les dommages reçus sont majorés de 2 <i class='fas fa-heart-broken'></i> dommages."
             },
             "elaboree": {
                 "name": "Défense élaborée",
                 "sentence": " parer l'attaque et se prépare à une autre attaque",
-                "description": "Aucune autre action que défensive ce round, en cas de réussite, -2 aux dommages reçus. Pas de malus sur les défenses ultérieures ce round."
+                "description": "Aucune autre action que défensive ce round. En cas de réussite, les dommages sont minorés de 2 <i class='fa-solid fa-shield'></i> degrés. Pas de malus sur les défenses ultérieures ce round."
             },
             "esquiver": {
                 "name": "Esquiver",
@@ -272,7 +272,7 @@
             "eviter": {
                 "name": "Eviter",
                 "sentence": " éviter l'attaque",
-                "description": "Une défense réflexe permettant d’éliminer un degré de dommages"
+                "description": "Une défense réflexe permettant d’éliminer 1 <i class='fa-solid fa-shield'></i> degré."
             },
             "force": {
                 "name": "Attaque en force",
@@ -292,7 +292,7 @@
             "immobiliser": {
                 "name": "Immobiliser",
                 "sentence": "tente une immobilisation",
-                "description": "La cible est immobilisée et prisonnière. L’attaquant peut infliger un degré de dommage à chaque fin de round."
+                "description": "La cible est immobilisée et prisonnière. L’attaquant peut infliger 1 <i class='fas fa-heart-broken'></i> dommages à chaque fin de round."
             },
             "instinctif": {
                 "name": "Tir instinctif",
@@ -317,17 +317,17 @@
             "parer": {
                 "name": "Parer",
                 "sentence": " parer l'attaque",
-                "description": "En cas de réussite, les dommages sont réduits de 2 degrés."
+                "description": "En cas de réussite, les dommages sont réduits de 2 <i class='fa-solid fa-shield'></i> degrés."
             },
             "parerLance": {
                 "name": "Parer Lance",
                 "sentence": " parer l'attaque",
-                "description": "Si le défenseur possède un bouclier ou une autre arme permettant de parer, une réussite permet de réduire les dommages de 3 degrés. La cible doit voir le lanceur lancer l’arme."
+                "description": "Si le défenseur possède un bouclier ou une autre arme permettant de parer, une réussite permet de réduire les dommages de 3 <i class='fa-solid fa-shield'></i> degrés. La cible doit voir le lanceur lancer l’arme."
             },
             "parerProjectile": {
                 "name": "Parer Projectile",
                 "sentence": " parer l'attaque",
-                "description": "Si le défenseur possède un bouclier ou autre objet permettant d’absorber les dommages d’un projectile, une réussite permet de réduire les dommages de 2 degrés. La cible doit voir le tireur viser durant au moins un round. L’objet servant à parer peut devenir inutilisable"
+                "description": "Si le défenseur possède un bouclier ou autre objet permettant d’absorber les dommages d’un projectile, une réussite permet de réduire les dommages de 2 <i class='fa-solid fa-shield'></i> degrés. La cible doit voir le tireur viser durant au moins un round. L’objet servant à parer peut devenir inutilisable"
             },
             "projeter": {
                 "name": "Faire tomber",
