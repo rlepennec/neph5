@@ -2,7 +2,7 @@
 Correction d'une anomalie sur le calcul de lancé de sort
 Correction d'une anomalie sur les invocations avec élement au choix
 Amélioration de l'affichage
-Amélioration de l'accessibilité du verouillage des acteurs
+Amélioration de l'accessibilité du verrouillage des acteurs
 Ajout d'une option pour afficher des informations complémentaires dans le tchat
 Ajout d'une option pour gérer les modificateurs sous forme d'une liste
 
