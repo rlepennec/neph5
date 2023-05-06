@@ -91,7 +91,8 @@ Game.elements = {
     feu:           "NEPH5E.pentacle.elements.feu",
     lune:          "NEPH5E.pentacle.elements.lune",
     luneNoire:     "NEPH5E.luneNoire",
-    terre:         "NEPH5E.pentacle.elements.terre"
+    terre:         "NEPH5E.pentacle.elements.terre",
+    choix:         "NEPH5E.choix"
 }
 
 Game.conjuration = {
