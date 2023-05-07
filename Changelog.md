@@ -1,5 +1,6 @@
 # 1.3.13
 Possibilité de définir des sorts avec un élément au choix
+Amélioration de l'affichage
 
 # 1.3.12
 Correction d'une anomalie sur le calcul de lancé de sort
