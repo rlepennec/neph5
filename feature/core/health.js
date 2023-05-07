@@ -70,7 +70,7 @@ export class Health {
      * @param impact    The impact of the attack.
      * @param magical   True if physical damages must be to apply.
      * @param weapon    The weapon used to attack.
-     * @param manoeuver The nmanoeuver absorption.
+     * @param manoeuver The manoeuver absorption.
      * @param winner    The action winner
      * @param attack    The attack manoeuver
      */
