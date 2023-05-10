@@ -75,7 +75,9 @@ export class AbstractFeature {
      * Edit the embedded item.
      */
     async editEmbeddedItem() {
-        const sheet = this.item.sheet.withEmbeddedData(this.getEmbeddedData());
+        //TODO: clean
+        const item = this.item.type === 'vecu' ? this.embedded : this.item;
+        const sheet = item.sheet.withEmbeddedData(this.getEmbeddedData());
         if (sheet.rendered) {
             sheet.bringToTop();
             sheet.maximize();
