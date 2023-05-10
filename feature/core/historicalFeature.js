@@ -17,6 +17,9 @@ export class HistoricalFeature extends AbstractFeature {
      * @returns the instance.
      */
     withItem(item) {
+        if (item == null) {
+            return this;
+        }
         if (item.actor == null) {
             return this.withOriginalItem(item);
         } else {
