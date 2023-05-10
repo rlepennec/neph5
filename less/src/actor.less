@@ -3048,6 +3048,7 @@
                     }
         
                     .vecus {
+                        position: relative;
         
                         .header {
                             display: flex;
@@ -3088,11 +3089,13 @@
                         }
         
                         .body {
+                            position: relative;
                             column-count: 3;
                             column-rule-style: solid;
                             column-rule-width: thin;
                             column-gap: 20px;
                             column-rule-color: var(--column-color);
+                            z-index: 99;
         
                             hr {
                                 display: block;

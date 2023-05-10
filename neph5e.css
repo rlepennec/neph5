@@ -3575,6 +3575,9 @@
   position: absolute;
   transform: translate(-122px, 70px);
 }
+.actor .window-content .actor-root .article .article-body .vecus {
+  position: relative;
+}
 .actor .window-content .actor-root .article .article-body .vecus .header {
   display: flex;
   flex-direction: row;
@@ -3609,11 +3612,13 @@
   width: calc(100% - 65px);
 }
 .actor .window-content .actor-root .article .article-body .vecus .body {
+  position: relative;
   column-count: 3;
   column-rule-style: solid;
   column-rule-width: thin;
   column-gap: 20px;
   column-rule-color: var(--column-color);
+  z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .vecus .body hr {
   display: block;
