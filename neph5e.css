@@ -5217,6 +5217,9 @@ form.combat .body p.hiddable {
   box-shadow: 0 0 3px 0px #f5f4f4 inset;
   padding: 2px;
 }
+.window-app:not(.sheet.actor,.sheet.item) .window-content form {
+  padding: 5px 10px 5px 10px;
+}
 .window-app:not(.sheet.actor,.sheet.item) .window-content .journal-sidebar {
   background: var(--background);
   background-size: cover;
