@@ -1,6 +1,6 @@
-import { NephilimItemSheet } from "../../../module/item/base.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Game } from "../../../module/common/game.js";
+import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class FormuleSheet extends NephilimItemSheet {
 

@@ -1,6 +1,6 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { NephilimChat } from "../../../module/common/chat.js";
 import { Constants } from "../../../module/common/constants.js";
+import { NephilimChat } from "../../../module/common/chat.js";
 
 /**
  * If no ammunition fired

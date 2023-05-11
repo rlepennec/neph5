@@ -1,8 +1,8 @@
 import { AbstractFeature } from "../../feature/core/abstractFeature.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
