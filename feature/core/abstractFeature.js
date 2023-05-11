@@ -13,6 +13,7 @@ export class AbstractFeature {
      */
     constructor(actor) {
         this.actor = actor;
+        this.openingPolicy = 'item';
     }
 
     /**
@@ -75,14 +76,25 @@ export class AbstractFeature {
      * Edit the embedded item.
      */
     async editEmbeddedItem() {
-        //TODO: clean
-        const item = this.item.type === 'vecu' ? this.embedded : this.item;
+        const item = this.openingItem();
         const sheet = item.sheet.withEmbeddedData(this.getEmbeddedData());
         if (sheet.rendered) {
             sheet.bringToTop();
             sheet.maximize();
         } else {
             sheet.render(true);
+        }
+    }
+
+    /**
+     * @returns the embedded or the original item according to the opening policy.
+     */
+    openingItem() {
+        switch (this.openingPolicy) {
+            case 'embedded':
+                return this.embedded;
+            case 'item':
+                return this.item;
         }
     }
 
