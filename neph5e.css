@@ -5141,6 +5141,11 @@ form.combat .body p.hiddable {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
+#interface #ui-middle #ui-top #navigation #nav-toggle:hover {
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+}
 #interface #ui-middle #ui-bottom #hotbar #hotbar-directory-controls {
   background: var(--background);
   background-size: var(--background-size);
@@ -5218,7 +5223,7 @@ form.combat .body p.hiddable {
   padding: 2px;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content form {
-  padding: 5px 10px 5px 10px;
+  padding: 5px;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content .journal-sidebar {
   background: var(--background);
