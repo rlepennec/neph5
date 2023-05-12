@@ -5207,6 +5207,7 @@ form.combat .body p.hiddable {
   --color-border-light-primary: #f5f4f4;
   --color-underline-header: #c9c6b1;
   --color-widget: #f5f4f4;
+  --color-widget-disabled: #bebdbd;
   --color-widget-background: #051732;
   --color-shadow: #bebdbd;
 }
@@ -5235,6 +5236,13 @@ form.combat .body p.hiddable {
 .window-app:not(.sheet.actor,.sheet.item) .window-content .journal-entry-content .title {
   color: #191813;
 }
+.window-app:not(.sheet.actor,.sheet.item) .window-content .markdown-editor {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
 .window-app:not(.sheet.actor,.sheet.item) .window-content .editor .editor-content {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   background-size: cover;
@@ -5242,6 +5250,23 @@ form.combat .body p.hiddable {
   font-size: 16px;
   color: #191813;
   padding: 10px;
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor .editor-menu ul li {
+  color: #191813;
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor .tox .tox-tbtn {
+  box-shadow: 0 0 5px #444 inset;
+  border: 1px solid var(--color-border-dark);
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor .tox .tox-tbtn svg {
+  fill: var(--color-widget);
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor .tox .tox-tbtn--disabled {
+  box-shadow: 0 0 5px #444 inset;
+  border: 1px solid var(--color-border-dark);
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content .editor .tox .tox-tbtn--disabled svg {
+  fill: var(--color-widget-disabled);
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content .editor textarea {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");

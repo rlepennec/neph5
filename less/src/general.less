@@ -190,6 +190,7 @@
     --color-border-light-primary: #f5f4f4;
     --color-underline-header: #c9c6b1;
     --color-widget: #f5f4f4;
+    --color-widget-disabled: #bebdbd;
     --color-widget-background: #051732;
     --color-shadow: #bebdbd;
 
@@ -223,6 +224,14 @@
 
         }
 
+        .markdown-editor {
+            background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+            background-size: cover;
+            font-family: 'AJensonProLtDisp';
+            font-size: 16px;
+            color: #191813;
+        }
+
         .editor {
 
             .editor-content {
@@ -232,6 +241,41 @@
                 font-size: 16px;
                 color: #191813;
                 padding: 10px;
+            }
+
+            .editor-menu {
+
+                ul {
+
+                    li {
+                        color: #191813;
+                    }
+                }
+
+            }
+
+            .tox {
+
+                .tox-tbtn {
+                    box-shadow: 0 0 5px #444 inset;
+                    border: 1px solid var(--color-border-dark);
+
+                    svg {
+                        fill: var(--color-widget);
+                    }
+
+                }
+
+                .tox-tbtn--disabled {
+                    box-shadow: 0 0 5px #444 inset;
+                    border: 1px solid var(--color-border-dark);
+
+                    svg {
+                        fill: var(--color-widget-disabled);
+                    }
+
+                }
+
             }
 
             textarea {
