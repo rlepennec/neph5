@@ -3921,6 +3921,20 @@
 .actor .window-content .actor-root .article .article-body .incarnations .periodes:hover {
   cursor: default;
 }
+.actor .window-content .actor-root .article .article-body .incarnations .helpPeriode {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  text-align: center;
+  color: indianred;
+}
+.actor .window-content .actor-root .article .article-body .incarnations .helpPeriode label {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.actor .window-content .actor-root .article .article-body .incarnations .helpPeriode i {
+  margin-top: 50px;
+}
 .actor .window-content .actor-root .article .article-body .groups .group .header {
   display: flex;
   flex-direction: row;
