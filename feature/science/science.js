@@ -342,19 +342,19 @@ export class Science extends HistoricalFeature {
             case 'analogie':
                 return ['element', 'possede', 'percentage'];
             case 'atlanteide':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'baton':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'conjuration':
                 return ['luneNoire', 'possede', 'status'];
             case 'coupe':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'denier':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'dracomachie':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'epee':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'kabbale':
                 return ['element', 'pacte', 'possede', 'status', 'percentage'];
             case 'magie':
