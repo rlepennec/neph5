@@ -5297,7 +5297,7 @@ form.combat .body p.hiddable {
   border: 3px solid var(--color-widget);
   border-radius: 50%;
   -webkit-appearance: none;
-  background-color: var(--color-widget);
+  background-color: #9b9b9b;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox]:checked {
   background-color: #150e4c;
