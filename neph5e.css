@@ -5203,6 +5203,19 @@ form.combat .body p.hiddable {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
+#chat-form {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  color: #191813;
+}
+#chat-form textarea {
+  background: none;
+}
+#chat-controls .roll-type-select {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  opacity: 0.9;
+}
 .window-app:not(.sheet.actor,.sheet.item) {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
@@ -5224,14 +5237,6 @@ form.combat .body p.hiddable {
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content form {
   padding: 5px;
-}
-.window-app:not(.sheet.actor,.sheet.item) .window-content form#chat-form {
-  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
-  background-size: cover;
-  color: #191813;
-}
-.window-app:not(.sheet.actor,.sheet.item) .window-content form#chat-form textarea {
-  background: none;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content .chat-message .message-content {
   color: #191813;
