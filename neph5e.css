@@ -5300,6 +5300,9 @@ form.combat .body p.hiddable {
 .window-app:not(.sheet.actor,.sheet.item) .window-content select option {
   background: var(--color-widget-background);
 }
+.window-app:not(.sheet.actor,.sheet.item) .window-content select optgroup {
+  background: var(--color-widget-background);
+}
 .window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox] {
   color: var(--color-widget);
   border: 3px solid var(--color-widget);
