@@ -7,7 +7,7 @@ export class TechniqueSheet extends NephilimItemSheet {
      */
     getOriginalData() {
         return {
-            cercles: super.cerclesOf('technique')
+            cercles: super.cerclesOf('baton')
         }
     }
 
