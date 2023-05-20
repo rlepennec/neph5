@@ -5216,6 +5216,9 @@ form.combat .body p.hiddable {
   background-size: cover;
   opacity: 0.9;
 }
+.dice-calculator__input-wrapper > textarea {
+  color: #f5f4f4;
+}
 .window-app:not(.sheet.actor,.sheet.item) {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
