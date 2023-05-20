@@ -1,4 +1,7 @@
 # 1.3.14
+Amélioration de l'affichage
+Ajout de séparateurs dans l'onglet Vécus
+Modification des clefs pour pratiques occultes des arcanes mineurs
 
 # 1.3.13
 Possibilité de définir des sorts avec un élément au choix

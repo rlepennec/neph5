@@ -3921,6 +3921,20 @@
 .actor .window-content .actor-root .article .article-body .incarnations .periodes:hover {
   cursor: default;
 }
+.actor .window-content .actor-root .article .article-body .incarnations .helpPeriode {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  text-align: center;
+  color: indianred;
+}
+.actor .window-content .actor-root .article .article-body .incarnations .helpPeriode label {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.actor .window-content .actor-root .article .article-body .incarnations .helpPeriode i {
+  margin-top: 50px;
+}
 .actor .window-content .actor-root .article .article-body .groups .group .header {
   display: flex;
   flex-direction: row;
@@ -5141,6 +5155,11 @@ form.combat .body p.hiddable {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
+#interface #ui-middle #ui-top #navigation #nav-toggle:hover {
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+}
 #interface #ui-middle #ui-bottom #hotbar #hotbar-directory-controls {
   background: var(--background);
   background-size: var(--background-size);
@@ -5198,6 +5217,27 @@ form.combat .body p.hiddable {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
+#chat-form {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  color: #191813;
+}
+#chat-form textarea {
+  background: none;
+}
+#chat-controls .roll-type-select {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  opacity: 0.9;
+}
+.dice-calculator__input-wrapper > textarea {
+  color: #f5f4f4;
+}
+.directory .directory-header .header-search input {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  opacity: 0.9;
+}
 .window-app:not(.sheet.actor,.sheet.item) {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-size: cover;
@@ -5217,6 +5257,12 @@ form.combat .body p.hiddable {
   opacity: var(--opacity);
   box-shadow: 0 0 3px 0px #f5f4f4 inset;
   padding: 2px;
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content form {
+  padding: 5px;
+}
+.window-app:not(.sheet.actor,.sheet.item) .window-content .chat-message .message-content {
+  color: #191813;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content .journal-sidebar {
   background: var(--background);
@@ -5298,12 +5344,15 @@ form.combat .body p.hiddable {
 .window-app:not(.sheet.actor,.sheet.item) .window-content select option {
   background: var(--color-widget-background);
 }
+.window-app:not(.sheet.actor,.sheet.item) .window-content select optgroup {
+  background: var(--color-widget-background);
+}
 .window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox] {
   color: var(--color-widget);
   border: 3px solid var(--color-widget);
   border-radius: 50%;
   -webkit-appearance: none;
-  background-color: var(--color-widget);
+  background-color: #9b9b9b;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content input[type=checkbox]:checked {
   background-color: #150e4c;

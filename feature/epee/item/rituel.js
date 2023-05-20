@@ -7,7 +7,7 @@ export class RituelSheet extends NephilimItemSheet {
      */
     getOriginalData() {
         return {
-            cercles: super.cerclesOf('rituel')
+            cercles: super.cerclesOf('epee')
         }
     }
 

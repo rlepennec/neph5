@@ -179,7 +179,7 @@ export class Science extends HistoricalFeature {
                     }
 
                     // Pratique synarche
-                    if (name?.substring(0,9) === 'pratique@') {
+                    if (name?.substring(0,7) === 'denier@') {
                         return {
                             type: 'pratique',
                             property: 'cercle'
@@ -187,7 +187,7 @@ export class Science extends HistoricalFeature {
                     }
 
                     // Technique templiere
-                    if (name?.substring(0,10) === 'technique@') {
+                    if (name?.substring(0,6) === 'baton@') {
                         return {
                             type: 'technique',
                             property: 'cercle'
@@ -195,7 +195,7 @@ export class Science extends HistoricalFeature {
                     }
 
                     // Tekhne rosicrucienne
-                    if (name?.substring(0,7) === 'tekhne@') {
+                    if (name?.substring(0,6) === 'coupe@') {
                         return {
                             type: 'tekhne',
                             property: 'cercle'
@@ -203,7 +203,7 @@ export class Science extends HistoricalFeature {
                     }
 
                     // Rituel myste
-                    if (name?.substring(0,7) === 'rituel@') {
+                    if (name?.substring(0,5) === 'epee@') {
                         return {
                             type: 'rituel',
                             property: 'cercle'
@@ -342,19 +342,19 @@ export class Science extends HistoricalFeature {
             case 'analogie':
                 return ['element', 'possede', 'percentage'];
             case 'atlanteide':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'baton':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'conjuration':
                 return ['luneNoire', 'possede', 'status'];
             case 'coupe':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'denier':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'dracomachie':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'epee':
-                return ['percentage'];
+                return ['ka', 'percentage'];
             case 'kabbale':
                 return ['element', 'pacte', 'possede', 'status', 'percentage'];
             case 'magie':

@@ -7,7 +7,7 @@ export class PratiqueSheet extends NephilimItemSheet {
      */
     getOriginalData() {
         return {
-            cercles: super.cerclesOf('pratique', true)
+            cercles: super.cerclesOf('denier', true)
         }
     }
 

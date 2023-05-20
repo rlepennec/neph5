@@ -15,6 +15,7 @@ export class Vecu extends HistoricalFeature {
     constructor(actor, scope) {
         super(actor);
         this.scope = scope;
+        this.openingPolicy = 'embedded';
     }
 
     /**

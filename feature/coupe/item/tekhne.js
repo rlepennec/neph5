@@ -7,7 +7,7 @@ export class TekhneSheet extends NephilimItemSheet {
      */
     getOriginalData() {
         return {
-            cercles: super.cerclesOf('tekhne')
+            cercles: super.cerclesOf('coupe')
         }
     }
 

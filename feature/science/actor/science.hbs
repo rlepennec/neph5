@@ -90,6 +90,15 @@
                     </label>
                     {{/if}}
 
+                    <!-- The ka element. -->
+                    {{#if (includes ../../header 'ka')}}
+                    <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                        {{#switch 'ka'}}
+                            {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
+                        {{/switch}}
+                    </label>
+                    {{/if}}
+
                     <!-- The lune noire element. -->
                     {{#if (includes ../../header 'luneNoire')}}
                     <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
