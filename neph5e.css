@@ -4386,6 +4386,7 @@
   border: 0;
   background: transparent;
   color: #191813;
+  padding-top: 5px;
 }
 .item .window-content .item-root .article .body .list {
   vertical-align: middle;
