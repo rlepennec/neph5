@@ -217,9 +217,16 @@
     opacity: 0.9;
 }
 
+#module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
+    font-family: 'AJensonPro';
+    font-size: 14px;
+    font-weight: normal;
+}
+
 .window-app:not(.sheet.actor,.sheet.item) {
     --background: url("../../systems/neph5e/assets/backgrounds/p.webp");
     --background-size: cover;
+    --box-shadow: 0 0 4px 3px var(--color-shadow) inset;
     --opacity: 0.9;
     --color-text-dark-secondary: #8a8888;
     --color-text-dark-primary: #f5f4f4;
@@ -297,6 +304,7 @@
             border-radius: 6px;
             background: var(--color-widget-background);
             border: 1px solid var(--color-border-dark);
+            box-shadow: 0 0 3px 0px #f5f4f4 inset;
 
             &:hover {
                 -webkit-box-shadow: var(--box-shadow);
@@ -317,11 +325,7 @@
                 box-shadow: var(--box-shadow);
             }
 
-            option {
-                background: var(--color-widget-background);
-            }
-
-            optgroup {
+            option, optgroup {
                 background: var(--color-widget-background);
             }
 
