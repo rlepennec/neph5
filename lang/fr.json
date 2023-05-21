@@ -241,7 +241,7 @@
             },
             "contrer": {
                 "name": "Contre-attaquer",
-                "sentence": " parer l'attaque et s'apprête à riposter",
+                "sentence": " parer l'attaque et riposter",
                 "description": "Le défenseur contre-attaque avec une arme de mêlée ou sans arme. Si la défense est réussie, le défenseur peut contre-attaquer avec attaque standard. Dans le cas contraire les dommages reçus sont majorés de 2 <i class='fas fa-heart-broken'></i> dommages."
             },
             "desarmer": {
@@ -251,7 +251,7 @@
             },
             "elaboree": {
                 "name": "Défense élaborée",
-                "sentence": " parer l'attaque et se prépare à une autre attaque",
+                "sentence": " parer l'attaque en se préparant à d'autres attaques",
                 "description": "Aucune autre action autre que défensive n'est possible ce round. En cas de réussite, les dommages sont minorés de 2 <i class='fa-solid fa-shield'></i> degrés. Pas de malus sur les défenses ultérieures ce round."
             },
             "esquiver": {
