@@ -331,6 +331,7 @@ Hooks.once("init", function () {
             type: String,
             choices: {
               'standard': 'Standard',
+              'maximum': 'Maximum',
               'bonus': 'Bonus'
             },
             default: 'standard'

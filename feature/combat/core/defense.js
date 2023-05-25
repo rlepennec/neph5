@@ -218,6 +218,22 @@ export class Defense extends AbstractFeature {
     }
 
     /**
+     * @return the instance if a defense can be performed, otherswise apply damage and return null.
+     */
+    async defenseToPerform() {
+        // No manoeuver possible, apply dammages automaticaly
+        if (Object.keys(this.data.manoeuvers).length === 0) {
+            if (game.settings.get('neph5e', 'useCombatSystem') === true && this.result.success) {
+                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver);
+                await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
+            }
+            return null;
+        } else {
+            return this;
+        }
+    }
+    
+    /**
      * @param weapon The weapon object which occurs dammages.
      * @param type   The type of dammages, physical or magical.
      * @returns the protection against the specified type of dammage according to

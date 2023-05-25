@@ -169,11 +169,14 @@ export class AbstractFeature {
         let base = null;
         switch (game.settings.get('neph5e', 'fraternitePolicy')) {
             case 'bonus':
-                const ps = CustomHandlebarsHelpers.getSapiences(b / 10) + CustomHandlebarsHelpers.getSapiences(f / 10);
+                const ps = CustomHandlebarsHelpers.getSapiences(b/10) + CustomHandlebarsHelpers.getSapiences(f/10);
                 base = CustomHandlebarsHelpers.getLevel(ps) * 10;
                 break;
-            case 'standard':
+            case 'max':
                 base = Math.max(b, f);
+                break;
+            case 'standard':
+                base = b + CustomHandlebarsHelpers.fraterniteBonus(f/10) * 10;
                 break;
         }
 
@@ -239,7 +242,7 @@ export class AbstractFeature {
                 impact: this.impact()
             })
             .withRoll(result.roll)
-            .withFlags(result.opposed ? {
+            .withFlags(result.opposed && result.success === true ? {
                 neph5e: {
                     opposed: {
                         actor: this.actor.id,

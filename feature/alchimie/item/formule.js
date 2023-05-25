@@ -99,14 +99,16 @@ export class FormuleSheet extends NephilimItemSheet {
     _updateObject(event, formData) {
 
         // Update elements
-        const elements = [];
         const fst = formData["system.elements.[0]"];
-        const snd = formData["system.elements.[1]"];
-        elements.push(fst);
-        delete formData["system.elements.[0]"];
-        if (formData["system.cercle"] === "oeuvreAuBlanc") {
-            elements.push(snd);
-            delete formData["system.elements.[1]"];
+        const elements = fst == null ? this.item.system.elements : [];
+        if (fst != null) {
+            const snd = formData["system.elements.[1]"];
+            elements.push(fst);
+            delete formData["system.elements.[0]"];
+            if (formData["system.cercle"] === "oeuvreAuBlanc") {
+                elements.push(snd);
+                delete formData["system.elements.[1]"];
+            }
         }
         formData["system.elements"] = elements;
 
