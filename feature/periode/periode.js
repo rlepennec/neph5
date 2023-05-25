@@ -80,13 +80,18 @@ export class Periode extends AbstractFeature {
      */
     async moveTo(parentId) {
 
+        // The target is not a periode
+        if (this.actor.items.find(i => i.type === 'periode' && i.sid === parentId) == null) {
+            return;
+        };
+
         // The moved item
         const moved = this.actor.items.find(i => i.type === 'periode' && i.sid === this.sid);
 
         // The old next periode of the moved periode
         const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.sid);
 
-        // The periode wich have his new previous periode equal to the moved periode
+        // The periode which have his new previous periode equal to the moved periode
         const previous = this.actor.items.find(i => i.type === 'periode' && i.system.previous === parentId);
 
         // A move is done
