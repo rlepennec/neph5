@@ -5239,6 +5239,9 @@ form.combat .body p.hiddable {
   background-size: cover;
   opacity: 0.9;
 }
+.sheet.journal-entry .journal-sidebar .directory-header .header-search input {
+  color: #191813;
+}
 #module-management .package-list .package-title,
 #module-management .package-list .package-metadata,
 #module-management .package-list .package-description {
