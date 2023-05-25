@@ -242,7 +242,7 @@ export class AbstractFeature {
                 impact: this.impact()
             })
             .withRoll(result.roll)
-            .withFlags(result.opposed ? {
+            .withFlags(result.opposed && result.success === true ? {
                 neph5e: {
                     opposed: {
                         actor: this.actor.id,
