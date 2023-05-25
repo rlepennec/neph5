@@ -1,6 +1,7 @@
 # 1.3.15
 Correction d'une anomalie sur les jets de formule après édition
 Correction d'une anomalie lorsque l'on déplace une période dans l'onglet incarnation
+Correction d'une anomalie qui appliquait systématiquement les dégâts en combat automatique
 
 # 1.3.14
 Amélioration de l'affichage
