@@ -53,14 +53,16 @@ export class OpposedRollBuilder {
                         if (OpposedRollBuilder.handle(token)) {
                             const attacker = OpposedRollBuilder.actorFromId(flags.opposed.purpose.attacker);
                             const manoeuver = ManoeuverBuilder.create(flags.opposed.purpose.manoeuver);
-                            return new Defense(
+                            const attack = new Attack(
+                                attacker,
+                                flags.opposed.purpose.impact,
+                                manoeuver,
+                                actor.items.get(flags.opposed.purpose.weapon));
+                            const defense = new Defense(
                                 token.actor,
-                                new Attack(
-                                    attacker,
-                                    flags.opposed.purpose.impact,
-                                    manoeuver,
-                                    actor.items.get(flags.opposed.purpose.weapon)),
-                                flags.opposed.result);
+                                attack,
+                                flags.opposed.result)
+                            return await defense.defenseToPerform();
                         }
                     }
 
