@@ -5127,9 +5127,6 @@ form.combat .body p.hiddable {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
-#interface #ui-left #controls li i {
-  margin-top: 11px;
-}
 #interface #ui-left #players {
   background: var(--background);
   background-size: var(--background-size);
