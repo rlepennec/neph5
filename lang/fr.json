@@ -14,7 +14,7 @@
     "TYPES.Item.dracomachie": "Technique de Dracomachie",
     "TYPES.Item.formule": "Formule Alchimique",
     "TYPES.Item.habitus": "Habitus",
-    "ITEM.TypeInvocation": "Invocation de Kabbale",
+    "TYPES.Item.invocation": "Invocation de Kabbale",
     "TYPES.Item.magie": "Voie magique",
     "TYPES.Item.materiae": "Materiae Primae",
     "TYPES.Item.metamorphe": "Métamorphe",
