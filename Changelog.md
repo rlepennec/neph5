@@ -1,3 +1,6 @@
+# 1.3.16
+Correction d'une anomalie sur le pourcentage d'invocation de kabbale
+
 # 1.3.15
 Correction d'une anomalie sur les jets de formule après édition
 Correction d'une anomalie lorsque l'on déplace une période dans l'onglet incarnation
