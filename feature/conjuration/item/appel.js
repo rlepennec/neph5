@@ -1,5 +1,4 @@
 
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 import { Game } from "../../../module/common/game.js";
 

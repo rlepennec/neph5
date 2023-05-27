@@ -1,5 +1,4 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-
 import { Constants } from "../../../module/common/constants.js";
 
 export class Contrer extends AbstractManoeuver {
