@@ -1,3 +1,6 @@
+# 1.4.0
+Support Foundry v11
+
 # 1.3.16
 Correction d'une anomalie sur le pourcentage d'invocation de kabbale
 
