@@ -1,5 +1,11 @@
+# 1.4.1
+Correction d'une anomalie sur le pourcentage de sort
+
 # 1.4.0
 Support Foundry v11
+
+# 1.3.17
+Correction d'une anomalie sur le pourcentage de sort
 
 # 1.3.16
 Correction d'une anomalie sur le pourcentage d'invocation de kabbale

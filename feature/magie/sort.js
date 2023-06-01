@@ -78,7 +78,11 @@ export class Sort extends AbstractFocus {
      * @Override
      */
     modifier(parameters) {
-        return parameters == null ? this.actor.getKa('air') : parameters.ka;
+        if (this.item.system.element === 'choix') {
+            return parameters == null ? this.actor.getKa('air') : parameters.ka;
+        } else {
+            return 0;
+        }
     }
 
     /**
