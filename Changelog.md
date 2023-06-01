@@ -1,3 +1,6 @@
+# 1.3.17
+Correction d'une anomalie sur le pourcentage de sort
+
 # 1.3.16
 Correction d'une anomalie sur le pourcentage d'invocation de kabbale
 
