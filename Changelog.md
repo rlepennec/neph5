@@ -1,3 +1,6 @@
+# 1.3.18
+Correction d'une anomalie sur la suppression des materiae primae
+
 # 1.3.17
 Correction d'une anomalie sur le pourcentage de sort
 
