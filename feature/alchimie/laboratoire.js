@@ -80,7 +80,7 @@ export class Laboratoire {
      * @param element The element for which to retrieve to max MP.
      * @returns the maximum number of materiae primae.
      */
-    getMaxMP(element) {
+    getMaxBaseMP(element) {
         return this.actor.science('oeuvreAuNoir') +
             this.actor.science('oeuvreAuBlanc') +
             this.actor.science('oeuvreAuRouge') +

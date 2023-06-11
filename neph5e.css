@@ -3345,6 +3345,16 @@
   top: var(--materiae-maximum-top);
   left: var(--materiae-maximum-left);
 }
+.actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .max {
+  position: absolute;
+  border: none;
+  font-size: 16px;
+  color: var(--font-color);
+  top: var(--materiae-maximum-top);
+  left: var(--materiae-maximum-left);
+  background-color: transparent;
+  width: 30px;
+}
 .actor .window-content .actor-root .article .article-body .materiae .left .pentacle .element .tooltip {
   position: absolute;
   top: var(--materiae-input-top);

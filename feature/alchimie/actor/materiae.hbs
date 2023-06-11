@@ -25,9 +25,16 @@
                         type="text"
                         value="{{actor.system.alchimie.primae.air.quantite}}"
                         data-dtype="Number"/>
-                    <label class="tooltiptext">{{localize "NEPH5E.air"}}</label>
+                    <label class="tooltiptext">{{localize "NEPH5E.air"}}: {{getMaxBaseMP actor 'air'}} + {{actor.system.alchimie.primae.air.max}}</span>
                 </div>
-                <label class="maximum">/ {{getMaxMP actor 'air'}}</label>
+                <label class="maximum">/</label>
+                <input
+                    {{#if actor.locked}}disabled{{/if}}
+                    class="max"
+                    name="system.alchimie.primae.air.max"
+                    type="text"
+                    value="{{getMaxFinalMP actor 'air'}}"
+                    data-dtype="Number"/>
             </div>
 
             <div class="element eau">
@@ -39,9 +46,16 @@
                         type="text"
                         value="{{actor.system.alchimie.primae.eau.quantite}}"
                         data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.eau"}}</span>
+                    <span class="tooltiptext">{{localize "NEPH5E.eau"}}: {{getMaxBaseMP actor 'eau'}} + {{actor.system.alchimie.primae.eau.max}}</span>
                 </div>
-                <label class="maximum">/ {{getMaxMP actor 'eau'}}</label>
+                <label class="maximum">/</label>
+                <input
+                    {{#if actor.locked}}disabled{{/if}}
+                    class="max"
+                    name="system.alchimie.primae.eau.max"
+                    type="text"
+                    value="{{getMaxFinalMP actor 'eau'}}"
+                    data-dtype="Number"/>
             </div>
 
             <div class="element feu">
@@ -53,9 +67,16 @@
                         type="text"
                         value="{{actor.system.alchimie.primae.feu.quantite}}"
                         data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.feu"}}</span>
+                    <span class="tooltiptext">{{localize "NEPH5E.feu"}}: {{getMaxBaseMP actor 'feu'}} + {{actor.system.alchimie.primae.feu.max}}</span>
                 </div>
-                <label class="maximum">/ {{getMaxMP actor 'feu'}}</label>
+                <label class="maximum">/</label>
+                <input
+                    {{#if actor.locked}}disabled{{/if}}
+                    class="max"
+                    name="system.alchimie.primae.feu.max"
+                    type="text"
+                    value="{{getMaxFinalMP actor 'feu'}}"
+                    data-dtype="Number"/>
             </div>
 
             <div class="element lune">
@@ -67,9 +88,16 @@
                         type="text"
                         value="{{actor.system.alchimie.primae.lune.quantite}}"
                         data-dtype="Number"/>                    
-                    <span class="tooltiptext">{{localize "NEPH5E.lune"}}</span>
+                    <span class="tooltiptext">{{localize "NEPH5E.lune"}}: {{getMaxBaseMP actor 'lune'}} + {{actor.system.alchimie.primae.lune.max}}</span>
                 </div>
-                <label class="maximum">/ {{getMaxMP actor 'lune'}}</label>
+                <label class="maximum">/</label>
+                <input
+                    {{#if actor.locked}}disabled{{/if}}
+                    class="max"
+                    name="system.alchimie.primae.lune.max"
+                    type="text"
+                    value="{{getMaxFinalMP actor 'lune'}}"
+                    data-dtype="Number"/> 
             </div>
 
             <div class="element terre">
@@ -81,9 +109,16 @@
                         type="text"
                         value="{{actor.system.alchimie.primae.terre.quantite}}"
                         data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.terre"}}</span>
+                    <span class="tooltiptext">{{localize "NEPH5E.terre"}}: {{getMaxBaseMP actor 'terre'}} + {{actor.system.alchimie.primae.terre.max}}</span>
                 </div>
-                <label class="maximum">/ {{getMaxMP actor 'terre'}}</label>
+                <label class="maximum">/</label>
+                <input
+                    {{#if actor.locked}}disabled{{/if}}
+                    class="max"
+                    name="system.alchimie.primae.terre.max"
+                    type="text"
+                    value="{{getMaxFinalMP actor 'terre'}}"
+                    data-dtype="Number"/>
             </div>
 
         </div>

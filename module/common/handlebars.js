@@ -250,10 +250,19 @@ export class CustomHandlebarsHelpers {
     /**
      * @param actor  The actor which uses the laboratory.
      * @param element The element for which to retrieve to max MP.
+     * @returns the maximum number of materiae primae only based on the construct.
+     */
+    static getMaxBaseMP(actor, element) {
+        return actor.getMaxBaseMP(element);
+    }
+
+    /**
+     * @param actor  The actor which uses the laboratory.
+     * @param element The element for which to retrieve to max MP.
      * @returns the maximum number of materiae primae.
      */
-    static getMaxMP(actor, element) {
-        return actor.getMaxMP(element);
+    static getMaxFinalMP(actor, element) {
+        return actor.getMaxBaseMP(element) + actor.system.alchimie.primae[element].max;
     }
 
     /**
