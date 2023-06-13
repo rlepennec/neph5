@@ -1689,6 +1689,7 @@
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose .visible {
   font-size: 13px;
   margin-top: 3px;
+  z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose.disabled {
   color: var(--font-disabled-color);
