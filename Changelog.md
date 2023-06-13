@@ -1,5 +1,6 @@
 # 1.4.3
 Possibilité d'éditer le maximum de Materiae Primae du laboratoire
+Correction d'une anomalie css
 
 # 1.4.2
 Correction d'une anomalie sur la suppression des materiae primae
