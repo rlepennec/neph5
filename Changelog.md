@@ -1,3 +1,6 @@
+# 1.4.4
+Correction d'une anomalie lorsque l'option de bonus de fraternité est 'Maximum'
+
 # 1.4.3
 Possibilité d'éditer le maximum de Materiae Primae du laboratoire
 Correction d'une anomalie css
@@ -10,6 +13,9 @@ Correction d'une anomalie sur le pourcentage de sort
 
 # 1.4.0
 Support Foundry v11
+
+# 1.3.9
+Correction d'une anomalie lorsque l'option de bonus de fraternité est 'Maximum'
 
 # 1.3.18
 Correction d'une anomalie sur la suppression des materiae primae
