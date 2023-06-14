@@ -1,3 +1,6 @@
+# 1.3.19
+Correction d'une anomalie lorsque l'option de bonus de fraternité est 'Maximum'
+
 # 1.3.18
 Correction d'une anomalie sur la suppression des materiae primae
 

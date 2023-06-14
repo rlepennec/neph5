@@ -172,7 +172,7 @@ export class AbstractFeature {
                 const ps = CustomHandlebarsHelpers.getSapiences(b/10) + CustomHandlebarsHelpers.getSapiences(f/10);
                 base = CustomHandlebarsHelpers.getLevel(ps) * 10;
                 break;
-            case 'max':
+            case 'maximum':
                 base = Math.max(b, f);
                 break;
             case 'standard':
