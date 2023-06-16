@@ -244,7 +244,7 @@ export class ActionDialog extends AbstractDialog {
      */
     _blessures() {
         const selector = this.form?.querySelector("#blessures");
-        const blessures = selector == null || selector?.value === 'ignore' ? 0 : this.data.blessures;
+        const blessures = selector?.value === 'ignore' ? 0 : this.data.blessures;
         return blessures;
     }
 

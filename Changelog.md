@@ -1,3 +1,6 @@
+# 1.4.5
+Correction d'une anomalie sur l'initialisation de l'application des blessures
+
 # 1.4.4
 Correction d'une anomalie lorsque l'option de bonus de fraternité est 'Maximum'
 
@@ -13,6 +16,9 @@ Correction d'une anomalie sur le pourcentage de sort
 
 # 1.4.0
 Support Foundry v11
+
+# 1.3.10
+Correction d'une anomalie sur l'initialisation de l'application des blessures
 
 # 1.3.9
 Correction d'une anomalie lorsque l'option de bonus de fraternité est 'Maximum'
