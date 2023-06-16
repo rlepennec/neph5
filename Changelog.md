@@ -1,3 +1,6 @@
+# 1.4.6
+Correction d'une anomalie sur l'initialisation de l'application des approches
+
 # 1.4.5
 Correction d'une anomalie sur l'initialisation de l'application des blessures
 
@@ -16,6 +19,9 @@ Correction d'une anomalie sur le pourcentage de sort
 
 # 1.4.0
 Support Foundry v11
+
+# 1.3.21
+Correction d'une anomalie sur l'initialisation de l'application des approches
 
 # 1.3.20
 Correction d'une anomalie sur l'initialisation de l'application des blessures
