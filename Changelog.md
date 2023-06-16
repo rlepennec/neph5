@@ -1,3 +1,6 @@
+# 1.3.21
+Correction d'une anomalie sur l'initialisation de l'application des approches
+
 # 1.3.20
 Correction d'une anomalie sur l'initialisation de l'application des blessures
 
