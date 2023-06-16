@@ -1,3 +1,6 @@
+# 1.3.20
+Correction d'une anomalie sur l'initialisation de l'application des blessures
+
 # 1.3.19
 Correction d'une anomalie lorsque l'option de bonus de fraternité est 'Maximum'
 
