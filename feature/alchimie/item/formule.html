@@ -20,7 +20,11 @@
 
                     {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.substance" collection=substances name="system.substance" value=system.substance}}
 
+                    {{#if (eq system.cercle "oeuvreAuRouge")}}
+                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elementsGS name="system.elements.[0]" value=system.elements.[0]}}
+                    {{else}}
                     {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.elements.[0]" value=system.elements.[0]}}
+                    {{/if}}
 
                     {{#if (eq system.cercle "oeuvreAuBlanc")}}
                     {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.elements.[1]" value=system.elements.[1]}}

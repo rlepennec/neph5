@@ -10,6 +10,10 @@ export class FormuleSheet extends NephilimItemSheet {
     getOriginalData() {
         return {
             elements: Game.pentacle.elements,
+            elementsGS: {
+                quintessence: "NEPH5E.quintessence",
+                quintuple:    "NEPH5E.quintuple"
+            },
             cercles: super.cerclesOf('alchimie'),
             substances: Game.alchimie.substances,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs')
