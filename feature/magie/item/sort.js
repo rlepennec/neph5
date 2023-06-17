@@ -79,6 +79,12 @@ export class SortSheet extends NephilimItemSheet {
             formData["system.voies"] = voies;
         }
 
+        // Update syntaxe & incantation
+        if (formData["system.cercle"] !== "grandSecret") {
+            formData['system.-=syntaxe'] = null;
+            formData['system.-=incantation'] = null;
+        }
+
         // Update object
         super._updateObject(event, formData);
     }

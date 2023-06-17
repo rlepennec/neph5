@@ -15,9 +15,7 @@
                 <div class="main">
 
                     {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.cercle" collection=cercles name="system.cercle" value=system.cercle}}
-
                     {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
-
                     {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
 
                 </div>
@@ -27,8 +25,12 @@
                 {{/if}}
 
                 {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.portee" name="system.portee" value=system.portee type="String"}}
-
                 {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
+
+                {{#if (eq system.cercle "grandSecret")}}
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.incantation" name="system.incantation" value=system.incantation type="String"}}
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.syntaxe" name="system.syntaxe" value=system.syntaxe type="String"}}
+                {{/if}}
 
                 {{#if (nonNull difficulty)}}
                 <div class="difficulte">

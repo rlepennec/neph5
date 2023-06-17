@@ -208,7 +208,7 @@
         "immobilise": "Immobilisé",
         "impact": "Impact",
         "imputrescible": "Imputrescible",
-        "incantation": "Temps d'incantation",
+        "incantation": "Incantation",
         "incarnations": "Incarnations",
         "incarnationsOuvertes": "Incarnations ouvertes",
         "ignorerBlessures": "Ignorer les blessures",
@@ -463,6 +463,7 @@
         "stase": "Stase",
         "status": "Statut",
         "substance": "Substance",
+        "syntaxe": "Syntaxe",
         "tab": "Onglet",
         "tatoue": "Tatoué",
         "tente": {
