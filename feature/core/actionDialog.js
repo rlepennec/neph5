@@ -169,7 +169,6 @@ export class ActionDialog extends AbstractDialog {
     async _onSelectElement(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const ka = parameters.ka;
         const difficulty = this.action.difficulty(parameters);
         $('#difficulty').html(difficulty + "%");
     }
@@ -209,6 +208,7 @@ export class ActionDialog extends AbstractDialog {
             approche: this._approche(),
             metamorphe:this._metamorphe(),
             ka: this._ka(),
+            elt: this._elt(),
             opposed: this._opposed(),
             shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1
         }
@@ -274,6 +274,14 @@ export class ActionDialog extends AbstractDialog {
     _ka() {
         const selector = this.form?.querySelector("#element");
         return this.actor.getKa(selector == null ? 'air' : selector?.value) * 10;
+    }
+
+    /**
+     * @returns the current element used.
+     */
+    _elt() {
+        const selector = this.form?.querySelector("#element");
+        return selector?.value;
     }
 
     /**

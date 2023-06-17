@@ -186,22 +186,24 @@ export class Formule extends AbstractFocus {
      */
     modifier(parameters) {
         if (this.item.system.elements[0] === 'quintuple') {
-            if (parameters == null) {
+            const substance = this.item.system.substance;
+            const construct = this.actor.getConstruct(substance);
+            if (parameters == null || parameters.elt == null) {
                 if (this.actor.system.alchimie.primae.air.quantite > 4) {
-                    return this.actor.getKa('air');
+                    return construct['air'] * 10;
                 } else if (this.actor.system.alchimie.primae.eau.quantite > 4) {
-                    return this.actor.getKa('eau');
+                    return construct['eau'] * 10;
                 } else if (this.actor.system.alchimie.primae.feu.quantite > 4) {
-                    return this.actor.getKa('feu');
+                    return construct['feu'] * 10;
                 } else if (this.actor.system.alchimie.primae.lune.quantite > 4) {
-                    return this.actor.getKa('lune');
+                    return construct['lune'] * 10;
                 } else if (this.actor.system.alchimie.primae.terre.quantite > 4) {
-                    return this.actor.getKa('terre');
+                    return construct['terre'] * 10;
                 } else {
                     return 0;
                 }
             } else {
-                return parameters.ka;
+                return construct[parameters.elt] * 10;
             }
         } else {
             return 0;
