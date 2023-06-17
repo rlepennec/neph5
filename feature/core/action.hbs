@@ -46,6 +46,16 @@
                     <option value='terre'>{{localize 'NEPH5E.terre'}}</option>
                 </select>
                 {{/if}}
+{{log .}}
+                {{#if (eq item.system.elements.[0] 'quintuple')}}
+                <select id="element" name="element">
+                    <option value='air'>{{localize "NEPH5E.air"}}</option>
+                    <option value='eau'>{{localize 'NEPH5E.eau'}}</option>
+                    <option value='feu'>{{localize 'NEPH5E.feu'}}</option>
+                    <option value='lune'>{{localize 'NEPH5E.lune'}}</option>
+                    <option value='terre'>{{localize 'NEPH5E.terre'}}</option>
+                </select>
+                {{/if}}
 
             </div>
 
