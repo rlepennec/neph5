@@ -185,8 +185,24 @@ export class Formule extends AbstractFocus {
      * @Override
      */
     modifier(parameters) {
-        if (this.item.system.element === 'quintuple') {
-            return parameters == null ? this.actor.getKa('air') : parameters.ka;
+        if (this.item.system.elements[0] === 'quintuple') {
+            if (parameters == null) {
+                if (this.actor.system.alchimie.primae.air.quantite > 4) {
+                    return this.actor.getKa('air');
+                } else if (this.actor.system.alchimie.primae.eau.quantite > 4) {
+                    return this.actor.getKa('eau');
+                } else if (this.actor.system.alchimie.primae.feu.quantite > 4) {
+                    return this.actor.getKa('feu');
+                } else if (this.actor.system.alchimie.primae.lune.quantite > 4) {
+                    return this.actor.getKa('lune');
+                } else if (this.actor.system.alchimie.primae.terre.quantite > 4) {
+                    return this.actor.getKa('terre');
+                } else {
+                    return 0;
+                }
+            } else {
+                return parameters.ka;
+            }
         } else {
             return 0;
         }

@@ -367,8 +367,8 @@ export class Science extends HistoricalFeature {
     }
 
     /**
-     * @param actor   The actor object for which to retrieve the focus.
-     *  @param cercle The key of the cercle for which to get the focus.
+     * @param actor  The actor object for which to retrieve the focus.
+     * @param cercle The key of the cercle for which to get the focus.
      * @returns the focus related to the specified cercle of the actor. 
      */
     static _getFocus(actor, science) {
