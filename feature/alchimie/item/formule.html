@@ -47,7 +47,11 @@
 
                 {{> "systems/neph5e/templates/item/parts/body/list.hbs" display=catalyseurs title="NEPH5E.catalyseurs" values=system.catalyseurs names="system.catalyseurs" delete="delete-catalyseur"}}
 
-                {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
+                {{#if (nonNull difficulty)}}
+                <div class="difficulte">
+                    <span>{{localize "NEPH5E.difficulte"}} : </span><span>{{difficulty}}0%{{#if (eq item.system.elements.[0] 'quintuple')}} plus l'élément{{/if}}</span>
+                </div>
+                {{/if}}
 
                 {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
 

@@ -43,10 +43,43 @@ export class Formule extends AbstractFocus {
         }
 
         for (let element of this.item.system.elements) {
-            if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
-                ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
-                return;
+
+            switch (element) {
+                case 'air':
+                case 'eau':
+                case 'feu':
+                case 'lune':
+                case 'terre':
+                    if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
+                        ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
+                        return;
+                    }
+                    break;
+
+                case 'quintuple':
+                    if (this.actor.system.alchimie.primae['air'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['eau'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['feu'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['lune'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['terre'].quantite < 5) {
+                   ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
+                   return;
+               }
+                    break;
+
+                case 'quintessence':
+                    if (this.actor.system.alchimie.primae['air'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['eau'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['feu'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['lune'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['terre'].quantite < 1) {
+                        ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
+                        return;
+                    }
+                    break;
+                
             }
+
         }
 
         return await super.initializeRoll();
@@ -94,10 +127,32 @@ export class Formule extends AbstractFocus {
 
         // Retrieve all elements used to cast the focus
         // All elements must be owned by the construct
-        const ka = this.item.system.elements.length === 1 ? construct[this.item.system.elements[0]] ?? 0 : Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
-        if (ka < 1) {
-            return null;
+        let ka = 0;
+        switch (this.item.system.cercle) {
+            case 'oeuvreAuNoir':
+                ka = construct[this.item.system.elements[0]] ?? 0
+                if (ka < 1) {
+                    return null;
+                }
+                break;
+            case 'oeuvreAuBlanc':
+                ka = Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
+                if (ka < 1) {
+                    return null;
+                }
+                break;
+            case 'oeuvreAuRouge':
+                switch (construct[this.item.system.elements[0]]) {
+                    case 'quintessence':
+                        Math.min(construct['air'], construct['eau'], construct['feu'], construct['lune'], construct['terre']);
+                        break;
+                    case 'quintuple':
+                        ka = 0;
+                        break;
+                }
+                break;
         }
+
 
         // The cercle of the formule must be supported by the construct
         switch (this.item.system.cercle) {
@@ -124,6 +179,17 @@ export class Formule extends AbstractFocus {
         // Final result
         return science + ka - focus;
 
+    }
+
+    /**
+     * @Override
+     */
+    modifier(parameters) {
+        if (this.item.system.element === 'quintuple') {
+            return parameters == null ? this.actor.getKa('air') : parameters.ka;
+        } else {
+            return 0;
+        }
     }
 
     /**
