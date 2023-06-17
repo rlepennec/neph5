@@ -57,7 +57,6 @@ export class Laboratoire {
 
     /**
      * Gets the construct associated with the specified substance.
-     * @param actor     The actor object for which to retrieve the construct.
      * @param substance The substance of the construct to get.
      * @returns the construct.
      */
@@ -77,7 +76,7 @@ export class Laboratoire {
     }
 
     /**
-     * @param element The element for which to retrieve to max MP.
+     * @param element The element for which to retrieve the max MP.
      * @returns the maximum number of materiae primae.
      */
     getMaxBaseMP(element) {

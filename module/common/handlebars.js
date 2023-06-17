@@ -258,7 +258,7 @@ export class CustomHandlebarsHelpers {
 
     /**
      * @param actor  The actor which uses the laboratory.
-     * @param element The element for which to retrieve to max MP.
+     * @param element The element for which to retrieve the max MP.
      * @returns the maximum number of materiae primae.
      */
     static getMaxFinalMP(actor, element) {
