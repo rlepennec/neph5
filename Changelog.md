@@ -1,6 +1,6 @@
 # 1.4.7
-Ajout du temps d'incarnation et de la syntaxe pour les sorts de Grand Secret
-Ajout des echecs et de la maladresse pour les sorts de Grand Oeuvre
+Gestion du temps d'incarnation et de la syntaxe pour les sorts de Grand Secret
+Gestion des quintubles doses ou des quintessence, des echecs et des maladresses pour les formules de Grand Oeuvre
 
 # 1.4.6
 Correction d'une anomalie sur l'initialisation de l'application des approches
