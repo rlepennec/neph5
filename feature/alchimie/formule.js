@@ -142,7 +142,7 @@ export class Formule extends AbstractFocus {
                 }
                 break;
             case 'oeuvreAuRouge':
-                switch (construct[this.item.system.elements[0]]) {
+                switch (this.item.system.elements[0]) {
                     case 'quintessence':
                         Math.min(construct['air'], construct['eau'], construct['feu'], construct['lune'], construct['terre']);
                         break;
