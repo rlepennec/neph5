@@ -34,6 +34,11 @@
 
                 {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
 
+                {{#if (eq system.cercle "oeuvreAuRouge")}}
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.echec" name="system.echec" value=system.echec type="String"}}
+                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.maladresse" name="system.maladresse" value=system.maladresse type="String"}}
+                {{/if}}
+
                 {{> "systems/neph5e/templates/item/parts/body/list.hbs" title="NEPH5E.variantes" values=system.variantes names="system.variantes" edit="edit-variante" delete="delete-variante"}}
 
                 {{> "systems/neph5e/templates/item/parts/body/list.hbs" display=catalyseurs title="NEPH5E.catalyseurs" values=system.catalyseurs names="system.catalyseurs" delete="delete-catalyseur"}}

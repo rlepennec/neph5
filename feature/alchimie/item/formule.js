@@ -132,6 +132,12 @@ export class FormuleSheet extends NephilimItemSheet {
         }
         formData["system.variantes"] = variantes;
 
+        // Update echec & maladresse
+        if (formData["system.cercle"] !== "oeuvreAuRouge") {
+            formData['system.-=echec'] = null;
+            formData['system.-=maladresse'] = null;
+        }
+
         // Update object
         super._updateObject(event, formData);
     }

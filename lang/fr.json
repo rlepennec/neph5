@@ -166,6 +166,7 @@
         "dresseur": "Dresseur",
         "duree": "Durée",
         "eau": "Eau",
+        "echec": "Echec",
         "effet": "Effet",
         "element": "Elément",
         "elements": "Eléments",
@@ -231,6 +232,7 @@
         "lutte": "Lutte",
         "lock": "Immobiliser",
         "magique": "Magique",
+        "maladresse": "Maladresse",
         "malkut": "Malkut",
         "manoeuvre": "Manoeuvre",
         "manoeuvres": {
