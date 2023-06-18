@@ -46,7 +46,8 @@ Game.kabbale = {
         meborack:      "NEPH5E.kabbale.mondes.meborack",
         pachad:        "NEPH5E.kabbale.mondes.pachad",
         sohar:         "NEPH5E.kabbale.mondes.sohar",
-        zakai:         "NEPH5E.kabbale.mondes.zakai"
+        zakai:         "NEPH5E.kabbale.mondes.zakai",
+        tous:          "NEPH5E.kabbale.mondes.tous"
     }
 }
 

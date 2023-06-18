@@ -1,6 +1,7 @@
 # 1.4.7
 Gestion du temps d'incarnation et de la syntaxe pour les sorts de Grand Secret
 Gestion des quintubles doses ou des quintessence, des echecs et des maladresses pour les formules de Grand Oeuvre
+Gestion des invocations non liées à un monde de kabbale particulier
 
 # 1.4.6
 Correction d'une anomalie sur l'initialisation de l'application des approches
