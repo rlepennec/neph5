@@ -175,7 +175,7 @@ export class Defense extends AbstractFeature {
 
         // Apply damages automaticaly if necessary
         if (game.settings.get('neph5e', 'useCombatSystem') === true) {
-            await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver);
+            await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver, this.result.critical);
             await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
         }
 
@@ -224,7 +224,7 @@ export class Defense extends AbstractFeature {
         // No manoeuver possible, apply dammages automaticaly
         if (Object.keys(this.data.manoeuvers).length === 0) {
             if (game.settings.get('neph5e', 'useCombatSystem') === true && this.result.success) {
-                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver);
+                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
             }
             return null;

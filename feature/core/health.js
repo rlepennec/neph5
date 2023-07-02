@@ -23,7 +23,8 @@ export class Health {
                 socketMessage.data.weapon,
                 socketMessage.data.manoeuver,
                 socketMessage.data.winner,
-                socketMessage.data.attack );
+                socketMessage.data.attack,
+                socketMessage.data.critical );
             break;
         case Constants.MSG_APPLY_EFFECTS_ON:
             await Health.applyEffectsOn(
@@ -43,12 +44,13 @@ export class Health {
      * @param manoeuver The manoeuver absorption.
      * @param winner    The action winner
      * @param attack    The attack manoeuver
+     * @param critical  True if attack twices the damages.
      */
-    static async applyDamagesOn(token, impact, physical, weapon, manoeuver, winner, attack) {
+    static async applyDamagesOn(token, impact, physical, weapon, manoeuver, winner, attack, critical) {
         if (game.user.isGM === true) {
             const t = canvas.tokens?.objects?.children.find(t => t.id === token);
             if (t != null) {
-                await new Health(t.actor).applyDamages(impact, physical, weapon, manoeuver, winner, attack);
+                await new Health(t.actor).applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical);
             }
         } else {
             game.socket.emit(Constants.SYSTEM_SOCKET_ID, {
@@ -60,7 +62,8 @@ export class Health {
                     weapon: weapon,
                     manoeuver: manoeuver,
                     winner: winner,
-                    attack: attack
+                    attack: attack,
+                    critical: critical
                 }
             });
         }
@@ -73,8 +76,9 @@ export class Health {
      * @param manoeuver The manoeuver absorption.
      * @param winner    The action winner
      * @param attack    The attack manoeuver
+     * @param critical  True if attack twices the damages.
      */
-    async applyDamages(impact, physical, weapon, manoeuver, winner, attack) {
+    async applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical) {
 
         // Because dodge all damages
         if (manoeuver != null && manoeuver.hasOwnProperty('fix')) {
@@ -94,6 +98,7 @@ export class Health {
             } else {
                 damages = Math.max(0, encaisse - absorption);
             }
+            damages = damages * (critical === true ? 2 : 1);
 
             await new Damages(this.actor, 'physique').apply(damages);
         }
@@ -101,6 +106,7 @@ export class Health {
             const armor = this.actor.protection("magique");
             const encaisse = Math.max(minDamages, impact - armor);
             const damages = Math.max(0, encaisse - absorption);
+            damages = damages * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'magique').apply(damages);
         }
     }
