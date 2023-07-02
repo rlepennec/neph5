@@ -1,4 +1,5 @@
 # 1.4.7
+Prise en compte des dommages critiques qui doublent les dégâts
 Gestion du temps d'incarnation et de la syntaxe pour les sorts de Grand Secret
 Gestion des quintubles doses ou des quintessence, des echecs et des maladresses pour les formules de Grand Oeuvre
 Gestion des invocations non liées à un monde de kabbale particulier
