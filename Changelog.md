@@ -1,3 +1,5 @@
+# 1.4.8
+
 # 1.4.7
 Prise en compte des dommages critiques qui doublent les dégâts
 Gestion du temps d'incarnation et de la syntaxe pour les sorts de Grand Secret
