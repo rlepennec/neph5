@@ -2788,12 +2788,14 @@
   margin-top: -5px;
   border: none;
   background-color: transparent;
+  color: var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-transporte {
   flex: 0 0 50px;
   margin-top: -5px;
   border: none;
   background-color: transparent;
+  color: var(--font-color);
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-pacte {
   flex: 0 0 50px;
