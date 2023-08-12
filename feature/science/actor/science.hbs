@@ -155,7 +155,7 @@
                     </label>
                     {{/if}}
 
-                    <!-- The status of the focus: dechiffre, appris, tatoue. -->
+                    <!-- The status of the focus: connu, dechiffre, appris, tatoue. -->
                     {{#if (includes ../../header 'status')}}
                     <label class="focus-status {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.embedded.getStatus}}</label>
                     {{/if}} 

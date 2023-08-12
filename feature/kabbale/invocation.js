@@ -11,7 +11,7 @@ export class Invocation extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.embedded == null || (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre')) {
+        if (this.embedded == null || (this.embedded.system.focus !== true && (this.embedded.system.status === 'connu' || this.embedded.system.status === 'dechiffre'))) {
             ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
             return;
         }
@@ -90,7 +90,7 @@ export class Invocation extends AbstractFocus {
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
-            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
             .withData("pacte", (previous == null ? false : previous.system.pacte))
             .withData("periode", this.periode)
             .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')

@@ -54,7 +54,7 @@ export class Appel extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a appel")
             .withDeleteExisting()
-            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
             .withData("periode", this.periode)
             .withoutData('description', 'degre', 'appel', 'controle', 'visibilite', 'entropie', 'dommages', 'protection')
             .create();

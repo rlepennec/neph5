@@ -514,9 +514,10 @@ export class FigureSheet extends HistoricalSheet {
 
     /**
      * Changes the status of the item.
+     *  - If the item was connu, it becomes dechiffre. 
      *  - If the item was dechiffre, it becomes appris.
      *  - If the item was appris, it becomes tatoue.
-     *  - If the item was tatoue, it becomes dechiffre.
+     *  - If the item was tatoue, it becomes connu.
      * Used by:
      *  - sort
      *  - invocation
@@ -531,6 +532,9 @@ export class FigureSheet extends HistoricalSheet {
         const sid = $(event.currentTarget).closest('.item').data('sid');
         const item = this.actor.items.find(i => i.sid === sid);
         switch (item.system.status) {
+            case Constants.CONNU:
+                await item.update({ ['system.status']: Constants.DECHIFFRE });
+                break;
             case Constants.DECHIFFRE:
                 await item.update({ ['system.status']: Constants.APPRIS });
                 break;
@@ -538,7 +542,7 @@ export class FigureSheet extends HistoricalSheet {
                 await item.update({ ['system.status']: Constants.TATOUE });
                 break;
             case Constants.TATOUE:
-                await item.update({ ['system.status']: Constants.DECHIFFRE });
+                await item.update({ ['system.status']: Constants.CONNU });
                 break;
             default:
                 throw new Error("Status " + item.system.status + " not implemented");

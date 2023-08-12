@@ -4,6 +4,7 @@ export class Constants {
     static APPRIS = 'appris';
     static BRAWL = 'brawl';
     static DECHIFFRE = 'dechiffre';
+    static CONNU = 'connu';
     static DODGE = 'dodge';
     static FEU = 'feu';
     static FIRE = 'fire';

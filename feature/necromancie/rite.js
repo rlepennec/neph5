@@ -54,7 +54,7 @@ export class Rite extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a rite")
             .withDeleteExisting()
-            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
             .withData("periode", this.periode)
             .withoutData('description', 'cercle', 'desmos')
             .create();

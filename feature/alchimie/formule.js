@@ -37,7 +37,7 @@ export class Formule extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.embedded == null || (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre')) {
+        if (this.embedded == null || (this.embedded.system.focus !== true && (this.embedded.system.status === 'connu' || this.embedded.system.status === 'dechiffre'))) {
             ui.notifications.warn("Vous ne possédez pas le focus de cette formule");
             return;
         }
@@ -220,7 +220,7 @@ export class Formule extends AbstractFocus {
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
-            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
             .withData("quantite", 0)
             .withData("transporte", 0)
             .withData("periode", this.periode)

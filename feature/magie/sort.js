@@ -11,7 +11,7 @@ export class Sort extends AbstractFocus {
      */
     async initializeRoll() {
 
-        if (this.embedded == null || (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre')) {
+        if (this.embedded == null || (this.embedded.system.focus !== true && (this.embedded.system.status === 'connu' || this.embedded.system.status === 'dechiffre'))) {
             ui.notifications.warn("Vous ne possédez pas le focus de ce sort");
             return;
         }
@@ -94,7 +94,7 @@ export class Sort extends AbstractFocus {
             .withContext("Drop of a sort")
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : previous.system.focus))
-            .withData("status", (previous == null ? Constants.DECHIFFRE : previous.system.status))
+            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
             .withData("periode", this.periode)
             .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
             .create();
