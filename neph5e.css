@@ -633,7 +633,7 @@
   --font-side-color: #191813;
   --font-side-selected-color: #dfdede;
   --shadow-navigation-color: black;
-  --font-disabled-color: #e7e6e6;
+  --font-disabled-color: #d9d1d1;
   --font-article-title: -internal-light-dark(black, white);
   --column-color: #191813;
   --side-background: url("../../systems/neph5e/assets/skins/lune/side-background.webp");
@@ -3927,6 +3927,7 @@
   text-align: center;
   font-size: 13px;
   margin-right: 10px;
+  z-index: 99;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus:hover {
   text-shadow: 0px 0px 1px var(--font-color);
