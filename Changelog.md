@@ -1,4 +1,6 @@
 # 1.4.8
+Ajout du statut connu pour les focus
+Amélioration des skins feu et lune
 
 # 1.4.7
 Prise en compte des dommages critiques qui doublent les dégâts
