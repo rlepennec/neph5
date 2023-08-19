@@ -2,6 +2,7 @@
 Ajout du statut connu pour les focus
 Amélioration des skins feu et lune
 Correction d'une anomalie css empéchant de supprimer un focus
+Ajout d'une clé de debug pour les savoirs ésotériques
 
 # 1.4.7
 Prise en compte des dommages critiques qui doublent les dégâts

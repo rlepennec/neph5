@@ -12,6 +12,10 @@
 
             <div class="body">
 
+                <div class="key {{#unless (and debug isGM)}}hidden{{/unless}}">
+                    {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
+                </div>
+
                 {{> "systems/neph5e/templates/item/parts/body/chronology.hbs" title='NEPH5E.periode'}}
 
                 {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
