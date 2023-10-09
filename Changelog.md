@@ -1,3 +1,5 @@
+# 1.4.9
+
 # 1.4.8
 Ajout du statut connu pour les focus
 Amélioration des skins feu et lune
