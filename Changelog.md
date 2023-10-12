@@ -1,4 +1,5 @@
 # 1.4.9
+Contrôle du niveau et de l'activité du construct lors du lancement d'une formule
 
 # 1.4.8
 Ajout du statut connu pour les focus
