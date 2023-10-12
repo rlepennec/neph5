@@ -42,6 +42,24 @@ export class Formule extends AbstractFocus {
             return;
         }
 
+        const owner = this.getOwner();
+        const construct = owner == null ? null : owner.getConstruct(this.item.system.substance);
+
+        if (construct?.active !== true) {
+            ui.notifications.warn("Vous ne possédez pas de construct actif");
+            return;
+        }
+
+        if (construct.degre === "oeuvreAuNoir" && (this.item.system.cercle === "oeuvreAuBlanc" || this.item.system.cercle === "oeuvreAuRouge")) {
+            ui.notifications.warn("Vous ne possédez pas de construct au niveau requis");
+            return;
+        }
+
+        if (construct.degre === "oeuvreAuBlanc" && this.item.system.cercle === "oeuvreAuRouge") {
+            ui.notifications.warn("Vous ne possédez pas de construct au niveau requis");
+            return;
+        }
+
         for (let element of this.item.system.elements) {
 
             switch (element) {
