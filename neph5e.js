@@ -316,6 +316,14 @@ Hooks.once("init", function () {
             type: Boolean,
             default: false
         });
+        game.settings.register('neph5e', 'useCombatManoeuver', {
+            config: true,
+            scope: 'world',
+            name: game.i18n.localize('SETTINGS.useCombatManoeuver'),
+            hint: game.i18n.localize('SETTINGS.useCombatManoeuverDesc'),
+            type: Boolean,
+            default: true
+        });
         game.settings.register('neph5e', 'worldTemplateVersion', {
             name: 'World Template Version',
             hint: 'Used to automatically upgrade worlds data when the template is upgraded.',

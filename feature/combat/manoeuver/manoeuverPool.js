@@ -16,7 +16,9 @@ export class ManoeuverPool {
      * @returns the instance.
      */
     withManoeuver(manoeuver) {
-        this.manoeuvers[manoeuver.id] = manoeuver;
+        if (manoeuver.advanced === false || game.settings.get('neph5e', 'useCombatManoeuver') === true) {
+            this.manoeuvers[manoeuver.id] = manoeuver;
+        }
         return this;
     }
 

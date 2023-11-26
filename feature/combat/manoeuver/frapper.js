@@ -10,6 +10,7 @@ export class Frapper extends AbstractManoeuver {
      */
     constructor() {
         super(Frapper.ID, Constants.BRAWL);
+        this.withAdvanced(false);
         this.withApproches(['eau','feu', 'ka']);
         this.withImpact({modifier: 0});
     }

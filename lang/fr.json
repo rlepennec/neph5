@@ -44,6 +44,8 @@
     "SETTINGS.noteDesc": "Permet d'afficher les notes de démarrage",
     "SETTINGS.useCombatSystem": "Système de combat",
     "SETTINGS.useCombatSystemDesc": "Permet d'utiliser le système de combat automatique",
+    "SETTINGS.useCombatManoeuver": "Système de manoeuvres",
+    "SETTINGS.useCombatManoeuverDesc": "Permet d'utiliser le système de manoeuvres",
     "SETTINGS.catalyseurs": "Catalyseurs alchimiques",
     "SETTINGS.catalyseursDesc": "Les catalyseurs alchimiques apparaitront dans l'onglet Laboratoire",
     "SETTINGS.sciencesOccultes": "Sciences Occultes",

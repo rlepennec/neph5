@@ -24,6 +24,7 @@ export class Viser extends AbstractManoeuver {
      */
     constructor() {
         super(Viser.ID, Constants.TACTIC);
+        this.withAdvanced(false);
         this.withImpact({fix: 0});
         this.withoutClearViser();
     }

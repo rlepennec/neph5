@@ -10,6 +10,7 @@ export class Rafale extends AbstractManoeuver {
      */
     constructor() {
         super(Rafale.ID, Constants.FIRE);
+        this.withAdvanced(true);
         this.withApproches(['air', 'ka']);
         this.withAttack({modifier: -50});
         this.withImpact({modifier: 5});

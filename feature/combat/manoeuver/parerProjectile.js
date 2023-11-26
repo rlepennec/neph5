@@ -10,6 +10,7 @@ export class ParerProjectile extends AbstractManoeuver {
      */
     constructor() {
         super(ParerProjectile.ID, Constants.PARADE);
+        this.withAdvanced(true);
         this.withApproches(['terre', 'ka']);
         this.withShots(0, -20, -40, -60, -80, -100);
         this.withAbsorption({modifier: 2});

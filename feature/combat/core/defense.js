@@ -259,4 +259,22 @@ export class Defense extends AbstractFeature {
             .withManoeuver(new ParerProjectile());
     }
 
+        /**
+     * @returns the defense manoeuvers.
+     */
+        static manoeuvers() {
+            return new ManoeuverPool()
+                .withManoeuver(new Bloquer())
+                .withManoeuver(new Contrer())
+                .withManoeuver(new Desarmer())
+                .withManoeuver(new Elaboree())
+                .withManoeuver(new Esquiver())
+                .withManoeuver(new Eviter())
+                .withManoeuver(new Fuir())
+                .withManoeuver(new Parer())
+                .withManoeuver(new EsquiverLance())
+                .withManoeuver(new ParerLance())
+                .withManoeuver(new ParerProjectile());
+        }
+
 }

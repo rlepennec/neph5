@@ -10,6 +10,7 @@ export class Puissante extends AbstractManoeuver {
      */
     constructor() {
         super(Puissante.ID, Constants.STRIKE);
+        this.withAdvanced(true);
         this.withApproches(['feu','terre']);
         this.withAttack({modifier: -20});
         this.withDefense({modifier: 0});

@@ -10,6 +10,7 @@ export class Force extends AbstractManoeuver {
      */
     constructor() {
         super(Force.ID, Constants.STRIKE);
+        this.withAdvanced(true);
         this.withApproches(['feu','terre']);
         this.withAttack({modifier: 30});
         this.withDefense({modifier: 0});
