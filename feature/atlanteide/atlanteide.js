@@ -47,7 +47,7 @@ export class Atlanteide extends AbstractFocus {
         const ka = this.actor.ka;
 
         // Final result
-        return science + ka - focus;
+        return Math.max(0, science + ka - focus);
 
     }
 

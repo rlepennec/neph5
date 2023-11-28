@@ -58,7 +58,7 @@ export class Invocation extends AbstractFocus {
         const ka = this.item.system.element === 'choix' ? 0 : this.actor.getKa(this.item.system.element);
 
         // Final result
-        return science + ka;
+        return Math.max(0, science + ka);
 
     }
 

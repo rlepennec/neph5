@@ -67,7 +67,7 @@
 
                     <!-- The only element of the focus. -->
                     {{#if (includes ../../header 'element')}}
-                    <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    <label class="focus-element tooltip">
                         {{#switch item.original.system.element}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                         {{/switch}}
@@ -76,7 +76,7 @@
 
                     <!-- The both elements of the focus. -->
                     {{#if (includes ../../header 'elements')}}
-                    <label class="focus-elements {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    <label class="focus-elements">
                         <div class="tooltip">
                         {{#switch item.original.system.elements.[0]}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
@@ -92,7 +92,7 @@
 
                     <!-- The ka element. -->
                     {{#if (includes ../../header 'ka')}}
-                    <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    <label class="focus-element tooltip">
                         {{#switch 'ka'}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                         {{/switch}}
@@ -101,7 +101,7 @@
 
                     <!-- The lune noire element. -->
                     {{#if (includes ../../header 'luneNoire')}}
-                    <label class="focus-element tooltip {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    <label class="focus-element tooltip">
                         {{#switch 'luneNoire'}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                         {{/switch}}
@@ -109,11 +109,11 @@
                     {{/if}}
 
                     <!-- The name of the focus. -->
-                    <label class="focus-name open {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.original.name}}</label>
+                    <label class="focus-name open">{{item.original.name}}</label>
 
                     <!-- Indicates id the character has the focus. -->
                     {{#if (includes ../../header 'possede')}}
-                    <label class="focus-possede {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    <label class="focus-possede">
                         {{#if item.embedded.system.focus}}
                         <i class="fa-solid fa-scroll"></i>
                         {{else}}
@@ -122,13 +122,11 @@
                     </label>
                     {{/if}}
 
-                    {{#unless (eq item.embedded.degre 0)}}
-
                     <!-- The quantity produced by the laboratory. -->
                     {{#if (includes ../../header 'quantite')}}
                     <input
                         {{#if ../../../actor.locked}}disabled{{/if}}
-                        class="focus-quantite change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}"
+                        class="focus-quantite change"
                         type="number"
                         value="{{item.embedded.system.quantite}}"
                         data-dtype="Number"/>
@@ -138,7 +136,7 @@
                     {{#if (includes ../../header 'transporte')}}
                     <input
                         {{#if ../../../actor.locked}}disabled{{/if}}
-                        class="focus-transporte change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}"
+                        class="focus-transporte change"
                         type="number"
                         value="{{item.embedded.system.transporte}}"
                         data-dtype="Number"/>
@@ -146,7 +144,7 @@
 
                     <!-- The status of the pacte with the kabbale creature. -->
                     {{#if (includes ../../header 'pacte')}}
-                    <label class="focus-pacte change {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">
+                    <label class="focus-pacte change">
                         {{#if item.embedded.system.pacte}}
                         <i class="fa-solid fa-feather-pointed"></i>
                         {{else}}
@@ -157,7 +155,7 @@
 
                     <!-- The status of the focus: connu, dechiffre, appris, tatoue. -->
                     {{#if (includes ../../header 'status')}}
-                    <label class="focus-status {{#if (eq item.embedded.degre 0)}}disabled{{/if}}">{{item.embedded.getStatus}}</label>
+                    <label class="focus-status">{{item.embedded.getStatus}}</label>
                     {{/if}} 
 
                     {{#if (includes ../../header 'percentage')}}
@@ -165,11 +163,15 @@
                     {{/if}}
 
                     <!-- The percentage to succeed to use the focus. -->
+                    {{#if (eq item.embedded.degre 0)}}
+                    <a class="focus-dice">
+                        <i class="fa-solid fa-ban"></i>
+                    </a>
+                    {{else}}
                     <a class="focus-dice roll">
                         <i class="fas fa-dice-d20"></i>
                     </a>
-
-                    {{/unless}}
+                    {{/if}}
 
                 </li>
                 {{/each}}

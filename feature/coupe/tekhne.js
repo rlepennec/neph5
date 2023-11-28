@@ -47,7 +47,7 @@ export class Tekhne extends AbstractFocus {
         const ka = this.actor.getKa('soleil');
 
         // Final result
-        return science + ka - focus;
+        return Math.max(0, science + ka - focus);
 
     }
 

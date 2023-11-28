@@ -70,7 +70,7 @@ export class Sort extends AbstractFocus {
         const ka = this.item.system.element === 'choix' ? 0 : this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
 
         // Final result
-        return science + ka - focus;
+        return Math.max(0, science + ka - focus);
 
     }
 

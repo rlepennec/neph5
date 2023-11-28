@@ -48,7 +48,7 @@ export class Habitus extends AbstractFocus {
         const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
 
         // Final result
-        return science + ka - focus + 1;
+        return Math.max(0, science + ka - focus + 1);
 
     }
 

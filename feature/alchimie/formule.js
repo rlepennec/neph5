@@ -195,7 +195,7 @@ export class Formule extends AbstractFocus {
         const focus = this.item.system.degre;
 
         // Final result
-        return science + ka - focus;
+        return Math.max(0, science + ka - focus);
 
     }
 

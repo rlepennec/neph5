@@ -1,6 +1,7 @@
 # 1.4.9
 Contrôle du niveau et de l'activité du construct lors du lancement d'une formule
 Gestion simplifiée des manoeuvres de combats
+Amélioration de la gestion quand les chances d'utiliser un focus sont égales à 0%
 
 # 1.4.8
 Ajout du statut connu pour les focus
