@@ -4703,7 +4703,7 @@
   border-radius: 4px;
 }
 .action .body {
-  background: url("../../systems/neph5e/assets/backgrounds/parchemin 3.webp");
+  background: url(../../systems/neph5e/assets/skins/soleil/background.webp);
   background-size: cover;
   color: #191813;
 }
