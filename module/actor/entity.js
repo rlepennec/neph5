@@ -613,11 +613,19 @@ export class NephilimActor extends Actor {
             }
 
             case 'weapon': {
+
                 const weapon = this.items.get(id);
+
+                if (weapon == null) {
+                    ui.notifications.warn("Vous ne pouvez pas défini d'arme pour attaquer.");
+                    return;
+                }
+
                 if (weapon.attackAvailable === false) {
                     ui.notifications.warn("Vous ne pouvez pas attaquer avec cette arme.");
                     return;
                 }
+
                 switch (weapon.system.type) {
                     case Constants.NATURELLE:
                         await new Naturelle(this, weapon).initializeRoll();
@@ -630,7 +638,9 @@ export class NephilimActor extends Actor {
                         await new Distance(this, weapon).initializeRoll();
                         break;
                 }
+
                 break;
+
             }
 
             case 'wrestle': {

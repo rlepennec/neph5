@@ -91,17 +91,10 @@ export class Health {
         if (physical === true) {
             const armor = this.actor.protection("physique");
             const encaisse = Math.max(minDamages, impact - armor);
-
-            let damages = 0;
-            if (winner === Constants.ACTION && attack.impact.fix != null) {
-                damages = attack.impact.fix;
-            } else {
-                damages = Math.max(0, encaisse - absorption);
-            }
-            damages = damages * (critical === true ? 2 : 1);
-
+            const damages = (winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : Math.max(0, encaisse - absorption)) * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'physique').apply(damages);
         }
+
         if (weapon?.system?.magique === true) {
             const armor = this.actor.protection("magique");
             const encaisse = Math.max(minDamages, impact - armor);
