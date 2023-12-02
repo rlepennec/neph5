@@ -54,7 +54,7 @@
 
             <div class="line">
                 <div class="line-title">
-                    <select id="manoeuver" name="manoeuver">
+                    <select id="manoeuver" name="manoeuver" {{#unless (getSystemOption 'useCombatManoeuver')}}style="display:none"{{/unless}}>
                         {{#each manoeuvers as |manoeuver|}}
                         <option
                             {{#if (eq manoeuver.id 'standard')}}
@@ -63,6 +63,9 @@
                             value="{{manoeuver.id}}">{{manoeuver.name}}</option>
                         {{/each}}
                     </select>
+                    {{#unless (getSystemOption 'useCombatManoeuver')}}
+                    <label>Attaque standard</label>
+                    {{/unless}}
                 </div>
                 <div class="line-value">
                     <label id="manoeuverModifier">0</label>

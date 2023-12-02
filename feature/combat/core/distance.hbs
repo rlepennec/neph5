@@ -54,7 +54,7 @@
 
             <div class="line">
                 <div class="line-title">
-                    <select id="manoeuver" name="manoeuver">
+                    <select id="manoeuver" name="manoeuver" {{#unless (getSystemOption 'useCombatManoeuver')}}style="display:none"{{/unless}}>
                         {{#each manoeuvers as |manoeuver|}}
                         <option
                             {{#if (eq manoeuver.id 'tirer')}}
@@ -63,6 +63,9 @@
                             value="{{manoeuver.id}}">{{manoeuver.name}}</option>
                         {{/each}}
                     </select>
+                    {{#unless (getSystemOption 'useCombatManoeuver')}}
+                    <label>Tir</label>
+                    {{/unless}}
                     <div id='times'>
                         <i id='shot-1' style='visibility:hidden' class='fas fa-crosshairs checked'></i>
                         <label class='dommage-checkbox' id='shot-2' style='visibility:hidden'> 

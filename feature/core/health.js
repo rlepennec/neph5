@@ -105,8 +105,7 @@ export class Health {
         if (weapon?.system?.magique === true) {
             const armor = this.actor.protection("magique");
             const encaisse = Math.max(minDamages, impact - armor);
-            const damages = Math.max(0, encaisse - absorption);
-            damages = damages * (critical === true ? 2 : 1);
+            const damages = Math.max(0, encaisse - absorption) * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'magique').apply(damages);
         }
     }
