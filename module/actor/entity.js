@@ -617,7 +617,7 @@ export class NephilimActor extends Actor {
                 const weapon = this.items.get(id);
 
                 if (weapon == null) {
-                    ui.notifications.warn("Vous ne pouvez pas défini d'arme pour attaquer.");
+                    ui.notifications.warn("Vous ne possédez pas cette d'arme pour attaquer.");
                     return;
                 }
 

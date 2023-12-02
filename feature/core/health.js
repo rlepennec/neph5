@@ -101,6 +101,7 @@ export class Health {
             const damages = Math.max(0, encaisse - absorption) * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'magique').apply(damages);
         }
+
     }
 
     /**
