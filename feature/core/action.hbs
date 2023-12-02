@@ -121,6 +121,13 @@
                     </div>
                     <div class="line-value">
                         <select id="modifier">
+                            {{#if (eq (getSystemOption 'modifierRange') '100')}}
+                            <option value="100">100%</option>
+                            <option value="90">90%</option>
+                            <option value="80">80%</option>
+                            <option value="70">70%</option>
+                            <option value="60">60%</option>
+                            {{/if}}
                             <option value="50">50%</option>
                             <option value="40">40%</option>
                             <option value="30">30%</option>
@@ -132,6 +139,13 @@
                             <option value="-30">-30%</option>
                             <option value="-40">-40%</option>
                             <option value="-50">-50%</option>
+                            {{#if (eq (getSystemOption 'modifierRange') '100')}}
+                            <option value="-60">-60%</option>
+                            <option value="-70">-70%</option>
+                            <option value="-80">-80%</option>
+                            <option value="-90">-90%</option>
+                            <option value="-100">-100%</option>
+                            {{/if}}
                         </select>
                     </div>
                 </div>
@@ -141,7 +155,11 @@
                 <div class="line">
                     <div class="line-title">
                         <label>Modificateur</label>
+                        {{#if (eq (getSystemOption 'modifierRange') '50')}}
                         <input id="modifier" class="slider" type="range" min="-50" max="50" step="10" value="0"/>
+                        {{else}}
+                        <input id="modifier" class="slider" type="range" min="-100" max="100" step="10" value="0"/>
+                        {{/if}}
                     </div>
                     <div class="line-value">
                         <label id="sliderModifier">0</label>

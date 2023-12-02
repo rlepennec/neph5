@@ -231,7 +231,7 @@ export class Science extends HistoricalFeature {
 
         // Retrieve 
         const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
-        
+
         for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 
             const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();

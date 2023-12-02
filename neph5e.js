@@ -358,6 +358,18 @@ Hooks.once("init", function () {
             },
             default: 'liste'
         });
+        game.settings.register('neph5e', 'modifierRange', {
+            config: true,
+            name: game.i18n.localize('SETTINGS.modifierRange'),
+            hint: game.i18n.localize('SETTINGS.modifierRangeDesc'),
+            scope: "world",
+            type: String,
+            choices: {
+              '50': 'De -50% à +50%',
+              '100': 'De -100% à +100%'
+            },
+            default: '50'
+        });
         game.settings.register('neph5e', 'extraChatMessages', {
             config: true,
             scope: 'world',
