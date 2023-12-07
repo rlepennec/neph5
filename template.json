@@ -48,7 +48,8 @@
             "ka": 3,
             "description": "",
             "options": {
-                "theme": "soleil"
+                "theme": "soleil",
+                "degatAutomatique": true
             }
         },
         "figure": {
@@ -204,6 +205,7 @@
                 "baton": false,
                 "coupe": false,
                 "denier": false,
+                "degatAutomatique": true,
                 "epee": false,
                 "chronologieDescendante": false,
                 "degreGauche": false,

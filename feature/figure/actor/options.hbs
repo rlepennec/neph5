@@ -105,6 +105,26 @@
 
         </div>
 
+        <div class="options-group">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="options-name">{{localize "NEPH5E.automatisation"}}</span>
+
+            </div>
+
+            <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degatAutomatique" name="system.options.degatAutomatique" value=system.options.degatAutomatique}}
+
+            </ol>
+
+        </div>
+
     </div>
 
     <div class="options-column">
@@ -230,22 +250,7 @@
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.degreGauche" name="system.options.degreGauche" value=system.options.degreGauche}}
 
-                <li class="option">
-
-                    <label class="option-checkbox">
-                        <input
-                            {{#if system.options.incarnationsOuvertes}}checked{{/if}}
-                            name="system.options.incarnationsOuvertes"
-                            type="checkbox"
-                            class="incarnationsOuvertes"
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-
-                    <label>{{localize "NEPH5E.incarnationsOuvertes"}}</label>
-
-                </li>
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnationsOuvertes" name="system.options.incarnationsOuvertes" value=system.options.incarnationsOuvertes}}
 
             </ol>
 

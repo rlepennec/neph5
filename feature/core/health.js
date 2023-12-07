@@ -240,6 +240,11 @@ class Damages {
      */
     async apply(amount) {
 
+        // Exit if manual dammages
+        if (this.actor.system.options.degatAutomatique !== true) {
+            return;
+        }
+
         // Exit if no damages or if the actor is already out
         if (amount <= 0 || this.actor.system.dommage[this.type]['mortelle'] === true) {
             return;
