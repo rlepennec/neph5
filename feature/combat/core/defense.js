@@ -67,7 +67,7 @@ export class Defense extends AbstractFeature {
             .withBase(this.baseName, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Defense.manoeuvers().against(this.attack))
-            .withApproches(this.approches(Eviter.ID))
+            .withApproches(this.approches(game.settings.get('neph5e', 'useCombatManoeuver') === true ? Eviter.ID : Esquiver.ID ))
             .withWeapon(this.weapon)
             .withAttack(this.attack.defenseModifier())
             .export();

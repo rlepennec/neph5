@@ -10,7 +10,7 @@ export class Fuir extends AbstractManoeuver {
      */
     constructor() {
         super(Fuir.ID, Constants.DODGE);
-        this.withAdvanced(false);
+        this.withAdvanced(true);
         this.withApproches(['air','eau','lune', 'ka']);
         this.withNoTarget();
         this.withNoDefense();
