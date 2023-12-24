@@ -18,7 +18,7 @@ export class Standard extends AbstractManoeuver {
     }
 
     get customApproches() {
-        return game.settings.get('neph5e', 'useCombatManoeuver') === true ? ['ka'] : ['eau', 'feu', 'ka'];
+        return game.settings.get('neph5e', 'useCombatSystem') === 'normal' ? ['ka'] : ['eau', 'feu', 'ka'];
     }
 
 }

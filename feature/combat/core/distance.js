@@ -146,7 +146,7 @@ export class Distance extends AbstractFeature {
      * @Override
      */
     async finalize(result) {
-        if (game.settings.get('neph5e', 'useCombatSystem') === true && result.opposed === false && result.success === true) {
+        if (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem')) && result.opposed === false && result.success === true) {
             const impact = this.impact(this.manoeuver.id);
             await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical);
             await Health.applyEffectsOn(this.target.id, this.actor.id, Constants.ACTION, this.manoeuver);

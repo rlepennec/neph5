@@ -67,10 +67,24 @@ export class Defense extends AbstractFeature {
             .withBase(this.baseName, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Defense.manoeuvers().against(this.attack))
-            .withApproches(this.approches(game.settings.get('neph5e', 'useCombatManoeuver') === true ? Eviter.ID : Esquiver.ID ))
+            .withApproches(this.approches(this.defaultApproche))
             .withWeapon(this.weapon)
             .withAttack(this.attack.defenseModifier())
             .export();
+    }
+
+    /**
+     * @Override
+     */
+    get defaultApproche() {
+        switch (game.settings.get('neph5e', 'useCombatSystem')) {
+          case 'normal':
+            return Eviter.ID;
+          case 'low':
+            return Esquiver.ID;
+          default:
+            return null;
+        }
     }
 
     /**
@@ -174,7 +188,7 @@ export class Defense extends AbstractFeature {
             .create();
 
         // Apply damages automaticaly if necessary
-        if (game.settings.get('neph5e', 'useCombatSystem') === true) {
+        if (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem'))) {
             await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver, this.result.critical);
             await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
         }
@@ -223,7 +237,7 @@ export class Defense extends AbstractFeature {
     async defenseToPerform() {
         // No manoeuver possible, apply dammages automaticaly
         if (Object.keys(this.data.manoeuvers).length === 0) {
-            if (game.settings.get('neph5e', 'useCombatSystem') === true && this.result.success) {
+            if (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem')) && this.result.success) {
                 await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
             }

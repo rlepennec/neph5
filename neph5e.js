@@ -313,16 +313,13 @@ Hooks.once("init", function () {
             scope: 'world',
             name: game.i18n.localize('SETTINGS.useCombatSystem'),
             hint: game.i18n.localize('SETTINGS.useCombatSystemDesc'),
-            type: Boolean,
-            default: false
-        });
-        game.settings.register('neph5e', 'useCombatManoeuver', {
-            config: true,
-            scope: 'world',
-            name: game.i18n.localize('SETTINGS.useCombatManoeuver'),
-            hint: game.i18n.localize('SETTINGS.useCombatManoeuverDesc'),
-            type: Boolean,
-            default: true
+            type: String,
+            choices: {
+                'normal': 'Standard',
+                'low': 'Simplifié',
+                'none': 'Aucun'
+              },
+              default: 'none'
         });
         game.settings.register('neph5e', 'worldTemplateVersion', {
             name: 'World Template Version',

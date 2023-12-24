@@ -329,29 +329,45 @@ export class BaseSheet extends ActorSheet {
         event.preventDefault();
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
+        const combat = game.settings.get('neph5e', 'useCombatSystem');
 
         // Wrestle roll attack
         if (id === 'wrestle') {
             if (this.actor.lutteCanBePerformed) {
-                await new Wrestle(this.actor).initializeRoll();
+                if (['normal', 'low'].includes(combat)) {
+                    await new Wrestle(this.actor).initializeRoll();
+                } else {
+                    const feature = new FeatureBuilder(this.actor).withScope("actor").withOriginalItem(this.actor.system.manoeuvres.lutte).create();
+                    await feature.initializeRoll();
+                }
             }
 
         // Weapon roll attack
         } else {
             const item = this.actor.getEmbeddedDocument('Item', id);
             if (item?.attackAvailable === true) {
-                switch (item.system.type) {
-                    case Constants.NATURELLE:
-                        await new Naturelle(this.actor, item).initializeRoll();
-                        break;
-                    case Constants.MELEE:
-                        await new Melee(this.actor, item).initializeRoll();
-                        break;
-                    case Constants.FEU:
-                    case Constants.TRAIT:
-                        await new Distance(this.actor, item).initializeRoll();
-                        break;
+
+                // Combat system activated can be standard or simplified
+                if (['normal', 'low'].includes(combat)) {
+                    switch (item.system.type) {
+                        case Constants.NATURELLE:
+                            await new Naturelle(this.actor, item).initializeRoll();
+                            break;
+                        case Constants.MELEE:
+                            await new Melee(this.actor, item).initializeRoll();
+                            break;
+                        case Constants.FEU:
+                        case Constants.TRAIT:
+                            await new Distance(this.actor, item).initializeRoll();
+                            break;
+                    }
+
+                // No combat system activated, just roll a martial skill roll
+                } else {
+                    const feature = new FeatureBuilder(this.actor).withScope("actor").withOriginalItem(item.system.competence).create();
+                    await feature.initializeRoll();
                 }
+
             }
         }
 

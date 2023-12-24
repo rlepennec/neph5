@@ -1,6 +1,6 @@
 # 1.4.9
-Ajout d'une option pour choisir l'intervalle des modificateurs
-Ajout d'une option pour une liste simplifiée de manoeuvres de combats
+Ajout d'une option pour étendre l'intervalle des modificateurs
+Ajout d'une option pour un systeme de combat simplifié - moins de manoeuvres
 Ajout d'une option personnage pour gérer les blessures manuellement même si le combat automatique est activé
 Contrôle du niveau et de l'activité du construct lors du lancement d'une formule
 Amélioration de la gestion quand les chances d'utiliser un focus sont égales à 0%
