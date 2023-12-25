@@ -4,6 +4,7 @@ Ajout d'une option pour un systeme de combat simplifié - moins de manoeuvres
 Ajout d'une option personnage pour gérer les blessures manuellement même si le combat automatique est activé
 Contrôle du niveau et de l'activité du construct lors du lancement d'une formule
 Amélioration de la gestion quand les chances d'utiliser un focus sont égales à 0%
+Corrections d'anomalies sur le drop de vécu dans l'onglet incarnation
 
 # 1.4.8
 Ajout du statut connu pour les focus
