@@ -117,7 +117,7 @@ export class Vecu extends HistoricalFeature {
         // Process the drop on the manoeuver definition
         if (currentTab === 'combat') {
 
-            // Actor musy be unlocked
+            // Actor must be unlocked
             if (this.actor.locked) {
                 return;
             }
@@ -153,6 +153,11 @@ export class Vecu extends HistoricalFeature {
         // Process the drop on the incarnations for figure
         if (currentTab === 'incarnations') {
 
+            // Actor must be unlocked
+            if (this.actor.locked) {
+                return;
+            }
+
             // Drop the vecu with the related periode if none in current edition
             if (this.periode == null) {
 
@@ -179,7 +184,9 @@ export class Vecu extends HistoricalFeature {
                 }
 
                 // Just keep the sid to create the vecu
-                this.periode = this.periode.sid;
+                if (this.periode != null) {
+                    this.periode = this.periode.sid;
+                }
 
             }
             
