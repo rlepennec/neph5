@@ -77,12 +77,8 @@
 
                     </li>
                     {{/each}}
-                    
-                    {{#if (isEmptyCollection system.mnemos)}}
-                    <li class="item hoverable flexrow-start">
-                    {{else}}
-                    <li class="item hoverable flexrow-start mtop">
-                    {{/if}}
+
+                    <li class="item hoverable flexrow-start {{#unless (isEmptyCollection system.mnemos)}}mtop{{/unless}}">
                         <div class="mright">
                             <a><i class="add-mnemos fas fa-plus"></i></a>
                         </div>
