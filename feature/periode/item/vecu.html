@@ -59,7 +59,7 @@
                 {{/unless}}
 
                 {{#if item.isEmbedded}}
-                <ol class="mtop">
+                <ol class="mtop line-bottom">
 
                     {{#each system.mnemos as |mnemos|}}
                     <li class="item hoverable flexrow-start" data-item-id="{{@index}}">
@@ -93,7 +93,7 @@
                 {{/if}}
 
                 {{#if item.isEmbedded}}
-                <div class="no-scrollbar mtop mborder">
+                <div class="no-scrollbar mtop mborder description">
                     {{html (enrichHTML item.description owner)}}
                 </div>
                 {{else}}
