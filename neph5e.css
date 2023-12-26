@@ -4489,6 +4489,13 @@
   padding-bottom: 13px;
   color: #191813;
 }
+.item .window-content .item-root .article .body .add-mnemos {
+  margin: 10px 0px 0px 0px;
+  font-family: 'AJensonProLtDisp';
+  color: indianred;
+  font-weight: bolder;
+  font-size: 16px;
+}
 .item .window-content .item-root .article .body .description {
   margin: 10px 0px 0px 0px;
   font-family: 'AJensonProLtDisp';

@@ -78,10 +78,8 @@
                     </li>
                     {{/each}}
 
-                    <li class="item hoverable flexrow-start {{#unless (isEmptyCollection system.mnemos)}}mtop{{/unless}}">
-                        <div class="mright">
-                            <a><i class="add-mnemos fas fa-plus"></i></a>
-                        </div>
+                    <li class="item add-mnemos hoverable flexrow-start {{#unless (isEmptyCollection system.mnemos)}}mtop{{/unless}}">
+                        <i class="mright fa-solid fa-circle-plus fa-1xl"></i>
                         <span>{{localize 'NEPH5E.mnemos'}}</span>
                     </li>
 
