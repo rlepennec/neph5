@@ -105,9 +105,12 @@ export class VecuSheet extends NephilimItemSheet {
                     icon: '<i class="fas fa-check"></i>',
                     label: game.i18n.localize("NEPH5E.ajouter"),
                     callback: async (html) => {
-                        const content = html.find("#content").val();
                         const system = duplicate(this.item.system);
-                        system.mnemos.push(content);
+                        system.mnemos.push({
+                            name: html.find("#name").val(),
+                            degre: html.find("#degre").val(),
+                            description: html.find("#description").val()
+                        });
                         await this.item.update({ ['system']: system });
                     },
                 },
@@ -144,9 +147,15 @@ export class VecuSheet extends NephilimItemSheet {
             size = this.item.system.mnemos.length;
             const mnemos = [];
             for (let index = 0; index < size; index++) {
-                const name = "system.mnemos.[" + index + "]";
-                mnemos.push(formData[name]);
-                delete formData[name];
+                const key = "system.mnemos.[" + index + "].";
+                mnemos.push({
+                    name: formData[key + "name"],
+                    degre: formData[key + "degre"],
+                    description: formData[key + "description"],
+                });
+                delete formData[key + "name"];
+                delete formData[key + "degre"];
+                delete formData[key + "description"];
             }
             formData["system.mnemos"] = mnemos;
         }

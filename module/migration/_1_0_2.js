@@ -6,8 +6,7 @@ export class _1_0_2 {
 
         // Initialization
         const msg = "Updating to " + target;
-        const size = game.packs.filter(p => p.documentName === 'Item').length
-            + game.items.size;
+        const size = game.packs.filter(p => p.documentName === 'Item').length + game.items.size;
         let migrated = 0;
 
         // World items

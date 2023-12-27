@@ -70,9 +70,22 @@
 
                         <input
                             class="input-text"
-                            name="system.mnemos.[{{@index}}]"
+                            name="system.mnemos.[{{@index}}].degre"
                             type="text"
-                            value="{{mnemos}}"
+                            value="{{mnemos.degre}}"
+                            data-dtype="Number"/>
+
+                        <input
+                            class="input-text"
+                            name="system.mnemos.[{{@index}}].name"
+                            type="text"
+                            value="{{mnemos.name}}"
+                            data-dtype="String"/>
+
+                        <input
+                            name="system.mnemos.[{{@index}}].description"
+                            type="hidden"
+                            value="{{mnemos.description}}"
                             data-dtype="String"/>
 
                     </li>
