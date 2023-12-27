@@ -18,6 +18,12 @@
                 </div>
 
                 {{#if item.isEmbedded}}
+                <div class="no-scrollbar mtop mborder description">
+                    {{html (enrichHTML item.description owner)}}
+                </div>
+                {{/if}}
+
+                {{#if item.isEmbedded}}
                 <table class="table-center">
                     <tr>
                         <th>{{localize 'NEPH5E.degre'}}</th>
@@ -99,13 +105,9 @@
                 </ol>
                 {{/if}}
 
-                {{#if item.isEmbedded}}
-                <div class="no-scrollbar mtop mborder description">
-                    {{html (enrichHTML item.description owner)}}
-                </div>
-                {{else}}
+                {{#unless item.isEmbedded}}
                 {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-                {{/if}}
+                {{/unless}}
 
             </div>
 
