@@ -65,26 +65,48 @@
                 {{/unless}}
 
                 {{#if item.isEmbedded}}
-                <ol class="mtop line-bottom">
+                <ol class="mnemos">
 
                     {{#each system.mnemos as |mnemos|}}
-                    <li class="item hoverable flexrow-start" data-item-id="{{@index}}">
+                    <li class="item hoverable line-bottom edit-mnemos" data-item-id="{{@index}}">
 
-                        <div class="mright">
-                            <a><i class="delete-mnemos fas fa-trash"></i></a>
+                        <div class="mright flexrow-start">
+
+                            <i class="delete-mnemos fas fa-trash"></i>
+
+                            <label class="input-text pleft sapience"> {{#switch mnemos.degre}}
+                                {{#case 0}}<i class="fa-regular fa-circle-0"></i>{{/case}}
+                                {{#case 1}}<i class="fa-regular fa-circle-1"></i>{{/case}}
+                                {{#case 2}}<i class="fa-regular fa-circle-2"></i>{{/case}}
+                                {{#case 3}}<i class="fa-regular fa-circle-3"></i>{{/case}}
+                                {{#case 4}}<i class="fa-regular fa-circle-4"></i>{{/case}}
+                                {{#case 5}}<i class="fa-regular fa-circle-5"></i>{{/case}}
+                                {{#case 6}}<i class="fa-regular fa-circle-6"></i>{{/case}}
+                                {{#case 7}}<i class="fa-regular fa-circle-7"></i>{{/case}}
+                                {{#case 8}}<i class="fa-regular fa-circle-8"></i>{{/case}}
+                                {{#case 9}}<i class="fa-regular fa-circle-9"></i>{{/case}}
+                            {{/switch}}
+                            </label>
+
+                            <label class="input-text pleft">{{mnemos.name}}</label>
+
+                        </div>
+
+                        <div class="no-scrollbar mtop mborder description">
+                            {{html (enrichHTML mnemos.description owner)}}
                         </div>
 
                         <input
                             class="input-text"
                             name="system.mnemos.[{{@index}}].degre"
-                            type="text"
+                            type="hidden"
                             value="{{mnemos.degre}}"
                             data-dtype="Number"/>
 
                         <input
                             class="input-text"
                             name="system.mnemos.[{{@index}}].name"
-                            type="text"
+                            type="hidden"
                             value="{{mnemos.name}}"
                             data-dtype="String"/>
 

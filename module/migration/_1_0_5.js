@@ -1,3 +1,5 @@
+import { MigrationTools } from "./migration.js";
+
 export class _1_0_5 {
 
     static async migrate(target) {

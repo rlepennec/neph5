@@ -1,6 +1,7 @@
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
+import { Mnemos } from "./mnemos.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -37,7 +38,8 @@ export class VecuSheet extends NephilimItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
         html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.add-mnemos').click(this._onEditMnemos.bind(this));
+        html.find('.add-mnemos').click(this._onAddMnemos.bind(this));
+        html.find('.edit-mnemos').click(this._onEditMnemos.bind(this));
         html.find('.edit-competence').click(this.onEdit.bind(this));
         html.find('.edit-periode').click(this.onEditPeriode.bind(this));
         html.find('.delete-competence').click(this._onDelete.bind(this));
@@ -89,42 +91,20 @@ export class VecuSheet extends NephilimItemSheet {
     }
 
     /**
+     * This function catches the addiition of mnemos. 
+     */
+    async _onAddMnemos(event) {
+        return new Mnemos(this.actor, this.item).render(true);;
+    }
+
+    /**
      * This function catches the edition of mnemos. 
      */
     async _onEditMnemos(event) {
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/feature/periode/actor/mnemos.hbs", {});
-
-        // Display the action panel
-        await new Dialog({
-            title: "Effet Mnemos",
-            content: html,
-            buttons: {
-                add: {
-                    icon: '<i class="fas fa-check"></i>',
-                    label: game.i18n.localize("NEPH5E.ajouter"),
-                    callback: async (html) => {
-                        const system = duplicate(this.item.system);
-                        system.mnemos.push({
-                            name: html.find("#name").val(),
-                            degre: html.find("#degre").val(),
-                            description: html.find("#description").val()
-                        });
-                        await this.item.update({ ['system']: system });
-                    },
-                },
-                cancel: {
-                    icon: '<i class="fas fa-times"></i>',
-                    label: game.i18n.localize("NEPH5E.annuler"),
-                    callback: () => {},
-                },
-            },
-            default: "add",
-            close: () => {}
-
-        }).render(true);
-
+        event.preventDefault();
+        const li = $(event.currentTarget).closest('.item');
+        const id = li.data("item-id");
+        return new Mnemos(this.actor, this.item, id).render(true);;
     }
 
     /**

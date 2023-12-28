@@ -1,5 +1,57 @@
-<form>
-    <input id="name" name="name" type="text"/>
-    <input id="degre" name="degre" type="number"/>
-    <input id="description" name="description" type="text"/>
+<form autocomplete="off">
+
+    <div class="window-content">
+
+        <div class="item-root">
+        
+            <div class="side">
+                <img src="systems/neph5e/assets/core/side-vecu.webp" title="{{localize 'ITEM.TypeVecu'}}"/>
+            </div>
+
+            <div class="article">
+
+                <div class="header">
+                
+                    <div class="title">
+
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value="{{name}}"
+                            class="name"/>
+
+                    </div>
+
+                </div>
+
+                <div class="body">
+
+                    <div class="main">
+                        {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="degre" value=degre}}
+                    </div>
+
+                    <div class="description">
+
+                        {{#if (isEmptyString description)}}
+                        <div class="add">
+                            <i class="fa-solid fa-circle-plus fa-2xl"></i>
+                            <span>{{localize 'NEPH5E.ajouterDescription'}}</span>
+                        </div>
+                        {{/if}}
+
+                        <div class="no-scrollbar">
+                            {{editor description target="description" button=true owner=true editable=true}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </form>

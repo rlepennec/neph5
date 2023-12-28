@@ -79,6 +79,9 @@
 .mright {
   margin-right: 10px;
 }
+.pleft {
+  padding-left: 10px;
+}
 .editor {
   height: 630px;
 }
@@ -4489,12 +4492,22 @@
   padding-bottom: 13px;
   color: #191813;
 }
-.item .window-content .item-root .article .body .add-mnemos {
+.item .window-content .item-root .article .body .mnemos {
+  padding-left: 0px;
+}
+.item .window-content .item-root .article .body .mnemos li {
   margin: 10px 0px 0px 0px;
-  font-family: 'AJensonProLtDisp';
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  padding-left: 24px;
+  list-style: none;
+}
+.item .window-content .item-root .article .body .mnemos .edit-mnemos .sapience {
+  padding-top: 1px;
+}
+.item .window-content .item-root .article .body .mnemos .add-mnemos {
   color: indianred;
   font-weight: bolder;
-  font-size: 16px;
 }
 .item .window-content .item-root .article .body .description {
   margin: 10px 0px 0px 0px;
