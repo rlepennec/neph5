@@ -73,10 +73,12 @@ export class Mnemos extends AbstractDialog {
         } else {
             system.mnemos[this.mnemos].name = formData.name;
             system.mnemos[this.mnemos].degre = formData.degre;
-            system.mnemos[this.mnemos].description = formData.description;
+            system.mnemos[this.mnemos].description = formData.description == null ? system.mnemos[this.mnemos].description : formData.description;
         }
 
         await this.data.update({ ['system']: system });
+        this.data.sheet.render(true);
+        this.render(true);
 
     }
 
