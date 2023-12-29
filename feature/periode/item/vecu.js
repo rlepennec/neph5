@@ -79,6 +79,7 @@ export class VecuSheet extends NephilimItemSheet {
         const system = duplicate(this.item.system);
         system.mnemos.splice(id, 1);
         await this.item.update({ ['system']: system });
+        this.item.sheet.render(true);
     }
 
     /**

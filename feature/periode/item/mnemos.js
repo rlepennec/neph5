@@ -23,7 +23,7 @@ export class Mnemos extends AbstractDialog {
             classes: ["nephilim", "sheet", "item"],
             template: "systems/neph5e/feature/periode/actor/mnemos.hbs",
             width: 500,
-            height: 560,
+            height: 450,
             choices: {},
             allowCustom: true,
             minimum: 0,
@@ -63,6 +63,7 @@ export class Mnemos extends AbstractDialog {
 
         // Create a new mnemos
         if (this.mnemos == null) {
+            this.mnemos = system.mnemos.length;
             system.mnemos.push({
                 name: formData.name,
                 degre: formData.degre,
