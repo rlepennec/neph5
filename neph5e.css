@@ -4781,6 +4781,17 @@
   flex-direction: column;
   margin: 10px 10px 10px 10px;
 }
+.action .body .lines .block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+  border-top: 2px solid #151156;
+  margin-top: 10px;
+  justify-content: center;
+  font-size: 16px;
+}
 .action .body .lines .line {
   display: flex;
   flex-direction: row;
@@ -4818,6 +4829,15 @@
 .action .body .lines .line .line-value #modifier {
   text-align: right;
   width: 60px;
+}
+.action .body .lines .line .line-value .mnemos-modifier {
+  text-align: right;
+  width: 60px;
+}
+.action .body .lines .line .line-value .mnemos-modifier option {
+  text-align: center;
+  background: none;
+  background-color: antiquewhite;
 }
 .action .body .lines .line .line-value .base-percentage {
   margin-right: 15px;

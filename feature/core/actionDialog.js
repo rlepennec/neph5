@@ -12,6 +12,7 @@ export class ActionDialog extends AbstractDialog {
         this.actor = actor;
         this.action = action;
         this.data = null;
+        this.mnemos = 0;
     }
 
     /**
@@ -98,6 +99,7 @@ export class ActionDialog extends AbstractDialog {
         html.find("#approche").change(this._onSelectApproche.bind(this));
         html.find("#element").change(this._onSelectElement.bind(this));
         html.find("#metamorphe").change(this._onSelectMetamorphe.bind(this));
+        html.find(".mnemos-modifier").change(this._onSelectMnemos.bind(this));
         html.find("#roll").click(this._onRoll.bind(this));
         html.find("#details").click(this._onDetails.bind(this));
     }
@@ -163,6 +165,17 @@ export class ActionDialog extends AbstractDialog {
     }
 
     /**
+     * Handle the approche change.
+     * @param event The event to handle.
+     */
+    async _onSelectMnemos(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const difficulty = this.action.difficulty(parameters);
+        $('#difficulty').html(difficulty + "%");
+    }
+
+    /**
      * Handle the element change.
      * @param event The event to handle.
      */
@@ -210,7 +223,8 @@ export class ActionDialog extends AbstractDialog {
             ka: this._ka(),
             elt: this._elt(),
             opposed: this._opposed(),
-            shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1
+            shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1,
+            mnemos: this._mnemos()
         }
     }
 
@@ -266,6 +280,19 @@ export class ActionDialog extends AbstractDialog {
         const selector = this.form?.querySelector("#metamorphe");
         const metamorphe = selector == null || selector?.value === 'ignore' ? 0 : this.data.metamorphe;
         return metamorphe;
+    }
+
+    /**
+     * @returns the sum of activated mnemos modifiers.
+     */
+    _mnemos() {
+        let modifier = 0;
+        this.form?.querySelectorAll(".mnemos-modifier").forEach(selector => {
+            const value = selector?.value;
+            modifier = modifier + (isNaN(value) ? 0 : parseInt(value));
+        });
+        modifier = modifier * 10;
+        return modifier;
     }
 
     /**

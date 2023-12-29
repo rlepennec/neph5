@@ -233,6 +233,27 @@
             </div>
             {{/if}}
 
+            {{#if (nonNull mnemos)}}
+
+            <div class="block">
+                <label>Effets Mnémos</label>
+            </div>
+
+            {{#each mnemos as |m|}}
+            <div class="line">
+                <div class="line-title">
+                    <label>{{m.name}}</label>
+                </div>
+                <div class="line-value">
+                    <select class="mnemos-modifier">
+                        <option value="{{m.degre}}">{{m.degre}}0%</option>
+                        <option value="0" selected>0%</option>
+                    </select>
+                </div>
+            </div>
+            {{/each}}
+            {{/if}}
+
             {{/unless}}
 
         </div>

@@ -47,6 +47,7 @@ export class ActionDataBuilder {
         this.attack = null;
         this.fraternite = 0;
         this.metamorphe = null;
+        this.mnemos = [];
     }
 
     /**
@@ -91,6 +92,15 @@ export class ActionDataBuilder {
      */
     withMetamorphe(metamorphe) {
         this.metamorphe = metamorphe > 0 ? metamorphe : null;
+        return this;
+    }
+
+    /**
+     * @param mmenos The array of mnemos to register.
+     * @returns the instance.
+     */
+    withMnemos(mnemos) {
+        this.mnemos = this.mnemos.concat(mnemos);
         return this;
     }
 
@@ -279,6 +289,10 @@ export class ActionDataBuilder {
 
         if (this.metamorphe != null) {
             data.metamorphe = this.metamorphe * 10;
+        }
+
+        if (this.mnemos.length > 0) {
+            data.mnemos = this.mnemos;
         }
 
         if (this.blessures != null) {
