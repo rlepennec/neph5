@@ -1,3 +1,5 @@
+# 1.4.10
+
 # 1.4.9
 Amélioration de la gestion des effets mnemos
 Ajout d'une option pour étendre l'intervalle des modificateurs
