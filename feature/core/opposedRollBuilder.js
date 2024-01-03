@@ -92,7 +92,8 @@ export class OpposedRollBuilder {
     }
 
     /**
-     * @param id The targeted token object.
+     * Only used for combat to handle attack manoeuver.
+     * @param token The targeted token object.
      * @return true if the current player must handle the action.
      */
     static handle(token) {
@@ -102,8 +103,8 @@ export class OpposedRollBuilder {
             return false;
         }
 
-        // The current player is the owner of the target.
-        if (!game.user.isGM && token.isOwner) {
+        // The current player is the owner of the target and the defense of the figure token is managed by the PJ.
+        if (!game.user.isGM && token.isOwner && token.actor.system?.options?.defenseMJ !== true) {
             return true;
         }
 
@@ -121,7 +122,7 @@ export class OpposedRollBuilder {
         for (const [userId, perm] of Object.entries(token.actor.ownership)) {
             if (perm === 3) {
                 const user = game.users.get(userId);
-                if (!user.isGM && user.active) {
+                if (!user.isGM && user.active && token.actor.system?.options?.defenseMJ !== true) {
                     return false;
                 }
             }

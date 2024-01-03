@@ -213,7 +213,8 @@
                 "gestionLaboratoire": false,
                 "theme": "soleil",
                 "luneNoire": false,
-                "locked": false
+                "locked": false,
+                "defenseMJ": false
             }
         },
         "fraternite": {

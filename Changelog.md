@@ -1,4 +1,5 @@
 # 1.4.10
+Option pour que le MJ gère les jets des défenses d'un PJ
 
 # 1.4.9
 Amélioration de la gestion des effets mnemos

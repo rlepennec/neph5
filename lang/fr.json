@@ -154,6 +154,7 @@
         "deposerVecuCompetence": "Déposer un vécu ou une compétence",
         "desmos": "Desmos",
         "defense": "Défense",
+        "defenseMJ": "Défense gérée par le MJ",
         "definirUtilisation": "Aucun vécu ou compétence ne définit l'usage de ${item}",
         "definirLutte": "Aucun vécu ou compétence ne définit l'usage de la lutte",
         "demiurge": "Démiurge",
