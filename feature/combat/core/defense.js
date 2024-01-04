@@ -20,7 +20,6 @@ import { Parer } from "../manoeuver/parer.js";
 import { ParerLance } from "../manoeuver/parerLance.js";
 import { ParerProjectile } from "../manoeuver/parerProjectile.js";
 
-
 export class Defense extends AbstractFeature {
 
     /**
@@ -246,14 +245,6 @@ export class Defense extends AbstractFeature {
             return this;
         }
     }
-    
-    /**
-     * @param weapon The weapon object which occurs dammages.
-     * @param type   The type of dammages, physical or magical.
-     * @returns the protection against the specified type of dammage according to
-     * the armor if exists and the optional bonus.
-     */
-
 
     /**
      * @returns the defense manoeuvers.
@@ -272,23 +263,5 @@ export class Defense extends AbstractFeature {
             .withManoeuver(new ParerLance())
             .withManoeuver(new ParerProjectile());
     }
-
-        /**
-     * @returns the defense manoeuvers.
-     */
-        static manoeuvers() {
-            return new ManoeuverPool()
-                .withManoeuver(new Bloquer())
-                .withManoeuver(new Contrer())
-                .withManoeuver(new Desarmer())
-                .withManoeuver(new Elaboree())
-                .withManoeuver(new Esquiver())
-                .withManoeuver(new Eviter())
-                .withManoeuver(new Fuir())
-                .withManoeuver(new Parer())
-                .withManoeuver(new EsquiverLance())
-                .withManoeuver(new ParerLance())
-                .withManoeuver(new ParerProjectile());
-        }
 
 }
