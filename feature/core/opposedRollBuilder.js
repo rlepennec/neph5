@@ -122,8 +122,10 @@ export class OpposedRollBuilder {
         for (const [userId, perm] of Object.entries(token.actor.ownership)) {
             if (perm === 3) {
                 const user = game.users.get(userId);
-                if (!user.isGM && user.active && token.actor.system?.options?.defenseMJ !== true) {
-                    return false;
+                if (user != null) {
+                    if (!user.isGM && user.active && token.actor.system?.options?.defenseMJ !== true) {
+                        return false;
+                    }
                 }
             }
         }
