@@ -144,6 +144,7 @@
         "controle": "Contrôle",
         "construction": "Construction",
         "cout": "Coût",
+        "daath": "Daath",
         "date": "Date",
         "debut": "Début",
         "dechiffre": "Déchiffré",
@@ -714,7 +715,8 @@
                 "geburah": "Geburah",
                 "binah": "Binah",
                 "chokmah": "Chokmah",
-                "kether": "Kether"
+                "kether": "Kether",
+                "daath": "Daath"
             }
         },
         "magie": {

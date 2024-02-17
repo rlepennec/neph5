@@ -109,7 +109,7 @@ export class Formule extends AbstractFocus {
      */
     async finalize(result) {
 
-        if (this.actor.system.options.gestionLaboratoire != true) {
+        if (this.actor.system.options.gestionLaboratoire !== true) {
             return;
         }
 

@@ -101,6 +101,8 @@
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.gestionLaboratoire" name="system.options.gestionLaboratoire" value=system.options.gestionLaboratoire}}
 
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.daath" name="system.options.daath" value=system.options.daath}}
+
             </ol>
 
         </div>
@@ -506,6 +508,12 @@
         name="system.options.options"
         type="hidden"
         value="{{system.options.options}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="system.options.daath"
+        type="hidden"
+        value="{{system.options.daath}}"
         data-dtype="Boolean"/>
 
 {{/if}}

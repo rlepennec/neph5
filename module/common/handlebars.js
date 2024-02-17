@@ -208,6 +208,7 @@ export class CustomHandlebarsHelpers {
             'comprendre',
             'controler',
             'creer',
+            'daath',
             'detruire',
             'transformer',
             'malkut',

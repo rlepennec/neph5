@@ -211,6 +211,7 @@
                 "degreGauche": false,
                 "incarnationsOuvertes": false,
                 "gestionLaboratoire": false,
+                "daath": false,
                 "theme": "soleil",
                 "luneNoire": false,
                 "locked": false,

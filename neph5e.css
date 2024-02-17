@@ -2908,6 +2908,12 @@
 .actor .window-content .actor-root .article .article-body .arbre .kether .degre {
   transform: translate(2px, -289px);
 }
+.actor .window-content .actor-root .article .article-body .arbre .daath .title {
+  transform: translate(-24px, -177px);
+}
+.actor .window-content .actor-root .article .article-body .arbre .daath .degre {
+  transform: translate(0px, -158px);
+}
 .actor .window-content .actor-root .article .article-body .ordonnances .header {
   display: flex;
   flex-direction: row;

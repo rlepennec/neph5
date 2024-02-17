@@ -39,7 +39,8 @@ Game.kabbale = {
         malkut:        "NEPH5E.kabbale.sephiroth.malkut",
         netzach:       "NEPH5E.kabbale.sephiroth.netzach",
         tiphereth:     "NEPH5E.kabbale.sephiroth.tiphereth",
-        yesod:         "NEPH5E.kabbale.sephiroth.yesod" 
+        yesod:         "NEPH5E.kabbale.sephiroth.yesod",
+        daath:         "NEPH5E.kabbale.sephiroth.daath",
     },
     mondes: {
         aresh:         "NEPH5E.kabbale.mondes.aresh",

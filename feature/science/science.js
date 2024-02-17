@@ -117,6 +117,7 @@ export class Science extends HistoricalFeature {
             case 'binah':
             case 'chokmah':
             case 'kether':
+            case 'daath':
                 return {
                     type: 'invocation',
                     property: 'sephirah'
@@ -267,6 +268,8 @@ export class Science extends HistoricalFeature {
     /**
      * @param actor   The actor object.
      * @param science The name of the science for which to get the cercles.
+     * @param options The option parameters:
+     *   - all: if true, all cercles are returned.
      * @returns the data information about the specified cercles.
      */
     static cercles(actor, science, options) {
@@ -287,6 +290,12 @@ export class Science extends HistoricalFeature {
     static _getCercles(actor, cercles, options) {
         const data = [];
         for (let cercle of cercles) {
+
+            // Skip Daath if not activated for the character
+            if (cercle === 'daath' && actor.system.options.daath !== true) {
+                continue;
+            }
+
             const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
             if (item != null) {
                 const feature = new Science(actor).withItem(item);
@@ -311,6 +320,7 @@ export class Science extends HistoricalFeature {
                     });
                 }
             }
+
         }
         return data;
     }
@@ -411,7 +421,7 @@ export class Science extends HistoricalFeature {
             case 'conjuration':
                 return ['charmeur', 'dresseur', 'demiurge'];
             case 'kabbale':
-                return ['malkut', 'yesod', 'hod', 'netzach', 'tiphereth', 'geburah', 'chesed', 'binah', 'chokmah', 'kether'];
+                return ['malkut', 'yesod', 'hod', 'netzach', 'tiphereth', 'geburah', 'chesed', 'binah', 'chokmah', 'kether', 'daath'];
             case 'magie':
                 return ['basseMagie', 'hauteMagie', 'grandSecret'];
             case 'necromancie':

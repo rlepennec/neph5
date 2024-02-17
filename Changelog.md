@@ -1,5 +1,6 @@
 # 1.4.10
 Option pour que le MJ gère les jets des défenses d'un PJ
+Ajout de la Sephirah de Daath
 
 # 1.4.9
 Amélioration de la gestion des effets mnemos
