@@ -63,6 +63,7 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
+                {{log item}}
                 <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
 
                     <!-- The only element of the focus. -->
@@ -159,7 +160,7 @@
                     {{/if}} 
 
                     {{#if (includes ../../header 'percentage')}}
-                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (or (eq item.original.system.element 'choix') (eq item.original.system.elements.[0] 'quintuple'))}}+{{/if}}</label>
+                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (or (eq item.original.system.element 'choix') (eq item.original.system.elements.[0] 'quintuple') (eq item.original.system.cercle 'dracomachie@passes'))}}+{{/if}}</label>
                     {{/if}}
 
                     <!-- The percentage to succeed to use the focus. -->
