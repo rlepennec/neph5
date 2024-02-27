@@ -38,7 +38,22 @@ export class Dracomachie extends AbstractFocus {
     get degre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+
+        switch (science.item.system.key.replace("dracomachie@","")) {
+            case 'charmes':
+                console.log("charmes !");
+                break;
+            case 'rites':
+                console.log("rites !");
+                break;
+            case 'passes':
+                console.log("passes !");
+                return Math.max(0, science.degre - focus);
+            default:
+                console.log("error !");
+                return 0;
+        }
 
         // Retrieve the degre of the focus to cast
         const focus = this.item.system.degre;
@@ -47,7 +62,7 @@ export class Dracomachie extends AbstractFocus {
         const ka = this.actor.ka;
 
         // Final result
-        return Math.max(0, science + ka - focus);
+        return Math.max(0, science.degre + ka - focus);
 
     }
 
