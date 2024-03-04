@@ -425,7 +425,7 @@ export class Science extends HistoricalFeature {
             case 'magie':
                 return ['basseMagie', 'hauteMagie', 'grandSecret'];
             case 'necromancie':
-                return ['fossoyeur', 'embaumeur', 'imputrescible'];
+                case 'dracomachie':
             case 'analogie': {
                 const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
                 return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => addon.system.key));

@@ -37,7 +37,7 @@
                 {{/if}}
                 </div>
 
-                {{#if (eq item.system.element 'choix')}}
+                {{#if (or (eq item.system.element 'choix') (eq element 'choix'))}}
                 <select id="element" name="element">
                     <option value='air'>{{localize "NEPH5E.air"}}</option>
                     <option value='eau'>{{localize 'NEPH5E.eau'}}</option>

@@ -32,6 +32,7 @@ export class ActionDataBuilder {
         this.sentence = action.sentence;
         this.type = Constants.NONE;
         this.item = null;
+        this.element = null;
         this.ka = null;
         this.img = null;
         this.base = null;
@@ -129,6 +130,15 @@ export class ActionDataBuilder {
      */
     withBlessures(blessures) {
         this.blessures = blessures;
+        return this;
+    }
+
+    /**
+     * @param choix The element to select.
+     * @returns the instance.
+     */
+    withElement(element) {
+        this.element = element;
         return this;
     }
 
@@ -248,6 +258,7 @@ export class ActionDataBuilder {
             sentence: this.actor.name + " " + game.i18n.localize(this.sentence),
             richSentence: game.i18n.localize(this.sentence),
             type: this.type,
+            element: this.element
         };
 
         if (this.item?.name != null) {

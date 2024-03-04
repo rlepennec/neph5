@@ -27,6 +27,7 @@ export class Dracomachie extends AbstractFocus {
         return new ActionDataBuilder(this)
             .withType(Constants.SIMPLE)
             .withItem(this.item)
+            .withElement(this.element)
             .withBase('Passe', this.degre)
             .withBlessures('magique')
             .export();
@@ -43,15 +44,13 @@ export class Dracomachie extends AbstractFocus {
         // Retrieve the degre of the cercle used to cast the focus
         const science = Science.scienceOf(this.actor, this.item.system.cercle);
 
-        switch (science.item.system.key.replace("dracomachie@","")) {
+        switch (this.domaine) {
             case 'charmes':
                 console.log("charmes !");
                 return science.degre;
-                break;
             case 'rites':
                 console.log("rites !");
                 return science.degre;
-                break;
             case 'passes':
                 console.log("passes !");
                 return Math.max(0, science.degre - focus);
@@ -59,14 +58,6 @@ export class Dracomachie extends AbstractFocus {
                 console.log("error !");
                 return 0;
         }
-
-
-
-        // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.ka;
-
-        // Final result
-        return Math.max(0, science.degre + ka - focus);
 
     }
 
@@ -91,6 +82,40 @@ export class Dracomachie extends AbstractFocus {
     getEmbeddedData() {
         return {
             difficulty: this.degre
+        }
+    }
+
+    /**
+     * 
+     */
+    get domaine() {
+        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+        switch (science.item.system.key.replace("dracomachie@","")) {
+            case 'charmes':
+                return 'charmes';
+            case 'rites':
+                return 'rites';
+            case 'passes':
+                return 'passes';
+            default:
+                return 'error';
+        }
+    }
+
+    /**
+     * 
+     */
+    get element() {
+        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+        switch (science.item.system.key.replace("dracomachie@","")) {
+            case 'charmes':
+                return null;
+            case 'rites':
+                return null;;
+            case 'passes':
+                return 'choix';
+            default:
+                return null;;
         }
     }
 
