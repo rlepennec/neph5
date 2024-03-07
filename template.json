@@ -334,7 +334,8 @@
             "element": "air"
         },
         "dracomachie": {
-            "id": null
+            "id": null,
+            "element": "choix"
         },
         "formule": {
             "id": null

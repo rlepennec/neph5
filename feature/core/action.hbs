@@ -88,6 +88,67 @@
                 </div>
             </div>
 
+            {{#if opposition}}
+
+                {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
+                <div class="line">
+                    <div class="line-title">
+                        <label>Opposition</label>
+                    </div>
+                    <div class="line-value">
+                        <input id="opposition" type="Number" value="5"/>
+                        <label class="percentage base-percentage"></label>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
+                <div class="line">
+                    <div class="line-title">
+                        <label>Opposition</label>
+                    </div>
+                    <div class="line-value">
+                        <select id="opposition">
+                            <option value="20">20</option>
+                            <option value="19">19</option>
+                            <option value="18">18</option>
+                            <option value="17">17</option>
+                            <option value="16">16</option>
+                            <option value="15">15</option>
+                            <option value="14">14</option>
+                            <option value="13">13</option>
+                            <option value="12">12</option>
+                            <option value="11">11</option>
+                            <option value="10">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5" selected>5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+                {{/if}}
+
+                {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
+                <div class="line">
+                    <div class="line-title">
+                        <label>Opposition</label>
+                        <input id="opposition" class="slider" type="range" min="1" max="20" step="1" value="5"/>
+                    </div>
+                    <div class="line-value">
+                        <label id="sliderOpposition">5</label>
+                        <label class="percentage base-percentage"></label>
+                    </div>
+                </div>
+                {{/if}}
+
+            {{/if}}
+
             {{#if opposed}}
 
                 <div class="line">
@@ -258,6 +319,11 @@
 
         </div>
     
+        {{#if note}}
+        <label id="note">{{note}}</label>
+        {{/if}}
+
+
     </div>
 
 </form>

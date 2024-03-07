@@ -362,7 +362,7 @@ export class Science extends HistoricalFeature {
             case 'denier':
                 return ['ka', 'percentage'];
             case 'dracomachie':
-                return ['ka', 'percentage'];
+                return ['element', 'percentage'];
             case 'epee':
                 return ['ka', 'percentage'];
             case 'kabbale':
@@ -425,7 +425,7 @@ export class Science extends HistoricalFeature {
             case 'magie':
                 return ['basseMagie', 'hauteMagie', 'grandSecret'];
             case 'necromancie':
-                case 'dracomachie':
+                return ['fossoyeur', 'embaumeur', 'imputrescible'];
             case 'analogie': {
                 const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
                 return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => addon.system.key));

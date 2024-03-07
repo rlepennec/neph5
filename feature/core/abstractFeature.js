@@ -191,6 +191,14 @@ export class AbstractFeature {
     }
 
     /**
+     * @param parameters All the action parameters.  
+     * @returns the action note.
+     */
+    note(parameters) {
+        return null;
+    }
+
+    /**
      * @param parameters All the action parameters.
      * @returns the action modifier.
      */

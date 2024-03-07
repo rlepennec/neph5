@@ -34,6 +34,7 @@ export class ActionDataBuilder {
         this.item = null;
         this.element = null;
         this.ka = null;
+        this.opposition = false;
         this.img = null;
         this.base = null;
         this.blessures = null;
@@ -49,6 +50,7 @@ export class ActionDataBuilder {
         this.fraternite = 0;
         this.metamorphe = null;
         this.mnemos = [];
+        this.note = null;
     }
 
     /**
@@ -152,6 +154,14 @@ export class ActionDataBuilder {
     }
 
     /**
+     * @returns the instance.
+     */
+    withOpposition(ka) {
+        this.opposition = true;
+        return this;
+    }
+
+    /**
      * @param item The item object to register. 
      * @returns the instance.
      */
@@ -248,6 +258,15 @@ export class ActionDataBuilder {
     }
 
     /**
+     * @param note The note object.
+     * @returns the instance. 
+     */
+    withNote(note) {
+        this.note = note;
+        return this;
+    }
+
+    /**
      * @returns the data.
      */
     export() {
@@ -258,7 +277,9 @@ export class ActionDataBuilder {
             sentence: this.actor.name + " " + game.i18n.localize(this.sentence),
             richSentence: game.i18n.localize(this.sentence),
             type: this.type,
-            element: this.element
+            element: this.element,
+            opposition: this.opposition,
+            note: this.note
         };
 
         if (this.item?.name != null) {
@@ -356,6 +377,10 @@ export class ActionDataBuilder {
 
         if (this.attack != null) {
             data.attack = this.attack;
+        }
+
+        if (this.note != null) {
+            data.note = this.note;
         }
 
         return data;

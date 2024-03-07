@@ -98,6 +98,8 @@ export class ActionDialog extends AbstractDialog {
         html.find("#blessures").change(this._onSelectBlessures.bind(this));
         html.find("#approche").change(this._onSelectApproche.bind(this));
         html.find("#element").change(this._onSelectElement.bind(this));
+        html.find("#opposition").change(this._onSetOpposition.bind(this));
+        html.find("#opposition").on('input', this._onSetOpposition.bind(this));
         html.find("#metamorphe").change(this._onSelectMetamorphe.bind(this));
         html.find(".mnemos-modifier").change(this._onSelectMnemos.bind(this));
         html.find("#roll").click(this._onRoll.bind(this));
@@ -187,6 +189,20 @@ export class ActionDialog extends AbstractDialog {
     }
 
     /**
+     * Handle the opposition change.
+     * @param event The event to handle.
+     */
+    async _onSetOpposition(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const difficulty = this.action.difficulty(parameters);
+        const note = this.action.note(parameters);
+        $('#difficulty').html(difficulty + "%");
+        $('#sliderOpposition').html("<label id='sliderOpposition'>" + parameters.opposition + "<label>");
+        $('#note').html(note);
+    }
+
+    /**
      * Handle the metamorphe use change.
      * @param event The event to handle.
      */
@@ -221,6 +237,7 @@ export class ActionDialog extends AbstractDialog {
             approche: this._approche(),
             metamorphe:this._metamorphe(),
             ka: this._ka(),
+            opposition: this._opposition(),
             elt: this._elt(),
             opposed: this._opposed(),
             shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1,
@@ -301,6 +318,14 @@ export class ActionDialog extends AbstractDialog {
     _ka() {
         const selector = this.form?.querySelector("#element");
         return this.actor.getKa(selector == null ? 'air' : selector?.value) * 10;
+    }
+
+    /**
+     * @returns the current opposition used.
+     */
+    _opposition() {
+        const selector = this.form?.querySelector("#opposition");
+        return selector?.value;
     }
 
     /**

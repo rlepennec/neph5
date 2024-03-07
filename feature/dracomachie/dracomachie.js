@@ -24,13 +24,43 @@ export class Dracomachie extends AbstractFocus {
      * @Override
      */
     get data() {
-        return new ActionDataBuilder(this)
-            .withType(Constants.SIMPLE)
-            .withItem(this.item)
-            .withElement(this.element)
-            .withBase('Passe', this.degre)
-            .withBlessures('magique')
-            .export();
+
+        switch (this.domaine) {
+
+            case 'charmes':
+                console.log("charmes !");
+                return new ActionDataBuilder(this)
+                    .withType(Constants.SIMPLE)
+                    .withItem(this.item)
+                    .withElement(this.element)
+                    .withBase('Passe', this.degre)
+                    .withBlessures('magique')
+                    .export();
+
+            case 'rites':
+                console.log("rites !");
+                return new ActionDataBuilder(this)
+                    .withType(Constants.SIMPLE)
+                    .withItem(this.item)
+                    .withElement(this.element)
+                    .withBase('Passe', this.degre)
+                    .withBlessures('magique')
+                    .export();
+
+            case 'passes':
+                console.log("passes !");
+                return new ActionDataBuilder(this)
+                    .withType(Constants.SIMPLE)
+                    .withItem(this.item)
+                    .withElement(this.element)
+                    .withOpposition()
+                    .withBase('Passe', this.degre)
+                    .withBlessures('magique')
+                    .withNote(this.contraint(5))
+                    .export();
+
+        }
+
     }
 
     /**
@@ -46,19 +76,22 @@ export class Dracomachie extends AbstractFocus {
 
         switch (this.domaine) {
             case 'charmes':
-                console.log("charmes !");
-                return science.degre;
+                 return science.degre;
             case 'rites':
-                console.log("rites !");
                 return science.degre;
             case 'passes':
-                console.log("passes !");
-                return Math.max(0, science.degre - focus);
+                return science.degre - focus;
             default:
-                console.log("error !");
                 return 0;
         }
 
+    }
+
+    /**
+     * @Override
+     */
+    note(parameters) {
+        return this.contraint(parameters?.opposition);
     }
 
     /**
@@ -86,28 +119,27 @@ export class Dracomachie extends AbstractFocus {
     }
 
     /**
+     * @Override
+     */
+    modifier(parameters) {
+        const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
+        const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
+        return ka - menace;
+    }
+
+    /**
      * 
      */
     get domaine() {
         const science = Science.scienceOf(this.actor, this.item.system.cercle);
-        switch (science.item.system.key.replace("dracomachie@","")) {
-            case 'charmes':
-                return 'charmes';
-            case 'rites':
-                return 'rites';
-            case 'passes':
-                return 'passes';
-            default:
-                return 'error';
-        }
+        return science.item.system.key.replace("dracomachie@","");
     }
 
     /**
      * 
      */
     get element() {
-        const science = Science.scienceOf(this.actor, this.item.system.cercle);
-        switch (science.item.system.key.replace("dracomachie@","")) {
+        switch (this.domaine) {
             case 'charmes':
                 return null;
             case 'rites':
@@ -117,6 +149,12 @@ export class Dracomachie extends AbstractFocus {
             default:
                 return null;;
         }
+    }
+
+    contraint(menace) {
+        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+        const contraint = menace <= this.actor.ka && menace <= science.degre;
+        return contraint ? "L'effet dragon est contraint" : "L'effet dragon n'est pas contraint";
     }
 
 }

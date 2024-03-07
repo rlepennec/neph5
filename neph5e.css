@@ -4782,6 +4782,14 @@
   flex: 0 0 auto;
   width: 54px;
 }
+.action .body #note {
+  margin-top: 10px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
 .action .body .lines {
   display: flex;
   flex-direction: column;
