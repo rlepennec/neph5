@@ -17,7 +17,14 @@ export class Dracomachie extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.dracomachie';
+        switch (this.domaine) {
+            case 'charmes':
+                return 'NEPH5E.tente.self.dracomachie.charmes';
+            case 'rites':
+                return 'NEPH5E.tente.self.dracomachie.rites';
+            case 'passes':
+                return 'NEPH5E.tente.self.dracomachie.passes';
+        }
     }
 
     /**
@@ -28,27 +35,24 @@ export class Dracomachie extends AbstractFocus {
         switch (this.domaine) {
 
             case 'charmes':
-                console.log("charmes !");
                 return new ActionDataBuilder(this)
                     .withType(Constants.SIMPLE)
                     .withItem(this.item)
                     .withElement(this.element)
-                    .withBase('Passe', this.degre)
+                    .withBase('Charme', this.degre)
                     .withBlessures('magique')
                     .export();
 
             case 'rites':
-                console.log("rites !");
                 return new ActionDataBuilder(this)
                     .withType(Constants.SIMPLE)
                     .withItem(this.item)
                     .withElement(this.element)
-                    .withBase('Passe', this.degre)
+                    .withBase('Rite', this.degre)
                     .withBlessures('magique')
                     .export();
 
             case 'passes':
-                console.log("passes !");
                 return new ActionDataBuilder(this)
                     .withType(Constants.SIMPLE)
                     .withItem(this.item)
@@ -122,9 +126,18 @@ export class Dracomachie extends AbstractFocus {
      * @Override
      */
     modifier(parameters) {
-        const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
-        const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
-        return ka - menace;
+        switch (this.domaine) {
+            case 'charmes':
+                return 0;
+            case 'rites':
+                return 0;
+            case 'passes':
+                const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
+                const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
+                return ka - menace;
+            default:
+                return 0;
+        }
     }
 
     /**
