@@ -150,7 +150,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="selenim"] .visible').click(this._onToggleAspect.bind(this));
 
         // Sciences occultes
-        html.find('div[data-family="science"] .cercle-header .roll').click(this._onRollItem.bind(this));
+        html.find('div[data-family="science"] .header .cercle-menu .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="science"] .focus .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));

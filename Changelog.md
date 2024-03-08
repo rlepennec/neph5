@@ -1,6 +1,8 @@
 # 1.4.10
-Option pour que le MJ gère les jets des défenses d'un PJ
+Ajout de la dracomachie
+Ajout d'une option permettant au MJ de gèrer les jets des défenses d'un PJ
 Ajout de la Sephirah de Daath
+Correction d'une anomalie sur les jets de sciences occultes
 
 # 1.4.9
 Amélioration de la gestion des effets mnemos
