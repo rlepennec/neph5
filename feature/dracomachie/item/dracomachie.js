@@ -32,4 +32,21 @@ export class DracomachieSheet extends NephilimItemSheet {
         return `systems/neph5e/feature/dracomachie/item/dracomachie.html`;
     }
 
+    /**
+     * @override
+     */
+    _updateObject(event, formData) {
+
+        // Set element for passes
+        if (formData["system.cercle"] === "dracomachie@passes" || formData["system.cercle"] === "dracomachie@charmes") {
+            formData['system.element'] = "choix"
+        } else {
+            formData['system.-=element'] = null;
+            formData['system.-=degre'] = null;
+        }
+
+        // Update object
+        super._updateObject(event, formData);
+    }
+
 }

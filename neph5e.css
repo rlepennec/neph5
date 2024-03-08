@@ -4819,6 +4819,9 @@
 .action .body .lines .line:nth-child(1) {
   border-top: 2px solid #151156;
 }
+.action .body .lines .line #note {
+  font-style: italic;
+}
 .action .body .lines .line .line-title {
   display: flex;
   flex-direction: row;
@@ -4826,6 +4829,7 @@
 }
 .action .body .lines .line .line-title label {
   padding-left: 2px;
+  width: 100px;
 }
 .action .body .lines .line .line-title .slider {
   height: 10px;

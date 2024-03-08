@@ -100,6 +100,7 @@ export class ActionDialog extends AbstractDialog {
         html.find("#element").change(this._onSelectElement.bind(this));
         html.find("#opposition").change(this._onSetOpposition.bind(this));
         html.find("#opposition").on('input', this._onSetOpposition.bind(this));
+        html.find("#condition").change(this._onSetCondition.bind(this));
         html.find("#metamorphe").change(this._onSelectMetamorphe.bind(this));
         html.find(".mnemos-modifier").change(this._onSelectMnemos.bind(this));
         html.find("#roll").click(this._onRoll.bind(this));
@@ -196,10 +197,25 @@ export class ActionDialog extends AbstractDialog {
         event.preventDefault();
         const parameters = this.parameters();
         const difficulty = this.action.difficulty(parameters);
+        const condition = this.action.condition(parameters);
         const note = this.action.note(parameters);
         $('#difficulty').html(difficulty + "%");
         $('#sliderOpposition').html("<label id='sliderOpposition'>" + parameters.opposition + "<label>");
+        $('#conditionsModifier').html("<span>" + condition + "<span>");
         $('#note').html(note);
+    }
+
+    /**
+     * Handle the condition change.
+     * @param event The event to handle.
+     */
+    async _onSetCondition(event) {
+        event.preventDefault();
+        const parameters = this.parameters();
+        const difficulty = this.action.difficulty(parameters);
+        const condition = this.action.condition(parameters);
+        $('#conditionsModifier').html("<span>" + condition + "<span>");
+        $('#difficulty').html(difficulty + "%");
     }
 
     /**
@@ -241,7 +257,8 @@ export class ActionDialog extends AbstractDialog {
             elt: this._elt(),
             opposed: this._opposed(),
             shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1,
-            mnemos: this._mnemos()
+            mnemos: this._mnemos(),
+            condition: this._condition()
         }
     }
 
@@ -325,6 +342,14 @@ export class ActionDialog extends AbstractDialog {
      */
     _opposition() {
         const selector = this.form?.querySelector("#opposition");
+        return selector?.value;
+    }
+
+    /**
+     * @returns the current condition used.
+     */
+    _condition() {
+        const selector = this.form?.querySelector("#condition");
         return selector?.value;
     }
 

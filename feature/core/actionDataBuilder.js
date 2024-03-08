@@ -34,7 +34,7 @@ export class ActionDataBuilder {
         this.item = null;
         this.element = null;
         this.ka = null;
-        this.opposition = false;
+        this.opposition = null;
         this.img = null;
         this.base = null;
         this.blessures = null;
@@ -51,6 +51,7 @@ export class ActionDataBuilder {
         this.metamorphe = null;
         this.mnemos = [];
         this.note = null;
+        this.conditions = null;
     }
 
     /**
@@ -154,10 +155,11 @@ export class ActionDataBuilder {
     }
 
     /**
+     * @param opposition The opposiiton to register. 
      * @returns the instance.
      */
-    withOpposition(ka) {
-        this.opposition = true;
+    withOpposition(opposition) {
+        this.opposition = opposition;
         return this;
     }
 
@@ -267,6 +269,15 @@ export class ActionDataBuilder {
     }
 
     /**
+     * @param note The condition object which is an array of string.
+     * @returns the instance. 
+     */
+    withConditions(conditions) {
+        this.conditions = conditions;
+        return this;
+    }
+
+    /**
      * @returns the data.
      */
     export() {
@@ -278,7 +289,6 @@ export class ActionDataBuilder {
             richSentence: game.i18n.localize(this.sentence),
             type: this.type,
             element: this.element,
-            opposition: this.opposition,
             note: this.note
         };
 
@@ -381,6 +391,14 @@ export class ActionDataBuilder {
 
         if (this.note != null) {
             data.note = this.note;
+        }
+
+        if (this.opposition != null) {
+            data.opposition = this.opposition;
+        }
+
+        if (this.conditions != null) {
+            data.conditions = this.conditions;
         }
 
         return data;

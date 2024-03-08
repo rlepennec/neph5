@@ -88,12 +88,12 @@
                 </div>
             </div>
 
-            {{#if opposition}}
+            {{#if (nonNull opposition)}}
 
                 {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>Opposition</label>
+                        <label>{{localize (concat 'NEPH5E.' opposition)}}</label>
                     </div>
                     <div class="line-value">
                         <input id="opposition" type="Number" value="5"/>
@@ -105,7 +105,7 @@
                 {{#if (eq (getSystemOption 'modifierPolicy') 'liste')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>Opposition</label>
+                        <label>{{localize (concat 'NEPH5E.' opposition)}}</label>
                     </div>
                     <div class="line-value">
                         <select id="opposition">
@@ -137,7 +137,7 @@
                 {{#if (eq (getSystemOption 'modifierPolicy') 'slider')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>Opposition</label>
+                        <label>{{localize (concat 'NEPH5E.' opposition)}}</label>
                         <input id="opposition" class="slider" type="range" min="1" max="20" step="1" value="5"/>
                     </div>
                     <div class="line-value">
@@ -289,6 +289,22 @@
                 </div>
                 <div class="line-value">
                     <label id="metamorpheModifier">0</label>
+                    <label class="base-percentage">%</label>
+                </div>
+            </div>
+            {{/if}}
+
+            {{#if (nonNull conditions)}}
+            <div class="line">
+                <div class="line-title">
+                    <select id="condition" name="condition">
+                        {{#each conditions as |condition|}}
+                        <option value="{{condition}}">{{localize (concat 'NEPH5E.' condition)}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="line-value">
+                    <label id="conditionsModifier">0</label>
                     <label class="base-percentage">%</label>
                 </div>
             </div>

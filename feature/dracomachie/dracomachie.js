@@ -39,6 +39,8 @@ export class Dracomachie extends AbstractFocus {
                     .withType(Constants.SIMPLE)
                     .withItem(this.item)
                     .withElement(this.element)
+                    .withOpposition("effetDragon")
+                    .withConditions(["lienAnalogiqueAvec", "lienAnalogiqueSans"])
                     .withBase('Charme', this.degre)
                     .withBlessures('magique')
                     .export();
@@ -57,7 +59,7 @@ export class Dracomachie extends AbstractFocus {
                     .withType(Constants.SIMPLE)
                     .withItem(this.item)
                     .withElement(this.element)
-                    .withOpposition()
+                    .withOpposition("effetDragon")
                     .withBase('Passe', this.degre)
                     .withBlessures('magique')
                     .withNote(this.contraint(5))
@@ -84,7 +86,7 @@ export class Dracomachie extends AbstractFocus {
             case 'rites':
                 return science.degre;
             case 'passes':
-                return science.degre - focus;
+                return science.degre - (focus == null ? 0 : focus);
             default:
                 return 0;
         }
@@ -127,14 +129,34 @@ export class Dracomachie extends AbstractFocus {
      */
     modifier(parameters) {
         switch (this.domaine) {
-            case 'charmes':
-                return 0;
-            case 'rites':
-                return 0;
-            case 'passes':
+            case 'charmes': {
+                const condition = this.condition(parameters);
+                const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
+                const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
+                return ka - menace - condition;
+            }
+            case 'passes': {
                 const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
                 const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
                 return ka - menace;
+            }
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * @Override
+     */
+    condition(parameters) {
+        switch (this.domaine) {
+            case 'charmes': {
+                if (parameters?.condition === 'lienAnalogiqueSans') {
+                    return parameters?.opposition == null ? 50 : parameters.opposition * 10;
+                } else {
+                    return 0;
+                }
+            }
             default:
                 return 0;
         }
@@ -167,7 +189,7 @@ export class Dracomachie extends AbstractFocus {
     contraint(menace) {
         const science = Science.scienceOf(this.actor, this.item.system.cercle);
         const contraint = menace <= this.actor.ka && menace <= science.degre;
-        return contraint ? "L'effet dragon est contraint" : "L'effet dragon n'est pas contraint";
+        return contraint ? "L'effet dragon est contraint automatiquement" : "L'effet dragon n'est pas contraint automatiquement";
     }
 
 }
