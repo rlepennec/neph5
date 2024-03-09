@@ -17,7 +17,7 @@
     <ol class="cercles">
 
         {{#each data.cercles as |cercle|}}
-        <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
+        <div class="cercle">
 
             <!-- Display the voie related to the specified cercle if necessary. -->
             {{#if (nonNull cercle.voie)}}
