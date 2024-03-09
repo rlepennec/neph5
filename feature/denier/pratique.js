@@ -28,6 +28,7 @@ export class Pratique extends AbstractFocus {
             .withItem(this.item)
             .withBase('Pratique', this.degre)
             .withBlessures('magique')
+            .withAide("participants")
             .export();
     }
 
@@ -44,6 +45,13 @@ export class Pratique extends AbstractFocus {
 
         return Math.max(0, this.actor.savoir("denier").degre + ka - focus);
 
+    }
+
+    /**
+     * @Override
+     */
+    modifier(parameters) {
+        return parameters?.aide == null ? 0 : parameters.aide * 10;
     }
 
     /**

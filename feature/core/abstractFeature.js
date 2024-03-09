@@ -215,6 +215,14 @@ export class AbstractFeature {
     }
 
     /**
+     * @param parameters All the action parameters.
+     * @returns the aide modifier.
+     */
+    aide(parameters) {
+        return 0;
+    }
+
+    /**
      * Initialize the action. An action dialog is displayed, allowing the user to
      * customize the action roll by adding modifier for example.
      */

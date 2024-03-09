@@ -52,6 +52,7 @@ export class ActionDataBuilder {
         this.mnemos = [];
         this.note = null;
         this.conditions = null;
+        this.aide = null;
     }
 
     /**
@@ -278,6 +279,15 @@ export class ActionDataBuilder {
     }
 
     /**
+     * @param aide The aide to register.
+     * @returns the instance. 
+     */
+    withAide(aide) {
+        this.aide = aide;
+        return this;
+    }
+
+    /**
      * @returns the data.
      */
     export() {
@@ -399,6 +409,10 @@ export class ActionDataBuilder {
 
         if (this.conditions != null) {
             data.conditions = this.conditions;
+        }
+
+        if (this.aide != null) {
+            data.aide = this.aide;
         }
 
         return data;
