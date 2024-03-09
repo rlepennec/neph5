@@ -280,9 +280,12 @@ export class Science extends HistoricalFeature {
         let savoir = null;
         switch (science) {
             case "denier": {
-                const uuid = "2e59bafc-c15ad33f-ecf2b0b5-552ae23e";
                 const denier = game.items.find(i => i.sid === "2e59bafc-c15ad33f-ecf2b0b5-552ae23e");
                 savoir = new Savoir(actor).withItem(denier);
+            }
+            case "coupe": {
+                const coupe = game.items.find(i => i.sid === "1ca3f53b-b487e304-2260922e-b9d29476");
+                savoir = new Savoir(actor).withItem(coupe);
             }
         }
 

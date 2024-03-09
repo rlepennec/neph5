@@ -16,6 +16,9 @@ export const preloadTemplates = async function () {
         // Combat
         "systems/neph5e/feature/combat/actor/main.hbs",
     
+        // Coupe
+        "systems/neph5e/feature/coupe/actor/tekhnes.hbs",
+
         // Denier
         "systems/neph5e/feature/denier/actor/pratiques.hbs",
 

@@ -143,7 +143,8 @@ Game.denier = {
         mage:          "NEPH5E.denier.mage",
         ouvrier:       "NEPH5E.denier.ouvrier",
         roi:           "NEPH5E.denier.roi",
-        sage:          "NEPH5E.denier.sage"
+        sage:          "NEPH5E.denier.sage",
+        universelle:   "NEPH5E.denier.universelle"
 
     }
 }

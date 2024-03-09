@@ -479,11 +479,17 @@ export class NephilimActor extends Actor {
      * @returns the level of the savoir.
      */
     savoir(savoir) {
+        let item = null;
         switch (savoir) {
             case "denier": {
-                const denier = game.items.find(i => i.sid === "2e59bafc-c15ad33f-ecf2b0b5-552ae23e");
-                return new Savoir(this).withItem(denier);
+                item = game.items.find(i => i.sid === "2e59bafc-c15ad33f-ecf2b0b5-552ae23e");
             }
+            case "coupe": {
+                item = game.items.find(i => i.sid === "1ca3f53b-b487e304-2260922e-b9d29476");
+            }
+        }
+        if (item != null) {
+            return new Savoir(this).withItem(item);
         }
     }
 

@@ -2690,13 +2690,16 @@
   border: none;
   width: 300px;
 }
+.actor .window-content .actor-root .article .article-body .science .science-header .coupe {
+  transform: scale(0.9);
+}
 .actor .window-content .actor-root .article .article-body .science .science-header .science-header-dice {
   position: absolute;
   top: 50%;
   left: 50%;
   font-size: 30px;
   font-weight: bold;
-  transform: translate(86px, 107px);
+  transform: translate(109px, 108px);
 }
 .actor .window-content .actor-root .article .article-body .science .science-header .science-header-text {
   position: absolute;

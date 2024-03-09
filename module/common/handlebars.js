@@ -244,7 +244,8 @@ export class CustomHandlebarsHelpers {
             'mage',
             'ouvrier',
             'roi',
-            'sage'
+            'sage',
+            "universelle"
         ];
     }
 

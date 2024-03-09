@@ -590,7 +590,8 @@
             "ouvrier": "Ouvrier",
             "pratique": "Pratique",
             "roi": "Roi",
-            "sage": "Sage"
+            "sage": "Sage",
+            "universelle": "Universelle"
         },
         "epee": {
             "epee": "Epee",
