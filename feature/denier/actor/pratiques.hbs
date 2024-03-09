@@ -1,14 +1,16 @@
 <div class="science">
 
-    <div class="science-header">
+    {{#with (savoir actor "denier") as |savoir|}}
+    <div class="science-header item" data-sid="{{savoir.sid}}">
 
         <img src="systems/neph5e/assets/core/salomon.webp"/>
 
-        {{#with (savoir actor "denier") as |savoir|}}
         <div class="science-header-text">{{savoir.degre}}</div>
-        {{/with}}
 
+        <a class="science-header-dice roll"><i class="fas fa-dice-d20"></i></a>
+        
     </div>
+    {{/with}}
 
     {{#with (cercles actor science false) as |data|}}
     {{#if (gt data.cercles.length 0)}} 
@@ -47,7 +49,7 @@
                         <span class="cercle-percentage">{{localize "%"}}</span>
                         {{/if}}
 
-                        <a class="cercle-dice roll"><i class="fas fa-dice-d20"></i></a>
+                        <a class="cercle-dice roll"><i class="fa-duotone fa-star-of-david"></i></a>
 
                     {{/unless}}
 
@@ -59,7 +61,6 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
-
                 <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
 
                     <!-- The ka element. -->
