@@ -1879,6 +1879,32 @@
         
                     .science {
         
+                        .science-header {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            position: relative;
+                            text-align: center;
+    
+                            img {
+                                border: none;
+                                width: 300px;
+                            }
+
+                            .science-header-text {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-family: 'AJensonPro';
+                                font-size: 30px;
+                                font-weight: bold;
+                                transform: translate(-4px, -14px);
+                            }
+    
+                        }
+
                         .cercles {
         
                             .disabled {
@@ -1905,6 +1931,15 @@
                                     font-size: 21px;
                                     margin-bottom: -10px;
         
+                                    .triangle {
+                                        position: absolute;
+                                        border: none;
+                                        width: var(--science-circle-width);
+                                        height: var(--science-circle-height);
+                                        background-color: transparent;
+                                        content: var(--img-triangle);
+                                    }
+
                                     .circle {
                                         position: absolute;
                                         border: none;
@@ -3759,7 +3794,7 @@
                         }
             
                     }
-        
+
                 }
                 
                 .nofocus {

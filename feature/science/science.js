@@ -2,6 +2,7 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "../periode/periode.js";
+import { Savoir } from "../periode/savoir.js";
 
 export class Science extends HistoricalFeature {
 
@@ -273,10 +274,22 @@ export class Science extends HistoricalFeature {
      * @returns the data information about the specified cercles.
      */
     static cercles(actor, science, options) {
+
         const cercles = Science.cerclesOf(science);
+
+        let savoir = null;
+        switch (science) {
+            case "denier": {
+                const uuid = "2e59bafc-c15ad33f-ecf2b0b5-552ae23e";
+                const denier = game.items.find(i => i.sid === "2e59bafc-c15ad33f-ecf2b0b5-552ae23e");
+                savoir = new Savoir(actor).withItem(denier);
+            }
+        }
+
         return {
             header: Science._getHeader(science),
-            cercles: Science._getCercles(actor, cercles, options)
+            cercles: Science._getCercles(actor, cercles, options),
+            savoir: savoir
         }
     }
 

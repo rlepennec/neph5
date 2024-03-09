@@ -1,0 +1,123 @@
+<div class="science">
+
+    <div class="science-header">
+
+        <img src="systems/neph5e/assets/core/salomon.webp"/>
+
+        {{#with (savoir actor "denier") as |savoir|}}
+        <div class="science-header-text">{{savoir.degre}}</div>
+        {{/with}}
+
+    </div>
+
+    {{#with (cercles actor science false) as |data|}}
+    {{#if (gt data.cercles.length 0)}} 
+    <ol class="cercles">
+
+        {{#each data.cercles as |cercle|}}
+        <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
+
+            <!-- Display the voie related to the specified cercle if necessary. -->
+            {{#if (nonNull cercle.voie)}}
+            <label class="voie">{{cercle.voie.name}}</label>
+            {{/if}}
+
+            <!-- Display the header above all focus of the cercle. Each science displays specific parameters. -->
+            <div class="header item" data-sid="{{cercle.sid}}">
+
+                <img class="triangle"/>
+
+                <img class="separator"/>
+
+                <div class="cercle-menu">
+
+                    <span class="cercle-name">{{cercle.name}}</span>
+
+                    {{#if (includes ../header 'possede')}}
+                    <span class="cercle-possede">{{localize "NEPH5E.focus"}}</span>
+                    {{/if}}
+
+                    {{#unless (eq cercle.degre 0)}}
+                        
+                        {{#if (includes ../header 'status')}}
+                        <span class="cercle-status">{{localize "NEPH5E.status"}}</span>
+                        {{/if}}
+
+                        {{#if (includes ../header 'percentage')}}
+                        <span class="cercle-percentage">{{localize "%"}}</span>
+                        {{/if}}
+
+                        <a class="cercle-dice roll"><i class="fas fa-dice-d20"></i></a>
+
+                    {{/unless}}
+
+                </div>
+
+            </div>
+
+            <!-- Display all focus related to the cercle. -->
+            <ol class="all-focus">
+
+                {{#each cercle.focus as |item|}}
+
+                <li class="focus item macro {{#if (eq item.degre 0)}}disabled{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
+
+                    <!-- The ka element. -->
+                    <label class="focus-element tooltip">
+                        <i class="fa-solid fa-brightness"></i><span class="tooltiptext">{{localize "NEPH5E.ka"}}</span>
+                    </label>
+
+                    <!-- The name of the focus. -->
+                    <label class="focus-name open">{{item.original.name}}</label>
+
+                    <!-- Indicates id the character has the focus. -->
+                    {{#if (includes ../../header 'possede')}}
+                    <label class="focus-possede">
+                        {{#if item.embedded.system.focus}}
+                        <i class="fa-solid fa-scroll"></i>
+                        {{else}}
+                        <i class="fa-regular fa-scroll"></i>
+                        {{/if}}
+                    </label>
+                    {{/if}}
+
+                    <!-- The status of the focus: connu, dechiffre, appris, tatoue. -->
+                    {{#if (includes ../../header 'status')}}
+                    <label class="focus-status">{{item.embedded.getStatus}}</label>
+                    {{/if}} 
+
+                    {{#if (includes ../../header 'percentage')}}
+                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (or (eq item.original.system.element 'choix') (eq item.original.system.elements.[0] 'quintuple') (eq item.original.system.cercle 'dracomachie@passes'))}}+{{/if}}</label>
+                    {{/if}}
+
+                    <!-- The percentage to succeed to use the focus. -->
+                    {{#if (eq item.embedded.degre 0)}}
+                    <a class="focus-dice">
+                        <i class="fa-solid fa-ban"></i>
+                    </a>
+                    {{else}}
+                    <a class="focus-dice roll">
+                        <i class="fas fa-dice-d20"></i>
+                    </a>
+                    {{/if}}
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+        </div>
+        {{/each}}
+
+    </ol>
+    {{else}}
+
+    <div class="nofocus">
+        <label>{{localize 'NEPH5E.aideFocus'}}</label>
+        <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+    </div>
+
+    {{/if}}
+    {{/with}}
+
+</div>

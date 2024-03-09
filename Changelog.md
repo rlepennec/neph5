@@ -1,3 +1,6 @@
+# 1.4.11
+Ajout des pratiques synarches
+
 # 1.4.10
 Ajout de la dracomachie
 Ajout d'une option permettant au MJ de gèrer les jets des défenses d'un PJ

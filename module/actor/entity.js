@@ -17,6 +17,7 @@ import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Periode } from "../../feature/periode/periode.js";
+import { Savoir } from "../../feature/periode/savoir.js";
 import { Science } from "../../feature/science/science.js";
 import { Vecu } from "../../feature/periode/vecu.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
@@ -471,6 +472,19 @@ export class NephilimActor extends Actor {
     science(science) {
         const i = Science.getScience(science);
         return new Science(this).withItem(i).degre;
+    }
+
+    /**
+     * @param savoir The key of the savoir.
+     * @returns the level of the savoir.
+     */
+    savoir(savoir) {
+        switch (savoir) {
+            case "denier": {
+                const denier = game.items.find(i => i.sid === "2e59bafc-c15ad33f-ecf2b0b5-552ae23e");
+                return new Savoir(this).withItem(denier);
+            }
+        }
     }
 
     /**

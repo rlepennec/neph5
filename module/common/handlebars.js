@@ -168,6 +168,15 @@ export class CustomHandlebarsHelpers {
 
     /**
      * @param actor   The actor object.
+     * @param science The key of the savoir.
+     * @returns the savoir .
+     */
+    static savoir(actor, savoir) {
+        return actor.savoir(savoir);
+    }
+
+    /**
+     * @param actor   The actor object.
      * @param science The type 'sort', 'formule' etc...
      * @param all     True, all cercles are returned.
      * @returns the information datas about the specified cercles.

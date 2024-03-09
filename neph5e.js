@@ -89,6 +89,7 @@ Hooks.once("init", function () {
         focus: CustomHandlebarsHelpers.focus,
         numberOfFocus: CustomHandlebarsHelpers.numberOfFocus,
         sciences: CustomHandlebarsHelpers.sciences,
+        savoir: CustomHandlebarsHelpers.savoir,
         laboratoryOwner: CustomHandlebarsHelpers.laboratoryOwner,
         constructOf: CustomHandlebarsHelpers.constructOf,
         getMaxBaseMP: CustomHandlebarsHelpers.getMaxBaseMP,
