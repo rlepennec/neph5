@@ -2692,6 +2692,7 @@
 }
 .actor .window-content .actor-root .article .article-body .science .science-header .coupe {
   transform: scale(0.9);
+  opacity: 0.7;
 }
 .actor .window-content .actor-root .article .article-body .science .science-header .science-header-dice {
   position: absolute;
@@ -2706,9 +2707,9 @@
   top: 50%;
   left: 50%;
   font-family: 'AJensonPro';
-  font-size: 30px;
+  font-size: 45px;
   font-weight: bold;
-  transform: translate(-4px, -14px);
+  transform: translate(-9px, -24px);
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .disabled {
   color: var(--font-disabled-color);
@@ -2729,6 +2730,14 @@
   font-family: 'AJensonPro';
   font-size: 21px;
   margin-bottom: -10px;
+}
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .losange {
+  position: absolute;
+  border: none;
+  width: var(--science-circle-width);
+  height: var(--science-circle-height);
+  background-color: transparent;
+  content: var(--img-losange);
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .header .triangle {
   position: absolute;
