@@ -1,5 +1,9 @@
 # 1.4.11
-Ajout des pratiques synarches
+Mise à jour du pack système
+Mise à jour de l'onglet denier
+Mise à jour de l'onglet baton
+Mise à jour de l'onglet épée
+Mise à jour de l'onglet coupe
 
 # 1.4.10
 Ajout de la dracomachie
