@@ -1,0 +1,90 @@
+<div class="science">
+
+    {{#with (savoir actor "baton") as |savoir|}}
+    <div class="science-header item" data-sid="{{savoir.sid}}">
+
+        <img class="baton" src="systems/neph5e/assets/core/baton.webp"/>
+
+        <div class="science-header-text">{{savoir.degre}}</div>
+
+        <a class="science-header-dice roll"><i class="fas fa-dice-d20"></i></a>
+        
+    </div>
+    {{/with}}
+
+    {{#with (cercles actor science false) as |data|}}
+    {{#if (gt data.cercles.length 0)}} 
+    <ol class="cercles">
+
+        {{#each data.cercles as |cercle|}}
+        <div class="cercle">
+
+            <!-- Display the voie related to the specified cercle if necessary. -->
+            {{#if (nonNull cercle.voie)}}
+            <label class="voie">{{cercle.voie.name}}</label>
+            {{/if}}
+
+            <!-- Display the header above all focus of the cercle. Each science displays specific parameters. -->
+            <div class="header item" data-sid="{{cercle.sid}}">
+
+                <img class="losange"/>
+
+                <img class="separator"/>
+
+                <div class="cercle-menu">
+
+                    <span class="cercle-name">{{cercle.name}}</span>
+
+                </div>
+
+            </div>
+
+            <!-- Display all focus related to the cercle. -->
+            <ol class="all-focus">
+
+                {{#each cercle.focus as |item|}}
+                <li class="focus item macro" data-macro="item" data-sid="{{item.original.sid}}">
+
+                    <!-- The ka element. -->
+                    <label class="focus-element tooltip">
+                        <i class="fa-solid fa-sun"></i><span class="tooltiptext">{{localize "NEPH5E.soleil"}}</span>
+                    </label>
+
+                    <!-- The name of the focus. -->
+                    <label class="focus-name open">{{item.original.name}}</label>
+
+                    {{#if (includes ../../header 'percentage')}}
+                    <label class="focus-difficulty">{{item.embedded.degre}}</label>
+                    {{/if}}
+
+                    <!-- The percentage to succeed to use the focus. -->
+                    {{#if (eq item.embedded.degre 0)}}
+                    <a class="focus-dice">
+                        <i class="fa-solid fa-ban"></i>
+                    </a>
+                    {{else}}
+                    <a class="focus-dice roll">
+                        <i class="fas fa-dice-d20"></i>
+                    </a>
+                    {{/if}}
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+        </div>
+        {{/each}}
+
+    </ol>
+    {{else}}
+
+    <div class="nofocus">
+        <label>{{localize 'NEPH5E.aideFocus'}}</label>
+        <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+    </div>
+
+    {{/if}}
+    {{/with}}
+
+</div>

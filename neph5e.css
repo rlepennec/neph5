@@ -2689,6 +2689,10 @@
 .actor .window-content .actor-root .article .article-body .science .science-header img {
   border: none;
 }
+.actor .window-content .actor-root .article .article-body .science .science-header .baton {
+  opacity: 0.7;
+  width: 155px;
+}
 .actor .window-content .actor-root .article .article-body .science .science-header .coupe {
   transform: scale(0.9);
   opacity: 0.7;
