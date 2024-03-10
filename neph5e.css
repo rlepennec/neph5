@@ -2688,11 +2688,18 @@
 }
 .actor .window-content .actor-root .article .article-body .science .science-header img {
   border: none;
-  width: 300px;
 }
 .actor .window-content .actor-root .article .article-body .science .science-header .coupe {
   transform: scale(0.9);
   opacity: 0.7;
+  width: 300px;
+}
+.actor .window-content .actor-root .article .article-body .science .science-header .denier {
+  width: 300px;
+}
+.actor .window-content .actor-root .article .article-body .science .science-header .epee {
+  opacity: 0.7;
+  width: 155px;
 }
 .actor .window-content .actor-root .article .article-body .science .science-header .science-header-dice {
   position: absolute;

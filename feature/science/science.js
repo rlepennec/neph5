@@ -287,6 +287,10 @@ export class Science extends HistoricalFeature {
                 const coupe = game.items.find(i => i.sid === "1ca3f53b-b487e304-2260922e-b9d29476");
                 savoir = new Savoir(actor).withItem(coupe);
             }
+            case "epee": {
+                const epee = game.items.find(i => i.sid === "6d3727df-99a5a34a-cd599572-c9d755dd");
+                savoir = new Savoir(actor).withItem(epee);
+            }
         }
 
         return {

@@ -22,6 +22,9 @@ export const preloadTemplates = async function () {
         // Denier
         "systems/neph5e/feature/denier/actor/pratiques.hbs",
 
+        // Epee
+        "systems/neph5e/feature/epee/actor/rituels.hbs",
+
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
         "systems/neph5e/feature/kabbale/actor/ordonnances.hbs",
