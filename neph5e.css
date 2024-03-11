@@ -2093,6 +2093,7 @@
 }
 .actor .window-content .actor-root .article .article-body .humain .body img {
   border: 0px;
+  width: 300px;
 }
 .actor .window-content .actor-root .article .article-body .humain .body .elements {
   list-style: none;
@@ -2127,24 +2128,24 @@
 .actor .window-content .actor-root .article .article-body .humain .body .elements .element .circle {
   position: relative;
   border: none;
-  width: 113px;
-  height: 115px;
-  top: -258px;
-  left: 331px;
+  width: 93px;
+  height: 96px;
+  top: -210px;
+  left: 342px;
   background-color: transparent;
   max-width: none;
   content: var(--img-circle);
 }
 .actor .window-content .actor-root .article .article-body .humain .body .elements .element .dice {
   position: absolute;
-  top: -203px;
-  left: 359px;
-  font-size: 20px;
+  top: -167px;
+  left: 364px;
+  font-size: 17px;
 }
 .actor .window-content .actor-root .article .article-body .humain .body .elements .element .tooltip {
   position: absolute;
-  top: -209px;
-  left: 398px;
+  top: -172px;
+  left: 395px;
 }
 .actor .window-content .actor-root .article .article-body .humain .body .elements .element .tooltip input {
   color: var(--font-color);
