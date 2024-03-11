@@ -132,6 +132,9 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="combat"] .capacites .esquive').click(this._onEditCapacity.bind(this, 'esquive'));
         html.find('div[data-tab="combat"] .capacites .lutte').click(this._onEditCapacity.bind(this, 'lutte'));
 
+        // Humain
+        html.find('div[data-tab="humain"] .element .dice').click(this._onRollKa.bind(this));
+
         // Nephilim
         html.find('div[data-tab="nephilim"] .khaiba').click(this._onChute.bind(this, 'khaiba'));
         html.find('div[data-tab="nephilim"] .narcose').click(this._onChute.bind(this, 'narcose'));

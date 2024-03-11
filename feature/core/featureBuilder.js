@@ -216,6 +216,7 @@ export class FeatureBuilder {
                     case 'feu':
                     case 'lune':
                     case 'terre':
+                    case 'soleil':
                         return new Ka(this.actor, this.ka, this.scope);
                     default:
                         return null;
