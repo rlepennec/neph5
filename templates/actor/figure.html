@@ -142,6 +142,14 @@
                 </div>
                 {{/if}}
 
+                {{#if (eq system.options.humain true)}}
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="humain">{{localize "NEPH5E.humain"}}</a>
+                    <img class="sheet-navigation-pin"/>
+                    <img class="sheet-navigation-hole"/>
+                </div>
+                {{/if}}
+
                 {{#if (eq system.options.baton true)}}
                 <div class="sheet-navigation-choice">
                     <a class="sheet-navigation-tab" data-tab="baton">{{localize "NEPH5E.baton.baton"}}</a>
@@ -329,7 +337,13 @@
                     {{> "systems/neph5e/feature/science/actor/science.hbs" science="necromancie"}}
                 </div>
                 {{/if}}
-        
+
+                {{#if (eq system.options.humain true)}}
+                <div class="tab" data-group="primary" data-tab="humain">
+                    {{> "systems/neph5e/feature/humain/actor/main.hbs"}}
+                </div>
+                {{/if}}
+
                 {{#if (eq system.options.conjuration true)}}
                 <div class="tab" data-group="primary" data-tab="conjuration" data-family="science">
                     {{> "systems/neph5e/feature/science/actor/science.hbs" science="conjuration"}}

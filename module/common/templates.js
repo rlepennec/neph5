@@ -28,6 +28,9 @@ export const preloadTemplates = async function () {
         // Epee
         "systems/neph5e/feature/epee/actor/rituels.hbs",
 
+        // Humain
+        "systems/neph5e/feature/humain/actor/main.hbs",
+
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
         "systems/neph5e/feature/kabbale/actor/ordonnances.hbs",

@@ -1,4 +1,5 @@
 # 1.4.12
+Ajout d'un onglet pour le soleil des humains
 
 # 1.4.11
 Mise à jour du pack système

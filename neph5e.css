@@ -2045,6 +2045,148 @@
 .actor .window-content .actor-root .article .article-body .selenim .right .attributs .body .attribut:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
+.actor .window-content .actor-root .article .article-body .humain {
+  flex-direction: column;
+  display: flex;
+  padding-top: 20px;
+}
+.actor .window-content .actor-root .article .article-body .humain .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+  width: 100%;
+}
+.actor .window-content .actor-root .article .article-body .humain .header .puce {
+  position: relative;
+  top: var(--puce-top);
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+.actor .window-content .actor-root .article .article-body .humain .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 55px);
+  content: var(--img-separator);
+}
+.actor .window-content .actor-root .article .article-body .humain .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor .window-content .actor-root .article .article-body .humain .body {
+  position: relative;
+  text-align: center;
+  margin-left: 55px;
+  margin-top: 30px;
+  font-family: 'AJensonPro';
+}
+.actor .window-content .actor-root .article .article-body .humain .body img {
+  border: 0px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements {
+  list-style: none;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element {
+  position: absolute;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element.noyau {
+  top: 61px;
+  left: 44px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element.pavane {
+  top: 32px;
+  left: 307px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element.reserves {
+  top: 248px;
+  left: 183px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element.reserves .circle {
+  width: var(--selenim-width-circle);
+  height: var(--selenim-height-circle);
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element.reserves .tooltip {
+  top: var(--selenim-reserves-tooltip-top);
+  left: var(--selenim-reserves-tooltip-left);
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element.reserves .separator {
+  top: -60px;
+  left: -66px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element .circle {
+  position: relative;
+  border: none;
+  width: 113px;
+  height: 115px;
+  top: -258px;
+  left: 331px;
+  background-color: transparent;
+  max-width: none;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element .dice {
+  position: absolute;
+  top: -203px;
+  left: 359px;
+  font-size: 20px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element .tooltip {
+  position: absolute;
+  top: -209px;
+  left: 398px;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .elements .element .tooltip input {
+  color: var(--font-color);
+  background-color: transparent;
+  font-size: 20px;
+  border: 0px;
+  width: 40px;
+  text-align: left;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .macro .dice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .macro .dice.soleil {
+  transform: translate(-120px, 115px);
+}
+.actor .window-content .actor-root .article .article-body .humain .body .tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .tooltip.soleil {
+  transform: translate(-110px, 110px);
+}
+.actor .window-content .actor-root .article .article-body .humain .body .tooltip input {
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  border: 0px;
+  width: 40px;
+  text-align: center;
+}
+.actor .window-content .actor-root .article .article-body .humain .body .separator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(97px, 80px);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
 .actor .window-content .actor-root .article .article-body .combat {
   display: flex;
   flex-direction: row;

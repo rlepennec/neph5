@@ -147,6 +147,8 @@
 
             <ol class="body">
 
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.humain" name="system.options.humain" value=system.options.humain}}
+
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.vecus" name="system.options.vecus" value=system.options.vecus}}
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnations" name="system.options.incarnations" value=system.options.incarnations}}
@@ -496,6 +498,12 @@
         name="system.options.epee"
         type="hidden"
         value="{{system.options.epee}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="system.options.humain"
+        type="hidden"
+        value="{{system.options.humain}}"
         data-dtype="Boolean"/>
 
     <input
