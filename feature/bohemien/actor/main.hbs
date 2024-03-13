@@ -1,0 +1,37 @@
+<div class="bohemien">
+
+    <div class="header">
+
+        <img class="puce"/>
+
+        <img class="separator"/>
+
+        <span class="name">{{localize "NEPH5E.brume"}}</span>
+
+    </div>
+
+    <div class="body">
+
+        <img src="systems/neph5e/assets/core/brume.webp"/>
+
+        <ol class="elements">
+
+            <li class="element macro brume" data-macro="ka" data-id="brume">
+                <img class="circle"/>
+                <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                <div class="tooltip">
+                    <input
+                        {{#if actor.locked}}disabled{{/if}}
+                        name="system.ka.brume"
+                        type="text"
+                        value="{{system.ka.brume}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.brume"}}</span>
+                </div>
+            </li>
+
+        </ol>
+
+    </div>
+
+</div>

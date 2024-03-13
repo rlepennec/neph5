@@ -181,6 +181,8 @@
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.atlanteide" name="system.options.atlanteide" value=system.options.atlanteide}}
 
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.bohemien" name="system.options.bohemien" value=system.options.bohemien}}
+
             </ol>
 
         </div>
@@ -432,6 +434,12 @@
         name="system.options.alchimie"
         type="hidden"
         value="{{system.options.alchimie}}"
+        data-dtype="Boolean"/>
+
+    <input
+        name="system.options.bohemien"
+        type="hidden"
+        value="{{system.options.bohemien}}"
         data-dtype="Boolean"/>
 
     <input
