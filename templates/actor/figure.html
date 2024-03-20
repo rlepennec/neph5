@@ -150,14 +150,6 @@
                 </div>
                 {{/if}}
 
-                {{#if (eq system.options.humain true)}}
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="humain">{{localize "NEPH5E.humain"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-                {{/if}}
-
                 {{#if (eq system.options.baton true)}}
                 <div class="sheet-navigation-choice">
                     <a class="sheet-navigation-tab" data-tab="baton">{{localize "NEPH5E.baton.baton"}}</a>
@@ -245,6 +237,21 @@
                 <textarea spellcheck="false" class="article-title" name="name" class="name" rows="1">{{actor.name}}</textarea>
 
                 <img class="article-separator"/>
+
+                {{#if (eq system.options.soleil true)}}
+                <div class="element macro soleil" data-macro="ka" data-id="soleil">
+                    <img class="circle"/>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.soleil"
+                            type="text"
+                            value="{{system.ka.soleil}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.soleil"}}</span>
+                    </div>
+                </div>
+                {{/if}}
 
             </div>
 
@@ -349,12 +356,6 @@
                 {{#if (eq system.options.bohemien true)}}
                 <div class="tab" data-group="primary" data-tab="bohemien">
                     {{> "systems/neph5e/feature/bohemien/actor/main.hbs"}}
-                </div>
-                {{/if}}
-
-                {{#if (eq system.options.humain true)}}
-                <div class="tab" data-group="primary" data-tab="humain">
-                    {{> "systems/neph5e/feature/humain/actor/main.hbs"}}
                 </div>
                 {{/if}}
 

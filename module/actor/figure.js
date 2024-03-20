@@ -101,6 +101,9 @@ export class FigureSheet extends HistoricalSheet {
 
         super.activateOptionListeners(html);
 
+        // Ka Soleil
+        html.find('.article-header .soleil .dice').click(this._onRollKa.bind(this));
+
         // General
         html.find('div[data-tab]').on("drop", this._onDrop.bind(this));
 
@@ -131,9 +134,6 @@ export class FigureSheet extends HistoricalSheet {
         // Combat
         html.find('div[data-tab="combat"] .capacites .esquive').click(this._onEditCapacity.bind(this, 'esquive'));
         html.find('div[data-tab="combat"] .capacites .lutte').click(this._onEditCapacity.bind(this, 'lutte'));
-
-        // Humain
-        html.find('div[data-tab="humain"] .element .dice').click(this._onRollKa.bind(this));
 
         // Nephilim
         html.find('div[data-tab="nephilim"] .khaiba').click(this._onChute.bind(this, 'khaiba'));
@@ -175,7 +175,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Macros
-        html.find('div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
+        html.find('.article-header .soleil .macro, div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });

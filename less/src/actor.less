@@ -226,6 +226,75 @@
         
                     }
 
+                    .soleil {
+                        margin-top: 6px;
+                        margin-bottom: 20px;
+                        margin-left: 50%;
+                        position: absolute;
+    
+                        .circle {
+                            border: none;
+                            width: var(--nephilim-width-circle);
+                            height: var(--nephilim-height-circle);
+                            top: -25px;
+                            left: -25px;
+                            background-color: transparent;
+                            max-width: none;
+                            content: var(--img-circle);
+                            color: var(--font-color);
+                        }
+
+                        .tooltiptext {
+                            bottom: 100%;
+                            left: 29%;
+                            font-size: 14px;
+                            margin-left: -34px;
+                        }
+
+                        .tooltip {
+                            top: var(--nephilim-top-element);
+                            left: var(--nephilim-left-element);
+
+                            input {
+                                background-color: transparent;
+                                font-size: 20px;
+                                border: 0px;
+                                width: 40px;
+                                text-align: left;
+                                color: var(--font-color);
+                            }
+
+                        }
+
+                        /*
+                        input {
+                            border: none;
+                            width: 45px;
+                            height: 45px;
+                            text-align: center;
+                            font-weight: bold;
+                            border-radius: 50%;
+                            transform: translate(-78px, -27px);
+                            background-color: transparent;
+                            color: var(--font-color);
+                            
+                            &:hover {
+                                text-shadow: 0px 0px 1px var(--font-color);
+                            }
+                        }
+                        */
+
+                        .dice {
+                            //font-size: 20px;
+                            //transform: translate(-72px, -27px);
+                            top: var(--nephilim-top-dice);
+                            left: var(--nephilim-left-dice);
+                            font-size: 14px;
+                            color: var(--font-color);
+                        }
+
+                    }
+
                 }
         
                 .article-body {
@@ -1028,162 +1097,6 @@
 
                                 }
                 
-                            }
-
-                        }
-
-                    }
-
-                    .humain {
-                        flex-direction: column;
-                        display: flex;
-                        padding-top: 20px;
-        
-                        .header {
-                            display: flex;
-                            flex-direction: row;
-                            position: relative;
-                            font-family: 'AJensonPro';
-                            font-size: 21px;
-                            margin-top: 15px;
-                            margin-bottom: -10px;
-                            width: 100%;
-
-                            .puce {
-                                position: relative;
-                                top: var(--puce-top);
-                                border: none;
-                                width: 60px;
-                                display: hidden;
-                                background-color: transparent;
-                                content: var(--img-puce);
-                            }
-        
-                            .separator {
-                                position: absolute;
-                                border: none;
-                                height: 4px;
-                                left: 55px;
-                                top: 32px;
-                                width: calc(100% - 55px);
-                                content: var(--img-separator);
-                            }
-        
-                            .name {
-                                position: absolute;
-                                left: 70px;
-                                top: 2px;
-                                width: calc(100% - 65px);
-                            }
-
-                        }
-
-                        .body {
-                            position: relative;
-                            text-align: center;
-                            margin-left: 55px;
-                            margin-top: 30px;
-                            font-family: 'AJensonPro';
-
-                            img {
-                                border: 0px;
-                                width: 300px;
-                            }
-
-                            .elements {
-                                list-style: none;
-
-                                .element {
-                                    position: absolute;
-
-                                    &.soleil {
-                                        top: 61px;
-                                        left: 44px;
-                                    }
-
-                                    .circle {
-                                        position: relative;
-                                        border: none;
-                                        width: 93px;
-                                        height: 96px;
-                                        top: -210px;
-                                        left: 342px;
-                                        background-color: transparent;
-                                        max-width: none;
-                                        content: var(--img-circle);
-                                    }
-
-                                    .dice {
-                                        position: absolute;
-                                        top: -167px;
-                                        left: 364px;
-                                        font-size: 17px;
-                                    }
-
-                                    .tooltip {
-                                        position: absolute;
-                                        top: -172px;
-                                        left: 390px;
-
-                                        input {
-                                            color: var(--font-color);
-                                            background-color: transparent;
-                                            font-size: 20px;
-                                            border: 0px;
-                                            width: 40px;
-                                            text-align: left;
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                            .macro {
-
-                                .dice {
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-
-                                    &.soleil {
-                                        transform: translate(-120px, 115px);
-                                    }
-
-                                }
-    
-                            }
-            
-                            .tooltip {
-                                position: absolute;
-                                top: 50%; 
-                                left: 50%;
-    
-    
-                                &.soleil {
-                                    transform: translate(-110px, 110px);
-                                }
-
-                                input {
-                                    background-color: transparent;
-                                    font-size: 20px;
-                                    font-weight: bold;
-                                    border: 0px;
-                                    width: 40px;
-                                    text-align: center;
-                                }
-
-                            }
-
-                            .separator {
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                transform: translate(97px, 80px);
-                                font-size: 20px;
-                                font-weight: bold;
-                                text-align: center;
                             }
 
                         }

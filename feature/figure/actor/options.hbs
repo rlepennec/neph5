@@ -147,8 +147,6 @@
 
             <ol class="body">
 
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.humain" name="system.options.humain" value=system.options.humain}}
-
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.vecus" name="system.options.vecus" value=system.options.vecus}}
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.incarnations" name="system.options.incarnations" value=system.options.incarnations}}
@@ -174,6 +172,8 @@
             </div>
 
             <ol class="body">
+
+                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.ka-soleil" name="system.options.soleil" value=system.options.soleil}}
 
                 {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.plansSubtils" name="system.options.akasha" value=system.options.akasha}}
 
@@ -509,9 +509,9 @@
         data-dtype="Boolean"/>
 
     <input
-        name="system.options.humain"
+        name="system.options.soleil"
         type="hidden"
-        value="{{system.options.humain}}"
+        value="{{system.options.soleil}}"
         data-dtype="Boolean"/>
 
     <input
