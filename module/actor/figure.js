@@ -102,7 +102,7 @@ export class FigureSheet extends HistoricalSheet {
         super.activateOptionListeners(html);
 
         // Ka Soleil
-        html.find('.article-header .soleil .dice').click(this._onRollKa.bind(this));
+        html.find('.actor-root .side .soleil .dice').click(this._onRollKa.bind(this));
 
         // General
         html.find('div[data-tab]').on("drop", this._onDrop.bind(this));
@@ -175,7 +175,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
 
         // Macros
-        html.find('.article-header .soleil .macro, div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
+        html.find('.actor-root .side .macro, div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });

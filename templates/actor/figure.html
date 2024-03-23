@@ -10,6 +10,22 @@
     
         <div class="side">
         
+            {{#if (eq system.options.soleil true)}}
+            <div class="element macro soleil" data-macro="ka" data-id="soleil">
+                <img class="circle"/>
+                
+                <div class="tooltip">
+                    <input
+                        name="system.ka.soleil"
+                        type="text"
+                        value="{{system.ka.soleil}}"
+                        data-dtype="Number"/>
+                    <span class="tooltiptext">{{localize "NEPH5E.soleil"}}</span>
+                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                </div>
+            </div>
+            {{/if}}
+
             <img class="image" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
 
             <label class="lock-checkbox">
@@ -32,6 +48,7 @@
                 </div>
 
                 {{#if editable}}
+
                 {{#if (eq system.options.nephilim true)}}
                 <div class="sheet-navigation-choice">
                     <a class="sheet-navigation-tab" data-tab="nephilim">{{localize "NEPH5E.nephilim"}}</a>
@@ -237,21 +254,6 @@
                 <textarea spellcheck="false" class="article-title" name="name" class="name" rows="1">{{actor.name}}</textarea>
 
                 <img class="article-separator"/>
-
-                {{#if (eq system.options.soleil true)}}
-                <div class="element macro soleil" data-macro="ka" data-id="soleil">
-                    <img class="circle"/>
-                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
-                    <div class="tooltip">
-                        <input
-                            name="system.ka.soleil"
-                            type="text"
-                            value="{{system.ka.soleil}}"
-                            data-dtype="Number"/>
-                        <span class="tooltiptext">{{localize "NEPH5E.soleil"}}</span>
-                    </div>
-                </div>
-                {{/if}}
 
             </div>
 
