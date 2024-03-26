@@ -180,6 +180,14 @@ export class Science extends HistoricalFeature {
                         }
                     }
 
+                    // Divination bohemien
+                    if (name?.substring(0,11) === 'divination@') {
+                        return {
+                            type: 'divination',
+                            property: 'cercle'
+                        }
+                    }
+
                     // Pratique synarche
                     if (name?.substring(0,7) === 'denier@') {
                         return {
@@ -211,7 +219,7 @@ export class Science extends HistoricalFeature {
                             property: 'cercle'
                         }
                     }
-
+ien
                 }
 
         }
@@ -293,6 +301,10 @@ export class Science extends HistoricalFeature {
             }
             case "baton": {
                 item = game.items.find(i => i.sid === "83a3e42e-5af77cbd-df0f4d7c-38dd775d");
+                break;
+            }
+            case "bohemien": {
+                item = game.items.find(i => i.sid === "0168fa19-a6141d9e-65eaa5b4-d6e9dcb1");
                 break;
             }
         }
@@ -387,6 +399,8 @@ export class Science extends HistoricalFeature {
                 return ['ka', 'percentage'];
             case 'dracomachie':
                 return ['element', 'percentage'];
+            case 'divination':
+                return ['ka', 'percentage'];
             case 'epee':
                 return ['ka', 'percentage'];
             case 'kabbale':
@@ -458,6 +472,7 @@ export class Science extends HistoricalFeature {
             case 'baton':
             case 'coupe':
             case 'denier':
+            case 'divination':
             case 'dracomachie':
             case 'epee': {
                 const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));

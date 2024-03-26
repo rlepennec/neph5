@@ -23,6 +23,7 @@ import { CapaciteSheet } from "./module/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/periode/item/chute.js";
 import { CompetenceSheet } from "./feature/periode/item/competence.js";
+import { DivinationSheet } from "./feature/bohemien/item/divination.js";
 import { DracomachieSheet } from "./feature/dracomachie/item/dracomachie.js";
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
 import { ExperienceDialog } from "./feature/experience/experience.js";
@@ -137,6 +138,7 @@ Hooks.once("init", function () {
     Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
     Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
     Items.registerSheet('nephilim', DracomachieSheet, { types: ['dracomachie'], makeDefault: true });
+    Items.registerSheet('nephilim', DivinationSheet, { types: ['divination'], makeDefault: true });
     Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
     Items.registerSheet('nephilim', HabitusSheet, { types: ['habitus'], makeDefault: true });
     Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });

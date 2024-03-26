@@ -2752,6 +2752,10 @@
   opacity: 0.7;
   width: 155px;
 }
+.actor .window-content .actor-root .article .article-body .science .science-header .bohemien {
+  opacity: 0.7;
+  width: 300px;
+}
 .actor .window-content .actor-root .article .article-body .science .science-header .science-header-dice {
   position: absolute;
   top: 50%;

@@ -247,6 +247,7 @@
             "catalyseur",
             "chute",
             "competence",
+            "divination",
             "dracomachie",
             "formule",
             "habitus",
@@ -334,6 +335,9 @@
             "id": null,
             "description": "",
             "element": "air"
+        },
+        "divination": {
+            "id": null
         },
         "dracomachie": {
             "id": null

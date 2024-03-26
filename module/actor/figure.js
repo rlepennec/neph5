@@ -352,6 +352,7 @@ export class FigureSheet extends HistoricalSheet {
             case 'sort':
             case 'technique':
             case 'tekhne':
+            case 'divination':
                 return ['incarnations'];
             default:
                 return [];

@@ -17,7 +17,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/baton/actor/techniques.hbs",
 
         // Bohemien
-        "systems/neph5e/feature/bohemien/actor/main.hbs",
+        "systems/neph5e/feature/bohemien/actor/divination.hbs",
 
         // Combat
         "systems/neph5e/feature/combat/actor/main.hbs",

@@ -498,6 +498,10 @@ export class NephilimActor extends Actor {
                 item = game.items.find(i => i.sid === "83a3e42e-5af77cbd-df0f4d7c-38dd775d");
                 break;
             }
+            case "bohemien": {
+                item = game.items.find(i => i.sid === "0168fa19-a6141d9e-65eaa5b4-d6e9dcb1");
+                break;
+            }
         }
 
         return item == null ? null : new Savoir(this).withItem(item);
