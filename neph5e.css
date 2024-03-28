@@ -2752,10 +2752,6 @@
   opacity: 0.7;
   width: 155px;
 }
-.actor .window-content .actor-root .article .article-body .science .science-header .bohemien {
-  opacity: 0.7;
-  width: 300px;
-}
 .actor .window-content .actor-root .article .article-body .science .science-header .science-header-dice {
   position: absolute;
   top: 50%;
@@ -2772,6 +2768,78 @@
   font-size: 45px;
   font-weight: bold;
   transform: translate(-9px, -24px);
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume > img {
+  border: none;
+  opacity: 0.7;
+  height: 300px;
+  transform: translate(-25px, 0px);
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume .element {
+  transform: translate(0px, 0%);
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume .element .circle {
+  position: relative;
+  border: none;
+  width: var(--nephilim-width-circle);
+  height: var(--nephilim-height-circle);
+  top: -191px;
+  left: -36px;
+  background-color: transparent;
+  max-width: none;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume .element .dice {
+  position: absolute;
+  top: -60px;
+  left: 205px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume .element .tooltip {
+  position: absolute;
+  top: -161px;
+  left: 98px;
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume .element .tooltip input {
+  color: var(--font-color);
+  background-color: transparent;
+  font-size: 20px;
+  border: 0px;
+  width: 40px;
+  text-align: center;
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .divination img {
+  border: none;
+  opacity: 0.7;
+  height: 213px;
+  transform: translate(10px, 40px);
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .divination .dice {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  font-weight: bold;
+  transform: translate(236px, 47px);
+}
+.actor .window-content .actor-root .article .article-body .science .science-header-bohemien .divination .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'AJensonPro';
+  font-size: 45px;
+  font-weight: bold;
+  transform: translate(154px, -75px);
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .disabled {
   color: var(--font-disabled-color);
@@ -4262,6 +4330,9 @@
 }
 .actor .window-content .actor-root .article .nofocus i {
   margin-top: 50px;
+}
+.actor .window-content .actor-root .article .nofocus.no-margin {
+  margin-top: 20px;
 }
 .item .window-content {
   --background: url("../../systems/neph5e/assets/backgrounds/p.webp");

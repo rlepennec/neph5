@@ -155,6 +155,7 @@ export class FigureSheet extends HistoricalSheet {
         // Sciences occultes
         html.find('div[data-family="science"] .header .cercle-menu .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .science-header .roll').click(this._onRollItem.bind(this));
+        html.find('div[data-family="science"] .science-header-bohemien .brume .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="science"] .focus .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));

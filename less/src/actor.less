@@ -1971,11 +1971,6 @@
                                 width: 155px;
                             }
 
-                            .bohemien {
-                                opacity: 0.7;
-                                width: 300px;
-                            }
-
                             .science-header-dice {
                                 position: absolute;
                                 top: 50%;
@@ -1993,6 +1988,99 @@
                                 font-size: 45px;
                                 font-weight: bold;
                                 transform: translate(-9px, -24px);
+                            }
+    
+                        }
+
+                        .science-header-bohemien {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            position: relative;
+                            text-align: center;
+    
+                            .brume {
+
+                                >img {
+                                    border: none;
+                                    opacity: 0.7;
+                                    height: 300px;
+                                    transform: translate(-25px, 0px);
+                                }
+
+                                .element {
+                                    transform: translate(0px, 0%);
+
+                                    .circle {
+                                        position: relative;
+                                        border: none;
+                                        width: var(--nephilim-width-circle);
+                                        height: var(--nephilim-height-circle);
+                                        top: -191px;
+                                        left: -36px;
+                                        background-color: transparent;
+                                        max-width: none;
+                                        content: var(--img-circle);
+                                    }
+
+                                    .dice {
+                                        position: absolute;
+                                        top: -60px;
+                                        left: 205px;
+                                        font-size: 30px;
+                                        font-weight: bold;
+                                    }
+
+                                    .tooltip {
+                                        position: absolute;
+                                        top: -161px;
+                                        left: 98px;
+
+                                        input {
+                                            color: var(--font-color);
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                            .divination {
+
+                                img {
+                                    border: none;
+                                    opacity: 0.7;
+                                    height: 213px;
+                                    transform: translate(10px, 40px);
+                                }
+
+                                .dice {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    font-size: 30px;
+                                    font-weight: bold;
+                                    transform: translate(236px, 47px);
+                                }
+    
+                                .degre {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    font-family: 'AJensonPro';
+                                    font-size: 45px;
+                                    font-weight: bold;
+                                    transform: translate(154px, -75px);
+                                }
+
                             }
     
                         }
@@ -3914,6 +4002,10 @@
                         margin-top:50px;
                     }
         
+                }
+
+                .nofocus.no-margin {
+                    margin-top: 20px;
                 }
 
             }
