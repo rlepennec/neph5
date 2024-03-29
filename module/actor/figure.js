@@ -155,7 +155,6 @@ export class FigureSheet extends HistoricalSheet {
         // Sciences occultes
         html.find('div[data-family="science"] .header .cercle-menu .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .science-header .roll').click(this._onRollItem.bind(this));
-        html.find('div[data-family="science"] .science-header-bohemien .brume .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus .open').click(this._onOpenItem.bind(this));
         html.find('div[data-family="science"] .focus .roll').click(this._onRollItem.bind(this));
         html.find('div[data-family="science"] .focus-possede').click(this._onChangeFocus.bind(this));
@@ -174,6 +173,10 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="materiae"] .open').click(this._onOpenItem.bind(this));
         html.find('div[data-tab="materiae"] .quantite').change(this._onChangeMateriae.bind(this));
         html.find('div[data-tab="materiae"] .delete').click(this._onDeleteEmbeddedItem.bind(this));
+
+        // Bohemien
+        html.find('div[data-tab="bohemien"] .element .dice').click(this._onRollKa.bind(this));
+        html.find('div[data-tab="bohemien"] .science-header-bohemien .divination .roll').click(this._onRollItem.bind(this));
 
         // Macros
         html.find('.actor-root .side .macro, div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
