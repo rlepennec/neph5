@@ -272,7 +272,7 @@ export class Periode extends AbstractFeature {
             }
 
             const focus = [];
-            for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus','pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie']) {
+            for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus','pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie', 'divination']) {
                 for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
                     const original = AbstractFeature.original(i.sid);
                     if (original != null) {

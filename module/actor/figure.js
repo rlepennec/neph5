@@ -261,6 +261,7 @@ export class FigureSheet extends HistoricalSheet {
                         }
                         case 'appel':
                         case 'atlanteide':
+                        case 'divination':
                         case 'dracomachie':
                         case 'formule':
                         case 'invocation':

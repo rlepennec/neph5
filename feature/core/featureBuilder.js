@@ -6,6 +6,7 @@ import { Atlanteide } from "../atlanteide/atlanteide.js";
 import { Catalyseur } from "../alchimie/catalyseur.js";
 import { Chute } from "../periode/chute.js";
 import { Competence } from "../periode/competence.js";
+import { Divination } from "../bohemien/divination.js";
 import { Dracomachie } from "../dracomachie/dracomachie.js";
 import { Formule } from "../alchimie/formule.js";
 import { Habitus } from "../analogie/habitus.js";
@@ -165,6 +166,8 @@ export class FeatureBuilder {
                 return new Chute(this.actor).withPeriode(this.periode).withItem(item);
             case 'competence':
                 return new Competence(this.actor, item).withManoeuver(this.manoeuver);
+            case 'divination':
+                return new Divination(this.actor).withPeriode(this.periode).withItem(item);
             case 'dracomachie':
                 return new Dracomachie(this.actor).withPeriode(this.periode).withItem(item);
             case 'formule':
