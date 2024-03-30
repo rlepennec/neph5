@@ -321,6 +321,10 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 83px;
+  --soleil-tooltip-margin-top: -32px;
+  --soleil-tooltip-margin-left: -48px;
 }
 .skin-eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
@@ -474,6 +478,10 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 92px;
+  --soleil-tooltip-margin-top: -39px;
+  --soleil-tooltip-margin-left: -45px;
 }
 .skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
@@ -626,6 +634,10 @@
   --materiae-input-left: 0px;
   --materiae-maximum-top: 28px;
   --materiae-maximum-left: 30px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 110px;
+  --soleil-tooltip-margin-top: -47px;
+  --soleil-tooltip-margin-left: -43px;
 }
 .skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
@@ -779,6 +791,10 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 90px;
+  --soleil-tooltip-margin-top: -41px;
+  --soleil-tooltip-margin-left: -44px;
 }
 .skin-lune-noire {
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
@@ -932,6 +948,10 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 90px;
+  --soleil-tooltip-margin-top: -40px;
+  --soleil-tooltip-margin-left: -45px;
 }
 .skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
@@ -1084,6 +1104,10 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 90px;
+  --soleil-tooltip-margin-top: -40px;
+  --soleil-tooltip-margin-left: -45px;
 }
 .skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
@@ -1236,6 +1260,10 @@
   --materiae-input-left: -12px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 19px;
+  --soleil-circle-width: 90px;
+  --soleil-circle-height: 90px;
+  --soleil-tooltip-margin-top: -41px;
+  --soleil-tooltip-margin-left: -46px;
 }
 .actor .window-content {
   background: var(--background);
@@ -1326,21 +1354,19 @@
   text-shadow: 0px 0px 3px var(--font-color);
 }
 .actor .window-content .actor-root .side .soleil {
-  position: absolute;
-  margin-top: 19px;
-  margin-left: 300px;
+  margin-top: 20px;
+  margin-left: 35px;
 }
 .actor .window-content .actor-root .side .soleil .circle {
-  position: relative;
   border: none;
-  width: 85px;
-  height: 85px;
-  top: -25px;
-  left: -25px;
   background-color: transparent;
   max-width: none;
-  content: url("../../systems/neph5e/assets/core/circle-sun.webp");
+  width: 85px;
+  height: 85px;
   color: var(--font-color);
+  width: var(--soleil-circle-width);
+  height: var(--soleil-circle-height);
+  content: var(--img-circle);
 }
 .actor .window-content .actor-root .side .soleil .dice {
   position: absolute;
@@ -1350,9 +1376,8 @@
   color: var(--font-color);
 }
 .actor .window-content .actor-root .side .soleil .tooltip {
-  position: absolute;
-  top: 4px;
-  left: 17px;
+  top: var(--soleil-tooltip-margin-top);
+  left: var(--soleil-tooltip-margin-left);
 }
 .actor .window-content .actor-root .side .soleil .tooltip .tooltiptext {
   bottom: 10%;
@@ -2816,7 +2841,7 @@
 .actor .window-content .actor-root .article .article-body .science .science-header-bohemien .brume .element .tooltip input {
   color: var(--font-color);
   background-color: transparent;
-  font-size: 20px;
+  font-size: 40px;
   border: 0px;
   width: 40px;
   text-align: center;

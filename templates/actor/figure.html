@@ -10,22 +10,6 @@
     
         <div class="side">
         
-            {{#if (eq system.options.soleil true)}}
-            <div class="element macro soleil" data-macro="ka" data-id="soleil">
-                <img class="circle"/>
-                
-                <div class="tooltip">
-                    <input
-                        name="system.ka.soleil"
-                        type="text"
-                        value="{{system.ka.soleil}}"
-                        data-dtype="Number"/>
-                    <span class="tooltiptext">{{localize "NEPH5E.soleil"}}</span>
-                    <a class="dice"><i class="fas fa-dice-d20"></i></a>
-                </div>
-            </div>
-            {{/if}}
-
             <img class="image" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
 
             <label class="lock-checkbox">
@@ -228,6 +212,22 @@
                     <img class="sheet-navigation-pin"/>
                     <img class="sheet-navigation-hole"/>
                 </div>
+
+                {{#if (eq system.options.soleil true)}}
+                <div class="element macro soleil" data-macro="ka" data-id="soleil">
+                    <img class="circle"/>
+                    
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.soleil"
+                            type="text"
+                            value="{{system.ka.soleil}}"
+                            data-dtype="Number"/>
+                        <span class="tooltiptext">{{localize "NEPH5E.soleil"}}</span>
+                        <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+                </div>
+                {{/if}}
 
                 {{#if (and (eq system.options.simulacre true) (nonNull simulacre.name))}}
                 <img class="sheet-navigation-image" src="{{simulacre.img}}" data-edit="img"/>
