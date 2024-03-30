@@ -1333,13 +1333,13 @@
 .actor .window-content .actor-root .side .soleil .circle {
   position: relative;
   border: none;
-  width: var(--nephilim-width-circle);
-  height: var(--nephilim-height-circle);
+  width: 85px;
+  height: 85px;
   top: -25px;
   left: -25px;
   background-color: transparent;
   max-width: none;
-  content: var(--img-circle);
+  content: url("../../systems/neph5e/assets/core/circle-sun.webp");
   color: var(--font-color);
 }
 .actor .window-content .actor-root .side .soleil .dice {
@@ -1351,8 +1351,8 @@
 }
 .actor .window-content .actor-root .side .soleil .tooltip {
   position: absolute;
-  top: var(--nephilim-top-element);
-  left: var(--nephilim-left-element);
+  top: 4px;
+  left: 17px;
 }
 .actor .window-content .actor-root .side .soleil .tooltip .tooltiptext {
   bottom: 10%;
@@ -2836,7 +2836,7 @@
   left: 50%;
   font-size: 30px;
   font-weight: bold;
-  transform: translate(236px, 47px);
+  transform: translate(236px, 96px);
 }
 .actor .window-content .actor-root .article .article-body .science .science-header-bohemien .divination .degre {
   position: absolute;
