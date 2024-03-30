@@ -179,7 +179,7 @@ export class FigureSheet extends HistoricalSheet {
         html.find('div[data-tab="bohemien"] .science-header-bohemien .divination .roll').click(this._onRollItem.bind(this));
 
         // Macros
-        html.find('.actor-root .side .macro, div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro').each((i, li) => {
+        html.find('.actor-root .side .macro, div[data-tab="vecus"] .macro, div[data-tab="nephilim"] .macro, div[data-tab="selenim"] .macro, div[data-tab="alchimie"] .macro, div[data-tab="kabbale"] .macro, div[data-tab="magie"] .macro, div[data-tab="necromancie"] .macro, div[data-tab="conjuration"] .macro, div[data-tab="coupe"] .macro, div[data-tab="epee"] .macro, div[data-tab="denier"] .macro, div[data-tab="baton"] .macro, div[data-tab="dracomachie"] .macro, div[data-tab="bohemien"] .macro, div[data-tab="analogie"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });

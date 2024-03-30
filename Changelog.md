@@ -1,7 +1,7 @@
 # 1.4.12
-Ajout d'un onglet pour le soleil des humains
-Ajout d'un onglet pour les bohémiens
-Ajout de la science occulte divination pour les bohémiens
+Ajout d'une option pour définir le Ka Soleil d'une figure
+Ajout d'un onglet pour les bohémiens - Ka Brume & Divination
+Renomme passés et ressources
 
 # 1.4.11
 Mise à jour du pack système
