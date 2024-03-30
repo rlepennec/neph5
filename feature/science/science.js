@@ -181,7 +181,7 @@ export class Science extends HistoricalFeature {
                     }
 
                     // Divination bohemien
-                    if (name?.substring(0,11) === 'divination@') {
+                    if (name?.substring(0,9) === 'bohemien@') {
                         return {
                             type: 'divination',
                             property: 'cercle'
@@ -399,7 +399,7 @@ ien
                 return ['ka', 'percentage'];
             case 'dracomachie':
                 return ['element', 'percentage'];
-            case 'divination':
+            case 'bohemien':
                 return ['ka', 'percentage'];
             case 'epee':
                 return ['ka', 'percentage'];
@@ -472,7 +472,7 @@ ien
             case 'baton':
             case 'coupe':
             case 'denier':
-            case 'divination':
+            case 'bohemien':
             case 'dracomachie':
             case 'epee': {
                 const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));

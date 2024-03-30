@@ -7,7 +7,7 @@ export class DivinationSheet extends NephilimItemSheet {
      */
     getOriginalData() {
         return {
-            cercles: super.cerclesOf('divination')
+            cercles: super.cerclesOf('bohemien')
         }
     }
 
