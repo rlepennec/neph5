@@ -219,7 +219,7 @@ export class Science extends HistoricalFeature {
                             property: 'cercle'
                         }
                     }
-ien
+
                 }
 
         }
