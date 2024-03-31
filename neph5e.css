@@ -2532,7 +2532,15 @@
   flex-direction: row;
   height: 22px;
 }
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li input {
+  border: none;
+  margin-top: -5px;
+  background: transparent;
+}
 .actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .margin {
+  width: 10%;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .delete {
   width: 10%;
 }
 .actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .name {

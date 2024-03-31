@@ -68,7 +68,9 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .vecu .open').click(this._onEditVecu.bind(this));
         html.find('div[data-tab="combat"] .vecu .delete').click(this._onDeleteVecu.bind(this));
         html.find('div[data-tab="combat"] .vecu input').change(this._onDegreVecu.bind(this));
-
+        html.find('div[data-tab="combat"] .ressource .open').click(this._onEditRessource.bind(this));
+        html.find('div[data-tab="combat"] .ressource input').change(this._onDegreRessource.bind(this));
+        html.find('div[data-tab="combat"] .ressource .delete').click(this._onDeleteRessource.bind(this));
     }
 
     /**
@@ -115,6 +117,38 @@ export class FigurantSheet extends BaseSheet {
     }
 
     /**
+     * Update the specified ressource.
+     * @param event The click event.
+     */
+    async _onDegreRessource(event) {
+        const id = $(event.currentTarget).closest(".ressource").data("id");
+        const degre = parseInt(event.currentTarget.value);
+        const item = this.actor.items.get(id);
+        await item.update({"system.degre": degre});
+    }
+
+    /**
+     * Edit the specified item.
+     * @param event The click event.
+     */
+    async _onEditRessource(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest(".ressource").data("id");
+        const item = this.actor.getEmbeddedDocument('Item', id);
+        await item.sheet.render(true);
+    }
+
+    /**
+     * Delete the specified item.
+     * @param event The click event.
+     */
+    async _onDeleteRessource(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest(".ressource").data("id");
+        await this.actor.deleteEmbeddedDocuments('Item', [id]);
+    }
+
+    /**
      * Drop the specified object.
      * @param event The drop event.
      */
@@ -139,7 +173,18 @@ export class FigurantSheet extends BaseSheet {
                     await super._onDrop(event);
                     break;
                 case 'vecu':
-                    await new FeatureBuilder(this.actor).withOriginalItem(item.sid).withEvent(event).withPeriode(item.system.periode).create().drop();
+                    await new FeatureBuilder(this.actor)
+                        .withOriginalItem(item.sid)
+                        .withEvent(event)
+                        .withPeriode(item.system.periode)
+                        .create()
+                        .drop();
+                case 'passe':
+                    await new FeatureBuilder(this.actor)
+                        .withOriginalItem(item.sid)
+                        .withEvent(event)
+                        .create()
+                        .drop();
                     break;
             }
         }
@@ -155,6 +200,7 @@ export class FigurantSheet extends BaseSheet {
             case 'arme':
             case 'armure':
             case 'vecu':
+            case 'passe':
                 return ['combat'];
             default:
                 return [];

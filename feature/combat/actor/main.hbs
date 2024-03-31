@@ -406,23 +406,40 @@
 
             <ol>
 
+                {{#if (eq actor.type 'figure')}}
                 {{#each actor.passes as |item|}}
                 {{#if (ne item.degre 0)}}
                 <li class="ressource item macro" data-macro="item" data-sid="{{item.sid}}">
-
                     <label class="margin"></label>
-
                     <label class="name open">{{item.name}}</label>
-
                     <a class="dice roll">
                         <i class="fas fa-dice-d20"></i>
                     </a>
-
                     <label class="degre">{{item.degre}}</label>
-
                 </li>
                 {{/if}}
                 {{/each}}
+                {{/if}}
+
+                {{#if (eq actor.type 'figurant')}}
+                {{#each actor.items as |item id|}}
+                {{#if (eq item.type 'passe')}}
+                <li class="ressource item macro" data-macro="item" data-sid="{{item.sid}}" data-id="{{item.id}}">
+                    <i class="delete fas fa-trash"></i>
+                    <label class="name open">{{item.name}}</label>
+                    <a class="dice roll">
+                        <i class="fas fa-dice-d20"></i>
+                    </a>
+                    <input
+                        class="degre"
+                        name="item.system.degre"
+                        type="text"
+                        value="{{item.system.degre}}"
+                        data-dtype="Number"/>
+                </li>
+                {{/if}}
+                {{/each}}
+                {{/if}}
 
             </ol>
 
