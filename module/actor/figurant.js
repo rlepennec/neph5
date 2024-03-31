@@ -68,6 +68,7 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .vecu .open').click(this._onEditVecu.bind(this));
         html.find('div[data-tab="combat"] .vecu .delete').click(this._onDeleteVecu.bind(this));
         html.find('div[data-tab="combat"] .vecu input').change(this._onDegreVecu.bind(this));
+        html.find('div[data-tab="combat"] .ressource .roll').click(this._onRollRessource.bind(this));
         html.find('div[data-tab="combat"] .ressource .open').click(this._onEditRessource.bind(this));
         html.find('div[data-tab="combat"] .ressource input').change(this._onDegreRessource.bind(this));
         html.find('div[data-tab="combat"] .ressource .delete').click(this._onDeleteRessource.bind(this));
@@ -114,6 +115,17 @@ export class FigurantSheet extends BaseSheet {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".vecu").data("id");
         await this.actor.deleteEmbeddedDocuments('Item', [id]);
+    }
+
+    /**
+     * Roll the specified ressource.
+     * @param event The click event.
+     */
+    async _onRollRessource(event) {
+        event.preventDefault();
+        const id = $(event.currentTarget).closest(".ressource").data("id");
+        const item = this.actor.items.get(id);
+        await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
     }
 
     /**

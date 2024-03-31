@@ -507,7 +507,7 @@
                 "noyau": "utilise son noyau",
                 "menace": "fait appel à ses compétences martiales",
                 "pacte": "noue un pacte avec ${item}",
-                "passe": "fait appel à sa ressource ${item}",
+                "passe": "utilise sa ressource ${item}",
                 "pavane": "écoute la Pavane",
                 "pratique": "utilise la pratique synarque ${item}",
                 "quete": "mobilise sa sapience sur la quête ésotérique ${item}",
