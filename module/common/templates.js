@@ -47,7 +47,6 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/periode/actor/savoirs.hbs",
         "systems/neph5e/feature/periode/actor/quetes.hbs",
         "systems/neph5e/feature/periode/actor/chutes.hbs",
-        "systems/neph5e/feature/periode/actor/passes.hbs",
         "systems/neph5e/feature/periode/actor/competences.hbs",
         "systems/neph5e/feature/periode/actor/incarnations.hbs",
         

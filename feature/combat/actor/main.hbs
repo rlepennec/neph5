@@ -392,6 +392,42 @@
 
         </div>
 
+       <div class="ressources">
+
+            <div class="header">
+
+                <img class="puce"/>
+
+                <img class="separator"/>
+
+                <span class="name">{{localize "NEPH5E.ressources"}}</span>
+
+            </div>
+
+            <ol>
+
+                {{#each actor.passes as |item|}}
+                {{#if (ne item.degre 0)}}
+                <li class="ressource item macro" data-macro="item" data-sid="{{item.sid}}">
+
+                    <label class="margin"></label>
+
+                    <label class="name open">{{item.name}}</label>
+
+                    <a class="dice roll">
+                        <i class="fas fa-dice-d20"></i>
+                    </a>
+
+                    <label class="degre">{{item.degre}}</label>
+
+                </li>
+                {{/if}}
+                {{/each}}
+
+            </ol>
+
+        </div>
+
     </div>
 
     <div class="right">

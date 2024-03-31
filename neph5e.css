@@ -2490,6 +2490,65 @@
 .actor .window-content .actor-root .article .article-body .combat .left .armures ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
+.actor .window-content .actor-root .article .article-body .combat .left .ressources .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: var(--combat-armures-bottom);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources .header .puce {
+  position: relative;
+  top: var(--puce-top);
+  border: none;
+  width: 60px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 40px);
+  content: var(--img-separator);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol {
+  position: relative;
+  z-index: 99;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li {
+  display: flex;
+  flex-direction: row;
+  height: 22px;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .margin {
+  width: 10%;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .name {
+  width: 70%;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .dice {
+  width: 10%;
+  text-align: right;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li .degre {
+  width: 10%;
+  text-align: right;
+}
+.actor .window-content .actor-root .article .article-body .combat .left .ressources ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
 .actor .window-content .actor-root .article .article-body .combat .right {
   display: flex;
   flex-direction: column;
