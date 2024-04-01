@@ -70,25 +70,26 @@ export class Dracomachie extends AbstractFocus {
     }
 
     /**
-     * @Override
+     * @return -100 if uncastable, the value otherwise
      */
-    get degre() {
-
-        // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
+    get rawDegre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        if (science === 0) {
+            return -112;
+        }
 
         switch (this.domaine) {
             case 'charmes':
-                 return science.degre;
+                 return science;
             case 'rites':
-                return science.degre;
+                return science;
             case 'passes':
-                return science.degre - (focus == null ? 0 : focus);
+                const focus = this.item.system.degre;
+                return science - (focus == null ? 0 : focus);
             default:
-                return 0;
+                return -100;
         }
 
     }
