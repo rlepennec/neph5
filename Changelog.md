@@ -1,3 +1,5 @@
+# 1.4.13
+
 # 1.4.12
 Ajout d'une option pour définir le Ka Soleil d'une figure
 Ajout d'un onglet pour les bohémiens - Ka Brume & Divination
