@@ -52,6 +52,13 @@ export class AbstractFocus extends AbstractFeature {
     }
 
     /**
+     * @return true if the focus can't be cast.
+     */
+    get uncastable() {
+        return this.degre === 0;
+    }
+
+    /**
      * @Override
      */
     get purpose() {

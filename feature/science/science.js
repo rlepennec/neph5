@@ -247,6 +247,7 @@ export class Science extends HistoricalFeature {
             const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;
+            const uncastable = feature.uncastable;
 
             if (degre != null) {
                 embedded.degre = degre * 10;
@@ -256,7 +257,8 @@ export class Science extends HistoricalFeature {
 
             items.push({
                 original: item,
-                embedded: embedded
+                embedded: embedded,
+                uncastable: uncastable
             });
 
         }
@@ -431,6 +433,7 @@ export class Science extends HistoricalFeature {
             const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;
+            const uncastable = feature.uncastable;
 
             if (degre != null) {
                 embedded.degre = degre * 10;
@@ -440,7 +443,8 @@ export class Science extends HistoricalFeature {
 
             items.push({
                 original: item,
-                embedded: embedded
+                embedded: embedded,
+                uncastable: uncastable
             });
 
         }
