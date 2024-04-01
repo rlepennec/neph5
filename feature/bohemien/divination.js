@@ -34,18 +34,23 @@ export class Divination extends AbstractFocus {
     /**
      * @Override
      */
-    get degre() {
+    get rawDegre() {
+
+        // Retrieve the degre of the ka used to cast the focus
+        const ka = this.actor.getKa('brume');
+        if (ka < 1) {
+            return -113;
+        }
+
+        const savoir = this.actor.savoir("bohemien").degre;
+        if (savoir === 0) {
+            return -114;
+        }
 
         // Retrieve the degre of the focus to cast
         const focus = this.item.system.degre;
 
-        // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa('brume');
-        if (ka === 0) {
-            return 0;
-        } else {
-            return Math.max(0, this.actor.savoir("bohemien").degre + ka - focus);
-        }
+        return savoir + ka - focus;
 
     }
 

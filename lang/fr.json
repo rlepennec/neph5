@@ -201,7 +201,9 @@
             "109": "Cercle du construct insuffisant",
             "110": "Materia Primae insuffisante",
             "111": "Construct pas le ka",
-            "112": "Cercle de Dracomachie insuffisant"
+            "112": "Cercle de Dracomachie insuffisant",
+            "113": "Pas de Ka Brume",
+            "114": "Pas de savoir ésotérique Bohémien"
         },
         "estDesoriente": "${actor} est désorienté(e)",
         "estImmobilise": "${actor} est immobilisé(e)",
