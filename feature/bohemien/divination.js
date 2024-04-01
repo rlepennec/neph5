@@ -43,7 +43,7 @@ export class Divination extends AbstractFocus {
         }
 
         const savoir = this.actor.savoir("bohemien").degre;
-        if (savoir === 0) {
+        if (savoir < 1) {
             return -114;
         }
 
