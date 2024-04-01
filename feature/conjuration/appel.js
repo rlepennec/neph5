@@ -35,16 +35,6 @@ export class Appel extends AbstractFocus {
     /**
      * @Override
      */
-    get degre() {
-
-        // Retrieve the degre of the cercle used to cast the focus
-        return Math.max(0, Science.scienceOf(this.actor, this.item.system.cercle).degre);
-
-    }
-
-    /**
-     * @Override
-     */
     async _createEmbeddedItem(previous) {
 
         // Create a new focus or move the focus to the new periode.
@@ -65,6 +55,33 @@ export class Appel extends AbstractFocus {
         return {
             difficulty: this.degre
         }
+    }
+
+    /**
+     * @return -100 if uncastable, the value otherwise
+     */
+    get rawDegre() {
+
+        if (this.embedded == null) {
+            return -100;
+        }
+
+        if (this.embedded.system.status === 'connu') {
+            return -101;
+        }
+
+        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+            return -102;
+        }
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        if (science === 0) {
+            return -103;
+        }
+
+        return science;
+
     }
 
 }
