@@ -208,7 +208,9 @@
             "116": "Pas de savoir ésotérique Baton",
             "117": "Pas de savoir ésotérique Coupe",
             "118": "Pas de savoir ésotérique Epée",
-            "119": "Pas de savoir ésotérique Denier"
+            "119": "Pas de savoir ésotérique Denier",
+            "120": "Cercle Atlantéïde insuffisant",
+            "121": "Domaine magique insuffisant"
         },
         "estDesoriente": "${actor} est désorienté(e)",
         "estImmobilise": "${actor} est immobilisé(e)",

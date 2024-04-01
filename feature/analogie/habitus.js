@@ -41,7 +41,7 @@ export class Habitus extends AbstractFocus {
         // Retrieve the degre of the cercle used to cast the focus
         const science = Science.scienceOf(this.actor, this.item.system.domaine).degre;
         if (science < 1) {
-            return -103;
+            return -121;
         }
 
         // Retrieve the degre of the ka used to cast the focus

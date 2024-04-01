@@ -35,19 +35,25 @@ export class Atlanteide extends AbstractFocus {
     /**
      * @Override
      */
-    get degre() {
+    get rawDegre() {
 
         // Retrieve the degre of the cercle used to cast the focus
         const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        if (science < 1) {
+            return -120;
+        }
+
+        // Retrieve the degre of the ka used to cast the focus
+        const ka = this.actor.ka;
+        if (ka < 1) {
+            return -105;
+        }
 
         // Retrieve the degre of the focus to cast
         const focus = this.item.system.degre;
 
-        // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.ka;
-
         // Final result
-        return Math.max(0, science + ka - focus);
+        return science + ka - focus;
 
     }
 
