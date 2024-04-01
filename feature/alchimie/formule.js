@@ -35,78 +35,6 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    async initializeRoll() {
-
-        if (this.embedded == null || (this.embedded.system.focus !== true && (this.embedded.system.status === 'connu' || this.embedded.system.status === 'dechiffre'))) {
-            ui.notifications.warn("Vous ne possédez pas le focus de cette formule");
-            return;
-        }
-
-        const owner = this.getOwner();
-        const construct = owner == null ? null : owner.getConstruct(this.item.system.substance);
-
-        if (construct?.active !== true) {
-            ui.notifications.warn("Vous ne possédez pas de construct actif");
-            return;
-        }
-
-        if (construct.degre === "oeuvreAuNoir" && (this.item.system.cercle === "oeuvreAuBlanc" || this.item.system.cercle === "oeuvreAuRouge")) {
-            ui.notifications.warn("Vous ne possédez pas de construct au niveau requis");
-            return;
-        }
-
-        if (construct.degre === "oeuvreAuBlanc" && this.item.system.cercle === "oeuvreAuRouge") {
-            ui.notifications.warn("Vous ne possédez pas de construct au niveau requis");
-            return;
-        }
-
-        for (let element of this.item.system.elements) {
-
-            switch (element) {
-                case 'air':
-                case 'eau':
-                case 'feu':
-                case 'lune':
-                case 'terre':
-                    if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
-                        ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
-                        return;
-                    }
-                    break;
-
-                case 'quintuple':
-                    if (this.actor.system.alchimie.primae['air'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['eau'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['feu'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['lune'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['terre'].quantite < 5) {
-                   ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
-                   return;
-               }
-                    break;
-
-                case 'quintessence':
-                    if (this.actor.system.alchimie.primae['air'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['eau'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['feu'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['lune'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['terre'].quantite < 1) {
-                        ui.notifications.warn("Vous ne possédez pas les materiae primae necessaires");
-                        return;
-                    }
-                    break;
-                
-            }
-
-        }
-
-        return await super.initializeRoll();
-
-    }
-
-    /**
-     * @Override
-     */
     async finalize(result) {
 
         if (this.actor.system.options.gestionLaboratoire !== true) {
@@ -133,70 +61,16 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
+    get uncastable() {
+        return this._degre === -100;
+    }
+
+    /**
+     * @Override
+     */
     get degre() {
-
-        // Retrieve the construct used to cast focus according to the current laboratory
-        // The construct must be active
-        const owner = this.getOwner();
-        const construct = owner == null ? null : owner.getConstruct(this.item.system.substance);
-        if (construct?.active !== true) {
-            return null;
-        }
-
-        // Retrieve all elements used to cast the focus
-        // All elements must be owned by the construct
-        let ka = 0;
-        switch (this.item.system.cercle) {
-            case 'oeuvreAuNoir':
-                ka = construct[this.item.system.elements[0]] ?? 0
-                if (ka < 1) {
-                    return null;
-                }
-                break;
-            case 'oeuvreAuBlanc':
-                ka = Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
-                if (ka < 1) {
-                    return null;
-                }
-                break;
-            case 'oeuvreAuRouge':
-                switch (this.item.system.elements[0]) {
-                    case 'quintessence':
-                        Math.min(construct['air'], construct['eau'], construct['feu'], construct['lune'], construct['terre']);
-                        break;
-                    case 'quintuple':
-                        ka = 0;
-                        break;
-                }
-                break;
-        }
-
-
-        // The cercle of the formule must be supported by the construct
-        switch (this.item.system.cercle) {
-            case 'oeuvreAuNoir':
-                break;
-            case 'oeuvreAuBlanc':
-                if (construct.degre === 'oeuvreAuNoir') {
-                    return null;
-                }
-                break;
-            case 'oeuvreAuRouge':
-                if (construct.degre === 'oeuvreAuNoir' || construct.degre === 'oeuvreAuBlanc') {
-                    return null;
-                }
-                break;
-        }
-
-        // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
-
-        // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
-
-        // Final result
-        return Math.max(0, science + ka - focus);
-
+        const degre = this._degre;
+        return degre === -100 ? 0 : degre;
     }
 
     /**
@@ -266,6 +140,124 @@ export class Formule extends AbstractFocus {
         } else {
             return null;
         }
+    }
+
+    /**
+     * @return -100 if uncastable, the value otherwise
+     */
+    get _degre() {
+
+        if (this.embedded == null) {
+            return -100;
+        }
+
+        if (this.embedded.system.status === 'connu') {
+            return -100;
+        }
+
+        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+            return -100;
+        }
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        if (science === 0) {
+            return -100;
+        }
+
+        const owner = this.getOwner();
+        const construct = owner == null ? null : owner.getConstruct(this.item.system.substance);
+
+        // Construct inactif
+        if (construct?.active !== true) {
+            return -100;
+        }
+
+        // Construct pas au niveau requis
+        if (construct.degre === "oeuvreAuNoir" && (this.item.system.cercle === "oeuvreAuBlanc" || this.item.system.cercle === "oeuvreAuRouge")) {
+            return -100;
+        }
+
+        // Construct pas au niveau requis
+        if (construct.degre === "oeuvreAuBlanc" && this.item.system.cercle === "oeuvreAuRouge") {
+            return -100;
+        }
+
+        // Vous ne possédez pas les materiae primae necessaires
+        for (let element of this.item.system.elements) {
+
+            switch (element) {
+                case 'air':
+                case 'eau':
+                case 'feu':
+                case 'lune':
+                case 'terre':
+                    if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
+                        return -100;
+                    }
+                    break;
+
+                case 'quintuple':
+                    if (this.actor.system.alchimie.primae['air'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['eau'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['feu'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['lune'].quantite < 5 &&
+                        this.actor.system.alchimie.primae['terre'].quantite < 5) {
+                        return -100;
+                    }
+                    break;
+
+                case 'quintessence':
+                    if (this.actor.system.alchimie.primae['air'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['eau'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['feu'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['lune'].quantite < 1 ||
+                        this.actor.system.alchimie.primae['terre'].quantite < 1) {
+                        return -100;
+                    }
+                    break;
+
+            }
+
+        }
+
+        // Retrieve all elements used to cast the focus
+        // All elements must be owned by the construct
+        let ka = 0;
+        switch (this.item.system.cercle) {
+            case 'oeuvreAuNoir':
+                ka = construct[this.item.system.elements[0]] ?? 0
+                if (ka < 1) {
+                    return -100;
+                }
+                break;
+            case 'oeuvreAuBlanc':
+                ka = Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
+                if (ka < 1) {
+                    return -100;
+                }
+                break;
+            case 'oeuvreAuRouge':
+                switch (this.item.system.elements[0]) {
+                    case 'quintessence':
+                        Math.min(construct['air'], construct['eau'], construct['feu'], construct['lune'], construct['terre']);
+                        break;
+                    case 'quintuple':
+                        ka = 0;
+                        break;
+                }
+                break;
+        }
+
+        // Retrieve the degre of the focus to cast
+        const focus = this.item.system.degre;
+
+        // Final result
+        return science + ka - focus;
+
+
+
+
     }
 
 }
