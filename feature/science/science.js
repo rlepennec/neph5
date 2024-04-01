@@ -248,6 +248,7 @@ export class Science extends HistoricalFeature {
             const embedded = feature.embedded;
             const degre = feature.degre;
             const uncastable = feature.uncastable;
+            const limitation = feature.limitation;
 
             if (degre != null) {
                 embedded.degre = degre * 10;
@@ -258,7 +259,8 @@ export class Science extends HistoricalFeature {
             items.push({
                 original: item,
                 embedded: embedded,
-                uncastable: uncastable
+                uncastable: uncastable,
+                limitation: limitation
             });
 
         }
@@ -434,6 +436,7 @@ export class Science extends HistoricalFeature {
             const embedded = feature.embedded;
             const degre = feature.degre;
             const uncastable = feature.uncastable;
+            const limitation = feature.limitation;
 
             if (degre != null) {
                 embedded.degre = degre * 10;
@@ -444,7 +447,8 @@ export class Science extends HistoricalFeature {
             items.push({
                 original: item,
                 embedded: embedded,
-                uncastable: uncastable
+                uncastable: uncastable,
+                limitation: limitation
             });
 
         }

@@ -169,7 +169,10 @@
                     <!-- The percentage to succeed to use the focus. -->
                     {{#if item.uncastable}}
                     <a class="focus-dice">
-                        <i class="fa-solid fa-ban"></i>
+                        <div class="tooltip">
+                            <i class="fa-solid fa-ban"></i>
+                            <span class="tooltiptext">{{localize item.limitation}}</span>
+                        </div>
                     </a>
                     {{else}}
                     <a class="focus-dice roll">

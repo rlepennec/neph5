@@ -61,6 +61,17 @@ export class AbstractFocus extends AbstractFeature {
     /**
      * @Override
      */
+    get limitation() {
+        const raw = this.rawDegre;
+        if (raw < -99) {
+            const error = -raw;
+            return "NEPH5E.erreur." + error;
+        }
+    }
+
+    /**
+     * @Override
+     */
     get degre() {
         const degre = this.rawDegre;
         return degre < -99 ? 0 : degre;
@@ -71,48 +82,6 @@ export class AbstractFocus extends AbstractFeature {
      */
     get rawDegre() {
         return 0;
-    }
-
-    /**
-     * @return 
-     */
-    get focusError() {
-        switch(this.rawDegre) {
-            case 100:
-                return 'NEPH5E.erreur.internal'; // Erreur interne
-            case 101:
-                return 'NEPH5E.erreur.connu';    // Focus non dechiffré
-            case 102:
-                return 'NEPH5E.erreur.focus';    // Pas le focus necessaire
-            case 103:
-                return 'NEPH5E.erreur.magie';    // Pas le cercle de magie necessaire
-            case 104:
-                return 'NEPH5E.erreur.science';  // Voie de magie non compatible
-            case 105:
-                return 'NEPH5E.erreur.ka';       // Pas de Ka element necessaire
-            case 106:
-                return 'NEPH5E.erreur.sephirah'; // Pas la sephirah necessaire
-            case 107:
-                return 'NEPH5E.erreur.alchimie'; // Pas le cercle de alchimique necessaire
-            case 108:
-                return 'NEPH5E.erreur.constructActif';    // Pas le construct actif
-            case 109:
-                return 'NEPH5E.erreur.constructCercle';    // Pas le construct au cercle requis
-            case 110:
-                return 'NEPH5E.erreur.materiaePrimae';    // Pas les materiae primae necessaire
-            case 111:
-                return 'NEPH5E.erreur.constructKa';    // Pas les Ka du construct
-            default:
-                return 'NEPH5E.erreur.internal'; // Erreur interne
-        }
-    }
-
-
-    /**
-     * @return true if the focus can't be cast.
-     */
-    get uncastable() {
-        return this.degre === 0;
     }
 
     /**
