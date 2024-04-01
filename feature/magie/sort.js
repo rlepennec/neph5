@@ -36,21 +36,6 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    get uncastable() {
-        return this._degre === -100;
-    }
-
-    /**
-     * @Override
-     */
-    get degre() {
-        const degre = this._degre;
-        return degre === -100 ? 0 : degre;
-    }
-
-    /**
-     * @Override
-     */
     modifier(parameters) {
         if (this.item.system.element === 'choix') {
             return parameters == null ? this.actor.getKa('air') : parameters.ka;
@@ -99,24 +84,24 @@ export class Sort extends AbstractFocus {
     /**
      * @return -100 if uncastable, the value otherwise
      */
-    get _degre() {
+    get rawDegre() {
 
         if (this.embedded == null) {
             return -100;
         }
 
         if (this.embedded.system.status === 'connu') {
-            return -100;
+            return -101;
         }
 
         if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
-            return -100;
+            return -102;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
         const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
         if (science === 0) {
-            return -100;
+            return -103;
         }
 
         // Retrieve the degre of the focus to cast
@@ -126,7 +111,7 @@ export class Sort extends AbstractFocus {
         if (this.item.system?.voies.length > 0 &&
             this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
             if ( Math.ceil(focus/2) >= Math.ceil(science/2) ) {
-                return -100;
+                return -104;
             }
         }
 
@@ -135,7 +120,7 @@ export class Sort extends AbstractFocus {
         if (this.item.system.element !== 'choix') {
             ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
             if (ka === 0) {
-                return -100;
+                return -105;
             }
         }
 

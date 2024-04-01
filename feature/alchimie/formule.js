@@ -61,21 +61,6 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    get uncastable() {
-        return this._degre === -100;
-    }
-
-    /**
-     * @Override
-     */
-    get degre() {
-        const degre = this._degre;
-        return degre === -100 ? 0 : degre;
-    }
-
-    /**
-     * @Override
-     */
     modifier(parameters) {
         if (this.item.system.elements[0] === 'quintuple') {
             const substance = this.item.system.substance;
@@ -145,24 +130,24 @@ export class Formule extends AbstractFocus {
     /**
      * @return -100 if uncastable, the value otherwise
      */
-    get _degre() {
+    get rawDegre() {
 
         if (this.embedded == null) {
             return -100;
         }
 
         if (this.embedded.system.status === 'connu') {
-            return -100;
+            return -101;
         }
 
         if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
-            return -100;
+            return -102;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
         const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
         if (science === 0) {
-            return -100;
+            return -107;
         }
 
         const owner = this.getOwner();
@@ -170,17 +155,17 @@ export class Formule extends AbstractFocus {
 
         // Construct inactif
         if (construct?.active !== true) {
-            return -100;
+            return -108;
         }
 
         // Construct pas au niveau requis
         if (construct.degre === "oeuvreAuNoir" && (this.item.system.cercle === "oeuvreAuBlanc" || this.item.system.cercle === "oeuvreAuRouge")) {
-            return -100;
+            return -109;
         }
 
         // Construct pas au niveau requis
         if (construct.degre === "oeuvreAuBlanc" && this.item.system.cercle === "oeuvreAuRouge") {
-            return -100;
+            return -109;
         }
 
         // Vous ne possédez pas les materiae primae necessaires
@@ -193,7 +178,7 @@ export class Formule extends AbstractFocus {
                 case 'lune':
                 case 'terre':
                     if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
-                        return -100;
+                        return -110;
                     }
                     break;
 
@@ -203,7 +188,7 @@ export class Formule extends AbstractFocus {
                         this.actor.system.alchimie.primae['feu'].quantite < 5 &&
                         this.actor.system.alchimie.primae['lune'].quantite < 5 &&
                         this.actor.system.alchimie.primae['terre'].quantite < 5) {
-                        return -100;
+                        return -110;
                     }
                     break;
 
@@ -213,7 +198,7 @@ export class Formule extends AbstractFocus {
                         this.actor.system.alchimie.primae['feu'].quantite < 1 ||
                         this.actor.system.alchimie.primae['lune'].quantite < 1 ||
                         this.actor.system.alchimie.primae['terre'].quantite < 1) {
-                        return -100;
+                        return -110;
                     }
                     break;
 
@@ -228,13 +213,13 @@ export class Formule extends AbstractFocus {
             case 'oeuvreAuNoir':
                 ka = construct[this.item.system.elements[0]] ?? 0
                 if (ka < 1) {
-                    return -100;
+                    return -111;
                 }
                 break;
             case 'oeuvreAuBlanc':
                 ka = Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
                 if (ka < 1) {
-                    return -100;
+                    return -111;
                 }
                 break;
             case 'oeuvreAuRouge':
