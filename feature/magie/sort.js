@@ -97,7 +97,7 @@ export class Sort extends AbstractFocus {
     }
 
     /**
-     * @return -1 if uncastable, the value otherwise
+     * @return -100 if uncastable, the value otherwise
      */
     get _degre() {
 

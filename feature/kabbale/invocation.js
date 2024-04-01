@@ -9,20 +9,6 @@ export class Invocation extends AbstractFocus {
     /**
      * @Override
      */
-    async initializeRoll() {
-
-        if (this.embedded == null || (this.embedded.system.focus !== true && (this.embedded.system.status === 'connu' || this.embedded.system.status === 'dechiffre'))) {
-            ui.notifications.warn("Vous ne possédez pas le focus de cette invocation");
-            return;
-        }
-
-        return await super.initializeRoll();
-
-    }
-
-    /**
-     * @Override
-     */
     get title() {
         return this.pacte ? game.i18n.localize('NEPH5E.jetInvocation') : game.i18n.localize('NEPH5E.jetPacte');
     }
@@ -49,17 +35,16 @@ export class Invocation extends AbstractFocus {
     /**
      * @Override
      */
+    get uncastable() {
+        return this._degre === -100;
+    }
+
+    /**
+     * @Override
+     */
     get degre() {
-
-        // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.sephirah).degre;
-
-        // Retrieve the degre of the ka used to cast the focus
-        const ka = this.item.system.element === 'choix' ? 0 : this.actor.getKa(this.item.system.element);
-
-        // Final result
-        return Math.max(0, science + ka);
-
+        const degre = this._degre;
+        return degre === -100 ? 0 : degre;
     }
 
     /**
@@ -105,6 +90,42 @@ export class Invocation extends AbstractFocus {
         return {
             difficulty: this.degre
         }
+    }
+
+    /**
+     * @return -100 if uncastable, the value otherwise
+     */
+    get _degre() {
+
+        if (this.embedded == null) {
+            return -100;
+        }
+
+        if (this.embedded.system.status === 'connu') {
+            return -100;
+        }
+
+        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+            return -100;
+        }
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, this.item.system.sephirah).degre;
+        if (science === 0) {
+            return -100;
+        }
+
+        // Retrieve the degre of the ka used to cast the focus
+        let ka = 0;
+        if (this.item.system.element !== 'choix') {
+            ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
+            if (ka === 0) {
+                return -100;
+            }
+        }
+
+        return science + ka;
+
     }
 
 }

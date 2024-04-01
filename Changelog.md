@@ -3,6 +3,7 @@ Ajout d'une option pour définir le Ka Soleil d'une figure
 Ajout d'un onglet pour les bohémiens - Ka Brume & Divination
 Ajout de la gestion des ressources pour les figurants
 Déplacement des passés des figures dans l'onglet combat/ressources
+Amélioration de la gestion du lancement des focus
 
 # 1.4.11
 Mise à jour du pack système
