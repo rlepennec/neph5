@@ -43,7 +43,7 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
-                <li class="focus item macro" data-macro="item" data-sid="{{item.original.sid}}">
+                <li class="focus item macro {{#if item.uncastable}}disabled{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
 
                     <!-- The ka element. -->
                     <label class="focus-element tooltip">
@@ -54,13 +54,20 @@
                     <label class="focus-name open">{{item.original.name}}</label>
 
                     {{#if (includes ../../header 'percentage')}}
-                    <label class="focus-difficulty">{{item.embedded.degre}}</label>
+                    {{#if item.uncastable}}
+                        <label class="focus-difficulty">0</label>
+                    {{else}}
+                        <label class="focus-difficulty">{{item.embedded.degre}}</label>
+                    {{/if}}
                     {{/if}}
 
                     <!-- The percentage to succeed to use the focus. -->
-                    {{#if (eq item.embedded.degre 0)}}
+                    {{#if item.uncastable}}
                     <a class="focus-dice">
-                        <i class="fa-solid fa-ban"></i>
+                        <div class="tooltip">
+                            <i class="fa-solid fa-ban"></i>
+                            <span class="tooltiptext">{{localize item.limitation}}</span>
+                        </div>
                     </a>
                     {{else}}
                     <a class="focus-dice roll">

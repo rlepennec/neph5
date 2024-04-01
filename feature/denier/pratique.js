@@ -35,17 +35,26 @@ export class Pratique extends AbstractFocus {
     /**
      * @Override
      */
-    get degre() {
+    get rawDegre() {
+
+        // Retrieve the degre of the ka used to cast the focus
+        const ka = this.actor.ka;
+        if (ka < 1) {
+            return -105;
+        }
+
+        const savoir = this.actor.savoir("denier").degre;
+        if (savoir < 1) {
+            return -119;
+        }
 
         // Retrieve the degre of the focus to cast
         const focus = this.item.system.degre;
 
-        // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.ka;
-
-        return Math.max(0, this.actor.savoir("denier").degre + ka - focus);
+        return savoir + ka - focus;
 
     }
+
 
     /**
      * @Override

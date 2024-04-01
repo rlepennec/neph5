@@ -205,7 +205,10 @@
             "113": "Pas de Ka Brume",
             "114": "Pas de savoir ésotérique Bohémien",
             "115": "Pas de Ka Soleil",
-            "116": "Pas de savoir ésotérique Baton"
+            "116": "Pas de savoir ésotérique Baton",
+            "117": "Pas de savoir ésotérique Coupe",
+            "118": "Pas de savoir ésotérique Epée",
+            "119": "Pas de savoir ésotérique Denier"
         },
         "estDesoriente": "${actor} est désorienté(e)",
         "estImmobilise": "${actor} est immobilisé(e)",
