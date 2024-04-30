@@ -96,8 +96,13 @@ export class NephilimChat {
 
         // Set the roll parameter if necessary
         if (this.roll) {
-            data.type = CONST.CHAT_MESSAGE_TYPES.ROLL,
-            data.roll = this.roll;
+
+            //rolls.push(Roll.fromData(rollData));
+            //data.style = CONST.CHAT_MESSAGE_STYLES.ROLL,
+            //data.roll = this.roll;
+
+            data.rolls = [];
+            data.rolls.push(this.roll);
         }
 
         // Set the flags parameter if necessary
