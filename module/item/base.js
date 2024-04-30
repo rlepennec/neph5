@@ -44,13 +44,13 @@ export class NephilimItemSheet extends ItemSheet {
      */
     getData() {
         const data = super.getData();
-        mergeObject(data, {
+        foundry.utils.mergeObject(data, {
             system: data.item.system,
             isGM: game.user.isGM,
             debug: game.settings.get('neph5e', 'debug')
         })
-        mergeObject(data, this.getOriginalData());
-        mergeObject(data, this.embeddedData);
+        foundry.utils.mergeObject(data, this.getOriginalData());
+        foundry.utils.mergeObject(data, this.embeddedData);
         this.embeddedData = {};
         return data;
     }
@@ -75,7 +75,7 @@ export class NephilimItemSheet extends ItemSheet {
      * @override
      */
 	static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 560,
             height: 400,
             classes: ["nephilim", "sheet", "item"],

@@ -25,7 +25,7 @@ export class FigurantSheet extends BaseSheet {
      * @override
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 1000,
             height: 800,
             classes: ["nephilim", "sheet", "actor"],
@@ -46,7 +46,7 @@ export class FigurantSheet extends BaseSheet {
      * @override
      */
     getData() {
-        return mergeObject(super.getData(), {
+        return foundry.utils.mergeObject(super.getData(), {
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
         });
     }

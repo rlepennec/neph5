@@ -6,7 +6,7 @@ export class CapaciteSheet extends NephilimItemSheet {
      * @override
      */
 	static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 560,
             height: 600,
             classes: ["nephilim", "sheet", "item"],

@@ -100,7 +100,7 @@ export class ActiveEffects {
      * @param effect The effect to add.
      */
     static async add(actor, effect) {
-        const object = mergeObject(effect, {
+        const object = foundry.utils.mergeObject(effect, {
             origin: actor.uuid,
             disabled: false});
         await actor.createEmbeddedDocuments("ActiveEffect", [object]);

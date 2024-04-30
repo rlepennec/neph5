@@ -6,7 +6,7 @@ export class ScienceSheet extends NephilimItemSheet {
      * @override
      */
 	static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 560,
             height: 400,
             classes: ["nephilim", "sheet", "item"],

@@ -26,7 +26,7 @@ export class FigureSheet extends HistoricalSheet {
      * @override
      */
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 1070,
             height: 950,
             classes: ["nephilim", "sheet", "actor" ],
@@ -63,7 +63,7 @@ export class FigureSheet extends HistoricalSheet {
      * @override
      */
     getData() {
-        return mergeObject(super.getData(), {
+        return foundry.utils.mergeObject(super.getData(), {
             cercles: Game.alchimie.cercles,
             domaines: Game.analogie.domaines,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs'),
