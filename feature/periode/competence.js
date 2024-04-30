@@ -136,7 +136,7 @@ export class Competence extends AbstractFeature {
 
         // Update actor manoeuvres, lutte and esquive
         if (this.actor.type === 'figure') {
-            const manoeuvres = duplicate(this.actor.system.manoeuvres);
+            const manoeuvres = foundry.utils.duplicate(this.actor.system.manoeuvres);
             manoeuvres.esquive = manoeuvres.esquive === this.item.sid ? null : manoeuvres.esquive;
             manoeuvres.lutte = manoeuvres.lutte === this.item.sid ? null : manoeuvres.lutte;
             await this.actor.update({['system.manoeuvres']: manoeuvres});

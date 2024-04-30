@@ -84,7 +84,7 @@ export class Aspect extends SimpleFeature {
      */
     async toggleActive() {
         const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        const system = duplicate(embedded.system);
+        const system = foundry.utils.duplicate(embedded.system);
         system.active = !system.active;
         await embedded.update({ ['system']: system });
         return this;

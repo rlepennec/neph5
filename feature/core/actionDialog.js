@@ -81,7 +81,7 @@ export class ActionDialog extends AbstractDialog {
      * @override
      */
     getData(options) {
-        const data = duplicate(this.data);
+        const data = foundry.utils.duplicate(this.data);
         data.owner = this.object.id;
         data.difficulty = this.action.difficulty(this.parameters());
         return data;

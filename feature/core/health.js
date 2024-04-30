@@ -339,7 +339,7 @@ class Damage {
      * @param type  The type of damage to apply.
      */
     async apply(actor, type) {
-        const data = duplicate(actor.system.dommage[type]);
+        const data = foundry.utils.duplicate(actor.system.dommage[type]);
         this.boxes.forEach(box => data[box] = true);
         await actor.update({ ["system.dommage." + type]: data });
     }

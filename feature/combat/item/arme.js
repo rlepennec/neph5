@@ -53,7 +53,7 @@ export class ArmeSheet extends NephilimItemSheet {
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
         if (drop?.type === "vecu" || drop?.type === "competence") {
             const item = CustomHandlebarsHelpers.getItem(drop.sid);
-            const system = duplicate(this.item.system);
+            const system = foundry.utils.duplicate(this.item.system);
             system.competence = item.sid;
             await this.item.update({ ['system']: system });
             await this.render(true);

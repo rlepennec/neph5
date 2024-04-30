@@ -67,7 +67,7 @@ export class AbstractDialog extends FormApplication {
      * @override
      */
     getData(options) {
-        const data = duplicate(this.data);
+        const data = foundry.utils.duplicate(this.data);
         data.owner =  this.object.id;
         data.opposed = false;
         return data;

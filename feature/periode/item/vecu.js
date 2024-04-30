@@ -76,7 +76,7 @@ export class VecuSheet extends NephilimItemSheet {
         event.preventDefault();
         const li = $(event.currentTarget).closest('.item');
         const id = li.data("item-id");
-        const system = duplicate(this.item.system);
+        const system = foundry.utils.duplicate(this.item.system);
         system.mnemos.splice(id, 1);
         await this.item.update({ ['system']: system });
         this.item.sheet.render(true);

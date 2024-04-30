@@ -200,7 +200,7 @@ export class _1_0_3 {
                 break;
             }
             case 'vecu': {
-                const system = duplicate(item.system);
+                const system = foundry.utils.duplicate(item.system);
                 system.competences = system.competences.map(c => c?.refid);
                 await item.update({ ['system']: system });
                 await item.update({ ['system.-=actif']: null });
@@ -209,7 +209,7 @@ export class _1_0_3 {
                 break;
             }
             case 'sort': {
-                const system = duplicate(item.system);
+                const system = foundry.utils.duplicate(item.system);
                 system.voies = system.voies.map(c => c?.refid);
                 await item.update({ ['system']: system });
                 break;
@@ -220,7 +220,7 @@ export class _1_0_3 {
                 break;
             }
             case 'formule': {
-                const system = duplicate(item.system);
+                const system = foundry.utils.duplicate(item.system);
                 system.variantes = system.variantes.map(c => c?.refid);
                 system.catalyseurs = system.catalyseurs.map(c => c?.refid);
                 await item.update({ ['system']: system });
@@ -245,7 +245,7 @@ export class _1_0_3 {
 
             case 'simulacre': {
 
-                const soleil = duplicate(actor.system.soleil);
+                const soleil = foundry.utils.duplicate(actor.system.soleil);
                 await actor.update({ ['type']: 'figurant' });
                 await actor.update({ ['system.-=agile']: null });
                 await actor.update({ ['system.-=endurant']: null });
@@ -266,7 +266,7 @@ export class _1_0_3 {
 
                 // Update vecus
                 for (let item of actor.items.filter(i => i.type === 'vecu')) {
-                    const system = duplicate(item.system);
+                    const system = foundry.utils.duplicate(item.system);
                     system.competences = system.competences.map(c => c?.refid);
                     await item.update({ ['system']: system });
                     await item.update({ ['system.-=actif']: null });
@@ -549,7 +549,7 @@ export class _1_0_3 {
 
                 // Update vecus
                 for (let item of actor.items.filter(i => i.type === 'vecu')) {
-                    const system = duplicate(item.system);
+                    const system = foundry.utils.duplicate(item.system);
                     system.competences = system.competences.map(c => c?.refid);
                     await item.update({ ['system']: system });
                     await item.update({ ['system.-=actif']: null });

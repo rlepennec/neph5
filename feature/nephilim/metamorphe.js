@@ -103,7 +103,7 @@ export class Metamorphe extends SimpleFeature {
      */
     async toggleFormed(index) {
         const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        const system = duplicate(embedded.system);
+        const system = foundry.utils.duplicate(embedded.system);
         system.formed[index] = !system.formed[index];
         await embedded.update({ ['system']: system });
         return this;
@@ -116,7 +116,7 @@ export class Metamorphe extends SimpleFeature {
      */
     async toggleVisible(index) {
         const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        const system = duplicate(embedded.system);
+        const system = foundry.utils.duplicate(embedded.system);
         system.visible[index] = !system.visible[index];
         await embedded.update({ ['system']: system });
         return this;

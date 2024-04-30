@@ -94,7 +94,7 @@ export class Fraternite {
         }
 
         // Check the actor is already a member
-        const effectif = duplicate(this.actor.system.effectif);
+        const effectif = foundry.utils.duplicate(this.actor.system.effectif);
         const found = effectif.find(m => m.actor === actor.sid && m.periode === periode);
         if (found != null) {
             return;

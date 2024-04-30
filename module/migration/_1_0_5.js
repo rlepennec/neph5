@@ -22,7 +22,7 @@ export class _1_0_5 {
     }
 
     static async migrate_vecu(item) {
-        const system = duplicate(item.system);
+        const system = foundry.utils.duplicate(item.system);
         system.mnemos = [];
         let index = 1;
         for (let mnemos of item.system.mnemos) {

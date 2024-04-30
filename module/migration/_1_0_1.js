@@ -77,7 +77,7 @@ export class _1_0_1 {
                 break;
             }
             case 'competence': {
-                const system = duplicate(item.system);
+                const system = foundry.utils.duplicate(item.system);
                 switch (system.inne) {
                     case 'agile':
                         system.element = 'eau';
@@ -122,7 +122,7 @@ export class _1_0_1 {
                         }
                     }
                 }
-                const periodes = duplicate(actor.system.periodes);
+                const periodes = foundry.utils.duplicate(actor.system.periodes);
                 for (let i = 0; i < periodes.length; i++) {
                     delete periodes[i].vecus;
                 }

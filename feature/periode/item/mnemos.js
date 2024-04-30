@@ -59,7 +59,7 @@ export class Mnemos extends AbstractDialog {
     async _updateObject(event, formData) {
 
         event.preventDefault();
-        const system = duplicate(this.data.system);
+        const system = foundry.utils.duplicate(this.data.system);
 
         // Create a new mnemos
         if (this.mnemos == null) {

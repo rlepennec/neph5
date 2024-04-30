@@ -32,7 +32,7 @@ export class History {
         }
 
         // Add the specified manoeuver
-        const flags = duplicate(combatant.data.flags);
+        const flags = foundry.utils.duplicate(combatant.data.flags);
         flags.history = [];
         await combatant.update({ ['flags']: flags });
 
@@ -88,7 +88,7 @@ export class History {
         }
 
         // Add the specified manoeuver
-        const flags = duplicate(combatant.data.flags);
+        const flags = foundry.utils.duplicate(combatant.data.flags);
         flags.history.push(manoeuver);
         await combatant.update({ ['flags']: flags });
 

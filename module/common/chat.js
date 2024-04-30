@@ -132,7 +132,7 @@ export class NephilimChat {
     async _createContent() {
 
         // Update the data to provide to the template
-        const data = duplicate(this.data);
+        const data = foundry.utils.duplicate(this.data);
         data.owner = this.actor.id;
 
         // Call the template renderer.

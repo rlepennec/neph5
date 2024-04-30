@@ -239,7 +239,7 @@ export class Vecu extends HistoricalFeature {
 
         // Update actor manoeuvres, lutte and esquive
         if (this.actor.type === 'figure') {
-            const manoeuvres = duplicate(this.actor.system.manoeuvres);
+            const manoeuvres = foundry.utils.duplicate(this.actor.system.manoeuvres);
             manoeuvres.esquive = manoeuvres.esquive === this.embedded.sid ? null : manoeuvres.esquive;
             manoeuvres.lutte = manoeuvres.lutte === this.embedded.sid ? null : manoeuvres.lutte;
             await this.actor.update({['system.manoeuvres']: manoeuvres});
