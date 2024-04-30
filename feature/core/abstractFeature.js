@@ -286,7 +286,7 @@ export class AbstractFeature {
      */
     async roll(parameters) {
         this.manoeuver = ManoeuverBuilder.create(parameters.manoeuver);
-        const roll = await new Roll("1d100").roll({async: true});
+        const roll = await new Roll("1d100").roll();
         const result = this.resultOf(parameters, roll);
         await this.apply(result);
     }
