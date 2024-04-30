@@ -65,23 +65,23 @@ export class MigrationTools {
 
         const worldTemplateVersion = game.settings.get("neph5e", "worldTemplateVersion");
 
-        if (isNewerVersion('1.0.1', worldTemplateVersion)) {
+        if (foundry.utils.isNewerVersion('1.0.1', worldTemplateVersion)) {
             await _1_0_1.migrate('1.0.1');
         }
 
-        if (isNewerVersion('1.0.2', worldTemplateVersion)) {
+        if (foundry.utils.isNewerVersion('1.0.2', worldTemplateVersion)) {
             await _1_0_2.migrate('1.0.2');
         }
 
-        if (isNewerVersion('1.0.3', worldTemplateVersion)) {
+        if (foundry.utils.isNewerVersion('1.0.3', worldTemplateVersion)) {
             await _1_0_3.migrate('1.0.3');
         }
 
-        if (isNewerVersion('1.0.4', worldTemplateVersion)) {
+        if (foundry.utils.isNewerVersion('1.0.4', worldTemplateVersion)) {
             await _1_0_4.migrate('1.0.4');
         }
 
-        if (isNewerVersion('1.0.5', worldTemplateVersion)) {
+        if (foundry.utils.isNewerVersion('1.0.5', worldTemplateVersion)) {
             await _1_0_5.migrate('1.0.5');
         }
 
