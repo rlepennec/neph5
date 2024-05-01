@@ -32,7 +32,7 @@ export class BaseSheet extends ActorSheet {
             isGM: game.user.isGM,
             actor: base.actor,
             system: base.actor.system,
-            enrichedDescription: await TextEditor.enrichHTML(base.actor.system.description, {secrets: owner})
+            enrichedDescription: await TextEditor.enrichHTML(base.actor.system.description, {secrets: this.actor.isOwner})
         }
     }
 
