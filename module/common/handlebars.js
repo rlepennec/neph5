@@ -42,6 +42,28 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * A helper to assign an `<option>` within a `<select>` block as selected based on its value
+     * Escape the string as handlebars would, then escape any regexp characters in it
+     * @param {string} value    The value of the option
+     * @returns {Handlebars.SafeString}
+     *
+     * @example
+     * ```hbs
+     * <select>
+     * {{#select selected}}
+     *   <option value="a">Choice A</option>
+     *   <option value="b">Choice B</option>
+     * {{/select}}
+     * </select>
+     */
+    static select(selected, options) {
+        const escapedValue = RegExp.escape(Handlebars.escapeExpression(selected));
+        const rgx = new RegExp(' value=[\"\']' + escapedValue + '[\"\']');
+        const html = options.fn(this);
+        return html.replace(rgx, "$& selected");
+    }
+
+    /**
      * Gets the specified item.
      * @param sid The system id of the item to get.
      * @returns the item or undefined if not found.
