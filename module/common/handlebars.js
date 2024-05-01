@@ -120,15 +120,6 @@ export class CustomHandlebarsHelpers {
     static html(html) {
         return new Handlebars.SafeString(html);
     }
-
-    /**
-     * @param content The intial content.
-     * @param owner   The document owner.
-     * @returns the enriched HTML content with links and secret contents.
-     */
-    static async enrichHTML(content, owner) {
-        return await TextEditor.enrichHTML(content, {secrets: owner});
-    }
     
     /**
      * @param words The words to concat. 

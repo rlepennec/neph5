@@ -42,15 +42,18 @@ export class NephilimItemSheet extends ItemSheet {
     /** 
      * @override
      */
-    getData() {
+    async getData() {
         const data = super.getData();
         foundry.utils.mergeObject(data, {
             system: data.item.system,
             isGM: game.user.isGM,
             debug: game.settings.get('neph5e', 'debug')
         })
+        if (data.item.system.description != null) {
+            data.enrichedDescription = await TextEditor.enrichHTML(data.item.system.description, {secrets: game.user.isGM})
+        }
         foundry.utils.mergeObject(data, this.getOriginalData());
-        foundry.utils.mergeObject(data, this.embeddedData);
+        foundry.utils.mergeObject(data, this.embededData);
         this.embeddedData = {};
         return data;
     }
