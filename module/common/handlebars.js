@@ -167,7 +167,7 @@ export class CustomHandlebarsHelpers {
      * @returns true if the colllection includes the specified item.
      */
     static includes(collection, item) {
-        return collection.includes(item);
+        return collection?.includes(item);
     }
 
     /**
