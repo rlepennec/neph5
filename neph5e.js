@@ -70,9 +70,9 @@ Hooks.once("init", function () {
 
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
-        enrichHTML: CustomHandlebarsHelpers.enrichHTML,
         isNull: CustomHandlebarsHelpers.isNull,
         nonNull: CustomHandlebarsHelpers.nonNull,
+        select: CustomHandlebarsHelpers.select,
         getItem: CustomHandlebarsHelpers.getItem,
         loop: CustomHandlebarsHelpers.loop,
         log: CustomHandlebarsHelpers.log,
