@@ -1,7 +1,7 @@
 <div class="description">
 {{#if (or (nonNull difficulty) (nonNull readOnly))}}
 
-    {{html (enrichHTML system.description owner)}}
+    {{html enrichedDescription}}
 
 {{else}}
 

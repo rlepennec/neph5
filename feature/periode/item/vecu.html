@@ -19,7 +19,7 @@
 
                 {{#if item.isEmbedded}}
                 <div class="no-scrollbar mtop mborder description">
-                    {{html (enrichHTML item.description owner)}}
+                    {{html item.description}}
                 </div>
                 {{/if}}
 
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="no-scrollbar mtop mborder description">
-                            {{html (enrichHTML mnemos.description owner)}}
+                            {{html mnemos.description}}
                         </div>
 
                         <input
