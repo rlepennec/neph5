@@ -127,8 +127,7 @@ export class CustomHandlebarsHelpers {
      * @returns the enriched HTML content with links and secret contents.
      */
     static async enrichHTML(content, owner) {
-        return  content;
-        //return await TextEditor.enrichHTML(content, {secrets: owner});
+        return await TextEditor.enrichHTML(content, {secrets: owner});
     }
     
     /**
