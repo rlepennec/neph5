@@ -51,10 +51,12 @@ export class Macros {
                 name = "Noyau";
                 img = "systems/neph5e/assets/icons/noyau.webp";
                 break;
+
             case 'pavane':
                 name = "Pavane";
                 img = "systems/neph5e/assets/icons/pavane.webp";
                 break;
+
             default:
                 return;
         }
