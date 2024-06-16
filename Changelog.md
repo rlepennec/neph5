@@ -1,4 +1,5 @@
-# 1.4.13
+# 1.5.0
+Compatibilité Foundry v12
 
 # 1.4.12
 Ajout d'une option pour définir le Ka Soleil d'une figure
