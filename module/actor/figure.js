@@ -62,8 +62,8 @@ export class FigureSheet extends HistoricalSheet {
     /**
      * @override
      */
-    getData() {
-        return foundry.utils.mergeObject(super.getData(), {
+    async getData() {
+        return foundry.utils.mergeObject(await super.getData(), {
             cercles: Game.alchimie.cercles,
             domaines: Game.analogie.domaines,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs'),

@@ -43,7 +43,7 @@ export class NephilimItemSheet extends ItemSheet {
      * @override
      */
     async getData() {
-        const data = super.getData();
+        const data = await super.getData();
         foundry.utils.mergeObject(data, {
             system: data.item.system,
             isGM: game.user.isGM,

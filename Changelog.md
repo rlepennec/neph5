@@ -1,4 +1,5 @@
 # 1.5.1
+Corrections pour Foundry v12
 
 # 1.5.0
 Compatibilité Foundry v12

@@ -17,8 +17,8 @@ export class HistoricalSheet extends BaseSheet {
     /**
      * @override
      */
-    getData() {
-        return foundry.utils.mergeObject(super.getData(), {
+    async getData() {
+        return foundry.utils.mergeObject(await super.getData(), {
             editedPeriode: this.editedPeriode,
             elapsedPeriodes: this.elapsedPeriodes,
         });

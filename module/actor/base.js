@@ -25,7 +25,7 @@ export class BaseSheet extends ActorSheet {
      * @override
      */
     async getData() {
-        const base = super.getData();
+        const base = await super.getData();
         return {
             owner: this.actor.isOwner,
             editable: this.isEditable,
