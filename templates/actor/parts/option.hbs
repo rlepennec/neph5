@@ -2,6 +2,7 @@
 
     <label class="option-checkbox">
         <input
+            {{#if class}}class="{{class}}"{{/if}} 
             {{#if value}}checked{{/if}}
             name="{{name}}"
             type="checkbox"
