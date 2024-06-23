@@ -1,3 +1,5 @@
+# 1.5.3
+
 # 1.5.2
 Correction d'une anomalie lors l'édition des feuilles de personnages
 Correction d'une anomalie lors de l'ouverture de toutes les époques
