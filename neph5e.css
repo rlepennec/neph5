@@ -5534,12 +5534,17 @@ form.combat .body p.hiddable {
   background-size: var(--background-size);
   opacity: var(--opacity);
 }
-#interface #ui-middle #ui-bottom #hotbar #action-bar #hotbar-page-controls .page-number {
+#interface #ui-middle #ui-bottom #hotbar #action-bar #hotbar-page-controls {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
 }
-#interface #ui-middle #ui-bottom #hotbar a {
+#interface #ui-middle #ui-bottom #hotbar #hotbar-lock {
+  background: var(--background);
+  background-size: var(--background-size);
+  opacity: var(--opacity);
+}
+#interface #ui-middle #ui-bottom #hotbar #hotbar-unlock {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
