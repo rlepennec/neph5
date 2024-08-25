@@ -1,5 +1,6 @@
 # 1.5.3
 Amélioration de la css
+Correction d'une anomalie lors de l'édition des feuilles de personnages
 
 # 1.5.2
 Correction d'une anomalie lors l'édition des feuilles de personnages
