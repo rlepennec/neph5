@@ -53,7 +53,7 @@ export class NephilimItemSheet extends ItemSheet {
             data.enrichedDescription = await TextEditor.enrichHTML(data.item.system.description, {secrets: game.user.isGM})
         }
         foundry.utils.mergeObject(data, this.getOriginalData());
-        foundry.utils.mergeObject(data, this.embededData);
+        foundry.utils.mergeObject(data, this.embeddedData);
         this.embeddedData = {};
         return data;
     }
