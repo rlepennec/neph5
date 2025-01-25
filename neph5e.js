@@ -19,7 +19,7 @@ import { ArmeSheet } from "./feature/combat/item/arme.js";
 import { ArmureSheet } from "./feature/combat/item/armure.js";
 import { AtlanteideSheet } from "./feature/atlanteide/item/atlanteide.js";
 import { AspectSheet } from "./feature/selenim/item/aspect.js";
-import { CapaciteSheet } from "./module/item/capacite.js";
+import { CapaciteSheet } from "./feature/periode/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/periode/item/chute.js";
 import { CompetenceSheet } from "./feature/periode/item/competence.js";
