@@ -3195,6 +3195,91 @@
 .actor .window-content .actor-root .article .article-body .arbre .daath .degre {
   transform: translate(0px, -158px);
 }
+.actor .window-content .actor-root .article .article-body .capacites .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-bottom: -10px;
+}
+.actor .window-content .actor-root .article .article-body .capacites .header .circle {
+  position: absolute;
+  border: none;
+  width: 60px;
+  height: 65px;
+  display: hidden;
+  content: var(--img-circle);
+}
+.actor .window-content .actor-root .article .article-body .capacites .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 70px;
+  top: 46px;
+  width: calc(100% - 80px);
+  content: var(--img-separator);
+}
+.actor .window-content .actor-root .article .article-body .capacites .header .degre {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  left: 8px;
+  top: 13px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
+}
+.actor .window-content .actor-root .article .article-body .capacites .header .folder {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  position: absolute;
+  left: 100px;
+  top: 15px;
+  width: calc(100% - 80px);
+  font-family: 'NightjarDemi';
+  font-size: 27px;
+}
+.actor .window-content .actor-root .article .article-body .capacites .body {
+  padding-left: 0px;
+  padding-top: 70px;
+}
+.actor .window-content .actor-root .article .article-body .capacites .body .capacite {
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  margin-top: 20px;
+}
+.actor .window-content .actor-root .article .article-body .capacites .body .capacite .title {
+  display: flex;
+  flex-direction: row;
+}
+.actor .window-content .actor-root .article .article-body .capacites .body .capacite .title .pin {
+  border: none;
+  width: 26px;
+  margin-left: 50px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-pin);
+}
+.actor .window-content .actor-root .article .article-body .capacites .body .capacite .title .name {
+  flex: 1 1 auto;
+  text-align: left;
+  padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 20px;
+}
+.actor .window-content .actor-root .article .article-body .capacites .body .capacite .description {
+  list-style: none;
+  width: calc(100% - 100px);
+  margin-left: 85px;
+  font-size: 15px;
+}
 .actor .window-content .actor-root .article .article-body .ordonnances .header {
   display: flex;
   flex-direction: row;

@@ -1,0 +1,37 @@
+{{#with actor.capacites as |all|}}
+<div class="capacites">
+
+    {{#each all as |byFolder|}}
+    <div class="header">
+
+        <img class="circle"/>
+
+        <img class="separator"/>
+
+        <div class="folder">{{byFolder.folder}}</div>
+
+    </div>
+
+    <ol class="body">
+
+        {{#each byFolder.capacites as |capacite|}}
+        <li class="ordonnance">
+
+            <div class="title">
+
+                <img class="pin"/>
+
+                <div class="name">{{capacite.name}}</div>
+
+            </div>
+
+            <div class="description">{{html capacite.description}}</div>
+
+        </li>
+        {{/each}}
+
+    </ol>
+    {{/each}}
+
+</div>
+{{/with}}

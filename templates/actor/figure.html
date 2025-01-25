@@ -55,11 +55,16 @@
                     <img class="sheet-navigation-pin"/>
                     <img class="sheet-navigation-hole"/>
                 </div>
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="capacites">{{localize "NEPH5E.capacites"}}</a>
+                    <img class="sheet-navigation-pin"/>
+                    <img class="sheet-navigation-hole"/>
+                </div>
                 {{/if}}
 
-                {{#if (eq system.options.combat true)}}
+                {{#if (eq system.options.capacites true)}}
                 <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="combat">{{localize "NEPH5E.combat"}}</a>
+                    <a class="sheet-navigation-tab" data-tab="capacites">{{localize "NEPH5E.capacites"}}</a>
                     <img class="sheet-navigation-pin"/>
                     <img class="sheet-navigation-hole"/>
                 </div>
@@ -280,6 +285,9 @@
                     {{> "systems/neph5e/feature/periode/actor/quetes.hbs" from="figure" }}
                     {{> "systems/neph5e/feature/periode/actor/chutes.hbs" from="figure" }}
                 </div>
+                <div class="tab" data-group="primary" data-tab="capacites">
+                    {{> "systems/neph5e/feature/periode/actor/capacites.hbs" from="figure" }}
+                </div>
                 {{/if}}
                 
                 {{#if (eq system.options.nephilim true)}}
@@ -287,7 +295,7 @@
                     {{> "systems/neph5e/feature/nephilim/actor/main.hbs"}}
                 </div>
                 {{/if}}
-        
+
                 {{#if (eq system.options.magie true)}}
                 <div class="tab" data-group="primary" data-tab="magie" data-family="science">
                     {{> "systems/neph5e/feature/science/actor/science.hbs" science="magie"}}

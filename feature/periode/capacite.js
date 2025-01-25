@@ -88,6 +88,36 @@ export class Capacite extends HistoricalFeature {
             .withoutData('description')
             .create();
 
+    }
+
+    /**
+     * Get the capacites according to the specified character and the active periodes.
+     * @param actor The actor object.
+     * @returns the capacites to display in the character sheet.
+     */
+    static getAll(actor) {
+
+        const array = actor.items
+            .filter(i => i.type === 'capacite')
+            .map(i => new Capacite(actor).withItem(i))
+            .map(f => ({
+                name: f.name,
+                sid: f.sid,
+                description: f.item.system.description,
+                folder: f.item.folder.name }));
+
+        const sorted = Object.groupBy(array, ({ folder }) => folder);
+
+        const all = [];
+        for (let folder in sorted) {
+            console.log(folder)
+             all.push({
+                 folder: folder,
+                 capacites: sorted[folder]
+             })
+        }
+
+        return all;
 
     }
 
