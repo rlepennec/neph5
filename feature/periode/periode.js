@@ -287,6 +287,22 @@ export class Periode extends AbstractFeature {
                 }
             }
 
+            const capacites = [];
+            for (let type of ['capacite']) {
+                for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
+                    const original = AbstractFeature.original(i.sid);
+                    if (original != null) {
+                        capacites.push({
+                            name: original.name,
+                            type: original.type,
+                            id: i.id,
+                            wid: original.id,
+                            sid: i.sid
+                        });
+                    }
+                }
+            }
+
             // Create all linked actors
             const actors = [];
             if (actor.type === 'fraternite') {
@@ -316,6 +332,7 @@ export class Periode extends AbstractFeature {
                     actif: p.system.actif,
                     vecus: vecus,
                     focus: focus,
+                    capacites: capacites,
                     items: items,
                     actors: actors
                 }

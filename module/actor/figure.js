@@ -263,6 +263,7 @@ export class FigureSheet extends HistoricalSheet {
                         }
                         case 'appel':
                         case 'atlanteide':
+                        case 'capacite':
                         case 'divination':
                         case 'dracomachie':
                         case 'formule':
@@ -343,6 +344,7 @@ export class FigureSheet extends HistoricalSheet {
             case 'appel':
             case 'arcane':
             case 'atlanteide':
+            case 'capacite':   
             case 'chute':
             case 'dracomachie':
             case 'formule':

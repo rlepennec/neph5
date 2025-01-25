@@ -3,6 +3,7 @@ import { Appel } from "../conjuration/appel.js";
 import { Arcane } from "../periode/arcane.js";
 import { Aspect } from "../selenim/aspect.js";
 import { Atlanteide } from "../atlanteide/atlanteide.js";
+import { Capacite } from "../periode/capacite.js";
 import { Catalyseur } from "../alchimie/catalyseur.js";
 import { Chute } from "../periode/chute.js";
 import { Competence } from "../periode/competence.js";
@@ -160,6 +161,8 @@ export class FeatureBuilder {
                 return new Aspect(this.actor).withItem(item);
             case 'atlanteide':
                 return new Atlanteide(this.actor).withPeriode(this.periode).withItem(item);
+            case 'capacite':
+                return new Capacite(this.actor).withPeriode(this.periode).withItem(item);
             case 'catalyseur':
                 return new Catalyseur(this.actor).withItem(item);
             case 'chute':

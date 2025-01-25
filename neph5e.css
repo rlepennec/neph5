@@ -4201,7 +4201,8 @@
   display: flex;
   flex-direction: row;
 }
-.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-scroll {
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-scroll,
+.actor .window-content .actor-root .article .article-body .incarnations .periodes .periode .periode-body .periode-focus .focus .focus-definition .fa-pen-fancy {
   flex: 0 0 40px;
   text-align: center;
   margin-left: 10px;

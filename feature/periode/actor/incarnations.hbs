@@ -164,6 +164,29 @@
                 </ol>
                 {{/unless}}
 
+                {{#unless (isEmptyCollection periode.embedded.capacites)}}
+                
+                <ol class="periode-focus">
+
+                    {{#each periode.embedded.capacites as |item|}}
+                    <li class="focus item" data-id="{{item.id}}" data-sid="{{item.sid}}">
+                    <div class="focus-definition">
+
+                        <a><i class="fa-solid fa-pen-fancy"></i></a>
+
+                        <label class="focus-name open">{{item.name}}</label>
+
+                        {{#if (eq ../../editedPeriode ../original.sid)}}
+                        <label class="fas fa-trash delete"></label>
+                        {{/if}}
+
+                    </div>
+                    </li>
+                    {{/each}}
+
+                </ol>
+                {{/unless}}
+
             </div>
 
         </li>

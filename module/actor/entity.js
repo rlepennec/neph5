@@ -1,6 +1,7 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Arcane } from "../../feature/periode/arcane.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
+import { Capacite } from "../../feature/periode/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/periode/chute.js";
 import { Competence } from "../../feature/periode/competence.js";
@@ -283,6 +284,13 @@ export class NephilimActor extends Actor {
      */
     get arcanes() {
         return Arcane.getAll(this);
+    }
+
+    /**
+     * @returns the data to display. 
+     */
+    get capacites() {
+        return Capacite.getAll(this);
     }
 
     /**
