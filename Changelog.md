@@ -1,3 +1,6 @@
+# 1.5.5
+Correction d'une anomalie sur la visibilité de l'onglet combat
+
 # 1.5.4
 Ajout de la gestion de capacités
 Modification des options initiales après la création d'une figure

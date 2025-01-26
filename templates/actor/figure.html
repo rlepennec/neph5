@@ -57,6 +57,14 @@
                 </div>
                 {{/if}}
 
+                {{#if (eq system.options.combat true)}}
+                <div class="sheet-navigation-choice">
+                    <a class="sheet-navigation-tab" data-tab="combat">{{localize "NEPH5E.combat"}}</a>
+                    <img class="sheet-navigation-pin"/>
+                    <img class="sheet-navigation-hole"/>
+                </div>
+                {{/if}}
+
                 {{#if (eq system.options.capacites true)}}
                 <div class="sheet-navigation-choice">
                     <a class="sheet-navigation-tab" data-tab="capacites">{{localize "NEPH5E.capacites"}}</a>
