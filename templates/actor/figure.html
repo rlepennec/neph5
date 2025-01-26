@@ -55,11 +55,6 @@
                     <img class="sheet-navigation-pin"/>
                     <img class="sheet-navigation-hole"/>
                 </div>
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="capacites">{{localize "NEPH5E.capacites"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
                 {{/if}}
 
                 {{#if (eq system.options.capacites true)}}
@@ -285,6 +280,9 @@
                     {{> "systems/neph5e/feature/periode/actor/quetes.hbs" from="figure" }}
                     {{> "systems/neph5e/feature/periode/actor/chutes.hbs" from="figure" }}
                 </div>
+                {{/if}}
+
+                {{#if (eq system.options.capacites true)}}
                 <div class="tab" data-group="primary" data-tab="capacites">
                     {{> "systems/neph5e/feature/periode/actor/capacites.hbs" from="figure" }}
                 </div>
