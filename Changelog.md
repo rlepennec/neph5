@@ -1,5 +1,6 @@
 # 1.5.4
-Ajout de la gestion de capacité
+Ajout de la gestion de capacités
+Modification des options initiales après la création d'une figure
 
 # 1.5.3
 Amélioration de la css
