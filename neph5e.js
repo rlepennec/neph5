@@ -168,42 +168,35 @@ Hooks.once("init", function () {
     });
 
     // Add some controls
-    Hooks.on("getSceneControlButtons", (btns) => {
-
-        let menu = [];
-    
-        menu.push({
-            name: "recherche",
-            title: "Recherche occulte",
-            icon: "fa fa-book-open",
-            button: true,
-            onClick: () => { new RechercheDialog().render(true); }
-        });
-
-        menu.push({
-            name: "ephemeride",
-            title: "Ephéméride",
-            icon: "fa-solid fa-eclipse",
-            button: true,
-            onClick: () => { new EphemerideDialog().render(true); }
-        });
-
-        menu.push({
-            name: "experience",
-            title: "Expérience",
-            icon: "fa-solid fa-coins",
-            button: true,
-            onClick: () => { new ExperienceDialog().render(true); }
-        });
-
-        btns.push({
+    Hooks.on("getSceneControlButtons", controls => {
+        controls.nephilim = {
             name: "nephilim",
             title: "Nephilim",
             icon: "fa-solid fa-feather-pointed",
-            layer: "nephilim",
-            tools: menu
-        });
-
+            tools: {
+                recherche: {
+                    name: "recherche",
+                    title: "Recherche occulte",
+                    icon: "fa fa-book-open",
+                    toggle: true,
+                    onChange: (e, t) => { new RechercheDialog().render(true) }
+                },
+                ephemeride: {
+                    name: "ephemeride",
+                    title: "Ephéméride",
+                    icon: "fa-solid fa-eclipse",
+                    toggle: true,
+                    onChange: (e, t) => { new EphemerideDialog().render(true) }
+                },
+                experience: {
+                    name: "experience",
+                    title: "Expérience",
+                    icon: "fa-solid fa-coins",
+                    toggle: true,
+                    onChange: (e, t) => { new ExperienceDialog().render(true) }
+                }
+            }
+        }
     })
 
     // Add data to combatant
