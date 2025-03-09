@@ -5553,9 +5553,9 @@ form.combat .body p.hiddable {
   --box-shadow: 0 0 4px 3px var(--color-shadow) inset;
   font-family: 'AJensonPro';
 }
-#interface #ui-left #controls li {
-  width: 40px;
-  height: 40px;
+#interface #ui-left #scene-controls button {
+  width: 32px;
+  height: 32px;
   border-radius: 22px;
   color: var(--color-border-highlight);
   background: var(--background);
@@ -5564,7 +5564,7 @@ form.combat .body p.hiddable {
   font-size: 17px;
   box-shadow: 0 0 5px #444 inset;
 }
-#interface #ui-left #controls li:hover {
+#interface #ui-left #scene-controls button:hover {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
