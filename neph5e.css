@@ -1357,6 +1357,8 @@
 .actor .window-content .actor-root .side .soleil {
   margin-top: 20px;
   margin-left: 35px;
+  display: flex;
+  justify-content: center;
 }
 .actor .window-content .actor-root .side .soleil .circle {
   border: none;
@@ -3107,7 +3109,8 @@
 }
 .actor .window-content .actor-root .article .article-body .arbre {
   position: relative;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   color: var(--kabbale-arbre-color);
 }
 .actor .window-content .actor-root .article .article-body .arbre .arbre-vie {
