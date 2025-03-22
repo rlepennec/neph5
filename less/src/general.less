@@ -36,6 +36,26 @@
 
         }
 
+        #scene-navigation {
+
+            a, li {
+                border-radius: 22px;
+                color: var(--color-border-highlight);
+                background: var(--background);
+                background-size: var(--background-size);
+                opacity: var(--opacity);
+                box-shadow: 0 0 5px #444 inset;
+
+                &:hover {
+                    -webkit-box-shadow: var(--box-shadow);
+                    -moz-box-shadow: var(--box-shadow);
+                    box-shadow: var(--box-shadow);
+                }
+
+            }
+
+        }
+
 
         #players {
             background: var(--background);
@@ -151,7 +171,7 @@
             --color-widget-background: #051732;
             font-size: 17px;
 
-            button {
+            button, textarea {
                 color: var(--color-widget);
                 border-radius: 6px;
                 background: var(--color-widget-background);
