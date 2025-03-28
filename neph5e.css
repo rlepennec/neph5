@@ -323,7 +323,7 @@
   --materiae-maximum-left: 14px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 83px;
-  --soleil-tooltip-margin-top: -32px;
+  --soleil-tooltip-margin-top: 32px;
   --soleil-tooltip-margin-left: -48px;
 }
 .skin-eau {
@@ -480,8 +480,8 @@
   --materiae-maximum-left: 14px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 92px;
-  --soleil-tooltip-margin-top: -39px;
-  --soleil-tooltip-margin-left: -45px;
+  --soleil-tooltip-margin-top: 33px;
+  --soleil-tooltip-margin-left: -42px;
 }
 .skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
@@ -636,8 +636,8 @@
   --materiae-maximum-left: 30px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 110px;
-  --soleil-tooltip-margin-top: -47px;
-  --soleil-tooltip-margin-left: -43px;
+  --soleil-tooltip-margin-top: 42px;
+  --soleil-tooltip-margin-left: -40px;
 }
 .skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
@@ -793,8 +793,8 @@
   --materiae-maximum-left: 14px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: -41px;
-  --soleil-tooltip-margin-left: -44px;
+  --soleil-tooltip-margin-top: 30px;
+  --soleil-tooltip-margin-left: -43px;
 }
 .skin-lune-noire {
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
@@ -950,8 +950,8 @@
   --materiae-maximum-left: 14px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: -40px;
-  --soleil-tooltip-margin-left: -45px;
+  --soleil-tooltip-margin-top: 31px;
+  --soleil-tooltip-margin-left: -42px;
 }
 .skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
@@ -1106,8 +1106,8 @@
   --materiae-maximum-left: 14px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: -40px;
-  --soleil-tooltip-margin-left: -45px;
+  --soleil-tooltip-margin-top: 30px;
+  --soleil-tooltip-margin-left: -38px;
 }
 .skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
@@ -1262,8 +1262,8 @@
   --materiae-maximum-left: 19px;
   --soleil-circle-width: 90px;
   --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: -41px;
-  --soleil-tooltip-margin-left: -46px;
+  --soleil-tooltip-margin-top: 31px;
+  --soleil-tooltip-margin-left: -44px;
 }
 .actor .window-content {
   background: var(--background);
@@ -3904,7 +3904,7 @@
   border: none;
   width: var(--akasha-circle-width);
   height: 65px;
-  display: hidden;
+  display: inline;
   background-color: transparent;
   content: var(--img-circle);
 }
@@ -4055,9 +4055,6 @@
   margin-bottom: 20px;
   margin-left: calc(100% - 226px);
 }
-.actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points {
-  margin-right: -35px;
-}
 .actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points .circle {
   border: none;
   width: 60px;
@@ -4066,8 +4063,7 @@
   content: var(--img-circle);
 }
 .actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points .tooltiptext {
-  bottom: 100%;
-  left: 29%;
+  transform: translate(0px, 25px);
   font-size: 14px;
 }
 .actor .window-content .actor-root .article .article-body .incarnations .incarnations-header .points input {
@@ -4077,7 +4073,7 @@
   text-align: center;
   font-weight: bold;
   border-radius: 50%;
-  transform: translate(-55px, -27px);
+  transform: translate(9px, -54px);
   background-color: transparent;
   color: var(--font-color);
 }
@@ -4671,11 +4667,10 @@
   font-size: 18px;
 }
 .item .window-content .item-root .article .body .main .data .value .select {
-  border: none;
   outline: 0px;
   background-color: transparent;
-  margin-top: 4px;
   width: 120%;
+  height: 35px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
