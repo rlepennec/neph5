@@ -993,15 +993,15 @@
   --nephilim-width-circle: 80px;
   --nephilim-height-circle: 85px;
   --nephilim-top-air: 92px;
-  --nephilim-left-air: 341px;
+  --nephilim-left-air: 330px;
   --nephilim-top-eau: 298px;
-  --nephilim-left-eau: 334px;
+  --nephilim-left-eau: 324px;
   --nephilim-top-feu: 7px;
-  --nephilim-left-feu: 115px;
-  --nephilim-top-lune: 361px;
+  --nephilim-left-feu: 112px;
+  --nephilim-top-lune: 358px;
   --nephilim-left-lune: 95px;
   --nephilim-top-terre: 179px;
-  --nephilim-left-terre: -23px;
+  --nephilim-left-terre: -28px;
   --selenim-width-circle: 115px;
   --selenim-height-circle: 115px;
   --selenim-top-circle: -25px;
@@ -4483,11 +4483,11 @@
   flex-direction: row;
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox {
-  font-style: italic;
   margin-left: 22px;
   margin-right: 20px;
   font-size: 11px;
   padding-top: 3px;
+  --checkbox-size: 11px;
 }
 .actor .window-content .actor-root .article .article-body .options .options-column .options-group .body .option .option-checkbox input[type="checkbox"] {
   display: none;
