@@ -83,13 +83,13 @@
             <div class="vecu-definition">
 
                 {{#if ../../actor.system.options.degreGauche}}
-                <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>
+                <label class="vecu-degre {{#if (eq item.degre 0)}}undeveloped{{/if}}">{{item.degre}}</label>
                 {{/if}}
 
-                <label class="vecu-name open {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.name}}</label>
+                <label class="vecu-name open {{#if (eq item.degre 0)}}undeveloped{{/if}}">{{item.name}}</label>
 
                 {{#unless ../../actor.system.options.degreGauche}}
-                <label class="vecu-degre {{#if (eq item.degre 0)}}disabled{{/if}}">{{item.degre}}</label>
+                <label class="vecu-degre {{#if (eq item.degre 0)}}undeveloped{{/if}}">{{item.degre}}</label>
                 {{/unless}}
 
                 <a class="vecu-dice roll">

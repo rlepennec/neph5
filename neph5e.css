@@ -4023,7 +4023,7 @@
   margin: 1em 0;
   padding: 0;
 }
-.actor .window-content .actor-root .article .article-body .vecus .body .disabled {
+.actor .window-content .actor-root .article .article-body .vecus .body .undeveloped {
   color: var(--font-disabled-color);
 }
 .actor .window-content .actor-root .article .article-body .vecus .body .vecu {
