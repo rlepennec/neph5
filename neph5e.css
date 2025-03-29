@@ -2944,7 +2944,7 @@
   font-weight: bold;
   transform: translate(236px, 92px);
 }
-.actor .window-content .actor-root .article .article-body .science .cercles .disabled {
+.actor .window-content .actor-root .article .article-body .science .cercles .undeveloped {
   color: var(--font-disabled-color);
 }
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .voie {
@@ -3089,7 +3089,7 @@
 .actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede {
   flex: 0 0 50px;
 }
-.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede.disabled {
+.actor .window-content .actor-root .article .article-body .science .cercles .cercle .all-focus .focus .focus-possede.undeveloped {
   flex: 0 0 222px;
   text-align: left;
 }

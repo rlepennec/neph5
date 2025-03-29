@@ -5,7 +5,7 @@
     <ol class="cercles">
 
         {{#each data.cercles as |cercle|}}
-        <div class="cercle {{#if (eq cercle.degre 0)}}disabled{{/if}}">
+        <div class="cercle {{#if (eq cercle.degre 0)}}undeveloped{{/if}}">
 
             <!-- Display the voie related to the specified cercle if necessary. -->
             {{#if (nonNull cercle.voie)}}
@@ -63,7 +63,7 @@
             <ol class="all-focus">
 
                 {{#each cercle.focus as |item|}}
-                <li class="focus item macro {{#if item.uncastable}}disabled{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
+                <li class="focus item macro {{#if item.uncastable}}undeveloped{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
 
                     <!-- The only element of the focus. -->
                     {{#if (includes ../../header 'element')}}
@@ -125,7 +125,7 @@
                     <!-- The quantity produced by the laboratory. -->
                     {{#if (includes ../../header 'quantite')}}
                     <input
-                        {{#if ../../../actor.locked}}disabled{{/if}}
+                        {{#if ../../../actor.locked}}undeveloped{{/if}}
                         class="focus-quantite change"
                         type="number"
                         value="{{item.embedded.system.quantite}}"
@@ -135,7 +135,7 @@
                     <!-- The quantity carried by the character. -->
                     {{#if (includes ../../header 'transporte')}}
                     <input
-                        {{#if ../../../actor.locked}}disabled{{/if}}
+                        {{#if ../../../actor.locked}}undeveloped{{/if}}
                         class="focus-transporte change"
                         type="number"
                         value="{{item.embedded.system.transporte}}"
