@@ -1769,7 +1769,7 @@
   margin-top: 3px;
   z-index: 99;
 }
-.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose.disabled {
+.actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose.undeveloped {
   color: var(--font-disabled-color);
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .metamorphe .metamorphoses .metamorphose:hover {

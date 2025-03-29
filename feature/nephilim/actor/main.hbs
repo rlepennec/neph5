@@ -509,7 +509,7 @@
             <ol class="metamorphoses">
 
                 {{#each item.metamorphoses as |metamorphose|}}
-                <li class="metamorphose {{#unless metamorphose.formed}}disabled{{/unless}}" data-id="{{../id}}" data-index="{{@index}}">
+                <li class="metamorphose {{#unless metamorphose.formed}}undeveloped{{/unless}}" data-id="{{../id}}" data-index="{{@index}}">
 
                     <i class="formed fa-circle {{#if metamorphose.formed}}fas{{else}}far{{/if}}" ></i>
 
