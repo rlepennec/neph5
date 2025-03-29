@@ -1679,6 +1679,7 @@
   width: 40px;
   text-align: left;
   color: var(--font-color);
+  box-shadow: none;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .left .chutes .body {
   display: flex;
@@ -1810,10 +1811,12 @@
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .name {
   font-size: 16px;
   color: var(--font-color);
+  box-shadow: none;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .stase .header-with-value .degre {
   margin-top: var(--nephilim-stase-margin-top);
   color: var(--font-color);
+  box-shadow: none;
 }
 .actor .window-content .actor-root .article .article-body .nephilim .right .arcanes .body {
   display: flex;
