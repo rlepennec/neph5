@@ -5139,7 +5139,7 @@
   flex-direction: row;
   flex: 0 0 auto;
   border: none;
-  padding: 7px 25px 0px 0px;
+  padding: 14px 25px 0px 0px;
   width: 120px;
   text-align: right;
 }
@@ -5817,6 +5817,7 @@ form.combat .body p.hiddable {
   color: var(--color-widget);
   border-radius: 6px;
   background: var(--color-widget-background);
+  height: auto;
 }
 .window-app:not(.sheet.actor,.sheet.item) .window-content select:hover {
   -webkit-box-shadow: var(--box-shadow);
