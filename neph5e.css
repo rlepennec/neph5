@@ -3459,6 +3459,7 @@
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img {
   position: relative;
   border: none;
+  display: inline;
 }
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct img.pentacle {
   width: 200px;
