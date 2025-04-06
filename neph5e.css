@@ -325,6 +325,7 @@
   --soleil-circle-height: 83px;
   --soleil-tooltip-margin-top: 32px;
   --soleil-tooltip-margin-left: -48px;
+  --color-scrollbar: #a1a1a1;
 }
 .skin-eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
@@ -482,6 +483,7 @@
   --soleil-circle-height: 92px;
   --soleil-tooltip-margin-top: 33px;
   --soleil-tooltip-margin-left: -42px;
+  --color-scrollbar: #a1a1a1;
 }
 .skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
@@ -638,6 +640,7 @@
   --soleil-circle-height: 110px;
   --soleil-tooltip-margin-top: 42px;
   --soleil-tooltip-margin-left: -40px;
+  --color-scrollbar: #ad521d;
 }
 .skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
@@ -795,6 +798,7 @@
   --soleil-circle-height: 90px;
   --soleil-tooltip-margin-top: 30px;
   --soleil-tooltip-margin-left: -43px;
+  --color-scrollbar: #121212;
 }
 .skin-lune-noire {
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
@@ -952,6 +956,7 @@
   --soleil-circle-height: 90px;
   --soleil-tooltip-margin-top: 31px;
   --soleil-tooltip-margin-left: -42px;
+  --color-scrollbar: #191813;
 }
 .skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
@@ -1108,6 +1113,7 @@
   --soleil-circle-height: 90px;
   --soleil-tooltip-margin-top: 30px;
   --soleil-tooltip-margin-left: -38px;
+  --color-scrollbar: #4e3904;
 }
 .skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
@@ -1264,6 +1270,7 @@
   --soleil-circle-height: 90px;
   --soleil-tooltip-margin-top: 31px;
   --soleil-tooltip-margin-left: -44px;
+  --color-scrollbar: #113203;
 }
 .actor .window-content {
   background: var(--background);
