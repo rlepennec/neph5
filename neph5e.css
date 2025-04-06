@@ -1272,6 +1272,7 @@
 .actor .window-content .actor-root {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 .actor .window-content .actor-root .tooltip {
   position: relative;
@@ -1477,6 +1478,7 @@
   flex-direction: column;
   margin-left: 10px;
   width: 100%;
+  height: 100%;
 }
 .actor .window-content .actor-root .article .article-header {
   display: flex;
@@ -1498,6 +1500,15 @@
   width: 200px;
   margin-top: var(--article-separator-margin-top);
   content: var(--img-article-separator);
+}
+.actor .window-content .actor-root .article .article-body {
+  height: 100%;
+}
+.actor .window-content .actor-root .article .article-body div.tab[data-tab="description"] {
+  height: 100%;
+}
+.actor .window-content .actor-root .article .article-body div.tab[data-tab="description"] .editor {
+  height: 100%;
 }
 .actor .window-content .actor-root .article .article-body .article-upper-corner {
   position: absolute;
