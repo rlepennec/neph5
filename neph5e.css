@@ -5642,7 +5642,7 @@ form.combat .body p.hiddable {
   background-size: var(--background-size);
   opacity: var(--opacity);
   font-size: 12px;
-  box-shadow: 0 0 5px #444 inset;
+  box-shadow: 0 0 2px #444 inset;
 }
 #interface #ui-left #players-active .player:hover,
 #interface #ui-left #players-inactive .player:hover,
@@ -5651,6 +5651,7 @@ form.combat .body p.hiddable {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
+  border-radius: 3px;
 }
 #interface #ui-middle #ui-top #navigation li:not(.scene-player),
 #interface #ui-middle #ui-top #navigation #nav-toggle {
