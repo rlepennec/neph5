@@ -5601,6 +5601,7 @@ form.combat .body p.hiddable {
   --color-shadow-highlight: #f5f4f4;
   --color-border-highlight-alt: #f5f4f4;
   --color-shadow: #bebdbd;
+  --color-scrollbar: #4b5ebf;
   --box-shadow: 0 0 4px 3px var(--color-shadow) inset;
   font-family: 'AJensonPro';
 }
@@ -5635,15 +5636,18 @@ form.combat .body p.hiddable {
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
 }
-#interface #ui-left #players {
+#interface #ui-left #players-active,
+#interface #ui-left #players-inactive {
   background: var(--background);
   background-size: var(--background-size);
   opacity: var(--opacity);
-  font-size: 17px;
+  font-size: 12px;
   box-shadow: 0 0 5px #444 inset;
 }
-#interface #ui-left #players .player:hover,
-#interface #ui-left #players h3:hover {
+#interface #ui-left #players-active .player:hover,
+#interface #ui-left #players-inactive .player:hover,
+#interface #ui-left #players-active h3:hover,
+#interface #ui-left #players-inactive h3:hover {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
@@ -5720,6 +5724,12 @@ form.combat .body p.hiddable {
   -webkit-box-shadow: var(--box-shadow);
   -moz-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
+}
+#interface #ui-right #sidebar #sidebar-content {
+  margin-left: 0px;
+}
+#interface #ui-right #sidebar #sidebar-content #chat .chat-scroll {
+  direction: ltr;
 }
 #interface #ui-right #sidebar #sidebar-tabs {
   padding: 16px 5px 16px 0;
