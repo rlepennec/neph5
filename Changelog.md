@@ -1,3 +1,6 @@
+# 1.6.0
+Mise à jour pour Foundry v13
+
 # 1.5.5
 Correction d'une anomalie sur la visibilité de l'onglet combat
 
