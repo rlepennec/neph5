@@ -3912,6 +3912,9 @@
 .actor .window-content .actor-root .article .article-body .akasha .column .directions .tooltip img.disabled {
   opacity: 0.2;
 }
+.actor .window-content .actor-root .article .article-body .akasha .column .directions .tooltip img.undeveloped {
+  opacity: 0.2;
+}
 .actor .window-content .actor-root .article .article-body .akasha .column .directions .nef img {
   width: var(--akasha-nef-width);
   transform: var(--akasha-nef-transform);
