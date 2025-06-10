@@ -34,8 +34,12 @@ export class NephilimItem extends Item {
      */
     prepareData() {
         super.prepareData();
-        if (this.sid == null || this.sid === "") {
-            this.system.id = CustomHandlebarsHelpers.UUID();
+        if (this._stats.duplicateSource != null) {
+            const id = this._stats.duplicateSource.slice(5);
+            const item = game.items.get(id);
+            if (item != null && item.sid === this.sid) {
+                this.system.id = CustomHandlebarsHelpers.UUID();
+            }
         }
         if (this.img === 'icons/svg/item-bag.svg') {
             const root = "systems/neph5e/assets/icons/";
