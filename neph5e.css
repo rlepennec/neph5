@@ -3470,6 +3470,10 @@
   filter: opacity(20%);
   -webkit-filter: opacity(20%);
 }
+.actor .window-content .actor-root .article .article-body .laboratoire .constructs .undeveloped {
+  filter: opacity(20%);
+  -webkit-filter: opacity(20%);
+}
 .actor .window-content .actor-root .article .article-body .laboratoire .constructs .construct {
   position: absolute;
   width: 400px;
