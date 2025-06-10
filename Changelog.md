@@ -1,7 +1,7 @@
 # 1.6.1
 Correction d'une anomalie lors de la duplication d'objets
-Correction d'une anomalie sur l'activation des constructs du laboratoire
-Correction d'une anomalie sur l'activation des nefs et des barges
+Correction d'une anomalie lors de l'activation des constructs du laboratoire
+Correction d'une anomalie lors de l'activation des nefs et des barges
 
 # 1.6.0
 Mise à jour pour Foundry v13
