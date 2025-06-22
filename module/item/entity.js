@@ -40,6 +40,8 @@ export class NephilimItem extends Item {
             if (item != null && item.sid === this.sid) {
                 this.system.id = CustomHandlebarsHelpers.UUID();
             }
+        } else if (this.system.id == null || this.system.id === "") {
+            this.system.id = CustomHandlebarsHelpers.UUID();
         }
         if (this.img === 'icons/svg/item-bag.svg') {
             const root = "systems/neph5e/assets/icons/";

@@ -1,3 +1,6 @@
+# 1.6.2
+Correction d'une anomalie lors de la création d'objet
+
 # 1.6.1
 Correction d'une anomalie lors de la duplication d'objets
 Correction d'une anomalie lors de l'activation des constructs du laboratoire
