@@ -5,7 +5,7 @@
  */
 export const preloadTemplates = async function () {
 
-    return loadTemplates([
+    return foundry.applications.handlebars.loadTemplates([
 
         // Akasha
         "systems/neph5e/feature/akasha/actor/main.hbs",
@@ -88,7 +88,9 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/item/parts/body/checkbox.hbs",
         "systems/neph5e/templates/item/parts/body/input.hbs",
         "systems/neph5e/templates/item/parts/body/label.hbs",
-        "systems/neph5e/templates/item/parts/body/list.hbs"
+        "systems/neph5e/templates/item/parts/body/list.hbs",
+
+        "systems/neph5e/feature/alchimie/item/alchimie.html"
 
     ]);
 

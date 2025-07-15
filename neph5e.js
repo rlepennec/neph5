@@ -12,6 +12,8 @@ import { FigureSheet } from "./module/actor/figure.js";
 import { FigurantSheet } from "./module/actor/figurant.js";
 import { FraterniteSheet } from "./module/actor/fraternite.js";
 
+import { AlchimieData } from "./feature/alchimie/item/alchimie.mjs";
+
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
 import { AppelSheet } from "./feature/conjuration/item/appel.js";
 import { ArcaneSheet } from "./feature/periode/item/arcane.js";
@@ -68,6 +70,15 @@ Hooks.once("init", function () {
         save_enablewhendirty: true
     };
 
+    CONFIG.Actor.dataModels = {
+        // ...
+    }
+
+    CONFIG.Item.dataModels = {
+        alchimie: AlchimieData,
+        // ...
+    }
+
     Handlebars.registerHelper({
         concat: CustomHandlebarsHelpers.concat,
         isNull: CustomHandlebarsHelpers.isNull,
@@ -120,44 +131,46 @@ Hooks.once("init", function () {
         }
     });
 
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });
-    Actors.registerSheet("nephilim", FigurantSheet, { types: ["figurant"], makeDefault: true, label: "NEPHILIM.figurant" });
-    Actors.registerSheet("nephilim", FraterniteSheet, { types: ["fraternite"], makeDefault: true, label: "NEPHILIM.fraternite" });
 
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
-    Items.registerSheet('nephilim', AppelSheet, { types: ['appel'], makeDefault: true });
-    Items.registerSheet('nephilim', ArcaneSheet, { types: ['arcane'], makeDefault: true });
-    Items.registerSheet('nephilim', ArmeSheet, { types: ['arme'], makeDefault: true });
-    Items.registerSheet('nephilim', ArmureSheet, { types: ['armure'], makeDefault: true });
-    Items.registerSheet('nephilim', AspectSheet, { types: ['aspect'], makeDefault: true });
-    Items.registerSheet('nephilim', AtlanteideSheet, { types: ['atlanteide'], makeDefault: true });
-    Items.registerSheet('nephilim', CapaciteSheet, { types: ['capacite'], makeDefault: true });
-    Items.registerSheet('nephilim', CatalyseurSheet, { types: ['catalyseur'], makeDefault: true });
-    Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
-    Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
-    Items.registerSheet('nephilim', DracomachieSheet, { types: ['dracomachie'], makeDefault: true });
-    Items.registerSheet('nephilim', DivinationSheet, { types: ['divination'], makeDefault: true });
-    Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
-    Items.registerSheet('nephilim', HabitusSheet, { types: ['habitus'], makeDefault: true });
-    Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
-    Items.registerSheet('nephilim', PasseSheet, { types: ['passe'], makeDefault: true });
-    Items.registerSheet('nephilim', PeriodeSheet, { types: ['periode'], makeDefault: true });
-    Items.registerSheet('nephilim', PratiqueSheet, { types: ['pratique'], makeDefault: true });
-    Items.registerSheet('nephilim', QueteSheet, { types: ['quete'], makeDefault: true });
-    Items.registerSheet('nephilim', MagieSheet, { types: ['magie'], makeDefault: true });
-    Items.registerSheet('nephilim', MateriaeSheet, { types: ['materiae'], makeDefault: true });
-    Items.registerSheet('nephilim', MetamorpheSheet, { types: ['metamorphe'], makeDefault: true });
-    Items.registerSheet('nephilim', OrdonnanceSheet, { types: ['ordonnance'], makeDefault: true });
-    Items.registerSheet('nephilim', RiteSheet, { types: ['rite'], makeDefault: true });
-    Items.registerSheet('nephilim', RituelSheet, { types: ['rituel'], makeDefault: true });
-    Items.registerSheet('nephilim', SavoirSheet, { types: ['savoir'], makeDefault: true });
-    Items.registerSheet('nephilim', ScienceSheet, { types: ['science'], makeDefault: true });
-    Items.registerSheet('nephilim', SortSheet, { types: ['sort'], makeDefault: true });
-    Items.registerSheet('nephilim', TechniqueSheet, { types: ['technique'], makeDefault: true });
-    Items.registerSheet('nephilim', TekhneSheet, { types: ['tekhne'], makeDefault: true });
-    Items.registerSheet('nephilim', VecuSheet, { types: ['vecu'], makeDefault: true });
+
+    foundry.documents.collections.Actors.unregisterSheet("core", ActorSheet);
+    foundry.documents.collections.Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });
+    foundry.documents.collections.Actors.registerSheet("nephilim", FigurantSheet, { types: ["figurant"], makeDefault: true, label: "NEPHILIM.figurant" });
+    foundry.documents.collections.Actors.registerSheet("nephilim", FraterniteSheet, { types: ["fraternite"], makeDefault: true, label: "NEPHILIM.fraternite" });
+
+    foundry.documents.collections.Items.unregisterSheet("core", ItemSheet);
+    foundry.documents.collections.Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', AppelSheet, { types: ['appel'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', ArcaneSheet, { types: ['arcane'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', ArmeSheet, { types: ['arme'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', ArmureSheet, { types: ['armure'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', AspectSheet, { types: ['aspect'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', AtlanteideSheet, { types: ['atlanteide'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', CapaciteSheet, { types: ['capacite'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', CatalyseurSheet, { types: ['catalyseur'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', DracomachieSheet, { types: ['dracomachie'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', DivinationSheet, { types: ['divination'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', HabitusSheet, { types: ['habitus'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', PasseSheet, { types: ['passe'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', PeriodeSheet, { types: ['periode'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', PratiqueSheet, { types: ['pratique'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', QueteSheet, { types: ['quete'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', MagieSheet, { types: ['magie'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', MateriaeSheet, { types: ['materiae'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', MetamorpheSheet, { types: ['metamorphe'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', OrdonnanceSheet, { types: ['ordonnance'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', RiteSheet, { types: ['rite'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', RituelSheet, { types: ['rituel'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', SavoirSheet, { types: ['savoir'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', ScienceSheet, { types: ['science'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', SortSheet, { types: ['sort'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', TechniqueSheet, { types: ['technique'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', TekhneSheet, { types: ['tekhne'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', VecuSheet, { types: ['vecu'], makeDefault: true });
 
     preloadTemplates();
     registerSystemSettings();

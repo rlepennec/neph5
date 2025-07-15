@@ -46,5 +46,46 @@
     ],
     "socket": true,
     "background": "systems/neph5e/assets/core/acceuil.jpg",
-    "license": "license.txt"
+    "license": "license.txt",
+    "documentTypes": {
+        "Actor": {
+            "figure": {},
+            "figurant": {},
+            "fraternite": {}
+        },
+        "Item": {
+            "alchimie": {},
+            "arme": {},
+            "armure": {},
+            "appel": {},
+            "aspect": {},
+            "atlanteide": {},
+            "capacite": {},
+            "catalyseur": {},
+            "chute": {},
+            "competence": {},
+            "divination": {},
+            "dracomachie": {},
+            "formule": {},
+            "habitus": {},
+            "invocation": {},
+            "materiae": {},
+            "metamorphe": {},
+            "ordonnance": {},
+            "passe": {},
+            "periode": {},
+            "pratique": {},
+            "arcane": {},
+            "quete": {},
+            "rite": {},
+            "rituel": {},
+            "savoir": {},
+            "science": {},
+            "sort": {},
+            "tekhne": {},
+            "technique": {},
+            "vecu": {},
+            "magie": {}
+        }
+    }
 }

@@ -1,7 +1,24 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Science } from "../../feature/science/science.js";
 
-export class NephilimItemSheet extends ItemSheet {
+const { api, sheets } = foundry.applications;
+
+export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
+
+    static DEFAULT_OPTIONS = {
+        classes: ["nephilim", "sheet", "item"],
+        position: {
+            height: 400,
+            width: 560,
+        },
+        form: {
+            submitOnChange: true,
+        },
+        tag: "form",
+        window: {
+            resizable: true,
+        },
+    }
 
     /**
      * @constructor
@@ -9,18 +26,28 @@ export class NephilimItemSheet extends ItemSheet {
      */
     constructor(...args) {
         super(...args);
-        this.options.submitOnClose = true;
         this.embeddedData = {};
     }
 
-    /**
-     * @return the path of the specified item sheet.
+    /** 
+     * @override
      */
-    get template() {
-        const path = 'systems/neph5e/templates/item';
-        return `${path}/${this.item.type}.html`;
+    async _prepareContext(options) {
+        const data = await super._prepareContext(options);
+        data.id = null;
+        foundry.utils.mergeObject(data, {
+            system: data.document.system,
+            isGM: game.user.isGM,
+            debug: game.settings.get('neph5e', 'debug')
+        })
+        if (data.document.system.description != null) {
+            data.enrichedDescription = await TextEditor.enrichHTML(data.document.system.description, {secrets: game.user.isGM})
+        }
+        foundry.utils.mergeObject(data, this.getOriginalData());
+        foundry.utils.mergeObject(data, this.embeddedData);
+        this.embeddedData = {};
+        return data;
     }
-
 
     /**
      * @param science The name of the science.
@@ -39,25 +66,6 @@ export class NephilimItemSheet extends ItemSheet {
         return cercles;
     }
 
-    /** 
-     * @override
-     */
-    async getData() {
-        const data = await super.getData();
-        foundry.utils.mergeObject(data, {
-            system: data.item.system,
-            isGM: game.user.isGM,
-            debug: game.settings.get('neph5e', 'debug')
-        })
-        if (data.item.system.description != null) {
-            data.enrichedDescription = await TextEditor.enrichHTML(data.item.system.description, {secrets: game.user.isGM})
-        }
-        foundry.utils.mergeObject(data, this.getOriginalData());
-        foundry.utils.mergeObject(data, this.embeddedData);
-        this.embeddedData = {};
-        return data;
-    }
-
     /**
      * @returns the data from the original item.
      */
@@ -72,18 +80,6 @@ export class NephilimItemSheet extends ItemSheet {
     withEmbeddedData(data) {
         this.embeddedData = data; 
         return this;
-    }
-
-    /** 
-     * @override
-     */
-	static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true
-      });
     }
 
     /**
