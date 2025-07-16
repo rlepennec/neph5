@@ -9,9 +9,9 @@
         type="hidden"
         {{/if}}
 
-        name="system.id"
+        name="document.system.id"
         type="text"
-        value="{{system.id}}"
+        value="{{document.system.id}}"
         data-dtype="String"/>
    
     <div class="title">
@@ -19,12 +19,12 @@
         <input
             name="name"
             type="text"
-            value="{{item.name}}"
+            value="{{document.name}}"
             class="name"/>
 
         <img
-            src="{{item.img}}"
-            title="{{item.name}}"
+            src="{{document.img}}"
+            title="{{document.name}}"
             data-edit="img"
             class="image"/>
 
