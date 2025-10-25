@@ -22,15 +22,6 @@
         "neph5e.css"
     ],
     "packs": [
-        {
-            "name": "system",
-            "label": "Systeme",
-            "system": "neph5e",
-            "module": "neph5e",
-            "path": "./packs/system.db",
-            "type": "Item",
-            "tags" : [ "item", "system" ]
-        }
     ],
     "languages": [
         {
@@ -49,43 +40,9 @@
     "license": "license.txt",
     "documentTypes": {
         "Actor": {
-            "figure": {},
-            "figurant": {},
-            "fraternite": {}
         },
         "Item": {
-            "alchimie": {},
-            "arme": {},
-            "armure": {},
-            "appel": {},
-            "aspect": {},
-            "atlanteide": {},
-            "capacite": {},
-            "catalyseur": {},
-            "chute": {},
-            "competence": {},
-            "divination": {},
-            "dracomachie": {},
-            "formule": {},
-            "habitus": {},
-            "invocation": {},
-            "materiae": {},
-            "metamorphe": {},
-            "ordonnance": {},
-            "passe": {},
-            "periode": {},
-            "pratique": {},
-            "arcane": {},
-            "quete": {},
-            "rite": {},
-            "rituel": {},
-            "savoir": {},
-            "science": {},
-            "sort": {},
-            "tekhne": {},
-            "technique": {},
-            "vecu": {},
-            "magie": {}
+            "alchimie": {}
         }
     }
 }

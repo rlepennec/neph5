@@ -28,9 +28,6 @@ export class AlchimieSheet extends NephilimItemSheet {
     }
 
     static #onSubmit(event, form, formData) {
-        console.log(event);
-        console.log(form);
-        console.log(formData);
         console.log("onSubmit");
     }
 
