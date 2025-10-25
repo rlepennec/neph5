@@ -6,41 +6,6 @@
 
     <div class="article">
 
-        <div class="header">
-
-            <input
-
-                {{#if (and debug isGM)}}
-                    type="text"
-                    class="uuid"
-                    {{else}}
-                    type="hidden"
-                {{/if}}
-
-                name="document.system.id"
-                type="text"
-                value="{{document.system.id}}"
-                data-dtype="String"/>
-
-            <div class="title">
-
-                <input
-                    name="name"
-                    type="text"
-                    value="{{document.name}}"
-                    class="name"/>
-
-                <img
-                    src="{{document.img}}"
-                    title="{{document.name}}"
-                    data-edit="img"
-                    class="image"/>
-
-            </div>
-
-        </div>
-
-
         {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
 
         <div class="body">
