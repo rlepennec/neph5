@@ -4657,7 +4657,6 @@
   box-shadow: 0 0 6px 2px #f5f4f4 inset;
 }
 .item .window-content .item-root .article .header .uuid {
-  margin-bottom: 5px;
   text-align: center;
   color: indianred;
   font-weight: bold;
@@ -4690,6 +4689,22 @@
 .item .window-content .item-root .article .body {
   margin-left: 10px;
   margin-right: 10px;
+  /*
+                    .description {
+                        margin: 10px 0px 0px 0px;
+                        font-family: 'AJensonProLtDisp';
+                        font-size: 16px;
+
+                        .add {
+
+                            span {
+                                margin-left: 10px;
+                            }
+
+                        }
+
+                    }
+                        */
 }
 .item .window-content .item-root .article .body .line-bottom {
   margin-top: 10px;
@@ -4943,14 +4958,6 @@
 .item .window-content .item-root .article .body .mnemos .add-mnemos {
   color: indianred;
   font-weight: bolder;
-}
-.item .window-content .item-root .article .body .description {
-  margin: 10px 0px 0px 0px;
-  font-family: 'AJensonProLtDisp';
-  font-size: 16px;
-}
-.item .window-content .item-root .article .body .description .add span {
-  margin-left: 10px;
 }
 .chat-message {
   --background-side-chat: url("../../systems/neph5e/assets/backgrounds/background-side-chat.webp");

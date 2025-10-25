@@ -8,12 +8,14 @@ export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.Ite
     static DEFAULT_OPTIONS = {
         classes: ["nephilim", "sheet", "item"],
         position: {
-            height: 400,
-            width: 560,
+            height: 590,
+            width: 400,
         },
         form: {
+            closeOnSubmit: true,
             submitOnChange: true,
         },
+        editable: true,
         tag: "form",
         window: {
             resizable: true,
@@ -29,24 +31,41 @@ export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.Ite
         this.embeddedData = {};
     }
 
+//   /** @inheritDoc */
+//   async _prepareContext(options) {
+//     return {
+//       ...await super._prepareContext(options),
+//       document: this.document,
+//       editable: this.isEditable,
+//       options: this.options
+//     };
+//   }
+
+
     /** 
      * @override
      */
     async _prepareContext(options) {
-        const data = await super._prepareContext(options);
-        data.id = null;
-        foundry.utils.mergeObject(data, {
-            system: data.document.system,
+        console.log("_prepareContext");
+        const context = await super._prepareContext(options);
+        context.id = null;
+        foundry.utils.mergeObject(context, {
+            //document: this.document,
+            //system: context.document.system,
             isGM: game.user.isGM,
-            debug: game.settings.get('neph5e', 'debug')
+            debug: game.settings.get('neph5e', 'debug'),
         })
-        if (data.document.system.description != null) {
-            data.enrichedDescription = await TextEditor.enrichHTML(data.document.system.description, {secrets: game.user.isGM})
-        }
-        foundry.utils.mergeObject(data, this.getOriginalData());
-        foundry.utils.mergeObject(data, this.embeddedData);
+        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            this.document.system.description,
+            {
+                secrets: game.user.isGM,
+                relativeTo: this.document
+            }
+        )
+        //foundry.utils.mergeObject(context, this.getOriginalData());
+        //foundry.utils.mergeObject(context, this.embeddedData);
         this.embeddedData = {};
-        return data;
+        return context;
     }
 
     /**
@@ -90,7 +109,7 @@ export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.Ite
         const li = $(event.currentTarget).closest(".item");
         const id = li.data("item-id");
         const item = CustomHandlebarsHelpers.getItem(id);
-        item.sheet.render(true);
+        this.render({ force: true });
     }
 
     /**
