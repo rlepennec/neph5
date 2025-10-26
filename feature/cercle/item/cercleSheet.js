@@ -1,10 +1,10 @@
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
-export class AlchimieSheet extends NephilimItemSheet {
+export class CercleSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        id: "alchimie",
-        classes: ["nephilim", "sheet", "item", "alchimie"],
+        id: "cercle",
+        classes: ["nephilim", "sheet", "item", "cercle"],
         position: {
             height: 500,
             width: 590,
@@ -22,7 +22,7 @@ export class AlchimieSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/alchimie/item/alchimie.html`,
+            template: `systems/neph5e/feature/cercle/item/cercle.html`,
         }
     }
 

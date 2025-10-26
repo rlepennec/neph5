@@ -1,6 +1,4 @@
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
-
-export class AlchimieData extends foundry.abstract.TypeDataModel {
+export class CercleData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {

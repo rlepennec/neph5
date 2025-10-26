@@ -2,8 +2,8 @@ import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 
 import { NephilimItem } from "./module/item/entity.js";
 
-import { AlchimieData } from "./feature/alchimie/item/alchimie.mjs";
-import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
+import { CercleData } from "./feature/cercle/item/cercleData.mjs";
+import { CercleSheet } from "./feature/cercle/item/cercleSheet.js";
 
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
@@ -11,7 +11,7 @@ Hooks.once("init", function () {
     CONFIG.Item.documentClass = NephilimItem;
 
     CONFIG.Item.dataModels = {
-        alchimie: AlchimieData,
+        cercle: CercleData,
     }
 
     Handlebars.registerHelper({
@@ -48,6 +48,6 @@ Hooks.once("init", function () {
     });
 
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-    foundry.documents.collections.Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', CercleSheet, { types: ['cercle'], makeDefault: true });
 
 })

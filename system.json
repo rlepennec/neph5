@@ -1,15 +1,15 @@
 {
     "id":"neph5e",
-    "title": "Nephilim Légende",
-    "description": "A system for playing Nephilim Légende game.",
-    "version": "1.6.2",
+    "title": "Nephilim",
+    "description": "A system for playing Nephilim games.",
+    "version": "2.0.0",
     "compatibility": {
         "minimum": "13",
         "verified": "13"
     },
     "url": "https://github.com/rlepennec/neph5",
     "manifest": "https://github.com/rlepennec/neph5/releases/latest/download/system.json",
-    "download": "https://github.com/rlepennec/neph5/releases/download/v1.6.2/system.zip",
+    "download": "https://github.com/rlepennec/neph5/releases/download/v2.0.0/system.zip",
     "authors": [
         {
             "name": "Kartaj"
@@ -42,7 +42,7 @@
         "Actor": {
         },
         "Item": {
-            "alchimie": {}
+            "cercle": {}
         }
     }
 }
