@@ -2,15 +2,27 @@ import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 
 const { api, sheets } = foundry.applications;
 
-export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
+//const { HandlebarsApplicationMixin } = foundry.applications.api;
+//const { ApplicationV2 } = foundry.applications.api;
+
+//export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
+//export class NephilimItemSheet extends HandlebarsApplicationMixin(ApplicationV2) {
+//export class NephilimItemSheet extends foundry.ApplicationV2.sheets.i {
+
+
+const { HandlebarsApplicationMixin } = foundry.applications.api
+const { ItemSheetV2 } = foundry.applications.sheets
+
+export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
     static DEFAULT_OPTIONS = {
         classes: ["nephilim", "sheet", "item"],
         position: {
-            height: 590,
+            height: 650,
             width: 400,
         },
         form: {
+            //handler: NephilimItemSheet.#onSubmitForm,
             closeOnSubmit: true,
             submitOnChange: true,
         },
@@ -34,16 +46,15 @@ export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.Ite
      * @override
      */
     async _prepareContext(options) {
-        console.log("_prepareContext");
-        const context = await super._prepareContext(options);
+        const context = await super._prepareContext(options)
         context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
             this.document.system.description,
             {
-                secrets: game.user.isGM,
+                secrets: this.document.isOwner,
                 relativeTo: this.document
             }
         )
-        return context;
+        return context
     }
 
 }

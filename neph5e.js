@@ -47,7 +47,7 @@ Hooks.once("init", function () {
         minus: (v1, v2) => v1 - v2,
     });
 
-    //foundry.documents.collections.Items.unregisterSheet("core", ItemSheet);
+    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
     foundry.documents.collections.Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
 
 })

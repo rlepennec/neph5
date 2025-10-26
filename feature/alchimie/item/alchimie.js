@@ -6,13 +6,13 @@ export class AlchimieSheet extends NephilimItemSheet {
         id: "alchimie",
         classes: ["nephilim", "sheet", "item", "alchimie"],
         position: {
-            height: 400,
-            width: 560,
+            height: 500,
+            width: 590,
         },
         form: {
-            handler: AlchimieSheet.#onSubmit,
-            closeOnSubmit: true,
-            submitOnChange: false,
+            //handler: AlchimieSheet.#onSubmitForm,
+            closeOnSubmit: false,
+            submitOnChange: true,
         },
         editable: true,
         tag: "form",
@@ -27,9 +27,14 @@ export class AlchimieSheet extends NephilimItemSheet {
         }
     }
 
-    static #onSubmit(event, form, formData) {
-        console.log("onSubmit");
-    }
+    //static async #onSubmitForm(event, form, formData) {
+        //console.log("onSubmitForm");
+       // event.preventDefault()
+        //await this.document.update(formData.object) // Note: formData.object
+        //this.saveModifiers();
+        //this._resolve(this.data);
+        //this._resolve = null;
+    //}
 
     _onRender(context, options) {
         console.log("_onRender");

@@ -29,18 +29,20 @@
         </div>
 
         <div class="body">
+          
             {{#if editable}}
-                <prose-mirror
-                    name="system.description"
-                    button="true"
-                    editable="{{editable}}"
-                    toggled="false"
-                    value="{{document.system.description}}">
-                    {{{enrichedDescription}}}
-                </prose-mirror>
-            {{else}}
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
                 {{{enrichedDescription}}}
+            </prose-mirror>
+            {{else}}
+            {{{enrichedDescription}}}
             {{/if}}
+
         </div>
 
     </div>
