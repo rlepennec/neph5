@@ -7,7 +7,7 @@ export class AlchimieData extends foundry.abstract.TypeDataModel {
             id: new foundry.data.fields.StringField(
                 {
                     required: true,
-                    initial: CustomHandlebarsHelpers.UUID()
+                    initial: crypto.randomUUID()
                 }
             ),
             description: new foundry.data.fields.StringField(

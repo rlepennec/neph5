@@ -1,15 +1,3 @@
-import { CustomHandlebarsHelpers } from "../common/handlebars.js";
-
-const { api, sheets } = foundry.applications;
-
-//const { HandlebarsApplicationMixin } = foundry.applications.api;
-//const { ApplicationV2 } = foundry.applications.api;
-
-//export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
-//export class NephilimItemSheet extends HandlebarsApplicationMixin(ApplicationV2) {
-//export class NephilimItemSheet extends foundry.ApplicationV2.sheets.i {
-
-
 const { HandlebarsApplicationMixin } = foundry.applications.api
 const { ItemSheetV2 } = foundry.applications.sheets
 
@@ -22,7 +10,6 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
             width: 400,
         },
         form: {
-            //handler: NephilimItemSheet.#onSubmitForm,
             closeOnSubmit: true,
             submitOnChange: true,
         },
@@ -39,7 +26,6 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
      */
     constructor(...args) {
         super(...args);
-        this.embeddedData = {};
     }
 
     /** 

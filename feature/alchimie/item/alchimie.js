@@ -10,7 +10,6 @@ export class AlchimieSheet extends NephilimItemSheet {
             width: 590,
         },
         form: {
-            //handler: AlchimieSheet.#onSubmitForm,
             closeOnSubmit: false,
             submitOnChange: true,
         },
@@ -25,19 +24,6 @@ export class AlchimieSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/alchimie/item/alchimie.html`,
         }
-    }
-
-    //static async #onSubmitForm(event, form, formData) {
-        //console.log("onSubmitForm");
-       // event.preventDefault()
-        //await this.document.update(formData.object) // Note: formData.object
-        //this.saveModifiers();
-        //this._resolve(this.data);
-        //this._resolve = null;
-    //}
-
-    _onRender(context, options) {
-        console.log("_onRender");
     }
 
 }
