@@ -40,6 +40,7 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
                 relativeTo: this.document
             }
         )
+        //context.img = "systems/neph5e/assets/icons/voie.webp";
         return context
     }
 
