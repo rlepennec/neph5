@@ -1,6 +1,6 @@
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 
-import { NephilimItem } from "./module/item/entity.js";
+import { NephilimItem } from "./module/item/nephilimItem.js";
 
 import { CercleData } from "./feature/cercle/item/cercleData.mjs";
 import { CercleSheet } from "./feature/cercle/item/cercleSheet.js";

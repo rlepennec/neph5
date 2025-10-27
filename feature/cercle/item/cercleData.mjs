@@ -8,14 +8,6 @@ export class CercleData extends foundry.abstract.TypeDataModel {
                     initial: crypto.randomUUID()
                 }
             ),
-            /*
-            img: new foundry.data.fields.FilePathField(
-                {
-                    required: false,
-                    categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/icons/voie.webp",
-                }
-            ),*/
             description: new foundry.data.fields.StringField(
                 {
                     required: true,
