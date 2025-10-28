@@ -42,7 +42,8 @@
         "Actor": {
         },
         "Item": {
-            "cercle": {}
+            "cercle": {},
+            "competence": {}
         }
     }
 }

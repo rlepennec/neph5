@@ -1,6 +1,8 @@
 {
 
     "TYPES.Item.cercle": "Cercle occulte",
+    "TYPES.Item.competence": "Compétence",
+
 
     "TYPES.Item.alchimie": "Voie alchimique",
     "TYPES.Item.appel": "Appel de Kabbale Noire",
@@ -12,7 +14,6 @@
     "TYPES.Item.capacite": "Capacité",
     "TYPES.Item.catalyseur": "Catalyseur",
     "TYPES.Item.chute": "Chute",
-    "TYPES.Item.competence": "Compétence",
     "TYPES.Item.divination": "Divination bohémienne",
     "TYPES.Item.dracomachie": "Technique de Dracomachie",
     "TYPES.Item.formule": "Formule Alchimique",

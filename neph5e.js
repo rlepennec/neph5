@@ -5,6 +5,9 @@ import { NephilimItem } from "./module/item/nephilimItem.js";
 import { CercleData } from "./feature/cercle/item/cercleData.mjs";
 import { CercleSheet } from "./feature/cercle/item/cercleSheet.js";
 
+import { CompetenceData } from "./feature/competence/item/competenceData.mjs";
+import { CompetenceSheet } from "./feature/competence/item/competenceSheet.js";
+
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
 
@@ -12,6 +15,7 @@ Hooks.once("init", function () {
 
     CONFIG.Item.dataModels = {
         cercle: CercleData,
+        competence: CompetenceData,
     }
 
     Handlebars.registerHelper({
@@ -49,5 +53,6 @@ Hooks.once("init", function () {
 
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
     foundry.documents.collections.Items.registerSheet('nephilim', CercleSheet, { types: ['cercle'], makeDefault: true });
+    foundry.documents.collections.Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
 
 })

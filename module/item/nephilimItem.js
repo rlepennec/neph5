@@ -6,6 +6,7 @@ export class NephilimItem extends Item {
     static defaultArtwork = {
         Item: {
             cercle: "systems/neph5e/assets/icons/voie.webp",
+            competence: "systems/neph5e/assets/icons/competence.webp",
         }
     }
 
@@ -17,5 +18,7 @@ export class NephilimItem extends Item {
         const { img } = super.getDefaultArtwork(itemData);
         return { img: NephilimItem.defaultArtwork.Item[type] ?? img };
     }
+
+    // items: new EmbeddedCollectionField(BaseItem)
 
 }
