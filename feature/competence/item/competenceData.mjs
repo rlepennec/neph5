@@ -13,7 +13,8 @@ export class CompetenceData extends foundry.abstract.TypeDataModel {
                     required: true,
                     initial: null
                 }
-            )
+            ),
+            //parts: new ArrayField(new DamageField())
         }
     }
 
