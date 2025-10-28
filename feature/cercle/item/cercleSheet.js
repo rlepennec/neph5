@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class CercleSheet extends NephilimItemSheet {
 
@@ -22,7 +22,7 @@ export class CercleSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/cercle/item/cercle.html`,
+            template: `systems/neph5e/feature/cercle/item/cercleSheet.html`,
         }
     }
 

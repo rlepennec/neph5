@@ -221,14 +221,14 @@
   visibility: visible;
   opacity: 1;
 }
-.item .window-content .item-root .side {
+.item .window-content .item-root aside {
   flex: 0 0 auto;
   width: 60px;
 }
-.item .window-content .item-root .side img {
+.item .window-content .item-root aside img {
   width: 100%;
 }
-.item .window-content .item-root .article {
+.item .window-content .item-root article {
   display: flex;
   flex-direction: column;
   flex-basis: 100%;
@@ -239,24 +239,24 @@
   color: #191813;
   margin: 1px;
 }
-.item .window-content .item-root .article .header {
+.item .window-content .item-root article header {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   background-size: cover;
   color: #f5f4f4;
   box-shadow: 0 0 6px 2px #f5f4f4 inset;
 }
-.item .window-content .item-root .article .header .uuid {
+.item .window-content .item-root article header .uuid {
   text-align: center;
   color: indianred;
   font-weight: bold;
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp") repeat;
 }
-.item .window-content .item-root .article .header .title {
+.item .window-content .item-root article header .title {
   display: flex;
   flex-direction: row;
   height: 60px;
 }
-.item .window-content .item-root .article .header .title .name {
+.item .window-content .item-root article header .title .name {
   background: initial;
   font-size: 20px;
   text-align: center;
@@ -270,12 +270,12 @@
   text-overflow: ellipsis;
   color: #f5f4f4;
 }
-.item .window-content .item-root .article .header .title .image {
+.item .window-content .item-root article header .title .image {
   flex: 0 0 auto;
   margin: 6px 6px 6px 6px;
   border-radius: 6px;
 }
-.item .window-content .item-root .article .body {
+.item .window-content .item-root article main {
   margin-left: 10px;
   margin-right: 10px;
   /*
@@ -295,19 +295,19 @@
                     }
                         */
 }
-.item .window-content .item-root .article .body .line-bottom {
+.item .window-content .item-root article main .line-bottom {
   margin-top: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #151156;
   padding-bottom: 14px;
 }
-.item .window-content .item-root .article .body .input-text {
+.item .window-content .item-root article main .input-text {
   border: 0;
   background: transparent;
   vertical-align: top;
   height: 16px;
 }
-.item .window-content .item-root .article .body .main {
+.item .window-content .item-root article main .main {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
@@ -316,21 +316,21 @@
   border-bottom: 1px solid #151156;
   padding-bottom: 8px;
 }
-.item .window-content .item-root .article .body .main .data {
+.item .window-content .item-root article main .main .data {
   display: flex;
   flex-direction: column;
   flex-basis: content;
   text-align: center;
   font-family: 'AJensonPro';
 }
-.item .window-content .item-root .article .body .main .data .value {
+.item .window-content .item-root article main .main .data .value {
   border: 0;
   outline: 0;
   height: 30px;
   vertical-align: middle;
   font-size: 18px;
 }
-.item .window-content .item-root .article .body .main .data .value .select {
+.item .window-content .item-root article main .main .data .value .select {
   outline: 0px;
   background-color: transparent;
   width: 120%;
@@ -345,11 +345,11 @@
   border-radius: 10px;
   box-shadow: var(--box-shadow);
 }
-.item .window-content .item-root .article .body .main .data .value .select .option {
+.item .window-content .item-root article main .main .data .value .select .option {
   background-color: antiquewhite;
   text-align: center;
 }
-.item .window-content .item-root .article .body .main .data .value .number {
+.item .window-content .item-root article main .main .data .value .number {
   flex: 0 0 auto;
   width: 35px;
   height: 35px;
@@ -362,20 +362,20 @@
   box-shadow: var(--box-shadow);
   padding-top: 3px;
 }
-.item .window-content .item-root .article .body .main .data .value .label {
+.item .window-content .item-root article main .main .data .value .label {
   margin-top: 4px;
   color: #191813;
 }
-.item .window-content .item-root .article .body .main .data .value .placeholder {
+.item .window-content .item-root article main .main .data .value .placeholder {
   color: indianred;
 }
-.item .window-content .item-root .article .body .main .data .value .text {
+.item .window-content .item-root article main .main .data .value .text {
   margin-top: 4px;
   border: 0;
   background: transparent;
   color: #191813;
 }
-.item .window-content .item-root .article .body .main .label {
+.item .window-content .item-root article main .main .label {
   display: flex;
   flex-direction: row;
   height: 26px;
@@ -383,19 +383,19 @@
   font-family: 'AJensonPro';
   font-size: 18px;
 }
-.item .window-content .item-root .article .body .main .label .title {
+.item .window-content .item-root article main .main .label .title {
   flex: 0 0 auto;
   font-weight: bold;
   margin-right: 5px;
 }
-.item .window-content .item-root .article .body .row {
+.item .window-content .item-root article main .row {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
   margin-bottom: 25px;
   justify-content: space-evenly;
 }
-.item .window-content .item-root .article .body .row .data {
+.item .window-content .item-root article main .row .data {
   display: flex;
   flex-direction: column;
   flex-basis: content;
@@ -403,14 +403,14 @@
   font-size: 16px;
   font-family: 'AJensonPro';
 }
-.item .window-content .item-root .article .body .row .data .value {
+.item .window-content .item-root article main .row .data .value {
   border: 0;
   outline: 0;
   height: 30px;
   vertical-align: middle;
   font-size: 18px;
 }
-.item .window-content .item-root .article .body .row .data .value .number {
+.item .window-content .item-root article main .row .data .value .number {
   flex: 0 0 auto;
   width: 40px;
   height: 40px;
@@ -423,7 +423,7 @@
   box-shadow: var(--box-shadow);
   padding-top: 3px;
 }
-.item .window-content .item-root .article .body .input {
+.item .window-content .item-root article main .input {
   display: flex;
   flex-direction: row;
   height: 26px;
@@ -432,31 +432,31 @@
   font-family: 'AJensonPro';
   color: #191813;
 }
-.item .window-content .item-root .article .body .input .title {
+.item .window-content .item-root article main .input .title {
   flex: 0 0 auto;
   font-weight: bold;
   padding-top: 3px;
   color: #191813;
 }
-.item .window-content .item-root .article .body .input .value {
+.item .window-content .item-root article main .input .value {
   border: 0;
   background: transparent;
   color: #191813;
   padding-top: 5px;
 }
-.item .window-content .item-root .article .body .list {
+.item .window-content .item-root article main .list {
   vertical-align: middle;
   font-family: 'AJensonPro';
   font-size: 16px;
 }
-.item .window-content .item-root .article .body .list .title {
+.item .window-content .item-root article main .list .title {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 26px;
   font-weight: bold;
 }
-.item .window-content .item-root .article .body .list .item {
+.item .window-content .item-root article main .list .item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -464,7 +464,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.item .window-content .item-root .article .body .checkbox {
+.item .window-content .item-root article main .checkbox {
   display: flex;
   flex-direction: row;
   height: 26px;
@@ -472,79 +472,79 @@
   font-size: 18px;
   font-family: 'AJensonPro';
 }
-.item .window-content .item-root .article .body .checkbox input[type="checkbox"] {
+.item .window-content .item-root article main .checkbox input[type="checkbox"] {
   display: none;
 }
-.item .window-content .item-root .article .body .checkbox .checked {
+.item .window-content .item-root article main .checkbox .checked {
   display: none;
 }
-.item .window-content .item-root .article .body .checkbox input[type="checkbox"]:checked ~ .checked {
+.item .window-content .item-root article main .checkbox input[type="checkbox"]:checked ~ .checked {
   display: inline-block;
 }
-.item .window-content .item-root .article .body .checkbox input[type="checkbox"]:checked ~ .unchecked {
+.item .window-content .item-root article main .checkbox input[type="checkbox"]:checked ~ .unchecked {
   display: none;
 }
-.item .window-content .item-root .article .body .checkbox i {
+.item .window-content .item-root article main .checkbox i {
   margin-left: 50px;
   margin-right: 10px;
 }
-.item .window-content .item-root .article .body .key {
+.item .window-content .item-root article main .key {
   color: indianred;
   margin-top: 20px;
   font-family: 'Gill Sans';
 }
-.item .window-content .item-root .article .body .chronology {
+.item .window-content .item-root article main .chronology {
   margin-top: 10px;
   font-family: 'AJensonPro';
   font-size: 14px;
 }
-.item .window-content .item-root .article .body .chronology tr td.periode-name {
+.item .window-content .item-root article main .chronology tr td.periode-name {
   padding-left: 10px;
 }
-.item .window-content .item-root .article .body .chronology tr td.periode {
+.item .window-content .item-root article main .chronology tr td.periode {
   text-align: center;
 }
-.item .window-content .item-root .article .body .chronology tr td.infos {
+.item .window-content .item-root article main .chronology tr td.infos {
   text-align: center;
   font-weight: bold;
 }
-.item .window-content .item-root .article .body .difficulte {
+.item .window-content .item-root article main .difficulte {
   display: flex;
   flex-direction: row;
   height: 26px;
   font-family: 'AJensonPro';
 }
-.item .window-content .item-root .article .body .difficulte span:nth-child(1) {
+.item .window-content .item-root article main .difficulte span:nth-child(1) {
   font-weight: bold;
   padding-top: 4px;
 }
-.item .window-content .item-root .article .body .difficulte span:nth-child(2) {
+.item .window-content .item-root article main .difficulte span:nth-child(2) {
   margin-left: 5px;
   padding-top: 4px;
 }
-.item .window-content .item-root .article .body .metamorphoses {
+.item .window-content .item-root article main .metamorphoses {
   margin-top: 10px;
 }
-.item .window-content .item-root .article .body .metamorphoses li input {
+.item .window-content .item-root article main .metamorphoses li input {
   border: 0;
   background: transparent;
   padding-bottom: 13px;
   color: #191813;
 }
-.item .window-content .item-root .article .body .mnemos {
+.item .window-content .item-root article main .mnemos {
   padding-left: 0px;
 }
-.item .window-content .item-root .article .body .mnemos li {
+.item .window-content .item-root article main .mnemos li {
   margin: 10px 0px 0px 0px;
   font-family: 'AJensonPro';
   font-size: 16px;
   padding-left: 24px;
   list-style: none;
 }
-.item .window-content .item-root .article .body .mnemos .edit-mnemos .sapience {
+.item .window-content .item-root article main .mnemos .edit-mnemos .sapience {
   padding-top: 1px;
 }
-.item .window-content .item-root .article .body .mnemos .add-mnemos {
+.item .window-content .item-root article main .mnemos .add-mnemos {
   color: indianred;
   font-weight: bolder;
 }

@@ -2,7 +2,6 @@ export class NephilimItem extends Item {
 
     /**
      * Default artwork configuration for each Document type and sub-type.
-     * @type {Record<string, Record<string, string>>}
      */
     static defaultArtwork = {
         Item: {
