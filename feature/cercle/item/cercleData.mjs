@@ -1,3 +1,5 @@
+import { ItemReferenceDataField } from "../../../module/common/itemReferenceDataField.js"
+
 export class CercleData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -8,12 +10,12 @@ export class CercleData extends foundry.abstract.TypeDataModel {
                     initial: crypto.randomUUID()
                 }
             ),
-            description: new foundry.data.fields.StringField(
+            description: new ItemReferenceDataField(
                 {
                     required: true,
                     initial: null
                 }
-            )
+            ),
         }
     }
 

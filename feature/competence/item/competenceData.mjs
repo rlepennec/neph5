@@ -1,3 +1,5 @@
+//import "../../../module/common/itemReferenceDataField"
+
 export class CompetenceData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -13,8 +15,7 @@ export class CompetenceData extends foundry.abstract.TypeDataModel {
                     required: true,
                     initial: null
                 }
-            ),
-            //parts: new ArrayField(new DamageField())
+            )
         }
     }
 
