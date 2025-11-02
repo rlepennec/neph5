@@ -1,0 +1,49 @@
+<section class="item-root">
+
+    <aside>
+        <img src="systems/neph5e/assets/core/site-formule.webp" title="{{localize 'ITEM.TypeVecu'}}"/>
+    </aside>
+
+    <article>
+
+        <header>
+ 
+            <div class="title">
+
+                <input
+                    name="name"
+                    type="text"
+                    value="{{document.name}}"
+                    class="name"/>
+
+                <img
+                    src="{{document.img}}"
+                    title="{{document.name}}"
+                    data-edit="img"
+                    data-action="editImage"
+                    class="image"/>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            {{#if editable}}
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{else}}
+            {{{enrichedDescription}}}
+            {{/if}}
+
+        </main>
+
+    </article>
+
+</section>

@@ -6,7 +6,7 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
     static DEFAULT_OPTIONS = {
         classes: ["nephilim", "sheet", "item"],
         form: {
-            closeOnSubmit: true,
+            closeOnSubmit: false,
             submitOnChange: true,
         },
         editable: true,
