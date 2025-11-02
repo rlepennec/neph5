@@ -5,10 +5,6 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
     static DEFAULT_OPTIONS = {
         classes: ["nephilim", "sheet", "item"],
-        position: {
-            height: 650,
-            width: 400,
-        },
         form: {
             closeOnSubmit: true,
             submitOnChange: true,
@@ -17,7 +13,7 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
         tag: "form",
         window: {
             resizable: true,
-        },
+        }
     }
 
     /**

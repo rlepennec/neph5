@@ -4,19 +4,10 @@ export class CercleSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         id: "cercle",
-        classes: ["nephilim", "sheet", "item", "cercle"],
+        classes: ["cercle"],
         position: {
             height: 500,
             width: 590,
-        },
-        form: {
-            closeOnSubmit: false,
-            submitOnChange: true,
-        },
-        editable: true,
-        tag: "form",
-        window: {
-            resizable: true,
         },
     }
 
