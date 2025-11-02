@@ -13,7 +13,9 @@ export class CercleData extends foundry.abstract.TypeDataModel {
             description: new ItemReferenceDataField(
                 {
                     required: true,
-                    initial: null
+                    initial: null,
+                    collection: 'items',
+                    type: 'cercle'
                 }
             ),
         }

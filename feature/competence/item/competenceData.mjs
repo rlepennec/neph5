@@ -1,5 +1,3 @@
-//import "../../../module/common/itemReferenceDataField"
-
 export class CompetenceData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
