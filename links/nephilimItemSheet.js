@@ -3,44 +3,28 @@ const { ItemSheetV2 } = foundry.applications.sheets
 
 export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
 
-    static DEFAULT_OPTIONS = {
-        classes: ["nephilim", "sheet", "item"],
-        form: {
-            closeOnSubmit: false,
-            submitOnChange: true,
-        },
-        editable: true,
-        tag: "form",
-        window: {
-            resizable: true,
-        },
-        dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }]
-    }
+  static DEFAULT_OPTIONS = {
+      classes: ["nephilim", "sheet"],
+      form: {
+          closeOnSubmit: false,
+          submitOnChange: true,
+      },
+      editable: true,
+      tag: "form",
+      window: {
+          resizable: true,
+      },
+      dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }]
+  }
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-        this.#dragDrop = this.#createDragDropHandlers();
-    }
-
-    /** 
-     * @override
-     */
-    async _prepareContext(options) {
-        const context = await super._prepareContext(options)
-        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-            this.document.system.description,
-            {
-                secrets: this.document.isOwner,
-                relativeTo: this.document
-            }
-        )
-        //context.img = "systems/neph5e/assets/icons/voie.webp";
-        return context
-    }
+  /**
+   * @constructor
+   * @param  {...any} args
+   */
+  constructor(...args) {
+      super(...args);
+      this.#dragDrop = this.#createDragDropHandlers();
+  }
 
   /**
    * Create drag-and-drop workflow handlers for this Application
@@ -149,3 +133,30 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
   }
 
 }
+
+
+
+/*
+
+class BaseClass {
+    hello = function () {
+        console.log('hello!');
+    }
+}
+
+function GenericClass(T, Base) {
+    return class extends Base {
+        field = new T();
+    }
+}
+
+class DerivedFromGeneric extends GenericClass(String, BaseClass) {
+    greet = function() {
+        this.hello();
+        console.log('greetings ', this.field);
+    }
+}
+
+let i = new DerivedFromGeneric();
+
+*/
