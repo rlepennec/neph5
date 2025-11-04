@@ -21,7 +21,8 @@ export class VecuSheet extends NephilimItemSheet {
 
     async _onDrop(event) {
         event.preventDefault();
-        console.log(event);
+        super._onDrop(event);
+        //console.log(event);
         /*
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
         if (drop?.type === "competence") {
