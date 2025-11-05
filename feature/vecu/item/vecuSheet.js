@@ -19,9 +19,9 @@ export class VecuSheet extends NephilimItemSheet {
         }
     }
 
-    async _onDrop(event) {
-        event.preventDefault();
-        super._onDrop(event);
+   // async _onDrop(event) {
+    //    event.preventDefault();
+    //    super._onDrop(event);
         //console.log(event);
         /*
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
@@ -31,6 +31,6 @@ export class VecuSheet extends NephilimItemSheet {
             await this.item.update({ ['system.periode']: drop.sid });
         }
         */
-    }
+    //}
 
 }

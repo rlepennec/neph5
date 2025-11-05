@@ -1,0 +1,237 @@
+
+
+---------------------------------
+
+/**
+ * Adds common V2 sheet functionality.
+ * @param {typeof DocumentSheet} Base  The base class being mixed.
+ * @returns {typeof DocumentSheetV2}
+ */
+function DocumentSheetV2Mixin(Base) {
+
+  foundry.utils.logCompatibilityWarning(
+    "The `DocumentSheetV2Mixin` application has been deprecated and replaced with `PrimarySheetMixin`.",
+    { since: "DnD5e 5.0", until: "DnD5e 5.2", once: true }
+  );
+  return class DocumentSheetV2 extends DragDropApplicationMixin(Base) {
+
+--------------------------------
+
+
+
+--------------------------------
+
+/**
+ * Adds common V2 sheet functionality.
+ * @param {typeof DocumentSheet} Base  The base class being mixed.
+ * @returns {typeof DocumentSheetV2}
+ */
+function DocumentSheetV2Mixin(Base) {
+
+  foundry.utils.logCompatibilityWarning(
+    "The `DocumentSheetV2Mixin` application has been deprecated and replaced with `PrimarySheetMixin`.",
+    { since: "DnD5e 5.0", until: "DnD5e 5.2", once: true }
+  );
+
+  return class DocumentSheetV2 extends DragDropApplicationMixin(Base) {
+
+-------------------------------
+
+
+
+
+=======================================================
+
+const { DocumentSheetV2 } = foundry.applications.api;
+
+----------------------------
+
+/**
+ * Mixin method for ApplicationV2-based 5e applications.
+ * @template {ApplicationV2} T
+ * @param {typeof T} Base   Application class being extended.
+ * @returns {typeof BaseApplication5e}
+ * @mixin
+ */
+function ApplicationV2Mixin(Base) {
+
+  // foundry.applications.api.HandlebarsApplicationMixin
+  class BaseApplication5e extends HandlebarsApplicationMixin(Base) {
+
+    /** @override */
+    static DEFAULT_OPTIONS = {
+      actions: {
+        toggleCollapsed: BaseApplication5e.#toggleCollapsed
+      },
+      classes: ["dnd5e2"],
+      window: {
+        subtitle: ""
+      }
+    };
+
+    /**
+     * @type {Record<string, HandlebarsTemplatePart & ApplicationContainerParts>}
+     */
+    static PARTS = {};
+
+----------------------------------
+
+/**
+ * Base document sheet from which all document-based application should be based.
+ */
+class DocumentSheet5e extends ApplicationV2Mixin(DocumentSheetV2) {
+  /** @override */
+  static DEFAULT_OPTIONS = {
+    classes: ["standard-form"]
+  };
+}
+
+-----------------------------
+
+/**
+ * Adds drop behavior functionality to all sheets.
+ * @param {typeof Application} Base  The base class being mixed.
+ * @returns {typeof DragDropApplication}
+ */
+function DragDropApplicationMixin(Base) {
+
+  return class DragDropApplication extends Base {
+
+    /** @override */
+    _onDragOver(event) {
+      const data = DragDrop5e.getPayload(event);
+      DragDrop5e.dropEffect = event.dataTransfer.dropEffect = (foundry.utils.getType(data) === "Object")
+        ? this._dropBehavior(event, data) : "copy";
+    }
+
+    /**
+     * The behavior for the dropped data. When called during the drop event, ensure this is called before awaiting
+     * anything or the drop behavior will be lost.
+     * @param {DragEvent} event  The drag event.
+     * @param {object} [data]    The drag payload.
+     * @returns {DropEffectValue}
+     */
+    _dropBehavior(event, data) {
+      data ??= DragDrop5e.getPayload(event);
+      const allowed = this._allowedDropBehaviors(event, data);
+      let behavior = DragDrop5e.dropEffect ?? event.dataTransfer?.dropEffect;
+
+      if ( event.type === "dragover" ) {
+        if ( areKeysPressed(event, "dragMove") ) behavior = "move";
+        else if ( areKeysPressed(event, "dragCopy") ) behavior = "copy";
+        else behavior = this._defaultDropBehavior(event, data);
+      }
+
+      if ( (behavior !== "none") && !allowed.has(behavior) ) return allowed.first() ?? "none";
+      return behavior || "copy";
+    }
+
+    /**
+     * Types of allowed drop behaviors based on the origin & target of a drag event.
+     * @param {DragEvent} event  The drag event.
+     * @param {object} [data]    The drag payload.
+     * @returns {Set<DropEffectValue>}
+     * @protected
+     */
+    _allowedDropBehaviors(event, data) {
+      return new Set();
+    }
+
+    /**
+     * Determine the default drop behavior for the provided operation.
+     * @param {DragEvent} event  The drag event.
+     * @param {object} [data]    The drag payload.
+     * @returns {DropEffectValue}
+     * @protected
+     */
+    _defaultDropBehavior(event, data) {
+      return "copy";
+    }
+  };
+}
+
+------------------------------
+
+/**
+ * Adds V2 sheet functionality shared between primary document sheets (Actors & Items).
+ * @param {typeof DocumentSheet5e} Base  The base class being mixed.
+ * @returns {typeof PrimarySheet5e}
+ */
+function PrimarySheetMixin(Base) {
+
+  return class PrimarySheet5e extends DragDropApplicationMixin(Base) {
+    /** @override */
+    static DEFAULT_OPTIONS = {
+      actions: {
+        editDocument: PrimarySheet5e.#showDocument,
+        deleteDocument: PrimarySheet5e.#deleteDocument,
+        showDocument: PrimarySheet5e.#showDocument
+      }
+    };
+
+-----------------------------
+
+/**
+ * Base item sheet built on ApplicationV2.
+ */
+class ItemSheet5e extends PrimarySheetMixin(DocumentSheet5e) {
+  /** @override */
+  static DEFAULT_OPTIONS = {
+    actions: {
+      addRecovery: ItemSheet5e.#addRecovery,
+      deleteCraft: ItemSheet5e.#deleteCraft,
+      deleteDocument: ItemSheet5e.#deleteDocument,
+      deleteRecovery: ItemSheet5e.#deleteRecovery,
+      editDescription: ItemSheet5e.#editDescription,
+      modifyAdvancementChoices: ItemSheet5e.#modifyAdvancementChoices,
+      showConfiguration: ItemSheet5e.#showConfiguration,
+      showDocument: ItemSheet5e.#showDocument,
+      showIcon: ItemSheet5e.#showIcon,
+      toggleState: ItemSheet5e.#toggleState
+    },
+    classes: ["item"],
+    editingDescriptionTarget: null,
+    elements: {
+      effects: "dnd5e-effects"
+    },
+    form: {
+      submitOnChange: true
+    },
+    position: {
+      width: 500
+    },
+    window: {
+      resizable: false
+    }
+  };
+
+  /** @override */
+  static PARTS = {
+    header: {
+      template: "systems/dnd5e/templates/items/header.hbs"
+    },
+    tabs: {
+      template: "systems/dnd5e/templates/shared/horizontal-tabs.hbs",
+      templates: ["templates/generic/tab-navigation.hbs"]
+    },
+    activities: {
+      template: "systems/dnd5e/templates/items/activities.hbs",
+      scrollable: [""]
+    },
+    advancement: {
+      template: "systems/dnd5e/templates/items/advancement.hbs",
+      scrollable: [""]
+    },
+    description: {
+      template: "systems/dnd5e/templates/items/description.hbs",
+      scrollable: [""]
+    },
+    details: {
+      template: "systems/dnd5e/templates/items/details.hbs",
+      scrollable: [""]
+    },
+    effects: {
+      template: "systems/dnd5e/templates/items/effects.hbs",
+      scrollable: [""]
+    }
+  };
