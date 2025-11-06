@@ -7,7 +7,7 @@ import { DragDropApplicationMixin } from "./dragDropApplicationMixin.js";
 
 export function PrimarySheetMixin(Base) {
 
-  return class PrimarySheet5e extends DragDropApplicationMixin(Base) {
+  return class PrimarySheeNephilim extends DragDropApplicationMixin(Base) {
 
   };
 
