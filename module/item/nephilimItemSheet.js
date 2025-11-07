@@ -1,5 +1,5 @@
-import { PrimarySheetMixin } from "../common/primarySheetMixin.js"
-import { DocumentSheetNephilim } from "../common/documentSheetNephilim.js"
+import { PrimarySheetMixin } from "../document/primarySheetMixin.js"
+import { DocumentSheetNephilim } from "../document/documentSheetNephilim.js"
 
 export class NephilimItemSheet extends PrimarySheetMixin(DocumentSheetNephilim)  {
 

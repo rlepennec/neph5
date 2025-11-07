@@ -9,7 +9,6 @@ export function DragDropApplicationMixin(Base) {
 
   return class DragDropApplication extends Base {
 
-
     static DEFAULT_OPTIONS = {
         dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }]
     }
@@ -19,7 +18,7 @@ export function DragDropApplicationMixin(Base) {
      * @returns {DragDrop[]}     An array of DragDrop handlers
      * @private
      */
-    createDragDropHandlers() {
+    #createDragDropHandlers() {
         return this.options.dragDrop.map((d) => {
             d.permissions = {
                 dragstart: this._canDragStart.bind(this),
@@ -34,7 +33,7 @@ export function DragDropApplicationMixin(Base) {
         });
     }
 
-    dragDrop = this.createDragDropHandlers();
+    dragDrop = this.#createDragDropHandlers();
 
     // Optional: Add getter to access the private property
 
