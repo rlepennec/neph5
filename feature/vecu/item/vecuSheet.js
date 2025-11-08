@@ -22,28 +22,4 @@ export class VecuSheet extends NephilimItemSheet {
         }
     }
 
-    async _onDrop(event) {
-        event.preventDefault();
-        console.log("--------------> event");
-
-        let updates = {};
-        const drop = await DropTools.droppedDocument(event);
-
-        Object.entries(this.document.system.schema.fields).forEach(([fieldName, field]) => {
-            if (field instanceof foundry.data.fields.SetField) {
-                if (field.element instanceof UUIDReferenceField) {
-                    if (field.element.droppable && field.element.collection === drop.documentName && field.element.type === drop.type) {
-                        console.log(fieldName);
-                        updates["system." + fieldName] = new Set(this.document.system[fieldName]).add(drop.system.id);
-                    }                   
-                }
-            }
-        });
-
-        if (Tools.isObjectNotEmpty(updates))    {
-            await this.document.update(updates);
-        }
-
-    }
-
 }

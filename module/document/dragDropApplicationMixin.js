@@ -3,7 +3,9 @@
  * @param {typeof Application} Base  The base class being mixed.
  * @returns {typeof DragDropApplication}
  */
-
+import { DropTools } from "./dropTools.js"
+import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
+import { Tools } from "../common/tools.js"
 
 export function DragDropApplicationMixin(Base) {
 
@@ -110,21 +112,30 @@ export function DragDropApplicationMixin(Base) {
          * @protected
          */
         async _onDrop(event) {
-            //console.log("onDrop");
-            const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 
+            let updates = {};
+            const drop = await DropTools.droppedDocument(event);
 
-           // console.log(data);
-            // Handle different data types
-            switch (data.type) {
+            Object.entries(this.document.system.schema.fields).every(([fieldName, field]) => {
+                if (field instanceof foundry.data.fields.SetField) {
+                    if (field.element instanceof UUIDReferenceField) {
+                        if (field.element.collection === drop.documentName && field.element.type === drop.type) {
+                            if (field.element.droppable) {
+                                updates["system." + fieldName] = new Set(this.document.system[fieldName]).add(drop.system.id);
+                            }
+                            return false;
+                        }                   
+                    }
+                }
+                return true;
+            })
 
+            if (Tools.isObjectNotEmpty(updates))    {
+                await this.document.update(updates);
             }
 
-            //const item = await this.droppedItem(event);
-            //console.log(item);
         }
 
-        
     };
 
 }
