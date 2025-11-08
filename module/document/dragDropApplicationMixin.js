@@ -116,6 +116,7 @@ export function DragDropApplicationMixin(Base) {
             let updates = {};
             const drop = await DropTools.droppedDocument(event);
 
+            // Gather the dropped document if needed to be added in the collection of document if necessary
             Object.entries(this.document.system.schema.fields).every(([fieldName, field]) => {
                 if (field instanceof foundry.data.fields.SetField) {
                     if (field.element instanceof UUIDReferenceField) {
@@ -130,6 +131,7 @@ export function DragDropApplicationMixin(Base) {
                 return true;
             })
 
+            // Add the dropped document in the collection
             if (Tools.isObjectNotEmpty(updates))    {
                 await this.document.update(updates);
             }
