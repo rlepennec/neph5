@@ -32,7 +32,7 @@ export class VecuSheet extends NephilimItemSheet {
         Object.entries(this.document.system.schema.fields).forEach(([fieldName, field]) => {
             if (field instanceof foundry.data.fields.SetField) {
                 if (field.element instanceof UUIDReferenceField) {
-                    if (field.element.collection === drop.documentName && field.element.type === drop.type) {
+                    if (field.element.droppable && field.element.collection === drop.documentName && field.element.type === drop.type) {
                         console.log(fieldName);
                         updates["system." + fieldName] = new Set(this.document.system[fieldName]).add(drop.system.id);
                     }                   
