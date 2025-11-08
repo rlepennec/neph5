@@ -1485,7 +1485,7 @@ function getHumanReadableAttributeLabel(attr, { actor, item }={}) {
   let type = "actor";
 
   const getSchemaLabel = (attr, type, doc) => {
-    if ( doc ) return isEmptyObject?.label;
+    if ( doc ) return doc.system.schema.getField(attr)?.label;
     for ( const model of Object.values(CONFIG[type].dataModels) ) {
       const field = model.schema.getField(attr);
       if ( field ) return field.label;
