@@ -1,11 +1,12 @@
+import { UUIDField } from "../../../module/common/UUIDField.js"
+
 export class CercleData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new foundry.data.fields.StringField(
+            id: new UUIDField(
                 {
                     required: true,
-                    initial: crypto.randomUUID()
                 }
             ),
             description: new foundry.data.fields.StringField(

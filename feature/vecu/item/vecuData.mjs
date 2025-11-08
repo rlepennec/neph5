@@ -1,21 +1,21 @@
-import { ReferenceDataField } from "../../../module/common/referenceDataField.js"
+import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
+import { UUIDField } from "../../../module/common/UUIDField.js"
 
 export class VecuData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new foundry.data.fields.StringField(
+            id: new UUIDField(
                 {
                     required: true,
-                    initial: crypto.randomUUID()
                 }
             ),
             competences: new foundry.data.fields.SetField(
-                new ReferenceDataField(
+                new UUIDReferenceField(
                     {
                         required: true,
                         initial: null,
-                        collection: 'items',
+                        collection: 'Item',
                         type: 'competence'
                     }
                 )

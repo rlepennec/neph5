@@ -1,6 +1,6 @@
 export class DropTools {
 
-    static async droppedItem(event) {
+    static async droppedDocument(event) {
 
         // Retrieve the dropped data id and type from the event
         let data = null;

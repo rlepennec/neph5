@@ -1,5 +1,6 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { DropTools } from "../../../module/document/dropTools.js"
+import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -23,41 +24,28 @@ export class VecuSheet extends NephilimItemSheet {
     async _onDrop(event) {
         event.preventDefault();
         console.log("--------------> event");
-        const drop = await DropTools.droppedItem(event);
 
-        this.document.system.competences.add(drop.system.id);
+        let updates = null;
+        const drop = await DropTools.droppedDocument(event);
 
-
-        /*
-        item.updateSource({ "flags.dnd5e.scaling": usageConfig.scaling });
-
-
-        await this.document.update(
-            {
-                system : {
-                    competences: competences
+        Object.entries(this.document.system.schema.fields).forEach(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === drop.documentName && field.element.type === drop.type) {
+                        console.log(fieldName);
+                        updates = {};
+                        const collection = new Set(this.document.system[fieldName]);
+                        collection.add(drop.system.id);
+                        updates["system." + fieldName] = collection;
+                    }                   
                 }
             }
-        )
-            */
+        });
 
-        console.log(this.document);
-    }
-
-
-
-   // async _onDrop(event) {
-    //    event.preventDefault();
-    //    super._onDrop(event);
-        //console.log(event);
-        /*
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop?.type === "competence") {
-            await this.item.updateItemRefs(drop.system, this.item.system.competences, "system.competences");
-        } else if (drop?.type === "periode") {
-            await this.item.update({ ['system.periode']: drop.sid });
+        if (updates != null)    {
+            await this.document.update(updates);
         }
-        */
-    //}
+
+    }
 
 }
