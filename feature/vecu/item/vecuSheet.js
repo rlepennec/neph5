@@ -1,6 +1,7 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { DropTools } from "../../../module/document/dropTools.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
+import { Tools } from "../../../module/common/tools.js"
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -25,7 +26,7 @@ export class VecuSheet extends NephilimItemSheet {
         event.preventDefault();
         console.log("--------------> event");
 
-        let updates = null;
+        let updates = {};
         const drop = await DropTools.droppedDocument(event);
 
         Object.entries(this.document.system.schema.fields).forEach(([fieldName, field]) => {
@@ -33,16 +34,13 @@ export class VecuSheet extends NephilimItemSheet {
                 if (field.element instanceof UUIDReferenceField) {
                     if (field.element.collection === drop.documentName && field.element.type === drop.type) {
                         console.log(fieldName);
-                        updates = {};
-                        const collection = new Set(this.document.system[fieldName]);
-                        collection.add(drop.system.id);
-                        updates["system." + fieldName] = collection;
+                        updates["system." + fieldName] = new Set(this.document.system[fieldName]).add(drop.system.id);
                     }                   
                 }
             }
         });
 
-        if (updates != null)    {
+        if (Tools.isObjectNotEmpty(updates))    {
             await this.document.update(updates);
         }
 
