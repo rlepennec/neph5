@@ -36,6 +36,8 @@ export class CustomHandlebarsHelpers {
         }
         if (Array.isArray(collection) === true) {
             return collection.length === 0;
+        } else if (collection instanceof Set) {
+            return collection.size === 0;
         } else {
             return Object.keys(collection).length === 0;
         }

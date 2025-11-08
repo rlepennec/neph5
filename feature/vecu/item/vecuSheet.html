@@ -7,7 +7,7 @@
     <article>
 
         <header>
- 
+
             <div class="title">
 
                 <input
@@ -29,16 +29,15 @@
 
         <main>
 
-            <p>Compétences:</p>
             {{#unless (isEmptyCollection document.system.competences)}}
+            <p>Compétences:</p>
             <ol>
-
-                {{#each document.system.competences as |competence|}}
-                <li>{{competence}}</li>
+                {{#each document.system.competences as |competence-uuid|}}
+                <li>{{competence-uuid}}</li>
                 {{/each}}
 
             </ol>
-            {{/unless}}
+             {{/unless}}
 
             {{#if editable}}
             <prose-mirror

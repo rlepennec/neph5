@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { DropTools } from "../../../module/document/dropTools.js"
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -18,6 +19,32 @@ export class VecuSheet extends NephilimItemSheet {
             template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.html`,
         }
     }
+
+    async _onDrop(event) {
+        event.preventDefault();
+        console.log("--------------> event");
+        const drop = await DropTools.droppedItem(event);
+
+        this.document.system.competences.add(drop.system.id);
+
+
+        /*
+        item.updateSource({ "flags.dnd5e.scaling": usageConfig.scaling });
+
+
+        await this.document.update(
+            {
+                system : {
+                    competences: competences
+                }
+            }
+        )
+            */
+
+        console.log(this.document);
+    }
+
+
 
    // async _onDrop(event) {
     //    event.preventDefault();

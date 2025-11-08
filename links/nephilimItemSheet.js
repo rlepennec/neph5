@@ -123,7 +123,7 @@ export class NephilimItemSheet extends HandlebarsApplicationMixin(ItemSheetV2) {
    * @protected
    */
   async _onDrop(event) {
-    console.log("onDrop");
+    //console.log("onDrop");
     const data = TextEditor.getDragEventData(event);
 
     // Handle different data types
