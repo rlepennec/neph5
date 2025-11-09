@@ -25,6 +25,14 @@ section.window-content {
   flex-flow: unset;
   padding: 0px;
 }
+prose-mirror {
+  position: sticky;
+  top: 0;
+  height: 100%;
+}
+prose-mirror .editor-content {
+  padding: 10px;
+}
 prose-mirror menu {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   color: #f5f4f4;
@@ -87,12 +95,4 @@ form.nephilim.item section.window-content > section article main h1 {
   color: #191813;
   font-family: "AJensonPro";
   font-size: 20px;
-}
-form.nephilim.item section.window-content > section article main prose-mirror {
-  position: sticky;
-  top: 0;
-  height: 100%;
-}
-form.nephilim.item section.window-content > section article main prose-mirror .editor-content {
-  padding: 10px;
 }

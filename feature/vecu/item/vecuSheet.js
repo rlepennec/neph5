@@ -1,7 +1,4 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { DropTools } from "../../../module/document/dropTools.js"
-import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
-import { Tools } from "../../../module/common/tools.js"
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -20,6 +17,22 @@ export class VecuSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.html`,
         }
+    }
+
+    async _prepareContext(options) {
+
+        const competences = new Map();
+        this.document.system.competences.forEach(id => {
+            const item = game.items.find(i => i.system.id === id);
+            competences.set(id, item.name);
+        });
+
+        const context = {
+            ...await super._prepareContext(options),
+            competences: competences,
+        };
+
+        return context;
     }
 
 }
