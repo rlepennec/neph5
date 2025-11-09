@@ -23,7 +23,7 @@
         <main>
 
             {{#unless (isEmptyCollection document.system.competences)}}
-            <p>Compétences:</p>
+            <h1>Compétences</h1>
             <ol>
                 {{#each document.system.competences as |competence-uuid|}}
                 <li>{{competence-uuid}}</li>
@@ -32,7 +32,7 @@
             </ol>
              {{/unless}}
 
-             <p>Description:</p>
+             <h1>Description</h1>
             {{#if editable}}
             <prose-mirror
                 name="system.description"
