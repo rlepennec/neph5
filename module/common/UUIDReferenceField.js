@@ -26,13 +26,16 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
    *  @override
    */
   getInitialValue(data) {
-    console.log("getInitialValue");
     return crypto.randomUUID();
   }
 
   /**
    *  @override
    */
+
+
+  // pas appelé a la creation du document mais au demarrage, là ou les collections items et actors sont vides
+  // a supprimer ?
   _validateType(value) {
     const collection = this.#getCollection();
     if (collection != null) {
