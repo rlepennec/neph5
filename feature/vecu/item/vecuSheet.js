@@ -11,6 +11,9 @@ export class VecuSheet extends NephilimItemSheet {
             height: 500,
             width: 590,
         },
+        actions: {
+            openLink: VecuSheet.#onOpenLink,
+        }
     }
 
     static PARTS = {
@@ -19,16 +22,21 @@ export class VecuSheet extends NephilimItemSheet {
         }
     }
 
+    static async #onOpenLink(event, target) {
+        (await fromUuid(target.closest("[data-uuid]")?.dataset.uuid))?.sheet?.render(true);
+    }
+
     async _prepareContext(options) {
 
         const competences = [];
-        
+
         this.document.system.competences.forEach(id => {
             const item = game.items.find(i => i.system.id === id);
             competences.push(
                 {
                     "id": id,
-                    "name": item.name
+                    "name": item.name,
+                    "uuid": item.uuid
                 }
             );
         });
