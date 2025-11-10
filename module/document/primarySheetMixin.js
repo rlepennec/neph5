@@ -22,7 +22,7 @@ export function PrimarySheetMixin(Base) {
      * @param {DragEvent} event       The originating DragEvent
      * @protected
      */
-    static async _onDelete2(event, target) {
+    static async _onDelete(event, target) {
 
       let updates = {};
       const object = target.closest("[data-id]")?.dataset.id;

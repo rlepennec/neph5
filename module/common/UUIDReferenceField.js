@@ -9,7 +9,8 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
       {
         collection: 'Item',
         type: 'base',
-        droppable: true
+        droppable: true,
+        deletable: true,
       }
     )
   }
