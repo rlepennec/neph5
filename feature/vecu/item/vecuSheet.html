@@ -23,9 +23,9 @@
         <main>
 
             <h1>Compétences</h1>
-            <ul>
+            <ul class="column-2">
                 {{#each sheet.competences as |competence|}}
-                <li data-type="competence" data-id="{{competence.id}}"><i class="fas fa-trash"></i>{{competence.name}}</li>
+                <li data-id="Item.competence.{{competence.id}}"><i class="fas fa-trash"></i>{{competence.name}}</li>
                 {{/each}}
             </ul>
 
