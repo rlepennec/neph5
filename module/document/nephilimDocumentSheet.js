@@ -144,7 +144,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
   static async _onDelete(event, target) {
     await DropTools.deleteDocumentReference(
       this.document,
-      Tools.toDocumentReference(target.closest("[data-id]")?.dataset.id)
+      Tools.expressionToDocumentReference(target.closest("[data-id]")?.dataset.id)
     )
   }
 

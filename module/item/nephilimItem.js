@@ -1,4 +1,5 @@
-import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
+import { DropTools } from "../document/dropTools.js"
+import { Tools } from "../common/tools.js"
 
 export class NephilimItem extends Item {
 
@@ -25,35 +26,14 @@ export class NephilimItem extends Item {
   /**
    * @override
    */
-  _onDelete(options, userId) {
-    game.items.entries().every(([key, item]) => {
-        console.log("onDelete");
-        console.log(item);
-
-        /*
-        Object.entries(item.schema.fields).every(([fieldName, field]) => {
-            if (field instanceof foundry.data.fields.SetField) {
-                if (field.element instanceof UUIDReferenceField) {
-                    if (field.element.collection === this.documentName && field.element.type === this.type) {
-                        updates["system." + fieldName] = new Set(this.document.system[fieldName]).filter(v => v != this.document.system.id);
-                        return false;
-                    }
-                }
-            }
-            return true;
+    _onDelete(options, userId) {
+        game.items.entries().every(async ([key, item]) => {
+            console.log("onDelete");
+            console.log(item);
+            await DropTools.deleteDocumentReference(item, Tools.itemToDocumentReference(this));
         })
-            */
-
-
         super._onDelete(options, userId);
 
-    })
-
-
-
-
-  }
-
-
+    }
 
 }
