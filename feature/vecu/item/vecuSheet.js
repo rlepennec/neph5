@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { DocumentReference } from "../../../module/document/documentReference.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -20,28 +21,12 @@ export class VecuSheet extends NephilimItemSheet {
     }
 
     async _prepareContext(options) {
-
-        const competences = [];
-
-        this.document.system.competences.forEach(id => {
-            const item = game.items.find(i => i.system.id === id);
-            competences.push(
-                {
-                    "id": id,
-                    "name": item.name,
-                    "uuid": item.uuid
-                }
-            );
-        });
-        competences.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
-
         const context = {
             ...await super._prepareContext(options),
             sheet: {
-                competences: competences,
+                competences: new DocumentReference('Item', 'competence').getReferencesOf(this.document)
             }
         };
-
         return context;
     }
 

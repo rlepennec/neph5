@@ -1,6 +1,3 @@
-import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
-import { Tools } from "../common/tools.js"
-
 export class DropTools {
 
     static async droppedDocument(event) {

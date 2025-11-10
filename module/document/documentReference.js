@@ -97,4 +97,43 @@ export class DocumentReference {
         return this.documentName + "." + this.type + "." + this.id;
     }
 
+    getReferencesOf(document) {
+
+        const references = [];
+
+        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === this.documentName && field.element.type === this.type) {
+                        document.system[fieldName].forEach(id => {
+                            const item = this.#getDocuments().find(d => d.system.id === id);
+                            references.push(
+                                {
+                                    "id": id,
+                                    "name": item.name,
+                                    "uuid": item.uuid
+                                }
+                            );
+                        });
+                        references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+
+        return references;
+
+    }
+
+    #getDocuments() {
+        switch(this.documentName) {
+            case 'Actor':
+                return game.actors;
+            case 'Item':
+                return game.items;
+        }
+    }
+
 }
