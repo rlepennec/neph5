@@ -13,9 +13,6 @@ export function DragDropApplicationMixin(Base) {
 
         static DEFAULT_OPTIONS = {
             dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }],
-            actions: {
-                delete: DragDropApplication._onDelete,
-            }
         }
 
         /**
@@ -48,10 +45,6 @@ export function DragDropApplicationMixin(Base) {
          */
         get dragDrop() {
             return this.dragDrop;
-        }
-
-        static async _onDelete(event, target) {
-            console.log("onDelete");
         }
 
         /**
