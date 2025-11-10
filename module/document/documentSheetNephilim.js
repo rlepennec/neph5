@@ -1,10 +1,7 @@
-/**
- * Base document sheet from which all document-based application should be based.
- */
-import { ApplicationV2Mixin } from "./applicationV2Mixin.js";
+export class DocumentSheetNephilim extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
 
-export class DocumentSheetNephilim extends ApplicationV2Mixin(foundry.applications.api.DocumentSheetV2) {
-
-
+    static DEFAULT_OPTIONS = {
+        classes: ["nephilim"]
+    };
 
 }
