@@ -1,3 +1,5 @@
+import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
+
 export class NephilimItem extends Item {
 
     /**
@@ -20,6 +22,38 @@ export class NephilimItem extends Item {
         return { img: NephilimItem.defaultArtwork.Item[type] ?? img };
     }
 
-    // items: new EmbeddedCollectionField(BaseItem)
+  /**
+   * @override
+   */
+  _onDelete(options, userId) {
+    game.items.entries().every(([key, item]) => {
+        console.log("onDelete");
+        console.log(item);
+
+        /*
+        Object.entries(item.schema.fields).every(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === this.documentName && field.element.type === this.type) {
+                        updates["system." + fieldName] = new Set(this.document.system[fieldName]).filter(v => v != this.document.system.id);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+            */
+
+
+        super._onDelete(options, userId);
+
+    })
+
+
+
+
+  }
+
+
 
 }

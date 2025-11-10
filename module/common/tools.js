@@ -8,4 +8,14 @@ export class Tools {
         return Tools.isObjectEmpty(object) === false;
     }
 
+    static toDocumentReference(expression) {
+        const words = expression.split(".");
+        return {
+            documentName: words[0],
+            type: words[1],
+            id: words[2]
+        }
+    }
+
+
 }

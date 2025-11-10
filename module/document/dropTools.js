@@ -1,3 +1,6 @@
+import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
+import { Tools } from "../common/tools.js"
+
 export class DropTools {
 
     static async droppedDocument(event) {
@@ -41,6 +44,31 @@ export class DropTools {
         // Case 3 - Import from World entity
         else {
             return await fromUuid(data.uuid);
+        }
+
+    }
+
+    // Remove the specified reference from the specified document
+    static async deleteDocumentReference(document, reference) {
+
+        let updates = {};
+
+        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === reference.documentName && field.element.type === reference.type) {
+                        if (field.element.deletable) {
+                            updates["system." + fieldName] = new Set(document.system[fieldName]).filter(v => v != reference.id);
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
         }
 
     }
