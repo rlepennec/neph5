@@ -49,32 +49,30 @@ export class DropTools {
     }
 
     // Remove the specified reference from the specified document
+    /**
+     * 
+     * @param {*} document  The document from which to remove the object.
+     * @param {*} reference The reference of the object to remove.
+     */
     static async deleteDocumentReference(document, reference) {
 
         let updates = {};
 
         Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
             if (field instanceof foundry.data.fields.SetField) {
-                console.log("1.");
                 if (field.element instanceof UUIDReferenceField) {
-                    console.log("2.");
                     if (field.element.collection === reference.documentName && field.element.type === reference.type) {
-                        console.log("3.");
                         if (field.element.deletable) {
-                            console.log("4.");
                             updates["system." + fieldName] = new Set(document.system[fieldName]).filter(v => v != reference.id);
                         }
                         return false;
                     }
                 }
             }
-            console.log("5.");
             return true;
         })
 
         if (Tools.isObjectNotEmpty(updates)) {
-            console.log("delete reference");
-            console.log(updates);
             await document.update(updates);
         }
 

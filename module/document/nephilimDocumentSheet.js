@@ -1,6 +1,7 @@
 import { DropTools } from "./dropTools.js"
 import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 import { Tools } from "../common/tools.js"
+import { DocumentReference } from "../document/documentReference.js"
 
 export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
 
@@ -144,7 +145,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
   static async _onDelete(event, target) {
     await DropTools.deleteDocumentReference(
       this.document,
-      Tools.expressionToDocumentReference(target.closest("[data-id]")?.dataset.id)
+      DocumentReference.createFromString(target.closest("[data-id]")?.dataset.id)
     )
   }
 

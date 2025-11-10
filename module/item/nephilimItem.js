@@ -1,5 +1,5 @@
 import { DropTools } from "../document/dropTools.js"
-import { Tools } from "../common/tools.js"
+import { DocumentReference } from "../document/documentReference.js"
 
 export class NephilimItem extends Item {
 
@@ -28,9 +28,7 @@ export class NephilimItem extends Item {
    */
     _onDelete(options, userId) {
         game.items.entries().every(async ([key, item]) => {
-            console.log("onDelete");
-            console.log(item);
-            await DropTools.deleteDocumentReference(item, Tools.itemToDocumentReference(this));
+            await DropTools.deleteDocumentReference(item, DocumentReference.createFromItem(this));
         })
         super._onDelete(options, userId);
 
