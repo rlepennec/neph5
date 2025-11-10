@@ -15,4 +15,8 @@ export class DocumentReference {
         return new DocumentReference(words[0], words[1], words[2]);
     }
 
+    static createFromTarget(target) {
+        return DocumentReference.createFromString(target.closest("[data-id]")?.dataset.id);
+    }
+
 }
