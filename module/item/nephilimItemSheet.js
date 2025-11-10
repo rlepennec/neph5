@@ -1,7 +1,6 @@
-import { PrimarySheetMixin } from "../document/primarySheetMixin.js"
-import { DocumentSheetNephilim } from "../document/documentSheetNephilim.js"
+import { NephilimDocumentSheet } from "../document/nephilimDocumentSheet.js"
 
-export class NephilimItemSheet extends PrimarySheetMixin(DocumentSheetNephilim)  {
+export class NephilimItemSheet extends NephilimDocumentSheet  {
 
     static DEFAULT_OPTIONS = {
         classes: ["item"],
