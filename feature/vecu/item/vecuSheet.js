@@ -21,15 +21,24 @@ export class VecuSheet extends NephilimItemSheet {
 
     async _prepareContext(options) {
 
-        const competences = new Map();
+        const competences = [];
+        
         this.document.system.competences.forEach(id => {
             const item = game.items.find(i => i.system.id === id);
-            competences.set(id, item.name);
+            competences.push(
+                {
+                    "id": id,
+                    "name": item.name
+                }
+            );
         });
+        competences.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
 
         const context = {
             ...await super._prepareContext(options),
-            competences: competences,
+            sheet: {
+                competences: competences,
+            }
         };
 
         return context;

@@ -1,5 +1,5 @@
 <section class="item-root">
-{{log .}}
+
     <aside>
     </aside>
 
@@ -22,17 +22,12 @@
 
         <main>
 
-            {{#unless (isEmptyCollection document.system.competences)}}
             <h1>Compétences</h1>
-            <ol>
-
-                {{#each competences as |competence|}}
-                {{log competence}}
-                <li><i class="fas fa-trash">{{competence}}</i>a</li>
+            <ul>
+                {{#each sheet.competences as |competence|}}
+                <li data-type="competence" data-id="{{competence.id}}"><i class="fas fa-trash"></i>{{competence.name}}</li>
                 {{/each}}
-
-            </ol>
-             {{/unless}}
+            </ul>
 
              <h1>Description</h1>
             {{#if editable}}
