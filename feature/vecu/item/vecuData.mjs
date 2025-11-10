@@ -18,7 +18,6 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                         collection: 'Item',
                         type: 'competence',
                         droppable: true,
-                        deletable: true,
                         openable: true,
                     }
                 )
