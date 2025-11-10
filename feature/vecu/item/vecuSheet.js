@@ -12,7 +12,8 @@ export class VecuSheet extends NephilimItemSheet {
             width: 590,
         },
         actions: {
-            openLink: VecuSheet.#onOpenLink,
+            delete: VecuSheet.#onDelete,
+            open: VecuSheet.#onOpen
         }
     }
 
@@ -22,7 +23,18 @@ export class VecuSheet extends NephilimItemSheet {
         }
     }
 
-    static async #onOpenLink(event, target) {
+    static async #onDelete(event, target) {
+        const reference = target.closest("[data-id]")?.dataset.id;
+        const type = reference.split(".")[1];
+        const id = reference.split(".")[2];
+        const key = "system.competences";
+        const values = this.document.system.competences.filter(competence => competence != id);
+        const updates = {};
+        updates[key] = values;
+        await this.document.update(updates);
+    }
+
+    static async #onOpen(event, target) {
         (await fromUuid(target.closest("[data-uuid]")?.dataset.uuid))?.sheet?.render(true);
     }
 
