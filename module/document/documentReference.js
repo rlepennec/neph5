@@ -1,3 +1,6 @@
+import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
+import { Tools } from "../common/tools.js"
+
 export class DocumentReference {
 
     constructor(documentName, type, id) {
@@ -18,5 +21,61 @@ export class DocumentReference {
     static createFromTarget(target) {
         return DocumentReference.createFromString(target.closest("[data-id]")?.dataset.id);
     }
+
+    /**
+     * @param {*} document The document from which to add the reference.
+     */
+    async addTo(document) {
+
+        let updates = {};
+
+        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === this.documentName && field.element.type === this.type) {
+                        if (field.element.droppable) {
+                            updates["system." + fieldName] = new Set(document.system[fieldName]).add(this.id);
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
+
+    }
+
+
+    /**
+     * @param {*} document The document from which to remove the reference.
+     */
+    async deleteFrom(document) {
+
+        let updates = {};
+
+        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === this.documentName && field.element.type === this.type) {
+                        if (field.element.deletable) {
+                            updates["system." + fieldName] = new Set(document.system[fieldName]).filter(v => v != this.id);
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
+
+    }
+
 
 }

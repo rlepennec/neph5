@@ -28,7 +28,7 @@ export class NephilimItem extends Item {
    */
     _onDelete(options, userId) {
         game.items.entries().every(async ([key, item]) => {
-            await DropTools.deleteDocumentReference(item, DocumentReference.createFromItem(this));
+            await DocumentReference.createFromItem(this).deleteFrom(item);
         })
         super._onDelete(options, userId);
 
