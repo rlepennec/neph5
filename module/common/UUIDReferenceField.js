@@ -11,6 +11,7 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
         type: 'base',
         droppable: true,
         deletable: true,
+        openable: true,
       }
     )
   }
