@@ -12,7 +12,6 @@ export class VecuSheet extends NephilimItemSheet {
             width: 590,
         },
         actions: {
-            delete: VecuSheet.#onDelete,
             open: VecuSheet.#onOpen
         }
     }
