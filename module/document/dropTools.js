@@ -78,4 +78,33 @@ export class DropTools {
 
     }
 
+    /**
+     * 
+     * @param {*} document  The document from which to add the object.
+     * @param {*} reference The reference of the object to add.
+     */
+    static async addDocumentReference(document, reference) {
+
+        let updates = {};
+
+        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+            if (field instanceof foundry.data.fields.SetField) {
+                if (field.element instanceof UUIDReferenceField) {
+                    if (field.element.collection === reference.documentName && field.element.type === reference.type) {
+                        if (field.element.droppable) {
+                            updates["system." + fieldName] = new Set(document.system[fieldName]).add(reference.id);
+                        }
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
+
+    }
+
 }

@@ -111,30 +111,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @protected
    */
   async _onDrop(event) {
-
-    let updates = {};
     const drop = await DropTools.droppedDocument(event);
-
-    // Gather the dropped document if needed to be added in the collection of document if necessary
-    Object.entries(this.document.system.schema.fields).every(([fieldName, field]) => {
-      if (field instanceof foundry.data.fields.SetField) {
-        if (field.element instanceof UUIDReferenceField) {
-          if (field.element.collection === drop.documentName && field.element.type === drop.type) {
-            if (field.element.droppable) {
-              updates["system." + fieldName] = new Set(this.document.system[fieldName]).add(drop.system.id);
-            }
-            return false;
-          }
-        }
-      }
-      return true;
-    })
-
-    // Add the dropped document in the collection
-    if (Tools.isObjectNotEmpty(updates)) {
-      await this.document.update(updates);
-    }
-
+    await DropTools.addDocumentReference(this.document, DocumentReference.createFromItem(drop));
   }
 
   /**
