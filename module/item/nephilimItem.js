@@ -1,4 +1,3 @@
-import { DropTools } from "../document/dropTools.js"
 import { DocumentReference } from "../document/documentReference.js"
 
 export class NephilimItem extends Item {
@@ -31,7 +30,6 @@ export class NephilimItem extends Item {
             await DocumentReference.createFromItem(this).deleteFrom(item);
         })
         super._onDelete(options, userId);
-
     }
 
 }
