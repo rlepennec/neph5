@@ -9,6 +9,7 @@ export class NephilimItem extends Item {
         Item: {
             cercle: "systems/neph5e/assets/icons/voie.webp",
             competence: "systems/neph5e/assets/icons/competence.webp",
+            periode: "systems/neph5e/assets/icons/periode.webp",
             vecu: "systems/neph5e/assets/icons/vecu.webp",
         }
     }
