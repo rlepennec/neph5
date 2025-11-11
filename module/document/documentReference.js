@@ -72,17 +72,24 @@ export class DocumentReference {
         let updates = {};
 
         Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
-            if (field instanceof foundry.data.fields.SetField) {
-                if (field.element instanceof UUIDReferenceField) {
-                    if (field.element.collection === this.documentName && field.element.type === this.type) {
-                        if (field.element.droppable) {
-                            updates["system." + fieldName] = callback(new Set(document.system[fieldName]), this.id);
+
+            switch (field.constructor) {
+
+                case foundry.data.fields.SetField:
+                    if (field.element instanceof UUIDReferenceField) {
+                        if (field.element.collection === this.documentName && field.element.type === this.type) {
+                            if (field.element.droppable) {
+                                updates["system." + fieldName] = callback(new Set(document.system[fieldName]), this.id);
+                            }
+                            return false;
                         }
-                        return false;
                     }
-                }
+                    break;
+                
             }
+
             return true;
+
         })
 
         if (Tools.isObjectNotEmpty(updates)) {
@@ -103,18 +110,24 @@ export class DocumentReference {
         const references = [];
 
         Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
-            if (field instanceof foundry.data.fields.SetField) {
-                if (field.element instanceof UUIDReferenceField) {
-                    if (field.element.collection === this.documentName && field.element.type === this.type) {
-                        document.system[fieldName].forEach(id => {
-                            const object = game.collections.get(this.documentName).find(d => d.system.id === id);
-                            references.push(DocumentContext.createFromDocument(object));
-                        });
-                        references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
-                        return false;
+
+            switch (field.constructor) {
+
+                case foundry.data.fields.SetField: 
+                    if (field.element instanceof UUIDReferenceField) {
+                        if (field.element.collection === this.documentName && field.element.type === this.type) {
+                            document.system[fieldName].forEach(id => {
+                                const object = game.collections.get(this.documentName).find(d => d.system.id === id);
+                                references.push(DocumentContext.createFromDocument(object));
+                            });
+                            references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
+                            return false;
+                        }
                     }
-                }
+                    break;
+
             }
+
             return true;
         })
 
