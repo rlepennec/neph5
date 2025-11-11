@@ -1,6 +1,4 @@
-import { DocumentTools } from "./DocumentTools.js"
-import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
-import { Tools } from "../common/tools.js"
+import { DocumentTools } from "./documentTools.js"
 import { DocumentReference } from "../document/documentReference.js"
 
 export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
