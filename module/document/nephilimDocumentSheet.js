@@ -1,4 +1,4 @@
-import { DropTools } from "./dropTools.js"
+import { DocumentTools } from "./DocumentTools.js"
 import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 import { Tools } from "../common/tools.js"
 import { DocumentReference } from "../document/documentReference.js"
@@ -111,7 +111,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @protected
    */
   async _onDrop(event) {
-    const drop = await DropTools.droppedDocument(event);
+    const drop = await DocumentTools.droppedDocument(event);
     await DocumentReference.createFromItem(drop).addTo(this.document);
   }
 

@@ -1,5 +1,6 @@
-import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
+import { DocumentContext } from "./documentContext.js"
 import { Tools } from "../common/tools.js"
+import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 
 /**
  * A DocumentReference is a reference to a document.
@@ -106,14 +107,8 @@ export class DocumentReference {
                 if (field.element instanceof UUIDReferenceField) {
                     if (field.element.collection === this.documentName && field.element.type === this.type) {
                         document.system[fieldName].forEach(id => {
-                            const item = this.#getDocuments().find(d => d.system.id === id);
-                            references.push(
-                                {
-                                    "id": id,
-                                    "name": item.name,
-                                    "uuid": item.uuid
-                                }
-                            );
+                            const object = game.collections.get(this.documentName).find(d => d.system.id === id);
+                            references.push(DocumentContext.createFromDocument(object));
                         });
                         references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
                         return false;
@@ -125,15 +120,6 @@ export class DocumentReference {
 
         return references;
 
-    }
-
-    #getDocuments() {
-        switch(this.documentName) {
-            case 'Actor':
-                return game.actors;
-            case 'Item':
-                return game.items;
-        }
     }
 
 }

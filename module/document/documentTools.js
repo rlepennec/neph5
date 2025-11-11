@@ -1,4 +1,4 @@
-export class DropTools {
+export class DocumentTools {
 
     static async droppedDocument(event) {
 
