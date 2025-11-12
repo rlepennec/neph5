@@ -1,0 +1,12 @@
+{{#if editable}}
+<prose-mirror
+    name="system.description"
+    button="true"
+    editable="{{editable}}"
+    toggled="false"
+    value="{{document.system.description}}">
+    {{{enrichedDescription}}}
+</prose-mirror>
+{{else}}
+{{{enrichedDescription}}}
+{{/if}}

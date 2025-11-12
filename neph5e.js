@@ -59,6 +59,12 @@ Hooks.once("init", function () {
         minus: (v1, v2) => v1 - v2,
     });
 
+    foundry.applications.handlebars.loadTemplates([
+        `systems/neph5e/templates/item-description.hbs`,
+        `systems/neph5e/templates/item-header.hbs`,
+    ]);
+
+
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
     foundry.documents.collections.Items.registerSheet('nephilim', CercleSheet, { types: ['cercle'], makeDefault: true });
     foundry.documents.collections.Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });

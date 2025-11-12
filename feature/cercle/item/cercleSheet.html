@@ -5,36 +5,12 @@
 
     <article>
 
-        <header>
-
-            <input
-                name="name"
-                type="text"
-                value="{{document.name}}"/>
-
-            <img
-                src="{{document.img}}"
-                title="{{document.name}}"
-                data-edit="img"
-                data-action="editImage"/>
-
-        </header>
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
         <main>
 
              <h1>Description</h1>
-            {{#if editable}}
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{else}}
-            {{{enrichedDescription}}}
-            {{/if}}
+            {{> "systems/neph5e/templates/item-description.hbs"}}
 
         </main>
 
