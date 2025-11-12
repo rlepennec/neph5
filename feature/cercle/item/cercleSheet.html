@@ -1,34 +1,28 @@
 <section class="item-root">
 
     <aside>
-        <img src="systems/neph5e/assets/core/site-formule.webp" title="{{localize 'ITEM.TypeCercle'}}"/>
     </aside>
 
     <article>
 
         <header>
- 
-            <div class="title">
 
-                <input
-                    name="name"
-                    type="text"
-                    value="{{document.name}}"
-                    class="name"/>
+            <input
+                name="name"
+                type="text"
+                value="{{document.name}}"/>
 
-                <img
-                    src="{{document.img}}"
-                    title="{{document.name}}"
-                    data-edit="img"
-                    data-action="editImage"
-                    class="image"/>
-
-            </div>
+            <img
+                src="{{document.img}}"
+                title="{{document.name}}"
+                data-edit="img"
+                data-action="editImage"/>
 
         </header>
 
         <main>
 
+             <h1>Description</h1>
             {{#if editable}}
             <prose-mirror
                 name="system.description"
