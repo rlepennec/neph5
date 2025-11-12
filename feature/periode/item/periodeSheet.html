@@ -9,7 +9,19 @@
 
         <main>
 
-             <h1>Description</h1>
+            <h1>Epoque</h1>
+            <input
+                name="system.epoque"
+                type="text"
+                value="{{document.system.epoque}}"/>
+
+            <h1>Région</h1>
+            <input
+                name="system.region"
+                type="text"
+                value="{{document.system.region}}"/>
+
+            <h1>Description</h1>
             {{> "systems/neph5e/templates/item-description.hbs"}}
 
         </main>

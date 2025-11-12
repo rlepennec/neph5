@@ -9,6 +9,18 @@ export class PeriodeData extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            epoque: new foundry.data.fields.StringField(
+                {
+                    required: true,
+                    initial: null
+                }
+            ),
+            region: new foundry.data.fields.StringField(
+                {
+                    required: true,
+                    initial: null
+                }
+            ),
             description: new foundry.data.fields.StringField(
                 {
                     required: true,
