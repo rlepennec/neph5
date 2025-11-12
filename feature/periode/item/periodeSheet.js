@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { DocumentReference } from "../../../module/document/documentReference.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
@@ -15,6 +16,16 @@ export class PeriodeSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/periode/item/periodeSheet.html`,
         }
+    }
+
+    async _prepareContext(options) {
+        const context = {
+            ...await super._prepareContext(options),
+            sheet: {
+                vecus: new DocumentReference('Item', 'vecu').getReferencesOf(this.document)
+            }
+        };
+        return context;
     }
 
 }
