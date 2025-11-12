@@ -62,6 +62,7 @@ Hooks.once("init", function () {
     foundry.applications.handlebars.loadTemplates([
         `systems/neph5e/templates/item-description.hbs`,
         `systems/neph5e/templates/item-header.hbs`,
+        `systems/neph5e/templates/item-input.hbs`,
     ]);
 
 

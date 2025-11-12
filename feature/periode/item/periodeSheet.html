@@ -9,11 +9,11 @@
 
         <main>
 
-            <h1>Epoque</h1>
-            <input
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="Epoque"
                 name="system.epoque"
-                type="text"
-                value="{{document.system.epoque}}"/>
+                value=document.system.epoque
+            }}
 
             <h1>Région</h1>
             <input
