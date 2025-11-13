@@ -135,4 +135,30 @@ export class DocumentReference {
 
     }
 
+    isReferencedBy(document) {
+
+        var referenced = false;
+
+        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+
+            switch (field.constructor) {
+
+                case foundry.data.fields.SetField: 
+                    if (field.element instanceof UUIDReferenceField) {
+                        if (field.element.collection === this.documentName && field.element.type === this.type) {
+                            referenced = document.system[fieldName].has(this.id);
+                            return false;
+                        }
+                    }
+                    break;
+
+            }
+
+            return true;
+        })
+
+        return referenced;
+
+    }
+
 }

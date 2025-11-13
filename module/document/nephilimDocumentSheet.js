@@ -102,7 +102,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    */
   _onDragOver(event) { }
 
-
   /**
    * Callback actions which occur when a dragged element is dropped on a target.
    * @param {DragEvent} event       The originating DragEvent

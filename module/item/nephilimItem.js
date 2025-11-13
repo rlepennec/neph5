@@ -23,14 +23,32 @@ export class NephilimItem extends Item {
         return { img: NephilimItem.defaultArtwork.Item[type] ?? img };
     }
 
-  /**
-   * @override
-   */
+    /**
+     * @override
+     */
     _onDelete(options, userId) {
         game.items.entries().every(async ([key, item]) => {
             await DocumentReference.createFromItem(this).deleteFrom(item);
         })
         super._onDelete(options, userId);
+    }
+
+    /**
+     * @override
+     */
+    _onUpdate(changed, options, userId) {
+        console.log("_onUpdate");
+
+        game.items.forEach(item => {
+            if (item.sheet.rendered) {
+                if (DocumentReference.createFromItem(this).isReferencedBy(item)) {
+                    item.sheet.render(false);
+                    console.log(item);
+                }
+            } 
+        })
+
+        super._onUpdate(changed, options, userId);
     }
 
 }
