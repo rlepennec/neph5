@@ -8,7 +8,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }],
     actions: {
       delete: NephilimDocumentSheet._onDelete,
-      open: NephilimDocumentSheet._onOpen
+      open: NephilimDocumentSheet._onOpen,
+      lock: NephilimDocumentSheet._onLock
     }
   }
 
@@ -42,6 +43,26 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    */
   get dragDrop() {
     return this.dragDrop;
+  }
+
+
+  async _renderFrame(options) {
+    const frame = await super._renderFrame(options);
+
+    // Add document lock
+    const lockIcon = this.isEditable ? 'fa-lock-open' : 'fa-lock';
+    const lockLabel = 'LOCK'; //game.i18n.localize("SHEETS.CopyUuid");
+    const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
+    this.window.controls.insertAdjacentHTML("beforebegin", lockId);
+
+    return frame;
+
+  }
+
+  /** @inheritDoc */
+  async _onFirstRender(context, options) {
+    //await super._onFirstRender(context, options);
+    //this.locked = this.isEditable;
   }
 
   /**
@@ -123,6 +144,11 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
   static async _onOpen(event, target) {
     (await fromUuid(target.closest("[data-uuid]")?.dataset.uuid))?.sheet?.render(true);
+  }
+
+  static async _onLock(event, target) {
+    console.log("lock");
+
   }
 
 }

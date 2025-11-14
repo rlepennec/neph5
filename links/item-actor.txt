@@ -37,7 +37,35 @@ function DocumentSheetV2Mixin(Base) {
 
 -------------------------------
 
+  /** @inheritDoc */
+  async _renderFrame(options) {
+    const frame = await super._renderFrame(options);
+    if ( !this.hasFrame ) return frame;
 
+    // Add form options
+    if ( this.options.tag === "form" ) frame.autocomplete = "off";
+
+    // Add document ID copy
+    if ( this.document.id ) {
+      const copyLabel = game.i18n.localize("SHEETS.CopyUuid");
+      const copyId = `
+        <button type="button" class="header-control fa-solid fa-passport icon" data-action="copyUuid"
+                data-tooltip="${copyLabel}" aria-label="${copyLabel}"></button>
+      `;
+      this.window.close.insertAdjacentHTML("beforebegin", copyId);
+    }
+
+    // Add compendium import
+    const { documentName, isEmbedded, inCompendium } = this.document;
+    if ( (documentName !== "Folder") && !isEmbedded && inCompendium ) {
+      this.window.close.insertAdjacentHTML("beforebegin", `
+        <button type="button" class="header-control fa-solid fa-download icon" data-action="importDocument"
+                data-tooltip="Import" aria-label="${game.i18n.localize("Import")}"></button>
+      `);
+    }
+
+    return frame;
+  }
 
 
 =======================================================
