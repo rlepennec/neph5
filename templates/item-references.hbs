@@ -1,0 +1,11 @@
+{{#if title}}
+<h1>{{title}}</h1>
+{{/if}}
+
+<ul class="column-2">
+    {{#each collection as |item|}}
+    <li data-action="open" data-uuid="{{item.uuid}}" data-id="{{../documentName}}.{{../type}}.{{item.id}}">
+        <i class="fas fa-trash" data-action="delete"></i>{{item.name}}
+    </li>
+    {{/each}}
+</ul>

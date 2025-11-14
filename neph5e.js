@@ -63,6 +63,7 @@ Hooks.once("init", function () {
         `systems/neph5e/templates/item-description.hbs`,
         `systems/neph5e/templates/item-header.hbs`,
         `systems/neph5e/templates/item-input.hbs`,
+        `systems/neph5e/templates/item-references.hbs`,
     ]);
 
 
