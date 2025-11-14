@@ -12,9 +12,9 @@ import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 export class DocumentReference {
 
     /**
-     * @param {*} documentName The document name: Item or Actor
-     * @param {*} type The type of item or actor
-     * @param {*} id The nephilim document identifier
+     * @param {*} documentName The document name: Item or Actor.
+     * @param {*} type The type of item or actor.
+     * @param {*} id The optional nephilim document identifier.
      */
     constructor(documentName, type, id) {
         this.documentName = documentName;
