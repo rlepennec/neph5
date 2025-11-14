@@ -106,6 +106,16 @@ form.nephilim.item section.window-content > section article main li {
   font-family: AJensonPro;
   font-size: 16px;
 }
+form.nephilim.item section.window-content > section article main input {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  color: #f5f4f4;
+  opacity: 80%;
+}
+form.nephilim.item section.window-content > section article main input:disabled {
+  background: none;
+  color: #191813;
+  border: none;
+}
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;
 }
