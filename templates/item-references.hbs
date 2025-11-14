@@ -3,8 +3,8 @@
 {{/if}}
 
 <ul class="column-2">
-    {{#each collection as |item|}}
-    <li data-action="open" data-uuid="{{item.uuid}}" data-id="{{../documentName}}.{{../type}}.{{item.id}}">
+    {{#each references.collection as |item|}}
+    <li data-action="open" data-uuid="{{item.uuid}}" data-id="{{../references.documentName}}.{{../references.type}}.{{item.id}}">
         <i class="fas fa-trash" data-action="delete"></i>{{item.name}}
     </li>
     {{/each}}

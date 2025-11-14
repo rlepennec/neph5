@@ -1,5 +1,5 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { DocumentReference } from "../../../module/document/documentReference.js";
+import { DocumentReferences } from "../../../module/document/documentReferences.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -24,7 +24,7 @@ export class VecuSheet extends NephilimItemSheet {
         const context = {
             ...await super._prepareContext(options),
             sheet: {
-                competences: new DocumentReference('Item', 'competence').getReferencesOf(this.document)
+                competences: new DocumentReferences('Item', 'competence').fromDocument(this.document)
             }
         };
         return context;

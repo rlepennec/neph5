@@ -1,5 +1,5 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { DocumentReference } from "../../../module/document/documentReference.js";
+import { DocumentReferences } from "../../../module/document/documentReferences.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
@@ -22,7 +22,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         const context = {
             ...await super._prepareContext(options),
             sheet: {
-                vecus: new DocumentReference('Item', 'vecu').getReferencesOf(this.document)
+                vecus: new DocumentReferences('Item', 'vecu').fromDocument(this.document)
             }
         };
         return context;
