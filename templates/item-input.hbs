@@ -1,6 +1,11 @@
 {{#if title}}
 <h1>{{title}}</h1>
 {{/if}}
+{{#if editable}}
+<p>Editable</p>
+{{else}}
+<p>Not Editable</p>
+{{/if}}
 <input
     name={{name}}
     type="text"

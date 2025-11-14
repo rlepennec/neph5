@@ -15,11 +15,11 @@
                 value=document.system.epoque
             }}
 
-            <h1>Région</h1>
-            <input
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="Région"
                 name="system.region"
-                type="text"
-                value="{{document.system.region}}"/>
+                value=document.system.region
+            }}
 
             <h1>Vécus</h1>
             <ul class="column-2">
