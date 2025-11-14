@@ -64,8 +64,8 @@ export class DocumentReference {
     }
 
     /**
-     * @param {*} document The document to process.
-     * @returns the array of the references in the specified document which matches the document
+     * @param {*} document The document in which to gather the current reference type.
+     * @returns the array of references in the specified document which matches the current reference type.
      * reference name and type.  
      */    
     getReferencesOf(document) {
@@ -84,8 +84,8 @@ export class DocumentReference {
     }
 
     /**
-     * @param {*} document The document to process.
-     * @returns true if the specified document references the document reference.
+     * @param {*} document The document in which to look for the current reference.
+     * @returns true if the specified document references the current reference.
      */
     isReferencedBy(document) {
 
@@ -107,8 +107,9 @@ export class DocumentReference {
     }
 
     /**
+     * This method is used to update the references of the specified document.
      * @param {*} document The document to update using the specified callback.
-     * @param {*} callbackSet The callback used to update the document.
+     * @param {*} callbackSet The callback used to update a set of reference in the specified document.
      */
     async #update(document, callbackSet) {
 
@@ -127,7 +128,7 @@ export class DocumentReference {
     }
 
     /**
-     * Process the fields of the specified document which matches the document reference.
+     * This method is used to gather in the specified document all fields which match the current reference type.
      * @param {*} document The document to process.
      * @param {*} callbackSet The callback used to process the set field.
      */
