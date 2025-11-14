@@ -8,7 +8,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }],
     actions: {
       delete: NephilimDocumentSheet._onDelete,
-      open: NephilimDocumentSheet._onOpen,
+      openLink: NephilimDocumentSheet._onOpenLink,
       toggleLock: NephilimDocumentSheet._onToggleLock
     }
   }
@@ -142,18 +142,31 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     await DocumentReference.createFromTarget(target).deleteFrom(this.document);
   }
 
-  static async _onOpen(event, target) {
+  /**
+   * The callback used to open a link.
+   * @param {*} event 
+   * @param {*} target 
+   */
+  static async _onOpenLink(event, target) {
     (await fromUuid(target.closest("[data-uuid]")?.dataset.uuid))?.sheet?.render(true);
   }
 
+  /**
+   * The callback used to toggle the lock state.
+   * @param {*} event 
+   * @param {*} target 
+   */
   static async _onToggleLock(event, target) {
-    console.log("lock : " + this.locked);
     this.window.lock.classList.remove(NephilimDocumentSheet.#getToggleIcon(this.locked));
     this.locked = !this.locked;
     this.window.lock.classList.add(NephilimDocumentSheet.#getToggleIcon(this.locked));
-    this.render(true);
+    this.render(false);
   }
 
+  /**
+   * @param {*} locked The lock state to display.
+   * @returns the class to display the specified state.
+   */
   static #getToggleIcon(locked) {
     return locked ? 'fa-lock-open' : 'fa-lock';
   }
