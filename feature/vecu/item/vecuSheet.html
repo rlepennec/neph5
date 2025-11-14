@@ -12,7 +12,7 @@
             <h1>Compétences</h1>
             <ul class="column-2">
                 {{#each sheet.competences as |competence|}}
-                <li data-action="openLink" data-uuid="{{competence.uuid}}" data-id="Item.competence.{{competence.id}}">
+                <li data-action="open" data-uuid="{{competence.uuid}}" data-id="Item.competence.{{competence.id}}">
                     <i class="fas fa-trash" data-action="delete"></i>{{competence.name}}
                 </li>
                 {{/each}}

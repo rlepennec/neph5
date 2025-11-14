@@ -7,8 +7,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     classes: ["nephilim"],
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }],
     actions: {
-      delete: NephilimDocumentSheet._onDelete,
-      openLink: NephilimDocumentSheet._onOpenLink,
+      delete: NephilimDocumentSheet._onDeleteReference,
+      open: NephilimDocumentSheet._onOpenLink,
       toggleLock: NephilimDocumentSheet._onToggleLock
     }
   }
@@ -45,34 +45,26 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     return this.dragDrop;
   }
 
-
+  /** 
+   * @override
+   */
   async _renderFrame(options) {
-    console.log("_renderFrame");
     const frame = await super._renderFrame(options);
-    const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
-    const lockLabel = 'LOCK'; //game.i18n.localize("SHEETS.CopyUuid");
-    const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="toggleLock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
-    this.window.controls.insertAdjacentHTML("beforebegin", lockId);
-    this.window.lock = frame.querySelector("button[data-action=toggleLock]");
+    if (this.isEditable) {
+      this.locked = true;
+      const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
+      const lockLabel = 'LOCK'; //game.i18n.localize("SHEETS.CopyUuid");
+      const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="toggleLock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
+      this.window.controls.insertAdjacentHTML("beforebegin", lockId);
+      this.window.lock = frame.querySelector("button[data-action=toggleLock]");
+    }
     return frame;
   }
 
-  /** @inheritDoc */
-  async _onFirstRender(context, options) {
-    console.log("_onFirstRender");
-    await super._onFirstRender(context, options);
-    this.locked = this.isEditable;
-  }
-
-  /**
-   * Actions performed after any render of the Application.
-   * Post-render steps are not awaited by the render process.
-   * @param {ApplicationRenderContext} context      Prepared context data
-   * @param {RenderOptions} options                 Provided render options
-   * @protected
+  /** 
+   * @override
    */
-  _onRender(context, options) {
-    console.log("_onRender");
+  async _onRender(context, options) {
     this.dragDrop.forEach((d) => d.bind(this.element));
   }
 
@@ -100,8 +92,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
   /**
    * Callback actions which occur at the beginning of a drag start workflow.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
+   * @param {*} event 
+   * @param {*} target 
    */
   _onDragStart(event) {
     const el = event.currentTarget;
@@ -118,15 +110,15 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
   /**
    * Callback actions which occur when a dragged element is over a drop target.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
+   * @param {*} event 
+   * @param {*} target 
    */
   _onDragOver(event) { }
 
   /**
-   * Callback actions which occur when a dragged element is dropped on a target.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
+   * The callback used to drop an element on a target.
+   * @param {*} event 
+   * @param {*} target 
    */
   async _onDrop(event) {
     const drop = await DocumentTools.droppedDocument(event);
@@ -134,11 +126,11 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
   }
 
   /**
-   * Callback actions which occur when a dragged element is dropped on a target.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
+   * The callback used to delete a referenced document from the current one.
+   * @param {*} event 
+   * @param {*} target 
    */
-  static async _onDelete(event, target) {
+  static async _onDeleteReference(event, target) {
     await DocumentReference.createFromTarget(target).deleteFrom(this.document);
   }
 
@@ -168,7 +160,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @returns the class to display the specified state.
    */
   static #getToggleIcon(locked) {
-    return locked ? 'fa-lock-open' : 'fa-lock';
+    return locked ? 'fa-lock' : 'fa-lock-open';
   }
 
 }

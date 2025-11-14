@@ -24,7 +24,7 @@
             <h1>Vécus</h1>
             <ul class="column-2">
                 {{#each sheet.vecus as |vecu|}}
-                <li data-action="openLink" data-uuid="{{vecu.uuid}}" data-id="Item.vecu.{{vecu.id}}">
+                <li data-action="open" data-uuid="{{vecu.uuid}}" data-id="Item.vecu.{{vecu.id}}">
                     <i class="fas fa-trash" data-action="delete"></i>{{vecu.name}}
                 </li>
                 {{/each}}
