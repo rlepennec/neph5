@@ -9,7 +9,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     actions: {
       delete: NephilimDocumentSheet._onDelete,
       open: NephilimDocumentSheet._onOpen,
-      lock: NephilimDocumentSheet._onLock
+      toggleLock: NephilimDocumentSheet._onToggleLock
     }
   }
 
@@ -47,22 +47,21 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
 
   async _renderFrame(options) {
+    console.log("_renderFrame");
     const frame = await super._renderFrame(options);
-
-    // Add document lock
-    const lockIcon = this.isEditable ? 'fa-lock-open' : 'fa-lock';
+    const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
     const lockLabel = 'LOCK'; //game.i18n.localize("SHEETS.CopyUuid");
-    const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
+    const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="toggleLock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
     this.window.controls.insertAdjacentHTML("beforebegin", lockId);
-
+    this.window.lock = frame.querySelector("button[data-action=toggleLock]");
     return frame;
-
   }
 
   /** @inheritDoc */
   async _onFirstRender(context, options) {
-    //await super._onFirstRender(context, options);
-    //this.locked = this.isEditable;
+    console.log("_onFirstRender");
+    await super._onFirstRender(context, options);
+    this.locked = this.isEditable;
   }
 
   /**
@@ -73,6 +72,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @protected
    */
   _onRender(context, options) {
+    console.log("_onRender");
     this.dragDrop.forEach((d) => d.bind(this.element));
   }
 
@@ -146,9 +146,16 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     (await fromUuid(target.closest("[data-uuid]")?.dataset.uuid))?.sheet?.render(true);
   }
 
-  static async _onLock(event, target) {
-    console.log("lock");
+  static async _onToggleLock(event, target) {
+    console.log("lock : " + this.locked);
+    this.window.lock.classList.remove(NephilimDocumentSheet.#getToggleIcon(this.locked));
+    this.locked = !this.locked;
+    this.window.lock.classList.add(NephilimDocumentSheet.#getToggleIcon(this.locked));
+    this.render(true);
+  }
 
+  static #getToggleIcon(locked) {
+    return locked ? 'fa-lock-open' : 'fa-lock';
   }
 
 }
