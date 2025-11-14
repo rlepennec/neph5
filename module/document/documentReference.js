@@ -64,22 +64,38 @@ export class DocumentReference {
     }
 
     /**
-     * @param {*} document The document to update using the specified callback.
-     * @param {*} callback The callback used to update the document.
-     */
-    async #update(document, callback) {
+     * @param {*} document The document to process.
+     * @returns the array of the references in the specified document which matches the document
+     * reference name and type.  
+     */    
+    getReferencesOf(document) {
 
-        let updates = {};
+        const references = [];
 
-        this.#process(document, (field) => {
-            if (field.element.droppable) {
-                updates["system." + field.name] = callback(new Set(document.system[field.name]), this.id);
-            }
+        this.#processReference(document, (field) => {
+            document.system[field.name].forEach(id => {
+                references.push(DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id)));
+            });
+            references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
         })
 
-        if (Tools.isObjectNotEmpty(updates)) {
-            await document.update(updates);
-        }
+        return references;
+
+    }
+
+    /**
+     * @param {*} document The document to process.
+     * @returns true if the specified document references the document reference.
+     */
+    isReferencedBy(document) {
+
+        var referenced = false;
+
+        this.#processReference(document, (field) => {
+            referenced = document.system[field.name].has(this.id);
+        })
+
+        return referenced;
 
     }
 
@@ -90,47 +106,47 @@ export class DocumentReference {
         return this.documentName + "." + this.type + "." + this.id;
     }
 
-    getReferencesOf(document) {
+    /**
+     * @param {*} document The document to update using the specified callback.
+     * @param {*} callbackSet The callback used to update the document.
+     */
+    async #update(document, callbackSet) {
 
-        const references = [];
+        let updates = {};
 
-        this.#process(document, (field) => {
-            document.system[field.name].forEach(id => {
-                const object = game.collections.get(this.documentName).find(d => d.system.id === id);
-                references.push(DocumentContext.createFromDocument(object));
-            });
-            references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
+        this.#processReference(document, (field) => {
+            if (field.element.droppable) {
+                updates["system." + field.name] = callbackSet(new Set(document.system[field.name]), this.id);
+            }
         })
 
-        return references;
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
 
     }
 
-    isReferencedBy(document) {
+    /**
+     * Process the fields of the specified document which matches the document reference.
+     * @param {*} document The document to process.
+     * @param {*} callbackSet The callback used to process the set field.
+     */
+    #processReference(document, callbackSet) {
 
-        var referenced = false;
-
-        this.#process(document, (field) => {
-            referenced = document.system[field.name].has(this.id);
-        })
-
-        return referenced;
-
-    }
-
-
-    #process(document, callbackSet) {
-
+        // Iterate all fields of the specified document
         Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
 
             switch (field.constructor) {
 
+                // The field is a set of references
                 case foundry.data.fields.SetField: 
-                    if (field.element instanceof UUIDReferenceField) {
-                        if (field.element.collection === this.documentName && field.element.type === this.type) {
-                            callbackSet(field);
-                            return false;
-                        }
+                    if (field.element instanceof UUIDReferenceField &&
+                        field.element.collection === this.documentName &&
+                        field.element.type === this.type) {
+
+                        callbackSet(field);
+                        return false;
+
                     }
                     break;
 
@@ -140,7 +156,5 @@ export class DocumentReference {
         })
 
     }
-
-
 
 }

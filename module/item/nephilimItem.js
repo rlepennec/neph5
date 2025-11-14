@@ -37,17 +37,10 @@ export class NephilimItem extends Item {
      * @override
      */
     _onUpdate(changed, options, userId) {
-        console.log("_onUpdate");
-
-        game.items.forEach(item => {
-            if (item.sheet.rendered) {
-                if (DocumentReference.createFromItem(this).isReferencedBy(item)) {
-                    item.sheet.render(false);
-                    console.log(item);
-                }
-            } 
-        })
-
+        const reference = DocumentReference.createFromItem(this);
+        game.items
+            .filter(i => i.sheet.rendered && reference.isReferencedBy(i))
+            .forEach(i => i.sheet.render(false));
         super._onUpdate(changed, options, userId);
     }
 
