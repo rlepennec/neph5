@@ -9,7 +9,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     actions: {
       delete: NephilimDocumentSheet._onDeleteReference,
       open: NephilimDocumentSheet._onOpenLink,
-      toggleLock: NephilimDocumentSheet._onToggleLock
+      lock: NephilimDocumentSheet._onToggleLock
     }
   }
 
@@ -54,9 +54,9 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
       this.locked = true;
       const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
       const lockLabel = 'LOCK'; //game.i18n.localize("SHEETS.CopyUuid");
-      const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="toggleLock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
+      const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
       this.window.controls.insertAdjacentHTML("beforebegin", lockId);
-      this.window.lock = frame.querySelector("button[data-action=toggleLock]");
+      this.window.lock = frame.querySelector("button[data-action=lock]");
     }
     return frame;
   }
