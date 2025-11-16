@@ -1,3 +1,4 @@
+import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 
 export class DocumentReferencesIterator {
 

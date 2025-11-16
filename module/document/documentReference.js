@@ -1,4 +1,5 @@
 import { DocumentContext } from "./documentContext.js"
+import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
 import { Tools } from "../common/tools.js"
 import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 
@@ -72,12 +73,14 @@ export class DocumentReference {
 
         const references = [];
 
-        this.#processReference(document, (field) => {
-            document.system[field.name].forEach(id => {
-                references.push(DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id)));
-            });
-            references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
-        })
+        new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackSet(field => {
+                document.system[field.name].forEach(id => {
+                    references.push(DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id)));
+                });
+                references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
+            })
+            .forEach(document);
 
         return references;
 
@@ -91,9 +94,11 @@ export class DocumentReference {
 
         var referenced = false;
 
-        this.#processReference(document, (field) => {
-            referenced = document.system[field.name].has(this.id);
-        })
+        new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackSet(field => {
+                referenced = document.system[field.name].has(this.id);
+            })
+            .forEach(document);
 
         return referenced;
 
@@ -115,46 +120,17 @@ export class DocumentReference {
 
         let updates = {};
 
-        this.#processReference(document, (field) => {
-            if (field.element.droppable) {
-                updates["system." + field.name] = callbackSet(new Set(document.system[field.name]), this.id);
-            }
-        })
+        new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackSet(field => {
+                if (field.element.droppable) {
+                    updates["system." + field.name] = callbackSet(new Set(document.system[field.name]), this.id);
+                }
+            })
+            .forEach(document);
 
         if (Tools.isObjectNotEmpty(updates)) {
             await document.update(updates);
         }
-
-    }
-
-    /**
-     * This method is used to gather in the specified document all fields which match the current reference type.
-     * @param {*} document The document to process.
-     * @param {*} callbackSet The callback used to process the set field.
-     */
-    #processReference(document, callbackSet) {
-
-        // Iterate all fields of the specified document
-        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
-
-            switch (field.constructor) {
-
-                // The field is a set of references
-                case foundry.data.fields.SetField: 
-                    if (field.element instanceof UUIDReferenceField &&
-                        field.element.collection === this.documentName &&
-                        field.element.type === this.type) {
-
-                        callbackSet(field);
-                        return false;
-
-                    }
-                    break;
-
-            }
-
-            return true;
-        })
 
     }
 
