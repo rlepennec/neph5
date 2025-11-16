@@ -28,7 +28,7 @@ export class NephilimItem extends Item {
      */
     _onDelete(options, userId) {
         game.items.entries().every(async ([key, item]) => {
-            await DocumentReference.createFromItem(this).deleteFrom(item);
+            await DocumentReference.of(this).deleteFrom(item);
         })
         super._onDelete(options, userId);
     }
@@ -37,7 +37,7 @@ export class NephilimItem extends Item {
      * @override
      */
     _onUpdate(changed, options, userId) {
-        const reference = DocumentReference.createFromItem(this);
+        const reference = DocumentReference.of(this);
         game.items
             .filter(i => i.sheet.rendered && reference.isReferencedBy(i))
             .forEach(i => i.sheet.render(false));

@@ -11,23 +11,6 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     required: true,
                 }
             ),
-            element: new foundry.data.fields.StringField(
-                {
-                    required: true,
-                    choices: Constants.ELEMENTS,
-                    initial: 'air'
-                }
-            ),
-            periode: new UUIDReferenceField(
-                {
-                    required: true,
-                    initial: null,
-                    collection: 'Item',
-                    type: 'periode',
-                    droppable: true,
-                    openable: true,
-                }
-            ),
             competences: new foundry.data.fields.SetField(
                 new UUIDReferenceField(
                     {

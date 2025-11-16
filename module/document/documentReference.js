@@ -1,4 +1,5 @@
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
+import { NephilimItem } from "../item/nephilimItem.js"
 import { Tools } from "../common/tools.js"
 
 /**
@@ -22,30 +23,37 @@ export class DocumentReference {
     }
 
     /**
-     * @param {*} item The item from which to create the reference.
+     * @param {*} source The source from which to create the reference.
      * @returns the reference.
      */
-    static createFromItem(item) {
-        return new DocumentReference(item.documentName, item.type, item.system.id);
-    }
+    static of(source) {
 
-    /**
-     * @param {*} expression The textual expression from which to create the reference.
-     * It must be built as follow: documentName.type.id
-     * @returns the reference.
-     */
-    static createFromString(expression) {
-        const words = expression.split(".");
-        return new DocumentReference(words[0], words[1], words[2]);
-    }
+        switch (source.constructor) {
 
-    /**
-     * @param {*} target The event target from which to create the reference. The
-     * data-id attribute must defined the textual expression of the reference. 
-     * @returns the reference.
-     */
-    static createFromTarget(target) {
-        return DocumentReference.createFromString(target.closest("[data-id]")?.dataset.id);
+            // The event target from which to create the reference. The data-id
+            // attribute must defined the textual expression of the reference. 
+            case HTMLElement: {
+                const words = source.closest("[data-id]")?.dataset.id.split(".");
+                return new DocumentReference(words[0], words[1], words[2]);
+            }
+
+            // The item from which to create the reference.
+            case NephilimItem: {
+                return new DocumentReference(source.documentName, source.type, source.system.id);
+            }
+
+            // The textual expression from which to create the reference.
+            // It must be built as follow: documentName.type.id
+            case String: {
+                const words = source.split(".");
+                return new DocumentReference(words[0], words[1], words[2]);
+            }
+
+            default:
+                throw new Error("Unsupported type to create a document reference");
+
+        }
+
     }
 
     /**
