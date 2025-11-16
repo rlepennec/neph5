@@ -8,14 +8,27 @@ export class DocumentReferencesIterator {
     constructor(documentName, type) {
         this.documentName = documentName;
         this.type = type;
+        this.callbackSet = null;
+    }
+
+    /**
+     * Register the specified callback.
+     * @param callback The callback used to process the set field.
+     * @return the instance.
+     */
+    withCallbackSet(callback) {
+        this.callbackSet = callback;
+        return this;
     }
 
     /**
      * This method is used to gather in the specified document all fields which match the current reference type.
      * @param {*} document The document to process.
-     * @param {*} callbackSet The callback used to process the set field.
      */
-    forEachReferenceOf(document, callbackSet) {
+    forEach(document) {
+
+        // Callback must be defined
+        if (this.callbackSet == null) throw new Error("The callback used to process the set field must be defined");
 
         // Iterate all fields of the specified document
         Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
@@ -28,7 +41,7 @@ export class DocumentReferencesIterator {
                         field.element.collection === this.documentName &&
                         field.element.type === this.type) {
 
-                        callbackSet(field);
+                        this.callbackSet(field);
                         return false;
 
                     }
@@ -37,6 +50,7 @@ export class DocumentReferencesIterator {
             }
 
             return true;
+
         })
 
     }
