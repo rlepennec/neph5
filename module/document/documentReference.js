@@ -1,7 +1,6 @@
 import { DocumentContext } from "./documentContext.js"
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
 import { Tools } from "../common/tools.js"
-import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 
 /**
  * A DocumentReference is a reference to a document.
