@@ -63,6 +63,13 @@ export class DocumentReference {
     }
 
     /**
+     * @returns the textual expression of the document reference.
+     */
+    toString() {
+        return this.documentName + "." + this.type + "." + this.id;
+    }
+
+    /**
      * @param {*} document The document in which to look for the current reference.
      * @returns true if the specified document references the current reference.
      */
@@ -78,13 +85,6 @@ export class DocumentReference {
 
         return referenced;
 
-    }
-
-    /**
-     * @returns the textual expression of the document reference.
-     */
-    toString() {
-        return this.documentName + "." + this.type + "." + this.id;
     }
 
     /**
