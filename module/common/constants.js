@@ -1,5 +1,6 @@
 export class Constants {
 
+    /*
     static ACTION = 'action';
     static APPRIS = 'appris';
     static BRAWL = 'brawl';
@@ -28,5 +29,9 @@ export class Constants {
     static THROW = 'throw';
     static TIE = 'tie';
     static TRAIT = 'trait';
+    */
+
+
+    static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
 
 }

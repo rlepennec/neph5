@@ -95,7 +95,7 @@ form.nephilim.item section.window-content > section article main h1 {
   color: #191813;
   font-family: "AJensonPro";
   font-size: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   margin-top: 0px;
 }
 form.nephilim.item section.window-content > section article main ul {
@@ -109,7 +109,8 @@ form.nephilim.item section.window-content > section article main li {
 form.nephilim.item section.window-content > section article main input {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   color: #f5f4f4;
-  opacity: 80%;
+  margin-bottom: 10px;
+  opacity: 50%;
 }
 form.nephilim.item section.window-content > section article main input:disabled {
   background: none;
