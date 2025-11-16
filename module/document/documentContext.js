@@ -1,7 +1,3 @@
-import { DocumentTools } from "./documentTools.js"
-import { Tools } from "../common/tools.js"
-import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
-
 /**
  * A DocumentContext is the context provided to prepare the sheet context.
  */

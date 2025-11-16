@@ -22,7 +22,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         const context = {
             ...await super._prepareContext(options),
             sheet: {
-                vecus: new DocumentReferences('Item', 'vecu').fromDocument(this.document)
+                vecus: new DocumentReferences('Item', 'vecu', this.document)
             }
         };
         return context;

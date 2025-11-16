@@ -1,4 +1,3 @@
-import { DocumentContext } from "./documentContext.js"
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
 import { Tools } from "../common/tools.js"
 
@@ -61,28 +60,6 @@ export class DocumentReference {
      */
     async deleteFrom(document) {
         await this.#update(document, (set) => set.filter(v => v != this.id));
-    }
-
-    /**
-     * @param {*} document The document in which to gather the current reference type.
-     * @returns the array of references in the specified document which matches the current reference type.
-     * reference name and type.  
-     */    
-    getReferencesOf(document) {
-
-        const references = [];
-
-        new DocumentReferencesIterator(this.documentName, this.type)
-            .withCallbackSet(field => {
-                document.system[field.name].forEach(id => {
-                    references.push(DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id)));
-                });
-                references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
-            })
-            .forEach(document);
-
-        return references;
-
     }
 
     /**
