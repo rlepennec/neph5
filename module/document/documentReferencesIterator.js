@@ -10,6 +10,7 @@ export class DocumentReferencesIterator {
         this.documentName = documentName;
         this.type = type;
         this.callbackSet = null;
+        this.callbackReference = null;
     }
 
     /**
@@ -19,6 +20,16 @@ export class DocumentReferencesIterator {
      */
     withCallbackSet(callback) {
         this.callbackSet = callback;
+        return this;
+    }
+
+    /**
+     * Register the specified callback.
+     * @param callback The callback used to process the reference field.
+     * @return the instance.
+     */
+    withCallbackReference(callback) {
+        this.callbackReference = callback;
         return this;
     }
 
@@ -40,9 +51,22 @@ export class DocumentReferencesIterator {
                 case foundry.data.fields.SetField: 
                     if (field.element instanceof UUIDReferenceField &&
                         field.element.collection === this.documentName &&
-                        field.element.type === this.type) {
+                        field.element.type === this.type &&
+                        this.callbackSet != null) {
 
                         this.callbackSet(field);
+                        return false;
+
+                    }
+                    break;
+
+                // The field is a reference
+                case UUIDReferenceField:
+                    if (field.collection == this.documentName &&
+                        field.type === this.type &&
+                        this.callbackReference != null) {
+
+                        this.callbackReference(field);
                         return false;
 
                     }

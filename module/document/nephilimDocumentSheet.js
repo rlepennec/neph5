@@ -131,7 +131,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @param {*} target 
    */
   static async _onDeleteReference(event, target) {
-    await DocumentReference.of(target).deleteFrom(this.document);
+    await DocumentReference.of(target).removeFrom(this.document);
   }
 
   /**

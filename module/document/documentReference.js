@@ -57,6 +57,20 @@ export class DocumentReference {
     }
 
     /**
+     * @param {*} document The document from which to set the reference.
+     */
+    async setTo(document) {
+        await this.#update(document, () => this.id );
+    }
+
+    /**
+     * @param {*} document The document from which to delete the reference.
+     */
+    async deleteTo(document) {
+        await this.#update(document, () => null );
+    }
+
+    /**
      * @param {*} document The document from which to add the reference.
      */
     async addTo(document) {
@@ -66,7 +80,7 @@ export class DocumentReference {
     /**
      * @param {*} document The document from which to remove the reference.
      */
-    async deleteFrom(document) {
+    async removeFrom(document) {
         await this.#update(document, (set) => set.filter(v => v != this.id));
     }
 
@@ -99,15 +113,21 @@ export class DocumentReference {
      * This method is used to update the references of the specified document.
      * @param {*} document The document to update using the specified callback.
      * @param {*} callbackSet The callback used to update a set of reference in the specified document.
+     * @param {*} callbackReference The callback used to update a simple reference in the specified document.
      */
-    async #update(document, callbackSet) {
+    async #update(document, callbackSet, callbackReference) {
 
         let updates = {};
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates["system." + field.name] = callbackSet(new Set(document.system[field.name]), this.id);
+                    updates["system." + field.name] = callbackSet(new Set(document.system[field.name]));
+                }
+            })
+            .withCallbackReference(field => {
+                if (field.droppable) {
+                    updates["system." + field.name] = callbackReference();
                 }
             })
             .forEach(document);
