@@ -60,28 +60,28 @@ export class DocumentReference {
      * @param {*} document The document from which to set the reference.
      */
     async setTo(document) {
-        await this.#update(document, null, () => this.id );
+        await this.#updateReference(document, () => this.id );
     }
 
     /**
      * @param {*} document The document from which to delete the reference.
      */
     async deleteTo(document) {
-        await this.#update(document, null, () => null );
+        await this.#updateReference(document, () => null );
     }
 
     /**
      * @param {*} document The document from which to add the reference.
      */
     async addTo(document) {
-        await this.#update(document, (set) => set.add(this.id), null );
+        await this.#updateSet(document, (set) => set.add(this.id) );
     }
 
     /**
      * @param {*} document The document from which to remove the reference.
      */
     async removeFrom(document) {
-        await this.#update(document, (set) => set.filter(v => v != this.id), null);
+        await this.#updateSet(document, (set) => set.filter(v => v != this.id) );
     }
 
     /**
@@ -112,22 +112,39 @@ export class DocumentReference {
     /**
      * This method is used to update the references of the specified document.
      * @param {*} document The document to update using the specified callback.
-     * @param {*} callbackSet The callback used to update a set of reference in the specified document.
-     * @param {*} callbackReference The callback used to update a simple reference in the specified document.
+     * @param {*} callback The callback used to update a simple reference in the specified document.
      */
-    async #update(document, callbackSet, callbackReference) {
+    async #updateReference(document, callback) {
 
         let updates = {};
 
         new DocumentReferencesIterator(this.documentName, this.type)
-            .withCallbackSet(callbackSet == null ? null : field => {
-                if (field.element.droppable) {
-                    updates["system." + field.name] = callbackSet(new Set(document.system[field.name]));
+            .withCallbackReference(field => {
+                if (field.droppable) {
+                    updates["system." + field.name] = callback();
                 }
             })
-            .withCallbackReference(callbackReference == null ? null : field => {
-                if (field.droppable) {
-                    updates["system." + field.name] = callbackReference();
+            .forEach(document);
+
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
+
+    }
+
+    /**
+     * This method is used to update the references of the specified document.
+     * @param {*} document The document to update using the specified callback.
+     * @param {*} callback The callback used to update a set of reference in the specified document.
+     */
+    async #updateSet(document, callback) {
+
+        let updates = {};
+
+        new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackSet(field => {
+                if (field.element.droppable) {
+                    updates["system." + field.name] = callback(new Set(document.system[field.name]));
                 }
             })
             .forEach(document);
