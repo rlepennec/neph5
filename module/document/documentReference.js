@@ -119,25 +119,18 @@ export class DocumentReference {
 
         let updates = {};
 
-        const iterator = new DocumentReferencesIterator(this.documentName, this.type);
-
-        if (callbackSet != null) {
-            iterator.withCallbackSet(field => {
+        new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackSet(callbackSet == null ? null : field => {
                 if (field.element.droppable) {
                     updates["system." + field.name] = callbackSet(new Set(document.system[field.name]));
                 }
             })
-        }
-
-        if (callbackReference != null) {
-            iterator.withCallbackReference(field => {
+            .withCallbackReference(callbackReference == null ? null : field => {
                 if (field.droppable) {
                     updates["system." + field.name] = callbackReference();
                 }
             })
-        }
-
-        iterator.forEach(document);
+            .forEach(document);
 
         if (Tools.isObjectNotEmpty(updates)) {
             await document.update(updates);
