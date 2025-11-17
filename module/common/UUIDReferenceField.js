@@ -22,14 +22,6 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
     super(schema, options, context);
   }
 
-
-  /**
-   *  @override
-   */
-  getInitialValue(data) {
-    return crypto.randomUUID();
-  }
-
   /**
    *  @override
    */

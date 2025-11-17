@@ -12,21 +12,18 @@ export class PeriodeData extends foundry.abstract.TypeDataModel {
             ),
             epoque: new foundry.data.fields.StringField(
                 {
-                    required: true,
-                    initial: null
+                    required: false
                 }
             ),
             region: new foundry.data.fields.StringField(
                 {
-                    required: true,
-                    initial: null
+                    required: false
                 }
             ),
             vecus: new foundry.data.fields.SetField(
                 new UUIDReferenceField(
                     {
-                        required: true,
-                        initial: null,
+                        required: false,
                         collection: 'Item',
                         type: 'vecu',
                         droppable: true,
@@ -36,8 +33,7 @@ export class PeriodeData extends foundry.abstract.TypeDataModel {
             ),
             description: new foundry.data.fields.StringField(
                 {
-                    required: true,
-                    initial: null
+                    required: false
                 }
             )
         }

@@ -60,28 +60,28 @@ export class DocumentReference {
      * @param {*} document The document from which to set the reference.
      */
     async setTo(document) {
-        await this.#update(document, () => this.id );
+        await this.#update(document, null, () => this.id );
     }
 
     /**
      * @param {*} document The document from which to delete the reference.
      */
     async deleteTo(document) {
-        await this.#update(document, () => null );
+        await this.#update(document, null, () => null );
     }
 
     /**
      * @param {*} document The document from which to add the reference.
      */
     async addTo(document) {
-        await this.#update(document, (set) => set.add(this.id) );
+        await this.#update(document, (set) => set.add(this.id), null );
     }
 
     /**
      * @param {*} document The document from which to remove the reference.
      */
     async removeFrom(document) {
-        await this.#update(document, (set) => set.filter(v => v != this.id));
+        await this.#update(document, (set) => set.filter(v => v != this.id), null);
     }
 
     /**
@@ -119,18 +119,25 @@ export class DocumentReference {
 
         let updates = {};
 
-        new DocumentReferencesIterator(this.documentName, this.type)
-            .withCallbackSet(field => {
+        const iterator = new DocumentReferencesIterator(this.documentName, this.type);
+
+        if (callbackSet != null) {
+            iterator.withCallbackSet(field => {
                 if (field.element.droppable) {
                     updates["system." + field.name] = callbackSet(new Set(document.system[field.name]));
                 }
             })
-            .withCallbackReference(field => {
+        }
+
+        if (callbackReference != null) {
+            iterator.withCallbackReference(field => {
                 if (field.droppable) {
                     updates["system." + field.name] = callbackReference();
                 }
             })
-            .forEach(document);
+        }
+
+        iterator.forEach(document);
 
         if (Tools.isObjectNotEmpty(updates)) {
             await document.update(updates);

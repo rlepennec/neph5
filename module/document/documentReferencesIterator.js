@@ -25,10 +25,11 @@ export class DocumentReferencesIterator {
 
     /**
      * Register the specified callback.
+     * @param predicate The predicate to satisfy to register the callback.
      * @param callback The callback used to process the reference field.
      * @return the instance.
      */
-    withCallbackReference(callback) {
+    withCallbackReference(predicate, callback) {
         this.callbackReference = callback;
         return this;
     }

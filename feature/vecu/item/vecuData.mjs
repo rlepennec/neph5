@@ -11,11 +11,19 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     required: true,
                 }
             ),
+            periode: new UUIDReferenceField(
+                {
+                    required: false,
+                    collection: 'Item',
+                    type: 'periode',
+                    droppable: true,
+                    openable: true,
+                }
+            ),
             competences: new foundry.data.fields.SetField(
                 new UUIDReferenceField(
                     {
-                        required: true,
-                        initial: null,
+                        required: false,
                         collection: 'Item',
                         type: 'competence',
                         droppable: true,
@@ -25,8 +33,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
             ),
             description: new foundry.data.fields.StringField(
                 {
-                    required: true,
-                    initial: null
+                    required: false
                 }
             )
         }
