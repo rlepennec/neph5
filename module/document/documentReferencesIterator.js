@@ -36,6 +36,7 @@ export class DocumentReferencesIterator {
 
     /**
      * This method is used to gather in the specified document all fields which match the current reference type.
+     * The callback parameter of every stops the iteration as soon as false is returned.
      * @param {*} document The document to process.
      */
     forEach(document) {

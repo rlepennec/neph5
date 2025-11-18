@@ -57,34 +57,6 @@ export class DocumentReference {
     }
 
     /**
-     * @param {*} document The document from which to set the reference.
-     */
-    async setTo(document) {
-        await this.#updateReference(document, () => this.id );
-    }
-
-    /**
-     * @param {*} document The document from which to delete the reference.
-     */
-    async deleteTo(document) {
-        await this.#updateReference(document, () => null );
-    }
-
-    /**
-     * @param {*} document The document from which to add the reference.
-     */
-    async addTo(document) {
-        await this.#updateSet(document, (set) => set.add(this.id) );
-    }
-
-    /**
-     * @param {*} document The document from which to remove the reference.
-     */
-    async removeFrom(document) {
-        await this.#updateSet(document, (set) => set.filter(v => v != this.id) );
-    }
-
-    /**
      * @returns the textual expression of the document reference.
      */
     toString() {
@@ -100,6 +72,9 @@ export class DocumentReference {
         var referenced = false;
 
         new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackReference(field => {
+                referenced = document.system[field.name] === this.id;
+            })
             .withCallbackSet(field => {
                 referenced = document.system[field.name].has(this.id);
             })
@@ -110,18 +85,23 @@ export class DocumentReference {
     }
 
     /**
-     * This method is used to update the references of the specified document.
-     * @param {*} document The document to update using the specified callback.
-     * @param {*} callback The callback used to update a simple reference in the specified document.
+     * This method is used to add the reference of the specified document.
+     * The reference can be set or added to a set of references depending of the schema of the item.
+     * @param {*} document The document to update.
      */
-    async #updateReference(document, callback) {
+    async addTo(document) {
 
         let updates = {};
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates["system." + field.name] = callback();
+                    updates["system." + field.name] = this.id;
+                }
+            })
+            .withCallbackSet(field => {
+                if (field.element.droppable) {
+                    updates["system." + field.name] = new Set(document.system[field.name]).add(this.id);
                 }
             })
             .forEach(document);
@@ -133,18 +113,23 @@ export class DocumentReference {
     }
 
     /**
-     * This method is used to update the references of the specified document.
-     * @param {*} document The document to update using the specified callback.
-     * @param {*} callback The callback used to update a set of reference in the specified document.
+     * This method is used to remove the reference of the specified document.
+     * The reference can be unset or removed from a set of references depending of the schema of the item.
+     * @param {*} document The document to update.
      */
-    async #updateSet(document, callback) {
+    async removeFrom(document) {
 
         let updates = {};
 
         new DocumentReferencesIterator(this.documentName, this.type)
+            .withCallbackReference(field => {
+                if (field.droppable) {
+                    updates["system." + field.name] = null;
+                }
+            })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates["system." + field.name] = callback(new Set(document.system[field.name]));
+                    updates["system." + field.name] = new Set(document.system[field.name]).filter(v => v != this.id);
                 }
             })
             .forEach(document);
