@@ -9,6 +9,11 @@
 
         <main>
 
+            {{> "systems/neph5e/templates/item-label.hbs"
+                title="Période"
+                references=sheet.periode
+            }}
+
             {{> "systems/neph5e/templates/item-references.hbs"
                 title="Compétences"
                 references=sheet.competences

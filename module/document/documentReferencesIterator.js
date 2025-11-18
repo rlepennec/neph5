@@ -25,11 +25,10 @@ export class DocumentReferencesIterator {
 
     /**
      * Register the specified callback.
-     * @param predicate The predicate to satisfy to register the callback.
      * @param callback The callback used to process the reference field.
      * @return the instance.
      */
-    withCallbackReference(predicate, callback) {
+    withCallbackReference(callback) {
         this.callbackReference = callback;
         return this;
     }
@@ -40,9 +39,6 @@ export class DocumentReferencesIterator {
      * @param {*} document The document to process.
      */
     forEach(document) {
-
-        // Callback must be defined
-        if (this.callbackSet == null) throw new Error("The callback used to process the set field must be defined");
 
         // Iterate all fields of the specified document
         Object.entries(document.system.schema.fields).every(([fieldName, field]) => {

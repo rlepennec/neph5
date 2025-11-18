@@ -20,7 +20,7 @@ export class DocumentContext {
      * @returns the context.
      */
     static createFromDocument(document) {
-        return new DocumentContext(document.system.id, document.name, document.uuid);
+        return document == null ? null : new DocumentContext(document.system.id, document.name, document.uuid);
     }
 
     /**

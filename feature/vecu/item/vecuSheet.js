@@ -24,6 +24,7 @@ export class VecuSheet extends NephilimItemSheet {
         const context = {
             ...await super._prepareContext(options),
             sheet: {
+                periode: new DocumentReferences('Item', 'periode', this.document),
                 competences: new DocumentReferences('Item', 'competence', this.document)
             }
         };
