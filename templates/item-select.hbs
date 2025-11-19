@@ -1,0 +1,14 @@
+{{#if title}}
+<h1>{{title}}</h1>
+{{/if}}
+
+<select name={{name}}>
+    {{#select value}}
+    {{#each options as |option|}}
+    <option value="{{option}}" class="option">{{option}}</option>
+    {{/each}}
+    {{/select}}
+</select>
+
+
+

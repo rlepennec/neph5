@@ -1,5 +1,6 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { DocumentReferences } from "../../../module/document/documentReferences.js";
+import { Constants } from "../../../module/common/constants.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -24,6 +25,7 @@ export class VecuSheet extends NephilimItemSheet {
         const context = {
             ...await super._prepareContext(options),
             sheet: {
+                elements: Constants.ELEMENTS,
                 periode: new DocumentReferences('Item', 'periode', this.document),
                 competences: new DocumentReferences('Item', 'competence', this.document)
             }

@@ -9,6 +9,13 @@
 
         <main>
 
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="Elément"
+                name="system.element"
+                value=document.system.element
+                options=sheet.elements
+            }}
+
             {{> "systems/neph5e/templates/item-label.hbs"
                 title="Période"
                 references=sheet.periode
