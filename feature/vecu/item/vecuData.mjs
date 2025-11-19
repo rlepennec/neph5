@@ -1,6 +1,6 @@
 import { Constants } from "../../../module/common/constants.js";
-import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
+import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
 export class VecuData extends foundry.abstract.TypeDataModel {
 
@@ -17,7 +17,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     initial: 'air',
                     choices: Constants.ELEMENTS
                 }
-            ), 
+            ),
             periode: new UUIDReferenceField(
                 {
                     required: false,

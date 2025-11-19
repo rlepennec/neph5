@@ -59,6 +59,17 @@
     "SETTINGS.extraChatMessages": "Messages du tchat",
     "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
 
+    "NEPHILIM": {
+        "competences": "Compétences",
+        "description": "Description",
+        "element": "Elément",
+        "epoque": "Epoque",
+        "periode": "Période",
+        "region": "Région",
+        "vecus": "Vécus"
+    },
+
+
     "NEPH5E": {
         "absorption": "Absorption",
         "actions": "Actions",

@@ -10,23 +10,24 @@
         <main>
 
             {{> "systems/neph5e/templates/item-select.hbs"
-                title="Elément"
+                title="element"
                 name="system.element"
                 value=document.system.element
                 options=sheet.elements
             }}
 
             {{> "systems/neph5e/templates/item-label.hbs"
-                title="Période"
+                title="periode"
                 references=sheet.periode
             }}
 
             {{> "systems/neph5e/templates/item-references.hbs"
-                title="Compétences"
+                title="competences"
                 references=sheet.competences
             }}
 
-            {{> "systems/neph5e/templates/item-description.hbs" title="Description"}}
+            {{> "systems/neph5e/templates/item-description.hbs"
+                title="description"}}
 
         </main>
 

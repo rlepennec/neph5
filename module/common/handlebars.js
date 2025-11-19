@@ -200,4 +200,12 @@ export class CustomHandlebarsHelpers {
         return game.settings.get('neph5e', option);
     }
 
+    /**
+     * @param words The words to translate. 
+     * @returns the concated words.
+     */
+    static translate(word) {
+        return game.i18n.localize(`NEPHILIM.${word}`);
+    }
+
 }

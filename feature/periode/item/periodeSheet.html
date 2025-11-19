@@ -10,23 +10,24 @@
         <main>
 
             {{> "systems/neph5e/templates/item-input.hbs"
-                title="Epoque"
+                title="epoque"
                 name="system.epoque"
                 value=document.system.epoque
             }}
 
             {{> "systems/neph5e/templates/item-input.hbs"
-                title="Région"
+                title="region"
                 name="system.region"
                 value=document.system.region
             }}
 
             {{> "systems/neph5e/templates/item-references.hbs"
-                title="Vécus"
+                title="vecus"
                 references=sheet.vecus
             }}
 
-            {{> "systems/neph5e/templates/item-description.hbs" title="Description"}}
+            {{> "systems/neph5e/templates/item-description.hbs"
+                title="description"}}
 
         </main>
 
