@@ -1,6 +1,6 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { DocumentReferences } from "../../../module/document/documentReferences.js";
-import { Constants } from "../../../module/common/constants.js";
+import { DocumentReferences } from "../../../module/document/documentReferences.js"
+import { VecuData } from "./vecuData.mjs";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -25,7 +25,7 @@ export class VecuSheet extends NephilimItemSheet {
         const context = {
             ...await super._prepareContext(options),
             sheet: {
-                elements: Constants.ELEMENTS,
+                elements: VecuData.defineSchema().element.choices,
                 periode: new DocumentReferences('Item', 'periode', this.document),
                 competences: new DocumentReferences('Item', 'competence', this.document)
             }
