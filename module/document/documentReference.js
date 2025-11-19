@@ -57,6 +57,13 @@ export class DocumentReference {
     }
 
     /**
+     * @returns the game object.
+     */
+    toObject() {
+        return game.collections.get(this.documentName).find(d => d.system.id === this.id);
+    }
+
+    /**
      * @returns the textual expression of the document reference.
      */
     toString() {
