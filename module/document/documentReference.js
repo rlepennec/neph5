@@ -1,3 +1,4 @@
+import { DocumentIdentifier } from "./documentIdentifier.js"
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
 import { NephilimItem } from "../item/nephilimItem.js"
 import { Tools } from "../common/tools.js"
@@ -9,66 +10,7 @@ import { Tools } from "../common/tools.js"
  * be deleted also.
  */
 
-export class DocumentReference {
-
-    /**
-     * @param {*} documentName The document name: Item or Actor.
-     * @param {*} type The type of item or actor.
-     * @param {*} id The nephilim document identifier.
-     */
-    constructor(documentName, type, id) {
-        this.documentName = documentName;
-        this.type = type;
-        this.id = id;
-    }
-
-    /**
-     * @param {*} source The source from which to create the reference.
-     * @returns the reference.
-     */
-    static of(source) {
-
-        switch (source.constructor) {
-
-            // The event target from which to create the reference. The data-id
-            // attribute must defined the textual expression of the reference. 
-            case HTMLElement: {
-                const words = source.closest("[data-id]")?.dataset.id.split(".");
-                return new DocumentReference(words[0], words[1], words[2]);
-            }
-
-            // The item from which to create the reference.
-            case NephilimItem: {
-                return new DocumentReference(source.documentName, source.type, source.system.id);
-            }
-
-            // The textual expression from which to create the reference.
-            // It must be built as follow: documentName.type.id
-            case String: {
-                const words = source.split(".");
-                return new DocumentReference(words[0], words[1], words[2]);
-            }
-
-            default:
-                throw new Error("Unsupported type to create a document reference");
-
-        }
-
-    }
-
-    /**
-     * @returns the game object.
-     */
-    toObject() {
-        return game.collections.get(this.documentName).find(d => d.system.id === this.id);
-    }
-
-    /**
-     * @returns the textual expression of the document reference.
-     */
-    toString() {
-        return this.documentName + "." + this.type + "." + this.id;
-    }
+export class DocumentReference extends DocumentIdentifier {
 
     /**
      * @param {*} document The document in which to look for the current reference.
