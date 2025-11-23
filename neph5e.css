@@ -19,7 +19,10 @@
   src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
 }
 form.nephilim {
+  --color-font-bright: #f5f4f4;
+  --color-font-dark: #191813;
   --color-scrollbar: #2f3557;
+  --font-family-title: 'AJensonPro';
 }
 form.nephilim section.window-content {
   flex-flow: unset;
@@ -35,7 +38,7 @@ form.nephilim prose-mirror .editor-content {
 }
 form.nephilim prose-mirror menu {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
-  color: #f5f4f4;
+  color: var(--color-font-bright);
 }
 form.nephilim.item section.window-content > section {
   display: flex;
