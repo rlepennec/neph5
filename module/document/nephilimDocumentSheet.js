@@ -53,7 +53,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     if (this.isEditable) {
       this.locked = true;
       const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
-      const lockLabel = 'LOCK'; //game.i18n.localize("SHEETS.CopyUuid");
+      const lockLabel = game.i18n.localize("NEPHILIM.toggleLock");
       const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
       this.window.controls.insertAdjacentHTML("beforebegin", lockId);
       this.window.lock = frame.querySelector("button[data-action=lock]");
