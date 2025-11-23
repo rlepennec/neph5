@@ -21,7 +21,7 @@ export class PeriodeSheet extends NephilimItemSheet {
     async _prepareContext(options) {
         const context = {
             ...await super._prepareContext(options),
-            sheetData: {
+            context: {
                 vecus: new DocumentReferences('Item', 'vecu', this.document)
             }
         };

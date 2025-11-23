@@ -13,17 +13,17 @@
                 title="element"
                 name="system.element"
                 value=document.system.element
-                options=sheetData.elements
+                options=context.elements
             }}
 
             {{> "systems/neph5e/templates/item-label.hbs"
                 title="periode"
-                references=sheetData.periode
+                references=context.periode
             }}
 
             {{> "systems/neph5e/templates/item-references.hbs"
                 title="competences"
-                references=sheetData.competences
+                references=context.competences
             }}
 
             {{> "systems/neph5e/templates/item-description.hbs"
