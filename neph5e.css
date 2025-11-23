@@ -22,10 +22,11 @@ form.nephilim {
   --color-font-bright: #f5f4f4;
   --color-font-dark: #191813;
   --color-scrollbar: #2f3557;
-  --font-family-title: 'AJensonPro';
   --background-article-bright: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   --background-article-dark: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --background-side-vecu: url("../../systems/neph5e/assets/core/side-vecu.webp");
+  --font-family-title: 'AJensonPro';
+  --font-family-content: 'NightjarDemi';
 }
 form.nephilim section.window-content {
   flex-flow: unset;
@@ -58,7 +59,7 @@ form.nephilim.item section.window-content > section aside {
 form.nephilim.item section.window-content > section article {
   display: flex;
   flex-direction: column;
-  font-family: 'AJensonPro';
+  font-family: var(--font-family-title);
   font-size: 16px;
   background: var(--background-article-bright);
   color: var(--color-font-dark);
@@ -78,7 +79,7 @@ form.nephilim.item section.window-content > section article header input {
   text-align: center;
   padding: 0px 10px 2px 10px;
   height: 100%;
-  font-family: 'NightjarDemi';
+  font-family: var(--font-family-content);
   border: none;
   overflow: hidden;
   white-space: nowrap;
@@ -99,7 +100,7 @@ form.nephilim.item section.window-content > section article main {
 }
 form.nephilim.item section.window-content > section article main h1 {
   color: var(--color-font-dark);
-  font-family: 'AJensonPro';
+  font-family: var(--font-family-title);
   font-size: 20px;
   margin-bottom: 5px;
   margin-top: 0px;
