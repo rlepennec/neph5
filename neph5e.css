@@ -50,7 +50,7 @@ form.nephilim.item section.window-content > section aside {
   width: 41px;
   background-image: url("../../systems/neph5e/assets/core/side-vecu.webp");
   background-repeat: no-repeat;
-  box-shadow: 0 0 6px 0px #f5f4f4 inset;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
 form.nephilim.item section.window-content > section article {
   display: flex;
@@ -58,15 +58,15 @@ form.nephilim.item section.window-content > section article {
   font-family: 'AJensonPro';
   font-size: 16px;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
-  color: #191813;
+  color: var(--color-font-dark);
   width: 100%;
 }
 form.nephilim.item section.window-content > section article header {
   display: flex;
   height: 60px;
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
-  color: #f5f4f4;
-  box-shadow: 0 0 6px 0px #f5f4f4 inset;
+  color: var(--color-font-bright);
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
   width: 100%;
 }
 form.nephilim.item section.window-content > section article header input {
@@ -80,7 +80,7 @@ form.nephilim.item section.window-content > section article header input {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: #f5f4f4;
+  color: var(--color-font-bright);
 }
 form.nephilim.item section.window-content > section article header img {
   flex: 0 0 auto;
@@ -95,8 +95,8 @@ form.nephilim.item section.window-content > section article main {
   padding: 10px;
 }
 form.nephilim.item section.window-content > section article main h1 {
-  color: #191813;
-  font-family: "AJensonPro";
+  color: var(--color-font-dark);
+  font-family: 'AJensonPro';
   font-size: 20px;
   margin-bottom: 5px;
   margin-top: 0px;
@@ -106,18 +106,16 @@ form.nephilim.item section.window-content > section article main ul {
 }
 form.nephilim.item section.window-content > section article main li {
   display: block;
-  font-family: AJensonPro;
-  font-size: 16px;
 }
 form.nephilim.item section.window-content > section article main input {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
-  color: #f5f4f4;
+  color: var(--color-font-bright);
   margin-bottom: 10px;
   opacity: 50%;
 }
 form.nephilim.item section.window-content > section article main input:disabled {
   background: none;
-  color: #191813;
+  color: var(--color-font-dark);
   border: none;
 }
 form.nephilim.item section.window-content > section article main .fas {
