@@ -23,6 +23,9 @@ form.nephilim {
   --color-font-dark: #191813;
   --color-scrollbar: #2f3557;
   --font-family-title: 'AJensonPro';
+  --background-article-bright: url("../../systems/neph5e/assets/skins/soleil/background.webp");
+  --background-article-dark: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  --background-side-vecu: url("../../systems/neph5e/assets/core/side-vecu.webp");
 }
 form.nephilim section.window-content {
   flex-flow: unset;
@@ -48,7 +51,7 @@ form.nephilim.item section.window-content > section {
 form.nephilim.item section.window-content > section aside {
   flex: 0 0 auto;
   width: 41px;
-  background-image: url("../../systems/neph5e/assets/core/side-vecu.webp");
+  background-image: var(--background-side-vecu);
   background-repeat: no-repeat;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
@@ -57,14 +60,14 @@ form.nephilim.item section.window-content > section article {
   flex-direction: column;
   font-family: 'AJensonPro';
   font-size: 16px;
-  background: url("../../systems/neph5e/assets/skins/soleil/background.webp");
+  background: var(--background-article-bright);
   color: var(--color-font-dark);
   width: 100%;
 }
 form.nephilim.item section.window-content > section article header {
   display: flex;
   height: 60px;
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background: var(--background-article-dark);
   color: var(--color-font-bright);
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
   width: 100%;
@@ -108,7 +111,7 @@ form.nephilim.item section.window-content > section article main li {
   display: block;
 }
 form.nephilim.item section.window-content > section article main input {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background: var(--background-article-dark);
   color: var(--color-font-bright);
   margin-bottom: 10px;
   opacity: 50%;
