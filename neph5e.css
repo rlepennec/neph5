@@ -23,6 +23,14 @@
   border-radius: 5px;
   color: var(--color-font-bright);
 }
+.mixin-editing-bright-on-dark {
+  background: var(--background-article-dark);
+  color: var(--color-font-bright);
+}
+.mixin-editing-dark-on-bright {
+  background: var(--background-article-bright);
+  color: var(--color-font-dark);
+}
 form.nephilim {
   --color-font-bright: #f5f4f4;
   --color-font-dark: #191813;
@@ -65,19 +73,19 @@ form.nephilim.item section.window-content > section aside {
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
 form.nephilim.item section.window-content > section article {
+  background: var(--background-article-bright);
+  color: var(--color-font-dark);
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-title);
   font-size: 16px;
-  background: var(--background-article-bright);
-  color: var(--color-font-dark);
   width: 100%;
 }
 form.nephilim.item section.window-content > section article header {
-  display: flex;
-  height: 60px;
   background: var(--background-article-dark);
   color: var(--color-font-bright);
+  display: flex;
+  height: 60px;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
   width: 100%;
 }

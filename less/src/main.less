@@ -25,6 +25,15 @@
     color: var(--color-font-bright);
 }
 
+.mixin-editing-bright-on-dark {
+    background: var(--background-article-dark);
+    color: var(--color-font-bright);
+}
+
+.mixin-editing-dark-on-bright {
+    background: var(--background-article-bright);
+    color: var(--color-font-dark);
+}
 
 form.nephilim {
     --color-font-bright: #f5f4f4;
@@ -35,7 +44,7 @@ form.nephilim {
     --background-side-vecu: url("../../systems/neph5e/assets/core/side-vecu.webp");
     --font-family-title: 'AJensonPro';
     --font-family-content: 'NightjarDemi';
-    
+
     section.window-content {
         flex-flow: unset;
         padding: 0px;
@@ -52,8 +61,7 @@ form.nephilim {
         }
 
         menu {
-            background: var(--background-article-dark);
-            color: var(--color-font-bright);
+            .mixin-editing-bright-on-dark();
         }
 
     }

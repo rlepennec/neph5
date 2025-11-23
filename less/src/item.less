@@ -14,19 +14,17 @@ form.nephilim.item {
         }
 
         article {
+            .mixin-editing-dark-on-bright();
             display: flex;
             flex-direction: column;
             font-family: var(--font-family-title);
             font-size: 16px;
-            background: var(--background-article-bright);
-            color: var(--color-font-dark);
             width: 100%;
 
             header {
+                .mixin-editing-bright-on-dark();
                 display: flex;
                 height: 60px;
-                background: var(--background-article-dark);
-                color: var(--color-font-bright);
                 box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
                 width: 100%;
 
@@ -86,7 +84,7 @@ form.nephilim.item {
                     }
 
                 }
-                 
+                
                 .fas {
                     margin-right: 10px;
                 }
@@ -95,13 +93,9 @@ form.nephilim.item {
                     column-count: 2;
                 }
 
-                
-
-
             }
 
         }
-
 
     }
 
