@@ -19,11 +19,17 @@
     src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
 }
 
+.mixin-editing-content {
+    background: linear-gradient(rgba(0, 26, 77, .5), rgba(0, 26, 77, .5)), var(--background-article-bright);
+    border-radius: 5px;
+    color: var(--color-font-bright);
+}
+
+
 form.nephilim {
     --color-font-bright: #f5f4f4;
     --color-font-dark: #191813;
     --color-scrollbar: #2f3557;
-    --font-family-title: 'AJensonPro';
     --background-article-bright: url("../../systems/neph5e/assets/skins/soleil/background.webp");
     --background-article-dark: url("../../systems/neph5e/assets/backgrounds/p.webp");
     --background-side-vecu: url("../../systems/neph5e/assets/core/side-vecu.webp");
@@ -41,11 +47,12 @@ form.nephilim {
         height: 100%;
 
         .editor-content {
+            .mixin-editing-content();
             padding: 10px;
         }
 
         menu {
-            background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+            background: var(--background-article-dark);
             color: var(--color-font-bright);
         }
 

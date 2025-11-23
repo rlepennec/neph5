@@ -76,10 +76,8 @@ form.nephilim.item {
                 }
 
                 input {
-                    background: var(--background-article-dark);
-                    color: var(--color-font-bright);
+                    .mixin-editing-content();
                     margin-bottom: 10px;
-                    opacity: 50%;
 
                     &:disabled {
                         background: none;
@@ -88,7 +86,7 @@ form.nephilim.item {
                     }
 
                 }
-
+                 
                 .fas {
                     margin-right: 10px;
                 }
@@ -96,6 +94,9 @@ form.nephilim.item {
                 .column-2 {
                     column-count: 2;
                 }
+
+                
+
 
             }
 
