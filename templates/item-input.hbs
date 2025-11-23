@@ -3,9 +3,7 @@
 {{/if}}
 
 <input
-    {{#unless editable}}
-    disabled
-    {{/unless}}
     name={{name}}
     type="text"
-    value="{{value}}"/>
+    value="{{value}}"
+    {{#if document.sheet.locked}} disabled{{/if}}/>

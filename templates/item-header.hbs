@@ -3,7 +3,8 @@
     <input
         name="name"
         type="text"
-        value="{{document.name}}"/>
+        value="{{document.name}}"
+        {{#if document.sheet.locked}} disabled{{/if}}/>
 
     <img
         src="{{document.img}}"

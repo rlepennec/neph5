@@ -2,7 +2,9 @@
 <h1>{{translate title}}</h1>
 {{/if}}
 
-{{#if editable}}
+{{#if document.sheet.locked}}
+{{{enrichedDescription}}}
+{{else}}
 <prose-mirror
     name="system.description"
     button="true"
@@ -11,6 +13,4 @@
     value="{{document.system.description}}">
     {{{enrichedDescription}}}
 </prose-mirror>
-{{else}}
-{{{enrichedDescription}}}
 {{/if}}
