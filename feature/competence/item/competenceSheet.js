@@ -2,9 +2,11 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
 
+    static #ID = 'competence';
+
     static DEFAULT_OPTIONS = {
-        id: "competence",
-        classes: ["competence"],
+        id: this.#ID,
+        classes: [this.#ID],
         position: {
             height: 500,
             width: 590,
@@ -13,7 +15,7 @@ export class CompetenceSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/competence/item/competenceSheet.html`,
+            template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.html`,
         }
     }
 

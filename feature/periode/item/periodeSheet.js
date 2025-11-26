@@ -3,9 +3,11 @@ import { DocumentReferences } from "../../../module/document/documentReferences.
 
 export class PeriodeSheet extends NephilimItemSheet {
 
+    static #ID = 'periode';
+
     static DEFAULT_OPTIONS = {
-        id: "periode",
-        classes: ["periode"],
+        id: this.#ID,
+        classes: [this.#ID],
         position: {
             height: 500,
             width: 590,
@@ -14,7 +16,7 @@ export class PeriodeSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/periodeSheet.html`,
+            template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.html`,
         }
     }
 
