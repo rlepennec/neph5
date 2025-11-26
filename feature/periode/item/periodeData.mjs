@@ -5,22 +5,26 @@ export class PeriodeData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new UUIDField(
+            id: new UUIDField
+            (
                 {
                     required: true
                 }
             ),
-            epoque: new foundry.data.fields.StringField(
+            epoque: new foundry.data.fields.StringField
+            (
                 {
                     required: false
                 }
             ),
-            region: new foundry.data.fields.StringField(
+            region: new foundry.data.fields.StringField
+            (
                 {
                     required: false
                 }
             ),
-            vecus: new foundry.data.fields.SetField(
+            vecus: new foundry.data.fields.SetField
+            (
                 new UUIDReferenceField(
                     {
                         required: false,
@@ -31,7 +35,8 @@ export class PeriodeData extends foundry.abstract.TypeDataModel {
                     }
                 )
             ),
-            description: new foundry.data.fields.StringField(
+            description: new foundry.data.fields.StringField
+            (
                 {
                     required: false
                 }

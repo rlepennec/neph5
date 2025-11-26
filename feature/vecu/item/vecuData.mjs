@@ -6,19 +6,22 @@ export class VecuData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new UUIDField(
+            id: new UUIDField
+            (
                 {
                     required: true,
                 }
             ),
-            element: new foundry.data.fields.StringField(
+            element: new foundry.data.fields.StringField
+            (
                 {
                     required: true,
                     initial: 'air',
                     choices: Constants.ELEMENTS
                 }
             ),
-            periode: new UUIDReferenceField(
+            periode: new UUIDReferenceField
+            (
                 {
                     required: false,
                     collection: 'Item',
@@ -27,7 +30,8 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     openable: true,
                 }
             ),
-            competences: new foundry.data.fields.SetField(
+            competences: new foundry.data.fields.SetField
+            (
                 new UUIDReferenceField(
                     {
                         required: false,
@@ -38,7 +42,8 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     }
                 )
             ),
-            description: new foundry.data.fields.StringField(
+            description: new foundry.data.fields.StringField
+            (
                 {
                     required: false
                 }
