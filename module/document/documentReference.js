@@ -73,7 +73,7 @@ export class DocumentReference extends DocumentIdentifier {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates["system." + field.name] = null;
+                    updates["system.-=" + field.name] = null;
                 }
             })
             .withCallbackSet(field => {

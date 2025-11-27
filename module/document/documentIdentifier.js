@@ -67,9 +67,9 @@ export class DocumentIdentifier {
     }
 
     /**
-     * @returns the game object according to the document name.
+     * @returns the game document according to the document name.
      */
-    toObject() {
+    toDocument() {
         return game.collections.get(this.documentName).find(d => d.system.id === this.id);
     }
 
