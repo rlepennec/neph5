@@ -8,7 +8,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     classes: ["nephilim"],
     dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }],
     actions: {
-      delete: NephilimDocumentSheet._onDeleteReference,
+      delete: NephilimDocumentSheet._onRemoveReference,
       open: NephilimDocumentSheet._onOpenLink,
       lock: NephilimDocumentSheet._onToggleLock
     }
@@ -132,9 +132,10 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @param {*} event 
    * @param {*} target 
    */
-  static async _onDeleteReference(event, target) {
-    await new DocumentReference(target).removeFrom(this.document);
-    await new DocumentReference(this.document).removeFrom(new DocumentIdentifier(target).toDocument());
+  static async _onRemoveReference(event, target) {
+    const remove = new DocumentIdentifier(target).toDocument();
+    await new DocumentReference(remove).removeFrom(this.document);
+    await new DocumentReference(this.document).removeFrom(remove);
   }
 
   /**
