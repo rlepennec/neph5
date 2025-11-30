@@ -127,6 +127,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     await new DocumentReference(this.document).removeFromRegister(drop);
     await new DocumentReference(drop).addTo(this.document);
     await new DocumentReference(this.document).addTo(drop);
+    console.log("end.drop");
   }
 
   /**
@@ -139,6 +140,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
     const remove = new DocumentIdentifier(target).toDocument();
     await new DocumentReference(remove).removeFrom(this.document);
     await new DocumentReference(this.document).removeFrom(remove);
+    console.log("end.delete");
   }
 
   /**

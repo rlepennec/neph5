@@ -44,4 +44,15 @@ export class NephilimItem extends Item {
         super._onUpdate(changed, options, userId);
     }
 
+    /**
+     * @override
+     */
+    async _preCreate(data, options, user) {
+        const source = data?._stats?.duplicateSource;
+        if (source != null) {
+            console.log("duplicate");
+        }
+        return super._preCreate(data, options, user);
+    }
+
 }
