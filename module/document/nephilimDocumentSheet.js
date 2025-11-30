@@ -122,7 +122,9 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @param {*} target 
    */
   async _onDrop(event) {
+    if (this.locked) return;
     const drop = await DocumentTools.droppedDocument(event);
+    await new DocumentReference(this.document).removeFromRegister(drop);
     await new DocumentReference(drop).addTo(this.document);
     await new DocumentReference(this.document).addTo(drop);
   }
@@ -133,6 +135,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @param {*} target 
    */
   static async _onRemoveReference(event, target) {
+    if (this.locked) return;
     const remove = new DocumentIdentifier(target).toDocument();
     await new DocumentReference(remove).removeFrom(this.document);
     await new DocumentReference(this.document).removeFrom(remove);

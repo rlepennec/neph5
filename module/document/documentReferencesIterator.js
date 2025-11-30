@@ -14,6 +14,17 @@ export class DocumentReferencesIterator {
     }
 
     /**
+     * Register the specified callbacks.
+     * @param callback The callback used to process the reference field and the set field.
+     * @return the instance.
+     */
+    withCallbacks(callback) {
+        this.callbackSet = callback;
+        this.callbackReference = callback;
+        return this;
+    }
+
+    /**
      * Register the specified callback.
      * @param callback The callback used to process the set field.
      * @return the instance.
