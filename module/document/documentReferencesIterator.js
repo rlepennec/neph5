@@ -45,8 +45,8 @@ export class DocumentReferencesIterator {
     }
 
     /**
-     * This method is used to gather in the specified document all fields which match the current reference type.
-     * The callback parameter of every stops the iteration as soon as false is returned.
+     * This method is used to gather in the specified document all fields which match the current reference
+     * type. The callback parameter of every stops the iteration as soon as false is returned.
      * @param {*} document The document to process.
      */
     forEach(document) {
@@ -58,10 +58,9 @@ export class DocumentReferencesIterator {
 
                 // The field is a set of references
                 case foundry.data.fields.SetField: 
-                    if (field.element instanceof UUIDReferenceField &&
-                        field.element.collection === this.documentName &&
-                        field.element.type === this.type &&
-                        this.callbackSet != null) {
+                    if (this.#matches(field.element) &&
+                        this.callbackSet != null &&
+                        field.element instanceof UUIDReferenceField) {
 
                         this.callbackSet(field);
                         return false;
@@ -71,8 +70,7 @@ export class DocumentReferencesIterator {
 
                 // The field is a reference
                 case UUIDReferenceField:
-                    if (field.collection == this.documentName &&
-                        field.type === this.type &&
+                    if (this.#matches(field) &&
                         this.callbackReference != null) {
 
                         this.callbackReference(field);
@@ -86,6 +84,29 @@ export class DocumentReferencesIterator {
             return true;
 
         })
+
+    }
+
+    /**
+     * Indicates if the specified field must be processed by registred callbacks.
+     * @param {*} field The field to inspect.
+     * @returns true if the field matches the expected one.
+     */
+    #matches(field) {
+
+        if (this.documentName != null && this.type != null) {
+            return field.collection === this.documentName && field.type === this.type;
+        }
+
+        if (this.documentName != null) {
+            return field.type === this.type;
+        }
+
+        if (this.type != null) {
+            return field.collection === this.documentName;
+        }
+
+        return true;
 
     }
 

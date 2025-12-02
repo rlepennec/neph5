@@ -29,7 +29,7 @@ export class DocumentReferences {
                 document.system[field.name].forEach(id => {
                     references.push(DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id)));
                 });
-                references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1});
+                references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
             })
             .forEach(document);
 

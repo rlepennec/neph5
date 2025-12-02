@@ -55,4 +55,29 @@ export class NephilimItem extends Item {
         return super._preCreate(data, options, user);
     }
 
+    /**
+     * Remove all references of Document-2 from the Document-1. Single references
+     * are unset and sets of references are cleared..
+     */
+    /*
+    async clearReferences() {
+
+        let updates = {};
+
+        new DocumentReferencesIterator()
+            .withCallbackReference(field => {
+                updates["system.-=" + field.name] = null;
+            })
+            .withCallbackSet(field => {
+                updates["system." + field.name] = new Set();
+            })
+            .forEach(document);
+
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
+
+    }
+    */
+
 }
