@@ -57,14 +57,14 @@ export class DocumentReferencesIterator {
             switch (field.constructor) {
 
                 // The field is a set of references
-                case foundry.data.fields.SetField: 
+                case foundry.data.fields.SetField:
                     if (field.element instanceof UUIDReferenceField && this.callbackSet != null) {
                         return this.#matches(field.element, this.callbackSet, field);
                     }
                     break;
 
                 // The field is a reference
-                case UUIDReferenceField: 
+                case UUIDReferenceField:
                     if (this.callbackReference != null) {
                         return this.#matches(field, this.callbackReference, field);
                     }
@@ -105,7 +105,7 @@ export class DocumentReferencesIterator {
 
         // Unexpected match
         throw new Error("Unexpected document iterator match [name=" + this.documentName + ', type=' + this.type + "]");
- 
+
     }
 
 }

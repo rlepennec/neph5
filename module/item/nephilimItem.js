@@ -1,4 +1,5 @@
 import { DocumentReference } from "../document/documentReference.js"
+import { DocumentReferencesIterator } from "../document/documentReferencesIterator.js"
 
 export class NephilimItem extends Item {
 
@@ -44,54 +45,40 @@ export class NephilimItem extends Item {
         super._onUpdate(changed, options, userId);
     }
 
+
+
+
+
+
     /**
      * @override
      */
     async _preCreate(data, options, user) {
-        const source = data?._stats?.duplicateSource;
-        if (source != null) {
-            console.log("duplicate");
-            console.log(data);
-            const item = fromUuidSync(source);
-            console.log(item);
-            const schema = item.schema;
-
-
-
-
-            // source = "Item.sZruEZkroR6d0Iz3"
-            // Retrieve item
-            // retrieve shema item.schema
-            // iterate on schema to clear data
-
-
+        if (data?._stats?.duplicateSource != null) {
+            await this.#clearReferences();
         }
         return super._preCreate(data, options, user);
     }
 
-    /**
-     * Remove all references of Document-2 from the Document-1. Single references
-     * are unset and sets of references are cleared..
-     */
-    /*
-    async clearReferences() {
-
-        let updates = {};
-
+    async #clearReferences() {
+        let changes = {
+            system: {
+                id: crypto.randomUUID()
+            }
+        }
         new DocumentReferencesIterator()
             .withCallbackReference(field => {
-                updates["system.-=" + field.name] = null;
+                if (!field.duplicable) {
+                    changes.system[field.name] = null;
+                }
             })
             .withCallbackSet(field => {
-                updates["system." + field.name] = new Set();
+                if (!field.element.duplicable) {
+                    changes.system[field.name] = new Set();
+                }
             })
-            .forEach(document);
-
-        if (Tools.isObjectNotEmpty(updates)) {
-            await document.update(updates);
-        }
-
+            .forEach(this);
+        await this.updateSource(changes);
     }
-    */
 
 }
