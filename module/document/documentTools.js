@@ -40,7 +40,7 @@ export class DocumentTools {
 
         // Case 3 - Import from World entity
         else {
-            return await fromUuid(data.uuid);
+            return fromUuidSync(data.uuid);
         }
 
     }

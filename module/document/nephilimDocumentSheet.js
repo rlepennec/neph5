@@ -147,7 +147,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
    * @param {*} target 
    */
   static async _onOpenLink(event, target) {
-    (await fromUuid(target.closest("[data-uuid]")?.dataset.uuid))?.sheet?.render(true);
+    fromUuidSync(target.closest("[data-uuid]")?.dataset.uuid)?.sheet?.render(true);
   }
 
   /**

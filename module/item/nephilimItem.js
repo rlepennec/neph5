@@ -51,6 +51,20 @@ export class NephilimItem extends Item {
         const source = data?._stats?.duplicateSource;
         if (source != null) {
             console.log("duplicate");
+            console.log(data);
+            const item = fromUuidSync(source);
+            console.log(item);
+            const schema = item.schema;
+
+
+
+
+            // source = "Item.sZruEZkroR6d0Iz3"
+            // Retrieve item
+            // retrieve shema item.schema
+            // iterate on schema to clear data
+
+
         }
         return super._preCreate(data, options, user);
     }

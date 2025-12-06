@@ -28,6 +28,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     type: 'periode',
                     droppable: true,
                     openable: true,
+                    duplicable: true,
                 }
             ),
             competences: new foundry.data.fields.SetField
@@ -39,6 +40,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                         type: 'competence',
                         droppable: true,
                         openable: true,
+                        duplicable: true,
                     }
                 )
             ),

@@ -11,6 +11,7 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
         type: 'base',
         droppable: true,
         openable: true,
+        duplicable : true,
       }
     )
   }
@@ -30,6 +31,7 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
   // pas appelé a la creation du document mais au demarrage, là ou les collections items et actors sont vides
   // a supprimer ?
   _validateType(value) {
+    /*
     const collection = this.#getCollection();
     if (collection != null) {
       if (!game.documentTypes.Item.includes(this.options.type)) {
@@ -39,6 +41,7 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
         throw new Error(`invalid ${this.options.type} ${this.options.collection} reference [${value}]`);
       }
     }
+      */
     super._validateType(value);
   }
 

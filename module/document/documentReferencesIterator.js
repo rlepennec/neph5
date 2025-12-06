@@ -58,24 +58,15 @@ export class DocumentReferencesIterator {
 
                 // The field is a set of references
                 case foundry.data.fields.SetField: 
-                    if (this.#matches(field.element) &&
-                        this.callbackSet != null &&
-                        field.element instanceof UUIDReferenceField) {
-
-                        this.callbackSet(field);
-                        return false;
-
+                    if (field.element instanceof UUIDReferenceField && this.callbackSet != null) {
+                        return this.#matches(field.element, this.callbackSet, field);
                     }
                     break;
 
                 // The field is a reference
-                case UUIDReferenceField:
-                    if (this.#matches(field) &&
-                        this.callbackReference != null) {
-
-                        this.callbackReference(field);
-                        return false;
-
+                case UUIDReferenceField: 
+                    if (this.callbackReference != null) {
+                        return this.#matches(field, this.callbackReference, field);
                     }
                     break;
 
@@ -88,26 +79,33 @@ export class DocumentReferencesIterator {
     }
 
     /**
-     * Indicates if the specified field must be processed by registred callbacks.
-     * @param {*} field The field to inspect.
-     * @returns true if the field matches the expected one.
+     * Process the specified process field if the inspect field matches.
+     * @param {*} inspect  The field to inspect.
+     * @param {*} callback The callback used to process the field.
+     * @param {*} process  The field to process.
+     * @returns false to stop to iterate over following fields.
      */
-    #matches(field) {
+    #matches(inspect, callback, process) {
 
+        // Process the only field if match and stop iteration
         if (this.documentName != null && this.type != null) {
-            return field.collection === this.documentName && field.type === this.type;
+            if (inspect.collection === this.documentName && inspect.type === this.type) {
+                callback(process);
+                return false;
+            } else {
+                return true;
+            }
         }
 
-        if (this.documentName != null) {
-            return field.type === this.type;
+        // Process all reference fields 
+        if (this.documentName == null && this.type == null) {
+            callback(process);
+            return true;
         }
 
-        if (this.type != null) {
-            return field.collection === this.documentName;
-        }
-
-        return true;
-
+        // Unexpected match
+        throw new Error("Unexpected document iterator match [name=" + this.documentName + ', type=' + this.type + "]");
+ 
     }
 
 }

@@ -32,6 +32,7 @@ export class PeriodeData extends foundry.abstract.TypeDataModel {
                         type: 'vecu',
                         droppable: true,
                         openable: true,
+                        duplicable: false,
                     }
                 )
             ),
