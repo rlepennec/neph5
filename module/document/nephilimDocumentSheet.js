@@ -1,4 +1,3 @@
-import { DocumentTools } from "./documentTools.js"
 import { DocumentIdentifier } from "../document/documentIdentifier.js"
 import { DocumentReference } from "../document/documentReference.js"
 
@@ -123,7 +122,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	async _onDrop(event) {
 		if (this.locked) return;
-		const drop = await DocumentTools.droppedDocument(event);
+		const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
+		const drop = await Item.implementation.fromDropData(data);
 		await new DocumentReference(this.document).removeFromRegister(drop);
 		await new DocumentReference(drop).addTo(this.document);
 		await new DocumentReference(this.document).addTo(drop);
