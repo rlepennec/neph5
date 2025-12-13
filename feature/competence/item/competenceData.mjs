@@ -4,7 +4,7 @@ export class CompetenceData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new UUIDField
+            sid: new UUIDField
             (
                 {
                     required: true

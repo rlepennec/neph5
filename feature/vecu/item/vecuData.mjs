@@ -6,7 +6,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new UUIDField
+            sid: new UUIDField
             (
                 {
                     required: true,

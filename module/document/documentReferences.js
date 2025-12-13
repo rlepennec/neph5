@@ -26,8 +26,8 @@ export class DocumentReferences {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
-                document.system[field.name].forEach(id => {
-                    references.push(DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id)));
+                document.system[field.name].forEach(sid => {
+                    references.push(DocumentContext.createFromDocument(this.documentName, sid));
                 });
                 references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
             })
@@ -47,9 +47,9 @@ export class DocumentReferences {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                const id = document.system[field.name];
-                if (id != null) {
-                    reference = DocumentContext.createFromDocument(game.collections.get(this.documentName).find(d => d.system.id === id));
+                const sid = document.system[field.name];
+                if (sid != null) {
+                    reference = DocumentContext.createFromDocument(this.documentName, sid);
                 }
             })
             .forEach(document);

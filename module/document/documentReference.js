@@ -24,7 +24,6 @@ import { Tools } from "../common/tools.js"
  *                    <-------o
  * 
  */
-
 export class DocumentReference extends DocumentIdentifier {
 
     /**
@@ -43,10 +42,10 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                referenced = document.system[field.name] === this.id;
+                referenced = document.system[field.name] === this.sid;
             })
             .withCallbackSet(field => {
-                referenced = document.system[field.name].has(this.id);
+                referenced = document.system[field.name].has(this.sid);
             })
             .forEach(document);
 
@@ -99,12 +98,12 @@ export class DocumentReference extends DocumentIdentifier {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates["system." + field.name] = this.id;
+                    updates["system." + field.name] = this.sid;
                 }
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates["system." + field.name] = new Set(document.system[field.name]).add(this.id);
+                    updates["system." + field.name] = new Set(document.system[field.name]).add(this.sid);
                 }
             })
             .forEach(document);
@@ -139,7 +138,7 @@ export class DocumentReference extends DocumentIdentifier {
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates["system." + field.name] = new Set(document.system[field.name]).filter(v => v != this.id);
+                    updates["system." + field.name] = new Set(document.system[field.name]).filter(v => v != this.sid);
                 }
             })
             .forEach(document);

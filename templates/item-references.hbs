@@ -4,9 +4,9 @@
 
 <ul class="column-2">
     {{#each references.collection as |item|}}
-    <li data-action="open" data-uuid="{{item.uuid}}" data-id="{{../references.documentName}}.{{../references.type}}.{{item.id}}">
+    <li data-fsid="{{item.fsid}}">
         <i class="fas fa-trash"{{#unless ../document.sheet.locked}} data-action="delete"{{/unless}}></i>
-        {{item.name}}
+        <span data-action="open">{{item.name}}</span>
     </li>
     {{/each}}
 </ul>

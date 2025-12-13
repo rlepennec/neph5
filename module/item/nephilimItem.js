@@ -56,7 +56,7 @@ export class NephilimItem extends Item {
     async _preCreate(data, options, user) {
         if (options.fromCompendium === true) {
             // Already exist
-            if (NephilimItem.fromId(this.system.id) != null) { return false};
+            if (fromUuidSync(this.uuid)) return false;
         }
         if (data?._stats?.duplicateSource != null) {
             await this.#clearReferences();
@@ -84,9 +84,5 @@ export class NephilimItem extends Item {
             .forEach(this);
         await this.updateSource(changes);
     }
-
-	static fromId(id) {
-        return game.items.entries().find(([key, item]) => item.system.id === id);
-	}
 
 }
