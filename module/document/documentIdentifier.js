@@ -27,44 +27,71 @@ export class DocumentIdentifier {
     #sid = null;
 
     /**
+     * The document name to display.
+     */
+    #name = null;
+
+    /**
      * @param {*} source The source from which to create the identifier which can be:
      *  - a foundry object
      *  - an attribute data-fsid in a html element provided by the system
      *  - a string with the following format: documentName.id.type.fsid
      */
-   constructor(source) {
+   constructor(...args) {
 
-        switch (source.constructor) {
+        switch (args.length) {
 
-            // The event target from which to create the identifier. The data-fsid
-            // attribute must defined the textual expression of the identifier. 
-            case HTMLElement:
-            case HTMLSpanElement: {
-                this.#parse(source.closest("[data-fsid]")?.dataset.fsid);
+            case 1: {
+
+                const source = args[0];
+
+                switch (source.constructor) {
+
+                    // The event target from which to create the identifier. The data-fsid
+                    // attribute must defined the textual expression of the identifier. 
+                    case HTMLElement:
+                    case HTMLParagraphElement:
+                    case HTMLSpanElement: {
+                        this.#parse(source.closest("[data-fsid]")?.dataset.fsid);
+                        break;
+                    }
+
+                    // The item from which to create the identifier.
+                    case NephilimItem: {
+                        this.#parse(source);
+                        break;
+                    }
+
+                    // The textual expression from which to create the identifier.
+                    // It must be built as follow: documentName.id.type.sid
+                    case String: {
+                        this.#parse(source);
+                        break;
+                    }
+
+                    // The dropped document from which to create the identifier. 
+                    case DragEvent: {
+                        this.#parse(fromUuidSync(foundry.applications.ux.TextEditor.implementation.getDragEventData(source).uuid));
+                        break;
+                    }
+
+                    default:
+                        throw new Error("Unsupported type to create a document identifier");
+
+                }
+
                 break;
+            
             }
 
-            // The item from which to create the identifier.
-            case NephilimItem: {
-                this.#parse(source);
+            case 2: {
+                this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
                 break;
-            }
 
-            // The textual expression from which to create the identifier.
-            // It must be built as follow: documentName.id.type.sid
-            case String: {
-                this.#parse(source);
-                break;
-            }
-
-            // The dropped document from which to create the identifier. 
-            case DragEvent: {
-                this.#parse(fromUuidSync(foundry.applications.ux.TextEditor.implementation.getDragEventData(source).uuid));
-                break;
             }
 
             default:
-                throw new Error("Unsupported type to create a document identifier");
+                throw new Error("Unsupported number of arguments to create a document identifier");
 
         }
 
@@ -96,6 +123,13 @@ export class DocumentIdentifier {
      */
     get sid() {
         return this.#sid;
+    }
+
+    /**
+     * @returns the document name to display
+     */
+    get name() {
+        return this.#name;
     }
 
     /**
@@ -148,6 +182,7 @@ export class DocumentIdentifier {
                 this.#type = words.pop();
                 this.#id = words.pop();
                 this.#documentName = words.pop();
+                this.#name = fromUuidSync(this.uuid).name;
                 break;
             }
 
@@ -156,6 +191,7 @@ export class DocumentIdentifier {
                 this.#type = source.type;
                 this.#id = source.id;
                 this.#documentName = source.documentName;
+                this.#name = source.name;
                 break;
             }
 
@@ -164,6 +200,7 @@ export class DocumentIdentifier {
                 this.#type = null;
                 this.#id = null;
                 this.#documentName = null;
+                this.#name = null;
                 break;
 
         }

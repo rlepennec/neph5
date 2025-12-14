@@ -1,5 +1,5 @@
 
-import { DocumentContext } from "./documentContext.js"
+import { DocumentIdentifier } from "./documentIdentifier.js"
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
 
 export class DocumentReferences {
@@ -27,7 +27,7 @@ export class DocumentReferences {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
                 document.system[field.name].forEach(sid => {
-                    references.push(DocumentContext.create(this.documentName, sid));
+                    references.push(new DocumentIdentifier(this.documentName, sid));
                 });
                 references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
             })
@@ -49,7 +49,7 @@ export class DocumentReferences {
             .withCallbackReference(field => {
                 const sid = document.system[field.name];
                 if (sid != null) {
-                    reference = DocumentContext.create(this.documentName, sid);
+                    reference = new DocumentIdentifier(this.documentName, sid);
                 }
             })
             .forEach(document);
