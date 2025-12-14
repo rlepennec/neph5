@@ -36,6 +36,7 @@ export class NephilimItemSheet extends NephilimDocumentSheet  {
                 relativeTo: this.document
             }
         )
+        context.locked = this.locked;
         //context.img = "systems/neph5e/assets/icons/voie.webp";
         console.log("_prepareContext.end");
         return context

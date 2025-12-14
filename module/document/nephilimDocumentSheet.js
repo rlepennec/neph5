@@ -13,6 +13,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		}
 	}
 
+	locked = true;
+
 	/**
 	* Create drag-and-drop workflow handlers for this Application
 	* @returns {DragDrop[]}     An array of DragDrop handlers
@@ -51,7 +53,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	async _renderFrame(options) {
 		const frame = await super._renderFrame(options);
 		if (this.isEditable) {
-			this.locked = true;
 			const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
 			const lockLabel = game.i18n.localize("NEPHILIM.toggleLock");
 			const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;

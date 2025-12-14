@@ -2,6 +2,10 @@
 <h1>{{translate title}}</h1>
 {{/if}}
 
+
+{{#if locked}}
+{{value}}
+{{else}}
 <select name={{name}}>
     {{#select value}}
     {{#each options as |option|}}
@@ -9,6 +13,6 @@
     {{/each}}
     {{/select}}
 </select>
-
+{{/if}}
 
 

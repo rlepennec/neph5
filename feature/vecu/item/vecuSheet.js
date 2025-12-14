@@ -22,15 +22,14 @@ export class VecuSheet extends NephilimItemSheet {
     }
 
     async _prepareContext(options) {
-        const context = {
+        return {
             ...await super._prepareContext(options),
             context: {
                 elements: VecuData.defineSchema().element.choices,
                 periode: new DocumentReferences('Item', 'periode', this.document),
                 competences: new DocumentReferences('Item', 'competence', this.document)
             }
-        };
-        return context;
+        }
     }
 
 }
