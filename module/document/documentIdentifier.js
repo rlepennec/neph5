@@ -1,14 +1,10 @@
 import { NephilimItem } from "../item/nephilimItem.js"
 
 /**
- * The DocumentIdentifier class defines an identifier of a system object.
+ * The DocumentIdentifier class defines an identifier of a world system object.
+ * This class doesn't manage compendium.
  */
 export class DocumentIdentifier {
-
-    /**
-     * The foundry compendium name which contains the document: world.com
-     */
-    #compendium = null;
 
     /**
      * The foundry document name: Item, Actor, ... defined in game.collections
@@ -34,7 +30,7 @@ export class DocumentIdentifier {
      * @param {*} source The source from which to create the identifier which can be:
      *  - a foundry object
      *  - an attribute data-fsid in a html element provided by the system
-     *  - a string with the following format: (compendiumName.)documentName.id.type.fsid
+     *  - a string with the following format: documentName.id.type.fsid
      */
    constructor(source) {
 
@@ -55,7 +51,7 @@ export class DocumentIdentifier {
             }
 
             // The textual expression from which to create the identifier.
-            // It must be built as follow: (compendiumName.)documentName.id.type.sid
+            // It must be built as follow: documentName.id.type.sid
             case String: {
                 this.#parse(source);
                 break;
@@ -72,13 +68,6 @@ export class DocumentIdentifier {
 
         }
 
-    }
-
-    /**
-     * @returns the foundry compendium name which contains the document
-     */
-    get compendium() {
-        return this.#compendium;
     }
 
     /**
@@ -112,39 +101,38 @@ export class DocumentIdentifier {
     /**
      * @returns the full foundry document identifier which can be used as 
      * parameter in the function fromUuidSync to retrieve a world document
-     * or to retrieve a compendium document index
-     * Compendium.world.com.Item.I5B5iaZvkhOVGicK, Item.I5B5iaZvkhOVGicK, ...
+     * Item.I5B5iaZvkhOVGicK, Item.I5B5iaZvkhOVGicK, ...
      */
     get uuid() {
-        return (this.#compendium != null ? "Compendium." + this.#compendium + "." : "") + this.#documentName + "." + this.#id;;
+        return this.isNull() ? null : this.#documentName + "." + this.#id;;
     }
 
     /**
-     * @returns the full system identifier of the document: (compendiumName.)documentName.id.type.sid
+     * @returns the full system identifier of the document: documentName.id.type.sid
      */
     get fsid() {
-        return this.uuid + "." + this.#type + "." + this.#sid; 
+        return this.isNull() ? null : this.uuid + "." + this.#type + "." + this.#sid; 
+    }
+
+    /**
+     * @returns true if this identifier is well defined.
+     */
+    isNull() {
+        return this.#documentName == null;
     }
 
     /**
      * @returns the game document according to the document name.
      */
     toDocument() {
-        return this.#compendium != null ? null : fromUuidSync(this.uuid);
-    }
-
-    /**
-     * @returns the game document index according to the document name.
-     */
-    toIndex() {
-        return this.#compendium == null ? null : fromUuidSync(this.uuid);
+        return this.isNull() ? null : fromUuidSync(this.uuid);
     }
 
     /**
      * @returns the textual expression of the document identifier: Item.vecu.JYxbdtxqlFSwFyQn
      */
     toString() {
-        return this.sid;
+        return this.isNull() ? null : this.sid;
     }
 
     /**
@@ -160,7 +148,6 @@ export class DocumentIdentifier {
                 this.#type = words.pop();
                 this.#id = words.pop();
                 this.#documentName = words.pop();
-                this.#compendium = words.length > 0 ? words.shift() : null;
                 break;
             }
 
@@ -169,22 +156,15 @@ export class DocumentIdentifier {
                 this.#type = source.type;
                 this.#id = source.id;
                 this.#documentName = source.documentName;
-                this.#compendium = source.pack;
-                break;
-            }
-
-            case Object: {
-                const words = source.uuid.split(".");
-                this.#sid = null;
-                this.#type = source.pack;
-                this.#id = words.pop();
-                this.#documentName = words.pop();
-                this.#compendium = source.pack;
                 break;
             }
 
             default:
-                throw new Error("Unsupported type to create a document identifier");
+                this.#sid = null;
+                this.#type = null;
+                this.#id = null;
+                this.#documentName = null;
+                break;
 
         }
 

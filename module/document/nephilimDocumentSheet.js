@@ -122,12 +122,11 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	async _onDrop(event) {
 		if (this.locked) return;
-		const id = new DocumentIdentifier(event);
-		if (id.compendium != null) {
-			ui.notifications.warn("Can't drop document from compendium");
+		const drop = new DocumentIdentifier(event).toDocument();
+		if (drop == null) {
+			ui.notifications.warn("Can't drop this kind of object");
 			return;
 		}
-		const drop = id.toDocument();
 		await new DocumentReference(this.document).removeFromRegister(drop);
 		await new DocumentReference(drop).addTo(this.document);
 		await new DocumentReference(this.document).addTo(drop);
