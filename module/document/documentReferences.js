@@ -27,7 +27,7 @@ export class DocumentReferences {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
                 document.system[field.name].forEach(sid => {
-                    references.push(DocumentContext.createFromDocument(this.documentName, sid));
+                    references.push(DocumentContext.create(this.documentName, sid));
                 });
                 references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
             })
@@ -49,7 +49,7 @@ export class DocumentReferences {
             .withCallbackReference(field => {
                 const sid = document.system[field.name];
                 if (sid != null) {
-                    reference = DocumentContext.createFromDocument(this.documentName, sid);
+                    reference = DocumentContext.create(this.documentName, sid);
                 }
             })
             .forEach(document);

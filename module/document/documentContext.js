@@ -7,7 +7,7 @@ export class DocumentContext {
 
     /**
      * @param {*} fsid The full system document identifier
-     * @param {*} name The document name
+     * @param {*} name The name of the document to display
      */
     constructor(fsid, name) {
         this.fsid = fsid;
@@ -15,22 +15,13 @@ export class DocumentContext {
     }
 
     /**
-     * @param {*} item The document from which to create the context.
+     * @param {*} documentName The foundry document name
+     * @param {*} sid The system document identifier
      * @returns the context.
      */
-    static createFromDocument(documentName, sid) {
+    static create(documentName, sid) {
         const document = game.collections.get(documentName).find(d => d.system.sid === sid);
         return document == null ? null : new DocumentContext(new DocumentIdentifier(document).fsid, document.name);
-    }
-
-    /**
-     * @returns the object to add in the sheet context.
-     */
-    toContext() {
-        return {
-            fsid: this.fsid,
-            name: this.name
-        }
     }
 
 }
