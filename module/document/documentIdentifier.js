@@ -42,6 +42,7 @@ export class DocumentIdentifier {
 
             // The event target from which to create the identifier. The data-fsid
             // attribute must defined the textual expression of the identifier. 
+            case HTMLElement:
             case HTMLSpanElement: {
                 this.#parse(source.closest("[data-fsid]")?.dataset.fsid);
                 break;
