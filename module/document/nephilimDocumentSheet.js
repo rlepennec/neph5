@@ -122,11 +122,12 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	async _onDrop(event) {
 		if (this.locked) return;
-		const drop = new DocumentIdentifier(event).toDocument();
-		if (drop.pack != null) {
+		const id = new DocumentIdentifier(event);
+		if (id.compendium != null) {
 			ui.notifications.warn("Can't drop document from compendium");
 			return;
 		}
+		const drop = id.toDocument();
 		await new DocumentReference(this.document).removeFromRegister(drop);
 		await new DocumentReference(drop).addTo(this.document);
 		await new DocumentReference(this.document).addTo(drop);
@@ -151,7 +152,11 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	static async _onOpenLink(event, target) {
 		const open = new DocumentIdentifier(target).toDocument();
-		open?.sheet?.render(true);
+		if (open == null) {
+			ui.notifications.warn("The linked document doesn't exist in the world");
+			return;
+		}
+		open.sheet?.render(true);
 	}
 
 	/**

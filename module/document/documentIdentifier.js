@@ -173,6 +173,16 @@ export class DocumentIdentifier {
                 break;
             }
 
+            case Object: {
+                const words = source.uuid.split(".");
+                this.#sid = null;
+                this.#type = source.pack;
+                this.#id = words.pop();
+                this.#documentName = words.pop();
+                this.#compendium = source.pack;
+                break;
+            }
+
             default:
                 throw new Error("Unsupported type to create a document identifier");
 
