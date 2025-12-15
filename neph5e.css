@@ -141,6 +141,15 @@ form.nephilim.item section.window-content > section article main input:disabled 
   color: var(--color-font-dark);
   border: none;
 }
+form.nephilim.item section.window-content > section article main select {
+  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
+  border-radius: 5px;
+  color: var(--color-font-bright);
+}
+form.nephilim.item section.window-content > section article main option {
+  background: var(--background-article-bright);
+  color: var(--color-font-dark);
+}
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;
 }
