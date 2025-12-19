@@ -34,4 +34,6 @@ export class Constants {
 
     static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
 
+    static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
+
 }

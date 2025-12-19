@@ -1,6 +1,46 @@
-import { Constants } from "./constants.js";
+import { Constants } from "./module/common/constants.js";
 
 export class CustomHandlebarsHelpers {
+
+    static register() {
+
+        Handlebars.registerHelper({
+
+            translate: CustomHandlebarsHelpers.translate,
+            
+            concat: CustomHandlebarsHelpers.concat,
+            isNull: CustomHandlebarsHelpers.isNull,
+            nonNull: CustomHandlebarsHelpers.nonNull,
+            select: CustomHandlebarsHelpers.select,
+            getItem: CustomHandlebarsHelpers.getItem,
+            loop: CustomHandlebarsHelpers.loop,
+            log: CustomHandlebarsHelpers.log,
+            html: CustomHandlebarsHelpers.html,
+            includes: CustomHandlebarsHelpers.includes,
+            sum: CustomHandlebarsHelpers.sum,
+            getSapiences: CustomHandlebarsHelpers.getSapiences,
+            getLevel: CustomHandlebarsHelpers.getLevel,
+            getSapiences: CustomHandlebarsHelpers.getSapiences,
+            getNextCost: CustomHandlebarsHelpers.getNextCost,
+            isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
+            isEmptyString: CustomHandlebarsHelpers.isEmptyString,
+            isContact: CustomHandlebarsHelpers.isContact,
+            cercles: CustomHandlebarsHelpers.cercles,
+            focus: CustomHandlebarsHelpers.focus,
+            numberOfFocus: CustomHandlebarsHelpers.numberOfFocus,
+            sciences: CustomHandlebarsHelpers.sciences,
+            savoir: CustomHandlebarsHelpers.savoir,
+            laboratoryOwner: CustomHandlebarsHelpers.laboratoryOwner,
+            constructOf: CustomHandlebarsHelpers.constructOf,
+            getMaxBaseMP: CustomHandlebarsHelpers.getMaxBaseMP,
+            getMaxFinalMP: CustomHandlebarsHelpers.getMaxFinalMP,
+            science: CustomHandlebarsHelpers.science,
+            fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
+            getSystemOption: CustomHandlebarsHelpers.getSystemOption,
+            minus: (v1, v2) => v1 - v2,
+        });
+
+    }
 
     /**
      * @param value The value to check.

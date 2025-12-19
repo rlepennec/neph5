@@ -64,12 +64,17 @@
         "description": "Description",
         "element": "Elément",
         "epoque": "Epoque",
+        "humeur": "Humeur",
+        "main": "Main",
+        "peau": "Peau",
+        "odeur": "Odeur",
         "periode": "Période",
         "region": "Région",
-        "toggleLock": "Toggle Lock",
-        "vecus": "Vécus"
+        "toggleLock": "Verrouillage",
+        "vecus": "Vécus",
+        "visage": "Visage",
+        "voix": "Voix"
     },
-
 
     "NEPH5E": {
         "absorption": "Absorption",

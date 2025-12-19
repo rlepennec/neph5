@@ -9,7 +9,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
             sid: new UUIDField
             (
                 {
-                    required: true,
+                    required: true
                 }
             ),
             element: new foundry.data.fields.StringField
@@ -44,12 +44,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     }
                 )
             ),
-            description: new foundry.data.fields.StringField
-            (
-                {
-                    required: false
-                }
-            )
+            description: new foundry.data.fields.StringField()
         }
     }
 

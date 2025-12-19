@@ -7,7 +7,7 @@ export class CercleData extends foundry.abstract.TypeDataModel {
             sid: new UUIDField
             (
                 {
-                    required: true,
+                    required: true
                 }
             ),
             description: new foundry.data.fields.StringField

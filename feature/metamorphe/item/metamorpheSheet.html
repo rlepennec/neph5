@@ -1,0 +1,76 @@
+<section class="item-root">
+
+    <aside style="--background-side: var(--background-side-vecu)"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/item-header.hbs"}}
+
+        <main>
+
+            {{#loop 1 10 1}}
+                {{> "systems/neph5e/templates/item-input.hbs"
+                    title="{{this}}""
+                    name="system.metamorphoses.v5.[0]"
+                    value=document.system.metamorphoses.v5.[0]
+                }}
+            {{/loop}}
+
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="element"
+                name="system.element"
+                value=document.system.element
+                options=context.elements
+            }}
+
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="humeur"
+                name="system.humeur"
+                value=document.system.humeur
+                options=context.humeurs
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="main"
+                name="system.portrait.activite"
+                value=document.system.portrait.activite
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="main"
+                name="system.metamorphoses.v1.main.titre"
+                value=document.system.metamorphoses.v1.main.titre
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="odeur"
+                name="system.metamorphoses.v1.odeur.titre"
+                value=document.system.metamorphoses.v1.odeur.titre
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="peau"
+                name="system.metamorphoses.v1.peau.titre"
+                value=document.system.metamorphoses.v1.peau.titre
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="visage"
+                name="system.metamorphoses.v1.visage.titre"
+                value=document.system.metamorphoses.v1.visage.titre
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="voix"
+                name="system.metamorphoses.v1.voix.titre"
+                value=document.system.metamorphoses.v1.voix.titre
+            }}
+
+            {{> "systems/neph5e/templates/item-description.hbs"
+                title="description"}}
+
+        </main>
+
+    </article>
+
+</section>
