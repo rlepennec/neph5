@@ -9,11 +9,11 @@
         <main>
 
             {{#loop 1 10 1}}
-                {{> "systems/neph5e/templates/item-input.hbs"
-                    title="{{this}}""
-                    name="system.metamorphoses.v5.[0]"
-                    value=document.system.metamorphoses.v5.[0]
-                }}
+                <h1>N°{{.}}</h1>
+                <input
+                    name=v5[{{.}}]
+                    type="text"
+                    value="document.system.metamorphoses.v5.[{{.}}]"/>
             {{/loop}}
 
             {{> "systems/neph5e/templates/item-select.hbs"
