@@ -13,7 +13,8 @@
                 <input
                     name="system.metamorphoses.v5.{{@index}}"
                     type="text"
-                    value="{{.}}" />
+                    value="{{.}}"
+                    {{#if ../document.sheet.locked}} disabled{{/if}} />
             {{/each}}
 
 <!--
