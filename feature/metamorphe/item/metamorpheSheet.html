@@ -8,14 +8,15 @@
 
         <main>
 
-            {{#loop 1 10 1}}
-                <h1>N°{{.}}</h1>
+            {{#each document.system.metamorphoses.v5}}
+                <h1>N°{{@index}}</h1>
                 <input
-                    name=v5[{{.}}]
+                    name="system.metamorphoses.v5.{{@index}}"
                     type="text"
-                    value="document.system.metamorphoses.v5.[{{.}}]"/>
-            {{/loop}}
+                    value="{{.}}" />
+            {{/each}}
 
+<!--
             {{> "systems/neph5e/templates/item-select.hbs"
                 title="element"
                 name="system.element"
@@ -68,7 +69,7 @@
 
             {{> "systems/neph5e/templates/item-description.hbs"
                 title="description"}}
-
+        -->
         </main>
 
     </article>

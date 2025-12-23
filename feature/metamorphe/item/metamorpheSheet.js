@@ -10,6 +10,8 @@ export class MetamorpheSheet extends NephilimItemSheet {
         classes: [this.#ID],
         form: {
             handler: MetamorpheSheet.#onSubmit,
+            closeOnSubmit: true,
+            submitOnChange: true
         },
         position: {
             height: 500,
@@ -26,6 +28,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
     /**
      * @override
      */
+    /*
     async _prepareContext(options) {
         return {
             ...await super._prepareContext(options),
@@ -35,20 +38,26 @@ export class MetamorpheSheet extends NephilimItemSheet {
             }
         }
     }
-
-    static #onSubmit(event, form, formData) {
-
-        console.log(formData);
-
-        /*
-        const settings = foundry.utils.expandObject(formData.object);
-        await Promise.all(
-            Object.entries(settings).map(([key, value]) => game.settings.set("foo", key, value))
-        );
         */
+
+    static async #onSubmit(event, form, formData) {
+
+        const submitData = foundry.utils.expandObject(formData.object);
+
+        const metamorphoses = [];
+        for (let index = 0; index < 10; index++) {
+            const name = "system.metamorphoses.v5[" + index + "]";
+            const value = submitData.system.metamorphoses.v5[index];
+            metamorphoses.push(value);
+            delete submitData[name];
+        }
+        submitData["system.metamorphoses.v5"] = metamorphoses;
+
+        await this.document.update(submitData);
+
     }
 
-
+    
     /**
      * @override
      */

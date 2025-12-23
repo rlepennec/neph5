@@ -11,6 +11,7 @@ export class MetamorpheData extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            /*
             element: new foundry.data.fields.StringField
             (
                 {
@@ -41,10 +42,11 @@ export class MetamorpheData extends foundry.abstract.TypeDataModel {
                     oeuvre: new foundry.data.fields.StringField(),
                     phenomene: new foundry.data.fields.StringField()
                 }
-            ),
+            ),**/
             metamorphoses: new foundry.data.fields.SchemaField
             (
                 {
+                    /*
                     v1: new foundry.data.fields.SchemaField
                     (
                         {
@@ -85,16 +87,20 @@ export class MetamorpheData extends foundry.abstract.TypeDataModel {
                             )
                         }
                     ),
+                    */
                     v5: new foundry.data.fields.ArrayField
                     (
                         new foundry.data.fields.StringField(),
                         {
+                            initial: Array(10).fill(""),
                             max: 10
-                        }
+                        },
                     )
                 }
-            ),
+            )
+            /*,
             description: new foundry.data.fields.StringField()
+            */
         }
     }
 
