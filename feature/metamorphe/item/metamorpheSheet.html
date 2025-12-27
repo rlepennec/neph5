@@ -68,8 +68,21 @@
                 value=document.system.metamorphoses.v1.voix.titre
             }}
 
-            {{> "systems/neph5e/templates/item-description.hbs"
-                title="description"}}
+            <h1>{{translate "description"}}</h1>
+
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
+            
         -->
         </main>
 
