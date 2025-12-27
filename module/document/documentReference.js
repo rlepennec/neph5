@@ -71,7 +71,9 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbacks(field => {
-                target = new DocumentIdentifier(this.documentName + "." + this.type + "." + document.system[field.name]).toDocument();
+                if (document.system[field.name] != null) {
+                    target = new DocumentIdentifier(this.documentName + "." + this.type + "." + document.system[field.name]).toDocument();
+                }
             })
             .forEach(document);
 
