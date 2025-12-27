@@ -71,8 +71,9 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbacks(field => {
-                if (document.system[field.name] != null) {
-                    target = new DocumentIdentifier(this.documentName + "." + this.type + "." + document.system[field.name]).toDocument();
+                const refuuid = document.system[field.name];
+                if (refuuid != null) {
+                    target = new DocumentIdentifier(this.documentName + "." + this.type + "." + refuuid).toDocument();
                 }
             })
             .forEach(document);
