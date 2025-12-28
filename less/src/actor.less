@@ -1,0 +1,110 @@
+form.nephilim.actor {
+
+    section.window-content > section {
+        display: flex;
+        flex-flow: unset;
+        width: 100%;
+
+        aside {
+            flex: 0 0 auto;
+            width: 41px;
+            background-image: var(--background-side);
+            background-repeat: no-repeat;
+            box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+        }
+
+        article {
+            .mixin-editing-dark-on-bright();
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font-family-title);
+            font-size: 16px;
+            width: 100%;
+
+            header {
+                .mixin-editing-bright-on-dark();
+                display: flex;
+                height: 60px;
+                box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+                width: 100%;
+
+                input {
+                    background: initial;
+                    font-size: 30px;
+                    text-align: center;
+                    padding: 0px 10px 2px 10px;
+                    height: 100%;
+                    font-family: var(--font-family-content);
+                    border: none;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    color: var(--color-font-bright);
+                }
+
+                img {
+                    flex: 0 0 auto;
+                    margin: 6px 6px 6px 6px;
+                    border-radius: 6px;
+                }
+
+            }
+
+            main {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+
+                h1 {
+                    color: var(--color-font-dark);
+                    font-family: var(--font-family-title);
+                    font-size: 20px;
+                    margin-bottom: 5px;
+                    margin-top: 0px;
+                }
+
+                ul {
+                    list-style-type: none;
+                }
+
+                li {
+                    display: block;
+                }
+
+                input {
+                    .mixin-editing-content();
+                    margin-bottom: 10px;
+
+                    &:disabled {
+                        background: none;
+                        color: var(--color-font-dark);
+                        border: none;
+                    }
+
+                }
+                
+                select {
+                    .mixin-editing-content();
+                }
+
+                option {
+                    .mixin-editing-dark-on-bright();
+                }
+
+                .fas {
+                    margin-right: 10px;
+                }
+
+                .column-2 {
+                    column-count: 2;
+                }
+
+            }
+
+        }
+
+    }
+
+}

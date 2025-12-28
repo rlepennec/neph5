@@ -1,8 +1,14 @@
 {
 
+    "TYPES.Actor.figure": "Figure",
+
     "TYPES.Item.cercle": "Cercle occulte",
     "TYPES.Item.competence": "Compétence",
     "TYPES.Item.vecu": "Vécu",
+
+
+
+
 
 
     "TYPES.Item.alchimie": "Voie alchimique",
@@ -36,7 +42,6 @@
     "TYPES.Item.technique": "Technique Templière",
     "TYPES.Item.tekhne": "Tekhne Rosicruxienne",
     
-    "TYPES.Actor.figure": "Figure",
     "TYPES.Actor.figurant": "Figurant",
     "TYPES.Actor.fraternite": "Fraternite",
 

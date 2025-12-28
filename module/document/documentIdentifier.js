@@ -1,3 +1,4 @@
+import { NephilimActor } from "../actor/nephilimActor.js"
 import { NephilimItem } from "../item/nephilimItem.js"
 
 /**
@@ -56,7 +57,13 @@ export class DocumentIdentifier {
                         break;
                     }
 
-                    // The item from which to create the identifier.
+                    // The actor from which to create the identifier.
+                    case NephilimActor: {
+                        this.#parse(source);
+                        break;
+                    }
+
+                    // The item or the actor from which to create the identifier.
                     case NephilimItem: {
                         this.#parse(source);
                         break;
@@ -183,6 +190,15 @@ export class DocumentIdentifier {
                 this.#id = words.pop();
                 this.#documentName = words.pop();
                 this.#name = fromUuidSync(this.uuid).name;
+                break;
+            }
+
+            case NephilimActor: {
+                this.#sid = source.system.sid;
+                this.#type = source.type;
+                this.#id = source.id;
+                this.#documentName = source.documentName;
+                this.#name = source.name;
                 break;
             }
 

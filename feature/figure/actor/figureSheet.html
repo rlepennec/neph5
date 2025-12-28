@@ -1,0 +1,35 @@
+<section class="item-root"s>
+
+    <aside style="--background-side: var(--background-side-periode)"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/item-header.hbs"}}
+
+        <main>
+
+            {{> "systems/neph5e/templates/item-references.hbs"
+                title="vecus"
+                references=context.vecus
+            }}
+
+            <h1>{{translate "description"}}</h1>
+
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
+
+        </main>
+
+    </article>
+
+</section>

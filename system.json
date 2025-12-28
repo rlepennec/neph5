@@ -40,6 +40,7 @@
     "license": "license.txt",
     "documentTypes": {
         "Actor": {
+            "figure": {}
         },
         "Item": {
             "cercle": {},
