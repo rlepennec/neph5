@@ -9,11 +9,14 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		actions: {
 			delete: NephilimDocumentSheet._onRemoveReference,
 			open: NephilimDocumentSheet._onOpenLink,
-			lock: NephilimDocumentSheet._onToggleLock
+			lock: NephilimDocumentSheet._onToggleLock,
+			setup: NephilimDocumentSheet._onSetup
 		}
 	}
 
 	locked = true;
+
+	setupable = true;
 
 	/**
 	* Create drag-and-drop workflow handlers for this Application
@@ -51,7 +54,9 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @override
 	 */
 	async _renderFrame(options) {
+
 		const frame = await super._renderFrame(options);
+
 		if (this.isEditable) {
 			const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
 			const lockLabel = game.i18n.localize("NEPHILIM.toggleLock");
@@ -59,7 +64,17 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 			this.window.controls.insertAdjacentHTML("beforebegin", lockId);
 			this.window.lock = frame.querySelector("button[data-action=lock]");
 		}
+
+		if (this.setupable) {
+			const lockIcon = NephilimDocumentSheet.#getSetupIcon();
+			const lockLabel = game.i18n.localize("NEPHILIM.setup");
+			const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="setup" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
+			this.window.controls.insertAdjacentHTML("beforebegin", lockId);
+
+		}
+
 		return frame;
+
 	}
 
 	/** 
@@ -172,11 +187,28 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	}
 
 	/**
+	 * The callback used to setup the document.
+	 * @param {*} event 
+	 * @param {*} target 
+	 */
+	static async _onSetup(event, target) {
+		console.log('setup');
+	}
+
+
+	/**
 	 * @param {*} locked The lock state to display.
-	 * @returns the class to display the specified state.
+	 * @returns the class to display the toggle icon.
 	 */
 	static #getToggleIcon(locked) {
 		return locked ? 'fa-lock' : 'fa-lock-open';
+	}
+
+	/**
+	 * @returns the class to display the setup icon.
+	 */
+	static #getSetupIcon() {
+		return 'fa-solid fa-gear';
 	}
 
 }
