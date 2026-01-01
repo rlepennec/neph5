@@ -9,7 +9,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		actions: {
 			delete: NephilimDocumentSheet._onRemoveReference,
 			open: NephilimDocumentSheet._onOpenLink,
-			lock: NephilimDocumentSheet._onToggleLock,
+			lock: NephilimDocumentSheet._onLock,
 			setup: NephilimDocumentSheet._onSetup
 		}
 	}
@@ -58,7 +58,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		const frame = await super._renderFrame(options);
 
 		if (this.isEditable) {
-			const lockIcon = NephilimDocumentSheet.#getToggleIcon(this.locked);
+			const lockIcon = NephilimDocumentSheet.#getLockIcon(this.locked);
 			const lockLabel = game.i18n.localize("NEPHILIM.toggleLock");
 			const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
 			this.window.controls.insertAdjacentHTML("beforebegin", lockId);
@@ -66,7 +66,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		}
 
 		if (this.setupable) {
-			const lockIcon = NephilimDocumentSheet.#getSetupIcon();
+			const lockIcon = 'fa-solid fa-gear';
 			const lockLabel = game.i18n.localize("NEPHILIM.setup");
 			const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="setup" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
 			this.window.controls.insertAdjacentHTML("beforebegin", lockId);
@@ -179,10 +179,10 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @param {*} event 
 	 * @param {*} target 
 	 */
-	static async _onToggleLock(event, target) {
-		this.window.lock.classList.remove(NephilimDocumentSheet.#getToggleIcon(this.locked));
+	static async _onLock(event, target) {
+		this.window.lock.classList.remove(NephilimDocumentSheet.#getLockIcon(this.locked));
 		this.locked = !this.locked;
-		this.window.lock.classList.add(NephilimDocumentSheet.#getToggleIcon(this.locked));
+		this.window.lock.classList.add(NephilimDocumentSheet.#getLockIcon(this.locked));
 		this.render(false);
 	}
 
@@ -200,15 +200,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @param {*} locked The lock state to display.
 	 * @returns the class to display the toggle icon.
 	 */
-	static #getToggleIcon(locked) {
+	static #getLockIcon(locked) {
 		return locked ? 'fa-lock' : 'fa-lock-open';
-	}
-
-	/**
-	 * @returns the class to display the setup icon.
-	 */
-	static #getSetupIcon() {
-		return 'fa-solid fa-gear';
 	}
 
 }
