@@ -16,7 +16,7 @@ export class PeriodeSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.html`,
+            template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.hbs`,
         }
     }
 
