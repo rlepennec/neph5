@@ -1,3 +1,4 @@
+import { ChunkField } from "../../../module/common/ChunkField.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 
 export class CompetenceData extends foundry.abstract.TypeDataModel {
@@ -10,11 +11,29 @@ export class CompetenceData extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
-            description: new foundry.data.fields.StringField
+            item: new ChunkField
             (
                 {
-                    required: true,
-                    initial: null
+                    base: new ChunkField
+                    (
+                        {
+                            description: new foundry.data.fields.StringField
+                            (
+                                {
+                                    required: true,
+                                    initial: null
+                                }
+                            )
+                        },
+                        {
+                            collection: 'Item',
+                            scope: 'base'
+                        }
+                    )
+                },
+                {
+                    collection: 'Item',
+                    scope: 'root'
                 }
             )
         }
