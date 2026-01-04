@@ -1,3 +1,4 @@
+import { ChunkField } from "../../../module/common/ChunkField.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 
 export class CercleData extends foundry.abstract.TypeDataModel {
@@ -10,13 +11,31 @@ export class CercleData extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
-            description: new foundry.data.fields.StringField
+            item: new ChunkField
             (
                 {
-                    required: true,
-                    initial: ''
+                    base: new ChunkField
+                    (
+                        {
+                            description: new foundry.data.fields.StringField
+                            (
+                                {
+                                    required: true,
+                                    initial: ''
+                                }
+                            )
+                        },
+                        {
+                            collection: 'Item',
+                            scope: 'base'
+                        }
+                    )
+                },
+                {
+                    collection: 'Item',
+                    scope: 'root'
                 }
-            ),
+            )
         }
     }
 

@@ -30,7 +30,7 @@ export class NephilimItemSheet extends NephilimDocumentSheet  {
         console.log("_prepareContext.begin");
         const context = await super._prepareContext(options)
         context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-            this.document.system.description,
+            this.document.system.item.base.description,
             {
                 secrets: this.document.isOwner,
                 relativeTo: this.document
