@@ -2,6 +2,12 @@ import { Tools } from "../common/tools.js"
 
 export class DocumentTools {
 
+    static async update(document, updates) {
+        if (Tools.isObjectNotEmpty(updates)) {
+            await document.update(updates);
+        }
+    }
+
     static getField(document, field, defaultValue) {
         return Tools.getObjectPropertyFromPath(document, field.fieldPath, defaultValue);
     }

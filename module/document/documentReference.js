@@ -1,6 +1,6 @@
 import { DocumentIdentifier } from "./documentIdentifier.js"
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
-import { Tools } from "../common/tools.js"
+import { DocumentTools } from './documentTools.js'
 
 /**
  * A DocumentReference is a reference to a document.  * A reference can be added or
@@ -106,15 +106,12 @@ export class DocumentReference extends DocumentIdentifier {
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    const old = Tools.getObjectPropertyFromPath(document, field.fieldPath, null);
-                    updates[field.fieldPath] = new Set(old).add(this.sid);
+                    updates[field.fieldPath] = new Set(DocumentTools.getField(document, field, null)).add(this.sid);
                 }
             })
             .forEach(document);
 
-        if (Tools.isObjectNotEmpty(updates)) {
-            await document.update(updates);
-        }
+        await DocumentTools.update(document, updates);
 
     }
 
