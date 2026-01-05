@@ -2,8 +2,8 @@ import { Tools } from "../common/tools.js"
 
 export class DocumentTools {
 
-    static getField(document, field) {
-        return Tools.getObjectPropertyFromPath(document, field.fieldPath, null);
+    static getField(document, field, defaultValue) {
+        return Tools.getObjectPropertyFromPath(document, field.fieldPath, defaultValue);
     }
 
     static async droppedDocument(event) {

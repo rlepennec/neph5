@@ -26,8 +26,8 @@ export class VecuSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: VecuData.defineSchema().item.fields.base.fields.element.choices,
-                periode: new DocumentReferences('Item', 'periode', this.document, 'system.item.base'),
-                competences: new DocumentReferences('Item', 'competence', this.document, 'system.item.base')
+                periode: new DocumentReferences('Item', 'periode', this.document),
+                competences: new DocumentReferences('Item', 'competence', this.document)
             }
         }
     }

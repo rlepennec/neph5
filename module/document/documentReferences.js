@@ -9,27 +9,25 @@ export class DocumentReferences {
      * @param {*} documentName The document name: Item or Actor.
      * @param {*} type The type of item or actor.
      * @param {*} document The document in which to gather the current reference type.
-     * @param {*} path The path used to get references.
      */
-    constructor(documentName, type, document, path) {
+    constructor(documentName, type, document) {
         this.documentName = documentName;
         this.type = type;
-        this.collection = this.#gatherCollection(document, path);
-        this.reference = this.#gatherReference(document, path);
+        this.collection = this.#gatherCollection(document);
+        this.reference = this.#gatherReference(document);
     }
 
     /**
      * @param {*} document The document in which to gather the current reference type.
-     * @param {*} path The path used to get references.
      * @returns the array of references in the specified document which matches the current reference type.
      */    
-    #gatherCollection(document, path) {
+    #gatherCollection(document) {
 
         const references = [];
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
-                const root = Tools.getObjectPropertyFromPath(document, path, references);
+                const root = Tools.getObjectPropertyFromPath(document, field.parent.fieldPath, references);
                 root[field.name].forEach(sid => {
                     references.push(new DocumentIdentifier(this.documentName, sid));
                 });
@@ -43,20 +41,15 @@ export class DocumentReferences {
 
     /**
      * @param {*} document The document in which to gather the current reference type.
-     * @param {*} path The path used to get reference.
      * @returns the reference in the specified document which matches the current reference type.
      */    
-    #gatherReference(document, path) {
+    #gatherReference(document) {
 
         let reference = null;
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                const root = Tools.getObjectPropertyFromPath(document, path, reference);
-                console.log("gatherReference");
-                console.log(path);
-                console.log(root);
-
+                const root = Tools.getObjectPropertyFromPath(document, field.parent.fieldPath, reference);
                 const sid = root[field.name];
                 if (sid != null) {
                     reference = new DocumentIdentifier(this.documentName, sid);
