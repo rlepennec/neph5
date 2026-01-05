@@ -42,10 +42,10 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                referenced = document.system[field.name] === this.sid;
+                referenced = DocumentTools.getField(document, field, null) === this.sid;
             })
             .withCallbackSet(field => {
-                referenced = document.system[field.name].has(this.sid);
+                referenced = DocumentTools.getField(document, field, null).has(this.sid);
             })
             .forEach(document);
 
@@ -94,7 +94,7 @@ export class DocumentReference extends DocumentIdentifier {
      * if defined as a single reference or added to a set of references, depending
      * on the schema of Document-1.
      */
-    async addTo(document) { // MODIFIE
+    async addTo(document) {
 
         let updates = {};
 
