@@ -1,7 +1,7 @@
 
 import { DocumentIdentifier } from "./documentIdentifier.js"
 import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
-import { Tools } from '../common/tools.js'
+import { DocumentTools } from './documentTools.js'
 
 export class DocumentReferences {
 
@@ -27,8 +27,7 @@ export class DocumentReferences {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
-                const root = Tools.getObjectPropertyFromPath(document, field.parent.fieldPath, references);
-                root[field.name].forEach(sid => {
+                DocumentTools.getField(document, field, references).forEach(sid => {
                     references.push(new DocumentIdentifier(this.documentName, sid));
                 });
                 references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
@@ -49,8 +48,7 @@ export class DocumentReferences {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                const root = Tools.getObjectPropertyFromPath(document, field.parent.fieldPath, reference);
-                const sid = root[field.name];
+                const sid = DocumentTools.getField(document, field, reference);
                 if (sid != null) {
                     reference = new DocumentIdentifier(this.documentName, sid);
                 }
