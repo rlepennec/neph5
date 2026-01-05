@@ -1,3 +1,4 @@
+import { ChunkField } from "../common/ChunkField.js"
 import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 
 export class DocumentReferencesIterator {
@@ -50,9 +51,18 @@ export class DocumentReferencesIterator {
      * @param {*} document The document to process.
      */
     forEach(document) {
+        this.#forEach(document.system.schema.fields);
+    }
 
-        // Iterate all fields of the specified document
-        Object.entries(document.system.schema.fields).every(([fieldName, field]) => {
+    /**
+     * This method is used to gather all specified fields which match the current reference type.
+     * The callback parameter of every stops the iteration as soon as false is returned.
+     * @param {*} fields The map of fields to process.
+     */
+    #forEach(fields) {
+
+        // Iterate all fields
+        return Object.entries(fields).every(([fieldName, field]) => {
 
             switch (field.constructor) {
 
@@ -69,6 +79,10 @@ export class DocumentReferencesIterator {
                         return this.#matches(field, this.callbackReference, field);
                     }
                     break;
+
+                //
+                case ChunkField:
+                    return this.#forEach(field.fields);
 
             }
 

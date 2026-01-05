@@ -94,19 +94,20 @@ export class DocumentReference extends DocumentIdentifier {
      * if defined as a single reference or added to a set of references, depending
      * on the schema of Document-1.
      */
-    async addTo(document) {
+    async addTo(document) { // MODIFIE
 
         let updates = {};
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates["system." + field.name] = this.sid;
+                    updates[field.fieldPath] = this.sid;
                 }
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates["system." + field.name] = new Set(document.system[field.name]).add(this.sid);
+                    const old = Tools.getObjectPropertyFromPath(document, field.fieldPath, null);
+                    updates[field.fieldPath] = new Set(old).add(this.sid);
                 }
             })
             .forEach(document);

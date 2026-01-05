@@ -1,5 +1,5 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { DocumentReferences } from "../../../module/document/documentReferences.js"
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { VecuData } from "./vecuData.mjs";
 
 export class VecuSheet extends NephilimItemSheet {
@@ -25,9 +25,9 @@ export class VecuSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                elements: VecuData.defineSchema().element.choices,
-                periode: new DocumentReferences('Item', 'periode', this.document),
-                competences: new DocumentReferences('Item', 'competence', this.document)
+                elements: VecuData.defineSchema().item.fields.base.fields.element.choices,
+                periode: new DocumentReferences('Item', 'periode', this.document, 'system.item.base'),
+                competences: new DocumentReferences('Item', 'competence', this.document, 'system.item.base')
             }
         }
     }

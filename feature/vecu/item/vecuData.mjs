@@ -1,3 +1,4 @@
+import { ChunkField } from "../../../module/common/ChunkField.js"
 import { Constants } from "../../../module/common/constants.js";
 import { UUIDField } from "../../../module/common/UUIDField.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
@@ -12,39 +13,57 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
-            element: new foundry.data.fields.StringField
+            item: new ChunkField
             (
                 {
-                    required: true,
-                    initial: 'air',
-                    choices: Constants.ELEMENTS
-                }
-            ),
-            periode: new UUIDReferenceField
-            (
+                    base: new ChunkField
+                    (
+                        {
+                            element: new foundry.data.fields.StringField
+                            (
+                                {
+                                    required: true,
+                                    initial: 'air',
+                                    choices: Constants.ELEMENTS
+                                }
+                            ),
+                            periode: new UUIDReferenceField
+                            (
+                                {
+                                    required: false,
+                                    collection: 'Item',
+                                    type: 'periode',
+                                    droppable: true,
+                                    openable: true,
+                                    duplicable: false,
+                                }
+                            ),
+                            competences: new foundry.data.fields.SetField
+                            (
+                                new UUIDReferenceField(
+                                    {
+                                        required: false,
+                                        collection: 'Item',
+                                        type: 'competence',
+                                        droppable: true,
+                                        openable: true,
+                                        duplicable: true,
+                                    }
+                                )
+                            ),
+                            description: new foundry.data.fields.StringField()
+                        },
+                        {
+                            collection: 'Item',
+                            scope: 'base'
+                        }
+                    )
+                },
                 {
-                    required: false,
                     collection: 'Item',
-                    type: 'periode',
-                    droppable: true,
-                    openable: true,
-                    duplicable: false,
+                    scope: 'root'
                 }
-            ),
-            competences: new foundry.data.fields.SetField
-            (
-                new UUIDReferenceField(
-                    {
-                        required: false,
-                        collection: 'Item',
-                        type: 'competence',
-                        droppable: true,
-                        openable: true,
-                        duplicable: true,
-                    }
-                )
-            ),
-            description: new foundry.data.fields.StringField()
+            )
         }
     }
 
