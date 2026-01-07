@@ -63,15 +63,15 @@ export class DocumentReference extends DocumentIdentifier {
      * @param {*} document The document in which to look for the current reference.
      * @returns the document of Type-2 referenced by the document Document-1, null
      * if the document Document-1 doesn't reference a document of Type-2. The
-     * reference can be defined as a single one or in a set of references. 
+     * reference must be defined as a single one. 
      */
     getReferencedBy(document) {
 
         let target = null;
 
         new DocumentReferencesIterator(this.documentName, this.type)
-            .withCallbacks(field => {
-                const refuuid = document.system[field.name];
+            .withCallbackReference(field => {
+                const refuuid = DocumentTools.getField(document, field, null);
                 if (refuuid != null) {
                     target = new DocumentIdentifier(this.documentName + "." + this.type + "." + refuuid).toDocument();
                 }
@@ -134,19 +134,19 @@ export class DocumentReference extends DocumentIdentifier {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates["system.-=" + field.name] = null;
+                    const f = field.fieldPath.replace(fieldPath, "-=" + field.name)
+
+                    updates[f] = null;
                 }
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates["system." + field.name] = new Set(document.system[field.name]).filter(v => v != this.sid);
+                    updates[field.fieldPath] = new Set(DocumentTools.getField(document, field, null)).filter(v => v != this.sid);
                 }
             })
             .forEach(document);
 
-        if (Tools.isObjectNotEmpty(updates)) {
-            await document.update(updates);
-        }
+        await DocumentTools.update(document, updates);
 
     }
 
