@@ -5,7 +5,6 @@ export class CompetenceSheet extends NephilimItemSheet {
     static #ID = 'competence';
 
     static DEFAULT_OPTIONS = {
-        id: this.#ID,
         classes: [this.#ID],
         position: {
             height: 500,

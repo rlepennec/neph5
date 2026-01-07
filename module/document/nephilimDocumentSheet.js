@@ -53,6 +53,14 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	/** 
 	 * @override
 	 */
+	async _onClose() {
+
+		console.log("close");
+	}
+
+	/** 
+	 * @override
+	 */
 	async _renderFrame(options) {
 
 		const frame = await super._renderFrame(options);

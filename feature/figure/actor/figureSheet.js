@@ -6,7 +6,6 @@ export class FigureSheet extends NephilimActorSheet {
     static #ID = 'figure';
 
     static DEFAULT_OPTIONS = {
-        id: this.#ID,
         classes: [this.#ID],
         position: {
             height: 500,

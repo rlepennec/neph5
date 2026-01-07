@@ -6,7 +6,6 @@ export class PeriodeSheet extends NephilimItemSheet {
     static #ID = 'periode';
 
     static DEFAULT_OPTIONS = {
-        id: this.#ID,
         classes: [this.#ID],
         position: {
             height: 500,

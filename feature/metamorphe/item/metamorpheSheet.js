@@ -6,7 +6,6 @@ export class MetamorpheSheet extends NephilimItemSheet {
     static #ID = 'metamorphe';
 
     static DEFAULT_OPTIONS = {
-        id: this.#ID,
         classes: [this.#ID],
         form: {
             handler: MetamorpheSheet.#onSubmit,
