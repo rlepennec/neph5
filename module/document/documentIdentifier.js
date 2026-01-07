@@ -36,7 +36,7 @@ export class DocumentIdentifier {
      * @param {*} source The source from which to create the identifier which can be:
      *  - a foundry object
      *  - an attribute data-fsid in a html element provided by the system
-     *  - a string with the following format: documentName.id.type.fsid
+     *  - a string with the following format: documentName.id.type.sid
      */
    constructor(...args) {
 

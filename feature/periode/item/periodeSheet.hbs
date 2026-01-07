@@ -10,14 +10,14 @@
 
             {{> "systems/neph5e/templates/item-input.hbs"
                 title="epoque"
-                name="system.epoque"
-                value=document.system.epoque
+                name="system.item.base.epoque"
+                value=document.system.item.base.epoque
             }}
 
             {{> "systems/neph5e/templates/item-input.hbs"
                 title="region"
-                name="system.region"
-                value=document.system.region
+                name="system.item.base.region"
+                value=document.system.item.base.region
             }}
 
             {{> "systems/neph5e/templates/item-references.hbs"
@@ -31,11 +31,11 @@
             {{{enrichedDescription}}}
             {{else}}
             <prose-mirror
-                name="system.description"
+                name="system.item.base.description"
                 button="true"
                 editable="{{editable}}"
                 toggled="false"
-                value="{{document.system.description}}">
+                value="{{document.system.item.base.description}}">
                 {{{enrichedDescription}}}
             </prose-mirror>
             {{/if}}
