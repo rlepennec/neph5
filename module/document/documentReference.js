@@ -73,7 +73,7 @@ export class DocumentReference extends DocumentIdentifier {
             .withCallbackReference(field => {
                 const sid = DocumentTools.getField(document, field, null);
                 if (sid != null) {
-                    target = new DocumentIdentifier(this.documentName + "." + this.id + "." + this.type + "." + sid).toDocument();
+                    target = new DocumentIdentifier(this.documentName,  sid).toDocument();
                 }
             })
             .forEach(document);
