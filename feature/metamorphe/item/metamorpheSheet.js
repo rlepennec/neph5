@@ -9,7 +9,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
         classes: [this.#ID],
         form: {
             handler: MetamorpheSheet.#onSubmit,
-            closeOnSubmit: true,
+            closeOnSubmit: false,
             submitOnChange: true
         },
         position: {
@@ -45,12 +45,12 @@ export class MetamorpheSheet extends NephilimItemSheet {
 
         const metamorphoses = [];
         for (let index = 0; index < 10; index++) {
-            const name = "system.metamorphoses.v5[" + index + "]";
-            const value = submitData.system.metamorphoses.v5[index];
+            const name = "system.item.v5.metamorphoses[" + index + "]";
+            const value = submitData.system.item.v5.metamorphoses[index];
             metamorphoses.push(value);
             delete submitData[name];
         }
-        submitData["system.metamorphoses.v5"] = metamorphoses;
+        submitData["system.item.v5.metamorphoses"] = metamorphoses;
 
         await this.document.update(submitData);
 

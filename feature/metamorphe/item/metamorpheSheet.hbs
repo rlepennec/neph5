@@ -8,10 +8,10 @@
 
         <main>
 
-            {{#each document.system.metamorphoses.v5}}
+            {{#each document.system.item.v5.metamorphoses}}
                 <h1>N°{{@index}}</h1>
                 <input
-                    name="system.metamorphoses.v5.{{@index}}"
+                    name="system.item.v5.metamorphoses.{{@index}}"
                     type="text"
                     value="{{.}}"
                     {{#if ../document.sheet.locked}} disabled{{/if}}

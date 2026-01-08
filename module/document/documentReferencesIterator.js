@@ -82,6 +82,7 @@ export class DocumentReferencesIterator {
 
                 //
                 case ChunkField:
+                case foundry.data.fields.SchemaField:
                     return this.#forEach(field.fields);
 
             }
