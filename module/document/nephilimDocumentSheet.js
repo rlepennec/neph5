@@ -1,5 +1,6 @@
 import { DocumentIdentifier } from "../document/documentIdentifier.js"
 import { DocumentReference } from "../document/documentReference.js"
+import { VersionSelector } from "./versionSelector.js"
 
 export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
 
@@ -78,7 +79,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 			const lockLabel = game.i18n.localize("NEPHILIM.setup");
 			const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="setup" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
 			this.window.controls.insertAdjacentHTML("beforebegin", lockId);
-
 		}
 
 		return frame;
@@ -201,6 +201,29 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	static async _onSetup(event, target) {
 		console.log('setup');
+
+		//await new VersionSelector().render();
+
+		await foundry.applications.api.DialogV2.confirm(
+			{ 
+				window:	{ 
+					title: "Simple Dialog"
+				},
+				content: ` <p>This is a simple DialogV2 in v13.</p> <p>You can still use normal HTML here.</p> `,
+				yes: {
+					label: "OK",
+					icon: "fas fa-check",
+					callback: () => { console.log("OK clicked"); }
+				},
+				no: {
+					label: "Cancel",
+					icon: "fas fa-times",
+					callback: () => { console.log("Cancel clicked"); }
+				},
+				defaultYes: true
+			}
+		)
+
 	}
 
 
