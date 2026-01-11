@@ -15,9 +15,19 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		}
 	}
 
+	version = '5'; //game.settings.set("neph5e", "worldTemplateVersion", target);
+
 	locked = true;
 
 	setupable = true;
+
+	/**
+	 * @param {*} value The system version to set.
+	 */
+	#setVersion(value) {
+		console.log("Set sheet version to " + value);
+		this.version = value;
+	}
 
 	/**
 	* Create drag-and-drop workflow handlers for this Application
@@ -200,6 +210,14 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @param {*} target 
 	 */
 	static async _onSetup(event, target) {
+		console.log("setup");
+		await new VersionSelector().render(true);
+	}
+
+
+
+
+	static async _onSetup2(event, target) {
 		console.log('setup');
 
 		//await new VersionSelector().render();
@@ -209,11 +227,31 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 				window:	{ 
 					title: "Simple Dialog"
 				},
-				content: ` <p>This is a simple DialogV2 in v13.</p> <p>You can still use normal HTML here.</p> `,
+				content: `  <form>
+								<fieldset>
+									<legend>Version</legend>
+									<div>
+										<div>
+											<select>
+												<option value="1">Version 1</option>
+												<option value="5" selected="5">Version 5</option>
+											</select>
+										</div>
+									</div>
+								</fieldset>
+								<footer>
+									<button type="submit" class="">
+										<i class="fa-solid fa-floppy-disk" inert=""></i>
+										<span>Sauver la configuration de la feuille</span>
+									</button>
+								</footer>
+							</form>`,
 				yes: {
 					label: "OK",
 					icon: "fas fa-check",
-					callback: () => { console.log("OK clicked"); }
+					callback: (html) => { 
+						console.log("OK clicked");
+					}
 				},
 				no: {
 					label: "Cancel",
@@ -225,6 +263,13 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		)
 
 	}
+
+
+
+
+
+
+
 
 
 	/**

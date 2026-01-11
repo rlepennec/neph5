@@ -1,52 +1,25 @@
-<section class="window-content standard-form">
-    <section data-application-part="form" class="standard-form">
+<section>
 
-        <fieldset>
-            <legend>Document</legend>
+    <fieldset>
+        <legend>Configuration</legend>
 
-            <div class="form-group"><label>Cette fiche</label>
-                <div class="form-fields"><select name="sheetClass">
-                        <option value="" selected="">Feuille par défaut</option>
-                        <option value="nephilim.CompetenceSheet">nephilim.CompetenceSheet</option>
-                    </select></div>
-                <p class="hint">Remplacez le type de fiche que vous souhaitez utiliser pour ce document spécifique.</p>
+        <div>
+            <label>Versions</label>
+            <div>
+                <select>
+                    <option value="v1" selected="v1">Version 1</option>
+                    <option value="v5">Version 5</option>
+                </select>
             </div>
+            <p>Selectionner une version à éditer.</p>
+        </div>
+    </fieldset>
 
-            <div class="form-group"><label>Thème</label>
-                <div class="form-fields"><select name="theme">
-                        <option value="" selected="">Par défaut</option>
-                        <option value="dark">Sombre</option>
-                        <option value="light">Clair</option>
-                    </select></div>
-                <p class="hint">Tous les thèmes ne sont pas disponibles pour chaque feuille.</p>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Défaut</legend>
-
-            <div class="form-group"><label>Feuille par défaut</label>
-                <div class="form-fields"><select name="defaultClass" style="">
-                        <option value="nephilim.CompetenceSheet" selected="">nephilim.CompetenceSheet</option>
-                    </select></div>
-                <p class="hint">Définit le type de fiche par défaut utilisé pour ce type de document (MJ uniquement).
-                </p>
-            </div>
-
-            <div class="form-group"><label>Thème</label>
-                <div class="form-fields"><select name="defaultTheme">
-                        <option value="" selected="">Par défaut</option>
-                        <option value="dark">Sombre</option>
-                        <option value="light">Clair</option>
-                    </select></div>
-                <p class="hint">Tous les thèmes ne sont pas disponibles pour chaque feuille.</p>
-            </div>
-        </fieldset>
-    </section>
-    <footer class="form-footer" data-application-part="footer">
+    <footer>
         <button type="submit" class="">
             <i class="fa-solid fa-floppy-disk" inert=""></i>
             <span>Sauver la configuration de la feuille</span>
         </button>
     </footer>
+
 </section>
