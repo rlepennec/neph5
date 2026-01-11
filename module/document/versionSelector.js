@@ -16,7 +16,7 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
         },
         tag: "form",
         form: {
-            handler: VersionSelector.#onSubmitForm,
+            handler: VersionSelector.#onSubmit,
             closeOnSubmit: true,
             submitOnChange: false
         },
@@ -31,14 +31,18 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
         }
     }
 
-    static async #onSubmitForm(event, form, formData) {
-        event.preventDefault()
-        //await this.document.update(formData.object) // Note: formData.object
+    static async #onSubmit(event, form, formData) {
+        event.preventDefault();
+        //await game.settings.set("mon-module", "optionSelectionnee", formData.get("option"));
+        console.log(formData);
+        console.log(formData.get("version"));
     }
 
+    /*
     get document() {
         return this.options.document
     }
+        */
 
     /** 
      * @override
