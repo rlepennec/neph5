@@ -24,9 +24,12 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	/**
 	 * @param {*} value The system version to set.
 	 */
-	#setVersion(value) {
+	setVersion(value) {
 		console.log("Set sheet version to " + value);
-		this.version = value;
+		if (this.version !== value) {
+			this.version = value;
+			this.render(true);
+		}
 	}
 
 	/**
@@ -211,7 +214,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	static async _onSetup(event, target) {
 		console.log("setup");
-		await new VersionSelector().render(true);
+		await new VersionSelector().withSheet(this).render(true);
 	}
 
 
@@ -278,6 +281,15 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	static #getLockIcon(locked) {
 		return locked ? 'fa-lock' : 'fa-lock-open';
+	}
+
+	async _prepareContext(options) {
+		return {
+			...await super._prepareContext(options),
+			context: {
+				version: this.version
+			}
+		}
 	}
 
 }
