@@ -8,15 +8,19 @@
 
         <main>
 
-            {{#each document.system.item.v5.metamorphoses}}
-                <h1>N°{{@index}}</h1>
-                <input
-                    name="system.item.v5.metamorphoses.{{@index}}"
-                    type="text"
-                    value="{{.}}"
-                    {{#if ../document.sheet.locked}} disabled{{/if}}
-                />
-            {{/each}}
+            {{#if (eq context.version "5")}}
+
+                {{#each document.system.item.v5.metamorphoses}}
+                    <h1>N°{{@index}}</h1>
+                    <input
+                        name="system.item.v5.metamorphoses.{{@index}}"
+                        type="text"
+                        value="{{.}}"
+                        {{#if ../document.sheet.locked}} disabled{{/if}}
+                    />
+                {{/each}}
+
+            {{/if}}
 
 <!--
             {{> "systems/neph5e/templates/item-select.hbs"
