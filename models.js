@@ -23,4 +23,17 @@ export class Models {
         }
     }
 
+    /**
+     * @param {*} document The document to inspect.
+     * @returns the data model.
+     */
+    static getData(document) {
+		switch (document.documentName) {
+			case 'Item':
+				return Models.items()[document.type];
+            case 'Actor':
+                return Models.actors()[document.type];
+		}
+    }
+
 }

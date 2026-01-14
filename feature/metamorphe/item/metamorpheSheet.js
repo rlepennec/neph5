@@ -29,11 +29,13 @@ export class MetamorpheSheet extends NephilimItemSheet {
      */
     /*
     async _prepareContext(options) {
+
         return {
             ...await super._prepareContext(options),
             context: {
-                elements: MetamorpheData.defineSchema().element.choices,
-                humeurs: MetamorpheData.defineSchema().humeur.choices,
+                versions: DocumentTools.getVersions(MetamorpheData.defineSchema().item.fields),
+                //elements: MetamorpheData.defineSchema().element.choices,
+               // humeurs: MetamorpheData.defineSchema().humeur.choices,
             }
         }
     }

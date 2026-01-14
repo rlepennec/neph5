@@ -1,5 +1,7 @@
 import { DocumentIdentifier } from "../document/documentIdentifier.js"
 import { DocumentReference } from "../document/documentReference.js"
+import { DocumentTools } from "../../module/document/documentTools.js"
+import { Models } from "../../models.js"
 import { VersionSelector } from "./versionSelector.js"
 
 export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
@@ -15,7 +17,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		}
 	}
 
-	version = '5'; //game.settings.set("neph5e", "worldTemplateVersion", target);
+	version = 'v5'; //game.settings.set("neph5e", "worldTemplateVersion", target);
 
 	locked = true;
 
@@ -283,11 +285,15 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		return locked ? 'fa-lock' : 'fa-lock-open';
 	}
 
+
+
+
 	async _prepareContext(options) {
 		return {
 			...await super._prepareContext(options),
 			context: {
-				version: this.version
+				version: this.version,
+				versions: DocumentTools.getVersions(this.document)
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <section class="item-root">
-
+{{log .}}
     <aside style="--background-side: var(--background-side-vecu)"></aside>
 
     <article>
@@ -8,7 +8,7 @@
 
         <main>
 
-            {{#if (eq context.version "5")}}
+            {{#if (eq context.version "v5")}}
 
                 {{#each document.system.item.v5.metamorphoses}}
                     <h1>N°{{@index}}</h1>

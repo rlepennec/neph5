@@ -1,6 +1,14 @@
+import { Models } from "../../models.js"
 import { Tools } from "../common/tools.js"
 
 export class DocumentTools {
+
+
+    static getVersions(document) {
+        const schema = Models.getData(document).defineSchema();
+        const fields = schema[document.documentName.toLowerCase()].fields;
+        return Object.getOwnPropertyNames(fields).filter((version) => version !== 'base');
+    }
 
     static async update(document, updates) {
         if (Tools.isObjectNotEmpty(updates)) {
