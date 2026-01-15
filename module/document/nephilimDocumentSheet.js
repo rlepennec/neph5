@@ -215,12 +215,10 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @param {*} target 
 	 */
 	static async _onSetup(event, target) {
-		console.log("setup");
-		await new VersionSelector().withSheet(this).render(true);
+		await new VersionSelector()
+			.withSheet(this)
+			.render(true);
 	}
-
-
-
 
 	static async _onSetup2(event, target) {
 		console.log('setup');
@@ -269,14 +267,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
 	}
 
-
-
-
-
-
-
-
-
 	/**
 	 * @param {*} locked The lock state to display.
 	 * @returns the class to display the toggle icon.
@@ -284,9 +274,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	static #getLockIcon(locked) {
 		return locked ? 'fa-lock' : 'fa-lock-open';
 	}
-
-
-
 
 	async _prepareContext(options) {
 		return {

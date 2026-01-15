@@ -1,3 +1,5 @@
+import { DocumentTools } from "./documentTools.js"
+
 export class VersionSelector extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 
     constructor(options = {}) {
@@ -24,8 +26,6 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
         document: null,
     }
 
-
-
     static PARTS = {
         form: {
             template: `systems/neph5e/templates/version-selector.hbs`,
@@ -42,9 +42,10 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
 
     withSheet(sheet) {
         this.sheet = sheet;
+        this.version = sheet.version;
+        this.versions = DocumentTools.getVersions(sheet.document);
         return this;
     }
-
 
     /*
     get document() {
@@ -73,8 +74,13 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
 
 
     async _prepareContext(options) {
-        const context = await super._prepareContext(options);
-        return context;
+        return {
+            ...await super._prepareContext(options),
+            versions: {
+                current: this.version,
+                all: this.versions
+            }
+        }
     }
 
 }

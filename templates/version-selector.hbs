@@ -2,9 +2,13 @@
 
     <fieldset>
         <legend>Version</legend>
+
         <select name="version">
-            <option value="1">Version 1</option>
-            <option value="5" selected="5">Version 5</option>
+            {{#select value}}
+            {{#each versions.all as |version|}}
+            <option value="{{version}}"{{#if (eq . ../versions.current)}} selected="{{version}}"{{/if}}>{{version}}</option>
+            {{/each}}
+            {{/select}}
         </select>
      </fieldset>
 
