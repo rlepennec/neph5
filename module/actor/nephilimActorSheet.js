@@ -16,19 +16,11 @@ export class NephilimActorSheet extends NephilimDocumentSheet  {
         },
     }
 
-    /**
-     * @Override 
+    /** 
+     * @override
      */
-    async _onDrop(event) {
-        if (this.locked) return;
-        const drop = new DocumentIdentifier(event).toDocument();
-        if (drop == null) {
-            ui.notifications.warn("Can't drop this kind of object");
-            return;
-        }
+	async drop(document) {
+        console.log(document);
+	}
 
-        console.log(drop);
-
-
-    }
 }

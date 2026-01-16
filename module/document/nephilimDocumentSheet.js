@@ -165,9 +165,14 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 			ui.notifications.warn("Can't drop this kind of object");
 			return;
 		}
-		await new DocumentReference(this.document).removeFromRegister(drop);
-		await new DocumentReference(drop).addTo(this.document);
-		await new DocumentReference(this.document).addTo(drop);
+		await this.drop(drop);
+	}
+
+	/**
+	 * @param {*} document The document to drop. 
+	 */
+	async drop(document) {
+		throw new Error("drop method must be implemented");
 	}
 
 	/**

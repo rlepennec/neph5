@@ -1,3 +1,4 @@
+import { DocumentReference } from "../document/documentReference.js"
 import { NephilimDocumentSheet } from "../document/nephilimDocumentSheet.js"
 
 export class NephilimItemSheet extends NephilimDocumentSheet  {
@@ -39,5 +40,14 @@ export class NephilimItemSheet extends NephilimDocumentSheet  {
         //context.img = "systems/neph5e/assets/icons/voie.webp";
         return context
     }
+
+    /** 
+     * @override
+     */
+	async drop(document) {
+        await new DocumentReference(this.document).removeFromRegister(document);
+        await new DocumentReference(document).addTo(this.document);
+        await new DocumentReference(this.document).addTo(document);
+	}
 
 }
