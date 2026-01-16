@@ -1,8 +1,45 @@
-import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
+import { ChunkField } from "../../../module/common/ChunkField.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 
 export class FigureData extends foundry.abstract.TypeDataModel {
 
+    static defineSchema() {
+        return {
+            sid: new UUIDField
+            (
+                {
+                    required: true
+                }
+            ),
+            actor: new ChunkField
+            (
+                {
+                    base: new ChunkField
+                    (
+                        {
+                            description: new foundry.data.fields.StringField
+                            (
+                                {
+                                    required: true,
+                                    initial: ''
+                                }
+                            )
+                        },
+                        {
+                            collection: 'Actor',
+                            scope: 'base'
+                        }
+                    )
+                },
+                {
+                    collection: 'Actor',
+                    scope: 'root'
+                }
+            )
+        }
+    }
+
+    /*
     static defineSchema() {
         return {
             sid: new UUIDField
@@ -27,5 +64,6 @@ export class FigureData extends foundry.abstract.TypeDataModel {
             description: new foundry.data.fields.StringField()
         }
     }
+        */
 
 }

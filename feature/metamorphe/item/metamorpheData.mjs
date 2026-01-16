@@ -123,6 +123,83 @@ export class MetamorpheData extends foundry.abstract.TypeDataModel {
                     collection: 'Item',
                     scope: 'root'
                 }
+            ),
+            actor: new ChunkField
+            (
+                {
+                    v1: new ChunkField
+                    (
+                        {
+                            metamorphoses: new foundry.data.fields.SchemaField
+                            (
+                                {
+                                    visage: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            points: new foundry.data.fields.NumberField(),
+                                        }
+                                    ),
+                                    main: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            points: new foundry.data.fields.NumberField()
+                                        }
+                                    ),
+                                    peau: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            points: new foundry.data.fields.NumberField()
+                                        }
+                                    ),
+                                    odeur: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            points: new foundry.data.fields.NumberField()
+                                        }
+                                    ),
+                                    voix: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            points: new foundry.data.fields.NumberField()
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    ),
+                    v5: new ChunkField
+                    (
+                        {
+                            metamorphoses: new foundry.data.fields.ArrayField
+                            (
+                                new foundry.data.fields.SchemaField
+                                (
+                                    {
+                                        construit: new foundry.data.fields.BooleanField(),
+                                        active: new foundry.data.fields.BooleanField()
+                                    }
+                                ),
+                                {
+                                    initial: Array(10).fill(
+                                        {
+                                            construit: false,
+                                            active:false
+                                        }
+                                    ),
+                                    max: 10
+                                },
+                            )
+                        },
+                        {
+                            collection: 'Item',
+                            scope: 'v5'
+                        }
+                    )
+                },
+                 {
+                    collection: 'Actor',
+                    scope: 'root'
+                }
             )
         }
     }

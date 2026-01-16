@@ -27,7 +27,6 @@ export class NephilimItemSheet extends NephilimDocumentSheet  {
      * @override
      */
     async _prepareContext(options) {
-        console.log("_prepareContext.begin");
         const context = await super._prepareContext(options)
         context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
             this.document.system.item.base.description,
@@ -38,7 +37,6 @@ export class NephilimItemSheet extends NephilimDocumentSheet  {
         )
         context.locked = this.locked;
         //context.img = "systems/neph5e/assets/icons/voie.webp";
-        console.log("_prepareContext.end");
         return context
     }
 
