@@ -21,6 +21,12 @@ export class NephilimActorSheet extends NephilimDocumentSheet  {
      */
 	async drop(document) {
         console.log(document);
+
+        const data = document.toObject();
+        console.log(data);
+
+        let item = (await this.document.createEmbeddedDocuments("Item", [data]))[0];
+        console.log(item);
 	}
 
 }
