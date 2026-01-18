@@ -26,7 +26,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @param {*} value The system version to set.
 	 */
 	setVersion(value) {
-		console.log("Set sheet version to " + value);
 		if (this.version !== value) {
 			this.version = value;
 			this.render(true);
