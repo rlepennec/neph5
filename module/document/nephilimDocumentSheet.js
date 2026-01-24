@@ -18,9 +18,15 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
 	version = 'v5'; //game.settings.set("neph5e", "worldTemplateVersion", target);
 
+	versions = DocumentTools.getVersions(this.document);
+
 	locked = true;
 
-	setupable = true;
+	#setupable = true;
+
+	get setupable() {
+		return this.#setupable && this.versions.length > 0;
+	}
 
 	/**
 	 * @param {*} value The system version to set.
@@ -71,6 +77,15 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
 		console.log("close");
 	}
+
+	// async #testCreateItem() {
+	// 	const data = [{name: "New incarnation", type: "incarnation"}];
+	// 	const created = await Item.implementation.create(data);
+	// 	console.log(created);
+	// 	await created.delete();
+	// }
+
+
 
 	/** 
 	 * @override
@@ -283,7 +298,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 			...await super._prepareContext(options),
 			context: {
 				version: this.version,
-				versions: DocumentTools.getVersions(this.document)
+				versions: this.versions
 			}
 		}
 	}

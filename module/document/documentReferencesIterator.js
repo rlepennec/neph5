@@ -1,4 +1,4 @@
-import { ChunkField } from "../common/ChunkField.js"
+import { ChunkField } from "../common/chunkField.js"
 import { UUIDReferenceField } from "../common/UUIDReferenceField.js"
 
 export class DocumentReferencesIterator {

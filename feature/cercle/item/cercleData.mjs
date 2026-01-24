@@ -1,4 +1,4 @@
-import { ChunkField } from "../../../module/common/ChunkField.js"
+import { ChunkField } from "../../../module/common/chunkField.js"
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
@@ -22,7 +22,6 @@ export class CercleData extends NephilimDataModel {
                             description: new foundry.data.fields.StringField
                             (
                                 {
-                                    required: true,
                                     initial: ''
                                 }
                             )
@@ -47,12 +46,11 @@ export class CercleData extends NephilimDataModel {
                             periode: new UUIDReferenceField
                             (
                                 {
-                                    required: false,
                                     collection: 'Item',
                                     type: 'periode',
                                 }
                             ),
-                            sapience: new foundry.data.fields.NumberField
+                            points: new foundry.data.fields.NumberField
                             (
                                 {
                                     initial: 0

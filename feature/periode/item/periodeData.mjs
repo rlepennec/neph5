@@ -1,4 +1,4 @@
-import { ChunkField } from "../../../module/common/ChunkField.js"
+import { ChunkField } from "../../../module/common/chunkField.js"
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
