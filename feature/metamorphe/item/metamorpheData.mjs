@@ -1,8 +1,9 @@
 import { ChunkField } from "../../../module/common/ChunkField.js"
 import { Constants } from "../../../module/common/constants.js";
+import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 
-export class MetamorpheData extends foundry.abstract.TypeDataModel {
+export class MetamorpheData extends NephilimDataModel {
 
     static defineSchema() {
         return {
@@ -136,31 +137,51 @@ export class MetamorpheData extends foundry.abstract.TypeDataModel {
                                     visage: new foundry.data.fields.SchemaField
                                     (
                                         {
-                                            points: new foundry.data.fields.NumberField(),
+                                            points: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
                                         }
                                     ),
                                     main: new foundry.data.fields.SchemaField
                                     (
                                         {
-                                            points: new foundry.data.fields.NumberField()
+                                            points: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            )
                                         }
                                     ),
                                     peau: new foundry.data.fields.SchemaField
                                     (
                                         {
-                                            points: new foundry.data.fields.NumberField()
+                                            points: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            )
                                         }
                                     ),
                                     odeur: new foundry.data.fields.SchemaField
                                     (
                                         {
-                                            points: new foundry.data.fields.NumberField()
+                                            points: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            )
                                         }
                                     ),
                                     voix: new foundry.data.fields.SchemaField
                                     (
                                         {
-                                            points: new foundry.data.fields.NumberField()
+                                            points: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            )
                                         }
                                     )
                                 }

@@ -1,8 +1,9 @@
 import { ChunkField } from "../../../module/common/ChunkField.js"
+import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 
-export class PeriodeData extends foundry.abstract.TypeDataModel {
+export class PeriodeData extends NephilimDataModel {
 
     static defineSchema() {
         return {

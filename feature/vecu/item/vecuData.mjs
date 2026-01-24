@@ -1,9 +1,10 @@
-import { ChunkField } from "../../../module/common/ChunkField.js"
+import { ChunkField } from "../../../module/common/chunkField.js"
 import { Constants } from "../../../module/common/constants.js";
+import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { UUIDField } from "../../../module/common/UUIDField.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
-export class VecuData extends foundry.abstract.TypeDataModel {
+export class VecuData extends NephilimDataModel {
 
     static defineSchema() {
         return {
@@ -22,7 +23,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                             element: new foundry.data.fields.StringField
                             (
                                 {
-                                    required: true,
+                                    //required: true,
                                     initial: 'air',
                                     choices: Constants.ELEMENTS
                                 }
@@ -30,7 +31,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                             periode: new UUIDReferenceField
                             (
                                 {
-                                    required: false,
+                                    //required: false,
                                     collection: 'Item',
                                     type: 'periode',
                                     droppable: true,
@@ -42,7 +43,7 @@ export class VecuData extends foundry.abstract.TypeDataModel {
                             (
                                 new UUIDReferenceField(
                                     {
-                                        required: false,
+                                        //required: false,
                                         collection: 'Item',
                                         type: 'competence',
                                         droppable: true,

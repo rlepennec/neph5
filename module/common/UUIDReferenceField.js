@@ -1,3 +1,12 @@
+/**
+ * The default options are:
+ * - collection: indicates the source document name.
+ * - type: Indicates the type of source document.
+ * - droppable
+ * - openable: Indicates if the user can click on the reference to open the source document.
+ * - duplicable
+ */
+
 export class UUIDReferenceField extends foundry.data.fields.StringField {
 
   /**
