@@ -47,10 +47,6 @@ export class PeriodeData extends NephilimDataModel {
                     scope: 'root'
                 }
             )
-
-
-
-
         }
     }
 

@@ -36,37 +36,6 @@ export class CercleData extends NephilimDataModel {
                     collection: 'Item',
                     scope: 'root'
                 }
-            ),
-            actor: new ChunkField
-            (
-                {
-                    base: new ChunkField
-                    (
-                        {
-                            periode: new UUIDReferenceField
-                            (
-                                {
-                                    collection: 'Item',
-                                    type: 'periode',
-                                }
-                            ),
-                            points: new foundry.data.fields.NumberField
-                            (
-                                {
-                                    initial: 0
-                                }
-                            )
-                        },
-                        {
-                            collection: 'Actor',
-                            scope: 'base'
-                        }
-                    )
-                },
-                {
-                    collection: 'Actor',
-                    scope: 'root'
-                }
             )
         }
     }
