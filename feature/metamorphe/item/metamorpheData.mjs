@@ -7,12 +7,7 @@ export class MetamorpheData extends NephilimDataModel {
 
     static defineSchema() {
         return {
-            sid: new UUIDField
-            (
-                {
-                    required: true
-                }
-            ),
+            ...NephilimDataModel.defineSchema(),
             item: new ChunkField
             (
                 {

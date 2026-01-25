@@ -1,7 +1,16 @@
+import { UUIDField } from ".//UUIDField.js"
+
 export class NephilimDataModel extends foundry.abstract.TypeDataModel {
 
-    // static toActor() {
-    //     throw new Error(`The ${this.name} subclass of NephilimDataModel must define its Document schema`);
-    // }
+    static defineSchema() {
+        return {
+            sid: new UUIDField
+            (
+                {
+                    required: true
+                }
+            )
+        }
+    }
 
 }

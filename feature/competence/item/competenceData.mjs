@@ -1,17 +1,11 @@
 import { ChunkField } from "../../../module/common/chunkField.js"
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
-import { UUIDField } from "../../../module/common/UUIDField.js"
 
 export class CompetenceData extends NephilimDataModel {
 
     static defineSchema() {
         return {
-            sid: new UUIDField
-            (
-                {
-                    required: true
-                }
-            ),
+            ...NephilimDataModel.defineSchema(),
             item: new ChunkField
             (
                 {

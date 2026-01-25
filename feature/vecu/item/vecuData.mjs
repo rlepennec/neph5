@@ -1,19 +1,13 @@
 import { ChunkField } from "../../../module/common/chunkField.js"
 import { Constants } from "../../../module/common/constants.js";
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
-import { UUIDField } from "../../../module/common/UUIDField.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
 export class VecuData extends NephilimDataModel {
 
     static defineSchema() {
         return {
-            sid: new UUIDField
-            (
-                {
-                    required: true
-                }
-            ),
+            ...NephilimDataModel.defineSchema(),
             item: new ChunkField
             (
                 {
