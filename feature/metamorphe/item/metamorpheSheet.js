@@ -47,12 +47,12 @@ export class MetamorpheSheet extends NephilimItemSheet {
 
         const metamorphoses = [];
         for (let index = 0; index < 10; index++) {
-            const name = "system.item.v5.metamorphoses[" + index + "]";
-            const value = submitData.system.item.v5.metamorphoses[index];
+            const name = "system.versions.v5.metamorphoses[" + index + "]";
+            const value = submitData.system.versions.v5.metamorphoses[index];
             metamorphoses.push(value);
             delete submitData[name];
         }
-        submitData["system.item.v5.metamorphoses"] = metamorphoses;
+        submitData["system.versions.v5.metamorphoses"] = metamorphoses;
 
         await this.document.update(submitData);
 

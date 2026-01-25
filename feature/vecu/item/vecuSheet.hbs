@@ -10,8 +10,8 @@
 
             {{> "systems/neph5e/templates/item-select.hbs"
                 title="element"
-                name="system.item.base.element"
-                value=document.system.item.base.element
+                name="system.base.element"
+                value=document.system.base.element
                 options=context.elements
             }}
 
@@ -31,11 +31,11 @@
             {{{enrichedDescription}}}
             {{else}}
             <prose-mirror
-                name="system.item.base.description"
+                name="system.base.description"
                 button="true"
                 editable="{{editable}}"
                 toggled="false"
-                value="{{document.system.item.base.description}}">
+                value="{{document.system.base.description}}">
                 {{{enrichedDescription}}}
             </prose-mirror>
             {{/if}}

@@ -4,43 +4,24 @@ import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js
 
 export class PeriodeData extends NephilimDataModel {
 
-    static defineSchema() {
+    static defineBase() {
         return {
-            ...NephilimDataModel.defineSchema(),
-            item: new ChunkField
+            epoque: new foundry.data.fields.StringField(),
+            region: new foundry.data.fields.StringField(),
+            vecus: new foundry.data.fields.SetField
             (
-                {
-                    base: new ChunkField
-                    (
-                        {
-                            epoque: new foundry.data.fields.StringField(),
-                            region: new foundry.data.fields.StringField(),
-                            vecus: new foundry.data.fields.SetField
-                            (
-                                new UUIDReferenceField(
-                                    {
-                                        required: false,
-                                        collection: 'Item',
-                                        type: 'vecu',
-                                        droppable: true,
-                                        openable: true,
-                                        duplicable: false,
-                                    }
-                                )
-                            ),
-                            description: new foundry.data.fields.StringField()
-                        },
-                        {
-                            collection: 'Item',
-                            scope: 'base'
-                        }
-                    )
-                },
-                {
-                    collection: 'Item',
-                    scope: 'root'
-                }
-            )
+                new UUIDReferenceField(
+                    {
+                        required: false,
+                        collection: 'Item',
+                        type: 'vecu',
+                        droppable: true,
+                        openable: true,
+                        duplicable: false,
+                    }
+                )
+            ),
+            description: new foundry.data.fields.StringField()
         }
     }
 

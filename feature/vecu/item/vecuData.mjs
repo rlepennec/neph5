@@ -5,60 +5,41 @@ import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js
 
 export class VecuData extends NephilimDataModel {
 
-    static defineSchema() {
+    static defineBase() {
         return {
-            ...NephilimDataModel.defineSchema(),
-            item: new ChunkField
+            element: new foundry.data.fields.StringField
             (
                 {
-                    base: new ChunkField
-                    (
-                        {
-                            element: new foundry.data.fields.StringField
-                            (
-                                {
-                                    //required: true,
-                                    initial: 'air',
-                                    choices: Constants.ELEMENTS
-                                }
-                            ),
-                            periode: new UUIDReferenceField
-                            (
-                                {
-                                    //required: false,
-                                    collection: 'Item',
-                                    type: 'periode',
-                                    droppable: true,
-                                    openable: true,
-                                    duplicable: false,
-                                }
-                            ),
-                            competences: new foundry.data.fields.SetField
-                            (
-                                new UUIDReferenceField(
-                                    {
-                                        //required: false,
-                                        collection: 'Item',
-                                        type: 'competence',
-                                        droppable: true,
-                                        openable: true,
-                                        duplicable: true,
-                                    }
-                                )
-                            ),
-                            description: new foundry.data.fields.StringField()
-                        },
-                        {
-                            collection: 'Item',
-                            scope: 'base'
-                        }
-                    )
-                },
-                {
-                    collection: 'Item',
-                    scope: 'root'
+                    //required: true,
+                    initial: 'air',
+                    choices: Constants.ELEMENTS
                 }
-            )
+            ),
+            periode: new UUIDReferenceField
+            (
+                {
+                    //required: false,
+                    collection: 'Item',
+                    type: 'periode',
+                    droppable: true,
+                    openable: true,
+                    duplicable: false,
+                }
+            ),
+            competences: new foundry.data.fields.SetField
+            (
+                new UUIDReferenceField(
+                    {
+                        //required: false,
+                        collection: 'Item',
+                        type: 'competence',
+                        droppable: true,
+                        openable: true,
+                        duplicable: true,
+                    }
+                )
+            ),
+            description: new foundry.data.fields.StringField()
         }
     }
 

@@ -10,10 +10,10 @@
 
             {{#if (eq context.version "v5")}}
 
-                {{#each document.system.item.v5.metamorphoses}}
+                {{#each document.system.versions.v5.metamorphoses}}
                     <h1>N°{{@index}}</h1>
                     <input
-                        name="system.item.v5.metamorphoses.{{@index}}"
+                        name="system.versions.v5.metamorphoses.{{@index}}"
                         type="text"
                         value="{{.}}"
                         {{#if ../document.sheet.locked}} disabled{{/if}}
