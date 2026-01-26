@@ -1,4 +1,3 @@
-import { ChunkField } from "../../../module/common/chunkField.js"
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 
 export class CompetenceData extends NephilimDataModel {

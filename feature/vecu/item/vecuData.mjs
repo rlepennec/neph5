@@ -10,7 +10,6 @@ export class VecuData extends NephilimDataModel {
             element: new foundry.data.fields.StringField
             (
                 {
-                    //required: true,
                     initial: 'air',
                     choices: Constants.ELEMENTS
                 }
@@ -18,7 +17,6 @@ export class VecuData extends NephilimDataModel {
             periode: new UUIDReferenceField
             (
                 {
-                    //required: false,
                     collection: 'Item',
                     type: 'periode',
                     droppable: true,
@@ -30,7 +28,6 @@ export class VecuData extends NephilimDataModel {
             (
                 new UUIDReferenceField(
                     {
-                        //required: false,
                         collection: 'Item',
                         type: 'competence',
                         droppable: true,
@@ -39,7 +36,11 @@ export class VecuData extends NephilimDataModel {
                     }
                 )
             ),
-            description: new foundry.data.fields.StringField()
+            description: new foundry.data.fields.StringField(
+                {
+                    initial: ''
+                }
+            )
         }
     }
 

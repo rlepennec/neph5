@@ -15,7 +15,6 @@ export class FigureData extends foundry.abstract.TypeDataModel {
                             description: new foundry.data.fields.StringField
                             (
                                 {
-                                    required: true,
                                     initial: ''
                                 }
                             )
