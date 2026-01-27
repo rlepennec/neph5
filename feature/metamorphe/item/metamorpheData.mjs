@@ -98,7 +98,7 @@ export class MetamorpheData extends NephilimDataModel {
                 metamorphoses: new foundry.data.fields.SchemaField
                 (
                     {
-                        visage: new foundry.data.fields.SchemaField
+                        main: new foundry.data.fields.SchemaField
                         (
                             {
                                 titre: new foundry.data.fields.StringField(
@@ -113,7 +113,7 @@ export class MetamorpheData extends NephilimDataModel {
                                 ),
                             }
                         ),
-                        main: new foundry.data.fields.SchemaField
+                        odeur: new foundry.data.fields.SchemaField
                         (
                             {
                                 titre: new foundry.data.fields.StringField(
@@ -143,7 +143,7 @@ export class MetamorpheData extends NephilimDataModel {
                                 ),
                             }
                         ),
-                        odeur: new foundry.data.fields.SchemaField
+                        visage: new foundry.data.fields.SchemaField
                         (
                             {
                                 titre: new foundry.data.fields.StringField(
@@ -175,6 +175,10 @@ export class MetamorpheData extends NephilimDataModel {
                         )
                     }
                 )
+            },
+            {
+                collection: 'Item',
+                scope: 'v1'
             }
         )
     }
