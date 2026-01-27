@@ -97,10 +97,14 @@ export class MetamorpheData extends NephilimDataModel {
                             (
                                 {
                                     titre: new foundry.data.fields.StringField(
-
+                                        {
+                                            initial: ''
+                                        }
                                     ),
                                     description : new foundry.data.fields.StringField(
-
+                                        {
+                                            initial: ''
+                                        }
                                     ),
                                 }
                             ),

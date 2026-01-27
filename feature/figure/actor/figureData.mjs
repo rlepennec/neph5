@@ -3,35 +3,18 @@ import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 
 export class FigureData extends foundry.abstract.TypeDataModel {
 
-    static defineSchema() {
+    static defineBase() {
         return {
-            ...NephilimDataModel.defineSchema(),
-            actor: new ChunkField
+            description: new foundry.data.fields.StringField
             (
                 {
-                    base: new ChunkField
-                    (
-                        {
-                            description: new foundry.data.fields.StringField
-                            (
-                                {
-                                    initial: ''
-                                }
-                            )
-                        },
-                        {
-                            collection: 'Actor',
-                            scope: 'base'
-                        }
-                    )
-                },
-                {
-                    collection: 'Actor',
-                    scope: 'root'
+                    initial: ''
                 }
             )
         }
     }
+
+
 
     /*
     static defineSchema() {
