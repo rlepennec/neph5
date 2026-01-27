@@ -87,109 +87,115 @@ export class MetamorpheData extends NephilimDataModel {
 
     static defineVersions() {
         return {
-            v1: new ChunkField
-            (
-                {
-                    metamorphoses: new foundry.data.fields.SchemaField
-                    (
-                        {
-                            visage: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    titre: new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                    description : new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                }
-                            ),
-                            main: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    titre: new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                    description : new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                }
-                            ),
-                            peau: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    titre: new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                    description : new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                }
-                            ),
-                            odeur: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    titre: new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                    description : new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                }
-                            ),
-                            voix: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    titre: new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                    description : new foundry.data.fields.StringField(
-                                        {
-                                            initial: ''
-                                        }
-                                    ),
-                                }
-                            )
-                        }
-                    )
-                }
-            ),
-            v5: new ChunkField
-            (
-                {
-                    metamorphoses: new foundry.data.fields.ArrayField
-                    (
-                        new foundry.data.fields.StringField(),
-                        {
-                            initial: Array(10).fill(''),
-                            max: 10
-                        },
-                    )
-                },
-                {
-                    collection: 'Item',
-                    scope: 'v5'
-                }
-            )
+            v1: this.#defineVersion1(),
+            v5: this.#defineVersion5()
         }
     }
 
+    static #defineVersion1() {
+        return new ChunkField(
+            {
+                metamorphoses: new foundry.data.fields.SchemaField
+                (
+                    {
+                        visage: new foundry.data.fields.SchemaField
+                        (
+                            {
+                                titre: new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                                description : new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                            }
+                        ),
+                        main: new foundry.data.fields.SchemaField
+                        (
+                            {
+                                titre: new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                                description : new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                            }
+                        ),
+                        peau: new foundry.data.fields.SchemaField
+                        (
+                            {
+                                titre: new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                                description : new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                            }
+                        ),
+                        odeur: new foundry.data.fields.SchemaField
+                        (
+                            {
+                                titre: new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                                description : new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                            }
+                        ),
+                        voix: new foundry.data.fields.SchemaField
+                        (
+                            {
+                                titre: new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                                description : new foundry.data.fields.StringField(
+                                    {
+                                        initial: ''
+                                    }
+                                ),
+                            }
+                        )
+                    }
+                )
+            }
+        )
+    }
+
+    static #defineVersion5() {
+        return new ChunkField(
+            {
+                metamorphoses: new foundry.data.fields.ArrayField
+                (
+                    new foundry.data.fields.StringField(),
+                    {
+                        initial: Array(10).fill(''),
+                        max: 10
+                    },
+                )
+            },
+            {
+                collection: 'Item',
+                scope: 'v5'
+            }
+        )
+    }
+    
 }

@@ -1,7 +1,7 @@
 import { ChunkField } from "../../../module/common/chunkField.js"
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 
-export class FigureData extends foundry.abstract.TypeDataModel {
+export class FigureData extends NephilimDataModel {
 
     static defineBase() {
         return {
