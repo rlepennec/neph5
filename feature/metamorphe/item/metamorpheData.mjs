@@ -184,7 +184,11 @@ export class MetamorpheData extends NephilimDataModel {
             {
                 metamorphoses: new foundry.data.fields.ArrayField
                 (
-                    new foundry.data.fields.StringField(),
+                    new foundry.data.fields.StringField(
+                        {
+                            initial: ''
+                        }
+                    ),
                     {
                         initial: Array(10).fill(''),
                         max: 10
