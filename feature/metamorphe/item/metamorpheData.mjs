@@ -95,11 +95,9 @@ export class MetamorpheData extends NephilimDataModel {
     static #defineVersion1() {
         return new ChunkField(
             {
-                metamorphoses: new foundry.data.fields.SchemaField
-                (
+                metamorphoses: new foundry.data.fields.SchemaField(
                     {
-                        main: new foundry.data.fields.SchemaField
-                        (
+                        main: new foundry.data.fields.SchemaField(
                             {
                                 titre: new foundry.data.fields.StringField(
                                     {
@@ -113,8 +111,7 @@ export class MetamorpheData extends NephilimDataModel {
                                 ),
                             }
                         ),
-                        odeur: new foundry.data.fields.SchemaField
-                        (
+                        odeur: new foundry.data.fields.SchemaField(
                             {
                                 titre: new foundry.data.fields.StringField(
                                     {
@@ -128,8 +125,7 @@ export class MetamorpheData extends NephilimDataModel {
                                 ),
                             }
                         ),
-                        peau: new foundry.data.fields.SchemaField
-                        (
+                        peau: new foundry.data.fields.SchemaField(
                             {
                                 titre: new foundry.data.fields.StringField(
                                     {
@@ -143,8 +139,7 @@ export class MetamorpheData extends NephilimDataModel {
                                 ),
                             }
                         ),
-                        visage: new foundry.data.fields.SchemaField
-                        (
+                        visage: new foundry.data.fields.SchemaField(
                             {
                                 titre: new foundry.data.fields.StringField(
                                     {
@@ -158,8 +153,7 @@ export class MetamorpheData extends NephilimDataModel {
                                 ),
                             }
                         ),
-                        voix: new foundry.data.fields.SchemaField
-                        (
+                        voix: new foundry.data.fields.SchemaField(
                             {
                                 titre: new foundry.data.fields.StringField(
                                     {
@@ -186,8 +180,7 @@ export class MetamorpheData extends NephilimDataModel {
     static #defineVersion5() {
         return new ChunkField(
             {
-                metamorphoses: new foundry.data.fields.ArrayField
-                (
+                metamorphoses: new foundry.data.fields.ArrayField(
                     new foundry.data.fields.StringField(
                         {
                             initial: ''

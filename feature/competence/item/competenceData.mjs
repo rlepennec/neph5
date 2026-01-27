@@ -4,8 +4,7 @@ export class CompetenceData extends NephilimDataModel {
 
     static defineBase() {
         return {
-            description: new foundry.data.fields.StringField
-            (
+            description: new foundry.data.fields.StringField(
                 {
                     initial: ''
                 }
