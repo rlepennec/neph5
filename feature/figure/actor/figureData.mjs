@@ -3,6 +3,39 @@ import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 
 export class FigureData extends NephilimDataModel {
 
+    static defineIncarnation() {
+        return {
+            id: new UUIDField(
+                {
+                    required: true
+                }
+            ),
+            periode: new UUIDReferenceField(
+                {
+                    collection: 'Item',
+                    type: 'periode',
+                    droppable: true,
+                    openable: true,
+                    duplicable: false,
+                }
+            ),
+            vecus: new foundry.data.fields.SetField(
+
+
+                
+                new UUIDReferenceField(
+                    {
+                        collection: 'Item',
+                        type: 'competence',
+                        droppable: true,
+                        openable: true,
+                        duplicable: true,
+                    }
+                )
+            )
+        }
+    }
+
     static defineBase() {
         return {
             description: new foundry.data.fields.StringField
