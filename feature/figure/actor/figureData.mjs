@@ -1,5 +1,5 @@
-import { ChunkField } from "../../../module/common/chunkField.js"
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
+import { TextField } from "../../../module/common/textField.js"
 
 export class FigureData extends NephilimDataModel {
 
@@ -38,12 +38,7 @@ export class FigureData extends NephilimDataModel {
 
     static defineBase() {
         return {
-            description: new foundry.data.fields.StringField
-            (
-                {
-                    initial: ''
-                }
-            )
+            description: new TextField()
         }
     }
 

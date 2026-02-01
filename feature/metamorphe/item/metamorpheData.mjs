@@ -1,6 +1,7 @@
 import { ChunkField } from "../../../module/common/chunkField.js"
 import { Constants } from "../../../module/common/constants.js";
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
+import { TextField } from "../../../module/common/textField.js"
 
 export class MetamorpheData extends NephilimDataModel {
 
@@ -25,19 +26,19 @@ export class MetamorpheData extends NephilimDataModel {
             portrait: new foundry.data.fields.SchemaField
             (
                 {
-                    activite: this.StringField(),
-                    animal: this.StringField(),
-                    arme : this.StringField(),
-                    couleur: this.StringField(),
-                    etre: this.StringField(),
-                    humain: this.StringField(),
-                    metal: this.StringField(),
-                    objet: this.StringField(),
-                    oeuvre: this.StringField(),
-                    phenomene: this.StringField()
+                    activite: new TextField(),
+                    animal: new TextField(),
+                    arme : new TextField(),
+                    couleur: new TextField(),
+                    etre: new TextField(),
+                    humain: new TextField(),
+                    metal: new TextField(),
+                    objet: new TextField(),
+                    oeuvre: new TextField(),
+                    phenomene: new TextField()
                 }
             ),
-            description: this.StringField()
+            description: new TextField()
         }
     }
 
@@ -55,32 +56,32 @@ export class MetamorpheData extends NephilimDataModel {
                     {
                         main: new foundry.data.fields.SchemaField(
                             {
-                                titre: this.StringField(),
-                                description : this.StringField(),
+                                titre: new TextField(),
+                                description : new TextField(),
                             }
                         ),
                         odeur: new foundry.data.fields.SchemaField(
                             {
-                                titre: this.StringField(),
-                                description : this.StringField(),
+                                titre: new TextField(),
+                                description : new TextField(),
                             }
                         ),
                         peau: new foundry.data.fields.SchemaField(
                             {
-                                titre:this.StringField(),
-                                description : this.StringField(),
+                                titre: new TextField(),
+                                description : new TextField(),
                             }
                         ),
                         visage: new foundry.data.fields.SchemaField(
                             {
-                                titre: this.StringField(),
-                                description : this.StringField(),
+                                titre: new TextField(),
+                                description : new TextField(),
                             }
                         ),
                         voix: new foundry.data.fields.SchemaField(
                             {
-                                titre: this.StringField(),
-                                description : this.StringField(),
+                                titre: new TextField(),
+                                description : new TextField(),
                             }
                         )
                     }
