@@ -17,11 +17,7 @@ export class VecuData extends NephilimDataModel {
                     }
                 )
             ),
-            description: new foundry.data.fields.StringField(
-                {
-                    initial: ''
-                }
-            ),
+            description: this.StringField(),
             element: new foundry.data.fields.StringField(
                 {
                     initial: 'air',

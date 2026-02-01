@@ -5,21 +5,9 @@ export class PeriodeData extends NephilimDataModel {
 
     static defineBase() {
         return {
-            description: new foundry.data.fields.StringField(
-                {
-                    initial: ''
-                }
-            ),
-            epoque: new foundry.data.fields.StringField(
-                {
-                    initial: ''
-                }
-            ),
-            region: new foundry.data.fields.StringField(
-                {
-                    initial: ''
-                }
-            ),
+            description: this.StringField(),
+            epoque: this.StringField(),
+            region: this.StringField(),
             vecus: new foundry.data.fields.SetField
             (
                 new UUIDReferenceField(

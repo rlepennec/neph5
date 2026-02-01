@@ -25,63 +25,19 @@ export class MetamorpheData extends NephilimDataModel {
             portrait: new foundry.data.fields.SchemaField
             (
                 {
-                    activite: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    animal: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    arme : new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    couleur: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    etre: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    humain: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    metal: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    objet: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    oeuvre: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
-                    phenomene: new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    )
+                    activite: this.StringField(),
+                    animal: this.StringField(),
+                    arme : this.StringField(),
+                    couleur: this.StringField(),
+                    etre: this.StringField(),
+                    humain: this.StringField(),
+                    metal: this.StringField(),
+                    objet: this.StringField(),
+                    oeuvre: this.StringField(),
+                    phenomene: this.StringField()
                 }
             ),
-            description: new foundry.data.fields.StringField(
-                {
-                    initial: ''
-                }    
-            )
+            description: this.StringField()
         }
     }
 
@@ -99,72 +55,32 @@ export class MetamorpheData extends NephilimDataModel {
                     {
                         main: new foundry.data.fields.SchemaField(
                             {
-                                titre: new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
-                                description : new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
+                                titre: this.StringField(),
+                                description : this.StringField(),
                             }
                         ),
                         odeur: new foundry.data.fields.SchemaField(
                             {
-                                titre: new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
-                                description : new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
+                                titre: this.StringField(),
+                                description : this.StringField(),
                             }
                         ),
                         peau: new foundry.data.fields.SchemaField(
                             {
-                                titre: new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
-                                description : new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
+                                titre:this.StringField(),
+                                description : this.StringField(),
                             }
                         ),
                         visage: new foundry.data.fields.SchemaField(
                             {
-                                titre: new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
-                                description : new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
+                                titre: this.StringField(),
+                                description : this.StringField(),
                             }
                         ),
                         voix: new foundry.data.fields.SchemaField(
                             {
-                                titre: new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
-                                description : new foundry.data.fields.StringField(
-                                    {
-                                        initial: ''
-                                    }
-                                ),
+                                titre: this.StringField(),
+                                description : this.StringField(),
                             }
                         )
                     }
@@ -181,11 +97,7 @@ export class MetamorpheData extends NephilimDataModel {
         return new ChunkField(
             {
                 metamorphoses: new foundry.data.fields.ArrayField(
-                    new foundry.data.fields.StringField(
-                        {
-                            initial: ''
-                        }
-                    ),
+                    this.StringField(),
                     {
                         initial: Array(10).fill(''),
                         max: 10

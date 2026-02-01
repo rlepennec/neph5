@@ -42,4 +42,14 @@ export class NephilimDataModel extends foundry.abstract.TypeDataModel {
         }
     }
 
+    static StringField() {
+        return new foundry.data.fields.StringField(
+            {
+                initial: ''
+            }
+        );
+    }
+
+
+
 }
