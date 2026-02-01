@@ -98,7 +98,7 @@ export class MetamorpheData extends NephilimDataModel {
         return new ChunkField(
             {
                 metamorphoses: new foundry.data.fields.ArrayField(
-                    this.StringField(),
+                    new foundry.data.fields.StringField(),
                     {
                         initial: Array(10).fill(''),
                         max: 10

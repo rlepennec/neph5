@@ -1,5 +1,5 @@
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
-import { NephilimDataModel } from "../../../module/common/textField.js"
+import { TextField } from "../../../module/common/textField.js"
 
 export class FigureData extends NephilimDataModel {
 

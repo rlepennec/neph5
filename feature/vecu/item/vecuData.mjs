@@ -1,5 +1,6 @@
 import { Constants } from "../../../module/common/constants.js";
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
+import { TextField } from "../../../module/common/textField.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
 export class VecuData extends NephilimDataModel {
@@ -17,7 +18,7 @@ export class VecuData extends NephilimDataModel {
                     }
                 )
             ),
-            description: this.StringField(),
+            description: new TextField(),
             element: new foundry.data.fields.StringField(
                 {
                     initial: 'air',
