@@ -1,74 +1,59 @@
+import { Constants } from "../../../module/common/constants.js";
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { TextField } from "../../../module/common/textField.js"
 
 export class FigureData extends NephilimDataModel {
 
-    static defineIncarnation() {
+    static defineBase() {
         return {
-            id: new UUIDField(
-                {
-                    required: true
-                }
-            ),
-            periode: new UUIDReferenceField(
-                {
-                    collection: 'Item',
-                    type: 'periode',
-                    droppable: true,
-                    openable: true,
-                    duplicable: false,
-                }
-            ),
-            vecus: new foundry.data.fields.SetField(
-
-
-                
-                new UUIDReferenceField(
+            description: new TextField(),
+            incarnations: new foundry.data.fields.ArrayField(
+                new foundry.data.fields.SchemaField(
                     {
-                        collection: 'Item',
-                        type: 'competence',
-                        droppable: true,
-                        openable: true,
-                        duplicable: true,
+                        vecu: new UUIDReferenceField(
+                            {
+                                collection: 'Item',
+                                type: 'vecu',
+                                droppable: false,
+                                openable: false,
+                                duplicable: false,
+                            }
+                        ),
+                        ameliorations: new foundry.data.fields.ArrayField(
+                            new foundry.data.fields.SchemaField(
+                                {
+                                    type: new foundry.data.fields.StringField(
+                                        {
+                                            initial: ''
+                                        }
+                                    ),
+                                    uuid: new UUIDReferenceField(
+                                        {
+                                            collection: 'Item',
+                                            type: 'base',
+                                            droppable: false,
+                                            openable: false,
+                                            duplicable: false,
+                                        }
+                                    ),
+                                    sapience: new foundry.data.fields.NumericField(
+                                        {
+                                            initial: 0
+                                        }
+                                    ),
+                                    version: new foundry.data.fields.StringField(
+                                        {
+                                            initial: 'base'
+                                        }
+                                    )
+                                }
+                            )
+                        ),
+                        description : new TextField(),
                     }
                 )
             )
         }
     }
-
-    static defineBase() {
-        return {
-            description: new TextField()
-        }
-    }
-
-
-
-    /*
-    static defineSchema() {
-        return {
-            sid: new UUIDField
-            (
-                {
-                    required: true
-                }
-            ),
-            vecus: new foundry.data.fields.SetField
-            (
-                new UUIDReferenceField(
-                    {
-                        required: false,
-                        collection: 'Item',
-                        type: 'vecu',
-                        droppable: true,
-                        openable: true,
-                        duplicable: false,
-                    }
-                )
-            ),
-            description: new foundry.data.fields.StringField()
-        }
-    }
-        */
 
 }
