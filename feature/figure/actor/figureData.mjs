@@ -49,7 +49,7 @@ export class FigureData extends NephilimDataModel {
                                 }
                             )
                         ),
-                        description : new TextField(),
+                        description: new TextField(),
                     }
                 )
             )
