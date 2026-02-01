@@ -1,7 +1,7 @@
 /**
  * The default options are:
  * - collection: indicates the source document name.
- * - type: Indicates the type of source document.
+ * - type: Indicates the type of source document type, base if generic type since base is defined as a item type by foundry.
  * - droppable
  * - openable: Indicates if the user can click on the reference to open the source document.
  * - duplicable

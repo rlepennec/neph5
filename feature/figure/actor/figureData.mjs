@@ -23,7 +23,9 @@ export class FigureData extends NephilimDataModel {
                                 {
                                     type: new foundry.data.fields.StringField(
                                         {
-                                            initial: ''
+                                            required: true,
+                                            initial: 'base',
+                                            choices: game.documentTypes.Item
                                         }
                                     ),
                                     uuid: new UUIDReferenceField(
