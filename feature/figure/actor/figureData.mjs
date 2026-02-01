@@ -1,6 +1,6 @@
-import { Constants } from "../../../module/common/constants.js";
 import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
 import { TextField } from "../../../module/common/textField.js"
+import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
 export class FigureData extends NephilimDataModel {
 
@@ -12,7 +12,6 @@ export class FigureData extends NephilimDataModel {
                     {
                         vecu: new UUIDReferenceField(
                             {
-                                collection: 'Item',
                                 type: 'vecu',
                                 droppable: false,
                                 openable: false,
@@ -29,14 +28,12 @@ export class FigureData extends NephilimDataModel {
                                     ),
                                     uuid: new UUIDReferenceField(
                                         {
-                                            collection: 'Item',
-                                            type: 'base',
                                             droppable: false,
                                             openable: false,
                                             duplicable: false,
                                         }
                                     ),
-                                    sapience: new foundry.data.fields.NumericField(
+                                    sapience: new foundry.data.fields.NumberField(
                                         {
                                             initial: 0
                                         }

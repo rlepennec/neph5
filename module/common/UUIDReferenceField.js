@@ -17,7 +17,7 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
             super._defaults,
             {
                 collection: 'Item',
-                type: 'base',
+                type: 'undefined',
                 droppable: true,
                 openable: true,
                 duplicable: true,

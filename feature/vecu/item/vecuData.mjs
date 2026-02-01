@@ -10,11 +10,7 @@ export class VecuData extends NephilimDataModel {
             competences: new foundry.data.fields.SetField(
                 new UUIDReferenceField(
                     {
-                        collection: 'Item',
-                        type: 'competence',
-                        droppable: true,
-                        openable: true,
-                        duplicable: true,
+                        type: 'competence'
                     }
                 )
             ),
@@ -27,11 +23,8 @@ export class VecuData extends NephilimDataModel {
             ),
             periode: new UUIDReferenceField(
                 {
-                    collection: 'Item',
                     type: 'periode',
-                    droppable: true,
-                    openable: true,
-                    duplicable: false,
+                    duplicable: false
                 }
             )
         }

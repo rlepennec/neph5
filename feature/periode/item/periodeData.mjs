@@ -13,10 +13,7 @@ export class PeriodeData extends NephilimDataModel {
             (
                 new UUIDReferenceField(
                     {
-                        collection: 'Item',
                         type: 'vecu',
-                        droppable: true,
-                        openable: true,
                         duplicable: false,
                     }
                 )
