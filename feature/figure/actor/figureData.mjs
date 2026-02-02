@@ -48,6 +48,11 @@ export class FigureData extends NephilimDataModel {
                                 }
                             )
                         ),
+                        /*
+                        metamorphe: new foundry.data.fields.ArrayField(
+
+                        ),
+                        */
                         description: new TextField(),
                     }
                 )
