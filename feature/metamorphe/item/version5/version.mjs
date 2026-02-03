@@ -20,4 +20,14 @@ export class Version5 {
         )
     }
     
+    static defineActor() {
+        return new foundry.data.fields.ArrayField(
+            new foundry.data.fields.NumberField(),
+            {
+                initial: Array(10).fill(0),
+                max: 10
+            }
+        )
+    }
+
 }

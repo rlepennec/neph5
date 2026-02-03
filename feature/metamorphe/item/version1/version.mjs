@@ -48,4 +48,36 @@ export class Version1 {
         )
     }
     
+    static defineActor() {
+        return new foundry.data.fields.SchemaField(
+            {
+                main: new foundry.data.fields.NumberField(
+                    {
+                        initial: 0
+                    }
+                ),
+                odeur: new foundry.data.fields.NumberField(
+                    {
+                        initial: 0
+                    }
+                ),
+                peau: new foundry.data.fields.NumberField(
+                    {
+                        initial: 0
+                    }
+                ),
+                visage: new foundry.data.fields.NumberField(
+                    {
+                        initial: 0
+                    }
+                ),
+                voix: new foundry.data.fields.NumberField(
+                    {
+                        initial: 0
+                    }
+                )
+            }
+        )
+    }
+
 }
