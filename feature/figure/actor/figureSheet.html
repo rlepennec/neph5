@@ -1,12 +1,17 @@
 <section class="actor-root soleil">
-
+{{log .}}
     <aside>
-        
+
+        <img
+            src="{{document.img}}"
+            data-edit="img"
+            data-action="editImage"/>
+
     </aside>
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/actor-header.hbs"}}
 
         <main>
 
