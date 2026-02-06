@@ -1,5 +1,6 @@
 .soleil {
   --background-image-actor-side: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
+  --font-side-color-actor-side: #191813;
   /*
     --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
     --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
@@ -96,11 +97,19 @@ form.nephilim.actor section.window-content > section aside {
   background-image: var(--background-image-actor-side);
   background-repeat: no-repeat;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+  mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
 }
 form.nephilim.actor section.window-content > section aside img {
   margin-top: 10px;
   width: 150px;
   border: 0px;
+}
+form.nephilim.actor section.window-content > section aside nav {
+  margin-top: 20px;
+  font-family: 'AJensonPro';
+  font-size: 23px;
+  font-weight: bolder;
+  color: var(--font-side-color-actor-side);
 }
 form.nephilim.actor section.window-content > section article {
   background: var(--background-article-bright);

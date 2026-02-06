@@ -4,6 +4,7 @@ export class Templates {
         foundry.applications.handlebars.loadTemplates([
 
             `systems/neph5e/templates/actor-header.hbs`,
+            `systems/neph5e/templates/actor-option.hbs`,
 
             `systems/neph5e/templates/item-description.hbs`,
             `systems/neph5e/templates/item-header.hbs`,
