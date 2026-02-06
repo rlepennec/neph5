@@ -15,7 +15,7 @@ export class FigureSheet extends NephilimActorSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/${this.#ID}/actor/${this.#ID}Sheet.html`,
+            template: `systems/neph5e/feature/${this.#ID}/actor/${this.#ID}Sheet.hbs`,
         }
     }
 
