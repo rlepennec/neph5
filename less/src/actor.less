@@ -4,6 +4,7 @@ form.nephilim.actor {
         display: flex;
         flex-flow: unset;
         width: 100%;
+        background: var(--background-article-bright);
 
         aside {
             display: flex;
@@ -14,7 +15,7 @@ form.nephilim.actor {
             background-image: var(--background-image-actor-side);
             background-repeat: no-repeat;
             box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-            mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+            mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1.0)), to(rgba(0, 0, 0, 0.2)));
 
             img {
                 margin-top: 10px;
@@ -33,12 +34,13 @@ form.nephilim.actor {
         }
 
         article {
-            .mixin-editing-dark-on-bright();
             display: flex;
             flex-direction: column;
+            width: 100%;
             font-family: var(--font-family-title);
             font-size: 16px;
-            width: 100%;
+            color: var(--color-font-dark);
+            
 
             header {
                 .mixin-editing-bright-on-dark();

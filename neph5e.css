@@ -87,6 +87,7 @@ form.nephilim.actor section.window-content > section {
   display: flex;
   flex-flow: unset;
   width: 100%;
+  background: var(--background-article-bright);
 }
 form.nephilim.actor section.window-content > section aside {
   display: flex;
@@ -97,7 +98,7 @@ form.nephilim.actor section.window-content > section aside {
   background-image: var(--background-image-actor-side);
   background-repeat: no-repeat;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-  mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0)));
+  mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(rgba(0, 0, 0, 0.2)));
 }
 form.nephilim.actor section.window-content > section aside img {
   margin-top: 10px;
@@ -112,13 +113,12 @@ form.nephilim.actor section.window-content > section aside nav {
   color: var(--font-side-color-actor-side);
 }
 form.nephilim.actor section.window-content > section article {
-  background: var(--background-article-bright);
-  color: var(--color-font-dark);
   display: flex;
   flex-direction: column;
+  width: 100%;
   font-family: var(--font-family-title);
   font-size: 16px;
-  width: 100%;
+  color: var(--color-font-dark);
 }
 form.nephilim.actor section.window-content > section article header {
   background: var(--background-article-dark);
