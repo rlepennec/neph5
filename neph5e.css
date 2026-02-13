@@ -98,7 +98,7 @@ form.nephilim.actor section.window-content > section aside {
   background-image: var(--background-image-actor-side);
   background-repeat: no-repeat;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-  mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), to(rgba(0, 0, 0, 0.2)));
+  mask-image: linear-gradient(to bottom, #000000, rgba(0, 0, 0, 0));
 }
 form.nephilim.actor section.window-content > section aside img {
   margin-top: 10px;
