@@ -90,22 +90,29 @@ form.nephilim.actor section.window-content > section {
   background: var(--background-article-bright);
 }
 form.nephilim.actor section.window-content > section aside {
+  position: relative;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   align-items: center;
   width: 170px;
-  background-image: var(--background-image-actor-side);
-  background-repeat: no-repeat;
+}
+form.nephilim.actor section.window-content > section aside:before {
+  position: absolute;
+  content: "";
+  inset: 0px;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+  background: var(--background-image-actor-side) no-repeat;
   mask-image: linear-gradient(to bottom, #000000, rgba(0, 0, 0, 0));
 }
 form.nephilim.actor section.window-content > section aside img {
+  position: relative;
   margin-top: 10px;
   width: 150px;
   border: 0px;
 }
 form.nephilim.actor section.window-content > section aside nav {
+  position: relative;
   margin-top: 20px;
   font-family: 'AJensonPro';
   font-size: 23px;

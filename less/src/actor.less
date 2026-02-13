@@ -7,23 +7,31 @@ form.nephilim.actor {
         background: var(--background-article-bright);
 
         aside {
+            position: relative;
             display: flex;
             flex: 0 0 auto;
             flex-direction: column;
             align-items: center;
             width: 170px;
-            background-image: var(--background-image-actor-side);
-            background-repeat: no-repeat;
-            box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0.0));
+            
+            &:before {
+                position: absolute;
+                content: "";
+                inset: 0px;
+                box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+                background: var(--background-image-actor-side) no-repeat;
+                mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0.0));
+            }
 
             img {
+                position: relative;
                 margin-top: 10px;
                 width: 150px;
                 border: 0px;
             }
 
             nav {
+                position: relative;
                 margin-top: 20px;
                 font-family: 'AJensonPro';
                 font-size: 23px;
