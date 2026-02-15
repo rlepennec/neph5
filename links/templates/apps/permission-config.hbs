@@ -1,0 +1,20 @@
+<p class="hint">{{localize "PERMISSION.Instructions"}}</p>
+<header class="table-header flexrow">
+    <label class="index">{{ localize "PERMISSION.Permission" }}</label>
+    {{#each roles as |rl r|}}
+    <label>{{ localize rl}}</label>
+    {{/each}}
+</header>
+<ul class="permissions-list">
+    {{#each permissions as |p|}}
+    <li class="permission form-group">
+        <label class="index">{{ localize p.label }}</label>
+        <div class="form-fields">
+            {{#each p.roles as |r|}}
+            <input type="checkbox" name="{{r.name}}" {{checked r.value}} {{r.readonly}}>
+            {{/each}}
+        </div>
+        <p class="hint">{{ localize p.hint }}</p>
+    </li>
+    {{/each}}
+</ul>

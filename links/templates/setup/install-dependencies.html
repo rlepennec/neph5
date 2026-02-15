@@ -1,0 +1,49 @@
+{{#*inline "autoInstallDependencyPartial"}}
+<div class="form-group">
+    <label class="checkbox before">
+        <input type="checkbox" name="{{this.id}}" checked="checked" {{ disabled required }} data-tooltip-text="{{ this.note }}">
+        <a href="{{ this.url }}" title="{{ this.id }}" target="_blank">{{this.id}}{{#if this.version}} (ver. {{this.version}}){{/if}}</a>
+        {{#if this.reason}}<p class="hint">{{this.reason}}</p>{{/if}}
+    </label>
+</div>
+{{/inline}}
+
+{{#*inline "manualInstallDependencyPartial"}}
+<p><a href="{{ this.url }}" title="{{ this.id }}" target="_blank">{{this.id}}{{#if this.version}} (ver. {{this.version}}){{/if}}</a> - {{this.message}}</p>
+{{/inline}}
+
+<section class="scrollable">
+    <p>{{ hasDependenciesLabel }}</p>
+    <div class="dependencies-info flexrow">
+        <section class="automatic">
+            <p><b>{{ autoInstallLabel }}</b></p>
+            {{#if canInstallRequired.length}}
+            <p>{{localize "SETUP.PackageRequiredDependencies"}}</p>
+            {{#each canInstallRequired}}
+                {{> autoInstallDependencyPartial this}}
+            {{/each}}
+            {{/if}}
+            {{#if canInstallOptional.length}}
+            <p>{{localize "SETUP.PackageOptionalDependencies"}}</p>
+            {{#each canInstallOptional}}
+                {{> autoInstallDependencyPartial this}}
+            {{/each}}
+            {{/if}}
+        </section>
+        <section class="manual">
+            <p><b>{{ manualInstallLabel }}</b></p>
+            {{#if cantInstallRequired.length}}
+            <p>{{localize "SETUP.PackageRequiredDependencies"}}</p>
+            {{#each cantInstallRequired}}
+                {{> manualInstallDependencyPartial this}}
+            {{/each}}
+            {{/if}}
+            {{#if cantInstallOptional.length}}
+            <p>{{localize "SETUP.PackageOptionalDependencies"}}</p>
+            {{#each cantInstallOptional}}
+                {{> manualInstallDependencyPartial this}}
+            {{/each}}
+            {{/if}}
+        </section>
+    </div>
+</section>

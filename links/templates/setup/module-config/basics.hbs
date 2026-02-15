@@ -1,0 +1,19 @@
+<section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#if isCreate}}<p>{{localize "PACKAGE.ModuleCreateHint"}}</p>
+    {{else if module.manifest}}<p class="notification warning">{{localize "PACKAGE.ModuleEditWarning"}}</p>
+    {{else}}<p>{{localize "PACKAGE.ModuleEditHint"}}</p>{{/if}}
+
+    {{formGroup fields.title value=module.title rootId=rootId}}
+    {{formGroup fields.id value=moduleId rootId=rootId disabled=(not isCreate) placeholder=module.id}}
+    {{formGroup fields.version value=module.version rootId=rootId}}
+    {{formGroup fields.url value=module.url rootId=rootId}}
+    {{formGroup fields.description value=module.description rootId=rootId}}
+
+    <fieldset>
+        <legend>{{localize "PACKAGE.Compatibility.Label"}}</legend>
+        {{formGroup fields.compatibility.fields.minimum value=module.compatibility.minimum rootId=rootId}}
+        {{formGroup fields.compatibility.fields.verified value=module.compatibility.verified rootId=rootId}}
+        {{formGroup fields.compatibility.fields.maximum value=module.compatibility.maximum rootId=rootId}}
+        <p class="hint">{{localize "PACKAGE.Compatibility.Hint"}}</p>
+    </fieldset>
+</section>

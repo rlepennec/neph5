@@ -1,0 +1,9 @@
+<menu class="flexcol" data-tooltip-direction="RIGHT">
+    {{#each tools as |tool|}}
+    <li>
+        <button type="button" class="control ui-control tool icon {{tool.cssClass}} {{tool.icon}}" data-action="tool"
+                data-tool="{{tool.name}}" aria-label="{{localize tool.title}}" aria-pressed="{{tool.active}}"
+                {{#if tool.showToolclip}}data-toolclip{{else}}data-tooltip{{/if}}></button>
+    </li>
+    {{/each}}
+</menu>

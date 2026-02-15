@@ -1,0 +1,58 @@
+{{#unless noDeletion}}
+<div class="form-group bulk-actions" aria-label="{{localize "SETUP.BACKUPS.BulkActions"}}">
+    <label class="checkbox">
+        <input type="checkbox" data-action="selectAll">
+        {{localize "SelectAll"}}
+    </label>
+    <div class="form-fields">
+        <button type="button" data-action="deleteBackups">{{localize "DeleteSelected"}}</button>
+    </div>
+</div>
+{{/unless}}
+
+<div class="flexcol scrollable package-list{{#if loading}} loading{{/if}}" data-entries>
+    {{~#if loading}}
+    <div class="progress">
+        <h3 class="divider">{{localize "SETUP.BACKUPS.Loading"}}</h3>
+        <i class="fa-solid fa-spinner fa-spin"></i>
+    </div>
+    {{/if~}}
+
+    {{#each entries as |entry|}}
+    <div class="form-group slim package"
+         data-entry
+         data-id="{{entry.id}}"
+         {{#if entry.type}}data-type="{{entry.type}}"{{/if}}
+         {{#if entry.snapshotId}}data-snapshot-id="{{entry.snapshotId}}"{{/if}}>
+        <label class="checkbox">
+            <input type="checkbox" name="{{entry.id}}"
+                  {{#if entry.snapshotId}}disabled data-tooltip="SETUP.BACKUPS.CannotDeleteInSnapshot"{{/if}}>
+            {{entry.label}}
+        </label>
+
+        <div class="form-fields">
+            <button type="button" data-action="restoreBackup"
+                {{#if entry.noRestore}}disabled data-tooltip="SETUP.BACKUPS.CannotRestoreUnusable"{{/if}}>
+                <i class="fa-solid fa-arrow-rotate-left" inert></i>
+                {{localize "SETUP.BACKUPS.Restore"}}
+            </button>
+        </div>
+
+        {{~#if entry.hint}}
+        <p class="hint">{{entry.hint}}</p>
+        {{/if~}}
+
+        <div class="tags flexrow">
+            {{#each entry.tags as |tag|}}
+            <span class="tag flexrow{{#if tag.type}} badge {{tag.type}}{{/if}}"
+                  {{#if tag.tooltip}} data-tooltip aria-label="{{tag.tooltip}}"{{/if}}>
+                {{~#if tag.icon}}
+                <i class="{{tag.icon}}" inert></i>
+                {{/if~}}
+                {{tag.label}}
+            </span>
+            {{/each}}
+        </div>
+    </div>
+    {{/each}}
+</div>

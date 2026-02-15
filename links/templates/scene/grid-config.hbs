@@ -1,0 +1,27 @@
+<p>{{localize "SCENE.GridConfigToolHint"}}</p>
+
+{{formGroup fields.grid.fields.type value=scene.grid.type choices=gridTypes rootId=rootId}}
+
+<div class="form-group slim">
+    <label for="{{rootId}}-scale">{{localize "SCENE.BackgroundScale"}}</label>
+    <div class="form-fields">
+        {{numberInput scale name="scale" id="{{rootId}}-scale" readonly=(not scene.background.src)}}
+    </div>
+    <p class="hint">{{localize "SCENE.BackgroundScaleHint"}}</p>
+</div>
+
+{{formGroup fields.grid.fields.size value=scene.grid.size hint=(localize "SCENE.GridResizeHint") rootId=rootId
+    classes="slim" units=pixelsLabel}}
+
+<div class="form-group slim">
+    <label>{{localize "SCENE.GridPosition"}}  <span class="units">({{pixelsLabel}})</span></label>
+    <div class="form-fields">
+        <label for="{{rootId}}-background.offsetX">{{localize "SCENE.FIELDS.background.offsetX.label"}}</label>
+        {{formInput fields.background.fields.offsetX value=scene.background.offsetX
+            id=(concat rootId "-background.offsetX") readonly=(not scene.background.src)}}
+        <label for="{{rootId}}-background.offsetY">{{localize "SCENE.FIELDS.background.offsetY.label"}}</label>
+        {{formInput fields.background.fields.offsetY value=scene.background.offsetY
+            id=(concat rootId "-background.offsetY") readonly=(not scene.background.src)}}
+    </div>
+    <p class="hint">{{localize "SCENE.GridPositionHint"}}</p>
+</div>

@@ -1,0 +1,26 @@
+<form id="document-create" autocomplete="off">
+    <div class="form-group">
+        <label>{{localize "Name"}}</label>
+        <div class="form-fields">
+            <input type="text" name="name" placeholder="{{defaultName}}" value="{{name}}" autofocus>
+        </div>
+    </div>
+
+    {{#if hasFolders}}
+    <div class="form-group">
+        <label>{{localize "DOCUMENT.Folder"}}</label>
+        <div class="form-fields">
+            <select name="folder">
+                {{selectOptions folders selected=folder blank="" valueAttr="id" labelAttr="name"}}
+            </select>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="form-group slim">
+        <label for="document-create-journal">{{localize "NOTE.CreateJournal"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" id="document-create-journal" name="journal">
+        </div>
+    </div>
+</form>

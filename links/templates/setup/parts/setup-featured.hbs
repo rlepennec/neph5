@@ -1,0 +1,12 @@
+<section class="application flexcol">
+    <h2 class="divider">{{localize "SETUP.FeaturedContent"}}</h2>
+    {{#if featured}}
+        <a id="featured-content" class="news flexcol" href="{{featured.url}}" target="_blank">
+            <img src="{{featured.image}}" alt="{{featured.title}}">
+            <h3 id="featured-content-title">{{featured.title}}</h3>
+            <p class="caption">{{{featured.caption}}}</p>
+        </a>
+    {{else}}
+        <p class="notification error">{{localize "SETUP.NoFeaturedContent"}}</p>
+    {{/if}}
+</section>

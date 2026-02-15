@@ -1,0 +1,23 @@
+<div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <fieldset>
+        <legend>{{localize "SUPPORT.Places"}}</legend>
+        <p>{{{localize "SUPPORT.Discord"}}}</p>
+        <p>{{{localize "SUPPORT.BugReporting"}}}</p>
+    </fieldset>
+
+    <fieldset class="report">
+        <legend>{{localize "SUPPORT.Title"}}</legend>
+        <p>{{localize "SUPPORT.ReportPrelude"}}</p>
+{{> "templates/sidebar/apps/support-details/report.hbs"}}
+    </fieldset>
+
+    <footer class="form-footer">
+        <button type="button" data-action="copyReport">
+            <i class="fa-solid fa-copy"></i> {{localize "SUPPORT.CopyReport"}}
+        </button>
+        <button type="button" data-action="fullReport" data-tooltip="SUPPORT.GenerateFullReportHint">
+            <i class="fa-solid fa-file-lines"></i>
+            <span>{{localize "SUPPORT.GenerateFullReport"}}</span>
+        </button>
+    </footer>
+</div>

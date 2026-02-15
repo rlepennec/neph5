@@ -1,0 +1,18 @@
+{{formGroup fields.name value=source.name rootId=rootId disabled=nameImgDisabled}}
+{{formGroup fields.type value=source.type options=types classes="slim" rootId=rootId}}
+{{formGroup fields.documentUuid value=source.documentUuid options=documentUuids blank=""
+    hidden=(eq source.type "text") rootId=rootId}}
+{{formGroup fields.img value=source.img disabled=nameImgDisabled rootId=rootId}}
+{{formGroup fields.weight value=source.weight classes="slim" rootId=rootId}}
+
+<div class="form-group slim range">
+    <label for="{{concat rootId "-source.range.0"}}">{{localize "TABLE_RESULT.FIELDS.range.label"}}</label>
+    <div class="form-fields">
+        {{formInput fields.range.element name="source.range.0" value=source.range.[0] placeholder="L"
+                    id=(concat rootId "-source.range.0")}}
+        <span>–</span>
+        {{formInput fields.range.element name="source.range.1" value=source.range.[1] placeholder="H"}}
+    </div>
+</div>
+
+{{formGroup fields.description value=source.description rootId=rootId}}

@@ -1,0 +1,28 @@
+<div class="standard-form scrollable">
+    {{#if canConfigure}}
+    <fieldset>
+        <legend>{{localize "COMBAT.CONFIG.SHEET.TURN_MARKERS"}}</legend>
+        {{formGroup fields.turnMarker.fields.enabled value=settings.turnMarker.enabled rootId=rootId}}
+        {{formGroup fields.turnMarker.fields.animation value=settings.turnMarker.animation options=animationChoices
+            blank=(localize "None") disabled=(not settings.turnMarker.enabled) rootId=rootId}}
+        {{formGroup fields.turnMarker.fields.src value=settings.turnMarker.src disabled=(not settings.turnMarker.enabled)
+            rootId=rootId}}
+        {{formGroup fields.turnMarker.fields.disposition value=settings.turnMarker.disposition
+            disabled=(not settings.turnMarker.enabled) rootId=rootId}}
+    </fieldset>
+
+    {{formGroup fields.resource options=attributeChoices value=settings.resource blank=(localize "None") rootId=rootId}}
+    {{formGroup fields.skipDefeated value=settings.skipDefeated rootId=rootId}}
+    {{/if}}
+
+    <div class="form-group" data-setting-id="core.combatTheme">
+        <label for="{{rootId}}-theme">{{localize combatTheme.name}}</label>
+        <div class="form-fields">
+            {{formInput combatTheme.type value=selectedTheme id=(concat rootId "-theme") localize=true}}
+            <button type="button" class="preview-theme" data-action="previewTheme" data-tooltip="Preview">
+                <i class="fa-solid fa-play"></i>
+            </button>
+        </div>
+        <p class="hint">{{localize combatTheme.hint}}</p>
+    </div>
+</div>

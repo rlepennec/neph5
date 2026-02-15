@@ -1,0 +1,39 @@
+<section class="scrollable">
+
+    {{!-- Required Dependencies --}}
+    {{#if required.length}}
+    <fieldset>
+        <legend>{{ localize "MODMANAGE.RequiredDependencies" }}</legend>
+        <div class="form-group">
+            <p class="hint">{{ localize "MODMANAGE.DepRequiredEnable" }}</p>
+        </div>
+
+        {{#each required}}
+        {{ formGroup @root.checkbox name=module.id value=checked disabled=required label=module.title classes="slim"
+                     dataset=(object tooltipText=(ifThen module.note module.note "")) }}
+        {{/each}}
+    </fieldset>
+    {{/if}}
+
+    {{!-- Optional Dependencies --}}
+    {{#if optional.length}}
+    <fieldset>
+        <legend>{{ localize "MODMANAGE.OptionalDependencies" }}</legend>
+        <div class="form-group">
+            <p class="hint">{{ localize (ifThen enabling "MODMANAGE.DepOptionalEnable" "MODMANAGE.DepDisable") }}</p>
+        </div>
+
+        {{#each optional}}
+        {{ formGroup @root.checkbox name=module.id value=checked disabled=required label=module.title classes="slim"
+                     dataset=(object tooltipText=(ifThen module.note module.note "")) }}
+        {{/each}}
+    </fieldset>
+    {{/if}}
+
+    {{!-- Module-Provided Sub-Types --}}
+    {{#if subtypes}}
+    <p>{{ localize "MODMANAGE.UnavailableDocuments" }}</p>
+    {{{ subtypes }}}
+    {{/if}}
+
+</section>

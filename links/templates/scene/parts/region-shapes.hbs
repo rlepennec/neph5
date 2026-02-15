@@ -1,0 +1,35 @@
+<section class="tab region-{{tab.id}} flexcol {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <header class="region-element region-shape flexrow">
+        <div class="region-element-name">{{localize "REGION.Shape"}}</div>
+        <div class="region-element-controls">
+            <a class="control" data-action="shapeCreateFromWalls" data-tooltip
+               aria-label="{{localize "REGION.ACTIONS.shapeCreateFromWalls"}}">
+               <i class="fa-solid fa-plus" inert></i><i class="fa-solid fa-block-brick fa-fw" inert></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="standard-form scrollable">
+        {{#each source.shapes as |shape i|}}
+        <fieldset class="region-element region-shape flexrow" data-shape-index="{{i}}" aria-label="{{localize "REGION.Shape"}} {{i}}">
+            <span class="region-element-name">{{localize (concat "REGION.SHAPES." shape.type)}}</span>
+            <div class="region-element-controls">
+                <a class="control {{#if shape.hole}}fa-regular{{else}}fa-solid{{/if}} fa-circle fa-fw"
+                   data-action="shapeToggleHole" data-tooltip
+                   {{#if shape.hole}}
+                   aria-label="{{localize "REGION.ACTIONS.shapeFillHole"}}"
+                   {{else}}
+                   aria-label="{{localize "REGION.ACTIONS.shapeMakeHole"}}"
+                   {{/if}}
+                ></a>
+                <a class="control fa-solid fa-arrow-up fa-fw" data-action="shapeMoveUp" data-tooltip
+                   aria-label="{{localize "REGION.ACTIONS.shapeMoveUp"}}"></a>
+                <a class="control fa-solid fa-arrow-down fa-fw" data-action="shapeMoveDown" data-tooltip
+                   aria-label="{{localize "REGION.ACTIONS.shapeMoveDown"}}"></a>
+                <a class="control fa-solid fa-trash fa-fw" data-action="shapeRemove" data-tooltip
+                   aria-label="{{localize "REGION.ACTIONS.shapeRemove"}}"></a>
+            </div>
+        </fieldset>
+        {{/each}}
+    </div>
+</section>

@@ -1,0 +1,8 @@
+<div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <p class="hint">{{localize "DRAWING.NoteText"}}</p>
+    {{formGroup fields.text value=source.text rootId=rootId localize=true}}
+    {{formGroup fields.fontFamily value=source.fontFamily choices=fontFamilies blank=(localize "Default") label=(localize "DRAWING.FontFamily") rootId=rootId localize=false}}
+    {{formGroup fields.fontSize value=source.fontSize rootId=rootId localize=true}}
+    {{formGroup fields.textColor value=source.textColor rootId=rootId placeholder="#ffffff" localize=true}}
+    {{formGroup fields.textAlpha value=source.textAlpha rootId=rootId step=0.1 localize=true}}
+</div>

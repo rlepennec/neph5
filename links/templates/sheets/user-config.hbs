@@ -1,0 +1,14 @@
+<div class="standard-form scrollable">
+    <fieldset>
+        <legend>{{localize "USER.SHEET.HEADERS.INFO"}}</legend>
+        {{formField fields.name value=source.name rootId=partId disabled=true}}
+        {{formField fields.avatar value=source.avatar rootId=partId}}
+        {{formField fields.color value=source.color rootId=partId}}
+        {{formField fields.pronouns value=source.pronouns rootId=partId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "USER.SHEET.HEADERS.CHAR"}}</legend>
+        {{formField fields.character value=source.character rootId=partId widget=characterWidget}}
+    </fieldset>
+</div>

@@ -1,0 +1,52 @@
+<div class="form-body standard-form scrollable">
+    <fieldset>
+        <legend>{{localize "NOTE.SECTIONS.CONTENT"}}</legend>
+        {{formGroup fields.entryId value=source.entryId options=entries blank=(ifThen (or user.isGM canCreate) "" false) rootId=rootId}}
+        <div class="form-group">
+            <label for="{{rootId}}-pageId">{{localize "NOTE.FIELDS.pageId.label"}}</label>
+            <div class="form-fields">
+                <select id="{{rootId}}-pageId" name="pageId">
+                    {{selectOptions pages selected=source.pageId blank=""}}
+                </select>
+            </div>
+        </div>
+        {{formGroup fields.global value=global rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "NOTE.SECTIONS.POSITION"}}</legend>
+        {{formGroup fields.x value=source.x rootId=rootId}}
+        {{formGroup fields.y value=source.y rootId=rootId}}
+        {{formGroup fields.elevation value=source.elevation rootId=rootId}}
+        {{formGroup fields.sort value=source.sort rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "NOTE.SECTIONS.ICON"}}</legend>
+        <div class="form-group">
+            <label id="{{rootId}}-icon.selected">{{localize "NOTE.FIELDS.texture.src.label"}}</label>
+            <div class="form-fields">
+                <select id="{{rootId}}-icon.selected" name="icon.selected">
+                    {{selectOptions icons selected=icon.selected}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group" data-icon-custom{{#unless (eq icon.selected "")}} hidden{{/unless}}>
+            <label for="{{rootId}}-icon.custom">{{localize "NOTE.CustomIcon"}}</label>
+            <div class="form-fields">
+                <file-picker id="{{rootId}}-icon.custom" name="icon.custom" type="image" value="{{icon.custom}}"></file-picker>
+            </div>
+        </div>
+        {{formGroup fields.iconSize value=source.iconSize units="Pixels" rootId=rootId localize=true}}
+        {{formGroup fields.texture.fields.tint value=source.texture.tint placeholder="#ffffff" rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "NOTE.SECTIONS.LABEL"}}</legend>
+        {{formGroup fields.text value=source.text rootId=rootId}}
+        {{formGroup fields.fontFamily value=source.fontFamily choices=fontFamilies blank=(localize "Default") rootId=rootId}}
+        {{formGroup fields.fontSize value=source.fontSize rootId=rootId}}
+        {{formGroup fields.textColor value=source.textColor placeholder="#ffffff" rootId=rootId}}
+        {{formGroup fields.textAnchor value=source.textAnchor choices=textAnchors rootId=rootId}}
+    </fieldset>
+</div>

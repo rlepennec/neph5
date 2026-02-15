@@ -1,0 +1,25 @@
+<div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <p class="hint">{{localize "DRAWING.NotePosition"}}</p>
+    <div class="form-group">
+        <label for="{{rootId}}-author">{{localize "Author"}}</label>
+        <div class="form-fields">
+            <input type="text" id="{{rootId}}-author" value="{{author}}" disabled />
+        </div>
+    </div>
+    {{formGroup fields.x value=source.x step=1 rootId=rootId units="Pixels" localize=true}}
+    {{formGroup fields.y value=source.y step=1 rootId=rootId units="Pixels" localize=true}}
+    {{formGroup fields.shape.fields.width value=source.shape.width step=1 rootId=rootId units="Pixels" localize=true}}
+    {{formGroup fields.shape.fields.height value=source.shape.height step=1 rootId=rootId units="Pixels" localize=true}}
+    {{formGroup fields.rotation value=source.rotation step=1 units="Degrees" rootId=rootId localize=true}}
+    {{formGroup fields.elevation value=source.elevation rootId=rootId units=gridUnits localize=true}}
+    {{formGroup fields.sort value=source.sort rootId=rootId localize=true}}
+    <div class="form-group">
+        <label for="{{rootId}}-interface">{{localize "DRAWING.Role"}}</label>
+        <div class="form-fields">
+            <select name="interface" id="{{rootId}}-interface" data-dtype="Boolean">
+                {{selectOptions drawingRoles selected=source.interface localize=true}}
+            </select>
+        </div>
+        <p class="hint">{{localize "DRAWING.RoleHint"}}</p>
+    </div>
+</div>

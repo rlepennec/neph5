@@ -1,0 +1,46 @@
+{{#each category.entries as |entry|}}
+<div class="form-group" data-action-id="{{entry.id}}">
+    <span class="label">{{entry.label}}</span>
+    <ul class="form-fields flexcol">
+        {{~#each entry.bindings as |binding index|}}
+        <li class="flexrow" data-binding-id="{{binding.id}}">
+            <kbd class="flexrow{{#unless binding.editable}} uneditable{{/unless}}"
+                {{#if binding.conflicts}}data-tooltip aria-label="{{binding.conflicts}}"
+                {{~else}}aria-label="{{localize "KEYBINDINGS.BoundKey"}}"{{/if}}>
+                <span>{{binding.display}}</span>
+                {{~#if binding.conflicts}}
+                <i class="conflict fa-duotone fa-triangle-exclamation" inert></i>
+                {{~/if}}
+            </kbd>
+            <div class="controls flexrow">
+                {{#if (eq index 0)}}
+                <button type="button" class="inline-control icon fa-solid fa-plus" data-action="addBinding"
+                        data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.AddBinding"}}"></button>
+                {{/if}}
+                {{#if binding.editable}}
+                <button type="button" class="inline-control icon fa-solid fa-solid fa-pen-to-square"
+                        data-action="editBinding"
+                        data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.EditBinding"}}"></button>
+                <button type="button" class="inline-control icon fa-solid fa-solid fa-trash" data-action="deleteBinding"
+                        data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.DeleteBinding"}}"></button>
+                {{else}}
+                <button type="button" class="inline-control icon fa-solid fa-solid fa-lock" disabled
+                        data-tooltip aria-label="{{localize "KEYBINDINGS.Uneditable"}}"></button>
+                {{/if}}
+            </div>
+        </li>
+        {{~else~}}
+        <li class="flexrow" data-binding-id="empty">
+            <span></span>
+            <div class="controls flexrow">
+                <button type="button" class="inline-control icon fa-solid fa-plus" data-action="addBinding"
+                        data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.AddBinding"}}"></button>
+            </div>
+        </li>
+        {{/each~}}
+    </ul>
+    {{~#if entry.hint}}
+    <p class="hint">{{{entry.hint}}}</p>
+    {{/if~}}
+</div>
+{{/each}}

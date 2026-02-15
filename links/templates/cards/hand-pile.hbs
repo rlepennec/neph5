@@ -1,0 +1,55 @@
+<header class="sheet-header flexrow">
+    {{formInput fields.name value=source.name placeholder=fields.name.label aria=(object label=fields.name.label)}}
+</header>
+
+<div>
+    <header class="cards-header flexrow">
+        {{#if (eq source.type "hand")}}
+        <a class="sort-mode" data-action="toggleSort" data-tooltip="CARDS.ACTIONS.ToggleSortMode">
+            <i class="fa-solid fa-fw {{sortModeIcon}}"></i>
+        </a>
+        {{else}}
+        <span class="sort-mode"></span>
+        {{/if}}
+        <strong class="name">{{localize "DOCUMENT.FIELDS.name.label"}}</strong>
+        <span class="type">{{localize "DOCUMENT.FIELDS.type.label"}}</span>
+        <span class="suit">{{localize "CARD.FIELDS.suit.label"}}</span>
+        <span class="value">{{localize "CARD.FIELDS.value.label"}}</span>
+        <span class="faces">{{localize "CARD.FIELDS.face.label"}}</span>
+        <div class="controls"></div>
+    </header>
+    <ol class="cards scrollable" data-cards>
+    {{#each cards as |card|}}
+        <li class="flexrow" data-card-id="{{card.id}}">
+            <img class="face" src="{{card.img}}" alt="{{card.name}}" height="48" loading="lazy">
+            <strong class="name">{{card.name}}</strong>
+            {{#if card.showFace}}
+            <span class="type">{{localize (lookup ../cardTypes card.type)}}</span>
+            <span class="suit">{{card.suit}}</span>
+            <span class="value">{{card.value}}</span>
+            {{/if}}
+            <div class="faces flexcol">
+                <a data-action="controlCard" data-control="nextFace" data-tooltip="CARDS.ACTIONS.NextFace"
+                   {{disabled (not card.hasNextFace)}}>
+                   <i class="fa-solid fa-caret-up"></i>
+                </a>
+                <a data-action="controlCard" data-control="prevFace" data-tooltip="CARDS.ACTIONS.PreviousFace"
+                   {{disabled (not card.hasPreviousFace)}}>
+                   <i class="fa-solid fa-caret-down"></i>
+                </a>
+            </div>
+            <div class="controls">
+                {{#if (and @root.editable (not @root.inCompendium))}}
+                <a data-action="controlCard" data-control="play" data-tooltip="CARD.Play">
+                    <i class="fa-solid fa-circle-chevron-right"></i>
+                </a>
+                {{/if}}
+            </div>
+        </li>
+    {{else}}
+        <li>
+            <p class="hint">{{localize "CARDS.NoCards"}}</p>
+        </li>
+    {{/each}}
+    </ol>
+</div>

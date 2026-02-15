@@ -1,0 +1,19 @@
+<form class="standard-form" method="post" autocomplete="off">
+    <h2 class="border">{{{localize "SETUP.AdminAccess"}}}</h2>
+
+    <div class="form-group">
+        <label class="password">
+            <input id="key" name="adminPassword" type="password" value=""
+               placeholder="{{localize "SERVER_SETTINGS.FIELDS.adminPassword.label"}}"
+               autocomplete="current-password" autofocus>
+        </label>
+        <p class="hint">{{localize "SETUP.AdminPasswordPrompt"}}</p>
+        <p class="hint">{{{localize "SETUP.AdminPasswordForgot"}}}</p>
+    </div>
+
+    <footer class="form-footer">
+        <button type="submit" class="bright" name="action" value="adminAuth">
+            <i class="fa-solid fa-unlock-keyhole"></i><label>{{localize "SETUP.AdminLogIn"}}</label>
+        </button>
+    </footer>
+</form>

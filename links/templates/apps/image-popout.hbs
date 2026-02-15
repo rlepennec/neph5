@@ -1,0 +1,8 @@
+<figure class="flexcol">
+  {{#if isVideo}}
+    <video src="{{image}}" aria-label="{{altText}}" autoplay loop muted playsinline></video>
+  {{else}}
+    <img src="{{image}}" alt="{{altText}}" />
+  {{/if}}
+  {{#if caption}}<figcaption>{{caption}}</figcaption>{{/if}}
+</figure>

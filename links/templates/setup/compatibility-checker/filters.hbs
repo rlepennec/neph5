@@ -1,0 +1,11 @@
+<span class="label">{{localize "SETUP.PackageFilter"}}</span>
+{{#each filters.types as |filter|}}
+<button type="button" class="ui-control" data-action="filterTypes" data-filter="{{filter.id}}"
+        aria-pressed="{{filter.active}}">{{filter.label}}</button>
+{{/each}}
+<div class="split-button">
+    {{#each filters.compatibility as |filter|}}
+    <button type="button" class="ui-control" data-action="filterCompatibility" data-filter="{{filter.id}}"
+            aria-pressed="{{filter.active}}">{{filter.label}}</button>
+    {{/each}}
+</div>

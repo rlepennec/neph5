@@ -1,0 +1,35 @@
+<aside id="hotbar">
+    <div id="hotbar-controls-left" class="hotbar-controls flexcol" data-tooltip-direction="LEFT">
+        <button type="button" class="ui-control fa-solid fa-volume icon" data-action="mute" data-tooltip
+                aria-label="{{localize 'HOTBAR.MUTE'}}"></button>
+        <button type="button" class="ui-control fa-solid fa-bars icon" data-action="menu" data-tooltip
+                aria-label="{{localize 'HOTBAR.MENU'}}"></button>
+    </div>
+    <menu id="action-bar" class="flexrow" data-tooltip-direction="UP">
+        {{#each slots as |slot|}}
+        <li class="slot {{slot.cssClass}}" role="button" data-action="execute" data-slot="{{slot.slot}}"
+            style="{{slot.style}}" aria-label="{{slot.ariaLabel}}"
+            {{#if slot.tooltip}}data-tooltip-text="{{slot.tooltip}}"{{/if}}>
+            {{#if slot.img}}<img class="slot-icon" src="{{slot.img}}" alt="{{slot.ariaLabel}}">{{/if}}
+            <span class="key">{{slot.key}}</span>
+        </li>
+        {{/each}}
+    </menu>
+    <div id="hotbar-controls-right" class="hotbar-controls flexrow" data-tooltip-direction="RIGHT">
+        <nav id="hotbar-page-controls" class="flexcol">
+            <button type="button" class="plain hotbar-page-control page-next fa-solid fa-triangle icon"
+                    data-action="page" data-direction="1" data-tooltip aria-label="{{localize 'HOTBAR.PAGE_NEXT'}}">
+            </button>
+            <span class="hotbar-page-number">{{page}}</span>
+            <button type="button" class="plain hotbar-page-control page-prev fa-solid fa-triangle icon"
+                    data-action="page" data-direction="-1" data-tooltip aria-label="{{localize 'HOTBAR.PAGE_PREV'}}">
+            </button>
+        </nav>
+        <div class="flexcol">
+            <button type="button" class="ui-control fa-solid fa-unlock icon" data-action="lock" data-tooltip
+                    aria-label="{{localize 'HOTBAR.LOCK'}}"></button>
+            <button type="button" class="ui-control fa-solid fa-trash icon" data-action="clear" data-tooltip
+                    aria-label="{{localize 'HOTBAR.CLEAR'}}"></button>
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,31 @@
+<div class="flexcol">
+    <div class="region-filters flexrow" aria-label="{{localize "REGION.LEGEND.filter"}}">
+        <input type="search" name="search" value="" autocomplete="off" placeholder="{{localize "REGION.LEGEND.filter"}}"
+            data-tooltip="Name" aria-label="{{localize "Name"}}">
+        <input name="elevationBottom" type="number" value="{{elevation.bottom}}" class="placeholder-fa-solid" placeholder="&#xF068 &#xF534;"
+               step="any" data-tooltip aria-label="{{localize "REGION.LEGEND.elevationBottom"}}">
+        <input name="elevationTop" type="number" value="{{elevation.top}}" class="placeholder-fa-solid" placeholder="&#x002B &#xF534;"
+               step="any" aria-label="{{localize "REGION.LEGEND.elevationTop"}}">
+        <button type="button" class="icon fa-solid fa-plus" data-action="create"
+                data-tooltip aria-label="{{localize "REGION.LEGEND.create"}}"></button>
+    </div>
+    <ol class="region-list flexcol scrollable">
+        {{#each regions as |region|}}
+        <li class="region flexrow {{#if region.controlled}}controlled{{/if}} {{#if region.hover}}hover{{/if}}" data-region-id="{{region.id}}"
+            aria-label="{{region.name}}">
+            <i class="region-color" style="background: {{region.color}}"></i>
+            <a class="region-name" data-action="control" aria-label="{{localize "REGION.LEGEND.control"}}">
+                {{region.name}}
+            </a>
+            {{#if region.empty}}<span class="region-meta">({{localize "REGION.LEGEND.empty"}})</span>{{/if}}
+            {{#if region.elevationLabel}}<span class="region-meta">{{{region.elevationLabel}}}</span>{{/if}}
+            {{#each region.buttons as |button|}}
+            <button type="button" class="icon" {{button.disabled}} data-action="{{button.action}}"
+                    data-tooltip aria-label="{{button.tooltip}}">
+                <i class="fa-solid {{button.icon}} fa-fw"></i>
+            </button>
+            {{/each}}
+        </li>
+        {{/each}}
+    </ol>
+</div>

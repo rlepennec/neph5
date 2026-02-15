@@ -1,0 +1,59 @@
+<div class="standard-form scrollable">
+    <p class="hint">{{localize "WALL.Instructions"}}</p>
+    {{#unless editingMany}}
+    <div class="form-group">
+        <label for="{{rootId}}-coordinates">{{localize "WALL.FIELDS.c.label"}}</label>
+        <div class="form-fields">
+            <input id="{{rootId}}-coordinates" type="text" value="{{coordinates}}" disabled />
+        </div>
+    </div>
+    {{/unless}}
+    {{formGroup fields.dir value=source.dir rootId=rootId localize=true}}
+
+    <fieldset>
+        <legend>{{localize "WALL.Restrictions"}}</legend>
+        {{formGroup fields.move value=source.move rootId=rootId localize=true}}
+        {{#each thresholdFields as |field|}}
+        <div class="form-group">
+            <label for="{{../rootId}}-{{field.name}}">{{localize field.label}}</label>
+            <div class="form-fields">
+                <select id="{{../rootId}}-{{field.name}}" name="{{field.name}}" data-dtype="Number">
+                    {{selectOptions field.choices selected=(lookup ../source field.name) localize=true}}
+                </select>
+                <input type="number" class="threshold" name="threshold.{{field.name}}" placeholder="{{../gridUnits}}"
+                    min="0" value="{{lookup ../source.threshold field.name}}" step="any"
+                    {{#if field.disabled}}hidden disabled{{/if}} />
+            </div>
+        </div>
+        {{/each}}
+        {{formGroup fields.threshold.fields.attenuation value=source.threshold.attenuation rootId=rootId classes="slim" localize=true}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "WALL.DoorConfiguration"}}</legend>
+        {{formGroup fields.door value=source.door rootId=rootId localize=true}}
+        {{formGroup fields.ds value=source.ds disabled=(not source.door) hidden=(not source.door) localize=true}}
+        <div class="form-group door-sound"{{#unless source.door}} hidden{{/unless}}>
+            <label for="{{rootId}}-doorSound">{{localize "WALL.FIELDS.doorSound.label"}}</label>
+            <div class="form-fields">
+                <select id="{{rootId}}-doorSound" name="doorSound" {{disabled (not source.door)}}>
+                    {{selectOptions doorSounds selected=source.doorSound blank="" localize=true}}
+                </select>
+                <a data-action="previewSound" data-tooltip="Preview"><i class="fa-solid fa-play"></i></a>
+            </div>
+        </div>
+        {{formGroup fields.animation.fields.type value=source.animation.type rootId=rootId choices=animationTypes
+                    labelAttr="label" blank="None" localize=true hidden=(not source.door)}}
+    </fieldset>
+
+    <fieldset class="door-animation {{animationFieldsetClass}}">
+        <legend>{{localize "WALL.DoorAnimation"}}</legend>
+        {{formGroup fields.animation.fields.texture value=animation.texture rootId=rootId}}
+        {{formGroup fields.animation.fields.flip value=animation.flip rootId=rootId}}
+        {{formGroup fields.animation.fields.double value=animation.double rootId=rootId}}
+        {{formGroup fields.animation.fields.direction value=animation.direction rootId=rootId
+                    options=animationDirections}}
+        {{formGroup fields.animation.fields.duration value=animation.duration rootId=rootId classes="slim"}}
+        {{formGroup fields.animation.fields.strength value=animation.strength rootId=rootId}}
+    </fieldset>
+</div>

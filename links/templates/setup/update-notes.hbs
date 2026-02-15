@@ -1,0 +1,42 @@
+<article class="scrollable">
+    {{{notes}}}
+</article>
+
+<footer class="hints">
+    {{#if manual.required}}
+    <p>{{{localize manual.msg version=version}}}</p>
+    <p>{{localize "SETUP.UPDATE_NOTES.NewGenerationHint"}}</p>
+    {{/if}}
+    <p>
+        {{{localize "SETUP.UPDATE_NOTES.FullList" url="https://foundryvtt.com/releases/"}}}
+    </p>
+    {{#if canCheckCompatibility}}
+    <p>{{localize "SETUP.UPDATE_NOTES.PreviewCompatibilityHint" version=version}}</p>
+    {{/if}}
+</footer>
+
+<footer class="form-footer">
+    {{#if canSnapshot}}
+    <button type="button" data-action="createSnapshot">
+        <i class="fa-solid fa-camera-retro" inert></i>
+        <span>{{localize "SETUP.BACKUPS.CreateSnapshot"}}</span>
+    </button>
+    {{/if}}
+    {{#if canCheckCompatibility}}
+    <button type="button" data-action="checkCompatibility">
+        <i class="fa-solid fa-code-branch" inert></i>
+        <span>{{localize "SETUP.PreviewCompatibility"}}</span>
+    </button>
+    {{/if}}
+    <button type="button" class="bright" data-action="update" {{disabled (not canUpdate)}}
+            {{#unless canUpdate}}data-tooltip aria-label="{{localize "SETUP.NoUpdateMode.Hint"}}"{{/unless}}>
+        <i class="fa-solid fa-cloud-arrow-down" inert></i>
+        <label>
+            {{~#if canUpdate~}}
+            {{localize "SETUP.UPDATE_NOTES.BeginDownload"}}
+            {{~else~}}
+            {{localize "SETUP.NoUpdateMode.Label"}}
+            {{~/if~}}
+        </label>
+    </button>
+</footer>

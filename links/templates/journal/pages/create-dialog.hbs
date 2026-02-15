@@ -1,0 +1,13 @@
+<form>
+    {{ formField fields.name value=name placeholder=defaultName autofocus=true localize=true }}
+
+    {{#if hasTypes}}
+    {{ formField fields.type value=type options=types localize=true }}
+    {{/if}}
+
+    {{#if categories.show}}
+    {{ formField fields.category value="" options=categories.options localize=true }}
+    {{/if}}
+
+    {{{ content }}}
+</form>

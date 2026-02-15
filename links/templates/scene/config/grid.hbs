@@ -1,0 +1,60 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <div class="form-group">
+        <label for="{{rootId}}-grid.type">{{localize "SCENE.FIELDS.grid.type.label"}}</label>
+        <div class="form-fields">
+            <button type="button" data-action="openGridConfig" data-tooltip aria-label="{{localize "SCENE.GridConfigTool"}}">
+                <i class="fa-solid fa-ruler-combined" inert></i>
+            </button>
+            {{formInput fields.grid.fields.type id=(concat rootId "-grid.type") value=source.grid.type
+                choices=gridTypes}}
+            </select>
+        </div>
+    </div>
+
+    {{formGroup fields.grid.fields.size value=source.grid.size units=pixelsLabel rootId=rootId}}
+
+    <div class="form-group slim">
+        <label>{{localize "SCENE.Dimensions"}} <span class="units">({{localize "SCENE.Pixels"}})</span></label>
+        <div class="form-fields">
+            <label for="{{rootId}}-width">{{localize "DOCUMENT.FIELDS.width.label"}}</label>
+            {{formInput fields.width value=source.width id=(concat rootId "-width")}}
+            <button type="button" data-action="toggleLinkDimensions" data-tooltip
+                    aria-label="{{ localize "SCENE.DimensionLinked" }}">
+                <i class="fa-solid fa-fw fa-link-simple" inert></i>
+            </button>
+            <label for="{{rootId}}-height">{{localize "DOCUMENT.FIELDS.height.label"}}</label>
+            {{formInput fields.height value=source.height id=(concat rootId "-height")}}
+        </div>
+        <p class="hint">{{localize "SCENE.DimensionsHint"}}</p>
+    </div>
+
+    {{formGroup fields.padding value=source.padding rootId=rootId}}
+
+    <div class="form-group slim">
+        <label>{{localize "SCENE.ShiftBG"}} <span class="units">({{pixelsLabel}})</span></label>
+        <div class="form-fields">
+            <label for="{{rootId}}-background.offsetX">{{localize "SCENE.FIELDS.background.offsetX.label"}}</label>
+            {{formInput fields.background.fields.offsetX value=source.background.offsetX
+                id=(concat rootId "-background.offsetX")}}
+            <label for="{{rootId}}-background.offsetY">{{localize "SCENE.FIELDS.background.offsetY.label"}}</label>
+            {{formInput fields.background.fields.offsetY value=source.background.offsetY
+                id=(concat rootId "-background.offsetY")}}
+        </div>
+    </div>
+
+    <div class="form-group slim">
+        <label>{{localize "SCENE.GridScale"}}</label>
+        <div class="form-fields">
+            <label for="{{rootId}}-grid.distance">{{localize "SCENE.FIELDS.grid.distance.label"}}</label>
+            {{formInput fields.grid.fields.distance value=source.grid.distance placeholder=1
+                id=(concat rootId "-grid.distance")}}
+            <label for="{{rootId}}-grid.units">{{localize "SCENE.FIELDS.grid.units.label"}}</label>
+            {{formInput fields.grid.fields.units value=source.grid.units id=(concat rootId "-grid.units")}}
+        </div>
+    </div>
+
+    {{formGroup fields.grid.fields.style value=source.grid.style choices=gridStyles rootId=rootId}}
+    {{formGroup fields.grid.fields.thickness value=source.grid.thickness classes="slim" placeholder=1 rootId=rootId}}
+    {{formGroup fields.grid.fields.color value=source.grid.color placeholder="#000000" rootId=rootId}}
+    {{formGroup fields.grid.fields.alpha value=source.grid.alpha step=0.05 rootId=rootId}}
+</div>

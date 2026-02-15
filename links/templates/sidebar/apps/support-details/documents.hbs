@@ -1,0 +1,25 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#if documentIssues}}
+    <ul class="summary-tree summary-tree-root">
+        {{#each documentIssues as |issue|}}
+        <li>
+            <details open>
+                <summary>{{issue.label}}</summary>
+                <ul>
+                    {{#each issue.documents as |document|}}
+                    <li>
+                        <details open>
+                            <summary>{{document.name}}</summary>
+                            {{{document.validationError}}}
+                        </details>
+                    </li>
+                    {{/each}}
+                </ul>
+            </details>
+        </li>
+        {{/each}}
+    </ul>
+    {{else}}
+    <p>{{localize "SUPPORT.NoDocumentIssues"}}</p>
+    {{/if}}
+</div>

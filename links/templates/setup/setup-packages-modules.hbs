@@ -1,0 +1,33 @@
+<section class="tab {{tabs.modules.cssClass}}" data-group="primary" data-tab="modules" data-package-type="module">
+    <header class="controls flexrow">
+        <label class="filter search">
+            <input id="module-filter" type="search" value="" autocomplete="off"
+                   placeholder="{{ localize 'SETUP.ModuleFilter' }} ({{modules.count}})">
+        </label>
+        <button type="button" data-action="installPackage">
+            <i class="fa-solid fa-download" inert></i>
+            <span>{{localize "SETUP.InstallModule"}}</span>
+        </button>
+        <button type="button" data-action="updateAll" {{disabled modules.updatingAll}}>
+            <i class="{{#if modules.updatingAll}}fa-solid fa-spinner fa-spin{{else}}fa-solid fa-cloud-arrow-down{{/if}}" inert></i>
+            <span>{{localize "SETUP.UpdateAll"}}</span>
+        </button>
+        <button id="moduleCreate" type="button" class="icon" data-action="moduleCreate" data-tooltip="PACKAGE.ModuleCreate">
+            <i class="fa-solid fa-gear-code"></i>
+        </button>
+        <div class="view-modes">
+            {{#each viewModes as |mode|}}
+            <button type="button" data-action="viewMode" data-view-mode="{{mode.id}}"
+                    class="view-mode icon {{mode.icon}}{{#if (eq @root.modules.viewMode mode.id)}} active{{/if}}"
+                    data-tooltip aria-label="{{localize mode.label}}"></button>
+            {{/each}}
+        </div>
+    </header>
+    {{#if tabs.modules.active}}<div id="progress"></div>{{/if}}
+    {{> (lookup modules "template") type="modules" packages=modules.packages}}
+    <div class="no-results hidden"></div>
+    <div class="locked hidden">
+        <h3 class="divider"></h3>
+        <i class="fa-solid fa-spinner fa-spin" inert></i>
+    </div>
+</section>

@@ -1,0 +1,61 @@
+<section class="body flexcol scrollable" data-files>
+    {{#if dirs}}
+    <ul class="directory folders">
+        {{#each dirs as |dir|}}
+        <li class="dir{{#if dir.private}} private{{/if}}"
+            data-directory
+            data-action="pickDirectory"
+            data-path="{{dir.path}}"
+            data-name="{{dir.name}}">
+            <i class="fa-solid fa-folder fa-fw" inert></i> {{dir.name}}
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+
+    {{#if files}}
+    {{#if (eq displayMode "list")}}
+    <ul class="directory files-list details">
+        {{#each files as |file|}}
+        <li class="file" data-file data-action="pickFile" data-path="{{file.url}}" data-name="{{file.name}}">
+            <img src="{{file.img}}" loading="lazy">
+            <i class="fa-solid fa-file fa-fw" inert></i> {{file.name}}
+        </li>
+        {{/each}}
+    </ul>
+
+    {{else if (eq displayMode "thumbs")}}
+    <ul class="directory files-list thumbs">
+        {{#each files as |file|}}
+        <li class="file flexrow" data-file data-action="pickFile" data-path="{{file.url}}" data-name="{{file.name}}">
+            <img src="{{file.img}}" width="48" height="48" loading="lazy">
+            <span class="filename">{{file.name}}</span>
+        </li>
+        {{/each}}
+    </ul>
+
+    {{else if (eq displayMode "tiles")}}
+    <ul class="directory files-list tiles">
+        {{#each files as |file|}}
+        <li class="file" data-file data-action="pickFile" data-path="{{file.url}}" data-name="{{file.name}}">
+            <img src="{{file.img}}" alt="{{file.name}}" loading="lazy">
+        </li>
+        {{/each}}
+    </ul>
+
+    {{else if (eq displayMode "images")}}
+    <ul class="directory files-list images">
+        {{#each files as |file|}}
+        <li class="file" data-file data-action="pickFile" data-path="{{file.url}}" data-name="{{file.name}}">
+            <img src="{{file.img}}" alt="{{file.name}}" loading="lazy">
+            <span class="filename">{{file.name}}</span>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+    {{/if}}
+
+    {{#if noResults}}
+    <p class="hint">{{localize "FILES.NoResults"}}</p>
+    {{/if}}
+</section>

@@ -1,0 +1,18 @@
+{{#each category.entries as |tour| }}
+<div class="form-group{{#if tour.completed}} completed{{/if}}" data-tour="{{tour.id}}">
+    <span class="label">{{tour.label}} <span class="status">({{tour.status}})</span></span>
+    <div class="form-fields">
+        {{#if tour.canPlay}}
+        <button type="button" class="inline-control icon fa-solid fa-play" data-action="play"
+                data-tour="{{tour.id}}" data-tooltip aria-label="{{startOrResume}}"></button>
+        {{/if}}
+        {{#if tour.canReset}}
+        <button type="button" class="inline-control icon fa-solid fa-arrow-rotate-left" data-action="reset"
+                data-tour="{{tour.id}}" data-tooltip aria-label="{{localize "TOURS.Reset"}}"></button>
+        {{/if}}
+    </div>
+    {{~#if tour.hint}}
+    <p class="hint">{{{tour.hint}}}</p>
+    {{/if~}}
+</div>
+{{/each}}

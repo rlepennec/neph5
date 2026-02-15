@@ -1,0 +1,15 @@
+<section class="application flexcol">
+    <h2 class="divider">{{localize "SETUP.News"}}</h2>
+    <div class="container">
+        <div id="news-articles" class="flexcol scrollable">
+            {{#each news as |news|}}
+                <a class="news flexcol" href="{{news.url}}" target="_blank">
+                    <img src="{{news.image}}" alt="{{news.title}}">
+                    <h3>{{news.title}}</h3>
+                </a>
+            {{else}}
+                <p class="notification error">{{localize "SETUP.NoFeaturedContent"}}</p>
+            {{/each}}
+        </div>
+    </div>
+</section>

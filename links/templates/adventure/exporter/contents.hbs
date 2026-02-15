@@ -1,0 +1,57 @@
+<section class="tab contents scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#each contentTree as |section|}}
+    <div class="document-type {{section.cssClass}}" data-document-name="{{section.documentName}}">
+        <header>
+            <a class="control bullet" data-action="collapseSection"><i class="fa-solid fa-angle-down"></i></a>
+            <span class="name-count"
+                ><i class="{{section.icon}}"></i> {{section.name}} ({{section.documentCount}})</span>
+            <a class="control" data-action="clearSection"
+                data-tooltip="ADVENTURE.ACTIONS.{{#if section.cleared}}Restore{{else}}Clear{{/if}}Section"
+            ><i class="fa-solid fa-trash{{#if section.cleared}}-undo{{/if}}"></i></a>
+        </header>
+        <div class="tree" data-content>
+            {{#each section.children as |child|}}
+                {{> contentTreeNode node=child}}
+            {{/each}}
+            {{#if section.documents}}
+            {{> documentList documents=section.documents}}
+            {{/if}}
+        </div>
+    </div>
+    {{else}}
+    <div class="drop-zone">
+        <label>{{localize "ADVENTURE.ExportDropZone"}}</label>
+    </div>
+    {{/each}}
+</section>
+
+{{#*inline "contentTreeNode"}}
+<ul data-folder data-document-id="{{node.id}}">
+    <li class="document folder {{node.state}}">
+        <i class="fa-solid fa-folder-open"></i> {{node.name}}
+        <a class="control" data-action="removeContent"><i class="fa-solid fa-xmark"></i></a>
+    </li>
+    {{#each node.children as |child|}}
+    <li>
+        {{> contentTreeNode node=child}}
+    </li>
+    {{/each}}
+    {{#if node.documents}}
+    <li>
+        {{> documentList documents=node.documents}}
+    </li>
+    {{/if}}
+</ul>
+{{/inline}}
+
+{{#*inline "documentList"}}
+<ul class="document-list">
+    {{#each documents as |document|}}
+    <li class="document {{document.state}}" data-tooltip="{{document.stateLabel}}" data-document-id="{{document.id}}">
+        {{~#if (eq document.state "missing")}}<i class="warning fa-solid fa-triangle-exclamation"></i>{{/if}}
+        {{document.name}}
+        <a class="control" data-action="removeContent"><i class="fa-solid fa-xmark"></i></a>
+    </li>
+    {{/each}}
+</ul>
+{{/inline}}

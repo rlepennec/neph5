@@ -1,0 +1,29 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#if moduleIssues}}
+    <ul>
+        {{#each moduleIssues}}
+        <li>
+            <details open>
+                <summary>{{label}}</summary>
+                <ul>
+                    {{#each issues}}
+                    <li>
+                        <details open>
+                            <summary>{{label}}</summary>
+                            <ul class="issues">
+                                {{#each issues}}
+                                <li class="issue notification {{severity}}">{{message}}</li>
+                                {{/each}}
+                            </ul>
+                        </details>
+                    </li>
+                    {{/each}}
+                </ul>
+            </details>
+        </li>
+        {{/each}}
+    </ul>
+    {{else}}
+    <p>{{localize "SUPPORT.NoModuleIssues"}}</p>
+    {{/if}}
+</div>

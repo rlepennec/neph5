@@ -1,0 +1,20 @@
+<fieldset>
+    <legend class="control">
+        <span>{{ localize "DOCUMENT.JournalEntryCategories" }}</span>
+        <button type="button" class="icon fa-regular fa-square-plus" data-action="addCategory"></button>
+    </legend>
+    <ol class="plain">
+        {{#each categories}}
+        <li data-category-id="{{ id }}">
+            <input type="hidden" name="{{ @index }}._id" value="{{ id }}">
+            <input type="hidden" class="sort-field" name="{{ @index }}.sort" value="{{ sort }}" data-dtype="Number">
+            <div class="sort">
+                <button type="button" class="icon fa-solid fa-caret-up" data-action="sortUp"></button>
+                <button type="button" class="icon fa-solid fa-caret-down" data-action="sortDown"></button>
+            </div>
+            {{ formInput field value=name placeholder=placeholder }}
+            <button type="button" class="icon fa-regular fa-minus-square" data-action="removeCategory"></button>
+        </li>
+        {{/each}}
+    </ol>
+</fieldset>

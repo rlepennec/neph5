@@ -1,0 +1,41 @@
+<p class="instructions">{{instructions}}</p>
+
+<div class="form-group">
+    <div class="form-fields">
+        <label class="checkbox">
+            {{localize "OWNERSHIP.ShowGM"}}
+            <input type="checkbox" data-show-gm-toggle {{checked showGM}}>
+        </label>
+    </div>
+</div>
+
+<menu class="standard-form scrollable">
+    <li class="form-group">
+        <label for="{{rootId}}-default">{{localize "OWNERSHIP.AllPlayers"}}</label>
+        <div class="form-fields">
+            <select id="{{rootId}}-default" name="default" data-dtype="Number">
+                {{selectOptions defaultLevels selected=currentDefault valueAttr="level" labelAttr="label"}}
+            </select>
+        </div>
+    </li>
+
+    {{#each users as |row|}}
+    <li class="form-group{{#if row.user.isGM}} gm{{/if}}">
+        <label for="{{../rootId}}-{{row.user.id}}">
+            {{row.user.name}}
+            {{~#if row.user.isGM}}
+            <i class="role-icon fa-solid fa-crown fa-fw" data-tooltip aria-label="{{localize "USER.RoleGamemaster"}}"></i>
+            {{/if~}}
+        </label>
+        <div class="form-fields">
+            {{#if row.isAuthor}}
+            <div class="author">{{localize "Author"}}</div>
+            {{else}}
+            <select id="{{../rootId}}-{{row.user.id}}" name="{{row.user.id}}" data-dtype="Number">
+                {{selectOptions ../playerLevels selected=row.level valueAttr="level" labelAttr="label"}}
+            </select>
+            {{/if}}
+        </div>
+    </li>
+    {{/each}}
+</menu>

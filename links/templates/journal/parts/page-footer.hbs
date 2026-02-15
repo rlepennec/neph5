@@ -1,0 +1,9 @@
+<footer class="form-footer">
+    {{#each buttons}}
+    <button type="{{ type }}" {{#if name}}name="{{ name }}"{{/if}} class="{{ cssClass }}"
+            {{#if action}}data-action="{{ action }}"{{/if}} {{#if disabled}}disabled{{/if}}>
+        {{#if icon}}<i class="{{ icon }}" inert></i>{{/if}}
+        {{#if label}}<label>{{ localize label }}</label>{{/if}}
+    </button>
+    {{/each}}
+</footer>

@@ -1,0 +1,5 @@
+<section class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.back.fields.name value=source.back.name rootId=rootId}}
+    {{formGroup fields.back.fields.img value=source.back.img rootId=rootId}}
+    {{formGroup fields.back.fields.text value=source.back.text rootId=rootId elementType="textarea"}}
+</section>

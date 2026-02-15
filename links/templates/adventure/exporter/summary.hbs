@@ -1,0 +1,7 @@
+<section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.name value=source.name rootId=rootId}}
+    {{formGroup fields.img value=source.img rootId=rootId}}
+    {{formGroup fields.caption value=source.caption elementType="textarea" rootId=rootId}}
+    {{formGroup fields.description value=source.description rootId=rootId}}
+    {{formGroup fields.sort value=source.sort classes="slim" rootId=rootId}}
+</section>

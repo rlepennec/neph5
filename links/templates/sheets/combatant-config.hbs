@@ -1,0 +1,56 @@
+<div>
+    <div class="form-group">
+        <label for="{{document.uuid}}-actor">{{localize "COMBAT.CombatantActor"}}</label>
+        <div class="form-fields">
+            <input type="text" name="actorName" value="{{document.actor.name}}" id="{{document.uuid}}-actor" disabled />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{document.uuid}}-token">{{localize "COMBAT.CombatantToken"}}</label>
+        <div class="form-fields">
+            <input type="text" name="tokenName" value="{{document.token.name}}" id="{{document.uuid}}-token" disabled />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{document.uuid}}-name">{{localize "COMBAT.CombatantName"}}</label>
+        <div class="form-fields">
+            <input type="text" name="name" value="{{source.name}}" id="{{document.uuid}}-name" placeholder="{{document.name}}" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{document.uuid}}-img">{{localize "COMBAT.CombatantImage"}}</label>
+        <div class="form-fields">
+            <file-picker name="img" type="image" value="{{source.img}}" id="{{document.uuid}}-img"></file-picker>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{document.uuid}}-initiative">{{localize "COMBAT.CombatantInitiative"}}</label>
+        <div class="form-fields">
+            <input type="number" name="initiative" value="{{source.initiative}}" id="{{document.uuid}}-initiative" step="any" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{document.uuid}}-name">{{localize "COMBAT.CombatantStatus"}}</label>
+        <div class="form-fields">
+            <label class="checkbox">
+                <input type="checkbox" name="hidden" {{checked source.hidden}} />
+                {{localize "COMBAT.CombatantHidden"}}
+            </label>
+            <label class="checkbox">
+                <input type="checkbox" name="defeated" {{checked source.defeated}} />
+                {{localize "COMBAT.CombatantDefeated"}}
+            </label>
+        </div>
+    </div>
+
+    <footer class="form-footer">
+        <button type="submit">
+            <i class="fa-solid fa-floppy-disk"></i> {{title}}
+        </button>
+    </footer>
+</div>

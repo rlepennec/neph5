@@ -1,0 +1,15 @@
+<section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <fieldset>
+        <legend>{{localize "WEBRTC.DevicesSubsections.Video"}}</legend>
+        {{formGroup fields.client.videoSrc value=settings.client.videoSrc options=videoDevices classes="stacked"
+            rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "WEBRTC.DevicesSubsections.Audio"}}</legend>
+        {{formGroup fields.client.audioSrc value=settings.client.audioSrc options=audioDevices classes="stacked"
+            rootId=rootId}}
+        {{formGroup fields.client.audioSink value=settings.client.audioSink options=audioSinks classes="stacked"
+            rootId=rootId}}
+    </fieldset>
+</section>

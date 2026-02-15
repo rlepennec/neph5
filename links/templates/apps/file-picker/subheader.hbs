@@ -1,0 +1,84 @@
+<header class="subheader standard-form">
+    <div class="form-group current-dir">
+        <button type="button" class="icon fa-solid fa-turn-left-up" data-action="backTraverse"
+            data-tooltip aria-label="{{localize "FILES.TraverseBack"}}" {{disabled (not canGoBack)}}></button>
+        <div class="form-fields">
+            <input type="text" name="target" value="{{target}}" aria-label="{{localize "FILES.DirectoryPathLabel"}}">
+        </div>
+        {{#if canCreateFolder}}
+        <button type="button" class="icon fa-solid fa-folder-plus" data-action="makeDirectory"
+                data-tooltip aria-label="{{localize "FILES.CreateDirectory"}}"></button>
+        {{/if}}
+        {{#if canTogglePrivacy}}
+        <button type="button" class="icon fa-solid fa-eye-slash" data-action="togglePrivacy"
+                data-tooltip aria-label="{{localize "FILES.TogglePrivacy"}}"></button>
+        {{/if}}
+    </div>
+
+    <div class="form-group slim">
+        <div class="flexrow set-favorite">
+            <span>{{localize "FILES.FavoritesLabel"}}</span>
+            <button type="button" class="plain icon inline-control fa-solid fa-plus" data-action="setFavorite"
+                    data-tooltip aria-label="{{localize "FILES.AddFavorite"}}"></button>
+        </div>
+        <div class="form-fields">
+            {{#each favorites~}}
+            <div class="tag flexrow">
+                <a class="link" data-action="goToFavorite" data-source="{{this.source}}" data-path="{{this.path}}"
+                   data-tooltip aria-label="{{this.path}}">{{this.label}}</a>
+                <button type="button" class="plain icon inline-control fa-solid fa-trash" data-action="removeFavorite"
+                        data-tooltip aria-label="{{localize "FILES.RemoveFavorite"}}"
+                        data-source="{{this.source}}" data-path="{{this.path}}"></button>
+            </div>
+            {{~/each}}
+        </div>
+    </div>
+
+    {{#if isS3}}
+    <div class="form-group">
+        <label for="{{rootId}}-bucket">{{localize "FILES.S3Label"}}</label>
+        <div class="form-fields">
+            <select id="{{rootId}}-bucket" name="bucket">
+                {{selectOptions buckets selected=bucket}}
+            </select>
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="form-group">
+        <label for="{{rootId}}-filter">{{localize "FILES.FilterLabel"}}</label>
+        <div class="form-fields">
+            <input type="search" id="{{rootId}}-filter" name="filter" placeholder="{{localize "FILES.Search"}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "FILES.DisplayMode"}}</label>
+        <div class="split-button">
+            <button type="button" class="ui-control icon fa-solid fa-bars" data-action="changeDisplayMode"
+                    data-mode="list" data-tooltip aria-label="{{localize "FILES.DisplayModeList"}}"
+                    aria-pressed="{{eq displayMode "list"}}"></button>
+            <button type="button" class="ui-control icon fa-solid fa-table-list" data-action="changeDisplayMode"
+                    data-mode="thumbs" data-tooltip aria-label="{{localize "FILES.DisplayModeThumbs"}}"
+                    aria-pressed="{{eq displayMode "thumbs"}}"></button>
+            <button type="button" class="ui-control icon fa-solid fa-table-cells-large" data-action="changeDisplayMode"
+                    data-mode="tiles" data-tooltip aria-label="{{localize "FILES.DisplayModeTiles"}}"
+                    aria-pressed="{{eq displayMode "tiles"}}"></button>
+            <button type="button" class="ui-control icon fa-solid fa-image" data-action="changeDisplayMode"
+                    data-mode="images" data-tooltip aria-label="{{localize "FILES.DisplayModeImages"}}"
+                    aria-pressed="{{eq displayMode "images"}}"></button>
+        </div>
+    </div>
+
+    {{#if tileSize}}
+    <div class="form-group slim">
+        <label for="{{rootId}}-tileSize">
+            {{localize "FILES.TileSize"}} <span class="units">({{localize "Pixels"}})</span>
+        </label>
+        <div class="form-fields">
+            {{numberInput tileSize name="tileSize" id=(concat rootId "-tileSize") placeholder=(localize "FILES.InPixels")}}
+        </div>
+        <p class="hint">{{localize "FILES.TileSizeHint"}}</p>
+    </div>
+    {{/if}}
+</header>

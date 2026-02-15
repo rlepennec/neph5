@@ -1,0 +1,23 @@
+<section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.world.turn.fields.type value=settings.world.turn.type choices=turnTypes rootId=rootId}}
+
+    <fieldset data-custom-turn-config {{disabled (ne settings.world.turn.type "custom")}}>
+        <legend>{{localize "WEBRTC.TURNServerConfiguration"}}</legend>
+
+        {{formGroup fields.world.turn.fields.url value=settings.world.turn.url rootId=rootId}}
+        {{formGroup fields.world.turn.fields.username value=settings.world.turn.username rootId=rootId}}
+
+        <div class="form-group">
+            <label for="{{rootId}}-{{fields.world.turn.fields.password.fieldPath}}">
+                {{fields.world.turn.fields.password.label}}
+            </label>
+            <div class="form-fields">
+                <input type="password"
+                       id="av-config-{{fields.world.turn.fields.password.fieldPath}}"
+                       name="{{fields.world.turn.fields.password.fieldPath}}"
+                       value="{{settings.world.turn.password}}"
+                       autocomplete="one-time-code">
+            </div>
+        </div>
+    </fielset>
+</section>

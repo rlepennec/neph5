@@ -1,0 +1,23 @@
+<div class="standard-form scrollable">
+    <p class="hint">{{localize "CONTROLS.MeasureConfigHint"}}</p>
+    {{formGroup fields.t value=source.t choices=templateTypes rootId=rootId}}
+    <div class="form-group slim">
+        <label>{{localize "Coordinates"}} <span class="units">({{units.pixels}})</span></label>
+        <div class="form-fields">
+            <label for="{{rootId}}-x">{{localize "DOCUMENT.FIELDS.x.label"}}</label>
+            {{formInput fields.x value=source.x id=(concat rootId "-x") placeholder=units.pixels}}
+            <label for="{{rootId}}-y">{{localize "DOCUMENT.FIELDS.y.label"}}</label>
+            {{formInput fields.y value=source.y id=(concat rootId "-y") placeholder=units.pixels}}
+        </div>
+    </div>
+    {{formGroup fields.elevation value=source.elevation classes="slim" units=units.gridUnits rootId=rootId}}
+    {{formGroup fields.sort value=source.sort classes="slim" rootId=rootId}}
+    {{formGroup fields.direction value=source.direction classes="slim" units=units.degrees rootId=rootId}}
+    {{formGroup fields.angle value=source.angle classes="slim" units=units.degrees rootId=rootId}}
+    {{formGroup fields.distance value=source.distance classes="slim" units=units.gridUnits rootId=rootId}}
+    {{formGroup fields.width value=source.width classes="slim" units=units.gridUnits rootId=rootId}}
+    {{formGroup fields.borderColor value=source.borderColor placeholder="#000000" rootId=rootId}}
+    {{formGroup fields.fillColor value=source.fillColor placeholder="{{userColor}}" rootId=rootId}}
+    {{formGroup fields.texture value=source.texture rootId=rootId}}
+    {{formGroup fields.hidden value=source.hidden rootId=rootId}}
+</div>

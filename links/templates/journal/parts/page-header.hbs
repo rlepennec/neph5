@@ -1,0 +1,23 @@
+<header class="journal-header">
+    {{ formInput fields.name value=name classes="title" placeholder=(localize "JOURNALENTRYPAGE.PageTitle") }}
+    <div class="page-metadata flexrow">
+        {{# if categories}}
+        <div class="page-category flexrow">
+            <label class="flex0 fa-solid fa-layer-group" data-tooltip
+                   aria-label="{{ localize "JOURNALENTRYPAGE.Category" }}"></label>
+            {{ formInput fields.category value=source.category name="category" options=categories }}
+        </div>
+        {{/if}}
+        <div class="heading-level flexrow">
+            <label class="flex0 fa-solid fa-list-tree" data-tooltip
+                   aria-label="{{ localize "JOURNALENTRYPAGE.HeadingLevel" }}"></label>
+            {{ formInput fields.title.fields.level value=title.level choices=headingLevels }}
+        </div>
+        <div class="show-title noflex">
+            <label class="checkbox">
+                {{ localize "JOURNALENTRYPAGE.ShowTitle" }}
+                {{ formInput fields.title.fields.show value=title.show }}
+            </label>
+        </div>
+    </div>
+</header>

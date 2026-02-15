@@ -1,0 +1,16 @@
+<div class="toolclip themed theme-dark">
+    {{#if src}}<video src="{{ src }}" autoplay muted loop></video>{{/if}}
+    <h4>{{ localize heading }}</h4>
+    {{#each items}}
+    <p>
+        {{#if paragraph}}{{{ localize paragraph }}}
+        {{else}}
+        <strong>{{ localize heading }}:</strong>
+        {{#if content}}{{{ localize content mod=@root.mod alt=@root.alt }}}
+        {{else}}<span class="reference">{{ localize reference mod=@root.mod alt=@root.alt }}</span>
+        {{/if}}
+        {{/if}}
+    </p>
+    {{/each}}
+    <p class="faint">{{ localize "CONTROLS.DisableToolclips" }}</p>
+</div>

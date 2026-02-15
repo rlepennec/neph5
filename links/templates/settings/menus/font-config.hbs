@@ -1,0 +1,61 @@
+<form class="standard-form scrollable">
+    <div class="font-preview"
+         style="font-family: '{{preview.family}}'; font-weight: {{preview.weight}}; font-style: {{preview.style}};">
+        <p contenteditable="true" data-edit="preview">{{preview.text}}</p>
+    </div>
+
+    {{#each fonts}}
+        <div class="control custom-font {{#if selected}}selected{{/if}}"
+             data-family="{{family}}" data-index="{{index}}" data-action="select">
+            <span>{{{font}}}</span>
+            <a class="control" data-action="delete" title="{{localize "FONTS.RemoveFont"}}">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+    {{/each}}
+
+    <div class="form-group">
+        <label>{{localize "FONTS.Type"}}</label>
+        <div class="form-fields">
+            <label class="checkbox">
+                <input type="radio" name="type" value="file" {{#if isFileFont}}checked{{/if}}>
+                {{localize "FONTS.TypeFile"}}
+                <input type="radio" name="type" value="system" {{#if isSystemFont}}checked{{/if}}>
+                {{localize "FONTS.TypeSystem"}}
+            </label>
+        </div>
+        <p class="hint">{{localize "FONTS.TypeHint"}}</p>
+    </div>
+
+    <div class="form-group">
+        <label>{{localize "FONTS.Family"}}</label>
+        <div class="form-fields">
+            <input type="text" name="family" value="{{font.family}}">
+        </div>
+    </div>
+
+    <div class="form-group" data-name="weight" {{#if isSystemFont}}hidden{{/if}}>
+        <label>{{localize "FONTS.Weight"}}</label>
+        <div class="form-fields">
+            <select name="weight" data-dtype="Number">
+                {{selectOptions fontWeights selected=font.weight valueAttr="value" labelAttr="label"}}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group" data-name="style" {{#if isSystemFont}}hidden{{/if}}>
+        <label>{{localize "FONTS.Style"}}</label>
+        <div class="form-fields">
+            <select name="style">
+                {{selectOptions fontStyles selected=font.style}}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group picker" data-name="src" {{#if isSystemFont}}hidden{{/if}}>
+        <label>{{localize "FONTS.File"}}</label>
+        <div class="form-fields">
+            <file-picker name="src" type="font" value="{{font.src}}"></file-picker>
+        </div>
+    </div>
+</form>

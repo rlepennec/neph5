@@ -1,0 +1,21 @@
+<section class="tab region-{{tab.id}} {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    {{formField fields.name value=source.name placeholder=source.name localize=true}}
+    {{formField fields.color value=source.color localize=true}}
+
+    <div class="form-group slim">
+        <label>{{localize "REGION.FIELDS.elevation.label"}}</label>
+        <div class="form-fields">
+            <label>{{localize "REGION.FIELDS.elevation.bottom.label"}}</label>
+            <input name="elevation.bottom" type="number" value="{{source.elevation.bottom}}"
+                   class="placeholder-fa-solid" placeholder="&#xF068 &#xF534;" step="any" data-tooltip
+                   aria-label="{{localize "REGION.FIELDS.elevation.bottom.hint"}}">
+            <label>{{localize "REGION.FIELDS.elevation.top.label"}}</label>
+            <input name="elevation.top" type="number" value="{{source.elevation.top}}"
+                   class="placeholder-fa-solid" placeholder="&#x002B &#xF534;" step="any" data-tooltip
+                   aria-label="{{localize "REGION.FIELDS.elevation.top.hint"}}">
+        </div>
+        <p class="hint">{{localize "REGION.FIELDS.elevation.hint"}}</p>
+    </div>
+
+    {{formField fields.visibility value=source.visibility options=visibilities localize=true}}
+</section>

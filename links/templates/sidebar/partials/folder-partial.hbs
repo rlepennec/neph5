@@ -1,0 +1,31 @@
+<li class="directory-item folder flexcol {{#if folder.expanded}}expanded{{/if}}" data-folder-id="{{ folder.id }}"
+    data-uuid="{{ folder.uuid }}" data-folder-depth="{{ node.depth }}">
+
+    {{!-- Folder Control --}}
+    <header class="folder-header" {{#if folder.color}}style="background-color: {{ folder.color.css }};"{{/if}}
+            data-action="toggleFolder">
+        <i class="fa-solid fa-folder-open fa-fw" inert></i>
+        <span class="folder-name ellipsis">{{ folder.name }}</span>
+
+        {{#if (and @root.canCreateFolder (lt node.depth @root.maxFolderDepth))}}
+        <button type="button" class="create-button create-folder icon icon-plus {{ @root.folderIcon }}"
+                data-action="createFolder" data-tooltip aria-label="{{localize "SIDEBAR.ACTIONS.CREATE.Folder"}}"></button>
+        {{/if}}
+
+        {{#if @root.canCreateEntry}}
+        <button type="button" class="create-button create-entry icon icon-plus {{ @root.sidebarIcon }}"
+                data-action="createEntry" data-tooltip
+                aria-label="{{localize (concat "SIDEBAR.ACTIONS.CREATE." @root.documentName)}}"></button>
+        {{/if}}
+    </header>
+
+    {{!-- Folder Contents --}}
+    <ol class="subdirectory plain" {{#if folder.color}}style="border-left-color: {{ folder.color.css }};"{{/if}}>
+        {{~#each node.children}}
+        {{> (lookup @root "folderPartial") node=this folder=folder }}
+        {{/each}}
+        {{~#each node.entries}}
+        {{> (lookup @root "entryPartial") }}
+        {{/each}}
+    </ol>
+</li>

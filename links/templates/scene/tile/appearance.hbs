@@ -1,0 +1,21 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.texture.fields.src value=source.texture.src rootId=rootId localize=true}}
+    <div class="form-group inline slim">
+        <label>{{localize "TILE.Scale"}} <span class="units">({{localize "Ratio"}})</span></label>
+        <div class="form-fields">
+            <label for="{{concat rootId "-" "scaleX"}}">{{localize "TILE.FIELDS.texture.scaleX.label"}}</label>
+            {{formInput fields.texture.fields.scaleX value=source.texture.scaleX id=(concat rootId "-" "scaleX")}}
+            <label for="{{concat rootId "-" "scaleY"}}">{{localize "TILE.FIELDS.texture.scaleY.label"}}</label>
+            {{formInput fields.texture.fields.scaleY value=source.texture.scaleY id=(concat rootId "-" "scaleY")}}
+        </div>
+        <p class="hint">{{localize "TILE.ScaleHint"}}</p>
+    </div>
+    {{formGroup fields.alpha value=source.alpha step=0.05 rootId=rootId localize=true}}
+    {{formGroup fields.texture.fields.tint value=source.texture.tint placeholder="#ffffff" rootId=rootId localize=true}}
+    <fieldset{{#unless hasVideo}} hidden{{/unless}} data-video-options>
+        <legend>{{localize "TILE.VideoOptions"}}</legend>
+        {{formGroup fields.video.fields.loop value=source.video.loop disabled=(not hasVideo) rootId=rootId localize=true}}
+        {{formGroup fields.video.fields.autoplay value=source.video.autoplay disabled=(not hasVideo) rootId=rootId localize=true}}
+        {{formGroup fields.video.fields.volume value=source.video.volume step=0.05 disabled=(not hasVideo) rootId=rootId localize=true}}
+    </fieldset>
+</div>

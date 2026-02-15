@@ -1,0 +1,45 @@
+{{#with user}}
+<div class="user-controls" data-user="{{ user.id }}" role="menu">
+    {{#if volume.show}}
+    <div class="volume-bar">
+        <i class="fa-solid fa-volume-low fa-fw vol-min" inert></i>
+        {{ formInput volume.field value=volume.value classes="webrtc-volume-slider" aria=volume.aria }}
+        <i class="fa-solid fa-volume-high fa-fw vol-max" inert></i>
+    </div>
+    {{/if}}
+
+    {{#with controls}}
+    {{#if dock.display}}
+    <button type="button" class="av-control inline-control toggle icon fa-regular fa-fw {{ dock.icon }}"
+            data-action="toggleDock" data-tooltip aria-label="{{ localize dock.label }}"></button>
+    {{/if}}
+
+    {{#if video.display}}
+    <button type="button" class="av-control inline-control toggle icon fa-solid fa-fw {{ video.icon }}"
+            data-action="toggleVideo" data-tooltip aria-label="{{ localize video.label }}"></button>
+    {{/if}}
+
+    {{#if audio.display}}
+    <button type="button" class="av-control inline-control toggle icon fa-solid fa-fw {{ audio.icon }}"
+            data-action="toggleAudio" data-tooltip aria-label="{{ localize audio.label }}"></button>
+    {{/if}}
+
+    {{#if deafen.display}}
+    <button type="button" class="av-control inline-control toggle icon fa-solid fa-fw {{ deafen.icon }}"
+            data-action="mutePeers" data-tooltip aria-label="{{ localize deafen.label }}"></button>
+    {{/if}}
+
+    {{#if blind.display}}
+    <button type="button" class="av-control inline-control toggle icon fa-solid fa-fw {{ blind.icon }}"
+            data-action="disableVideo" data-tooltip aria-label="{{ localize blind.label }}"></button>
+    {{/if}}
+    {{/with}}
+
+    {{#if local}}
+    <button type="button" class="av-control inline-control icon fa-solid fa-fw fa-cog" data-action="configure"
+            data-tooltip aria-label="{{ localize "WEBRTC.TooltipConfigure" }}"></button>
+    {{/if}}
+</div>
+{{else}}
+<div class="user-controls"></div>
+{{/with}}

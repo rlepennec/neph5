@@ -1,0 +1,27 @@
+<form class="application standard-form framed">
+    <h2 class="divider">{{ localize "JOIN.HeaderJoin" }}</h2>
+    <div class="form-group">
+        <label class="icon" data-tooltip="JOIN.SelectUser"><i class="fas fa-user"></i></label>
+        <div class="form-fields">
+            <select name="userid">
+                <option value=""></option>
+                {{#each users}}
+                    <option value="{{this.id}}" {{#if this.active}}disabled{{/if}}>{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="icon"  data-tooltip="JOIN.UserKey"><i class="fas fa-key"></i></label>
+        <div class="form-fields">
+            <input type="password" name="password" placeholder="{{ localize "USERS.AccessKey" }}"
+                   value="" autocomplete="current-password">
+        </div>
+    </div>
+    <footer class="form-footer">
+        <button type="submit" name="join" class="bright">
+            <i class="fas fa-check"></i>
+            <label>{{ localize "JOIN.HeaderJoin" }}</label>
+        </button>
+    </footer>
+</form>

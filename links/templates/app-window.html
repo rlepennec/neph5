@@ -1,0 +1,12 @@
+<div id="{{id}}" class="app window-app {{classes}}" data-appid="{{appId}}">
+    <header class="window-header flexrow">
+        <h4 class="window-title">{{title}}</h4>
+        {{#each headerButtons}}
+        <a class="header-button control {{this.class}}" {{#if this.tooltip}}data-tooltip="{{this.tooltip}}"{{/if}}>
+            <i class="{{this.icon}}"></i>{{localize this.label}}
+        </a>
+        {{/each}}
+    </header>
+    <section class="window-content">
+    </section>
+</div>

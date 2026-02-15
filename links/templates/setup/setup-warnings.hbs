@@ -1,0 +1,38 @@
+<div class="scrollable flexcol">
+    {{#each categories as |category packageType|}}
+    <section class="flexcol" data-package-type="{{packageType}}">
+        <h2 class="divider">{{localize category.label}}</h2>
+        {{#each category.packages as |package|}}
+        <div class="package flexcol" data-package-id="{{package.id}}" data-package-type="{{package.type}}">
+            <header class="flexrow">
+                {{#if package.name}}<h4 class="ellipsis">{{package.name}}</h4>{{/if}}
+                <span class="reference">{{package.id}}</span>
+                {{#if package.installed}}
+                <button type="button" class="icon fa-solid fa-arrow-turn-down-right" data-action="managePackage"
+                        data-tooltip aria-label="{{localize 'SETUP.WarningsManage'}}"></button>
+                {{else}}
+                <button type="button" class="icon fa-solid fa-trash" data-action="uninstallPackage"
+                        data-tooltip aria-label="{{localize 'SETUP.Uninstall'}}"></button>
+                {{#if package.reinstallable}}
+                <button type="button" class="icon fa-solid fa-rotate" data-action="reinstallPackage"
+                        data-tooltip aria-label="{{localize 'SETUP.Reinstall'}}"></button>
+                {{/if}}
+                {{/if}}
+            </header>
+            {{#if package.errors}}
+            <code class="errors">
+            {{~package.errors~}}
+            </code>
+            {{/if}}
+            {{#if package.warnings}}
+            <code class="warnings">
+            {{~package.warnings~}}
+            </code>
+            {{/if}}
+        </div>
+        {{/each}}
+    </section>
+    {{else}}
+    <p class="success">{{localize "SETUP.WarningsNone"}}</p>
+    {{/each}}
+</div>

@@ -1,0 +1,28 @@
+<div id="chat-notifications" class="faded-ui flexcol">
+    <div class="overflow">
+        <ol class="chat-log plain themed theme-light"></ol>
+    </div>
+</div>
+
+<textarea id="chat-message" class="chat-input" name="message" autocomplete="off"
+          placeholder="{{ localize "CHAT.EnterMessage" }}" aria-label="{{ localize "CHAT.Chat" }}"></textarea>
+
+<div id="chat-controls">
+    <div id="roll-privacy" class="split-button">
+        {{#each rollModes as |mode|}}
+        <button type="button" class="ui-control icon {{mode.icon}}" data-action="rollMode"
+                data-roll-mode="{{mode.action}}" aria-pressed="{{mode.active}}"
+                data-tooltip aria-label="{{localize mode.label}}"></button>
+        {{/each}}
+    </div>
+
+    {{!-- Control Buttons --}}
+    {{#if user.isGM}}
+    <div class="control-buttons">
+        <button type="button" class="ui-control icon fa-solid fa-floppy-disk" data-tooltip
+                aria-label="{{ localize "CHAT.Export" }}" data-action="export"></button>
+        <button type="button" class="ui-control icon fa-solid fa-trash" data-tooltip
+                aria-label="{{ localize "CHAT.Clear" }}" data-action="flush"></button>
+    </div>
+    {{/if}}
+</div>

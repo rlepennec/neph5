@@ -1,0 +1,39 @@
+<div class="standard-form">
+    <h2 class="border">{{ localize "USERS.ManageTitle" }}</h2>
+
+    <header class="player form-group">
+        <div>
+            <label>{{localize "USERS.UserName"}}</label>
+        </div>
+        <div>
+            <label>{{localize "USERS.AccessKey"}}</label>
+        </div>
+        <div class="role">
+            <label>{{localize "USERS.Role"}}</label>
+        </div>
+        <div class="controls"></div>
+    </header>
+
+    <ol id="player-list" class="scrollable">
+    {{#each users as |user idx|}}
+        {{> (lookup .. 'userTemplate') user=user roles=../roles}}
+    {{/each}}
+    </ol>
+
+    <footer class="form-footer">
+        <button type="button" data-action="createUser">
+            <i class="fas fa-user-plus"></i>
+            <label>{{ localize "USERS.Create" }}</label>
+        </button>
+        {{#if canConfigurePermissions}}
+        <button type="button" data-action="configurePermissions">
+            <i class="fa-solid fa-gears"></i>
+            <label>{{ localize "PERMISSION.Configure" }}</label>
+        </button>
+        {{/if}}
+        <button type="submit" class="bright">
+            <i class="fas fa-check"></i>
+            <label>{{ localize "USERS.Launch" }}</label>
+        </button>
+    </footer>
+</div>

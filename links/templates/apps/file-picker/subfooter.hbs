@@ -1,0 +1,19 @@
+<footer class="subfooter standard-form">
+    {{#unless isFolderPicker}}
+    <div class="form-group upload-file" {{#unless canUpload}}data-tooltip aria-label="{{localize "FILES.CannotUpload"}}"{{/unless}}>
+        <label><i class="fa-solid fa-upload fa-fw" inert></i> {{localize "FILES.Upload"}}</label>
+        <div class="form-fields">
+            <input type="file" name="upload" {{#unless canUpload}}disabled title=""{{/unless}}>
+        </div>
+    </div>
+    {{/unless}}
+
+    {{#if canSelect}}
+    <div class="form-group selected-file">
+        <label for="{{rootId}}-file"><i class="fa-solid fa-file fa-fw" inert></i> {{localize "FILES.Selected"}}</label>
+        <div class="form-fields">
+            <input type="text" id="{{rootId}}-file" name="file" value="{{selected}}">
+        </div>
+    </div>
+    {{/if}}
+</footer>

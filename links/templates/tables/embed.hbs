@@ -1,0 +1,30 @@
+<table class="roll-table-embed {{#if rollable}}roll-table-rollable{{/if}}">
+    <thead>
+        <tr>
+            <th>
+                {{#if rollable}}
+                <button type="button" class="icon fa-solid fa-dice-d20" data-action="rollTable"
+                        aria-label="{{ localize "TABLE.ACTIONS.DrawResult" }}" data-tooltip></button>
+                {{else}}
+                {{ labels.range }}
+                {{/if}}
+            </th>
+            <th>{{ labels.result }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each results}}
+        <tr {{#if drawn}}class="drawn"{{/if}}>
+            <td>{{ range }}</td>
+            <td>
+                {{~#if (eq type "text")~}}
+                {{#if name}}<h4 data-no-toc>{{ name }}</h4>{{/if}}
+                {{{ description }}}
+                {{~else~}}
+                {{{ result }}}
+                {{~/if~}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

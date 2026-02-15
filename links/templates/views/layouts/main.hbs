@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Page Metadata -->
+    <title>{{{title}}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="icons/vtt.png">
+
+    <!-- Included Stylesheets -->
+    {{#each styles.core}}
+    {{#unless layer}}
+    <link href="{{this.src}}" rel="stylesheet" type="text/css" media="all">
+    {{/unless}}
+    {{/each}}
+
+    <style>
+        {{#each styles.core}}
+        {{#if layer}}
+        @import "{{ src }}" layer({{ layer }});
+        {{/if}}
+        {{/each}}
+    </style>
+
+    <!-- Included Scripts -->
+    {{#each scripts}}
+    <script src="{{this.src}}" {{#if this.isModule}}type="module"{{else}}defer{{/if}}></script>
+    {{/each}}
+
+    <!-- Global Variables -->
+    <script>
+    const SIGNED_EULA={{eula}};
+    const ROUTE_PREFIX="{{routePrefix}}";
+    const MESSAGES={{#if messages}}{{{messages}}}{{else}}null{{/if}};
+    </script>
+
+    <!-- Layer System & Module Styles -->
+    <style>
+        {{#each styles.system}}
+        {{#if layer}}
+        @import "{{ src }}" layer({{ layer }});
+        {{else}}
+        @import "{{ src }}";
+        {{/if}}
+        {{/each}}
+        {{#each styles.modules}}
+        {{#if layer}}
+        @import "{{ src }}" layer({{ layer }});
+        {{else}}
+        @import "{{ src }}";
+        {{/if}}
+        {{/each}}
+    </style>
+</head>
+<body class="{{ bodyClass }}" style="{{ bodyStyle }}">
+    {{{body}}}
+    {{#if watermark}}
+    <footer class="watermark">{{watermark}}</footer>
+    {{/if}}
+    <aside id="tooltip" role="tooltip" popover="manual"></aside>
+</body>
+</html>

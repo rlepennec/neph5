@@ -1,0 +1,32 @@
+<section>
+
+    {{!-- Document --}}
+    <fieldset>
+        <legend>{{ localize "DOCUMENT.Document" }}</legend>
+
+        {{!-- Sheet --}}
+        {{#with document.sheet}}
+        {{ formField field name=name value=value localize=true sort=true blank="SHEETS.DefaultSheet" }}
+        {{/with}}
+
+        {{!-- Theme --}}
+        {{#with document.theme}}
+        {{ formField field name=name value=value localize=true blank="Default" disabled=disabled }}
+        {{/with}}
+    </fieldset>
+
+    {{!-- Defaults --}}
+    <fieldset>
+        <legend>{{ localize "SHEETS.Defaults" }}</legend>
+
+        {{!-- Sheet --}}
+        {{#with defaults.sheet}}
+        {{ formField field name=name value=value disabled=disabled localize=true sort=true blank=false }}
+        {{/with}}
+
+        {{!-- Theme --}}
+        {{#with defaults.theme}}
+        {{ formField field name=name value=value localize=true blank="Default" disabled=disabled }}
+        {{/with}}
+    </fieldset>
+</section>

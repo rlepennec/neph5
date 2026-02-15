@@ -1,0 +1,31 @@
+<section>
+    <ol class="priority-list">
+        {{#each config}}
+        <li data-package-id="{{ packageId }}">
+            <input type="hidden" name="{{ packageId }}.priority" value="{{ priority }}" data-dtype="Number">
+            <label>{{ title }}</label>
+            <div class="form-fields">
+                <label>
+                    {{ localize "COMPENDIUM.ART.CONFIG.Portraits" }}
+                    <input type="checkbox" name="{{ packageId }}.portraits" {{ checked portraits }}>
+                </label>
+                <label>
+                    {{ localize "COMPENDIUM.ART.CONFIG.Tokens" }}
+                    <input type="checkbox" name="{{ packageId }}.tokens" {{ checked tokens }}>
+                </label>
+            </div>
+            <div class="priority-adjust">
+                <button type="button" data-action="priority" data-increase data-tooltip
+                        aria-label="{{ localize "COMPENDIUM.ART.CONFIG.PriorityIncrease" }}">
+                    <i class="fa-solid fa-angle-up" inert></i>
+                </button>
+                <button type="button" data-action="priority" data-decrease data-tooltip
+                        aria-label="{{ localize "COMPENDIUM.ART.CONFIG.PriorityDecrease" }}">
+                    <i class="fa-solid fa-angle-down" inert></i>
+                </button>
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+    <p class="hint">{{ localize "COMPENDIUM.ART.CONFIG.Hint" }}</p>
+</section>

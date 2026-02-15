@@ -1,0 +1,38 @@
+<p class="hint">{{localize "FOLDER.ExportHint"}}</p>
+<div class="form-group">
+    <label for="folder-export-pack">{{localize "FOLDER.ExportDestination"}}</label>
+    <div class="form-fields">
+        <select id="folder-export-pack" name="pack">
+            {{selectOptions packs selected=pack blank=""}}
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="folder-export-folder">{{localize "DOCUMENT.Folder"}}</label>
+    <div class="form-fields">
+        <select id="folder-export-folder" name="folder" {{#unless hasFolders}}disabled{{/unless}}>
+            {{selectOptions folders valueAttr="id" labelAttr="name" selected=folder blank=""}}
+        </select>
+    </div>
+</div>
+<fieldset>
+    <legend>{{localize "FOLDER.ExportOptions"}}</legend>
+    <div class="form-group">
+        <label for="folder-export-merge">{{localize "FOLDER.ExportMerge"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" id="folder-export-merge" name="merge" {{checked merge}}>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="folder-export-keepId">{{localize "FOLDER.ExportKeepId"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" id="folder-export-keepId" name="keepId" {{checked keepId}}>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="folder-export-keepFolders">{{localize "FOLDER.ExportKeepFolders"}}</label>
+        <div class="form-fields">
+            <input type="checkbox" id="folder-export-keepFolders" name="keepFolders" {{checked keepFolders}}>
+        </div>
+    </div>
+</fieldset>

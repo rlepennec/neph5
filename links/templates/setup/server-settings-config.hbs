@@ -1,0 +1,76 @@
+<div class="standard-form scrollable">
+    <p>{{localize "SERVER_SETTINGS.Warning"}}</p>
+
+    <fieldset>
+        <legend>{{localize "SERVER_SETTINGS.SECTIONS.FVTTConfig"}}</legend>
+
+        <div class="form-group{{#if noAdminPW}} notification warning{{/if}}">
+            <label for="{{rootId}}-adminPassword">{{fields.adminPassword.label}}</label>
+            <div class="form-fields">
+                {{#if noAdminPW}}
+                <input type="password" name="adminPassword" id="{{rootId}}-adminPassword">
+                {{else}}
+                <button type="button" data-action="changePassword" id="changePassword">
+                    {{ localize "SERVER_SETTINGS.ChangePassword.label" }}
+                </button>
+                {{/if}}
+            </div>
+            <p class="hint">{{fields.adminPassword.hint}}</p>
+        </div>
+
+        {{formGroup fields.dataPath value=source.dataPath rootId=rootId}}
+        {{formGroup fields.cssTheme value=source.cssTheme choices=cssThemes rootId=rootId}}
+        {{formGroup fields.world value=source.world choices=worlds blank="" rootId=rootId}}
+        {{formGroup fields.language value=source.language options=languages rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "SERVER_SETTINGS.SECTIONS.ServerConfig"}}</legend>
+        <div class="form-group upnp">
+            <label for="{{rootId}}-port">{{localize "SERVER_SETTINGS.FIELDS.port.label"}}</label>
+            <div class="form-fields">
+                {{formInput fields.port value=source.port id=(concat rootId "-port")}}
+                <label class="flexrow checkbox">
+                    <span>{{fields.upnp.label}}</span>
+                    <input type="checkbox" name="upnp" {{checked source.upnp}}>
+                </label>
+            </div>
+            <p class="hint">{{localize "SERVER_SETTINGS.FIELDS.port.hint"}}</p>
+        </div>
+        {{formGroup fields.compressStatic value=source.compressStatic rootId=rootId}}
+        {{formGroup fields.compressSocket value=source.compressSocket rootId=rootId}}
+        <div class="form-group ssl-cert">
+            <span class="label">{{localize "SERVER_SETTINGS.SSLCert"}}</span>
+            <div class="form-fields">
+                <label class="flexrow">
+                    <span>{{fields.sslCert.label}}</span>
+                    <input type="text" name="sslCert" value="{{source.sslCert}}">
+                </label>
+                <label class="flexrow">
+                    <span>{{fields.sslKey.label}}</span>
+                    <input type="text" name="sslKey" value="{{source.sslKey}}">
+                </label>
+            </div>
+            <p class="hint">{{fields.sslCert.hint}}</p>
+        </div>
+        {{formGroup fields.awsConfig value=source.awsConfig rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "SERVER_SETTINGS.SECTIONS.ElectronApp"}}</legend>
+        {{formGroup fields.fullscreen value=source.fullscreen rootId=rootId}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "SERVER_SETTINGS.SECTIONS.OtherSettings"}}</legend>
+        <div class="form-group">
+            <label for="{{rootId}}-telemetry">{{fields.telemetry.label}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="telemetry" id="{{rootId}}-telemetry" {{checked source.telemetry}}>
+            </div>
+            <p class="hint">{{{fields.telemetry.hint}}}</p>
+        </div>
+        {{formGroup fields.deleteNEDB value=source.deleteNEDB rootId=rootId}}
+        {{formGroup fields.hotReload value=source.hotReload rootId=rootId}}
+    </fieldset>
+</div>

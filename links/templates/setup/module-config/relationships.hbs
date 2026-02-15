@@ -1,0 +1,34 @@
+<section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#each relationships as |relationship i|}}
+    <input type="hidden" data-dtype="String" name="relationships.{{i}}._category" value="{{relationship.category}}">
+    <input type="hidden" data-dtype="Number" name="relationships.{{i}}._index" value="{{relationship.index}}">
+    <fieldset>
+        <div class="form-group">
+            <label for="{{../rootId}}-relationships.{{i}}.id">{{localize "PACKAGE.Relationship.Package"}}</label>
+            <div class="form-fields">
+                <select id="{{../rootId}}-relationships.{{i}}.id" name="relationships.{{i}}.id" data-relationship
+                    {{disabled relationship.id}}>
+                    {{selectOptions ../relatedPackages selected=relationship.id blank=""}}
+                </select>
+                <button type="button" class="icon fa-solid fa-trash" data-category="{{relationship.category}}"
+                        data-index="{{i}}" data-action="deleteRelationship"
+                        data-tooltip aria-label="{{localize "PACKAGE.ACTIONS.RemoveRelationship"}}"></button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{../rootId}}-relationships.{{i}}.category">{{localize "PACKAGE.Relationship.Category"}}</label>
+            <div class="form-fields">
+                <select id="{{../rootId}}-relationships.{{i}}.category" name="relationships.{{i}}.category"
+                        data-category>
+                    {{selectOptions ../relationshipCategories selected=relationship.category blank=""}}
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    {{/each}}
+    <button type="button" data-action="addRelationship">
+        <i class="fa-solid fa-plus" inert></i>
+        <span>{{localize "PACKAGE.ACTIONS.AddRelationship"}}</span>
+    </button>
+</section>

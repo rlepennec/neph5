@@ -1,0 +1,21 @@
+{{#unless isEULA}}
+<form id="license-key" class="application framed standard-form" method="post" autocomplete="off">
+    <h2 class="border">License Key Activation</h2>
+
+    <div class="form-group">
+        <label class="password">
+            <input id="key" name="licenseKey" type="text" value="{{licenseKey}}"
+                   placeholder="XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
+                   autocomplete="off" autofocus required>
+        </label>
+        <p class="hint">Enter a valid Foundry Virtual Tabletop software license key to unlock the software.</p>
+    </div>
+
+    <footer class="form-footer">
+        <button type="submit" class="bright" name="action" value="enterKey">
+            <i class="fas fa-key"></i>
+            <label>Submit Key</label>
+        </button>
+    </footer>
+</form>
+{{/unless}}

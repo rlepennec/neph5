@@ -1,0 +1,37 @@
+<section class="tab region-{{tab.id}} flexcol {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+    <header class="region-element region-behavior flexrow">
+        <div class="region-element-name">{{localize "REGION.Behavior"}}</div>
+        <div class="region-element-controls">
+            <a class="region-control" data-action="behaviorCreate" data-tooltip
+               aria-label="{{localize "REGION.ACTIONS.behaviorCreate"}}">
+                <i class="fa-solid fa-plus fa-fw"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="standard-form scrollable">
+        {{#each behaviors as |behavior|}}
+        <fieldset class="region-element region-behavior flexrow {{#if behavior.disabled}}inactive{{/if}}"
+                  data-behavior-id="{{behavior.id}}" aria-label="{{behavior.name}}">
+            <a class="region-element-name draggable" data-behavior-id="{{behavior.id}}" data-action="behaviorEdit">
+                <i class="{{behavior.typeIcon}} fa-fw" data-tooltip-text="{{behavior.typeLabel}}"></i>
+                {{behavior.name}}
+            </a>
+            <div class="region-element-controls">
+                <a class="control fa-solid {{#if behavior.disabled}}fa-toggle-off{{else}}fa-toggle-on{{/if}} fa-fw"
+                   data-action="behaviorToggle" data-tooltip
+                   {{#if behavior.disabled}}
+                   aria-label="{{localize "REGION.ACTIONS.behaviorEnable"}}"
+                   {{else}}
+                   aria-label="{{localize "REGION.ACTIONS.behaviorDisable"}}"
+                   {{/if}}
+                ></a>
+                <a class="control fa-solid fa-pen-to-square fa-fw" data-action="behaviorEdit" data-tooltip
+                   aria-label="{{localize "REGION.ACTIONS.behaviorEdit"}}"></a>
+                <a class="control fa-solid fa-trash fa-fw" data-action="behaviorDelete" data-tooltip
+                   aria-label="{{localize "REGION.ACTIONS.behaviorDelete"}}"></a>
+            </div>
+        </fieldset>
+        {{/each}}
+    </div>
+</section>

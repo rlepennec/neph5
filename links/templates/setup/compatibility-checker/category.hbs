@@ -1,0 +1,32 @@
+{{#each category.entries as |entry|}}
+<div class="form-group package slim" data-package-id="{{entry.id}}">
+    <span class="label ellipsis">{{entry.label}}</span>
+    <div class="form-fields">
+        {{~#if entry.hasLink}}
+        <a href="https://foundryvtt.com/packages/{{entry.id}}/" rel="nofollow" target="_blank"
+            class="button inline-control icon fa-solid fa-arrow-up-right-from-square"
+            data-tooltip aria-label="{{localize "SETUP.ViewPackagePage"}}"></a>
+        {{/if~}}
+        {{~#if entry.changelog}}
+        <a href="{{entry.changelog}}" rel="nofollow" target="_blank"
+            class="button inline-control icon fa-solid fa-list-ul"
+            data-tooltip aria-label="{{localize "SETUP.ViewPackageChangelog"}}"></a>
+        {{/if~}}
+    </div>
+    <p class="hint ellipsis">{{{entry.hint}}}</p>
+    <div class="tags flexrow">
+        {{~#if entry.url}}
+        <a class="entry-url ellipsis" href="{{entry.url}}" rel="nofollow" target="_blank"
+           data-tooltip aria-label="{{localize "SETUP.ViewPackageWebsite"}}">{{entry.url}}</a>
+        {{/if~}}
+        {{#each entry.tags as |tag|}}
+        <span class="tag flexrow {{tag.type}}"{{#if tag.tooltip}} data-tooltip aria-label="{{tag.tooltip}}"{{/if}}>
+            {{~#if tag.icon}}
+            <i class="{{tag.icon}}" inert></i>
+            {{/if~}}
+            {{tag.label}}
+        </span>
+        {{/each}}
+    </div>
+</div>
+{{/each}}

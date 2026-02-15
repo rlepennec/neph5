@@ -1,0 +1,30 @@
+<ol id="players-inactive" class="players-list plain scrollable flexcol" data-tooltip-direction="RIGHT">
+    {{~#each inactive as |player|}}
+    <li class="player flexrow {{player.cssClass}}" data-user-id="{{player.id}}" data-tooltip-text="{{player.tooltip}}"
+        style="--player-color:{{player.color}}; --player-border:{{player.border}}">
+        <span class="player-name ellipsis">{{player.name}}</span>
+    </li>
+    {{/each~}}
+</ol>
+
+<div id="players-active" class="flexcol">
+    <ol class="players-list plain flexcol" data-tooltip-direction="RIGHT">
+        {{#each active as |player|}}
+        <li class="player flexrow {{player.cssClass}}" data-user-id="{{player.id}}" data-tooltip-text="{{player.tooltip}}"
+            style="--player-color:{{player.color}}; --player-border:{{player.border}}">
+            <span class="player-name ellipsis">{{player.name}}</span>
+        </li>
+        {{/each}}
+    </ol>
+    <div id="performance-stats" class="flexrow">
+        <div id="latency">
+            <label>{{localize "PLAYERS.LATENCY"}}</label>
+            <span class="average">--</span>
+        </div>
+        <div id="fps">
+            <label>{{localize "PLAYERS.FPS"}}</label>
+            <span class="average">--</span>
+        </div>
+        <button id="players-expand" type="button" class="icon fa-solid fa-caret-up" data-action="expand"></button>
+    </div>
+</div>

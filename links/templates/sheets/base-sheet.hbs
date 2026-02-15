@@ -1,0 +1,28 @@
+<div>
+    {{#if (and fields.name fields.img)}}
+    <header class="sheet-header img-name">
+        <img src="{{source.img}}" data-action="editImage" data-edit="img" alt="{{localize "DOCUMENT.FIELDS.img.label"}}">
+        {{formInput fields.name value=source.name placeholder=(localize "DOCUMENT.FIELDS.name.label")
+            aria=(object label=(localize "DOCUMENT.FIELDS.name.label"))}}
+    </header>
+    {{else if fields.img}}
+    {{formGroup fields.img value=source.img rootId=rootId}}
+    {{else if fields.name}}
+    {{formGroup fields.name value=source.name rootId=rootId}}
+    {{/if}}
+
+    {{#if descriptionHTML}}
+    <div class="form-group">
+        <div class="form-fields">
+            {{formInput fields.description value=source.description enriched=descriptionHTML compact=true toggled=true}}
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if (not (or fields.name fields.img descriptionHTML))}}
+    <section class="no-data">
+        <h1>{{document.documentName}}</h1>
+        <div class="uuid">{{document.uuid}}</div>
+    </section>
+    {{/if}}
+</div>

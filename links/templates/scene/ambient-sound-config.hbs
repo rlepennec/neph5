@@ -1,0 +1,79 @@
+<div class="standard-form scrollable">
+    <fieldset>
+        <legend>{{ localize "AMBIENT_SOUND.SECTIONS.SOURCE" }}</legend>
+        {{formField fields.path value=source.path placeholder=(localize "SOUND.PathPlaceholder")}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ localize "AMBIENT_SOUND.SECTIONS.PLACEMENT" }}</legend>
+        <div class="form-group slim">
+            <label>{{localize "Coordinates"}} <span class="units">({{localize "Pixels"}})</span></label>
+            <div class="form-fields">
+                <label>{{fields.x.label}}</label>
+                {{formInput fields.x value=source.x}}
+                <label>{{fields.y.label}}</label>
+                {{formInput fields.y value=source.y}}
+            </div>
+        </div>
+        <div class="form-group slim">
+            <label>{{fields.radius.label}} <span class="units">({{gridUnits}})</span></label>
+            <div class="form-fields">
+                {{formInput fields.radius value=source.radius}}
+            </div>
+        </div>
+
+        <div class="form-group slim">
+            <label>{{fields.elevation.label}} <span class="units">({{gridUnits}})</span></label>
+            <div class="form-fields">
+                {{formInput fields.elevation value=source.elevation placeholder=gridUnits}}
+            </div>
+        </div>
+        <p class="hint">{{localize "AMBIENT_SOUND.SECTIONS.PLACEMENT_HINT"}}</p>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ localize "AMBIENT_SOUND.SECTIONS.VOLUME" }}</legend>
+        {{formField fields.volume value=source.volume}}
+        {{formField fields.easing value=source.easing}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ localize "AMBIENT_SOUND.SECTIONS.ACTIVATION" }}</legend>
+        {{formField fields.hidden value=source.hidden}}
+        {{formField fields.walls value=source.walls}}
+        <div class="form-group slim">
+            <label>{{fields.darkness.label}}</label>
+            <div class="form-fields">
+                <label>{{fields.darkness.fields.min.label}}</label>
+                {{ numberInput source.darkness.min name="darkness.min" min=0 max=1 placeholder="0" }}
+                <label>{{fields.darkness.fields.max.label}}</label>
+                {{ numberInput source.darkness.max name="darkness.max" min=0 max=1 placeholder="1" }}
+            </div>
+            <p class="hint">{{fields.darkness.hint}}</p>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ localize "AMBIENT_SOUND.SECTIONS.EFFECTS" }}</legend>
+        <div class="form-group">
+            <label>{{fields.effects.fields.base.fields.type.label}}</label>
+            <div class="form-fields">
+                <select name="effects.base.type">
+                    {{selectOptions soundEffects selected=source.effects.base.type labelAttr="label" blank="" localize=true}}
+                </select>
+            </div>
+        </div>
+        {{formField fields.effects.fields.base.fields.intensity value=source.effects.base.intensity}}
+        <p class="hint">{{fields.effects.fields.base.hint}}</p>
+        <div class="form-group">
+            <label>{{fields.effects.fields.muffled.fields.type.label}}</label>
+            <div class="form-fields">
+                <select name="effects.muffled.type">
+                    {{selectOptions soundEffects selected=source.effects.muffled.type labelAttr="label" blank="" localize=true}}
+                </select>
+            </div>
+        </div>
+        {{formField fields.effects.fields.muffled.fields.intensity value=source.effects.muffled.intensity}}
+        <p class="hint">{{fields.effects.fields.muffled.hint}}</p>
+    </fieldset>
+</div>

@@ -1,0 +1,67 @@
+<header class="form-header">
+    <h2 class="border">{{localize "SETTINGS.Update"}}</h2>
+</header>
+
+<section class="update-notifications">
+    <p>{{localize "SETUP.UpdateHint"}}</p>
+    {{#if coreUpdate}}
+        <p class="notification info">{{coreUpdate}}</p>
+    {{/if}}
+    {{#unless canReachInternet}}
+        <p class="notification error">{{localize "SETUP.UpdateNoInternetError"}}</p>
+    {{/unless}}
+    {{#unless couldReachWebsite}}
+        <p class="notification error">{{localize "SETUP.UpdateWebsiteUnreachableError"}}</p>
+    {{/unless}}
+    {{#if slowResponse}}
+        <p class="notification warning">{{localize "SETUP.UpdateWebsiteSlowWarning"}}</p>
+    {{/if}}
+</section>
+
+<div class="form-group">
+    <label for="{{rootId}}-currentVersion">{{localize "SETUP.CurrentVersion"}}</label>
+    <div class="form-fields">
+        <input type="text" id="{{rootId}}-currentVersion" value="{{release.display}} - Build {{release.build}}" disabled>
+    </div>
+    <p class="hint">{{coreVersionHint}}</p>
+</div>
+
+<div class="form-group">
+    <label for="{{rootId}}-updateChannel">{{localize "SETUP.UpdateChannel"}}</label>
+    <div class="form-fields">
+        <select id="{{rootId}}-updateChannel" name="updateChannel">
+            {{selectOptions updateChannels selected=updateChannel localize=true}}
+        </select>
+    </div>
+    <p class="hint">{{localize "SETUP.UpdateChannelHint"}}</p>
+</div>
+
+<div class="update-channels flexcol">
+    {{#each updateChannelHints as |hint c|}}
+    <p class="notification channel-hint {{c}}">{{hint}}</p>
+    {{/each}}
+</div>
+
+<div class="form-group">
+    <label for="{{rootId}}-forceUpdate">{{localize "SETUP.ForceUpdate"}}</label>
+    <div class="form-fields">
+        <input type="checkbox" id="{{rootId}}-forceUpdate" name="forceUpdate">
+    </div>
+    <p class="hint">{{localize "SETUP.ForceUpdateHint"}}</p>
+</div>
+
+<div id="update-progress" class="progress-bar">
+    <div class="bar">
+        <span class="pct"></span>
+    </div>
+</div>
+
+<footer class="form-footer">
+    <a class="button" href="setup">
+        <i class="fa-solid fa-arrow-turn-down-left" inert></i> {{localize "GAME.ReturnSetup"}}
+    </a>
+    <button class="bright" type="submit" value="updateCheck" {{disabled (not updateButtonEnabled)}}>
+        <i class="fa-solid fa-cloud-arrow-down" inert></i>
+        <span>{{localize "SETUP.UpdateCheckFor"}}</span>
+    </button>
+</footer>

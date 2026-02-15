@@ -1,0 +1,18 @@
+<article id="error" class="application framed standard-form">
+    <h2 class="border">{{title}}</h2>
+
+    <div class="error-details">
+        <p>{{{message}}}</p>
+        {{#if stack}}
+        <pre>
+            <code>{{stack}}</code>
+        </pre>
+        {{/if}}
+    </div>
+
+    <footer class="form-footer">
+        <a class="button" href="{{setupUrl}}" target="_self">
+            <i class="fas fa-backward"></i> Go Back
+        </a>
+    </footer>
+</article>

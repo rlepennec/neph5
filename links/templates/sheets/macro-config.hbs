@@ -1,0 +1,9 @@
+<header class="sheet-header img-name">
+    <img src="{{source.img}}" data-action="editImage" data-edit="img" alt="{{localize "DOCUMENT.FIELDS.img.label"}}">
+    <input name="name" type="text" value="{{source.name}}" placeholder="{{localize "DOCUMENT.FIELDS.name.label"}}"
+        aria-label="{{localize "DOCUMENT.FIELDS.name.label"}}">
+</header>
+
+{{formGroup fields.type value=source.type rootId=rootId choices=typeChoices localize=true}}
+{{formInput fields.command value=source.command language=editorLang elementType="code-mirror"
+    aria=(object label=(localize fields.command.label))}}

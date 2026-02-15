@@ -1,0 +1,8 @@
+<ol class="directory-list plain">
+    {{#each tree.children}}
+    {{> (lookup @root "folderPartial") node=this folder=folder }}
+    {{/each}}
+    {{#each tree.entries}}
+    {{> (lookup @root "entryPartial") }}
+    {{/each}}
+</ol>

@@ -1,0 +1,50 @@
+<section>
+    {{#if src}}
+    <figure class="{{#if flexRatio}}flex-ratio{{/if}}">
+        {{#if isYouTube}}
+        <iframe id="{{ yt.id }}" src="{{ yt.url }}" frameborder="0"
+                {{#if document.video.width}}width="{{ document.video.width }}" {{/if}}
+                {{#if document.video.height}}height="{{ document.video.height }}"{{/if}}>></iframe>
+        {{else}}
+        <video src="{{ src }}" controls
+            {{#if document.video.width}}width="{{ document.video.width }}" {{/if}}
+            {{#if document.video.height}}height="{{ document.video.height }}"{{/if}}>
+        </video>
+        {{/if}}
+    </figure>
+    {{/if}}
+
+    {{ formField fields.src value=source.src localize=true input=srcInput
+                 label="JOURNALENTRYPAGE.VideoSource" hint="JOURNALENTRYPAGE.VideoSourceHint" }}
+    {{ formField fields.video.fields.controls value=source.video.controls label="JOURNALENTRYPAGE.VideoControls"
+                 localize=true }}
+    {{ formField fields.video.fields.autoplay value=source.video.autoplay label="JOURNALENTRYPAGE.VideoAutoplay"
+                 localize=true }}
+    {{ formField fields.video.fields.loop value=source.video.loop label="JOURNALENTRYPAGE.VideoLoop" localize=true }}
+    {{ formField fields.video.fields.volume value=source.video.volume label="JOURNALENTRYPAGE.VideoVolume"
+                 localize=true }}
+
+    <div class="form-group video-time">
+        <label>{{ localize "JOURNALENTRYPAGE.VideoStartTime" }}</label>
+        <div class="form-fields">
+            {{ formInput timestamp.h.field name="timestamp.h" value=timestamp.h.value
+                         placeholder=(localize "TIME.Hour.other") }}
+            <span class="sep">:</span>
+            {{ formInput timestamp.m.field name="timestamp.m" value=timestamp.m.value input=timestamp.m.input
+                         placeholder=(localize "TIME.Minute.other") }}
+            <span class="sep">:</span>
+            {{ formInput timestamp.s.field name="timestamp.s" value=timestamp.s.value input=timestamp.s.input
+                         placeholder=(localize "TIME.Second.other") }}
+        </div>
+    </div>
+
+    <div class="form-group slim">
+        <label>{{ localize "JOURNALENTRYPAGE.VideoDimensions" }}</label>
+        <div class="form-fields">
+            <label>{{ localize "Width" }}</label>
+            {{ formInput fields.video.fields.width value=source.video.width }}
+            <label>{{ localize "Height" }}</label>
+            {{ formInput fields.video.fields.height value=source.video.height }}
+        </div>
+    </div>
+</section>

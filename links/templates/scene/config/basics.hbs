@@ -1,0 +1,38 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.name value=source.name rootId=rootId}}
+
+    <div class="form-group">
+        <label for="{{rootId}}-ownership.default">{{localize "SCENE.Accessibility"}}</label>
+        <div class="form-fields">
+            <label>
+                {{localize "SCENE.FIELDS.navigation.label"}}
+                {{formInput fields.navigation value=source.navigation}}
+            </label>
+            <select id="{{rootId}}-ownership.default" name="ownership.default" data-dtype="Number">
+                {{selectOptions ownerships selected=source.ownership.default}}
+            </select>
+        </div>
+    </div>
+
+    {{formGroup fields.navName value=source.navName rootId=rootId}}
+    {{formGroup fields.background.fields.src value=source.background.src rootId=rootId}}
+    {{formGroup fields.foreground value=source.foreground rootId=rootId}}
+    {{formGroup fields.backgroundColor value=source.backgroundColor placeholder="#999999" rootId=rootId}}
+    {{formGroup fields.foregroundElevation value=source.foregroundElevation classes="slim" rootId=rootId}}
+
+    <div class="form-group inline">
+        <label>{{localize "SCENE.InitialView"}}</label>
+        <div class="form-fields">
+            <button type="button" data-action="capturePosition" data-tooltip="SCENE.InitialViewButton">
+                <i class="fa-solid fa-crop-simple fa-fw"></i>
+            </button>
+            <label for="{{rootId}}-initial.x">{{localize "DOCUMENT.FIELDS.x.label"}}</label>
+            {{formInput fields.initial.fields.x value=source.initial.x id=(concat rootId "-initial.x")}}
+            <label for="{{rootId}}-initial.y">{{localize "DOCUMENT.FIELDS.y.label"}}</label>
+            {{formInput fields.initial.fields.y value=source.initial.y id=(concat rootId "-initial.y")}}
+            <label for="{{rootId}}-initial.scale">{{localize "SCENE.FIELDS.initial.scale.label"}}</label>
+            {{formInput fields.initial.fields.scale value=source.initial.scale id=(concat rootId "-initial.scale")}}
+        </div>
+        <p class="hint">{{localize "SCENE.InitialViewHint"}}</p>
+    </div>
+</div>

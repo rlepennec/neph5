@@ -1,0 +1,25 @@
+<li class="player form-group" data-user-id="{{user._id}}">
+    <div>
+        <label class="username">
+            <input type="text" name="users.{{user._id}}.name" value="{{user.name}}" autocomplete="off"/>
+        </label>
+    </div>
+    <div class="flexrow">
+        <label class="password">
+            <input class="password" type="password" name="users.{{user._id}}.password" value="{{@root.passwordString}}" autocomplete="off"/>
+        </label>
+        <a class="control show" data-action="showPassword" data-tooltip="USERS.KeyShow" hidden>
+            <i class="fa-solid fa-eye"></i>
+        </a>
+    </div>
+    <div>
+        <select name="users.{{user._id}}.role" data-dtype="Number">
+            {{selectOptions roles selected=user.role}}
+        </select>
+    </div>
+    <div class="controls flexrow">
+        <a class="control" data-action="deleteUser" data-tooltip="USERS.Delete">
+            <i class="fas fa-trash"></i>
+        </a>
+    </div>
+</li>

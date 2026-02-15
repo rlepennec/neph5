@@ -1,0 +1,10 @@
+{{#if result.documentLink~}}
+{{{result.documentLink}}}
+{{~else if result.name~}}
+<strong class="name">{{result.name}}</strong>
+{{~/if}}
+{{#if result.description~}}
+<div class="description">
+    {{{result.description}}}
+</div>
+{{~/if}}

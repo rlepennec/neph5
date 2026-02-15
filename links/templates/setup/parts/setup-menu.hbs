@@ -1,0 +1,8 @@
+<div class="flexrow">
+    {{#each buttons as |b|}}
+    <button type="button" class="icon" data-action="{{b.action}}" data-tooltip aria-label="{{localize b.tooltip}}">
+        <i class="{{b.icon}}"></i>
+        {{#if b.pip}}<span class="pip {{b.pip.type}}">{{b.pip.label}}</span>{{/if}}
+    </button>
+    {{/each}}
+</div>

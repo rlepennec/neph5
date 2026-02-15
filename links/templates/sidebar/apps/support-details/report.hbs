@@ -1,0 +1,30 @@
+<pre class="scrollable" tabindex="0" data-report>{{localize "Foundry Virtual Tabletop"}}: {{report.coreVersion}}
+{{localize "WORLD.FIELDS.system.label"}}: {{report.systemVersion}}
+{{localize "MODMANAGE.FilterActive"}}: {{report.activeModuleCount}}
+
+{{localize "SETTINGS.PerformanceModeN"}}: {{report.performanceMode}}
+{{localize "SUPPORT.Screen"}}: {{report.screen}}
+{{localize "SUPPORT.Viewport"}}: {{report.viewport}}
+
+{{localize "SUPPORT.OS"}}: {{report.os}}
+{{localize "SUPPORT.Client"}}: {{report.client}}
+{{localize "SUPPORT.GPU"}}: {{report.gpu}}
+{{localize "SUPPORT.MaxTextureSize"}}: {{report.maxTextureSize}}
+
+{{#if report.hasViewedScene~}}
+{{localize "DOCUMENT.Scene"}}: {{report.sceneDimensions}} | {{localize "SCENE.FIELDS.grid.size.label"}}: {{report.grid}} | {{localize "SCENE.FIELDS.padding.label"}}: {{report.padding}}
+{{localize "DOCUMENT.Walls"}}: {{report.walls}} | {{localize "DOCUMENT.AmbientLights"}}: {{report.lights}} | {{localize "DOCUMENT.AmbientSounds"}}: {{report.sounds}} | {{localize "DOCUMENT.Tiles"}}: {{report.tiles}} | {{localize "DOCUMENT.Tokens"}}: {{report.tokens}}
+{{#with report.largestTexture as |texture|}}
+{{~#if (or texture.width texture.height)}}
+{{localize "SUPPORT.LargestTexture"}}: {{localize "SUPPORT.Dimensions" width=texture.width height=texture.height}}
+{{~#if texture.src}} "{{texture.src}}"{{/if}}
+{{/if}}
+{{/with}}
+{{else~}}
+{{localize "SUPPORT.NoViewedScene"}}
+{{~/if}}
+
+{{localize "DOCUMENT.Actors"}}: {{report.actors}} | {{localize "DOCUMENT.Items"}}: {{report.items }} | {{localize "DOCUMENT.JournalEntries"}}: {{report.journal}} | {{localize "DOCUMENT.RollTables"}}: {{report.tables}} |
+{{localize "PLAYLIST.VolPlaylist"}}: {{report.playlists}} | {{localize "SIDEBAR.TabCompendium"}}: {{report.packs}} | {{localize "DOCUMENT.ChatMessages"}}: {{report.messages}}
+
+{{localize "SUPPORT.WorldScripts"}}: {{report.worldScripts}}</pre>

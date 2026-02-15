@@ -1,0 +1,29 @@
+<p>{{localize "COMPENDIUM.CreateHint"}}</p>
+
+<div class="form-group">
+    <label for="create-compendium-label">{{localize "COMPENDIUM.Name"}}</label>
+    <div class="form-fields">
+        <input type="text" id="create-compendium-label" name="label" autofocus>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="create-compendium-type">{{localize "COMPENDIUM.Type"}}</label>
+    <div class="form-fields">
+        <select name="type" id="create-compendium-type">
+            {{selectOptions types valueAttr="value" labelAttr="label"}}
+        </select>
+    </div>
+    <p class="hint">{{localize "COMPENDIUM.TypeHint"}}</p>
+</div>
+
+{{#if hasFolders}}
+<div class="form-group">
+    <label for="create-compendium-folder">{{localize "DOCUMENT.Folder"}}</label>
+    <div class="form-fields">
+        <select name="folder" id="create-compendium-folder">
+            {{selectOptions folders valueAttr="id" labelAttr="name" selected=folder blank=""}}
+        </select>
+    </div>
+</div>
+{{/if}}

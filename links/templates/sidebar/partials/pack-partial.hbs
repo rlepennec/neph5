@@ -1,0 +1,24 @@
+{{#with (lookup @root.packContext collection)}}
+<li class="directory-item entry compendium {{ css }} {{#if locked}}locked{{/if}}" {{#if hidden}}hidden{{/if}}
+    data-pack="{{ collection }}">
+    {{#if banner}}
+    <img class="compendium-banner" src="{{ banner }}" alt="{{ title }}" loading="lazy">
+    {{/if}}
+    <a class="entry-name compendium-name" data-action="activateEntry">
+        <i class="{{ icon }}" inert></i>
+        <strong>{{ title }}</strong>
+    </a>
+    <ul class="status-icons plain flexrow">
+        {{#if customOwnership}}
+        <i class="fa-solid fa-eye" aria-label="{{ localize "SIDEBAR.COMPENDIUM.LABELS.Ownership" }}"></i>
+        {{/if}}
+        {{#if locked}}
+        <i class="fa-solid fa-lock" aria-label="{{ localize "SIDEBAR.COMPENDIUM.LABELS.Locked" }}"></i>
+        {{/if}}
+    </ul>
+    <footer class="compendium-footer">
+        <i class="fa-solid {{ sourceIcon }}" inert></i>
+        <span class="source">{{ package }}</span>
+    </footer>
+</li>
+{{/with}}

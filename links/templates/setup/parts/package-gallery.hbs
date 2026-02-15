@@ -1,0 +1,102 @@
+{{! -------------------------------------------- }}
+{{!   World Thumbnail View                       }}
+{{! -------------------------------------------- }}
+
+{{#*inline "worlds"}}
+<li class="package world" data-package-id="{{package.id}}">
+    <img class="thumbnail" src="{{package.thumb}}" loading="lazy">
+    <div class="status-icons">
+        {{#if package.favorite}}
+        <i class="favorite fa-solid fa-star" data-tooltip aria-label="{{localize "SETUP.FavoritePackage"}}"></i>
+        {{/if}}
+        <i class="fa-solid fa-lock"{{#unless package.locked}} hidden{{/unless}}
+           data-tooltip aria-label="{{localize "SETUP.LockHint"}}"></i>
+    </div>
+    <h3 class="package-title" data-tooltip-html="{{package.shortDesc}}" data-tooltip-direction="UP">{{package.title}}</h3>
+    {{#if package.canPlay}}
+        <a class="control play" data-action="worldLaunch" data-tooltip aria-label="{{localize "SETUP.WorldLaunch"}}">
+            <i class="fa-light fa-circle-play" inert></i>
+        </a>
+    {{/if}}
+    <div class="tags flexrow left">
+    {{#if package.lastPlayedLabel}}
+        <span class="tag flexrow">{{package.lastPlayedLabel}}</span>
+    {{/if}}
+    </div>
+    <div class="tags flexrow right">
+        <span class="tag flexrow badge {{package.systemBadge.type}}" data-tooltip-html="{{package.systemBadge.tooltip}}">
+            {{#if package.systemBadge.icon}}<i class="{{package.systemBadge.icon}}"></i>{{/if}}
+            {{package.systemBadge.label}}
+        </span>
+        {{> templates/setup/parts/package-tags.hbs package=this}}
+    </div>
+</li>
+{{/inline}}
+
+{{! -------------------------------------------- }}
+{{!   System Thumbnail View                      }}
+{{! -------------------------------------------- }}
+
+{{#*inline "systems"}}
+<li class="package system" data-package-id="{{package.id}}">
+    <img class="thumbnail" src="{{package.thumb}}" loading="lazy">
+    <div class="status-icons">
+        {{#if package.favorite}}
+        <i class="favorite fa-solid fa-star" data-tooltip aria-label="{{localize "SETUP.FavoritePackage"}}"></i>
+        {{/if}}
+        <i class="fa-solid fa-lock"{{#unless package.locked}} hidden{{/unless}}
+           data-tooltip aria-label="{{localize "SETUP.LockHint"}}"></i>
+    </div>
+    <h3 class="package-title" data-tooltip-html="{{package.shortDesc}}" data-tooltip-direction="UP">{{package.title}}</h3>
+    <div class="tags flexrow left">
+        {{#unless package.locked}}
+        <a class="control package-update" data-action="updatePackage"
+           data-tooltip aria-label="{{localize "SETUP.UpdatePerformIfAvailable"}}">
+            <i class="fa-solid fa-rotate" inert></i>
+        </a>
+        {{/unless}}
+    </div>
+    <div class="tags flexrow right">
+        {{> templates/setup/parts/package-tags.hbs package=this}}
+    </div>
+</li>
+{{/inline}}
+
+{{! -------------------------------------------- }}
+{{!   Module Thumbnail View                      }}
+{{! -------------------------------------------- }}
+
+{{#*inline "modules"}}
+<li class="package module" data-package-id="{{package.id}}">
+    <img class="thumbnail" src="{{package.thumb}}" loading="lazy">
+    <div class="status-icons">
+        {{#if package.favorite}}
+        <i class="favorite fa-solid fa-star" data-tooltip aria-label="{{localize "SETUP.FavoritePackage"}}"></i>
+        {{/if}}
+        <i class="fa-solid fa-lock"{{#unless package.locked}} hidden{{/unless}}
+           data-tooltip aria-label="{{localize "SETUP.LockHint"}}"></i>
+    </div>
+    <h3 class="package-title" data-tooltip-html="{{package.shortDesc}}" data-tooltip-direction="UP">{{package.title}}</h3>
+    <div class="tags flexrow left">
+        {{#unless package.locked}}
+        <a class="control package-update" data-action="updatePackage"
+           data-tooltip aria-label="{{localize "SETUP.UpdatePerformIfAvailable"}}">
+            <i class="fa-solid fa-rotate" inert></i>
+        </a>
+        {{/unless}}
+    </div>
+    <div class="tags flexrow right">
+        {{> templates/setup/parts/package-tags.hbs package=this}}
+    </div>
+</li>
+{{/inline}}
+
+{{! -------------------------------------------- }}
+{{!   Thumbnail List                             }}
+{{! -------------------------------------------- }}
+
+<ol id="{{type}}-list" class="package-list gallery scrollable">
+{{#each packages as |package|}}
+    {{> (lookup .. "type") package=package}}
+{{/each}}
+</ol>

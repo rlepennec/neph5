@@ -1,0 +1,25 @@
+<div>
+    {{#if title.show}}
+    <header class="journal-page-header">
+        <h{{ title.level }}>{{ name }}</h{{ title.level }}>
+    </header>
+    {{/if}}
+
+    {{#if src}}
+    <figure class="{{#if flexRatio}}flex-ratio{{/if}}">
+        {{#if isYouTube}}
+        <iframe id="{{ yt.id }}" src="{{ yt.url }}" frameborder="0" allowfullscreen
+                {{#if document.video.autoplay}}allow="autoplay" {{/if}}
+                {{#if document.video.width}}width="{{ document.video.width }}" {{/if}}
+                {{#if document.video.height}}height="{{ document.video.height }}"{{/if}}></iframe>
+        {{else}}
+        <video src="{{ src }}"
+               {{#if document.video.controls}}controls{{/if}}
+               {{#if document.video.autoplay}}autoplay{{/if}}
+               {{#if document.video.loop}}loop{{/if}}
+               {{#if document.video.width}}width="{{ document.video.width }}" {{/if}}
+               {{#if document.video.height}}height="{{ document.video.height }}"{{/if}}></video>
+        {{/if}}
+    </figure>
+    {{/if}}
+</div>

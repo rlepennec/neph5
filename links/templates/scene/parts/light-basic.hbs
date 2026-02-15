@@ -1,0 +1,51 @@
+<section class="tab standard-form scrollable {{tabs.basic.cssClass}}"
+         data-tab="basic" data-group="{{tabs.basic.group}}">
+
+    <fieldset>
+        <legend>{{localize "AMBIENT_LIGHT.SECTIONS.placement"}}</legend>
+        <div class="form-group slim">
+            <label>{{localize "Coordinates"}} <span class="units">({{localize "Pixels"}})</span></label>
+            <div class="form-fields">
+                <label>{{fields.x.label}}</label>
+                {{formInput fields.x value=source.x}}
+                <label>{{fields.y.label}}</label>
+                {{formInput fields.y value=source.y}}
+            </div>
+        </div>
+
+        {{formGroup fields.elevation value=source.elevation classes="slim" units=gridUnits}}
+
+        <div class="form-group slim">
+            <label>{{localize "AMBIENT_LIGHT.LABELS.radius"}} <span class="units">({{gridUnits}})</span></label>
+            <div class="form-fields">
+                <label>{{fields.config.fields.dim.label}}</label>
+                {{formInput fields.config.fields.dim value=source.config.dim}}
+                <label>{{fields.config.fields.bright.label}}</label>
+                {{formInput fields.config.fields.bright value=source.config.bright}}
+            </div>
+            <p class="hint">{{localize "AMBIENT_LIGHT.LABELS.radiusHint"}}</p>
+        </div>
+
+        {{formGroup fields.walls value=source.walls}}
+        {{formGroup fields.config.fields.angle value=source.config.angle step=1 units="Degrees"}}
+        {{formGroup fields.rotation value=source.rotation step=1 units="Degrees"}}
+    </fieldset>
+
+    <fieldset>
+        <legend>{{localize "AMBIENT_LIGHT.SECTIONS.appearance"}}</legend>
+        {{formGroup fields.config.fields.negative value=source.config.negative}}
+        {{formGroup fields.config.fields.priority value=source.config.priority}}
+        {{formGroup fields.config.fields.color value=source.config.color}}
+        {{formGroup fields.config.fields.alpha value=source.config.alpha step=0.05}}
+        <div class="form-group slim">
+            <label>{{fields.config.fields.darkness.label}}</label>
+            <div class="form-fields">
+                <label>{{fields.config.fields.darkness.fields.min.label}}</label>
+                {{formInput fields.config.fields.darkness.fields.min value=source.config.darkness.min placeholder="0"}}
+                <label>{{fields.config.fields.darkness.fields.max.label}}</label>
+                {{formInput fields.config.fields.darkness.fields.max value=source.config.darkness.max placeholder="1"}}
+            </div>
+            <p class="hint">{{fields.config.fields.darkness.hint}}</p>
+        </div>
+    </fieldset>
+</section>

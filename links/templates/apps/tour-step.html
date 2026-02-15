@@ -1,0 +1,26 @@
+<header class="step-header flexrow">
+    <h3 class="step-title noborder">{{title}}</h3>
+    <a class="step-button" role="button" data-action="exit">
+        <i class="fa-regular fa-circle-xmark"></i>
+    </a>
+</header>
+{{#each content}}
+<p class="content">{{{this}}}</p>
+{{/each}}
+<footer class="step-controls flexrow">
+    <a class="step-button" role="button" data-action="previous">
+    {{#if hasPrevious}}
+        <i class="fa-regular fa-circle-arrow-left"></i>
+    {{/if}}
+    </a>
+
+    <span class="progress">Step {{step}} of {{totalSteps}}</span>
+
+    <a class="step-button" role="button" data-action="next">
+    {{#if hasNext}}
+        <i class="fa-regular fa-circle-arrow-right"></i>
+    {{else}}
+        <i class="fa-regular fa-circle-check"></i>
+    {{/if}}
+    </a>
+</footer>

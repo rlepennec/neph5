@@ -1,0 +1,41 @@
+<section class="tab {{tabs.systems.cssClass}}" data-group="primary" data-tab="systems" data-package-type="system">
+    <header class="controls flexrow">
+        <label class="filter search">
+            <input id="system-filter" type="search" value="" autocomplete="off"
+                   placeholder="{{ localize 'SETUP.SystemFilter' }} ({{systems.count}})">
+        </label>
+        <button type="button" data-action="installPackage">
+            <i class="fa-solid fa-download" inert></i>
+            <span>{{localize "SETUP.InstallSystem"}}</span>
+        </button>
+        <button type="button" data-action="updateAll" {{ disabled systems.updatingAll }}>
+            <i class="{{#if systems.updatingAll}}fa-solid fa-spinner fa-spin{{else}}fa-solid fa-cloud-arrow-down{{/if}}" inert></i>
+            <span>{{localize "SETUP.UpdateAll"}}</span>
+        </button>
+        <div class="view-modes">
+            {{#each viewModes as |mode|}}
+            <button type="button" data-action="viewMode" data-view-mode="{{mode.id}}"
+                    class="view-mode icon {{mode.icon}}{{#if (eq @root.systems.viewMode mode.id)}} active{{/if}}"
+                    data-tooltip aria-label="{{localize mode.label}}"></button>
+            {{/each}}
+        </div>
+    </header>
+    {{#if tabs.systems.active}}<div id="progress"></div>{{/if}}
+    {{> (lookup systems "template") type="systems" packages=systems.packages}}
+    <div class="no-results hidden"></div>
+    <div class="locked hidden">
+        <h3 class="divider"></h3>
+        <i class="fa-solid fa-spinner fa-spin" inert></i>
+    </div>
+    {{#unless systems.count}}
+    <div class="no-systems">
+        <p>{{localize "SETUP.GettingStarted"}}</p>
+        <p>{{{localize "SETUP.NoSystemsMessage"}}}
+            <a class="launch-tour" data-action="tour" data-tour="core.installingASystem">
+                <i class="fa-solid fa-person-hiking" inert></i>
+                {{localize "TOURS.ShowMeHow"}}
+            </a>
+        </p>
+    </div>
+    {{/unless}}
+</section>

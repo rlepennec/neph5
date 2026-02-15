@@ -1,0 +1,94 @@
+<div>
+    {{#each tabs as |tab|}}
+    <section class="tab scrollable {{tab.cssClass}}" data-tab="{{tab.id}}" data-group="{{tab.group}}">
+        {{> "templates/generic/tab-navigation.hbs" tabs=tab.subtabs}}
+
+        {{#with tab.subtabs.basics as |subtab|}}
+        <div class="tab subtab {{subtab.cssClass}}" data-tab="{{subtab.id}}" data-group="{{subtab.group}}">
+            {{#if (and (eq tab.id "base") (eq subtab.id "basics"))~}}
+            <p class="hint">{{localize "SETTINGS.PrototypeTokenOverrides.TABS.AllTypes.Hint"}}</p>
+            {{~/if}}
+            {{formGroup tab.fields.displayName value=tab.data.displayName choices=@root.displayModes classes="slim"
+                blank="" rootId=@root.rootId}}
+            {{formGroup tab.fields.displayBars value=tab.data.displayBars choices=@root.displayModes classes="slim"
+                blank="" rootId=@root.rootId}}
+
+            <div class="form-group slim">
+                <label for="{{@root.rootId}}-{{tab.id}}.sight.enabled">
+                    {{~tab.fields.sight.fields.enabled.label~}}
+                </label>
+                <div class="form-fields">
+                    <select id="{{@root.rootId}}-{{tab.id}}.sight.enabled" name="{{tab.id}}.sight.enabled">
+                        {{selectOptions @root.booleanOptions selected=(concat tab.data.sight.enabled) blank=""}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group slim">
+                <label for="{{@root.rootId}}-{{tab.id}}.ring.enabled">
+                    {{~tab.fields.ring.fields.enabled.label~}}
+                </label>
+                <div class="form-fields">
+                    <select id="{{@root.rootId}}-{{tab.id}}.ring.enabled" name="{{tab.id}}.ring.enabled">
+                        {{selectOptions @root.booleanOptions selected=(concat tab.data.ring.enabled) blank=""}}
+                    </select>
+                </div>
+            </div>
+
+            {{formGroup tab.fields.disposition value=tab.data.disposition choices=@root.dispositions classes="slim"
+                blank="" rootId=@root.rootId}}
+
+            <div class="form-group slim">
+                <label for="{{@root.rootId}}-{{tab.id}}.lockRotation">
+                    {{~tab.fields.lockRotation.label~}}
+                </label>
+                <div class="form-fields">
+                    <select id="{{@root.rootId}}-{{tab.id}}.lockRotation" name="{{tab.id}}.lockRotation">
+                        {{selectOptions @root.booleanOptions selected=(concat tab.data.lockRotation) blank=""}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        {{/with}}
+
+        {{#with tab.subtabs.marker as |subtab|}}
+        <div class="tab subtab {{subtab.cssClass}}" data-tab="{{subtab.id}}" data-group="{{subtab.group}}">
+            {{formGroup tab.fields.turnMarker.fields.mode value=tab.data.turnMarker.mode choices=@root.turnMarkerModes
+                 blank="" rootId=@root.rootId}}
+
+            <div class="form-group slim">
+                <label for="{{@root.rootId}}-{{tab.id}}.turnMarker.animation">
+                    {{~tab.fields.turnMarker.fields.animation.label~}}
+                </label>
+                <div class="form-fields">
+                    <select id="{{@root.rootId}}-{{tab.id}}.turnMarker.animation"
+                        name="{{tab.id}}.turnMarker.animation">
+                        <option value=""{{#if (eq tab.data.turnMarker.animation undefined)}} selected{{/if}}></option>
+                        <option value="null"{{#if (eq tab.data.turnMarker.animation null)}} selected{{/if}}>
+                            {{~localize "SETTINGS.PrototypeTokenOverrides.Disabled"~}}
+                        </option>
+                        {{selectOptions @root.turnMarkerAnimations selected=tab.data.turnMarker.animation}}
+                    </select>
+                </div>
+            </div>
+
+            {{formGroup tab.fields.turnMarker.fields.src value=tab.data.turnMarker.src classes="slim"
+                rootId=@root.rootId}}
+
+            <div class="form-group slim">
+                <label for="{{@root.rootId}}-{{tab.id}}.turnMarker.disposition">
+                    {{~tab.fields.turnMarker.fields.disposition.label~}}
+                </label>
+                <div class="form-fields">
+                    <select id="{{@root.rootId}}-{{tab.id}}.turnMarker.disposition"
+                        name="{{tab.id}}.turnMarker.disposition">
+                        {{selectOptions @root.booleanOptions selected=(concat tab.data.turnMarker.disposition)
+                            blank=""}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        {{/with}}
+    </section>
+    {{/each}}
+</div>

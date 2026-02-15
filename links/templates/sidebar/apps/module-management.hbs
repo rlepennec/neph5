@@ -1,0 +1,65 @@
+<p class="hint">
+    {{#if editable}}
+    {{localize "MODMANAGE.Instructions"}}
+    {{else}}
+    {{localize "MODMANAGE.View"}}
+    {{/if}}
+</p>
+
+<search class="flexrow" aria-label="{{localize "MODMANAGE.NavLabel"}}">
+    <input type="search" autocomplete="off" placeholder="{{localize "MODMANAGE.Search"}}"
+        aria-label="{{localize "MODMANAGE.Search"}}">
+    {{#each filters as |filter|}}
+    <a class="filter{{#if filter.active}} active{{/if}}" data-action="changeFilter"
+       data-filter="{{filter.id}}">{{filter.label}} ({{filter.count}})</a>
+    {{/each}}
+    <button type="button" class="inline-control icon fa-solid fa-angle-double-{{ifThen expanded "down" "up"}}"
+            data-action="toggleExpanded"
+            data-tooltip aria-label="{{localize (ifThen expanded "Collapse" "Expand")}}"></button>
+</search>
+
+<menu class="package-list scrollable{{#if expanded}} expanded{{/if}}">
+    {{#each modules as |module|}}
+    <li class="package flexrow{{#if module.active}} active{{/if}}"{{#if module.hidden}} hidden{{/if}}
+        data-module-id="{{module.id}}">
+        <div class="package-overview tags flexrow">
+            <label class="package-title flexrow"{{#if module.tooltip}} data-tooltip aria-label="{{module.tooltip}}"{{/if}}>
+                <input type="checkbox" name="{{module.id}}"
+                       {{checked module.active}} {{disabled (or module.disabled (not ../editable))}}>
+                <div class="title-group">
+                    <span class="title">{{module.title}}</span>
+                    {{~#if module.documents}}
+                    <div class="subtitle" data-tooltip-html="{{module.documentsVerbose}}">{{{module.documents}}}</div>
+                    {{/if~}}
+                </div>
+            </label>
+            {{> templates/setup/parts/package-tags.hbs versionLabel="PACKAGE.TagVersion" package=module}}
+        </div>
+        <div class="package-description">
+            {{{module.description}}}
+            <ul class="package-metadata">
+                <li><strong>{{module.labels.authors}}:</strong> <span class="author">{{{module.authors}}}</span></li>
+                {{#if module.url}}
+                <li><strong>{{localize "URL"}}:</strong> <a href="{{module.url}}" target="_blank">{{module.url}}</a></li>
+                {{/if}}
+                {{#if module.readme}}
+                <li><strong>{{localize "MODMANAGE.Readme"}}:</strong> <a href="{{module.readme}}" target="_blank">{{module.readme}}</a></li>
+                {{/if}}
+                {{#if module.bugs}}
+                <li><strong>{{localize "MODMANAGE.Bugs"}}:</strong> <a href="{{module.bugs}}" target="_blank">{{module.bugs}}</a></li>
+                {{/if}}
+                {{#if module.relationships.requires}}
+                <li>
+                    <strong>{{ localize "MODMANAGE.Dependencies" }}:</strong>
+                    {{#each module.relationships.requires as |rel|}}
+                    <span class="tag {{rel.class}}" data-tooltip aria-label="{{rel.tooltip}}">{{rel.id}}</span>
+                    {{/each}}
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </li>
+    {{else}}
+    {{#unless @root.editable}}<p class="hint">{{localize "MODMANAGE.None"}}</p>{{/unless}}
+    {{/each}}
+</menu>

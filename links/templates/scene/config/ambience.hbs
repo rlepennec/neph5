@@ -1,0 +1,40 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{> "templates/generic/tab-navigation.hbs" tabs=subtabs}}
+    <div class="tab{{#if subtabs.basic.active}} active{{/if}}" data-group="ambience" data-tab="basic">
+        <fieldset>
+            {{formGroup fields.journal value=source.journal rootId=rootId}}
+            {{formGroup fields.journalEntryPage value=source.journalEntryPage choices=pages rootId=rootId}}
+        </fieldset>
+        <fieldset>
+            {{formGroup fields.playlist value=source.playlist choices=playlists rootId=rootId}}
+            {{formGroup fields.playlistSound value=source.playlistSound choices=sounds rootId=rootId}}
+        </fieldset>
+        {{formGroup fields.weather value=source.weather choices=weatherTypes rootId=rootId}}
+    </div>
+
+    <div class="tab scrollable{{#if subtabs.environment.active}} active{{/if}}" data-group="ambience"
+        data-tab="environment">
+        <fieldset>
+            <legend>{{localize "SCENE.Ambience.Base"}}</legend>
+            {{formGroup baseFields.luminosity value=source.environment.base.luminosity step=0.05 rootId=rootId}}
+            {{formGroup baseFields.saturation value=source.environment.base.saturation step=0.05 rootId=rootId}}
+            {{formGroup baseFields.shadows value=source.environment.base.shadows step=0.05 rootId=rootId}}
+            {{formGroup baseFields.hue value=source.environment.base.hue disabled=baseHueDisabled rootId=rootId}}
+            {{formGroup baseFields.intensity value=source.environment.base.intensity step=0.05 rootId=rootId}}
+            {{formGroup fields.environment.fields.cycle value=source.environment.cycle rootId=rootId}}
+        </fieldset>
+        <fieldset>
+            <legend>{{localize "SCENE.Ambience.Dark"}}</legend>
+            {{formGroup darkFields.luminosity value=source.environment.dark.luminosity step=0.05 rootId=rootId
+                label=(localize "SCENE.FIELDS.environment.base.luminosity.label")}}
+            {{formGroup darkFields.saturation value=source.environment.dark.saturation step=0.05 rootId=rootId
+                label=(localize "SCENE.FIELDS.environment.base.saturation.label")}}
+            {{formGroup darkFields.shadows value=source.environment.dark.shadows step=0.05 rootId=rootId
+                label=(localize "SCENE.FIELDS.environment.base.shadows.label")}}
+            {{formGroup darkFields.hue value=source.environment.dark.hue disabled=darkHueDisabled rootId=rootId
+                label=(localize "SCENE.FIELDS.environment.base.hue.label")}}
+            {{formGroup darkFields.intensity value=source.environment.dark.intensity step=0.05 rootId=rootId
+                label=(localize "SCENE.FIELDS.environment.base.intensity.label")}}
+        </fieldset>
+    </div>
+</div>

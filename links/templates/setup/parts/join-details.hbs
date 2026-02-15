@@ -1,0 +1,17 @@
+<div class="application standard-form framed">
+    <h2 class="divider">{{ localize "JOIN.HeaderDetails" }}</h2>
+    <div class="form-group">
+        <label><i class="fas fa-clock"></i> {{ localize "JOIN.NextSession" }}<span id="next-tz">{{ nextTZ }}</span></label>
+        <div class="form-fields">
+            <span>{{nextTime}}</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label><i class="fas fa-users"></i> {{ localize "JOIN.CurrentPlayers" }}</label>
+        <div class="form-fields current-players">
+            <span class="count">{{ usersCurrent }}</span>
+            <span class="sep">/</span>
+            <span class="count">{{ usersMax }}</span>
+        </div>
+    </div>
+</div>

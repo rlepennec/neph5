@@ -1,0 +1,28 @@
+<div class="flexrow header">
+    <div class="package">{{localize "SETUP.Package"}}</div>
+    <div class="action">{{localize "Result"}}</div>
+    <div class="description">{{localize "Description"}}</div>
+</div>
+<ul class="packages scrollable">
+    {{#each changed as |result|}}
+    <li class="flexrow result">
+        <div class="package">
+            {{#if result.package.url}}
+            <a href="{{result.package.url}}" target="_blank">{{result.package.title}}</a>
+            {{else}}
+            {{result.package.title}}
+            {{/if}}
+        </div>
+        <div class="action {{result.actionClass}}"><i class="fa-solid" inert></i> {{result.action}}</div>
+        <div class="description">{{result.description}}</div>
+    </li>
+    {{/each}}
+</ul>
+{{#if incompatible}}
+<p>{{localize "SETUP.PackageIncompatibleSystemsBulkPrompt"}}</p>
+<ul>
+    {{#each incompatible}}
+    <li>{{{this}}}</li>
+    {{/each}}
+</ul>
+{{/if}}

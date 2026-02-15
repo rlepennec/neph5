@@ -1,0 +1,57 @@
+<div class="camera-view {{ css }}" data-user="{{ user.id }}">
+    <div class="video-container {{#if settings.popout}}camera-container-popout{{/if}}" role="figure">
+        <img class="user-avatar" src="{{ user.avatar }}" alt="{{ user.name }}">
+        <video class="user-camera {{#if local}}local-camera{{/if}}" {{#if video.muted}}muted{{/if}} autoplay
+               playsinline {{#unless video.show}}hidden{{/unless}}></video>
+    </div>
+
+    {{#with controls}}
+    <div class="control-bar left flexcol" role="menu">
+        {{#if blockVideo.display}}
+        <button type="button" class="av-control ui-control global icon fa-solid fa-fw {{ blockVideo.icon }}"
+                data-action="blockVideo" data-tooltip aria-label="{{ localize blockVideo.label }}"></button>
+        {{/if}}
+
+        {{#if blockAudio.display}}
+        <button type="button" class="av-control ui-control global icon fa-solid fa-fw {{ blockAudio.icon }}"
+                data-action="blockAudio" data-tooltip aria-label="{{ localize blockAudio.label }}"></button>
+        {{/if}}
+
+        {{#if hide.display}}
+        <button type="button" class="av-control ui-control icon fa-solid fa-fw {{ hide.icon }}"
+                data-action="hide" data-tooltip aria-label="{{ localize hide.label }}"></button>
+        {{/if}}
+
+        {{#if popout.display}}
+        <button type="button" class="av-control ui-control icon fa-solid {{ popout.icon }}"
+                data-action="toggleDocked" data-tooltip aria-label="{{ localize popout.label }}"></button>
+        {{/if}}
+    </div>
+    {{/with}}
+
+    <div class="notification-bar right flexcol" role="menu">
+        {{#unless hasVideo}}<i class="fa-solid fa-video-slash fa-fw status-hidden"></i>{{/unless}}
+        {{#unless hasAudio}}<i class="fa-solid fa-microphone-slash fa-fw status-muted"></i>{{/unless}}
+    </div>
+
+    <div class="bottom">
+        {{#if (or hidden (not local))}}
+            {{> "templates/apps/av/controls.hbs" user=this }}
+        {{/if}}
+
+        {{#with nameplates}}
+        {{#unless hidden}}
+        <div class="player-name ellipsis {{ css }}"
+             style="--player-color: {{ @root.user.color.css }}; --player-border: {{ @root.user.border.css }}">
+            {{#if playerName}}
+            <strong>{{ @root.user.name }}</strong>
+            {{/if}}
+            {{#if charname}}
+            <strong>{{ ifThen @root.charname @root.charname @root.user.name }}</strong>
+            {{/if}}
+        </div>
+        {{/unless}}
+        {{/with}}
+    </div>
+
+</div>

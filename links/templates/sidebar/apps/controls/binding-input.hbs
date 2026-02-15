@@ -1,0 +1,16 @@
+<template id="{{@root.rootId}}-binding-input">
+<li class="flexrow editing">
+    <div class="binding-input">
+        <input type="text" value="">
+        <i class="fa-regular fa-keyboard" inert></i>
+    </div>
+    <div class="controls flexrow">
+        <button type="button" class="inline-control icon fa-solid fa-ban" data-action="cancelEdit"
+                data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.CancelEdit"}}"></button>
+        <button type="button" class="inline-control icon fa-solid fa-floppy-disk" data-action="saveBinding"
+                data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.SaveBinding"}}"></button>
+        <button type="button" class="inline-control icon fa-solid fa-solid fa-trash" data-action="deleteBinding"
+                data-tooltip aria-label="{{localize "KEYBINDINGS.ACTIONS.DeleteBinding"}}"></button>
+    </div>
+</li>
+</template>

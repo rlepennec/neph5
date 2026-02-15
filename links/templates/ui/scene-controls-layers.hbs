@@ -1,0 +1,10 @@
+<menu class="flexcol" data-tooltip-direction="RIGHT">
+    {{#each controls as |control|}}
+    <li>
+        <button type="button" class="control ui-control layer icon {{control.cssClass}} {{control.icon}}" role="tab"
+                data-action="control" data-control="{{control.name}}" data-tooltip
+                aria-pressed="{{control.active}}" aria-label="{{localize control.title}}"
+                aria-controls="scene-controls-tools"></button>
+    </li>
+    {{/each}}
+</menu>

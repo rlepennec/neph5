@@ -1,0 +1,13 @@
+<div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <p class="hint">{{localize "DRAWING.NoteLines"}}</p>
+    {{formGroup fields.strokeWidth value=source.strokeWidth rootId=rootId units="Pixels" localize=true}}
+    {{formGroup fields.strokeColor value=source.strokeColor rootId=rootId placeholder=userColor localize=true}}
+    {{formGroup fields.strokeAlpha value=source.strokeAlpha rootId=rootId step=0.1 localize=true}}
+    <div class="form-group">
+        <label for="{{rootId}}-bezierFactor">{{localize "DRAWING.SmoothingFactor"}}</label>
+        <div class="form-fields">
+            <range-picker name="bezierFactor" value={{scaledBezierFactor}} min="0" max="1" step="0.1" id="{{rootId}}-bezierFactor"></range-picker>
+        </div>
+        <p class="hint">{{localize "DRAWING.SmoothingFactorHint"}}</p>
+    </div>
+</div>

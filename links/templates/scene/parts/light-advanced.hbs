@@ -1,0 +1,20 @@
+<section class="tab standard-form scrollable {{tabs.advanced.cssClass}}"
+    data-tab="advanced" data-group="{{tabs.advanced.group}}">
+    {{#if isDarkness}}
+    <p class="hint">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        {{localize "AMBIENT_LIGHT.LABELS.darknessAdvancedWarning"}}
+    </p>
+    <fieldset disabled>
+        <legend>{{ localize "AMBIENT_LIGHT.TABS.advanced" }}</legend>
+    {{/if}}
+        {{formGroup fields.vision value=source.vision}}
+        {{formGroup fields.config.fields.coloration value=source.config.coloration
+                    choices=colorationTechniques valueAttr="id" labelAttr="label" localize=true}}
+        {{formGroup fields.config.fields.luminosity value=source.config.luminosity step=0.05}}
+        {{formGroup fields.config.fields.attenuation value=source.config.attenuation step=0.05}}
+        {{formGroup fields.config.fields.saturation value=source.config.saturation step=0.05}}
+        {{formGroup fields.config.fields.contrast value=source.config.contrast step=0.05}}
+        {{formGroup fields.config.fields.shadows value=source.config.shadows step=0.05}}
+    {{#if isDarkness}}</fieldset>{{/if}}
+</section>

@@ -1,0 +1,34 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.name value=source.name placeholder=(localize "Name") rootId=rootId}}
+    {{formGroup fields.displayName value=source.displayName choices=displayModes rootId=rootId}}
+    {{#unless isPrototype}}
+    {{formGroup fields.actorId value=source.actorId options=actors blank=(localize "None") rootId=rootId}}
+    {{/unless}}
+    {{formGroup fields.actorLink value=source.actorLink rootId=rootId}}
+
+    {{#if isPrototype}}
+    {{formGroup fields.appendNumber value=source.appendNumber classes="slim" rootId=rootId
+                hint=(localize "TOKEN.FIELDS.appendNumber.hint" name=source.name)}}
+    {{formGroup fields.prependAdjective value=source.prependAdjective classes="slim" rootId=rootId
+                hint=(localize "TOKEN.FIELDS.prependAdjective.hint" name=source.name)}}
+    {{else}}
+    <div class="form-group slim">
+        <label>{{localize "Coordinates"}} <span class="units">({{localize "Pixels"}})</span></label>
+        <div class="form-fields">
+            <label for="{{rootId}}-x">{{localize "DOCUMENT.FIELDS.x.label"}}</label>
+            {{formInput fields.x value=source.x id=(concat rootId "-x") disabled=(not isGM)
+                placeholder=(localize "Pixels")}}
+            <label for="{{rootId}}-y">{{localize "DOCUMENT.FIELDS.y.label"}}</label>
+            {{formInput fields.y value=source.y id=(concat rootId "-y") disabled=(not isGM)
+                placeholder=(localize "Pixels")}}
+        </div>
+    </div>
+    {{formGroup fields.elevation value=source.elevation classes="slim" units=gridUnits rootId=rootId}}
+    {{formGroup fields.sort value=source.sort classes="slim" rootId=rootId}}
+    {{/if}}
+
+    {{formGroup fields.rotation value=source.rotation classes="slim" units=(localize "Degrees") rootId=rootId}}
+    {{formGroup fields.movementAction value=source.movementAction choices=movementActions classes="slim" blank="Default" localize=true rootId=rootId}}
+    {{formGroup fields.occludable.fields.radius value=source.occludable.radius units=gridUnits classes="slim" rootId=rootId}}
+    {{formGroup fields.disposition value=source.disposition choices=dispositions rootId=rootId}}
+</div>

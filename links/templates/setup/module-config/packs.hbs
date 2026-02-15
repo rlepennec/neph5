@@ -1,0 +1,26 @@
+<section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#each packs as |pack i|}}
+        <fieldset>
+            <div class="form-group">
+                <label for="{{../rootId}}-packs.{{i}}.label">{{localize "PACKAGE.FIELDS.packs.element.label.label"}}</label>
+                <div class="form-fields">
+                    <input type="text" id="{{../rootId}}-packs.{{i}}.label" name="packs.{{i}}.label"
+                           {{#if pack.flags._placeholder}}placeholder{{else}}value{{/if}}="{{pack.label}}">
+                    <button type="button" class="icon fa-solid fa-trash" data-action="deletePack" data-index={{i}}
+                            data-tooltip aria-label="{{localize "PACKAGE.ACTIONS.RemovePack"}}"></button>
+                </div>
+            </div>
+
+        {{formGroup ../packFields.name name=(concat "packs." i ".name") value=pack.name rootId=../rootId}}
+        {{formGroup ../packFields.type name=(concat "packs." i ".type") value=pack.type choices=../packTypes blank=""
+                    rootId=../rootId}}
+        {{formGroup ../packFields.system name=(concat "packs." i ".system") value=pack.system choices=../systems
+                    blank="" rootId=../rootId}}
+        </fieldset>
+    {{/each}}
+
+    <button type="button" data-action="addPack">
+        <i class="fa-solid fa-plus" inert></i>
+        <span>{{localize "PACKAGE.ACTIONS.AddPack"}}</span>
+    </button>
+</section>

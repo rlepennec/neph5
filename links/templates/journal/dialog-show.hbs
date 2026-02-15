@@ -1,0 +1,34 @@
+<section class="scrollable">
+    <fieldset>
+        <legend>{{ localize "JOURNAL.ShowTo" }}</legend>
+        <div class="users">
+            <label class="checkbox">
+                <span>{{ localize "OWNERSHIP.AllPlayers" }}</span>
+                <input type="checkbox" name="allPlayers" checked>
+            </label>
+            {{#each users}}
+            <label class="checkbox">
+                <span class="ellipsis">{{ name }}</span>
+                <input type="checkbox" name="players" value="{{ id }}" checked disabled>
+            </label>
+            {{/each}}
+        </div>
+    </fieldset>
+
+    {{#if isImage}}
+    <fieldset>
+        <legend>{{ localize "JOURNAL.ImageOptions" }}</legend>
+        {{ formField image.only name="imageOnly" value=true localize=true }}
+        {{ formField image.title name="showImageTitle" localize=true }}
+        {{ formField image.caption name="showImageCaption" localize=true }}
+    </fieldset>
+    {{/if}}
+
+    <fieldset>
+        <legend>{{ localize "OWNERSHIP.Legend" }}</legend>
+        <div class="form-group">
+            <p class="hint">{{ localize "JOURNAL.ShowOwnershipHint" }}</p>
+        </div>
+        {{ formField ownership name="ownership" options=levels localize=true }}
+    </fieldset>
+</section>

@@ -1,0 +1,11 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#if clientIssues}}
+    <ul class="issues">
+        {{#each clientIssues}}
+        <li class="issue notification {{severity}}">{{{message}}}</li>
+        {{/each}}
+    </ul>
+    {{else}}
+    <p>{{localize "SUPPORT.NoClientIssues"}}</p>
+    {{/if}}
+</div>

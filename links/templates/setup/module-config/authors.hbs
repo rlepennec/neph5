@@ -1,0 +1,23 @@
+<section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#each module.authors as |author i|}}
+    <fieldset>
+        <div class="form-group">
+            <label for="{{../rootId}}-authors.{{i}}.name">{{localize "PACKAGE.FIELDS.authors.element.name.label"}}</label>
+            <div class="form-fields">
+                <input type="text" id="{{../rootId}}-authors.{{i}}.name" name="authors.{{i}}.name" value="{{author.name}}">
+                <button type="button" class="icon fa-solid fa-trash" data-action="deleteAuthor" data-index={{i}}
+                        data-tooltip aria-label="{{localize "PACKAGE.ACTIONS.RemoveAuthor"}}"></button>
+            </div>
+        </div>
+
+        {{formGroup ../authorFields.discord name=(concat "authors." i ".discord") value=author.discord rootId=../rootId}}
+        {{formGroup ../authorFields.email name=(concat "authors." i ".email") value=author.email rootId=../rootId}}
+        {{formGroup ../authorFields.url name=(concat "authors." i ".url") value=author.url rootId=../rootId}}
+    </fieldset>
+    {{/each}}
+
+    <button type="button" data-action="addAuthor">
+        <i class="fa-solid fa-user-plus" inert></i>
+        <span>{{localize "PACKAGE.ACTIONS.AddAuthor"}}</span>
+    </button>
+</section>

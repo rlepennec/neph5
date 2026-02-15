@@ -1,0 +1,38 @@
+<div>
+    <p class="hint">{{localize "INVITATIONS.Instructions"}}</p>
+
+    <div class="form-group">
+        <label for="{{rootId}}-local"><i class="fa-solid fa-ethernet"></i> {{localize "INVITATIONS.Local"}}</label>
+        {{#if local}}
+        <input type="text" id="{{rootId}}-local" value="{{local}}" readonly data-action="copyLink" />
+        {{else}}
+        <input type="text" id="{{rootId}}-local" value="Unknown" disabled />
+        {{/if}}
+    </div>
+
+    <div class="form-group">
+        <label for="{{rootId}}-internet" data-tooltip-text="{{remoteTitle}}">
+            <i class="fa-solid fa-wifi"></i> {{localize "INVITATIONS.Internet"}}
+            {{#if remoteClass}}
+            {{#if canConnect}}
+                <i class="fa-solid fa-circle-check connection open"></i>
+            {{else if failedCheck}}
+                <i class="fa-solid fa-circle-exclamation connection unknown"></i>
+            {{else}}
+                <i class="fa-solid fa-circle-xmark connection closed"></i>
+            {{/if}}
+            {{/if}}
+            <a class="recheck" data-action="recheckInternet"><i class="fa-solid fa-arrows-rotate"></i></a>
+        </label>
+        <div class="form-fields">
+            {{#if remote}}
+            <input type="password" id="{{rootId}}-internet" value="{{remote}}" readonly
+                data-action="copyLink" />
+            <a class="show-hide" data-action="showLink"><i class="fa-regular fa-eye"></i></a>
+            {{else}}
+            <input type="text" id="{{rootId}}-internet" value="{{localize "Unknown"}}" disabled
+                data-tooltip="INVITATIONS.DiscoveryFailed" />
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<form class="application standard-form framed">
+    <h2 class="divider">{{localize "GAME.ReturnSetup"}}</h2>
+    <div class="form-group">
+    {{#if isAdmin }}
+    <p class="hint">{{ localize "JOIN.AuthAdmin" }}</p>
+    {{else}}
+        <label class="icon" data-tooltip="SERVER_SETTINGS.FIELDS.adminPassword.label">
+            <i class="fa-solid fa-key"></i>
+        </label>
+        <input type="password" name="adminPassword" value="" autocomplete="current-password">
+    {{/if}}
+    </div>
+    <footer class="form-footer">
+        <button type="submit" class="bright">
+            <i class="fa-solid fa-lock"></i>
+            <label>{{localize "GAME.ReturnSetup"}}</label>
+        </button>
+    </footer>
+</form>

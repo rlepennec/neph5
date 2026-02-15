@@ -1,0 +1,8 @@
+<menu id="main-menu-items" aria-label="{{localize 'MENU.NavLabel'}}">
+    {{#each items as |item id|}}
+    <li class="menu-item flexrow" data-action="menuItem" data-menu-item="{{id}}">
+        {{{item.icon}}}
+        <h2>{{localize item.label}}</h2>
+    </li>
+    {{/each}}
+</menu>

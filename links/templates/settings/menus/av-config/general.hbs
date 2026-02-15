@@ -1,0 +1,8 @@
+<section class="tab {{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{formGroup fields.world.mode value=settings.world.mode choices=modes disabled=(not canSelectMode) rootId=rootId}}
+    {{#unless isSSL}}<p class="notification error">{{localize "WEBRTC.NoSSLError"}}</p>{{/unless}}
+
+    {{formGroup fields.client.voice.fields.mode value=settings.client.voice.mode choices=voiceModes rootId=rootId}}
+    {{formGroup fields.client.dockPosition choices=dockPositions value=settings.client.dockPosition rootId=rootId}}
+    {{formGroup fields.client.nameplates choices=nameplates value=settings.client.nameplates rootId=rootId}}
+</section>

@@ -1,0 +1,9 @@
+<ul class="summary">
+    {{#each summary as |row|}}
+    <li class="{{row.status}}{{#if (eq row count 0)}} understated{{/if}}"
+        data-tooltip="{{localize row.tooltip version=@root.version}}">
+        <i class="{{row.icon}}" inert></i>
+        {{localize row.label count=row.count}}
+    </li>
+    {{/each}}
+</ul>

@@ -1,0 +1,7 @@
+<div class="label">{{filtersLabel}}</div>
+<div class="controls split-button">
+    {{#each filters as |filter|}}
+    <button type="button" class="ui-control" data-action="filterVisibility" data-filter="{{filter.id}}"
+            aria-pressed="{{filter.active}}">{{filter.label}}</button>
+    {{/each}}
+</div>

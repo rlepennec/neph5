@@ -1,0 +1,21 @@
+<aside class="flexcol">
+    <search>
+        <input type="search" id="{{rootId}}-search-filter" placeholder="&#xf002;" autofocus
+               aria-label="{{localize "PACKAGECONFIG.Filter"}}" autocomplete="off" spellcheck="false">
+    </search>
+    <nav class="tabs vertical scrollable" aria-roledescription="{{localize "SHEETS.FormNavLabel"}}">
+        {{#each categories as |tab|}}
+        <button type="button" data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}"
+                class="plain{{#if tab.active}} active{{/if}}">
+            <span>{{localize tab.label}}</span>
+            <span class="count" data-count>[{{tab.entries.length}}]</span>
+        </button>
+        {{/each}}
+    </nav>
+
+    {{#if subtemplates.sidebarFooter}}
+    <footer class="form-footer">
+        {{> (lookup subtemplates "sidebarFooter")}}
+    </footer>
+    {{/if}}
+</aside>

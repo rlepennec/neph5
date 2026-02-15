@@ -1,0 +1,22 @@
+<form class="standard-form" method="post" autocomplete="off">
+    <h2 class="border">{{localize "EULA.Acknowledge"}}</h2>
+    <div class="form-group">
+        <div class="form-fields">
+            <label class="checkbox after">
+                {{localize "EULA.AgreeLabel"}}
+                <input id="eula-agree" type="checkbox" name="agree">
+            </label>
+            <p class="hint">{{localize "EULA.AgreeHint"}}</p>
+        </div>
+    </div>
+    <footer class="form-footer">
+        <button type="submit" id="sign" class="bright" name="accept" data-action="accept">
+            <i class="fa-solid fa-check"></i>
+            <label>{{localize "EULA.Agree"}}</label>
+        </button>
+        <button type="submit" id="decline" name="decline" data-action="decline">
+            <i class="fa-solid fa-xmark"></i>
+            <label>{{localize "EULA.Decline"}}</label>
+        </button>
+    </footer>
+</form>

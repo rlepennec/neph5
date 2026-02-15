@@ -1,0 +1,43 @@
+<section class="tab {{tabs.worlds.cssClass}}" data-group="primary" data-tab="worlds" data-package-type="world">
+    <header class="controls flexrow">
+        <label class="filter search">
+            <input id="world-filter" type="search" value="" autocomplete="off"
+                   placeholder="{{ localize 'SETUP.WorldFilter' }} ({{worlds.count}})">
+        </label>
+        <button type="button" data-action="installPackage">
+            <i class="fa-solid fa-download" inert></i>
+            <span>{{localize "SETUP.InstallWorld"}}</span>
+        </button>
+        <button type="button" data-action="worldCreate">
+            <i class="fa-solid {{@root.worlds.icon}}" inert></i>
+            <span>{{localize "SETUP.WorldCreate"}}</span>
+        </button>
+        <div class="view-modes">
+            {{#each viewModes as |mode|}}
+            <button type="button" data-action="viewMode" data-view-mode="{{mode.id}}"
+                    class="view-mode icon {{mode.icon}}{{#if (eq @root.worlds.viewMode mode.id)}} active{{/if}}"
+                    data-tooltip aria-label="{{localize mode.label}}"></button>
+            {{/each}}
+        </div>
+    </header>
+    {{#if tabs.worlds.active}}<div id="progress"></div>{{/if}}
+    {{> (lookup worlds "template") type="worlds" packages=worlds.packages}}
+    <div class="no-results hidden"></div>
+    <div class="locked hidden">
+        <h3 class="divider"></h3>
+        <i class="fa-solid fa-spinner fa-spin" inert></i>
+    </div>
+    {{#unless worlds.count}}
+    <div class="no-worlds">
+        <p>{{localize "SETUP.GettingStarted"}}</p>
+        <p>
+            {{{localize "SETUP.NoWorldsMessage"}}}
+            {{#if systems.count}}
+            <a class="launch-tour" data-action="tour" data-tour="core.creatingAWorld">
+                <i class="fa-solid fa-person-hiking" inert></i> {{localize "TOURS.ShowMeHow"}}
+            </a>
+            {{/if}}
+        </p>
+    </div>
+    {{/unless}}
+</section>

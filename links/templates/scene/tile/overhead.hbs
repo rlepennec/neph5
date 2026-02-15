@@ -1,0 +1,7 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <p class="hint">{{localize "TILE.SECTIONS.overhead"}}</p>
+    {{formGroup fields.occlusion.fields.mode value=source.occlusion.mode rootId=rootId localize=true}}
+    {{formGroup fields.occlusion.fields.alpha value=source.occlusion.alpha step=0.05 localize=true rootId=rootId}}
+    {{formGroup fields.restrictions.fields.light value=source.restrictions.light rootId=rootId localize=true}}
+    {{formGroup fields.restrictions.fields.weather value=source.restrictions.weather rootId=rootId localize=true}}
+</div>

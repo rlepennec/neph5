@@ -1,0 +1,9 @@
+<footer class="form-footer">
+    <label for="{{rootId}}-manifestUrl" data-tooltip aria-label="{{localize "SETUP.InstallHint"}}">
+        {{localize "SETUP.ManifestURL"}} <i class="fa-solid fa-circle-info" inert></i>
+    </label>
+    <input type="text" id="{{rootId}}-manifestUrl" name="manifestURL" placeholder="https://path/to/{{packageType}}.json">
+    <button type="button" data-action="installUrl">
+        <i class="fa-solid fa-download" inert></i> <span>{{localize "Install"}}</span>
+    </button>
+</footer>

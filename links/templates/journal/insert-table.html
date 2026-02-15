@@ -1,0 +1,12 @@
+<form>
+    <div class="form-group slim">
+        <label>{{ localize "EDITOR.TableDimensions" }}</label>
+        <div class="form-fields">
+            <label>{{ localize "EDITOR.TableColumns" }}</label>
+            {{ numberInput 1 name="cols" min=1 step=1 placeholder=1 }}
+            <label>{{ localize "EDITOR.TableRows" }}</label>
+            {{ numberInput 1 name="rows" min=1 step=1 placeholder=1 }}
+        </div>
+    </div>
+    <button type="button" name="save">{{ localize "EDITOR.TableInsert" }}</button>
+</form>

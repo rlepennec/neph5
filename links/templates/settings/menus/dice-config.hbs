@@ -1,0 +1,9 @@
+{{#each dice}}
+    <div class="form-group dice-group">
+        <label>{{{ icon }}} {{ localize label }}</label>
+        <select name="{{ denomination }}">
+            {{ selectOptions @root.methods selected=method labelAttr="label" localize=true
+                             blank="DICE.FULFILLMENT.Default" }}
+        </select>
+    </div>
+{{/each}}

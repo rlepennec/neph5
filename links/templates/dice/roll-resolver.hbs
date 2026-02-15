@@ -1,0 +1,24 @@
+<section class="flexcol standard-form">
+    <p class="formula">{{ formula }}</p>
+    {{#each groups}}
+    <fieldset class="input-grid" data-term-id="{{ @key }}">
+        <legend>{{ label }} <span data-tooltip aria-label="{{ tooltip }}">{{{ icon }}}</span></legend>
+        {{#each results}}
+        <label class="icon die-input {{#if isNew}}new-addition{{/if}}" data-denomination="{{ denomination }}"
+               data-method="{{ method }}">
+            {{ numberInput value min=1 max=faces step=1 name=id readonly=readonly placeholder=(localize denomination)
+                           disabled=disabled autofocus=true }}
+            {{#if rerolled}}<i class="fa-solid fa-arrow-rotate-right"></i>{{/if}}
+            {{#if exploded}}<i class="fa-solid fa-burst"></i>{{/if}}
+            {{{ icon }}}
+        </label>
+        {{/each}}
+    </fieldset>
+    {{/each}}
+    <footer class="form-footer">
+        <button type="submit">
+            <i class="fa-solid fa-check" inert></i>
+            {{ localize "DICE.SubmitRollPl" }}
+        </button>
+    </footer>
+</section>

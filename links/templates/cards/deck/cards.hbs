@@ -1,0 +1,54 @@
+<section class="tab cards{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <header class="cards-header flexrow">
+        <a class="control sort-mode" data-action="toggleSort" data-tooltip="CARDS.ACTIONS.ToggleSortMode">
+            <i class="fa-solid fa-fw {{sortModeIcon}}"></i>
+        </a>
+        <strong class="name">{{localize "DOCUMENT.FIELDS.name.label"}}</strong>
+        <span class="type">{{localize "DOCUMENT.FIELDS.type.label"}}</span>
+        <span class="suit">{{localize "CARD.FIELDS.suit.label"}}</span>
+        <span class="value">{{localize "CARD.FIELDS.value.label"}}</span>
+        <span class="drawn">{{localize "CARD.FIELDS.drawn.label"}}</span>
+        <span class="faces">{{localize "CARD.FIELDS.face.label"}}</span>
+        <div class="controls">
+            <a data-action="controlCard" data-control="create" data-tooltip="CARDS.ACTIONS.Create">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+    </header>
+    <ol class="cards scrollable" data-cards>
+    {{#each cards as |card|}}
+        <li class="flexrow" data-card-id="{{card.id}}">
+            <img class="face" src="{{card.img}}" alt="{{card.name}}" loading="lazy">
+            <strong class="name">{{card.name}}</strong>
+            <span class="type">{{localize (lookup ../cardTypes card.type)}}</span>
+            <span class="suit">{{card.suit}}</span>
+            <span class="value">{{card.value}}</span>
+            <div class="drawn">
+                <input type="checkbox" class="value" {{checked card.drawn}} disabled>
+            </div>
+            <div class="faces flexcol">
+                <a data-action="controlCard" data-control="nextFace" data-tooltip="CARDS.ACTIONS.NextFace"
+                   {{disabled (not card.hasNextFace)}}>
+                   <i class="fa-solid fa-caret-up"></i>
+                </a>
+                <a data-action="controlCard" data-control="prevFace" data-tooltip="CARDS.ACTIONS.PreviousFace"
+                   {{disabled (not card.hasPreviousFace)}}>
+                   <i class="fa-solid fa-caret-down"></i>
+                </a>
+            </div>
+            <div class="controls">
+                <a data-action="controlCard" data-control="edit" data-tooltip="CARDS.ACTIONS.Edit">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+                <a data-action="controlCard" data-control="delete" data-tooltip="CARDS.ACTIONS.Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+        </li>
+    {{else}}
+        <li>
+            <p class="hint">{{localize "CARDS.NoCards"}}</p>
+        </li>
+    {{/each}}
+    </ol>
+</section>

@@ -1,0 +1,22 @@
+{{#if package.url}}
+<span class="tag flexrow" data-tooltip-html="<a href='{{package.url}}' target='_blank'>{{package.url}}</a>"
+      data-locked><i class="fa-solid fa-circle-info fa-fw" inert></i></span>
+{{/if}}
+{{#if package.authors}}
+<span class="tag flexrow" data-tooltip-html="{{package.authors}}"
+      data-locked><i class="fa-solid fa-user fa-fw" inert></i></span>
+{{/if}}
+{{#if package.packs}}
+<span class="tag flexrow compendium"
+      data-tooltip aria-label="{{localize "PACKAGE.TagCompendium"}}"><i class="fa-solid fa-book fa-fw" inert></i></span>
+{{/if}}
+{{#if package.languages}}
+<span class="tag flexrow languages" data-tooltip
+      aria-label="{{localize "PACKAGE.TagLocalization"}}"><i class="fa-solid fa-language fa-fw" inert></i></span>
+{{/if}}
+{{#if package.badge}}
+<span class="tag flexrow badge {{package.badge.type}}" data-tooltip-html="{{package.badge.tooltip}}">
+    <i class="{{package.badge.icon}} fa-fw" inert></i>
+    {{#if package.badge.label}}{{package.badge.label}}{{/if}}
+</span>
+{{/if}}

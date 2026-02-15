@@ -1,0 +1,7 @@
+<div class="tab{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <p class="hint">{{localize "DRAWING.NoteFill"}}</p>
+    {{formGroup fields.fillType value=source.fillType rootId=rootId localize=true}}
+    {{formGroup fields.fillColor value=source.fillColor rootId=rootId placeholder=userColor disabled=fillDisabled localize=true}}
+    {{formGroup fields.fillAlpha value=source.fillAlpha rootId=rootId step=0.1 disabled=fillDisabled localize=true}}
+    {{formGroup fields.texture value=source.texture rootId=rootId localize=true}}
+</div>

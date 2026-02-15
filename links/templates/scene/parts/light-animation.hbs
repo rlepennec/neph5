@@ -1,0 +1,8 @@
+<section class="tab standard-form scrollable {{tabs.animation.cssClass}}"
+         data-tab="animation" data-group="{{tabs.animation.group}}">
+    {{formGroup fields.config.fields.animation.fields.type value=source.config.animation.type
+                choices=lightAnimations labelAttr="label" blank="None" sort=true localize=true}}
+    {{formGroup fields.config.fields.animation.fields.speed value=source.config.animation.speed}}
+    {{formGroup fields.config.fields.animation.fields.reverse value=source.config.animation.reverse}}
+    {{formGroup fields.config.fields.animation.fields.intensity value=source.config.animation.intensity}}
+</section>

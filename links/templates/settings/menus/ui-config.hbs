@@ -1,0 +1,21 @@
+<section class="standard-form scrollable">
+    <fieldset>
+        <legend>{{localize "SETTINGS.UI.HEADERS.theme"}}</legend>
+        {{formGroup fields.colorScheme.fields.interface value=setting.colorScheme.interface localize=true}}
+        {{formGroup fields.colorScheme.fields.applications value=setting.colorScheme.applications localize=true}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize "SETTINGS.UI.HEADERS.size"}}</legend>
+        {{formGroup fields.uiScale value=setting.uiScale}}
+        {{formGroup fields.fontScale value=setting.fontScale}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize "SETTINGS.UI.HEADERS.fade"}}</legend>
+        {{formGroup fields.fade.fields.opacity value=setting.fade.opacity}}
+        {{formGroup fields.fade.fields.speed value=setting.fade.speed units="ms"}}
+    </fieldset>
+    <fieldset>
+        <legend>{{localize "SETTINGS.UI.HEADERS.other"}}</legend>
+        {{formGroup fields.chatNotifications value=setting.chatNotifications localize=true}}
+    </fieldset>
+</section>

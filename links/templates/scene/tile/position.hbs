@@ -1,0 +1,24 @@
+<div class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <p class="hint">{{localize "TILE.SECTIONS.position"}}</p>
+    <div class="form-group slim">
+        <label>{{localize "Coordinates"}} <span class="units">({{localize "Pixels"}})</span></label>
+        <div class="form-fields slim">
+            <label for="{{rootId}}-x">{{localize "DOCUMENT.FIELDS.x.label"}}</label>
+            {{formInput fields.x value=source.x id=(concat rootId "-x") placeholder=units.pixels}}
+            <label for="{{rootId}}-y">{{localize "DOCUMENT.FIELDS.y.label"}}</label>
+            {{formInput fields.y value=source.y id=(concat rootId "-y") placeholder=units.pixels}}
+        </div>
+    </div>
+    <div class="form-group slim">
+        <label>{{localize "TILE.Dimensions"}} <span class="units">({{localize "Pixels"}})</span></label>
+        <div class="form-fields">
+            <label for="{{rootId}}-width">{{localize "DOCUMENT.FIELDS.width.label"}}</label>
+            {{formInput fields.width value=source.width id=(concat rootId "-width")}}
+            <label for="{{rootId}}-height">{{localize "DOCUMENT.FIELDS.height.label"}}</label>
+            {{formInput fields.height value=source.height id=(concat rootId "-height")}}
+        </div>
+    </div>
+    {{formGroup fields.rotation value=source.rotation classes="slim" units=(localize "Degrees") rootId=rootId}}
+    {{formGroup fields.elevation value=source.elevation classes="slim" label=(localize "Elevation") units=gridUnits rootId=rootId}}
+    {{formGroup fields.sort value=source.sort classes="slim" rootId=rootId}}
+</div>

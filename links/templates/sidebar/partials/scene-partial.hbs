@@ -1,0 +1,6 @@
+<li class="directory-item entry document {{ @root.documentCls }}" data-entry-id="{{ id }}">
+    {{#if thumbnail}}
+    <img class="thumbnail" src="{{ thumbnail }}" alt="{{ name }}" loading="lazy">
+    {{/if}}
+    <a class="entry-name" data-action="activateEntry">{{ name }}</a>
+</li>

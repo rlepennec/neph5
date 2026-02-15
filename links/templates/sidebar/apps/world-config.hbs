@@ -1,0 +1,44 @@
+<div class="standard-form scrollable">
+    {{formGroup fields.title value=worldTitle rootId=rootId}}
+
+    {{#unless inWorld}}
+    <div class="form-group">
+        <label for="{{rootId}}-id">{{fields.id.label}}</label>
+        <div class="form-fields">
+            <input type="text" value="Data/worlds/" disabled>
+            <input type="text" name="id" id="{{rootId}}-id" value="{{worldId}}" placeholder="world-id"
+                {{disabled (not isCreate)}}>
+        </div>
+    </div>
+
+    {{formGroup fields.system value=source.system choices=systems blank="" rootId=rootId disabled=(not isCreate)}}
+    {{/unless}}
+
+    {{formGroup fields.background value=source.background rootId=rootId}}
+    {{formGroup fields.joinTheme value=source.joinTheme choices=themes rootId=rootId}}
+
+    <div class="form-group">
+        <label for="{{rootId}}-nextSession">{{fields.nextSession.label}}</label>
+        <div class="form-fields">
+            <input type="datetime-local" name="nextSession" id="{{rootId}}-nextSession" value="{{nextSession}}">
+        </div>
+    </div>
+
+    {{#if showEditFields}}
+    {{formGroup fields.resetKeys value=source.resetKeys rootId=rootId}}
+
+    <div class="form-group slim">
+        <label for="{{rootId}}-safeMode">
+            {{fields.safeMode.label}}
+            <a href="{{worldKbUrl}}" target="_blank" data-tooltip="{{fields.safeMode.hint}}">
+                <i class="fa-solid fa-circle-question"></i>
+            </a>
+        </label>
+        <div class="form-fields">
+            <input type="checkbox" name="safeMode" id="{{rootId}}-safeMode">
+        </div>
+    </div>
+    {{/if}}
+
+    {{formGroup fields.description value=source.description}}
+</div>

@@ -1,0 +1,7 @@
+<section>
+    {{#if src}}
+    <iframe src="scripts/pdfjs/web/viewer.html?{{ params }}"></iframe>
+    {{/if}}
+
+    {{ formField fields.src value=source.src label="JOURNALENTRYPAGE.PDFSource" input=srcInput localize=true }}
+</section>

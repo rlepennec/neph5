@@ -1,0 +1,33 @@
+<section class="tab faces{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    <div class="form-group">
+        <label>{{localize "CARD.FIELDS.face.label"}}</label>
+        <div class="form-fields">
+            {{formInput fields.face value=source.face rootId=rootId}}
+            <button type="button" class="face-control" data-tooltip="CARD.ACTIONS.AddFace" data-action="addFace">
+                <i class="fa-solid fa-plus fa-fw"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="faces-list scrollable" data-faces>
+        {{#each source.faces as |face index|}}
+        <fieldset class="face" data-face data-index="{{index}}">
+            <div class="form-group">
+                <label>{{localize "CARD.FIELDS.faces.element.name.label"}}</label>
+                <div class="form-fields">
+                    {{formInput ../faceFields.name name=(concat "faces." index ".name") value=face.name
+                        id=(concat rootId "faces." index ".name")}}
+                    <button type="button" class="face-control" data-tooltip="CARD.ACTIONS.DeleteFace.Title"
+                        data-action="deleteFace">
+                        <i class="fa-solid fa-trash fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+            {{formGroup ../faceFields.img name=(concat "faces." index ".img") value=face.img
+                id=(concat rootId "faces." index ".img")}}
+            {{formGroup ../faceFields.text name=(concat "faces." index ".text") value=face.text elementType="textarea"
+                id=(concat rootId "faces." index ".text")}}
+        </fieldset>
+        {{/each}}
+    </div>
+</section>
