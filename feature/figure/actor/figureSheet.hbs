@@ -8,6 +8,19 @@
             data-action="editImage"/>
 
         <nav>
+            {{#each tabs as |tab|}}
+            <div>
+                <a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">{{translate tab.label}}</a>
+                <!--
+                <img class="sheet-navigation-pin"/>
+                <img class="sheet-navigation-hole"/>
+                -->
+            </div>
+            {{/each}}
+        </nav>
+
+<!--
+        <nav>
 
             {{> "systems/neph5e/templates/actor-option.hbs"
                 title="description"
@@ -15,12 +28,12 @@
             }}
 
             {{> "systems/neph5e/templates/actor-option.hbs"
-                title="description2"
-                tab="description2"
+                title="vecu"
+                tab="vecu"
             }}
 
         </nav>
-
+-->
     </aside>
 
     <article>
@@ -29,25 +42,15 @@
 
         <main>
 
-            {{> "systems/neph5e/templates/item-references.hbs"
-                title="vecus"
-                references=context.vecus
-            }}
-
-            <h1>{{translate "description"}}</h1>
-
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
+            {{#each tabs as |tab|}}
+            {{log tab}}
+            {{#if tab.active}}
+                <span>{{translate tab.label}}</span>
             {{/if}}
+            {{/each}}
+
+
+
 
         </main>
 

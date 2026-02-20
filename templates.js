@@ -14,6 +14,10 @@ export class Templates {
             `systems/neph5e/templates/item-select.hbs`,
 
             `systems/neph5e/templates/version-selector.hbs`,
+
+            `systems/neph5e/feature/figure/actor/descriptionSheet.hbs`,
+            `systems/neph5e/feature/figure/actor/vecuSheet.hbs`,
+            
         ]);
     }
 

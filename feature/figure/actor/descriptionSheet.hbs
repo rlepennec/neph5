@@ -1,0 +1,23 @@
+
+<section 
+    class='tab description'
+    data-group='primary'
+    data-tab='description'>
+
+    <h1>{{translate "description"}}</h1>
+
+    {{#if document.sheet.locked}}
+    {{{enrichedDescription}}}
+    {{else}}
+    <prose-mirror
+        name="system.description"
+        button="true"
+        editable="{{editable}}"
+        toggled="false"
+        value="{{document.system.description}}">
+        {{{enrichedDescription}}}
+    </prose-mirror>
+    {{/if}}
+
+</section>
+
