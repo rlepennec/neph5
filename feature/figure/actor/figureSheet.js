@@ -55,6 +55,7 @@ export class FigureSheet extends NephilimActorSheet {
     const navElement = button.closest(".tabs");
     console.log("_onClickTab");
     this.changeTab(tab, group, {event, navElement});
+    this.render();
     
   }
 
@@ -98,17 +99,8 @@ export class FigureSheet extends NephilimActorSheet {
     if ( this.options.position.height === "auto" ) positionUpdate.height = "auto";
     if ( !foundry.utils.isEmpty(positionUpdate) ) this.setPosition(positionUpdate);
 
-    this.render();
   }
    
-  
-
-/*   changeTab(tab, group, {event, navElement, force=false, updatePosition=true}={}) {
-    super.changeTab(tab, {event, navElement, force, updatePosition});
-    this.render();
-  } */
-
-
 
 
 
