@@ -60,34 +60,23 @@ export class FigureSheet extends NephilimActorSheet {
   }
 
   /**
-   * Change the active tab within a tab group in this Application instance.
-   * @param {string} tab        The name of the tab which should become active
-   * @param {string} group      The name of the tab group which defines the set of tabs
-   * @param {object} [options]  Additional options which affect tab navigation
-   * @param {Event} [options.event]                 An interaction event which caused the tab change, if any
-   * @param {HTMLElement} [options.navElement]      An explicit navigation element being modified
-   * @param {boolean} [options.force=false]         Force changing the tab even if the new tab is already active
-   * @param {boolean} [options.updatePosition=true] Update application position after changing the tab?
+   * @override
    */
-
-  
   changeTab(tab, group, {event, navElement, force=false, updatePosition=true}={}) {
-
-    const content = this.form;
 
     if ( !tab || !group ) throw new Error("You must pass both the tab and tab group identifier");
     if ( (this.tabGroups[group] === tab) && !force ) return;  // No change necessary
-    const tabElement = content.querySelector(`nav [data-group="${group}"][data-tab="${tab}"]`);
+    const tabElement = this.form.querySelector(`nav [data-group="${group}"][data-tab="${tab}"]`);
     if ( !tabElement ) throw new Error(`No matching tab element found for group "${group}" and tab "${tab}"`);
 
     // Update tab navigation
-    for ( const t of content.querySelectorAll(`nav [data-group="${group}"]`) ) {
+    for ( const t of this.form.querySelectorAll(`nav [data-group="${group}"]`) ) {
       t.classList.toggle("active", t.dataset.tab === tab);
       if ( t instanceof HTMLButtonElement ) t.ariaPressed = `${t.dataset.tab === tab}`;
     }
 
     // Update tab contents
-    for ( const section of content.querySelectorAll(`.tab[data-group="${group}"]`) ) {
+    for ( const section of this.form.querySelectorAll(`.tab[data-group="${group}"]`) ) {
       section.classList.toggle("active", section.dataset.tab === tab);
     }
     this.tabGroups[group] = tab;
