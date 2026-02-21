@@ -57,7 +57,7 @@ export class FigureSheet extends NephilimActorSheet {
     async _prepareContext(options) {
         const context = {
             ...await super._prepareContext(options),
-            tabs: this._prepareTabs2("primary", this.tabGroups),
+            tabs: this._prepareTabs2("primary"),
             context: {
                 vecus: new DocumentReferences('Item', 'vecu', this.document)
             }
