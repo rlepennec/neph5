@@ -65,6 +65,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	/**
 	 * Returns an array of DragDrop instances
 	 * @type {DragDrop[]}
+	 * @public
 	 */
 	get dragDrop() {
 		return this.dragDrop;
@@ -74,8 +75,6 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @override
 	 */
 	async _onClose() {
-
-
 	}
 
 	// async #testCreateItem() {
@@ -148,6 +147,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @param {*} target 
 	 */
 	_onDragStart(event) {
+
 		const el = event.currentTarget;
 		if ('link' in event.target.dataset) return;
 
@@ -158,6 +158,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
 		// Set data transfer
 		event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+
 	}
 
 	/**
@@ -305,7 +306,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 
 	/**
 	 * 
-	 * Tabs management
+	 * ---------- Tabs management ----------
 	 * 
 	 */
 

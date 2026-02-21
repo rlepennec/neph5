@@ -35,11 +35,6 @@ export class FigureSheet extends NephilimActorSheet {
         },
     }
 
-
-
-
-   
-
     async _prepareContext(options) {
         const context = {
             ...await super._prepareContext(options),
@@ -51,9 +46,6 @@ export class FigureSheet extends NephilimActorSheet {
         return context;
     }
 
-
-
-
     async _preparePartContext(partId, context) {
         switch (partId) {
             case 'description':
@@ -64,6 +56,5 @@ export class FigureSheet extends NephilimActorSheet {
         }
         return context;
     }
-
 
 }
