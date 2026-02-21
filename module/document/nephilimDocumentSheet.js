@@ -75,7 +75,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 	async _onClose() {
 
-		console.log("close");
+
 	}
 
 	// async #testCreateItem() {

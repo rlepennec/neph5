@@ -1,5 +1,5 @@
 <section class="actor-root soleil">
-{{log .}}
+
     <aside>
 
         <img
@@ -19,21 +19,6 @@
             {{/each}}
         </nav>
 
-<!--
-        <nav>
-
-            {{> "systems/neph5e/templates/actor-option.hbs"
-                title="description"
-                tab="description"
-            }}
-
-            {{> "systems/neph5e/templates/actor-option.hbs"
-                title="vecu"
-                tab="vecu"
-            }}
-
-        </nav>
--->
     </aside>
 
     <article>
@@ -43,14 +28,10 @@
         <main>
 
             {{#each tabs as |tab|}}
-            {{log tab}}
             {{#if tab.active}}
                 <span>{{translate tab.label}}</span>
             {{/if}}
             {{/each}}
-
-
-
 
         </main>
 

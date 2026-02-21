@@ -65,7 +65,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
     _updateObject(event, formData) {
 
 
-        console.log(formData);
+        
 
         // Update object
         super._updateObject(event, formData);
