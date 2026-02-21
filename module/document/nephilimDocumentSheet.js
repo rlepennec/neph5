@@ -304,6 +304,12 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	}
 
 	/**
+	 * 
+	 * Tabs management
+	 * 
+	 */
+
+	/**
 	 * Handle the click event on a tab.
 	 * @param {*} event The click event.
 	 * @override 

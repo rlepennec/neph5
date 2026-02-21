@@ -35,8 +35,8 @@ export class FigureSheet extends NephilimActorSheet {
         },
     }
 
-    static _prepareTabs(g, groups) {
-        const group = this.TABS[g];
+    _prepareTabs2(g, groups) {
+        const group = this.constructor.TABS[g];
         const tabs = group.tabs;
         tabs.forEach(t => {
             t.group = g;
@@ -54,7 +54,7 @@ export class FigureSheet extends NephilimActorSheet {
     async _prepareContext(options) {
         const context = {
             ...await super._prepareContext(options),
-            tabs: FigureSheet._prepareTabs("primary", this.tabGroups),
+            tabs: this._prepareTabs2("primary", this.tabGroups),
             context: {
                 vecus: new DocumentReferences('Item', 'vecu', this.document)
             }
