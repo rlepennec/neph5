@@ -35,13 +35,16 @@ export class FigureSheet extends NephilimActorSheet {
         },
     }
 
-    _prepareTabs2(g, groups) {
+    _prepareTabs2(g) {
+
+
+
         const group = this.constructor.TABS[g];
         const tabs = group.tabs;
         tabs.forEach(t => {
             t.group = g;
             t.label = t.id;
-            t.active = t.id === groups[g];
+            t.active = t.id === this.tabGroups[g];
         });
         return tabs;
     }
