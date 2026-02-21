@@ -310,8 +310,27 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 */
 
 	/**
+	 * Prepare application tab data for a single tab group.
+	 * @param {string} group The ID of the tab group to prepare
+	 * @returns {Record<string, ApplicationTab>}
+	 * @protected
+	 * @override
+	 */
+    _prepareTabs(group) {
+        const {tabs, initial=null} = this._getTabsConfig(group) ?? {tabs: []};
+        this.tabGroups[group] ??= initial;
+        tabs.forEach(t => {
+            t.group = group;
+            t.label = t.id;
+            t.active = t.id === this.tabGroups[group];
+        });
+        return tabs;
+    }
+
+	/**
 	 * Handle the click event on a tab.
 	 * @param {*} event The click event.
+	 * @protected
 	 * @override 
 	 */
     _onClickTab(event) {
@@ -329,6 +348,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
      * @param {string} tab        The name of the tab which should become active
      * @param {string} group      The name of the tab group which defines the set of tabs
      * @returns true if the a new tab has been selected.
+	 * @protected
 	 * @override
      */
     _changeTab(tab, group) {
