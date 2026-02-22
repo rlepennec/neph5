@@ -8,9 +8,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: [this.#ID],
         form: {
-            handler: MetamorpheSheet.#onSubmit,
-            closeOnSubmit: false,
-            submitOnChange: true
+            handler: MetamorpheSheet.#onSubmit
         },
         position: {
             height: 500,

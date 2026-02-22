@@ -6,14 +6,27 @@ import { VersionSelector } from "./versionSelector.js"
 export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.DocumentSheetV2) {
 
 	static DEFAULT_OPTIONS = {
-		classes: ["nephilim"],
-		dragDrop: [{ dragSelector: '[data-drag]', dropSelector: null }],
+		classes: ["nephilim", "sheet"],
+		form: {
+			closeOnSubmit: false,
+			submitOnChange: true,
+		},
+		editable: true,
+		tag: "form",
+		dragDrop: [
+			{ dragSelector: '[data-drag]',
+			  dropSelector: null
+			}
+		],
 		actions: {
 			delete: NephilimDocumentSheet._onRemoveReference,
 			open: NephilimDocumentSheet._onOpenLink,
 			lock: NephilimDocumentSheet._onLock,
 			setup: NephilimDocumentSheet._onSetup
-		}
+		},
+		window: {
+            resizable: true,
+        }
 	}
 
 	version = 'v5'; //game.settings.set("neph5e", "worldTemplateVersion", target);
@@ -23,6 +36,8 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	locked = true;
 
 	#setupable = true;
+
+	#dragDrop = this.#createDragDropHandlers();
 
 	get setupable() {
 		return this.#setupable && this.versions.length > 0;
@@ -58,7 +73,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 		});
 	}
 
-	dragDrop = this.#createDragDropHandlers();
+	
 
 	// Optional: Add getter to access the private property
 
@@ -68,7 +83,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @public
 	 */
 	get dragDrop() {
-		return this.dragDrop;
+		return this.#dragDrop;
 	}
 
 	/** 
@@ -116,7 +131,7 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 	 * @override
 	 */
 	async _onRender(context, options) {
-		this.dragDrop.forEach((d) => d.bind(this.element));
+		this.#dragDrop.forEach((d) => d.bind(this.element));
 	}
 
 	/**
@@ -181,6 +196,16 @@ export class NephilimDocumentSheet extends foundry.applications.api.HandlebarsAp
 			return;
 		}
 		await this.drop(drop);
+
+		/*
+    const data = TextEditor.getDragEventData(event);
+
+    // Handle different data types
+    switch (data.type) {
+        // write your cases
+    }*/
+
+
 	}
 
 	/**
