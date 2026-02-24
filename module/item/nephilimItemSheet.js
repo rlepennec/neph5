@@ -1,7 +1,12 @@
 import { DocumentReference } from "../document/documentReference.js"
-import { NephilimDocumentSheet } from "../document/nephilimDocumentSheet.js"
+import { NephilimItem } from "./nephilimItem.js"
+import { NephilimMixinSheet } from "../document/nephilimSheetMixin.js"
 
-export class NephilimItemSheet extends NephilimDocumentSheet  {
+export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
+
+    static get documentClass() {
+        return NephilimItem;
+    }
 
     static DEFAULT_OPTIONS = {
         classes: ["item"],

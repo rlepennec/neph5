@@ -1,6 +1,11 @@
-import { NephilimDocumentSheet } from "../document/nephilimDocumentSheet.js"
+import { NephilimActor } from "./nephilimActor.js"
+import { NephilimMixinSheet } from "../document/nephilimSheetMixin.js"
 
-export class NephilimActorSheet extends NephilimDocumentSheet  {
+export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
+
+    static get documentClass() {
+        return NephilimActor;
+    }
 
     static DEFAULT_OPTIONS = {
         classes: ["actor"]

@@ -42,3 +42,45 @@ class BaseActorSheet extends PrimarySheetMixin(ApplicationV2Mixin(foundry.applic
 class CharacterActorSheet extends BaseActorSheet {
   static DEFAULT_OPTIONS = {}
 }
+
+----------------------------
+
+// module/sheets/custom-item-sheet.js
+
+import { SheetMixin } from "../mixins/sheet-mixin.js";
+import { CustomItem } from "../documents/custom-item.js";
+
+export class CustomItemSheet extends SheetMixin(foundry.applications.api.DocumentSheetV2) {
+
+  /** This sheet is for CustomItem */
+  static get documentClass() {
+    return CustomItem;
+  }
+
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      window: { title: "Custom Item" }
+    });
+  }
+
+  get template() {
+    return "systems/mySystem/templates/item/custom-item-sheet.hbs";
+  }
+
+  async getData() {
+    const data = await super.getData();
+
+    // Add custom item data
+    data.customValue = this.document.system.customValue;
+
+    return data;
+  }
+
+  activateListeners(html) {
+    super.activateListeners(html);
+
+    html.querySelector("[data-action='reset']")?.addEventListener("click", () => {
+      this.document.update({ "system.customValue": 0 });
+    });
+  }
+}
