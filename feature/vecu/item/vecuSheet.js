@@ -1,4 +1,4 @@
-import { DocumentReferences } from "../../../module/document/documentReferences.js"
+import { DocumentReferences } from "../../../module/documentReferences.js"
 import { NephilimItemSheet } from "../../../module/nephilimItemSheet.js";
 import { VecuData } from "./vecuData.mjs";
 

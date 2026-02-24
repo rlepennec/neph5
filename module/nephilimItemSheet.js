@@ -1,4 +1,4 @@
-import { DocumentReference } from "./document/documentReference.js"
+import { DocumentReference } from "./documentReference.js"
 import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "./nephilimSheetMixin.js"
 

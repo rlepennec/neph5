@@ -1,5 +1,5 @@
-import { Models } from "../../models.js"
-import { Tools } from "../common/tools.js"
+import { Models } from "../models.js"
+import { Tools } from "./common/tools.js"
 
 export class DocumentTools {
 

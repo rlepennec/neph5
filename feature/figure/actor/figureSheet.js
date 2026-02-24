@@ -1,5 +1,5 @@
 import { NephilimActorSheet } from "../../../module/nephilimActorSheet.js";
-import { DocumentReferences } from "../../../module/document/documentReferences.js";
+import { DocumentReferences } from "../../../module/documentReferences.js";
 
 export class FigureSheet extends NephilimActorSheet {
 

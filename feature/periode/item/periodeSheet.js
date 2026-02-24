@@ -1,5 +1,5 @@
 import { NephilimItemSheet } from "../../../module/nephilimItemSheet.js";
-import { DocumentReferences } from "../../../module/document/documentReferences.js";
+import { DocumentReferences } from "../../../module/documentReferences.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
