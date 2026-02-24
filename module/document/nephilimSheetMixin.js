@@ -321,15 +321,22 @@ export const NephilimMixinSheet = Base => {
 		}
 
 
-
+		/** 
+		 * @override
+		 */
 		async _prepareContext(options) {
-			return {
-				...await super._prepareContext(options),
-				context: {
-					version: this.version,
-					versions: this.versions
+			const context = await super._prepareContext(options);
+			context.versions = this.versions;
+			context.version = this.version;
+			context.locked = this.locked;
+			context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+				this.document.system.base.description,
+				{
+					secrets: this.document.isOwner,
+					relativeTo: this.document
 				}
-			}
+			)
+			return context;
 		}
 
 		/**
