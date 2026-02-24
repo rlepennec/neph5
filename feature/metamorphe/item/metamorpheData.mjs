@@ -45,8 +45,8 @@ export class MetamorpheData extends NephilimDataModel {
 
     static defineVersions() {
         return {
-            v1: Version1.defineVersion(),
-            v5: Version5.defineVersion()
+            v1: Version1.defineItem(),
+            v5: Version5.defineItem()
         }
     }
     

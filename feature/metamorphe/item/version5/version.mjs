@@ -2,7 +2,7 @@ import { ChunkField } from "../../../../module/common/chunkField.js"
 
 export class Version5 {
 
-    static defineVersion() {
+    static defineItem() {
         return new ChunkField(
             {
                 metamorphoses: new foundry.data.fields.ArrayField(

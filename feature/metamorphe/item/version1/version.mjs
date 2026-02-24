@@ -3,7 +3,7 @@ import { TextField } from "../../../../module/common/textField.js"
 
 export class Version1 {
 
-    static defineVersion() {
+    static defineItem() {
         return new ChunkField(
             {
                 metamorphoses: new foundry.data.fields.SchemaField(
