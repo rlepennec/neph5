@@ -1,0 +1,44 @@
+class Actor extends ClientDocumentMixin(BaseActor) {
+
+class Item extends ClientDocumentMixin(BaseItem) {
+
+class DocumentSheet5e extends ApplicationV2Mixin(DocumentSheetV2) {
+  static DEFAULT_OPTIONS = {
+    classes: ["standard-form"]
+  };
+}
+
+function ApplicationV2Mixin(Base) {
+  class BaseApplication5e extends HandlebarsApplicationMixin(Base) {
+    static DEFAULT_OPTIONS = {};
+    static PARTS = {};
+  }
+}
+
+const { ApplicationV2 } = foundry.applications.api;
+
+class Application5e extends ApplicationV2Mixin(ApplicationV2) {}
+
+class ItemSheet5e extends PrimarySheetMixin(DocumentSheet5e) {
+  static DEFAULT_OPTIONS = {}
+  static PARTS = {}
+  async _prepareContext(options) {}
+  async _preparePartContext(partId, context, options) {}
+  async _onRender(context, options) {}
+  _onDragStart(event) {}
+  _onDrop(event) {}
+}
+
+function PrimarySheetMixin(Base) {
+  return class PrimarySheet5e extends DragDropApplicationMixin(Base) {
+    static DEFAULT_OPTIONS = {}
+}
+
+class BaseActorSheet extends PrimarySheetMixin(ApplicationV2Mixin(foundry.applications.sheets.ActorSheetV2)) {
+  constructor(options={}) {}
+  static DEFAULT_OPTIONS = {}
+}
+
+class CharacterActorSheet extends BaseActorSheet {
+  static DEFAULT_OPTIONS = {}
+}
