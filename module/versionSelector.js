@@ -47,40 +47,16 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
         return this;
     }
 
-    /*
-    get document() {
-        return this.options.document
-    }
-        */
-
     /** 
      * @override
      */
-    /*
-    async _renderFrame(options) {
-        console.log("_renderFrame");
-    }
-        */
-
-
-    /** 
-     * @override
-     */
-    /*
-    async _onRender(context, options) {
-        console.log("_onRender");
-    }
-        */
-
-
     async _prepareContext(options) {
-        return {
-            ...await super._prepareContext(options),
-            versions: {
-                current: this.version,
-                all: this.versions
-            }
-        }
+        const context = await super._prepareContext(options);
+        context.versions = {
+            current: this.version,
+            all: this.versions
+        };
+        return context;
     }
 
 }
