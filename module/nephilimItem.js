@@ -1,5 +1,5 @@
-import { DocumentReference } from "../document/documentReference.js"
-import { DocumentReferencesIterator } from "../document/documentReferencesIterator.js"
+import { DocumentReference } from "./document/documentReference.js"
+import { DocumentReferencesIterator } from "./document/documentReferencesIterator.js"
 
 export class NephilimItem extends Item {
 

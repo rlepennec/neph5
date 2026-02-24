@@ -1,5 +1,5 @@
 import { NephilimActor } from "../nephilimActor.js"
-import { NephilimItem } from "../item/nephilimItem.js"
+import { NephilimItem } from "../nephilimItem.js"
 
 /**
  * The DocumentIdentifier class defines an identifier of a world system object.

@@ -1,5 +1,5 @@
 import { DocumentReferences } from "../../../module/document/documentReferences.js"
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../module/nephilimItemSheet.js";
 import { VecuData } from "./vecuData.mjs";
 
 export class VecuSheet extends NephilimItemSheet {

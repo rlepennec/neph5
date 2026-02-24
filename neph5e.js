@@ -1,7 +1,7 @@
 import { CustomHandlebarsHelpers } from "./handlebars.js";
 import { Models } from "./models.js";
 import { NephilimActor } from "./module/nephilimActor.js";
-import { NephilimItem } from "./module/item/nephilimItem.js";
+import { NephilimItem } from "./module/nephilimItem.js";
 import { Sheets } from "./sheets.js";
 import { Templates } from "./templates.js";
 

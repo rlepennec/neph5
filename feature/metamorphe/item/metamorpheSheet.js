@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../module/nephilimItemSheet.js";
 import { MetamorpheData } from "./metamorpheData.mjs";
 
 export class MetamorpheSheet extends NephilimItemSheet {
