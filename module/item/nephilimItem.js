@@ -67,7 +67,7 @@ export class NephilimItem extends Item {
     async #clearReferences() {
         let changes = {
             system: {
-                id: crypto.randomUUID()
+                sid: crypto.randomUUID()
             }
         }
         new DocumentReferencesIterator()
