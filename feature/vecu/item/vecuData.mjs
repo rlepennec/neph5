@@ -1,5 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
-import { NephilimDataModel } from "../../../module/common/nephilimDataModel.js"
+import { NephilimDataModel } from "../../../module/nephilimDataModel.js"
 import { TextField } from "../../../module/common/textField.js"
 import { UUIDReferenceField } from "../../../module/common/UUIDReferenceField.js"
 
