@@ -16,8 +16,9 @@ export const NephilimMixinSheet = Base => {
 			editable: true,
 			tag: "form",
 			dragDrop: [
-				{ dragSelector: '[data-drag]',
-				dropSelector: null
+				{ 
+					dragSelector: '[data-drag]',
+					dropSelector: null
 				}
 			],
 			actions: {
