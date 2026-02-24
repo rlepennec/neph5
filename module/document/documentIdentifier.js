@@ -1,4 +1,4 @@
-import { NephilimActor } from "../actor/nephilimActor.js"
+import { NephilimActor } from "../nephilimActor.js"
 import { NephilimItem } from "../item/nephilimItem.js"
 
 /**
