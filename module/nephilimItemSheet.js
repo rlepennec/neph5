@@ -1,6 +1,6 @@
 import { DocumentReference } from "./document/documentReference.js"
 import { NephilimItem } from "./nephilimItem.js"
-import { NephilimMixinSheet } from "./document/nephilimSheetMixin.js"
+import { NephilimMixinSheet } from "./nephilimSheetMixin.js"
 
 export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 

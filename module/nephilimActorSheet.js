@@ -1,5 +1,5 @@
 import { NephilimActor } from "./nephilimActor.js"
-import { NephilimMixinSheet } from "./document/nephilimSheetMixin.js"
+import { NephilimMixinSheet } from "./nephilimSheetMixin.js"
 
 export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 

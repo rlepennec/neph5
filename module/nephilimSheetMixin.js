@@ -1,7 +1,7 @@
-import { DocumentIdentifier } from "./documentIdentifier.js"
-import { DocumentReference } from "./documentReference.js"
-import { DocumentTools } from "./documentTools.js"
-import { VersionSelector } from "./versionSelector.js"
+import { DocumentIdentifier } from "./document/documentIdentifier.js"
+import { DocumentReference } from "./document/documentReference.js"
+import { DocumentTools } from "./document/documentTools.js"
+import { VersionSelector } from "./document/versionSelector.js"
 
 export const NephilimMixinSheet = Base => {
 
