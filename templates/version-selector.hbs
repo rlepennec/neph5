@@ -6,7 +6,7 @@
         <select name="version">
             {{#select value}}
             {{#each versions.all as |version|}}
-            <option value="{{version}}"{{#if (eq . ../versions.current)}} selected="{{version}}"{{/if}}>{{version}}</option>
+            <option value="{{version}}"{{#if (eq . ../versions.current)}} selected="{{version}}"{{/if}}>{{translate version}}</option>
             {{/each}}
             {{/select}}
         </select>
