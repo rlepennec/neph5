@@ -1,3 +1,4 @@
+import { CompetenceData } from "./competenceData.mjs";
 import { NephilimItemSheet } from "../../../module/nephilimItemSheet.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
@@ -15,6 +16,15 @@ export class CompetenceSheet extends NephilimItemSheet {
     static PARTS = {
         main: {
             template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.hbs`,
+        }
+    }
+
+    async _prepareContext(options) {
+        return {
+            ...await super._prepareContext(options),
+            context: {
+                elements: CompetenceData.defineSchema().base.fields.element.choices,
+            }
         }
     }
 

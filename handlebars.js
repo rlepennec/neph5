@@ -1,4 +1,4 @@
-import { Constants } from "./module/common/constants.js";
+import { Constants } from "./module/constants.js";
 
 export class CustomHandlebarsHelpers {
 

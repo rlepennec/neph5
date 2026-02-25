@@ -8,6 +8,13 @@
 
         <main>
 
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="element"
+                name="system.base.element"
+                value=document.system.base.element
+                options=context.elements
+            }}
+
             <h1>{{translate "description"}}</h1>
 
             {{#if document.sheet.locked}}
