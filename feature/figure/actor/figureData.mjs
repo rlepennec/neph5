@@ -10,6 +10,7 @@ export class FigureData extends NephilimDataModel {
             incarnations: new foundry.data.fields.ArrayField(
                 new foundry.data.fields.SchemaField(
                     {
+                        description: new TextField(),
                         vecu: new UUIDReferenceField(
                             {
                                 type: 'vecu',
@@ -53,7 +54,6 @@ export class FigureData extends NephilimDataModel {
 
                         ),
                         */
-                        description: new TextField(),
                     }
                 )
             )
