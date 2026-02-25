@@ -1,4 +1,4 @@
-import { ChunkField } from "../../../../module/common/chunkField.js"
+import { ChunkField } from "../../../../module/field/chunkField.js"
 
 export class Version5 {
 

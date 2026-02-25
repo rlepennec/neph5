@@ -1,6 +1,6 @@
 import { Constants } from "../../../module/constants.js";
 import { NephilimDataModel } from "../../../module/nephilimDataModel.js"
-import { TextField } from "../../../module/common/textField.js"
+import { TextField } from "../../../module/field/textField.js"
 import { Version1 } from "./version1/version.mjs"
 import { Version5 } from "./version5/version.mjs"
 

@@ -1,5 +1,5 @@
 import { NephilimDataModel } from "../../../module/nephilimDataModel.js"
-import { TextField } from "../../../module/common/textField.js"
+import { TextField } from "../../../module/field/textField.js"
 
 export class CercleData extends NephilimDataModel {
 

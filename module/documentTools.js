@@ -1,7 +1,31 @@
 import { Models } from "../models.js"
-import { Tools } from "./common/tools.js"
 
 export class DocumentTools {
+
+    static isObjectEmpty(object) {
+        return object && Object.keys(object).length === 0 && object.constructor === Object;
+    }
+
+    static isObjectNotEmpty(object) {
+        return DocumentTools.isObjectEmpty(object) === false;
+    }
+
+    /**
+     * Gets the specified property value from the specified object.
+     * @param {*} object The object from which to get the property value.
+     * @param {*} path The path of the property to get
+     * @param {*} defaultValue The default value if the property is not found.
+     * @returns the property or the default value.
+     */
+    static getObjectPropertyFromPath(object, path, defaultValue) {
+        const words = path.split(".");
+        let current = object;
+        for (var i = 0; i < words.length; i++) {
+            if (!current[words[i]]) return defaultValue;
+            current = current[words[i]];
+        }
+        return current;
+    }
 
     static getVersions(document) {
         const schema = Models.getData(document).defineSchema();
@@ -9,13 +33,13 @@ export class DocumentTools {
     }
 
     static async update(document, updates) {
-        if (Tools.isObjectNotEmpty(updates)) {
+        if (DocumentTools.isObjectNotEmpty(updates)) {
             await document.update(updates);
         }
     }
 
     static getField(document, field, defaultValue) {
-        return Tools.getObjectPropertyFromPath(document, field.fieldPath, defaultValue);
+        return DocumentTools.getObjectPropertyFromPath(document, field.fieldPath, defaultValue);
     }
 
     static async droppedDocument(event) {

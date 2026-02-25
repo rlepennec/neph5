@@ -1,5 +1,5 @@
-import { ChunkField } from "./common/chunkField.js"
-import { UUIDField } from "./common/UUIDField.js"
+import { ChunkField } from "./field/chunkField.js"
+import { UUIDField } from "./field/UUIDField.js"
 
 export class NephilimDataModel extends foundry.abstract.TypeDataModel {
 

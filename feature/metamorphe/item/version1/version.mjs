@@ -1,5 +1,5 @@
-import { ChunkField } from "../../../../module/common/chunkField.js"
-import { TextField } from "../../../../module/common/textField.js"
+import { ChunkField } from "../../../../module/field/chunkField.js"
+import { TextField } from "../../../../module/field/textField.js"
 
 export class Version1 {
 
