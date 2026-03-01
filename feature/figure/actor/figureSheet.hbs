@@ -29,7 +29,7 @@
 
             {{#each tabs as |tab|}}
                 {{#if tab.active}}
-                    {{> (lookup . "template") root=..}}
+                    {{> (lookup . "template") ..}}
                 {{/if}}
             {{/each}}
 
