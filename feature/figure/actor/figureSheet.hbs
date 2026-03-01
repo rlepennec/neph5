@@ -28,9 +28,9 @@
         <main>
 
             {{#each tabs as |tab|}}
-            {{#if tab.active}}
-                <span>{{translate tab.label}}</span>
-            {{/if}}
+                {{#if tab.active}}
+                    {{> (lookup . "template")}}
+                {{/if}}
             {{/each}}
 
         </main>

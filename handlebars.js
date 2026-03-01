@@ -6,7 +6,11 @@ export class CustomHandlebarsHelpers {
 
         Handlebars.registerHelper({
 
+            usePartial: CustomHandlebarsHelpers.translate,
             translate: CustomHandlebarsHelpers.translate,
+
+
+            
             
             concat: CustomHandlebarsHelpers.concat,
             isNull: CustomHandlebarsHelpers.isNull,
@@ -247,5 +251,7 @@ export class CustomHandlebarsHelpers {
     static translate(word) {
         return game.i18n.localize(`NEPHILIM.${word}`);
     }
+
+
 
 }
