@@ -3,19 +3,17 @@
     class='tab description active'
     data-group='primary'
     data-tab='description'>
-
-    <h1>{{translate "description"}}</h1>
-
-    {{#if document.sheet.locked}}
-    {{{enrichedDescription}}}
+{{log .}}
+    {{#if root.document.sheet.locked}}
+    {{{root.enrichedDescription}}}
     {{else}}
     <prose-mirror
-        name="system.description"
+        name="system.base.description"
         button="true"
-        editable="{{editable}}"
+        editable="{{root.editable}}"
         toggled="false"
-        value="{{document.system.description}}">
-        {{{enrichedDescription}}}
+        value="{{root.document.system.base.description}}">
+        {{{root.enrichedDescription}}}
     </prose-mirror>
     {{/if}}
 
