@@ -84,3 +84,53 @@ export class CustomItemSheet extends SheetMixin(foundry.applications.api.Documen
     });
   }
 }
+
+-- To hide item from menu
+
+
+    /**
+     * Present a Dialog form to create a new Document of this type.
+     * Choose a name and a type from a select menu of types.
+     * @param {object} data                Document creation data
+     * @param {DatabaseCreateOperation} [createOptions]  Document creation options.
+     * @param {object} [options={}]        Options forwarded to DialogV2.prompt
+     * @param {{id: string; name: string}[]} [options.folders] Available folders in which the new Document can be place
+     * @param {string[]} [options.types]   A restriction of the selectable sub-types of the Dialog.
+     * @param {string} [options.template]  A template to use for the dialog contents instead of the default.
+     * @param {object} [options.context]   Additional render context to provide to the template.
+     * @returns {Promise<Document|null>}   A Promise which resolves to the created Document, or null if the dialog was
+     *                                     closed.
+     */
+    static async createDialog(data={}, createOptions={}, {folders, types, template, context, ...dialogOptions}={}) {
+      const applicationOptions = {
+        top: "position", left: "position", width: "position", height: "position", scale: "position", zIndex: "position",
+        title: "window", id: "", classes: "", jQuery: ""
+      };
+
+      for ( const [k, v] of Object.entries(createOptions) ) {
+        if ( k in applicationOptions ) {
+          foundry.utils.logCompatibilityWarning("The ClientDocument.createDialog signature has changed. "
+            + "It now accepts database operation options in its second parameter, "
+            + "and options for DialogV2.prompt in its third parameter.", { since: 13, until: 15, once: true });
+          const dialogOption = applicationOptions[k];
+          if ( dialogOption ) foundry.utils.setProperty(dialogOptions, `${dialogOption}.${k}`, v);
+          else dialogOptions[k] = v;
+          delete createOptions[k];
+        }
+      }
+
+      const { parent, pack } = createOptions;
+      const cls = this.implementation;
+
+      // Identify allowed types
+      const documentTypes = [];
+      let defaultType = CONFIG[this.documentName]?.defaultType;
+      let defaultTypeAllowed = false;
+      let hasTypes = false;
+      if ( this.TYPES.length > 1 ) {
+        if ( types?.length === 0 ) throw new Error("The array of sub-types to restrict to must not be empty");
+
+        // Register supported types
+        for ( const type of this.TYPES ) {
+          if ( type === BASE_DOCUMENT_TYPE ) continue;
+          if ( types && !types.includes(type) ) continue;
