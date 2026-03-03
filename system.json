@@ -45,6 +45,7 @@
         "Item": {
             "cercle": {},
             "competence": {},
+            "incarnation": {},
             "metamorphe": {},
             "periode": {},
             "vecu": {}
