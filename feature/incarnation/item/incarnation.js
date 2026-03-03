@@ -15,9 +15,22 @@ export class Incarnation {
                     description: "",
                     vecu: {
                         reference: vecu.system.sid,
-                        sapience: 0
                     },
                     competences: []
+                },
+                versions: {
+                    v1: {
+                        vecu: {
+                            sapience: 0,
+                        },
+                        competences: []
+                    },
+                    v5: {
+                        vecu: {
+                            sapience: 0,
+                        },
+                        competences: []
+                    }
                 }
             }
         };
