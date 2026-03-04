@@ -23,7 +23,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
         if (data.type === 'vecu') {
             const created = await Incarnation.create(this.document, data);
-            console.log("Created embedded item:", created);
+            const incarnation = new Incarnation(created[0]);
         }
 
 	}
