@@ -170,6 +170,13 @@ form.nephilim.actor section.window-content > section article main {
 form.nephilim.actor section.window-content > section article main section {
   height: 100%;
 }
+form.nephilim.actor section.window-content > section article main section.vecu .incarnation {
+  border: solid 1px;
+  height: 100px;
+  margin-top: 20px;
+  background: url("../../systems/neph5e/assets/backgrounds/egypte.webp") no-repeat;
+  mask-image: linear-gradient(to right, #000000, rgba(0, 0, 0, 0));
+}
 form.nephilim.actor section.window-content > section article main h1 {
   color: var(--color-font-dark);
   font-family: var(--font-family-title);

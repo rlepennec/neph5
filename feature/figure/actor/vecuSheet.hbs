@@ -8,4 +8,11 @@
         references=context.vecus
     }}
 
+    {{#each document.items}}
+    {{log .}}
+        {{#if (eq this.type "incarnation")}}
+            <div class='incarnation'>{{this.name}}</div>
+        {{/if}}
+    {{/each}}
+
 </section>
