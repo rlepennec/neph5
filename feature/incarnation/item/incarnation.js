@@ -39,6 +39,7 @@ export class Incarnation {
             system: {
                 base : {
                     description: "",
+                    previous: null,
                     vecu: {
                         reference: vecu.system.sid,
                     },

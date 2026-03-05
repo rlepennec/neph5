@@ -11,7 +11,10 @@
     {{#each document.items}}
         {{#if (eq this.type "incarnation")}}
             {{#with (incarnation this) as |i|}}
-            <div class='incarnation'>{{i.vecu.name}}</div>
+            {{log 'lksflkjdjf'}}
+            {{log i}}
+            {{log i.item.name}}
+            <div class='incarnation' data-sid="{{i.item.system.sid}}">{{i.vecu.name}}</div>
             {{/with}}
         {{/if}}
     {{/each}}

@@ -198,30 +198,7 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} target 
 		 */
 		async _onDrop(event) {
-			if (this.locked) return;
-			const drop = new DocumentIdentifier(event).toDocument();
-			if (drop == null) {
-				ui.notifications.warn("Can't drop this kind of object");
-				return;
-			}
-			await this.drop(drop);
-
-			/*
-		const data = TextEditor.getDragEventData(event);
-
-		// Handle different data types
-		switch (data.type) {
-			// write your cases
-		}*/
-
-
-		}
-
-		/**
-		 * @param {*} document The document to drop. 
-		 */
-		async drop(document) {
-			throw new Error("drop method must be implemented");
+			throw new Error("_onDrop method must be implemented");
 		}
 
 		/**
