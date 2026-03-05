@@ -202,6 +202,19 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		/**
+		 * @param target The event part which describes the html target.
+		 * @returns the draggable element.
+		 */
+		_getDraggableTarget(target) {
+			if (target == null) return null;
+			if (target.classList.contains("draggable")) {
+				return target;
+			} else {
+				return this._getDraggableTarget(target.parentElement);
+			}
+		}
+
+		/**
 		 * The callback used to delete a referenced document from the current one.
 		 * @param {*} event 
 		 * @param {*} target 

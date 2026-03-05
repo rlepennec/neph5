@@ -18,9 +18,10 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      */
     async _onDrop(event) {
         if (this.locked) return;
-        console.log(event);
-        console.log(event.target);
-        console.log(event.target.dataset);
+
+        const target = this._getDraggableTarget(event.target);
+        console.log("Target");
+        console.log(target?.dataset);
 
         const document = new DocumentIdentifier(event).toDocument();
         if (document == null) {
@@ -39,18 +40,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
 	}
 
-    /**
-     * @param target The event part which describes the html target.
-     * @returns the identifier of the embedded periode.
-     */
-    getParentPeriode(target) {
-        if (target == null) return null;
-        if (target.getAttribute?.("draggable") === "true") {
-            return target.dataset.sid;
-        } else {
-            return this.getParentPeriode(target.parentElement);
-        }
-    }
+
 
 
 }
