@@ -1,4 +1,5 @@
 import { Constants } from "./module/constants.js";
+import { Incarnation } from "./feature/incarnation/item/incarnation.js";
 
 export class CustomHandlebarsHelpers {
 
@@ -6,9 +7,9 @@ export class CustomHandlebarsHelpers {
 
         Handlebars.registerHelper({
 
-            usePartial: CustomHandlebarsHelpers.translate,
+            incarnation: CustomHandlebarsHelpers.incarnation,
             translate: CustomHandlebarsHelpers.translate,
-
+            
 
             
             
@@ -45,6 +46,45 @@ export class CustomHandlebarsHelpers {
         });
 
     }
+
+    /**
+     * @param item The incarnation item to extend. 
+     * @returns the incarnation instance which extends the incarnation item.
+     */
+    static incarnation(item) {
+        return new Incarnation(item)
+    }
+
+    /**
+     * @param words The words to translate. 
+     * @returns the concated words.
+     */
+    static translate(word) {
+        return game.i18n.localize(`NEPHILIM.${word}`);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @param value The value to check.
@@ -244,13 +284,7 @@ export class CustomHandlebarsHelpers {
         return game.settings.get('neph5e', option);
     }
 
-    /**
-     * @param words The words to translate. 
-     * @returns the concated words.
-     */
-    static translate(word) {
-        return game.i18n.localize(`NEPHILIM.${word}`);
-    }
+
 
 
 

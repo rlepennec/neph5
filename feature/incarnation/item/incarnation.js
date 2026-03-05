@@ -8,13 +8,18 @@ export class Incarnation {
         this.item = item;
     }
 
-    vecu() {
+    /**
+     * @returns the vecu item referenced by this instance.
+     */
+    get vecu() {
         return game.items.find(i => i.type === "vecu" && i.system.sid === this.item.system.base.vecu.reference);
     }
 
-    periode() {
-        const vecuItem = this.vecu();
-        return  game.items.find(i => i.type === "periode" && i.system.sid === vecuItem.system.base.periode);
+    /**
+     * @returns the periode item referenced by this instance.
+     */    
+    get periode() {
+        return  game.items.find(i => i.type === "periode" && i.system.sid === this.vecu.system.base.periode);
     }
 
     

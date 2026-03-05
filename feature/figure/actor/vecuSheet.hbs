@@ -9,9 +9,10 @@
     }}
 
     {{#each document.items}}
-    {{log .}}
         {{#if (eq this.type "incarnation")}}
-            <div class='incarnation'>{{this.name}}</div>
+            {{#with (incarnation this) as |i|}}
+            <div class='incarnation'>{{i.vecu.name}}</div>
+            {{/with}}
         {{/if}}
     {{/each}}
 
