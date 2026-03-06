@@ -1,3 +1,4 @@
+import { ListField } from "../../../module/field/listField.js"
 import { NephilimDataModel } from "../../../module/nephilimDataModel.js"
 import { TextField } from "../../../module/field/textField.js"
 import { UUIDReferenceField } from "../../../module/field/UUIDReferenceField.js"
@@ -7,7 +8,7 @@ export class FigureData extends NephilimDataModel {
     static defineBase() {
         return {
             description: new TextField(),
-            incarnations: new foundry.data.fields.ArrayField(
+            incarnations: new ListField(
                 new foundry.data.fields.SchemaField(
                     {
                         description: new TextField(),
