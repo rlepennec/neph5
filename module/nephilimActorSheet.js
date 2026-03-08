@@ -1,4 +1,5 @@
 import { DocumentIdentifier } from "./documentIdentifier.js"
+import { DocumentReference } from "./documentReference.js"
 import { Incarnation } from "../feature/incarnation/item/incarnation.js"
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimMixinSheet } from "./nephilimSheetMixin.js"
@@ -36,6 +37,10 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         if (data.type === 'vecu') {
             const created = await Incarnation.create(this.document, data);
             const incarnation = new Incarnation(created[0]);
+
+            await new DocumentReference(created[0]).addTo(this.document);
+
+
         }
 
 	}

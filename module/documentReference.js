@@ -3,9 +3,9 @@ import { DocumentReferencesIterator } from "./documentReferencesIterator.js"
 import { DocumentTools } from './documentTools.js'
 
 /**
- * A DocumentReference is a reference to a document.  * A reference can be added or
- * deleted to a document. When a document is deleted, all references must be also
- * deleted.
+ * A DocumentReference is a reference to a document. A reference can be added or
+ * deleted to a document. When a document is deleted, all references must be
+ * also deleted.
  * 
  * References can be implemented in schema in two ways.
  *  - a single reference is implemented by a UUIDReferenceField

@@ -8,11 +8,6 @@ export class IncarnationData extends NephilimDataModel {
     static defineBase() {
         return {
             description: new TextField(),
-            previous: new UUIDReferenceField(
-                {
-                    type: 'incarnation'
-                }
-            ),
             vecu: new foundry.data.fields.SchemaField
             (
                 {
