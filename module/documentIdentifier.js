@@ -46,47 +46,38 @@ export class DocumentIdentifier {
 
                 const source = args[0];
 
-                switch (source.constructor) {
-
-                    // The event target from which to create the identifier. The data-fsid
-                    // attribute must defined the textual expression of the identifier.
-                    case HTMLDivElement:
-                    case HTMLElement:
-                    case HTMLParagraphElement:
-                    case HTMLSpanElement: {
-                        this.#parse(source.closest("[data-fsid]")?.dataset.fsid);
-                        break;
-                    }
-
-                    // The actor from which to create the identifier.
-                    case NephilimActor: {
-                        this.#parse(source);
-                        break;
-                    }
-
-                    // The item or the actor from which to create the identifier.
-                    case NephilimItem: {
-                        this.#parse(source);
-                        break;
-                    }
-
-                    // The textual expression from which to create the identifier.
-                    // It must be built as follow: documentName.id.type.sid
-                    case String: {
-                        this.#parse(source);
-                        break;
-                    }
-
-                    // The dropped document from which to create the identifier. 
-                    case DragEvent: {
-                        this.#parse(fromUuidSync(foundry.applications.ux.TextEditor.implementation.getDragEventData(source).uuid));
-                        break;
-                    }
-
-                    default:
-                        throw new Error("Unsupported type to create a document identifier");
-
+                // The event target from which to create the identifier. The data-fsid
+                // attribute must defined the textual expression of the identifier.
+                if (source instanceof HTMLElement) {
+                    this.#parse(source.closest("[data-fsid]")?.dataset.fsid);
                 }
+
+                // The actor from which to create the identifier.
+                else if(source instanceof NephilimActor) {
+                    this.#parse(source);
+                }
+
+                // The item or the actor from which to create the identifier.
+                else if(source instanceof NephilimItem) {
+                    this.#parse(source);
+                }
+
+                // The textual expression from which to create the identifier.
+                // It must be built as follow: documentName.id.type.sid
+                else if(source instanceof String) {
+                    this.#parse(source);
+                }
+
+                // The dropped document from which to create the identifier. 
+                else if(source instanceof DragEvent) {
+                    this.#parse(fromUuidSync(foundry.applications.ux.TextEditor.implementation.getDragEventData(source).uuid));
+                }
+
+                // Unsupported
+                else {
+                    throw new Error("Unsupported type to create a document identifier");
+                }
+
 
                 break;
             
