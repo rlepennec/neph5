@@ -18,7 +18,7 @@ export const NephilimMixinSheet = Base => {
 			dragDrop: [
 				{ 
 					dragSelector: '[data-drag="true"]',
-					dropSelector: null
+					dropSelector: '[data-drop="true"]'
 				}
 			],
 			actions: {
@@ -165,6 +165,13 @@ export const NephilimMixinSheet = Base => {
 			return this.isEditable;
 		}
 
+		static findDataset(element, attribute) {
+			while (element && !(attribute in element.dataset)) {
+				element = element.parentElement
+			}
+			return element?.dataset[attribute] || null
+		}
+
 		/**
 		 * Callback actions which occur at the beginning of a drag start workflow.
 		 * @param {*} event 
@@ -178,6 +185,13 @@ export const NephilimMixinSheet = Base => {
 			// Extract the data you need
 			let dragData = null;
 
+			const itemId = NephilimSheet.findDataset(event.currentTarget, 'itemId')
+
+			dragData = {
+				type: 'incarnation',
+				id: itemId
+			}
+
 			if (!dragData) return;
 
 			// Set data transfer
@@ -190,7 +204,10 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} event 
 		 * @param {*} target 
 		 */
-		_onDragOver(event) { }
+		_onDragOver(event) {
+			console.log('_onDragOver');
+			console.log(event);
+		}
 
 		/**
 		 * The callback used to drop an element on a target.

@@ -1,15 +1,18 @@
 <section 
     class='tab vecu active'
     data-group='primary'
-    data-tab='vecu'>
+    data-tab='vecu'
+    data-drop="true">
 
     {{> "systems/neph5e/templates/item-references.hbs"
         title="vecus"
         references=context.vecus
     }}
 
-    {{#each context.incarnations}}
-        <div class='incarnation draggable' data-drag="true" data-item-id="{{id}}">{{name}}</div>
-    {{/each}}
+    <div>
+        {{#each context.incarnations}}
+            <div class='incarnation draggable' data-drag="true" data-item-id="{{id}}">{{name}}</div>
+        {{/each}}
+    </div>
 
 </section>

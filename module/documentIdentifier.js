@@ -169,9 +169,13 @@ export class DocumentIdentifier {
     }
 
     /**
-     * @param {*} source The source to parse which can be a string or a nephilim item.
+     * @param {*} source The source to parse which can be a string or a nephilim document.
      */
     #parse(source) {
+
+        if (source == null) {
+            throw new Error("Fail to parse null source to create nephilim document identifier");
+        }
 
         switch (source.constructor) {
 

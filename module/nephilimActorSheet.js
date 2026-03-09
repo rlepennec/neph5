@@ -18,13 +18,38 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      * @override
      */
     async _onDrop(event) {
+
         if (this.locked) return;
 
+
+// from drag data
+// {type: 'incarnation', id: 'MDMjx0rA7itmqKf2'} move actor item
+// {type: 'Item', uuid: 'Item.7wt1LWEnpnDBHRk0'} from world item
+const data2 = JSON.parse(event.dataTransfer.getData("text/plain"));
+console.log("data2");
+console.log(data2);
+        
+if (data2.type === 'incarnation') {
+    const set = this.document.system.base.incarnations;
+    const reversedSet = new Set([...set].reverse());
+    const updates = {
+        'system.base.incarnations': reversedSet
+    }
+    await this.document.update(updates);
+    return;
+}
+
+
+// DOMStringMap {drag: 'true', itemId: 'bPyM6ueNBx7dqM5w'}
+// Undefined - from world item
         const target = this._getDraggableTarget(event.target);
         console.log("Target");
         console.log(target?.dataset);
 
         const document = new DocumentIdentifier(event).toDocument();
+
+// document != null if from world item
+
         if (document == null) {
             ui.notifications.warn("Can't drop this kind of object");
             return;
