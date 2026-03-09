@@ -1,4 +1,3 @@
-import { ListField } from "../../../module/field/listField.js"
 import { NephilimDataModel } from "../../../module/nephilimDataModel.js"
 import { TextField } from "../../../module/field/textField.js"
 import { UUIDReferenceField } from "../../../module/field/UUIDReferenceField.js"
