@@ -1,5 +1,5 @@
+import { Incarnation } from "../../incarnation/item/incarnation.js"
 import { NephilimActorSheet } from "../../../module/nephilimActorSheet.js";
-import { DocumentReferences } from "../../../module/documentReferences.js";
 
 export class FigureSheet extends NephilimActorSheet {
 
@@ -40,7 +40,7 @@ export class FigureSheet extends NephilimActorSheet {
             ...await super._prepareContext(options),
             tabs: this._prepareTabs("primary"),
             context: {
-                vecus: new DocumentReferences('Item', 'vecu', this.document)
+                incarnations: this.#incarnations()
             }
         };
         return context;
@@ -55,6 +55,19 @@ export class FigureSheet extends NephilimActorSheet {
             default:
         }
         return context;
+    }
+
+    #incarnations() {
+        let array = [];
+        for (const sid of this.document.system.base.incarnations) {
+            const item = this.document.items.find(i => i.type === "incarnation" && i.system.sid === sid);
+            const incarnation = new Incarnation(item);
+            array.push({
+                name: incarnation.name,
+                id: incarnation.id
+            });
+        }
+        return array;
     }
 
 }

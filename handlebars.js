@@ -1,5 +1,4 @@
 import { Constants } from "./module/constants.js";
-import { Incarnation } from "./feature/incarnation/item/incarnation.js";
 
 export class CustomHandlebarsHelpers {
 
@@ -7,7 +6,6 @@ export class CustomHandlebarsHelpers {
 
         Handlebars.registerHelper({
 
-            incarnation: CustomHandlebarsHelpers.incarnation,
             translate: CustomHandlebarsHelpers.translate,
             
 
@@ -45,14 +43,6 @@ export class CustomHandlebarsHelpers {
             minus: (v1, v2) => v1 - v2,
         });
 
-    }
-
-    /**
-     * @param item The incarnation item to extend. 
-     * @returns the incarnation instance which extends the incarnation item.
-     */
-    static incarnation(item) {
-        return new Incarnation(item)
     }
 
     /**

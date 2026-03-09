@@ -1,3 +1,5 @@
+import { DocumentIdentifier } from "../../../module/documentIdentifier.js"
+
 export class Incarnation {
 
     /**
@@ -22,7 +24,17 @@ export class Incarnation {
         return  game.items.find(i => i.type === "periode" && i.system.sid === this.vecu.system.base.periode);
     }
 
-    
+    get name() {
+        return this.vecu.name;
+    }
+
+    get id() {
+        return this.item.id;
+    }
+
+    get fsid() {
+        return new DocumentIdentifier(this.item).fsid
+    }
 
 
 

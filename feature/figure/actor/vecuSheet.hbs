@@ -8,12 +8,8 @@
         references=context.vecus
     }}
 
-    {{#each document.items}}
-        {{#if (eq this.type "incarnation")}}
-            {{#with (incarnation this) as |incarnation|}}
-            <div class='incarnation draggable' data-sid="{{incarnation.item.system.sid}}">{{incarnation.vecu.name}}</div>
-            {{/with}}
-        {{/if}}
+    {{#each context.incarnations}}
+        <div class='incarnation draggable' data-id="{{id}}">{{name}}</div>
     {{/each}}
 
 </section>

@@ -16,6 +16,7 @@ export class Templates {
             `systems/neph5e/templates/version-selector.hbs`,
 
             `systems/neph5e/feature/figure/actor/descriptionSheet.hbs`,
+            `systems/neph5e/feature/figure/actor/incarnationSheet.hbs`,
             `systems/neph5e/feature/figure/actor/vecuSheet.hbs`,
             
         ]);

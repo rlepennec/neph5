@@ -49,7 +49,8 @@ export class DocumentIdentifier {
                 switch (source.constructor) {
 
                     // The event target from which to create the identifier. The data-fsid
-                    // attribute must defined the textual expression of the identifier. 
+                    // attribute must defined the textual expression of the identifier.
+                    case HTMLDivElement:
                     case HTMLElement:
                     case HTMLParagraphElement:
                     case HTMLSpanElement: {
