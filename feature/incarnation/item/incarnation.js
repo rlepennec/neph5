@@ -4,7 +4,7 @@ export class Incarnation {
 
     /**
      * @constructor
-     * @param item The NephilimItem.
+     * @param item The embedded NephilimItem.
      */
     constructor(item) {
         this.item = item;

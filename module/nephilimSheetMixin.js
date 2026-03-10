@@ -205,8 +205,7 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} target 
 		 */
 		_onDragOver(event) {
-			console.log('_onDragOver');
-			console.log(event);
+
 		}
 
 		/**

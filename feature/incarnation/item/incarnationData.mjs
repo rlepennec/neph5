@@ -11,7 +11,8 @@ export class IncarnationData extends NephilimDataModel {
             vecu: new foundry.data.fields.SchemaField
             (
                 {
-                    reference: new UUIDReferenceField(
+                    reference: new UUIDReferenceField
+                    (
                         {
                             type: 'vecu'
                         }
@@ -56,7 +57,8 @@ export class IncarnationData extends NephilimDataModel {
                     new foundry.data.fields.SchemaField
                     (
                         {
-                            reference: new UUIDReferenceField(
+                            reference: new UUIDReferenceField
+                            (
                                 {
                                     type: 'competence'
                                 }
@@ -87,7 +89,8 @@ export class IncarnationData extends NephilimDataModel {
                     new foundry.data.fields.SchemaField
                     (
                         {
-                            reference: new UUIDReferenceField(
+                            reference: new UUIDReferenceField
+                            (
                                 {
                                     type: 'competence'
                                 }

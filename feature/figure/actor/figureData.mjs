@@ -16,6 +16,13 @@ export class FigureData extends NephilimDataModel {
                         duplicable: false,
                     }
                 )
+
+                /*
+                (
+                    new DocumentIdField()
+                )
+                */
+
             )
         }
     }
