@@ -134,8 +134,7 @@ export class DocumentReference extends DocumentIdentifier {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    const f = field.fieldPath.replace(field.name, "-=" + field.name)
-
+                    const f = field.fieldPath.replace(field.name, "-=" + field.name);
                     updates[f] = null;
                 }
             })

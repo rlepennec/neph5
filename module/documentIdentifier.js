@@ -35,6 +35,7 @@ export class DocumentIdentifier {
     /**
      * @param {*} source The source from which to create the identifier which can be:
      *  - a foundry object
+     *  - a foundry embedded object
      *  - an attribute data-fsid in a html element provided by the system
      *  - a string with the following format: documentName.id.type.sid
      */
@@ -78,15 +79,26 @@ export class DocumentIdentifier {
                     throw new Error("Unsupported type to create a document identifier");
                 }
 
-
                 break;
             
             }
 
             case 2: {
-                this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
-                break;
 
+                
+                this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
+                //this.#parse(game.collections.get(args[0]).find(d => d.id === args[1]));
+
+                // embedded element from actor
+
+
+                break;
+            }
+
+            case 3: {
+                this.#parse(args[0].collections.get(args[1]).find(d => d.system.sid === args[2]));
+                //this.#parse(args[0].collections.get(args[1]).find(d => d.id === args[2]));
+                break;
             }
 
             default:
