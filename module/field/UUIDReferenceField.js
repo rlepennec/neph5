@@ -2,6 +2,7 @@
  * The default options are:
  * - collection: indicates the source document name.
  * - type:       Indicates the type of source document type, base if generic type since base is defined as a item type by foundry.
+ * - key:        Indicates the property to use as reference, id or sid.
  * - droppable:  Indicates if a document can be dropped to set the reference.
  * - openable:   Indicates if the user can click on the reference to open the source document.
  * - duplicable: Indicate if the document can be duplicated.
@@ -18,6 +19,7 @@ export class UUIDReferenceField extends foundry.data.fields.StringField {
             {
                 collection: 'Item',
                 type: 'base',
+                key: 'sid',
                 droppable: true,
                 openable: true,
                 duplicable: true,

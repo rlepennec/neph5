@@ -11,6 +11,7 @@ export class FigureData extends NephilimDataModel {
                 new UUIDReferenceField(
                     {
                         type: 'incarnation',
+                        key: 'id',
                         droppable: true,
                         openable: false,
                         duplicable: false,
