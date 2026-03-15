@@ -42,10 +42,10 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                referenced = DocumentTools.getField(document, field, null) === this.sid;
+                referenced = DocumentTools.getFieldValue(document, field, null) === this.sid;
             })
             .withCallbackSet(field => {
-                referenced = DocumentTools.getField(document, field, null).has(this.sid);
+                referenced = DocumentTools.getFieldValue(document, field, null).has(this.sid);
             })
             .forEach(document);
 
@@ -71,7 +71,7 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                const sid = DocumentTools.getField(document, field, null);
+                const sid = DocumentTools.getFieldValue(document, field, null);
                 if (sid != null) {
                     target = new DocumentIdentifier(this.documentName,  sid).toDocument();
                 }
@@ -106,7 +106,7 @@ export class DocumentReference extends DocumentIdentifier {
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates[field.fieldPath] = new Set(DocumentTools.getField(document, field, null)).add(this.sid);
+                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).add(this.sid);
                 }
             })
             .forEach(document);
@@ -140,7 +140,7 @@ export class DocumentReference extends DocumentIdentifier {
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates[field.fieldPath] = new Set(DocumentTools.getField(document, field, null)).filter(v => v != this.sid);
+                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).filter(v => v != this.sid);
                 }
             })
             .forEach(document);

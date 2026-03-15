@@ -27,6 +27,16 @@ export class DocumentTools {
         return current;
     }
 
+    /**
+     * @param {*} document     The document from which to retrieve the property.
+     * @param {*} field        The field from which to retrieve the property.
+     * @param {*} defaultValue The default value to return if the property is not found.
+     * @returns the value of the specified property.
+     */
+    static getFieldValue(document, field, defaultValue) {
+        return DocumentTools.getObjectPropertyFromPath(document, field.fieldPath, defaultValue);
+    }
+
     static getVersions(document) {
         const schema = Models.getData(document).defineSchema();
         return Object.getOwnPropertyNames(schema.versions.fields);
@@ -36,10 +46,6 @@ export class DocumentTools {
         if (DocumentTools.isObjectNotEmpty(updates)) {
             await document.update(updates);
         }
-    }
-
-    static getField(document, field, defaultValue) {
-        return DocumentTools.getObjectPropertyFromPath(document, field.fieldPath, defaultValue);
     }
 
     static async droppedDocument(event) {

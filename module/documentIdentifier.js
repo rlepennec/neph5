@@ -53,12 +53,12 @@ export class DocumentIdentifier {
                     this.#parse(source.closest("[data-fsid]")?.dataset.fsid);
                 }
 
-                // The actor from which to create the identifier.
+                // The world actor from which to create the identifier.
                 else if(source instanceof NephilimActor) {
                     this.#parse(source);
                 }
 
-                // The item or the actor from which to create the identifier.
+                // The world item or the actor from which to create the identifier.
                 else if(source instanceof NephilimItem) {
                     this.#parse(source);
                 }
@@ -85,7 +85,7 @@ export class DocumentIdentifier {
 
             case 2: {
 
-                
+                // The first argument is the name of the collection, the second the system identifier
                 this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
                 //this.#parse(game.collections.get(args[0]).find(d => d.id === args[1]));
 
@@ -96,6 +96,11 @@ export class DocumentIdentifier {
             }
 
             case 3: {
+
+                // The first argument is the document which contains the collection
+                // The second is the name of the collection
+                // The third is the system identifier
+
                 this.#parse(args[0].collections.get(args[1]).find(d => d.system.sid === args[2]));
                 //this.#parse(args[0].collections.get(args[1]).find(d => d.id === args[2]));
                 break;
@@ -157,6 +162,25 @@ export class DocumentIdentifier {
      */
     get fsid() {
         return this.isNull() ? null : this.uuid + "." + this.#type + "." + this.#sid; 
+    }
+
+    /**
+     * @param type The type of identifier to return, 'id', 'sid', 'fsid', 'uuid'.
+     * @returns the specified document identifier
+     */
+    key(type) {
+        switch (type) {
+            case 'id':
+                return this.#id;
+            case 'sid':
+                return this.#sid;
+            case 'fsid':
+                return this.fsid;
+            case 'uuid':
+                return this.uuid;
+            default:
+                throw new Error("Invalid key type " + type);
+        }
     }
 
     /**

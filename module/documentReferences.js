@@ -27,7 +27,7 @@ export class DocumentReferences {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackSet(field => {
-                DocumentTools.getField(document, field, references).forEach(sid => {
+                DocumentTools.getFieldValue(document, field, references).forEach(sid => {
                     references.push(new DocumentIdentifier(this.documentName, sid));
                 });
                 references.sort((a,b) => { return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1 });
@@ -48,7 +48,7 @@ export class DocumentReferences {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                const sid = DocumentTools.getField(document, field, reference);
+                const sid = DocumentTools.getFieldValue(document, field, reference);
                 if (sid != null) {
                     reference = new DocumentIdentifier(this.documentName, sid);
                 }
