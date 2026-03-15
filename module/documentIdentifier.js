@@ -166,9 +166,9 @@ export class DocumentIdentifier {
 
     /**
      * @param type The type of identifier to return, 'id', 'sid', 'fsid', 'uuid'.
-     * @returns the specified document identifier
+     * @returns the specified document identifier reference.
      */
-    key(type) {
+    reference(type) {
         switch (type) {
             case 'id':
                 return this.#id;
@@ -179,7 +179,7 @@ export class DocumentIdentifier {
             case 'uuid':
                 return this.uuid;
             default:
-                throw new Error("Invalid key type " + type);
+                throw new Error("Invalid identifier reference type " + type);
         }
     }
 
