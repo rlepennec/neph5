@@ -42,10 +42,10 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                referenced = DocumentTools.getFieldValue(document, field, null) === this.sid;
+                referenced = DocumentTools.getFieldValue(document, field, null) === this.reference(field.reference);
             })
             .withCallbackSet(field => {
-                referenced = DocumentTools.getFieldValue(document, field, null).has(this.sid);
+                referenced = DocumentTools.getFieldValue(document, field, null).has(this.reference(field.element.reference));
             })
             .forEach(document);
 
@@ -71,9 +71,9 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                const sid = DocumentTools.getFieldValue(document, field, null);
-                if (sid != null) {
-                    target = new DocumentIdentifier(this.documentName,  sid).toDocument();
+                const ref = DocumentTools.getFieldValue(document, field, null);
+                if (ref != null) {
+                    target = new DocumentIdentifier(this.documentName,  ref).toDocument();
                 }
             })
             .forEach(document);
@@ -101,12 +101,12 @@ export class DocumentReference extends DocumentIdentifier {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates[field.fieldPath] = this.sid;
+                    updates[field.fieldPath] = this.reference(field.reference);
                 }
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).add(this.sid);
+                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).add(this.reference(field.element.reference));
                 }
             })
             .forEach(document);
@@ -140,7 +140,7 @@ export class DocumentReference extends DocumentIdentifier {
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).filter(v => v != this.sid);
+                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).filter(v => v != this.reference(field.element.reference));
                 }
             })
             .forEach(document);

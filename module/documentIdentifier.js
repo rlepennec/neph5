@@ -85,12 +85,14 @@ export class DocumentIdentifier {
 
             case 2: {
 
-                // The first argument is the name of the collection, the second the system identifier
-                this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
-                //this.#parse(game.collections.get(args[0]).find(d => d.id === args[1]));
+                // The first argument is the name of the collection, the second argument can be the
+                // system identifier or the foundry item identifier
+                if (args[1].includes('-')) {
+                    this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
 
-                // embedded element from actor
-
+                } else {
+                    this.#parse(game.collections.get(args[0])).get(args[1]);
+                }
 
                 break;
             }
