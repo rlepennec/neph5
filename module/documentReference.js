@@ -42,10 +42,10 @@ export class DocumentReference extends DocumentIdentifier {
 
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
-                referenced = DocumentTools.getFieldValue(document, field, null) === this.reference(field.reference);
+                referenced = DocumentTools.getFieldValue(document, field, null) === this.identifierOf(field.reference);
             })
             .withCallbackSet(field => {
-                referenced = DocumentTools.getFieldValue(document, field, null).has(this.reference(field.element.reference));
+                referenced = DocumentTools.getFieldValue(document, field, null).has(this.identifierOf(field.element.reference));
             })
             .forEach(document);
 
@@ -101,12 +101,12 @@ export class DocumentReference extends DocumentIdentifier {
         new DocumentReferencesIterator(this.documentName, this.type)
             .withCallbackReference(field => {
                 if (field.droppable) {
-                    updates[field.fieldPath] = this.reference(field.reference);
+                    updates[field.fieldPath] = this.identifierOf(field.reference);
                 }
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).add(this.reference(field.element.reference));
+                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).add(this.identifierOf(field.element.reference));
                 }
             })
             .forEach(document);
@@ -140,7 +140,7 @@ export class DocumentReference extends DocumentIdentifier {
             })
             .withCallbackSet(field => {
                 if (field.element.droppable) {
-                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).filter(v => v != this.reference(field.element.reference));
+                    updates[field.fieldPath] = new Set(DocumentTools.getFieldValue(document, field, null)).filter(v => v != this.identifierOf(field.element.reference));
                 }
             })
             .forEach(document);
