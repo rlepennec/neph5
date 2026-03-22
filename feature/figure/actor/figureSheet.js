@@ -1,3 +1,4 @@
+import { DocumentIdentifier } from "../../../module/documentIdentifier.js";
 import { Incarnation } from "../../incarnation/item/incarnation.js"
 import { NephilimActorSheet } from "../../../module/nephilimActorSheet.js";
 
@@ -67,6 +68,13 @@ export class FigureSheet extends NephilimActorSheet {
             });
         }
         return array;
+    }
+
+    async _onSelect(event, target) {
+        console.log(this.document.documentName);
+        let doc = new DocumentIdentifier(target).toDocument();
+        console.log("select");
+        console.log(doc);
     }
 
 }

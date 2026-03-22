@@ -38,6 +38,9 @@ export const NephilimMixinSheet = Base => {
 
 		versions = DocumentTools.getVersions(this.document);
 
+		/**
+		 * The sheet is locked by default.
+		 */
 		locked = true;
 
 		#setupable = true;
@@ -102,15 +105,6 @@ export const NephilimMixinSheet = Base => {
 		 */
 		async _onClose() {
 		}
-
-		// async #testCreateItem() {
-		// 	const data = [{name: "New incarnation", type: "incarnation"}];
-		// 	const created = await Item.implementation.create(data);
-		// 	console.log(created);
-		// 	await created.delete();
-		// }
-
-
 
 		/** 
 		 * @override
@@ -207,17 +201,9 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} target 
 		 */
 		_onDragOver(event) {
-
 		}
 
-		/**
-		 * The callback used to drop an element on a target.
-		 * @param {*} event 
-		 * @param {*} target 
-		 */
-		async _onDrop(event) {
-			throw new Error("_onDrop method must be implemented");
-		}
+
 
 		/**
 		 * @param target The event part which describes the html target.
@@ -271,10 +257,24 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		static async _onSelect(event, target) {
-			console.log(this.document.documentName);
-			let doc = new DocumentIdentifier(target).toDocument();
-			console.log("select");
-			console.log(doc);
+			this._onSelect(event, target)
+		}
+
+		/**
+		 * The callback used to drop an element on a target which must be overriden.
+		 * @param {*} event The drop event
+		 */
+		async _onDrop(event) {
+			throw new Error("_onDrop method must be implemented");
+		}
+
+		/**
+		 * The callback used to select an element which must be overriden.
+		 * @param {*} event  The select event
+		 * @param {*} target The selected HTML target 
+		 */
+		async _onSelect(event, target) {
+			throw new Error("_onSelect method must be implemented");
 		}
 
 		/**
