@@ -8,6 +8,11 @@ import { NephilimItem } from "./nephilimItem.js"
 export class DocumentIdentifier {
 
     /**
+     * The parent foundry document which contains the foundry document to identify.
+     */
+    #parent = null;
+
+    /**
      * The foundry document name: Item, Actor, ... defined in game.collections
      */
     #documentName = null;
@@ -160,10 +165,11 @@ export class DocumentIdentifier {
     }
 
     /**
-     * @returns the full system identifier of the document: documentName.id.type.sid
+     * @returns the full system identifier of the document: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
      */
     get fsid() {
-        return this.isNull() ? null : this.uuid + "." + this.#type + "." + this.#sid; 
+        const parentId = this.#parent == null ? "World" : this.#parent.documentName + "." + this.#parent.id;
+        return this.isNull() ? null : parentId + "." + this.uuid + "." + this.#type + "." + this.#sid; 
     }
 
     /**
@@ -196,7 +202,13 @@ export class DocumentIdentifier {
      * @returns the game document according to the document name.
      */
     toDocument() {
-        return this.isNull() ? null : fromUuidSync(this.uuid);
+        if (this.isNull()) {
+            return null;
+        } else if (this.#parent == null) {
+            return fromUuidSync(this.uuid);
+        } else {
+            return this.#parent.getEmbeddedDocument(this.#documentName, this.#id);
+        }
     }
 
     /**
@@ -217,39 +229,32 @@ export class DocumentIdentifier {
 
         switch (source.constructor) {
 
-            case String: {
+            case String:
                 const words = source.split(".");
                 this.#sid = words.pop();
                 this.#type = words.pop();
                 this.#id = words.pop();
                 this.#documentName = words.pop();
-                this.#name = fromUuidSync(this.uuid).name;
+                this.#parent = words.length === 2 ? game.collections.get(words.at(0)).get(words.at(1)) : null;
+                this.#name = this.toDocument().name;
                 break;
-            }
 
-            case NephilimActor: {
+            case NephilimActor:
+            case NephilimItem:
                 this.#sid = source.system.sid;
                 this.#type = source.type;
                 this.#id = source.id;
                 this.#documentName = source.documentName;
+                this.#parent = source.parent;
                 this.#name = source.name;
                 break;
-            }
-
-            case NephilimItem: {
-                this.#sid = source.system.sid;
-                this.#type = source.type;
-                this.#id = source.id;
-                this.#documentName = source.documentName;
-                this.#name = source.name;
-                break;
-            }
 
             default:
                 this.#sid = null;
                 this.#type = null;
                 this.#id = null;
                 this.#documentName = null;
+                this.#parent = null;
                 this.#name = null;
                 break;
 

@@ -64,7 +64,8 @@ export class FigureSheet extends NephilimActorSheet {
             const incarnation = new Incarnation(item);
             array.push({
                 id: incarnation.id,
-                name: incarnation.name
+                name: incarnation.name,
+                fsid: incarnation.fsid
             });
         }
         return array;

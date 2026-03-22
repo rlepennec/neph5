@@ -1,6 +1,7 @@
 import { DocumentIdentifier } from "./documentIdentifier.js"
 import { DocumentReference } from "./documentReference.js"
 import { DocumentTools } from "./documentTools.js"
+import { NephilimActor } from "./nephilimActor.js"
 import { VersionSelector } from "./versionSelector.js"
 
 export const NephilimMixinSheet = Base => {
@@ -25,6 +26,7 @@ export const NephilimMixinSheet = Base => {
 				delete: NephilimSheet._onRemoveReference,
 				open: NephilimSheet._onOpenLink,
 				lock: NephilimSheet._onLock,
+				select: NephilimSheet._onSelect,
 				setup: NephilimSheet._onSetup
 			},
 			window: {
@@ -266,6 +268,13 @@ export const NephilimMixinSheet = Base => {
 			this.locked = !this.locked;
 			this.window.lock.classList.add(NephilimSheet.#getLockIcon(this.locked));
 			this.render(false);
+		}
+
+		static async _onSelect(event, target) {
+			console.log(this.document.documentName);
+			let doc = new DocumentIdentifier(target).toDocument();
+			console.log("select");
+			console.log(doc);
 		}
 
 		/**
