@@ -5,6 +5,8 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
     constructor(options = {}) {
         super(options);
         this.sheet = null;
+        this.version = null;
+        this.versions = null;
     }
 
     static DEFAULT_OPTIONS = {
@@ -32,14 +34,20 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
         }
     }
 
+    /**
+     * @param {*} event    The event to handle.
+     * @param {*} form     The form to use.
+     * @param {*} formData 
+     */
     static async #onSubmit(event, form, formData) {
         event.preventDefault();
-        //await game.settings.set("mon-module", "optionSelectionnee", formData.get("option"));
-        console.log(formData);
-        console.log(formData.get("version"));
         this.sheet.setVersion(formData.get("version"));
     }
 
+    /**
+     * @param {*} sheet The sheet to register. 
+     * @returns the instance.
+     */
     withSheet(sheet) {
         this.sheet = sheet;
         this.version = sheet.version;
@@ -49,6 +57,7 @@ export class VersionSelector extends foundry.applications.api.HandlebarsApplicat
 
     /** 
      * @override
+     * @protected
      */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);

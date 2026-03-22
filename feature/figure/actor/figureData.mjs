@@ -4,11 +4,14 @@ import { UUIDReferenceField } from "../../../module/field/UUIDReferenceField.js"
 
 export class FigureData extends NephilimDataModel {
 
-    static defineBase() {
+    static defineBase()
+    {
         return {
             description: new TextField(),
-            incarnations: new foundry.data.fields.SetField(
-                new UUIDReferenceField(
+            incarnations: new foundry.data.fields.SetField
+            (
+                new UUIDReferenceField
+                (
                     {
                         type: 'incarnation',
                         reference: 'id',

@@ -70,6 +70,9 @@ export class FigureSheet extends NephilimActorSheet {
         return array;
     }
 
+    /**
+     * @override
+     */
     async _onSelect(event, target) {
         console.log(this.document.documentName);
         let doc = new DocumentIdentifier(target).toDocument();

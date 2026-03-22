@@ -44,7 +44,8 @@ export class IncarnationData extends NephilimDataModel {
     }
 
     static defineVersion1() {
-        return new ChunkField(
+        return new ChunkField
+        (
             {
                 vecu: new foundry.data.fields.SchemaField
                 (
@@ -76,7 +77,8 @@ export class IncarnationData extends NephilimDataModel {
     }
 
     static defineVersion5() {
-        return new ChunkField(
+        return new ChunkField
+        (
             {
                 vecu: new foundry.data.fields.SchemaField
                 (

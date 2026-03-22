@@ -71,7 +71,7 @@ export class Incarnation {
                     }
                 }
             }
-        };
+        }
 
         return await actor.createEmbeddedDocuments("Item", [data]);
 

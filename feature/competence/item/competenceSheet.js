@@ -14,7 +14,8 @@ export class CompetenceSheet extends NephilimItemSheet {
     }
 
     static PARTS = {
-        main: {
+        main:
+        {
             template: `systems/neph5e/feature/${this.#ID}/item/${this.#ID}Sheet.hbs`,
         }
     }

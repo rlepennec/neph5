@@ -7,7 +7,8 @@ export class VecuData extends NephilimDataModel {
 
     static defineBase() {
         return {
-            competences: new foundry.data.fields.SetField(
+            competences: new foundry.data.fields.SetField
+            (
                 new UUIDReferenceField(
                     {
                         type: 'competence'
@@ -15,13 +16,15 @@ export class VecuData extends NephilimDataModel {
                 )
             ),
             description: new TextField(),
-            element: new foundry.data.fields.StringField(
+            element: new foundry.data.fields.StringField
+            (
                 {
                     initial: 'air',
                     choices: Constants.ELEMENTS
                 }
             ),
-            periode: new UUIDReferenceField(
+            periode: new UUIDReferenceField
+            (
                 {
                     type: 'periode',
                     duplicable: false

@@ -7,7 +7,8 @@ export class CompetenceData extends NephilimDataModel {
     static defineBase() {
         return {
             description: new TextField(),
-            element: new foundry.data.fields.StringField(
+            element: new foundry.data.fields.StringField
+            (
                 {
                     initial: 'air',
                     choices: Constants.ELEMENTS
