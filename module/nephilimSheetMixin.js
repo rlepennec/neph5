@@ -48,7 +48,7 @@ export const NephilimMixinSheet = Base => {
 		/**
 		 * The drag & drop handlers.
 		 */
-		#dragDrop = this.options.dragDrop.map((d) => {
+		dragDrop = this.options.dragDrop.map((d) => {
 			d.permissions = {
 				dragstart: this._canDragStart.bind(this),
 				drop: this._canDragDrop.bind(this),
@@ -86,15 +86,6 @@ export const NephilimMixinSheet = Base => {
 
 		// Optional: Add getter to access the private property
 
-		/**
-		 * Returns an array of DragDrop instances
-		 * @type {DragDrop[]}
-		 * @public
-		 */
-		get dragDrop() {
-			return this.#dragDrop;
-		}
-
 		/** 
 		 * @override
 		 */
@@ -131,7 +122,7 @@ export const NephilimMixinSheet = Base => {
 		 * @override
 		 */
 		async _onRender(context, options) {
-			this.#dragDrop.forEach((d) => d.bind(this.element));
+			this.dragDrop.forEach((d) => d.bind(this.element));
 		}
 
 		/**
