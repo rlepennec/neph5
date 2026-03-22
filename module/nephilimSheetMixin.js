@@ -45,7 +45,22 @@ export const NephilimMixinSheet = Base => {
 
 		#setupable = true;
 
-		#dragDrop = this.#createDragDropHandlers();
+		/**
+		 * The drag & drop handlers.
+		 */
+		#dragDrop = this.options.dragDrop.map((d) => {
+			d.permissions = {
+				dragstart: this._canDragStart.bind(this),
+				drop: this._canDragDrop.bind(this),
+			};
+			d.callbacks = {
+				dragstart: this._onDragStart.bind(this),
+				dragover: this._onDragOver.bind(this),
+				drop: this._onDrop.bind(this),
+			};
+			return new foundry.applications.ux.DragDrop.implementation(d);
+		});
+
 
 		get setupable() {
 			return this.#setupable && this.versions.length > 0;
@@ -59,26 +74,6 @@ export const NephilimMixinSheet = Base => {
 				this.version = value;
 				this.render(true);
 			}
-		}
-
-		/**
-		* Create drag-and-drop workflow handlers for this Application
-		* @returns {DragDrop[]}     An array of DragDrop handlers
-		* @private
-		*/
-		#createDragDropHandlers() {
-			return this.options.dragDrop.map((d) => {
-				d.permissions = {
-					dragstart: this._canDragStart.bind(this),
-					drop: this._canDragDrop.bind(this),
-				};
-				d.callbacks = {
-					dragstart: this._onDragStart.bind(this),
-					dragover: this._onDragOver.bind(this),
-					drop: this._onDrop.bind(this),
-				};
-				return new foundry.applications.ux.DragDrop.implementation(d);
-			});
 		}
 
 		/**
