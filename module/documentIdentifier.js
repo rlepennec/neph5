@@ -164,8 +164,7 @@ export class DocumentIdentifier {
      * @returns the full system identifier of the document: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
      */
     get fsid() {
-        const parentId = this.#parent == null ? "World" : this.#parent.documentName + "." + this.#parent.id;
-        return this.isNull() ? null : parentId + "." + this.uuid + "." + this.#type + "." + this.#sid; 
+        return this.isNull() ? null : (this.#parent == null ? "World" : this.#parent.documentName + "." + this.#parent.id) + "." + this.uuid + "." + this.#type + "." + this.#sid; 
     }
 
     /**
