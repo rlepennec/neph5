@@ -1,7 +1,6 @@
 import { DocumentIdentifier } from "./documentIdentifier.js"
 import { DocumentReference } from "./documentReference.js"
 import { DocumentTools } from "./documentTools.js"
-import { NephilimActor } from "./nephilimActor.js"
 import { VersionSelector } from "./versionSelector.js"
 
 export const NephilimMixinSheet = Base => {
@@ -79,6 +78,7 @@ export const NephilimMixinSheet = Base => {
 		/**
 		 * @param {*} locked The lock state to display.
 		 * @returns the class to display the toggle icon.
+		 * @private
 		 */
 		static #getLockIcon(locked) {
 			return locked ? 'fa-lock' : 'fa-lock-open';
@@ -88,12 +88,14 @@ export const NephilimMixinSheet = Base => {
 
 		/** 
 		 * @override
+		 * @protected
 		 */
 		async _onClose() {
 		}
 
 		/** 
 		 * @override
+		 * @protected
 		 */
 		async _renderFrame(options) {
 
@@ -120,6 +122,7 @@ export const NephilimMixinSheet = Base => {
 
 		/** 
 		 * @override
+		 * @protected
 		 */
 		async _onRender(context, options) {
 			this.dragDrop.forEach((d) => d.bind(this.element));
@@ -249,6 +252,7 @@ export const NephilimMixinSheet = Base => {
 		/**
 		 * The callback used to drop an element on a target which must be overriden.
 		 * @param {*} event The drop event
+		 * @protected
 		 */
 		async _onDrop(event) {
 			throw new Error("_onDrop method must be implemented");
@@ -257,7 +261,8 @@ export const NephilimMixinSheet = Base => {
 		/**
 		 * The callback used to select an element which must be overriden.
 		 * @param {*} event  The select event
-		 * @param {*} target The selected HTML target 
+		 * @param {*} target The selected HTML target
+		 * @protected
 		 */
 		async _onSelect(event, target) {
 			throw new Error("_onSelect method must be implemented");
@@ -267,6 +272,7 @@ export const NephilimMixinSheet = Base => {
 		 * The callback used to setup the document.
 		 * @param {*} event 
 		 * @param {*} target 
+		 * @protected
 		 */
 		static async _onSetup(event, target) {
 			await new VersionSelector()
