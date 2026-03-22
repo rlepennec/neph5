@@ -2,7 +2,8 @@ import { NephilimActor } from "./nephilimActor.js"
 import { NephilimItem } from "./nephilimItem.js"
 
 /**
- * The DocumentIdentifier class defines an identifier of a world system object.
+ * The DocumentIdentifier class defines an identifier of a system document. Identified
+ * document can be embedded in another document or can world document.
  * This class doesn't manage compendium.
  */
 export class DocumentIdentifier {
@@ -39,10 +40,15 @@ export class DocumentIdentifier {
 
     /**
      * @param {*} source The source from which to create the identifier which can be:
-     *  - a foundry object
-     *  - a foundry embedded object
-     *  - an attribute data-fsid in a html element provided by the system
-     *  - a string with the following format: documentName.id.type.sid
+     * with an argument:
+     *  - a HTML element. The closest data-fsid attribute defines the document
+     *  - a NephilimActor object
+     *  - a NephilimItem object, world or embedded
+     *  - a string with the following format ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
+     *  - a DragEvent which defines the uuid of the dropped document
+     *  - a document name
+     * with two arguments:
+     *  - a document name and a document uuid or sid for a world document
      */
    constructor(...args) {
 
@@ -69,7 +75,7 @@ export class DocumentIdentifier {
                 }
 
                 // The textual expression from which to create the identifier.
-                // It must be built as follow: documentName.id.type.sid
+                // It must be built as follow: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
                 else if(source instanceof String) {
                     this.#parse(source);
                 }
@@ -90,27 +96,17 @@ export class DocumentIdentifier {
 
             case 2: {
 
-                // The first argument is the name of the collection, the second argument can be the
-                // system identifier or the foundry item identifier
+                // The first argument is the name of the collection, the second a system identifier
                 if (args[1].includes('-')) {
                     this.#parse(game.collections.get(args[0]).find(d => d.system.sid === args[1]));
 
+                // The first argument is the name of the collection, the second a foundry identifier
                 } else {
                     this.#parse(game.collections.get(args[0])).get(args[1]);
                 }
 
                 break;
-            }
 
-            case 3: {
-
-                // The first argument is the document which contains the collection
-                // The second is the name of the collection
-                // The third is the system identifier
-
-                this.#parse(args[0].collections.get(args[1]).find(d => d.system.sid === args[2]));
-                //this.#parse(args[0].collections.get(args[1]).find(d => d.id === args[2]));
-                break;
             }
 
             default:

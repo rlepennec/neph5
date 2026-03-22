@@ -60,10 +60,8 @@ export class FigureSheet extends NephilimActorSheet {
     #incarnations() {
         let array = [];
         for (const id of this.document.system.base.incarnations) {
-            const item = this.document.items.get(id);
-            const incarnation = new Incarnation(item);
+            const incarnation = new Incarnation(this.document.items.get(id));
             array.push({
-                id: incarnation.id,
                 name: incarnation.name,
                 fsid: incarnation.fsid
             });
