@@ -3,9 +3,11 @@ import { ChunkField } from "../../../../module/field/chunkField.js"
 export class Version5 {
 
     static defineItem() {
-        return new ChunkField(
+        return new ChunkField
+        (
             {
-                metamorphoses: new foundry.data.fields.ArrayField(
+                metamorphoses: new foundry.data.fields.ArrayField
+                (
                     new foundry.data.fields.StringField(),
                     {
                         initial: Array(10).fill(''),
@@ -21,7 +23,8 @@ export class Version5 {
     }
     
     static defineActor() {
-        return new foundry.data.fields.ArrayField(
+        return new foundry.data.fields.ArrayField
+        (
             new foundry.data.fields.NumberField(),
             {
                 initial: Array(10).fill(0),
