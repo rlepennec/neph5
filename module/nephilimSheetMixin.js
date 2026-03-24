@@ -49,13 +49,13 @@ export const NephilimMixinSheet = Base => {
 		 */
 		dragDrop = this.options.dragDrop.map((d) => {
 			d.permissions = {
-				dragstart: this._canDragStart.bind(this),
-				drop: this._canDragDrop.bind(this),
+				dragstart: this.#canDragStart.bind(this),
+				drop: this.#canDragDrop.bind(this),
 			};
 			d.callbacks = {
-				dragstart: this._onDragStart.bind(this),
-				dragover: this._onDragOver.bind(this),
-				drop: this._onDrop.bind(this),
+				dragstart: this.#onDragStart.bind(this),
+				dragover: this.#onDragOver.bind(this),
+				drop: this.#onDrop.bind(this),
 			};
 			return new foundry.applications.ux.DragDrop.implementation(d);
 		});
@@ -134,7 +134,7 @@ export const NephilimMixinSheet = Base => {
 		 * @returns {boolean}             Can the current user drag this selector?
 		 * @protected
 		 */
-		_canDragStart(selector) {
+		#canDragStart(selector) {
 			// game.user fetches the current user
 			return this.isEditable;
 		}
@@ -145,7 +145,7 @@ export const NephilimMixinSheet = Base => {
 		 * @returns {boolean}             Can the current user drop on this selector?
 		 * @protected
 		 */
-		_canDragDrop(selector) {
+		#canDragDrop(selector) {
 			// game.user fetches the current user
 			return this.isEditable;
 		}
@@ -161,7 +161,7 @@ export const NephilimMixinSheet = Base => {
 		 * Callback actions which occur at the beginning of a drag start workflow.
 		 * @param {*} event 
 		 */
-		_onDragStart(event) {
+		#onDragStart(event) {
 
 			if ('link' in event.target.dataset) return;
 
@@ -180,10 +180,8 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} event 
 		 * @param {*} target 
 		 */
-		_onDragOver(event) {
+		#onDragOver(event) {
 		}
-
-
 
 		/**
 		 * @param target The event part which describes the html target.
@@ -245,8 +243,36 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} event The drop event
 		 * @protected
 		 */
-		async _onDrop(event) {
-			throw new Error("_onDrop method must be implemented");
+		async #onDrop(event) {
+
+			if (this.locked) return;
+
+			const dropped = JSON.parse(event.dataTransfer.getData("text/plain"));
+			switch (dropped.type) {
+				case 'Sheet':
+					const document = new DocumentIdentifier(new String(dropped.fsid)).toDocument();
+					console.log(document);
+					if (document.parent === this.document) {
+						console.log("same doc");
+					}
+					this._onMove(event);
+					// move
+
+					break;
+				case 'Item':
+					console.log('TBD');
+					break;
+			}
+
+		}
+
+		/**
+		 * The callback used to drop an element on a target which must be overriden.
+		 * @param {*} event The drop event
+		 * @protected
+		 */
+		async _onMove(event) {
+			throw new Error("_onMove method must be implemented");
 		}
 
 		/**

@@ -17,7 +17,20 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     /** 
      * @override
      */
-    async _onDrop(event) {
+    async _onDrops(event) {
+        throw new Error("_onMove method must be implemented");
+    }
+
+    /** 
+     * @override
+     */
+    async _onMove(event) {
+    }
+
+    /** 
+     * @override
+     */
+    async _onDrop2(event) {
 
         if (this.locked) return;
 
