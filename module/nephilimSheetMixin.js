@@ -249,30 +249,30 @@ export const NephilimMixinSheet = Base => {
 
 			const dropped = JSON.parse(event.dataTransfer.getData("text/plain"));
 			switch (dropped.type) {
-				case 'Sheet':
+				case 'Sheet': {
 					const document = new DocumentIdentifier(new String(dropped.fsid)).toDocument();
-					console.log(document);
 					if (document.parent === this.document) {
-						console.log("same doc");
+						this._onDrop(event, document);
 					}
-					this._onMove(event);
-					// move
-
 					break;
-				case 'Item':
-					console.log('TBD');
+				}
+				case 'Item': {
+					const document = new DocumentIdentifier(event).toDocument();
+					this._onDrop(event, document);
 					break;
+				}
 			}
 
 		}
 
 		/**
 		 * The callback used to drop an element on a target which must be overriden.
-		 * @param {*} event The drop event
+		 * @param {*} event    The drop event
+		 * @param {*} document The document which has been dropped.
 		 * @protected
 		 */
-		async _onMove(event) {
-			throw new Error("_onMove method must be implemented");
+		async _onDrop(event, document) {
+			throw new Error("_onDrop method must be implemented");
 		}
 
 		/**

@@ -24,7 +24,8 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     /** 
      * @override
      */
-    async _onMove(event) {
+    async _onDrop(event, document) {
+        console.log(document);
     }
 
     /** 
