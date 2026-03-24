@@ -3,13 +3,8 @@
     data-group='primary'
     data-tab='vecu'>
 
-    {{> "systems/neph5e/templates/item-references.hbs"
-        title="vecus"
-        references=context.vecus
-    }}
-
     {{#if (eq context.incarnations.length 0)}}
-        <div class="expanse" data-drop="true"></div>
+        <div class="expanse" data-drop="true"/>
     {{else}}
         <div>
             {{#each context.incarnations}}
