@@ -160,27 +160,18 @@ export const NephilimMixinSheet = Base => {
 		/**
 		 * Callback actions which occur at the beginning of a drag start workflow.
 		 * @param {*} event 
-		 * @param {*} target 
 		 */
 		_onDragStart(event) {
 
-			const el = event.currentTarget;
 			if ('link' in event.target.dataset) return;
 
-			// Extract the data you need
-			let dragData = null;
-
-			const itemId = NephilimSheet.findDataset(event.currentTarget, 'itemId')
-
-			dragData = {
-				type: 'incarnation',
-				id: itemId
+			const fsid = NephilimSheet.findDataset(event.currentTarget, 'fsid');
+			if (fsid != null) {
+				event.dataTransfer.setData('text/plain', JSON.stringify({
+					type: "Sheet",
+					fsid: new String(fsid)
+				}))
 			}
-
-			if (!dragData) return;
-
-			// Set data transfer
-			event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
 
 		}
 
