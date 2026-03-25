@@ -30,6 +30,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
             switch(document.type) {
                 case 'incarnation': {
+                    console.log(event);
                     await new Incarnations(this.document).move(document);
                     break;
                 }

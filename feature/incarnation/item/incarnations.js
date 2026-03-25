@@ -5,7 +5,7 @@ export class Incarnations {
 
     /**
      * @constructor
-     * @param actor The NephilimActor.
+     * @param actor The NephilimActor owner of the embedded incarnations.
      */
     constructor(actor) {
         this.actor = actor;
@@ -19,6 +19,9 @@ export class Incarnations {
         await new DocumentReference(incarnation[0]).addTo(this.actor);
     }
 
+    /**
+     * @param {*} incarnation The embedded item to move.
+     */
     async move(incarnation) {
 
         const set = this.actor.system.base.incarnations;
