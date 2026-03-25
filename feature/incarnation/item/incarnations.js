@@ -33,6 +33,21 @@ export class Incarnations {
     }
 
     /**
+     * Delete the specified incarnation.
+     * @param {*} incarnation The incarnation to delete.
+     */
+    async delete(incarnation) {
+
+        // Update the actor document first because embedded documents are needed
+        // to update the list of the incarnations.
+        await new DocumentReference(incarnation).removeFrom(this.actor);
+
+        // Delete the embedded document
+        await this.actor.deleteEmbeddedDocuments('Item', [incarnation.id]);
+
+    }
+
+    /**
      * Move the specified incarnation to the specified target.
      * @param {*} event       The drop event which contains the incarnation on which the incarnation has been dropped.
      * @param {*} incarnation The embedded item to move.

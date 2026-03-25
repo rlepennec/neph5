@@ -62,10 +62,12 @@ export class FigureSheet extends NephilimActorSheet {
      * @override
      */
     async _onSelect(event, target) {
-        console.log(this.document.documentName);
-        let doc = new DocumentIdentifier(target).toDocument();
-        console.log("select");
-        console.log(doc);
+
+        let document = new DocumentIdentifier(target).toDocument();
+        if (document.type = 'incarnation') {
+            new Incarnations(this.document).delete(document);
+        }
+
     }
 
 }
