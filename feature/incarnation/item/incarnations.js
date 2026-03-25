@@ -14,49 +14,52 @@ export class Incarnations {
     }
 
     /**
-     * @param {*} vecu The vecu world item used to create a new incarnation.
+     * Add a new incarnation to the actor.
+     * @param {*} event The drop event which contains the incarnation on which the incarnation has been dropped.
+     * @param {*} vecu  The vecu world item used to create a new incarnation.
      */
     async add(event, vecu) {
 
-        const target = DocumentTools.getDraggableTarget(event.target)?.dataset?.fsid;
-        console.log(target);
+        // Create the new embedded document
+        const incarnation = (await Incarnation.create(this.actor, vecu))[0];
 
+        // Update the actor document
+        await new DocumentReference(incarnation).addTo(this.actor);
 
-        const incarnation = await Incarnation.create(this.actor, vecu);
-        await new DocumentReference(incarnation[0]).addTo(this.actor);
+        // Move the new incarnation if necessary
+        if (this.actor.system.base.incarnations.size > 1) {
+            await this.move(event, incarnation);
+        }
     }
 
     /**
+     * Move the specified incarnation to the specified target.
+     * @param {*} event       The drop event which contains the incarnation on which the incarnation has been dropped.
      * @param {*} incarnation The embedded item to move.
      */
     async move(event, incarnation) {
 
-        const targetFsid = DocumentTools.getDraggableTarget(event.target)?.dataset?.fsid;
-        const targetId = new DocumentIdentifier(new String(targetFsid)).id;
+        // The fsid of the target can be null if the drop has been done on the free space which not contains
+        // any incarnation. In this case, the incarnation is pushed at the end of the set.
+        const fsid = DocumentTools.getDraggableTarget(event.target)?.dataset?.fsid;
 
-        const set = this.actor.system.base.incarnations;
-        const arr = [...set];
+        // The identifier of the incarnation target
+        const id = fsid == null ? null : new DocumentIdentifier(new String(fsid)).id;
+        const array = [...this.actor.system.base.incarnations];
 
-        const targetIndexBegin = arr.findIndex(i => i === targetId);
+        // Move the incarnation at the top of the list if the target is the first element of the list
+        const first = fsid == null ? false : array.findIndex(i => i === id) === 0;
 
-        const incarnationIndex = arr.findIndex(i => i === incarnation.id);
-        arr.splice(incarnationIndex, 1);
+        // Remove the incarnation to move from the list
+        array.splice(array.findIndex(i => i === incarnation.id), 1);
 
-        if (targetIndexBegin === 0) {
-            arr.splice(0, 0, incarnation.id);
+        // Insert the incarnation at the top of the list if first, at the end if fsid is null, in the list otherwise
+        array.splice(first ? 0 : fsid == null ? array.length : array.findIndex(i => i === id) + 1, 0, incarnation.id);
 
-        } else {
-
-            const targetIndex = arr.findIndex(i => i === targetId);
-            arr.splice(targetIndex+1, 0, incarnation.id);
-
-        }
-
-        const newSet = new Set(arr);
-        const updates = {
-            'system.base.incarnations': newSet
-        }
-        await this.actor.update(updates);
+        // Update the actor document
+        await this.actor.update({
+            'system.base.incarnations': new Set(array)
+        });
 
     }
 
@@ -73,13 +76,6 @@ export class Incarnations {
             });
         }
         return array;
-    }
-
-
-    insertIntoSet(set, index, value) {
-        const arr = [...set];
-        arr.splice(index, 0, value);
-        return new Set(arr);
     }
 
 }
