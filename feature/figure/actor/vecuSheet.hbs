@@ -3,14 +3,12 @@
     data-group='primary'
     data-tab='vecu'>
 
-    {{#if (eq context.incarnations.length 0)}}
-        <div class="expanse" data-drop="true"/>
-    {{else}}
-        <div>
-            {{#each context.incarnations}}
-                <div class='incarnation draggable' data-drag="true" data-drop="true" data-fsid="{{fsid}}" data-action="select">{{name}}</div>
-            {{/each}}
-        </div>
-    {{/if}}
+    <div>
+        {{#each context.incarnations}}
+            <div class='incarnation draggable' data-drag="true" data-drop="true" data-fsid="{{fsid}}" data-action="select">{{name}}</div>
+        {{/each}}
+    </div>
+
+    <div class="expanse" data-drop="true"/>
 
 </section>

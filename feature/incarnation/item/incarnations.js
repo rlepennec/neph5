@@ -22,7 +22,16 @@ export class Incarnations {
     /**
      * @param {*} incarnation The embedded item to move.
      */
-    async move(incarnation) {
+    async move(event, incarnation) {
+
+
+        const tg = this._getDraggableTarget(event.target);
+        //tg = null ? last
+        console.log("Target");
+        console.log(tg);
+        console.log(tg?.dataset);
+
+
 
         const set = this.actor.system.base.incarnations;
         const reversedSet = new Set([...set].reverse());
@@ -55,6 +64,17 @@ function insertIntoSet(set, index, value) {
 }
   */
 
-
+		/**
+		 * @param target The event part which describes the html target.
+		 * @returns the draggable element.
+		 */
+		_getDraggableTarget(target) {
+			if (target == null) return null;
+			if (target.classList.contains("draggable")) {
+				return target;
+			} else {
+				return this._getDraggableTarget(target.parentElement);
+			}
+		}
 
 }

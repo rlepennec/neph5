@@ -1,5 +1,3 @@
-import { DocumentReference } from "./documentReference.js"
-import { Incarnation } from "../feature/incarnation/item/incarnation.js"
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimMixinSheet } from "./nephilimSheetMixin.js"
 import { Incarnations } from "../feature/incarnation/item/incarnations.js";
@@ -31,7 +29,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
             switch(document.type) {
                 case 'incarnation': {
                     console.log(event);
-                    await new Incarnations(this.document).move(document);
+                    await new Incarnations(this.document).move(event, document);
                     break;
                 }
             }
