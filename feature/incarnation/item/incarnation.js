@@ -24,14 +24,23 @@ export class Incarnation {
         return  game.items.find(i => i.type === "periode" && i.system.sid === this.vecu.system.base.periode);
     }
 
+    /**
+     * @returns the name of the incarnation which is the name of the vecu.
+     */
     get name() {
         return this.vecu.name;
     }
 
+    /**
+     * @returns the id of the incarnation.
+     */
     get id() {
         return this.item.id;
     }
 
+    /**
+     * @returns the fsid of the incarnation.
+     */
     get fsid() {
         return new DocumentIdentifier(this.item).fsid
     }
@@ -39,9 +48,9 @@ export class Incarnation {
 
 
     /**
-     * 
-     * @param {*} actor The actor document.
-     * @param {*} vecu  The vecu item which has be dropped.
+     * Create a new incarnation which will be embedded to the actor.
+     * @param {*} actor The actor document in which the incarnation is embedded.
+     * @param {*} vecu  The vecu item which has be dropped to create an incarnation.
      */
     static async create(actor, vecu) {
 
@@ -76,9 +85,5 @@ export class Incarnation {
         return await actor.createEmbeddedDocuments("Item", [data]);
 
     }
-
-
-
-
 
 }

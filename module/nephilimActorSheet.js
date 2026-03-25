@@ -2,6 +2,7 @@ import { DocumentReference } from "./documentReference.js"
 import { Incarnation } from "../feature/incarnation/item/incarnation.js"
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimMixinSheet } from "./nephilimSheetMixin.js"
+import { Incarnations } from "../feature/incarnation/item/incarnations.js";
 
 export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
@@ -25,17 +26,11 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      */
     async _onDrop(event, document) {
 
-        // A move 
         if (document.actor === this.document) {
 
             switch(document.type) {
                 case 'incarnation': {
-                    const set = this.document.system.base.incarnations;
-                    const reversedSet = new Set([...set].reverse());
-                    const updates = {
-                        'system.base.incarnations': reversedSet
-                    }
-                    await this.document.update(updates);
+                    await new Incarnations(this.document).move(document);
                     break;
                 }
             }
@@ -44,8 +39,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
             switch(document.type) {
                 case 'vecu': {
-                    const incarnation = await Incarnation.create(this.document, document);
-                    await new DocumentReference(incarnation[0]).addTo(this.document);
+                    await new Incarnations(this.document).add(document);
                     break;
                 }
             }

@@ -1,5 +1,5 @@
 import { DocumentIdentifier } from "../../../module/documentIdentifier.js";
-import { Incarnation } from "../../incarnation/item/incarnation.js"
+import { Incarnations } from "../../incarnation/item/incarnations.js";
 import { NephilimActorSheet } from "../../../module/nephilimActorSheet.js";
 
 export class FigureSheet extends NephilimActorSheet {
@@ -41,7 +41,7 @@ export class FigureSheet extends NephilimActorSheet {
             ...await super._prepareContext(options),
             tabs: this._prepareTabs("primary"),
             context: {
-                incarnations: this.#incarnations()
+                incarnations: new Incarnations(this.document).toArray()
             }
         };
         return context;
@@ -56,18 +56,6 @@ export class FigureSheet extends NephilimActorSheet {
             default:
         }
         return context;
-    }
-
-    #incarnations() {
-        let array = [];
-        for (const id of this.document.system.base.incarnations) {
-            const incarnation = new Incarnation(this.document.items.get(id));
-            array.push({
-                name: incarnation.name,
-                fsid: incarnation.fsid
-            });
-        }
-        return array;
     }
 
     /**
