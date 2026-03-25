@@ -38,7 +38,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
             switch(document.type) {
                 case 'vecu': {
-                    await new Incarnations(this.document).add(document);
+                    await new Incarnations(this.document).add(event, document);
                     break;
                 }
             }

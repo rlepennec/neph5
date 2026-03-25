@@ -1,4 +1,6 @@
+import { DocumentIdentifier } from "../../../module/documentIdentifier.js"
 import { DocumentReference } from "../../../module/documentReference.js"
+import { DocumentTools } from "../../../module/documentTools.js"
 import { Incarnation } from "./incarnation.js";
 
 export class Incarnations {
@@ -14,7 +16,12 @@ export class Incarnations {
     /**
      * @param {*} vecu The vecu world item used to create a new incarnation.
      */
-    async add(vecu) {
+    async add(event, vecu) {
+
+        const target = DocumentTools.getDraggableTarget(event.target)?.dataset?.fsid;
+        console.log(target);
+
+
         const incarnation = await Incarnation.create(this.actor, vecu);
         await new DocumentReference(incarnation[0]).addTo(this.actor);
     }
@@ -24,21 +31,33 @@ export class Incarnations {
      */
     async move(event, incarnation) {
 
-
-        const tg = this._getDraggableTarget(event.target);
-        //tg = null ? last
-        console.log("Target");
-        console.log(tg);
-        console.log(tg?.dataset);
-
-
+        const targetFsid = DocumentTools.getDraggableTarget(event.target)?.dataset?.fsid;
+        const targetId = new DocumentIdentifier(new String(targetFsid)).id;
 
         const set = this.actor.system.base.incarnations;
-        const reversedSet = new Set([...set].reverse());
+        const arr = [...set];
+
+        const targetIndexBegin = arr.findIndex(i => i === targetId);
+
+        const incarnationIndex = arr.findIndex(i => i === incarnation.id);
+        arr.splice(incarnationIndex, 1);
+
+        if (targetIndexBegin === 0) {
+            arr.splice(0, 0, incarnation.id);
+
+        } else {
+
+            const targetIndex = arr.findIndex(i => i === targetId);
+            arr.splice(targetIndex+1, 0, incarnation.id);
+
+        }
+
+        const newSet = new Set(arr);
         const updates = {
-            'system.base.incarnations': reversedSet
+            'system.base.incarnations': newSet
         }
         await this.actor.update(updates);
+
     }
 
     /**
@@ -56,25 +75,11 @@ export class Incarnations {
         return array;
     }
 
-/*
-function insertIntoSet(set, index, value) {
-  const arr = [...set];
-  arr.splice(index, 0, value);
-  return new Set(arr);
-}
-  */
 
-		/**
-		 * @param target The event part which describes the html target.
-		 * @returns the draggable element.
-		 */
-		_getDraggableTarget(target) {
-			if (target == null) return null;
-			if (target.classList.contains("draggable")) {
-				return target;
-			} else {
-				return this._getDraggableTarget(target.parentElement);
-			}
-		}
+    insertIntoSet(set, index, value) {
+        const arr = [...set];
+        arr.splice(index, 0, value);
+        return new Set(arr);
+    }
 
 }

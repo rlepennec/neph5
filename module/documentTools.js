@@ -48,6 +48,19 @@ export class DocumentTools {
         }
     }
 
+    /**
+     * @param target The event part which describes the html target.
+     * @returns the draggable element.
+     */
+    static getDraggableTarget(target) {
+        if (target == null) return null;
+        if (target.classList.contains("draggable")) {
+            return target;
+        } else {
+            return this.getDraggableTarget(target.parentElement);
+        }
+    }
+
     static async droppedDocument(event) {
 
         // Retrieve the dropped data id and type from the event
