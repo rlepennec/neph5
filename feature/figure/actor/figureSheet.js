@@ -36,26 +36,22 @@ export class FigureSheet extends NephilimActorSheet {
         },
     }
 
+    // The current edited incarnation document to set. If null, no current incarnation
+    // in edition. The vecu sheet displays all sorted incarnations.
+    incarnation = null;
+
+    /**
+     * @override
+     */    
     async _prepareContext(options) {
-        const context = {
+        return {
             ...await super._prepareContext(options),
             tabs: this._prepareTabs("primary"),
             context: {
+                incarnation: this.incarnation,
                 incarnations: new Incarnations(this.document).toArray()
             }
-        };
-        return context;
-    }
-
-    async _preparePartContext(partId, context) {
-        switch (partId) {
-            case 'description':
-            case 'vecu':
-                context.tab = context.tabs[partId];
-                break;
-            default:
         }
-        return context;
     }
 
     /**
@@ -65,9 +61,66 @@ export class FigureSheet extends NephilimActorSheet {
 
         let document = new DocumentIdentifier(target).toDocument();
         if (document.type = 'incarnation') {
-            new Incarnations(this.document).delete(document);
+            this.incarnation = document;
+            this.render();
         }
 
+    }
+
+    /** 
+     * @override
+     */
+    async _onDrop(event, document) {
+
+        if (document.actor === this.document) {
+
+            switch(document.type) {
+                case 'incarnation': {
+                    if (this.tabGroups['primary'] ==='vecu') {
+                        await new Incarnations(this.document).move(event, document);
+                    }
+                    break;
+                }
+            }
+
+        } else {
+
+            switch(document.type) {
+                case 'vecu': {
+                    if (this.tabGroups['primary'] === 'vecu') {
+                        await new Incarnations(this.document).add(event, document);
+                    }
+                    break;
+                }
+            }
+
+        }
+
+    }
+
+    /**
+     * @override
+     */
+    async _onExit(event, target) {
+        switch (target.dataset.exit) {
+            case 'incarnation':
+                this.incarnation = null;
+                this.render();
+                break;
+        }
+    }
+
+    /** 
+     * @override
+     */
+    async _onDelete(event, target) {
+        switch (target.dataset.delete) {
+            case 'incarnation':
+                await new Incarnations(this.document).delete(this.incarnation);
+                this.incarnation = null;
+                this.render();
+                break;
+        }
     }
 
 }

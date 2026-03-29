@@ -28,4 +28,13 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         await new DocumentReference(this.document).addTo(document);
 	}
 
+    /** 
+     * @override
+     */
+    async _onDelete(event, target) {
+        const remove = new DocumentIdentifier(target).toDocument();
+        await new DocumentReference(remove).removeFrom(this.document);
+        await new DocumentReference(this.document).removeFrom(remove);
+    }
+
 }

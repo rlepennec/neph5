@@ -12,39 +12,4 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         classes: ["actor"]
     }
 
-    /** 
-     * @override
-     */
-    async _onDrops(event) {
-        throw new Error("_onMove method must be implemented");
-    }
-
-    /** 
-     * @override
-     */
-    async _onDrop(event, document) {
-
-        if (document.actor === this.document) {
-
-            switch(document.type) {
-                case 'incarnation': {
-                    console.log(event);
-                    await new Incarnations(this.document).move(event, document);
-                    break;
-                }
-            }
-
-        } else {
-
-            switch(document.type) {
-                case 'vecu': {
-                    await new Incarnations(this.document).add(event, document);
-                    break;
-                }
-            }
-
-        }
-
-    }
-
 }

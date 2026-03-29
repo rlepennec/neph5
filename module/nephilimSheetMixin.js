@@ -22,11 +22,12 @@ export const NephilimMixinSheet = Base => {
 				}
 			],
 			actions: {
-				delete: NephilimSheet._onRemoveReference,
+				delete: NephilimSheet._onDelete,
 				open: NephilimSheet._onOpenLink,
 				lock: NephilimSheet._onLock,
 				select: NephilimSheet._onSelect,
-				setup: NephilimSheet._onSetup
+				setup: NephilimSheet._onSetup,
+				exit: NephilimSheet._onExit
 			},
 			window: {
 				resizable: true,
@@ -201,11 +202,13 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} event 
 		 * @param {*} target 
 		 */
-		static async _onRemoveReference(event, target) {
+		static async _onDelete(event, target) {
 			if (this.locked) return;
-			const remove = new DocumentIdentifier(target).toDocument();
-			await new DocumentReference(remove).removeFrom(this.document);
-			await new DocumentReference(this.document).removeFrom(remove);
+			await this._onDelete(event, target);
+		}
+
+		async _onDelete(event, target) {
+			throw new Error("_onDelete method must be implemented");
 		}
 
 		/**
@@ -283,6 +286,14 @@ export const NephilimMixinSheet = Base => {
 		 */
 		async _onSelect(event, target) {
 			throw new Error("_onSelect method must be implemented");
+		}
+
+		static async _onExit(event, target) {
+			this._onExit(event, target)
+		}
+
+		async _onExit(event, target) {
+			throw new Error("_onExit method must be implemented");
 		}
 
 		/**
