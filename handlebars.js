@@ -7,15 +7,13 @@ export class CustomHandlebarsHelpers {
         Handlebars.registerHelper({
 
             translate: CustomHandlebarsHelpers.translate,
-            
-
+            getItem: CustomHandlebarsHelpers.getItem,
             
             
             concat: CustomHandlebarsHelpers.concat,
             isNull: CustomHandlebarsHelpers.isNull,
             nonNull: CustomHandlebarsHelpers.nonNull,
             select: CustomHandlebarsHelpers.select,
-            getItem: CustomHandlebarsHelpers.getItem,
             loop: CustomHandlebarsHelpers.loop,
             log: CustomHandlebarsHelpers.log,
             html: CustomHandlebarsHelpers.html,
@@ -53,8 +51,14 @@ export class CustomHandlebarsHelpers {
         return game.i18n.localize(`NEPHILIM.${word}`);
     }
 
-
-
+    /**
+     * Gets the specified item.
+     * @param sid The system id of the item to get.
+     * @returns the item or undefined if not found.
+     */
+    static getItem(sid) {
+        return game.items.find(i => i.system.sid === sid);
+    }
 
 
 
@@ -139,14 +143,7 @@ export class CustomHandlebarsHelpers {
         return html.replace(rgx, "$& selected");
     }
 
-    /**
-     * Gets the specified item.
-     * @param sid The system id of the item to get.
-     * @returns the item or undefined if not found.
-     */
-    static getItem(uuid) {
-        return game.items.find(i => i.sid === uuid);
-    }
+
 
     /**
      * @param {*} ps The number of sapience points.

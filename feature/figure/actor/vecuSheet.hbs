@@ -17,6 +17,12 @@
 
         <div>{{context.incarnation.name}}</div>
 
+        {{#each context.incarnation.system.base.competences as |competence|}}
+            {{#with (getItem competence)}}
+            <div>{{name}}</div>
+            {{/with}}
+        {{/each}}
+
         <div data-action="delete" data-delete="incarnation">Delete</div>
 
         <div data-action="exit" data-exit="incarnation">Exit</div>
