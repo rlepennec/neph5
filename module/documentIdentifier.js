@@ -73,7 +73,7 @@ export class DocumentIdentifier {
 
                 // The textual expression from which to create the identifier.
                 // It must be built as follow: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
-                else if(typeof source === "string") {
+                else if(source instanceof String || typeof source === "string") {
                     this.#parse(source);
                 }
 
@@ -221,6 +221,7 @@ export class DocumentIdentifier {
 
         switch (true) {
 
+            case source instanceof String:
             case typeof source === "string":
                 const words = source.split(".");
                 this.#sid = words.pop();
