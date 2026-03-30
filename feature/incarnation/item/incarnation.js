@@ -45,8 +45,6 @@ export class Incarnation {
         return new DocumentIdentifier(this.item).fsid
     }
 
-
-
     /**
      * Create a new incarnation which will be embedded to the actor.
      * @param {*} actor The actor document in which the incarnation is embedded.
@@ -63,20 +61,23 @@ export class Incarnation {
                     vecu: {
                         reference: vecu.system.sid,
                     },
-                    competences: []
+                    cercle: [],
+                    competences: vecu.system.base.competences
                 },
                 versions: {
                     v1: {
                         vecu: {
                             sapience: 0,
                         },
-                        competences: []
+                        cercles: [],
+                        competences: this.defineCompetences(vecu)
                     },
                     v5: {
                         vecu: {
                             sapience: 0,
                         },
-                        competences: []
+                        cercles: [],
+                        competences: this.defineCompetences(vecu)
                     }
                 }
             }
@@ -84,6 +85,17 @@ export class Incarnation {
 
         return await actor.createEmbeddedDocuments("Item", [data]);
 
+    }
+
+    static defineCompetences(vecu) {
+        const competences = []; 
+        for (const r of vecu.system.base.competences) {
+            competences.push({
+                reference: r,
+                sapience: 0
+            })
+        }
+        return competences;
     }
 
 }

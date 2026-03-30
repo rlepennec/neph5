@@ -36,8 +36,7 @@ export class FigureSheet extends NephilimActorSheet {
         },
     }
 
-    // The current edited incarnation document to set. If null, no current incarnation
-    // in edition. The vecu sheet displays all sorted incarnations.
+    // The current optional edited incarnation document. If null, all incarnations are displayed.
     incarnation = null;
 
     /**

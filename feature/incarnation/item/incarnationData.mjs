@@ -19,17 +19,19 @@ export class IncarnationData extends NephilimDataModel {
                     )
                 }
             ),
+            cercles: new foundry.data.fields.SetField
+            (
+                new UUIDReferenceField(
+                    {
+                        type: 'cercle'
+                    }
+                )
+            ),
             competences: new foundry.data.fields.SetField
             (
-                new foundry.data.fields.SchemaField
-                (
+                new UUIDReferenceField(
                     {
-                        reference: new UUIDReferenceField
-                        (
-                            {
-                                type: 'competence'
-                            }
-                        )
+                        type: 'competence'
                     }
                 )
             )
@@ -52,6 +54,21 @@ export class IncarnationData extends NephilimDataModel {
                     {
                         sapience: new foundry.data.fields.NumberField(),
                     }
+                ),
+                cercles: new foundry.data.fields.SetField
+                (
+                    new foundry.data.fields.SchemaField
+                    (
+                        {
+                            reference: new UUIDReferenceField
+                            (
+                                {
+                                    type: 'cercle'
+                                }
+                            ),
+                            sapience: new foundry.data.fields.NumberField(),
+                        }
+                    )
                 ),
                 competences: new foundry.data.fields.SetField
                 (
@@ -85,6 +102,21 @@ export class IncarnationData extends NephilimDataModel {
                     {
                         sapience: new foundry.data.fields.NumberField(),
                     }
+                ),
+                cercles: new foundry.data.fields.SetField
+                (
+                    new foundry.data.fields.SchemaField
+                    (
+                        {
+                            reference: new UUIDReferenceField
+                            (
+                                {
+                                    type: 'cercle'
+                                }
+                            ),
+                            sapience: new foundry.data.fields.NumberField(),
+                        }
+                    )
                 ),
                 competences: new foundry.data.fields.SetField
                 (

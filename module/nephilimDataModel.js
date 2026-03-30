@@ -1,5 +1,6 @@
 import { ChunkField } from "./field/chunkField.js"
 import { UUIDField } from "./field/UUIDField.js"
+import { UUIDReferenceField } from "./field/UUIDReferenceField.js"
 
 export class NephilimDataModel extends foundry.abstract.TypeDataModel {
 
@@ -40,6 +41,35 @@ export class NephilimDataModel extends foundry.abstract.TypeDataModel {
                 }
             )
         }
+    }
+
+    static defineReferenceOf(type) {
+        return new foundry.data.fields.SchemaField(
+            {
+                reference: new UUIDReferenceField
+                (
+                    {
+                        type: type
+                    }
+                )
+            }
+        )
+    }
+
+    static defineReferencesOf(type) {
+        return new foundry.data.fields.SetField(
+            new foundry.data.fields.SchemaField
+            (
+                {
+                    reference: new UUIDReferenceField
+                    (
+                        {
+                            type: type
+                        }
+                    )
+                } 
+            )
+        )
     }
 
 }
