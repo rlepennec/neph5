@@ -59,7 +59,7 @@ export class Incarnations {
         const fsid = DocumentTools.getDraggableTarget(event.target)?.dataset?.fsid;
 
         // The identifier of the incarnation target
-        const id = fsid == null ? null : new DocumentIdentifier(new String(fsid)).id;
+        const id = fsid == null ? null : new DocumentIdentifier(fsid).id;
         const array = [...this.actor.system.base.incarnations];
 
         // Move the incarnation at the top of the list if the target is the first element of the list

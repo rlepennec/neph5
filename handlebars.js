@@ -1,4 +1,5 @@
 import { Constants } from "./module/constants.js";
+import { DocumentIdentifier } from "./module/documentIdentifier.js";
 
 export class CustomHandlebarsHelpers {
 
@@ -6,9 +7,11 @@ export class CustomHandlebarsHelpers {
 
         Handlebars.registerHelper({
 
-            translate: CustomHandlebarsHelpers.translate,
+            getIdentifier: CustomHandlebarsHelpers.getIdentifier,
             getItem: CustomHandlebarsHelpers.getItem,
-            
+            translate: CustomHandlebarsHelpers.translate,
+
+
             
             concat: CustomHandlebarsHelpers.concat,
             isNull: CustomHandlebarsHelpers.isNull,
@@ -44,23 +47,28 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param document The document to watch.
+     * @returns the identifier of the specified document.
+     */
+    static getIdentifier(document) {
+        return new DocumentIdentifier(document);
+    }
+
+    /**
+     * @param sid The system id of the item to get.
+     * @returns the specified item or undefined if not found.
+     */
+    static getItem(sid) {
+        return game.items.find(i => i.system.sid === sid);
+    }
+
+    /**
      * @param words The words to translate. 
      * @returns the concated words.
      */
     static translate(word) {
         return game.i18n.localize(`NEPHILIM.${word}`);
     }
-
-    /**
-     * Gets the specified item.
-     * @param sid The system id of the item to get.
-     * @returns the item or undefined if not found.
-     */
-    static getItem(sid) {
-        return game.items.find(i => i.system.sid === sid);
-    }
-
-
 
 
 

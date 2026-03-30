@@ -1,6 +1,3 @@
-import { NephilimActor } from "./nephilimActor.js"
-import { NephilimItem } from "./nephilimItem.js"
-
 /**
  * The DocumentIdentifier class defines an identifier of a system document. Identified
  * document can be embedded in another document or can world document.
@@ -65,18 +62,18 @@ export class DocumentIdentifier {
                 }
 
                 // The world actor from which to create the identifier.
-                else if(source instanceof NephilimActor) {
+                else if(source instanceof Actor) {
                     this.#parse(source);
                 }
 
                 // The world item or the actor from which to create the identifier.
-                else if(source instanceof NephilimItem) {
+                else if(source instanceof Item) {
                     this.#parse(source);
                 }
 
                 // The textual expression from which to create the identifier.
                 // It must be built as follow: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
-                else if(source instanceof String) {
+                else if(typeof source === "string") {
                     this.#parse(source);
                 }
 
@@ -222,9 +219,9 @@ export class DocumentIdentifier {
             throw new Error("Fail to parse null source to create nephilim document identifier");
         }
 
-        switch (source.constructor) {
+        switch (true) {
 
-            case String:
+            case typeof source === "string":
                 const words = source.split(".");
                 this.#sid = words.pop();
                 this.#type = words.pop();
@@ -234,8 +231,8 @@ export class DocumentIdentifier {
                 this.#name = this.toDocument().name;
                 break;
 
-            case NephilimActor:
-            case NephilimItem:
+            case source instanceof Actor:
+            case source instanceof Item:
                 this.#sid = source.system.sid;
                 this.#type = source.type;
                 this.#id = source.id;

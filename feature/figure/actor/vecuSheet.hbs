@@ -18,8 +18,12 @@
         <div>{{context.incarnation.name}}</div>
 
         {{#each context.incarnation.system.base.competences as |competence|}}
+        {{log competence}}
             {{#with (getItem competence)}}
-            <div>{{name}}</div>
+                <div>{{name}}</div>
+                {{#with (getIdentifier .)}}
+                {{log .}}
+                {{/with}}
             {{/with}}
         {{/each}}
 

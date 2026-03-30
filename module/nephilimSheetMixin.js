@@ -170,7 +170,7 @@ export const NephilimMixinSheet = Base => {
 			if (fsid != null) {
 				event.dataTransfer.setData('text/plain', JSON.stringify({
 					type: "Sheet",
-					fsid: new String(fsid)
+					fsid: fsid
 				}))
 			}
 
