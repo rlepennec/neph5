@@ -19,7 +19,15 @@
 
         {{#each context.incarnation.system.base.competences as |competence|}}
             {{#with (getIdentifier competence)}}
+                <label class="fas fa-trash"></label>
                 <div data-fsid="{{fsid}}">{{name}}</div>
+
+                <input
+                    name={{fsid}}
+                    type="number"
+                    value="{{item.degre}}"
+                    data-dtype="Number"/>
+
             {{/with}}
         {{/each}}
 

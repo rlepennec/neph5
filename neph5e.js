@@ -21,5 +21,6 @@ Hooks.once("init", function () {
     CustomHandlebarsHelpers.register();
     Templates.register();
     Sheets.register();
+    Settings.register();
 
 })
