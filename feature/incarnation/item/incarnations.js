@@ -87,10 +87,13 @@ export class Incarnations {
             const incarnation = new Incarnation(this.actor.items.get(id));
             array.push({
                 name: incarnation.name,
-                fsid: incarnation.fsid
+                fsid: incarnation.fsid,
+                competences: incarnation.competences
             });
         }
         return array;
     }
+
+
 
 }

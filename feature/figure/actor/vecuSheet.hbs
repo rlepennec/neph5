@@ -17,10 +17,18 @@
 
         <div>{{context.incarnation.name}}</div>
 
+        {{#each context.incarnation.competences as |competence|}}
+        {{log competence}}
+        {{/each}}
+<!--
         {{#each context.incarnation.system.base.competences as |competence|}}
             {{#with (getIdentifier competence)}}
                 <label class="fas fa-trash"></label>
                 <div data-fsid="{{fsid}}">{{name}}</div>
+
+
+
+                
 
                 <input
                     name={{fsid}}
@@ -30,7 +38,7 @@
 
             {{/with}}
         {{/each}}
-
+-->
         <div data-action="delete" data-delete="incarnation">Delete</div>
 
         <div data-action="exit" data-exit="incarnation">Exit</div>

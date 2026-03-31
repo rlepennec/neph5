@@ -71,8 +71,9 @@ export class CustomHandlebarsHelpers {
     }
 
 
-
-
+/*
+game.settings.set("nephilim", "mySetting", "new value");
+*/
 
 
 

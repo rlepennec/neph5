@@ -1,4 +1,5 @@
 import { DocumentIdentifier } from "../../../module/documentIdentifier.js";
+import { Incarnation } from "../../incarnation/item/incarnation.js";
 import { Incarnations } from "../../incarnation/item/incarnations.js";
 import { NephilimActorSheet } from "../../../module/nephilimActorSheet.js";
 
@@ -47,7 +48,7 @@ export class FigureSheet extends NephilimActorSheet {
             ...await super._prepareContext(options),
             tabs: this._prepareTabs("primary"),
             context: {
-                incarnation: this.incarnation,
+                incarnation: this.incarnation == null ? null : new Incarnation(this.incarnation),
                 incarnations: new Incarnations(this.document).toArray()
             }
         }

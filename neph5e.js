@@ -3,6 +3,7 @@ import { Models } from "./models.js";
 import { NephilimActor } from "./module/nephilimActor.js";
 import { NephilimItem } from "./module/nephilimItem.js";
 import { NephilimItemDirectory } from "./module/nephilimItemDirectory.js";
+import { Settings } from "./settings.js";
 import { Sheets } from "./sheets.js";
 import { Templates } from "./templates.js";
 

@@ -46,6 +46,28 @@ export class Incarnation {
     }
 
     /**
+     * @returns the array of competences.
+     */
+    get competences() {
+        const version = game.settings.get("neph5e", "system-version");
+        let array = [];
+        const v = this.item.system.versions[version];
+        for (let c of v.competences) {
+            const citem = game.items.find(i => i.system.sid === c.reference);
+            if (citem != null) {
+                const cid = new DocumentIdentifier(citem);
+                array.push({
+                    name: cid.name,
+                    reference: c.reference,
+                    sapience: c.sapience
+                })
+            }
+        }
+        return array;
+    }
+
+
+    /**
      * Create a new incarnation which will be embedded to the actor.
      * @param {*} actor The actor document in which the incarnation is embedded.
      * @param {*} vecu  The vecu item which has be dropped to create an incarnation.
