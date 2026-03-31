@@ -11,7 +11,6 @@ export class CustomHandlebarsHelpers {
             getItem: CustomHandlebarsHelpers.getItem,
             translate: CustomHandlebarsHelpers.translate,
 
-
             
             concat: CustomHandlebarsHelpers.concat,
             isNull: CustomHandlebarsHelpers.isNull,
@@ -47,11 +46,12 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
-     * @param document The document to watch.
+     * @param sid The system id of the item to get.
      * @returns the identifier of the specified document.
      */
-    static getIdentifier(document) {
-        return new DocumentIdentifier(document);
+    static getIdentifier(sid) {
+        const item = game.items.find(i => i.system.sid === sid);
+        return item == null ? "null" : new DocumentIdentifier(item);
     }
 
     /**
