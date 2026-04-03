@@ -9,7 +9,7 @@ import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
-export class BaseSheet extends ActorSheet {
+export class BaseSheet extends foundry.appv1.sheets.ActorSheet {
 
     /**
      * @constructor
@@ -32,7 +32,7 @@ export class BaseSheet extends ActorSheet {
             isGM: game.user.isGM,
             actor: base.actor,
             system: base.actor.system,
-            enrichedDescription: await TextEditor.enrichHTML(base.actor.system.description, {secrets: this.actor.isOwner})
+            enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(base.actor.system.description, {secrets: this.actor.isOwner})
         }
     }
 

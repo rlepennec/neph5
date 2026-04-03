@@ -136,7 +136,7 @@ export class NephilimChat {
         data.owner = this.actor.id;
 
         // Call the template renderer.
-        return await renderTemplate(this.template, data);
+        return await foundry.applications.handlebars.renderTemplate(this.template, data);
 
     }
 

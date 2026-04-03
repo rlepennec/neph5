@@ -59,7 +59,7 @@ Hooks.once("init", function () {
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
-    CONFIG.Canvas.layers.nephilim = { layerClass: ControlsLayer, group: "primary" };
+    CONFIG.Canvas.layers.nephilim = { layerClass: foundry.canvas.layers.ControlsLayer, group: "primary" };
     CONFIG.TinyMCE = {
         branding: false,
         menubar: false,
@@ -133,12 +133,12 @@ Hooks.once("init", function () {
 
 
 
-    foundry.documents.collections.Actors.unregisterSheet("core", ActorSheet);
+    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
     foundry.documents.collections.Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });
     foundry.documents.collections.Actors.registerSheet("nephilim", FigurantSheet, { types: ["figurant"], makeDefault: true, label: "NEPHILIM.figurant" });
     foundry.documents.collections.Actors.registerSheet("nephilim", FraterniteSheet, { types: ["fraternite"], makeDefault: true, label: "NEPHILIM.fraternite" });
 
-    foundry.documents.collections.Items.unregisterSheet("core", ItemSheet);
+    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
     foundry.documents.collections.Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
     foundry.documents.collections.Items.registerSheet('nephilim', AppelSheet, { types: ['appel'], makeDefault: true });
     foundry.documents.collections.Items.registerSheet('nephilim', ArcaneSheet, { types: ['arcane'], makeDefault: true });

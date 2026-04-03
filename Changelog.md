@@ -1,3 +1,6 @@
+# 1.7.0
+Mise à jour pour Foundry v14
+
 # 1.6.2
 Correction d'une anomalie lors de la création d'objet
 
