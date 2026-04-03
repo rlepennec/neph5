@@ -58,7 +58,7 @@ export class Incarnation {
                 const cid = new DocumentIdentifier(citem);
                 array.push({
                     name: cid.name,
-                    reference: c.reference,
+                    fsid: cid.fsid,
                     sapience: c.sapience
                 })
             }

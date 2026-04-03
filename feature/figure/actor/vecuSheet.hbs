@@ -18,7 +18,15 @@
         <div>{{context.incarnation.name}}</div>
 
         {{#each context.incarnation.competences as |competence|}}
-        {{log competence}}
+
+            <input
+                name="system.competence.sapience"
+                type="number"
+                value="{{competence.sapience}}"
+                data-dtype="Number"
+                data-fsid="{{competence.fsid}}"
+            />
+
         {{/each}}
 <!--
         {{#each context.incarnation.system.base.competences as |competence|}}

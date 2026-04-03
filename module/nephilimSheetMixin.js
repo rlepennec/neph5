@@ -12,6 +12,7 @@ export const NephilimMixinSheet = Base => {
 			form: {
 				closeOnSubmit: false,
 				submitOnChange: true,
+				handler: NephilimSheet._onSubmit,
 			},
 			editable: true,
 			tag: "form",
@@ -374,6 +375,14 @@ export const NephilimMixinSheet = Base => {
 			return context;
 		}
 
+		static async _onSubmit(event, form, formData) {
+			await this._onSubmit(event, form, formData);
+		}
+
+		async _onSubmit(event, form, formData) {
+			await this.document.update(formData.object);
+		}
+		
 		/**
 		 * 
 		 * ---------- Tabs management ----------

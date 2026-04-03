@@ -57,6 +57,47 @@ export class FigureSheet extends NephilimActorSheet {
     /**
      * @override
      */
+    async _onSubmit(event, form, formData) {
+        console.log(event);
+        console.log(form);
+        console.log(formData);
+
+
+
+        // Find the input that triggered the update
+        const input = event.target;
+
+        // Check if this input belongs to an embedded item
+        const fsid = input.closest("[data-fsid]")?.dataset.fsid;
+
+        if (fsid) {
+            console.log(fsid);
+            
+            const nid = new DocumentIdentifier(fsid);
+            console.log(nid);
+
+            const item = nid.toDocument();
+            const submitData = foundry.utils.expandObject(formData.object);
+
+            console.log(submitData);
+            //system.competence.sapience = x
+            //submitData["system.versions.v5.metamorphoses"] = metamorphoses;
+
+            //await item.update(submitData);
+
+            /*
+            await item.update({
+                'system.base.incarnations': new Set(array)
+            });
+            */
+
+        }
+
+    }
+
+    /**
+     * @override
+     */
     async _onSelect(event, target) {
 
         let document = new DocumentIdentifier(target).toDocument();
