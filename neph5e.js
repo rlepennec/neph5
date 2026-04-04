@@ -60,11 +60,14 @@ import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
 import { CompetenceDataModel } from "./feature/periode/item/competence.mjs";
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
 import { HabitusDataModel } from "./feature/analogie/item/habitus.mjs";
+import { InvocationDataModel } from "./feature/kabbale/item/invocation.mjs";
 import { MateriaeDataModel } from "./feature/alchimie/item/materiae.mjs";
 import { MetamorpheDataModel } from "./feature/nephilim/item/metamorphe.mjs";
+import { OrdonnanceDataModel } from "./feature/kabbale/item/ordonnance.mjs";
 import { PasseDataModel } from "./feature/periode/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
 import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
+import { RituelDataModel } from "./feature/epee/item/rituel.mjs";
 import { QueteDataModel } from "./feature/periode/item/quete.mjs";
 import { SavoirDataModel } from "./feature/periode/item/savoir.mjs";
 import { ScienceDataModel } from "./feature/science/item/science.mjs";
@@ -104,12 +107,15 @@ Hooks.once("init", function () {
         competence: CompetenceDataModel,
         formule: FormuleDataModel,
         habitus: HabitusDataModel,
+        invocation: InvocationDataModel,
         materiae: MateriaeDataModel,
         metamorphe: MetamorpheDataModel,
+        ordonnance: OrdonnanceDataModel,
         passe: PasseDataModel,
         periode: PeriodeDataModel,
         pratique: PratiqueDataModel,
         quete: QueteDataModel,
+        rituel: RituelDataModel,
         savoir: SavoirDataModel,
         science: ScienceDataModel,
         sort: SortDataModel,
