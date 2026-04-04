@@ -56,6 +56,7 @@ import { AppelDataModel } from "./feature/conjuration/item/appel.mjs";
 import { ArcaneDataModel } from "./feature/periode/item/arcane.mjs";
 import { ArmeDataModel } from "./feature/combat/item/arme.mjs";
 import { ArmureDataModel } from "./feature/combat/item/armure.mjs";
+import { AspectDataModel } from "./feature/selenim/item/aspect.mjs";
 import { AtlanteideDataModel } from "./feature/atlanteide/item/atlanteide.mjs";
 import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
 import { CapaciteDataModel } from "./feature/periode/item/capacite.mjs";
@@ -82,6 +83,9 @@ import { TechniqueDataModel } from "./feature/baton/item/technique.mjs";
 import { TekhneDataModel } from "./feature/coupe/item/tekhne.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
+import { FigurantDataModel } from "./module/actor/figurant.mjs";
+import { FraterniteDataModel } from "./module/actor/fraternite.mjs";
+
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
 
@@ -100,7 +104,8 @@ Hooks.once("init", function () {
     };
 
     CONFIG.Actor.dataModels = {
-        // ...
+        figurant: FigurantDataModel,
+        fraternite: FraterniteDataModel
     }
 
     CONFIG.Item.dataModels = {
@@ -109,6 +114,7 @@ Hooks.once("init", function () {
         arcane: ArcaneDataModel,
         arme: ArmeDataModel,
         armure: ArmureDataModel,
+        aspect: AspectDataModel,
         atlanteide: AtlanteideDataModel,
         capacite: CapaciteDataModel,
         catalyseur: CatalyseurDataModel,
