@@ -59,6 +59,7 @@ import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
 import { CapaciteDataModel } from "./feature/periode/item/capacite.mjs";
 import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
 import { CompetenceDataModel } from "./feature/periode/item/competence.mjs";
+import { DivinationDataModel } from "./feature/bohemien/item/divination.mjs";
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
 import { HabitusDataModel } from "./feature/analogie/item/habitus.mjs";
 import { InvocationDataModel } from "./feature/kabbale/item/invocation.mjs";
@@ -108,6 +109,7 @@ Hooks.once("init", function () {
         catalyseur: CatalyseurDataModel,
         chute: ChuteDataModel,
         competence: CompetenceDataModel,
+        divination: DivinationDataModel,
         formule: FormuleDataModel,
         habitus: HabitusDataModel,
         invocation: InvocationDataModel,
