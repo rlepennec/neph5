@@ -1,4 +1,4 @@
-export class AlchimieDataModel extends foundry.abstract.TypeDataModel {
+export class CatalyseurDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {

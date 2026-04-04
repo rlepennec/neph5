@@ -53,6 +53,21 @@ import { TechniqueSheet } from "./feature/baton/item/technique.js";
 import { TekhneSheet } from "./feature/coupe/item/tekhne.js";
 import { VecuSheet } from "./feature/periode/item/vecu.js";
 
+import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
+import { ArcaneDataModel } from "./feature/periode/item/arcane.mjs";
+import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
+import { CapaciteDataModel } from "./feature/periode/item/capacite.mjs";
+import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
+import { CompetenceDataModel } from "./feature/periode/item/competence.mjs";
+import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
+import { MateriaeDataModel } from "./feature/alchimie/item/materiae.mjs";
+import { PasseDataModel } from "./feature/periode/item/passe.mjs";
+import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
+import { QueteDataModel } from "./feature/periode/item/quete.mjs";
+import { SavoirDataModel } from "./feature/periode/item/savoir.mjs";
+import { ScienceDataModel } from "./feature/science/item/science.mjs";
+import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
+
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
 
@@ -75,8 +90,20 @@ Hooks.once("init", function () {
     }
 
     CONFIG.Item.dataModels = {
-        alchimie: AlchimieData,
-        // ...
+        alchimie: AlchimieDataModel,
+        arcane: ArcaneDataModel,
+        capacite: CapaciteDataModel,
+        catalyseur: CatalyseurDataModel,
+        chute: ChuteDataModel,
+        competence: CompetenceDataModel,
+        formule: FormuleDataModel,
+        materiae: MateriaeDataModel,
+        passe: PasseDataModel,
+        periode: PeriodeDataModel,
+        quete: QueteDataModel,
+        savoir: SavoirDataModel,
+        science: ScienceDataModel,
+        vecu: VecuDataModel
     }
 
     Handlebars.registerHelper({
@@ -130,8 +157,6 @@ Hooks.once("init", function () {
             return value;
         }
     });
-
-
 
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
     foundry.documents.collections.Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });

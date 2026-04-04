@@ -1,4 +1,4 @@
-export class AlchimieDataModel extends foundry.abstract.TypeDataModel {
+export class MateriaeDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
@@ -8,6 +8,11 @@ export class AlchimieDataModel extends foundry.abstract.TypeDataModel {
                 }
             ),
             description: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            element: new foundry.data.fields.StringField(
                 {
                     required: false
                 }
