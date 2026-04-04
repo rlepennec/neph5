@@ -64,11 +64,13 @@ import { MateriaeDataModel } from "./feature/alchimie/item/materiae.mjs";
 import { MetamorpheDataModel } from "./feature/nephilim/item/metamorphe.mjs";
 import { PasseDataModel } from "./feature/periode/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
+import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
 import { QueteDataModel } from "./feature/periode/item/quete.mjs";
 import { SavoirDataModel } from "./feature/periode/item/savoir.mjs";
 import { ScienceDataModel } from "./feature/science/item/science.mjs";
 import { SortDataModel } from "./feature/magie/item/sort.mjs";
 import { TechniqueDataModel } from "./feature/baton/item/technique.mjs";
+import { TekhneDataModel } from "./feature/coupe/item/tekhne.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
 Hooks.once("init", function () {
@@ -106,11 +108,13 @@ Hooks.once("init", function () {
         metamorphe: MetamorpheDataModel,
         passe: PasseDataModel,
         periode: PeriodeDataModel,
+        pratique: PratiqueDataModel,
         quete: QueteDataModel,
         savoir: SavoirDataModel,
         science: ScienceDataModel,
         sort: SortDataModel,
         technique: TechniqueDataModel,
+        tekhne: TekhneDataModel,
         vecu: VecuDataModel
     }
 
