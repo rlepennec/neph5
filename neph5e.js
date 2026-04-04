@@ -68,6 +68,7 @@ import { QueteDataModel } from "./feature/periode/item/quete.mjs";
 import { SavoirDataModel } from "./feature/periode/item/savoir.mjs";
 import { ScienceDataModel } from "./feature/science/item/science.mjs";
 import { SortDataModel } from "./feature/magie/item/sort.mjs";
+import { TechniqueDataModel } from "./feature/baton/item/technique.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
 Hooks.once("init", function () {
@@ -109,6 +110,7 @@ Hooks.once("init", function () {
         savoir: SavoirDataModel,
         science: ScienceDataModel,
         sort: SortDataModel,
+        technique: TechniqueDataModel,
         vecu: VecuDataModel
     }
 
