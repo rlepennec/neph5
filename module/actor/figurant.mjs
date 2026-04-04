@@ -9,53 +9,110 @@ export class FigurantDataModel extends foundry.abstract.TypeDataModel {
             ),
             menace: new foundry.data.fields.NumberField(
                 {
-                    required: false
+                    initial: 3
                 }
             ),
             ka: new foundry.data.fields.NumberField(
                 {
-                    required: false
+                    initial: 3
                 }
             ),
             description: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: ""
                 }
             ), 
-            options: new foundry.data.fields.SchemaField
-            (
-                {
-                    theme: new foundry.data.fields.StringField(),
-                    degatAutomatique: new foundry.data.fields.BooleanField(),
-                }
-            ),
             dommage: new foundry.data.fields.SchemaField
             (
                 {
                     physique: new foundry.data.fields.SchemaField
                     (
                         {
-                            _1: new foundry.data.fields.BooleanField(),
-                            _2: new foundry.data.fields.BooleanField(),
-                            _3: new foundry.data.fields.BooleanField(),
-                            _4: new foundry.data.fields.BooleanField(),                            
-                            _5: new foundry.data.fields.BooleanField(),
-                            mineure: new foundry.data.fields.BooleanField(),
-                            serieuse: new foundry.data.fields.BooleanField(),
-                            grave: new foundry.data.fields.BooleanField(),
-                            mortelle: new foundry.data.fields.BooleanField()   
+                            _1: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            _2: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            _3: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            _4: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),                            
+                            _5: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            mineure: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            serieuse: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            grave: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            mortelle: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            )   
                         }
                     ),
                     magique: new foundry.data.fields.SchemaField
                     (
                         {
-                            _1: new foundry.data.fields.BooleanField(),
-                            _2: new foundry.data.fields.BooleanField(),
-                            _3: new foundry.data.fields.BooleanField(),
-                            mineure: new foundry.data.fields.BooleanField(),
-                            serieuse: new foundry.data.fields.BooleanField(),
-                            grave: new foundry.data.fields.BooleanField(),
-                            mortelle: new foundry.data.fields.BooleanField() 
+                            _1: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            _2: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            _3: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            mineure: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            serieuse: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            grave: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ),
+                            mortelle: new foundry.data.fields.BooleanField(
+                                {
+                                    initial: false
+                                }
+                            ) 
                         }
                     ),
                 }
@@ -63,12 +120,43 @@ export class FigurantDataModel extends foundry.abstract.TypeDataModel {
             bonus: new foundry.data.fields.SchemaField
             (
                 {
-                    mouvement: new foundry.data.fields.NumberField(),
-                    initiative: new foundry.data.fields.NumberField(),
-                    dommage: new foundry.data.fields.NumberField(),
-                    protection: new foundry.data.fields.NumberField(),
+                    mouvement: new foundry.data.fields.NumberField(
+                        {
+                            initial: 0
+                        }
+                    ),
+                    initiative: new foundry.data.fields.NumberField(
+                        {
+                            initial: 0
+                        }
+                    ),
+                    dommage: new foundry.data.fields.NumberField(
+                        {
+                            initial: 0
+                        }
+                    ),
+                    protection: new foundry.data.fields.NumberField(
+                        {
+                            initial: 0
+                        }
+                    )
                 }
-            )
+            ),
+            options: new foundry.data.fields.SchemaField
+            (
+                {
+                    theme: new foundry.data.fields.StringField(
+                        {
+                            initial: "soleil"
+                        }
+                    ),
+                    degatAutomatique: new foundry.data.fields.BooleanField(
+                        {
+                            initial: true
+                        }
+                    ),
+                }
+            ),
         }
     }
 

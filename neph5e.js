@@ -83,6 +83,7 @@ import { TechniqueDataModel } from "./feature/baton/item/technique.mjs";
 import { TekhneDataModel } from "./feature/coupe/item/tekhne.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
+import { FigureDataModel } from "./module/actor/figure.mjs";
 import { FigurantDataModel } from "./module/actor/figurant.mjs";
 import { FraterniteDataModel } from "./module/actor/fraternite.mjs";
 
@@ -104,6 +105,7 @@ Hooks.once("init", function () {
     };
 
     CONFIG.Actor.dataModels = {
+        figure: FigureDataModel,
         figurant: FigurantDataModel,
         fraternite: FraterniteDataModel
     }

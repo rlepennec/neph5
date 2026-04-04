@@ -9,7 +9,8 @@ export class FraterniteDataModel extends foundry.abstract.TypeDataModel {
             ),
             periode: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    nullable: true,
+                    initial: null
                 }
             ),
             effectif: new foundry.data.fields.ArrayField
@@ -19,23 +20,43 @@ export class FraterniteDataModel extends foundry.abstract.TypeDataModel {
                     {
                         status: new foundry.data.fields.StringField(),
                         periode: new foundry.data.fields.StringField(),
-                        actor: new foundry.data.fields.StringField(),
+                        actor: new foundry.data.fields.StringField()
                     }
                 )
             ),
             description: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: ""
                 }
             ),
             options: new foundry.data.fields.SchemaField
             (
                 {
-                    active: new foundry.data.fields.BooleanField(),
-                    chronologieDescendante: new foundry.data.fields.BooleanField(),
-                    incarnationsOuvertes: new foundry.data.fields.BooleanField(),
-                    theme: new foundry.data.fields.StringField(),
-                    locked: new foundry.data.fields.BooleanField(),
+                    active: new foundry.data.fields.BooleanField(
+                        {
+                            initial: false
+                        }
+                    ),
+                    chronologieDescendante: new foundry.data.fields.BooleanField(
+                        {
+                            initial: false
+                        }
+                    ),
+                    incarnationsOuvertes: new foundry.data.fields.BooleanField(
+                        {
+                            initial: false
+                        }
+                    ),
+                    theme: new foundry.data.fields.StringField(
+                        {
+                            initial: "soleil"
+                        }
+                    ),
+                    locked: new foundry.data.fields.BooleanField(
+                        {
+                            initial: false
+                        }
+                    )
                 }
             )
         }
