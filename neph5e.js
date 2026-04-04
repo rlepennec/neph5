@@ -58,6 +58,7 @@ import { CapaciteDataModel } from "./feature/periode/item/capacite.mjs";
 import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
 import { CompetenceDataModel } from "./feature/periode/item/competence.mjs";
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
+import { HabitusDataModel } from "./feature/analogie/item/habitus.mjs";
 import { MateriaeDataModel } from "./feature/alchimie/item/materiae.mjs";
 import { MetamorpheDataModel } from "./feature/nephilim/item/metamorphe.mjs";
 import { PasseDataModel } from "./feature/periode/item/passe.mjs";
@@ -97,6 +98,7 @@ Hooks.once("init", function () {
         chute: ChuteDataModel,
         competence: CompetenceDataModel,
         formule: FormuleDataModel,
+        habitus: HabitusDataModel,
         materiae: MateriaeDataModel,
         metamorphe: MetamorpheDataModel,
         passe: PasseDataModel,
