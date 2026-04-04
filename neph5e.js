@@ -54,12 +54,15 @@ import { VecuSheet } from "./feature/periode/item/vecu.js";
 import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
 import { AppelDataModel } from "./feature/conjuration/item/appel.mjs";
 import { ArcaneDataModel } from "./feature/periode/item/arcane.mjs";
+import { ArmeDataModel } from "./feature/combat/item/arme.mjs";
+import { ArmureDataModel } from "./feature/combat/item/armure.mjs";
 import { AtlanteideDataModel } from "./feature/atlanteide/item/atlanteide.mjs";
 import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
 import { CapaciteDataModel } from "./feature/periode/item/capacite.mjs";
 import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
 import { CompetenceDataModel } from "./feature/periode/item/competence.mjs";
 import { DivinationDataModel } from "./feature/bohemien/item/divination.mjs";
+import { DracomachieDataModel } from "./feature/dracomachie/item/dracomachie.mjs";
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
 import { HabitusDataModel } from "./feature/analogie/item/habitus.mjs";
 import { InvocationDataModel } from "./feature/kabbale/item/invocation.mjs";
@@ -104,12 +107,15 @@ Hooks.once("init", function () {
         alchimie: AlchimieDataModel,
         appel: AppelDataModel,
         arcane: ArcaneDataModel,
+        arme: ArmeDataModel,
+        armure: ArmureDataModel,
         atlanteide: AtlanteideDataModel,
         capacite: CapaciteDataModel,
         catalyseur: CatalyseurDataModel,
         chute: ChuteDataModel,
         competence: CompetenceDataModel,
         divination: DivinationDataModel,
+        dracomachie: DracomachieDataModel,
         formule: FormuleDataModel,
         habitus: HabitusDataModel,
         invocation: InvocationDataModel,
