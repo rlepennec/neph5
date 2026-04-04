@@ -1,3 +1,6 @@
+import { NephilimActor } from "./entity.js"
+import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
+
 import { AbstractFeature } from "../../feature/core/abstractFeature.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Constants } from "../common/constants.js";
@@ -9,7 +12,15 @@ import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
-export class BaseSheet extends foundry.appv1.sheets.ActorSheet {
+export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
+
+    static get documentClass() {
+        return NephilimActor;
+    }
+
+    static DEFAULT_OPTIONS = {
+        classes: ["actor"]
+    }
 
     /**
      * @constructor

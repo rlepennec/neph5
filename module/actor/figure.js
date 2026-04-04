@@ -6,25 +6,7 @@ import { HistoricalSheet } from "./historical.js";
 
 export class FigureSheet extends HistoricalSheet {
 
-    /**
-     * @constructor
-     * @param args
-     */
-    constructor(...args) {
-        super(...args);
-        this.editedCapacity = null;
-    }
-
-    /**
-     * @return the path of the specified actor sheet.
-     */
-    get template() {
-        return 'systems/neph5e/templates/actor/figure.html';
-    }
-
-    /**
-     * @override
-     */
+    /*
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 1070,
@@ -57,6 +39,28 @@ export class FigureSheet extends HistoricalSheet {
                     initial: "description"
                 }]
         });
+    }
+    */
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 1070,
+            height: 950
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/templates/actor/figure.html`,
+        }
+    }
+
+    /**
+     * @constructor
+     * @param args
+     */
+    constructor(...args) {
+        super(...args);
+        this.editedCapacity = null;
     }
 
     /**

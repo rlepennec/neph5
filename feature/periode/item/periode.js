@@ -3,6 +3,19 @@ import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/periode/item/periode.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -10,24 +23,6 @@ export class PeriodeSheet extends NephilimItemSheet {
         return {
             vecus: this._getVecus(this.item.system.id)
         }
-    }
-
-    /** 
-     * @override
-     */
-     static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/periode/item/periode.html`;
     }
 
     /**

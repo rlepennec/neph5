@@ -3,6 +3,19 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class HabitusSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 600
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/analogie/item/habitus.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -11,24 +24,6 @@ export class HabitusSheet extends NephilimItemSheet {
             elements: Game.elements,
             cercles: super.cerclesOf('analogie')
         }
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/analogie/item/habitus.html`;
     }
 
     /**

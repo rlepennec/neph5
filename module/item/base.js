@@ -1,26 +1,46 @@
+import { NephilimItem } from "./entity.js"
+import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
+
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Science } from "../../feature/science/science.js";
 
-const { api, sheets } = foundry.applications;
+export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
-export class NephilimItemSheet extends api.HandlebarsApplicationMixin(sheets.ItemSheetV2) {
+    static get documentClass() {
+        return NephilimItem;
+    }
 
     static DEFAULT_OPTIONS = {
-        classes: ["nephilim", "sheet", "item"],
-        position: {
-            height: 590,
-            width: 400,
-        },
-        form: {
-            closeOnSubmit: true,
-            submitOnChange: true,
-        },
-        editable: true,
-        tag: "form",
-        window: {
-            resizable: true,
-        },
+        classes: ["item"]
     }
+
+    /** 
+     * @override
+     */
+    async _onDrop(event) {
+        if (this.locked) return;
+        const document = new DocumentIdentifier(event).toDocument();
+        if (document == null) {
+            ui.notifications.warn("Can't drop this kind of object");
+            return;
+        }
+        await new DocumentReference(this.document).removeFromRegister(document);
+        await new DocumentReference(document).addTo(this.document);
+        await new DocumentReference(this.document).addTo(document);
+    }
+
+    /** 
+     * @override
+     */
+    async _onDelete(event, target) {
+        const remove = new DocumentIdentifier(target).toDocument();
+        await new DocumentReference(remove).removeFrom(this.document);
+        await new DocumentReference(this.document).removeFrom(remove);
+    }
+
+
+
+
 
     /**
      * @constructor

@@ -6,24 +6,7 @@ import { NephilimItemSheet } from "../item/base.js";
 
 export class FigurantSheet extends BaseSheet {
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-
-    /**
-     * @return the path of the specified actor sheet.
-     */
-    get template() {
-        return 'systems/neph5e/templates/actor/figurant.html';
-    }
-
-    /**
-     * @override
-     */
+/*
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 1000,
@@ -40,6 +23,28 @@ export class FigurantSheet extends BaseSheet {
                     initial: game.user.isGM ? "combat" : "general"
                 }]
         });
+    }
+*/
+
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 1000,
+            height: 800
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/templates/actor/figurant.html`,
+        }
+    }
+
+    /**
+     * @constructor
+     * @param  {...any} args
+     */
+    constructor(...args) {
+        super(...args);
     }
 
     /**

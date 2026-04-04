@@ -3,6 +3,19 @@ import { Game } from "../../../module/common/game.js";
 
 export class MetamorpheSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 800
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/nephilim/item/metamorphe.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -10,24 +23,6 @@ export class MetamorpheSheet extends NephilimItemSheet {
         return {
             elements: Game.pentacle.elements
         }
-    }
-
-    /** 
-     * @override
-     */
-	static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 800,
-            classes: ["nephilim", "sheet", "item"]
-      });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/nephilim/item/metamorphe.html`;
     }
 
     /**

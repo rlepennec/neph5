@@ -5,6 +5,19 @@ import { Mnemos } from "./mnemos.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/periode/item/vecu.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -12,24 +25,6 @@ export class VecuSheet extends NephilimItemSheet {
         return {
             elements: Game.pentacle.elements
         }
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/periode/item/vecu.html`;
     }
 
     /**

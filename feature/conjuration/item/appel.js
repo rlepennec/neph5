@@ -4,6 +4,19 @@ import { Game } from "../../../module/common/game.js";
 
 export class AppelSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/conjuration/item/appel.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -12,24 +25,6 @@ export class AppelSheet extends NephilimItemSheet {
             cercles: super.cerclesOf('conjuration'),
             appels: Game.conjuration.appels
         }
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/conjuration/item/appel.html`;
     }
 
 }

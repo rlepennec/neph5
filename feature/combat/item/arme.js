@@ -3,6 +3,19 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class ArmeSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 650,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/combat/item/arme.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -13,24 +26,6 @@ export class ArmeSheet extends NephilimItemSheet {
             trait:     "NEPH5E.armes.trait",
             feu:       "NEPH5E.armes.feu"
         }}
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 650,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/combat/item/arme.html`;
     }
 
     /**

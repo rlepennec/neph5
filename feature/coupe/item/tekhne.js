@@ -2,6 +2,19 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class TekhneSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/coupe/item/tekhne.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -9,27 +22,6 @@ export class TekhneSheet extends NephilimItemSheet {
         return {
             cercles: super.cerclesOf('coupe')
         }
-    }
-
-    /** 
-     * @override
-     */
-	static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 600,
-            classes: ["nephilim", "sheet", "item"],
-            resizable: true,
-            scrollY: [".tab.description"],
-            tabs: [{navSelector: ".sheet-navigation", contentSelector: ".article-body", initial: "description"}]
-      });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/coupe/item/tekhne.html`;
     }
 
 }

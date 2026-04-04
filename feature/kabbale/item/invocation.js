@@ -3,6 +3,19 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class InvocationSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/kabbale/item/invocation.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -13,24 +26,6 @@ export class InvocationSheet extends NephilimItemSheet {
             mondes: Game.kabbale.mondes,
             sephiroth: Game.kabbale.sephiroth
         }
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/kabbale/item/invocation.html`;
     }
 
 }

@@ -3,31 +3,10 @@ import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { HistoricalSheet } from "./historical.js";
 
 export class FraterniteSheet extends HistoricalSheet {
-
-    /**
-     * @constructor
-     * @param args
-     */
-    constructor(...args) {
-        super(...args);
-    }
-
-    /**
-     * @return the path of the specified actor sheet.
-     */
-    get template() {
-        return 'systems/neph5e/templates/actor/fraternite.html';
-    }
-
-    /**
-     * @override
-     */
-    static get defaultOptions() {
+    
+    /*
+        static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 1000,
-            height: 800,
-            classes: ["nephilim", "sheet", "actor"],
-            resizable: true,
             scrollY: [
                 ".tab.general",
                 ".tab.effectif",
@@ -42,6 +21,28 @@ export class FraterniteSheet extends HistoricalSheet {
                     initial: "general"
                 }]
         });
+    }
+    */
+
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 1000,
+            height: 800
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/templates/actor/fraternite.html`,
+        }
+    }
+
+    /**
+     * @constructor
+     * @param args
+     */
+    constructor(...args) {
+        super(...args);
     }
 
     /**

@@ -3,22 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 export class AlchimieSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        id: "alchimie",
-        classes: ["nephilim", "sheet", "item", "alchimie"],
         position: {
-            height: 400,
-            width: 560,
-        },
-        form: {
-            handler: AlchimieSheet.#onSubmit,
-            closeOnSubmit: true,
-            submitOnChange: false,
-        },
-        editable: true,
-        tag: "form",
-        window: {
-            resizable: true,
-        },
+            width: 400,
+            height: 560
+        }
     }
 
     static PARTS = {

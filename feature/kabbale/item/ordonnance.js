@@ -3,6 +3,19 @@ import { Game } from "../../../module/common/game.js";
 
 export class OrdonnanceSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/kabbale/item/ordonnance.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -10,24 +23,6 @@ export class OrdonnanceSheet extends NephilimItemSheet {
         return {
             mondes: Game.kabbale.mondes
         }
-    }
-
-    /** 
-     * @override
-     */
-	static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-      });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/kabbale/item/ordonnance.html`;
     }
 
 }

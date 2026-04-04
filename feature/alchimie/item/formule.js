@@ -4,6 +4,19 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class FormuleSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 650,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/alchimie/item/formule.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -18,24 +31,6 @@ export class FormuleSheet extends NephilimItemSheet {
             substances: Game.alchimie.substances,
             catalyseurs: game.settings.get('neph5e', 'catalyseurs')
         }
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 650,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/alchimie/item/formule.html`;
     }
 
     /**

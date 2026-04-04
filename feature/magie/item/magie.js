@@ -2,22 +2,17 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class MagieSheet extends NephilimItemSheet {
 
-    /** 
-     * @override
-     */
-	static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
+    static DEFAULT_OPTIONS = {
+        position: {
             width: 700,
-            height: 400,
-            classes: ["nephilim", "sheet", "item"]
-      });
+            height: 400
+        }
     }
 
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/magie/item/magie.html`;
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/magie/item/magie.html`,
+        }
     }
 
 }

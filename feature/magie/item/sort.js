@@ -3,6 +3,19 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class SortSheet extends NephilimItemSheet {
 
+    static DEFAULT_OPTIONS = {
+        position: {
+            width: 560,
+            height: 500
+        }
+    }
+
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/magie/item/sort.html`,
+        }
+    }
+
     /** 
      * @override
      */
@@ -11,24 +24,6 @@ export class SortSheet extends NephilimItemSheet {
             elements: Game.elements,
             cercles: super.cerclesOf('magie')
         }
-    }
-
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
-    }
-
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/magie/item/sort.html`;
     }
 
     /**

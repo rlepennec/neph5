@@ -3,22 +3,17 @@ import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 
 export class QueteSheet extends NephilimItemSheet {
 
-    /** 
-     * @override
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
+    static DEFAULT_OPTIONS = {
+        position: {
             width: 560,
-            height: 500,
-            classes: ["nephilim", "sheet", "item"]
-        });
+            height: 500
+        }
     }
 
-    /** 
-     * @override
-     */
-    get template() {
-        return `systems/neph5e/feature/periode/item/quete.html`;
+    static PARTS = {
+        main: {
+            template: `systems/neph5e/feature/periode/item/quete.html`,
+        }
     }
 
     static async onEdit(event, actor) {
