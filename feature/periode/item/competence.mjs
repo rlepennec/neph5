@@ -14,7 +14,7 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
                     required: false
                 }
             ),
-            element: new foundry.data.fields.NumberField
+            element: new foundry.data.fields.StringField
             (
                 {
                     required: false

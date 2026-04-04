@@ -25,7 +25,7 @@ export class MetamorpheDataModel extends foundry.abstract.TypeDataModel {
                 new foundry.data.fields.SchemaField
                 (
                     {
-                        name: new StringField()
+                        name: new foundry.data.fields.StringField()
                     }
                 ),
                 {
