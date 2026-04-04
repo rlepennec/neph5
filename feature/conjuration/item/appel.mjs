@@ -1,0 +1,73 @@
+export class AppelDataModel extends foundry.abstract.TypeDataModel {
+
+    static defineSchema() {
+        return {
+            id: new foundry.data.fields.StringField(
+                {
+                    required: true
+                }
+            ),
+            description: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            degre: new foundry.data.fields.NumberField(
+                {
+                    required: false
+                }
+            ),
+            appel: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            controle: new foundry.data.fields.BooleanField(
+                {
+                    required: false
+                }
+            ),
+            visibilite: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            entropie: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            dommages: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            protection: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            cercle: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            status: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            periode: new foundry.data.fields.StringField(
+                {
+                    required: false
+                }
+            ),
+            focus: new foundry.data.fields.BooleanField(
+                {
+                    required: false
+                }
+            )
+        }
+    }
+
+}

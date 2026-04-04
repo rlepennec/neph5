@@ -52,6 +52,7 @@ import { TekhneSheet } from "./feature/coupe/item/tekhne.js";
 import { VecuSheet } from "./feature/periode/item/vecu.js";
 
 import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
+import { AppelDataModel } from "./feature/conjuration/item/appel.mjs";
 import { ArcaneDataModel } from "./feature/periode/item/arcane.mjs";
 import { AtlanteideDataModel } from "./feature/atlanteide/item/atlanteide.mjs";
 import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
@@ -67,6 +68,7 @@ import { OrdonnanceDataModel } from "./feature/kabbale/item/ordonnance.mjs";
 import { PasseDataModel } from "./feature/periode/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
 import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
+import { RiteDataModel } from "./feature/necromancie/item/rite.mjs";
 import { RituelDataModel } from "./feature/epee/item/rituel.mjs";
 import { QueteDataModel } from "./feature/periode/item/quete.mjs";
 import { SavoirDataModel } from "./feature/periode/item/savoir.mjs";
@@ -99,6 +101,7 @@ Hooks.once("init", function () {
 
     CONFIG.Item.dataModels = {
         alchimie: AlchimieDataModel,
+        appel: AppelDataModel,
         arcane: ArcaneDataModel,
         atlanteide: AtlanteideDataModel,
         capacite: CapaciteDataModel,
@@ -115,6 +118,7 @@ Hooks.once("init", function () {
         periode: PeriodeDataModel,
         pratique: PratiqueDataModel,
         quete: QueteDataModel,
+        rite: RiteDataModel,
         rituel: RituelDataModel,
         savoir: SavoirDataModel,
         science: ScienceDataModel,
