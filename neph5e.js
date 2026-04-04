@@ -12,8 +12,6 @@ import { FigureSheet } from "./module/actor/figure.js";
 import { FigurantSheet } from "./module/actor/figurant.js";
 import { FraterniteSheet } from "./module/actor/fraternite.js";
 
-import { AlchimieData } from "./feature/alchimie/item/alchimie.mjs";
-
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
 import { AppelSheet } from "./feature/conjuration/item/appel.js";
 import { ArcaneSheet } from "./feature/periode/item/arcane.js";
@@ -61,11 +59,13 @@ import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
 import { CompetenceDataModel } from "./feature/periode/item/competence.mjs";
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
 import { MateriaeDataModel } from "./feature/alchimie/item/materiae.mjs";
+import { MetamorpheDataModel } from "./feature/nephilim/item/metamorphe.mjs";
 import { PasseDataModel } from "./feature/periode/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
 import { QueteDataModel } from "./feature/periode/item/quete.mjs";
 import { SavoirDataModel } from "./feature/periode/item/savoir.mjs";
 import { ScienceDataModel } from "./feature/science/item/science.mjs";
+import { SortDataModel } from "./feature/magie/item/sort.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
 Hooks.once("init", function () {
@@ -98,11 +98,13 @@ Hooks.once("init", function () {
         competence: CompetenceDataModel,
         formule: FormuleDataModel,
         materiae: MateriaeDataModel,
+        metamorphe: MetamorpheDataModel,
         passe: PasseDataModel,
         periode: PeriodeDataModel,
         quete: QueteDataModel,
         savoir: SavoirDataModel,
         science: ScienceDataModel,
+        sort: SortDataModel,
         vecu: VecuDataModel
     }
 
