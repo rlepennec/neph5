@@ -53,6 +53,7 @@ import { VecuSheet } from "./feature/periode/item/vecu.js";
 
 import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
 import { ArcaneDataModel } from "./feature/periode/item/arcane.mjs";
+import { AtlanteideDataModel } from "./feature/atlanteide/item/atlanteide.mjs";
 import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
 import { CapaciteDataModel } from "./feature/periode/item/capacite.mjs";
 import { ChuteDataModel } from "./feature/periode/item/chute.mjs";
@@ -93,6 +94,7 @@ Hooks.once("init", function () {
     CONFIG.Item.dataModels = {
         alchimie: AlchimieDataModel,
         arcane: ArcaneDataModel,
+        atlanteide: AtlanteideDataModel,
         capacite: CapaciteDataModel,
         catalyseur: CatalyseurDataModel,
         chute: ChuteDataModel,
