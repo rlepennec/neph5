@@ -60,7 +60,7 @@ export class HistoricalSheet extends BaseSheet {
     async _onCurrentPeriode(event) {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.item').data('sid');
-        await this.actor.setCurrentPeriode(sid);
+        await this.document.setCurrentPeriode(sid);
         await this.render(true);
     }
 
@@ -71,7 +71,7 @@ export class HistoricalSheet extends BaseSheet {
     async _onChangePeriodesDisplay(event) {
         event.preventDefault();
         const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
-        await this.actor.update({ ['system.options.incarnationsOuvertes']: checked });
+        await this.document.update({ ['system.options.incarnationsOuvertes']: checked });
         this.elapsedPeriodes = this._elapsedPeriodes();
         await this.render(true);
     }
@@ -80,7 +80,7 @@ export class HistoricalSheet extends BaseSheet {
      * @return the system identifiers of all periodes if option has been set.
      */
     _elapsedPeriodes() {
-        return this.actor.system.options.incarnationsOuvertes === true ? this.actor.items.filter(i => i.type === 'periode').map(i => i.sid) : [];
+        return this.document.system.options.incarnationsOuvertes === true ? this.document.items.filter(i => i.type === 'periode').map(i => i.sid) : [];
     }
 
     /**
@@ -112,7 +112,7 @@ export class HistoricalSheet extends BaseSheet {
         this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
 
         // Used to remove vecus & combat options
-        await this.actor.deletePeriode(original.sid);
+        await this.document.deletePeriode(original.sid);
 
     }
 
@@ -124,7 +124,7 @@ export class HistoricalSheet extends BaseSheet {
     async _onActivatePeriode(event) {
         event.preventDefault();
         const sid = $(event.currentTarget).closest('.item').data('sid');
-        await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
+        await new FeatureBuilder(this.document).withOriginalItem(sid).create().toggleActive();
         await this.render(true);
     }
 
@@ -154,7 +154,7 @@ export class HistoricalSheet extends BaseSheet {
     async _onChangeDegre(event) {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".item").data("id");
-        const item = this.actor.items.get(id);
+        const item = this.document.items.get(id);
         const value = $(event.currentTarget).closest(".set").val();
         const system = foundry.utils.duplicate(item.system);
         const converted = parseInt(value);

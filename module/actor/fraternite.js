@@ -112,7 +112,7 @@ export class FraterniteSheet extends HistoricalSheet {
         const id = $(event.currentTarget).closest(".actor").data("id");
         const actor = game.actors.get(id);
         const periode = $(event.currentTarget).closest(".periode").data("sid");
-        await new Fraternite(this.actor).deleteMember(actor, periode);
+        await new Fraternite(this.document).deleteMember(actor, periode);
     }
 
     /**
@@ -139,7 +139,7 @@ export class FraterniteSheet extends HistoricalSheet {
                     // Drop the new resource
                     switch(item.type) {
                         case 'periode':
-                            await new FeatureBuilder(this.actor)
+                            await new FeatureBuilder(this.document)
                                 .withOriginalItem(item.sid)
                                 .withEvent(event)
                                 .withPeriode(this.editedPeriode)
@@ -153,7 +153,7 @@ export class FraterniteSheet extends HistoricalSheet {
                         case 'science': {
                             const periode = this.editedPeriode;
                             if (periode != null) {
-                                await new FeatureBuilder(this.actor)
+                                await new FeatureBuilder(this.document)
                                     .withOriginalItem(item.sid)
                                     .withEvent(event)
                                     .withPeriode(periode)
@@ -169,7 +169,7 @@ export class FraterniteSheet extends HistoricalSheet {
                         case 'rite':
                         case 'appel': {
                             if (this.editedPeriode != null) {
-                                await new FeatureBuilder(this.actor)
+                                await new FeatureBuilder(this.document)
                                     .withOriginalItem(item.sid)
                                     .withPeriode(this.editedPeriode)
                                     .create()
@@ -190,7 +190,7 @@ export class FraterniteSheet extends HistoricalSheet {
                     case 'figure':
                         const periode = this.editedPeriode;
                         if (periode != null) {
-                            await new Fraternite(this.actor).addMember(event, actor, periode, Fraternite.DEFAULT_STATUS);
+                            await new Fraternite(this.document).addMember(event, actor, periode, Fraternite.DEFAULT_STATUS);
                         }
                         break;
 

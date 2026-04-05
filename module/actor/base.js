@@ -22,22 +22,12 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         classes: ["actor"]
     }
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    constructor(...args) {
-        super(...args);
-        this.options.submitOnClose = true;
-        this.editable = game.user.isGM || this.actor.owner === true;
-    }
-
     /** 
      * @override
      */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        context.owner = this.actor.isOwner;
+        context.owner = this.document.isOwner;
         return context;
     }
 
@@ -99,8 +89,8 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     async _onDeleteEmbeddedItem(event) {
         event.preventDefault();
         const id = $(event.currentTarget).closest(".item").data("id");
-        const item = this.actor.items.get(id);
-        await this.actor.deleteEmbeddedItem(item);
+        const item = this.document.items.get(id);
+        await this.document.deleteEmbeddedItem(item);
     }
 
     /**
@@ -112,7 +102,7 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         const li = $(event.currentTarget).parents(".item");
         const id = li.data("item-id");
         const scope = li.data("scope");
-        const actor = scope === 'simulacre' ? AbstractFeature.simulacre(this.actor) : this.actor;
+        const actor = scope === 'simulacre' ? AbstractFeature.simulacre(this.document) : this.document;
         const item = actor.getEmbeddedDocument('Item', id);
         item.sheet.render(true);
     }
@@ -166,20 +156,20 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
             case '.roll-ka': {
                 const element = $(event.currentTarget).closest(purpose).data("element");
                 const scope = $(event.currentTarget).closest(purpose).data("scope"); 
-                return new FeatureBuilder(this.actor).withKa(element).withScope(scope).create();
+                return new FeatureBuilder(this.document).withKa(element).withScope(scope).create();
             }
             case '.roll-science': {
                 const key = $(event.currentTarget).closest(".roll").data("item"); 
                 const item = game.items.find(i => i.type === 'science' && i?.system?.key === key);
-                const builder = new FeatureBuilder(this.actor).withOriginalItem(item.sid);
+                const builder = new FeatureBuilder(this.document).withOriginalItem(item.sid);
                 return builder.create();
             }
             case '.roll-noyau': {
-                const builder = new FeatureBuilder(this.actor).withNoyau();
+                const builder = new FeatureBuilder(this.document).withNoyau();
                 return builder.create();
             }
             case '.roll-pavane': {
-                const builder = new FeatureBuilder(this.actor).withPavane();
+                const builder = new FeatureBuilder(this.document).withPavane();
                 return builder.create();
             }
             default: {
@@ -188,11 +178,11 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
 
                 if (scope == null) {
                     const item = game.items.get(id);
-                    const builder = new FeatureBuilder(this.actor).withOriginalItem(item.sid);
+                    const builder = new FeatureBuilder(this.document).withOriginalItem(item.sid);
                     return builder.create();
                 } else {
-                    const item = AbstractFeature.actor(this.actor,scope).items.get(id);
-                    const builder = new FeatureBuilder(this.actor).withEmbeddedItem(item.id);
+                    const item = AbstractFeature.actor(this.document,scope).items.get(id);
+                    const builder = new FeatureBuilder(this.document).withEmbeddedItem(item.id);
                     builder.withScope(scope);
                     return builder.create();
                 }
@@ -309,7 +299,7 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         event.preventDefault();
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
+        const item = this.document.getEmbeddedDocument('Item', id);
         item.sheet.render(true);
     }
 
@@ -319,11 +309,11 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
      */
     async _onDeleteEmbeddedEquipment(event) {
         event.preventDefault();
-        if (this.actor.locked) return;
+        if (this.document.locked) return;
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        await this.actor.deleteEmbeddedItem(item);
+        const item = this.document.getEmbeddedDocument('Item', id);
+        await this.document.deleteEmbeddedItem(item);
     }
 
     /**
@@ -339,38 +329,38 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
 
         // Wrestle roll attack
         if (id === 'wrestle') {
-            if (this.actor.lutteCanBePerformed) {
+            if (this.document.lutteCanBePerformed) {
                 if (['normal', 'low'].includes(combat)) {
-                    await new Wrestle(this.actor).initializeRoll();
+                    await new Wrestle(this.document).initializeRoll();
                 } else {
-                    const feature = new FeatureBuilder(this.actor).withScope("actor").withOriginalItem(this.actor.system.manoeuvres.lutte).create();
+                    const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
                     await feature.initializeRoll();
                 }
             }
 
         // Weapon roll attack
         } else {
-            const item = this.actor.getEmbeddedDocument('Item', id);
+            const item = this.document.getEmbeddedDocument('Item', id);
             if (item?.attackAvailable === true) {
 
                 // Combat system activated can be standard or simplified
                 if (['normal', 'low'].includes(combat)) {
                     switch (item.system.type) {
                         case Constants.NATURELLE:
-                            await new Naturelle(this.actor, item).initializeRoll();
+                            await new Naturelle(this.document, item).initializeRoll();
                             break;
                         case Constants.MELEE:
-                            await new Melee(this.actor, item).initializeRoll();
+                            await new Melee(this.document, item).initializeRoll();
                             break;
                         case Constants.FEU:
                         case Constants.TRAIT:
-                            await new Distance(this.actor, item).initializeRoll();
+                            await new Distance(this.document, item).initializeRoll();
                             break;
                     }
 
                 // No combat system activated, just roll a martial skill roll
                 } else {
-                    const feature = new FeatureBuilder(this.actor).withScope("actor").withOriginalItem(item.system.competence).create();
+                    const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(item.system.competence).create();
                     await feature.initializeRoll();
                 }
 
@@ -387,8 +377,8 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         event.preventDefault();
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        await this.actor.toggleEquipmentUsage(item);
+        const item = this.document.getEmbeddedDocument('Item', id);
+        await this.document.toggleEquipmentUsage(item);
     }
 
     /**
@@ -399,8 +389,8 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         event.preventDefault();
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        const action = new Distance(this.actor, item);
+        const item = this.document.getEmbeddedDocument('Item', id);
+        const action = new Distance(this.document, item);
         await new Viser().apply(action);
     }
 
@@ -412,8 +402,8 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         event.preventDefault();
         const li = $(event.currentTarget).parents("li");
         const id = li.data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        const action = new Distance(this.actor, item);
+        const item = this.document.getEmbeddedDocument('Item', id);
+        const action = new Distance(this.document, item);
         await new Recharger().apply(action);
     }
 
@@ -425,7 +415,7 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         event.preventDefault();
         const etat = $(event.currentTarget).parents(".etat");
         const id = etat.data("id");
-        await this.actor.updateEffect(id);
+        await this.document.updateEffect(id);
     }
 
     /**
@@ -440,7 +430,7 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         const sid = node.data('sid');
         let scope = node.data("scope");
         scope = scope == null ? "actor" : scope;
-        return new FeatureBuilder(this.actor).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
+        return new FeatureBuilder(this.document).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
     }
 
     /**
