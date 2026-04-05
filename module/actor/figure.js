@@ -80,17 +80,17 @@ export class FigureSheet extends HistoricalSheet {
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // The materiae primae: only save the delta to add to the theorical maximum mp
         for (let elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
-            const input = formData["system.alchimie.primae." + elt + ".max"];
+            const input = formData.object["system.alchimie.primae." + elt + ".max"];
             const delta = input - this.actor.getMaxBaseMP(elt);
-            formData["system.alchimie.primae." + elt + ".max"] = delta;
+            formData.object["system.alchimie.primae." + elt + ".max"] = delta;
         }
 
         // Update the actor
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
 
     }
 

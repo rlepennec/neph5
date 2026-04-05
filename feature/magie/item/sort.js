@@ -58,30 +58,30 @@ export class SortSheet extends NephilimItemSheet {
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // Update voies
-        if (formData["system.cercle"] === "basseMagie") {
-            formData["system.voies"] = [];
+        if (formData.object["system.cercle"] === "basseMagie") {
+            formData.object["system.voies"] = [];
         } else {
-            let size = this.item.system.voies == null ? 0 : this.item.system.voies.length;
+            let size = this.document.system.voies == null ? 0 : this.document.system.voies.length;
             const voies = [];
             for (let index = 0; index < size; index++) {
                 const name = "system.voies.[" + index + "]";
-                voies.push(formData[name]);
-                delete formData[name];
+                voies.push(formData.object[name]);
+                delete formData.object[name];
             }
-            formData["system.voies"] = voies;
+            formData.object["system.voies"] = voies;
         }
 
         // Update syntaxe & incantation
-        if (formData["system.cercle"] !== "grandSecret") {
-            formData['system.syntaxe'] = new foundry.data.operators.ForcedDeletion();
-            formData['system.incantation'] = new foundry.data.operators.ForcedDeletion();
+        if (formData.object["system.cercle"] !== "grandSecret") {
+            formData.object['system.syntaxe'] = new foundry.data.operators.ForcedDeletion();
+            formData.object['system.incantation'] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
     }
 
 }

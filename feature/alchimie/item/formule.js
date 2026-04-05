@@ -143,7 +143,6 @@ export class FormuleSheet extends NephilimItemSheet {
         // Update object
         await this.document.update(formData.object);
 
-        //super._updateObject(event, formData);
     }
 
 }

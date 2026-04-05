@@ -106,38 +106,38 @@ export class VecuSheet extends NephilimItemSheet {
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // Update competences
-        let size = this.item.system.competences.length;
+        let size = this.document.system.competences.length;
         const competences = [];
         for (let index = 0; index < size; index++) {
             const name = "system.competences.[" + index + "]";
-            competences.push(formData[name]);
-            delete formData[name];
+            competences.push(formData.object[name]);
+            delete formData.object[name];
         }
-        formData["system.competences"] = competences;
+        formData.object["system.competences"] = competences;
 
         // Update mnemos
-        if (this.item.system.mnemos != null) {
-            size = this.item.system.mnemos.length;
+        if (this.document.system.mnemos != null) {
+            size = this.document.system.mnemos.length;
             const mnemos = [];
             for (let index = 0; index < size; index++) {
                 const key = "system.mnemos.[" + index + "].";
                 mnemos.push({
-                    name: formData[key + "name"],
-                    degre: formData[key + "degre"],
-                    description: formData[key + "description"],
+                    name: formData.object[key + "name"],
+                    degre: formData.object[key + "degre"],
+                    description: formData.object[key + "description"],
                 });
-                delete formData[key + "name"];
-                delete formData[key + "degre"];
-                delete formData[key + "description"];
+                delete formData.object[key + "name"];
+                delete formData.object[key + "degre"];
+                delete formData.object[key + "description"];
             }
-            formData["system.mnemos"] = mnemos;
+            formData.object["system.mnemos"] = mnemos;
         }
 
         // Update object
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
     }
 
 }

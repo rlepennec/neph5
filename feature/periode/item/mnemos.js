@@ -56,7 +56,7 @@ export class Mnemos extends AbstractDialog {
     /**
      * @override
      */
-    async _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         event.preventDefault();
         const system = foundry.utils.duplicate(this.data.system);
@@ -65,16 +65,16 @@ export class Mnemos extends AbstractDialog {
         if (this.mnemos == null) {
             this.mnemos = system.mnemos.length;
             system.mnemos.push({
-                name: formData.name,
-                degre: formData.degre,
-                description: formData.description
+                name: formData.object.name,
+                degre: formData.object.degre,
+                description: formData.object.description
             });
 
         // Update the current mnemos
         } else {
-            system.mnemos[this.mnemos].name = formData.name;
-            system.mnemos[this.mnemos].degre = formData.degre;
-            system.mnemos[this.mnemos].description = formData.description == null ? system.mnemos[this.mnemos].description : formData.description;
+            system.mnemos[this.mnemos].name = formData.object.name;
+            system.mnemos[this.mnemos].degre = formData.object.degre;
+            system.mnemos[this.mnemos].description = formData.object.description == null ? system.mnemos[this.mnemos].description : formData.object.description;
         }
 
         await this.data.update({ ['system']: system });

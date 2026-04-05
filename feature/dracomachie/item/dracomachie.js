@@ -27,18 +27,18 @@ export class DracomachieSheet extends NephilimItemSheet {
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // Set element for passes
-        if (formData["system.cercle"] === "dracomachie@passes" || formData["system.cercle"] === "dracomachie@charmes") {
-            formData['system.element'] = "choix"
+        if (formData.object["system.cercle"] === "dracomachie@passes" || formData.object["system.cercle"] === "dracomachie@charmes") {
+            formData.object['system.element'] = "choix"
         } else {
-            formData['system.element'] = new foundry.data.operators.ForcedDeletion();
-            formData['system.degre'] = new foundry.data.operators.ForcedDeletion();
+            formData.object['system.element'] = new foundry.data.operators.ForcedDeletion();
+            formData.object['system.degre'] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
     }
 
 }

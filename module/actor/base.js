@@ -34,15 +34,15 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // The system uuid
-        if (formData['system.id'] == null || formData['system.id'] === "") {
-            formData['system.id'] = CustomHandlebarsHelpers.UUID();
+        if (formData.object['system.id'] == null || formData.object['system.id'] === "") {
+            formData.object['system.id'] = CustomHandlebarsHelpers.UUID();
         }
 
         // Update the actor
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
 
     }
 

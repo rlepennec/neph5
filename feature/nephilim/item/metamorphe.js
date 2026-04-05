@@ -28,19 +28,19 @@ export class MetamorpheSheet extends NephilimItemSheet {
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // Update metamorphoses
         const metamorphoses = [];
         for (let index = 0; index < 10; index++) {
             const name = "system.metamorphoses.[" + index + "]";
-            metamorphoses.push({ name: formData[name + ".name"] });
-            delete formData[name + ".name"];
+            metamorphoses.push({ name: formData.object[name + ".name"] });
+            delete formData.object[name + ".name"];
         }
-        formData["system.metamorphoses"] = metamorphoses;
+        formData.object["system.metamorphoses"] = metamorphoses;
 
         // Update object
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
     }
 
 }
