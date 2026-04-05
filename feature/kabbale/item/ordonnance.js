@@ -29,13 +29,4 @@ export class OrdonnanceSheet extends NephilimItemSheet {
         }
     }
 
-    /** 
-     * @override
-     */
-    getOriginalData() {
-        return {
-            mondes: Game.kabbale.mondes
-        }
-    }
-
 }

@@ -29,13 +29,4 @@ export class MateriaeSheet extends NephilimItemSheet {
         }
     }
 
-    /** 
-     * @override
-     */
-    getOriginalData() {
-        return {
-            elements: Game.pentacle.elements
-        }
-    }
-
 }
