@@ -265,6 +265,8 @@ export const NephilimMixinSheet = Base => {
 		 */
 		async _prepareContext(options) {
 			const context = await super._prepareContext(options);
+			context.isGM = game.user.isGM;
+        	context.debug = game.settings.get('neph5e', 'debug');
 			context.locked = this.locked;
 			context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
 				this.document.system.description,

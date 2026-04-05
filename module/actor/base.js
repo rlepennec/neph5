@@ -32,19 +32,13 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         this.editable = game.user.isGM || this.actor.owner === true;
     }
 
-    /**
+    /** 
      * @override
      */
-    async getData() {
-        const base = await super.getData();
-        return {
-            owner: this.actor.isOwner,
-            editable: this.isEditable,
-            isGM: game.user.isGM,
-            actor: base.actor,
-            system: base.actor.system,
-            enrichedDescription: await foundry.applications.ux.TextEditor.implementation.enrichHTML(base.actor.system.description, {secrets: this.actor.isOwner})
-        }
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.owner = this.actor.isOwner;
+        return context;
     }
 
     /**

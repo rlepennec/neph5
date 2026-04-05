@@ -61,29 +61,12 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
 //     };
 //   }
 
-
     /** 
      * @override
      */
     async _prepareContext(options) {
-        console.log("_prepareContext");
         const context = await super._prepareContext(options);
         context.id = null;
-        foundry.utils.mergeObject(context, {
-            //document: this.document,
-            //system: context.document.system,
-            isGM: game.user.isGM,
-            debug: game.settings.get('neph5e', 'debug'),
-        })
-        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-            this.document.system.description,
-            {
-                secrets: game.user.isGM,
-                relativeTo: this.document
-            }
-        )
-        //foundry.utils.mergeObject(context, this.getOriginalData());
-        //foundry.utils.mergeObject(context, this.embeddedData);
         this.embeddedData = {};
         return context;
     }
