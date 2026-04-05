@@ -1,0 +1,42 @@
+<div
+    {{#if (or (isNull display) display)}}
+    class="list"
+    {{else}}
+    class="list no-display"
+    {{/if}}>
+
+    <span class="title">{{localize title}} : </span>
+
+    {{#unless (isEmptyCollection values)}}
+    <ol class="no-vertical-margin">
+
+        {{#each values as |item|}}
+        <li class="item hoverable flexrow-start" data-item-id="{{item}}">
+
+            <input
+                name="{{../names}}.[{{@index}}]"
+                type="hidden"
+                value="{{item}}"
+                data-dtype="String"/>
+
+            {{#with (concat ../delete " fas fa-trash") as |class|}}
+            <div class="mright" >
+                <a><i class="{{class}}"></i></a>
+            </div>
+            {{/with}}
+
+            {{#with (concat ../edit " hoverable") as |class|}}
+            {{#with (getItem ..)}}
+            <div>
+                <span class="{{class}}" data-item-id="{{item}}">{{name}}</span>
+            </div>
+            {{/with}}
+            {{/with}}
+
+        </li>
+        {{/each}}
+
+    </ol>
+    {{/unless}}
+
+</div>

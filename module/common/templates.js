@@ -97,6 +97,8 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/item-chronology.hbs",
         "systems/neph5e/templates/item-header.hbs",
         "systems/neph5e/templates/item-input.hbs",
+        "systems/neph5e/templates/item-list.hbs",
+        "systems/neph5e/templates/item-number.hbs",
         "systems/neph5e/templates/item-select.hbs"
 
     ]);

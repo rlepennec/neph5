@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class FormuleDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -46,9 +48,9 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
             (
                 new foundry.data.fields.StringField(),
                 {
-                    required: false
+                    initial: 'air',
+                    choices: Constants.ELEMENTS
                 }
-                
             ),
             catalyseurs: new foundry.data.fields.ArrayField
             (

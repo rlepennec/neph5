@@ -1,0 +1,30 @@
+<div class="data">
+
+    <div class="value tooltip">
+
+        {{#if (nonNull tooltip)}}
+        <span class="tooltiptext">{{localize tooltip}}</span>
+        {{/if}}
+
+        {{#if (nonNull label)}}
+        <span>{{localize label}}</span>
+        {{/if}}
+
+        <input
+
+            {{#if (nonNull difficulty)}}
+                disabled
+                class="number"
+            {{else}}
+                class="number hoverable"
+            {{/if}}
+
+            placeholder="0"
+            name={{name}}
+            type="text"
+            value="{{value}}"
+            data-dtype="Number"/>
+
+    </div>
+
+</div>

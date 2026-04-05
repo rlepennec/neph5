@@ -1,4 +1,5 @@
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
+import { FormuleDataModel } from "./formule.mjs";
 import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
@@ -20,16 +21,19 @@ export class FormuleSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            elements: Game.pentacle.elements,
-            elementsGS: {
-                quintessence: "NEPH5E.quintessence",
-                quintuple:    "NEPH5E.quintuple"
-            },
-            cercles: super.cerclesOf('alchimie'),
-            substances: Game.alchimie.substances,
-            catalyseurs: game.settings.get('neph5e', 'catalyseurs')
+            ...await super._prepareContext(options),
+            context: {
+                elements: FormuleDataModel.defineSchema().elements.options.choices,
+                elementsGS: {
+                    quintessence: "NEPH5E.quintessence",
+                    quintuple:    "NEPH5E.quintuple"
+                },
+                cercles: super.cerclesOf('alchimie'),
+                substances: Game.alchimie.substances,
+                catalyseurs: game.settings.get('neph5e', 'catalyseurs')
+            }
         }
     }
 
