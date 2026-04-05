@@ -1,0 +1,15 @@
+<header>
+
+    <input
+        name="name"
+        type="text"
+        value="{{document.name}}"
+        {{#if document.sheet.locked}} disabled{{/if}}/>
+
+    <img
+        src="{{document.img}}"
+        title="{{document.name}}"
+        data-edit="img"
+        data-action="editImage"/>
+
+</header>

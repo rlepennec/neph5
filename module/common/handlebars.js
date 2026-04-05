@@ -3,6 +3,19 @@ import { Constants } from "./constants.js";
 export class CustomHandlebarsHelpers {
 
     /**
+     * @param words The words to translate. 
+     * @returns the concated words.
+     */
+    static translate(word) {
+        return game.i18n.localize(`NEPHILIM.${word}`);
+    }
+
+
+// OLD
+
+
+
+    /**
      * @param value The value to check.
      * @returns true if the specified value is null or undefined.
      */

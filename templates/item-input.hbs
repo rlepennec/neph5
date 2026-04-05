@@ -1,0 +1,9 @@
+{{#if title}}
+<h1>{{translate title}}</h1>
+{{/if}}
+
+<input
+    name={{name}}
+    type="text"
+    value="{{value}}"
+    {{#if document.sheet.locked}} disabled{{/if}}/>

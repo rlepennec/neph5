@@ -56,6 +56,26 @@
     "SETTINGS.extraChatMessages": "Messages du tchat",
     "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
 
+    "NEPHILIM": {
+        "competences": "Compétences",
+        "description": "Description",
+        "element": "Elément",
+        "epoque": "Epoque",
+        "humeur": "Humeur",
+        "key": "Clé",
+        "main": "Main",
+        "peau": "Peau",
+        "odeur": "Odeur",
+        "periode": "Période",
+        "region": "Région",
+        "setup": "Configurer",
+        "toggleLock": "Verrouillage",
+        "vecu": "Vécu",
+        "vecus": "Vécus",
+        "visage": "Visage",
+        "voix": "Voix"
+    },
+
     "NEPH5E": {
         "absorption": "Absorption",
         "actions": "Actions",

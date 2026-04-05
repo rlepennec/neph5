@@ -1,0 +1,4281 @@
+.actor {
+
+    .window-content {
+        background: var(--background);
+        color: var(--font-color);
+
+        .actor-root {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        
+            .tooltip {
+                position: relative;
+                display: inline-block;
+            
+                .tooltiptext {
+                    visibility: hidden;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px;
+                    border-radius: 6px;
+                    position: absolute;
+                    z-index: 200;
+                    bottom: 125%;
+                    left: 50%;
+                    margin-left: -60px;
+                    opacity: 1;
+                    transition: opacity 0.3s;
+                    background-image: linear-gradient(to bottom, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                    box-shadow: 3px 3px 3px #999;
+                    border: solid 1px #333A40;
+                    font-size: 16px;
+            
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        margin-left: -5px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: #555 transparent transparent transparent;
+                    }
+            
+                }
+            
+                &:hover .tooltiptext {
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+            }
+        
+            .hoverable {
+        
+                &:hover {
+                    text-shadow: 0 0 10px #2C606D;
+                    color: #2C606D;
+                }
+            
+            }
+        
+            .side {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 170px;
+                position: relative;
+                font-family: 'AJensonPro';
+                font-size: 23px;
+                font-weight: bolder;
+                color: var(--font-side-color);
+
+                .image {
+                    margin-top: 25px;
+                    width: 150px;
+                    border: 0px;
+                    position: relative;
+                }
+
+                .lock-checkbox {
+                    flex: none;
+                    margin-left: 130px;
+                    margin-top: -22px;
+                    font-size: 19px;
+                    z-index: 99;
+
+                    input[type="checkbox"] {
+                        display:none;
+                    }
+
+                    .checked {
+                        display: none;
+                    }
+                
+                    input[type="checkbox"]:checked ~ .checked {
+                        display: inline-block;
+                    }
+                     
+                    input[type="checkbox"]:checked ~ .unchecked {
+                        display: none;
+                    }
+
+                    &:hover {
+                        text-shadow: 0px 0px 3px var(--font-color);
+                    }
+                
+                }
+
+                .soleil {
+                    margin-top: 20px;
+                    margin-left: 35px;
+                    display: flex;
+                    justify-content: center;
+
+                    .circle {
+                        border: none;
+                        background-color: transparent;
+                        max-width: none;
+                        width: 85px;
+                        height: 85px;
+                        color: var(--font-color);
+                        width: var(--soleil-circle-width);
+                        height: var(--soleil-circle-height);
+                        content: var(--img-circle);
+                    }
+
+                    .dice {
+                        position: absolute;
+                        top: 7px;
+                        left: -14px;
+                        font-size: 14px;
+                        color: var(--font-color);
+                    }
+
+                    .tooltip {
+                        top: var(--soleil-tooltip-margin-top);
+                        left: var(--soleil-tooltip-margin-left);
+
+                        .tooltiptext {
+                            bottom: 10%;
+                            left: 258%;
+
+                            &:after {
+                                margin-top: -67px;
+                                border-width: 5px;
+                                border-style: solid;
+                                border-color: #555 transparent transparent transparent;
+                            }
+
+                        }
+
+                        input {
+                            background-color: transparent;
+                            font-size: 20px;
+                            border: 0px;
+                            width: 40px;
+                            text-align: left;
+                            color: var(--font-color);
+                        }
+
+                    }
+
+                }
+
+                .sheet-navigation {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    margin-top:25px;
+                    flex: 0 0 30px;
+                    position: relative;
+                    margin-bottom: 5px;
+        
+                    .sheet-navigation-choice {
+                        display: flex;
+                        flex-direction: row;
+                        position: relative;
+        
+                        .sheet-navigation-tab {
+                            width: 170px;
+                        }
+        
+                        .sheet-navigation-tab.active {
+                            color: var(--font-side-selected-color);
+                            ~ .sheet-navigation-hole {
+                                visibility: hidden;
+                                opacity: 0;
+                                transition: visibility 0s, opacity 0s linear;
+                            }
+                        }
+        
+                        .sheet-navigation-tab:not(.active) {
+                            ~ .sheet-navigation-pin {
+                                visibility: hidden;
+                                opacity: 0;
+                                transition: visibility 0.3s, opacity 0.3s linear;
+                            }
+                        }
+        
+                        .sheet-navigation-pin {
+                            position: absolute;
+                            top: 7px;
+                            left: 161px;
+                            width: 17px;
+                            border: none;
+                            visibility: visible;
+                            opacity: 1;
+                            transition: visibility 0.3s, opacity 0.3s linear;
+                            content: var(--img-pin);
+                        }
+        
+                        .sheet-navigation-hole {
+                            position: absolute;
+                            top: 7px;
+                            left: 161px;
+                            width: 17px;
+                            border: none;
+                            visibility: visible;
+                            opacity: 1;
+                            transition: visibility 0.3s, opacity 0.3s linear;
+                            content: var(--img-hole);
+                        }
+        
+                    }
+                    
+                    .sheet-navigation-tab:hover {
+                        text-shadow: 0px 0px 3px var(--shadow-navigation-color);
+                    }
+        
+                    .sheet-navigation-image {
+                        margin-top: 20px;
+                        width: 50px;
+                        border: 0px;
+                        position: relative;
+                    }
+        
+                }
+
+                &::before {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    left: 0px;
+                    content: "";
+                    background:
+                        var(--side-background);
+                        -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.8)), to(rgba(0,0,0,0)));
+                }
+
+            }
+        
+            .article {
+                display: flex;
+                flex-direction: column;
+                margin-left: 10px;
+                width: 100%;
+                height: 100%;
+        
+                .article-header {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+        
+                    .article-title {
+                        resize: none;
+                        text-align: center;
+                        border: 0px;
+                        background-color: transparent;
+                        font-family: 'NightjarDemi';
+                        font-size: 35px;
+                        color: var(--font-article-title);
+                        vertical-align: middle;
+                        box-shadow: none;
+                    }
+        
+                    .article-separator {
+                        border: 0px;
+                        width: 200px;
+                        margin-top: var(--article-separator-margin-top);
+                        content: var(--img-article-separator);
+        
+                    }
+
+                }
+        
+                .article-body {
+                    height: 100%;
+
+                    div.tab[data-tab="description"] {
+                        height: 100%;
+
+                        .editor {
+                            height: 100%;
+                        }
+
+                    }
+
+                    .article-upper-corner {
+                        position: absolute;
+                        background-color: transparent;
+                        right: 0px;
+                        top: 30px;
+                        width: 150px;
+                        overflow: hidden;
+                        border: none;
+                        content: var(--img-article-corner);
+                    }
+
+                    .article-bottom-corner {
+                        position: absolute;
+                        right: 0px;
+                        bottom: 0px;
+                        border: none;
+                        width: 120px;
+                        content: var(--img-corner);
+                    }
+
+                    .nephilim {
+                        flex-direction: row;
+                        display: flex;
+                        padding-top: 20px;
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: var(--nephilim-header-bottom);
+                            width: 100%;
+
+                            .puce {
+                                position: relative;
+                                top: var(--puce-top);
+                                border: none;
+                                width: 60px;
+                                background-color: transparent;
+                                content: var(--img-puce);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 55px);
+                                content: var(--img-separator);
+                            }
+        
+                            .name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        .header-with-value {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-bottom: -10px;
+
+                            .circle {
+                                border: none;
+                                width: var(--nephilim-circle-width);
+                                height: var(--nephilim-circle-height);
+                                background-color: transparent;
+                                content: var(--img-circle);
+                            }
+
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 70px;
+                                top: 46px;
+                                width: calc(100% - 70px);
+                                content: var(--img-separator);
+                            }
+
+                            .degre {
+                                position: absolute;
+                                width: 45px;
+                                height: 45px;
+                                left: var(--nephilim-header-input-left);
+                                top: 9px;
+                                text-align: center;
+                                font-weight: bold;
+                                padding-top: 12px;
+                                border-radius: 50%;
+                                background-color: transparent;
+                                border: none;
+                                font-size: 20px;
+                            }
+
+                            .name {
+                                display: flex;
+                                flex-direction: row;
+                                position: absolute;
+                                left: 70px;
+                                top: 17px;
+                                text-align: left;
+                                flex: 1 1 auto;
+                                border: none;
+                                background-color: transparent;
+                                width: calc(100% - 70px);
+                            }
+
+                        }
+
+                        .left {
+                            display: flex;
+                            flex-direction: column;
+                            width: 450px;
+        
+                            .pentacle {
+
+                                .body {
+                                    position: relative;
+                                    text-align: center;
+                                    margin-left: 55px;
+                                    margin-bottom: 30px;
+                                    margin-top: 20px;
+
+                                    img {
+                                        border: 0px;
+                                        width: 380px;
+                                        height: 378px;
+                                    }
+
+                                    .elements {
+                                        list-style: none;
+
+                                        .element {
+                                            position: absolute;
+
+                                            &.air {
+                                                top: var(--nephilim-top-air);
+                                                left: var(--nephilim-left-air);
+                                            }
+
+                                            &.eau {
+                                                top: var(--nephilim-top-eau);
+                                                left: var(--nephilim-left-eau);
+                                            }
+
+                                            &.feu {
+                                                top: var(--nephilim-top-feu);
+                                                left: var(--nephilim-left-feu);
+                                            }
+
+                                            &.lune {
+                                                top: var(--nephilim-top-lune);
+                                                left: var(--nephilim-left-lune);
+                                            }
+
+                                            &.terre {
+                                                top: var(--nephilim-top-terre);
+                                                left: var(--nephilim-left-terre);
+                                            }
+
+                                            .circle {
+                                                position: relative;
+                                                border: none;
+                                                width: var(--nephilim-width-circle);
+                                                height: var(--nephilim-height-circle);
+                                                top: -25px;
+                                                left: -25px;
+                                                background-color: transparent;
+                                                max-width: none;
+                                                content: var(--img-circle);
+                                                color: var(--font-color);
+                                            }
+
+                                            .dice {
+                                                position: absolute;
+                                                top: var(--nephilim-top-dice);
+                                                left: var(--nephilim-left-dice);
+                                                font-size: 14px;
+                                                color: var(--font-color);
+                                            }
+
+                                            .tooltip {
+                                                position: absolute;
+                                                top: var(--nephilim-top-element);
+                                                left: var(--nephilim-left-element);
+
+                                                input {
+                                                    background-color: transparent;
+                                                    font-size: 20px;
+                                                    border: 0px;
+                                                    width: 40px;
+                                                    text-align: left;
+                                                    color: var(--font-color);
+                                                    box-shadow: none;
+                                                }
+
+                                            }
+                
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+        
+                            .chutes {
+
+                                .body {
+                                    display: flex;
+                                    flex-direction: column;
+                                    padding: 0 0 0 0;
+                                    margin-top: var(--nephilim-margin-top); 
+        
+                                    .chute {
+                                        display: flex;
+                                        flex-direction: row;
+                                        flex-wrap: nowrap;
+                                        align-items: center;
+                                        padding: 0 0 0 20px;
+                                        -webkit-column-break-inside: avoid;
+                                        page-break-inside: avoid;
+                                        break-inside: avoid;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        z-index: 99;
+        
+                                        .name {
+                                            flex: 0 0 200px;
+                                            margin-right: calc(100% - 410px);
+                                            margin-left: 30px;
+                                        }
+        
+                                        .degres {
+                                            display: flex;
+                                            flex-direction: row;
+                                            flex-wrap: nowrap;
+                                            flex: 0 0 auto;
+                                            margin-top: -2px;
+                                            font-size: 14px;
+                                        }
+        
+                                        .l3 {
+                                            margin-left: 3px;
+                                        }
+        
+                                        .l3r {
+                                            margin-left: 3px;
+                                            color: var(--nephilim-color-chute);
+                                        }
+        
+                                        .l6 {
+                                            margin-left: 6px;
+                                        }
+        
+                                        .l6r {
+                                            margin-left: 6px;
+                                            color: var(--nephilim-color-chute);
+                                        }
+        
+                                        &:hover {
+                                            text-shadow: 0px 0px 3px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+                        }
+        
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 40px;
+                            margin-right: 10px;
+                            width: calc(100% - 500px);
+
+                            .metamorphe {
+                            
+                                .metamorphoses {
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    .metamorphose {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+
+                                        .formed {
+                                            font-size: 13px;
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                            margin-top: 3px;
+                                            padding-left: 1px;
+                                        }
+
+                                        .name {
+                                            width: calc(100% - 65px);
+                                            overflow: hidden; 
+                                            white-space: nowrap; 
+                                            text-overflow: ellipsis;
+                                        }
+
+                                        .visible {
+                                            font-size: 13px;
+                                            margin-top: 3px;
+                                            z-index: 99;
+                                        }
+
+                                        &.undeveloped {
+                                            color: var(--font-disabled-color);
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+
+                                .header-with-value {
+
+                                    .name:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+
+                                }
+
+                            }
+
+                            .attributs {
+
+                                .body {
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-top: var(--nephilim-margin-top);
+            
+                                    .attribut {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                    
+                                        .value {
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                        }
+
+                                        .name {
+                                            width: calc(100% - 50px);
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+                
+                            }
+
+                            .stase {
+                                
+                                .header-with-value {
+                                    margin-bottom: 10px;
+                                    
+                                    .name {
+                                        font-size: 16px;
+                                        color: var(--font-color);
+                                        box-shadow: none;
+                                    }
+
+                                    .degre {
+                                        margin-top: var(--nephilim-stase-margin-top);
+                                        color: var(--font-color);
+                                        box-shadow: none;
+                                    }
+
+                                }
+
+                            }
+        
+                            .arcanes {
+
+                                .body {
+                                    display: flex;
+                                    flex-direction: column;
+                                    margin-top: var(--nephilim-margin-top);
+
+                                    .arcane {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                                        z-index: 99;
+
+                                        .value {
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                        }
+
+                                        .name {
+                                            width: calc(100% - 70px);
+                                        }
+
+                                        .dice {
+                                            font-size: 14px;
+                                            padding-top: 4px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+                    
+                                }
+
+                            }
+
+                        }
+            
+                    }
+
+                    .selenim {
+                        flex-direction: row;
+                        display: flex;
+                        padding-top: 20px;
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: -10px;
+                            width: 100%;
+
+                            .puce {
+                                position: relative;
+                                top: var(--puce-top);
+                                border: none;
+                                width: 60px;
+                                display: hidden;
+                                background-color: transparent;
+                                content: var(--img-puce);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 55px);
+                                content: var(--img-separator);
+                            }
+        
+                            .name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        .header-with-value {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-bottom: var(--selenim-imago-bottom);
+
+                            .circle {
+                                position: relative;
+                                border: none;
+                                width: var(--selenim-imago-width);
+                                height: var(--selenim-imago-height);
+                                top: var(--selenim-imago-top);
+                                left: var(--selenim-imago-left);
+                                background-color: transparent;
+                                content: var(--img-circle);
+
+                            }
+
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 70px;
+                                top: 46px;
+                                width: calc(100% - 70px);
+                                content: var(--img-separator);
+                            }
+
+                            .degre {
+                                position: absolute;
+                                width: 45px;
+                                height: 45px;
+                                left: 8px;
+                                top: 9px;
+                                text-align: center;
+                                font-weight: bold;
+                                padding-top: 12px;
+                                border-radius: 50%;
+                                background-color: transparent;
+                                border: none;
+                                font-size: 20px;
+                            }
+
+                            .name {
+                                display: flex;
+                                flex-direction: row;
+                                position: absolute;
+                                left: 70px;
+                                top: 17px;
+                                text-align: left;
+                                flex: 1 1 auto;
+                                border: none;
+                                background-color: transparent;
+                                width: calc(100% - 70px);
+                            }
+
+                        }
+
+                        .left {
+                            display: flex;
+                            flex-direction: column;
+                            width: 450px;
+
+                            .noyau {
+
+                                .body {
+                                    position: relative;
+                                    text-align: center;
+                                    margin-left: 55px;
+                                    margin-top: 30px;
+                                    font-family: 'AJensonPro';
+
+                                    img {
+                                        border: 0px;
+                                    }
+
+                                    .elements {
+                                        list-style: none;
+
+                                        .element {
+                                            position: absolute;
+
+                                            &.noyau {
+                                                top: 61px;
+                                                left: 44px;
+                                            }
+
+                                            &.pavane {
+                                                top: 32px;
+                                                left: 307px;
+                                            }
+
+                                            &.reserves {
+                                                top: 248px;
+                                                left: 183px;
+
+                                                .circle {
+                                                    width: var(--selenim-width-circle);
+                                                    height: var(--selenim-height-circle);
+                                                }
+
+                                                .tooltip {
+                                                    top: var(--selenim-reserves-tooltip-top);
+                                                    left: var(--selenim-reserves-tooltip-left);
+                                                }
+
+                                                .separator {
+                                                    top: var(--selenim-reserves-separator-top);
+                                                    left: var(--selenim-reserves-separator-left);
+                                                }
+
+                                            }
+
+                                            .circle {
+                                                position: relative;
+                                                border: none;
+                                                width: var(--nephilim-width-circle);
+                                                height: var(--nephilim-height-circle);
+                                                top: var(--selenim-top-circle);
+                                                left: var(--selenim-left-circle);
+                                                background-color: transparent;
+                                                max-width: none;
+                                                content: var(--img-circle);
+                                            }
+
+                                            .dice {
+                                                position: absolute;
+                                                top: var(--selenim-element-dice-top);
+                                                left: var(--selenim-element-dice-left);
+                                                font-size: 14px;
+                                            }
+
+                                            .tooltip {
+                                                position: absolute;
+                                                top: var(--selenim-element-tooltip-top);
+                                                left: var(--selenim-element-tooltip-left);
+
+                                                input {
+                                                    color: var(--font-color);
+                                                    background-color: transparent;
+                                                    font-size: 20px;
+                                                    border: 0px;
+                                                    width: 40px;
+                                                    text-align: left;
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                    .macro {
+
+                                        .dice {
+                                            position: absolute;
+                                            top: 50%;
+                                            left: 50%;
+
+                                            &.noyau {
+                                                transform: translate(-120px, 115px);
+                                            }
+                
+                                            &.pavane {
+                                                transform: translate(-90px, -100px);
+                                            }
+
+                                        }
+            
+                                    }
+                    
+                                    .tooltip {
+                                        position: absolute;
+                                        top: 50%; 
+                                        left: 50%;
+            
+                                        &.pavane {
+                                            transform: translate(-80px, -105px);
+                                        }
+            
+                                        &.noyau {
+                                            transform: translate(-110px, 110px);
+                                        }
+
+                                        &.reserveCourante {
+                                            transform: translate(60px, 80px);
+                                        }
+
+                                        &.reserveMaximale {
+                                            transform: translate(100px, 80px);
+                                        }
+
+                                        input {
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            font-weight: bold;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
+
+                                    }
+
+                                    .separator {
+                                        position: absolute;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(97px, 80px);
+                                        font-size: 20px;
+                                        font-weight: bold;
+                                        text-align: center;
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 40px;
+                            margin-right: 10px;
+                            width: calc(100% - 500px);
+
+                            .imago {
+
+                                .body {
+                                    display: flex;
+                                    flex-direction: column;
+            
+                                    .aspect {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                    
+                                        .visible {
+                                            font-size: 13px;
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                            margin-top: 4px;
+                                        }
+
+                                        .name {
+                                            width: calc(100% - 65px);
+                                        }
+
+                                        .delete {
+                                            font-size: 13px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+                    
+                                }
+
+                            }
+
+                            .attributs {
+
+                                .body {
+                                    display: flex;
+                                    flex-direction: column;
+            
+                                    .attribut {
+                                        display: flex;
+                                        flex-direction: row;
+                                        margin-left: 10px;
+                                        list-style: none;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                    
+                                        .value {
+                                            width: 40px;
+                                            flex: 0 0 auto;
+                                        }
+
+                                        .name {
+                                            width: calc(100% - 50px);
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+                
+                            }
+
+                        }
+
+                    }
+
+                    .combat {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 20px;
+
+                        .disabled {
+                            color: var(--font-disabled-color);
+                        }
+
+                        .left {
+                            display: flex;
+                            flex-direction: column;
+                            width: 60%;
+        
+                            .dommages {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                background-color: transparent;
+                                
+                                .triangle {
+                                    position: absolute;
+                                    display: block;
+                                    border: none;
+                                    left: 50%;
+                                    width: var(--combat-triangle-width);
+                                    top: var(--combat-triangle-top);
+                                    margin-left: var(--combat-triangle-left);
+                                    content: var(--img-triangle)
+                                }
+        
+                                .line {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+
+                                    .title {
+                                        position: absolute;
+                                        font-size: 16px;
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+
+                                }
+
+                                .header {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-right: 10px;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+                                    font-family: 'AJensonPro';
+
+                                    .puce {
+                                        position: relative;
+                                        top: var(--puce-top);
+                                        border: none;
+                                        width: 60px;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                    }
+
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        top: 33px;
+                                        content: var(--img-separator);
+
+                                        &.physique {
+                                            width: calc(50% - 69px);
+                                            left: 57px;
+                                        }
+
+                                        &.magique {
+                                            width: calc(50% - 60px);
+                                            left: calc(50% + 75px);
+                                        }
+                                    }
+
+                                    .name {
+                                        position: absolute;
+                                        top: 2px;
+
+                                        &.physique {
+                                            width: calc(100% - 65px);
+                                            left: 70px;
+                                        }
+
+                                        &.magique {
+                                            width: calc(100% - 65px);
+                                            left: 65px;
+                                            text-align: right;
+                                        }
+
+                                    }
+   
+                                    .circle {
+                                        position: absolute;
+                                        display: block;
+                                        border: none;
+                                        width: var(--combat-dommages-circle-width);
+                                        height: var(--combat-dommages-circle-height);
+                                        top: var(--combat-dommages-circle-top);
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+
+                                        &.physique {
+                                            left: var(--combat-dommages-physique-left);
+                                        }
+
+                                        &.magique {
+                                            left: var(--combat-dommages-magique-left);
+                                        }
+
+                                    }
+
+                                    .modifier {
+                                        position: absolute;
+                                        display: block;
+                                        width: 66px;
+                                        top: 113px;
+                                        text-align: center;
+                                        font-size: 19px;
+
+                                        &.physique {
+                                            left: calc(50% - 182px);
+                                        }
+    
+                                        &.magique {
+                                            left: calc(50% + 174px);
+                                        }
+
+                                    }
+
+                                }
+
+                                .checkbox {
+                                    flex: 0 0 auto;
+                                    width: 34px;
+                                    
+                                    .checked {
+                                        display: none;
+                                    }
+            
+                                    input[type="checkbox"] {
+                                        display:none;
+                                    }
+            
+                                    input[type="checkbox"]:checked ~ .checked {
+                                        display: inline-block;
+                                    }
+                                    
+                                    input[type="checkbox"]:checked ~ .unchecked {
+                                        display: none;
+                                    }
+
+                                    &.n1 {
+                                        font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    &.n2 {
+                                        font-size: 16px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    &.n3 {
+                                        font-size: 20px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    &.n4 {
+                                        font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                    &.n5 {
+                                        font-size: 11px;
+                                        .tooltiptext {
+                                            font-size: 11px;
+                                        }
+                                    }
+
+                                }
+
+                                .dommage {
+
+                                    .title {
+                                        top: 55px;
+                                        left: 50%;                                        
+                                    }
+
+                                    .checkbox {
+                                        position: absolute;
+                                        top: 54px;
+
+                                        &.physique {
+
+                                            &.n5 {
+                                                left: calc(50% - 180px);
+                                            }
+        
+                                            &.n4 {
+                                                left: calc(50% - 150px);
+                                            }
+        
+                                            &.n3 {
+                                                left: calc(50% - 120px);
+                                            }
+        
+                                            &.n2 {
+                                                left: calc(50% - 90px);
+                                            }
+        
+                                            &.n1 {
+                                                left: calc(50% - 60px);
+                                            }
+
+                                        }
+
+                                        &.magique {
+    
+                                            &.n1 {
+                                                left: calc(50% + 107px);
+                                            }
+        
+                                            &.n2 {
+                                                left: calc(50% + 137px);
+                                            }
+        
+                                            &.n3 {
+                                                left: calc(50% + 167px);
+                                            }
+    
+                                        }
+
+                                    }
+
+                                }
+
+                                .mineure {
+                                    
+                                    .title {
+                                        top: 80px;
+                                        left: calc(50% + 8px);
+                                    }
+
+                                    .checkbox {
+                                        position: absolute;
+                                        top: 79px;
+                                    
+                                        &.physique {
+                                            left: calc(50% - 75px);
+                                        }
+
+                                        &.magique {
+                                            left: calc(50% + 120px);
+                                        }
+                                    }
+
+                                }
+
+                                .serieuse {
+
+                                    .title {
+                                        top: 105px;
+                                        left: calc(50% + 9px);
+                                    }
+
+                                    .checkbox {
+                                        position: absolute;
+                                        top: 104px;
+                                    
+                                        &.physique {
+                                            left: calc(50% - 89px);
+                                        }
+
+                                        &.magique {
+                                            left: calc(50% + 135px);
+                                        }
+                                    }
+
+                                }
+
+                                .grave {
+
+                                    .title {
+                                        top: 130px;
+                                        left: calc(50% + 16px);
+                                    }
+
+                                    .checkbox {
+                                        position: absolute;
+                                        top: 129px;
+                                    
+                                        &.physique {
+                                            left: calc(50% - 104px);
+                                        }
+
+                                        &.magique {
+                                            left: calc(50% + 148px);
+                                        }
+                                    }
+
+                                }
+
+                                .mortelle {
+
+                                    .title {
+                                        top: 155px;
+                                        left: calc(50% + 9px);
+                                    }
+
+                                    .checkbox {
+                                        position: absolute;
+                                        top: 154px;
+                                    
+                                        &.physique {
+                                            left: calc(50% - 119px);
+                                        }
+
+                                        &.magique {
+                                            left: calc(50% + 163px);
+                                        }
+                                    }
+
+                                }
+        
+                            }
+        
+                            .armes {
+                                margin-top: 130px;
+        
+                                .header {
+                                    display: flex;
+                                    flex-direction: row;
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+                                    margin-top: 15px;
+                                    margin-bottom: var(--combat-header-bottom);
+        
+                                    .puce {
+                                        position: relative;
+                                        top: var(--puce-top);
+                                        border: none;
+                                        width: 60px;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                    }
+                
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        left: 55px;
+                                        top: 32px;
+                                        width: calc(100% - 40px);
+                                        content: var(--img-separator);
+                                    }
+                
+                                    .name {
+                                        position: absolute;
+                                        left: 70px;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                    }
+        
+                                }
+
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    li {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+            
+                                        .delete {
+                                            width: 10%;
+                                        }
+            
+                                        .name {
+                                            width: 50%;
+                                        }
+            
+                                        .reload {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        .aim {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        .roll {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        .usage {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+            
+                                    }
+
+                                }
+
+                            }
+        
+                            .armures {
+        
+                                .header {
+                                    display: flex;
+                                    flex-direction: row;
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+                                    margin-top: 15px;
+                                    margin-bottom: var(--combat-armures-bottom);
+        
+                                    .puce {
+                                        position: relative;
+                                        top: var(--puce-top);
+                                        border: none;
+                                        width: 60px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                    }
+                
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        left: 55px;
+                                        top: 32px;
+                                        width: calc(100% - 40px);
+                                        content: var(--img-separator);
+                                    }
+                
+                                    .name {
+                                        position: absolute;
+                                        left: 70px;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                    }
+        
+                                }
+
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    li {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+            
+                                        .delete {
+                                            width: 10%;
+                                        }
+            
+                                        .name {
+                                            width: 80%;
+                                        }
+            
+                                        .usage {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+            
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+        
+                            }
+
+                            .ressources {
+        
+                                .header {
+                                    display: flex;
+                                    flex-direction: row;
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+                                    margin-top: 15px;
+                                    margin-bottom: var(--combat-armures-bottom);
+        
+                                    .puce {
+                                        position: relative;
+                                        top: var(--puce-top);
+                                        border: none;
+                                        width: 60px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                    }
+                
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        left: 55px;
+                                        top: 32px;
+                                        width: calc(100% - 40px);
+                                        content: var(--img-separator);
+                                    }
+                
+                                    .name {
+                                        position: absolute;
+                                        left: 70px;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                    }
+        
+                                }
+
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    li {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+
+                                        input {
+                                            border: none;
+                                            margin-top: -5px;
+                                            background: transparent;
+                                        }
+
+                                        .margin {
+                                            width: 10%;
+                                        }
+
+                                        .delete {
+                                            width: 10%;
+                                        }
+
+                                        .name {
+                                            width: 70%;
+                                        }
+            
+                                        .dice {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+
+                                        .degre {
+                                            width: 10%;
+                                            text-align: right;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+        
+                            }
+
+                        }
+        
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            width: 40%;
+                            margin-right: 10px;
+                            margin-left: 40px;
+        
+                            .header {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                font-family: 'AJensonPro';
+                                font-size: 21px;
+                                margin-top: 15px;
+                                margin-bottom: var(--combat-header-bottom);
+        
+                                .puce {
+                                    position: relative;
+                                    top: var(--puce-top);
+                                    border: none;
+                                    width: 60px;
+                                    display: hidden;
+                                    background-color: transparent;
+                                    content: var(--img-puce);
+                                }
+            
+                                .separator {
+                                    position: absolute;
+                                    border: none;
+                                    height: 4px;
+                                    left: 55px;
+                                    top: 32px;
+                                    width: calc(100% - 65px);
+                                    content: var(--img-separator);
+                                }
+            
+                                .name {
+                                    position: absolute;
+                                    left: 70px;
+                                    top: 2px;
+                                    width: calc(100% - 65px);
+                                }
+        
+                            }
+        
+                            .caracteristiques {
+                                margin-bottom: 10px;
+                                margin-top: -13px;
+        
+                                ol {
+                                    
+                                    li {
+                                        position: relative;
+                                        display: flex;
+                                        flex-direction: row;
+                                        list-style: none;
+                                        width: 100%;
+                                        height: 35px;
+        
+                                        label {
+                                            position: absolute;
+                                            top: 19px;
+                                            text-overflow: ellipsis;
+                                            overflow: hidden;
+                                        }
+        
+                                        .circle {
+                                            position: absolute;
+                                            border: none;
+                                            width: var(--combat-carac-width);
+                                            height: 51px;
+                                            content: var(--img-circle);
+                                        }
+        
+                                        input {
+                                            position: absolute;
+                                            flex: 0 0 auto;
+                                            color: var(--font-color);
+                                            width: var(--combat-carac-input-width);
+                                            top: var(--combat-carac-input-top);
+                                            height: 35px;
+                                            text-align: center;
+                                            font-weight: bold;
+                                            border-radius: 50%;
+                                            border: none;
+                                            background-color: transparent; 
+                                        }
+        
+                                        i {
+                                            position: absolute;
+                                            
+                                        }
+        
+                                        .fa-dice-d20 {
+                                            left: calc(100% - 23px);
+                                            top: 20px;
+                                        }
+        
+                                        .fa-trash {
+                                            left: calc(100% - 47px);
+                                            top: 20px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+        
+                                    }
+        
+                                    li:nth-child(1n) {
+        
+                                        label {
+                                            left: 90px;
+                                            width: calc(100% - 150px);
+                                        }
+        
+                                        input {
+                                            left: 37px;
+                                        }
+        
+                                        img {
+                                            left: 31px;
+                                        }
+        
+                                    }
+        
+                                    li:nth-child(2n) {
+        
+                                        label {
+                                            left: 130px;
+                                            width: calc(100% - 185px);
+                                        }
+        
+                                        input {
+                                            left: 78px;
+                                        }
+        
+                                        img {
+                                            left: 72px;
+                                        }
+        
+                                    }
+        
+                                }
+        
+                            }
+        
+                            .etats {
+                                font-family: 'AJensonPro';
+                                font-size: 16px;
+                                margin-top: -13px;
+        
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    .etat {
+                                        display: flex;
+                                        flex-direction: row;
+            
+                                        .checkbox {
+                                            margin-left: 22px;
+                                            margin-right: 20px;
+                                            padding-top: -5px;
+                                            font-size: 11px;
+                                            flex: 0 0 auto;
+            
+                                            .checked {
+                                                display: none;
+                                            }
+            
+                                            input[type="checkbox"] {
+                                                display: none;
+                                            }
+            
+                                            input[type="checkbox"]:checked ~ .checked {
+                                                display: inline-block;
+                                            }
+                                            
+                                            input[type="checkbox"]:checked ~ .unchecked {
+                                                display: none;
+                                            }
+            
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+            
+                                    }
+
+                                }
+        
+                            }
+        
+                            .capacites {
+                                font-family: 'AJensonPro';
+                                font-size: 16px;
+
+                                ol {
+                                    position: relative;
+                                    z-index: 99;
+
+                                    .capacite {
+                                        display: flex;
+                                        flex-direction: row;
+                                        height: 22px;
+            
+                                        .undefined {
+                                            color: var(--nephilim-color-chute);
+                                        }
+
+                                        .fa-edit {
+                                            margin-left: 22px;
+                                            margin-right: 20px;
+                                            padding-top: 3px;
+                                            font-size: 11px;
+                                            flex: 0 0 auto;
+                                        }
+            
+                                        label:first-of-type {
+                                            width: 55px;
+                                            flex: 0 0 auto;
+                                        }
+            
+                                        i {
+                                            width: 20px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                            .bonus {
+
+                                .body {
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    position: relative;
+                                    margin-top: var(--combat-bonus-margin-top);
+
+                                    .losange {
+                                        position: absolute;
+                                        left: var(--combat-bonus-losange-left);
+                                        top: var(--combat-bonus-losange-top);
+                                        width: var(--combat-bonus-losange-width);
+                                        border: none;
+                                        content: var(--img-losange);
+                                    }
+
+                                    div {
+                                        position: absolute;
+                                        display: flex;
+                                        flex-direction: row;
+
+                                        label {
+                                            position: absolute;
+                                            width: 150px;
+                                        }
+
+                                        .circle {
+                                            position: relative;
+                                            border: none;
+                                            width: var(--combat-bonus-circle-width);
+                                            height: var(--combat-bonus-circle-height);
+                                            margin-left: 15px;
+                                            background-color: transparent;
+                                            content: var(--img-circle);
+                                        }
+
+                                        input {
+                                            color: var(--font-color);
+                                            flex: 0 0 auto;
+                                            width: var(--combat-bonus-input-width);
+                                            height: var(--combat-bonus-input-height);
+                                            text-align: center;
+                                            font-weight: bold;
+                                            border-radius: 50%;
+                                            transform: translate(-41px, 8px);
+                                            border: none;
+                                            background-color: transparent;
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
+                                        }
+        
+                                    }
+        
+                                    .mouvement {
+                                        top: var(--combat-bonus-mouvement-top);
+                                        left: var(--combat-bonus-mouvement-left);
+                                        label {
+                                            top: calc(50% - -25px);
+                                            left: calc(50% - 46px);
+                                        }
+                                    }
+        
+                                    .initiative {
+                                        top: var(--combat-bonus-initiative-top);
+                                        left: var(--combat-bonus-initiative-left);
+                                        label {
+                                            top: calc(50% - 7px);
+                                            left: calc(50% - -20px);
+                                        }
+                                    }
+        
+                                    .dommages {
+                                        top: var(--combat-bonus-dommages-top);
+                                        left: var(--combat-bonus-dommages-left);
+                                        label {
+                                            top: calc(50% - -24px);
+                                            left: calc(50% - 37px);
+                                        }
+                                    }
+        
+                                    .protection {
+                                        top: var(--combat-bonus-protection-top);
+                                        left: var(--combat-bonus-protection-left);
+                                        label {
+                                            top: calc(50% - -23px);
+                                            left: calc(50% - 41px);
+                                        }
+                                    }
+        
+                                }
+        
+                            }
+        
+                        }
+        
+                    }
+        
+                    .science {
+        
+                        .science-header {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            position: relative;
+                            text-align: center;
+    
+                            img {
+                                border: none;
+                            }
+
+                            .baton {
+                                opacity: 0.7;
+                                width: 155px;
+                            }
+
+                            .coupe {
+                                transform: scale(0.9);
+                                opacity: 0.7;
+                                width: 300px;
+                            }
+
+                            .denier {
+                                width: 300px;
+                            }
+
+                            .epee {
+                                opacity: 0.7;
+                                width: 155px;
+                            }
+
+                            .science-header-dice {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-size: 16px;
+                                font-weight: bold;
+                                transform: translate(147px, 108px);
+                            }
+
+                            .science-header-text {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-family: 'AJensonPro';
+                                font-size: 23px;
+                                font-weight: bold;
+                                transform: translate(124px, 104px);
+                            }
+    
+                        }
+
+                        .science-header-bohemien {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            position: relative;
+                            text-align: center;
+    
+                            .brume {
+                                height: 300px;
+
+                                >img {
+                                    border: none;
+                                    opacity: 0.7;
+                                    height: 300px;
+                                    transform: translate(-25px, 0px);
+                                }
+
+                                .element {
+                                    transform: translate(0px, 0%);
+
+                                    .circle {
+                                        position: relative;
+                                        border: none;
+                                        width: var(--nephilim-width-circle);
+                                        height: var(--nephilim-height-circle);
+                                        top: -191px;
+                                        left: -36px;
+                                        background-color: transparent;
+                                        max-width: none;
+                                        content: var(--img-circle);
+                                    }
+
+                                    .dice {
+                                        position: absolute;
+                                        top: -60px;
+                                        left: 205px;
+                                        font-size: 16px;
+                                        font-weight: bold;
+                                    }
+
+                                    .tooltip {
+                                        position: absolute;
+                                        top: -161px;
+                                        left: 98px;
+
+                                        input {
+                                            color: var(--font-color);
+                                            background-color: transparent;
+                                            font-size: 23px;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                            .divination {
+                                height: 300px;
+
+                                img {
+                                    border: none;
+                                    opacity: 0.7;
+                                    height: 213px;
+                                    transform: translate(10px, 40px);
+                                }
+
+                                .dice {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    font-size: 16px;
+                                    transform: translate(256px, 96px);
+                                }
+    
+                                .degre {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    font-family: 'AJensonPro';
+                                    font-size: 23px;
+                                    font-weight: bold;
+                                    transform: translate(236px, 92px);
+                                }
+
+                            }
+    
+                        }
+
+                        .cercles {
+        
+                            .undeveloped {
+                                color: var(--font-disabled-color);
+                            }
+
+                            .cercle {
+        
+                                .voie {
+                                    margin-top: 10px;
+                                    padding-bottom:3px;
+                                    font-family: 'AJensonPro';
+                                    font-size: 25px;
+                                    text-align: center;
+                                    display: inline-block;
+                                    width: 100%;
+                                }
+
+                                .header {
+                                    display: flex;
+                                    flex-direction: row;
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+                                    margin-bottom: -10px;
+    
+                                    .losange {
+                                        position: absolute;
+                                        border: none;
+                                        width: var(--science-circle-width);
+                                        height: var(--science-circle-height);
+                                        background-color: transparent;
+                                        content: var(--img-losange);
+                                    }
+
+                                    .triangle {
+                                        position: absolute;
+                                        border: none;
+                                        width: var(--science-circle-width);
+                                        height: var(--science-circle-height);
+                                        background-color: transparent;
+                                        content: var(--img-triangle);
+                                    }
+
+                                    .circle {
+                                        position: absolute;
+                                        border: none;
+                                        width: var(--science-circle-width);
+                                        height: var(--science-circle-height);
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+                                    }
+        
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        left: 70px;
+                                        top: 46px;
+                                        width: calc(100% - 80px);
+                                        content: var(--img-separator);
+                                    }
+        
+                                    .cercle-degre {
+                                        position: absolute;
+                                        width: 45px;
+                                        height: 45px;
+                                        left: var(--science-degre-left);
+                                        top: var(--science-degre-top);
+                                        text-align: center;
+                                        font-weight: bold;
+                                        padding-top: 12px;
+                                        border-radius: 50%;
+                                    }
+        
+                                    .cercle-menu {
+                                        display: flex;
+                                        flex-direction: row;
+                                        position: absolute;
+                                        left: 70px;
+                                        top: 20px;
+                                        width: calc(100% - 80px);
+                                        text-align: center;
+        
+                                        .cercle-name {
+                                            flex: 1 1 auto;
+                                        }
+        
+                                        .cercle-percentage {
+                                            flex: 0 0 50px;
+                                        }
+        
+                                        .cercle-quantite {
+                                            flex: 0 0 50px;
+                                        }
+        
+                                        .cercle-transporte {
+                                            flex: 0 0 50px;
+                                        }
+        
+                                        .cercle-pacte {
+                                            flex: 0 0 50px;
+                                        }
+        
+                                        .cercle-possede {
+                                            flex: 0 0 50px;
+                                        }
+        
+                                        .cercle-status {
+                                            flex: 0 0 80px;
+                                        }
+        
+                                        .cercle-dice {
+                                            flex: 0 0 50px;
+                                            font-size: 16px;
+                                            margin-top: 4px;
+                                        }
+        
+                                    }
+        
+                                }
+        
+                                .all-focus {
+                                    padding-left: 0px;
+                                    padding-top: 70px;
+
+                                    .focus {
+                                        display: flex;
+                                        flex-direction: row;
+                                        position: relative;
+                                        text-align: center;
+
+                                        .focus-element {
+                                            margin-left: 20px;
+                                            flex: 0 0 50px;
+                                        }
+
+                                        .focus-elements {
+                                            margin-left: 20px;
+                                            flex: 0 0 50px;
+                                        }
+
+                                        .focus-name {
+                                            flex: 1 1 auto;
+                                            text-align: left;
+                                            padding-left: 20px;
+                                            overflow: hidden; 
+                                            white-space: nowrap; 
+                                            text-overflow: ellipsis;
+                                        }
+
+                                        .focus-quantite {
+                                            flex: 0 0 50px;
+                                            margin-top: -5px;
+                                            border: none;
+                                            background-color: transparent;
+                                            color: var(--font-color);
+                                        }
+
+                                        .focus-transporte {
+                                            flex: 0 0 50px;
+                                            margin-top: -5px;
+                                            border: none;
+                                            background-color: transparent;
+                                            color: var(--font-color);
+                                        }
+
+                                        .focus-pacte {
+                                            flex: 0 0 50px;
+                                        }
+
+                                        .focus-possede {
+                                            flex: 0 0 50px;
+
+                                            &.undeveloped {
+                                                flex: 0 0 222px;
+                                                text-align: left;
+                                            }
+                                        }
+
+                                        .focus-status {
+                                            flex: 0 0 80px;
+                                        }
+
+                                        .focus-difficulty {
+                                            flex: 0 0 50px;
+                                        }
+
+                                        .focus-dice {
+                                            flex: 0 0 50px;
+                                            margin-right: 10px;
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                        .focus-dice {
+
+                                            .tooltiptext {
+                                                width: 300px;
+                                                transform: translate(-290px, 0px);                                      
+                                            }
+
+                                        }
+
+                                    }
+        
+                                }
+        
+                            }
+        
+                        }
+
+                    }
+        
+                    .arbre {
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        color: var(--kabbale-arbre-color);
+        
+                        .arbre-vie {
+                            border: 0px;
+                            width: 600px;
+                            height: 795px;
+                        }
+        
+                        .sephiroth {
+        
+                            .title {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-family: 'NightjarDemi';
+                                font-size: 18px;
+                            }
+        
+                            .degre {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-family: 'AJensonPro';
+                                font-size: 18px;
+                                font-weight: bold;
+                            }
+        
+                        }
+        
+                        .malkut {
+                            .title {
+                                transform: translate(-28px, 320px);
+                            }
+                            .degre {
+                                transform: translate(2px, 340px);
+                            }
+                        }
+        
+                        .yesod {
+                            .title {
+                                transform: translate(-23px, 165px);
+                            }
+                            .degre {
+                                transform: translate(2px, 185px);
+                            }
+                        }
+        
+                        .hod {
+                            .title {
+                                transform: translate(-151px, 86px);
+                            }
+                            .degre {
+                                transform: translate(-135px, 105px);
+                            }
+                        }
+        
+                        .netzach {
+                            .title {
+                                transform: translate(102px, 86px);
+                            }
+                            .degre {
+                                transform: translate(138px, 105px);
+                            }
+                        }
+        
+                        .tiphereth {
+                            .title {
+                                transform: translate(-42px, 8px);
+                            }
+                            .degre {
+                                transform: translate(2px, 27px);
+                            }
+                        }
+        
+                        .geburah {
+                            .title {
+                                transform: translate(-172px, -72px);
+                            }
+                            .degre {
+                                transform: translate(-135px, -54px);
+                            }
+                        }
+        
+                        .chesed {
+                            .title {
+                                transform: translate(108px, -72px);
+                            }
+                            .degre {
+                                transform: translate(138px, -54px);
+                            }
+                        }
+        
+                        .binah {
+                            .title {
+                                transform: translate(-158px, -230px);
+                            }
+                            .degre {
+                                transform: translate(-135px, -211px);
+                            }
+                        }
+        
+                        .chokmah {
+                            .title {
+                                transform: translate(97px, -230px);
+                            }
+                            .degre {
+                                transform: translate(138px, -211px);
+                            }
+                        }
+        
+                        .kether {
+                            .title {
+                                transform: translate(-28px, -309px);
+                            }
+                            .degre {
+                                transform: translate(2px, -289px);
+                            }
+                        }
+
+                        .daath {
+                            .title {
+                                transform: translate(-24px, -177px);
+                            }
+                            .degre {
+                                transform: translate(0px, -158px);
+                            }
+                        }
+
+                    }
+
+                    .capacites {
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-bottom: -10px;
+        
+                            .circle {
+                                position: absolute;
+                                border: none;
+                                width: 60px;
+                                height: 65px;
+                                display: hidden;
+                                content: var(--img-circle);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 70px;
+                                top: 46px;
+                                width: calc(100% - 80px);
+                                content: var(--img-separator);
+                            }
+        
+                            .degre {
+                                position: absolute;
+                                width: 45px;
+                                height: 45px;
+                                left: 8px;
+                                top: 13px;
+                                text-align: center;
+                                font-weight: bold;
+                                padding-top: 12px;
+                                border-radius: 50%;
+                                box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
+                            }
+        
+                            .folder {
+                                display: flex;
+                                flex-direction: row;
+                                flex: 1 1 auto;
+                                position: absolute;
+                                left: 100px;
+                                top: 15px;
+                                width: calc(100% - 80px);
+                                font-family: 'NightjarDemi';
+                                font-size: 27px;
+                            }
+        
+                        }
+        
+                        .body {
+                            padding-left: 0px;
+                            padding-top: 70px;
+        
+                            .capacite {
+                                display: flex;
+                                flex-direction: column;
+                                font-family: 'AJensonPro';
+                                margin-top: 20px;
+        
+                                .title {
+                                    display: flex;
+                                    flex-direction: row;
+        
+                                    .pin {
+                                        border: none;
+                                        width: 26px;
+                                        margin-left: 50px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-pin);
+                                    }
+        
+                                    .name {
+                                        flex: 1 1 auto;
+                                        text-align: left;
+                                        padding-left: 20px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                                        font-size: 20px;
+                                    }
+        
+                                }
+        
+                                .description {
+                                    list-style: none;
+                                    width: calc(100% - 100px);
+                                    margin-left: 85px;
+                                    font-size: 15px;
+                                }
+        
+                            }
+        
+                        }
+        
+                    }
+
+                    .ordonnances {
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-bottom: -10px;
+        
+                            .circle {
+                                position: absolute;
+                                border: none;
+                                width: 60px;
+                                height: 65px;
+                                display: hidden;
+                                content: var(--img-circle);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 70px;
+                                top: 46px;
+                                width: calc(100% - 80px);
+                                content: var(--img-separator);
+                            }
+        
+                            .degre {
+                                position: absolute;
+                                width: 45px;
+                                height: 45px;
+                                left: 8px;
+                                top: 13px;
+                                text-align: center;
+                                font-weight: bold;
+                                padding-top: 12px;
+                                border-radius: 50%;
+                                box-shadow: inset 0 0 1em #ffe44cd6, 0 0 1em #ffb100a3;
+                            }
+        
+                            .monde {
+                                display: flex;
+                                flex-direction: row;
+                                flex: 1 1 auto;
+                                position: absolute;
+                                left: 100px;
+                                top: 15px;
+                                width: calc(100% - 80px);
+                                font-family: 'NightjarDemi';
+                                font-size: 27px;
+                            }
+        
+                        }
+        
+                        .body {
+                            padding-left: 0px;
+                            padding-top: 70px;
+        
+                            .ordonnance {
+                                display: flex;
+                                flex-direction: column;
+                                font-family: 'AJensonPro';
+                                margin-top: 20px;
+        
+                                .title {
+                                    display: flex;
+                                    flex-direction: row;
+        
+                                    .pin {
+                                        border: none;
+                                        width: 26px;
+                                        margin-left: 50px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-pin);
+                                    }
+        
+                                    .name {
+                                        flex: 1 1 auto;
+                                        text-align: left;
+                                        padding-left: 20px;
+                                        overflow: hidden; 
+                                        white-space: nowrap; 
+                                        text-overflow: ellipsis;
+                                        font-size: 20px;
+                                    }
+        
+                                }
+        
+                                .description {
+                                    list-style: none;
+                                    width: calc(100% - 100px);
+                                    margin-left: 85px;
+                                    font-size: 15px;
+                                }
+        
+                            }
+        
+                        }
+        
+                    }
+
+                    .laboratoire {
+                        display: flex;
+                        flex-direction: columns;
+                        padding-top: 20px;
+
+                        .laboratoires {
+                            position: absolute;
+                            top: 110px;
+                            left: var(--laboratoire-labs-left);
+
+                            .zone {
+                                font-family: 'AJensonPro';
+                                font-size: 24px;
+
+                                &:hover {
+                                    text-shadow: 0px 0px 1px var(--font-color);
+
+                                    +.menu {
+                                        display: block;
+                                        z-index: 99;
+    
+                                        li {
+                                            max-height: 15em;
+                                        }
+    
+                                    }
+    
+                                }
+
+                            }
+
+                            .menu {
+                                position: relative;
+                                top: -12px;
+                                left: 30px;
+                                width: 160px;
+                                list-style: none;
+                                display: none;
+                                background-image:-webkit-linear-gradient(top, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                                background-image: linear-gradient(to bottom, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                                border-radius: 6px;
+                                margin-bottom: 2px;
+                                box-shadow: 3px 3px 3px #999;
+                                border: solid 1px #333A40;
+                                font-size: 16px;
+                                z-index: 99;
+
+                                li {
+                                    max-height: 0;
+                                    overflow: hidden;
+                                    transition: all .5s;
+                                    border-radius: 0;
+                                    background: #e2e0d2;
+                                    box-shadow: none;
+                                    border: none;
+                                    padding-left: 10px;
+
+                                    &.delete {
+                                        margin-top: 2px;
+                                        display: flex;
+                                        flex-direction: row;
+
+                                        i {
+                                            font-size: 13px;
+                                            margin-top: 3px;
+                                            width: 20px;
+                                        }
+
+                                        label {
+                                            width: 100%;
+                                        }
+
+                                    }
+
+                                }
+
+                                &:hover {
+                                    display: block;
+                                    z-index: 99;
+    
+                                    li {
+                                        max-height: 15em;
+                                    }
+    
+                                    li:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+    
+                                }
+
+                            }
+
+                        }
+
+                        .constructs {
+                            width: 100%;
+
+                            .disabled {
+                                filter: opacity(20%);
+                                -webkit-filter: opacity(20%);
+                            }
+
+                            .undeveloped {
+                                filter: opacity(20%);
+                                -webkit-filter: opacity(20%);
+                            }
+
+                            .construct {
+                                position: absolute;
+                                width: 400px;
+
+                                img {
+                                    position: relative;
+                                    border: none;
+                                    display: inline;
+
+                                    &.pentacle {
+                                        width: 200px;
+                                    }
+
+                                    &.circle {
+                                        border: none;
+                                        width: var(--laboratoire-circle-width);
+                                        height: var(--laboratoire-circle-height);
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+                                    }
+
+                                }
+
+                                .name {
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 26px;
+                                }
+
+                                select {
+                                    color: var(--font-color);
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 19px;
+                                    border: none;
+                                    background-color: transparent;
+                                    z-index: 98;
+                                }
+
+                                .elements {
+                                    position: relative;
+                                    left: 93px;
+                                    top: -46px;
+
+                                    .pentacle {
+                                        width: 200px;
+                                    }
+
+                                    .element {
+                                        position: relative;
+                                        width: 52px;
+                                        height: 52px;
+
+                                        .circle {
+                                            top: 2px;
+                                            left: 0px;
+                                        }
+
+                                        input {
+                                            top: -41px;
+                                            left: 6px;
+                                        }
+
+                                    }
+
+                                    .air {
+                                        top: var(--laboratoire-air-top);
+                                        left: var(--laboratoire-air-left);
+                                    }
+    
+                                    .eau {
+                                        top: var(--laboratoire-eau-top);
+                                        left: var(--laboratoire-eau-left);
+                                    }
+    
+                                    .feu {
+                                        top: var(--laboratoire-feu-top);
+                                        left: var(--laboratoire-feu-left);
+                                    }
+    
+                                    .lune {
+                                        top: var(--laboratoire-lune-top);
+                                        left: var(--laboratoire-lune-left);
+                                    }
+    
+                                    .terre {
+                                        top: var(--laboratoire-terre-top);
+                                        left: var(--laboratoire-terre-left);
+                                    }
+
+                                }
+
+                                .tooltip {
+                                    z-index: 99;
+
+                                    input {
+                                        position: relative;
+                                        border: none;
+                                        width: 40px;
+                                        text-align: center;
+                                        color: var(--font-color);
+                                        background-color: transparent;
+                                        z-index: 99;
+                                    }
+
+                                    .tooltiptext {
+                                        z-index: 200;
+                                    }
+
+                                }
+
+                            }
+
+                            .artefacts {
+                                position: relative;
+
+                                .tooltip {
+
+                                    img {
+                                        width: 51px;
+                                        border: none;
+                                    }
+
+                                }
+
+                                .athanor {
+                                    position: relative;
+                                    top: var(--laboratoire-athanor-top);
+                                    left: var(--laboratoire-athanor-left);
+                                }
+
+                                .alambic {
+                                    position: relative;
+                                    top: var(--laboratoire-alambic-top);
+                                    left: var(--laboratoire-alambic-left);
+                                }
+
+                                .aludel {
+                                    position: relative;
+                                    top: var(--laboratoire-aludel-top);
+                                    left: var(--laboratoire-aludel-left);
+                                }
+
+                                .cornue {
+                                    position: relative;
+                                    top: var(--laboratoire-cornue-top);
+                                    left: var(--laboratoire-cornue-left);
+                                }
+
+                                .creuset {
+                                    position: relative;
+                                    top: var(--laboratoire-creuset-top);
+                                    left: var(--laboratoire-creuset-left);
+                                }
+
+                            }
+
+                            .athanor {
+                                top: 613px;
+                                left: calc(50% - 230px);
+
+                                select {
+                                    top: 109px;
+                                    left: -155px;
+                                }
+
+                                .name {
+                                    top: 86px;
+                                    left: -36px;                                
+                                }
+
+                            }
+
+                            .alambic {
+                                top: 610px;
+                                left: calc(50% + 41px);
+                                
+                                select {
+                                    top: 146px;
+                                    left: 180px;
+                                }
+
+                                .name {
+                                    top: 123px;
+                                    left: 294px;
+                                }
+
+                                >.tooltip {
+                                    top: -24px;
+                                    left: 81px;
+                                }
+
+                            }
+
+                            .aludel {
+                                top: 370px;
+                                left: calc(50% + 144px);
+                                
+                                select {
+                                    top: -60px;
+                                    left: 75px;
+                                }
+
+                                .name {
+                                    top: -83px;
+                                    left: 181px;
+                                }
+
+                            }
+
+                            .cornue {
+                                top: 376px;
+                                left: calc(50% - 333px);
+                                
+                                select {
+                                    top: -20px;
+                                    left: -66px;
+                                }
+
+                                .name {
+                                    top: -42px;
+                                    left: 46px;
+                                }
+
+                            }
+
+                            .creuset {
+                                top: 183px;
+                                left: calc(50% - 100px);
+                                
+                                select {
+                                    top: -20px;
+                                    left: -65px;
+                                }
+
+                                .name {
+                                    top: -43px;
+                                    left: 51px;
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    .materiae {
+                        flex-direction: row;
+                        display: flex;
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 15px;
+                            margin-bottom: -10px;
+                            width: 100%;
+
+                            .puce {
+                                position: relative;
+                                border: none;
+                                width: 60px;
+                                top: var(--puce-top);
+                                background-color: transparent;
+                                content: var(--img-puce);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 55px);
+                                content: var(--img-separator);
+                            }
+        
+                            .name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+
+                        }
+
+                        .left {
+                            display: flex;
+                            flex-direction: column;
+                            width: 450px;
+        
+                            .pentacle {
+                                position: relative;
+                                text-align: center;
+                                margin-left: 55px;
+                                top: 20px;
+
+                                img {
+                                    border: 0px;
+                                    width: 380px;
+                                    height: 378px;
+                                }
+        
+                                .element {
+                                    position: absolute;
+
+                                    &.air {
+                                        top: var(--materiae-air-top);
+                                        left: var(--materiae-air-left);
+                                    }
+
+                                    &.eau {
+                                        top: var(--materiae-eau-top);
+                                        left: var(--materiae-eau-left);
+                                    }
+
+                                    &.feu {
+                                        top: var(--materiae-feu-top);
+                                        left: var(--materiae-feu-left);
+                                    }
+
+                                    &.lune {
+                                        top: var(--materiae-lune-top);
+                                        left: var(--materiae-lune-left);
+                                    }
+
+                                    &.terre {
+                                        top: var(--materiae-terre-top);
+                                        left: var(--materiae-terre-left);
+                                    }
+
+                                    .circle {
+                                        position: relative;
+                                        border: none;
+                                        width: var(--materiae-circle-width);
+                                        height: var(--materiae-circle-height);
+                                        top: var(--materiae-circle-top);
+                                        left: var(--materiae-circle-left);
+                                        background-color: transparent;
+                                        max-width: none;
+                                        content: var(--img-circle);
+                                    }
+
+                                    .maximum {
+                                        position: absolute;
+                                        font-size: 16px;
+                                        top: var(--materiae-maximum-top);
+                                        left: var(--materiae-maximum-left);
+                                    }
+
+                                    .max {
+                                        position: absolute;
+                                        border: none;
+                                        font-size: 16px;
+                                        color: var(--font-color);
+                                        top: var(--materiae-maximum-top);
+                                        left: var(--materiae-maximum-left);
+                                        background-color: transparent;
+                                        width: 30px;
+                                    }
+
+                                    .tooltip {
+                                        position: absolute;
+                                        top: var(--materiae-input-top);
+                                        left: var(--materiae-input-left);
+
+                                        input {
+                                            color: var(--font-color);
+                                            background-color: transparent;
+                                            font-size: 20px;
+                                            border: 0px;
+                                            width: 40px;
+                                            text-align: center;
+                                        }
+
+                                    }
+        
+                                }        
+
+                            }
+
+                        }
+        
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            margin-left: 40px;
+                            margin-right: 10px;
+                            width: calc(100% - 500px);
+
+                            .body {
+                                display: flex;
+                                flex-direction: column;
+        
+                                .materiae {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .element {
+                                        font-size: 13px;
+                                        flex: 0 0 auto;
+                                        margin-top: 2px;
+                                        text-align: right;
+                                        margin-left: 5px;
+                                    }
+
+                                    .name {
+                                        width: 100%;
+                                    }
+
+                                    .delete {
+                                        font-size: 13px;
+                                        width: 30px;
+                                    }
+
+                                    .quantite {
+                                        border: none;
+                                        width: 50px;
+                                        text-align: center;
+                                        margin-top: -4px;
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+
+                                }
+                
+                                .catalyseur {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .name {
+                                        width: 100%;
+                                    }
+
+                                    .delete {
+                                        font-size: 13px;
+                                        width: 30px;
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+
+                                }
+
+                            }
+
+                        }
+            
+                    }
+
+                    .akasha {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 20px;
+        
+                        .column {
+                            display: flex;
+                            flex-direction: column;
+                            width: 50%;
+                            margin-right: 10px;
+        
+                            .header {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                font-family: 'AJensonPro';
+                                font-size: 21px;
+                                margin-top: 15px;
+                                margin-bottom: -10px;
+        
+                                .puce {
+                                    position: relative;
+                                    top: var(--puce-top);
+                                    border: none;
+                                    width: 60px;
+                                    background-color: transparent;
+                                    content: var(--img-puce);
+                                }
+            
+                                .separator {
+                                    position: absolute;
+                                    border: none;
+                                    height: 4px;
+                                    left: 55px;
+                                    top: 32px;
+                                    width: calc(100% - 65px);
+                                    content: var(--img-separator);
+                                }
+            
+                                .name {
+                                    position: absolute;
+                                    left: 70px;
+                                    top: 2px;
+                                    width: calc(100% - 65px);
+                                }
+        
+                            }
+        
+                            .directions {
+                                position: relative;
+                                margin-top: 80px;
+                                font-family: 'AJensonPro';
+                                font-size: 17px;
+
+                                .tooltip {
+
+                                    input {
+                                        position: relative;
+                                        border: none;
+                                        width: 40px;
+                                        text-align: center;
+                                        background-color: transparent;
+                                        z-index: 99;
+                                    }
+
+                                    .tooltiptext {
+                                        z-index: 200;
+                                        top: 32px;
+                                        left: 180px;
+                                        height: 30px;
+                                    }
+
+                                    img {
+                                        position: absolute;
+                                        border: none;
+
+                                        &.disabled {
+                                            opacity: 0.2;
+                                        }
+
+                                        &.undeveloped {
+                                            opacity: 0.2;
+                                        }
+
+                                    }
+
+                                }
+
+                                .nef {
+
+                                    img {
+                                        width: var(--akasha-nef-width);
+                                        transform: var(--akasha-nef-transform);
+                                        content: var(--img-nef);
+                                    }
+
+                                }
+        
+                                .barge {
+
+                                    img {
+                                        width: var(--akasha-barge-width);
+                                        transform: var(--akasha-barge-transform);
+                                        content: var(--img-barge);
+                                    }
+
+                                }
+        
+                                div {
+                                    position: absolute;
+                                    width: 200px;
+        
+                                    .circle {
+                                        border: none;
+                                        width: var(--akasha-circle-width);
+                                        height: 65px;
+                                        display: inline;
+                                        background-color: transparent;
+                                        content: var(--img-circle);
+                                    }
+        
+                                    input {
+                                        width: 45px;
+                                        height: 45px;
+                                        text-align: center;
+                                        font-weight: bold;
+                                        border-radius: 50%;
+                                        transform: var(--akasha-input-transform);
+                                        border: none;
+                                        background-color: transparent;
+                                        color: var(--font-color);
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+
+                                    label {
+                                        width: 150px;
+                                    }
+        
+                                }
+        
+                                .zenith {
+                                    transform: translate(169px, -20px);
+                                    >label {
+                                        position: absolute;
+                                        transform: translate(-105px, -20px);
+                                    }
+                                }
+        
+                                .orient {
+                                    transform: translate(310px, 60px);
+                                    >label {
+                                        position: absolute;
+                                        transform: translate(-104px, -22px);
+                                    }
+                                }
+        
+                                .nadir {
+                                    transform: translate(167px, 305px);
+                                    >label {
+                                        position: absolute;
+                                        transform: translate(-104px, 70px);
+                                    }
+                                }
+        
+                                .occident {
+                                    transform: translate(25px, 226px);
+                                    >label {
+                                        position: absolute;
+                                        transform: translate(-116px, 70px);
+                                    }
+                                }
+        
+                                .midi {
+                                    transform: translate(28px, 62px);
+                                    >label {
+                                        position: absolute;
+                                        transform: translate(-99px, -20px);
+                                    }
+                                }
+        
+                                .septentrion {
+                                    transform: translate(307px, 225px);
+                                    >label {
+                                        position: absolute;
+                                        transform: translate(-122px, 70px);
+                                    }
+                                }
+        
+                            }
+        
+                        }
+            
+                    }
+        
+                    .vecus {
+                        position: relative;
+        
+                        .header {
+                            display: flex;
+                            flex-direction: row;
+                            position: relative;
+                            font-family: 'AJensonPro';
+                            font-size: 21px;
+                            margin-top: 30px;
+                            margin-bottom: var(--vecu-header-bottom);
+        
+                            .puce {
+                                position: relative;
+                                top: var(--puce-top);
+                                border: none;
+                                width: 60px;
+                                display: hidden;
+                                background-color: transparent;
+                                content: var(--img-puce);
+                            }
+        
+                            .separator {
+                                position: absolute;
+                                border: none;
+                                height: 4px;
+                                left: 55px;
+                                top: 32px;
+                                width: calc(100% - 65px);
+                                content: var(--img-separator);
+                            }
+        
+                            .vecus-name {
+                                position: absolute;
+                                left: 70px;
+                                top: 2px;
+                                width: calc(100% - 65px);
+                            }
+        
+                        }
+        
+                        .body {
+                            position: relative;
+                            column-count: 3;
+                            column-rule-style: solid;
+                            column-rule-width: thin;
+                            column-gap: 20px;
+                            column-rule-color: var(--column-color);
+                            z-index: 99;
+        
+                            hr {
+                                display: block;
+                                height: 1px;
+                                border: 0;
+                                border-top: 1px solid var(--column-color);
+                                margin: 1em 0;
+                                padding: 0;
+                            }
+        
+                            .undeveloped {
+                                color: var(--font-disabled-color);
+                            }
+        
+                            .vecu {
+                                display:inline-block;
+                                font-family: 'AJensonPro';
+                                font-size: 16px;
+                                width: 100%;
+        
+                                .vecu-definition {
+                                    display: flex;
+                                    flex-direction: row;
+        
+                                    .vecu-degre {
+                                        flex: 0 0 40px;
+                                    }
+        
+                                    .vecu-name {
+                                        flex: 1 1 auto;
+                                        text-align: left;
+                                        text-overflow: ellipsis;
+                                        overflow: hidden;
+                                    }
+        
+                                    .vecu-dice {
+                                        flex: 0 0 40px;
+                                        font-size: 14px;
+                                        padding-top: 2px;
+                                    }
+        
+                                }
+
+                                &:hover {
+                                    text-shadow: 0px 0px 1px var(--font-color);
+                                }
+
+                            }
+
+                        }
+            
+                    }
+        
+                    .incarnations {
+                        
+                        .incarnations-header {
+                            margin-top: -36px;
+                            margin-bottom: 20px;
+                            margin-left: calc(100% - 226px);
+        
+                            .points {
+        
+                                .circle {
+                                    border: none;
+                                    width: 60px;
+                                    height: 65px;
+                                    background-color: transparent;
+                                    content: var(--img-circle);
+                                }
+
+                                .tooltiptext {
+                                    transform: translate(0px, 25px);
+                                    font-size: 14px;
+                                }
+
+                                input {
+                                    border: none;
+                                    width: 45px;
+                                    height: 45px;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    border-radius: 50%;
+                                    transform: translate(9px, -54px);
+                                    background-color: transparent;
+                                    color: var(--font-color);
+                                    
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+                                }
+
+                            }
+        
+                        }
+        
+                        .periodes {
+        
+                            .periode {
+                                display: flex;
+                                flex-direction: column;
+
+                                .disabled {
+                                    color: var(--font-disabled-color);
+                                }
+
+                                .current {
+                                    font-size: 23px;
+                                    font-weight: bold;
+                                }
+        
+                                .periode-header {
+                                    display: flex;
+                                    flex-direction: row;
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+        
+                                    .puce {
+                                        position: relative;
+                                        border: none;
+                                        width: 60px;
+                                        display: hidden;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                        top: var(--puce-top);
+                                    }
+        
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        left: 55px;
+                                        top: 32px;
+                                        width: calc(100% - 65px);
+                                        content: var(--img-separator);
+                                    }
+        
+                                    .delete {
+                                        position: absolute;
+                                        right: 28px;
+                                        height: 30px;
+                                        font-size: 16px;
+                                        padding-top: 6px;
+                                        z-index: 99;
+                                    }
+        
+                                    .periode-name {
+                                        position: absolute;
+                                        left: 70px;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                        height: 33px;
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+        
+                                    .periode-zone {
+                                        position: absolute;
+                                        right: 37px;
+                                        top: 2px;
+                                        width: 60px;
+                                        height: 33px;
+                                        text-align: right;
+                                        padding-right: 20px;
+
+                                        &:hover {
+        
+                                            +.periode-menu {
+                                                display: block;
+                                                z-index: 99;
+            
+                                                li {
+                                                    max-height: 15em;
+                                                }
+            
+                                            }
+            
+                                        }
+
+                                    }
+        
+                                    .periode-menu {
+                                        position: absolute;
+                                        right: 20px;
+                                        top: 15px;
+                                        width: 160px;
+                                        list-style: none;
+                                        display: none;
+                                        background-image:-webkit-linear-gradient(top, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                                        background-image: linear-gradient(to bottom, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                                        border-radius: 6px;
+                                        margin-bottom: 2px;
+                                        box-shadow: 3px 3px 3px #999;
+                                        border: solid 1px #333A40;
+                                        font-size: 16px;
+        
+                                        li {
+                                            max-height: 0;
+                                            overflow: hidden;
+                                            transition: all .5s;
+                                            border-radius: 0;
+                                            background: #e2e0d2;
+                                            box-shadow: none;
+                                            border: none;
+                                            padding-left: 10px;
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
+                                        }
+
+                                        &:hover {
+                                            display: block;
+                                            z-index: 99;
+            
+                                            li {
+                                                max-height: 15em;
+                                            }
+
+                                        }
+
+                                    }
+        
+                                }
+        
+                                .periode-body {
+        
+                                    .members {
+                                        border: solid 1px var(--font-color);
+                                        padding: 10px;
+                                        border-radius: 10px;
+                                        width: calc(100% - 10px);
+                                        margin-bottom: 20px;
+        
+                                        .member {
+                                            display:inline-block;
+                                            font-family: 'AJensonPro';
+                                            font-size: 16px;
+                                            width: 100%;
+                                            list-style: none;
+        
+                                            .definition {
+                                                display: flex;
+                                                flex-direction: row;
+                                                
+                                                .fa-solid {
+                                                    flex: 0 0 40px;
+                                                    text-align: center;
+                                                    margin-right: 7px;
+                                                    font-size: 13px;
+                                                }
+        
+                                                .name {
+                                                    flex: 1 1 auto;
+                                                    text-align: left;
+                                                }
+        
+                                                .fa-trash {
+                                                    flex: 0 0 40px;
+                                                    text-align: center;
+                                                    font-size: 13px;
+                                                    margin-right: 10px;
+                                                }
+        
+                                            }
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
+                                        }
+
+                                    }
+        
+                                    .vecus {
+                                        column-count: 3;
+                                        column-rule-style: solid;
+                                        column-rule-width: thin;
+                                        column-gap: 20px;
+                                        column-rule-color: var(--font-color);
+                                        border: solid 1px var(--font-color);
+                                        padding: 10px;
+                                        border-radius: 10px;
+                                        width: calc(100% - 10px);
+                                        margin-bottom: 20px;
+        
+                                        .vecu {
+                                            display:inline-block;
+                                            font-family: 'AJensonPro';
+                                            font-size: 16px;
+                                            width: 100%;
+        
+                                            .definition {
+                                                display: flex;
+                                                flex-direction: row;
+                                                
+                                                .degre {
+                                                    flex: 0 0 40px;
+                                                    border: none;
+                                                    text-align: center;
+                                                    margin-right: 5px;
+                                                    color: var(--font-color);
+                                                }
+        
+                                                .name {
+                                                    flex: 1 1 auto;
+                                                    text-align: left;
+                                                    padding-top: 4px;
+                                                    text-overflow: ellipsis;
+                                                    overflow: hidden;
+                                                }
+        
+                                                .delete {
+                                                    flex: 0 0 30px;
+                                                    border: none;
+                                                    text-align: center;
+                                                    font-size: 13px;
+                                                    padding-top: 6px;
+                                                }
+        
+                                            }
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
+                                        }
+        
+                                    }
+
+                                    .periode-focus {
+                                        border: solid 1px var(--font-color);
+                                        padding: 10px;
+                                        border-radius: 10px;
+                                        width: calc(100% - 10px);
+                                        margin-bottom: 20px;
+        
+                                        .focus {
+                                            display:inline-block;
+                                            font-family: 'AJensonPro';
+                                            font-size: 16px;
+                                            width: 100%;
+                                            list-style: none;
+        
+                                            .focus-definition {
+                                                display: flex;
+                                                flex-direction: row;
+                                                
+                                                .fa-scroll, .fa-pen-fancy {
+                                                    flex: 0 0 40px;
+                                                    text-align: center;
+                                                    margin-left: 10px;
+                                                    margin-right: 22px;
+                                                    font-size: 13px;
+                                                }
+        
+                                                .focus-name {
+                                                    flex: 1 1 auto;
+                                                    text-align: left;
+                                                }
+        
+                                                .fa-trash {
+                                                    flex: 0 0 40px;
+                                                    text-align: center;
+                                                    font-size: 13px;
+                                                    margin-right: 10px;
+                                                    z-index: 99;
+                                                }
+        
+                                            }
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
+                                        }
+        
+                                    }
+        
+                                }
+        
+                            }
+
+                            &:hover {
+                                cursor: default;
+                            }
+
+                        }
+
+                        .helpPeriode {
+                            display: flex;
+                            flex-direction: column;
+                            margin-top: 200px;
+                            text-align: center;
+                            color:indianred;
+                
+                            label {
+                                margin-left: 100px;
+                                margin-right:100px;
+                            }
+                
+                            i {
+                                margin-top:50px;
+                            }
+                
+                        }
+            
+                    }
+
+                    .groups {
+
+                        .group {
+
+                            .header {
+                                display: flex;
+                                flex-direction: row;
+                                position: relative;
+                                font-family: 'AJensonPro';
+                                font-size: 21px;
+                                margin-bottom: -10px;
+
+                                .circle {
+                                    border: none;
+                                    width: 60px;
+                                    height: 65px;
+                                    background-color: transparent;
+                                    content: var(--img-circle);
+                                }
+
+                                .separator {
+                                    position: absolute;
+                                    border: none;
+                                    height: 4px;
+                                    left: 70px;
+                                    top: 46px;
+                                    width: calc(100% - 70px);
+                                    content: var(--img-separator);
+                                }
+
+                                .degre {
+                                    position: absolute;
+                                    width: 45px;
+                                    height: 45px;
+                                    left: 8px;
+                                    top: 9px;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    padding-top: 12px;
+                                    border-radius: 50%;
+                                    background-color: transparent;
+                                    border: none;
+                                    font-size: 20px;
+                                }
+
+                                .name {
+                                    display: flex;
+                                    flex-direction: row;
+                                    position: absolute;
+                                    left: 70px;
+                                    top: 17px;
+                                    text-align: left;
+                                    flex: 1 1 auto;
+                                    border: none;
+                                    background-color: transparent;
+                                    width: calc(100% - 70px);
+                                }
+
+                            }
+
+                            .body {
+                                list-style: none;
+
+                                .item {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin-left: 10px;
+                                    list-style: none;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    overflow: hidden; 
+                                    white-space: nowrap; 
+                                    text-overflow: ellipsis;
+                
+                                    .name {
+                                        width: 100%;
+                                    }
+
+                                    .icon {
+                                        font-size: 13px;
+                                        width: 30px;
+                                        margin-right: 20px;
+                                    }
+
+                                    &:hover {
+                                        text-shadow: 0px 0px 1px var(--font-color);
+                                    }
+                                    
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    .options {
+                        display: flex;
+                        flex-direction: row;
+                        padding-top: 20px;
+            
+                        .options-column {
+                            display: flex;
+                            flex-direction: column;
+                            width: 50%;
+                            margin-right: 10px;
+        
+                            .options-group {
+                                width: 100%;
+                                margin-left: 20px;
+                                margin-top: 10px;
+                                font-family: 'AJensonPro';
+                                font-size: 20px;
+        
+                                .header {
+                                    position: relative;
+                                    display: flex;
+                                    flex-direction: row;
+                                    font-family: 'AJensonPro';
+                                    font-size: 21px;
+                                    margin-top: 15px;
+                                    margin-bottom: var(--options-body-margin-bottom);
+        
+                                    .puce {
+                                        position: relative;
+                                        top: var(--puce-top);
+                                        border: none;
+                                        width: 60px;
+                                        background-color: transparent;
+                                        content: var(--img-puce);
+                                    }
+                
+                                    .separator {
+                                        position: absolute;
+                                        border: none;
+                                        height: 4px;
+                                        left: 55px;
+                                        top: 32px;
+                                        width: calc(100% - 65px);
+                                        content: var(--img-separator);
+                                    }
+                
+                                    .options-name {
+                                        position: absolute;
+                                        left: 70px;
+                                        top: 2px;
+                                        width: calc(100% - 65px);
+                                    }
+        
+                                    .theme {
+                                        border: none;
+                                        outline: 0px;
+                                        background-color: transparent;
+                                        -webkit-appearance: none;
+                                        appearance: none;
+                                        background-size: 24px;
+                                        background-repeat: no-repeat;
+                                        background-position: calc(100% - 8px) center;
+                                        font-family: 'AJensonPro';
+                                        font-size: 16px;
+                                        margin-left: calc(100% - 185px);
+                                        z-index: 99;
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                    }
+        
+                                }
+        
+                                fieldset {
+                                    border: none;
+                                    margin-left: 10px;
+                                }
+
+                                .body {
+                                    position: relative;
+                                    font-family: 'AJensonPro';
+                                    font-size: 16px;
+                                    list-style: none;
+                                    margin-top: var(--options-body-margin-top);
+        
+                                    .option {
+                                        display: flex;
+                                        flex-direction: row;
+        
+                                        .option-checkbox {
+                                            flex: none;
+                                            margin-left: 22px;
+                                            margin-right: 20px;
+                                            font-size: 11px;
+                                            padding-top: 3px;
+
+                                            input[type="checkbox"] {
+                                                display:none;
+                                            }
+                                        
+                                            .checked {
+                                                display: none;
+                                            }
+                                        
+                                            input[type="checkbox"]:checked ~ .checked {
+                                                display: inline-block;
+                                            }
+                                             
+                                            input[type="checkbox"]:checked ~ .unchecked {
+                                                display: none;
+                                            }
+
+                                        }
+
+                                        &:hover {
+                                            text-shadow: 0px 0px 1px var(--font-color);
+                                        }
+
+                                        input[type="radio"].option-checkbox {
+                                            display: block;
+                                            border-radius: 50%;
+                                            font-size: 11px;
+                                            width: 11px;
+                                            height: 11px;
+                                            color: var(--font-color);
+                                            padding-top: 0px;
+
+                                            &:hover {
+                                                text-shadow: 0px 0px 1px var(--font-color);
+                                            }
+
+                                            &:before {
+                                                font-size: 11px;
+                                                width: 11px;
+                                                height: 11px;
+                                            }
+
+                                            &:after {
+                                                font-size: 11px;
+                                                width: 11px;
+                                                height: 11px;
+                                            }
+
+                                            &:checked {
+
+                                                &:before {
+                                                    content: none;
+                                                }
+
+                                                &:after {
+                                                    color: var(--font-color);
+                                                    border-radius: 50%;
+                                                    background-color: var(--font-color);
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+        
+                                }
+        
+                            }
+        
+                        }
+            
+                    }
+
+                }
+                
+                .nofocus {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 200px;
+                    text-align: center;
+                    color:indianred;
+        
+                    label {
+                        margin-left: 100px;
+                        margin-right:100px;
+                    }
+        
+                    i {
+                        margin-top:50px;
+                    }
+        
+                }
+
+                .nofocus.no-margin {
+                    margin-top: 20px;
+                }
+
+            }
+        
+        }
+
+    }
+
+}

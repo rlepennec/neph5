@@ -90,7 +90,13 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/item/parts/body/label.hbs",
         "systems/neph5e/templates/item/parts/body/list.hbs",
 
-        "systems/neph5e/feature/alchimie/item/alchimie.html"
+        "systems/neph5e/feature/alchimie/item/alchimie.html",
+
+
+        // New reboot
+        "systems/neph5e/templates/item-header.hbs",
+        "systems/neph5e/templates/item-input.hbs",
+        "systems/neph5e/templates/item-select.hbs"
 
     ]);
 

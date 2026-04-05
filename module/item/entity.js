@@ -7,6 +7,28 @@ import { Viser } from "../../feature/combat/manoeuver/viser.js";
 export class NephilimItem extends Item {
 
     /**
+     * Default artwork configuration for each Document type and sub-type.
+     */
+    static defaultArtwork = {
+        Item: {
+            cercle: "systems/neph5e/assets/icons/voie.webp",
+            chute: "systems/neph5e/assets/icons/chute.webp",
+            competence: "systems/neph5e/assets/icons/competence.webp",
+            periode: "systems/neph5e/assets/icons/periode.webp",
+            vecu: "systems/neph5e/assets/icons/vecu.webp",
+        }
+    }
+
+    /** 
+     * @override
+     */
+    static getDefaultArtwork(itemData={}) {
+        const { type } = itemData;
+        const { img } = super.getDefaultArtwork(itemData);
+        return { img: NephilimItem.defaultArtwork.Item[type] ?? img };
+    }
+
+    /**
      * @returns the system identifier.
      */
     get sid() {

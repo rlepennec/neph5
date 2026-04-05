@@ -145,6 +145,7 @@ Hooks.once("init", function () {
     }
 
     Handlebars.registerHelper({
+        translate: CustomHandlebarsHelpers.translate,
         concat: CustomHandlebarsHelpers.concat,
         isNull: CustomHandlebarsHelpers.isNull,
         nonNull: CustomHandlebarsHelpers.nonNull,
