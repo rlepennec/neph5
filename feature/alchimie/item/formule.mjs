@@ -50,7 +50,7 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
                 new foundry.data.fields.StringField(),
                 {
                     initial: 'air',
-                    choices: Constants.ELEMENTS
+                    choices: Constants.ELEMENTS.concat(Constants.ELEMENTS_GRAND_OEUVRE)
                 },
                 {
                     min: 1,

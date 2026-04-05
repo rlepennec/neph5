@@ -8,6 +8,8 @@ export class Constants {
 
     static SUBSTANCES = ['ambre', 'liqueur', 'metal', 'poudre', 'vapeur'];
 
+    static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];
+
     // OLD
     
     static ACTION = 'action';

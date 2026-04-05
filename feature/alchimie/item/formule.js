@@ -1,3 +1,4 @@
+import { Constants } from "../../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { FormuleDataModel } from "./formule.mjs";
 import { NephilimItemSheet } from "../../../module/item/base.js";
@@ -24,8 +25,8 @@ export class FormuleSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                elements: FormuleDataModel.defineSchema().elements.options.choices,
-                elementsGS: ['quintessence', 'quintuple'],
+                elements: Constants.ELEMENTS,
+                elementsGS: Constants.ELEMENTS_GRAND_OEUVRE,
                 cercles: super.cerclesOf2('alchimie'),
                 substances: FormuleDataModel.defineSchema().substance.choices,
                 catalyseurs: game.settings.get('neph5e', 'catalyseurs')
