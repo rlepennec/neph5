@@ -76,8 +76,8 @@ export class SortSheet extends NephilimItemSheet {
 
         // Update syntaxe & incantation
         if (formData["system.cercle"] !== "grandSecret") {
-            formData['system.-=syntaxe'] = null;
-            formData['system.-=incantation'] = null;
+            formData['system.syntaxe'] = new foundry.data.operators.ForcedDeletion();
+            formData['system.incantation'] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object

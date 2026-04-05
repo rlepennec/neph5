@@ -73,7 +73,7 @@ export class _1_0_1 {
     static async migrate_items(item) {
         switch (item.type) {
             case 'periode': {
-                await item.update({ ['system.-=vecus']: null });
+                await item.update({ ['system.vecus']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'competence': {
@@ -96,7 +96,7 @@ export class _1_0_1 {
                         break;
                 }
                 await item.update({ ['system']: system })
-                await item.update({ ['system.-=inne']: null });
+                await item.update({ ['system.inne']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             default:
@@ -126,11 +126,11 @@ export class _1_0_1 {
                 for (let i = 0; i < periodes.length; i++) {
                     delete periodes[i].vecus;
                 }
-                await actor.update({ ['system.-=periodes']: null });
+                await actor.update({ ['system.periodes']: new foundry.data.operators.ForcedDeletion() });
                 await actor.update({ ['system.periodes']: periodes });
-                await actor.update({ ['system.-=page']: null });
-                await actor.update({ ['system.-=data']: null });
-                await actor.update({ ['system.alchimie.-=akasha']: null });
+                await actor.update({ ['system.page']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.data']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.alchimie.akasha']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'simulacre': {
@@ -146,7 +146,7 @@ export class _1_0_1 {
                         }
                     }
                 }
-                await actor.update({ ['system.-=vecu']: null });
+                await actor.update({ ['system.vecu']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             default:

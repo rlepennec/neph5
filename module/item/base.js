@@ -73,6 +73,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     }
 
     /**
+     * TO DELETE ???
      * @param science The name of the science.
      * @returns the dictionnary of the cercles.
      */
@@ -87,6 +88,10 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
             }
         };
         return cercles;
+    }
+
+    cerclesOf2(science) {
+        return Science.cerclesOf(science);
     }
 
     /**

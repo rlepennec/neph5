@@ -3,12 +3,12 @@
 {{/if}}
 
 {{#if locked}}
-<p>{{value}}</p>
+<p>{{translate value}}</p>
 {{else}}
 <select name={{name}}>
     {{#select value}}
     {{#each options as |option|}}
-    <option value="{{option}}" class="option">{{option}}</option>
+    <option value="{{option}}" class="option">{{translate option}}</option>
     {{/each}}
     {{/select}}
 </select>

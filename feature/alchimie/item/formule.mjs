@@ -26,7 +26,8 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
             ),
             substance: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'ambre',
+                    choices: Constants.SUBSTANCES
                 }
             ),
             enonce: new foundry.data.fields.StringField(
@@ -50,6 +51,10 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
                 {
                     initial: 'air',
                     choices: Constants.ELEMENTS
+                },
+                {
+                    min: 1,
+                    max: 2
                 }
             ),
             catalyseurs: new foundry.data.fields.ArrayField

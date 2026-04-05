@@ -114,63 +114,63 @@ export class _1_0_3 {
 
                 // Replace skill by type
                 const type = item.system.skill;
-                await item.update({ ['system.-=skill']: null });
+                await item.update({ ['system.skill']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['system.type']: (type === Constants.LOURDE ? Constants.FEU : type) });
 
                 // Replace skilluuid by competence
                 const skilluuid = item.system.skilluuid;
-                await item.update({ ['system.-=skilluuid']: null });
+                await item.update({ ['system.skilluuid']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['system.competence']: skilluuid });
 
                 // Move defense
                 const defense = item.system.melee.defense;
-                await item.update({ ['system.melee.-=defense']: null });
+                await item.update({ ['system.melee.defense']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['system.defense']: defense });
                 
                 // Move salve
                 const salve = item.system.ranged.actions.salve;
-                await item.update({ ['item.system.ranged.actions.-=salve']: null });
+                await item.update({ ['item.system.ranged.actions.salve']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.salve']: salve });
 
                 // Move rafale
                 const rafale = item.system.ranged.actions.rafale;
-                await item.update({ ['item.system.ranged.actions.-=rafale']: null });
+                await item.update({ ['item.system.ranged.actions.rafale']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.rafale']: salve });
 
                 // Move ammunition
                 const ammunition = item.system.ranged.ammunition;
-                await item.update({ ['item.system.ranged.-=ammunition']: null });
+                await item.update({ ['item.system.ranged.ammunition']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.ammunition']: ammunition });
 
                 // Move munitions
                 const munitions = item.system.ranged.munitions;
-                await item.update({ ['item.system.ranged.-=munitions']: null });
+                await item.update({ ['item.system.ranged.munitions']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.munitions']: munitions });
 
                 // Replace utilise by tire
                 const tire = item.system.ranged.utilise;
-                await item.update({ ['item.system.ranged.-=utilise']: null });
+                await item.update({ ['item.system.ranged.utilise']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.tire']: tire });
 
                 // Move visee
                 const visee = item.system.ranged.visee;
-                await item.update({ ['item.system.ranged.-=visee']: null });
+                await item.update({ ['item.system.ranged.visee']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.visee']: visee });
 
                 // Replace target by cible
                 const cible = item.system.ranged.target;
-                await item.update({ ['item.system.ranged.-=target']: null });
+                await item.update({ ['item.system.ranged.target']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['item.system.cible']: cible });
 
                 // Remove some properties
-                await item.update({ ['system.melee.-=blocage']: null });
-                await item.update({ ['system.-=melee']: null });
-                await item.update({ ['system.ranged.-=perce']: null });
-                await item.update({ ['system.ranged.-=vitesse']: null });
-                await item.update({ ['system.ranged.actions.-=tirer']: null });
-                await item.update({ ['system.ranged.-=actions']: null });
-                await item.update({ ['system.ranged.-=reload']: null });
-                await item.update({ ['system.-=ranged']: null });
+                await item.update({ ['system.melee.blocage']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.melee']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ranged.perce']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ranged.vitesse']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ranged.actions.tirer']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ranged.actions']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ranged.reload']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ranged']: new foundry.data.operators.ForcedDeletion() });
 
                 break;
 
@@ -183,29 +183,29 @@ export class _1_0_3 {
                         await item.update({ ['system.used']: true });
                         break;
                 }
-                await item.update({ ['system.-=contact']: null });
-                await item.update({ ['system.-=trait']: null });
-                await item.update({ ['system.-=feu']: null });
-                await item.update({ ['system.-=bouclier']: null });
+                await item.update({ ['system.contact']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.trait']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.feu']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.bouclier']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'chute': {
-                await item.update({ ['system.-=actif']: null });
-                await item.update({ ['system.-=periode']: null });
+                await item.update({ ['system.actif']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.periode']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'passe': {
-                await item.update({ ['system.-=actif']: null });
-                await item.update({ ['system.-=periode']: null });
+                await item.update({ ['system.actif']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.periode']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'vecu': {
                 const system = foundry.utils.duplicate(item.system);
                 system.competences = system.competences.map(c => c?.refid);
                 await item.update({ ['system']: system });
-                await item.update({ ['system.-=actif']: null });
-                await item.update({ ['system.-=degre']: null });
-                await item.update({ ['system.-=mnemos']: null });
+                await item.update({ ['system.actif']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.degre']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.mnemos']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'sort': {
@@ -215,8 +215,8 @@ export class _1_0_3 {
                 break;
             }
             case 'invocation': {
-                await item.update({ ['system.-=feal']: null });
-                await item.update({ ['system.-=allie']: null });
+                await item.update({ ['system.feal']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.allie']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             case 'formule': {
@@ -228,7 +228,7 @@ export class _1_0_3 {
             }
             case 'science': {
                 const key = item.system.ref;
-                await item.update({ ['system.-=ref']: null });
+                await item.update({ ['system.ref']: new foundry.data.operators.ForcedDeletion() });
                 await item.update({ ['system.key']: key });
                 await item.update({ ['system.description']: "" });
                 break;
@@ -247,31 +247,31 @@ export class _1_0_3 {
 
                 const soleil = foundry.utils.duplicate(actor.system.soleil);
                 await actor.update({ ['type']: 'figurant' });
-                await actor.update({ ['system.-=agile']: null });
-                await actor.update({ ['system.-=endurant']: null });
-                await actor.update({ ['system.-=fort']: null });
-                await actor.update({ ['system.-=intelligent']: null });
-                await actor.update({ ['system.-=seduisant']: null });
-                await actor.update({ ['system.-=fortune']: null });
-                await actor.update({ ['system.-=savant']: null });
-                await actor.update({ ['system.-=sociable']: null });
-                await actor.update({ ['system.-=soleil']: null });
+                await actor.update({ ['system.agile']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.endurant']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.fort']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.intelligent']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.seduisant']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.fortune']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.savant']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.sociable']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.soleil']: new foundry.data.operators.ForcedDeletion() });
                 await actor.update({ ['system.menace']: 0 });
                 await actor.update({ ['system.ka']: 0 });
                 await actor.update({ ['system.ka']: soleil });
-                await actor.update({ ['system.dommage.physique.-=cases']: null });
-                await actor.update({ ['system.dommage.physique.-=choc']: null });
-                await actor.update({ ['system.dommage.magique.-=cases']: null });
-                await actor.update({ ['system.dommage.magique.-=choc']: null });
+                await actor.update({ ['system.dommage.physique.cases']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.physique.choc']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.magique.cases']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.magique.choc']: new foundry.data.operators.ForcedDeletion() });
 
                 // Update vecus
                 for (let item of actor.items.filter(i => i.type === 'vecu')) {
                     const system = foundry.utils.duplicate(item.system);
                     system.competences = system.competences.map(c => c?.refid);
                     await item.update({ ['system']: system });
-                    await item.update({ ['system.-=actif']: null });
-                    await item.update({ ['system.-=description']: null });
-                    await item.update({ ['system.-=element']: null });
+                    await item.update({ ['system.actif']: new foundry.data.operators.ForcedDeletion() });
+                    await item.update({ ['system.description']: new foundry.data.operators.ForcedDeletion() });
+                    await item.update({ ['system.element']: new foundry.data.operators.ForcedDeletion() });
                 }
 
                 break;
@@ -279,10 +279,10 @@ export class _1_0_3 {
 
             case 'figurant': {
 
-                await actor.update({ ['system.dommage.physique.-=cases']: null });
-                await actor.update({ ['system.dommage.physique.-=choc']: null });
-                await actor.update({ ['system.dommage.magique.-=cases']: null });
-                await actor.update({ ['system.dommage.magique.-=choc']: null });
+                await actor.update({ ['system.dommage.physique.cases']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.physique.choc']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.magique.cases']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.magique.choc']: new foundry.data.operators.ForcedDeletion() });
 
                 break;
             }
@@ -552,39 +552,38 @@ export class _1_0_3 {
                     const system = foundry.utils.duplicate(item.system);
                     system.competences = system.competences.map(c => c?.refid);
                     await item.update({ ['system']: system });
-                    await item.update({ ['system.-=actif']: null });
-                    await item.update({ ['system.-=description']: null });
-                    await item.update({ ['system.-=element']: null });
+                    await item.update({ ['system.actif']: new foundry.data.operators.ForcedDeletion() });
+                    await item.update({ ['system.description']: new foundry.data.operators.ForcedDeletion() });
+                    await item.update({ ['system.element']: new foundry.data.operators.ForcedDeletion() });
                 }
 
                 // Update the page properties
                 await actor.unsetFlag("world", "currentPeriode");
-                await actor.update({ ['system.-=magie']: null });
-                await actor.update({ ['system.-=kabbale']: null });
-                await actor.update({ ['system.alchimie.-=catalyseurs']: null });
-                await actor.update({ ['system.alchimie.-=formules']: null });
-                await actor.update({ ['system.alchimie.-=materiae']: null });
-                await actor.update({ ['system.alchimie.-=voie']: null });
-                await actor.update({ ['system.-=necromancie']: null });
-                await actor.update({ ['system.-=conjuration']: null });
-                await actor.update({ ['system.-=imago']: null });
-                await actor.update({ ['system.-=metamorphe']: null });
-                await actor.update({ ['system.-=metamorphoses']: null });
-                await actor.update({ ['system.-=periodes']: null });
-                await actor.update({ ['system.-=page']: null });
-                await actor.update({ ['system.-=page']: null });
-                await actor.update({ ['system.options.-=description']: null });
+                await actor.update({ ['system.magie']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.kabbale']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.alchimie.catalyseurs']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.alchimie.formules']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.alchimie.materiae']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.alchimie.voie']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.necromancie']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.conjuration']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.imago']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.metamorphe']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.metamorphoses']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.periodes']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.page']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.options.description']: new foundry.data.operators.ForcedDeletion() });
                 await actor.update({ ['system.periode']: defaultPeriode?.refid });
 
                 // Update damage properties
-                await actor.update({ ['system.dommage.physique.-=cases']: null });
-                await actor.update({ ['system.dommage.physique.-=choc']: null });
-                await actor.update({ ['system.dommage.magique.-=cases']: null });
-                await actor.update({ ['system.dommage.magique.-=choc']: null });
+                await actor.update({ ['system.dommage.physique.cases']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.physique.choc']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.magique.cases']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.dommage.magique.choc']: new foundry.data.operators.ForcedDeletion() });
 
                 // Update simulacre property
                 const simulacre = actor.system.simulacre.refid;
-                await actor.update({ ['system.simulacre.-=refid']: null });
+                await actor.update({ ['system.simulacre.refid']: new foundry.data.operators.ForcedDeletion() });
                 await actor.update({ ['system.simulacre']: simulacre });
 
                 // Update manoeuvers properties
@@ -592,11 +591,11 @@ export class _1_0_3 {
                 await actor.update({ ['system.manoeuvres.lutte']: null });
 
                 // Update stase properties
-                await actor.update({ ['system.stase.-=air']: null });
-                await actor.update({ ['system.stase.-=eau']: null });
-                await actor.update({ ['system.stase.-=feu']: null });
-                await actor.update({ ['system.stase.-=lune']: null });
-                await actor.update({ ['system.stase.-=terre']: null });
+                await actor.update({ ['system.stase.air']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.stase.eau']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.stase.feu']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.stase.lune']: new foundry.data.operators.ForcedDeletion() });
+                await actor.update({ ['system.stase.terre']: new foundry.data.operators.ForcedDeletion() });
 
                 // Update akasha
                 if (actor.system?.akasha?.nef?.active == null) {

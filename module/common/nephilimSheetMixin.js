@@ -287,6 +287,8 @@ export const NephilimMixinSheet = Base => {
 			await this.document.update(formData.object);
 		}
 		
+
+
 		/**
 		 * 
 		 * ---------- Tabs management ----------

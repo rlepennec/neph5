@@ -36,9 +36,9 @@ export class _1_0_2 {
     static async migrate_items(item) {
         switch (item.type) {
             case 'rite': {
-                await item.update({ ['system.-=voie']: null });
-                await item.update({ ['system.-=duree']: null });
-                await item.update({ ['system.-=degre']: null });
+                await item.update({ ['system.voie']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.duree']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.degre']: new foundry.data.operators.ForcedDeletion() });
                 break;
             }
             default:

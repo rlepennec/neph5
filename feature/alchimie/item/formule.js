@@ -1,6 +1,5 @@
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { FormuleDataModel } from "./formule.mjs";
-import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class FormuleSheet extends NephilimItemSheet {
@@ -30,8 +29,8 @@ export class FormuleSheet extends NephilimItemSheet {
                     quintessence: "NEPH5E.quintessence",
                     quintuple:    "NEPH5E.quintuple"
                 },
-                cercles: super.cerclesOf('alchimie'),
-                substances: Game.alchimie.substances,
+                cercles: super.cerclesOf2('alchimie'),
+                substances: FormuleDataModel.defineSchema().substance.choices,
                 catalyseurs: game.settings.get('neph5e', 'catalyseurs')
             }
         }
@@ -99,50 +98,52 @@ export class FormuleSheet extends NephilimItemSheet {
     /**
      * @override
      */
-    _updateObject(event, formData) {
+    async _onSubmit(event, form, formData) {
 
         // Update elements
-        const fst = formData["system.elements.[0]"];
-        const elements = fst == null ? this.item.system.elements : [];
+        const fst = formData.object["system.elements.[0]"];
+        const elements = fst == null ? this.document.system.elements : [];
         if (fst != null) {
-            const snd = formData["system.elements.[1]"];
+            const snd = formData.object["system.elements.[1]"];
             elements.push(fst);
-            delete formData["system.elements.[0]"];
-            if (formData["system.cercle"] === "oeuvreAuBlanc") {
+            delete formData.object["system.elements.[0]"];
+            if (formData.object["system.cercle"] === "oeuvreAuBlanc") {
                 elements.push(snd);
-                delete formData["system.elements.[1]"];
+                delete formData.object["system.elements.[1]"];
             }
         }
-        formData["system.elements"] = elements;
+        formData.object["system.elements"] = elements;
 
         // Update catalyseurs
-        let size = this.item.system.catalyseurs == null ? 0 : this.item.system.catalyseurs.length;
+        let size = this.document.system.catalyseurs == null ? 0 : this.document.system.catalyseurs.length;
         const catalyseurs = [];
         for (let index = 0; index < size; index++) {
             const name = "system.catalyseurs.[" + index + "]";
-            catalyseurs.push(formData[name]);
-            delete formData[name];
+            catalyseurs.push(formData.object[name]);
+            delete formData.object[name];
         }
-        formData["system.catalyseurs"] = catalyseurs;
+        formData.object["system.catalyseurs"] = catalyseurs;
 
         // Update variantes
-        size = this.item.system.variantes == null ? 0 : this.item.system.variantes.length;
+        size = this.document.system.variantes == null ? 0 : this.document.system.variantes.length;
         const variantes = [];
         for (let index = 0; index < size; index++) {
             const name = "system.variantes.[" + index + "]";
-            variantes.push(formData[name]);
-            delete formData[name];
+            variantes.push(formData.object[name]);
+            delete formData.object[name];
         }
-        formData["system.variantes"] = variantes;
+        formData.object["system.variantes"] = variantes;
 
         // Update echec & maladresse
-        if (formData["system.cercle"] !== "oeuvreAuRouge") {
-            formData['system.-=echec'] = null;
-            formData['system.-=maladresse'] = null;
+        if (formData.object["system.cercle"] !== "oeuvreAuRouge") {
+            formData.object['system.echec'] = new foundry.data.operators.ForcedDeletion();
+            formData.object['system.maladresse'] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object
-        super._updateObject(event, formData);
+        await this.document.update(formData.object);
+
+        //super._updateObject(event, formData);
     }
 
 }

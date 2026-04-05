@@ -157,7 +157,7 @@ export class EmbeddedItem {
             }
         } else {
             for (let i = 0; i < this.removeData.length; i++) {
-                await this.item.update({ ['system.-=' + this.removeData[i]]: null });
+                await this.item.update({ ['system.' + this.removeData[i]]: new foundry.data.operators.ForcedDeletion() });
             }
         }
         return this;

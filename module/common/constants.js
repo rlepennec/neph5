@@ -6,9 +6,9 @@ export class Constants {
 
     static MONDES = ['aresh', 'meborack', 'pachad', 'sohar', 'zakai', 'tous'];
 
+    static SUBSTANCES = ['ambre', 'liqueur', 'metal', 'poudre', 'vapeur'];
 
-
-
+    // OLD
     
     static ACTION = 'action';
     static APPRIS = 'appris';
