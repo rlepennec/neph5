@@ -1,3 +1,33 @@
+<section class="item-root">
+
+    <aside style="--background-side: var(--background-side-arcane)"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/item-header.hbs"}}
+
+        <main>
+
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
+
+        </main>
+
+    </article>
+
+</section>
+
+<!--
 <form class="{{cssClass}}" autocomplete="off">
 
     <div class="item-root">
@@ -23,3 +53,4 @@
     </div>
 
 </form>
+-->
