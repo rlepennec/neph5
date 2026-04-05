@@ -25,10 +25,7 @@ export class FormuleSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: FormuleDataModel.defineSchema().elements.options.choices,
-                elementsGS: {
-                    quintessence: "NEPH5E.quintessence",
-                    quintuple:    "NEPH5E.quintuple"
-                },
+                elementsGS: ['quintessence', 'quintuple'],
                 cercles: super.cerclesOf2('alchimie'),
                 substances: FormuleDataModel.defineSchema().substance.choices,
                 catalyseurs: game.settings.get('neph5e', 'catalyseurs')
