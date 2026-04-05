@@ -67,7 +67,8 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.id = null;
-        this.embeddedData = {};
+        foundry.utils.mergeObject(context, this.embeddedData);
+        foundry.utils.mergeObject(context, this.getOriginalData());
         return context;
     }
 
