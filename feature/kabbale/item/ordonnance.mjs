@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class OrdonnanceDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -14,7 +16,8 @@ export class OrdonnanceDataModel extends foundry.abstract.TypeDataModel {
             ),
             monde: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'sohar',
+                    choices: Constants.MONDES
                 }
             ),
             periode: new foundry.data.fields.StringField(

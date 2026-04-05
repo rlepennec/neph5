@@ -1,29 +1,36 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root"s>
 
-    <div class="item-root">
-    
-        <div class="side">
-            <img src="systems/neph5e/assets/core/site-invocation.webp" title="{{localize 'ITEM.TypeOrdonnance'}}"/>
-        </div>
+    <aside style="--background-side: var(--background-side-invocation)"></aside>
 
-        <div class="article">
+    <article>
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            <div class="body">
+        <main>
 
-                <div class="main center">
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="monde"
+                name="system.monde"
+                value=document.system.monde
+                options=context.mondes
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.mondeKabbale" collection=mondes name="system.monde" value=system.monde}}
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-                </div>
+        </main>
 
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+    </article>
 
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+</section>

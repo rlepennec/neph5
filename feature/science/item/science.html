@@ -1,27 +1,37 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root"s>
 
-    <div class="item-root">
+    <aside style="--background-side: var(--background-side-passe)"></aside>
 
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-passe.webp" title="{{localize 'ITEM.TypeScience'}}"/>
-        </div>
+    <article>
 
-        <div class="article">
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        <main>
 
-            <div class="body">
+            {{#if (and debug isGM (not document.sheet.locked))}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="key"
+                name="system.key"
+                value=document.system.key
+            }}
+            {{/if}}
 
-                <div class="key {{#unless (and debug isGM)}}hidden{{/unless}}">
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.cle" name="system.key" value=system.key type="String"}}
-                </div>
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+        </main>
 
-            </div>
+    </article>
 
-        </div>
-
-    </div>
-
-</form>
+</section>

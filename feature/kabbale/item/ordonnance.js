@@ -1,5 +1,6 @@
-import { NephilimItemSheet } from "../../../module/item/base.js";
 import { Game } from "../../../module/common/game.js";
+import { NephilimItemSheet } from "../../../module/item/base.js";
+import { OrdonnanceDataModel } from "./ordonnance.mjs";
 
 export class OrdonnanceSheet extends NephilimItemSheet {
 
@@ -13,6 +14,18 @@ export class OrdonnanceSheet extends NephilimItemSheet {
     static PARTS = {
         main: {
             template: `systems/neph5e/feature/kabbale/item/ordonnance.html`,
+        }
+    }
+
+    /** 
+     * @override
+     */
+    async _prepareContext(options) {
+        return {
+            ...await super._prepareContext(options),
+            context: {
+                mondes: OrdonnanceDataModel.defineSchema().monde.choices,
+            }
         }
     }
 

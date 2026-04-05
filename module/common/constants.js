@@ -4,6 +4,12 @@ export class Constants {
 
     static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
 
+    static MONDES = ['aresh', 'meborack', 'pachad', 'sohar', 'zakai', 'tous'];
+
+
+
+
+    
     static ACTION = 'action';
     static APPRIS = 'appris';
     static BRAWL = 'brawl';
