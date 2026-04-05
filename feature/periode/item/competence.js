@@ -1,3 +1,4 @@
+import { CompetenceDataModel } from "./competence.mjs";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 import { Game } from "../../../module/common/game.js";
 
@@ -13,6 +14,18 @@ export class CompetenceSheet extends NephilimItemSheet {
     static PARTS = {
         main: {
             template: `systems/neph5e/feature/periode/item/competence.html`,
+        }
+    }
+
+    /** 
+     * @override
+     */
+    async _prepareContext(options) {
+        return {
+            ...await super._prepareContext(options),
+            context: {
+                elements: CompetenceDataModel.defineSchema().element.choices,
+            }
         }
     }
 

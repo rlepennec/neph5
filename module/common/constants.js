@@ -1,5 +1,9 @@
 export class Constants {
 
+    static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
+
+    static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
+
     static ACTION = 'action';
     static APPRIS = 'appris';
     static BRAWL = 'brawl';
