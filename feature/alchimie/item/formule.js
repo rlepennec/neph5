@@ -49,20 +49,7 @@ export class FormuleSheet extends NephilimItemSheet {
                 await this.document.deleteReference(identifier.fsid, this.document.system.catalyseurs, "system.catalyseurs");
                 break;
         }
-
-
     }
-
-
-
-    /*
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.edit-variante').click(this._onEditVariante.bind(this));
-        html.find('.delete-catalyseur').click(this._onDeleteCatalyseur.bind(this));
-    }
-    */
 
     /**
      * This function catches the drop on an formule. It can be
@@ -72,21 +59,14 @@ export class FormuleSheet extends NephilimItemSheet {
      */
 	async _onDrop(event, document) {
         event.preventDefault();
-        if (document.type === "formule") {
-            await this.document.updateItemRefs(document.system, this.document.system.variantes, "system.variantes");
+        switch (document.type) {
+            case "formule":
+                await this.document.updateItemRefs(document.system, this.document.system.variantes, "system.variantes");
+                break;
+            case "catalyseur":
+                await this.document.updateItemRefs(document.system, this.document.system.catalyseurs, "system.catalyseurs");
+                break;
         }
-        if (document.type === "catalyseur") {
-            await this.document.updateItemRefs(document.system, this.document.system.catalyseurs, "system.catalyseurs");
-        }
-    }
-
-    /**
-     * This function catches the deletion of a catalyseur.
-     */
-     async _onDeleteCatalyseur(event) {
-        const li = $(event.currentTarget).closest(".item");
-        const id = li.data("item-id");
-       await this.document.deleteItemRefs(event, this.document.system.catalyseurs, "system.catalyseurs");
     }
 
     /**
