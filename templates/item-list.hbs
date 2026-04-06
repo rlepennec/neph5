@@ -14,10 +14,8 @@
 
         <a data-action="delete"><i class="fas fa-trash"></i></a>
 
-        {{#with (concat ../edit " hoverable") as |class|}}
-        {{#with (getItem ..)}}
-        <span data-action="open">{{name}}</span>
-        {{/with}}
+        {{#with (getIdentifier .)}}
+        <span class="hoverable" data-action="open">{{name}}</span>
         {{/with}}
 
     </li>
