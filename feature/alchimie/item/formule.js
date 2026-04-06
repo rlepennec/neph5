@@ -51,14 +51,13 @@ export class FormuleSheet extends NephilimItemSheet {
      *   - a catalyseur
      * @param event The drop event.
      */
-    async _onDrop(event) {
+	async _onDrop(event, document) {
         event.preventDefault();
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop.type === "formule") {
-            await this.document.updateItemRefs(drop.system, this.document.system.variantes, "system.variantes");
+        if (document.type === "formule") {
+            await this.document.updateItemRefs(document.system, this.document.system.variantes, "system.variantes");
         }
-        if (drop.type === "catalyseur") {
-            await this.document.updateItemRefs(drop.system, this.document.system.catalyseurs, "system.catalyseurs");
+        if (document.type === "catalyseur") {
+            await this.document.updateItemRefs(document.system, this.document.system.catalyseurs, "system.catalyseurs");
         }
     }
 

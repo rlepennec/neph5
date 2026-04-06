@@ -11,7 +11,7 @@
     <ol class="no-vertical-margin">
 
         {{#each values as |item|}}
-        <li class="item hoverable flexrow-start" data-item-id="{{item}}">
+        <li class="item hoverable flexrow-start" data-item-id="{{item}}" data-fsid="{{fsid item}}">
 
             <input
                 name="{{../names}}.[{{@index}}]"
@@ -28,7 +28,7 @@
             {{#with (concat ../edit " hoverable") as |class|}}
             {{#with (getItem ..)}}
             <div>
-                <span class="{{class}}" data-item-id="{{item}}">{{name}}</span>
+                <span class="{{class}}" data-item-id="{{item}}" data-fsid="{{fsid item}}">{{name}}</span>
             </div>
             {{/with}}
             {{/with}}

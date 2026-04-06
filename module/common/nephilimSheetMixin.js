@@ -1,3 +1,5 @@
+import { DocumentIdentifier } from "./documentIdentifier.js";
+
 export const NephilimMixinSheet = Base => {
 
 	return class NephilimSheet extends foundry.applications.api.HandlebarsApplicationMixin(Base) {
@@ -213,7 +215,21 @@ export const NephilimMixinSheet = Base => {
 
 			if (this.locked) return;
 
-
+			const dropped = JSON.parse(event.dataTransfer.getData("text/plain"));
+			switch (dropped.type) {
+				case 'Sheet': {
+					const document = new DocumentIdentifier(new String(dropped.fsid)).toDocument();
+					if (document.parent === this.document) {
+						this._onDrop(event, document);
+					}
+					break;
+				}
+				case 'Item': {
+					const document = new DocumentIdentifier(event).toDocument();
+					this._onDrop(event, document);
+					break;
+				}
+			}
 
 		}
 

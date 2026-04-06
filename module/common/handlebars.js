@@ -1,6 +1,26 @@
 import { Constants } from "./constants.js";
+import { DocumentIdentifier } from "./documentIdentifier.js";
 
 export class CustomHandlebarsHelpers {
+
+    /**
+     * @param sid The system id of the item to get.
+     * @returns the identifier of the specified document.
+     */
+    static getIdentifier(sid) {
+        const item = game.items.find(i => i.system.id === sid);
+        return item == null ? "null" : new DocumentIdentifier(item);
+    }
+
+
+    /**
+     * @param sid The system id of the item to get.
+     * @returns the full system identifier of the specified document.
+     */
+    static fsid(sid) {
+        const item = game.items.find(i => i.system.id === sid);
+        return item == null ? "null" : new DocumentIdentifier(item).fsid;
+    }
 
     /**
      * @param words The words to translate. 
@@ -9,6 +29,8 @@ export class CustomHandlebarsHelpers {
     static translate(word) {
         return game.i18n.localize(`NEPHILIM.${word}`);
     }
+
+
 
 
 // OLD
