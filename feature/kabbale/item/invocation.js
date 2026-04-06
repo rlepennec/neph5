@@ -1,4 +1,4 @@
-import { Game } from "../../../module/common/game.js";
+import { InvocationDataModel } from "./invocation.mjs";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class InvocationSheet extends NephilimItemSheet {
@@ -19,12 +19,15 @@ export class InvocationSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            elements: Game.kabbale.elements,
-            cercles: super.cerclesOf('kabbale'),
-            mondes: Game.kabbale.mondes,
-            sephiroth: Game.kabbale.sephiroth
+            ...await super._prepareContext(options),
+            context: {
+                elements: InvocationDataModel.defineSchema().element.choices,
+                cercles: super.cerclesOf2('kabbale'),
+                mondes: InvocationDataModel.defineSchema().monde.choices,
+                sephiroth: InvocationDataModel.defineSchema().sephirah.choices
+            }
         }
     }
 

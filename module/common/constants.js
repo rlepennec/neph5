@@ -2,16 +2,20 @@ export class Constants {
 
     static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
 
-    static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
-
-    static MONDES = ['aresh', 'meborack', 'pachad', 'sohar', 'zakai', 'tous'];
-
-    static SUBSTANCES = ['ambre', 'liqueur', 'metal', 'poudre', 'vapeur'];
-
     static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];
 
     static ELEMENTS_KABBALE = ['choix'];
 
+    static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
+
+    static MONDES = ['aresh', 'meborack', 'pachad', 'sohar', 'zakai', 'tous'];
+
+    static SEPHIRAH = ['binah', 'chesed', 'hod', 'kether', 'chokmah', 'geburah', 'malkut', 'netzach', 'tiphereth', 'yesod', 'daath'];
+
+    static SUBSTANCES = ['ambre', 'liqueur', 'metal', 'poudre', 'vapeur'];
+
+
+    
     // OLD
     
     static ACTION = 'action';

@@ -16,12 +16,14 @@ export class InvocationDataModel extends foundry.abstract.TypeDataModel {
             ),
             sephirah: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'malkut',
+                    choices: Constants.SEPHIRAH
                 }
             ),
             monde: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'aresh',
+                    choices: Constants.MONDES
                 }
             ),
             element: new foundry.data.fields.StringField(
