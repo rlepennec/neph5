@@ -21,7 +21,7 @@ export class PeriodeSheet extends NephilimItemSheet {
      */
     getOriginalData() {
         return {
-            vecus: this._getVecus(this.item.system.id)
+            vecus: this._getVecus(this.document.system.id)
         }
     }
 
@@ -45,7 +45,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
         if (drop?.type === "vecu") {
             const vecu = CustomHandlebarsHelpers.getItem(drop.sid);
-            await vecu.update({ ['system.periode']: this.item.sid });
+            await vecu.update({ ['system.periode']: this.document.sid });
             await this.render(true);
         }
     }

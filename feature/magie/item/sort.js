@@ -44,7 +44,7 @@ export class SortSheet extends NephilimItemSheet {
         event.preventDefault();
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
         if (drop.type === "magie") {
-            await this.item.updateItemRefs(drop.system, this.item.system.voies, "system.voies");
+            await this.document.updateItemRefs(drop.system, this.document.system.voies, "system.voies");
         }
     }
 
@@ -52,7 +52,7 @@ export class SortSheet extends NephilimItemSheet {
      * This function catches the deletion of a voie from the list of voies.
      */
     async _onDelete(event) {
-        await this.item.deleteItemRefs(event, this.item.system.voies, "system.voies");
+        await this.document.deleteItemRefs(event, this.document.system.voies, "system.voies");
     }
 
     /**

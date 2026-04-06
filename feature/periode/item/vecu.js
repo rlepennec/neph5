@@ -51,9 +51,9 @@ export class VecuSheet extends NephilimItemSheet {
         event.preventDefault();
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
         if (drop?.type === "competence") {
-            await this.item.updateItemRefs(drop.system, this.item.system.competences, "system.competences");
+            await this.document.updateItemRefs(drop.system, this.document.system.competences, "system.competences");
         } else if (drop?.type === "periode") {
-            await this.item.update({ ['system.periode']: drop.sid });
+            await this.document.update({ ['system.periode']: drop.sid });
         }
     }
 
@@ -61,7 +61,7 @@ export class VecuSheet extends NephilimItemSheet {
      * This function catches the deletion of a competence from the list of competences.
      */
     async _onDelete(event) {
-        await this.item.deleteItemRefs(event, this.item.system.competences, "system.competences");
+        await this.document.deleteItemRefs(event, this.document.system.competences, "system.competences");
     }
 
     /**
@@ -71,10 +71,10 @@ export class VecuSheet extends NephilimItemSheet {
         event.preventDefault();
         const li = $(event.currentTarget).closest('.item');
         const id = li.data("item-id");
-        const system = foundry.utils.duplicate(this.item.system);
+        const system = foundry.utils.duplicate(this.document.system);
         system.mnemos.splice(id, 1);
-        await this.item.update({ ['system']: system });
-        this.item.sheet.render(true);
+        await this.document.update({ ['system']: system });
+        this.document.sheet.render(true);
     }
 
     /**
@@ -82,7 +82,7 @@ export class VecuSheet extends NephilimItemSheet {
      */
      async onEditPeriode(event) {
         event.preventDefault();
-        const item = CustomHandlebarsHelpers.getItem(this.item.system.periode);
+        const item = CustomHandlebarsHelpers.getItem(this.document.system.periode);
         item.sheet.render(true);
     }
 
@@ -90,7 +90,7 @@ export class VecuSheet extends NephilimItemSheet {
      * This function catches the addiition of mnemos. 
      */
     async _onAddMnemos(event) {
-        return new Mnemos(this.actor, this.item).render(true);;
+        return new Mnemos(this.actor, this.document).render(true);;
     }
 
     /**
@@ -100,7 +100,7 @@ export class VecuSheet extends NephilimItemSheet {
         event.preventDefault();
         const li = $(event.currentTarget).closest('.item');
         const id = li.data("item-id");
-        return new Mnemos(this.actor, this.item, id).render(true);;
+        return new Mnemos(this.actor, this.document, id).render(true);;
     }
 
     /**

@@ -55,10 +55,10 @@ export class FormuleSheet extends NephilimItemSheet {
         event.preventDefault();
         const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
         if (drop.type === "formule") {
-            await this.item.updateItemRefs(drop.system, this.item.system.variantes, "system.variantes");
+            await this.document.updateItemRefs(drop.system, this.document.system.variantes, "system.variantes");
         }
         if (drop.type === "catalyseur") {
-            await this.item.updateItemRefs(drop.system, this.item.system.catalyseurs, "system.catalyseurs");
+            await this.document.updateItemRefs(drop.system, this.document.system.catalyseurs, "system.catalyseurs");
         }
     }
 
@@ -68,7 +68,7 @@ export class FormuleSheet extends NephilimItemSheet {
      async _onDeleteCatalyseur(event) {
         const li = $(event.currentTarget).closest(".item");
         const id = li.data("item-id");
-       await this.item.deleteItemRefs(event, this.item.system.catalyseurs, "system.catalyseurs");
+       await this.document.deleteItemRefs(event, this.document.system.catalyseurs, "system.catalyseurs");
     }
 
     /**
@@ -90,7 +90,7 @@ export class FormuleSheet extends NephilimItemSheet {
         const li = $(event.currentTarget).closest(".item");
         const type = li.data("item-type");
         const id = li.data("item-id");
-        await this.item.deleteItemRefs(event, this.item.system.variantes, "system.variantes");
+        await this.document.deleteItemRefs(event, this.document.system.variantes, "system.variantes");
     }
 
     /**
