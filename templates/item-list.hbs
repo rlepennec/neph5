@@ -12,9 +12,7 @@
             value="{{item}}"
             data-dtype="String"/>
 
-        {{#with (concat ../delete " fas fa-trash") as |class|}}
-        <a data-action="delete"><i class="{{class}}"></i></a>
-        {{/with}}
+        <a data-action="delete"><i class="fas fa-trash"></i></a>
 
         {{#with (concat ../edit " hoverable") as |class|}}
         {{#with (getItem ..)}}
