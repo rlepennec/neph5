@@ -33,6 +33,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
      * @override
      */
     async _onDelete(event, target) {
+        console.log("NephilimItemSheet._onDelete");
         const remove = new DocumentIdentifier(target).toDocument();
         await new DocumentReference(remove).removeFrom(this.document);
         await new DocumentReference(this.document).removeFrom(remove);

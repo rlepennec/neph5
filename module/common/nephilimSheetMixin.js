@@ -173,11 +173,13 @@ export const NephilimMixinSheet = Base => {
 		 * @param {*} target 
 		 */
 		static async _onDelete(event, target) {
+			console.log("NephilimSheet._onDelete");
 			if (this.locked) return;
 			await this._onDelete(event, target);
 		}
 
 		async _onDelete(event, target) {
+			console.log("NephilimSheet.this._onDelete");
 			throw new Error("_onDelete method must be implemented");
 		}
 

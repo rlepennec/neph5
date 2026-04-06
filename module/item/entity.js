@@ -1,6 +1,7 @@
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Distance } from "../../feature/combat/core/distance.js";
+import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { Periode } from "../../feature/periode/periode.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 
@@ -286,6 +287,31 @@ export class NephilimItem extends Item {
     }
 
     /**
+     * Deletes the reference of the objet to delete.
+     * @param {*} fsid       The full system identifier of the document for which to delete references. 
+     * @param {*} references The current references.
+     * @param {*} name       The name of the document property which defines the array of references.
+     */
+    async deleteReference(fsid, references, name) {
+
+        const sid = new DocumentIdentifier(fsid).sid;
+
+        // Retrieve the current references of the item
+        const refs = foundry.utils.duplicate(references);
+
+        // Remove the reference
+        const index = refs.findIndex(i => i === sid);
+        if (index != -1) {
+            refs.splice(index, 1);
+        }
+
+        // Update the references of the item
+        await this.update({ [name]: refs });
+
+    }
+
+    /**
+     * TO DELETE ???
      * Deletes the reference of the objet to delete.
      * @param {*} event 
      * @param {*} references 

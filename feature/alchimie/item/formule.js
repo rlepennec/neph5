@@ -1,5 +1,6 @@
 import { Constants } from "../../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
+import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { FormuleDataModel } from "./formule.mjs";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
@@ -37,13 +38,31 @@ export class FormuleSheet extends NephilimItemSheet {
     /**
      * @override
      */
+    async _onDelete(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        switch (document.type) {
+            case 'formule':
+                await this.document.deleteReference(identifier.fsid, this.document.system.variantes, "system.variantes");
+                break;
+            default:
+                await this.document.deleteReference(identifier.fsid, this.document.system.catalyseurs, "system.catalyseurs");
+                break;
+        }
+
+
+    }
+
+
+
+    /*
     activateListeners(html) {
         super.activateListeners(html);
         html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.delete-variante').click(this._onDeleteVariante.bind(this));
         html.find('.edit-variante').click(this._onEditVariante.bind(this));
         html.find('.delete-catalyseur').click(this._onDeleteCatalyseur.bind(this));
     }
+    */
 
     /**
      * This function catches the drop on an formule. It can be
@@ -80,16 +99,6 @@ export class FormuleSheet extends NephilimItemSheet {
         const id = li.data("item-id");
         const item = CustomHandlebarsHelpers.getItem(id);
         await item.sheet.render(true);
-    }
-
-    /**
-     * This function catches the deletion of a variante.
-     */
-    async _onDeleteVariante(event) {
-        const li = $(event.currentTarget).closest(".item");
-        const type = li.data("item-type");
-        const id = li.data("item-id");
-        await this.document.deleteItemRefs(event, this.document.system.variantes, "system.variantes");
     }
 
     /**

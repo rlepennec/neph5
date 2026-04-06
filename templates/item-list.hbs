@@ -11,7 +11,7 @@
     <ol class="no-vertical-margin">
 
         {{#each values as |item|}}
-        <li class="item hoverable flexrow-start" data-item-id="{{item}}" data-fsid="{{fsid item}}">
+        <li data-fsid="{{fsid item}}">
 
             <input
                 name="{{../names}}.[{{@index}}]"
@@ -20,16 +20,12 @@
                 data-dtype="String"/>
 
             {{#with (concat ../delete " fas fa-trash") as |class|}}
-            <div class="mright" >
-                <a><i class="{{class}}"></i></a>
-            </div>
+            <a data-action="delete"><i class="{{class}}"></i></a>
             {{/with}}
 
             {{#with (concat ../edit " hoverable") as |class|}}
             {{#with (getItem ..)}}
-            <div>
-                <span class="{{class}}" data-item-id="{{item}}" data-fsid="{{fsid item}}">{{name}}</span>
-            </div>
+            <span data-fsid="{{fsid item}}">{{name}}</span>
             {{/with}}
             {{/with}}
 
