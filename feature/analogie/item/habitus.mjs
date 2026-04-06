@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class HabitusDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -19,7 +21,8 @@ export class HabitusDataModel extends foundry.abstract.TypeDataModel {
             ),
             element: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'air',
+                    choices: Constants.ELEMENTS
                 }
             ),
             voies: new foundry.data.fields.ArrayField

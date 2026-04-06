@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class InvocationDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -24,7 +26,8 @@ export class InvocationDataModel extends foundry.abstract.TypeDataModel {
             ),
             element: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'air',
+                    choices: Constants.ELEMENTS.concat(Constants.ELEMENTS_KABBALE)
                 }
             ),
             degre: new foundry.data.fields.NumberField(

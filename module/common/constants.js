@@ -10,6 +10,8 @@ export class Constants {
 
     static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];
 
+    static ELEMENTS_KABBALE = ['choix'];
+
     // OLD
     
     static ACTION = 'action';
