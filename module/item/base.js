@@ -14,35 +14,6 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         classes: ["item"]
     }
 
-    /** 
-     * @override
-     */
-    async _onDrop(event) {
-        if (this.locked) return;
-        const document = new DocumentIdentifier(event).toDocument();
-        if (document == null) {
-            ui.notifications.warn("Can't drop this kind of object");
-            return;
-        }
-        await new DocumentReference(this.document).removeFromRegister(document);
-        await new DocumentReference(document).addTo(this.document);
-        await new DocumentReference(this.document).addTo(document);
-    }
-
-    /** 
-     * @override
-     */
-    async _onDelete(event, target) {
-        console.log("NephilimItemSheet._onDelete");
-        const remove = new DocumentIdentifier(target).toDocument();
-        await new DocumentReference(remove).removeFrom(this.document);
-        await new DocumentReference(this.document).removeFrom(remove);
-    }
-
-
-
-
-
     /**
      * @constructor
      * @param  {...any} args
@@ -51,16 +22,6 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         super(...args);
         this.embeddedData = {};
     }
-
-//   /** @inheritDoc */
-//   async _prepareContext(options) {
-//     return {
-//       ...await super._prepareContext(options),
-//       document: this.document,
-//       editable: this.isEditable,
-//       options: this.options
-//     };
-//   }
 
     /** 
      * @override
