@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class AppelDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -19,7 +21,8 @@ export class AppelDataModel extends foundry.abstract.TypeDataModel {
             ),
             appel: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'pacifiste',
+                    choices: Constants.APPELS
                 }
             ),
             controle: new foundry.data.fields.BooleanField(

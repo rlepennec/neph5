@@ -1,6 +1,6 @@
 
+import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Game } from "../../../module/common/game.js";
 
 export class AppelSheet extends NephilimItemSheet {
 
@@ -20,10 +20,13 @@ export class AppelSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('conjuration'),
-            appels: Game.conjuration.appels
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('conjuration'),
+                appels: Constants.APPELS,
+            }
         }
     }
 

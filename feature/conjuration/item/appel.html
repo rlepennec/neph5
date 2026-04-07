@@ -1,45 +1,85 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root">
 
-    <div class="item-root">
-    
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-appel.webp" title="{{localize 'ITEM.TypeAppel'}}"/>
-        </div>
+    <aside style="--background-side: var(--background-side-appel)"></aside>
 
-        <div class="article">
+    <article>
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            <div class="body">
+        <main>
 
-                <div class="main">
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="degre"
+                name="system.degre"
+                value=document.system.degre
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="cercle"
+                name="system.cercle"
+                value=document.system.cercle
+                options=context.cercles
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.cercle" collection=cercles name="system.cercle" value=system.cercle}}
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="appel"
+                name="system.appel"
+                value=document.system.appel
+                options=context.appels
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.appel" collection=appels name="system.appel" value=system.appel}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="controle"
+                name="system.controle"
+                value=document.system.controle
+            }}
 
-                </div>
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="visibilite"
+                name="system.visibilite"
+                value=document.system.visibilite
+            }}
 
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.controle" name="system.controle" value=system.controle type="Boolean"}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="entropie"
+                name="system.entropie"
+                value=document.system.entropie
+            }}
 
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.visibilite" name="system.visibilite" value=system.visibilite type="String"}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="dommages"
+                name="system.dommages"
+                value=document.system.dommages
+            }}
 
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.entropie" name="system.entropie" value=system.entropie type="String"}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="protection"
+                name="system.protection"
+                value=document.system.protection
+            }}
 
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.dommages" name="system.dommages" value=system.dommages type="String"}}
-
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.protection" name="system.protection" value=system.protection type="String"}}
-
-                {{> "systems/neph5e/templates/item/parts/body/difficulte.hbs"}}
-
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-
+            {{#if (nonNull difficulty)}}
+            <div class="difficulte">
+                <span>{{translate "NEPH5E.difficulte"}} : </span><span>{{difficulty}}0%</span>
             </div>
+            {{/if}}
 
-        </div>
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-    </div>
+        </main>
 
-</form>
+    </article>
+
+</section>
