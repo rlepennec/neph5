@@ -1,5 +1,4 @@
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
-import { Game } from "../../../module/common/game.js";
+import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class RiteSheet extends NephilimItemSheet {
@@ -20,10 +19,13 @@ export class RiteSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('necromancie'),
-            desmos: Game.necromancie.desmos
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('necromancie'),
+                desmos: Constants.DESMOS,
+            }
         }
     }
 

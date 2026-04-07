@@ -1,5 +1,7 @@
 export class Constants {
 
+    static DESMOS = ['spiritisme', 'apaisement', 'claivoyance', 'animation', 'possession', 'audela', 'corruption'];
+
     static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
 
     static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];

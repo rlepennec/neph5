@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class RiteDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -19,7 +21,8 @@ export class RiteDataModel extends foundry.abstract.TypeDataModel {
             ),
             desmos: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'spiritisme',
+                    choices: Constants.DESMOS
                 }
             ),
             status: new foundry.data.fields.StringField(
