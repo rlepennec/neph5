@@ -61,8 +61,10 @@
         "aire": "Aire",
         "ambre": "Ambre",
         "aresh": "Aresh",
+        "basseMagie": "Basse Magie",
         "binah": "Binah",
         "catalyseurs": "Catalyseurs",
+        "cercle": "Cercle",
         "chesed": "Chesed",
         "choix": "Choix",
         "chokmah": "Chokmah",
@@ -79,12 +81,16 @@
         "epoque": "Epoque",
         "feu": "Feu",
         "geburah": "Geburah",
+        "grandSecret": "Grand Secret",
+        "hauteMagie": "Haute Magie",
         "humeur": "Humeur",
         "hod": "Hod",
+        "incantation": "Incantation",
         "kether": "Kether",
         "key": "Clé",
         "liqueur": "Liqueur",
         "lune": "Lune",
+        "luneNoire": "Lune Noire",
         "main": "Main",
         "maladresse": "Maladresse",
         "malkut": "Malkut",
@@ -109,6 +115,7 @@
         "setup": "Configurer",
         "sohar": "Sohar",
         "substance": "Substance",
+        "syntaxe": "Syntaxe",
         "terre": "Terre",
         "tiphereth": "Tiphereth",
         "toggleLock": "Verrouillage",
@@ -119,10 +126,14 @@
         "vecus": "Vécus",
         "visage": "Visage",
         "visibilite": "Visibilité",
+        "voies": "Voies",
         "voix": "Voix",
         "yesod": "Yesod",
         "zakai": "Zakai"
     },
+
+
+
 
     "NEPH5E": {
         "absorption": "Absorption",

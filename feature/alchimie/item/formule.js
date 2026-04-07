@@ -45,7 +45,7 @@ export class FormuleSheet extends NephilimItemSheet {
             case 'formule':
                 await this.document.deleteReference(identifier.fsid, this.document.system.variantes, "system.variantes");
                 break;
-            default:
+            case "catalyseur":
                 await this.document.deleteReference(identifier.fsid, this.document.system.catalyseurs, "system.catalyseurs");
                 break;
         }

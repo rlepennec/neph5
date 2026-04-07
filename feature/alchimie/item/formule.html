@@ -102,11 +102,9 @@
             }}
 
             {{> "systems/neph5e/templates/item-list.hbs"
-                display=catalyseurs
                 title="catalyseurs"
                 values=document.system.catalyseurs
                 names="system.catalyseurs"
-                delete="delete-catalyseur"
             }}
 
             {{#if (nonNull difficulty)}}

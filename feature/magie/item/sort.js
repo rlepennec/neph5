@@ -1,5 +1,6 @@
-import { Game } from "../../../module/common/game.js";
+import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
+import { SortDataModel } from "./sort.mjs";
 
 export class SortSheet extends NephilimItemSheet {
 
@@ -19,12 +20,46 @@ export class SortSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            elements: Game.elements,
-            cercles: super.cerclesOf('magie')
+            ...await super._prepareContext(options),
+            context: {
+                elements: SortDataModel.defineSchema().element.choices,
+                cercles: super.cerclesOf2('magie')
+            }
         }
     }
+
+    /**
+     * @override
+     */
+    async _onDelete(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        switch (document.type) {
+            case 'magie':
+                await this.document.deleteReference(identifier.fsid, this.document.system.voies, "system.voies");
+                break;
+        }
+    }
+
+    /**
+     * This function catches the drop voie on a sort.
+     * @param event The drop event.
+     */
+    async _onDrop(event, document) {
+        event.preventDefault();
+        switch (document.type) {
+            case "magie":
+                await this.document.updateItemRefs(document.system, this.document.system.voies, "system.voies");
+                break;
+        }
+    }
+
+
+
+
+
 
     /**
      * @override
@@ -33,26 +68,6 @@ export class SortSheet extends NephilimItemSheet {
         super.activateListeners(html);
         html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
         html.find('.delete-voie').click(this._onDelete.bind(this));
-    }
-
-    /**
-     * This function catches the drop on a sort. The dropped item can be
-     *   - une voie magique
-     * @param event The drop event.
-     */
-    async _onDrop(event) {
-        event.preventDefault();
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop.type === "magie") {
-            await this.document.updateItemRefs(drop.system, this.document.system.voies, "system.voies");
-        }
-    }
-
-    /**
-     * This function catches the deletion of a voie from the list of voies.
-     */
-    async _onDelete(event) {
-        await this.document.deleteItemRefs(event, this.document.system.voies, "system.voies");
     }
 
     /**

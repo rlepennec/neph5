@@ -6,6 +6,8 @@ export class Constants {
 
     static ELEMENTS_KABBALE = ['choix'];
 
+    static ELEMENTS_MAGIE = ['air', 'eau', 'feu', 'lune', 'luneNoire', 'terre', 'choix'];
+
     static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
 
     static MONDES = ['aresh', 'meborack', 'pachad', 'sohar', 'zakai', 'tous'];

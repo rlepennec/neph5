@@ -1,3 +1,4 @@
+import { Constants } from "../../../module/common/constants.js";
 
 export class SortDataModel extends foundry.abstract.TypeDataModel {
 
@@ -18,7 +19,8 @@ export class SortDataModel extends foundry.abstract.TypeDataModel {
             element: new foundry.data.fields.StringField
             (
                 {
-                    required: false
+                    initial: 'air',
+                    choices: Constants.ELEMENTS_MAGIE
                 }
             ),
             degre: new foundry.data.fields.NumberField
