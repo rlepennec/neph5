@@ -1,33 +1,47 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root" data-drop="true">
 
-    <div class="item-root">
-    
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-aspect.webp" title="{{localize 'ITEM.TypeAspect'}}"/>
-        </div>
+    <aside style="--background-side: var(--background-side-aspect)"></aside>
 
-        <div class="article">
+    <article>
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            <div class="body">
+        <main>
 
-                <div class="main">
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="construction"
+                name="system.degre"
+                value=document.system.degre
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.construction" name="system.degre" value=system.degre}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="activation"
+                name="system.activation"
+                value=document.system.activation
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.activation" name="system.activation" value=system.activation}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="duree"
+                name="system.duree"
+                value=document.system.duree
+            }}
 
-                </div>
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-                {{> "systems/neph5e/templates/item/parts/body/input.hbs" title="NEPH5E.duree" name="system.duree" value=system.duree type="String"}}
+        </main>
 
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+    </article>
 
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+</section>

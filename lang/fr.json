@@ -57,6 +57,7 @@
     "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
 
     "NEPHILIM": {
+        "activation": "Activation",
         "air": "Air",
         "aire": "Aire",
         "ambre": "Ambre",
@@ -85,6 +86,7 @@
         "claivoyance": "Claivoyance",
         "competences": "Compétences",
         "comprendre": "Comprendre",
+        "construction": "Construction",
         "controle": "Contrôle",
         "controler": "Contrôler",
         "corruption": "Corruption",
