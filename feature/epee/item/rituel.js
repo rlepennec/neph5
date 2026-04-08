@@ -18,9 +18,12 @@ export class RituelSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('epee')
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('epee')
+            }
         }
     }
 

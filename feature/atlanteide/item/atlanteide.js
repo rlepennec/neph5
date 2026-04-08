@@ -18,9 +18,12 @@ export class AtlanteideSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('atlanteide')
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('atlanteide')
+            }
         }
     }
 

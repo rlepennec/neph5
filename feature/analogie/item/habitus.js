@@ -1,4 +1,5 @@
-import { Game } from "../../../module/common/game.js";
+import { Constants } from "../../../module/common/constants.js";
+import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class HabitusSheet extends NephilimItemSheet {
@@ -19,40 +20,42 @@ export class HabitusSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            elements: Game.elements,
-            cercles: super.cerclesOf('analogie')
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('analogie'),
+                elements: Constants.ELEMENTS_CHOIX
+            }
         }
     }
 
     /**
      * @override
      */
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.delete-voie').click(this._onDelete.bind(this));
-    }
-
-    /**
-     * This function catches the drop on a sort. The dropped item can be
-     *   - une voie magique
-     * @param event The drop event.
-     */
-    async _onDrop(event) {
-        event.preventDefault();
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop.type === "magie") {
-            await this.item.updateItemRefs(drop.system, this.item.system.voies, "system.voies");
+    async _onDelete(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        switch (document.type) {
+            case 'science':
+                await this.document.deleteReference(identifier.fsid, this.document.system.voies, "system.voies");
+                break;
         }
     }
 
     /**
-     * This function catches the deletion of a voie from the list of voies.
+     * This function catches the drop on an formule. It can be
+     *   - an other formule, that is a variante
+     *   - a catalyseur
+     * @param event The drop event.
      */
-    async _onDelete(event) {
-        await this.item.deleteItemRefs(event, this.item.system.voies, "system.voies");
+    async _onDrop(event, document) {
+        event.preventDefault();
+        switch (document.type) {
+            case "science":
+                await this.document.updateItemRefs(document.system, this.document.system.voies, "system.voies");
+                break;
+        }
     }
 
     /**

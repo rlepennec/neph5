@@ -18,9 +18,12 @@ export class DivinationSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('bohemien')
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('bohemien')
+            }
         }
     }
 

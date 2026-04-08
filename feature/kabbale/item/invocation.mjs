@@ -29,7 +29,7 @@ export class InvocationDataModel extends foundry.abstract.TypeDataModel {
             element: new foundry.data.fields.StringField(
                 {
                     initial: 'air',
-                    choices: Constants.ELEMENTS.concat(Constants.ELEMENTS_KABBALE)
+                    choices: Constants.ELEMENTS_CHOIX
                 }
             ),
             degre: new foundry.data.fields.NumberField(

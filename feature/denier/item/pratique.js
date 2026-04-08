@@ -18,9 +18,12 @@ export class PratiqueSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('denier', true)
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('denier')
+            }
         }
     }
 

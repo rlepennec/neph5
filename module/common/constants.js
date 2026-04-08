@@ -6,9 +6,9 @@ export class Constants {
 
     static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
 
-    static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];
+    static ELEMENTS_CHOIX = ['air', 'eau', 'feu', 'lune', 'terre', 'choix'];
 
-    static ELEMENTS_KABBALE = ['choix'];
+    static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];
 
     static ELEMENTS_MAGIE = ['air', 'eau', 'feu', 'lune', 'luneNoire', 'terre', 'choix'];
 

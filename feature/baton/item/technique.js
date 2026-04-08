@@ -18,9 +18,12 @@ export class TechniqueSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            cercles: super.cerclesOf('baton')
+            ...await super._prepareContext(options),
+            context: {
+                cercles: super.cerclesOf2('baton')
+            }
         }
     }
 
