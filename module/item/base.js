@@ -53,7 +53,16 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     }
 
     cerclesOf2(science) {
-        return Science.cerclesOf(science);
+        const cercles = {}
+        for (let cercle of Science.cerclesOf(science)) {
+            if (cercle.includes('@')) {
+                const item = game.items.find(i => i.system.key === cercle);
+                cercles[cercle] = item != null ? item.name : cercle.split('@')[1];
+            } else {
+                cercles[cercle] = cercle;
+            }
+        };
+        return cercles;
     }
 
     /**

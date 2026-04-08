@@ -1,33 +1,44 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root">
 
-    <div class="item-drop-target item-root">
+    <aside style="--background-side: var(--background-side-sort)"></aside>
 
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-sort.webp" title="{{localize 'ITEM.TypeRituel'}}"/>
-        </div>
+    <article>
 
-        <div class="article">
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        <main>
 
-            <div class="body">
+            {{#if (eq system.cercle "dracomachie@passes")}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="degre"
+                name="system.degre"
+                value=document.system.degre
+            }}
+            {{/if}}
 
-                <div class="main">
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="dracomachie"
+                name="system.cercle"
+                value=document.system.cercle
+                options=context.cercles
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.dracomachie" collection=cercles name="system.cercle" value=system.cercle}}
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-                    {{#if (eq system.cercle "dracomachie@passes")}}
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
-                    {{/if}}
+        </main>
 
-                </div>
+    </article>
 
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+</section>

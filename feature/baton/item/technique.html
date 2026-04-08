@@ -1,31 +1,42 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root">
 
-    <div class="item-drop-target item-root">
+    <aside style="--background-side: var(--background-side-sort)"></aside>
 
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-sort.webp" title="{{localize 'ITEM.TypeTechnique'}}"/>
-        </div>
+    <article>
 
-        <div class="article">
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        <main>
 
-            <div class="body">
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="degre"
+                name="system.degre"
+                value=document.system.degre
+            }}
 
-                <div class="main">
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="manteau"
+                name="system.cercle"
+                value=document.system.cercle
+                options=context.cercles
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.manteau" collection=cercles name="system.cercle" value=system.cercle}}
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="system.degre" value=system.degre}}
+        </main>
 
-                </div>
+    </article>
 
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+</section>
