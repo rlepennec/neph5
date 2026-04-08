@@ -24,7 +24,7 @@ export class AppelSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('conjuration'),
+                cercles: super.cerclesOf('conjuration'),
                 appels: Constants.APPELS,
             }
         }

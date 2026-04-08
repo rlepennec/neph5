@@ -22,7 +22,7 @@ export class DracomachieSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('dracomachie')
+                cercles: super.cerclesOf('dracomachie')
             }
         }
     }

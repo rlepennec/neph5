@@ -22,7 +22,7 @@ export class TechniqueSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('baton')
+                cercles: super.cerclesOf('baton')
             }
         }
     }

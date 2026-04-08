@@ -23,7 +23,7 @@ export class RiteSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('necromancie'),
+                cercles: super.cerclesOf('necromancie'),
                 desmos: Constants.DESMOS,
             }
         }

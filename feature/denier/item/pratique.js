@@ -22,7 +22,7 @@ export class PratiqueSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('denier')
+                cercles: super.cerclesOf('denier')
             }
         }
     }

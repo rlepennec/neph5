@@ -24,7 +24,7 @@ export class HabitusSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('analogie'),
+                cercles: super.cerclesOf('analogie'),
                 elements: Constants.ELEMENTS_CHOIX
             }
         }

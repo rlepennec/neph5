@@ -25,7 +25,7 @@ export class SortSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: SortDataModel.defineSchema().element.choices,
-                cercles: super.cerclesOf2('magie')
+                cercles: super.cerclesOf('magie')
             }
         }
     }

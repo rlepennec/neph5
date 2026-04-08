@@ -22,7 +22,7 @@ export class AtlanteideSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('atlanteide')
+                cercles: super.cerclesOf('atlanteide')
             }
         }
     }

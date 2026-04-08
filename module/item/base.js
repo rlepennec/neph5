@@ -34,25 +34,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         return context;
     }
 
-    /**
-     * TO DELETE ???
-     * @param science The name of the science.
-     * @returns the dictionnary of the cercles.
-     */
     cerclesOf(science) {
-        const cercles = {}
-        for (let cercle of Science.cerclesOf(science)) {
-            if (cercle.includes('@')) {
-                const item = game.items.find(i => i.system.key === cercle);
-                cercles[cercle] = item != null ? item.name : cercle.split('@')[1];
-            } else {
-                cercles[cercle] = game.i18n.localize('NEPH5E.' + cercle);
-            }
-        };
-        return cercles;
-    }
-
-    cerclesOf2(science) {
         const cercles = {}
         for (let cercle of Science.cerclesOf(science)) {
             if (cercle.includes('@')) {

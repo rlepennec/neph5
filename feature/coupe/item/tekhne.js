@@ -22,7 +22,7 @@ export class TekhneSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('coupe')
+                cercles: super.cerclesOf('coupe')
             }
         }
     }

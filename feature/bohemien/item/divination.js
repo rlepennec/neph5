@@ -22,7 +22,7 @@ export class DivinationSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('bohemien')
+                cercles: super.cerclesOf('bohemien')
             }
         }
     }

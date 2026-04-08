@@ -24,7 +24,7 @@ export class InvocationSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: InvocationDataModel.defineSchema().element.choices,
-                cercles: super.cerclesOf2('kabbale'),
+                cercles: super.cerclesOf('kabbale'),
                 mondes: InvocationDataModel.defineSchema().monde.choices,
                 sephiroth: InvocationDataModel.defineSchema().sephirah.choices
             }

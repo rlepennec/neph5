@@ -22,7 +22,7 @@ export class RituelSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf2('epee')
+                cercles: super.cerclesOf('epee')
             }
         }
     }
