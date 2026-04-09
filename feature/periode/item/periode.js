@@ -1,5 +1,5 @@
+import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
 
@@ -19,20 +19,13 @@ export class PeriodeSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            vecus: this._getVecus(this.document.system.id)
+            ...await super._prepareContext(options),
+            context: {
+                vecus: this._getVecus(this.document.system.id)
+            }
         }
-    }
-
-    /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.edit-vecu').click(this.onEdit.bind(this));
-        html.find('.delete-vecu').click(this._onDeleteVecu.bind(this));
     }
 
     /**
@@ -40,26 +33,29 @@ export class PeriodeSheet extends NephilimItemSheet {
      *   - a vecu
      * @param event The drop event.
      */
-    async _onDrop(event) {
+	async _onDrop(event, document) {
         event.preventDefault();
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop?.type === "vecu") {
-            const vecu = CustomHandlebarsHelpers.getItem(drop.sid);
-            await vecu.update({ ['system.periode']: this.document.sid });
-            await this.render(true);
+        switch (document.type) {
+            case "vecu":
+                await document.update({ ['system.periode']: this.document.sid });
+                await this.render(true);
+                break;
+
         }
     }
 
     /**
-     * This function catches the deletion of a vecu from the list of vecus.
+     * @override
      */
-    async _onDeleteVecu(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).closest(".item");
-        const id = li.data("item-id");
-        const vecu = CustomHandlebarsHelpers.getItem(id);
-        await vecu.update({ ['system.periode']: "" });
-        await this.render(true);
+    async _onDelete(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        switch (document.type) {
+            case 'vecu':
+                await document.update({ ['system.periode']: "" });
+                await this.render(true);
+                break;
+        }
     }
 
     /**

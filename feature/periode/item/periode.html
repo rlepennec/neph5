@@ -1,3 +1,59 @@
+<section class="item-root" data-drop="true">
+
+    <aside style="--background-side: var(--background-side-aspect)"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/item-header.hbs"}}
+
+        <main>
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="lieu"
+                name="system.contexte"
+                value=document.system.contexte
+            }}
+
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="epoque"
+                name="system.aube"
+                value=document.system.aube
+            }}
+
+            {{> "systems/neph5e/templates/item-list.hbs"
+                title="vecus"
+                values=context.vecus
+                names="vecus"
+            }}
+
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
+
+        </main>
+
+    </article>
+
+</section>
+
+
+
+
+
+<!--
+
+
+
 <form class="{{cssClass}}" autocomplete="off">
 
     <div class="item-drop-target item-root">
@@ -49,3 +105,5 @@
     </div>
 
 </form>
+
+-->
