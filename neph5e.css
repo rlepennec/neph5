@@ -112,7 +112,6 @@ form.nephilim .checkbox {
 form.nephilim .checkbox.locked {
   background: none;
   color: var(--color-font-dark);
-  border: none;
 }
 form.nephilim .checkbox input {
   display: none;
