@@ -93,12 +93,20 @@ form.nephilim {
     }
 
     .checkbox {
+        .mixin-editing-content();
+
+        &.locked {
+            background: none;
+            color: var(--color-font-dark);
+            border: none;
+        }
 
         input {
             display: none;
         }
 
         label {
+            
             width: 18px;
             height: 18px;
             border: 2px solid #000;
