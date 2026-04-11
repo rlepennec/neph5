@@ -4,24 +4,24 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="degre"
                 name="system.degre"
                 value=document.system.degre
             }}
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="oeuvre"
                 name="system.cercle"
                 value=document.system.cercle
                 options=context.cercles
             }}
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="substance"
                 name="system.substance"
                 value=document.system.substance
@@ -30,7 +30,7 @@
 
             {{#if (eq system.cercle "oeuvreAuRouge")}}
 
-                {{> "systems/neph5e/templates/item-select.hbs"
+                {{> "systems/neph5e/templates/select.hbs"
                     title="element"
                     name="system.elements.[0]"
                     value=document.system.elements.[0]
@@ -39,7 +39,7 @@
 
             {{else}}
 
-                {{> "systems/neph5e/templates/item-select.hbs"
+                {{> "systems/neph5e/templates/select.hbs"
                     title="element"
                     name="system.elements.[0]"
                     value=document.system.elements.[0]
@@ -50,7 +50,7 @@
 
             {{#if (eq system.cercle "oeuvreAuBlanc")}}
 
-                {{> "systems/neph5e/templates/item-select.hbs"
+                {{> "systems/neph5e/templates/select.hbs"
                     title="element"
                     name="system.elements.[1]"
                     value=document.system.elements.[1]
@@ -59,19 +59,19 @@
 
             {{/if}}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="enonce"
                 name="system.enonce"
                 value=document.system.enonce
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="aire"
                 name="system.aire"
                 value=document.system.aire
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="duree"
                 name="system.duree"
                 value=document.system.duree
@@ -79,13 +79,13 @@
   
             {{#if (eq system.cercle "oeuvreAuRouge")}}
 
-                {{> "systems/neph5e/templates/item-input.hbs"
+                {{> "systems/neph5e/templates/input.hbs"
                     title="echec"
                     name="system.echec"
                     value=document.system.echec
                 }}
 
-                {{> "systems/neph5e/templates/item-input.hbs"
+                {{> "systems/neph5e/templates/input.hbs"
                     title="maladresse"
                     name="system.maladresse"
                     value=document.system.maladresse
@@ -93,13 +93,13 @@
 
             {{/if}}
 
-            {{> "systems/neph5e/templates/item-list.hbs"
+            {{> "systems/neph5e/templates/list.hbs"
                 title="variantes"
                 values=document.system.variantes
                 names="system.variantes"
             }}
 
-            {{> "systems/neph5e/templates/item-list.hbs"
+            {{> "systems/neph5e/templates/list.hbs"
                 title="catalyseurs"
                 values=document.system.catalyseurs
                 names="system.catalyseurs"

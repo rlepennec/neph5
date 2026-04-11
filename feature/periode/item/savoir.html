@@ -4,19 +4,19 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
             {{#if (and debug isGM)}}
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="key"
                 name="system.key"
                 value=document.system.key
             }}
             {{/if}}
 
-            {{> "systems/neph5e/templates/item-chronology.hbs" title='NEPH5E.periode'}}
+            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
 
             {{#if document.sheet.locked}}
             {{{enrichedDescription}}}

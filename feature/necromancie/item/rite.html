@@ -4,18 +4,18 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="oeuvre"
                 name="system.cercle"
                 value=document.system.cercle
                 options=context.cercles
             }}
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="desmos"
                 name="system.desmos"
                 value=document.system.desmos

@@ -4,43 +4,43 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="arme"
                 name="system.type"
                 value=document.system.type
                 options=context.types
             }}
 
-            {{> "systems/neph5e/templates/item-label.hbs"
+            {{> "systems/neph5e/templates/label.hbs"
                 title="utilisant"
                 placeholder="deposerVecuCompetence"
                 value=document.system.competence
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="attaque"
                 name="system.attack"
                 value=document.system.attack
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="defense"
                 name="system.defense"
                 value=document.system.defense
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="dommages"
                 name="system.damages"
                 value=document.system.damages
             }}
 
             {{#unless (isContact document.system.type)}}
-                {{> "systems/neph5e/templates/item-input.hbs"
+                {{> "systems/neph5e/templates/input.hbs"
                     title="chargeur"
                     name="system.munitions"
                     value=document.system.munitions
@@ -86,7 +86,7 @@
             {{/if}}
 
             {{#unless (isContact system.type)}}
-                {{> "systems/neph5e/templates/item-input.hbs"
+                {{> "systems/neph5e/templates/input.hbs"
                     title="chargeur"
                     name="system.ammunition"
                     value=document.system.ammunition

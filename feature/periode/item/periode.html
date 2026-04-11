@@ -4,23 +4,23 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="lieu"
                 name="system.contexte"
                 value=document.system.contexte
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="epoque"
                 name="system.aube"
                 value=document.system.aube
             }}
 
-            {{> "systems/neph5e/templates/item-list.hbs"
+            {{> "systems/neph5e/templates/list.hbs"
                 title="vecus"
                 values=context.vecus
                 names="vecus"

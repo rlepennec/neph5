@@ -4,12 +4,12 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
             {{#if (and debug isGM (not document.sheet.locked))}}
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="key"
                 name="system.key"
                 value=document.system.key

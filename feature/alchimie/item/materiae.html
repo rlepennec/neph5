@@ -4,18 +4,18 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="element"
                 name="system.element"
                 value=document.system.element
                 options=context.elements
             }}
 
-            {{> "systems/neph5e/templates/item-chronology.hbs" title='NEPH5E.periode'}}
+            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
 
             {{#if document.sheet.locked}}
             {{{enrichedDescription}}}

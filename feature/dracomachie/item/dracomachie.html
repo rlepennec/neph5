@@ -4,19 +4,19 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
             {{#if (eq system.cercle "dracomachie@passes")}}
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="degre"
                 name="system.degre"
                 value=document.system.degre
             }}
             {{/if}}
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="dracomachie"
                 name="system.cercle"
                 value=document.system.cercle

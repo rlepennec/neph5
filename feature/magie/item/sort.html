@@ -4,24 +4,24 @@
 
     <article>
 
-        {{> "systems/neph5e/templates/item-header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
         <main>
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="degre"
                 name="system.degre"
                 value=document.system.degre
             }}
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="cercle"
                 name="system.cercle"
                 value=document.system.cercle
                 options=context.cercles
             }}
 
-            {{> "systems/neph5e/templates/item-select.hbs"
+            {{> "systems/neph5e/templates/select.hbs"
                 title="element"
                 name="system.element"
                 value=document.system.element
@@ -30,7 +30,7 @@
 
             {{#if (or (eq system.cercle "hauteMagie") (eq system.cercle "grandSecret"))}}
 
-            {{> "systems/neph5e/templates/item-list.hbs"
+            {{> "systems/neph5e/templates/list.hbs"
                 title="voies"
                 values=document.system.voies
                 names="system.voies"
@@ -38,13 +38,13 @@
 
             {{/if}}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="portee"
                 name="system.portee"
                 value=document.system.portee
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="duree"
                 name="system.duree"
                 value=document.system.duree
@@ -52,13 +52,13 @@
 
             {{#if (eq system.cercle "grandSecret")}}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="incantation"
                 name="system.incantation"
                 value=document.system.incantation
             }}
 
-            {{> "systems/neph5e/templates/item-input.hbs"
+            {{> "systems/neph5e/templates/input.hbs"
                 title="syntaxe"
                 name="system.syntaxe"
                 value=document.system.syntaxe

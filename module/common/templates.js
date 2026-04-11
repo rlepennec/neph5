@@ -94,12 +94,12 @@ export const preloadTemplates = async function () {
 
 
         // New reboot
-        "systems/neph5e/templates/item-chronology.hbs",
-        "systems/neph5e/templates/item-header.hbs",
-        "systems/neph5e/templates/item-input.hbs",
-        "systems/neph5e/templates/item-label.hbs",
-        "systems/neph5e/templates/item-list.hbs",
-        "systems/neph5e/templates/item-select.hbs",
+        "systems/neph5e/templates/chronology.hbs",
+        "systems/neph5e/templates/header.hbs",
+        "systems/neph5e/templates/input.hbs",
+        "systems/neph5e/templates/label.hbs",
+        "systems/neph5e/templates/list.hbs",
+        "systems/neph5e/templates/select.hbs",
         "systems/neph5e/templates/checkbox.hbs"
 
     ]);
