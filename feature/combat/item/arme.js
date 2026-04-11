@@ -41,7 +41,6 @@ export class ArmeSheet extends NephilimItemSheet {
             case "competence":
             case "vecu":
                 await this.document.updateItemRef('competence', document.sid, );
-                //await this.render(true);
                 break;
         }
     }

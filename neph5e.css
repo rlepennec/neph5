@@ -104,6 +104,20 @@ form.nephilim prose-mirror menu {
   background: var(--background-article-dark);
   color: var(--color-font-bright);
 }
+form.nephilim .checkbox input {
+  display: none;
+}
+form.nephilim .checkbox label {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+form.nephilim .checkbox input:checked + label {
+  background: #000;
+}
 form.nephilim.actor section.window-content > section {
   display: flex;
   flex-flow: unset;
