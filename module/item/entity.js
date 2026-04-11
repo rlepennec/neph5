@@ -287,6 +287,18 @@ export class NephilimItem extends Item {
     }
 
     /**
+     * Update the referenced item by setting the specified item.
+     * 
+     * @param {*} name The name of the field to set. 
+     * @param {*} ref  The item reference to drop.
+     */
+    async updateItemRef(name, ref) {
+        const system = foundry.utils.duplicate(this.system);
+        system[name] = ref
+        await this.update({ ['system']: system });
+    }
+
+    /**
      * Deletes the reference of the objet to delete.
      * @param {*} fsid       The full system identifier of the document for which to delete references. 
      * @param {*} references The current references.

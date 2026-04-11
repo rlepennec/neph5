@@ -1,69 +1,114 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root" data-drop="true">
 
-    <div class="item-drop-target item-root">
+    <aside style="--background-side: var(--background-side-arme)"></aside>
 
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-arme.webp" title="{{localize 'ITEM.TypeArme'}}"/>
-        </div>
+    <article>
 
-        <div class="article">
+        {{> "systems/neph5e/templates/item-header.hbs"}}
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        <main>
 
-            <div class="body">
+            {{> "systems/neph5e/templates/item-select.hbs"
+                title="arme"
+                name="system.type"
+                value=document.system.type
+                options=context.types
+            }}
 
-                <div class="main">
+            {{> "systems/neph5e/templates/item-label.hbs"
+                title="utilisant"
+                placeholder="deposerVecuCompetence"
+                value=document.system.competence
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.arme" collection=types name="system.type" value=system.type}}
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="attaque"
+                name="system.attack"
+                value=document.system.attack
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/label.hbs" placeholder="NEPH5E.deposerVecuCompetence" tooltip="NEPH5E.using" style="padding-top:4px;" value=system.competence class="hoverable"}}
-                
-                </div>
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="defense"
+                name="system.defense"
+                value=document.system.defense
+            }}
 
-                <div class="row">
+            {{> "systems/neph5e/templates/item-input.hbs"
+                title="dommages"
+                name="system.damages"
+                value=document.system.damages
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.attaque" name="system.attack" value=system.attack}}
+            {{#unless (isContact document.system.type)}}
+                {{> "systems/neph5e/templates/item-input.hbs"
+                    title="chargeur"
+                    name="system.munitions"
+                    value=document.system.munitions
+                }}
+            {{/unless}}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.defense" name="system.defense" value=system.defense}}
+            {{> "systems/neph5e/templates/checkbox.hbs"
+                title="dommagesMagiques"
+                name="system.magique"
+                value=document.system.magique
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.dommages" name="system.damages" value=system.damages}}
+            {{#if (eq document.system.type 'melee')}}
 
-                    {{#unless (isContact system.type)}}
-                        {{> "systems/neph5e/templates/item/parts/header/number.hbs" label="NEPH5E.chargeur" name="system.munitions" value=system.munitions}}
-                    {{/unless}}
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title="blocageAutorise"
+                    name="system.blocage"
+                    value=document.system.blocage
+                }}
 
-                </div>
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title="lanceAutorise"
+                    name="system.lance"
+                    value=document.system.lance
+                }}
 
-                {{> "systems/neph5e/templates/item/parts/body/checkbox.hbs" label="NEPH5E.dommagesMagiques" name="system.magique" value=system.magique}}
+            {{/if}}
 
-                {{#if (eq system.type 'melee')}}
+            {{#if (eq document.system.type 'feu')}}
 
-                    {{> "systems/neph5e/templates/item/parts/body/checkbox.hbs" label="NEPH5E.blocageAutorise" name="system.blocage" value=system.blocage}}
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title="salve"
+                    name="system.salve"
+                    value=document.system.salve
+                }}
 
-                    {{> "systems/neph5e/templates/item/parts/body/checkbox.hbs" label="NEPH5E.lanceAutorise" name="system.lance" value=system.lance}}
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title="rafale"
+                    name="system.rafale"
+                    value=document.system.rafale
+                }}
 
-                {{/if}}
+            {{/if}}
 
-                {{#if (eq system.type 'feu')}}
+            {{#unless (isContact system.type)}}
+                {{> "systems/neph5e/templates/item-input.hbs"
+                    title="chargeur"
+                    name="system.ammunition"
+                    value=document.system.ammunition
+                }}
+            {{/unless}}
 
-                    {{> "systems/neph5e/templates/item/parts/body/checkbox.hbs" label="NEPH5E.salve" name="system.salve" value=system.salve}}
+            {{#if document.sheet.locked}}
+            {{{enrichedDescription}}}
+            {{else}}
+            <h1>{{translate "description"}}</h1>
+            <prose-mirror
+                name="system.description"
+                button="true"
+                editable="{{editable}}"
+                toggled="false"
+                value="{{document.system.description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
+            {{/if}}
 
-                    {{> "systems/neph5e/templates/item/parts/body/checkbox.hbs" label="NEPH5E.rafale" name="system.rafale" value=system.rafale}}
+        </main>
 
-                {{/if}}
+    </article>
 
-                {{#unless (isContact system.type)}}
-
-                    {{> "systems/neph5e/templates/item/parts/body/input.hbs" placeholder="NEPH5E.typeMunitions" title="NEPH5E.chargeur" name="system.ammunition" value=system.ammunition type="String" style="margin-left:50px;"}}
-
-                {{/unless}}
-
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
-
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+</section>

@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class ArmeDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -24,7 +26,8 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             type: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    initial: 'naturelle',
+                    choices: Constants.ARMES
                 }
             ),
             competence: new foundry.data.fields.StringField(

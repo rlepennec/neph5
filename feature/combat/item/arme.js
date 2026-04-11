@@ -1,4 +1,4 @@
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
+import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class ArmeSheet extends NephilimItemSheet {
@@ -19,21 +19,13 @@ export class ArmeSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
-        return { types: {
-            naturelle: "NEPH5E.armes.naturelle",
-            melee:     "NEPH5E.armes.melee",
-            trait:     "NEPH5E.armes.trait",
-            feu:       "NEPH5E.armes.feu"
-        }}
-    }
-
-    /**
-     * @override
-     */
-     activateListeners(html) {
-        super.activateListeners(html);
-        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
+    async _prepareContext(options) {
+        return {
+            ...await super._prepareContext(options),
+            context: {
+                types: Constants.ARMES
+            }
+        }
     }
 
     /**
@@ -43,15 +35,14 @@ export class ArmeSheet extends NephilimItemSheet {
      *   - a competence
      * @param event The drop event.
      */
-    async _onDrop(event) {
+	async _onDrop(event, document) {
         event.preventDefault();
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop?.type === "vecu" || drop?.type === "competence") {
-            const item = CustomHandlebarsHelpers.getItem(drop.sid);
-            const system = foundry.utils.duplicate(this.item.system);
-            system.competence = item.sid;
-            await this.item.update({ ['system']: system });
-            await this.render(true);
+        switch (document.type) {
+            case "competence":
+            case "vecu":
+                await this.document.updateItemRef('competence', document.sid, );
+                //await this.render(true);
+                break;
         }
     }
 

@@ -2,6 +2,8 @@ export class Constants {
 
     static APPELS = ['pacifiste', 'savant', 'tortionnaire', 'familier', 'voyageur', 'drogué', 'soldat', 'fou', 'annihilateur', 'guide', 'malfaisant', 'chasseur'];
 
+    static ARMES = ['naturelle', 'melee', 'trait', 'feu'];
+
     static DESMOS = ['spiritisme', 'apaisement', 'claivoyance', 'animation', 'possession', 'audela', 'corruption'];
 
     static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];

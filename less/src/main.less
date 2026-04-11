@@ -92,4 +92,37 @@ form.nephilim {
 
     }
 
+    .checkbox {
+        /*
+        display: flex;
+        flex-direction: row;
+        height: 26px;
+        vertical-align: middle;
+        font-size: 18px;
+        font-family: 'AJensonPro';
+        */
+
+        input[type="checkbox"] {
+            display:none;
+        }
+
+        .checked {
+            display: none;
+        }
+
+        input[type="checkbox"]:checked ~ .checked {
+            display: inline-block;
+        }
+            
+        input[type="checkbox"]:checked ~ .unchecked {
+            display: none;
+        }
+/*
+        i {
+            margin-left: 50px;
+            margin-right: 10px;
+        }
+*/
+    }
+
 }
