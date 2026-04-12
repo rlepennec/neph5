@@ -6,4 +6,4 @@
     name={{name}}
     type="text"
     value="{{value}}"
-    {{#if document.sheet.locked}} disabled{{/if}}/>
+    {{#if (or disabled document.sheet.locked)}} disabled{{/if}}/>

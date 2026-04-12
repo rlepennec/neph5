@@ -19,6 +19,7 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     name=(concat "system.metamorphoses.[" this "].name")
                     value=(lookup (lookup ../system.metamorphoses this) "name")
+                    disabled=(lookup ../document.sheet "locked")
                 }}
             {{/range}}
 
