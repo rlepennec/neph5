@@ -41,7 +41,6 @@ export const preloadTemplates = async function () {
 
         // Nephilim
         "systems/neph5e/feature/nephilim/actor/main.hbs",
-        "systems/neph5e/feature/nephilim/item/metamorphose.hbs",
 
         // Periode
         "systems/neph5e/feature/periode/actor/savoirs.hbs",
