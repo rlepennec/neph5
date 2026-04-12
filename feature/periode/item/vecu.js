@@ -1,5 +1,5 @@
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
-import { Game } from "../../../module/common/game.js";
+import { Constants } from "../../../module/common/constants.js";
+import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
 import { Mnemos } from "./mnemos.js";
 
@@ -21,15 +21,16 @@ export class VecuSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            elements: Game.pentacle.elements
+            ...await super._prepareContext(options),
+            context: {
+                elements: Constants.ELEMENTS
+            }
         }
     }
 
-    /**
-     * @override
-     */
+    /*
     activateListeners(html) {
         super.activateListeners(html);
         html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
@@ -40,29 +41,41 @@ export class VecuSheet extends NephilimItemSheet {
         html.find('.delete-competence').click(this._onDelete.bind(this));
         html.find('.delete-mnemos').click(this._onDeleteMnemos.bind(this));
     }
+    */
+
+    /**
+     * @override
+     */
+    async _onDelete(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        switch (document.type) {
+            case 'competence':
+                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
+                break;
+        }
+    }
 
     /**
      * This function catches the drop on a periode. The dropped item can be
      *   - a periode
      *   - a competence
-     * @param event The drop event.
+     * @param event    The drop event.
+     * @param document The document identifier which has been dropped.
      */
-    async _onDrop(event) {
+	async _onDrop(event, document) {
         event.preventDefault();
-        const drop = await NephilimItemSheet.droppedItem(event.originalEvent);
-        if (drop?.type === "competence") {
-            await this.document.updateItemRefs(drop.system, this.document.system.competences, "system.competences");
-        } else if (drop?.type === "periode") {
-            await this.document.update({ ['system.periode']: drop.sid });
+        switch (document.type) {
+            case "competence":
+                await this.document.updateItemRefs(document.system, this.document.system.competences, "system.competences");
+                break;
+            case "periode":
+                await this.document.updateItemRef('periode', document.sid);
+                break;
         }
     }
 
-    /**
-     * This function catches the deletion of a competence from the list of competences.
-     */
-    async _onDelete(event) {
-        await this.document.deleteItemRefs(event, this.document.system.competences, "system.competences");
-    }
+
 
     /**
      * This function catches the deletion of a competence from the list of competences.
@@ -75,15 +88,6 @@ export class VecuSheet extends NephilimItemSheet {
         system.mnemos.splice(id, 1);
         await this.document.update({ ['system']: system });
         this.document.sheet.render(true);
-    }
-
-    /**
-     * Edits the specified referenced item.
-     */
-     async onEditPeriode(event) {
-        event.preventDefault();
-        const item = CustomHandlebarsHelpers.getItem(this.document.system.periode);
-        item.sheet.render(true);
     }
 
     /**

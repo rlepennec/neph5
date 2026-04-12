@@ -33,14 +33,15 @@ export class ArmeSheet extends NephilimItemSheet {
      * as skill to use the weapon. The dropped item can be
      *   - a vecu
      *   - a competence
-     * @param event The drop event.
+     * @param event    The drop event.
+     * @param document The document identifier which has been dropped.
      */
 	async _onDrop(event, document) {
         event.preventDefault();
         switch (document.type) {
             case "competence":
             case "vecu":
-                await this.document.updateItemRef('competence', document.sid, );
+                await this.document.updateItemRef('competence', document.sid);
                 break;
         }
     }

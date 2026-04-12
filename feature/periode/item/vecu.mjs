@@ -1,3 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
+
 export class VecuDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
@@ -11,7 +13,8 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
             element: new foundry.data.fields.StringField
             (
                 {
-                    required: false
+                    initial: 'air',
+                    choices: Constants.ELEMENTS
                 }
             ),
             description: new foundry.data.fields.StringField
