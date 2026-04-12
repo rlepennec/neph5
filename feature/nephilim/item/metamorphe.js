@@ -1,5 +1,5 @@
+import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/base.js";
-import { Game } from "../../../module/common/game.js";
 
 export class MetamorpheSheet extends NephilimItemSheet {
 
@@ -19,9 +19,12 @@ export class MetamorpheSheet extends NephilimItemSheet {
     /** 
      * @override
      */
-    getOriginalData() {
+    async _prepareContext(options) {
         return {
-            elements: Game.pentacle.elements
+            ...await super._prepareContext(options),
+            context: {
+                elements: Constants.ELEMENTS
+            }
         }
     }
 

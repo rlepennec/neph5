@@ -1,42 +1,43 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="item-root">
 
-    <div class="item-root">
-    
-        <div class="side">
-            <img src="systems/neph5e/assets/core/side-metamorphe.webp" title="{{localize 'ITEM.TypeMetamorphe'}}"/>
-        </div>
+    <aside style="--background-side: var(--background-side-metamorphe)"></aside>
 
-        <div class="article">
+    <article>
 
-            {{> "systems/neph5e/templates/item/parts/header/header.hbs"}}
+        {{> "systems/neph5e/templates/header.hbs"}}
 
-            <div class="body">
+        <main>
 
-                <div class="main">
+            {{> "systems/neph5e/templates/select.hbs"
+                title="element"
+                name="system.element"
+                value=document.system.element
+                options=context.elements
+            }}
 
-                    {{> "systems/neph5e/templates/item/parts/header/select.hbs" tooltip="NEPH5E.element" collection=elements name="system.element" value=system.element}}
+            {{#range 0 9}}
+                {{> "systems/neph5e/templates/input.hbs"
+                    name=(concat "system.metamorphoses.[" this "].name")
+                    value=(lookup (lookup ../system.metamorphoses this) "name")
+                }}
+            {{/range}}
 
-                </div>
+            {{#if document.sheet.locked}}
+                {{{enrichedDescription}}}
+            {{else}}
+                <h1>{{translate "description"}}</h1>
+                <prose-mirror
+                    name="system.description"
+                    button="true"
+                    editable="{{editable}}"
+                    toggled="false"
+                    value="{{document.system.description}}">
+                    {{{enrichedDescription}}}
+                </prose-mirror>
+            {{/if}}
 
-                <ol class="metamorphoses">
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[0].name" value=system.metamorphoses.[0].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[1].name" value=system.metamorphoses.[1].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[2].name" value=system.metamorphoses.[2].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[3].name" value=system.metamorphoses.[3].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[4].name" value=system.metamorphoses.[4].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[5].name" value=system.metamorphoses.[5].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[6].name" value=system.metamorphoses.[6].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[7].name" value=system.metamorphoses.[7].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[8].name" value=system.metamorphoses.[8].name}}
-                    {{> "systems/neph5e/feature/nephilim/item/metamorphose.hbs" readOnly=readOnly name="system.metamorphoses.[9].name" value=system.metamorphoses.[9].name}}
-                </ol>
-                
-                {{> "systems/neph5e/templates/item/parts/body/description.hbs"}}
+        </main>
 
-            </div>
+    </article>
 
-        </div>
-
-    </div>
-
-</form>
+</section>

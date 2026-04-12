@@ -31,6 +31,15 @@ export class CustomHandlebarsHelpers {
     }
 
 
+    static range(from, to, block) {
+        let out = "";
+        for (let i = from; i <= to; i++) {
+            out += block.fn(i);
+        }
+        return out;
+    }
+
+
 
 
 // OLD
