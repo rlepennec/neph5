@@ -62,6 +62,10 @@ export const NephilimMixinSheet = Base => {
 			return locked ? 'fa-lock' : 'fa-lock-open';
 		}
 
+		get setupable() {
+			return false;
+		}
+
 		// Optional: Add getter to access the private property
 
 		/** 
@@ -85,6 +89,13 @@ export const NephilimMixinSheet = Base => {
 				const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="lock" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
 				this.window.controls.insertAdjacentHTML("beforebegin", lockId);
 				this.window.lock = frame.querySelector("button[data-action=lock]");
+			}
+
+			if (this.setupable) {
+				const lockIcon = 'fa-solid fa-gear';
+				const lockLabel = game.i18n.localize("NEPHILIM.setup");
+				const lockId = `<button type="button" class="header-control fa-solid ${lockIcon} icon" data-action="setup" data-tooltip="${lockLabel}" aria-label="${lockLabel}"></button>`;
+				this.window.controls.insertAdjacentHTML("beforebegin", lockId);
 			}
 
 			return frame;
@@ -272,13 +283,12 @@ export const NephilimMixinSheet = Base => {
 		 * @protected
 		 */
 		static async _onSetup(event, target) {
-			await new VersionSelector()
-				.withSheet(this)
-				.render(true);
+			this._onSetup(event, target);
 		}
 
-
-
+		async _onSetup(event, target) {
+			throw new Error("_onSetup method must be implemented");
+		}
 
 		/** 
 		 * @override

@@ -3,6 +3,7 @@ import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Ka } from "../nephilim/ka.js";
 import { Menace } from "../combat/core/menace.js";
 import { NephilimItemSheet } from "../../module/item/base.js";
+import { OptionsSelector } from "./optionsSelector.js";
 
 export class FigurantSheet extends BaseSheet {
 
@@ -43,6 +44,18 @@ export class FigurantSheet extends BaseSheet {
         super(...args);
     }
 
+    theme = 'soleil';
+
+    /**
+     * @param {*} value The sheet theme to set.
+     */
+    setTheme(value) {
+        if (this.theme !== value) {
+            this.theme = value;
+            this.render(true);
+        }
+    }
+
     /**
      * @override
      */
@@ -73,6 +86,22 @@ export class FigurantSheet extends BaseSheet {
         html.find('div[data-tab="combat"] .ressource .open').click(this._onEditRessource.bind(this));
         html.find('div[data-tab="combat"] .ressource input').change(this._onDegreRessource.bind(this));
         html.find('div[data-tab="combat"] .ressource .delete').click(this._onDeleteRessource.bind(this));
+    }
+
+    /**
+     * @override
+     */
+    get setupable() {
+        return true;
+    }
+
+    /**
+     * @override
+     */
+    async _onSetup(event, target) {
+        await new OptionsSelector()
+            .withSheet(this)
+            .render(true);
     }
 
     /**

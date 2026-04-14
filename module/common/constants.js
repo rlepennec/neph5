@@ -22,6 +22,7 @@ export class Constants {
 
     static SUBSTANCES = ['ambre', 'liqueur', 'metal', 'poudre', 'vapeur'];
 
+    static THEMES = ['air', 'eau', 'feu', 'lune', 'lune-noire', 'soleil', 'terre'];
 
     
     // OLD
