@@ -1,30 +1,10 @@
-import { BaseSheet } from "./base.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { Ka } from "../../feature/nephilim/ka.js";
-import { Menace } from "../../feature/combat/core/menace.js";
-import { NephilimItemSheet } from "../item/base.js";
+import { BaseSheet } from "../../module/actor/base.js";
+import { FeatureBuilder } from "../core/featureBuilder.js";
+import { Ka } from "../nephilim/ka.js";
+import { Menace } from "../combat/core/menace.js";
+import { NephilimItemSheet } from "../../module/item/base.js";
 
 export class FigurantSheet extends BaseSheet {
-
-/*
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 1000,
-            height: 800,
-            classes: ["nephilim", "sheet", "actor"],
-            resizable: true,
-            scrollY: [
-                ".tab.general",
-                ".tab.combat"],
-            tabs: [
-                {
-                    navSelector: ".sheet-navigation",
-                    contentSelector: ".article-body",
-                    initial: game.user.isGM ? "combat" : "general"
-                }]
-        });
-    }
-*/
 
     static DEFAULT_OPTIONS = {
         position: {
@@ -35,8 +15,24 @@ export class FigurantSheet extends BaseSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/templates/actor/figurant.html`,
+            template: `systems/neph5e/feature/figurant/figurant.html`,
         }
+    }
+
+    static TABS = {
+        primary: {
+            tabs: [
+                { 
+                    id: "description",
+                    template: `systems/neph5e/feature/figurant/description.hbs`
+                },
+                {
+                    id: "vecu",
+                    template: `systems/neph5e/feature/figurant/a.hbs`
+                }
+            ],
+            initial: "description"
+        },
     }
 
     /**

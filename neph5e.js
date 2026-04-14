@@ -9,7 +9,7 @@ import { NephilimChat } from "./module/common/chat.js";
 import { NephilimItem } from "./module/item/entity.js";
 import { NephilimActor } from "./module/actor/entity.js";
 import { FigureSheet } from "./module/actor/figure.js";
-import { FigurantSheet } from "./module/actor/figurant.js";
+import { FigurantSheet } from "./feature/figurant/figurant.js";
 import { FraterniteSheet } from "./module/actor/fraternite.js";
 
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
@@ -84,7 +84,7 @@ import { TekhneDataModel } from "./feature/coupe/item/tekhne.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
 import { FigureDataModel } from "./module/actor/figure.mjs";
-import { FigurantDataModel } from "./module/actor/figurant.mjs";
+import { FigurantDataModel } from "./feature/figurant/figurant.mjs";
 import { FraterniteDataModel } from "./module/actor/fraternite.mjs";
 
 Hooks.once("init", function () {

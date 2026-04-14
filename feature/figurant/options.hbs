@@ -1,0 +1,20 @@
+<section>
+
+    <fieldset>
+        <legend>Version</legend>
+
+        <select name="theme">
+            {{#select value}}
+            {{#each versions.all as |version|}}
+            <option value="{{version}}"{{#if (eq . ../versions.current)}} selected="{{version}}"{{/if}}>{{translate version}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+     </fieldset>
+
+    <button type="submit">
+        <i class="fa-solid fa-floppy-disk" inert=""></i>
+        <span>Sauver</span>
+    </button>
+
+</section>
