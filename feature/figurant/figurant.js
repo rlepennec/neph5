@@ -46,12 +46,10 @@ export class FigurantSheet extends BaseSheet {
 
     theme = 'soleil';
 
-    /**
-     * @param {*} value The sheet theme to set.
-     */
-    setTheme(value) {
-        if (this.theme !== value) {
-            this.theme = value;
+    setOptions(theme, degats) {
+        console.log(degats);
+        if (this.theme !== theme) {
+            this.theme = theme;
             this.render(true);
         }
     }
