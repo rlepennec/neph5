@@ -5,8 +5,6 @@ export class OptionsSelector extends foundry.applications.api.HandlebarsApplicat
     constructor(options = {}) {
         super(options);
         this.sheet = null;
-        this.version = null;
-        this.versions = null;
     }
 
     static DEFAULT_OPTIONS = {
@@ -41,7 +39,7 @@ export class OptionsSelector extends foundry.applications.api.HandlebarsApplicat
      */
     static async #onSubmit(event, form, formData) {
         event.preventDefault();
-        this.sheet.setOptions(formData.get("theme"), formData.get("degatAutomatique"));
+        await this.sheet.setOptions(formData.get("theme"), formData.get("degatAutomatique"));
     }
 
     /**
@@ -50,8 +48,6 @@ export class OptionsSelector extends foundry.applications.api.HandlebarsApplicat
      */
     withSheet(sheet) {
         this.sheet = sheet;
-        this.theme = sheet.theme;
-        this.themes = Constants.THEMES;
         return this;
     }
 
@@ -62,10 +58,10 @@ export class OptionsSelector extends foundry.applications.api.HandlebarsApplicat
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.themes = {
-            current: this.theme,
-            all: this.themes
+            current: this.sheet.document.system.options.theme,
+            all: Constants.THEMES
         };
-        context.degatAutomatique = false;
+        context.degatAutomatique = this.sheet.document.system.options.degatAutomatique;
         return context;
     }
 

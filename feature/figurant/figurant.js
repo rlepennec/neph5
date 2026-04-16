@@ -46,9 +46,10 @@ export class FigurantSheet extends BaseSheet {
 
     theme = 'soleil';
 
-    setOptions(theme, degats) {
-        console.log(degats);
+    async setOptions(theme, degats) {
+        await this.document.update({ ['system.options.degatAutomatique']: (degats === "true") });
         if (this.theme !== theme) {
+            await this.document.update({ ['system.options.theme']: theme });
             this.theme = theme;
             this.render(true);
         }
