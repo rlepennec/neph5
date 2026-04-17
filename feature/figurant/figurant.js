@@ -23,13 +23,13 @@ export class FigurantSheet extends BaseSheet {
     static TABS = {
         primary: {
             tabs: [
+                {
+                    id: "general",
+                    template: `systems/neph5e/feature/figurant/combat.hbs`
+                },
                 { 
                     id: "description",
                     template: `systems/neph5e/feature/figurant/description.hbs`
-                },
-                {
-                    id: "vecu",
-                    template: `systems/neph5e/feature/figurant/a.hbs`
                 }
             ],
             initial: "description"
