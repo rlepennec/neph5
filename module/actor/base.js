@@ -110,7 +110,7 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     /**
      * Srop the specified weapon to the actor.
      * @param event  The drop event. 
-     * @param weapon The weapon item object.
+     * @param weapon The weapon document.
      */
     async _onDropWeapon(event, weapon) {
         if (weapon.system.competence == null) {

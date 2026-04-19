@@ -32,7 +32,7 @@ export class FigurantSheet extends BaseSheet {
                     template: `systems/neph5e/feature/figurant/description.hbs`
                 }
             ],
-            initial: "description"
+            initial: "general"
         },
     }
 

@@ -177,6 +177,7 @@ form.nephilim.actor section.window-content > section article {
   font-family: var(--font-family-title);
   font-size: 16px;
   color: var(--color-font-dark);
+  overflow-y: auto;
 }
 form.nephilim.actor section.window-content > section article header {
   background: var(--background-article-dark);
@@ -280,6 +281,7 @@ form.nephilim.item section.window-content > section article {
   font-family: var(--font-family-title);
   font-size: 16px;
   width: 100%;
+  overflow-y: auto;
 }
 form.nephilim.item section.window-content > section article header {
   background: var(--background-article-dark);

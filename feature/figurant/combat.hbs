@@ -115,16 +115,16 @@
 
                     <i class="aim"></i>
 
-                    <i class="roll fas fa-dice-d20 {{#unless (eq actor.lutteCanBePerformed true)}}disabled{{/unless}}"></i>
+                    <i class="roll fas fa-dice-d20 {{#unless (eq document.lutteCanBePerformed true)}}disabled{{/unless}}"></i>
 
                     <i class="usage fa-solid fa-hand-fist"></i>
 
                 </li>
 
-                {{#with actor.weapons as |weapons|}}
+                {{#with document.weapons as |weapons|}}
 
                 {{#each weapons.naturelle as |item|}}
-                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../document.id}}">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -142,7 +142,7 @@
                 {{/each}}
 
                 {{#each weapons.melee as |item|}}
-                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../document.id}}">
 
                     <i class="delete fas fa-trash"></i>
                     
@@ -159,7 +159,7 @@
                 {{/each}}
 
                 {{#each weapons.trait as |item|}}
-                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../document.id}}">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -182,7 +182,7 @@
                 {{/each}}
 
                 {{#each weapons.feu as |item|}}
-                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../actor.id}}">
+                <li class="macro" data-macro="weapon" data-id="{{item.id}}" data-actor="{{../../document.id}}">
 
                     <i class="delete fas fa-trash"></i>
 
@@ -229,7 +229,7 @@
 
             <ol>
 
-                {{#each actor.armors as |item|}}
+                {{#each document.armors as |item|}}
                 <li data-id="{{item.id}}">
 
                     <i class="delete fas fa-trash"></i>
@@ -259,8 +259,8 @@
 
             <ol>
 
-                {{#if (eq actor.type 'figure')}}
-                {{#each actor.passes as |item|}}
+                {{#if (eq document.type 'figure')}}
+                {{#each document.passes as |item|}}
                 {{#if (ne item.degre 0)}}
                 <li class="ressource item macro" data-macro="item" data-sid="{{item.sid}}">
                     <label class="margin"></label>
@@ -274,8 +274,8 @@
                 {{/each}}
                 {{/if}}
 
-                {{#if (eq actor.type 'figurant')}}
-                {{#each actor.items as |item id|}}
+                {{#if (eq document.type 'figurant')}}
+                {{#each document.items as |item id|}}
                 {{#if (eq item.type 'passe')}}
                 <li class="ressource item macro" data-macro="item" data-sid="{{item.sid}}" data-id="{{item.id}}">
                     <i class="delete fas fa-trash"></i>
@@ -302,7 +302,7 @@
 
     <div class="right">
 
-        {{#if (eq actor.type 'figurant')}}
+        {{#if (eq document.type 'figurant')}}
         <div class="caracteristiques">
 
             <div class="header">
@@ -322,7 +322,7 @@
                     <input
                         name="system.menace"
                         type="text"
-                        value="{{actor.system.menace}}"
+                        value="{{document.system.menace}}"
                         data-dtype="Number"/>
                     <label>{{localize "NEPH5E.menace"}}</label>
                     <i class="roll fas fa-dice-d20"></i>
@@ -333,13 +333,13 @@
                     <input
                         name="system.ka"
                         type="text"
-                        value="{{actor.system.ka}}"
+                        value="{{document.system.ka}}"
                         data-dtype="Number"/>
                     <label>{{localize "NEPH5E.ka"}}</label>
                     <i class="roll fas fa-dice-d20"></i>
                 </li>
 
-                {{#each actor.items as |item id|}}
+                {{#each document.items as |item id|}}
                 {{#if (eq item.type 'vecu')}}
                 <li class="vecu" data-id="{{item.id}}">
                     <img class="circle"/>
@@ -378,7 +378,7 @@
 
                     <label class="checkbox">
                         <input
-                            {{#if actor.desoriente}}checked{{/if}}
+                            {{#if document.desoriente}}checked{{/if}}
                             id="desoriente"
                             name="desoriente"
                             type="checkbox"
@@ -395,7 +395,7 @@
 
                     <label class="checkbox">
                         <input
-                            {{#if actor.immobilise}}checked{{/if}}
+                            {{#if document.immobilise}}checked{{/if}}
                             name="immobilise"
                             type="checkbox"
                             data-dtype="Boolean"/>
@@ -411,7 +411,7 @@
 
                     <label class="checkbox">
                         <input
-                            {{#if actor.projete}}checked{{/if}}
+                            {{#if document.projete}}checked{{/if}}
                             name="projete"
                             type="checkbox"
                             data-dtype="Boolean"/>
@@ -427,7 +427,7 @@
 
         </div>
 
-        {{#if (eq actor.type 'figure')}}
+        {{#if (eq document.type 'figure')}}
         <div class="capacites">
 
             <div class="header">
@@ -444,16 +444,16 @@
 
                 <li class="capacite esquive">
                     <i class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
-                    <label {{#unless actor.isEsquiveAvailable}}class="undefined"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
+                    <label {{#unless document.isEsquiveAvailable}}class="undefined"{{/unless}}>{{localize "NEPH5E.esquive"}}</label>
                     <i class="fas fa-caret-right"></i>
-                    <label>{{actor.esquive}}</label>
+                    <label>{{document.esquive}}</label>
                 </li>
 
                 <li class="capacite lutte">
                     <i class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
-                    <label {{#unless actor.isLutteAvailable}}class="undefined"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
+                    <label {{#unless document.isLutteAvailable}}class="undefined"{{/unless}}>{{localize "NEPH5E.lutte"}}</label>
                     <i class="fas fa-caret-right"></i>
-                    <label>{{actor.lutte}}</label>
+                    <label>{{document.lutte}}</label>
                 </li>
 
             </ol>
@@ -461,66 +461,30 @@
         </div>
         {{/if}}
 
-        <div class="bonus">
-
-            <div class="header">
-
-                <img class="puce"/>
-
-                <img class="separator"/>
-
-                <span class="name">{{localize "NEPH5E.bonus"}}</span>
-
-            </div>
-
-            <div class="body">
-
-                <img class="losange"/>
-
-                <div class="mouvement">
-                    <label>{{localize "NEPH5E.mouvement"}}</label>
-                    <img class="circle"/>
-                    <input
-                        name="system.bonus.mouvement"
-                        type="text"
-                        value="{{actor.system.bonus.mouvement}}"
-                        data-dtype="Number"/>
-                </div>
-
-                <div class="initiative">
-                    <label>{{localize "NEPH5E.initiative"}}</label>
-                    <img class="circle"/>
-                    <input
-                        name="system.bonus.initiative"
-                        type="text"
-                        value="{{actor.system.bonus.initiative}}"
-                        data-dtype="Number"/>
-                </div>
-
-                <div class="dommages">
-                    <label>{{localize "NEPH5E.dommages"}}</label>
-                    <img class="circle"/>
-                    <input
-                        name="system.bonus.dommage"
-                        type="text"
-                        value="{{actor.system.bonus.dommage}}"
-                        data-dtype="Number"/>
-                </div>
-
-                <div class="protection">
-                    <label>{{localize "NEPH5E.protection"}}</label>
-                    <img class="circle"/>
-                    <input
-                        name="system.bonus.protection"
-                        type="text"
-                        value="{{actor.system.bonus.protection}}"
-                        data-dtype="Number"/>
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
+
+    {{> "systems/neph5e/templates/input.hbs"
+        title="mouvement"
+        name="system.bonus.mouvement"
+        value=document.system.bonus.mouvement
+    }}
+
+    {{> "systems/neph5e/templates/input.hbs"
+        title="dommages"
+        name="system.bonus.initiative"
+        value=document.system.bonus.initiative
+    }}
+
+    {{> "systems/neph5e/templates/input.hbs"
+        title="dommages"
+        name="system.bonus.dommage"
+        value=document.system.bonus.dommage
+    }}
+
+    {{> "systems/neph5e/templates/input.hbs"
+        title="protection"
+        name="system.bonus.protection"
+        value=document.system.bonus.protection
+    }}
 
 </section>

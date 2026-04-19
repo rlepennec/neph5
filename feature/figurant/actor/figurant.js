@@ -6,26 +6,6 @@ import { NephilimItemSheet } from "../../../module/item/base.js";
 
 export class FigurantSheet extends BaseSheet {
 
-/*
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 1000,
-            height: 800,
-            classes: ["nephilim", "sheet", "actor"],
-            resizable: true,
-            scrollY: [
-                ".tab.general",
-                ".tab.combat"],
-            tabs: [
-                {
-                    navSelector: ".sheet-navigation",
-                    contentSelector: ".article-body",
-                    initial: game.user.isGM ? "combat" : "general"
-                }]
-        });
-    }
-*/
-
     static DEFAULT_OPTIONS = {
         position: {
             width: 1000,
