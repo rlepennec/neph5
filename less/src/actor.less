@@ -98,58 +98,14 @@ form.nephilim.actor {
                 section {
                     height: 100%;
 
-                    &.vecu {
-
-                        .incarnation  {
-                            border: solid 1px;
-                            height: 100px;
-                            margin-top: 20px;
-                            background: url("../../systems/neph5e/assets/backgrounds/egypte.webp") no-repeat;
-                            mask-image: linear-gradient(to right, rgba(0, 0, 0, 1.0), rgba(0, 0, 0, 0.0));
-                        }
-
+                    &.tab[data-tab]:not(.active) {
+                        display: unset;
                     }
 
-                }
-
-                h1 {
-                    color: var(--color-font-dark);
-                    font-family: var(--font-family-title);
-                    font-size: 20px;
-                    margin-bottom: 5px;
-                    margin-top: 0px;
-                }
-
-                ul {
-                    list-style-type: none;
-                }
-
-                li {
-                    display: block;
-                }
-
-                input {
-                    .mixin-editing-content();
-                    margin-bottom: 10px;
-
-                    &:disabled {
-                        background: none;
-                        color: var(--color-font-dark);
-                        border: none;
+                    &.combat {
+                        .tab.combat();
                     }
 
-                }
-                
-                select {
-                    .mixin-editing-content();
-                }
-
-                option {
-                    .mixin-editing-dark-on-bright();
-                }
-
-                .fas {
-                    margin-right: 10px;
                 }
 
             }

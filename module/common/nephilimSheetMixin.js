@@ -381,10 +381,6 @@ export const NephilimMixinSheet = Base => {
 				if (t instanceof HTMLButtonElement) t.ariaPressed = `${t.dataset.tab === tab}`;
 			}
 
-			// Update tab contents
-			for (const section of this.form.querySelectorAll(`.tab[data-group="${group}"]`)) {
-				section.classList.toggle("active", section.dataset.tab === tab);
-			}
 			this.tabGroups[group] = tab;
 			return true;
 

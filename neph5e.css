@@ -18,6 +18,9 @@
     --img-triangle: url("../../systems/neph5e/assets/skins/soleil/triangle.webp");
     */
 }
+.tab.combat {
+  background-color: red;
+}
 @font-face {
   font-family: "AJensonPro";
   src: url("../../systems/neph5e/assets/fonts/AJensonPro-Regular.otf");
@@ -215,51 +218,11 @@ form.nephilim.actor section.window-content > section article main {
 form.nephilim.actor section.window-content > section article main section {
   height: 100%;
 }
-form.nephilim.actor section.window-content > section article main section.vecu .incarnation {
-  border: solid 1px;
-  height: 100px;
-  margin-top: 20px;
-  background: url("../../systems/neph5e/assets/backgrounds/egypte.webp") no-repeat;
-  mask-image: linear-gradient(to right, #000000, rgba(0, 0, 0, 0));
+form.nephilim.actor section.window-content > section article main section.tab[data-tab]:not(.active) {
+  display: unset;
 }
-form.nephilim.actor section.window-content > section article main h1 {
-  color: var(--color-font-dark);
-  font-family: var(--font-family-title);
-  font-size: 20px;
-  margin-bottom: 5px;
-  margin-top: 0px;
-}
-form.nephilim.actor section.window-content > section article main ul {
-  list-style-type: none;
-}
-form.nephilim.actor section.window-content > section article main li {
-  display: block;
-}
-form.nephilim.actor section.window-content > section article main input {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
-  margin-bottom: 10px;
-}
-form.nephilim.actor section.window-content > section article main input:disabled {
-  background: none;
-  color: var(--color-font-dark);
-  border: none;
-}
-form.nephilim.actor section.window-content > section article main select {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
-}
-form.nephilim.actor section.window-content > section article main option {
-  background: var(--background-article-bright);
-  color: var(--color-font-dark);
-}
-form.nephilim.actor section.window-content > section article main .fas {
-  margin-right: 10px;
-}
-form.nephilim.actor section.window-content > section article main .column-2 {
-  column-count: 2;
+form.nephilim.actor section.window-content > section article main section.combat {
+  background-color: red;
 }
 form.nephilim.item section.window-content > section {
   display: flex;
@@ -351,7 +314,4 @@ form.nephilim.item section.window-content > section article main option {
 }
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;
-}
-form.nephilim.item section.window-content > section article main .column-2 {
-  column-count: 2;
 }
