@@ -1,10 +1,10 @@
 .soleil {
   --background-image-actor-side: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
   --font-side-color-actor-side: #191813;
+  --img-article-separator: url("../../systems/neph5e/assets/skins/soleil/article-separator.webp");
   /*
     --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
     --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
-    --img-article-separator: url("../../systems/neph5e/assets/skins/soleil/article-separator.webp");
     --img-article-corner: url("../../systems/neph5e/assets/skins/soleil/article-corner.webp");
     --img-nef: url("../../systems/neph5e/assets/skins/soleil/boussole.webp");
     --img-circle: url("../../systems/neph5e/assets/skins/soleil/circle.webp");
@@ -52,6 +52,10 @@
 }
 .mixin-editing-dark-on-bright {
   background: var(--background-article-bright);
+  color: var(--color-font-dark);
+}
+.mixin-editing-dark-on-inherit {
+  background: inherit;
   color: var(--color-font-dark);
 }
 .expanse {
@@ -177,36 +181,30 @@ form.nephilim.actor section.window-content > section article {
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: var(--font-family-title);
-  font-size: 16px;
   color: var(--color-font-dark);
   overflow-y: auto;
 }
 form.nephilim.actor section.window-content > section article header {
-  background: var(--background-article-dark);
-  color: var(--color-font-bright);
   display: flex;
-  height: 60px;
-  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+  flex-direction: column;
+  align-items: center;
+  height: 80px;
   width: 100%;
 }
 form.nephilim.actor section.window-content > section article header input {
-  background: initial;
+  background: inherit;
+  color: var(--color-font-dark);
+  height: 50px;
+  width: 100%;
+  font-style: var(--font-family-title);
   font-size: 30px;
   text-align: center;
-  padding: 0px 10px 2px 10px;
-  height: 100%;
-  font-family: var(--font-family-content);
   border: none;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: var(--color-font-bright);
 }
 form.nephilim.actor section.window-content > section article header img {
-  flex: 0 0 auto;
-  margin: 6px 6px 6px 6px;
-  border-radius: 6px;
+  border: 0px;
+  width: 200px;
+  content: var(--img-article-separator);
 }
 form.nephilim.actor section.window-content > section article main {
   display: flex;
