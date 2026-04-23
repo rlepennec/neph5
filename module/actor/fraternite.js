@@ -52,7 +52,7 @@ export class FraterniteSheet extends HistoricalSheet {
 
         super.activateListeners(html);
 
-        super.activateOptionListeners(html);
+        //super.activateOptionListeners(html);
 
         // Effectif
         html.find('div[data-tab="effectif"] .open').click(this._onEditActor.bind(this));

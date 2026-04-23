@@ -47,16 +47,6 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     }
 
     /**
-     * Activate listeners about the options panel.
-     * @param html The html content to listen
-     */
-    activateOptionListeners(html) {
-
-        html.find('div[data-tab="options"] .theme').change(this.onChangeSkin.bind(this));
-
-    }
-
-    /**
      * Activate listeners about the combat panel used by figure and figurant actors.
      * @param html The html content to listen
      */
@@ -118,19 +108,6 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         } else {
             await super._onDrop(event);
         }
-    }
-
-    /**
-     * Set the skin of the actor sheet.
-     * @param event The click event.
-     */
-    async onChangeSkin(event) {
-        event.preventDefault();
-        const skin = $(event.currentTarget).closest('.theme').val();
-        $(event.currentTarget)
-            .closest(".actor")
-            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-lune-noire skin-terre")
-            .addClass( "skin-" + (skin == null ? 'soleil' : skin));
     }
 
     /**

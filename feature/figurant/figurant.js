@@ -44,13 +44,10 @@ export class FigurantSheet extends BaseSheet {
         super(...args);
     }
 
-    theme = 'soleil';
-
     async setOptions(theme, degats) {
         await this.document.update({ ['system.options.degatAutomatique']: (degats === "true") });
-        if (this.theme !== theme) {
+        if (this.document.system.options.theme !== theme) {
             await this.document.update({ ['system.options.theme']: theme });
-            this.theme = theme;
             this.render(true);
         }
     }
@@ -72,8 +69,6 @@ export class FigurantSheet extends BaseSheet {
         super.activateListeners(html);
 
         super.activateCombatListeners(html);
-
-        super.activateOptionListeners(html);
 
         html.find('div[data-tab="combat"] .ka .roll').click(this._onRollKa.bind(this));
         html.find('div[data-tab="combat"] .menace .roll').click(this._onRollMenace.bind(this));

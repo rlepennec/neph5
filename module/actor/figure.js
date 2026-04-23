@@ -103,7 +103,7 @@ export class FigureSheet extends HistoricalSheet {
 
         super.activateCombatListeners(html);
 
-        super.activateOptionListeners(html);
+        //super.activateOptionListeners(html);
 
         // Ka Soleil
         html.find('.actor-root .side .soleil .dice').click(this._onRollKa.bind(this));
