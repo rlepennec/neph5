@@ -92,17 +92,12 @@ form.nephilim.actor {
                 height: 100%;
                 padding: 10px;
 
-                section {
-                    height: 100%;
+                &.description {
+                    .tab.description();
+                }
 
-                    &.tab[data-tab]:not(.active) {
-                        display: unset;
-                    }
-
-                    &.combat {
-                        .tab.combat();
-                    }
-
+                &.combat {
+                    .tab.combat();
                 }
 
             }

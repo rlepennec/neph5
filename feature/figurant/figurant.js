@@ -55,11 +55,13 @@ export class FigurantSheet extends BaseSheet {
     /**
      * @override
      */
+    /*
     async getData() {
         return foundry.utils.mergeObject(await super.getData(), {
             useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
         });
     }
+        */
 
     /**
      * @override
