@@ -2,229 +2,86 @@
     display: flex;
     flex-direction: row;
 
-    div.gauche {
-        display: flex;
-        flex-direction: column;
-        width: 60%;
+    .header {
 
-        > img.puce {
+        .puce {
             position: relative;
+            content: var(--img-puce);
             top: var(--puce-top);
             width: 60px;
-            content: var(--img-puce);  
+            
         }
 
-        > img.separator {
-            position: absolute;
-            //border: none;
+        .separator {
+            position: relative;
+            content: var(--img-separator);
+
             height: 4px;
             left: 55px;
-            top: 32px;
-            width: calc(100% - 55px);
-            content: var(--img-separator);
+            bottom: 25px;
+            width: calc(100% - 65px);
         }
 
-
-        div.sante {
-
-            .triangle {
-                position: absolute;
-                content: var(--img-triangle);
-                left: 50%;
-                width: var(--combat-triangle-width);
-            }
-
-            /*
-            div:not(:first-of-type) {
-                display: flex;
-                flex-direction: row;
-                margin-right: 10px;
-                font-family: 'AJensonPro';
-
-                .title {
-                    position: absolute;
-                    font-size: 16px;
-                }
-
-                &:hover {
-                    text-shadow: 0px 0px 1px var(--font-color);
-                }
-            }
-            */
-
-            div.header {
-                display: flex;
-                flex-direction: row;
-                margin-right: 10px;
-                font-family: 'AJensonPro';
-                font-size: 21px;
-
-                .puce {
-                    position: relative;
-                    top: var(--puce-top);
-                    border: none;
-                    width: 60px;
-                    background-color: transparent;
-                    content: var(--img-puce);
-                }
-
-                .separator {
-                    content: var(--img-separator);
-                    //border: none;
-                    height: 4px;
-                    //top: 33px;
-
-                    &.physique {
-                        width: calc(50% - 69px);
-                        //left: 57px;
-                    }
-
-                    &.magique {
-                        width: calc(50% - 60px);
-                        //left: calc(50% + 75px);
-                    }
-                }
-
-                .name {
-                    //top: 2px;
-
-                    &.physique {
-                        width: calc(100% - 65px);
-                        //left: 70px;
-                    }
-
-                    &.magique {
-                        width: calc(100% - 65px);
-                        //left: 65px;
-                        //text-align: right;
-                    }
-
-                }
-
-                .circle {
-                    position: absolute;
-                    display: block;
-                    border: none;
-                    width: var(--combat-dommages-circle-width);
-                    height: var(--combat-dommages-circle-height);
-                    top: var(--combat-dommages-circle-top);
-                    background-color: transparent;
-                    content: var(--img-circle);
-
-                    &.physique {
-                        left: var(--combat-dommages-physique-left);
-                    }
-
-                    &.magique {
-                        left: var(--combat-dommages-magique-left);
-                    }
-
-                }
-
-                .modifier {
-                    position: absolute;
-                    display: block;
-                    width: 66px;
-                    top: 113px;
-                    text-align: center;
-                    font-size: 19px;
-
-                    &.physique {
-                        left: calc(50% - 182px);
-                    }
-
-                    &.magique {
-                        left: calc(50% + 174px);
-                    }
-
-                }
-
-            }
-
-            .dommages {
-
-                label:nth-child(1) {
-                    top: 55px;
-                    left: 50%;  
-                }
-
-                .checkbox {
-                    position: absolute;
-                    top: 54px;
-
-                    &.physique.n5 {
-                        left: calc(50% - 180px);
-                    }
-
-                    &.physique.n4 {
-                        left: calc(50% - 150px);
-                    }
-
-                    &.physique.n3 {
-                        left: calc(50% - 120px);
-                    }
-
-                    &.physique.n2 {
-                        left: calc(50% - 90px);
-                    }
-
-                    &.physique.n1 {
-                        left: calc(50% - 60px);
-                    }
-
-                    &.magique.n1 {
-                        left: calc(50% + 107px);
-                    }
-
-                    &.magique.n3 {
-                        left: calc(50% + 137px);
-                    }
-
-                    &.magique.n3 {
-                        left: calc(50% + 167px);
-                    }
-
-                }
-
-            }
-
-        }
-
-        div.armes {
-
-        }
-
-        div.armures {
-
-        }
-
-        div.ressources {
+        .title {
+            position: relative;
+            left: 70px;
+            bottom: 50px;
 
         }
 
     }
 
-    div.droite {
+    .gauche {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+
+        // To delete
+        background-color:rgb(157, 167, 132);
+        height: 100%;
+
+
+
+        .sante {
+            
+        }
+
+        .armes {
+
+        }
+
+        .armures {
+
+        }
+
+        .equipement {
+
+        }
+
+    }
+
+    .droite {
         display: flex;
         flex-direction: column;
         width: 40%;
 
+        // To delete
         background-color:aquamarine;
         height: 100%;
 
-        div.caracteristiques {
+        .caracteristiques {
 
         }
 
-        div.etats {
+        .etats {
 
         }
 
-        div.capacites {
+        .capacites {
 
         }
 
-        div.bonus {
+        .bonus {
 
         }
 

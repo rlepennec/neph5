@@ -9,24 +9,91 @@
 
             <div class="header">
                 <img class="puce"/>
-                <img class="separator physique"/>
-                <label class="name physique">{{translate "physique"}}</label>
-                <img class="separator magique"/>
-                <label class="name physique">{{translate "magique"}}</label>
-                <img class="circle physique"/>
-                <label class="modifier physique">{{document.physicalModifier}}%</label>
-                <img class="circle magique"/>
-                <label class="modifier magique">{{document.magicalModifier}}%</label>
+                <img class="separator"/>
+                <label class="title">{{translate "sante"}}</label>
             </div>
-
-            <img class="triangle"/>
 
         </div>
 
+<!--
+        <div class="armes">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "arme"}}</label>
+            </div>
+
+        </div>
+
+        <div class="armures">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "armure"}}</label>
+            </div>
+
+        </div>
+
+        <div class="equipement">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "equipement"}}</label>
+            </div>
+
+        </div>
+-->
     </div>
 
     <div class="droite">
 
-    </div>
+        {{#if (eq document.type 'figurant')}}
+        <div class="caracteristiques">
 
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "caracteristiques"}}</label>
+            </div>
+
+        </div>
+        {{/if}}
+<!--
+        <div class="etats">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "etats"}}</label>
+            </div>
+
+        </div>
+
+        {{#if (eq document.type 'figure')}}
+        <div class="capacites">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "capacites"}}</label>
+            </div>
+
+        </div>
+        {{/if}}
+
+        <div class="bonus">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "bonus"}}</label>
+            </div>
+
+        </div>
+
+    </div>
+-->
 </main>

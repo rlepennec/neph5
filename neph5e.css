@@ -1105,144 +1105,33 @@
   display: flex;
   flex-direction: row;
 }
-.tab.combat div.gauche {
+.tab.combat .header .puce {
+  position: relative;
+  content: var(--img-puce);
+  top: var(--puce-top);
+  width: 60px;
+}
+.tab.combat .header .separator {
+  position: relative;
+  content: var(--img-separator);
+  height: 4px;
+  left: 55px;
+  bottom: 25px;
+  width: calc(100% - 65px);
+}
+.tab.combat .header .title {
+  position: relative;
+  left: 70px;
+  bottom: 50px;
+}
+.tab.combat .gauche {
   display: flex;
   flex-direction: column;
   width: 60%;
+  background-color: #9da784;
+  height: 100%;
 }
-.tab.combat div.gauche > img.puce {
-  position: relative;
-  top: var(--puce-top);
-  width: 60px;
-  content: var(--img-puce);
-}
-.tab.combat div.gauche > img.separator {
-  position: absolute;
-  height: 4px;
-  left: 55px;
-  top: 32px;
-  width: calc(100% - 55px);
-  content: var(--img-separator);
-}
-.tab.combat div.gauche div.sante {
-  /*
-            div:not(:first-of-type) {
-                display: flex;
-                flex-direction: row;
-                margin-right: 10px;
-                font-family: 'AJensonPro';
-
-                .title {
-                    position: absolute;
-                    font-size: 16px;
-                }
-
-                &:hover {
-                    text-shadow: 0px 0px 1px var(--font-color);
-                }
-            }
-            */
-}
-.tab.combat div.gauche div.sante .triangle {
-  position: absolute;
-  content: var(--img-triangle);
-  left: 50%;
-  width: var(--combat-triangle-width);
-}
-.tab.combat div.gauche div.sante div.header {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
-  font-size: 21px;
-}
-.tab.combat div.gauche div.sante div.header .puce {
-  position: relative;
-  top: var(--puce-top);
-  border: none;
-  width: 60px;
-  background-color: transparent;
-  content: var(--img-puce);
-}
-.tab.combat div.gauche div.sante div.header .separator {
-  content: var(--img-separator);
-  height: 4px;
-}
-.tab.combat div.gauche div.sante div.header .separator.physique {
-  width: calc(50% - 69px);
-}
-.tab.combat div.gauche div.sante div.header .separator.magique {
-  width: calc(50% - 60px);
-}
-.tab.combat div.gauche div.sante div.header .name.physique {
-  width: calc(100% - 65px);
-}
-.tab.combat div.gauche div.sante div.header .name.magique {
-  width: calc(100% - 65px);
-}
-.tab.combat div.gauche div.sante div.header .circle {
-  position: absolute;
-  display: block;
-  border: none;
-  width: var(--combat-dommages-circle-width);
-  height: var(--combat-dommages-circle-height);
-  top: var(--combat-dommages-circle-top);
-  background-color: transparent;
-  content: var(--img-circle);
-}
-.tab.combat div.gauche div.sante div.header .circle.physique {
-  left: var(--combat-dommages-physique-left);
-}
-.tab.combat div.gauche div.sante div.header .circle.magique {
-  left: var(--combat-dommages-magique-left);
-}
-.tab.combat div.gauche div.sante div.header .modifier {
-  position: absolute;
-  display: block;
-  width: 66px;
-  top: 113px;
-  text-align: center;
-  font-size: 19px;
-}
-.tab.combat div.gauche div.sante div.header .modifier.physique {
-  left: calc(50% - 182px);
-}
-.tab.combat div.gauche div.sante div.header .modifier.magique {
-  left: calc(50% + 174px);
-}
-.tab.combat div.gauche div.sante .dommages label:nth-child(1) {
-  top: 55px;
-  left: 50%;
-}
-.tab.combat div.gauche div.sante .dommages .checkbox {
-  position: absolute;
-  top: 54px;
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.physique.n5 {
-  left: calc(50% - 180px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.physique.n4 {
-  left: calc(50% - 150px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.physique.n3 {
-  left: calc(50% - 120px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.physique.n2 {
-  left: calc(50% - 90px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.physique.n1 {
-  left: calc(50% - 60px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.magique.n1 {
-  left: calc(50% + 107px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.magique.n3 {
-  left: calc(50% + 137px);
-}
-.tab.combat div.gauche div.sante .dommages .checkbox.magique.n3 {
-  left: calc(50% + 167px);
-}
-.tab.combat div.droite {
+.tab.combat .droite {
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -1454,144 +1343,33 @@ form.nephilim.actor section.window-content > section article main.combat {
   display: flex;
   flex-direction: row;
 }
-form.nephilim.actor section.window-content > section article main.combat div.gauche {
+form.nephilim.actor section.window-content > section article main.combat .header .puce {
+  position: relative;
+  content: var(--img-puce);
+  top: var(--puce-top);
+  width: 60px;
+}
+form.nephilim.actor section.window-content > section article main.combat .header .separator {
+  position: relative;
+  content: var(--img-separator);
+  height: 4px;
+  left: 55px;
+  bottom: 25px;
+  width: calc(100% - 65px);
+}
+form.nephilim.actor section.window-content > section article main.combat .header .title {
+  position: relative;
+  left: 70px;
+  bottom: 50px;
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche {
   display: flex;
   flex-direction: column;
   width: 60%;
+  background-color: #9da784;
+  height: 100%;
 }
-form.nephilim.actor section.window-content > section article main.combat div.gauche > img.puce {
-  position: relative;
-  top: var(--puce-top);
-  width: 60px;
-  content: var(--img-puce);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche > img.separator {
-  position: absolute;
-  height: 4px;
-  left: 55px;
-  top: 32px;
-  width: calc(100% - 55px);
-  content: var(--img-separator);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante {
-  /*
-            div:not(:first-of-type) {
-                display: flex;
-                flex-direction: row;
-                margin-right: 10px;
-                font-family: 'AJensonPro';
-
-                .title {
-                    position: absolute;
-                    font-size: 16px;
-                }
-
-                &:hover {
-                    text-shadow: 0px 0px 1px var(--font-color);
-                }
-            }
-            */
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .triangle {
-  position: absolute;
-  content: var(--img-triangle);
-  left: 50%;
-  width: var(--combat-triangle-width);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header {
-  display: flex;
-  flex-direction: row;
-  margin-right: 10px;
-  font-family: 'AJensonPro';
-  font-size: 21px;
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .puce {
-  position: relative;
-  top: var(--puce-top);
-  border: none;
-  width: 60px;
-  background-color: transparent;
-  content: var(--img-puce);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .separator {
-  content: var(--img-separator);
-  height: 4px;
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .separator.physique {
-  width: calc(50% - 69px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .separator.magique {
-  width: calc(50% - 60px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .name.physique {
-  width: calc(100% - 65px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .name.magique {
-  width: calc(100% - 65px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .circle {
-  position: absolute;
-  display: block;
-  border: none;
-  width: var(--combat-dommages-circle-width);
-  height: var(--combat-dommages-circle-height);
-  top: var(--combat-dommages-circle-top);
-  background-color: transparent;
-  content: var(--img-circle);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .circle.physique {
-  left: var(--combat-dommages-physique-left);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .circle.magique {
-  left: var(--combat-dommages-magique-left);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .modifier {
-  position: absolute;
-  display: block;
-  width: 66px;
-  top: 113px;
-  text-align: center;
-  font-size: 19px;
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .modifier.physique {
-  left: calc(50% - 182px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante div.header .modifier.magique {
-  left: calc(50% + 174px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages label:nth-child(1) {
-  top: 55px;
-  left: 50%;
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox {
-  position: absolute;
-  top: 54px;
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.physique.n5 {
-  left: calc(50% - 180px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.physique.n4 {
-  left: calc(50% - 150px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.physique.n3 {
-  left: calc(50% - 120px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.physique.n2 {
-  left: calc(50% - 90px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.physique.n1 {
-  left: calc(50% - 60px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.magique.n1 {
-  left: calc(50% + 107px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.magique.n3 {
-  left: calc(50% + 137px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.gauche div.sante .dommages .checkbox.magique.n3 {
-  left: calc(50% + 167px);
-}
-form.nephilim.actor section.window-content > section article main.combat div.droite {
+form.nephilim.actor section.window-content > section article main.combat .droite {
   display: flex;
   flex-direction: column;
   width: 40%;
