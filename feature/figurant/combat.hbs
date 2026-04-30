@@ -15,9 +15,144 @@
 
             <img class="pyramide"/>
             
+            <div class="modificateur">
+                <label class="title physique">{{translate "physique"}}</label>
+                <img class="circle physique"/>
+                <label class="modifier physique">{{document.physicalModifier}}%</label>
+                <label class="title magique">{{translate "magique"}}</label>
+                <img class="circle magique"/>
+                <label class="modifier magique">{{document.magicalModifier}}%</label>
+            </div>
 
+            <div class="dommages">
 
+                <label class="title">{{translate "dommages"}}</label>
 
+                {{#if (gt document.system.ka.terre 9)}}
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique._5"
+                    value=document.system.dommage.physique._5
+                    class="physique-5"
+                }}
+                {{/if}}
+
+                {{#if (gt document.system.ka.terre 4)}}
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique._4"
+                    value=document.system.dommage.physique._4
+                    class="physique-4"
+                }}
+                {{/if}}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique._3"
+                    value=document.system.dommage.physique._3
+                    class="physique-3"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique._2"
+                    value=document.system.dommage.physique._2
+                    class="physique-2"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique._1"
+                    value=document.system.dommage.physique._1
+                    class="physique-1"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique._1"
+                    value=document.system.dommage.magique._1
+                    class="magique-1"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique._2"
+                    value=document.system.dommage.magique._2
+                    class="magique-2"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique._3"
+                    value=document.system.dommage.magique._3
+                    class="magique-3"
+                }}
+
+            </div>
+
+            <div class="mineure">
+
+                <label class="title">{{translate "mineure"}}</label>
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique.mineure"
+                    value=document.system.dommage.physique.mineure
+                    class="physique"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique.mineure"
+                    value=document.system.dommage.magique.mineure
+                    class="magique"
+                }}
+
+            </div>
+
+            <div class="serieuse">
+
+                <label class="title">{{translate "serieuse"}}</label>
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique.serieuse"
+                    value=document.system.dommage.physique.serieuse
+                    class="physique"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique.serieuse"
+                    value=document.system.dommage.magique.serieuse
+                    class="magique"
+                }}
+
+            </div>
+
+            <div class="grave">
+
+                <label class="title">{{translate "grave"}}</label>
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique.grave"
+                    value=document.system.dommage.physique.grave
+                    class="physique"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique.grave"
+                    value=document.system.dommage.magique.grave
+                    class="magique"
+                }}
+
+            </div>
+
+            <div class="mortelle">
+
+                <label class="title">{{translate "mortelle"}}</label>
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.physique.mortelle"
+                    value=document.system.dommage.physique.mortelle
+                    class="physique"
+                }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    name="system.dommage.magique.mortelle"
+                    value=document.system.dommage.magique.mortelle
+                    class="magique"
+                }}
+
+            </div>
 
         </div>
 

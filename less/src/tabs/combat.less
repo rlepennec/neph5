@@ -7,20 +7,18 @@
         background-color: aqua;
 
         .puce {
-            position: absolute;
             content: var(--img-puce);
-            //top: var(--puce-top);
             width: 60px;
-            
+            position: absolute;
         }
 
         .separator {
             content: var(--img-separator);
+            height: 4px;
+            width: calc(100% - 65px);
             position: absolute;
             left: 55px;
             top: 30px;
-            height: 4px;
-            width: calc(100% - 65px);
         }
 
         .title {
@@ -45,19 +43,201 @@
 
         .sante {
             position: relative;
+
+            // To delete
             background-color:rgb(98, 117, 53);
 
-                .pyramide {
-                    content: var(--img-triangle);
-                    width: var(--combat-triangle-width);
+            > div {
+                position: absolute;
+                width: 100%;
+
+                 .checkbox {
                     position: absolute;
-                    left: calc(50% - var(--combat-triangle-width)/2);
-                    top: 50px;
                 }
 
+            }
 
+            .pyramide {
+                content: var(--img-triangle);
+                width: var(--combat-triangle-width);
+                position: absolute;
+                left: calc(50% - var(--combat-triangle-width)/2);
+                top: 50px;
+            }
 
+            .modificateur {
 
+                .circle {
+                    content: var(--img-circle);
+                    width: var(--combat-dommages-circle-width);
+                    height: var(--combat-dommages-circle-height);
+                    position: absolute;
+                    top: 100px;
+ 
+                    &.physique {
+                        left: calc(50% - 230px);
+                    }
+                    
+                    &.magique {
+                        left: calc(50% + 140px);
+                    }
+                }
+
+            }
+
+            .dommages {
+
+                .title {
+                    position: absolute;
+                    left: calc(50% - 30px);
+                    top: 70px;
+                }
+
+                .physique-5 {
+                    left: calc(50% + -180px);
+                    top: 70px;
+                }
+
+                .physique-4 {
+                    left: calc(50% + -160px);
+                    top: 70px;
+                }
+
+                .physique-3 {
+                    left: calc(50% + -147px);
+                    top: 70px;
+                }
+
+                .physique-2 {
+                    left: calc(50% - 110px);
+                    top: 66px;
+
+                    label {
+                        width: 25px;
+                        height: 25px;
+                    }
+
+                }
+
+                .physique-1 {
+                    left: calc(50% - 70px);
+                    top: 63px;
+
+                    label {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                }
+
+                .magique-3 {
+                    left: calc(50% + 40px);
+                    top: 63px;
+
+                    label {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                }
+
+                .magique-2 {
+                    left: calc(50% + 80px);
+                    top: 66px;
+
+                    label {
+                        width: 25px;
+                        height: 25px;
+                    }
+
+                }
+
+                .magique-1 {
+                    left: calc(50% + 117px);
+                    top: 70px;
+                }
+
+            }
+
+            .mineure {
+
+                .title {
+                    position: absolute;
+                    left: calc(50% - 30px);
+                    top: 100px;
+                }
+
+                .physique {
+                    left: calc(50% - 70px);
+                    top: 100px;
+                }
+
+                .magique {
+                    left: calc(50% + 70px);
+                    top: 100px;
+                }
+
+            }
+
+            .serieuse {
+
+                .title {
+                    position: absolute;
+                    left: calc(50% - 30px);
+                    top: 130px;
+                }
+
+                .physique {
+                    left: calc(50% - 70px);
+                    top: 130px;
+                }
+
+                .magique {
+                    left: calc(50% + 70px);
+                    top: 130px;
+                }
+
+            }
+
+            .grave {
+
+                .title {
+                    position: absolute;
+                    left: calc(50% - 30px);
+                    top: 160px;
+                }
+
+                .physique {
+                    left: calc(50% - 70px);
+                    top: 160px;
+                }
+
+                .magique {
+                    left: calc(50% + 70px);
+                    top: 160px;
+                }
+
+            }
+
+            .mortelle {
+
+                .title {
+                    position: absolute;
+                    left: calc(50% - 30px);
+                    top: 190px;
+                }
+
+                .physique {
+                    left: calc(50% - 70px);
+                    top: 190px;
+                }
+
+                .magique {
+                    left: calc(50% + 70px);
+                    top: 190px;
+                }
+
+            }
 
         }
 
