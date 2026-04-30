@@ -3,30 +3,31 @@
     flex-direction: row;
 
     .header {
+        position: relative;
+        background-color: aqua;
 
         .puce {
-            position: relative;
+            position: absolute;
             content: var(--img-puce);
-            top: var(--puce-top);
+            //top: var(--puce-top);
             width: 60px;
             
         }
 
         .separator {
-            position: relative;
             content: var(--img-separator);
-
-            height: 4px;
+            position: absolute;
             left: 55px;
-            bottom: 25px;
+            top: 30px;
+            height: 4px;
             width: calc(100% - 65px);
         }
 
         .title {
-            position: relative;
+            position: absolute;
             left: 70px;
-            bottom: 50px;
-
+            top: 5px;
+            font-size: 18px;
         }
 
     }
@@ -43,7 +44,21 @@
 
 
         .sante {
-            
+            position: relative;
+            background-color:rgb(98, 117, 53);
+
+                .pyramide {
+                    content: var(--img-triangle);
+                    width: var(--combat-triangle-width);
+                    position: absolute;
+                    left: calc(50% - var(--combat-triangle-width)/2);
+                    top: 50px;
+                }
+
+
+
+
+
         }
 
         .armes {
