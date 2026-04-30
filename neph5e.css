@@ -1149,18 +1149,36 @@
   left: calc(50% - var(--combat-triangle-width)/2);
   top: 50px;
 }
+.tab.combat .gauche .sante .modificateur {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+}
 .tab.combat .gauche .sante .modificateur .circle {
+  position: absolute;
   content: var(--img-circle);
   width: var(--combat-dommages-circle-width);
   height: var(--combat-dommages-circle-height);
+}
+.tab.combat .gauche .sante .modificateur .value {
   position: absolute;
-  top: 100px;
+  left: 30px;
+  top: 35px;
 }
-.tab.combat .gauche .sante .modificateur .circle.physique {
-  left: calc(50% - 40px);
+.tab.combat .gauche .sante .modificateur .title {
+  position: absolute;
+  left: 12px;
+  top: 85px;
 }
-.tab.combat .gauche .sante .modificateur .circle.magique {
-  left: calc(50% + 40px);
+.tab.combat .gauche .sante .modificateur .physique {
+  position: absolute;
+  left: calc(50% - 230px);
+  width: 100%;
+}
+.tab.combat .gauche .sante .modificateur .magique {
+  position: absolute;
+  left: calc(50% + 140px);
+  width: 100%;
 }
 .tab.combat .gauche .sante .dommages .title {
   position: absolute;
@@ -1527,18 +1545,36 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   left: calc(50% - var(--combat-triangle-width)/2);
   top: 50px;
 }
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+}
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .circle {
+  position: absolute;
   content: var(--img-circle);
   width: var(--combat-dommages-circle-width);
   height: var(--combat-dommages-circle-height);
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .value {
   position: absolute;
-  top: 100px;
+  left: 30px;
+  top: 35px;
 }
-form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .circle.physique {
-  left: calc(50% - 40px);
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .title {
+  position: absolute;
+  left: 12px;
+  top: 85px;
 }
-form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .circle.magique {
-  left: calc(50% + 40px);
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .physique {
+  position: absolute;
+  left: calc(50% - 230px);
+  width: 100%;
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .magique {
+  position: absolute;
+  left: calc(50% + 140px);
+  width: 100%;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .title {
   position: absolute;

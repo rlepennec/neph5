@@ -66,21 +66,39 @@
             }
 
             .modificateur {
+                position: absolute;
+                top: 100px;
+                width: 100%;
 
                 .circle {
+                    position: absolute;
                     content: var(--img-circle);
                     width: var(--combat-dommages-circle-width);
                     height: var(--combat-dommages-circle-height);
-                    position: absolute;
-                    top: 100px;
+                }
  
-                    &.physique {
-                        left: calc(50% - 230px);
-                    }
+                .value {
+                    position: absolute;
+                    left: 30px;
+                    top: 35px;
+                }
+
+                .title {
+                    position: absolute;
+                    left: 12px;
+                    top: 85px;
+                }
+
+                .physique {
+                    position: absolute;
+                    left: calc(50% - 230px);
+                    width: 100%;
+                }
                     
-                    &.magique {
-                        left: calc(50% + 140px);
-                    }
+                .magique {
+                    position: absolute;
+                    left: calc(50% + 140px);
+                    width: 100%;
                 }
 
             }

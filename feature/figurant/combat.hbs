@@ -16,12 +16,19 @@
             <img class="pyramide"/>
             
             <div class="modificateur">
-                <label class="title physique">{{translate "physique"}}</label>
-                <img class="circle physique"/>
-                <label class="modifier physique">{{document.physicalModifier}}%</label>
-                <label class="title magique">{{translate "magique"}}</label>
-                <img class="circle magique"/>
-                <label class="modifier magique">{{document.magicalModifier}}%</label>
+
+                <div class="physique">
+                    <img class="circle"/>
+                    <label class="value">{{document.physicalModifier}}%</label>
+                    <label class="title">{{translate "physique"}}</label>
+                </div>
+
+                <div class="magique">
+                    <img class="circle"/> 
+                    <label class="value">{{document.magicalModifier}}%</label>
+                    <label class="title">{{translate "magique"}}</label>
+                </div>
+
             </div>
 
             <div class="dommages">
