@@ -1104,6 +1104,7 @@
 .tab.combat .header {
   position: relative;
   background-color: aqua;
+  height: 100px;
 }
 .tab.combat .header .puce {
   content: var(--img-puce);
@@ -1500,6 +1501,7 @@ form.nephilim.actor section.window-content > section article main.combat {
 form.nephilim.actor section.window-content > section article main.combat .header {
   position: relative;
   background-color: aqua;
+  height: 100px;
 }
 form.nephilim.actor section.window-content > section article main.combat .header .puce {
   content: var(--img-puce);
