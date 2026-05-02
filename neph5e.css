@@ -1103,8 +1103,6 @@
 }
 .tab.combat .header {
   position: relative;
-  background-color: aqua;
-  height: 100px;
 }
 .tab.combat .header .puce {
   content: var(--img-puce);
@@ -1132,15 +1130,12 @@
   background-color: #9da784;
   height: 100%;
 }
-.tab.combat .gauche .sante {
+.tab.combat .gauche .sante .body {
   position: relative;
-  background-color: #627535;
-}
-.tab.combat .gauche .sante > div {
-  position: absolute;
   width: 100%;
+  height: 230px;
 }
-.tab.combat .gauche .sante > div .checkbox {
+.tab.combat .gauche .sante .body .checkbox {
   position: absolute;
 }
 .tab.combat .gauche .sante .pyramide {
@@ -1500,8 +1495,6 @@ form.nephilim.actor section.window-content > section article main.combat {
 }
 form.nephilim.actor section.window-content > section article main.combat .header {
   position: relative;
-  background-color: aqua;
-  height: 100px;
 }
 form.nephilim.actor section.window-content > section article main.combat .header .puce {
   content: var(--img-puce);
@@ -1529,15 +1522,12 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   background-color: #9da784;
   height: 100%;
 }
-form.nephilim.actor section.window-content > section article main.combat .gauche .sante {
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .body {
   position: relative;
-  background-color: #627535;
-}
-form.nephilim.actor section.window-content > section article main.combat .gauche .sante > div {
-  position: absolute;
   width: 100%;
+  height: 230px;
 }
-form.nephilim.actor section.window-content > section article main.combat .gauche .sante > div .checkbox {
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .body .checkbox {
   position: absolute;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .pyramide {
