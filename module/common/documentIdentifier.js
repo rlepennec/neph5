@@ -67,7 +67,7 @@ export class DocumentIdentifier {
                 }
 
                 // The world item or the actor from which to create the identifier.
-                else if(source instanceof Item) {
+                else if (source instanceof Item) {
                     this.#parse(source);
                 }
 
