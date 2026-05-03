@@ -4,6 +4,7 @@
 
     .header {
         position: relative;
+        height: 50px;
 
         .puce {
             content: var(--img-puce);
@@ -43,7 +44,7 @@
             .body {
                 position: relative;
                 width: 100%;
-                height: 230px;
+                height: 190px;
 
                 .checkbox {
                     position: absolute;
@@ -55,12 +56,11 @@
                 width: var(--combat-triangle-width);
                 position: absolute;
                 left: calc(50% - var(--combat-triangle-width)/2);
-                top: 50px;
             }
 
             .modificateur {
                 position: absolute;
-                top: 100px;
+                top: 50px;
                 width: 100%;
 
                 .circle {
@@ -101,27 +101,27 @@
                 .title {
                     position: absolute;
                     left: calc(50% - 30px);
-                    top: 70px;
+                    top: 20px;
                 }
 
                 .physique-5 {
                     left: calc(50% + -180px);
-                    top: 70px;
+                    top: 20px;
                 }
 
                 .physique-4 {
                     left: calc(50% + -160px);
-                    top: 70px;
+                    top: 20px;
                 }
 
                 .physique-3 {
                     left: calc(50% + -147px);
-                    top: 70px;
+                    top: 20px;
                 }
 
                 .physique-2 {
                     left: calc(50% - 110px);
-                    top: 66px;
+                    top: 16px;
 
                     label {
                         width: 25px;
@@ -132,7 +132,7 @@
 
                 .physique-1 {
                     left: calc(50% - 70px);
-                    top: 63px;
+                    top: 13px;
 
                     label {
                         width: 30px;
@@ -143,7 +143,7 @@
 
                 .magique-3 {
                     left: calc(50% + 40px);
-                    top: 63px;
+                    top: 13px;
 
                     label {
                         width: 30px;
@@ -154,7 +154,7 @@
 
                 .magique-2 {
                     left: calc(50% + 80px);
-                    top: 66px;
+                    top: 16px;
 
                     label {
                         width: 25px;
@@ -165,7 +165,7 @@
 
                 .magique-1 {
                     left: calc(50% + 117px);
-                    top: 70px;
+                    top: 20px;
                 }
 
             }
@@ -175,17 +175,17 @@
                 .title {
                     position: absolute;
                     left: calc(50% - 30px);
-                    top: 100px;
+                    top: 50px;
                 }
 
                 .physique {
                     left: calc(50% - 70px);
-                    top: 100px;
+                    top: 50px;
                 }
 
                 .magique {
                     left: calc(50% + 70px);
-                    top: 100px;
+                    top: 50px;
                 }
 
             }
@@ -195,17 +195,17 @@
                 .title {
                     position: absolute;
                     left: calc(50% - 30px);
-                    top: 130px;
+                    top: 80px;
                 }
 
                 .physique {
                     left: calc(50% - 70px);
-                    top: 130px;
+                    top: 80px;
                 }
 
                 .magique {
                     left: calc(50% + 70px);
-                    top: 130px;
+                    top: 80px;
                 }
 
             }
@@ -215,17 +215,17 @@
                 .title {
                     position: absolute;
                     left: calc(50% - 30px);
-                    top: 160px;
+                    top: 110px;
                 }
 
                 .physique {
                     left: calc(50% - 70px);
-                    top: 160px;
+                    top: 110px;
                 }
 
                 .magique {
                     left: calc(50% + 70px);
-                    top: 160px;
+                    top: 110px;
                 }
 
             }
@@ -235,28 +235,49 @@
                 .title {
                     position: absolute;
                     left: calc(50% - 30px);
-                    top: 190px;
+                    top: 140px;
                 }
 
                 .physique {
                     left: calc(50% - 70px);
-                    top: 190px;
+                    top: 140px;
                 }
 
                 .magique {
                     left: calc(50% + 70px);
-                    top: 190px;
+                    top: 140px;
                 }
 
             }
 
         }
 
-        .armes {
-
-        }
-
+        .armes,
         .armures {
+
+            ol {
+                list-style: none;
+
+                li {
+                    display: flex;
+                    flex-direction: row;
+                    height: 22px;
+
+                    &:hover {
+                        text-shadow: 0px 0px 1px var(--font-color);
+                    }
+
+                    label {
+                        width: 70%;
+                    }
+
+                    a {
+                        width: 10%;
+                    }
+
+                }
+
+            }
 
         }
 
