@@ -25,7 +25,9 @@ export const NephilimMixinSheet = Base => {
 				lock: NephilimSheet._onLock,
 				select: NephilimSheet._onSelect,
 				setup: NephilimSheet._onSetup,
-				exit: NephilimSheet._onExit
+				exit: NephilimSheet._onExit,
+				roll: NephilimSheet._onRoll,
+				use: NephilimSheet._onUse
 			},
 			window: {
 				resizable: true,
@@ -274,6 +276,22 @@ export const NephilimMixinSheet = Base => {
 
 		async _onExit(event, target) {
 			throw new Error("_onExit method must be implemented");
+		}
+
+		static async _onRoll(event, target) {
+			this._onRoll(event, target)
+		}
+
+		async _onRoll(event, target) {
+			throw new Error("_onRoll method must be implemented");
+		}
+
+		static async _onUse(event, target) {
+			this._onUse(event, target)
+		}
+
+		async _onUse(event, target) {
+			throw new Error("_onUse method must be implemented");
 		}
 
 		/**

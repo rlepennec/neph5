@@ -1,4 +1,5 @@
 import { BaseSheet } from "../../module/actor/base.js";
+import { DocumentIdentifier } from "../../module/common/documentIdentifier.js"
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Ka } from "../nephilim/ka.js";
 import { Menace } from "../combat/core/menace.js";
@@ -62,6 +63,78 @@ export class FigurantSheet extends BaseSheet {
         });
     }
         */
+
+
+    /**
+     * @override
+     */
+    async _onDelete(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        console.log("delete " + document.type);
+        /*
+        switch (document.type) {
+            case 'competence':
+                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
+                break;
+        }
+                */
+    }
+
+    /**
+     * @override
+     */
+    async _onRoll(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        console.log("roll " + document.type);
+        /*
+        switch (document.type) {
+            case 'competence':
+                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
+                break;
+        }
+                */
+    }
+
+    /**
+     * @override
+     */
+    async _onUse(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        console.log("use " + document.type);
+        /*
+        switch (document.type) {
+            case 'competence':
+                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
+                break;
+        }
+                */
+    }
+
+    /**
+     * This function catches the drop on a periode. The dropped item can be
+     *   - a periode
+     *   - a competence
+     * @param event    The drop event.
+     * @param document The document identifier which has been dropped.
+     */
+    async _onDrop(event, document) {
+        event.preventDefault();
+        console.log(document.type);
+        /*
+        switch (document.type) {
+            
+            case "competence":
+                await this.document.updateItemRefs(document.system, this.document.system.competences, "system.competences");
+                break;
+            case "periode":
+                await this.document.updateItemRef('periode', document.sid);
+                break;
+        }
+                */
+    }
 
     /**
      * @override

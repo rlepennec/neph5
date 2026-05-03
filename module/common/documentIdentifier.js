@@ -62,7 +62,7 @@ export class DocumentIdentifier {
                 }
 
                 // The world actor from which to create the identifier.
-                else if(source instanceof Actor) {
+                else if (source instanceof Actor) {
                     this.#parse(source);
                 }
 
@@ -73,12 +73,12 @@ export class DocumentIdentifier {
 
                 // The textual expression from which to create the identifier.
                 // It must be built as follow: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
-                else if(source instanceof String || typeof source === "string") {
+                else if (source instanceof String || typeof source === "string") {
                     this.#parse(source);
                 }
 
                 // The dropped document from which to create the identifier. 
-                else if(source instanceof DragEvent) {
+                else if (source instanceof DragEvent) {
                     this.#parse(fromUuidSync(foundry.applications.ux.TextEditor.implementation.getDragEventData(source).uuid));
                 }
 
