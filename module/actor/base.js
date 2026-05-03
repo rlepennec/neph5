@@ -1,5 +1,7 @@
+import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { NephilimActor } from "./entity.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
+
 
 import { AbstractFeature } from "../../feature/core/abstractFeature.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
@@ -52,16 +54,12 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
      */
     activateCombatListeners(html) {
 
-        html.find('div[data-tab="combat"] .armes .open').click(this._onEditEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armes .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armes .roll').click(this._onAttack.bind(this));
-        html.find('div[data-tab="combat"] .armes .usage').click(this._onUsage.bind(this));
         html.find('div[data-tab="combat"] .armes .aim').click(this._onAim.bind(this));
         html.find('div[data-tab="combat"] .armes .reload').click(this._onReload.bind(this));
 
-        html.find('div[data-tab="combat"] .armures .open').click(this._onEditEmbeddedEquipment.bind(this));
         html.find('div[data-tab="combat"] .armures .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-        html.find('div[data-tab="combat"] .armures .usage').click(this._onUsage.bind(this));
 
         html.find('div[data-tab="combat"] .etat input').click(this._onEffect.bind(this));
 
@@ -347,15 +345,18 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     }
 
     /**
-     * Set the usage of the melee or the ranged weapon.
-     * @param event The click event.
+     * @override
      */
-    async _onUsage(event) {
+    async _onUse(event, target) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents("li");
-        const id = li.data("id");
-        const item = this.document.getEmbeddedDocument('Item', id);
-        await this.document.toggleEquipmentUsage(item);
+        const document = new DocumentIdentifier(target).toDocument();
+        switch (document.type) {
+            case 'arme':
+            case 'armure':
+                // Set the usage of the melee or the ranged weapon
+                await this.document.toggleEquipmentUsage(document);
+                break;
+        }
     }
 
     /**

@@ -97,21 +97,7 @@ export class FigurantSheet extends BaseSheet {
                 */
     }
 
-    /**
-     * @override
-     */
-    async _onUse(event, target) {
-        const identifier = new DocumentIdentifier(target);
-        const document = identifier.toDocument();
-        console.log("use " + document.type);
-        /*
-        switch (document.type) {
-            case 'competence':
-                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
-                break;
-        }
-                */
-    }
+
 
     /**
      * This function catches the drop on a periode. The dropped item can be
