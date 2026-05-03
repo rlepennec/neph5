@@ -45,6 +45,9 @@ export class FigurantSheet extends BaseSheet {
         super(...args);
     }
 
+
+
+
     async setOptions(theme, degats) {
         await this.document.update({ ['system.options.degatAutomatique']: (degats === "true") });
         if (this.document.system.options.theme !== theme) {
@@ -81,21 +84,7 @@ export class FigurantSheet extends BaseSheet {
                 */
     }
 
-    /**
-     * @override
-     */
-    async _onRoll(event, target) {
-        const identifier = new DocumentIdentifier(target);
-        const document = identifier.toDocument();
-        console.log("roll " + document.type);
-        /*
-        switch (document.type) {
-            case 'competence':
-                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
-                break;
-        }
-                */
-    }
+
 
 
 

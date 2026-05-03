@@ -21,7 +21,10 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ["actor"]
+        classes: ["actor"],
+        actions: {
+            wrestle: BaseSheet._onWrestle
+        }
     }
 
     /** 
@@ -55,7 +58,6 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     activateCombatListeners(html) {
 
         html.find('div[data-tab="combat"] .armes .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-        html.find('div[data-tab="combat"] .armes .roll').click(this._onAttack.bind(this));
         html.find('div[data-tab="combat"] .armes .aim').click(this._onAim.bind(this));
         html.find('div[data-tab="combat"] .armes .reload').click(this._onReload.bind(this));
 
@@ -292,56 +294,62 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     }
 
     /**
-     * Attack with a melee or a ranged weapon.
-     * @param event The click event.
+     * The callback used to delete a referenced document from the current one.
+     * @param {*} event 
+     * @param {*} target 
      */
-    async _onAttack(event) {
+    static async _onWrestle(event, target) {
+        await this._onWrestle(event, target);
+    }
 
+    async _onWrestle(event, target) {
         event.preventDefault();
-        const li = $(event.currentTarget).parents("li");
-        const id = li.data("id");
         const combat = game.settings.get('neph5e', 'useCombatSystem');
-
-        // Wrestle roll attack
-        if (id === 'wrestle') {
-            if (this.document.lutteCanBePerformed) {
-                if (['normal', 'low'].includes(combat)) {
-                    await new Wrestle(this.document).initializeRoll();
-                } else {
-                    const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
-                    await feature.initializeRoll();
-                }
-            }
-
-        // Weapon roll attack
-        } else {
-            const item = this.document.getEmbeddedDocument('Item', id);
-            if (item?.attackAvailable === true) {
-
-                // Combat system activated can be standard or simplified
-                if (['normal', 'low'].includes(combat)) {
-                    switch (item.system.type) {
-                        case Constants.NATURELLE:
-                            await new Naturelle(this.document, item).initializeRoll();
-                            break;
-                        case Constants.MELEE:
-                            await new Melee(this.document, item).initializeRoll();
-                            break;
-                        case Constants.FEU:
-                        case Constants.TRAIT:
-                            await new Distance(this.document, item).initializeRoll();
-                            break;
-                    }
-
-                // No combat system activated, just roll a martial skill roll
-                } else {
-                    const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(item.system.competence).create();
-                    await feature.initializeRoll();
-                }
-
+        if (this.document.lutteCanBePerformed) {
+            if (['normal', 'low'].includes(combat)) {
+                await new Wrestle(this.document).initializeRoll();
+            } else {
+                const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
+                await feature.initializeRoll();
             }
         }
+    }
 
+    /**
+     * @override
+     */
+    async _onRoll(event, target) {
+        event.preventDefault();
+        const document = new DocumentIdentifier(target).toDocument();
+        switch (document.type) {
+            case 'arme':
+                if (document?.attackAvailable === true) {
+
+                    // Combat system activated can be standard or simplified
+                    const combat = game.settings.get('neph5e', 'useCombatSystem');
+                    if (['normal', 'low'].includes(combat)) {
+                        switch (document.system.type) {
+                            case Constants.NATURELLE:
+                                await new Naturelle(this.document, document).initializeRoll();
+                                break;
+                            case Constants.MELEE:
+                                await new Melee(this.document, document).initializeRoll();
+                                break;
+                            case Constants.FEU:
+                            case Constants.TRAIT:
+                                await new Distance(this.document, document).initializeRoll();
+                                break;
+                        }
+
+                    // No combat system activated, just roll a martial skill roll
+                    } else {
+                        const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(document.system.competence).create();
+                        await feature.initializeRoll();
+                    }
+
+                }
+                break;
+        }
     }
 
     /**

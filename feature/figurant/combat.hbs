@@ -179,11 +179,11 @@
 
             <ol class="body">
 
-                <li class="hoverable macro" data-id="wrestle" data-macro="wrestle">
+                <li class="hoverable macro" data-macro="wrestle">
                     <a><i></i></a>
                     <label class="hoverable">{{translate "lutte"}}</label>
-                    <a><i data-action="roll" class="fas fa-dice-d20 {{#unless (eq document.lutteCanBePerformed true)}}disabled{{/unless}}"></i></a>
-                    <a><i data-action="use" class="fa-solid fa-hand-fist"></i></a>
+                    <a data-action="wrestle"><i class="fas fa-dice-d20 {{#unless (eq document.lutteCanBePerformed true)}}disabled{{/unless}}"></i></a>
+                    <a><i class="fa-solid fa-hand-fist"></i></a>
                 </li>
 
                 {{#with document.weapons as |weapons|}}
@@ -192,8 +192,8 @@
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a><i data-action="roll" class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a><i data-action="use" class="fa-solid fa-hand-fist"></i></a>
+                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a><i class="fa-solid fa-hand-fist"></i></a>
                 </li>
                 {{/each}}
 
@@ -201,16 +201,16 @@
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a><i data-action="roll" class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a><i data-action="use" class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
+                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="use"><i class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
                 {{/each}}
 
                 {{#each weapons.trait as |item|}}
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a><i data-action="roll" class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a><i data-action="use" class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
+                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="use"><i class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
                 </li>
                 {{/each}}
 
@@ -218,8 +218,8 @@
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a><i data-action="roll" class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a><i data-action="use" class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
+                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="use"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
                 </li>
                 {{/each}}
 
