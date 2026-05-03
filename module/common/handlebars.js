@@ -17,9 +17,15 @@ export class CustomHandlebarsHelpers {
      * @param sid The system id of the item to get.
      * @returns the full system identifier of the specified document.
      */
-    static fsid(sid) {
-        const item = game.items.find(i => i.system.id === sid);
-        return item == null ? "null" : new DocumentIdentifier(item).fsid;
+    static fsid(source) {
+        if (source instanceof String || typeof source === "string") {
+            const item = game.items.find(i => i.system.id === source);
+            return item == null ? "null" : new DocumentIdentifier(item).fsid;
+        }
+        if (source instanceof Item) {
+            return new DocumentIdentifier(source).fsid;
+        }
+        return "null";
     }
 
     /**
