@@ -1,5 +1,5 @@
 import { CompetenceDataModel } from "./competence.mjs";
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { Game } from "../../../module/common/game.js";
 
 export class CompetenceSheet extends NephilimItemSheet {

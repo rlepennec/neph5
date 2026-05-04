@@ -1,6 +1,6 @@
 import { Constants } from "../../../module/common/constants.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class HabitusSheet extends NephilimItemSheet {
 

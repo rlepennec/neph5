@@ -1,6 +1,6 @@
 import { Game } from "../../../module/common/game.js";
 import { MateriaeDataModel } from "./materiae.mjs";
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class MateriaeSheet extends NephilimItemSheet {
 

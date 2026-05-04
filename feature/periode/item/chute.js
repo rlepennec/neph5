@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class ChuteSheet extends NephilimItemSheet {
 

@@ -2,7 +2,7 @@ import { Constants } from "../../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { FormuleDataModel } from "./formule.mjs";
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class FormuleSheet extends NephilimItemSheet {
 

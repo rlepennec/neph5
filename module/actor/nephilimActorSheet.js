@@ -14,7 +14,7 @@ import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
-export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
+export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
     static get documentClass() {
         return NephilimActor;
@@ -23,9 +23,9 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     static DEFAULT_OPTIONS = {
         classes: ["actor"],
         actions: {
-            roll: BaseSheet._onRoll,
-			use: BaseSheet._onUse,
-            wrestle: BaseSheet._onWrestle
+            roll: NephilimActorSheet._onRoll,
+			use: NephilimActorSheet._onUse,
+            wrestle: NephilimActorSheet._onWrestle
         }
     }
 

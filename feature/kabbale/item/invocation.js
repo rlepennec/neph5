@@ -1,5 +1,5 @@
 import { InvocationDataModel } from "./invocation.mjs";
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class InvocationSheet extends NephilimItemSheet {
 

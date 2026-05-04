@@ -1,10 +1,10 @@
-import { BaseSheet } from "../../../module/actor/base.js";
+import { NephilimActorSheet } from "../../../module/actor/nephilimActorSheet.js";
 import { FeatureBuilder } from "../../core/featureBuilder.js";
 import { Ka } from "../../nephilim/ka.js";
 import { Menace } from "../../combat/core/menace.js";
-import { NephilimItemSheet } from "../../../module/item/base.js";
+import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
-export class FigurantSheet extends BaseSheet {
+export class FigurantSheet extends NephilimActorSheet {
 
     static DEFAULT_OPTIONS = {
         position: {

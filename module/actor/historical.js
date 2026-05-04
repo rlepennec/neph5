@@ -1,8 +1,8 @@
-import { BaseSheet } from "./base.js";
+import { NephilimActorSheet } from "./nephilimActorSheet.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { NephilimItemSheet } from "../item/base.js";
+import { NephilimItemSheet } from "../item/nephilimItemSheet.js";
 
-export class HistoricalSheet extends BaseSheet {
+export class HistoricalSheet extends NephilimActorSheet {
 
     /**
      * @constructor
@@ -34,7 +34,7 @@ export class HistoricalSheet extends BaseSheet {
         if (object != null) {
             return {'type': 'item', 'object': object};
         }
-        object = await BaseSheet.droppedActor(event);
+        object = await NephilimActorSheet.droppedActor(event);
         if (object != null) {
             return {'type': 'actor', 'object': object};
         }
