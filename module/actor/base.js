@@ -23,6 +23,8 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
     static DEFAULT_OPTIONS = {
         classes: ["actor"],
         actions: {
+            roll: BaseSheet._onRoll,
+			use: BaseSheet._onUse,
             wrestle: BaseSheet._onWrestle
         }
     }
@@ -293,31 +295,11 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         await this.document.deleteEmbeddedItem(item);
     }
 
-    /**
-     * The callback used to delete a referenced document from the current one.
-     * @param {*} event 
-     * @param {*} target 
-     */
-    static async _onWrestle(event, target) {
-        await this._onWrestle(event, target);
+
+    static async _onRoll(event, target) {
+        this._onRoll(event, target)
     }
 
-    async _onWrestle(event, target) {
-        event.preventDefault();
-        const combat = game.settings.get('neph5e', 'useCombatSystem');
-        if (this.document.lutteCanBePerformed) {
-            if (['normal', 'low'].includes(combat)) {
-                await new Wrestle(this.document).initializeRoll();
-            } else {
-                const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
-                await feature.initializeRoll();
-            }
-        }
-    }
-
-    /**
-     * @override
-     */
     async _onRoll(event, target) {
         event.preventDefault();
         const document = new DocumentIdentifier(target).toDocument();
@@ -352,9 +334,10 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
         }
     }
 
-    /**
-     * @override
-     */
+    static async _onUse(event, target) {
+        this._onUse(event, target)
+    }
+
     async _onUse(event, target) {
         event.preventDefault();
         const document = new DocumentIdentifier(target).toDocument();
@@ -366,6 +349,29 @@ export class BaseSheet extends NephilimMixinSheet(foundry.applications.api.Docum
                 break;
         }
     }
+
+    /**
+     * The callback used to delete a referenced document from the current one.
+     * @param {*} event 
+     * @param {*} target 
+     */
+    static async _onWrestle(event, target) {
+        await this._onWrestle(event, target);
+    }
+
+    async _onWrestle(event, target) {
+        event.preventDefault();
+        const combat = game.settings.get('neph5e', 'useCombatSystem');
+        if (this.document.lutteCanBePerformed) {
+            if (['normal', 'low'].includes(combat)) {
+                await new Wrestle(this.document).initializeRoll();
+            } else {
+                const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
+                await feature.initializeRoll();
+            }
+        }
+    }
+
 
     /**
      * Aim at the specified target.

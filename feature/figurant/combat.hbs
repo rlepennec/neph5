@@ -218,7 +218,7 @@
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
                     <a data-action="use"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
                 </li>
                 {{/each}}
