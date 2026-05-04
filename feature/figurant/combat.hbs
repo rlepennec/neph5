@@ -240,10 +240,11 @@
            <ol class="body">
 
                 {{#each document.armors as |item|}}
-                <li data-id="{{item.id}}">
-                    <i class="delete fas fa-trash"></i>
-                    <label class="open name">{{item.name}}</label>
-                    <i class="usage fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i>
+                <li data-fsid="{{fsid item}}"">
+                    <a data-action="delete"><i class="fas fa-trash"></i></a>
+                    <label data-action="open">{{item.name}}</label>
+                    <a><i></i></a>
+                    <a data-action="use"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>
                 </li>
                 {{/each}}
 
