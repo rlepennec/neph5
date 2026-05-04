@@ -1,4 +1,4 @@
-import { NephilimItem } from "./entity.js"
+import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";

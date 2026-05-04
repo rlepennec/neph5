@@ -1,4 +1,4 @@
-import { NephilimItem } from "../item/entity.js";
+import { NephilimItem } from "../item/nephilimItem.js";
 
 export class EmbeddedItem {
 
