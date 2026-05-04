@@ -7,7 +7,7 @@ import { MigrationTools } from "./module/migration/migration.js";
 import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/entity.js";
-import { NephilimActor } from "./module/actor/entity.js";
+import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { FigureSheet } from "./module/actor/figure.js";
 import { FigurantSheet } from "./feature/figurant/figurant.js";
 import { FraterniteSheet } from "./module/actor/fraternite.js";

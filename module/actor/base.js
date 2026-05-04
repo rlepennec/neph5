@@ -1,5 +1,5 @@
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
-import { NephilimActor } from "./entity.js"
+import { NephilimActor } from "./nephilimActor.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 
 
