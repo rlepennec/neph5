@@ -65,30 +65,11 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
                 */
     }
 
-    /**
-     * @override
-     */
-    onInit(options) {
-        super.onInit(options);
-        this.registerDropHandler("arme", this._onDropWeapon);
-    }
-
-    static async _onDropWeapon(event, target) {
-        this._onDropWeapon(event, target)
-    }
-
-    /**
-     * This function catches the drop on a periode. The dropped item can be
-     *   - a periode
-     *   - a competence
-     * @param event    The drop event.
-     * @param document The document identifier which has been dropped.
-     */
-    async _onDropWeapon(event, document) {
+    static async _onDropWeapon(event, document) {
         event.preventDefault();
         console.log("DROP weapon");
+        console.log(this);
     }
-
 
 
     /**

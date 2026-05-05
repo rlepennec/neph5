@@ -16,7 +16,6 @@ export const CombatantMixinSheet = Base => {
 				rollWrestle: CombatantSheet._onRollWrestle,
 				useArmor: CombatantSheet._onUseArmor,
 				useWeapon: CombatantSheet._onUseWeapon
-				
 			}
 		}
 
