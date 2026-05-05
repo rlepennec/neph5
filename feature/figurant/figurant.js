@@ -1,12 +1,13 @@
-import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
-import { DocumentIdentifier } from "../../module/common/documentIdentifier.js"
+import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
+import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Ka } from "../nephilim/ka.js";
 import { Menace } from "../combat/core/menace.js";
+import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { NephilimItemSheet } from "../../module/item/nephilimItemSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
-export class FigurantSheet extends NephilimActorSheet {
+export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
 
     static DEFAULT_OPTIONS = {
         position: {
@@ -41,9 +42,11 @@ export class FigurantSheet extends NephilimActorSheet {
      * @constructor
      * @param  {...any} args
      */
+    /*
     constructor(...args) {
         super(...args);
     }
+        */
 
 
 

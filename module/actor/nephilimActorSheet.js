@@ -21,12 +21,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ["actor"],
-        actions: {
-            roll: NephilimActorSheet._onRoll,
-			use: NephilimActorSheet._onUse,
-            wrestle: NephilimActorSheet._onWrestle
-        }
+        classes: ["actor"]
     }
 
     /** 
@@ -294,84 +289,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         const item = this.document.getEmbeddedDocument('Item', id);
         await this.document.deleteEmbeddedItem(item);
     }
-
-
-    static async _onRoll(event, target) {
-        this._onRoll(event, target)
-    }
-
-    async _onRoll(event, target) {
-        event.preventDefault();
-        const document = new DocumentIdentifier(target).toDocument();
-        switch (document.type) {
-            case 'arme':
-                if (document?.attackAvailable === true) {
-
-                    // Combat system activated can be standard or simplified
-                    const combat = game.settings.get('neph5e', 'useCombatSystem');
-                    if (['normal', 'low'].includes(combat)) {
-                        switch (document.system.type) {
-                            case Constants.NATURELLE:
-                                await new Naturelle(this.document, document).initializeRoll();
-                                break;
-                            case Constants.MELEE:
-                                await new Melee(this.document, document).initializeRoll();
-                                break;
-                            case Constants.FEU:
-                            case Constants.TRAIT:
-                                await new Distance(this.document, document).initializeRoll();
-                                break;
-                        }
-
-                    // No combat system activated, just roll a martial skill roll
-                    } else {
-                        const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(document.system.competence).create();
-                        await feature.initializeRoll();
-                    }
-
-                }
-                break;
-        }
-    }
-
-    static async _onUse(event, target) {
-        this._onUse(event, target)
-    }
-
-    async _onUse(event, target) {
-        event.preventDefault();
-        const document = new DocumentIdentifier(target).toDocument();
-        switch (document.type) {
-            case 'arme':
-            case 'armure':
-                // Set the usage of the melee or the ranged weapon
-                await this.document.toggleEquipmentUsage(document);
-                break;
-        }
-    }
-
-    /**
-     * The callback used to delete a referenced document from the current one.
-     * @param {*} event 
-     * @param {*} target 
-     */
-    static async _onWrestle(event, target) {
-        await this._onWrestle(event, target);
-    }
-
-    async _onWrestle(event, target) {
-        event.preventDefault();
-        const combat = game.settings.get('neph5e', 'useCombatSystem');
-        if (this.document.lutteCanBePerformed) {
-            if (['normal', 'low'].includes(combat)) {
-                await new Wrestle(this.document).initializeRoll();
-            } else {
-                const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
-                await feature.initializeRoll();
-            }
-        }
-    }
-
 
     /**
      * Aim at the specified target.
