@@ -13,6 +13,9 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         position: {
             width: 1000,
             height: 800
+        },
+        dropHandlers: {
+            "arme": FigurantSheet._onDropWeapon
         }
     }
 
@@ -38,19 +41,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         },
     }
 
-    /**
-     * @constructor
-     * @param  {...any} args
-     */
-    /*
-    constructor(...args) {
-        super(...args);
-    }
-        */
-
-
-
-
     async setOptions(theme, degats) {
         await this.document.update({ ['system.options.degatAutomatique']: (degats === "true") });
         if (this.document.system.options.theme !== theme) {
@@ -58,18 +48,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             this.render(true);
         }
     }
-
-    /**
-     * @override
-     */
-    /*
-    async getData() {
-        return foundry.utils.mergeObject(await super.getData(), {
-            useCombatSystem: game.settings.get('neph5e', 'useCombatSystem')
-        });
-    }
-        */
-
 
     /**
      * @override
@@ -87,7 +65,29 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
                 */
     }
 
+    /**
+     * @override
+     */
+    onInit(options) {
+        super.onInit(options);
+        this.registerDropHandler("arme", this._onDropWeapon);
+    }
 
+    static async _onDropWeapon(event, target) {
+        this._onDropWeapon(event, target)
+    }
+
+    /**
+     * This function catches the drop on a periode. The dropped item can be
+     *   - a periode
+     *   - a competence
+     * @param event    The drop event.
+     * @param document The document identifier which has been dropped.
+     */
+    async _onDropWeapon(event, document) {
+        event.preventDefault();
+        console.log("DROP weapon");
+    }
 
 
 
@@ -98,7 +98,7 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
      * @param event    The drop event.
      * @param document The document identifier which has been dropped.
      */
-    async _onDrop(event, document) {
+    async _onDrop2(event, document) {
         event.preventDefault();
         console.log(document.type);
         /*
@@ -241,7 +241,7 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
      * Drop the specified object.
      * @param event The drop event.
      */
-    async _onDrop(event) {
+    async _onDrop2(event) {
         event.preventDefault();
         const item = await NephilimItemSheet.droppedItem(event);
         if (item != null && item.hasOwnProperty('system')) {

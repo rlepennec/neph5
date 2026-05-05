@@ -11,7 +11,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ["item"]
+        classes: ["item"],
     }
 
     /**

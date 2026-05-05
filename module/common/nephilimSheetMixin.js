@@ -32,6 +32,16 @@ export const NephilimMixinSheet = Base => {
 			}
 		}
 
+		async _onInit(options) {
+			super.onInit(options);
+			this.dropHandlers = new Map();
+		}
+
+		registerDropHandler(type, handler) {
+			this.dropHandlers.set(type, handler);
+		}
+
+
 		/**
 		 * The sheet is locked by default.
 		 */
@@ -255,7 +265,10 @@ export const NephilimMixinSheet = Base => {
 		 * @protected
 		 */
 		async _onDrop(event, document) {
-			throw new Error("_onDrop method must be implemented");
+			const handler = this.options.dropHandlers[document.type];
+			if (handler) {
+				return handler.call(this, event, document);
+			}
 		}
 
 		/**
