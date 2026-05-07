@@ -13,9 +13,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         position: {
             width: 1000,
             height: 800
-        },
-        dropHandlers: {
-            "arme": FigurantSheet._onDropWeapon
         }
     }
 
@@ -47,52 +44,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             await this.document.update({ ['system.options.theme']: theme });
             this.render(true);
         }
-    }
-
-    /**
-     * @override
-     */
-    async _onDelete(event, target) {
-        const identifier = new DocumentIdentifier(target);
-        const document = identifier.toDocument();
-        console.log("delete " + document.type);
-        /*
-        switch (document.type) {
-            case 'competence':
-                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
-                break;
-        }
-                */
-    }
-
-    static async _onDropWeapon(event, document) {
-        event.preventDefault();
-        console.log("DROP weapon");
-        console.log(this);
-    }
-
-
-    /**
-     * This function catches the drop on a periode. The dropped item can be
-     *   - a periode
-     *   - a competence
-     * @param event    The drop event.
-     * @param document The document identifier which has been dropped.
-     */
-    async _onDrop2(event, document) {
-        event.preventDefault();
-        console.log(document.type);
-        /*
-        switch (document.type) {
-            
-            case "competence":
-                await this.document.updateItemRefs(document.system, this.document.system.competences, "system.competences");
-                break;
-            case "periode":
-                await this.document.updateItemRef('periode', document.sid);
-                break;
-        }
-                */
     }
 
     /**

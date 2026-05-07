@@ -55,8 +55,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     activateCombatListeners(html) {
 
         html.find('div[data-tab="combat"] .armes .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-        html.find('div[data-tab="combat"] .armes .aim').click(this._onAim.bind(this));
-        html.find('div[data-tab="combat"] .armes .reload').click(this._onReload.bind(this));
+
 
         html.find('div[data-tab="combat"] .armures .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
 
@@ -94,18 +93,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         item.sheet.render(true);
     }
 
-    /**
-     * Srop the specified weapon to the actor.
-     * @param event  The drop event. 
-     * @param weapon The weapon document.
-     */
-    async _onDropWeapon(event, weapon) {
-        if (weapon.system.competence == null) {
-            ui.notifications.warn("Le vécu ou la compétence permettant d'utiliser cette arme n'est pas défini.");
-        } else {
-            await super._onDrop(event);
-        }
-    }
+
 
     /**
      * Create the specified feature.
@@ -290,31 +278,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         await this.document.deleteEmbeddedItem(item);
     }
 
-    /**
-     * Aim at the specified target.
-     * @param event The event to handle.
-     */
-    async _onAim(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents("li");
-        const id = li.data("id");
-        const item = this.document.getEmbeddedDocument('Item', id);
-        const action = new Distance(this.document, item);
-        await new Viser().apply(action);
-    }
 
-    /**
-     * Reload the specified fire weapon.
-     * @param event The event to handle.
-     */
-    async _onReload(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents("li");
-        const id = li.data("id");
-        const item = this.document.getEmbeddedDocument('Item', id);
-        const action = new Distance(this.document, item);
-        await new Recharger().apply(action);
-    }
 
     /**
      * Toggle the specified effect which can be restrain, prone and stun.

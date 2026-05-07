@@ -32,9 +32,8 @@ export const NephilimMixinSheet = Base => {
 			}
 		}
 
-		async _onInit(options) {
-			super.onInit(options);
-			this.dropHandlers = new Map();
+		registerDeleteHandler(type, handler) {
+			this.deleteHandlers.set(type, handler);
 		}
 
 		registerDropHandler(type, handler) {
@@ -189,20 +188,6 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		/**
-		 * The callback used to delete a referenced document from the current one.
-		 * @param {*} event 
-		 * @param {*} target 
-		 */
-		static async _onDelete(event, target) {
-			if (this.locked) return;
-			await this._onDelete(event, target);
-		}
-
-		async _onDelete(event, target) {
-			throw new Error("_onDelete method must be implemented");
-		}
-
-		/**
 		 * The callback used to open a link.
 		 * @param {*} event 
 		 * @param {*} target 
@@ -266,6 +251,24 @@ export const NephilimMixinSheet = Base => {
 		 */
 		async _onDrop(event, document) {
 			const handler = this.options.dropHandlers[document.type];
+			if (handler) {
+				return handler.call(this, event, document);
+			}
+		}
+
+		/**
+		 * The callback used to delete a referenced document from the current one.
+		 * @param {*} event 
+		 * @param {*} target 
+		 */
+		static async _onDelete(event, target) {
+			if (this.locked) return;
+        	const document = new DocumentIdentifier(target).toDocument();
+			await this._onDelete(event, document);
+		}
+
+		async _onDelete(event, document) {
+			const handler = this.options.deleteHandlers[document.type];
 			if (handler) {
 				return handler.call(this, event, document);
 			}

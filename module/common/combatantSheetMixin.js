@@ -14,61 +14,49 @@ export const CombatantMixinSheet = Base => {
 			actions: {
 				rollWeapon: CombatantSheet._onRollWeapon,
 				rollWrestle: CombatantSheet._onRollWrestle,
-				useArmor: CombatantSheet._onUseArmor,
-				useWeapon: CombatantSheet._onUseWeapon
+				useArmor: CombatantSheet._onUseEquipment,
+				useWeapon: CombatantSheet._onUseEquipment
+			},
+			deleteHandlers: {
+				"arme": CombatantSheet._onDeleteItem,
+				"armure": CombatantSheet._onDeleteItem
+			},
+			dropHandlers: {
+				"arme": CombatantSheet._onDropItem,
+				"armure": CombatantSheet._onDropItem
 			}
 		}
 
 		static async _onRollWeapon(event, target) {
-			this._onRollWeapon(event, target)
-		}
-
-		static async _onRollWrestle(event, target) {
-			await this._onRollWrestle(event, target);
-		}
-
-		static async _onUseArmor(event, target) {
-			this._onUse(event, target)
-		}
-
-		static async _onUseWeapon(event, target) {
-			this._onUse(event, target)
-		}
-
-		async _onRollWeapon(event, target) {
 			event.preventDefault();
 			const document = new DocumentIdentifier(target).toDocument();
-			switch (document.type) {
-				case 'arme':
-					if (document?.attackAvailable === true) {
+			if (document?.attackAvailable === true) {
 
-						// Combat system activated can be standard or simplified
-						if (this.#combatActivated()) {
-							switch (document.system.type) {
-								case Constants.NATURELLE:
-									await new Naturelle(this.document, document).initializeRoll();
-									break;
-								case Constants.MELEE:
-									await new Melee(this.document, document).initializeRoll();
-									break;
-								case Constants.FEU:
-								case Constants.TRAIT:
-									await new Distance(this.document, document).initializeRoll();
-									break;
-							}
-
-						// No combat system activated, just roll a martial skill roll
-						} else {
-							const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(document.system.competence).create();
-							await feature.initializeRoll();
-						}
-
+				// Combat system activated can be standard or simplified
+				if (this.#combatActivated()) {
+					switch (document.system.type) {
+						case Constants.NATURELLE:
+							await new Naturelle(this.document, document).initializeRoll();
+							break;
+						case Constants.MELEE:
+							await new Melee(this.document, document).initializeRoll();
+							break;
+						case Constants.FEU:
+						case Constants.TRAIT:
+							await new Distance(this.document, document).initializeRoll();
+							break;
 					}
-					break;
+
+				// No combat system activated, just roll a martial skill roll
+				} else {
+					const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(document.system.competence).create();
+					await feature.initializeRoll();
+				}
+
 			}
 		}
 
-		async _onRollWrestle(event, target) {
+		static async _onRollWrestle(event, target) {
 			event.preventDefault();
 			if (this.document.lutteCanBePerformed) {
 				if (this.#combatActivated()) {
@@ -80,7 +68,7 @@ export const CombatantMixinSheet = Base => {
 			}
 		}
 
-		async _onUse(event, target) {
+		static async _onUseEquipment(event, target) {
 			event.preventDefault();
 			const document = new DocumentIdentifier(target).toDocument();
 			switch (document.type) {
@@ -92,9 +80,52 @@ export const CombatantMixinSheet = Base => {
 			}
 		}
 
+		static async _onDeleteItem(event, document) {
+			event.preventDefault();
+			await this.document.deleteEmbeddedItem(document);
+		}
+
+		static async _onDropItem(event, document) {
+			event.preventDefault();
+			const data = document.toObject();
+			delete data._id;
+			const created = await this.document.createEmbeddedDocuments("Item", [data]);
+		}
+
 		#combatActivated() {
 			return (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem')));
 		}
+
+
+		/**
+		 * Aim at the specified target.
+		 * @param event The event to handle.
+		 */
+		/*
+		async _onAim(event) {
+			event.preventDefault();
+			const li = $(event.currentTarget).parents("li");
+			const id = li.data("id");
+			const item = this.document.getEmbeddedDocument('Item', id);
+			const action = new Distance(this.document, item);
+			await new Viser().apply(action);
+		}
+			*/
+
+		/**
+		 * Reload the specified fire weapon.
+		 * @param event The event to handle.
+		 */
+		/*
+		async _onReload(event) {
+			event.preventDefault();
+			const li = $(event.currentTarget).parents("li");
+			const id = li.data("id");
+			const item = this.document.getEmbeddedDocument('Item', id);
+			const action = new Distance(this.document, item);
+			await new Recharger().apply(action);
+		}
+		*/
 
 	}
 		
