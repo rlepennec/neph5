@@ -1,5 +1,6 @@
 .skin-air {
-  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff), url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
+        url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -156,7 +157,8 @@
   --color-scrollbar: #a1a1a1;
 }
 .skin-eau {
-  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #0d273d;
   --font-editor-color: #191813;
@@ -470,7 +472,8 @@
   --color-scrollbar: #ad521d;
 }
 .skin-lune {
-  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%), url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
+        url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #121212;
   --font-editor-color: #191813;
@@ -627,7 +630,8 @@
   --color-scrollbar: #121212;
 }
 .skin-lune-noire {
-  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
+        url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -1282,25 +1286,35 @@
   top: 140px;
 }
 .tab.combat .gauche .armes ol,
-.tab.combat .gauche .armures ol {
+.tab.combat .gauche .armures ol,
+.tab.combat .gauche .ressources ol {
   list-style: none;
 }
 .tab.combat .gauche .armes ol li,
-.tab.combat .gauche .armures ol li {
+.tab.combat .gauche .armures ol li,
+.tab.combat .gauche .ressources ol li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
 .tab.combat .gauche .armes ol li:hover,
-.tab.combat .gauche .armures ol li:hover {
+.tab.combat .gauche .armures ol li:hover,
+.tab.combat .gauche .ressources ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
 .tab.combat .gauche .armes ol li label,
-.tab.combat .gauche .armures ol li label {
+.tab.combat .gauche .armures ol li label,
+.tab.combat .gauche .ressources ol li label {
   width: 70%;
 }
 .tab.combat .gauche .armes ol li a,
-.tab.combat .gauche .armures ol li a {
+.tab.combat .gauche .armures ol li a,
+.tab.combat .gauche .ressources ol li a {
+  width: 10%;
+}
+.tab.combat .gauche .armes ol li input,
+.tab.combat .gauche .armures ol li input,
+.tab.combat .gauche .ressources ol li input {
   width: 10%;
 }
 .tab.combat .droite {
@@ -1696,25 +1710,35 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   top: 140px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol,
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol {
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol {
   list-style: none;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li,
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li {
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li {
   display: flex;
   flex-direction: row;
   height: 22px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li:hover,
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li:hover {
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li:hover,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li label,
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li label {
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li label,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li label {
   width: 70%;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li a,
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li a {
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li a,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li a {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input {
   width: 10%;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite {

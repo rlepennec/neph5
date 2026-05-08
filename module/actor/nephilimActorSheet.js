@@ -43,6 +43,14 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
             formData.object['system.id'] = CustomHandlebarsHelpers.UUID();
         }
 
+        // Update embedded items
+        for (const [key, value] of Object.entries(formData.object)) {
+            if (key.startsWith("items.")) {
+                const data = key.replace(/^items\./, "").split(".system");
+                await new DocumentIdentifier(data[0]).toDocument().update({["system" + data[1]]: value});
+            }
+        }
+
         // Update the actor
         await this.document.update(formData.object);
 
@@ -67,6 +75,20 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         });
 
     }
+
+
+    static async _onDeleteItem(event, document) {
+        event.preventDefault();
+        await this.document.deleteEmbeddedItem(document);
+    }
+
+    static async _onDropItem(event, document) {
+        event.preventDefault();
+        const data = document.toObject();
+        delete data._id;
+        const created = await this.document.createEmbeddedDocuments("Item", [data]);
+    }
+
 
     /**
      * Delete the specified embedded item.

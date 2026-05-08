@@ -4,6 +4,7 @@ import { DocumentIdentifier } from "./documentIdentifier.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
+import { NephilimActorSheet } from "../actor/nephilimActorSheet.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
 export const CombatantMixinSheet = Base => {
@@ -18,12 +19,12 @@ export const CombatantMixinSheet = Base => {
 				useWeapon: CombatantSheet._onUseEquipment
 			},
 			deleteHandlers: {
-				"arme": CombatantSheet._onDeleteItem,
-				"armure": CombatantSheet._onDeleteItem
+				"arme": NephilimActorSheet._onDeleteItem,
+				"armure": NephilimActorSheet._onDeleteItem
 			},
 			dropHandlers: {
-				"arme": CombatantSheet._onDropItem,
-				"armure": CombatantSheet._onDropItem
+				"arme": NephilimActorSheet._onDropItem,
+				"armure": NephilimActorSheet._onDropItem
 			}
 		}
 
@@ -78,18 +79,6 @@ export const CombatantMixinSheet = Base => {
 					await this.document.toggleEquipmentUsage(document);
 					break;
 			}
-		}
-
-		static async _onDeleteItem(event, document) {
-			event.preventDefault();
-			await this.document.deleteEmbeddedItem(document);
-		}
-
-		static async _onDropItem(event, document) {
-			event.preventDefault();
-			const data = document.toObject();
-			delete data._id;
-			const created = await this.document.createEmbeddedDocuments("Item", [data]);
 		}
 
 		#combatActivated() {

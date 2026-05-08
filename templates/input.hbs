@@ -4,6 +4,6 @@
 
 <input
     name={{name}}
-    type="text"
+    {{#if type}}type="{{type}}"{{else}}type="text"type"{{/if}}
     value="{{value}}"
     {{#if (or disabled document.sheet.locked)}} disabled{{/if}}/>

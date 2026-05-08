@@ -234,13 +234,13 @@
             <div class="header">
                 <img class="puce"/>
                 <img class="separator"/>
-                <label class="title">{{translate "armure"}}</label>
+                <label class="title">{{translate "armures"}}</label>
             </div>
 
            <ol class="body">
 
                 {{#each document.armors as |item|}}
-                <li data-fsid="{{fsid item}}"">
+                <li data-fsid="{{fsid item}}">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
                     <a><i></i></a>
@@ -251,17 +251,51 @@
             </ol>
 
         </div>
-<!--
-        <div class="equipement">
+
+       <div class="ressources">
 
             <div class="header">
                 <img class="puce"/>
                 <img class="separator"/>
-                <label class="title">{{translate "equipement"}}</label>
+                <label class="title">{{translate "ressources"}}</label>
             </div>
 
+            <ol class="body">
+
+                {{#if (eq document.type 'figure')}}
+                {{#each document.passes as |item|}}
+                {{#if (ne item.degre 0)}}
+                <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
+                    <a><i></i></a>
+                    <label data-action="open">{{item.name}}</label>
+                    <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    <label class="degre">{{item.degre}}</label>
+                </li>
+                {{/if}}
+                {{/each}}
+                {{/if}}
+
+                {{#if (eq document.type 'figurant')}}
+                {{#each document.items as |item id|}}
+                {{#if (eq item.type 'passe')}}
+                <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
+                    <a data-action="delete"><i class="fas fa-trash"></i></a>
+                    <label data-action="open">{{item.name}}</label>
+                    <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        name=(concat 'items.' (fsid item) '.system.degre')
+                        type="number"
+                        value=item.system.degre
+                    }}
+                </li>
+                {{/if}}
+                {{/each}}
+                {{/if}}
+
+            </ol>
+
         </div>
--->
+
     </div>
 
     <div class="droite">

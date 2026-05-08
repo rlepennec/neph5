@@ -13,6 +13,12 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         position: {
             width: 1000,
             height: 800
+        },
+        deleteHandlers: {
+            "passe": NephilimActorSheet._onDeleteItem
+        },
+        dropHandlers: {
+            "passe": NephilimActorSheet._onDropItem,
         }
     }
 
@@ -45,6 +51,22 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             this.render(true);
         }
     }
+
+    /**
+     * Update the specified ressource.
+     * @param event The click event.
+     */
+    async _onEdit(event, document) {
+
+
+        //const id = $(event.currentTarget).closest(".ressource").data("id");
+        const degre = parseInt(event.currentTarget.value);
+        //const item = this.actor.items.get(id);
+        if (!isNaN(degre)) {
+            await document.update({"system.degre": degre});
+        }
+    }
+
 
     /**
      * @override
