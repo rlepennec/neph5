@@ -43,7 +43,9 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
             formData.object['system.id'] = CustomHandlebarsHelpers.UUID();
         }
 
-        // Update embedded items
+        // Update every embedded items
+        // Input name must be defined as follow:
+        // items.NephilimIdentifier.system.propertyName 
         for (const [key, value] of Object.entries(formData.object)) {
             if (key.startsWith("items.")) {
                 const data = key.replace(/^items\./, "").split(".system");
