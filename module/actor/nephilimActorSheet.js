@@ -2,17 +2,9 @@ import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 
-
 import { AbstractFeature } from "../../feature/core/abstractFeature.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
-import { Constants } from "../common/constants.js";
-import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { Melee } from "../../feature/combat/core/melee.js";
-import { Naturelle } from "../../feature/combat/core/naturelle.js";
-import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
-import { Viser } from "../../feature/combat/manoeuver/viser.js";
-import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
 export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
@@ -63,19 +55,11 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      * @param html The html content to listen
      */
     activateCombatListeners(html) {
-
-        html.find('div[data-tab="combat"] .armes .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-
-
-        html.find('div[data-tab="combat"] .armures .delete.fa-trash').click(this._onDeleteEmbeddedEquipment.bind(this));
-
         html.find('div[data-tab="combat"] .etat input').click(this._onEffect.bind(this));
-
         html.find('div[data-tab="combat"] .macro').each((i, li) => {
             li.setAttribute("draggable", true);
             li.addEventListener("dragstart", event => this.onAddMacro(event), false);
         });
-
     }
 
 
@@ -276,32 +260,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         event.dataTransfer.setData('text/plain', JSON.stringify(data));
 
     }
-
-    /**
-     * Edit the specified embedded equipment item.
-     * @param event The click event.
-     */
-    async _onEditEmbeddedEquipment(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents("li");
-        const id = li.data("id");
-        const item = this.document.getEmbeddedDocument('Item', id);
-        item.sheet.render(true);
-    }
-
-    /**
-     * Delete the specified embedded equipment item.
-     * @param event The click event.
-     */
-    async _onDeleteEmbeddedEquipment(event) {
-        event.preventDefault();
-        if (this.document.locked) return;
-        const li = $(event.currentTarget).parents("li");
-        const id = li.data("id");
-        const item = this.document.getEmbeddedDocument('Item', id);
-        await this.document.deleteEmbeddedItem(item);
-    }
-
 
 
     /**
