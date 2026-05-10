@@ -15,6 +15,9 @@ export const CombatantMixinSheet = Base => {
 			actions: {
 				rollWeapon: CombatantSheet._onRollWeapon,
 				rollWrestle: CombatantSheet._onRollWrestle,
+				setDesoriente: CombatantSheet._onSetDesoriente,
+				setImmobilise: CombatantSheet._onSetImmobilise,
+				setProjete: CombatantSheet._onSetProjete,
 				useArmor: CombatantSheet._onUseEquipment,
 				useWeapon: CombatantSheet._onUseEquipment
 			},
@@ -79,6 +82,38 @@ export const CombatantMixinSheet = Base => {
 					await this.document.toggleEquipmentUsage(document);
 					break;
 			}
+		}
+
+
+		/**
+		 * Toggle the specified effect which can be restrain, prone and stun.
+		 * @param event The event to handle.
+		 */
+		static async _onSetDesoriente(event, target) {
+			event.preventDefault();
+			await this.document.updateEffect("stun");
+		}
+
+		/**
+		 * Toggle the specified effect which can be restrain, prone and stun.
+		 * @param event The event to handle.
+		 */
+		static async _onSetImmobilise(event, target) {
+			event.preventDefault();
+			const etat = $(event.currentTarget).parents(".etat");
+			const id = etat.data("id");
+			await this.document.updateEffect(id);
+		}
+
+		/**
+		 * Toggle the specified effect which can be restrain, prone and stun.
+		 * @param event The event to handle.
+		 */
+		static async _onSetProjete(event, target) {
+			event.preventDefault();
+			const etat = $(event.currentTarget).parents(".etat");
+			const id = etat.data("id");
+			await this.document.updateEffect(id);
 		}
 
 		#combatActivated() {

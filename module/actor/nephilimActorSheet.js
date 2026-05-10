@@ -1,5 +1,6 @@
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { NephilimActor } from "./nephilimActor.js"
+import { NephilimItem } from "../item/nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 
 import { AbstractFeature } from "../../feature/core/abstractFeature.js";
@@ -71,7 +72,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     static async _onDropItem(event, document) {
         event.preventDefault();
         const data = document.toObject();
-        delete data._id;
+        NephilimItem.initializeEmbedded(data);
         const created = await this.document.createEmbeddedDocuments("Item", [data]);
     }
 
@@ -262,16 +263,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     }
 
 
-    /**
-     * Toggle the specified effect which can be restrain, prone and stun.
-     * @param event The event to handle.
-     */
-    async _onEffect(event) {
-        event.preventDefault();
-        const etat = $(event.currentTarget).parents(".etat");
-        const id = etat.data("id");
-        await this.document.updateEffect(id);
-    }
 
     /**
      * Create the specified feature item.

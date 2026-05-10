@@ -49,4 +49,8 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
         }
     }
 
+    static initializeEmbedded(data) {
+        data.system.degre = 0;
+    }
+
 }

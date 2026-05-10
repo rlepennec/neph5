@@ -1324,6 +1324,40 @@
   background-color: aquamarine;
   height: 100%;
 }
+.tab.combat .droite .caracteristiques ol {
+  list-style: none;
+}
+.tab.combat .droite .caracteristiques ol li {
+  display: flex;
+  flex-direction: row;
+}
+.tab.combat .droite .caracteristiques ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+.tab.combat .droite .caracteristiques ol li a {
+  width: 10%;
+}
+.tab.combat .droite .caracteristiques ol li input {
+  width: 10%;
+}
+.tab.combat .droite .caracteristiques ol li label {
+  width: 70%;
+}
+.tab.combat .droite .etats ol {
+  list-style: none;
+}
+.tab.combat .droite .etats ol li {
+  display: flex;
+  flex-direction: row;
+}
+.tab.combat .droite .etats ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+.tab.combat .droite .etats ol li div label {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
 .tab.description {
   display: unset;
 }
@@ -1747,6 +1781,40 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   width: 40%;
   background-color: aquamarine;
   height: 100%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol {
+  list-style: none;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li {
+  display: flex;
+  flex-direction: row;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li a {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li input {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li label {
+  width: 70%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .etats ol {
+  list-style: none;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .etats ol li {
+  display: flex;
+  flex-direction: row;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .etats ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .etats ol li div label {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
 }
 form.nephilim.item section.window-content > section {
   display: flex;

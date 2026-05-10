@@ -14,11 +14,18 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             width: 1000,
             height: 800
         },
+        actions: {
+            rollKa: FigurantSheet._onRollKa,
+            rollMenace: FigurantSheet._onRollMenace,
+            rollVecu: FigurantSheet._onRollVecu
+        },
         deleteHandlers: {
-            "passe": NephilimActorSheet._onDeleteItem
+            "passe": NephilimActorSheet._onDeleteItem,
+            "vecu": NephilimActorSheet._onDeleteItem
         },
         dropHandlers: {
             "passe": NephilimActorSheet._onDropItem,
+            "vecu": NephilimActorSheet._onDropItem
         }
     }
 
@@ -71,6 +78,7 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
     /**
      * @override
      */
+    /*
     activateListeners(html) {
 
         super.activateListeners(html);
@@ -88,6 +96,7 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         html.find('div[data-tab="combat"] .ressource input').change(this._onDegreRessource.bind(this));
         html.find('div[data-tab="combat"] .ressource .delete').click(this._onDeleteRessource.bind(this));
     }
+        */
 
     /**
      * @override
@@ -127,26 +136,7 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
     }
 
-    /**
-     * Edit the specified item.
-     * @param event The click event.
-     */
-    async _onEditVecu(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".vecu").data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        await item.sheet.render(true);
-    }
 
-    /**
-     * Delete the specified item.
-     * @param event The click event.
-     */
-    async _onDeleteVecu(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".vecu").data("id");
-        await this.actor.deleteEmbeddedDocuments('Item', [id]);
-    }
 
     /**
      * Roll the specified ressource.
@@ -159,16 +149,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
     }
 
-    /**
-     * Update the specified ressource.
-     * @param event The click event.
-     */
-    async _onDegreRessource(event) {
-        const id = $(event.currentTarget).closest(".ressource").data("id");
-        const degre = parseInt(event.currentTarget.value);
-        const item = this.actor.items.get(id);
-        await item.update({"system.degre": degre});
-    }
 
     /**
      * Edit the specified item.
@@ -181,15 +161,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         await item.sheet.render(true);
     }
 
-    /**
-     * Delete the specified item.
-     * @param event The click event.
-     */
-    async _onDeleteRessource(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".ressource").data("id");
-        await this.actor.deleteEmbeddedDocuments('Item', [id]);
-    }
 
     /**
      * Drop the specified object.
@@ -252,12 +223,22 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
 
     // ---------------------------------------- Roll handlers ----------------------------------------
 
-    async _onRollKa(event) {
-        return await new Ka(this.actor, null, null).initializeRoll();
+    static async _onRollKa(event, target) {
+        return await new Ka(this.document, null, null).initializeRoll();
     }
 
-    async _onRollMenace(event) {
-        return await new Menace(this.actor).initializeRoll();
+    static async _onRollMenace(event, target) {
+        return await new Menace(this.document).initializeRoll();
+    }
+
+    static async _onRollVecu(event, target) {
+        event.preventDefault();
+        const document = new DocumentIdentifier(target).toDocument();
+        await new FeatureBuilder(this.document)
+            .withScope('actor')
+            .withEmbeddedItem(document.id)
+            .create()
+            .initializeRoll();
     }
 
 }

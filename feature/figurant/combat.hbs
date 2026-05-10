@@ -312,38 +312,37 @@
             <ol>
 
                 <li>
-                    <img class="circle"/>
+                    <a data-action="rollMenace"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    <label>{{translate "menace"}}</label>
                     {{> "systems/neph5e/templates/input.hbs"
                         name="system.menace"
                         type="number"
                         value=document.system.menace
                     }}
-                    <label>{{translate "menace"}}</label>
-                    <a data-action="rollMenace"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    <a><i></i></a>
                 </li>
 
                 <li>
-                    <img class="circle"/>
+                    <a data-action="rollKa"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    <label>{{translate "ka"}}</label>
                     {{> "systems/neph5e/templates/input.hbs"
                         name="system.ka"
                         type="number"
                         value=document.system.ka
                     }}
-                    <label>{{translate "ka"}}</label>
-                    <a data-action="rollKa"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    <a><i></i></a>
                 </li>
 
                 {{#each document.items as |item id|}}
                 {{#if (eq item.type 'vecu')}}
                 <li data-fsid="{{fsid item}}">
-                    <img class="circle"/>
+                    <a data-action="rollVecu"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    <label data-action="open">{{item.name}}</label>
                     {{> "systems/neph5e/templates/input.hbs"
-                        name="item.system.degre"
+                        name=(concat 'items.' (fsid item) '.system.degre')
                         type="number"
                         value=item.system.degre
                     }}
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="roll"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                 </li>
                 {{/if}}
@@ -364,7 +363,7 @@
 
             <ol>
 
-                <li data-id="stun">
+                <li data-action="setDesoriente" data-id="stun">
                     {{> "systems/neph5e/templates/checkbox.hbs"
                         name="desoriente"
                         type="boolean"
@@ -373,7 +372,7 @@
                     <label>{{translate "desoriente"}}</label>
                 </li>
 
-                <li data-id="restrain">
+                <li data-action="setImmobilise" data-id="restrain">
                     {{> "systems/neph5e/templates/checkbox.hbs"
                         name="immobilise"
                         type="boolean"
@@ -382,7 +381,7 @@
                     <label>{{translate "immobilise"}}</label>
                 </li>
 
-                <li data-id="prone">
+                <li data-action="setProjete" data-id="prone">
                     {{> "systems/neph5e/templates/checkbox.hbs"
                         name="projete"
                         type="boolean"

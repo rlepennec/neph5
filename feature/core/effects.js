@@ -3,6 +3,7 @@ export class ActiveEffects {
     static get DESORIENTE() {
         return {
             id: 'stun',
+            name: 'Stunned',
             label: 'EFFECT.StatusStunned',
             icon: 'icons/svg/daze.svg',
             duration: {
