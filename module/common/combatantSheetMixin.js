@@ -91,7 +91,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetDesoriente(event, target) {
 			event.preventDefault();
-			await this.document.updateEffect("stun");
+			await this.document.setActiveEffect("Stunned");
 		}
 
 		/**
@@ -100,9 +100,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetImmobilise(event, target) {
 			event.preventDefault();
-			const etat = $(event.currentTarget).parents(".etat");
-			const id = etat.data("id");
-			await this.document.updateEffect(id);
+			await this.document.setActiveEffect("Restrained");
 		}
 
 		/**
@@ -111,9 +109,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetProjete(event, target) {
 			event.preventDefault();
-			const etat = $(event.currentTarget).parents(".etat");
-			const id = etat.data("id");
-			await this.document.updateEffect(id);
+			await this.document.setActiveEffect("Prone");
 		}
 
 		#combatActivated() {

@@ -704,16 +704,16 @@ export class NephilimActor extends Actor {
 
     }
 
-    async updateEffect(id) {
-        await ActiveEffects.toggle(this, ActiveEffects.get(id));
+    async setActiveEffect(name) {
+        await ActiveEffects.toggle(this, ActiveEffects.get(name));
     }
 
-    async activateEffect(id) {
-        await ActiveEffects.activate(this, ActiveEffects.get(id));
+    async activateEffect(name) {
+        await ActiveEffects.activate(this, ActiveEffects.get(name));
     }
 
-    async deactivateEffect(id) {
-        await ActiveEffects.deactivate(this, ActiveEffects.get(id));
+    async deactivateEffect(name) {
+        await ActiveEffects.deactivate(this, ActiveEffects.get(name));
     }
 
     /**

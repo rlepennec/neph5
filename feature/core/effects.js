@@ -2,46 +2,38 @@ export class ActiveEffects {
 
     static get DESORIENTE() {
         return {
-            id: 'stun',
             name: 'Stunned',
-            label: 'EFFECT.StatusStunned',
-            icon: 'icons/svg/daze.svg',
+            img: 'systems/neph5e/assets/icons/svg/daze.svg',
             duration: {
                 rounds: 1
-            },
-            sentence: 'NEPH5E.estDesoriente'
+            }
         }
     }
 
     static get IMMOBILISE() {
         return {
-            id: 'restrain',
-            label: 'EFFECT.StatusRestrained',
-            icon: 'icons/svg/net.svg',
+            name: 'Restrained',
+            img: 'systems/neph5e/assets/icons/svg/net.svg',
             duration: {
                 seconds: 1
-            },
-            sentence: 'NEPH5E.estImmobilise'
+            }
         }
     }
 
     static get PROJETE() {
         return {
-            id: 'prone',
-            label: 'EFFECT.StatusProne',
-            icon: 'icons/svg/falling.svg',
+            name: 'Prone',
+            img: 'systems/neph5e/assets/icons/svg/falling.svg',
             duration: {
                 seconds: 1
-            },
-            sentence: 'NEPH5E.estProjete'
+            }
         }
     }
 
     static get MORT() {
         return {
-            id: 'dead',
-            label: 'EFFECT.StatusDead',
-            icon: 'icons/svg/skull.svg',
+            name: 'Dead',
+            img: 'systems/neph5e/assets/icons/svg/skull.svg',
             duration: {
                 seconds: 1
             }
@@ -71,11 +63,11 @@ export class ActiveEffects {
     }
 
     /**
-     * @param id The identifier of the effect.
+     * @param name The name of the active effect.
      * @returns the active effect.
      */
-    static get(id) {
-        return ActiveEffects.effects().find(e => e.id === id);
+    static get(name) {
+        return ActiveEffects.effects().find(e => e.name === name);
     }
 
     /**
@@ -84,7 +76,7 @@ export class ActiveEffects {
      * @returns true if the effect is active for the specified actor.
      */
     static isActive(actor, effect) {
-        return actor != null && actor.effects.find(e => e.label === effect.label) != null;
+        return actor != null && actor.appliedEffects.find(e => e.name === effect.name) != null;
     }
 
     /**
@@ -92,8 +84,8 @@ export class ActiveEffects {
      * @param effect The effect object to remove.
      */
     static async delete(actor, effect) {
-        const ids = actor.effects.filter(e => e.label === effect.label).map(e => e.id);
-        await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
+        const object = actor.appliedEffects.find(e => e.name === effect.name);
+        if (object) await object.delete();
     }
 
     /**
