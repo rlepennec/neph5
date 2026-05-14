@@ -168,7 +168,6 @@
 
         </div>
 
-
         <div class="armes">
 
             <div class="header">
@@ -198,6 +197,7 @@
                 {{/each}}
 
                 {{#each weapons.melee as |item|}}
+                {{log item}}
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
@@ -402,48 +402,46 @@
                 <label class="title">{{translate "bonus"}}</label>
             </div>
 
-            <img class='losange'/>
+            <ol>
 
-            <div class="mouvement">
-                <label>{{translate "mouvement"}}</label>
-                <img class="circle"/>
-                {{> "systems/neph5e/templates/input.hbs"
-                    name="system.bonus.mouvement"
-                    type="number"
-                    value=document.system.bonus.mouvement
-                }}
-            </div>
+                <li>
+                    <label>{{translate "mouvement"}}</label>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        name="system.bonus.mouvement"
+                        type="number"
+                        value=document.system.bonus.mouvement
+                    }}
+                </li>
 
-             <div>
-                <label>{{translate "initiative"}}</label>
-                <img class="circle"/>
-                {{> "systems/neph5e/templates/input.hbs"
-                    name="system.bonus.initiative"
-                    type="number"
-                    value=document.system.bonus.initiative
-                }}
-            </div>
+                <li>
+                    <label>{{translate "initiative"}}</label>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        name="system.bonus.initiative"
+                        type="number"
+                        value=document.system.bonus.initiative
+                    }}
+                </li>
 
 
-            <div>
-                <label>{{translate "dommages"}}</label>
-                <img class="circle"/>
-                {{> "systems/neph5e/templates/input.hbs"
-                    name="system.bonus.dommage"
-                    type="number"
-                    value=document.system.bonus.dommage
-                }}
-            </div>
+                <li>
+                    <label>{{translate "dommages"}}</label>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        name="system.bonus.dommage"
+                        type="number"
+                        value=document.system.bonus.dommage
+                    }}
+                </li>
 
-            <div>
-                <label>{{translate "protection"}}</label>
-                <img class="circle"/>
-                {{> "systems/neph5e/templates/input.hbs"
-                    name="system.bonus.protection"
-                    type="number"
-                    value=document.system.bonus.protection
-                }}
-            </div>
+                <li>
+                    <label>{{translate "protection"}}</label>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        name="system.bonus.protection"
+                        type="number"
+                        value=document.system.bonus.protection
+                    }}
+                </li>
+
+            </ol>
 
         </div>
 

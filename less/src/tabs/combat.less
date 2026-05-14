@@ -35,10 +35,6 @@
         flex-direction: column;
         width: 60%;
 
-        // To delete
-        background-color:rgb(157, 167, 132);
-        height: 100%;
-
         .sante {
 
             .body {
@@ -293,10 +289,6 @@
         flex-direction: column;
         width: 40%;
 
-        // To delete
-        background-color:aquamarine;
-        height: 100%;
-
         .caracteristiques {
 
             ol {
@@ -357,11 +349,30 @@
 
         }
 
-        .capacites {
-
-        }
-
         .bonus {
+
+            ol {
+                list-style: none;
+
+                li {
+                    display: flex;
+                    flex-direction: row;
+
+                    &:hover {
+                        text-shadow: 0px 0px 1px var(--font-color);
+                    }
+
+                    input {
+                        width: 10%;
+                    }
+
+                    label {
+                        width: 70%;
+                    }
+
+                }
+
+            }
 
         }
 

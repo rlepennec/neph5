@@ -1132,8 +1132,6 @@
   display: flex;
   flex-direction: column;
   width: 60%;
-  background-color: #9da784;
-  height: 100%;
 }
 .tab.combat .gauche .sante .body {
   position: relative;
@@ -1321,8 +1319,6 @@
   display: flex;
   flex-direction: column;
   width: 40%;
-  background-color: aquamarine;
-  height: 100%;
 }
 .tab.combat .droite .caracteristiques ol {
   list-style: none;
@@ -1357,6 +1353,22 @@
   width: 20px;
   height: 20px;
   margin-right: 20px;
+}
+.tab.combat .droite .bonus ol {
+  list-style: none;
+}
+.tab.combat .droite .bonus ol li {
+  display: flex;
+  flex-direction: row;
+}
+.tab.combat .droite .bonus ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+.tab.combat .droite .bonus ol li input {
+  width: 10%;
+}
+.tab.combat .droite .bonus ol li label {
+  width: 70%;
 }
 .tab.description {
   display: unset;
@@ -1590,8 +1602,6 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   display: flex;
   flex-direction: column;
   width: 60%;
-  background-color: #9da784;
-  height: 100%;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .body {
   position: relative;
@@ -1779,8 +1789,6 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   display: flex;
   flex-direction: column;
   width: 40%;
-  background-color: aquamarine;
-  height: 100%;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol {
   list-style: none;
@@ -1815,6 +1823,22 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   width: 20px;
   height: 20px;
   margin-right: 20px;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
+  list-style: none;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li {
+  display: flex;
+  flex-direction: row;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li input {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li label {
+  width: 70%;
 }
 form.nephilim.item section.window-content > section {
   display: flex;
