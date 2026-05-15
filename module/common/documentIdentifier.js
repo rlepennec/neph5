@@ -6,9 +6,19 @@
 export class DocumentIdentifier {
 
     /**
-     * The parent foundry document which contains the foundry document to identify.
+     * The scene which contains the token of the actor which owns the document.
      */
-    #parent = null;
+    #scene = null;
+
+        /**
+     * The token of the actor which onws the document.
+     */
+    #token = null;
+
+    /**
+     * The actor which owns the document.
+     */
+    #actor = null;
 
     /**
      * The foundry document name: Item, Actor, ... defined in game.collections
@@ -161,7 +171,21 @@ export class DocumentIdentifier {
      * @returns the full system identifier of the document: ["World"|ParentDocumentName.ParentId].documentName.id.type.sid
      */
     get fsid() {
-        return this.isNull() ? null : (this.#parent == null ? "World" : this.#parent.documentName + "." + this.#parent.id) + "." + this.uuid + "." + this.#type + "." + this.#sid; 
+        if (this.isNull()) {
+            return null;
+        }
+    
+        let owner = "";
+        if (this.#actor == null) {
+            owner = "World";
+        }
+        if (this.#scene != null) {
+            owner = this.#scene.documentName + "." + this.#scene.id + "." + this.#token.documentName + "." + this.#token.id + "." + this.#actor.documentName  + "." + this.#actor.id;
+        } else {
+            owner =  this.#actor.documentName + "." + this.#actor.id;
+        }
+
+        return owner + "." + this.uuid + "." + this.#type + "." + this.#sid; 
     }
 
     /**
@@ -196,10 +220,10 @@ export class DocumentIdentifier {
     toDocument() {
         if (this.isNull()) {
             return null;
-        } else if (this.#parent == null) {
+        } else if (this.#actor == null) {
             return fromUuidSync(this.uuid);
         } else {
-            return this.#parent.getEmbeddedDocument(this.#documentName, this.#id);
+            return this.#actor.getEmbeddedDocument(this.#documentName, this.#id);
         }
     }
 
@@ -228,7 +252,23 @@ export class DocumentIdentifier {
                 this.#type = words.pop();
                 this.#id = words.pop();
                 this.#documentName = words.pop();
-                this.#parent = words.length === 2 ? game.collections.get(words.at(0)).get(words.at(1)) : null;
+                switch (words.length) {
+                    case 0:
+                        this.#scene = null;
+                        this.#token = null;
+                        this.#actor = null;
+                        break;
+                    case 2:
+                        this.#scene = null;
+                        this.#token = null;
+                        this.#actor = game.actors.get(words.at(1));
+                        break;
+                    case 6:
+                        this.#scene = game.scenes.get(words.at(1));
+                        this.#token = this.#scene.tokens.get(words.at(3))
+                        this.#actor = this.#token.actor;
+                        break;
+                }
                 this.#name = this.toDocument().name;
                 break;
 
@@ -238,7 +278,9 @@ export class DocumentIdentifier {
                 this.#type = source.type;
                 this.#id = source.id;
                 this.#documentName = source.documentName;
-                this.#parent = source.parent;
+                this.#actor = source.parent;
+                this.#token = this.#actor == null ? null : this.#actor.token;
+                this.#scene = this.#token == null ? null : this.#token.scene;
                 this.#name = source.name;
                 break;
 
@@ -247,7 +289,9 @@ export class DocumentIdentifier {
                 this.#type = null;
                 this.#id = null;
                 this.#documentName = null;
-                this.#parent = null;
+                this.#scene = null;
+                this.#token = null;
+                this.#actor = null;
                 this.#name = null;
                 break;
 
