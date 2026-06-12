@@ -1,11 +1,22 @@
-export class AbstractDialog extends FormApplication {
+// [V14] FormApplication est supprimé en v14. Son équivalent pour les dialogs avec template
+//       HBS est HandlebarsApplicationMixin(ApplicationV2), accessible via foundry.applications.api.
+const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api;
+
+// [V14] La classe hérite désormais de HandlebarsApplicationMixin(ApplicationV2)
+//       au lieu de FormApplication.
+export class AbstractDialog extends HandlebarsApplicationMixin(ApplicationV2) {
 
     /**
      * Constructor.
      * @param actor The emiter of the dialog.
      */
     constructor(actor) {
-        super(actor);
+        // [V14] super() ne prend plus d'objet cible : ApplicationV2 ne gère plus
+        //       de "document" ou "object" passé au constructeur comme FormApplication.
+        super();
+        // [V14] L'acteur est stocké manuellement dans this.actor.
+        //       En v12, il était accessible via this.object (injecté par FormApplication).
+        this.actor = actor;
         this.data = null;
     }
 
@@ -14,7 +25,9 @@ export class AbstractDialog extends FormApplication {
      * @returns the instance.
      */
     withTitle(title) {
-        this.options.title = title;
+        // [V14] Le titre est désormais dans this.options.window.title
+        //       au lieu de this.options.title.
+        this.options.window.title = title;
         return this;
     }
 
@@ -23,7 +36,11 @@ export class AbstractDialog extends FormApplication {
      * @returns the instance.
      */
     withTemplate(template) {
-        this.options.template = template;
+        // [V14] Le template est désormais déclaré dans static PARTS (convention
+        //       HandlebarsApplicationMixin). Pour le surcharger à l'instance,
+        //       on modifie this.constructor.PARTS qui est la référence lue au moment
+        //       du rendu. "main" est le nom du part déclaré dans la sous-classe concrète.
+        this.constructor.PARTS.main.template = template;
         return this;
     }
 
@@ -41,8 +58,10 @@ export class AbstractDialog extends FormApplication {
      * @returns the instance.
      */
     withHeight(height) {
-        this.options.height = height;
-        this.position.height = height;
+        // [V14] En v12, on écrivait directement dans this.options.height et this.position.height.
+        //       En v14, this.position est en lecture seule avant le premier render.
+        //       La méthode officielle est setPosition(), qui fonctionne avant et après le render.
+        this.setPosition({ height });
         return this;
     }
 
@@ -51,24 +70,78 @@ export class AbstractDialog extends FormApplication {
      * @returns the instance.
      */
     withWidth(width) {
-        this.options.width = width;
-        this.position.width = width;
+        // [V14] Même raison que withHeight : on passe par setPosition().
+        this.setPosition({ width });
         return this;
     }
 
     /**
      * @returns the default options to manage the dialog.
      */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {});
+    // [V14] defaultOptions (static getter retournant foundry.utils.mergeObject(...))
+    //       est remplacé par DEFAULT_OPTIONS, une static property (champ de classe).
+    //       La structure interne change aussi :
+    //         - le titre va dans window.title (et non à la racine)
+    //         - les templates sont déclarés par "parts" nommés dans chaque sous-classe
+    //       "parts" n'est PAS déclaré ici : Foundry fusionne DEFAULT_OPTIONS en profondeur
+    //       sur toute la chaîne d'héritage. Un "parts.main.template" vide défini dans la
+    //       classe abstraite écraserait le template réel déclaré dans la sous-classe concrète.
+    //       Chaque sous-classe concrète est donc responsable de déclarer ses propres "parts".
+    static DEFAULT_OPTIONS = {
+        window: {
+            title: "",
+            resizable: true
+        }
+    };
+
+    /**
+     * Enregistre un ou plusieurs événements sur un ou plusieurs éléments du DOM.
+     * Disponible dans toutes les sous-classes pour éviter la répétition du pattern
+     * querySelector + addEventListener.
+     * @param {HTMLElement} root     - Racine de recherche.
+     * @param {string}      selector - Sélecteur CSS.
+     * @param {string[]}    events   - Liste de types d'événements.
+     * @param {Function}    handler  - Handler à lier.
+     * @param {boolean}     all      - Si true, utilise querySelectorAll (plusieurs éléments).
+     */
+    // [V14] Déplacé depuis ActionDialog vers AbstractDialog pour être réutilisable
+    //       par toutes les sous-classes. jQuery (html.find().on()) n'est plus disponible
+    //       en ApplicationV2 ; ce helper encapsule le DOM natif équivalent.
+    _on(root, selector, events, handler, all = false) {
+        const elements = all
+            ? root.querySelectorAll(selector)
+            : [root.querySelector(selector)].filter(Boolean);
+        for (const el of elements) {
+            for (const event of events) {
+                el.addEventListener(event, handler.bind(this));
+            }
+        }
+    }
+
+    /**
+     * Met à jour le textContent d'un élément identifié par son sélecteur CSS.
+     * Disponible dans toutes les sous-classes pour éviter la répétition du pattern
+     * querySelector + textContent.
+     * @param {string} selector - Sélecteur CSS.
+     * @param {*}      value    - Valeur à afficher.
+     */
+    // [V14] Déplacé depuis ActionDialog vers AbstractDialog pour être réutilisable
+    //       par toutes les sous-classes. Remplace $('#id').html(...) de jQuery.
+    //       On utilise textContent (et non innerHTML) pour éviter toute injection HTML.
+    _setText(selector, value) {
+        const el = this.element?.querySelector(selector);
+        if (el) el.textContent = value;
     }
 
     /**
      * @override
      */
-    getData(options) {
+    // [V14] getData(options) est remplacé par _prepareContext(options), qui est async.
+    //       Le contexte retourné est passé directement au template HBS.
+    //       this.object.id devient this.actor.id (voir constructeur).
+    async _prepareContext(options) {
         const data = foundry.utils.duplicate(this.data);
-        data.owner =  this.object.id;
+        data.owner = this.actor.id;
         data.opposed = false;
         return data;
     }

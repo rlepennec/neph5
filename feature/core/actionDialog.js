@@ -9,7 +9,6 @@ export class ActionDialog extends AbstractDialog {
      */
     constructor(actor, action) {
         super(actor);
-        this.actor = actor;
         this.action = action;
         this.data = null;
         this.mnemos = 0;
@@ -63,26 +62,45 @@ export class ActionDialog extends AbstractDialog {
     /**
      * @returns the default options to manage the dialog.
      */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["nephilim", "sheet"],
-            template: "systems/neph5e/feature/core/action.hbs",
+    // [V14] DEFAULT_OPTIONS remplace defaultOptions (voir AbstractDialog).
+    //       Foundry fusionne automatiquement les DEFAULT_OPTIONS de toute la chaîne
+    //       d'héritage : le spread manuel n'est donc pas nécessaire.
+    //       La position initiale (width/height) est déclarée dans la clé "position"
+    //       et non à la racine des options comme en v12.
+    //       Les templates sont déclarés dans static PARTS (voir ci-dessous),
+    //       conformément à la convention ApplicationV2.
+    static DEFAULT_OPTIONS = {
+        classes: ["nephilim", "sheet"],
+        // [V14] width et height ne sont plus à la racine des options mais dans "position".
+        position: {
             width: 500,
-            height: "auto",
-            choices: {},
-            allowCustom: true,
-            minimum: 0,
-            maximum: null,
-            closeOnSubmit: false
-        });
-    }
+            height: "auto"
+        }
+    };
+
+    /**
+     * @returns the parts of the dialog.
+     */
+    // [V14] static PARTS est la convention officielle de HandlebarsApplicationMixin
+    //       pour déclarer les templates à rendre. Chaque clé est un identifiant de "part"
+    //       (ici "main") associé à un chemin de template HBS.
+    //       Cela remplace à la fois options.template (FormApplication v12) et
+    //       l'ancienne déclaration dans DEFAULT_OPTIONS.parts.
+    static PARTS = {
+        main: {
+            // Template par défaut ; peut être surchargé via withTemplate().
+            template: "systems/neph5e/feature/core/action.hbs"
+        }
+    };
 
     /**
      * @override
      */
-    getData(options) {
+    // [V14] getData() devient _prepareContext() (async). Voir AbstractDialog.
+    //       this.object.id devient this.actor.id.
+    async _prepareContext(options) {
         const data = foundry.utils.duplicate(this.data);
-        data.owner = this.object.id;
+        data.owner = this.actor.id;
         data.difficulty = this.action.difficulty(this.parameters());
         return data;
     }
@@ -90,23 +108,35 @@ export class ActionDialog extends AbstractDialog {
     /**
      * @override
      */
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find("#modifier").change(this._onSetModifier.bind(this));
-        html.find("#modifier").on('input', this._onSetModifier.bind(this));
-        html.find("#fraternite").change(this._onSelectFraternite.bind(this));
-        html.find("#blessures").change(this._onSelectBlessures.bind(this));
-        html.find("#approche").change(this._onSelectApproche.bind(this));
-        html.find("#element").change(this._onSelectElement.bind(this));
-        html.find("#opposition").change(this._onSetOpposition.bind(this));
-        html.find("#opposition").on('input', this._onSetOpposition.bind(this));
-        html.find("#condition").change(this._onSetCondition.bind(this));
-        html.find("#aide").change(this._onSetAide.bind(this));
-        html.find("#aide").on('input', this._onSetAide.bind(this));
-        html.find("#metamorphe").change(this._onSelectMetamorphe.bind(this));
-        html.find(".mnemos-modifier").change(this._onSelectMnemos.bind(this));
-        html.find("#roll").click(this._onRoll.bind(this));
-        html.find("#details").click(this._onDetails.bind(this));
+    // [V14] activateListeners(html) est remplacé par _onRender(context, options).
+    //       Différences majeures :
+    //         1. Le paramètre n'est plus un objet jQuery mais le contexte + options V2.
+    //         2. Le DOM est accessible via this.element (HTMLElement natif).
+    //         3. _onRender est appelé après chaque rendu (y compris les re-renders partiels).
+    //       Les helpers _on() et _setText() utilisés ici sont définis dans AbstractDialog
+    //       afin d'être disponibles pour toutes les sous-classes.
+    _onRender(context, options) {
+        super._onRender(context, options);
+        // [V14] this.element remplace le paramètre html (jQuery) de activateListeners.
+        //       C'est le root HTMLElement de la fenêtre ApplicationV2.
+        const html = this.element;
+
+        // [V14] html.find(...).change(...) et .on('input', ...) sont remplacés par
+        //       addEventListener via le helper _on() (voir ci-dessous).
+        this._on(html, "#modifier",       ["change", "input"], this._onSetModifier);
+        this._on(html, "#fraternite",     ["change"],          this._onSelectFraternite);
+        this._on(html, "#blessures",      ["change"],          this._onSelectBlessures);
+        this._on(html, "#approche",       ["change"],          this._onSelectApproche);
+        this._on(html, "#element",        ["change"],          this._onSelectElement);
+        this._on(html, "#opposition",     ["change", "input"], this._onSetOpposition);
+        this._on(html, "#condition",      ["change"],          this._onSetCondition);
+        this._on(html, "#aide",           ["change", "input"], this._onSetAide);
+        this._on(html, "#metamorphe",     ["change"],          this._onSelectMetamorphe);
+        // [V14] Le dernier argument "true" active querySelectorAll pour les sélecteurs
+        //       multiples (classe CSS au lieu d'id).
+        this._on(html, ".mnemos-modifier",["change"],          this._onSelectMnemos, true);
+        this._on(html, "#roll",           ["click"],           this._onRoll);
+        this._on(html, "#details",        ["click"],           this._onDetails);
     }
 
     /**
@@ -115,7 +145,9 @@ export class ActionDialog extends AbstractDialog {
      */
     async _onDetails(event) {
         event.preventDefault();
-        $(".hiddable").toggle();
+        // [V14] $(".hiddable").toggle() (jQuery) est remplacé par classList.toggle().
+        //       Requiert que la CSS du système définisse .hidden { display: none }.
+        this.element.querySelectorAll(".hiddable").forEach(el => el.classList.toggle("hidden"));
     }
 
     /**
@@ -126,8 +158,9 @@ export class ActionDialog extends AbstractDialog {
         event.preventDefault();
         const parameters = this.parameters();
         const difficulty = this.action.difficulty(parameters);
-        $('#difficulty').html(difficulty + "%");
-        $('#sliderModifier').html("<label id='sliderModifier'>" + parameters.modifier + "<label>");
+        // [V14] $('#difficulty').html(...) remplacé par _setText() (DOM natif, pas jQuery).
+        this._setText("#difficulty", difficulty + "%");
+        this._setText("#sliderModifier", parameters.modifier);
     }
 
     /**
@@ -137,23 +170,21 @@ export class ActionDialog extends AbstractDialog {
     async _onSelectFraternite(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const fraternite = parameters.fraternite;
-        const difficulty = this.action.difficulty(parameters);
-        $('#fraterniteModifier').html("<span>" + fraternite + "<span>");
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText() que dans _onSetModifier.
+        this._setText("#fraterniteModifier", parameters.fraternite);
+        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
     }
 
     /**
      * Handle the blessures modifier change.
      * @param event The event to handle.
      */
-     async _onSelectBlessures(event) {
+    async _onSelectBlessures(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const blessures = parameters.blessures;
-        const difficulty = this.action.difficulty(parameters);
-        $('#blessuresModifier').html("<span>" + blessures + "<span>");
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#blessuresModifier", parameters.blessures);
+        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
     }
 
     /**
@@ -163,21 +194,19 @@ export class ActionDialog extends AbstractDialog {
     async _onSelectApproche(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const approche = parameters.approche;
-        const difficulty = this.action.difficulty(parameters);
-        $('#approcheModifier').html("<span>" + approche + "<span>");
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#approcheModifier", parameters.approche);
+        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
     }
 
     /**
-     * Handle the approche change.
+     * Handle the mnemos change.
      * @param event The event to handle.
      */
     async _onSelectMnemos(event) {
         event.preventDefault();
-        const parameters = this.parameters();
-        const difficulty = this.action.difficulty(parameters);
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#difficulty", this.action.difficulty(this.parameters()) + "%");
     }
 
     /**
@@ -186,9 +215,8 @@ export class ActionDialog extends AbstractDialog {
      */
     async _onSelectElement(event) {
         event.preventDefault();
-        const parameters = this.parameters();
-        const difficulty = this.action.difficulty(parameters);
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#difficulty", this.action.difficulty(this.parameters()) + "%");
     }
 
     /**
@@ -198,13 +226,11 @@ export class ActionDialog extends AbstractDialog {
     async _onSetOpposition(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const difficulty = this.action.difficulty(parameters);
-        const condition = this.action.condition(parameters);
-        const note = this.action.note(parameters);
-        $('#difficulty').html(difficulty + "%");
-        $('#sliderOpposition').html("<label id='sliderOpposition'>" + parameters.opposition + "<label>");
-        $('#conditionsModifier').html("<span>" + condition + "<span>");
-        $('#note').html(note);
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
+        this._setText("#sliderOpposition",   parameters.opposition);
+        this._setText("#conditionsModifier", this.action.condition(parameters));
+        this._setText("#note",               this.action.note(parameters));
     }
 
     /**
@@ -214,11 +240,10 @@ export class ActionDialog extends AbstractDialog {
     async _onSetAide(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const difficulty = this.action.difficulty(parameters);
-        const aide = this.action.aide(parameters);
-        $('#difficulty').html(difficulty + "%");
-        $('#sliderAide').html("<label id='sliderAide'>" + parameters.aide + "<label>");
-        $('#aideModifier').html("<span>" + aide + "<span>");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#difficulty",   this.action.difficulty(parameters) + "%");
+        this._setText("#sliderAide",   parameters.aide);
+        this._setText("#aideModifier", this.action.aide(parameters));
     }
 
     /**
@@ -228,10 +253,9 @@ export class ActionDialog extends AbstractDialog {
     async _onSetCondition(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const difficulty = this.action.difficulty(parameters);
-        const condition = this.action.condition(parameters);
-        $('#conditionsModifier').html("<span>" + condition + "<span>");
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#conditionsModifier", this.action.condition(parameters));
+        this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
     }
 
     /**
@@ -241,10 +265,9 @@ export class ActionDialog extends AbstractDialog {
     async _onSelectMetamorphe(event) {
         event.preventDefault();
         const parameters = this.parameters();
-        const metamorphe = parameters.metamorphe;
-        const difficulty = this.action.difficulty(parameters);
-        $('#metamorpheModifier').html("<span>" + metamorphe + "<span>");
-        $('#difficulty').html(difficulty + "%");
+        // [V14] Même remplacement jQuery → _setText().
+        this._setText("#metamorpheModifier", parameters.metamorphe);
+        this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
     }
 
     /**
@@ -262,36 +285,39 @@ export class ActionDialog extends AbstractDialog {
      */
     parameters() {
         return {
-            manoeuver: this._manoeuver(),
-            modifier: this._modifier(),
-            blessures: this._blessures(),
+            manoeuver:  this._manoeuver(),
+            modifier:   this._modifier(),
+            blessures:  this._blessures(),
             fraternite: this._fraternite(),
-            approche: this._approche(),
-            metamorphe:this._metamorphe(),
-            ka: this._ka(),
+            approche:   this._approche(),
+            metamorphe: this._metamorphe(),
+            ka:         this._ka(),
             opposition: this._opposition(),
-            elt: this._elt(),
-            opposed: this._opposed(),
-            shot: this._shot(6) === true ? 6 : this._shot(5) === true ? 5 : this._shot(4) === true ? 4 : this._shot(3) === true ? 3 : this._shot(2) === true ? 2 : 1,
-            mnemos: this._mnemos(),
-            condition: this._condition(),
-            aide: this._aide()
-        }
+            elt:        this._elt(),
+            opposed:    this._opposed(),
+            shot:       this._shot(6) ? 6 : this._shot(5) ? 5 : this._shot(4) ? 4 : this._shot(3) ? 3 : this._shot(2) ? 2 : 1,
+            mnemos:     this._mnemos(),
+            condition:  this._condition(),
+            aide:       this._aide()
+        };
     }
 
     /**
      * @returns the selected manoeuver.
      */
     _manoeuver() {
-        const selector = this.form?.querySelector("#manoeuver");
-        return selector?.value;
+        // [V14] this.form?.querySelector() remplacé par this.element?.querySelector().
+        //       this.form n'est plus exposé par ApplicationV2 ; this.element est le
+        //       root HTMLElement de la fenêtre, qui contient le formulaire.
+        return this.element?.querySelector("#manoeuver")?.value;
     }
 
     /**
      * @returns the current action modifier.
      */
     _modifier() {
-        const modifier = parseInt(this.form?.querySelector("#modifier")?.value);
+        // [V14] this.form → this.element (voir _manoeuver).
+        const modifier = parseInt(this.element?.querySelector("#modifier")?.value);
         return isNaN(modifier) ? 0 : modifier;
     }
 
@@ -299,106 +325,115 @@ export class ActionDialog extends AbstractDialog {
      * @returns the current fraternite modifier if activated.
      */
     _fraternite() {
-        const selector = this.form?.querySelector("#fraternite");
-        const fraternite = selector == null || selector?.value === 'ignore' ? 0 : this.data.fraternite;
-        return fraternite;
+        // [V14] this.form → this.element (voir _manoeuver).
+        const selector = this.element?.querySelector("#fraternite");
+        return selector == null || selector.value === "ignore" ? 0 : this.data.fraternite;
     }
 
     /**
      * @returns the current wound modifier if activated.
      */
     _blessures() {
-        const selector = this.form?.querySelector("#blessures");
-        const blessures = selector?.value === 'ignore' ? 0 : this.data.blessures;
-        return blessures;
+        // [V14] this.form → this.element (voir _manoeuver).
+        const selector = this.element?.querySelector("#blessures");
+        return selector?.value === "ignore" ? 0 : this.data.blessures;
     }
 
     /**
      * @returns the optional approche modifier.
      */
     _approche() {
-        const selector = this.form?.querySelector("#approche");
-        const approche =  selector?.value;
+        // [V14] this.form → this.element (voir _manoeuver).
+        // [V14] this.object.getKa() → this.actor.getKa() : this.object n'existe plus
+        //       en V2 (c'était le document passé à super() en FormApplication).
+        const selector = this.element?.querySelector("#approche");
+        const approche = selector?.value;
         if (approche == null) return 0;
-        const element = approche.replaceAll('NEPH5E.','').replaceAll('pentacle.elements.','');
-        return element === 'none' ? 0 : this.object.getKa(element) * 10;
+        const element = approche.replaceAll("NEPH5E.", "").replaceAll("pentacle.elements.", "");
+        return element === "none" ? 0 : this.actor.getKa(element) * 10;
     }
 
     /**
      * @returns the optional metamorphe modifier.
      */
     _metamorphe() {
-        const selector = this.form?.querySelector("#metamorphe");
-        const metamorphe = selector == null || selector?.value === 'ignore' ? 0 : this.data.metamorphe;
-        return metamorphe;
+        // [V14] this.form → this.element (voir _manoeuver).
+        const selector = this.element?.querySelector("#metamorphe");
+        return selector == null || selector.value === "ignore" ? 0 : this.data.metamorphe;
     }
 
     /**
      * @returns the sum of activated mnemos modifiers.
      */
     _mnemos() {
+        // [V14] this.form → this.element (voir _manoeuver).
         let modifier = 0;
-        this.form?.querySelectorAll(".mnemos-modifier").forEach(selector => {
+        this.element?.querySelectorAll(".mnemos-modifier").forEach(selector => {
             const value = selector?.value;
-            modifier = modifier + (isNaN(value) ? 0 : parseInt(value));
+            modifier += isNaN(value) ? 0 : parseInt(value);
         });
-        modifier = modifier * 10;
-        return modifier;
+        return modifier * 10;
     }
 
     /**
      * @returns the current ka modifier used for invocations.
      */
     _ka() {
-        const selector = this.form?.querySelector("#element");
-        return this.actor.getKa(selector == null ? 'air' : selector?.value) * 10;
+        // [V14] this.form → this.element (voir _manoeuver).
+        // [V14] this.actor remplace this.actor (déjà correct en v12 ici, pas de changement).
+        const selector = this.element?.querySelector("#element");
+        return this.actor.getKa(selector == null ? "air" : selector.value) * 10;
     }
 
     /**
      * @returns the current opposition used.
      */
     _opposition() {
-        const selector = this.form?.querySelector("#opposition");
-        return selector?.value;
+        // [V14] this.form → this.element (voir _manoeuver).
+        return this.element?.querySelector("#opposition")?.value;
     }
 
     /**
      * @returns the current condition used.
      */
     _condition() {
-        const selector = this.form?.querySelector("#condition");
-        return selector?.value;
+        // [V14] this.form → this.element (voir _manoeuver).
+        return this.element?.querySelector("#condition")?.value;
     }
 
     /**
      * @returns the current aide used.
      */
     _aide() {
-        const selector = this.form?.querySelector("#aide");
-        return selector?.value;
+        // [V14] this.form → this.element (voir _manoeuver).
+        return this.element?.querySelector("#aide")?.value;
     }
 
     /**
      * @returns the current element used.
      */
     _elt() {
-        const selector = this.form?.querySelector("#element");
-        return selector?.value;
+        // [V14] this.form → this.element (voir _manoeuver).
+        return this.element?.querySelector("#element")?.value;
     }
 
     /**
      * @returns true if opposed action, false for simple action.
      */
     _opposed() {
-        return this.data.opposed ? true : this.data.simple ? false : this.form?.querySelector("#rollType")?.value === 'opposed';
+        // [V14] this.form → this.element (voir _manoeuver).
+        return this.data.opposed ? true
+             : this.data.simple  ? false
+             : this.element?.querySelector("#rollType")?.value === "opposed";
     }
 
     /**
      * @param shot The index of the shot from 1 to 6.
-     * @returns true if the shot is checked. 
+     * @returns true if the shot is checked.
      */
     _shot(shot) {
-        const selector = this.form?.querySelector("#shot"+shot);
+        // [V14] this.form → this.element (voir _manoeuver).
+        const selector = this.element?.querySelector("#shot" + shot);
         return shot === 1 ? true : selector == null ? false : selector.checked;
     }
 
