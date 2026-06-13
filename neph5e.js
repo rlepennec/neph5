@@ -67,6 +67,7 @@ import { DracomachieDataModel } from "./feature/dracomachie/item/dracomachie.mjs
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
 import { HabitusDataModel } from "./feature/analogie/item/habitus.mjs";
 import { InvocationDataModel } from "./feature/kabbale/item/invocation.mjs";
+import { MagieDataModel } from "./feature/magie/item/magie.mjs";
 import { MateriaeDataModel } from "./feature/alchimie/item/materiae.mjs";
 import { MetamorpheDataModel } from "./feature/nephilim/item/metamorphe.mjs";
 import { OrdonnanceDataModel } from "./feature/kabbale/item/ordonnance.mjs";
@@ -127,6 +128,7 @@ Hooks.once("init", function () {
         formule: FormuleDataModel,
         habitus: HabitusDataModel,
         invocation: InvocationDataModel,
+        magie: MagieDataModel,
         materiae: MateriaeDataModel,
         metamorphe: MetamorpheDataModel,
         ordonnance: OrdonnanceDataModel,

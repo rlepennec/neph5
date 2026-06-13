@@ -16,7 +16,8 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             used: new foundry.data.fields.BooleanField(
                 {
-                    required: false
+                    required: false,
+                    initial: true
                 }
             ),
             parade: new foundry.data.fields.BooleanField(
@@ -26,7 +27,7 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             type: new foundry.data.fields.StringField(
                 {
-                    initial: 'naturelle',
+                    initial: 'melee',
                     choices: Constants.ARMES
                 }
             ),
@@ -57,7 +58,8 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             physique: new foundry.data.fields.BooleanField(
                 {
-                    required: false
+                    required: false,
+                    initial: true
                 }
             ),
             magique: new foundry.data.fields.BooleanField(
@@ -72,7 +74,8 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             munitions: new foundry.data.fields.NumberField(
                 {
-                    required: false
+                    required: false,
+                    initial: 1
                 }
             ),   
             tire: new foundry.data.fields.NumberField(
@@ -80,7 +83,7 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
                     required: false
                 }
             ),
-            cible: new foundry.data.fields.BooleanField(
+            cible: new foundry.data.fields.StringField(
                 {
                     required: false
                 }

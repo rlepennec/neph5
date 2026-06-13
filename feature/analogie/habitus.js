@@ -68,7 +68,7 @@ export class Habitus extends AbstractFocus {
             .withContext("Drop of an habitus")
             .withDeleteExisting()
             .withData("periode", this.periode)
-            .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'incantation', 'portee', 'duree')
+            .withoutData('description', 'domaine', 'element', 'voies', 'degre', 'incantation', 'portee', 'duree')
             .create();
 
     }

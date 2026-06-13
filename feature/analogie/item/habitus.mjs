@@ -14,7 +14,7 @@ export class HabitusDataModel extends foundry.abstract.TypeDataModel {
                     required: false
                 }
             ),
-            cercle: new foundry.data.fields.StringField(
+            domaine: new foundry.data.fields.StringField(
                 {
                     required: false
                 }
