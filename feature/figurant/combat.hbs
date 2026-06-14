@@ -1,449 +1,86 @@
-<main 
-    class='tab general combat'
-    data-group='primary'
-    data-tab='general'
-    data-drop="true">
+<main class="tab combat" data-group="primary" data-tab="combat">
 
-    <div class="gauche">
-    
-        <div class="sante">
+    <div class="armes">
 
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "sante"}}</label>
-            </div>
-
-            <div class="body">
-
-                <img class="pyramide"/>
-                
-                <div class="modificateur">
-
-                    <div class="physique">
-                        <img class="circle"/>
-                        <label class="value">{{document.physicalModifier}}%</label>
-                        <label class="title">{{translate "physique"}}</label>
-                    </div>
-
-                    <div class="magique">
-                        <img class="circle"/> 
-                        <label class="value">{{document.magicalModifier}}%</label>
-                        <label class="title">{{translate "magique"}}</label>
-                    </div>
-
-                </div>
-
-                <div class="dommages">
-
-                    <label class="title">{{translate "dommages"}}</label>
-
-                    {{#if (gt document.system.ka.terre 9)}}
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique._5"
-                        value=document.system.dommage.physique._5
-                        class="physique-5"
-                    }}
-                    {{/if}}
-
-                    {{#if (gt document.system.ka.terre 4)}}
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique._4"
-                        value=document.system.dommage.physique._4
-                        class="physique-4"
-                    }}
-                    {{/if}}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique._3"
-                        value=document.system.dommage.physique._3
-                        class="physique-3"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique._2"
-                        value=document.system.dommage.physique._2
-                        class="physique-2"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique._1"
-                        value=document.system.dommage.physique._1
-                        class="physique-1"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique._1"
-                        value=document.system.dommage.magique._1
-                        class="magique-1"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique._2"
-                        value=document.system.dommage.magique._2
-                        class="magique-2"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique._3"
-                        value=document.system.dommage.magique._3
-                        class="magique-3"
-                    }}
-
-                </div>
-
-                <div class="mineure">
-
-                    <label class="title">{{translate "mineure"}}</label>
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique.mineure"
-                        value=document.system.dommage.physique.mineure
-                        class="physique"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique.mineure"
-                        value=document.system.dommage.magique.mineure
-                        class="magique"
-                    }}
-
-                </div>
-
-                <div class="serieuse">
-
-                    <label class="title">{{translate "serieuse"}}</label>
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique.serieuse"
-                        value=document.system.dommage.physique.serieuse
-                        class="physique"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique.serieuse"
-                        value=document.system.dommage.magique.serieuse
-                        class="magique"
-                    }}
-
-                </div>
-
-                <div class="grave">
-
-                    <label class="title">{{translate "grave"}}</label>
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique.grave"
-                        value=document.system.dommage.physique.grave
-                        class="physique"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique.grave"
-                        value=document.system.dommage.magique.grave
-                        class="magique"
-                    }}
-
-                </div>
-
-                <div class="mortelle">
-
-                    <label class="title">{{translate "mortelle"}}</label>
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.physique.mortelle"
-                        value=document.system.dommage.physique.mortelle
-                        class="physique"
-                    }}
-
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="system.dommage.magique.mortelle"
-                        value=document.system.dommage.magique.mortelle
-                        class="magique"
-                    }}
-
-                </div>
-
-            </div>
-
+        <div class="header">
+            <img class="puce"/>
+            <img class="separator"/>
+            <label class="title">{{translate "armes"}}</label>
         </div>
 
-        <div class="armes">
+        <ol class="body">
 
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "armes"}}</label>
-            </div>
+            <li class="hoverable macro" data-macro="wrestle">
+                <a><i></i></a>
+                <label class="hoverable">{{translate "lutte"}}</label>
+                <a data-action="rollWrestle"><i class="fas fa-dice-d20 {{#unless (eq document.lutteCanBePerformed true)}}disabled{{/unless}}"></i></a>
+                <a><i class="fa-solid fa-hand-fist"></i></a>
+            </li>
 
-            <ol class="body">
+            {{#with document.weapons as |weapons|}}
 
-                <li class="hoverable macro" data-macro="wrestle">
-                    <a><i></i></a>
-                    <label class="hoverable">{{translate "lutte"}}</label>
-                    <a data-action="rollWrestle"><i class="fas fa-dice-d20 {{#unless (eq document.lutteCanBePerformed true)}}disabled{{/unless}}"></i></a>
-                    <a><i class="fa-solid fa-hand-fist"></i></a>
-                </li>
+            {{#each weapons.naturelle as |item|}}
+            <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+                <a data-action="delete"><i class="fas fa-trash"></i></a>
+                <label data-action="open">{{item.name}}</label>
+                <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
+                <a><i class="fa-solid fa-hand-fist"></i></a>
+            </li>
+            {{/each}}
 
-                {{#with document.weapons as |weapons|}}
+            {{#each weapons.melee as |item|}}
+            <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+                <a data-action="delete"><i class="fas fa-trash"></i></a>
+                <label data-action="open">{{item.name}}</label>
+                <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
+                <a data-action="useWeapon"><i class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
+            </li>
+            {{/each}}
 
-                {{#each weapons.naturelle as |item|}}
-                <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a><i class="fa-solid fa-hand-fist"></i></a>
-                </li>
-                {{/each}}
+            {{#each weapons.trait as |item|}}
+            <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+                <a data-action="delete"><i class="fas fa-trash"></i></a>
+                <label data-action="open">{{item.name}}</label>
+                <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
+                <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
+            </li>
+            {{/each}}
 
-                {{#each weapons.melee as |item|}}
-                {{log item}}
-                <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a data-action="useWeapon"><i class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
-                {{/each}}
+            {{#each weapons.feu as |item|}}
+            <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+                <a data-action="delete"><i class="fas fa-trash"></i></a>
+                <label data-action="open">{{item.name}}</label>
+                <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
+                <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
+            </li>
+            {{/each}}
 
-                {{#each weapons.trait as |item|}}
-                <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
-                    <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
-                </li>
-                {{/each}}
+            {{/with}}
 
-                {{#each weapons.feu as |item|}}
-                <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
-                    <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
-                </li>
-                {{/each}}
-
-                {{/with}}
-
-            </ol>
-
-        </div>
-
-        <div class="armures">
-
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "armures"}}</label>
-            </div>
-
-           <ol class="body">
-
-                {{#each document.armors as |item|}}
-                <li data-fsid="{{fsid item}}">
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a><i></i></a>
-                    <a data-action="useArmor"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>
-                </li>
-                {{/each}}
-
-            </ol>
-
-        </div>
-
-       <div class="ressources">
-
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "ressources"}}</label>
-            </div>
-
-            <ol class="body">
-
-                {{#if (eq document.type 'figure')}}
-                {{#each document.passes as |item|}}
-                {{#if (ne item.degre 0)}}
-                <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
-                    <a><i></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    <label class="degre">{{item.degre}}</label>
-                </li>
-                {{/if}}
-                {{/each}}
-                {{/if}}
-
-                {{#if (eq document.type 'figurant')}}
-                {{#each document.items as |item id|}}
-                {{#if (eq item.type 'passe')}}
-                <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name=(concat 'items.' (fsid item) '.system.degre')
-                        type="number"
-                        value=item.system.degre
-                    }}
-                </li>
-                {{/if}}
-                {{/each}}
-                {{/if}}
-
-            </ol>
-
-        </div>
+        </ol>
 
     </div>
 
-    <div class="droite">
+    <div class="armures">
 
-        {{#if (eq document.type 'figurant')}}
-        <div class="caracteristiques">
-
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "caracteristiques"}}</label>
-            </div>
-
-            <ol>
-
-                <li>
-                    <a data-action="rollMenace"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    <label>{{translate "menace"}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name="system.menace"
-                        type="number"
-                        value=document.system.menace
-                    }}
-                    <a><i></i></a>
-                </li>
-
-                <li>
-                    <a data-action="rollKa"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    <label>{{translate "ka"}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name="system.ka"
-                        type="number"
-                        value=document.system.ka
-                    }}
-                    <a><i></i></a>
-                </li>
-
-                {{#each document.items as |item id|}}
-                {{#if (eq item.type 'vecu')}}
-                <li data-fsid="{{fsid item}}">
-                    <a data-action="rollVecu"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name=(concat 'items.' (fsid item) '.system.degre')
-                        type="number"
-                        value=item.system.degre
-                    }}
-                    <a data-action="delete"><i class="fas fa-trash"></i></a>
-                </li>
-                {{/if}}
-                {{/each}}
-
-            </ol>
-
-        </div>
-        {{/if}}
-
-        <div class="etats">
-
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "etats"}}</label>
-            </div>
-
-            <ol>
-
-                <li data-action="setDesoriente" data-id="stun">
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="desoriente"
-                        type="boolean"
-                        value=document.desoriente
-                    }}
-                    <label>{{translate "desoriente"}}</label>
-                </li>
-
-                <li data-action="setImmobilise" data-id="restrain">
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="immobilise"
-                        type="boolean"
-                        value=document.immobilise
-                    }}
-                    <label>{{translate "immobilise"}}</label>
-                </li>
-
-                <li data-action="setProjete" data-id="prone">
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        name="projete"
-                        type="boolean"
-                        value=document.projete
-                    }}
-                    <label>{{translate "aTerre"}}</label>
-                </li>
-
-            </ol>
-
+        <div class="header">
+            <img class="puce"/>
+            <img class="separator"/>
+            <label class="title">{{translate "armures"}}</label>
         </div>
 
-        <div class="bonus">
+        <ol class="body">
 
-            <div class="header">
-                <img class="puce"/>
-                <img class="separator"/>
-                <label class="title">{{translate "bonus"}}</label>
-            </div>
+            {{#each document.armors as |item|}}
+            <li data-fsid="{{fsid item}}">
+                <a data-action="delete"><i class="fas fa-trash"></i></a>
+                <label data-action="open">{{item.name}}</label>
+                <a><i></i></a>
+                <a data-action="useArmor"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>
+            </li>
+            {{/each}}
 
-            <ol>
-
-                <li>
-                    <label>{{translate "mouvement"}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name="system.bonus.mouvement"
-                        type="number"
-                        value=document.system.bonus.mouvement
-                    }}
-                </li>
-
-                <li>
-                    <label>{{translate "initiative"}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name="system.bonus.initiative"
-                        type="number"
-                        value=document.system.bonus.initiative
-                    }}
-                </li>
-
-
-                <li>
-                    <label>{{translate "dommages"}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name="system.bonus.dommage"
-                        type="number"
-                        value=document.system.bonus.dommage
-                    }}
-                </li>
-
-                <li>
-                    <label>{{translate "protection"}}</label>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name="system.bonus.protection"
-                        type="number"
-                        value=document.system.bonus.protection
-                    }}
-                </li>
-
-            </ol>
-
-        </div>
+        </ol>
 
     </div>
 
