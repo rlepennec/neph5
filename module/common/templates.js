@@ -101,6 +101,7 @@ export const preloadTemplates = async function () {
 
         // Figure
         "systems/neph5e/feature/figure/description.hbs",
+        "systems/neph5e/feature/figure/combat.hbs",
 
 
     ]);

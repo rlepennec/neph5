@@ -1,11 +1,14 @@
 import { Chute } from "../../feature/periode/chute.js";
+import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Game } from "../../module/common/game.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
+import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
-export class FigureSheet extends HistoricalSheet {
+
+export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /*
     static get defaultOptions() {
@@ -58,10 +61,7 @@ export class FigureSheet extends HistoricalSheet {
     static TABS = {
         primary: {
             tabs: [
-                {
-                    id: "description",
-                    template: `systems/neph5e/feature/figure/description.hbs`
-                }
+                { id: "description", template: `systems/neph5e/feature/figure/description.hbs` }
             ],
             initial: "description"
         }
@@ -74,6 +74,21 @@ export class FigureSheet extends HistoricalSheet {
     constructor(...args) {
         super(...args);
         this.editedCapacity = null;
+    }
+
+    /**
+     * @override
+     **/
+    _getTabsConfig(group) {
+        if (group !== "primary") return super._getTabsConfig(group);
+        const o = this.document.system.options ?? {};
+        const tabs = [
+            { id: "description", template: `systems/neph5e/feature/figure/description.hbs` }
+        ];
+        if (o.combat) {
+            tabs.push({ id: "combat", template: `systems/neph5e/feature/figure/combat.hbs` });
+        }
+        return { tabs, initial: "description" };
     }
 
     async setOptions(options) {
@@ -267,6 +282,7 @@ export class FigureSheet extends HistoricalSheet {
      * Drop the specified object.
      * @param event The drop event.
      */
+    /*
     async _onDrop(event) {
 
         // Catch and retrieve the dropped item
@@ -391,6 +407,7 @@ export class FigureSheet extends HistoricalSheet {
         }
 
     }
+        */
 
     /**
      * @param type The type of item to drop.
