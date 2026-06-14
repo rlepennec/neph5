@@ -57,13 +57,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/science/actor/elements.hbs",
         "systems/neph5e/feature/science/actor/sciences.hbs",
         "systems/neph5e/feature/science/actor/science.hbs",
-
-        // Figure
-        "systems/neph5e/feature/figure/actor/options.hbs",
     
-        // Figurant
-        "systems/neph5e/feature/figurant/actor/options.hbs",
-
         // Fraternite
         "systems/neph5e/feature/fraternite/actor/effectif.hbs",
         "systems/neph5e/feature/fraternite/actor/ressources.hbs",
@@ -106,7 +100,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/figurant/combat.hbs",
 
         // Figure
-        "systems/neph5e/feature/figure/description.hbs"
+        "systems/neph5e/feature/figure/description.hbs",
 
 
     ]);

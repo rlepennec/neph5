@@ -2,7 +2,6 @@
 
     <fieldset>
         <legend>Theme</legend>
-
         <select name="theme">
             {{#select value}}
             {{#each themes.all as |theme|}}
@@ -10,9 +9,10 @@
             {{/each}}
             {{/select}}
         </select>
-     </fieldset>
+    </fieldset>
 
-     <input type="checkbox" name="degatAutomatique" {{checked degatAutomatique}}/>
+    <label>{{translate "degatAutomatique"}}</label>
+    <input type="checkbox" name="degatAutomatique" {{checked degatAutomatique}}/>
 
     <button type="submit">
         <i class="fa-solid fa-floppy-disk" inert=""></i>

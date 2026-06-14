@@ -39,7 +39,10 @@ export class OptionsSelector extends foundry.applications.api.HandlebarsApplicat
      */
     static async #onSubmit(event, form, formData) {
         event.preventDefault();
-        await this.sheet.setOptions(formData.get("theme"), formData.get("degatAutomatique"));
+        await this.sheet.setOptions({
+            theme: formData.object.theme,
+            degatAutomatique: formData.object.degatAutomatique
+        });
     }
 
     /**

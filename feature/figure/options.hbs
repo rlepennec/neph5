@@ -1,0 +1,128 @@
+<section>
+
+    <fieldset>
+        <legend>Theme</legend>
+        <select name="theme">
+            {{#select value}}
+            {{#each themes.all as |theme|}}
+            <option value="{{theme}}"{{#if (eq . ../themes.current)}} selected="{{theme}}"{{/if}}>{{translate theme}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </fieldset>
+
+    <!-- Nephilim -->
+
+    <label>{{translate "pentacle"}}</label>
+    <input type="checkbox" name="nephilim" {{checked nephilim}}/>
+
+    <label>{{translate "magie"}}</label>
+    <input type="checkbox" name="magie" {{checked magie}}/>
+
+    <label>{{translate "analogie"}}</label>
+    <input type="checkbox" name="analogie" {{checked analogie}}/>
+
+    <label>{{translate "kabbale"}}</label>
+    <input type="checkbox" name="kabbale" {{checked kabbale}}/>
+
+    <label>{{translate "alchimie"}}</label>
+    <input type="checkbox" name="alchimie" {{checked alchimie}}/>
+
+    <label>{{translate "dracomachie"}}</label>
+    <input type="checkbox" name="dracomachie" {{checked dracomachie}}/>
+
+    <!-- Selenim -->
+
+    <label>{{translate "noyau"}}</label>
+    <input type="checkbox" name="selenim" {{checked selenim}}/>
+
+    <label>{{translate "necromancie"}}</label>
+    <input type="checkbox" name="necromancie" {{checked necromancie}}/>
+
+    <label>{{translate "conjuration"}}</label>
+    <input type="checkbox" name="conjuration" {{checked conjuration}}/>
+
+    <label>{{translate "entropieLunaire"}}</label>
+    <input type="checkbox" name="luneNoire" {{checked luneNoire}}/>
+
+    <!-- Arcanes mineurs -->
+
+    <label>{{translate "baton"}}</label>
+    <input type="checkbox" name="baton" {{checked baton}}/>
+
+    <label>{{translate "coupe"}}</label>
+    <input type="checkbox" name="coupe" {{checked coupe}}/>
+
+    <label>{{translate "denier"}}</label>
+    <input type="checkbox" name="denier" {{checked denier}}/>
+
+    <label>{{translate "epee"}}</label>
+    <input type="checkbox" name="epee" {{checked epee}}/>
+
+    <!-- Sciences occultes -->
+
+    <label>{{translate "gestionLaboratoire"}}</label>
+    <input type="checkbox" name="gestionLaboratoire" {{checked gestionLaboratoire}}/>
+
+    <label>{{translate "daath"}}</label>
+    <input type="checkbox" name="daath" {{checked daath}}/>
+
+    <!-- Automatisation -->
+
+    <label>{{translate "degatAutomatique"}}</label>
+    <input type="checkbox" name="degatAutomatique" {{checked degatAutomatique}}/>
+
+    <label>{{translate "defenseMJ"}}</label>
+    <input type="checkbox" name="defenseMJ" {{checked defenseMJ}}/>
+
+    <!-- Monde profane -->
+
+    <label>{{translate "vecus"}}</label>
+    <input type="checkbox" name="vecus" {{checked vecus}}/>
+
+    <label>{{translate "incarnations"}}</label>
+    <input type="checkbox" name="incarnations" {{checked incarnations}}/>
+
+    <label>{{translate "combat"}}</label>
+    <input type="checkbox" name="combat" {{checked combat}}/>
+
+    <label>{{translate "capacites"}}</label>
+    <input type="checkbox" name="capacites" {{checked capacites}}/>
+    
+    <label>{{translate "simulacre"}}</label>
+    <input type="checkbox" name="simulacre" {{checked simulacre}}/>
+
+    <!-- Monde occulte -->
+
+    <label>{{translate "soleil"}}</label>
+    <input type="checkbox" name="soleil" {{checked soleil}}/>
+
+    <label>{{translate "akasha"}}</label>
+    <input type="checkbox" name="akasha" {{checked akasha}}/>
+
+    <label>{{translate "fraternites"}}</label>
+    <input type="checkbox" name="fraternites" {{checked fraternites}}/>
+
+    <label>{{translate "atlanteide"}}</label>
+    <input type="checkbox" name="atlanteide" {{checked atlanteide}}/>
+
+    <label>{{translate "bohemien"}}</label>
+    <input type="checkbox" name="bohemien" {{checked bohemien}}/>
+
+    <!-- Affichage -->
+
+    <label>{{translate "chronologieDescendante"}}</label>
+    <input type="checkbox" name="chronologieDescendante" {{checked chronologieDescendante}}/>
+
+    <label>{{translate "degreGauche"}}</label>
+    <input type="checkbox" name="degreGauche" {{checked degreGauche}}/>
+
+    <label>{{translate "incarnationsOuvertes"}}</label>
+    <input type="checkbox" name="incarnationsOuvertes" {{checked incarnationsOuvertes}}/>
+
+    <button type="submit">
+        <i class="fa-solid fa-floppy-disk" inert=""></i>
+        <span>Sauver</span>
+    </button>
+
+</section>
