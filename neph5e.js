@@ -8,7 +8,7 @@ import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
-import { FigureSheet } from "./module/actor/figure.js";
+import { FigureSheet } from "./feature/figure/figure.js";
 import { FigurantSheet } from "./feature/figurant/figurant.js";
 import { FraterniteSheet } from "./module/actor/fraternite.js";
 
@@ -84,7 +84,7 @@ import { TechniqueDataModel } from "./feature/baton/item/technique.mjs";
 import { TekhneDataModel } from "./feature/coupe/item/tekhne.mjs";
 import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
-import { FigureDataModel } from "./module/actor/figure.mjs";
+import { FigureDataModel } from "./feature/figure/figure.mjs";
 import { FigurantDataModel } from "./feature/figurant/figurant.mjs";
 import { FraterniteDataModel } from "./module/actor/fraternite.mjs";
 

@@ -1,0 +1,47 @@
+<section class="actor-root skin-{{document.system.options.theme}}">
+
+    <aside>
+
+        <img
+            src="{{document.img}}"
+            data-edit="img"
+            data-action="editImage"/>
+
+        <nav>
+            {{#each tabs as |tab|}}
+            <div>
+                <a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">{{translate tab.label}}</a>
+                <!--
+                <img class="sheet-navigation-pin"/>
+                <img class="sheet-navigation-hole"/>
+                -->
+            </div>
+            {{/each}}
+        </nav>
+
+    </aside>
+
+    <article>
+
+        <header>
+
+            <input
+                name="name"
+                type="text"
+                value="{{document.name}}"
+                spellcheck="false"
+                {{#if document.sheet.locked}} disabled{{/if}}/>
+
+            <img/>
+
+        </header>
+
+        {{#each tabs as |tab|}}
+            {{#if tab.active}}
+                {{> (lookup . "template") ..}}
+            {{/if}}
+        {{/each}}
+
+    </article>
+
+</section>

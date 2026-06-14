@@ -1,8 +1,8 @@
 import { Chute } from "../../feature/periode/chute.js";
-import { Constants } from "../common/constants.js";
+import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { Game } from "../common/game.js";
-import { HistoricalSheet } from "./historical.js";
+import { Game } from "../../module/common/game.js";
+import { HistoricalSheet } from "../../module/actor/historical.js";
 
 export class FigureSheet extends HistoricalSheet {
 
@@ -50,7 +50,19 @@ export class FigureSheet extends HistoricalSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/templates/actor/figure.html`,
+            template: `systems/neph5e/feature/figure/figure.html`,
+        }
+    }
+
+    static TABS = {
+        primary: {
+            tabs: [
+                {
+                    id: "description",
+                    template: `systems/neph5e/feature/figure/description.hbs`
+                }
+            ],
+            initial: "description"
         }
     }
 
@@ -80,6 +92,8 @@ export class FigureSheet extends HistoricalSheet {
     /**
      * @override
      */
+    /*
+    TO DELETE PLUS TARD
     async _onSubmit(event, form, formData) {
 
         // The materiae primae: only save the delta to add to the theorical maximum mp
@@ -93,6 +107,7 @@ export class FigureSheet extends HistoricalSheet {
         await this.document.update(formData.object);
 
     }
+        */
 
     /**
      * @override
