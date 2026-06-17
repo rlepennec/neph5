@@ -14,6 +14,10 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         position: {
             width: 1070,
             height: 950
+        },
+        actions: {
+            openItem: FigureSheet._onOpenItem,
+            roll: FigureSheet._onRollItem
         }
     }
 
@@ -46,11 +50,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      **/
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
-        const o = this.document.system.options ?? {};
         const tabs = [{
             id: "description",
             template: `systems/neph5e/feature/figure/description.hbs`
         }];
+        const o = this.document.system.options ?? {};
         if (o.combat) {
             tabs.push({
                 id: "combat",
@@ -61,6 +65,13 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             tabs.push({
                 id: "incarnations",
                 template: `systems/neph5e/feature/figure/incarnations.hbs`,
+                from: "figure"
+            });
+        }
+        if (o.vecus) {
+            tabs.push({
+                id: "vecus",
+                template: `systems/neph5e/feature/figure/vecus.hbs`,
                 from: "figure"
             });
         }
@@ -211,15 +222,30 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         return this;
     }
 
-    /**
-     * Roll the specified original item.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onRollItem(event) {
-        const feature = this._createFeature(event);
+
+    /** Construit la feature à partir de l'élément cliqué (AppV2). */
+    _featureFromTarget(target) {
+        const node = target.closest('.item');
+        const id = node.dataset.id;
+        const sid = node.dataset.sid;
+        const scope = node.dataset.scope ?? "actor";
+        return new FeatureBuilder(this.document)
+            .withScope(scope)
+            .withEmbeddedItem(id)
+            .withOriginalItem(sid)
+            .create();
+    }
+
+    /** Ouvre la fiche de l'item (vécu, savoir, quête, compétence...). */
+    static async _onOpenItem(event, target) {
+        const feature = this._featureFromTarget(target);
+        await feature.editEmbeddedItem();
+    }
+
+    /** Lance le jet de l'item. */
+    static async _onRollItem(event, target) {
+        const feature = this._featureFromTarget(target);
         await feature.initializeRoll();
-        return this;
     }
 
     /**
