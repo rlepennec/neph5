@@ -51,7 +51,7 @@
                         <span class="cercle-percentage">{{localize "%"}}</span>
                         {{/if}}
 
-                        <a class="cercle-dice roll"><i class="fas fa-dice-d20"></i></a>
+                        <a class="cercle-dice roll" data-action="roll"><i class="fas fa-dice-d20"></i></a>
 
                     {{/unless}}
 
@@ -109,11 +109,11 @@
                     {{/if}}
 
                     <!-- The name of the focus. -->
-                    <label class="focus-name open">{{item.original.name}}</label>
+                    <label class="focus-name open" data-action="openItem">{{item.original.name}}</label>
 
                     <!-- Indicates id the character has the focus. -->
                     {{#if (includes ../../header 'possede')}}
-                    <label class="focus-possede">
+                    <label class="focus-possede" data-action="changeFocus">
                         {{#if item.embedded.system.focus}}
                         <i class="fa-solid fa-scroll"></i>
                         {{else}}
@@ -155,7 +155,7 @@
 
                     <!-- The status of the focus: connu, dechiffre, appris, tatoue. -->
                     {{#if (includes ../../header 'status')}}
-                    <label class="focus-status">{{item.embedded.getStatus}}</label>
+                    <label class="focus-status" data-action="changeStatus">{{item.embedded.getStatus}}</label>
                     {{/if}} 
 
                     {{#if (includes ../../header 'percentage')}}
@@ -175,7 +175,7 @@
                         </div>
                     </a>
                     {{else}}
-                    <a class="focus-dice roll">
+                    <a class="focus-dice roll" data-action="roll">
                         <i class="fas fa-dice-d20"></i>
                     </a>
                     {{/if}}

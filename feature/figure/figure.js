@@ -6,6 +6,7 @@ import { Game } from "../../module/common/game.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
 import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
+import { Science } from "../../feature/science/science.js";
 
 
 export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
@@ -17,7 +18,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         },
         actions: {
             openItem: FigureSheet._onOpenItem,
-            roll: FigureSheet._onRollItem
+            roll: FigureSheet._onRollItem,
+            changeFocus: FigureSheet._onChangeFocus,
+            changeStatus: FigureSheet._onChangeStatus
         }
     }
 
@@ -73,6 +76,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 id: "vecus",
                 template: `systems/neph5e/feature/figure/vecus.hbs`,
                 from: "figure"
+            });
+        }
+        if (o.magie) {
+            tabs.push({
+                id: "magie",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "magie",
+                header: Science._getHeader("magie")
             });
         }
         return { tabs, initial: "description" };
@@ -302,11 +313,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      *  - appel
      * @param event The click event.
      */
-    async _onChangeFocus(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
+    /** Toggle la possession du focus (icône parchemin). */
+    static async _onChangeFocus(event, target) {
+        if (this.locked) return;
+        const sid = target.closest('.item').dataset.sid;
+        const item = this.document.items.find(i => i.sid === sid);
         await item.update({ ['system.focus']: !item.system.focus });
     }
 
@@ -324,26 +335,17 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      *  - appel
      * @param event The click event.
      */
-    async _onChangeStatus(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
+    /** Cycle le statut : connu → déchiffré → appris → tatoué → connu. */
+    static async _onChangeStatus(event, target) {
+        if (this.locked) return;
+        const sid = target.closest('.item').dataset.sid;
+        const item = this.document.items.find(i => i.sid === sid);
         switch (item.system.status) {
-            case Constants.CONNU:
-                await item.update({ ['system.status']: Constants.DECHIFFRE });
-                break;
-            case Constants.DECHIFFRE:
-                await item.update({ ['system.status']: Constants.APPRIS });
-                break;
-            case Constants.APPRIS:
-                await item.update({ ['system.status']: Constants.TATOUE });
-                break;
-            case Constants.TATOUE:
-                await item.update({ ['system.status']: Constants.CONNU });
-                break;
-            default:
-                throw new Error("Status " + item.system.status + " not implemented");
+            case Constants.CONNU:     await item.update({ ['system.status']: Constants.DECHIFFRE }); break;
+            case Constants.DECHIFFRE: await item.update({ ['system.status']: Constants.APPRIS });   break;
+            case Constants.APPRIS:    await item.update({ ['system.status']: Constants.TATOUE });    break;
+            case Constants.TATOUE:    await item.update({ ['system.status']: Constants.CONNU });     break;
+            default: throw new Error("Status " + item.system.status + " not implemented");
         }
     }
 
