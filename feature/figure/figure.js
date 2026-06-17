@@ -82,11 +82,22 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
         const o = this.document.system.options ?? {};
-        const tabs = [
-            { id: "description", template: `systems/neph5e/feature/figure/description.hbs` }
-        ];
+        const tabs = [{
+            id: "description",
+            template: `systems/neph5e/feature/figure/description.hbs`
+        }];
         if (o.combat) {
-            tabs.push({ id: "combat", template: `systems/neph5e/feature/figure/combat.hbs` });
+            tabs.push({
+                id: "combat",
+                template: `systems/neph5e/feature/figure/combat.hbs`
+            });
+        }
+        if (o.incarnations) {
+            tabs.push({
+                id: "incarnations",
+                template: `systems/neph5e/feature/figure/incarnations.hbs`,
+                from: "figure"
+            });
         }
         return { tabs, initial: "description" };
     }
@@ -126,6 +137,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             'system.options.degreGauche': options.degreGauche,
             'system.options.incarnationsOuvertes': options.incarnationsOuvertes
         });
+        this.elapsedPeriodes = this._elapsedPeriodes();
+        await this.render(true);
     }
 
     /**
@@ -161,26 +174,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             simulacre: this.actor.simulacre
         });
     }
-
-    /**
-     * @override
-     */
-    /*
-    TO DELETE PLUS TARD
-    async _onSubmit(event, form, formData) {
-
-        // The materiae primae: only save the delta to add to the theorical maximum mp
-        for (let elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
-            const input = formData.object["system.alchimie.primae." + elt + ".max"];
-            const delta = input - this.actor.getMaxBaseMP(elt);
-            formData.object["system.alchimie.primae." + elt + ".max"] = delta;
-        }
-
-        // Update the actor
-        await this.document.update(formData.object);
-
-    }
-        */
 
     /**
      * @override

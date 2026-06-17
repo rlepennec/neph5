@@ -38,7 +38,7 @@
 
         {{#each tabs as |tab|}}
             {{#if tab.active}}
-                {{> (lookup . "template") ..}}
+                {{> (lookup . "template") .. from=tab.from}}
             {{/if}}
         {{/each}}
 

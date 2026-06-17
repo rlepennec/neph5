@@ -127,7 +127,7 @@ export class Vecu extends HistoricalFeature {
      */
     async drop() {
 
-        const currentTab = $(this.event.currentTarget).find("div.tab.active").data("tab");
+        const currentTab = this.actor.sheet.tabGroups?.primary;
 
         // Process the drop on the manoeuver definition
         if (currentTab === 'combat') {

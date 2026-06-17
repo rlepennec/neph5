@@ -1,4 +1,4 @@
-<div class="incarnations">
+<div class="incarnations" data-drop="true">
 
     {{#if (eq from "figure")}}
     <div class="incarnations-header">
@@ -58,7 +58,7 @@
     {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
     <ol class="periodes item-list">
 
-        <li class="periode draggable item" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
+        <li class="periode draggable item" draggable="true" data-drag="true" data-fsid="{{periode.embedded.fsid}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
 
             <div class="periode-header">
 
@@ -67,21 +67,21 @@
                 <img class="separator"/>
 
                 {{#if (eq ../editedPeriode periode.original.sid)}}                
-                <label class="fas fa-trash delete"></label>
+                <label data-action="deletePeriode" class="fas fa-trash delete"></label>
                 {{/if}}
 
-                <label class="periode-name display {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label data-action="displayPeriode" class="periode-name display {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <label class="periode-zone">...</label>
 
                 <ul class="periode-menu">
 
-                    <li class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Afficher{{else}}Editer{{/if}}</li>
+                    <li data-action="editPeriode" class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Afficher{{else}}Editer{{/if}}</li>
 
-                    {{#if ../isGM}}<li class="activate">{{#if periode.embedded.actif}}Désactiver{{else}}Activer{{/if}}</li>{{/if}}
+                    {{#if ../isGM}}<li data-action="activatePeriode" class="activate">{{#if periode.embedded.actif}}Désactiver{{else}}Activer{{/if}}</li>{{/if}}
 
                     {{#unless (eq ../actor.system.periode periode.original.sid)}}
-                    <li class="define">Période courante</li>
+                    <li data-action="currentPeriode" class="define">Période courante</li>
                     {{/unless}}
 
                 </ul>
@@ -132,7 +132,7 @@
                         <label class="name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}                
-                        <label class="fas fa-trash delete"></label>
+                        <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
                         {{/if}}
 
                     </div>
@@ -154,7 +154,7 @@
                         <label class="focus-name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}
-                        <label class="fas fa-trash delete"></label>
+                        <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
                         {{/if}}
 
                     </div>
@@ -177,7 +177,7 @@
                         <label class="focus-name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}
-                        <label class="fas fa-trash delete"></label>
+                        <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
                         {{/if}}
 
                     </div>

@@ -4,6 +4,26 @@ import { NephilimItemSheet } from "../item/nephilimItemSheet.js";
 
 export class HistoricalSheet extends NephilimActorSheet {
 
+    static DEFAULT_OPTIONS = {
+        actions: {
+            displayPeriode: HistoricalSheet._onDisplayPeriode,
+            editPeriode: HistoricalSheet._onEditPeriode,
+            currentPeriode: HistoricalSheet._onCurrentPeriode,
+            deletePeriode: HistoricalSheet._onDeletePeriode,
+            activatePeriode: HistoricalSheet._onActivatePeriode,
+            deleteEmbedded: HistoricalSheet._onDeleteEmbedded
+        },
+        dropHandlers: {
+            periode: HistoricalSheet._onDropPeriode,
+            ...Object.fromEntries(
+                ['vecu', 'savoir', 'quete', 'arcane', 'chute', 'science', 'passe', 'capacite',
+                'sort', 'invocation', 'formule', 'rite', 'ordonnance', 'appel', 'habitus',
+                'pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie', 'divination']
+                    .map(t => [t, HistoricalSheet._onDropFeature])
+            )
+        }
+    }
+
     /**
      * @constructor
      * @param args
@@ -17,11 +37,12 @@ export class HistoricalSheet extends NephilimActorSheet {
     /**
      * @override
      */
-    async getData() {
-        return foundry.utils.mergeObject(await super.getData(), {
-            editedPeriode: this.editedPeriode,
-            elapsedPeriodes: this.elapsedPeriodes,
-        });
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.actor = this.document;            // incarnations.hbs lit "actor.*"
+        context.editedPeriode = this.editedPeriode;
+        context.elapsedPeriodes = this.elapsedPeriodes;
+        return context;
     }
 
     /**
@@ -41,6 +62,16 @@ export class HistoricalSheet extends NephilimActorSheet {
         return null;
     }
 
+    static async _onDropFeature(event, document) {
+        await new FeatureBuilder(this.document)
+            .withOriginalItem(document.sid)
+            .withEvent(event)
+            .withPeriode(this.editedPeriode)
+            .create()
+            .drop();
+        await this.render(true);
+    }
+
     /**
      * Edit the specified feature.
      * @param feature The purpose of the edition.
@@ -57,22 +88,9 @@ export class HistoricalSheet extends NephilimActorSheet {
      * Set the current periode.
      * @param event The click event.
      */
-    async _onCurrentPeriode(event) {
-        event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
+    static async _onCurrentPeriode(event, target) {
+        const sid = target.closest('.item').dataset.sid;
         await this.document.setCurrentPeriode(sid);
-        await this.render(true);
-    }
-
-    /**
-     * Refresh the periodes details according to the option update.
-     * @param event The click event.
-     */
-    async _onChangePeriodesDisplay(event) {
-        event.preventDefault();
-        const checked = $(event.currentTarget).closest(".incarnationsOuvertes").is(':checked');
-        await this.document.update({ ['system.options.incarnationsOuvertes']: checked });
-        this.elapsedPeriodes = this._elapsedPeriodes();
         await this.render(true);
     }
 
@@ -88,23 +106,26 @@ export class HistoricalSheet extends NephilimActorSheet {
      * Only one periode can be edited at once.
      * @param event The click event.
      */
-    async _onEditPeriode(event) {
-        event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
+    static async _onEditPeriode(event, target) {
+        const sid = target.closest('.item').dataset.sid;
         this.editedPeriode = this.editedPeriode === sid ? null : sid;
         await this.render(true);
+    }
+
+    static async _onDeleteEmbedded(event, target) {
+        const id = target.closest('.item').dataset.id;
+        const item = this.document.items.get(id);
+        await this.document.deleteEmbeddedItem(item);
     }
 
     /**
      * Delete the specified periode.
      * @param event The click event.
      */
-    async _onDeletePeriode(event) {
-
-        event.preventDefault();
+    static async _onDeletePeriode(event, target) {
 
         // Retrieve the data
-        const sid = $(event.currentTarget).closest('.item').data('sid');
+        const sid = target.closest('.item').dataset.sid;
         const original = game.items.find(i => i.sid === sid);
 
         // Update the periode edition options
@@ -113,7 +134,6 @@ export class HistoricalSheet extends NephilimActorSheet {
 
         // Used to remove vecus & combat options
         await this.document.deletePeriode(original.sid);
-
     }
 
     /**
@@ -121,9 +141,8 @@ export class HistoricalSheet extends NephilimActorSheet {
      * Only GM can activate or deactivate a periode manually.
      * @param event The click event. 
      */
-    async _onActivatePeriode(event) {
-        event.preventDefault();
-        const sid = $(event.currentTarget).closest('.item').data('sid');
+    static async _onActivatePeriode(event, target) {
+        const sid = target.closest('.item').dataset.sid;
         await new FeatureBuilder(this.document).withOriginalItem(sid).create().toggleActive();
         await this.render(true);
     }
@@ -132,18 +151,22 @@ export class HistoricalSheet extends NephilimActorSheet {
      * Show or hide the specified periode.
      * @param event The click event.
      */
-    async _onDisplayPeriode(event) {
-        event.preventDefault();
-        const root = $(event.currentTarget).closest('.item');
-        const sid = root.data('sid');
-        const node = root.find('.periode-body').first();
-        if (node.css('display') !== 'none') {
+    static async _onDisplayPeriode(event, target) {
+        const sid = target.closest('.item').dataset.sid;
+        if (this.elapsedPeriodes.includes(sid)) {
             this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
-            node.attr("style", "display: none;");
         } else {
             this.elapsedPeriodes.push(sid);
-            node.removeAttr("style");
         }
+        await this.render(true);
+    }
+
+    static async _onDropPeriode(event, document) {
+        await new FeatureBuilder(this.document)
+            .withOriginalItem(document.sid)
+            .withEvent(event)
+            .create()
+            .drop();
         await this.render(true);
     }
 
@@ -152,14 +175,21 @@ export class HistoricalSheet extends NephilimActorSheet {
      * @param event The click event.
      */
     async _onChangeDegre(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".item").data("id");
+        const el = event.currentTarget;
+        const id = el.closest('.item').dataset.id;
         const item = this.document.items.get(id);
-        const value = $(event.currentTarget).closest(".set").val();
+        const converted = parseInt(el.value);
         const system = foundry.utils.duplicate(item.system);
-        const converted = parseInt(value);
         system.degre = isNaN(converted) ? 0 : converted;
-        await item.update({ ['system']: system });
+        await item.update({ system });
+    }
+
+    /** @override */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        for (const el of this.element.querySelectorAll('.set')) {
+            el.addEventListener('change', this._onChangeDegre.bind(this));
+        }
     }
 
 }

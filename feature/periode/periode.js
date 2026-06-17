@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Fraternite } from "../fraternite/fraternite.js";
 
@@ -47,6 +48,14 @@ export class Periode extends AbstractFeature {
                 .withData("previous", null)
                 .withoutData('description', 'aube', 'contexte')
                 .create();
+
+            // Si déposée sur une période existante, l'insérer à cet endroit
+            if (this.event != null) {
+                const parentId = this.getParentPeriode(this.event.target);
+                if (parentId != null) {
+                    await this.moveTo(parentId);
+                }
+            }
 
         // Move the current periode below the event described by the event
         } else if (this.event != null) {
@@ -329,6 +338,7 @@ export class Periode extends AbstractFeature {
                 },
                 embedded: {
                     id: p.id,
+                    fsid: new DocumentIdentifier(p).fsid,
                     actif: p.system.actif,
                     vecus: vecus,
                     focus: focus,

@@ -120,8 +120,10 @@ export class EmbeddedItem {
         }
 
         // Build the embedded item data
-        let raw = await NephilimItem.fromDropData({ uuid: "Item." + item.id });
-        let data = raw.toObject();
+        // CLAUDE
+        //let raw = await NephilimItem.fromDropData({ uuid: "Item." + item.id });
+        //let data = raw.toObject();
+        let data = item.toObject();
         for (const [name, value] of this.data) {
             data.system[name] = value;
         }
@@ -156,9 +158,11 @@ export class EmbeddedItem {
                 this.error("Error occurs during embedded item deletion because item not created");
             }
         } else {
-            for (let i = 0; i < this.removeData.length; i++) {
-                await this.item.update({ ['system.' + this.removeData[i]]: new foundry.data.operators.ForcedDeletion() });
+            const update = {};
+            for (const name of this.removeData) {
+                update['system.' + name] = new foundry.data.operators.ForcedDeletion();
             }
+            await this.item.update(update);
         }
         return this;
     }

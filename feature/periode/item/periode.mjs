@@ -35,7 +35,9 @@ export class PeriodeDataModel extends foundry.abstract.TypeDataModel {
             previous: new foundry.data.fields.StringField
             (
                 {
-                    required: false
+                    required: false,
+                    nullable: true,
+                    initial: null
                 }
             )
         }

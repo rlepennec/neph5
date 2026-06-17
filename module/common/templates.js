@@ -47,7 +47,6 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/periode/actor/quetes.hbs",
         "systems/neph5e/feature/periode/actor/chutes.hbs",
         "systems/neph5e/feature/periode/actor/competences.hbs",
-        "systems/neph5e/feature/periode/actor/incarnations.hbs",
         "systems/neph5e/feature/periode/actor/capacites.hbs",
         
         // Selenim
@@ -100,8 +99,9 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/figurant/combat.hbs",
 
         // Figure
-        "systems/neph5e/feature/figure/description.hbs",
         "systems/neph5e/feature/figure/combat.hbs",
+        "systems/neph5e/feature/figure/description.hbs",
+        "systems/neph5e/feature/figure/incarnations.hbs"
 
 
     ]);

@@ -102,8 +102,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         item.sheet.render(true);
     }
 
-
-
     /**
      * Create the specified feature.
      * @param purpose The purpose 
