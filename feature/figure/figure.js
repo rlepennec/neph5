@@ -20,10 +20,13 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             openItem: FigureSheet._onOpenItem,
             roll: FigureSheet._onRollItem,
             changeFocus: FigureSheet._onChangeFocus,
-            changeStatus: FigureSheet._onChangeStatus
+            changeStatus: FigureSheet._onChangeStatus,
+            changePacte: FigureSheet._onChangePacte
         },
         dropHandlers: {
-            magie: FigureSheet._onDropScience
+            magie: FigureSheet._onDropScience,
+            sort: FigureSheet._onDropFocus,
+            invocation: FigureSheet._onDropFocus
         }
     }
 
@@ -87,6 +90,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 template: `systems/neph5e/feature/science/actor/science.hbs`,
                 science: "magie",
                 header: Science._getHeader("magie")
+            });
+        }
+        if (o.kabbale) {
+            tabs.push({
+                id: "kabbale",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "kabbale",
+                header: Science._getHeader("kabbale")
             });
         }
         return { tabs, initial: "description" };
@@ -298,11 +309,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      *  - invocation
      * @param event The click event.
      */
-    async _onChangePacte(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
+    /** Toggle le pacte de l'invocation. */
+    static async _onChangePacte(event, target) {
+        if (this.locked) return;
+        const sid = target.closest('.item').dataset.sid;
+        const item = this.document.items.find(i => i.sid === sid);
         await item.update({ ['system.pacte']: !item.system.pacte });
     }
 
@@ -357,6 +368,17 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     static async _onDropScience(event, document) {
         await new FeatureBuilder(this.document)
             .withOriginalItem(document.sid)
+            .create()
+            .drop();
+        await this.render(true);
+    }
+
+    /** Drop d'un focus (sort, ...) : rattaché à la période courante.
+     *  Si le focus existait déjà sur une autre période, il est déplacé (une seule période). */
+    static async _onDropFocus(event, document) {
+        await new FeatureBuilder(this.document)
+            .withOriginalItem(document.sid)
+            .withPeriode(this.document.system.periode)
             .create()
             .drop();
         await this.render(true);
