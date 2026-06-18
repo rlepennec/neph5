@@ -38,7 +38,7 @@
 
         {{#each tabs as |tab|}}
             {{#if tab.active}}
-                {{> (lookup . "template") .. from=tab.from science=tab.science header=tab.header}}
+                {{> (lookup . "template") .. from=tab.from science=tab.science header=tab.header cercles=tab.cercles}}
             {{/if}}
         {{/each}}
 

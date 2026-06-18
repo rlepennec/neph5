@@ -11,17 +11,17 @@
 
             {{#each actor.laboratoires as |item|}}
             {{#if (ne ../actor.system.alchimie.courant item.id)}}    
-            <li class="name select"data-sid="{{item.id}}">{{item.name}}</li>
+            <li data-action="selectLaboratory" class="name select"data-sid="{{item.id}}">{{item.name}}</li>
             {{/if}}
             {{/each}}
 
             {{#if (nonNull actor.system.alchimie.courant)}}
-            <li class="name select">{{actor.name}}</li>
+            <li data-action="selectLaboratory" class="name select">{{actor.name}}</li>
             {{/if}}
 
             {{#each actor.laboratoires as |item|}}
             {{#if (eq ../actor.system.alchimie.courant item.id)}} 
-            <li class="name delete">
+            <li data-action="deleteLaboratory" class="name delete">
                 <label>{{item.name}}</label>
                 <i class="fas fa-trash"></i>
             </li>
@@ -717,27 +717,27 @@
         <div class="artefacts">
 
             <div class="athanor tooltip" data-type="athanor">
-                <img src="systems/neph5e/assets/backgrounds/athanor.webp" class="activate {{#unless actor.system.alchimie.constructs.athanor.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/athanor.webp" class="activate {{#unless actor.system.alchimie.constructs.athanor.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.athanor"}}</label>
             </div>
 
             <div class="alambic tooltip" data-type="alambic">
-                <img src="systems/neph5e/assets/backgrounds/alambic.webp" class="activate {{#unless actor.system.alchimie.constructs.alambic.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/alambic.webp" class="activate {{#unless actor.system.alchimie.constructs.alambic.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.alambic"}}</label>
             </div>
 
             <div class="aludel tooltip" data-type="aludel">
-                <img src="systems/neph5e/assets/backgrounds/aludel.webp" class="activate {{#unless actor.system.alchimie.constructs.aludel.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/aludel.webp" class="activate {{#unless actor.system.alchimie.constructs.aludel.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.aludel"}}</label>
             </div>
 
             <div class="cornue tooltip" data-type="cornue">
-                <img src="systems/neph5e/assets/backgrounds/cornue.webp" class="activate {{#unless actor.system.alchimie.constructs.cornue.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/cornue.webp" class="activate {{#unless actor.system.alchimie.constructs.cornue.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.cornue"}}</label>
             </div>
 
             <div class="creuset tooltip" data-type="creuset">
-                <img src="systems/neph5e/assets/backgrounds/creuset.webp" class="activate {{#unless actor.system.alchimie.constructs.creuset.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/creuset.webp" class="activate {{#unless actor.system.alchimie.constructs.creuset.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{localize "NEPH5E.creuset"}}</label>
             </div>
 

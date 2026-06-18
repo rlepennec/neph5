@@ -79,7 +79,7 @@ export class AbstractFeature {
         const item = this.openingItem();
         const sheet = item.sheet.withEmbeddedData(this.getEmbeddedData());
         if (sheet.rendered) {
-            sheet.bringToTop();
+            sheet.bringToFront();   // ← était sheet.bringToTop()
             sheet.maximize();
         } else {
             sheet.render(true);

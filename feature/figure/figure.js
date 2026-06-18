@@ -21,7 +21,10 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             roll: FigureSheet._onRollItem,
             changeFocus: FigureSheet._onChangeFocus,
             changeStatus: FigureSheet._onChangeStatus,
-            changePacte: FigureSheet._onChangePacte
+            changePacte: FigureSheet._onChangePacte,
+            selectLaboratory: FigureSheet._onSelectLaboratory,
+            deleteLaboratory: FigureSheet._onDeleteLaboratory,
+            construct: FigureSheet._onConstruct
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
@@ -107,6 +110,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 template: `systems/neph5e/feature/science/actor/science.hbs`,
                 science: "alchimie",
                 header: Science._getHeader("alchimie")
+            });
+            tabs.push({
+                id: "laboratoire",
+                template: `systems/neph5e/feature/alchimie/actor/laboratoire.hbs`,
+                cercles: Game.alchimie.cercles
             });
         }
         return { tabs, initial: "description" };
@@ -421,42 +429,27 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.render(true);
     }
 
-    /**
-     * Activate or deactivate the specified construct.
-     * @param event The click event.
-     */
-    async _onConstruct(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        if (this.actor.system.alchimie.courant == null && this.actor.locked === false) {
-            const construct = $(event.currentTarget).closest('.tooltip').data('type');
-            const activated = this.actor.system.alchimie.constructs[construct].active;
-            await this.actor.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
+    /** Active/désactive un construct (seulement sur son propre labo, déverrouillé). */
+    static async _onConstruct(event, target) {
+        if (this.document.system.alchimie.courant == null && this.locked === false) {
+            const construct = target.closest('.tooltip').dataset.type;
+            const activated = this.document.system.alchimie.constructs[construct].active;
+            await this.document.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
         }
     }
 
-    /**
-     * Select the specified laboratory.
-     * @param event The click event.
-     */
-    async _onSelectLaboratory(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.select').data('sid');
-        await this.actor.update({ ['system.alchimie.courant']: sid == null ? null : sid });
+    /** Sélectionne un laboratoire (le sien si pas de data-sid). */
+    static async _onSelectLaboratory(event, target) {
+        const sid = target.dataset.sid;
+        await this.document.update({ ['system.alchimie.courant']: sid == null ? null : sid });
     }
 
-    /**
-     * Delete the specified laboratory.
-     * @param event The click event.
-     */
-    async _onDeleteLaboratory(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = this.actor.system.alchimie.courant;
-        const labs = this.actor.system.alchimie.laboratoires.filter(i => i !== sid);
-        await this.actor.update({ ['system.alchimie.laboratoires']: labs });
-        await this.actor.update({ ['system.alchimie.courant']: null });
+    /** Supprime le laboratoire courant. */
+    static async _onDeleteLaboratory(event, target) {
+        const sid = this.document.system.alchimie.courant;
+        const labs = this.document.system.alchimie.laboratoires.filter(i => i !== sid);
+        await this.document.update({ ['system.alchimie.laboratoires']: labs });
+        await this.document.update({ ['system.alchimie.courant']: null });
     }
 
     /**
