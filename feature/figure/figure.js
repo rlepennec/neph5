@@ -26,7 +26,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         dropHandlers: {
             magie: FigureSheet._onDropScience,
             sort: FigureSheet._onDropFocus,
-            invocation: FigureSheet._onDropFocus
+            invocation: FigureSheet._onDropFocus,
+            formule: FigureSheet._onDropFocus
         }
     }
 
@@ -100,6 +101,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 header: Science._getHeader("kabbale")
             });
         }
+        if (o.alchimie) {
+            tabs.push({
+                id: "alchimie",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "alchimie",
+                header: Science._getHeader("alchimie")
+            });
+        }
         return { tabs, initial: "description" };
     }
 
@@ -158,7 +167,16 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             .render(true);
     }
 
-
+    /** @override */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        for (const el of this.element.querySelectorAll('.focus-quantite')) {
+            el.addEventListener('change', this._onChangeQuantite.bind(this));
+        }
+        for (const el of this.element.querySelectorAll('.focus-transporte')) {
+            el.addEventListener('change', this._onChangeTransporte.bind(this));
+        }
+    }
 
 
 
@@ -280,12 +298,10 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      * @param event The click event.
      */
     async _onChangeQuantite(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
-        const value = $(event.currentTarget).closest(".focus-quantite").val();
-        await item.update({ ['system.quantite']: parseInt(value) });
+        if (this.locked) return;
+        const sid = event.target.closest('.item').dataset.sid;
+        const item = this.document.items.find(i => i.sid === sid);
+        await item.update({ ['system.quantite']: parseInt(event.target.value) });
     }
 
     /**
@@ -295,12 +311,10 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      * @param event The click event.
      */
     async _onChangeTransporte(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
-        const value = $(event.currentTarget).closest(".focus-transporte").val();
-        await item.update({ ['system.transporte']: parseInt(value) });
+        if (this.locked) return;
+        const sid = event.target.closest('.item').dataset.sid;
+        const item = this.document.items.find(i => i.sid === sid);
+        await item.update({ ['system.transporte']: parseInt(event.target.value) });
     }
 
     /**
