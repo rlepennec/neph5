@@ -19,6 +19,11 @@ export class MateriaeDataModel extends foundry.abstract.TypeDataModel {
                     initial: 'air',
                     choices: Constants.ELEMENTS
                 }
+            ),
+            quantite: new foundry.data.fields.NumberField(
+                {
+                    required: false
+                }
             )
         }
     }

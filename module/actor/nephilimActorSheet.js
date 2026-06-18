@@ -14,7 +14,10 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     }
 
     static DEFAULT_OPTIONS = {
-        classes: ["actor"]
+        classes: ["actor"],
+        actions: {
+            deleteItem: NephilimActorSheet._onDeleteEmbeddedItem
+        }
     }
 
     /** 
@@ -76,14 +79,19 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         const created = await this.document.createEmbeddedDocuments("Item", [data]);
     }
 
+    /** Supprime un item embarqué (materia, catalyseur, ...) via son id Foundry. */
+    static async _onDeleteEmbeddedItem(event, target) {
+        if (this.locked) return;
+        const id = target.closest('.item').dataset.id;
+        const item = this.document.items.get(id);
+        await this.document.deleteEmbeddedItem(item);
+    }
 
-    /**
-     * Delete the specified embedded item.
-     * @param event The click event.
-     */
-    async _onDeleteEmbeddedItem(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".item").data("id");
+    
+    /** Supprime un item embarqué (materia, catalyseur, vécu, ...) via son id Foundry. */
+    static async _onDeleteEmbeddedItem(event, target) {
+        if (this.locked) return;
+        const id = target.closest('.item').dataset.id;
         const item = this.document.items.get(id);
         await this.document.deleteEmbeddedItem(item);
     }

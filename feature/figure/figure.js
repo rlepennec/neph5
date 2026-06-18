@@ -28,10 +28,13 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
+            alchimie: FigureSheet._onDropScience,
             sort: FigureSheet._onDropFocus,
             invocation: FigureSheet._onDropFocus,
             formule: FigureSheet._onDropFocus,
-            figure: FigureSheet._onDropLaboratory
+            figure: FigureSheet._onDropLaboratory,
+            materiae: FigureSheet._onDropScience,
+            catalyseur: FigureSheet._onDropScience
         }
     }
 
@@ -104,7 +107,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 science: "kabbale",
                 header: Science._getHeader("kabbale")
             });
-        }
+            tabs.push({
+                    id: "arbre",
+                    template: `systems/neph5e/feature/kabbale/actor/arbre.hbs`
+                });
+            }
         if (o.alchimie) {
             tabs.push({
                 id: "alchimie",
@@ -116,6 +123,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 id: "laboratoire",
                 template: `systems/neph5e/feature/alchimie/actor/laboratoire.hbs`,
                 cercles: Game.alchimie.cercles
+            });
+            tabs.push({
+                id: "materiae",
+                template: `systems/neph5e/feature/alchimie/actor/materiae.hbs`,
+                catalyseurs: game.settings.get('neph5e', 'catalyseurs')
             });
         }
         return { tabs, initial: "description" };
@@ -184,6 +196,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
         for (const el of this.element.querySelectorAll('.focus-transporte')) {
             el.addEventListener('change', this._onChangeTransporte.bind(this));
+        }
+        for (const el of this.element.querySelectorAll('li.materiae .quantite')) {
+            el.addEventListener('change', this._onChangeMateriae.bind(this));
         }
     }
 
@@ -300,12 +315,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await feature.initializeRoll();
     }
 
-    /**
-     * Set the number of vaisseaux alchimiques.
-     * Used by:
-     *  - formule
-     * @param event The click event.
-     */
+    /** Modifie la quantité totale de vaisseaux alchimiques  */
     async _onChangeQuantite(event) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
@@ -313,12 +323,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await item.update({ ['system.quantite']: parseInt(event.target.value) });
     }
 
-    /**
-     * Set the number of vaisseaux alchimiques.
-     * Used by:
-     *  - formule
-     * @param event The click event.
-     */
+    /** Modifie la quantité transportées de vaisseaux alchimiques  */
     async _onChangeTransporte(event) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
@@ -326,12 +331,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await item.update({ ['system.transporte']: parseInt(event.target.value) });
     }
 
-    /**
-     * Set the pacte of the item.
-     * Used by:
-     *  - invocation
-     * @param event The click event.
-     */
     /** Toggle le pacte de l'invocation. */
     static async _onChangePacte(event, target) {
         if (this.locked) return;
@@ -340,16 +339,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await item.update({ ['system.pacte']: !item.system.pacte });
     }
 
-    /**
-     * Set the focus of the item.
-     * Used by:
-     *  - sort
-     *  - invocation
-     *  - formule
-     *  - rite
-     *  - appel
-     * @param event The click event.
-     */
     /** Toggle la possession du focus (icône parchemin). */
     static async _onChangeFocus(event, target) {
         if (this.locked) return;
@@ -358,20 +347,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await item.update({ ['system.focus']: !item.system.focus });
     }
 
-    /**
-     * Changes the status of the item.
-     *  - If the item was connu, it becomes dechiffre. 
-     *  - If the item was dechiffre, it becomes appris.
-     *  - If the item was appris, it becomes tatoue.
-     *  - If the item was tatoue, it becomes connu.
-     * Used by:
-     *  - sort
-     *  - invocation
-     *  - formule
-     *  - rite
-     *  - appel
-     * @param event The click event.
-     */
     /** Cycle le statut : connu → déchiffré → appris → tatoué → connu. */
     static async _onChangeStatus(event, target) {
         if (this.locked) return;
@@ -385,7 +360,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             default: throw new Error("Status " + item.system.status + " not implemented");
         }
     }
-
 
     /** Drop d'une voie de science (magie, kabbale, ...) : embarque la voie. */
     static async _onDropScience(event, document) {
@@ -464,17 +438,28 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.document.update({ ['system.alchimie.courant']: null });
     }
 
-    /**
-     * Set the number of materiae.
-     * @param event The click event.
-     */
+    /** Édite la quantité d'une materia (input .quantite de la liste). */
     async _onChangeMateriae(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest('.item').data('sid');
-        const item = this.actor.items.find(i => i.sid === sid);
-        const value = $(event.currentTarget).closest(".quantite").val();
-        await item.update({ ['system.quantite']: parseInt(value) });
+        if (this.locked) return;
+        const sid = event.target.closest('.item').dataset.sid;
+        const item = this.document.items.find(i => i.sid === sid);
+        await item.update({ ['system.quantite']: parseInt(event.target.value) });
+    }
+
+    /**
+     * @override
+     * Materiae primae : le champ 'max' ne stocke que le delta à ajouter au maximum théorique.
+     */
+    async _onSubmit(event, form, formData) {
+        for (const elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
+            const key = 'system.alchimie.primae.' + elt + '.max';
+            const input = formData.object[key];
+            if (input !== undefined) {
+                formData.object[key] = input - this.document.getMaxBaseMP(elt);
+            }
+        }
+        // Délègue à NephilimActorSheet (system.id, items embarqués, update acteur).
+        await super._onSubmit(event, form, formData);
     }
 
 }

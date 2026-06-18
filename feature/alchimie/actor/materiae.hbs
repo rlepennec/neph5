@@ -1,4 +1,4 @@
-<div class="materiae">
+<div class="materiae" data-drop="true">
 
     <div class="left">
 
@@ -144,9 +144,9 @@
                 {{#each actor.materiae as |item|}}
                 <li class="materiae item" data-id={{item.embedded.id}} data-sid="{{item.original.sid}}">
 
-                    <i class="delete fas fa-trash"></i>
+                    <i data-action="deleteItem" class="delete fas fa-trash"></i>
 
-                    <label class="name open">{{item.original.name}}</label>
+                    <label data-action="openItem" class="name open">{{item.original.name}}</label>
 
                     <input
                         {{#if ../actor.locked}}disabled{{/if}}
@@ -190,9 +190,9 @@
                 {{#each actor.catalyseurs as |item|}}
                 <li class="catalyseur item" data-id="{{item.embedded.id}}">
 
-                    <i class="delete fas fa-trash"></i>
+                    <i data-action="deleteItem" class="delete fas fa-trash"></i>
 
-                    <label class="name open">{{item.original.name}}</label>
+                    <label data-action="openItem" class="name open">{{item.original.name}}</label>
 
                 </li>
                 {{/each}}
