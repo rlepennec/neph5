@@ -21,6 +21,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             roll: FigureSheet._onRollItem,
             changeFocus: FigureSheet._onChangeFocus,
             changeStatus: FigureSheet._onChangeStatus
+        },
+        dropHandlers: {
+            magie: FigureSheet._onDropScience
         }
     }
 
@@ -347,6 +350,16 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             case Constants.TATOUE:    await item.update({ ['system.status']: Constants.CONNU });     break;
             default: throw new Error("Status " + item.system.status + " not implemented");
         }
+    }
+
+
+    /** Drop d'une voie de science (magie, kabbale, ...) : embarque la voie. */
+    static async _onDropScience(event, document) {
+        await new FeatureBuilder(this.document)
+            .withOriginalItem(document.sid)
+            .create()
+            .drop();
+        await this.render(true);
     }
 
     /**
