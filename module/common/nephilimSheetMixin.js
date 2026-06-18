@@ -234,6 +234,7 @@ export const NephilimMixinSheet = Base => {
 					}
 					break;
 				}
+				case 'Actor':
 				case 'Item': {
 					const document = new DocumentIdentifier(event).toDocument();
 					this._onDrop(event, document);

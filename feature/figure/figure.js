@@ -30,7 +30,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             magie: FigureSheet._onDropScience,
             sort: FigureSheet._onDropFocus,
             invocation: FigureSheet._onDropFocus,
-            formule: FigureSheet._onDropFocus
+            formule: FigureSheet._onDropFocus,
+            figure: FigureSheet._onDropLaboratory
         }
     }
 
@@ -435,6 +436,17 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             const construct = target.closest('.tooltip').dataset.type;
             const activated = this.document.system.alchimie.constructs[construct].active;
             await this.document.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
+        }
+    }
+
+    /** Ajoute un laboratoire en déposant un acteur alchimiste sur l'onglet laboratoire. */
+    static async _onDropLaboratory(event, document) {
+        if (this.tabGroups.primary !== 'laboratoire') return;
+        const laboratoires = this.document.system.alchimie.laboratoires;
+        if (!laboratoires.includes(document.sid)) {
+            await this.document.update({
+                ['system.alchimie.laboratoires']: [...laboratoires, document.sid]
+            });
         }
     }
 
