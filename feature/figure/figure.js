@@ -116,10 +116,16 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 header: Science._getHeader("kabbale")
             });
             tabs.push({
-                    id: "arbre",
-                    template: `systems/neph5e/feature/kabbale/actor/arbre.hbs`
+                id: "arbre",
+                template: `systems/neph5e/feature/kabbale/actor/arbre.hbs`
+            });
+            if (this.document.ordonnances.items.length > 0) {
+                tabs.push({
+                    id: "ordonnances",
+                    template: `systems/neph5e/feature/kabbale/actor/ordonnances.hbs`
                 });
             }
+        }
         if (o.alchimie) {
             tabs.push({
                 id: "alchimie",
