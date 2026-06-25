@@ -333,7 +333,7 @@ Hooks.once("init", function () {
     });
 
     // Handle chat message for opposed rolls, especially combat system
-    Hooks.on("renderChatMessage", async (app, html, data) => {
+    Hooks.on("renderChatMessageHTML", async (app, html, data) => {
         const reaction = await OpposedRollBuilder.create(data);
         if (reaction != null) {
             await reaction.initializeRoll();

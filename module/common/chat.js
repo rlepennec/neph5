@@ -106,7 +106,7 @@ export class NephilimChat {
         }
 
         // Set the whisper and blind parameters according to the player roll mode settings
-        switch (game.settings.get('core', 'rollMode')) {
+        switch (game.settings.get('core', 'messageMode')) {
             case 'gmroll':
                 data.whisper = ChatMessage.getWhisperRecipients('GM').map((u) => u.id);
                 break;
