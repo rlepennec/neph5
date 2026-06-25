@@ -1,4 +1,4 @@
-<div class="nephilim">
+<div class="nephilim" data-drop="true">
 
     <div class="left">
 
@@ -379,9 +379,9 @@
 
                     <label class="value">{{item.degre}}</label>
 
-                    <label class="name open">{{item.name}}</label>
+                    <label data-action="openItem" class="name open">{{item.name}}</label>
 
-                    <a class="dice roll"><i class="fas fa-dice-d20"></i></a>
+                    <a data-action="roll" class="dice roll"><i class="fas fa-dice-d20"></i></a>
     
                 </li>
                 {{/if}}
@@ -494,7 +494,7 @@
                 <img class="separator"/>
 
                 {{#if item}}
-                <label class="name open">{{item.name}}</label>
+                <label data-action="openItem" class="name open">{{item.name}}</label>
                 {{else}}
                 <label class="name">{{localize "ITEM.TypeMetamorphe"}}</label>
                 {{/if}}

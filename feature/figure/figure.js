@@ -34,7 +34,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             formule: FigureSheet._onDropFocus,
             figure: FigureSheet._onDropLaboratory,
             materiae: FigureSheet._onDropScience,
-            catalyseur: FigureSheet._onDropScience
+            catalyseur: FigureSheet._onDropScience,
+            metamorphe: FigureSheet._onDropScience,
+            chute: FigureSheet._onDropFocus,
         }
     }
 
@@ -72,6 +74,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             template: `systems/neph5e/feature/figure/description.hbs`
         }];
         const o = this.document.system.options ?? {};
+        if (o.nephilim) {
+            tabs.push({
+                id: "nephilim",
+                template: `systems/neph5e/feature/nephilim/actor/main.hbs`
+            });
+        }
         if (o.combat) {
             tabs.push({
                 id: "combat",
@@ -200,6 +208,15 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         for (const el of this.element.querySelectorAll('li.materiae .quantite')) {
             el.addEventListener('change', this._onChangeMateriae.bind(this));
         }
+        for (const el of this.element.querySelectorAll('.chutes .degres i')) {
+            el.addEventListener('click', this._onChute.bind(this));
+        }
+        for (const el of this.element.querySelectorAll('.metamorphose .formed, .metamorphose .visible')) {
+            el.addEventListener('click', this._onToggleMetamorphose.bind(this));
+        }
+        for (const el of this.element.querySelectorAll('.element .dice')) {
+            el.addEventListener('click', this._onRollKa.bind(this));
+        }
     }
 
 
@@ -218,38 +235,27 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
     }
 
-    /**
-     * Set the specified metamorphose to be formed or not.
-     * @param property The property to toggle, formed or visible.
-     * @param event The click event.
-     */
-    async _onToggleMetamorphose(property, event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const id = $(event.currentTarget).closest(".metamorphose").data("id");
-        const item = game.items.get(id);
-        const index = $(event.currentTarget).closest(".metamorphose").data("index");
-        const feature = new FeatureBuilder(this.actor).withOriginalItem(item.sid).create()
-        switch (property) {
-            case 'formed':
-                await feature.toggleFormed(index);
-                return;
-            case 'visible':
-                await feature.toggleVisible(index);
-                return;
-        }  
+    /** Bascule l'état formed/visible d'une métamorphose. */
+    async _onToggleMetamorphose(event) {
+        if (this.locked) return;
+        const node = event.currentTarget.closest('.metamorphose');
+        const item = game.items.get(node.dataset.id);
+        const index = parseInt(node.dataset.index);
+        const feature = new FeatureBuilder(this.document).withOriginalItem(item.sid).create();
+        if (event.currentTarget.classList.contains('formed')) {
+            await feature.toggleFormed(index);
+        } else {
+            await feature.toggleVisible(index);
+        }
     }
 
-    /**
-     * Set the degre of the specified chute.
-     * @param type  The type of chute to update: khaiba, narcose, ombre, luneNoire.
-     * @param event The click event.
-     */
-    async _onChute(type, event) {
-        event.preventDefault();
-        if (!this.actor.locked && this.actor.system.periode != null) {
-            await new Chute(this.actor).set(type, $(event.currentTarget).closest("." + type).data("id"));
-        }
+    /** Fixe le degré d'une chute (clic sur un cercle). */
+    async _onChute(event) {
+        if (this.locked) return;
+        if (this.document.system.periode == null) return;
+        const target = event.currentTarget;
+        const type = ['khaiba', 'narcose', 'ombre', 'luneNoire'].find(t => target.classList.contains(t));
+        await new Chute(this.document).set(type, parseInt(target.dataset.id));
     }
 
     /**
@@ -277,18 +283,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
     }
 
-    /**
-     * Roll the specified ka.
-     * @param event The click event.
-     */
+    /** Jet de Ka sur un élément du pentacle. */
     async _onRollKa(event) {
-        event.preventDefault();
-        const element = $(event.currentTarget).closest('.element').data('id');
-        const feature = new FeatureBuilder(this.actor).withScope('actor').withKa(element).create();
+        const element = event.currentTarget.closest('.element').dataset.id;
+        const feature = new FeatureBuilder(this.document).withScope('actor').withKa(element).create();
         await feature.initializeRoll();
-        return this;
     }
-
 
     /** Construit la feature à partir de l'élément cliqué (AppV2). */
     _featureFromTarget(target) {
