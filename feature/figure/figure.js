@@ -40,6 +40,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             aspect: FigureSheet._onDropScience,
             science: FigureSheet._onDropFocus,
             rite: FigureSheet._onDropFocus,
+            appel: FigureSheet._onDropFocus
         }
     }
 
@@ -159,6 +160,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 template: `systems/neph5e/feature/science/actor/science.hbs`,
                 science: "necromancie",
                 header: Science._getHeader("necromancie")
+            });
+        }
+        if (o.conjuration) {
+            tabs.push({
+                id: "conjuration",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "conjuration",
+                header: Science._getHeader("conjuration")
             });
         }
         return { tabs, initial: "description" };
