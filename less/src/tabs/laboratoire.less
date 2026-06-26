@@ -1,0 +1,353 @@
+.tab.laboratoire {
+    display: flex;
+    flex-direction: columns;
+    padding-top: 20px;
+
+    .laboratoires {
+        position: absolute;
+        top: 110px;
+        left: var(--laboratoire-labs-left);
+
+        .zone {
+            font-family: 'AJensonPro';
+            font-size: 24px;
+
+            &:hover {
+                text-shadow: 0px 0px 1px var(--font-color);
+
+                +.menu {
+                    display: block;
+                    z-index: 99;
+
+                    li {
+                        max-height: 15em;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .menu {
+            position: relative;
+            top: -12px;
+            left: 30px;
+            width: 160px;
+            list-style: none;
+            display: none;
+            background-image:-webkit-linear-gradient(top, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+            background-image: linear-gradient(to bottom, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+            border-radius: 6px;
+            margin-bottom: 2px;
+            box-shadow: 3px 3px 3px #999;
+            border: solid 1px #333A40;
+            font-size: 16px;
+            z-index: 99;
+
+            li {
+                max-height: 0;
+                overflow: hidden;
+                transition: all .5s;
+                border-radius: 0;
+                background: #e2e0d2;
+                box-shadow: none;
+                border: none;
+                padding-left: 10px;
+
+                &.delete {
+                    margin-top: 2px;
+                    display: flex;
+                    flex-direction: row;
+
+                    i {
+                        font-size: 13px;
+                        margin-top: 3px;
+                        width: 20px;
+                    }
+
+                    label {
+                        width: 100%;
+                    }
+
+                }
+
+            }
+
+            &:hover {
+                display: block;
+                z-index: 99;
+
+                li {
+                    max-height: 15em;
+                }
+
+                li:hover {
+                    text-shadow: 0px 0px 1px var(--font-color);
+                }
+
+            }
+
+        }
+
+    }
+
+    .constructs {
+        width: 100%;
+
+        .disabled {
+            filter: opacity(20%);
+            -webkit-filter: opacity(20%);
+        }
+
+        .undeveloped {
+            filter: opacity(20%);
+            -webkit-filter: opacity(20%);
+        }
+
+        .construct {
+            position: absolute;
+            width: 400px;
+
+            img {
+                position: relative;
+                border: none;
+                display: inline;
+
+                &.pentacle {
+                    width: 200px;
+                }
+
+                &.circle {
+                    border: none;
+                    width: var(--laboratoire-circle-width);
+                    height: var(--laboratoire-circle-height);
+                    display: hidden;
+                    background-color: transparent;
+                    content: var(--img-circle);
+                }
+
+            }
+
+            .name {
+                position: relative;
+                font-family: 'AJensonPro';
+                font-size: 26px;
+            }
+
+            select {
+                color: var(--font-color);
+                position: relative;
+                font-family: 'AJensonPro';
+                font-size: 19px;
+                border: none;
+                background-color: transparent;
+                z-index: 98;
+            }
+
+            .elements {
+                position: relative;
+                left: 93px;
+                top: -46px;
+
+                .pentacle {
+                    width: 200px;
+                }
+
+                .element {
+                    position: relative;
+                    width: 52px;
+                    height: 52px;
+
+                    .circle {
+                        top: 2px;
+                        left: 0px;
+                    }
+
+                    input {
+                        top: -41px;
+                        left: 6px;
+                    }
+
+                }
+
+                .air {
+                    top: var(--laboratoire-air-top);
+                    left: var(--laboratoire-air-left);
+                }
+
+                .eau {
+                    top: var(--laboratoire-eau-top);
+                    left: var(--laboratoire-eau-left);
+                }
+
+                .feu {
+                    top: var(--laboratoire-feu-top);
+                    left: var(--laboratoire-feu-left);
+                }
+
+                .lune {
+                    top: var(--laboratoire-lune-top);
+                    left: var(--laboratoire-lune-left);
+                }
+
+                .terre {
+                    top: var(--laboratoire-terre-top);
+                    left: var(--laboratoire-terre-left);
+                }
+
+            }
+
+            .tooltip {
+                z-index: 99;
+
+                input {
+                    position: relative;
+                    border: none;
+                    width: 40px;
+                    text-align: center;
+                    color: var(--font-color);
+                    background-color: transparent;
+                    z-index: 99;
+                }
+
+                .tooltiptext {
+                    z-index: 200;
+                }
+
+            }
+
+        }
+
+        .artefacts {
+            position: relative;
+
+            .tooltip {
+
+                img {
+                    width: 51px;
+                    border: none;
+                }
+
+            }
+
+            .athanor {
+                position: relative;
+                top: var(--laboratoire-athanor-top);
+                left: var(--laboratoire-athanor-left);
+            }
+
+            .alambic {
+                position: relative;
+                top: var(--laboratoire-alambic-top);
+                left: var(--laboratoire-alambic-left);
+            }
+
+            .aludel {
+                position: relative;
+                top: var(--laboratoire-aludel-top);
+                left: var(--laboratoire-aludel-left);
+            }
+
+            .cornue {
+                position: relative;
+                top: var(--laboratoire-cornue-top);
+                left: var(--laboratoire-cornue-left);
+            }
+
+            .creuset {
+                position: relative;
+                top: var(--laboratoire-creuset-top);
+                left: var(--laboratoire-creuset-left);
+            }
+
+        }
+
+        .athanor {
+            top: 613px;
+            left: calc(50% - 230px);
+
+            select {
+                top: 109px;
+                left: -155px;
+            }
+
+            .name {
+                top: 86px;
+                left: -36px;                                
+            }
+
+        }
+
+        .alambic {
+            top: 610px;
+            left: calc(50% + 41px);
+            
+            select {
+                top: 146px;
+                left: 180px;
+            }
+
+            .name {
+                top: 123px;
+                left: 294px;
+            }
+
+            >.tooltip {
+                top: -24px;
+                left: 81px;
+            }
+
+        }
+
+        .aludel {
+            top: 370px;
+            left: calc(50% + 144px);
+            
+            select {
+                top: -60px;
+                left: 75px;
+            }
+
+            .name {
+                top: -83px;
+                left: 181px;
+            }
+
+        }
+
+        .cornue {
+            top: 376px;
+            left: calc(50% - 333px);
+            
+            select {
+                top: -20px;
+                left: -66px;
+            }
+
+            .name {
+                top: -42px;
+                left: 46px;
+            }
+
+        }
+
+        .creuset {
+            top: 183px;
+            left: calc(50% - 100px);
+            
+            select {
+                top: -20px;
+                left: -65px;
+            }
+
+            .name {
+                top: -43px;
+                left: 51px;
+            }
+
+        }
+
+    }
+
+}

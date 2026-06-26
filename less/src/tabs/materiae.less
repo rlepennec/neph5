@@ -1,0 +1,222 @@
+.tab.materiae {
+    flex-direction: row;
+    display: flex;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        font-family: 'AJensonPro';
+        font-size: 21px;
+        margin-top: 15px;
+        margin-bottom: -10px;
+        width: 100%;
+
+        .puce {
+            position: relative;
+            border: none;
+            width: 60px;
+            top: var(--puce-top);
+            background-color: transparent;
+            content: var(--img-puce);
+        }
+
+        .separator {
+            position: absolute;
+            border: none;
+            height: 4px;
+            left: 55px;
+            top: 32px;
+            width: calc(100% - 55px);
+            content: var(--img-separator);
+        }
+
+        .name {
+            position: absolute;
+            left: 70px;
+            top: 2px;
+            width: calc(100% - 65px);
+        }
+
+    }
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        width: 450px;
+
+        .pentacle {
+            position: relative;
+            text-align: center;
+            margin-left: 55px;
+            top: 20px;
+
+            img {
+                border: 0px;
+                width: 380px;
+                height: 378px;
+            }
+
+            .element {
+                position: absolute;
+
+                &.air {
+                    top: var(--materiae-air-top);
+                    left: var(--materiae-air-left);
+                }
+
+                &.eau {
+                    top: var(--materiae-eau-top);
+                    left: var(--materiae-eau-left);
+                }
+
+                &.feu {
+                    top: var(--materiae-feu-top);
+                    left: var(--materiae-feu-left);
+                }
+
+                &.lune {
+                    top: var(--materiae-lune-top);
+                    left: var(--materiae-lune-left);
+                }
+
+                &.terre {
+                    top: var(--materiae-terre-top);
+                    left: var(--materiae-terre-left);
+                }
+
+                .circle {
+                    position: relative;
+                    border: none;
+                    width: var(--materiae-circle-width);
+                    height: var(--materiae-circle-height);
+                    top: var(--materiae-circle-top);
+                    left: var(--materiae-circle-left);
+                    background-color: transparent;
+                    max-width: none;
+                    content: var(--img-circle);
+                }
+
+                .maximum {
+                    position: absolute;
+                    font-size: 16px;
+                    top: var(--materiae-maximum-top);
+                    left: var(--materiae-maximum-left);
+                }
+
+                .max {
+                    position: absolute;
+                    border: none;
+                    font-size: 16px;
+                    color: var(--font-color);
+                    top: var(--materiae-maximum-top);
+                    left: var(--materiae-maximum-left);
+                    background-color: transparent;
+                    width: 30px;
+                }
+
+                .tooltip {
+                    position: absolute;
+                    top: var(--materiae-input-top);
+                    left: var(--materiae-input-left);
+
+                    input {
+                        color: var(--font-color);
+                        background-color: transparent;
+                        font-size: 20px;
+                        border: 0px;
+                        width: 40px;
+                        text-align: center;
+                    }
+
+                }
+
+            }        
+
+        }
+
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        margin-left: 40px;
+        margin-right: 10px;
+        width: calc(100% - 500px);
+
+        .body {
+            display: flex;
+            flex-direction: column;
+
+            .materiae {
+                display: flex;
+                flex-direction: row;
+                margin-left: 10px;
+                list-style: none;
+                font-family: 'AJensonPro';
+                font-size: 16px;
+                overflow: hidden; 
+                white-space: nowrap; 
+                text-overflow: ellipsis;
+
+                .element {
+                    font-size: 13px;
+                    flex: 0 0 auto;
+                    margin-top: 2px;
+                    text-align: right;
+                    margin-left: 5px;
+                }
+
+                .name {
+                    width: 100%;
+                }
+
+                .delete {
+                    font-size: 13px;
+                    width: 30px;
+                }
+
+                .quantite {
+                    border: none;
+                    width: 50px;
+                    text-align: center;
+                    margin-top: -4px;
+                }
+
+                &:hover {
+                    text-shadow: 0px 0px 1px var(--font-color);
+                }
+
+            }
+
+            .catalyseur {
+                display: flex;
+                flex-direction: row;
+                margin-left: 10px;
+                list-style: none;
+                font-family: 'AJensonPro';
+                font-size: 16px;
+                overflow: hidden; 
+                white-space: nowrap; 
+                text-overflow: ellipsis;
+
+                .name {
+                    width: 100%;
+                }
+
+                .delete {
+                    font-size: 13px;
+                    width: 30px;
+                }
+
+                &:hover {
+                    text-shadow: 0px 0px 1px var(--font-color);
+                }
+
+            }
+
+        }
+
+    }
+
+}

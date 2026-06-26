@@ -1,0 +1,365 @@
+.tab.science {
+
+    .science-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        text-align: center;
+
+        img {
+            border: none;
+        }
+
+        .baton {
+            opacity: 0.7;
+            width: 155px;
+        }
+
+        .coupe {
+            transform: scale(0.9);
+            opacity: 0.7;
+            width: 300px;
+        }
+
+        .denier {
+            width: 300px;
+        }
+
+        .epee {
+            opacity: 0.7;
+            width: 155px;
+        }
+
+        .science-header-dice {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 16px;
+            font-weight: bold;
+            transform: translate(147px, 108px);
+        }
+
+        .science-header-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-family: 'AJensonPro';
+            font-size: 23px;
+            font-weight: bold;
+            transform: translate(124px, 104px);
+        }
+
+    }
+
+    .science-header-bohemien {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        text-align: center;
+
+        .brume {
+            height: 300px;
+
+            >img {
+                border: none;
+                opacity: 0.7;
+                height: 300px;
+                transform: translate(-25px, 0px);
+            }
+
+            .element {
+                transform: translate(0px, 0%);
+
+                .circle {
+                    position: relative;
+                    border: none;
+                    width: var(--nephilim-width-circle);
+                    height: var(--nephilim-height-circle);
+                    top: -191px;
+                    left: -36px;
+                    background-color: transparent;
+                    max-width: none;
+                    content: var(--img-circle);
+                }
+
+                .dice {
+                    position: absolute;
+                    top: -60px;
+                    left: 205px;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                .tooltip {
+                    position: absolute;
+                    top: -161px;
+                    left: 98px;
+
+                    input {
+                        color: var(--font-color);
+                        background-color: transparent;
+                        font-size: 23px;
+                        border: 0px;
+                        width: 40px;
+                        text-align: center;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .divination {
+            height: 300px;
+
+            img {
+                border: none;
+                opacity: 0.7;
+                height: 213px;
+                transform: translate(10px, 40px);
+            }
+
+            .dice {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                font-size: 16px;
+                transform: translate(256px, 96px);
+            }
+
+            .degre {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                font-family: 'AJensonPro';
+                font-size: 23px;
+                font-weight: bold;
+                transform: translate(236px, 92px);
+            }
+
+        }
+
+    }
+
+    .cercles {
+
+        .undeveloped {
+            color: var(--font-disabled-color);
+        }
+
+        .cercle {
+
+            .voie {
+                margin-top: 10px;
+                padding-bottom:3px;
+                font-family: 'AJensonPro';
+                font-size: 25px;
+                text-align: center;
+                display: inline-block;
+                width: 100%;
+            }
+
+            .header {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                font-family: 'AJensonPro';
+                font-size: 21px;
+                margin-bottom: -10px;
+
+                .losange {
+                    position: absolute;
+                    border: none;
+                    width: var(--science-circle-width);
+                    height: var(--science-circle-height);
+                    background-color: transparent;
+                    content: var(--img-losange);
+                }
+
+                .triangle {
+                    position: absolute;
+                    border: none;
+                    width: var(--science-circle-width);
+                    height: var(--science-circle-height);
+                    background-color: transparent;
+                    content: var(--img-triangle);
+                }
+
+                .circle {
+                    position: absolute;
+                    border: none;
+                    width: var(--science-circle-width);
+                    height: var(--science-circle-height);
+                    background-color: transparent;
+                    content: var(--img-circle);
+                }
+
+                .separator {
+                    position: absolute;
+                    border: none;
+                    height: 4px;
+                    left: 70px;
+                    top: 46px;
+                    width: calc(100% - 80px);
+                    content: var(--img-separator);
+                }
+
+                .cercle-degre {
+                    position: absolute;
+                    width: 45px;
+                    height: 45px;
+                    left: var(--science-degre-left);
+                    top: var(--science-degre-top);
+                    text-align: center;
+                    font-weight: bold;
+                    padding-top: 12px;
+                    border-radius: 50%;
+                }
+
+                .cercle-menu {
+                    display: flex;
+                    flex-direction: row;
+                    position: absolute;
+                    left: 70px;
+                    top: 20px;
+                    width: calc(100% - 80px);
+                    text-align: center;
+
+                    .cercle-name {
+                        flex: 1 1 auto;
+                    }
+
+                    .cercle-percentage {
+                        flex: 0 0 50px;
+                    }
+
+                    .cercle-quantite {
+                        flex: 0 0 50px;
+                    }
+
+                    .cercle-transporte {
+                        flex: 0 0 50px;
+                    }
+
+                    .cercle-pacte {
+                        flex: 0 0 50px;
+                    }
+
+                    .cercle-possede {
+                        flex: 0 0 50px;
+                    }
+
+                    .cercle-status {
+                        flex: 0 0 80px;
+                    }
+
+                    .cercle-dice {
+                        flex: 0 0 50px;
+                        font-size: 16px;
+                        margin-top: 4px;
+                    }
+
+                }
+
+            }
+
+            .all-focus {
+                padding-left: 0px;
+                padding-top: 70px;
+
+                .focus {
+                    display: flex;
+                    flex-direction: row;
+                    position: relative;
+                    text-align: center;
+
+                    .focus-element {
+                        margin-left: 20px;
+                        flex: 0 0 50px;
+                    }
+
+                    .focus-elements {
+                        margin-left: 20px;
+                        flex: 0 0 50px;
+                    }
+
+                    .focus-name {
+                        flex: 1 1 auto;
+                        text-align: left;
+                        padding-left: 20px;
+                        overflow: hidden; 
+                        white-space: nowrap; 
+                        text-overflow: ellipsis;
+                    }
+
+                    .focus-quantite {
+                        flex: 0 0 50px;
+                        margin-top: -5px;
+                        border: none;
+                        background-color: transparent;
+                        color: var(--font-color);
+                    }
+
+                    .focus-transporte {
+                        flex: 0 0 50px;
+                        margin-top: -5px;
+                        border: none;
+                        background-color: transparent;
+                        color: var(--font-color);
+                    }
+
+                    .focus-pacte {
+                        flex: 0 0 50px;
+                    }
+
+                    .focus-possede {
+                        flex: 0 0 50px;
+
+                        &.undeveloped {
+                            flex: 0 0 222px;
+                            text-align: left;
+                        }
+                    }
+
+                    .focus-status {
+                        flex: 0 0 80px;
+                    }
+
+                    .focus-difficulty {
+                        flex: 0 0 50px;
+                    }
+
+                    .focus-dice {
+                        flex: 0 0 50px;
+                        margin-right: 10px;
+                    }
+
+                    &:hover {
+                        text-shadow: 0px 0px 1px var(--font-color);
+                    }
+
+                    .focus-dice {
+
+                        .tooltiptext {
+                            width: 300px;
+                            transform: translate(-290px, 0px);                                      
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

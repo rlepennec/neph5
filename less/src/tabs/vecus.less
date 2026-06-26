@@ -1,0 +1,101 @@
+.tab.vecus {
+    position: relative;
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        font-family: 'AJensonPro';
+        font-size: 21px;
+        margin-top: 30px;
+        margin-bottom: var(--vecu-header-bottom);
+
+        .puce {
+            position: relative;
+            top: var(--puce-top);
+            border: none;
+            width: 60px;
+            display: hidden;
+            background-color: transparent;
+            content: var(--img-puce);
+        }
+
+        .separator {
+            position: absolute;
+            border: none;
+            height: 4px;
+            left: 55px;
+            top: 32px;
+            width: calc(100% - 65px);
+            content: var(--img-separator);
+        }
+
+        .vecus-name {
+            position: absolute;
+            left: 70px;
+            top: 2px;
+            width: calc(100% - 65px);
+        }
+
+    }
+
+    .body {
+        position: relative;
+        column-count: 3;
+        column-rule-style: solid;
+        column-rule-width: thin;
+        column-gap: 20px;
+        column-rule-color: var(--column-color);
+        z-index: 99;
+
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid var(--column-color);
+            margin: 1em 0;
+            padding: 0;
+        }
+
+        .undeveloped {
+            color: var(--font-disabled-color);
+        }
+
+        .vecu {
+            display:inline-block;
+            font-family: 'AJensonPro';
+            font-size: 16px;
+            width: 100%;
+
+            .vecu-definition {
+                display: flex;
+                flex-direction: row;
+
+                .vecu-degre {
+                    flex: 0 0 40px;
+                }
+
+                .vecu-name {
+                    flex: 1 1 auto;
+                    text-align: left;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                .vecu-dice {
+                    flex: 0 0 40px;
+                    font-size: 14px;
+                    padding-top: 2px;
+                }
+
+            }
+
+            &:hover {
+                text-shadow: 0px 0px 1px var(--font-color);
+            }
+
+        }
+
+    }
+
+}

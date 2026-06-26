@@ -1,6 +1,9 @@
-{{#with actor.ordonnances as |ordonnances|}}
-<div class="ordonnances">
+<main 
+    class='tab ordonnances'
+    data-group='primary'
+    data-tab='ordonnances'>
 
+    {{#with actor.ordonnances as |ordonnances|}}
     <div class="header">
 
         <img class="circle"/>
@@ -32,6 +35,6 @@
         {{/each}}
 
     </ol>
+    {{/with}}
 
 </div>
-{{/with}}

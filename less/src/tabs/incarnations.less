@@ -1,0 +1,359 @@
+.tab.incarnations {
+    
+    .incarnations-header {
+        margin-top: -36px;
+        margin-bottom: 20px;
+        margin-left: calc(100% - 226px);
+
+        .points {
+
+            .circle {
+                border: none;
+                width: 60px;
+                height: 65px;
+                background-color: transparent;
+                content: var(--img-circle);
+            }
+
+            .tooltiptext {
+                transform: translate(0px, 25px);
+                font-size: 14px;
+            }
+
+            input {
+                border: none;
+                width: 45px;
+                height: 45px;
+                text-align: center;
+                font-weight: bold;
+                border-radius: 50%;
+                transform: translate(9px, -54px);
+                background-color: transparent;
+                color: var(--font-color);
+                
+                &:hover {
+                    text-shadow: 0px 0px 1px var(--font-color);
+                }
+            }
+
+        }
+
+    }
+
+    .periodes {
+
+        .periode {
+            display: flex;
+            flex-direction: column;
+
+            .disabled {
+                color: var(--font-disabled-color);
+            }
+
+            .current {
+                font-size: 23px;
+                font-weight: bold;
+            }
+
+            .periode-header {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+                font-family: 'AJensonPro';
+                font-size: 21px;
+
+                .puce {
+                    position: relative;
+                    border: none;
+                    width: 60px;
+                    display: hidden;
+                    background-color: transparent;
+                    content: var(--img-puce);
+                    top: var(--puce-top);
+                }
+
+                .separator {
+                    position: absolute;
+                    border: none;
+                    height: 4px;
+                    left: 55px;
+                    top: 32px;
+                    width: calc(100% - 65px);
+                    content: var(--img-separator);
+                }
+
+                .delete {
+                    position: absolute;
+                    right: 28px;
+                    height: 30px;
+                    font-size: 16px;
+                    padding-top: 6px;
+                    z-index: 99;
+                }
+
+                .periode-name {
+                    position: absolute;
+                    left: 70px;
+                    top: 2px;
+                    width: calc(100% - 65px);
+                    height: 33px;
+
+                    &:hover {
+                        text-shadow: 0px 0px 1px var(--font-color);
+                    }
+
+                }
+
+                .periode-zone {
+                    position: absolute;
+                    right: 37px;
+                    top: 2px;
+                    width: 60px;
+                    height: 33px;
+                    text-align: right;
+                    padding-right: 20px;
+
+                    &:hover {
+
+                        +.periode-menu {
+                            display: block;
+                            z-index: 99;
+
+                            li {
+                                max-height: 15em;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                .periode-menu {
+                    position: absolute;
+                    right: 20px;
+                    top: 15px;
+                    width: 160px;
+                    list-style: none;
+                    display: none;
+                    background-image:-webkit-linear-gradient(top, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                    background-image: linear-gradient(to bottom, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+                    border-radius: 6px;
+                    margin-bottom: 2px;
+                    box-shadow: 3px 3px 3px #999;
+                    border: solid 1px #333A40;
+                    font-size: 16px;
+
+                    li {
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: all .5s;
+                        border-radius: 0;
+                        background: #e2e0d2;
+                        box-shadow: none;
+                        border: none;
+                        padding-left: 10px;
+
+                        &:hover {
+                            text-shadow: 0px 0px 1px var(--font-color);
+                        }
+
+                    }
+
+                    &:hover {
+                        display: block;
+                        z-index: 99;
+
+                        li {
+                            max-height: 15em;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            .periode-body {
+
+                .members {
+                    border: solid 1px var(--font-color);
+                    padding: 10px;
+                    border-radius: 10px;
+                    width: calc(100% - 10px);
+                    margin-bottom: 20px;
+
+                    .member {
+                        display:inline-block;
+                        font-family: 'AJensonPro';
+                        font-size: 16px;
+                        width: 100%;
+                        list-style: none;
+
+                        .definition {
+                            display: flex;
+                            flex-direction: row;
+                            
+                            .fa-solid {
+                                flex: 0 0 40px;
+                                text-align: center;
+                                margin-right: 7px;
+                                font-size: 13px;
+                            }
+
+                            .name {
+                                flex: 1 1 auto;
+                                text-align: left;
+                            }
+
+                            .fa-trash {
+                                flex: 0 0 40px;
+                                text-align: center;
+                                font-size: 13px;
+                                margin-right: 10px;
+                            }
+
+                        }
+
+                        &:hover {
+                            text-shadow: 0px 0px 1px var(--font-color);
+                        }
+
+                    }
+
+                }
+
+                .vecus {
+                    column-count: 3;
+                    column-rule-style: solid;
+                    column-rule-width: thin;
+                    column-gap: 20px;
+                    column-rule-color: var(--font-color);
+                    border: solid 1px var(--font-color);
+                    padding: 10px;
+                    border-radius: 10px;
+                    width: calc(100% - 10px);
+                    margin-bottom: 20px;
+
+                    .vecu {
+                        display:inline-block;
+                        font-family: 'AJensonPro';
+                        font-size: 16px;
+                        width: 100%;
+
+                        .definition {
+                            display: flex;
+                            flex-direction: row;
+                            
+                            .degre {
+                                flex: 0 0 40px;
+                                border: none;
+                                text-align: center;
+                                margin-right: 5px;
+                                color: var(--font-color);
+                            }
+
+                            .name {
+                                flex: 1 1 auto;
+                                text-align: left;
+                                padding-top: 4px;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                            }
+
+                            .delete {
+                                flex: 0 0 30px;
+                                border: none;
+                                text-align: center;
+                                font-size: 13px;
+                                padding-top: 6px;
+                            }
+
+                        }
+
+                        &:hover {
+                            text-shadow: 0px 0px 1px var(--font-color);
+                        }
+
+                    }
+
+                }
+
+                .periode-focus {
+                    border: solid 1px var(--font-color);
+                    padding: 10px;
+                    border-radius: 10px;
+                    width: calc(100% - 10px);
+                    margin-bottom: 20px;
+
+                    .focus {
+                        display:inline-block;
+                        font-family: 'AJensonPro';
+                        font-size: 16px;
+                        width: 100%;
+                        list-style: none;
+
+                        .focus-definition {
+                            display: flex;
+                            flex-direction: row;
+                            
+                            .fa-scroll, .fa-pen-fancy {
+                                flex: 0 0 40px;
+                                text-align: center;
+                                margin-left: 10px;
+                                margin-right: 22px;
+                                font-size: 13px;
+                            }
+
+                            .focus-name {
+                                flex: 1 1 auto;
+                                text-align: left;
+                            }
+
+                            .fa-trash {
+                                flex: 0 0 40px;
+                                text-align: center;
+                                font-size: 13px;
+                                margin-right: 10px;
+                                z-index: 99;
+                            }
+
+                        }
+
+                        &:hover {
+                            text-shadow: 0px 0px 1px var(--font-color);
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        &:hover {
+            cursor: default;
+        }
+
+    }
+
+    .helpPeriode {
+        display: flex;
+        flex-direction: column;
+        margin-top: 200px;
+        text-align: center;
+        color:indianred;
+
+        label {
+            margin-left: 100px;
+            margin-right:100px;
+        }
+
+        i {
+            margin-top:50px;
+        }
+
+    }
+
+}
