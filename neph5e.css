@@ -1101,6 +1101,99 @@
   --soleil-tooltip-margin-left: -44px;
   --color-scrollbar: #113203;
 }
+.tab.arbre {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--kabbale-arbre-color);
+}
+.tab.arbre .arbre-vie {
+  border: 0px;
+  width: 600px;
+  height: 795px;
+}
+.tab.arbre .sephiroth .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'NightjarDemi';
+  font-size: 18px;
+}
+.tab.arbre .sephiroth .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  font-weight: bold;
+}
+.tab.arbre .malkut .title {
+  transform: translate(-28px, 320px);
+}
+.tab.arbre .malkut .degre {
+  transform: translate(2px, 340px);
+}
+.tab.arbre .yesod .title {
+  transform: translate(-23px, 165px);
+}
+.tab.arbre .yesod .degre {
+  transform: translate(2px, 185px);
+}
+.tab.arbre .hod .title {
+  transform: translate(-151px, 86px);
+}
+.tab.arbre .hod .degre {
+  transform: translate(-135px, 105px);
+}
+.tab.arbre .netzach .title {
+  transform: translate(102px, 86px);
+}
+.tab.arbre .netzach .degre {
+  transform: translate(138px, 105px);
+}
+.tab.arbre .tiphereth .title {
+  transform: translate(-42px, 8px);
+}
+.tab.arbre .tiphereth .degre {
+  transform: translate(2px, 27px);
+}
+.tab.arbre .geburah .title {
+  transform: translate(-172px, -72px);
+}
+.tab.arbre .geburah .degre {
+  transform: translate(-135px, -54px);
+}
+.tab.arbre .chesed .title {
+  transform: translate(108px, -72px);
+}
+.tab.arbre .chesed .degre {
+  transform: translate(138px, -54px);
+}
+.tab.arbre .binah .title {
+  transform: translate(-158px, -230px);
+}
+.tab.arbre .binah .degre {
+  transform: translate(-135px, -211px);
+}
+.tab.arbre .chokmah .title {
+  transform: translate(97px, -230px);
+}
+.tab.arbre .chokmah .degre {
+  transform: translate(138px, -211px);
+}
+.tab.arbre .kether .title {
+  transform: translate(-28px, -309px);
+}
+.tab.arbre .kether .degre {
+  transform: translate(2px, -289px);
+}
+.tab.arbre .daath .title {
+  transform: translate(-24px, -177px);
+}
+.tab.arbre .daath .degre {
+  transform: translate(0px, -158px);
+}
 .tab.combat {
   display: flex;
   flex-direction: row;
@@ -1839,6 +1932,99 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li label {
   width: 70%;
+}
+form.nephilim.actor section.window-content > section article main.arbre {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: var(--kabbale-arbre-color);
+}
+form.nephilim.actor section.window-content > section article main.arbre .arbre-vie {
+  border: 0px;
+  width: 600px;
+  height: 795px;
+}
+form.nephilim.actor section.window-content > section article main.arbre .sephiroth .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'NightjarDemi';
+  font-size: 18px;
+}
+form.nephilim.actor section.window-content > section article main.arbre .sephiroth .degre {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  font-weight: bold;
+}
+form.nephilim.actor section.window-content > section article main.arbre .malkut .title {
+  transform: translate(-28px, 320px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .malkut .degre {
+  transform: translate(2px, 340px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .yesod .title {
+  transform: translate(-23px, 165px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .yesod .degre {
+  transform: translate(2px, 185px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .hod .title {
+  transform: translate(-151px, 86px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .hod .degre {
+  transform: translate(-135px, 105px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .netzach .title {
+  transform: translate(102px, 86px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .netzach .degre {
+  transform: translate(138px, 105px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .tiphereth .title {
+  transform: translate(-42px, 8px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .tiphereth .degre {
+  transform: translate(2px, 27px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .geburah .title {
+  transform: translate(-172px, -72px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .geburah .degre {
+  transform: translate(-135px, -54px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .chesed .title {
+  transform: translate(108px, -72px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .chesed .degre {
+  transform: translate(138px, -54px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .binah .title {
+  transform: translate(-158px, -230px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .binah .degre {
+  transform: translate(-135px, -211px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .chokmah .title {
+  transform: translate(97px, -230px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .chokmah .degre {
+  transform: translate(138px, -211px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .kether .title {
+  transform: translate(-28px, -309px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .kether .degre {
+  transform: translate(2px, -289px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .daath .title {
+  transform: translate(-24px, -177px);
+}
+form.nephilim.actor section.window-content > section article main.arbre .daath .degre {
+  transform: translate(0px, -158px);
 }
 form.nephilim.item section.window-content > section {
   display: flex;
