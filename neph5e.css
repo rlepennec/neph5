@@ -1466,6 +1466,338 @@
 .tab.description {
   display: unset;
 }
+.tab.nephilim {
+  flex-direction: row;
+  display: flex;
+  padding-top: 20px;
+}
+.tab.nephilim .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: var(--nephilim-header-bottom);
+  width: 100%;
+}
+.tab.nephilim .header .puce {
+  position: relative;
+  top: var(--puce-top);
+  border: none;
+  width: 60px;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+.tab.nephilim .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 55px);
+  content: var(--img-separator);
+}
+.tab.nephilim .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+.tab.nephilim .header-with-value {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-bottom: -10px;
+}
+.tab.nephilim .header-with-value .circle {
+  border: none;
+  width: var(--nephilim-circle-width);
+  height: var(--nephilim-circle-height);
+  background-color: transparent;
+  content: var(--img-circle);
+}
+.tab.nephilim .header-with-value .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 70px;
+  top: 46px;
+  width: calc(100% - 70px);
+  content: var(--img-separator);
+}
+.tab.nephilim .header-with-value .degre {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  left: var(--nephilim-header-input-left);
+  top: 9px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 12px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+.tab.nephilim .header-with-value .name {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 70px;
+  top: 17px;
+  text-align: left;
+  flex: 1 1 auto;
+  border: none;
+  background-color: transparent;
+  width: calc(100% - 70px);
+}
+.tab.nephilim .left {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+.tab.nephilim .left .pentacle .body {
+  position: relative;
+  text-align: center;
+  margin-left: 55px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+.tab.nephilim .left .pentacle .body img {
+  border: 0px;
+  width: 380px;
+  height: 378px;
+}
+.tab.nephilim .left .pentacle .body .elements {
+  list-style: none;
+}
+.tab.nephilim .left .pentacle .body .elements .element {
+  position: absolute;
+}
+.tab.nephilim .left .pentacle .body .elements .element.air {
+  top: var(--nephilim-top-air);
+  left: var(--nephilim-left-air);
+}
+.tab.nephilim .left .pentacle .body .elements .element.eau {
+  top: var(--nephilim-top-eau);
+  left: var(--nephilim-left-eau);
+}
+.tab.nephilim .left .pentacle .body .elements .element.feu {
+  top: var(--nephilim-top-feu);
+  left: var(--nephilim-left-feu);
+}
+.tab.nephilim .left .pentacle .body .elements .element.lune {
+  top: var(--nephilim-top-lune);
+  left: var(--nephilim-left-lune);
+}
+.tab.nephilim .left .pentacle .body .elements .element.terre {
+  top: var(--nephilim-top-terre);
+  left: var(--nephilim-left-terre);
+}
+.tab.nephilim .left .pentacle .body .elements .element .circle {
+  position: relative;
+  border: none;
+  width: var(--nephilim-width-circle);
+  height: var(--nephilim-height-circle);
+  top: -25px;
+  left: -25px;
+  background-color: transparent;
+  max-width: none;
+  content: var(--img-circle);
+  color: var(--font-color);
+}
+.tab.nephilim .left .pentacle .body .elements .element .dice {
+  position: absolute;
+  top: var(--nephilim-top-dice);
+  left: var(--nephilim-left-dice);
+  font-size: 14px;
+  color: var(--font-color);
+}
+.tab.nephilim .left .pentacle .body .elements .element .tooltip {
+  position: absolute;
+  top: var(--nephilim-top-element);
+  left: var(--nephilim-left-element);
+}
+.tab.nephilim .left .pentacle .body .elements .element .tooltip input {
+  background-color: transparent;
+  font-size: 20px;
+  border: 0px;
+  width: 40px;
+  text-align: left;
+  color: var(--font-color);
+  box-shadow: none;
+}
+.tab.nephilim .left .chutes .body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 0;
+  margin-top: var(--nephilim-margin-top);
+}
+.tab.nephilim .left .chutes .body .chute {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0 0 0 20px;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  z-index: 99;
+}
+.tab.nephilim .left .chutes .body .chute .name {
+  flex: 0 0 200px;
+  margin-right: calc(100% - 410px);
+  margin-left: 30px;
+}
+.tab.nephilim .left .chutes .body .chute .degres {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  margin-top: -2px;
+  font-size: 14px;
+}
+.tab.nephilim .left .chutes .body .chute .l3 {
+  margin-left: 3px;
+}
+.tab.nephilim .left .chutes .body .chute .l3r {
+  margin-left: 3px;
+  color: var(--nephilim-color-chute);
+}
+.tab.nephilim .left .chutes .body .chute .l6 {
+  margin-left: 6px;
+}
+.tab.nephilim .left .chutes .body .chute .l6r {
+  margin-left: 6px;
+  color: var(--nephilim-color-chute);
+}
+.tab.nephilim .left .chutes .body .chute:hover {
+  text-shadow: 0px 0px 3px var(--font-color);
+}
+.tab.nephilim .right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-right: 10px;
+  width: calc(100% - 500px);
+}
+.tab.nephilim .right .metamorphe .metamorphoses {
+  display: flex;
+  flex-direction: column;
+}
+.tab.nephilim .right .metamorphe .metamorphoses .metamorphose {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  list-style: none;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tab.nephilim .right .metamorphe .metamorphoses .metamorphose .formed {
+  font-size: 13px;
+  width: 40px;
+  flex: 0 0 auto;
+  margin-top: 3px;
+  padding-left: 1px;
+}
+.tab.nephilim .right .metamorphe .metamorphoses .metamorphose .name {
+  width: calc(100% - 65px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tab.nephilim .right .metamorphe .metamorphoses .metamorphose .visible {
+  font-size: 13px;
+  margin-top: 3px;
+  z-index: 99;
+}
+.tab.nephilim .right .metamorphe .metamorphoses .metamorphose.undeveloped {
+  color: var(--font-disabled-color);
+}
+.tab.nephilim .right .metamorphe .metamorphoses .metamorphose:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+.tab.nephilim .right .metamorphe .header-with-value .name:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+.tab.nephilim .right .attributs .body {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--nephilim-margin-top);
+}
+.tab.nephilim .right .attributs .body .attribut {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  list-style: none;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tab.nephilim .right .attributs .body .attribut .value {
+  width: 40px;
+  flex: 0 0 auto;
+}
+.tab.nephilim .right .attributs .body .attribut .name {
+  width: calc(100% - 50px);
+}
+.tab.nephilim .right .attributs .body .attribut:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+.tab.nephilim .right .stase .header-with-value {
+  margin-bottom: 10px;
+}
+.tab.nephilim .right .stase .header-with-value .name {
+  font-size: 16px;
+  color: var(--font-color);
+  box-shadow: none;
+}
+.tab.nephilim .right .stase .header-with-value .degre {
+  margin-top: var(--nephilim-stase-margin-top);
+  color: var(--font-color);
+  box-shadow: none;
+}
+.tab.nephilim .right .arcanes .body {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--nephilim-margin-top);
+}
+.tab.nephilim .right .arcanes .body .arcane {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  list-style: none;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 99;
+}
+.tab.nephilim .right .arcanes .body .arcane .value {
+  width: 40px;
+  flex: 0 0 auto;
+}
+.tab.nephilim .right .arcanes .body .arcane .name {
+  width: calc(100% - 70px);
+}
+.tab.nephilim .right .arcanes .body .arcane .dice {
+  font-size: 14px;
+  padding-top: 4px;
+}
+.tab.nephilim .right .arcanes .body .arcane:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
 @font-face {
   font-family: "AJensonPro";
   src: url("../../systems/neph5e/assets/fonts/AJensonPro-Regular.otf");
@@ -1932,6 +2264,338 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li label {
   width: 70%;
+}
+form.nephilim.actor section.window-content > section article main.nephilim {
+  flex-direction: row;
+  display: flex;
+  padding-top: 20px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-top: 15px;
+  margin-bottom: var(--nephilim-header-bottom);
+  width: 100%;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header .puce {
+  position: relative;
+  top: var(--puce-top);
+  border: none;
+  width: 60px;
+  background-color: transparent;
+  content: var(--img-puce);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 55px;
+  top: 32px;
+  width: calc(100% - 55px);
+  content: var(--img-separator);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header .name {
+  position: absolute;
+  left: 70px;
+  top: 2px;
+  width: calc(100% - 65px);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header-with-value {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-bottom: -10px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header-with-value .circle {
+  border: none;
+  width: var(--nephilim-circle-width);
+  height: var(--nephilim-circle-height);
+  background-color: transparent;
+  content: var(--img-circle);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header-with-value .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 70px;
+  top: 46px;
+  width: calc(100% - 70px);
+  content: var(--img-separator);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header-with-value .degre {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  left: var(--nephilim-header-input-left);
+  top: 9px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 12px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .header-with-value .name {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 70px;
+  top: 17px;
+  text-align: left;
+  flex: 1 1 auto;
+  border: none;
+  background-color: transparent;
+  width: calc(100% - 70px);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body {
+  position: relative;
+  text-align: center;
+  margin-left: 55px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body img {
+  border: 0px;
+  width: 380px;
+  height: 378px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements {
+  list-style: none;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element {
+  position: absolute;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element.air {
+  top: var(--nephilim-top-air);
+  left: var(--nephilim-left-air);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element.eau {
+  top: var(--nephilim-top-eau);
+  left: var(--nephilim-left-eau);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element.feu {
+  top: var(--nephilim-top-feu);
+  left: var(--nephilim-left-feu);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element.lune {
+  top: var(--nephilim-top-lune);
+  left: var(--nephilim-left-lune);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element.terre {
+  top: var(--nephilim-top-terre);
+  left: var(--nephilim-left-terre);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element .circle {
+  position: relative;
+  border: none;
+  width: var(--nephilim-width-circle);
+  height: var(--nephilim-height-circle);
+  top: -25px;
+  left: -25px;
+  background-color: transparent;
+  max-width: none;
+  content: var(--img-circle);
+  color: var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element .dice {
+  position: absolute;
+  top: var(--nephilim-top-dice);
+  left: var(--nephilim-left-dice);
+  font-size: 14px;
+  color: var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element .tooltip {
+  position: absolute;
+  top: var(--nephilim-top-element);
+  left: var(--nephilim-left-element);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .pentacle .body .elements .element .tooltip input {
+  background-color: transparent;
+  font-size: 20px;
+  border: 0px;
+  width: 40px;
+  text-align: left;
+  color: var(--font-color);
+  box-shadow: none;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 0;
+  margin-top: var(--nephilim-margin-top);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0 0 0 20px;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  z-index: 99;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .name {
+  flex: 0 0 200px;
+  margin-right: calc(100% - 410px);
+  margin-left: 30px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .degres {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  margin-top: -2px;
+  font-size: 14px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l3 {
+  margin-left: 3px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l3r {
+  margin-left: 3px;
+  color: var(--nephilim-color-chute);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l6 {
+  margin-left: 6px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l6r {
+  margin-left: 6px;
+  color: var(--nephilim-color-chute);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute:hover {
+  text-shadow: 0px 0px 3px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-right: 10px;
+  width: calc(100% - 500px);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses {
+  display: flex;
+  flex-direction: column;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses .metamorphose {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  list-style: none;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses .metamorphose .formed {
+  font-size: 13px;
+  width: 40px;
+  flex: 0 0 auto;
+  margin-top: 3px;
+  padding-left: 1px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses .metamorphose .name {
+  width: calc(100% - 65px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses .metamorphose .visible {
+  font-size: 13px;
+  margin-top: 3px;
+  z-index: 99;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses .metamorphose.undeveloped {
+  color: var(--font-disabled-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .metamorphoses .metamorphose:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .metamorphe .header-with-value .name:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .attributs .body {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--nephilim-margin-top);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .attributs .body .attribut {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  list-style: none;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .attributs .body .attribut .value {
+  width: 40px;
+  flex: 0 0 auto;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .attributs .body .attribut .name {
+  width: calc(100% - 50px);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .attributs .body .attribut:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .stase .header-with-value {
+  margin-bottom: 10px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .stase .header-with-value .name {
+  font-size: 16px;
+  color: var(--font-color);
+  box-shadow: none;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .stase .header-with-value .degre {
+  margin-top: var(--nephilim-stase-margin-top);
+  color: var(--font-color);
+  box-shadow: none;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .arcanes .body {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--nephilim-margin-top);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .arcanes .body .arcane {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  list-style: none;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 99;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .arcanes .body .arcane .value {
+  width: 40px;
+  flex: 0 0 auto;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .arcanes .body .arcane .name {
+  width: calc(100% - 70px);
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .arcanes .body .arcane .dice {
+  font-size: 14px;
+  padding-top: 4px;
+}
+form.nephilim.actor section.window-content > section article main.nephilim .right .arcanes .body .arcane:hover {
+  text-shadow: 0px 0px 1px var(--font-color);
 }
 form.nephilim.actor section.window-content > section article main.arbre {
   position: relative;
