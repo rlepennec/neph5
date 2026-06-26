@@ -37,6 +37,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             catalyseur: FigureSheet._onDropScience,
             metamorphe: FigureSheet._onDropScience,
             chute: FigureSheet._onDropFocus,
+            aspect: FigureSheet._onDropScience,
         }
     }
 
@@ -78,6 +79,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             tabs.push({
                 id: "nephilim",
                 template: `systems/neph5e/feature/nephilim/actor/main.hbs`
+            });
+        }
+        if (o.selenim) {
+            tabs.push({
+                id: "selenim",
+                template: `systems/neph5e/feature/selenim/actor/main.hbs`
             });
         }
         if (o.combat) {
@@ -223,6 +230,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         for (const el of this.element.querySelectorAll('.element .dice')) {
             el.addEventListener('click', this._onRollKa.bind(this));
         }
+        for (const el of this.element.querySelectorAll('.aspect .visible')) {
+            el.addEventListener('click', this._onToggleAspect.bind(this));
+        }
     }
 
 
@@ -278,15 +288,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
     }
 
-    /**
-     * Set the specified aspect of the imago to be active or not.
-     * @param event The click event.
-     */
+    /** Bascule l'état actif d'un aspect de l'imago. */
     async _onToggleAspect(event) {
-        event.preventDefault();
-        if (this.actor.locked) return;
-        const sid = $(event.currentTarget).closest(".item").data("sid");
-        await new FeatureBuilder(this.actor).withOriginalItem(sid).create().toggleActive();
+        if (this.locked) return;
+        const sid = event.currentTarget.closest('.item').dataset.sid;
+        await new FeatureBuilder(this.document).withOriginalItem(sid).create().toggleActive();
     }
 
     /** Jet de Ka sur un élément du pentacle. */

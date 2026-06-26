@@ -139,7 +139,9 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                 {
                     courant: new foundry.data.fields.StringField(
                         {
-                            required: false
+                            required: false,
+                            nullable: true,
+                            initial: null
                         }
                     ),
                     laboratoires: new foundry.data.fields.ArrayField

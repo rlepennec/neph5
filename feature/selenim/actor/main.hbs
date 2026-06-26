@@ -1,4 +1,4 @@
-<div class="selenim">
+<div class="selenim" data-drop="true">
 
     <div class="left">
 
@@ -25,7 +25,7 @@
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
                         <div class="tooltip">
                             <input
-                                {{#if actor.locked}}disabled{{/if}}
+                                {{#if document.sheet.locked}}disabled{{/if}}
                                 name="system.ka.pavane"
                                 type="text"
                                 value="{{system.ka.pavane}}"
@@ -39,7 +39,7 @@
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
                         <div class="tooltip">
                             <input
-                                {{#if actor.locked}}disabled{{/if}}
+                                {{#if document.sheet.locked}}disabled{{/if}}
                                 name="system.ka.noyau"
                                 type="text"
                                 value="{{system.ka.noyau}}"
@@ -52,7 +52,7 @@
                         <img class="circle"/>
                         <div class="tooltip reserveCourante">
                             <input
-                                {{#if actor.locked}}disabled{{/if}}
+                                {{#if document.sheet.locked}}disabled{{/if}}
                                 name="system.ka.reserveCourante"
                                 type="text"
                                 value="{{system.ka.reserveCourante}}"
@@ -62,7 +62,7 @@
                         <label class="separator">/</label>
                         <div class="tooltip reserveMaximale">
                             <input
-                                {{#if actor.locked}}disabled{{/if}}
+                                {{#if document.sheet.locked}}disabled{{/if}}
                                 name="system.ka.reserve"
                                 type="text"
                                 value="{{system.ka.reserve}}"
@@ -163,9 +163,9 @@
 
                     <label class="visible fas {{#if aspect.embedded.active}}fa-eye-slash{{else}}fa-eye{{/if}}"></label>
 
-                    <label class="name open">{{aspect.original.name}}</label>
+                    <label data-action="openItem" class="name open">{{aspect.original.name}}</label>
 
-                    <i class="fas fa-trash delete"></i>
+                    <i data-action="deleteItem" class="fas fa-trash delete"></i>
 
                 </li>
                 {{/each}}
