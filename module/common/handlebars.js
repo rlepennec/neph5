@@ -45,7 +45,27 @@ export class CustomHandlebarsHelpers {
         return out;
     }
 
-
+    /**
+     * Normalise des options en map { valeurStockée : libelléAffiché }.
+     * - array (elements, mondes, appels…) : la valeur EST la clé i18n → traduite.
+     * - map en dur (clé sans '@', valeur = clé i18n, ex. basseMagie) → traduite.
+     * - map addon (clé avec '@', valeur = nom de l'item, ex. denier@architecte) → nom brut.
+     */
+    static selectChoices(choices) {
+        const out = {};
+        if (Array.isArray(choices)) {
+            for (const c of choices) {
+                out[c] = game.i18n.localize('NEPHILIM.' + c);
+            }
+        } else if (choices != null) {
+            for (const key of Object.keys(choices)) {
+                out[key] = String(key).includes('@')
+                    ? choices[key]
+                    : game.i18n.localize('NEPHILIM.' + choices[key]);
+            }
+        }
+        return out;
+    }
 
 
 // OLD

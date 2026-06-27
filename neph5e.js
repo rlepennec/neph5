@@ -180,6 +180,7 @@ Hooks.once("init", function () {
         science: CustomHandlebarsHelpers.science,
         fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
         getSystemOption: CustomHandlebarsHelpers.getSystemOption,
+        selectChoices: CustomHandlebarsHelpers.selectChoices,
         minus: (v1, v2) => v1 - v2,
     });
 
