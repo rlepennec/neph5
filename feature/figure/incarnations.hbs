@@ -106,7 +106,7 @@
 
                         <i class="fa-solid {{#if actor.newer}}fa-user-plus{{else}}fa-user-minus{{/if}}"></i>
 
-                        <label class="name open">{{actor.name}}</label>
+                        <label data-action="openItem" class="name open">{{actor.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}
                         <label class="fas fa-trash delete"></label>
@@ -133,7 +133,7 @@
                             value="{{item.degre}}"
                             data-dtype="Number"/>
 
-                        <label class="name open">{{item.name}}</label>
+                        <label data-action="openItem" class="name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}                
                         <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
@@ -155,7 +155,7 @@
 
                         <a><i class="fas fa-scroll"></i></a>
 
-                        <label class="focus-name open">{{item.name}}</label>
+                        <label data-action="openItem" class="focus-name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}
                         <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
@@ -178,7 +178,7 @@
 
                         <a><i class="fa-solid fa-pen-fancy"></i></a>
 
-                        <label class="focus-name open">{{item.name}}</label>
+                        <label data-action="openItem" class="focus-name open">{{item.name}}</label>
 
                         {{#if (eq ../../editedPeriode ../original.sid)}}
                         <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>

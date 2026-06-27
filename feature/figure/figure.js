@@ -42,6 +42,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             rite: FigureSheet._onDropFocus,
             appel: FigureSheet._onDropFocus,
             habitus: FigureSheet._onDropFocus,
+            dracomachie: FigureSheet._onDropFocus,
+            divination: FigureSheet._onDropFocus,
+            technique: FigureSheet._onDropFocus,
+            tekhne: FigureSheet._onDropFocus,
+            pratique: FigureSheet._onDropFocus,
+            rituel: FigureSheet._onDropFocus,
+            atlanteide: FigureSheet._onDropFocus,
+            capacite: FigureSheet._onDropFocus,
         }
     }
 
@@ -163,6 +171,22 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 header: Science._getHeader("analogie")
             });
         }
+        if (o.dracomachie) {
+            tabs.push({
+                id: "dracomachie",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "dracomachie",
+                header: Science._getHeader("dracomachie")
+            });
+        }
+        if (o.atlanteide) {
+            tabs.push({
+                id: "atlanteide",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "atlanteide",
+                header: Science._getHeader("atlanteide")
+            });
+        }
         if (o.necromancie) {
             tabs.push({
                 id: "necromancie",
@@ -177,6 +201,59 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 template: `systems/neph5e/feature/science/actor/science.hbs`,
                 science: "conjuration",
                 header: Science._getHeader("conjuration")
+            });
+        }
+        if (o.akasha) {
+            tabs.push({
+                id: "akasha",
+                template: `systems/neph5e/feature/akasha/actor/main.hbs`
+            });
+        }
+        if (o.bohemien) {
+            tabs.push({
+                id: "bohemien",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "bohemien",
+                header: Science._getHeader("bohemien")
+            });
+        }
+        if (o.baton) {
+            tabs.push({
+                id: "baton",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "baton",
+                header: Science._getHeader("baton")
+            });
+        }
+        if (o.coupe) {
+            tabs.push({
+                id: "coupe",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "coupe",
+                header: Science._getHeader("coupe")
+            });
+        }
+        if (o.denier) {
+            tabs.push({
+                id: "denier",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "denier",
+                header: Science._getHeader("denier")
+            });
+        }
+        if (o.epee) {
+            tabs.push({
+                id: "epee",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "epee",
+                header: Science._getHeader("epee")
+            });
+        }
+        if (o.capacites) {
+            tabs.push({
+                id: "capacites",
+                template: `systems/neph5e/feature/periode/actor/capacites.hbs`,
+                from: "figure"
             });
         }
         return { tabs, initial: "description" };
@@ -260,6 +337,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
         for (const el of this.element.querySelectorAll('.aspect .visible')) {
             el.addEventListener('click', this._onToggleAspect.bind(this));
+        }
+        for (const el of this.element.querySelectorAll('[data-tab="akasha"] .activate')) {
+            el.addEventListener('click', this._onToggleVaisseau.bind(this));
         }
     }
 
@@ -421,16 +501,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.render(true);
     }
 
-    /**
-     * Toggle the state of the specified vaisseau used to travel.
-     * @param event The click event.
-     */
     async _onToggleVaisseau(event) {
         event.preventDefault();
-        if (this.actor.locked) return;
-        const vaisseau = $(event.currentTarget).closest('.vaisseau').data('type');
-        const activated = this.actor.system.akasha[vaisseau].active;
-        await this.actor.update({ ['system.akasha.' + vaisseau + ".active"]: !activated });
+        if (this.locked) return;
+        const vaisseau = event.currentTarget.closest('.vaisseau').dataset.type;
+        const activated = this.document.system.akasha[vaisseau].active;
+        await this.document.update({ ['system.akasha.' + vaisseau + '.active']: !activated });
     }
 
     /**
