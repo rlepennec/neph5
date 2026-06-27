@@ -178,8 +178,7 @@ export class DocumentIdentifier {
         let owner = "";
         if (this.#actor == null) {
             owner = "World";
-        }
-        if (this.#scene != null) {
+        } else if (this.#scene != null) {
             owner = this.#scene.documentName + "." + this.#scene.id + "." + this.#token.documentName + "." + this.#token.id + "." + this.#actor.documentName  + "." + this.#actor.id;
         } else {
             owner =  this.#actor.documentName + "." + this.#actor.id;

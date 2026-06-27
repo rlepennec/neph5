@@ -40,7 +40,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             aspect: FigureSheet._onDropScience,
             science: FigureSheet._onDropFocus,
             rite: FigureSheet._onDropFocus,
-            appel: FigureSheet._onDropFocus
+            appel: FigureSheet._onDropFocus,
+            habitus: FigureSheet._onDropFocus,
         }
     }
 
@@ -152,6 +153,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 id: "materiae",
                 template: `systems/neph5e/feature/alchimie/actor/materiae.hbs`,
                 catalyseurs: game.settings.get('neph5e', 'catalyseurs')
+            });
+        }
+        if (o.analogie) {
+            tabs.push({
+                id: "analogie",
+                template: `systems/neph5e/feature/science/actor/science.hbs`,
+                science: "analogie",
+                header: Science._getHeader("analogie")
             });
         }
         if (o.necromancie) {

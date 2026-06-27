@@ -53,20 +53,20 @@ export class NephilimItem extends Item {
         return null;
     }
 
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return false;
+        const duplicated = data._stats?.duplicateSource != null && !this.isEmbedded;
+        if (duplicated || data.system?.id == null || data.system?.id === "") {
+            this.updateSource({ "system.id": CustomHandlebarsHelpers.UUID() });
+        }
+    }
+
     /**
      * @override
      */
     prepareData() {
         super.prepareData();
-        if (this._stats.duplicateSource != null) {
-            const id = this._stats.duplicateSource.slice(5);
-            const item = game.items.get(id);
-            if (item != null && item.sid === this.sid) {
-                this.system.id = CustomHandlebarsHelpers.UUID();
-            }
-        } else if (this.system.id == null || this.system.id === "") {
-            this.system.id = CustomHandlebarsHelpers.UUID();
-        }
         if (this.img === 'icons/svg/item-bag.svg') {
             const root = "systems/neph5e/assets/icons/";
             switch (this.type) {
