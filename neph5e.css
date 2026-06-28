@@ -1586,6 +1586,20 @@
 .tab.combat .droite .caracteristiques ol li label {
   width: 70%;
 }
+.tab.combat .droite .capacites ol {
+  list-style: none;
+}
+.tab.combat .droite .capacites ol li {
+  display: flex;
+  flex-direction: row;
+  height: 22px;
+}
+.tab.combat .droite .capacites ol li i {
+  width: 10%;
+}
+.tab.combat .droite .capacites ol li label:nth-child(2) {
+  width: 20%;
+}
 .tab.combat .droite .etats ol {
   list-style: none;
 }
@@ -4128,6 +4142,20 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li label {
   width: 70%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .capacites ol {
+  list-style: none;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .capacites ol li {
+  display: flex;
+  flex-direction: row;
+  height: 22px;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .capacites ol li i {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .capacites ol li label:nth-child(2) {
+  width: 20%;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .etats ol {
   list-style: none;
