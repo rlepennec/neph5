@@ -269,11 +269,11 @@
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
                     <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    {{> "systems/neph5e/templates/input.hbs"
-                        name=(concat 'items.' (fsid item) '.system.degre')
-                        type="number"
-                        value=item.system.degre
-                    }}
+                    <input
+                        name={{name}}
+                        {{#if type}}type="{{type}}"{{else}}type="text"type"{{/if}}
+                        value="{{item.system.degre}}"
+                        disabled/>
                 </li>
                 {{/if}}
                 {{/each}}
