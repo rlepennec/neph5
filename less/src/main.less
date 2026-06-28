@@ -124,4 +124,48 @@ form.nephilim {
 
     }
 
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    
+        .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 200;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 1;
+            transition: opacity 0.3s;
+            background-image: linear-gradient(to bottom, var(--incarnations-menu-first-color) 0%, var(--incarnations-menu-second-color) 100%);
+            box-shadow: 3px 3px 3px #999;
+            border: solid 1px #333A40;
+            font-size: 16px;
+    
+            &:after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+    
+        }
+    
+        &:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+    }
+
 }
