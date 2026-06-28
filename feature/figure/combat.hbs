@@ -263,20 +263,6 @@
 
             <ol class="body">
 
-                {{#if (eq document.type 'figure')}}
-                {{#each document.passes as |item|}}
-                {{#if (ne item.degre 0)}}
-                <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
-                    <a><i></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    <label class="degre">{{item.degre}}</label>
-                </li>
-                {{/if}}
-                {{/each}}
-                {{/if}}
-
-                {{#if (eq document.type 'figurant')}}
                 {{#each document.items as |item id|}}
                 {{#if (eq item.type 'passe')}}
                 <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
@@ -291,7 +277,6 @@
                 </li>
                 {{/if}}
                 {{/each}}
-                {{/if}}
 
             </ol>
 
@@ -389,6 +374,34 @@
                         value=document.projete
                     }}
                     <label>{{translate "aTerre"}}</label>
+                </li>
+
+            </ol>
+
+        </div>
+
+        <div class="capacites">
+
+            <div class="header">
+                <img class="puce"/>
+                <img class="separator"/>
+                <label class="title">{{translate "capacites"}}</label>
+            </div>
+
+            <ol>
+
+                <li class="capacite esquive" data-id="esquive">
+                    <i data-action="editCapacity" class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
+                    <label {{#unless document.isEsquiveAvailable}}class="undefined"{{/unless}}>{{translate "esquive"}}</label>
+                    <i class="fas fa-caret-right"></i>
+                    <label>{{document.esquive}}</label>
+                </li>
+
+                <li class="capacite lutte" data-id="lutte">
+                    <i data-action="editCapacity" class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
+                    <label {{#unless document.isLutteAvailable}}class="undefined"{{/unless}}>{{translate "lutte"}}</label>
+                    <i class="fas fa-caret-right"></i>
+                    <label>{{document.lutte}}</label>
                 </li>
 
             </ol>

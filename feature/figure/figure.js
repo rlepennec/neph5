@@ -24,7 +24,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             changePacte: FigureSheet._onChangePacte,
             selectLaboratory: FigureSheet._onSelectLaboratory,
             deleteLaboratory: FigureSheet._onDeleteLaboratory,
-            construct: FigureSheet._onConstruct
+            construct: FigureSheet._onConstruct,
+            editCapacity: FigureSheet._onEditCapacity,
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
@@ -50,6 +51,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             rituel: FigureSheet._onDropFocus,
             atlanteide: FigureSheet._onDropFocus,
             capacite: FigureSheet._onDropFocus,
+            competence: FigureSheet._onDropManoeuver,
+            vecu: FigureSheet._onDropManoeuver,
         }
     }
 
@@ -75,6 +78,15 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     constructor(...args) {
         super(...args);
         this.editedCapacity = null;
+    }
+
+    /**
+     * @override
+     **/
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.editedCapacity = this.editedCapacity;
+        return context;
     }
 
     /**
@@ -487,6 +499,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.render(true);
     }
 
+    static async _onDropManoeuver(event, document) {
+        if (this.editedCapacity == null) return;
+        const builder = new FeatureBuilder(this.document)
+            .withScope('actor')
+            .withManoeuver(this.editedCapacity);
+        const feature = (document.isEmbedded
+            ? builder.withEmbeddedItem(document.id)
+            : builder.withOriginalItem(document.sid)).create();
+        await feature.drop();
+        this.editedCapacity = null;
+        await this.render(true);
+    }
+
     async _onToggleVaisseau(event) {
         event.preventDefault();
         if (this.locked) return;
@@ -495,13 +520,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.document.update({ ['system.akasha.' + vaisseau + '.active']: !activated });
     }
 
-    /**
-     * Edit or unedit the specified capacity.
-     * @param capacity The capacity to edit, 'esquive' or 'lutte'
-     * @param event The click event.
-     */
-    async _onEditCapacity(capacity, event) {
+    static async _onEditCapacity(event, target) {
         event.preventDefault();
+        const capacity = target.closest('.capacite').dataset.id;
         this.editedCapacity = this.editedCapacity === capacity ? null : capacity;
         await this.render(true);
     }

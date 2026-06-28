@@ -15,11 +15,12 @@ export const CombatantMixinSheet = Base => {
 			actions: {
 				rollWeapon: CombatantSheet._onRollWeapon,
 				rollWrestle: CombatantSheet._onRollWrestle,
+				rollPasse: CombatantSheet._onRollPasse,
 				setDesoriente: CombatantSheet._onSetDesoriente,
 				setImmobilise: CombatantSheet._onSetImmobilise,
 				setProjete: CombatantSheet._onSetProjete,
 				useArmor: CombatantSheet._onUseEquipment,
-				useWeapon: CombatantSheet._onUseEquipment
+				useWeapon: CombatantSheet._onUseEquipment,
 			},
 			deleteHandlers: {
 				"arme": NephilimActorSheet._onDeleteItem,
@@ -53,7 +54,10 @@ export const CombatantMixinSheet = Base => {
 
 				// No combat system activated, just roll a martial skill roll
 				} else {
-					const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(document.system.competence).create();
+					const feature = new FeatureBuilder(this.document)
+						.withScope("actor")
+						.withOriginalItem(document.system.competence)
+						.create();
 					await feature.initializeRoll();
 				}
 
@@ -66,11 +70,25 @@ export const CombatantMixinSheet = Base => {
 				if (this.#combatActivated()) {
 					await new Wrestle(this.document).initializeRoll();
 				} else {
-					const feature = new FeatureBuilder(this.document).withScope("actor").withOriginalItem(this.document.system.manoeuvres.lutte).create();
+					const feature = new FeatureBuilder(this.document)
+						.withScope("actor")
+						.withOriginalItem(this.document.system.manoeuvres.lutte)
+						.create();
 					await feature.initializeRoll();
 				}
 			}
 		}
+
+        static async _onRollPasse(event, target) {
+            event.preventDefault();
+            const item = new DocumentIdentifier(target).toDocument();
+            if (item == null) return;
+            const builder = new FeatureBuilder(this.document).withScope('actor');
+            const feature = (item.isEmbedded
+                ? builder.withEmbeddedItem(item.id)
+                : builder.withOriginalItem(item.sid)).create();
+            await feature.initializeRoll();
+        }
 
 		static async _onUseEquipment(event, target) {
 			event.preventDefault();

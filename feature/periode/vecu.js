@@ -133,7 +133,7 @@ export class Vecu extends HistoricalFeature {
         if (currentTab === 'combat') {
 
             // Actor must be unlocked
-            if (this.actor.locked) {
+            if (this.actor.sheet?.locked === true) {
                 return;
             }
 
@@ -169,7 +169,7 @@ export class Vecu extends HistoricalFeature {
         if (currentTab === 'incarnations') {
 
             // Actor must be unlocked
-            if (this.actor.locked) {
+            if (this.actor.sheet?.locked) {
                 return;
             }
 

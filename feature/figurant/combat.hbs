@@ -263,20 +263,6 @@
 
             <ol class="body">
 
-                {{#if (eq document.type 'figure')}}
-                {{#each document.passes as |item|}}
-                {{#if (ne item.degre 0)}}
-                <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
-                    <a><i></i></a>
-                    <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-                    <label class="degre">{{item.degre}}</label>
-                </li>
-                {{/if}}
-                {{/each}}
-                {{/if}}
-
-                {{#if (eq document.type 'figurant')}}
                 {{#each document.items as |item id|}}
                 {{#if (eq item.type 'passe')}}
                 <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
@@ -291,7 +277,6 @@
                 </li>
                 {{/if}}
                 {{/each}}
-                {{/if}}
 
             </ol>
 
