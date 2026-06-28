@@ -68,6 +68,12 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/figure/incarnations.hbs",
         "systems/neph5e/feature/figure/vecus.hbs",
 
+        "systems/neph5e/feature/baton/actor/header.hbs",
+        "systems/neph5e/feature/bohemien/actor/header.hbs",
+        "systems/neph5e/feature/coupe/actor/header.hbs",
+        "systems/neph5e/feature/denier/actor/header.hbs",
+        "systems/neph5e/feature/epee/actor/header.hbs",
+
 
     ]);
 

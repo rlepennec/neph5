@@ -4,6 +4,10 @@
     data-tab='science'
     data-drop="true">
 
+    {{#if (scienceHeader science)}}
+    {{> (scienceHeader science)}}
+    {{/if}}
+
     {{#with (cercles actor science false) as |data|}}
     {{#if (gt data.cercles.length 0)}} 
     <ol class="cercles">

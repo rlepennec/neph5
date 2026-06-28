@@ -181,6 +181,7 @@ Hooks.once("init", function () {
         fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
         getSystemOption: CustomHandlebarsHelpers.getSystemOption,
         selectChoices: CustomHandlebarsHelpers.selectChoices,
+        scienceHeader: CustomHandlebarsHelpers.scienceHeader,
         minus: (v1, v2) => v1 - v2,
     });
 

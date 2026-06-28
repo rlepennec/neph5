@@ -67,6 +67,11 @@ export class CustomHandlebarsHelpers {
         return out;
     }
 
+    static scienceHeader(science) {
+        const path = `systems/neph5e/feature/${science}/actor/header.hbs`;
+        return Handlebars.partials[path] != null ? path : null;
+    }
+
 
 // OLD
 
