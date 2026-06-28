@@ -42,24 +42,10 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/fraternite/actor/options.hbs",
 
         // Actor parts
-        "systems/neph5e/templates/actor/parts/header.hbs",
         "systems/neph5e/templates/actor/parts/option.hbs",
-        "systems/neph5e/templates/actor/parts/checkbox.hbs",
-        "systems/neph5e/templates/actor/parts/top.hbs",
 
         // Item parts
-        "systems/neph5e/templates/item/parts/header/header.hbs",
         "systems/neph5e/templates/item/parts/header/number.hbs",
-        "systems/neph5e/templates/item/parts/header/select.hbs",
-        "systems/neph5e/templates/item/parts/header/text.hbs",
-        "systems/neph5e/templates/item/parts/header/label.hbs",
-        "systems/neph5e/templates/item/parts/body/chronology.hbs",
-        "systems/neph5e/templates/item/parts/body/description.hbs",
-        "systems/neph5e/templates/item/parts/body/difficulte.hbs",
-        "systems/neph5e/templates/item/parts/body/checkbox.hbs",
-        "systems/neph5e/templates/item/parts/body/input.hbs",
-        "systems/neph5e/templates/item/parts/body/label.hbs",
-        "systems/neph5e/templates/item/parts/body/list.hbs",
 
         "systems/neph5e/feature/alchimie/item/alchimie.html",
 
