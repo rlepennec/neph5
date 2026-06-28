@@ -197,7 +197,6 @@
                 {{/each}}
 
                 {{#each weapons.melee as |item|}}
-                {{log item}}
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>

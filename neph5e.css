@@ -3634,18 +3634,13 @@ form.nephilim.actor section.window-content > section article header {
   width: 100%;
 }
 form.nephilim.actor section.window-content > section article header input {
-  background: var(--background-article-dark);
-  color: var(--color-font-bright);
+  background: inherit;
+  color: var(--color-font-dark);
   height: 50px;
   width: 100%;
   font-size: 30px;
   text-align: center;
   border: none;
-}
-form.nephilim.actor section.window-content > section article header input:disabled {
-  background-color: red;
-  background: inherit;
-  color: var(--color-font-dark);
 }
 form.nephilim.actor section.window-content > section article header img {
   width: 200px;
