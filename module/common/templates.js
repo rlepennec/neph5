@@ -9,12 +9,6 @@ export const preloadTemplates = async function () {
 
         // Akasha
         "systems/neph5e/feature/akasha/actor/main.hbs",
-
-        // Alchimie
-        "systems/neph5e/feature/alchimie/actor/construct.hbs",
-
-        // Combat
-        "systems/neph5e/feature/combat/actor/main.hbs",
     
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
@@ -71,7 +65,6 @@ export const preloadTemplates = async function () {
 
 
         // New reboot
-        "systems/neph5e/templates/circle.hbs",
         "systems/neph5e/templates/chronology.hbs",
         "systems/neph5e/templates/header.hbs",
         "systems/neph5e/templates/input.hbs",
