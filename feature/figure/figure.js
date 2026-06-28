@@ -341,9 +341,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         for (const el of this.element.querySelectorAll('[data-tab="akasha"] .activate')) {
             el.addEventListener('click', this._onToggleVaisseau.bind(this));
         }
-        for (const el of this.element.querySelectorAll('.divination .dice')) {
-            el.addEventListener('click', this._onRollDivination.bind(this));
-        }
     }
 
 
@@ -385,20 +382,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await new Chute(this.document).set(type, parseInt(target.dataset.id));
     }
 
-    /**
-     * Active the specified laboratory.
-     * @param event The click event.
-     */
-    async _onActiveLaboratory(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".actor");
-        const sid = li.data("actor-id");
-        const actor = game.actors.find(i => i.sid === sid);
-        if (actor != null) {
-            await this.actor.update({ ['system.alchimie.courant']: this.actor.system.alchimie.courant === actor.sid ? null : actor.sid});
-        }
-    }
-
     /** Bascule l'état actif d'un aspect de l'imago. */
     async _onToggleAspect(event) {
         if (this.locked) return;
@@ -410,12 +393,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     async _onRollKa(event) {
         const element = event.currentTarget.closest('.element').dataset.id;
         const feature = new FeatureBuilder(this.document).withScope('actor').withKa(element).create();
-        await feature.initializeRoll();
-    }
-
-    async _onRollDivination(event) {
-        const feature = this.document.savoir('bohemien');
-        if (feature == null) return;
         await feature.initializeRoll();
     }
 
