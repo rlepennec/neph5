@@ -341,6 +341,9 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         for (const el of this.element.querySelectorAll('[data-tab="akasha"] .activate')) {
             el.addEventListener('click', this._onToggleVaisseau.bind(this));
         }
+        for (const el of this.element.querySelectorAll('.divination .dice')) {
+            el.addEventListener('click', this._onRollDivination.bind(this));
+        }
     }
 
 
@@ -407,6 +410,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     async _onRollKa(event) {
         const element = event.currentTarget.closest('.element').dataset.id;
         const feature = new FeatureBuilder(this.document).withScope('actor').withKa(element).create();
+        await feature.initializeRoll();
+    }
+
+    async _onRollDivination(event) {
+        const feature = this.document.savoir('bohemien');
+        if (feature == null) return;
         await feature.initializeRoll();
     }
 
