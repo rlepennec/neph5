@@ -473,7 +473,7 @@ export class Science extends HistoricalFeature {
             case 'necromancie':
                 return ['fossoyeur', 'embaumeur', 'imputrescible'];
             case 'analogie': {
-                const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
+                const addons = game.items.filter(i => i.type === 'science' && i.system.key?.startsWith(science + '@'));
                 return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => addon.system.key));
             }
             case 'atlanteide':
@@ -483,7 +483,7 @@ export class Science extends HistoricalFeature {
             case 'bohemien':
             case 'dracomachie':
             case 'epee': {
-                const addons = game.items.filter(i => i.type === 'science' && i.system.key.startsWith(science + '@'));
+                const addons = game.items.filter(i => i.type === 'science' && i.system.key?.startsWith(science + '@'));
                 return Array.from(addons, addon => addon.system.key);
             }
             default:
