@@ -13,24 +13,9 @@ export const preloadTemplates = async function () {
         // Alchimie
         "systems/neph5e/feature/alchimie/actor/construct.hbs",
 
-        // Baton
-        "systems/neph5e/feature/baton/actor/techniques.hbs",
-
-        // Bohemien
-        "systems/neph5e/feature/bohemien/actor/divination.hbs",
-
         // Combat
         "systems/neph5e/feature/combat/actor/main.hbs",
     
-        // Coupe
-        "systems/neph5e/feature/coupe/actor/tekhnes.hbs",
-
-        // Denier
-        "systems/neph5e/feature/denier/actor/pratiques.hbs",
-
-        // Epee
-        "systems/neph5e/feature/epee/actor/rituels.hbs",
-
         // Kabbale
         "systems/neph5e/feature/kabbale/actor/arbre.hbs",
         "systems/neph5e/feature/kabbale/actor/ordonnances.hbs",
