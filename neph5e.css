@@ -3445,23 +3445,6 @@
   font-family: "NightjarDemi";
   src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
 }
-.mixin-editing-content {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
-}
-.mixin-editing-bright-on-dark {
-  background: var(--background-article-dark);
-  color: var(--color-font-bright);
-}
-.mixin-editing-dark-on-bright {
-  background: var(--background-article-bright);
-  color: var(--color-font-dark);
-}
-.mixin-editing-dark-on-inherit {
-  background: inherit;
-  color: var(--color-font-dark);
-}
 .expanse {
   height: 100%;
   width: 100%;
@@ -3506,19 +3489,7 @@ form.nephilim prose-mirror {
   height: 100%;
 }
 form.nephilim prose-mirror .editor-content {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
   padding: 10px;
-}
-form.nephilim prose-mirror menu {
-  background: var(--background-article-dark);
-  color: var(--color-font-bright);
-}
-form.nephilim .checkbox {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
 }
 form.nephilim .checkbox.locked {
   background: none;
@@ -3580,7 +3551,8 @@ form.nephilim.actor section.window-content > section {
   display: flex;
   flex-flow: unset;
   width: 100%;
-  background: var(--background-article-bright);
+  background: var(--background);
+  color: var(--font-color);
 }
 form.nephilim.actor section.window-content > section aside {
   position: relative;
@@ -3635,10 +3607,11 @@ form.nephilim.actor section.window-content > section article header {
 }
 form.nephilim.actor section.window-content > section article header input {
   background: inherit;
-  color: var(--color-font-dark);
+  color: inherit;
   height: 50px;
   width: 100%;
-  font-size: 30px;
+  font-family: 'NightjarDemi';
+  font-size: 35px;
   text-align: center;
   border: none;
 }
@@ -5981,6 +5954,7 @@ form.nephilim.item section.window-content > section {
   display: flex;
   flex-flow: unset;
   width: 100%;
+  color: var(--color-font-dark);
 }
 form.nephilim.item section.window-content > section aside {
   flex: 0 0 auto;
@@ -5990,22 +5964,22 @@ form.nephilim.item section.window-content > section aside {
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
 form.nephilim.item section.window-content > section article {
-  background: var(--background-article-bright);
-  color: var(--color-font-dark);
   display: flex;
   flex-direction: column;
   font-family: var(--font-family-title);
   font-size: 16px;
   width: 100%;
   overflow-y: auto;
+  background: var(--background-article-bright);
 }
 form.nephilim.item section.window-content > section article header {
-  background: var(--background-article-dark);
-  color: var(--color-font-bright);
   display: flex;
   height: 60px;
-  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
   width: 100%;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+  background: var(--background-article-dark);
+  border-radius: 5px;
+  color: var(--color-font-bright);
 }
 form.nephilim.item section.window-content > section article header input {
   background: initial;
@@ -6018,7 +5992,6 @@ form.nephilim.item section.window-content > section article header input {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: var(--color-font-bright);
 }
 form.nephilim.item section.window-content > section article header img {
   flex: 0 0 auto;
@@ -6046,24 +6019,12 @@ form.nephilim.item section.window-content > section article main li {
   display: block;
 }
 form.nephilim.item section.window-content > section article main input {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
   margin-bottom: 10px;
 }
 form.nephilim.item section.window-content > section article main input:disabled {
   background: none;
   color: var(--color-font-dark);
   border: none;
-}
-form.nephilim.item section.window-content > section article main select {
-  background: linear-gradient(rgba(0, 26, 77, 0.5), rgba(0, 26, 77, 0.5)), var(--background-article-bright);
-  border-radius: 5px;
-  color: var(--color-font-bright);
-}
-form.nephilim.item section.window-content > section article main option {
-  background: var(--background-article-bright);
-  color: var(--color-font-dark);
 }
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;

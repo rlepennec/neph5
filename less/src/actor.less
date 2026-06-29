@@ -4,7 +4,8 @@ form.nephilim.actor {
         display: flex;
         flex-flow: unset;
         width: 100%;
-        background: var(--background-article-bright);
+        background: var(--background);
+        color: var(--font-color);
 
         aside {
             position: relative;
@@ -56,7 +57,7 @@ form.nephilim.actor {
             width: 100%;
             color: var(--color-font-dark);
             overflow-y : auto;
-            
+
             header {
                 display: flex;
                 flex-direction: column;
@@ -65,10 +66,12 @@ form.nephilim.actor {
                 width: 100%;
 
                 input {
-                    .mixin-editing-dark-on-inherit();
+                    background: inherit;
+                    color: inherit;
                     height: 50px;
                     width: 100%;
-                    font-size: 30px;
+                    font-family: 'NightjarDemi';
+                    font-size: 35px;
                     text-align: center;
                     border: none;
                 }

@@ -4,6 +4,7 @@ form.nephilim.item {
         display: flex;
         flex-flow: unset;
         width: 100%;
+        color: var(--color-font-dark);
 
         aside {
             flex: 0 0 auto;
@@ -14,20 +15,23 @@ form.nephilim.item {
         }
 
         article {
-            .mixin-editing-dark-on-bright();
             display: flex;
             flex-direction: column;
             font-family: var(--font-family-title);
             font-size: 16px;
             width: 100%;
             overflow-y : auto;
+            background: var(--background-article-bright);
+
 
             header {
-                .mixin-editing-bright-on-dark();
                 display: flex;
                 height: 60px;
-                box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
                 width: 100%;
+                box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+                background: var(--background-article-dark);
+                border-radius: 5px;
+                color: var(--color-font-bright);
 
                 input {
                     background: initial;
@@ -40,7 +44,6 @@ form.nephilim.item {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
-                    color: var(--color-font-bright);
                 }
 
                 img {
@@ -75,7 +78,6 @@ form.nephilim.item {
                 }
 
                 input {
-                    .mixin-editing-content();
                     margin-bottom: 10px;
 
                     &:disabled {
@@ -84,14 +86,6 @@ form.nephilim.item {
                         border: none;
                     }
 
-                }
-                
-                select {
-                    .mixin-editing-content();
-                }
-
-                option {
-                    .mixin-editing-dark-on-bright();
                 }
 
                 .fas {

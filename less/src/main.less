@@ -19,27 +19,6 @@
     src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
 }
 
-.mixin-editing-content {
-    background: linear-gradient(rgba(0, 26, 77, .5), rgba(0, 26, 77, .5)), var(--background-article-bright);
-    border-radius: 5px;
-    color: var(--color-font-bright);
-}
-
-.mixin-editing-bright-on-dark {
-    background: var(--background-article-dark);
-    color: var(--color-font-bright);
-}
-
-.mixin-editing-dark-on-bright {
-    background: var(--background-article-bright);
-    color: var(--color-font-dark);
-}
-
-.mixin-editing-dark-on-inherit {
-    background: inherit;
-    color: var(--color-font-dark);
-}
-
 .expanse {
     height: 100%;
     width: 100%;
@@ -87,18 +66,12 @@ form.nephilim {
         height: 100%;
 
         .editor-content {
-            .mixin-editing-content();
             padding: 10px;
-        }
-
-        menu {
-            .mixin-editing-bright-on-dark();
         }
 
     }
 
     .checkbox {
-        .mixin-editing-content();
 
         &.locked {
             background: none;
