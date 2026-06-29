@@ -2028,6 +2028,7 @@
   border: none;
   background-color: transparent;
   z-index: 98;
+  width: 160px;
 }
 .tab.laboratoire .constructs .construct .elements {
   position: relative;
@@ -3547,6 +3548,9 @@ form.nephilim .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
+form.nephilim input {
+  background: inherit;
+}
 form.nephilim.actor section.window-content > section {
   display: flex;
   flex-flow: unset;
@@ -4553,6 +4557,7 @@ form.nephilim.actor section.window-content > section article main.laboratoire .c
   border: none;
   background-color: transparent;
   z-index: 98;
+  width: 160px;
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs .construct .elements {
   position: relative;
