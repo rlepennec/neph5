@@ -3193,8 +3193,8 @@
   position: absolute;
 }
 .tab.selenim .left .noyau .body .elements .element.noyau {
-  top: 61px;
-  left: 44px;
+  top: 15px;
+  left: 20px;
 }
 .tab.selenim .left .noyau .body .elements .element.pavane {
   top: 32px;
@@ -5741,8 +5741,8 @@ form.nephilim.actor section.window-content > section article main.selenim .left 
   position: absolute;
 }
 form.nephilim.actor section.window-content > section article main.selenim .left .noyau .body .elements .element.noyau {
-  top: 61px;
-  left: 44px;
+  top: 15px;
+  left: 20px;
 }
 form.nephilim.actor section.window-content > section article main.selenim .left .noyau .body .elements .element.pavane {
   top: 32px;
@@ -6484,4 +6484,95 @@ form.nephilim.item section.window-content > section article main .fas {
 .mnemos .article .desc {
   border-width: 2px;
   margin-top: 10px;
+}
+/**
+ * options.less
+ *
+ * Mise en forme des options des figures et figurants (OptionsSelector),
+ * inspirée des feuilles de réglages du système Foundry v14 :
+ *   - fieldset à légende pour les regroupements,
+ *   - lignes « libellé | contrôle » alignées en grille 2 colonnes,
+ *   - espacements réguliers, contrôle aligné à droite,
+ *   - scrollbar verticale optionnelle quand le contenu dépasse la fenêtre.
+ *
+ * Portée : fenêtres `.nephilim` qui ne sont ni feuille d'acteur/objet
+ * (`.actor` / `.item`) ni dialogue (`.sheet`). Cela ne cible donc que les
+ * panneaux d'options (OptionsSelector figure/figurant).
+ */
+.nephilim:not(.sheet):not(.actor):not(.item) {
+  /* La fenêtre a une hauteur fixe (600px) : on rend le contenu défilable
+       pour que rien (notamment le bouton « Sauver ») ne soit coupé.
+       `auto` => la scrollbar n'apparaît que si nécessaire. */
+  /* Le <section class="option-root"> racine du template options.hbs */
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .window-content {
+  overflow-y: auto;
+  padding: 8px 10px;
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 6px;
+  /* ---------------------------------------------------------------
+         * Regroupements à légende (ex. « Theme »).
+         * Tout <fieldset> occupe la pleine largeur, comme une section de
+         * réglages. Si tu enveloppes plus tard chaque famille d'options
+         * (Nephilim, Selenim, Arcanes...) dans son propre <fieldset><legend>,
+         * elles seront stylées automatiquement de la même façon.
+         * --------------------------------------------------------------- */
+  /* --- Libellé d'option : colonne de gauche --- */
+  /* --- Contrôle (case à cocher) : colonne de droite, aligné à droite --- */
+  /* --- Bouton « Sauver » : pleine largeur, centré --- */
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root fieldset {
+  grid-column: 1 / -1;
+  margin: 0 0 12px;
+  padding: 4px 10px 10px;
+  border: 1px solid var(--color-border-light-tertiary, #b5b3a4);
+  border-radius: 6px;
+  background: var(--color-cool-5-25, rgba(0, 0, 0, 0.03));
+  /* Si un fieldset contient lui-même des paires label/checkbox,
+               on rétablit la grille à l'intérieur. */
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root fieldset legend {
+  padding: 0 6px;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root fieldset select {
+  width: 100%;
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root fieldset:has(input[type="checkbox"]) {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 6px;
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root > label,
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root fieldset > label {
+  grid-column: 1;
+  line-height: 1.4;
+  padding: 3px 0;
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root > input[type="checkbox"],
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root fieldset > input[type="checkbox"] {
+  grid-column: 2;
+  justify-self: end;
+  margin: 0;
+  cursor: pointer;
+}
+.nephilim:not(.sheet):not(.actor):not(.item) .option-root > button[type="submit"] {
+  grid-column: 1 / -1;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }

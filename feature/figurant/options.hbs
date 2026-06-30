@@ -1,4 +1,9 @@
-<section>
+<section class="option-root">
+
+    <button type="submit">
+        <i class="fa-solid fa-floppy-disk" inert=""></i>
+        <span>Sauver</span>
+    </button>
 
     <fieldset>
         <legend>Theme</legend>
@@ -11,12 +16,12 @@
         </select>
     </fieldset>
 
-    <label>{{translate "degatAutomatique"}}</label>
-    <input type="checkbox" name="degatAutomatique" {{checked degatAutomatique}}/>
+    <fieldset>
+        <legend>Automatisation</legend>
 
-    <button type="submit">
-        <i class="fa-solid fa-floppy-disk" inert=""></i>
-        <span>Sauver</span>
-    </button>
+        <label>{{translate "degatAutomatique"}}</label>
+        <input type="checkbox" name="degatAutomatique" {{checked degatAutomatique}}/>
+
+    </fieldset>
 
 </section>
