@@ -3461,6 +3461,9 @@
   height: 100%;
   width: 100%;
 }
+.nephilim.sheet:not(.actor,.item) .window-content {
+  padding: 4px;
+}
 .nephilim.sheet:not(.actor,.item).themed .window-content {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   background-size: cover;

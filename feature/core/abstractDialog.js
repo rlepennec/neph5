@@ -90,7 +90,7 @@ export class AbstractDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     static DEFAULT_OPTIONS = {
         window: {
             title: "",
-            resizable: true
+            resizable: false
         }
     };
 
