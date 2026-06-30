@@ -1,0 +1,322 @@
+.action {
+    --box-shadow: 0 0 4px 1px #414048 inset;
+    --color-shadow-primary: #151156;
+    --color-widget-background: none;
+    --color-widget: #191813;
+    
+    display: flex;
+    flex-direction: column;
+
+    select {
+        flex: 0 0 auto;
+        outline: 0px;
+        background-color: transparent;
+        margin-top: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-align-last: center;
+        align-items: center;
+        color: #191813;
+        border: 1px solid #151156;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+
+        option {
+            text-align: center;
+        }
+
+        &#rollType, &#element, &#modifier, &#fraternite, &#blessures, &#approche, &#metamorphe {
+
+            option {
+                background: none;
+                background-color: antiquewhite;
+            }
+
+        }
+
+        &:hover:not([disabled]) {
+            text-shadow: 0px 0px 1px #191813;
+        }
+
+    }
+
+    input {
+        flex: 0 0 auto;
+        outline: 0px;
+        background-color: transparent;
+        margin-top: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align-last: center;
+        align-items: center;
+        color: #191813;
+        border: 1px solid #151156;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+
+        &[type="range"]::-webkit-slider-thumb {
+            background-color: #1a1e5b;
+            border-radius: 5px;
+    
+        }
+    
+    
+        &[type="range"]::-moz-range-thumb {
+            background-color: #1a1e5b;
+            border-radius: 5px;
+        }
+
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+        background-size: cover;
+        color: #f5f4f4;
+        box-shadow: 0 0 6px 2px #f5f4f4 inset;
+
+        .actor {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+        }
+
+        .sentence {
+            font-size: 20px;
+            font-style: bold;
+            text-align: center;
+            flex: 1;
+            font-family: 'AJensonProLtDisp';
+        }
+
+        .target {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+            border-radius: 4px;
+        }
+
+    }
+
+    .body {
+        background: url(../../systems/neph5e/assets/skins/soleil/background.webp);
+        background-size: cover;
+        color: #191813;
+
+        .roll {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            font-size: 15px;
+
+            .parameters {
+                display: flex;
+                flex-direction: row;
+                width: 390px;
+                justify-content: space-evenly;
+
+                .type {
+                    display: flex;
+                    flex-direction: row;
+
+                    label {
+                        flex: 0 0 auto;
+                        margin-left: 67px;
+                        margin-right: 5px;
+                        padding-top: 5px;
+                    }
+
+                }
+
+                #element {
+                    flex: 0 0 auto;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+                    width: 70px;
+                }
+
+            }
+
+            .dice {
+                display: flex;
+                flex-direction: row;
+                flex: 0 0 auto;
+                border: none;
+                padding: 14px 25px 0px 0px;
+                width: 120px;
+                text-align: right;
+
+                label {
+                    padding-left: 17px;
+                }
+
+                #roll {
+                    flex: 0 0 auto;
+                    width: 40px;
+                }
+
+                #difficulty {
+                    flex: 0 0 auto;
+                    width: 54px;
+                }
+
+            }
+
+        }
+
+        #note {
+            margin-top: 10px;
+            font-size: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .lines {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 10px 10px 10px;
+
+            .block {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 35px;
+                width: 100%;
+                border-top: 2px solid #151156;
+                margin-top: 10px;
+                justify-content: center;
+                font-size: 16px;
+            }
+
+            .line {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 35px;
+                width: 100%;
+                
+                &:nth-child(even) {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+
+                &:nth-child(1) {
+                    border-top: 2px solid #151156;
+                }
+
+                #note {
+                    font-style: italic;
+                }
+
+                .line-title {
+                    display: flex;
+                    flex-direction: row;
+                    width: 90%;
+
+                    label {
+                        padding-left: 2px;
+                        width: 100px;
+                    }
+
+                    .slider {
+                        height:10px;
+                        width: 160px;
+                        margin-left: 20px;
+                        padding-left: 1px;
+                        padding-right: 1px;
+                    }
+
+                }
+
+                .line-value {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    width: 100%;
+
+                    #modifier {
+                        text-align: right;
+                        width: 60px;
+                    }
+
+                    .mnemos-modifier {
+                        text-align: right;
+                        width: 60px;
+
+                        option {
+                            text-align: center;
+                            background: none;
+                            background-color: antiquewhite;
+                        }
+
+                    }
+
+                    .base-percentage {
+                        margin-right: 15px;
+                    }
+
+                    .percentage {
+                        margin-top: 7px;
+                        margin-left: 5px;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+.mnemos {
+
+    .article {
+
+        .id {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;  
+        }
+
+        .name {
+            display: flex;
+            flex-direction: row;
+            height: 60px;
+
+            input {
+                font-size: 25px;
+                text-align: center;
+                margin-bottom: 10px;
+                height: 100%;
+                width: 100%;
+                font-family: Calibri;
+            }
+
+            img {
+                flex: 0 0 auto;
+                margin-left: 10px
+            }
+
+        }
+
+        .desc {
+            border-width: 2px;
+            margin-top: 10px
+        }
+
+    }
+
+}

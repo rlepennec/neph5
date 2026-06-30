@@ -1842,7 +1842,6 @@
 .tab.incarnations .periodes .periode .periode-body .vecus .vecu .definition .name {
   flex: 1 1 auto;
   text-align: left;
-  padding-top: 4px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -1862,6 +1861,7 @@
   border-radius: 10px;
   width: calc(100% - 10px);
   margin-bottom: 20px;
+  line-height: 1.5;
 }
 .tab.incarnations .periodes .periode .periode-body .periode-focus .focus {
   display: inline-block;
@@ -3461,6 +3461,11 @@
   height: 100%;
   width: 100%;
 }
+.nephilim.sheet:not(.actor,.item).themed .window-content {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+}
 form.nephilim {
   --background-article-bright: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   --background-article-dark: url("../../systems/neph5e/assets/backgrounds/p.webp");
@@ -4382,7 +4387,6 @@ form.nephilim.actor section.window-content > section article main.incarnations .
 form.nephilim.actor section.window-content > section article main.incarnations .periodes .periode .periode-body .vecus .vecu .definition .name {
   flex: 1 1 auto;
   text-align: left;
-  padding-top: 4px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -4402,6 +4406,7 @@ form.nephilim.actor section.window-content > section article main.incarnations .
   border-radius: 10px;
   width: calc(100% - 10px);
   margin-bottom: 20px;
+  line-height: 1.5;
 }
 form.nephilim.actor section.window-content > section article main.incarnations .periodes .periode .periode-body .periode-focus .focus {
   display: inline-block;
@@ -6055,4 +6060,419 @@ form.nephilim.item section.window-content > section article main input:disabled 
 }
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;
+}
+.recherche table tr td {
+  font-family: 'AJensonPro';
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+}
+.recherche table tr td:nth-child(1) {
+  font-weight: bold;
+}
+.recherche table tr:nth-child(1) {
+  font-family: 'Nightjar';
+  font-size: 16px;
+  height: 50px;
+}
+.recherche table tr:nth-child(2) {
+  font-weight: bold;
+}
+.recherche table tr:nth-child(5) {
+  font-style: italic;
+}
+.ephemeride table tr td {
+  font-family: 'AJensonPro';
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+}
+.ephemeride table tr:nth-child(1) {
+  font-family: 'Nightjar';
+  font-size: 16px;
+  height: 50px;
+}
+.experience table tr td {
+  font-family: 'AJensonPro';
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+}
+.experience table tr:nth-child(1) {
+  font-family: 'Nightjar';
+  font-size: 16px;
+  height: 50px;
+}
+.experience table tr:nth-child(2) {
+  font-weight: bold;
+}
+.chat-message {
+  --background-side-chat: url("../../systems/neph5e/assets/backgrounds/background-side-chat.webp");
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  font-family: 'AJensonProLtDisp';
+  font-size: 15px;
+}
+.chat-message .message-header {
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+}
+.chat-message .message-header .message-sender {
+  margin-left: 70px;
+  margin-top: 5px;
+}
+.chat-message .message-header .message-metadata {
+  flex: 2;
+  text-align: right;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.chat-message .message-content {
+  position: relative;
+  margin-top: 5px;
+  font-family: 'AJensonPro';
+  font-size: 15px;
+}
+.chat-message .message-content .chat {
+  display: flex;
+  flex-direction: row;
+}
+.chat-message .message-content .chat .side-background {
+  position: absolute;
+  background: url(../../systems/neph5e/assets/backgrounds/background-side-chat.webp);
+  background-size: cover;
+  opacity: 0.8;
+  width: 65px;
+  height: calc(100% + 40px);
+  top: -35px;
+  left: -5px;
+}
+.chat-message .message-content .chat .border-top {
+  position: absolute;
+  border-top: 2px solid rgba(0, 0, 0, 0.7);
+  left: 60px;
+  width: calc(100% - 60px);
+  top: -4px;
+}
+.chat-message .message-content .chat .side {
+  width: 85px;
+}
+.chat-message .message-content .chat .side .chat-sender {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: none;
+  top: -30px;
+}
+.chat-message .message-content .chat .side .chat-receiver {
+  position: absolute;
+  width: 45px;
+  bottom: 0px;
+  left: 5px;
+  border: none;
+  border-radius: 6px;
+}
+.chat-message .message-content .chat .content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}
+.chat-message .message-content .chat .content .chat-sentence {
+  font-size: 15px;
+  margin: 10px 10px 10px 10px;
+}
+.chat-message .message-content .chat .content .chat-sentence a {
+  background: none;
+  border: none;
+  white-space: normal;
+  word-break: normal;
+}
+.chat-message .message-content .chat .content .chat-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 10px 10px 10px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-dice-d20 {
+  margin-right: 5px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-heart-broken {
+  margin-left: 30px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-shield {
+  margin-left: 30px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-crosshairs {
+  margin-right: 5px;
+}
+.chat-message .message-content .chat .content .chat-details .fa-spinner {
+  margin-right: 5px;
+}
+.chat-message .message-content .chat .content .chat-result {
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+}
+.chat-message .message-content .chat .content .chat-extra {
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+}
+.action {
+  --box-shadow: 0 0 4px 1px #414048 inset;
+  --color-shadow-primary: #151156;
+  --color-widget-background: none;
+  --color-widget: #191813;
+  display: flex;
+  flex-direction: column;
+}
+.action select {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.action select option {
+  text-align: center;
+}
+.action select#rollType option,
+.action select#element option,
+.action select#modifier option,
+.action select#fraternite option,
+.action select#blessures option,
+.action select#approche option,
+.action select#metamorphe option {
+  background: none;
+  background-color: antiquewhite;
+}
+.action select:hover:not([disabled]) {
+  text-shadow: 0px 0px 1px #191813;
+}
+.action input {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.action input[type="range"]::-webkit-slider-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
+.action input[type="range"]::-moz-range-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
+.action .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+}
+.action .header .actor {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+}
+.action .header .sentence {
+  font-size: 20px;
+  font-style: bold;
+  text-align: center;
+  flex: 1;
+  font-family: 'AJensonProLtDisp';
+}
+.action .header .target {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+  border-radius: 4px;
+}
+.action .body {
+  background: url(../../systems/neph5e/assets/skins/soleil/background.webp);
+  background-size: cover;
+  color: #191813;
+}
+.action .body .roll {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.action .body .roll .parameters {
+  display: flex;
+  flex-direction: row;
+  width: 390px;
+  justify-content: space-evenly;
+}
+.action .body .roll .parameters .type {
+  display: flex;
+  flex-direction: row;
+}
+.action .body .roll .parameters .type label {
+  flex: 0 0 auto;
+  margin-left: 67px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+.action .body .roll .parameters #element {
+  flex: 0 0 auto;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+  width: 70px;
+}
+.action .body .roll .dice {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  border: none;
+  padding: 14px 25px 0px 0px;
+  width: 120px;
+  text-align: right;
+}
+.action .body .roll .dice label {
+  padding-left: 17px;
+}
+.action .body .roll .dice #roll {
+  flex: 0 0 auto;
+  width: 40px;
+}
+.action .body .roll .dice #difficulty {
+  flex: 0 0 auto;
+  width: 54px;
+}
+.action .body #note {
+  margin-top: 10px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.action .body .lines {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+}
+.action .body .lines .block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+  border-top: 2px solid #151156;
+  margin-top: 10px;
+  justify-content: center;
+  font-size: 16px;
+}
+.action .body .lines .line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+}
+.action .body .lines .line:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.action .body .lines .line:nth-child(1) {
+  border-top: 2px solid #151156;
+}
+.action .body .lines .line #note {
+  font-style: italic;
+}
+.action .body .lines .line .line-title {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+.action .body .lines .line .line-title label {
+  padding-left: 2px;
+  width: 100px;
+}
+.action .body .lines .line .line-title .slider {
+  height: 10px;
+  width: 160px;
+  margin-left: 20px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.action .body .lines .line .line-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+.action .body .lines .line .line-value #modifier {
+  text-align: right;
+  width: 60px;
+}
+.action .body .lines .line .line-value .mnemos-modifier {
+  text-align: right;
+  width: 60px;
+}
+.action .body .lines .line .line-value .mnemos-modifier option {
+  text-align: center;
+  background: none;
+  background-color: antiquewhite;
+}
+.action .body .lines .line .line-value .base-percentage {
+  margin-right: 15px;
+}
+.action .body .lines .line .line-value .percentage {
+  margin-top: 7px;
+  margin-left: 5px;
+}
+.mnemos .article .id {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.mnemos .article .name {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+}
+.mnemos .article .name input {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 10px;
+  height: 100%;
+  width: 100%;
+  font-family: Calibri;
+}
+.mnemos .article .name img {
+  flex: 0 0 auto;
+  margin-left: 10px;
+}
+.mnemos .article .desc {
+  border-width: 2px;
+  margin-top: 10px;
 }
