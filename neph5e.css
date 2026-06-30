@@ -6117,6 +6117,7 @@ form.nephilim.item section.window-content > section article main .fas {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   font-family: 'AJensonProLtDisp';
   font-size: 15px;
+  overflow: visible;
 }
 .chat-message .message-header {
   position: relative;
@@ -6138,6 +6139,10 @@ form.nephilim.item section.window-content > section article main .fas {
   margin-top: 5px;
   font-family: 'AJensonPro';
   font-size: 15px;
+  overflow: visible;
+  /* idem au niveau du contenu */
+  min-height: 90px;
+  /* place garantie pour portrait (haut) + token (bas) */
 }
 .chat-message .message-content .chat {
   display: flex;
@@ -6149,9 +6154,10 @@ form.nephilim.item section.window-content > section article main .fas {
   background-size: cover;
   opacity: 0.8;
   width: 65px;
-  height: calc(100% + 40px);
-  top: -35px;
+  height: calc(100% + 60px);
+  top: -55px;
   left: -5px;
+  border-radius: 5px;
 }
 .chat-message .message-content .chat .border-top {
   position: absolute;
@@ -6168,7 +6174,7 @@ form.nephilim.item section.window-content > section article main .fas {
   width: 50px;
   height: 50px;
   border: none;
-  top: -30px;
+  top: -50px;
 }
 .chat-message .message-content .chat .side .chat-receiver {
   position: absolute;
