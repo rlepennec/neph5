@@ -10,7 +10,7 @@ export class OptionsSelector extends foundry.applications.api.HandlebarsApplicat
     static DEFAULT_OPTIONS = {
         classes: ['nephilim'],
         position: {
-            width: 600,
+            width: 300,
             height: 600
         },
         window: {
