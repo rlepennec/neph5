@@ -1912,14 +1912,13 @@
   margin-top: 50px;
 }
 .tab.laboratoire {
-  display: flex;
-  flex-direction: columns;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 .tab.laboratoire .laboratoires {
   position: absolute;
-  top: 110px;
+  top: 70px;
   left: var(--laboratoire-labs-left);
+  z-index: 200;
 }
 .tab.laboratoire .laboratoires .zone {
   font-family: 'AJensonPro';
@@ -1984,6 +1983,13 @@
 .tab.laboratoire .laboratoires .menu:hover li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
+.tab.laboratoire .laboratoires:hover .menu {
+  display: block;
+  z-index: 99;
+}
+.tab.laboratoire .laboratoires:hover .menu li {
+  max-height: 15em;
+}
 .tab.laboratoire .constructs {
   width: 100%;
 }
@@ -1998,6 +2004,7 @@
 .tab.laboratoire .constructs .construct {
   position: absolute;
   width: 400px;
+  transform: translateY(-40px);
 }
 .tab.laboratoire .constructs .construct img {
   position: relative;
@@ -2561,17 +2568,17 @@
   font-size: 14px;
 }
 .tab.nephilim .left .chutes .body .chute .l3 {
-  margin-left: 3px;
+  margin-left: 0px;
 }
 .tab.nephilim .left .chutes .body .chute .l3r {
-  margin-left: 3px;
+  margin-left: 0px;
   color: var(--nephilim-color-chute);
 }
 .tab.nephilim .left .chutes .body .chute .l6 {
-  margin-left: 6px;
+  margin-left: 3px;
 }
 .tab.nephilim .left .chutes .body .chute .l6r {
-  margin-left: 6px;
+  margin-left: 3px;
   color: var(--nephilim-color-chute);
 }
 .tab.nephilim .left .chutes .body .chute:hover {
@@ -3011,6 +3018,7 @@
   flex-direction: row;
   position: relative;
   text-align: center;
+  line-height: 1.5;
 }
 .tab.science .cercles .cercle .all-focus .focus .focus-element {
   margin-left: 20px;
@@ -3387,6 +3395,7 @@
   column-gap: 20px;
   column-rule-color: var(--column-color);
   z-index: 99;
+  line-height: 1.2;
 }
 .tab.vecus .body hr {
   display: block;
@@ -4441,14 +4450,13 @@ form.nephilim.actor section.window-content > section article main.incarnations .
   margin-top: 50px;
 }
 form.nephilim.actor section.window-content > section article main.laboratoire {
-  display: flex;
-  flex-direction: columns;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .laboratoires {
   position: absolute;
-  top: 110px;
+  top: 70px;
   left: var(--laboratoire-labs-left);
+  z-index: 200;
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .laboratoires .zone {
   font-family: 'AJensonPro';
@@ -4513,6 +4521,13 @@ form.nephilim.actor section.window-content > section article main.laboratoire .l
 form.nephilim.actor section.window-content > section article main.laboratoire .laboratoires .menu:hover li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
+form.nephilim.actor section.window-content > section article main.laboratoire .laboratoires:hover .menu {
+  display: block;
+  z-index: 99;
+}
+form.nephilim.actor section.window-content > section article main.laboratoire .laboratoires:hover .menu li {
+  max-height: 15em;
+}
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs {
   width: 100%;
 }
@@ -4527,6 +4542,7 @@ form.nephilim.actor section.window-content > section article main.laboratoire .c
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs .construct {
   position: absolute;
   width: 400px;
+  transform: translateY(-40px);
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs .construct img {
   position: relative;
@@ -5090,17 +5106,17 @@ form.nephilim.actor section.window-content > section article main.nephilim .left
   font-size: 14px;
 }
 form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l3 {
-  margin-left: 3px;
+  margin-left: 0px;
 }
 form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l3r {
-  margin-left: 3px;
+  margin-left: 0px;
   color: var(--nephilim-color-chute);
 }
 form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l6 {
-  margin-left: 6px;
+  margin-left: 3px;
 }
 form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute .l6r {
-  margin-left: 6px;
+  margin-left: 3px;
   color: var(--nephilim-color-chute);
 }
 form.nephilim.actor section.window-content > section article main.nephilim .left .chutes .body .chute:hover {
@@ -5540,6 +5556,7 @@ form.nephilim.actor section.window-content > section article main.science .cercl
   flex-direction: row;
   position: relative;
   text-align: center;
+  line-height: 1.5;
 }
 form.nephilim.actor section.window-content > section article main.science .cercles .cercle .all-focus .focus .focus-element {
   margin-left: 20px;
@@ -5916,6 +5933,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body {
   column-gap: 20px;
   column-rule-color: var(--column-color);
   z-index: 99;
+  line-height: 1.2;
 }
 form.nephilim.actor section.window-content > section article main.vecus .body hr {
   display: block;

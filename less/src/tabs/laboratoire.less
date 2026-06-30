@@ -1,12 +1,11 @@
 .tab.laboratoire {
-    display: flex;
-    flex-direction: columns;
-    padding-top: 20px;
+    padding-top: 50px;
 
     .laboratoires {
         position: absolute;
-        top: 110px;
+        top: 70px;
         left: var(--laboratoire-labs-left);
+        z-index: 200;
 
         .zone {
             font-family: 'AJensonPro';
@@ -90,6 +89,15 @@
 
         }
 
+        &:hover .menu {
+            display: block;
+            z-index: 99;
+
+            li {
+                max-height: 15em;
+            }
+        }
+
     }
 
     .constructs {
@@ -108,6 +116,7 @@
         .construct {
             position: absolute;
             width: 400px;
+            transform: translateY(-40px);
 
             img {
                 position: relative;
