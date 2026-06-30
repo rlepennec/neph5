@@ -1819,6 +1819,7 @@
   border-radius: 10px;
   width: calc(100% - 10px);
   margin-bottom: 20px;
+  line-height: 1.2;
 }
 .tab.incarnations .periodes .periode .periode-body .vecus .vecu {
   display: inline-block;
@@ -1829,6 +1830,7 @@
 .tab.incarnations .periodes .periode .periode-body .vecus .vecu .definition {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .tab.incarnations .periodes .periode .periode-body .vecus .vecu .definition .degre {
   flex: 0 0 40px;
@@ -4357,6 +4359,7 @@ form.nephilim.actor section.window-content > section article main.incarnations .
   border-radius: 10px;
   width: calc(100% - 10px);
   margin-bottom: 20px;
+  line-height: 1.2;
 }
 form.nephilim.actor section.window-content > section article main.incarnations .periodes .periode .periode-body .vecus .vecu {
   display: inline-block;
@@ -4367,6 +4370,7 @@ form.nephilim.actor section.window-content > section article main.incarnations .
 form.nephilim.actor section.window-content > section article main.incarnations .periodes .periode .periode-body .vecus .vecu .definition {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 form.nephilim.actor section.window-content > section article main.incarnations .periodes .periode .periode-body .vecus .vecu .definition .degre {
   flex: 0 0 40px;
