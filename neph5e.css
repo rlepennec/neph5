@@ -6575,3 +6575,245 @@ form.nephilim.item section.window-content > section article main .fas {
   justify-content: center;
   gap: 6px;
 }
+form.combat {
+  --box-shadow: 0 0 4px 1px #414048 inset;
+  --color-shadow-primary: #151156;
+  --color-widget-background: none;
+  --color-widget: #191813;
+  display: flex;
+  flex-direction: column;
+}
+form.combat select {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+form.combat select option {
+  text-align: center;
+}
+form.combat select#manoeuver option,
+form.combat select#rollType option,
+form.combat select#modifier option,
+form.combat select#blessures option,
+form.combat select#approche option {
+  background: none;
+  background-color: antiquewhite;
+}
+form.combat select:hover:not([disabled]) {
+  text-shadow: 0px 0px 1px #191813;
+}
+form.combat input {
+  flex: 0 0 auto;
+  outline: 0px;
+  background-color: transparent;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align-last: center;
+  align-items: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+form.combat input[type="range"]::-webkit-slider-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
+form.combat input[type="range"]::-moz-range-thumb {
+  background-color: #1a1e5b;
+  border-radius: 5px;
+}
+form.combat .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+}
+form.combat .header img {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: none;
+  flex: 0;
+  border-radius: 4px;
+}
+form.combat .header span {
+  font-size: 20px;
+  font-style: bold;
+  text-align: center;
+  flex: 1;
+  font-family: 'AJensonProLtDisp';
+}
+form.combat .body {
+  background: url("../neph5e/assets/skins/soleil/background.webp") repeat;
+  background-size: cover;
+  color: #191813;
+  height: 100%;
+}
+form.combat .body .roll {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 10px 0px 10px;
+  font-size: 15px;
+  border-bottom: 2px solid #151156;
+  padding-bottom: 15px;
+}
+form.combat .body .roll .parameters {
+  display: flex;
+  flex-direction: row;
+  width: 390px;
+  justify-content: space-evenly;
+}
+form.combat .body .roll .parameters .type {
+  display: flex;
+  flex-direction: row;
+}
+form.combat .body .roll .parameters .type label {
+  flex: 0 0 auto;
+  margin-left: 67px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+form.combat .body .roll .parameters #element {
+  flex: 0 0 auto;
+  border: none;
+  outline: 0px;
+  background-color: transparent;
+  width: 70px;
+}
+form.combat .body .roll .parameters .impact {
+  display: flex;
+  flex-direction: row;
+}
+form.combat .body .roll .parameters .impact #impact {
+  padding-top: 4px;
+  text-align: right;
+}
+form.combat .body .roll .parameters .impact .heart {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+form.combat .body .roll .parameters .absorption {
+  display: flex;
+  flex-direction: row;
+}
+form.combat .body .roll .parameters .absorption #absorption {
+  padding-top: 4px;
+  text-align: right;
+}
+form.combat .body .roll .parameters .absorption .shield {
+  margin-left: 10px;
+  padding-top: 5px;
+}
+form.combat .body .roll .parameters #details {
+  width: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
+}
+form.combat .body .roll .dice {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  border: none;
+  padding: 7px 25px 0px 0px;
+  width: 120px;
+  text-align: right;
+}
+form.combat .body .roll .dice label {
+  padding-left: 17px;
+}
+form.combat .body .roll .dice #roll {
+  flex: 0 0 auto;
+  width: 52px;
+}
+form.combat .body .roll .dice #difficulty {
+  flex: 0 0 auto;
+  width: 54px;
+}
+form.combat .body .lines {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+}
+form.combat .body .lines .line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+}
+form.combat .body .lines .line.hiddable {
+  border: none;
+  padding: 0px;
+}
+form.combat .body .lines .line:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+form.combat .body .lines .line .line-title {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+form.combat .body .lines .line .line-title label {
+  padding-left: 2px;
+}
+form.combat .body .lines .line .line-title .slider {
+  height: 10px;
+  width: 160px;
+  margin-left: 20px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+form.combat .body .lines .line .line-title #times {
+  padding-top: 10px;
+  margin-left: 10px;
+  width: 200px;
+}
+form.combat .body .lines .line .line-title #times > i,
+form.combat .body .lines .line .line-title #times > .dommage-checkbox {
+  display: none;
+}
+form.combat .body .lines .line .line-title #times > i.shown,
+form.combat .body .lines .line .line-title #times > .dommage-checkbox.shown {
+  display: inline;
+}
+form.combat .body .lines .line .line-value {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+form.combat .body .lines .line .line-value #modifier {
+  text-align: right;
+  width: 60px;
+}
+form.combat .body .lines .line .line-value .base-percentage {
+  margin-right: 15px;
+}
+form.combat .body .lines .line .line-value .percentage {
+  margin-top: 7px;
+  margin-left: 5px;
+}
+form.combat .body p.hiddable {
+  padding: 10px;
+  margin: 40px 10px 10px 10px;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'AJensonProLtDisp';
+}

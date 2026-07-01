@@ -72,20 +72,17 @@ export class CombatDialog extends ActionDialog {
     /**
      * @override
      */
-    getData(options) {
-        const data = super.getData(options);
+    async _prepareContext(options) {
+        const data = await super._prepareContext(options);
         data.impact = this.action.impact(Standard.ID);
         data.absorption = this.action.absorption(Eviter.ID);
         data.description = CombatDialog.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
         return data;
     }
 
-    /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find("#manoeuver").change(this._onSelectManoeuver.bind(this));
+    _onRender(context, options) {
+        super._onRender(context, options);
+        this._on(this.element, "#manoeuver", ["change"], this._onSelectManoeuver);
     }
 
     /**
@@ -113,16 +110,17 @@ export class CombatDialog extends ActionDialog {
         parameters.approche = 0;
         this.action.setManoeuver(parameters.manoeuver);
         const base = this._base();
-        const approches = this._approches(parameters.manoeuver);
         const difficulty = this.action.difficulty(parameters);
-        
-        $('#difficulty').html(difficulty+"%");
-        $("#approche").html(approches);
-        $('#approcheModifier').html("0");
-        $('#vecu').html(base.name);
-        $('#base').html(base.degre);
-        $('#manoeuverModifier').html(this.action.manoeuverModifier(parameters));
 
+        this._setText("#difficulty", difficulty + "%");
+        this._setApprocheOptions(parameters.manoeuver);
+        this._setText("#approcheModifier", "0");
+        this._setText("#vecu", base.name);
+        this._setText("#base", base.degre);
+        this._setText("#manoeuverModifier", this.action.manoeuverModifier(parameters));
+
+        // #description contient du HTML (icônes) -> innerHTML (pas _setText)
+        const description = this.element?.querySelector("#description");
         switch (this.action.manoeuver.family) {
             case Constants.FIRE:
             case Constants.BRAWL:
@@ -130,17 +128,26 @@ export class CombatDialog extends ActionDialog {
             case Constants.THROW:
             case Constants.TACTIC: {
                 const impact = this.action.impact(parameters.manoeuver);
-                $('#description').html(CombatDialog.getManoeuverDescription(parameters.manoeuver, impact, 0));
+                if (description) description.innerHTML = CombatDialog.getManoeuverDescription(parameters.manoeuver, impact, 0);
                 break;
             }
             case Constants.DODGE:
             case Constants.PARADE: {
                 const absorption = this.action.absorption(parameters.manoeuver);
-                $('#description').html(CombatDialog.getManoeuverDescription(parameters.manoeuver, 0, absorption));
+                if (description) description.innerHTML = CombatDialog.getManoeuverDescription(parameters.manoeuver, 0, absorption);
                 break;
             }
         }
 
+    }
+
+    _setApprocheOptions(manoeuver) {
+        const select = this.element?.querySelector("#approche");
+        if (select == null) return;
+        const approches = this.action.approches(manoeuver);
+        select.innerHTML = Object.keys(approches)
+            .map(a => `<option value="${a}">${approches[a].label}</option>`)
+            .join("");
     }
 
     /**

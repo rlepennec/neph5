@@ -215,7 +215,7 @@ export class CustomHandlebarsHelpers {
      * @returns The html content to display.
      */
     static html(html) {
-        return new Handlebars.SafeString(html);
+        return new Handlebars.SafeString(html ?? "");
     }
     
     /**

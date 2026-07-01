@@ -1,0 +1,303 @@
+form.combat {
+    --box-shadow: 0 0 4px 1px #414048 inset;
+    --color-shadow-primary: #151156;
+    --color-widget-background: none;
+    --color-widget: #191813;
+
+    display: flex;
+    flex-direction: column;
+
+    select {
+        flex: 0 0 auto;
+        outline: 0px;
+        background-color: transparent;
+        margin-top: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-align-last: center;
+        align-items: center;
+        color: #191813;
+        border: 1px solid #151156;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+
+        option {
+            text-align: center;
+        }
+
+        &#manoeuver, &#rollType, &#modifier, &#blessures, &#approche {
+
+            option {
+                background: none;
+                background-color: antiquewhite;
+            }
+
+        }
+
+        &:hover:not([disabled]) {
+            text-shadow: 0px 0px 1px #191813;
+        }
+
+    }
+
+    input {
+        flex: 0 0 auto;
+        outline: 0px;
+        background-color: transparent;
+        margin-top: 4px;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align-last: center;
+        align-items: center;
+        color: #191813;
+        border: 1px solid #151156;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+
+        &[type="range"]::-webkit-slider-thumb {
+            background-color: #1a1e5b;
+            border-radius: 5px;
+    
+        }
+    
+    
+        &[type="range"]::-moz-range-thumb {
+            background-color: #1a1e5b;
+            border-radius: 5px;
+        }
+
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+        background-size: cover;
+        color: #f5f4f4;
+        box-shadow: 0 0 6px 2px #f5f4f4 inset;
+
+        img {
+            margin: 10px;
+            height: 50px;
+            width: 50px;
+            border: none;
+            flex: 0;
+            border-radius: 4px;
+        }
+
+        span {
+            font-size: 20px;
+            font-style: bold;
+            text-align: center;
+            flex: 1;
+            font-family: 'AJensonProLtDisp';
+        }
+
+    }
+
+    .body {
+        background: url("../neph5e/assets/skins/soleil/background.webp") repeat;
+        background-size: cover;
+        color: #191813;
+        height: 100%;
+
+        .roll {
+            display: flex;
+            flex-direction: row;
+            margin: 10px 10px 0px 10px;
+            font-size: 15px;
+            border-bottom: 2px solid #151156;
+            padding-bottom: 15px;
+
+            .parameters {
+                display: flex;
+                flex-direction: row;
+                width: 390px;
+                justify-content: space-evenly;
+
+                .type {
+                    display: flex;
+                    flex-direction: row;
+
+                    label {
+                        flex: 0 0 auto;
+                        margin-left: 67px;
+                        margin-right: 5px;
+                        padding-top: 5px;
+                    }
+
+                }
+
+                #element {
+                    flex: 0 0 auto;
+                    border: none;
+                    outline: 0px;
+                    background-color: transparent;
+                    width: 70px;
+                }
+
+                .impact {
+                    display: flex;
+                    flex-direction: row;
+    
+                    #impact {
+                        padding-top: 4px;
+                        text-align: right;
+                    }
+    
+                    .heart {
+                        margin-left: 10px;
+                        padding-top: 5px;
+                    }
+    
+                }
+    
+                .absorption {
+                    display: flex;
+                    flex-direction: row;
+    
+                    #absorption {
+                        padding-top: 4px;
+                        text-align: right;
+                    }
+    
+                    .shield {
+                        margin-left: 10px;
+                        padding-top: 5px;
+                    }
+    
+                }
+
+                #details {
+                    width: 20px;
+                    padding-top: 5px;
+                    padding-right: 20px;
+                }
+
+            }
+
+            .dice {
+                display: flex;
+                flex-direction: row;
+                flex: 0 0 auto;
+                border: none;
+                padding: 7px 25px 0px 0px;
+                width: 120px;
+                text-align: right;
+
+                label {
+                    padding-left: 17px;
+                }
+
+                #roll {
+                    flex: 0 0 auto;
+                    width: 52px;
+                }
+
+                #difficulty {
+                    flex: 0 0 auto;
+                    width: 54px;
+                }
+
+            }
+
+        }
+
+        .lines {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 10px 10px 10px;
+
+            .line {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 35px;
+                width: 100%;
+                
+                &.hiddable {
+                    border: none;
+                    padding: 0px;
+                }
+
+                &:nth-child(even) {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+
+                .line-title {
+                    display: flex;
+                    flex-direction: row;
+                    width: 90%;
+
+                    label {
+                        padding-left: 2px;
+                    }
+
+                    .slider {
+                        height:10px;
+                        width: 160px;
+                        margin-left: 20px;
+                        padding-left: 1px;
+                        padding-right: 1px;
+                    }
+
+                    #times {
+                        padding-top: 10px;
+                        margin-left: 10px;
+                        width: 200px;
+
+                        // Cases de cadence de tir : masquées par défaut,
+                        // révélées par _showShots() via la classe .shown.
+                        > i,
+                        > .dommage-checkbox {
+                            display: none;
+
+                            &.shown {
+                                display: inline;
+                            }
+                        }
+                    }
+
+                }
+
+                .line-value {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    width: 100%;
+
+                    #modifier {
+                        text-align: right;
+                        width: 60px;
+                    }
+
+                    .base-percentage {
+                        margin-right: 15px;
+                    }
+
+                    .percentage {
+                        margin-top: 7px;
+                        margin-left: 5px;
+                    }
+
+                }
+
+            }
+
+        }
+
+        p.hiddable {
+            padding: 10px;
+            margin: 40px 10px 10px 10px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'AJensonProLtDisp';
+        }
+
+    }
+
+}

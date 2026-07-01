@@ -58,10 +58,11 @@ export class AbstractDialog extends HandlebarsApplicationMixin(ApplicationV2) {
      * @returns the instance.
      */
     withHeight(height) {
-        // [V14] En v12, on écrivait directement dans this.options.height et this.position.height.
-        //       En v14, this.position est en lecture seule avant le premier render.
-        //       La méthode officielle est setPosition(), qui fonctionne avant et après le render.
-        this.setPosition({ height });
+        // [V14] setPosition() nécessite this.element, qui n'existe qu'APRÈS le premier
+        //       render. Appelé dans la chaîne de construction (avant .render()), il
+        //       plantait (#applyPosition lit this.element.style). On mémorise donc la
+        //       hauteur et on l'applique dans _onRender(), une fois le DOM présent.
+        this._pendingPosition = { ...(this._pendingPosition ?? {}), height };
         return this;
     }
 
@@ -70,9 +71,20 @@ export class AbstractDialog extends HandlebarsApplicationMixin(ApplicationV2) {
      * @returns the instance.
      */
     withWidth(width) {
-        // [V14] Même raison que withHeight : on passe par setPosition().
-        this.setPosition({ width });
+        // [V14] Même raison que withHeight : appliqué dans _onRender().
+        this._pendingPosition = { ...(this._pendingPosition ?? {}), width };
         return this;
+    }
+
+    /**
+     * [V14] Applique la position mémorisée (withHeight/withWidth) une fois le DOM
+     *       rendu : this.element existe alors et setPosition() fonctionne.
+     */
+    _onRender(context, options) {
+        super._onRender(context, options);
+        if (this._pendingPosition != null) {
+            this.setPosition(this._pendingPosition);
+        }
     }
 
     /**

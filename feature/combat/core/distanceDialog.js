@@ -58,16 +58,13 @@ export class DistanceDialog extends CombatDialog {
         return this;
     }
 
-    /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find("#shot-1").click(this._onSelectShot.bind(this, 1));
-        html.find("#shot2").change(this._onSelectShot.bind(this, 2));
-        html.find("#shot3").change(this._onSelectShot.bind(this, 3));
-        html.find("#shot4").change(this._onSelectShot.bind(this, 4));
-        html.find("#shot5").change(this._onSelectShot.bind(this, 5));
+    _onRender(context, options) {
+        super._onRender(context, options);
+        this._on(this.element, "#shot-1", ["click"],  (e) => this._onSelectShot(1, e));
+        this._on(this.element, "#shot2",  ["change"], (e) => this._onSelectShot(2, e));
+        this._on(this.element, "#shot3",  ["change"], (e) => this._onSelectShot(3, e));
+        this._on(this.element, "#shot4",  ["change"], (e) => this._onSelectShot(4, e));
+        this._on(this.element, "#shot5",  ["change"], (e) => this._onSelectShot(5, e));
     }
 
     /**
@@ -77,29 +74,31 @@ export class DistanceDialog extends CombatDialog {
      */
     async _onSelectShot(shot, event) {
         event.preventDefault();
+        const check = (i, val) => {
+            const c = this.element?.querySelector('#shot' + i);
+            if (c) c.checked = val;
+        };
         if (shot === 1) {
-            for (let shot=2; shot<6; shot++) {
-                $('#shot'+shot).prop("checked", false);
+            for (let s=2; s<6; s++) {
+                check(s, false);
             }
         } else {
             const checked = this._shot(shot);
             if (checked) {
                 for (let i=2; i<shot; i++) {
-                    $('#shot'+i).prop("checked", true);
+                    check(i, true);
                 }
             } else {
-                $('#shot'+shot).prop("checked", true);
+                check(shot, true);
                 for (let i=shot+1; i<this.action.manoeuver.shots.length+1; i++) {
-                    $('#shot'+i).prop("checked", false);
+                    check(i, false);
                 }
             }
         }
 
         const parameters = this.parameters();
-        const modifier = this.action.manoeuverModifier(parameters);
-        const difficulty = this.action.difficulty(parameters);
-        $('#manoeuverModifier').html(modifier);
-        $('#difficulty').html(difficulty+"%");
+        this._setText("#manoeuverModifier", this.action.manoeuverModifier(parameters));
+        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
 
     }
 
@@ -115,7 +114,8 @@ export class DistanceDialog extends CombatDialog {
 
     _uncheckShots() {
         for (let shot=2; shot<6; shot++) {
-            $('#shot'+shot).prop("checked", false);
+            const c = this.element?.querySelector('#shot' + shot);
+            if (c) c.checked = false;
         }
     }
 
@@ -123,13 +123,15 @@ export class DistanceDialog extends CombatDialog {
      * Display shots according to the current manoeuver.
      */
     _showShots() {
-        for (let shot=1; shot<6; shot++) {
-            const id = '#shot-' + shot;
-            const visibility = ( 
+        if (this.action.manoeuver == null) return;
+        for (let shot=1; shot<6; shot++) {          // défense : <7
+            const el = this.element?.querySelector('#shot-' + shot);
+            if (el == null) continue;
+            const hidden = (
                 this.action.manoeuver.shots === null ||
                 this.action.manoeuver.shots.length == 1 ||
-                shot > this.action.manoeuver.shots.length ) ? "hidden" : "visible";
-            $(id).css("visibility", visibility);
+                shot > this.action.manoeuver.shots.length );
+            el.classList.toggle("shown", !hidden);
         }
     }
 
