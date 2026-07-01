@@ -15,10 +15,10 @@ export class OpposedRollBuilder {
      * Create the specified reaction roll.
      * @param data The chat message data.
      */
-    static async create(data) {
+    static async create(message) {
 
         // Hook messages with the system identifier flags used to solve opposed actions.
-        const flags = data?.message?.flags[game.system.id];
+        const flags = message?.flags?.[game.system.id];
         if (flags == null || !flags.hasOwnProperty(Constants.OPPOSED)) {
             return;
         }

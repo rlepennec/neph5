@@ -335,11 +335,11 @@ Hooks.once("init", function () {
     });
 
     // Handle chat message for opposed rolls, especially combat system
-    Hooks.on("renderChatMessageHTML", async (app, html, data) => {
-        const reaction = await OpposedRollBuilder.create(data);
+    Hooks.on("renderChatMessageHTML", async (message, html) => {
+        const reaction = await OpposedRollBuilder.create(message);
         if (reaction != null) {
             await reaction.initializeRoll();
-            await NephilimChat.unsetFlags(data.message._id);
+            await NephilimChat.unsetFlags(message.id);
         }
     });
 

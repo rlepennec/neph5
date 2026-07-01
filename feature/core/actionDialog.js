@@ -270,14 +270,11 @@ export class ActionDialog extends AbstractDialog {
         this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
     }
 
-    /**
-     * Handle the click to roll action.
-     * @param event The event to handle.
-     */
     async _onRoll(event) {
         event.preventDefault();
+        const parameters = this.parameters();   // lire AVANT de fermer
         await this.close();
-        await this.action.roll(this.parameters());
+        await this.action.roll(parameters);
     }
 
     /**
