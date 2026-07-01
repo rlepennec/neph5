@@ -193,7 +193,7 @@
             </div>
             {{/if}}
 
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{localize "NEPH5E.manoeuvres.viser.name"}}</label>
                 </div>
@@ -203,7 +203,7 @@
                 </div>
             </div>
 
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label id="vecu">{{base.name}}</label>
                 </div>
@@ -214,7 +214,7 @@
             </div>
 
             {{#if (nonNull onGround)}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{localize onGround.label}}</label>
                 </div>
@@ -226,7 +226,7 @@
             {{/if}}
 
             {{#if (nonNull foeOnGround)}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{localize foeOnGround.label}}</label>
                 </div>
@@ -238,7 +238,7 @@
             {{/if}}
 
             {{#if (nonNull stunned)}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{localize stunned.label}}</label>
                 </div>
@@ -250,7 +250,7 @@
             {{/if}}
 
             {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{weapon.name}}</label>
                 </div>

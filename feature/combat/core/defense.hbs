@@ -180,7 +180,7 @@
             </div>
             {{/if}}
 
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label id="vecu">{{base.name}}</label>
                 </div>
@@ -191,7 +191,7 @@
             </div>
 
             {{#if (nonNull stunned)}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{localize stunned.label}}</label>
                 </div>
@@ -203,7 +203,7 @@
             {{/if}}
 
             {{#if (nonNull attack)}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{attack.name}}</label>
                 </div>
@@ -215,7 +215,7 @@
             {{/if}}
 
             {{#if (and (nonNull weapon) (ne weapon.system.defense 0))}}
-            <div class="line hiddable" style="display:none;">
+            <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{weapon.name}}</label>
                 </div>
