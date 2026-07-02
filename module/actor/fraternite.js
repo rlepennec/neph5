@@ -33,7 +33,7 @@ export class FraterniteSheet extends HistoricalSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/templates/actor/fraternite.html`,
+            template: `systems/neph5e/feature/fraternite/fraternite.html`,
         }
     }
 
