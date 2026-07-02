@@ -17,50 +17,50 @@
                        Il est remplacé par des {{#if}}...{{else if}}...{{else}} chaînés,
                        qui sont du Handlebars natif et donc compatibles sans helper enregistré. --}}
                 {{#if opposed}}
-                    <label>{{localize 'NEPH5E.jetOpposition'}}</label>
+                    <label>{{translate 'jetOpposition'}}</label>
                 {{else if (eq type 'simple')}}
                     <select id="rollType" name="rollType" disabled>
-                        <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
+                        <option value="simple">{{translate 'jetSimple'}}</option>
                     </select>
                 {{else if (eq type 'opposed')}}
                     <select id="rollType" name="rollType" disabled>
-                        <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+                        <option value="opposed">{{translate 'jetOppose'}}</option>
                     </select>
                 {{else}}
                     {{!-- cas 'none' ou toute autre valeur : select actif avec les deux options --}}
                     <select id="rollType" name="rollType">
-                        <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
-                        <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+                        <option value="simple">{{translate 'jetSimple'}}</option>
+                        <option value="opposed">{{translate 'jetOppose'}}</option>
                     </select>
                 {{/if}}
                 </div>
 
                 {{#if (or (eq item.system.element 'choix') (eq element 'choix'))}}
                 <select id="element" name="element">
-                    <option value='air'>{{localize "NEPH5E.air"}}</option>
-                    <option value='eau'>{{localize 'NEPH5E.eau'}}</option>
-                    <option value='feu'>{{localize 'NEPH5E.feu'}}</option>
-                    <option value='lune'>{{localize 'NEPH5E.lune'}}</option>
-                    <option value='terre'>{{localize 'NEPH5E.terre'}}</option>
+                    <option value='air'>{{translate "air"}}</option>
+                    <option value='eau'>{{translate 'eau'}}</option>
+                    <option value='feu'>{{translate 'feu'}}</option>
+                    <option value='lune'>{{translate 'lune'}}</option>
+                    <option value='terre'>{{translate 'terre'}}</option>
                 </select>
                 {{/if}}
 
                 {{#if (eq item.system.elements.[0] 'quintuple')}}
                 <select id="element" name="element">
                     {{#if (gt actor.system.alchimie.primae.air.quantite 4)}}
-                    <option value='air'>{{localize "NEPH5E.air"}}</option>
+                    <option value='air'>{{translate "air"}}</option>
                     {{/if}}
                     {{#if (gt actor.system.alchimie.primae.eau.quantite 4)}}
-                    <option value='eau'>{{localize 'NEPH5E.eau'}}</option>
+                    <option value='eau'>{{translate 'eau'}}</option>
                     {{/if}}
                     {{#if (gt actor.system.alchimie.primae.feu.quantite 4)}}
-                    <option value='feu'>{{localize 'NEPH5E.feu'}}</option>
+                    <option value='feu'>{{translate 'feu'}}</option>
                     {{/if}}
                     {{#if (gt actor.system.alchimie.primae.lune.quantite 4)}}
-                    <option value='lune'>{{localize 'NEPH5E.lune'}}</option>
+                    <option value='lune'>{{translate 'lune'}}</option>
                     {{/if}}
                     {{#if (gt actor.system.alchimie.primae.terre.quantite 4)}}
-                    <option value='terre'>{{localize 'NEPH5E.terre'}}</option>
+                    <option value='terre'>{{translate 'terre'}}</option>
                     {{/if}}
                 </select>
                 {{/if}}
@@ -284,8 +284,8 @@
             <div class="line">
                 <div class="line-title">
                     <select id="fraternite" name="fraternite">
-                        <option value="ignore">{{localize 'NEPH5E.ignorerFraternite'}}</option>
-                        <option value="apply">{{localize 'NEPH5E.appliquerFraternite'}}</option>
+                        <option value="ignore">{{translate "ignorerFraternite"}}</option>
+                        <option value="apply">{{translate "appliquerFraternite"}}</option>
                     </select>
                 </div>
                 <div class="line-value">
@@ -299,8 +299,8 @@
             <div class="line">
                 <div class="line-title">
                     <select id="blessures" name="blessures">
-                        <option value="apply">{{localize 'NEPH5E.appliquerBlessures'}}</option>
-                        <option value="ignore">{{localize 'NEPH5E.ignorerBlessures'}}</option>
+                        <option value="apply">{{translate "appliquerBlessures"}}</option>
+                        <option value="ignore">{{translate "ignorerBlessures"}}</option>
                     </select>
                 </div>
                 <div class="line-value">
@@ -330,8 +330,8 @@
             <div class="line">
                 <div class="line-title">
                     <select id="metamorphe" name="metamorphe">
-                        <option value="ignore">{{localize 'NEPH5E.ignorerMetamorphe'}}</option>
-                        <option value="apply">{{localize 'NEPH5E.appliquerMetamorphe'}}</option>
+                        <option value="ignore">{{translate "ignorerMetamorphe"}}</option>
+                        <option value="apply">{{translate 'appliquerMetamorphe'}}</option>
                     </select>
                 </div>
                 <div class="line-value">

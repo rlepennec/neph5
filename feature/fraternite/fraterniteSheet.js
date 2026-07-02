@@ -1,5 +1,6 @@
 import { Fraternite } from "./fraternite.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
+import { OptionsSelector } from "./optionsSelector.js";
 
 export class FraterniteSheet extends HistoricalSheet {
     
@@ -56,6 +57,22 @@ export class FraterniteSheet extends HistoricalSheet {
             ],
             initial: "general"
         }
+    }
+
+    /**
+     * @override
+     */
+    get setupable() {
+        return true;
+    }
+
+    /**
+     * @override
+     */
+    async _onSetup(event, target) {
+        await new OptionsSelector()
+            .withSheet(this)
+            .render(true);
     }
 
     /**

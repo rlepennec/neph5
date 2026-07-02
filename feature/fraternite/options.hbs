@@ -1,121 +1,33 @@
-<div class="options">
+<section class="option-root">
 
-    <div class="options-column">
+    <button type="submit">
+        <i class="fa-solid fa-floppy-disk" inert=""></i>
+        <span>Sauver</span>
+    </button>
 
-        <div class="options-group">
+    <fieldset>
+        <legend>Theme</legend>
+        <select name="theme">
+            {{#select value}}
+            {{#each themes.all as |theme|}}
+            <option value="{{theme}}"{{#if (eq . ../themes.current)}} selected="{{theme}}"{{/if}}>{{translate theme}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </fieldset>
 
-            <div class="header">
+    <fieldset>
+        <legend>Affichage</legend>
 
-                <img class="puce"/>
+        <label>{{translate "chronologieDescendante"}}</label>
+        <input type="checkbox" name="chronologieDescendante" {{checked chronologieDescendante}}/>
 
-                <img class="separator"/>
+        <label>{{translate "incarnationsOuvertes"}}</label>
+        <input type="checkbox" name="incarnationsOuvertes" {{checked incarnationsOuvertes}}/>
 
-                <span class="options-name">{{localize "NEPH5E.affichage"}}</span>
+        <label>{{translate "fraterniteActive"}}</label>
+        <input type="checkbox" name="fraterniteActive" {{checked active}}/>
 
-            </div>
+    </fieldset>
 
-            <ol class="body">
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.chronologieDescendante" name="system.options.chronologieDescendante" value=system.options.chronologieDescendante}}
-
-                <li class="option">
-
-                    <label class="option-checkbox">
-                        <input
-                            {{#if system.options.incarnationsOuvertes}}checked{{/if}}
-                            name="system.options.incarnationsOuvertes"
-                            type="checkbox"
-                            class="incarnationsOuvertes"
-                            data-dtype="Boolean"/>
-                        <i class="far fa-circle unchecked"></i>
-                        <i class="fas fa-circle checked"></i>
-                    </label>
-
-                    <label>{{localize "NEPH5E.incarnationsOuvertes"}}</label>
-
-                </li>
-
-            </ol>
-
-        </div>
-
-        <div class="options-group">
-
-            <div class="header">
-
-                <img class="puce"/>
-
-                <img class="separator"/>
-
-                <span class="options-name">{{localize "NEPH5E.mondeOcculte"}}</span>
-
-            </div>
-
-            <ol class="body">
-
-                {{> "systems/neph5e/templates/actor/parts/option.hbs" label="NEPH5E.fraterniteActive" name="system.options.active" value=system.options.active}}
-
-            </ol>
-
-        </div>
-
-    </div>
-
-    <div class="options-column">
-
-        <div class="options-group">
-
-            <div class="header">
-
-                <img class="puce"/>
-
-                <img class="separator"/>
-
-                <label class="options-name">{{localize "NEPH5E.theme"}}</label>
-
-            </div>
-
-            <fieldset class="body">
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="air" {{#if (eq system.options.theme "air")}}checked{{/if}}>
-                    <label for="system.options.theme">Air</label>
-                </div>
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="eau" {{#if (eq system.options.theme "eau")}}checked{{/if}}/>
-                    <label for="system.options.theme">Eau</label>
-                </div>
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="feu" {{#if (eq system.options.theme "feu")}}checked{{/if}}/>
-                    <label for="system.options.theme">Feu</label>
-                </div>
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="lune" {{#if (eq system.options.theme "lune")}}checked{{/if}}/>
-                    <label for="system.options.theme">Lune</label>
-                </div>
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="lune-noire" {{#if (eq system.options.theme "lune-noire")}}checked{{/if}}/>
-                    <label for="system.options.theme">Lune noire</label>
-                </div>
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="soleil" {{#if (eq system.options.theme "soleil")}}checked{{/if}}/>
-                    <label for="system.options.theme">Soleil</label>
-                </div>
-
-                <div class="option">
-                    <input class="theme option-checkbox" type="radio" name="system.options.theme" value="terre" {{#if (eq system.options.theme "terre")}}checked{{/if}}/>
-                    <label for="system.options.theme">Terre</label>
-                </div>
-
-            </fieldset>
-
-        </div>
-
-    </div>
-
-</div>
+</section>

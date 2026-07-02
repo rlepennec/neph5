@@ -19,18 +19,18 @@
                     {{#switch type}}
                     {{#case 'none'}}
                     <select id="rollType" name="rollType">
-                        <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
-                        <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
+                        <option value="opposed">{{translate 'jetOppose'}}</option>
+                        <option value="simple">{{translate 'jetSimple'}}</option>
                     </select>
                     {{/case}}
                     {{#case 'simple'}}
                     <select id="rollType" name="rollType" disabled>
-                        <option value="simple">{{localize 'NEPH5E.jetSimple'}}</option>
+                        <option value="simple">{{translate 'jetSimple'}}</option>
                     </select>
                     {{/case}}
                     {{#case 'opposed'}}
                     <select id="rollType" name="rollType" disabled>
-                        <option value="opposed">{{localize 'NEPH5E.jetOppose'}}</option>
+                        <option value="opposed">{{translate 'jetOppose'}}</option>
                     </select>
                     {{/case}}
                     {{/switch}}
@@ -166,8 +166,8 @@
             <div class="line">
                 <div class="line-title">
                     <select id="blessures" name="blessures">
-                        <option value="apply">{{localize 'NEPH5E.appliquerBlessures'}}</option>
-                        <option value="ignore">{{localize 'NEPH5E.ignorerBlessures'}}</option>
+                        <option value="apply">{{translate 'appliquerBlessures'}}</option>
+                        <option value="ignore">{{translate 'ignorerBlessures'}}</option>
                     </select>
                 </div>
                 <div class="line-value">
@@ -195,7 +195,7 @@
 
             <div class="line hiddable hidden">
                 <div class="line-title">
-                    <label>{{localize "NEPH5E.manoeuvres.viser.name"}}</label>
+                    <label>{{translate "viser"}}</label>
                 </div>
                 <div class="line-value">
                     <label id="visee">{{visee}}</label>

@@ -73,30 +73,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         }
     }
 
-
-    /**
-     * @override
-     */
-    /*
-    activateListeners(html) {
-
-        super.activateListeners(html);
-
-        super.activateCombatListeners(html);
-
-        html.find('div[data-tab="combat"] .ka .roll').click(this._onRollKa.bind(this));
-        html.find('div[data-tab="combat"] .menace .roll').click(this._onRollMenace.bind(this));
-        html.find('div[data-tab="combat"] .vecu .roll').click(this._onRollVecu.bind(this));
-        html.find('div[data-tab="combat"] .vecu .open').click(this._onEditVecu.bind(this));
-        html.find('div[data-tab="combat"] .vecu .delete').click(this._onDeleteVecu.bind(this));
-        html.find('div[data-tab="combat"] .vecu input').change(this._onDegreVecu.bind(this));
-        html.find('div[data-tab="combat"] .ressource .roll').click(this._onRollRessource.bind(this));
-        html.find('div[data-tab="combat"] .ressource .open').click(this._onEditRessource.bind(this));
-        html.find('div[data-tab="combat"] .ressource input').change(this._onDegreRessource.bind(this));
-        html.find('div[data-tab="combat"] .ressource .delete').click(this._onDeleteRessource.bind(this));
-    }
-        */
-
     /**
      * @override
      */

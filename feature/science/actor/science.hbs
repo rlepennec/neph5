@@ -34,25 +34,25 @@
                     <span class="cercle-name">{{cercle.name}}</span>
 
                     {{#if (includes ../header 'possede')}}
-                    <span class="cercle-possede">{{localize "NEPH5E.focus"}}</span>
+                    <span class="cercle-possede">{{translate "focus"}}</span>
                     {{/if}}
 
                     {{#unless (eq cercle.degre 0)}}
                         
                         {{#if (includes ../header 'quantite')}}
-                        <span class="cercle-quantite">{{localize "NEPH5E.quantite"}}</span>
+                        <span class="cercle-quantite">{{translate "quantite"}}</span>
                         {{/if}}
 
                         {{#if (includes ../header 'transporte')}}
-                        <span class="cercle-transporte">{{localize "NEPH5E.soi"}}</span>
+                        <span class="cercle-transporte">{{translate "soi"}}</span>
                         {{/if}}
 
                         {{#if (includes ../header 'pacte')}}
-                        <span class="cercle-pacte">{{localize "NEPH5E.pacte"}}</span>
+                        <span class="cercle-pacte">{{translate "pacte"}}</span>
                         {{/if}}
 
                         {{#if (includes ../header 'status')}}
-                        <span class="cercle-status">{{localize "NEPH5E.status"}}</span>
+                        <span class="cercle-status">{{translate "status"}}</span>
                         {{/if}}
 
                         {{#if (includes ../header 'percentage')}}
@@ -200,7 +200,7 @@
     {{else}}
 
     <div class="nofocus">
-        <label>{{localize 'NEPH5E.aideFocus'}}</label>
+        <label>{{translate "aideFocus"}}</label>
         <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
     </div>
 
