@@ -53,6 +53,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             capacite: FigureSheet._onDropFocus,
             competence: FigureSheet._onDropManoeuver,
             vecu: FigureSheet._onDropManoeuver,
+            figurant: FigureSheet._onDropSimulacre
         }
     }
 
@@ -510,6 +511,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await feature.drop();
         this.editedCapacity = null;
         await this.render(true);
+    }
+
+    /**
+     * Drop d'un figurant sur la figure : le définit comme simulacre.
+     */
+    static async _onDropSimulacre(event, document) {
+        if (this.document.system.options?.simulacre !== true) return;
+        await this.document.update({ ['system.simulacre']: document.sid });
     }
 
     async _onToggleVaisseau(event) {
