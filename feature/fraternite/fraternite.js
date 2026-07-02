@@ -87,12 +87,6 @@ export class Fraternite {
      */
     async addMember(event, actor, periode, status) {
 
-        // Check the current tab
-        const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
-        if (currentTab !== 'incarnations') {
-            return;
-        }
-
         // Check the actor is already a member
         const effectif = foundry.utils.duplicate(this.actor.system.effectif);
         const found = effectif.find(m => m.actor === actor.sid && m.periode === periode);
