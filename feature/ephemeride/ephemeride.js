@@ -2,38 +2,31 @@ import { AbstractDialog } from "../core/abstractDialog.js";
 
 export class EphemerideDialog extends AbstractDialog {
 
-    /**
-     * Constructor.
-     */
+    static DEFAULT_OPTIONS = {
+        classes: ["nephilim", "sheet"],
+        position: {
+            width: 600,
+            height: "auto"
+        },
+        window: {
+            title: "Ephéméride"
+        }
+    };
+
+    static PARTS = {
+        main: {
+            template: "systems/neph5e/feature/ephemeride/ephemeride.hbs"
+        }
+    };
+
     constructor() {
         super(null);
     }
 
-    /**
-     * @override
-     */
-    getData(options) {
+    async _prepareContext(options) {
         return {
             isGM: game.user.isGM
-        }
-    }
-
-    /**
-     * @returns the default options to manage the dialog.
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["nephilim", "sheet"],
-            template: "systems/neph5e/feature/ephemeride/ephemeride.hbs",
-            width: 600,
-            height: "auto",
-            choices: {},
-            allowCustom: true,
-            minimum: 0,
-            maximum: null,
-            closeOnSubmit: false,
-            resizable: true
-        });
+        };
     }
 
 }
