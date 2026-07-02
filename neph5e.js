@@ -86,7 +86,7 @@ import { VecuDataModel } from "./feature/periode/item/vecu.mjs";
 
 import { FigureDataModel } from "./feature/figure/figure.mjs";
 import { FigurantDataModel } from "./feature/figurant/figurant.mjs";
-import { FraterniteDataModel } from "./module/actor/fraternite.mjs";
+import { FraterniteDataModel } from "./feature/fraternite/fraternite.mjs";
 
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
