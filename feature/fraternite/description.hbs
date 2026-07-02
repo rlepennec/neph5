@@ -1,0 +1,19 @@
+<main 
+    class='tab description'
+    data-group='primary'
+    data-tab='description'>
+
+    {{#if document.sheet.locked}}
+    {{{enrichedDescription}}}
+    {{else}}
+    <prose-mirror
+        name="system.description"
+        button="true"
+        editable="{{editable}}"
+        toggled="false"
+        value="{{document.system.description}}">
+        {{{enrichedDescription}}}
+    </prose-mirror>
+    {{/if}}
+
+</main>

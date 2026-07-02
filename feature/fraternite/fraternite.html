@@ -1,118 +1,47 @@
-<form class="{{cssClass}}" autocomplete="off">
+<section class="actor-root skin-{{document.system.options.theme}}">
 
-    <input
-        name="system.id"
-        type="hidden"
-        value="{{system.id}}"
-        data-dtype="String"/>
+    <aside>
 
-    <div class="actor-root">
-    
-        <div class="side">
-        
-            <img class="image" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+        <img
+            src="{{document.img}}"
+            data-edit="img"
+            data-action="editImage"/>
 
-            <label class="lock-checkbox">
-                <input
-                    name="system.options.locked"
-                    value="{{system.options.locked}}"
-                    type="checkbox"
-                    {{checked system.options.locked}}
-                    data-dtype="Boolean"/>
-                <i class="fa-solid fa-lock-open unchecked"></i>
-                <i class="fa-solid fa-lock checked"></i>
-            </label>
-
-            <nav class="sheet-navigation" data-group="primary">
-                
-                <div class="sheet-navigation-choice active">
-                    <a class="sheet-navigation-tab" data-tab="description">{{localize "NEPH5E.description"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-
-                {{#if editable}}
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="effectif">{{localize "NEPH5E.membres"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="vecus">{{localize "NEPH5E.connaissance"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="ressources">{{localize "NEPH5E.ressources"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="incarnations">{{localize "NEPH5E.historique"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-
-                <div class="sheet-navigation-choice">
-                    <a class="sheet-navigation-tab" data-tab="options">{{localize "NEPH5E.options"}}</a>
-                    <img class="sheet-navigation-pin"/>
-                    <img class="sheet-navigation-hole"/>
-                </div>
-
-                {{/if}}
-
-            </nav>
-
-        </div>
-        
-        <div class="article">
-
-            <div class="article-header">
-
-                <textarea spellcheck="false" class="article-title" name="name" class="name" rows="1">{{actor.name}}</textarea>
-
-                <img class="article-separator"/>
-
+        <nav>
+            {{#each tabs as |tab|}}
+            <div>
+                <a data-action="tab" data-group="{{tab.group}}" data-tab="{{tab.id}}">{{translate tab.label}}</a>
+                <!--
+                <img class="sheet-navigation-pin"/>
+                <img class="sheet-navigation-hole"/>
+                -->
             </div>
+            {{/each}}
+        </nav>
 
-            <section class="article-body">
+    </aside>
 
-                <div class="tab" data-group="primary" data-tab="description">
-                    {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
-                </div>
+    <article>
 
-                <div class="tab" data-group="primary" data-tab="effectif">
-                    {{> "systems/neph5e/feature/fraternite/effectif.hbs" from="fraternite"}}
-                </div>
-        
-                <div class="tab" data-group="primary" data-tab="vecus" data-family="vecus">
-                    <div class="vecus">
-                        {{> "systems/neph5e/feature/periode/actor/savoirs.hbs" from="fraternite"}}
-                        {{> "systems/neph5e/feature/periode/actor/quetes.hbs" from="fraternite"}}
-                        {{> "systems/neph5e/feature/science/actor/sciences.hbs" from=fraternite }}
-                        {{> "systems/neph5e/feature/periode/actor/chutes.hbs" from=fraternite }}
-                    </div>
-                </div>
+        <header>
 
-                <div class="tab" data-group="primary" data-tab="incarnations">
-                    {{> "systems/neph5e/feature/periode/actor/incarnations.hbs" from="fraternite"}}
-                </div>
+            <input
+                name="name"
+                type="text"
+                value="{{document.name}}"
+                spellcheck="false"
+                {{#if document.sheet.locked}} disabled{{/if}}/>
 
-                <div class="tab" data-group="primary" data-tab="ressources">
-                    {{> "systems/neph5e/feature/fraternite/ressources.hbs" from="fraternite"}}
-                </div>
-                
-                <div class="tab" data-group="primary" data-tab="options">
-                    {{> "systems/neph5e/feature/fraternite/options.hbs" from="fraternite"}}
-                </div>
+            <img/>
 
-            </section>
+        </header>
 
-        </div>
+        {{#each tabs as |tab|}}
+            {{#if tab.active}}
+                {{> (lookup . "template") .. from=tab.from header=tab.header }}
+            {{/if}}
+        {{/each}}
 
-    </div>
+    </article>
 
-</form>
+</section>

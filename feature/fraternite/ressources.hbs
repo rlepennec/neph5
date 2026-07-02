@@ -1,4 +1,7 @@
-<div class="ressources groups">
+<main
+    class='tab science'
+    data-group='primary'
+    data-tab='ressources'>
 
     {{#each (sciences) as |science|}}
     {{#with (numberOfFocus ../actor science) as |size|}}
@@ -24,7 +27,7 @@
 
                 <a class="icon"><i class="fas fa-scroll"></i></a>
             
-                <label class="name open">{{focus.original.name}}</label>
+                <label data-action="editOriginalItem" class="name open">{{focus.original.name}}</label>
 
             </li>
             {{/each}}
@@ -36,4 +39,4 @@
     {{/with}}
     {{/each}}
 
-</div>
+</main>

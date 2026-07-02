@@ -36,11 +36,6 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/science/actor/sciences.hbs",
         "systems/neph5e/feature/science/actor/science.hbs",
     
-        // Fraternite
-        "systems/neph5e/feature/fraternite/effectif.hbs",
-        "systems/neph5e/feature/fraternite/ressources.hbs",
-        "systems/neph5e/feature/fraternite/options.hbs",
-
         // Actor parts
         "systems/neph5e/templates/actor/parts/option.hbs",
 
@@ -74,7 +69,14 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/denier/actor/header.hbs",
         "systems/neph5e/feature/epee/actor/header.hbs",
 
+        // Fraternite
+        "systems/neph5e/feature/fraternite/description.hbs",
+        "systems/neph5e/feature/fraternite/effectif.hbs",
+        "systems/neph5e/feature/fraternite/incarnations.hbs",
+        "systems/neph5e/feature/fraternite/ressources.hbs",
+        "systems/neph5e/feature/fraternite/connaissances.hbs",
 
+        "systems/neph5e/feature/fraternite/options.hbs",
     ]);
 
 };

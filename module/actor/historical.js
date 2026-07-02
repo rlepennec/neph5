@@ -11,7 +11,8 @@ export class HistoricalSheet extends NephilimActorSheet {
             currentPeriode: HistoricalSheet._onCurrentPeriode,
             deletePeriode: HistoricalSheet._onDeletePeriode,
             activatePeriode: HistoricalSheet._onActivatePeriode,
-            deleteEmbedded: HistoricalSheet._onDeleteEmbedded
+            deleteEmbedded: HistoricalSheet._onDeleteEmbedded,
+            openItem: HistoricalSheet._onOpenItem
         },
         dropHandlers: {
             periode: HistoricalSheet._onDropPeriode,
@@ -182,6 +183,27 @@ export class HistoricalSheet extends NephilimActorSheet {
         const system = foundry.utils.duplicate(item.system);
         system.degre = isNaN(converted) ? 0 : converted;
         await item.update({ system });
+    }
+
+    /**
+     * [Partagé figure/fraternité] Résout la feature à partir de l'élément .item ciblé.
+     */
+    _featureFromTarget(target) {
+        const node = target.closest('.item');
+        const id = node.dataset.id;
+        const sid = node.dataset.sid;
+        const scope = node.dataset.scope ?? "actor";
+        return new FeatureBuilder(this.document)
+            .withScope(scope)
+            .withEmbeddedItem(id)
+            .withOriginalItem(sid)
+            .create();
+    }
+
+    /** Ouvre la fiche de l'item (vécu, savoir, quête, compétence...). */
+    static async _onOpenItem(event, target) {
+        const feature = this._featureFromTarget(target);
+        await feature.editEmbeddedItem();
     }
 
     /** @override */
