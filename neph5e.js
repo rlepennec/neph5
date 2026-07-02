@@ -10,7 +10,7 @@ import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { FigureSheet } from "./feature/figure/figure.js";
 import { FigurantSheet } from "./feature/figurant/figurant.js";
-import { FraterniteSheet } from "./module/actor/fraternite.js";
+import { FraterniteSheet } from "./feature/fraternite/fraterniteSheet.js";
 
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
 import { AppelSheet } from "./feature/conjuration/item/appel.js";

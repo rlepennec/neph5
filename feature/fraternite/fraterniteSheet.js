@@ -1,6 +1,6 @@
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { Fraternite } from "../../feature/fraternite/fraternite.js";
-import { HistoricalSheet } from "./historical.js";
+import { FeatureBuilder } from "../core/featureBuilder.js";
+import { Fraternite } from "./fraternite.js";
+import { HistoricalSheet } from "../../module/actor/historical.js";
 
 export class FraterniteSheet extends HistoricalSheet {
     
