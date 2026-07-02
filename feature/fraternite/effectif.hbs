@@ -1,35 +1,29 @@
-<div class="effectif groups">
+<main
+    class='tab science'
+    data-group='primary'
+    data-tab='effectif'>
 
+    <ol class="cercles">
     {{#each actor.membres as |group|}}
-    <div class="group">
-
-        <div class="header">
-
-            <img class="circle"/>
-
-            <div class="degre">{{group.size}}</div>
-
-            <img class="separator"/>
-
-            <label class="name">{{#if (eq group.status "membres")}}{{localize "NEPH5E.membres"}}{{else}}{{group.status}}{{/if}}</label>
-
+        <div class="cercle">
+            <div class="header">
+                <img class="circle"/>
+                <img class="separator"/>
+                <div class="cercle-degre">{{group.size}}</div>
+                <div class="cercle-menu">
+                    <span class="cercle-name">{{#if (eq group.status "membres")}}{{localize "NEPH5E.membres"}}{{else}}{{group.status}}{{/if}}</span>
+                </div>
+            </div>
+            <ol class="all-focus">
+                {{#each group.membres as |membre|}}
+                <li class="focus item" data-sid="{{membre.sid}}">
+                    <a class="icon"><i class="fa-solid fa-user"></i></a>
+                    <label data-action="editActor" class="focus-name open">{{membre.name}}</label>
+                </li>
+                {{/each}}
+            </ol>
         </div>
-
-        <ol class="body">
-
-            {{#each group.membres as |membre|}}
-            <li class="item" data-id="{{membre.id}}">
-
-                <a class="icon"><i class="fa-solid fa-user"></i></a>
-            
-                <label data-action="editActor" class="name open">{{membre.name}}</label>
-
-            </li>
-            {{/each}}
-
-        </ol>
-
-    </div>
     {{/each}}
+    </ol>
 
-</div>
+</main>
