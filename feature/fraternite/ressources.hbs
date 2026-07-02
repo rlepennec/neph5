@@ -3,40 +3,30 @@
     data-group='primary'
     data-tab='ressources'>
 
-    {{#each (sciences) as |science|}}
-    {{#with (numberOfFocus ../actor science) as |size|}}
-    {{#if (gt size 0)}}
-    <div class="group">
-
-        <div class="header">
-
-            <img class="circle"/>
-
-            <div class="degre">{{size}}</div>
-
-            <img class="separator"/>
-
-            <label class="name">{{localize (concat "NEPH5E." science)}}</label>
-
+    <ol class="cercles">
+        {{#each (sciences) as |science|}}
+        {{#with (numberOfFocus ../actor science) as |size|}}
+        {{#if (gt size 0)}}
+        <div class="cercle">
+            <div class="header">
+                <img class="circle"/>
+                <img class="separator"/>
+                <div class="cercle-degre">{{size}}</div>
+                <div class="cercle-menu">
+                    <span class="cercle-name">{{localize (concat "NEPH5E." science)}}</span>
+                </div>
+            </div>
+            <ol class="all-focus">
+                {{#each (focus ../../actor science) as |focus|}}
+                <li class="focus item" data-sid="{{focus.original.sid}}">
+                    <label data-action="editOriginalItem" class="focus-name open">{{focus.original.name}}</label>
+                </li>
+                {{/each}}
+            </ol>
         </div>
-
-        <ol class="body">
-
-            {{#each (focus ../../actor science) as |focus|}}
-            <li class="item" data-sid="{{focus.original.sid}}">
-
-                <a class="icon"><i class="fas fa-scroll"></i></a>
-            
-                <label data-action="editOriginalItem" class="name open">{{focus.original.name}}</label>
-
-            </li>
-            {{/each}}
-
-        </ol>
-
-    </div>
-    {{/if}}
-    {{/with}}
-    {{/each}}
-
+        {{/if}}
+        {{/with}}
+        {{/each}}
+    </ol>
+    
 </main>
