@@ -3615,10 +3615,24 @@ form.nephilim.actor section.window-content > section aside nav div {
   align-items: center;
 }
 form.nephilim.actor section.window-content > section aside img.simulacre {
-  margin-top: 20px;
+  margin-top: 80px;
   margin-bottom: 10px;
   width: 80px;
-  cursor: pointer;
+}
+form.nephilim.actor section.window-content > section aside a.simulacre-name {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 20px;
+  z-index: 100;
+}
+form.nephilim.actor section.window-content > section aside .fraternite-image {
+  width: 80px;
+}
+form.nephilim.actor section.window-content > section aside .fraternite-name {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 20px;
+  z-index: 100;
 }
 form.nephilim.actor section.window-content > section article {
   display: flex;

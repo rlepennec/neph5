@@ -26,6 +26,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             deleteLaboratory: FigureSheet._onDeleteLaboratory,
             construct: FigureSheet._onConstruct,
             editCapacity: FigureSheet._onEditCapacity,
+            openSimulacre: FigureSheet._onOpenSimulacre,
+            openFraternite: FigureSheet._onOpenFraternite,
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
@@ -53,7 +55,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             capacite: FigureSheet._onDropFocus,
             competence: FigureSheet._onDropManoeuver,
             vecu: FigureSheet._onDropManoeuver,
-            figurant: FigureSheet._onDropSimulacre
+            figurant: FigureSheet._onDropSimulacre,
         }
     }
 
@@ -520,6 +522,23 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.document.system.options?.simulacre !== true) return;
         await this.document.update({ ['system.simulacre']: document.sid });
     }
+
+    /**
+     * Ouvre la fiche de l'acteur simulacre.
+     */
+    static async _onOpenSimulacre(event, target) {
+        await this.document.simulacre?.sheet.render(true);
+    }
+
+    /**
+     * Ouvre la fiche de la fraternité cliquée.
+     */
+    static async _onOpenFraternite(event, target) {
+        const id = target.closest("[data-id]")?.dataset.id;
+        const fraternite = game.actors.get(id);
+        await fraternite?.sheet.render(true);
+    }
+
 
     async _onToggleVaisseau(event) {
         event.preventDefault();

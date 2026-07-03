@@ -19,9 +19,47 @@
             {{/each}}
         </nav>
 
-        {{#if actor.simulacre}}
+        {{#if (and (eq document.system.options.simulacre true) (nonNull actor.simulacre))}}
         <img class="simulacre" src="{{actor.simulacre.img}}"/>
+        <a class="simulacre-name" data-action="openSimulacre">{{actor.simulacre.name}}</a>
         {{/if}}
+
+        {{#if (eq document.system.options.fraternites true)}}
+        {{#each actor.fraternites as |fraternite|}}
+        <img class="fraternite-image" src="{{fraternite.img}}"/>
+        <a class="fraternite-name" data-action="openFraternite" data-id="{{fraternite.id}}">{{fraternite.name}}</a>
+        {{/each}}
+        {{/if}}
+
+
+
+
+<!--
+                {{#if (eq system.options.soleil true)}}
+                <div class="element macro soleil" data-macro="ka" data-id="soleil">
+                    <img class="circle"/>
+                    
+                    <div class="tooltip">
+                        <input
+                            name="system.ka.soleil"
+                            type="text"
+                            value="{{system.ka.soleil}}"
+                            data-dtype="Number"/>
+                        <a class="dice"><i class="fas fa-dice-d20"></i></a>
+                    </div>
+                </div>
+                {{/if}}
+
+
+            -->
+
+
+
+
+
+
+
+
 
     </aside>
 
