@@ -3634,6 +3634,41 @@ form.nephilim.actor section.window-content > section aside .fraternite-name {
   font-size: 20px;
   z-index: 100;
 }
+form.nephilim.actor section.window-content > section aside .element.soleil {
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+form.nephilim.actor section.window-content > section aside .element.soleil img.circle {
+  width: var(--nephilim-width-circle);
+  height: var(--nephilim-height-circle);
+  content: var(--img-circle);
+  /* le cercle du skin, comme la magie */
+}
+form.nephilim.actor section.window-content > section aside .element.soleil .tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form.nephilim.actor section.window-content > section aside .element.soleil .tooltip input {
+  color: var(--font-color);
+  background-color: transparent;
+  border: 0px;
+  font-size: 23px;
+  width: 40px;
+  text-align: center;
+}
+form.nephilim.actor section.window-content > section aside .element.soleil .tooltip .dice {
+  cursor: pointer;
+  z-index: 100;
+}
 form.nephilim.actor section.window-content > section article {
   display: flex;
   flex-direction: column;
