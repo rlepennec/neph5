@@ -3614,6 +3614,12 @@ form.nephilim.actor section.window-content > section aside nav div {
   justify-content: center;
   align-items: center;
 }
+form.nephilim.actor section.window-content > section aside img.simulacre {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 80px;
+  cursor: pointer;
+}
 form.nephilim.actor section.window-content > section article {
   display: flex;
   flex-direction: column;
