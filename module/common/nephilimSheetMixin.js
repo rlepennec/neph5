@@ -15,7 +15,7 @@ export const NephilimMixinSheet = Base => {
 			tag: "form",
 			dragDrop: [
 				{ 
-					dragSelector: '[data-drag="true"]',
+					dragSelector: '[data-drag="true"], [data-macro]',
 					dropSelector: '[data-drop="true"]'
 				}
 			],
@@ -156,6 +156,24 @@ export const NephilimMixinSheet = Base => {
 
 			if ('link' in event.target.dataset) return;
 
+			// Drag d'un élément .macro vers la hotbar -> donnée de macro.
+			const macro = event.currentTarget.closest('[data-macro]');
+			if (macro != null) {
+				const data = { process: 'macro', type: macro.dataset.macro };
+				if (macro.dataset.id != null) data.id = macro.dataset.id;
+				if (macro.dataset.sid != null) data.sid = macro.dataset.sid;
+				// Arme / ressource : item embarqué résolu via fsid.
+				if (macro.dataset.fsid != null) {
+					const identifier = new DocumentIdentifier(macro);
+					data.actor = this.document.id;
+					data.id = identifier.id;
+					data.sid = identifier.sid;
+				}
+				event.dataTransfer.setData('text/plain', JSON.stringify(data));
+				return;
+			}
+
+			// Drag interne (fsid -> "Sheet").
 			const fsid = NephilimSheet.findDataset(event.currentTarget, 'fsid');
 			if (fsid != null) {
 				event.dataTransfer.setData('text/plain', JSON.stringify({
