@@ -49,7 +49,32 @@ export class MetamorpheDataModel extends foundry.abstract.TypeDataModel {
                     required: false
                 }
             ),
-
+            humeur: new foundry.data.fields.StringField
+            (
+                {
+                    required: false,
+                    initial: 'chaud',
+                    choices: Constants.HUMEURS
+                }
+            ),
+            portrait: new foundry.data.fields.SchemaField
+            (
+                {
+                    activite: new foundry.data.fields.StringField(),
+                    animal: new foundry.data.fields.StringField(),
+                    arme : new foundry.data.fields.StringField(),
+                    couleur: new foundry.data.fields.StringField(),
+                    etre: new foundry.data.fields.StringField(),
+                    humain: new foundry.data.fields.StringField(),
+                    metal: new foundry.data.fields.StringField(),
+                    objet: new foundry.data.fields.StringField(),
+                    oeuvre: new foundry.data.fields.StringField(),
+                    phenomene: new foundry.data.fields.StringField()
+                },
+                {
+                    required: false
+                }
+            )
         }
     }
 
