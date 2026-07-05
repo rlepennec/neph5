@@ -1,6 +1,6 @@
 import { Alchimie } from "../alchimie/alchimie.js";
 import { Appel } from "../conjuration/appel.js";
-import { Arcane } from "../periode/arcane.js";
+import { Arcane } from "../arcane/arcane.js";
 import { Aspect } from "../selenim/aspect.js";
 import { Atlanteide } from "../atlanteide/atlanteide.js";
 import { Capacite } from "../periode/capacite.js";

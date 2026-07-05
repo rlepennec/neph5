@@ -11,7 +11,7 @@ export class ArcaneSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/arcane.html`,
+            template: `systems/neph5e/feature/arcane/item/arcane.html`,
         }
     }
 

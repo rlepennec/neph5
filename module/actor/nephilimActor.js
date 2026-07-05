@@ -1,5 +1,5 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
-import { Arcane } from "../../feature/periode/arcane.js";
+import { Arcane } from "../../feature/arcane/arcane.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/periode/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";

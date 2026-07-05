@@ -14,7 +14,7 @@ import { FraterniteSheet } from "./feature/fraternite/fraterniteSheet.js";
 
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
 import { AppelSheet } from "./feature/conjuration/item/appel.js";
-import { ArcaneSheet } from "./feature/periode/item/arcane.js";
+import { ArcaneSheet } from "./feature/arcane/item/arcane.js";
 import { ArmeSheet } from "./feature/combat/item/arme.js";
 import { ArmureSheet } from "./feature/combat/item/armure.js";
 import { AtlanteideSheet } from "./feature/atlanteide/item/atlanteide.js";
@@ -53,7 +53,7 @@ import { VecuSheet } from "./feature/periode/item/vecu.js";
 
 import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
 import { AppelDataModel } from "./feature/conjuration/item/appel.mjs";
-import { ArcaneDataModel } from "./feature/periode/item/arcane.mjs";
+import { ArcaneDataModel } from "./feature/arcane/item/arcane.mjs";
 import { ArmeDataModel } from "./feature/combat/item/arme.mjs";
 import { ArmureDataModel } from "./feature/combat/item/armure.mjs";
 import { AspectDataModel } from "./feature/selenim/item/aspect.mjs";
