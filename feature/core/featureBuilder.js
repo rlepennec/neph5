@@ -6,7 +6,7 @@ import { Atlanteide } from "../atlanteide/atlanteide.js";
 import { Capacite } from "../periode/capacite.js";
 import { Catalyseur } from "../alchimie/catalyseur.js";
 import { Chute } from "../periode/chute.js";
-import { Competence } from "../periode/competence.js";
+import { Competence } from "../competence/competence.js";
 import { Divination } from "../bohemien/divination.js";
 import { Dracomachie } from "../dracomachie/dracomachie.js";
 import { Formule } from "../alchimie/formule.js";

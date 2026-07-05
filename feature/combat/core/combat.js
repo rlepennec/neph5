@@ -1,6 +1,6 @@
 
 import { FeatureBuilder } from "../../core/featureBuilder.js";
-import { Competence } from "../../periode/competence.js";
+import { Competence } from "../../competence/competence.js";
 import { Menace } from "../core/menace.js";
 import { Vecu } from "../../periode/vecu.js";
 

@@ -13,7 +13,7 @@ export class CompetenceSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/competence.html`,
+            template: `systems/neph5e/feature/competence/item/competence.html`,
         }
     }
 

@@ -4,7 +4,7 @@ import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/periode/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/periode/chute.js";
-import { Competence } from "../../feature/periode/competence.js";
+import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
