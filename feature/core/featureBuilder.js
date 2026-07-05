@@ -3,9 +3,9 @@ import { Appel } from "../conjuration/appel.js";
 import { Arcane } from "../arcane/arcane.js";
 import { Aspect } from "../selenim/aspect.js";
 import { Atlanteide } from "../atlanteide/atlanteide.js";
-import { Capacite } from "../periode/capacite.js";
+import { Capacite } from "../capacite/capacite.js";
 import { Catalyseur } from "../alchimie/catalyseur.js";
-import { Chute } from "../periode/chute.js";
+import { Chute } from "../chute/chute.js";
 import { Competence } from "../competence/competence.js";
 import { Divination } from "../bohemien/divination.js";
 import { Dracomachie } from "../dracomachie/dracomachie.js";
@@ -18,19 +18,19 @@ import { Materiae } from "../alchimie/materiae.js";
 import { Metamorphe } from "../nephilim/metamorphe.js";
 import { Noyau } from "../selenim/noyau.js";
 import { Ordonnance } from "../kabbale/ordonnance.js";
-import { Passe } from "../periode/passe.js";
+import { Passe } from "../passe/passe.js";
 import { Pavane } from "../selenim/pavane.js";
 import { Periode } from "../periode/periode.js";
 import { Pratique } from "../denier/pratique.js";
-import { Quete } from "../periode/quete.js";
+import { Quete } from "../quete/quete.js";
 import { Rite } from "../necromancie/rite.js";
 import { Rituel } from "../epee/rituel.js";
-import { Savoir } from "../periode/savoir.js";
+import { Savoir } from "../savoir/savoir.js";
 import { Science } from "../science/science.js";
 import { Sort } from "../magie/sort.js";
 import { Technique } from "../baton/technique.js";
 import { Tekhne } from "../coupe/tekhne.js";
-import { Vecu } from "../periode/vecu.js";
+import { Vecu } from "../vecu/vecu.js";
 
 export class FeatureBuilder {
 

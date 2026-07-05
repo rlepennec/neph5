@@ -1,9 +1,9 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Arcane } from "../../feature/arcane/arcane.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
-import { Capacite } from "../../feature/periode/capacite.js";
+import { Capacite } from "../../feature/capacite/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
-import { Chute } from "../../feature/periode/chute.js";
+import { Chute } from "../../feature/chute/chute.js";
 import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
@@ -18,9 +18,9 @@ import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Periode } from "../../feature/periode/periode.js";
-import { Savoir } from "../../feature/periode/savoir.js";
+import { Savoir } from "../../feature/savoir/savoir.js";
 import { Science } from "../../feature/science/science.js";
-import { Vecu } from "../../feature/periode/vecu.js";
+import { Vecu } from "../../feature/vecu/vecu.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
 export class NephilimActor extends Actor {

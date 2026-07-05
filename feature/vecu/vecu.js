@@ -3,7 +3,7 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
-import { Periode } from "./periode.js";
+import { Periode } from "../periode/periode.js";
 
 export class Vecu extends HistoricalFeature {
 

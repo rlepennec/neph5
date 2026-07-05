@@ -1,4 +1,4 @@
-import { Chute } from "../../feature/periode/chute.js";
+import { Chute } from "../../feature/chute/chute.js";
 import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
@@ -267,7 +267,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (o.capacites) {
             tabs.push({
                 id: "capacites",
-                template: `systems/neph5e/feature/periode/actor/capacites.hbs`,
+                template: `systems/neph5e/feature/capacite/actor/capacites.hbs`,
                 from: "figure"
             });
         }

@@ -2,7 +2,7 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
-import { Periode } from "./periode.js";
+import { Periode } from "../periode/periode.js";
 
 export class Chute extends HistoricalFeature {
 

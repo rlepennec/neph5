@@ -11,7 +11,7 @@ export class ChuteSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/chute.html`,
+            template: `systems/neph5e/feature/chute/item/chute.html`,
         }
     }
 

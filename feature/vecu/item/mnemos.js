@@ -21,7 +21,7 @@ export class Mnemos extends AbstractDialog {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["nephilim", "sheet", "item"],
-            template: "systems/neph5e/feature/periode/actor/mnemos.hbs",
+            template: "systems/neph5e/feature/vecu/actor/mnemos.hbs",
             width: 500,
             height: 450,
             choices: {},

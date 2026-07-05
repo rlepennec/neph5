@@ -11,7 +11,7 @@ export class SavoirSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/savoir.html`,
+            template: `systems/neph5e/feature/savoir/item/savoir.html`,
         }
     }
 

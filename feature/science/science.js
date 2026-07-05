@@ -2,7 +2,7 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "../periode/periode.js";
-import { Savoir } from "../periode/savoir.js";
+import { Savoir } from "../savoir/savoir.js";
 
 export class Science extends HistoricalFeature {
 

@@ -12,7 +12,7 @@ export class QueteSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/quete.html`,
+            template: `systems/neph5e/feature/quete/item/quete.html`,
         }
     }
 
@@ -43,7 +43,7 @@ export class QueteSheet extends NephilimItemSheet {
         const next = CustomHandlebarsHelpers.getSapiences(degre + 1) - sapience;
 
         // Create the dialog panel to display.
-        const html = await renderTemplate("systems/neph5e/templates/item/quete.html", {
+        const html = await renderTemplate("systems/neph5e/feature/quete/item/quete.html", {
             item: item,
             debug: game.settings.get('neph5e', 'debug'),
             periodes: periodes,

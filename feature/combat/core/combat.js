@@ -2,7 +2,7 @@
 import { FeatureBuilder } from "../../core/featureBuilder.js";
 import { Competence } from "../../competence/competence.js";
 import { Menace } from "../core/menace.js";
-import { Vecu } from "../../periode/vecu.js";
+import { Vecu } from "../../vecu/vecu.js";
 
 export class Combat {
 

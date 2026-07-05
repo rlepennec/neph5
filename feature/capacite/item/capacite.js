@@ -1,6 +1,6 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
-export class PasseSheet extends NephilimItemSheet {
+export class CapaciteSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
@@ -11,7 +11,7 @@ export class PasseSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/passe.html`,
+            template: `systems/neph5e/feature/capacite/item/capacite.html`,
         }
     }
 

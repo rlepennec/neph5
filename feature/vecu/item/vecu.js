@@ -14,7 +14,7 @@ export class VecuSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/periode/item/vecu.html`,
+            template: `systems/neph5e/feature/vecu/item/vecu.html`,
         }
     }
 

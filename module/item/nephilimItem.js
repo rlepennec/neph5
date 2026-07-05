@@ -3,7 +3,7 @@ import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { Periode } from "../../feature/periode/periode.js";
-import { VecuDataModel } from "../../feature/periode/item/vecu.mjs";
+import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 
 export class NephilimItem extends Item {
