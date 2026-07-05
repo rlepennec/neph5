@@ -1,9 +1,10 @@
+import { UUIDField } from "../../../module/field/UUIDField.js";
+
 export class CapaciteDataModel extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
-            id: new foundry.data.fields.StringField
-            (
+            id: new UUIDField(
                 {
                     required: true
                 }
