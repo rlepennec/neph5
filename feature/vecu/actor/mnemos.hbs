@@ -1,57 +1,44 @@
-<form autocomplete="off">
+<section class="item-root">
+{{log .}}
+    <aside style="--background-side: var(--background-side-vecu)"></aside>
 
-    <div class="window-content">
+    <article>
 
-        <div class="item-root">
-        
-            <div class="side">
-                <img src="systems/neph5e/assets/core/side-vecu.webp" title="{{localize 'ITEM.TypeVecu'}}"/>
-            </div>
 
-            <div class="article">
+        <header>
 
-                <div class="header">
-                
-                    <div class="title">
+            <input
+                name="name"
+                type="text"
+                value="{{name}}">
 
-                        <input
-                            id="name"
-                            name="name"
-                            type="text"
-                            value="{{name}}"
-                            class="name"/>
+        </header>
 
-                    </div>
+        <main>
 
-                </div>
+            {{> "systems/neph5e/templates/input.hbs"
+                title="degre"
+                name="degre"
+                value=degre
+            }}
 
-                <div class="body">
+            <prose-mirror
+                name="description"
+                button="true"
+                editable="true"
+                toggled="false"
+                value="{{description}}">
+                {{{enrichedDescription}}}
+            </prose-mirror>
 
-                    <div class="main">
-                        {{> "systems/neph5e/templates/item/parts/header/number.hbs" tooltip="NEPH5E.degre" name="degre" value=degre}}
-                    </div>
+        </main>
 
-                    <div class="description">
+        <footer class="mnemos-footer">
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i> Sauver
+            </button>
+        </footer>
 
-                        {{#if (isEmptyString description)}}
-                        <div class="add">
-                            <i class="fa-solid fa-circle-plus fa-2xl"></i>
-                            <span>{{translate "ajouterDescription"}}</span>
-                        </div>
-                        {{/if}}
+    </article>
 
-                        <div class="no-scrollbar">
-                            {{editor description target="description" button=true owner=true editable=true}}
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+</section>

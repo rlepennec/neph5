@@ -5,10 +5,15 @@ import { Mnemos } from "./mnemos.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
-    static DEFAULT_OPTIONS = {
+static DEFAULT_OPTIONS = {
         position: {
             width: 560,
             height: 500
+        },
+        actions: {
+            addMnemos: VecuSheet._onAddMnemos,
+            editMnemos: VecuSheet._onEditMnemos,
+            deleteMnemos: VecuSheet._onDeleteMnemos
         }
     }
 
@@ -29,19 +34,6 @@ export class VecuSheet extends NephilimItemSheet {
             }
         }
     }
-
-    /*
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.add-mnemos').click(this._onAddMnemos.bind(this));
-        html.find('.edit-mnemos').click(this._onEditMnemos.bind(this));
-        html.find('.edit-competence').click(this.onEdit.bind(this));
-        html.find('.edit-periode').click(this.onEditPeriode.bind(this));
-        html.find('.delete-competence').click(this._onDelete.bind(this));
-        html.find('.delete-mnemos').click(this._onDeleteMnemos.bind(this));
-    }
-    */
 
     /**
      * @override
@@ -75,36 +67,30 @@ export class VecuSheet extends NephilimItemSheet {
         }
     }
 
-
-
     /**
-     * This function catches the deletion of a competence from the list of competences.
+     * Supprime un mnémos de la liste.
      */
-     async _onDeleteMnemos(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).closest('.item');
-        const id = li.data("item-id");
+    static async _onDeleteMnemos(event, target) {
+        const index = target.closest('[data-item-id]')?.dataset.itemId;
         const system = foundry.utils.duplicate(this.document.system);
-        system.mnemos.splice(id, 1);
-        await this.document.update({ ['system']: system });
+        system.mnemos.splice(Number(index), 1);
+        await this.document.update({ system: system });
         this.document.sheet.render(true);
     }
 
     /**
-     * This function catches the addiition of mnemos. 
+     * Ouvre le dialogue d'ajout d'un mnémos.
      */
-    async _onAddMnemos(event) {
-        return new Mnemos(this.actor, this.document).render(true);;
+    static async _onAddMnemos(event, target) {
+        new Mnemos(this.document.parent, this.document).render(true);
     }
 
     /**
-     * This function catches the edition of mnemos. 
+     * Ouvre le dialogue d'édition d'un mnémos.
      */
-    async _onEditMnemos(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).closest('.item');
-        const id = li.data("item-id");
-        return new Mnemos(this.actor, this.document, id).render(true);;
+    static async _onEditMnemos(event, target) {
+        const index = target.closest('[data-item-id]')?.dataset.itemId;
+        new Mnemos(this.document.parent, this.document, Number(index)).render(true);
     }
 
     /**

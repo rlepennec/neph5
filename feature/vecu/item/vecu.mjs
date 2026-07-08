@@ -44,7 +44,16 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
             ),
             mnemos: new foundry.data.fields.ArrayField
             (
-                new foundry.data.fields.StringField()
+                new foundry.data.fields.SchemaField
+                (
+                    {
+                        name: new foundry.data.fields.StringField(),
+                        degre: new foundry.data.fields.NumberField(
+                            { initial: 0 }
+                        ),
+                        description: new foundry.data.fields.StringField()
+                    }
+                )
             )
         }
     }

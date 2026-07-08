@@ -1,86 +1,111 @@
-import { AbstractDialog } from "../../core/abstractDialog.js";
-
-export class Mnemos extends AbstractDialog {
+export class Mnemos extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 
     /**
      * Constructor.
      * @param actor  The emiter of the dialog.
      * @param data   The vecu item.
-     * @param mnemos The index of the mnemos to update, null if a new one
+     * @param mnemos The index of the mnemos to update, null if a new one.
+     * @param options ApplicationV2 options.
      */
-    constructor(actor, data, mnemos) {
-        super(actor);
+    constructor(actor, data, mnemos, options = {}) {
+        super(options);
         this.actor = actor;
         this.data = data;
         this.mnemos = mnemos;
     }
 
-    /**
-     * @returns the default options to manage the dialog.
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["nephilim", "sheet", "item"],
-            template: "systems/neph5e/feature/vecu/actor/mnemos.hbs",
+    static DEFAULT_OPTIONS = {
+        classes: ["nephilim", "sheet", "item"],
+        position: {
             width: 500,
-            height: 450,
-            choices: {},
-            allowCustom: true,
-            minimum: 0,
-            maximum: null,
-            closeOnSubmit: false,
-            submitOnChange: true
+            height: 450
+        },
+        window: {
+            title: "Mnémos",
+            resizable: true
+        },
+        tag: "form",
+        form: {
+            handler: Mnemos.#onSubmit,
+            closeOnSubmit: true,
+            submitOnChange: false
+        }
+    }
+
+    static PARTS = {
+        form: {
+            template: "systems/neph5e/feature/vecu/actor/mnemos.hbs"
+        }
+    }
+
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        const pm = this.element.querySelector('prose-mirror[name="description"]');
+        pm?.addEventListener('change', () => {
+            this._pending = {
+                name: this.element.querySelector('[name="name"]')?.value,
+                degre: this.element.querySelector('[name="degre"]')?.value,
+                description: pm.value
+            };
+            this.render();
         });
     }
 
     /**
      * @override
      */
-    getData(options) {
+    async _prepareContext(options) {
+        const context = await super._prepareContext(options);
+        context.system = this.data.system;
 
-        const data = super.getData(options);
-
-        if (this.mnemos == null) {
-            data.name = this.data.name;
-            data.degre = 0;
-            data.description = "";
+        // Valeurs par défaut (données du mnémos), sauf si une édition est en cours (_pending).
+        let name, degre, description;
+        if (this._pending != null) {
+            name = this._pending.name;
+            degre = this._pending.degre;
+            description = this._pending.description;
+        } else if (this.mnemos == null) {
+            name = this.data.name;
+            degre = 0;
+            description = "";
         } else {
-            data.name = data.system.mnemos[this.mnemos].name;
-            data.degre = data.system.mnemos[this.mnemos].degre;
-            data.description = data.system.mnemos[this.mnemos].description;
+            const m = this.data.system.mnemos[this.mnemos];
+            name = m.name;
+            degre = m.degre;
+            description = m.description;
         }
 
-        return data;
+        context.name = name;
+        context.degre = degre;
+        // description = source brute (éditeur) ; enrichedDescription = HTML formaté (vue).
+        context.description = description;
+        context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+            description ?? "",
+            { secrets: true, relativeTo: this.data }
+        );
+        return context;
     }
 
     /**
-     * @override
+     * Sauvegarde le mnémos (création ou mise à jour) dans le vécu.
      */
-    async _onSubmit(event, form, formData) {
-
-        event.preventDefault();
+    static async #onSubmit(event, form, formData) {
         const system = foundry.utils.duplicate(this.data.system);
-
-        // Create a new mnemos
+        // Le <prose-mirror> n'est pas capté par formData ici : on lit sa valeur directement.
+        const description = form.querySelector('prose-mirror[name="description"]')?.value ?? "";
+        const entry = {
+            name: formData.object.name,
+            degre: formData.object.degre,
+            description: description
+        };
         if (this.mnemos == null) {
             this.mnemos = system.mnemos.length;
-            system.mnemos.push({
-                name: formData.object.name,
-                degre: formData.object.degre,
-                description: formData.object.description
-            });
-
-        // Update the current mnemos
+            system.mnemos.push(entry);
         } else {
-            system.mnemos[this.mnemos].name = formData.object.name;
-            system.mnemos[this.mnemos].degre = formData.object.degre;
-            system.mnemos[this.mnemos].description = formData.object.description == null ? system.mnemos[this.mnemos].description : formData.object.description;
+            system.mnemos[this.mnemos] = entry;
         }
-
-        await this.data.update({ ['system']: system });
+        await this.data.update({ system: system });
         this.data.sheet.render(true);
-        this.render(true);
-
     }
 
 }

@@ -6119,6 +6119,11 @@ form.nephilim.item section.window-content > section article main input:disabled 
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;
 }
+form.nephilim.item section.window-content > section article main .mnemos-description {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
 .recherche table tr td {
   font-family: 'AJensonPro';
   text-align: center;

@@ -1,5 +1,5 @@
 <section class="item-root" data-drop="true">
-
+{{log .}}
     <aside style="--background-side: var(--background-side-vecu)"></aside>
 
     <article>
@@ -48,11 +48,11 @@
             <ol>
 
                 {{#each system.mnemos as |mnemos|}}
-                <li class="edit" data-item-id="{{@index}}">
+                <li class="edit" data-item-id="{{@index}}" data-action="editMnemos">
 
                     <div>
 
-                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-trash" data-action="deleteMnemos"></i>
 
                         <label>{{mnemos.degre}}</label>
 
@@ -64,28 +64,10 @@
                         {{html mnemos.description}}
                     </div>
 
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="attaque"
-                        name="system.mnemos.[{{@index}}].degre"
-                        value="{{mnemos.degre}}"
-                    }}
-
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="attaque"
-                        name="system.mnemos.[{{@index}}].name"
-                        value="{{mnemos.name}}"
-                    }}
-
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="attaque"
-                        name="system.mnemos.[{{@index}}].description"
-                        value="{{mnemos.description}}"
-                    }}
-
                 </li>
                 {{/each}}
 
-                <li>
+                <li data-action="addMnemos">
                     <i class="fa-solid fa-circle-plus fa-1xl"></i>
                     <span>{{translate "mnemos"}}</span>
                 </li>
