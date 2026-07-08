@@ -5,7 +5,10 @@ import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { NephilimActorSheet } from "../actor/nephilimActorSheet.js";
+import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
+import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
+
 
 export const CombatantMixinSheet = Base => {
 
@@ -21,6 +24,8 @@ export const CombatantMixinSheet = Base => {
 				setProjete: CombatantSheet._onSetProjete,
 				useArmor: CombatantSheet._onUseEquipment,
 				useWeapon: CombatantSheet._onUseEquipment,
+				aim: CombatantSheet._onAim,
+				reload: CombatantSheet._onReload
 			},
 			deleteHandlers: {
 				"arme": NephilimActorSheet._onDeleteItem,
@@ -130,40 +135,21 @@ export const CombatantMixinSheet = Base => {
 			await this.document.setActiveEffect("Prone");
 		}
 
-		#combatActivated() {
-			return (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem')));
-		}
-
-
-		/**
-		 * Aim at the specified target.
-		 * @param event The event to handle.
-		 */
-		/*
-		async _onAim(event) {
-			event.preventDefault();
-			const li = $(event.currentTarget).parents("li");
-			const id = li.data("id");
-			const item = this.document.getEmbeddedDocument('Item', id);
+		static async _onAim(event, target) {
+			const item = new DocumentIdentifier(target).toDocument();
 			const action = new Distance(this.document, item);
 			await new Viser().apply(action);
 		}
-			*/
 
-		/**
-		 * Reload the specified fire weapon.
-		 * @param event The event to handle.
-		 */
-		/*
-		async _onReload(event) {
-			event.preventDefault();
-			const li = $(event.currentTarget).parents("li");
-			const id = li.data("id");
-			const item = this.document.getEmbeddedDocument('Item', id);
+		static async _onReload(event, target) {
+			const item = new DocumentIdentifier(target).toDocument();
 			const action = new Distance(this.document, item);
 			await new Recharger().apply(action);
 		}
-		*/
+
+		#combatActivated() {
+			return (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem')));
+		}
 
 	}
 		
