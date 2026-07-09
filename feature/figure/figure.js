@@ -358,22 +358,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
     }
 
-
-
-    // Roll combat
-    async _onRoll(event) {
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const arme = this.actor.items.get(id);
-        const uuid = arme.system.competence;
-        const skill = game.items.find(i => i.sid === uuid);
-        if (skill === undefined) {
-            ui.notifications.warn(game.i18n.localize('NEPH5E.noWeaponSkill'));
-        } else {
-            return await skill.roll(this.actor);
-        }
-    }
-
     /** Bascule l'état formed/visible d'une métamorphose. */
     async _onToggleMetamorphose(event) {
         if (this.locked) return;
