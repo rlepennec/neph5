@@ -59,21 +59,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
     }
 
     /**
-     * Update the specified ressource.
-     * @param event The click event.
-     */
-    async _onEdit(event, document) {
-
-
-        //const id = $(event.currentTarget).closest(".ressource").data("id");
-        const degre = parseInt(event.currentTarget.value);
-        //const item = this.actor.items.get(id);
-        if (!isNaN(degre)) {
-            await document.update({"system.degre": degre});
-        }
-    }
-
-    /**
      * @override
      */
     get setupable() {
@@ -88,115 +73,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             .withSheet(this)
             .render(true);
     }
-
-    /**
-     * Update the specified vecu.
-     * @param event The click event.
-     */
-    async _onDegreVecu(event) {
-        const id = $(event.currentTarget).closest(".vecu").data("id");
-        const degre = parseInt(event.currentTarget.value);
-        const item = this.actor.items.get(id);
-        await item.update({"system.degre": degre});
-    }
-
-    /**
-     * Roll the specified vecu.
-     * @param event The click event.
-     */
-    async _onRollVecu(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".vecu").data("id");
-        const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
-    }
-
-
-
-    /**
-     * Roll the specified ressource.
-     * @param event The click event.
-     */
-    async _onRollRessource(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".ressource").data("id");
-        const item = this.actor.items.get(id);
-        await new FeatureBuilder(this.actor).withScope('actor').withEmbeddedItem(item.id).create().initializeRoll();
-    }
-
-
-    /**
-     * Edit the specified item.
-     * @param event The click event.
-     */
-    async _onEditRessource(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest(".ressource").data("id");
-        const item = this.actor.getEmbeddedDocument('Item', id);
-        await item.sheet.render(true);
-    }
-
-
-    /**
-     * Drop the specified object.
-     * @param event The drop event.
-     */
-    async _onDrop2(event) {
-        event.preventDefault();
-        const item = await NephilimItemSheet.droppedItem(event);
-        if (item != null && item.hasOwnProperty('system')) {
-
-            // Check if the tab is compliant with the item to drop
-            const currentTab = $(event.currentTarget).find("div.tab.active").data("tab");
-            const tabs = this._droppableTabs(item.type);
-            if (tabs.includes(currentTab) !== true) {
-                return false;
-            }
-
-            // Process the drop
-            switch(item.type) {
-                case 'arme':
-                    await super._onDropWeapon(event, item);
-                    break;
-                case 'armure':
-                    await super._onDrop(event);
-                    break;
-                case 'vecu':
-                    await new FeatureBuilder(this.actor)
-                        .withOriginalItem(item.sid)
-                        .withEvent(event)
-                        .withPeriode(item.system.periode)
-                        .create()
-                        .drop();
-                case 'passe':
-                    await new FeatureBuilder(this.actor)
-                        .withOriginalItem(item.sid)
-                        .withEvent(event)
-                        .create()
-                        .drop();
-                    break;
-            }
-        }
-
-    }
-
-    /**
-     * @param type The type of item to drop.
-     * @returns the tabs on which the item can be dropped.
-     */
-    _droppableTabs(type) {
-        switch (type) {
-            case 'arme':
-            case 'armure':
-            case 'vecu':
-            case 'passe':
-                return ['combat'];
-            default:
-                return [];
-        }
-    }
-
-    // ---------------------------------------- Roll handlers ----------------------------------------
 
     static async _onRollKa(event, target) {
         return await new Ka(this.document, null, null).initializeRoll();

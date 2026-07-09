@@ -56,20 +56,6 @@ export class SortSheet extends NephilimItemSheet {
         }
     }
 
-
-
-
-
-
-    /**
-     * @override
-     */
-    activateListeners(html) {
-        super.activateListeners(html);
-        html.find('.item-drop-target').on("drop", this._onDrop.bind(this));
-        html.find('.delete-voie').click(this._onDelete.bind(this));
-    }
-
     /**
      * @override
      */

@@ -44,6 +44,7 @@ export class FormuleSheet extends NephilimItemSheet {
         switch (document.type) {
             case 'formule':
                 await this.document.deleteReference(identifier.fsid, this.document.system.variantes, "system.variantes");
+                await document.deleteReference(new DocumentIdentifier(this.document).fsid, document.system.variantes, "system.variantes");
                 break;
             case "catalyseur":
                 await this.document.deleteReference(identifier.fsid, this.document.system.catalyseurs, "system.catalyseurs");
@@ -62,23 +63,12 @@ export class FormuleSheet extends NephilimItemSheet {
         switch (document.type) {
             case "formule":
                 await this.document.updateItemRefs(document.system, this.document.system.variantes, "system.variantes");
+                await document.updateItemRefs(this.document.system, document.system.variantes, "system.variantes");
                 break;
             case "catalyseur":
                 await this.document.updateItemRefs(document.system, this.document.system.catalyseurs, "system.catalyseurs");
                 break;
         }
-    }
-
-    /**
-     * The function opens the sheet of the variante.
-     * @param {*} event 
-     */
-    async _onEditVariante(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-        await item.sheet.render(true);
     }
 
     /**
