@@ -64,17 +64,6 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     }
 
     /**
-     * Edits the specified referenced item.
-     */
-    async onEdit(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).closest(".item");
-        const id = li.data("item-id");
-        const item = CustomHandlebarsHelpers.getItem(id);
-        this.render({ force: true });
-    }
-
-    /**
      * Retrieves the dropped item informations as follow:
      *  { 
      *    from: "compendium", "data" or "world",
