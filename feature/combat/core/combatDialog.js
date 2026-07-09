@@ -63,13 +63,6 @@ export class CombatDialog extends ActionDialog {
     }
 
     /**
-     * @returns the default options to manage the dialog.
-     */
-    static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {});
-    }
-
-    /**
      * @override
      */
     async _prepareContext(options) {
