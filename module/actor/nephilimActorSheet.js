@@ -19,6 +19,13 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         }
     }
 
+    /**
+     * @override
+     */
+    get setupable() {
+        return true;
+    }
+
     /** 
      * @override
      */

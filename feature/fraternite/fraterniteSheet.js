@@ -62,13 +62,6 @@ export class FraterniteSheet extends HistoricalSheet {
     /**
      * @override
      */
-    get setupable() {
-        return true;
-    }
-
-    /**
-     * @override
-     */
     async _onSetup(event, target) {
         await new OptionsSelector()
             .withSheet(this)

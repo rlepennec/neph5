@@ -71,6 +71,9 @@ export const NephilimMixinSheet = Base => {
 			return locked ? 'fa-lock' : 'fa-lock-open';
 		}
 
+		/** 
+		 * @override
+		 */
 		get setupable() {
 			return false;
 		}
