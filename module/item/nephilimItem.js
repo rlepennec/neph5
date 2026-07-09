@@ -324,37 +324,6 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * TO DELETE ???
-     * Deletes the reference of the objet to delete.
-     * @param {*} event 
-     * @param {*} references 
-     * @param {*} name 
-     */
-    async deleteItemRefs(event, references, name) {
-        event.preventDefault();
-
-        const button = event.currentTarget;
-        if (button.disabled) return;
-
-        // Retrieve the id of the reference to delete
-        const li = $(event.currentTarget).closest('.item');
-        const sid = li.data("item-id");
-
-        // Retrieve the current references of the item
-        const refs = foundry.utils.duplicate(references);
-
-        // Remove the reference
-        const index = refs.findIndex(i => i === sid);
-        if (index != -1) {
-            refs.splice(index, 1);
-        }
-
-        // Update the references of the item
-        await this.update({ [name]: refs });
-
-    }
-
-    /**
      * @param callback The name of the method of the actor item object to call.
      * @param type     The optional actor type to match.
      * @returns actors of the world and actors of the scenes.
