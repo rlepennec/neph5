@@ -1,11 +1,10 @@
+import { AbstractFeature } from "../../feature/core/abstractFeature.js";
+import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
+import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimItem } from "../item/nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
-
-import { AbstractFeature } from "../../feature/core/abstractFeature.js";
-import { CustomHandlebarsHelpers } from "../common/handlebars.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 
 export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
@@ -66,7 +65,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         });
     }
 
-
     static async _onDeleteItem(event, document) {
         event.preventDefault();
         await this.document.deleteEmbeddedItem(document);
@@ -94,20 +92,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         const id = target.closest('.item').dataset.id;
         const item = this.document.items.get(id);
         await this.document.deleteEmbeddedItem(item);
-    }
-
-    /**
-     * Edit the specified embedded item. Used by vecu, arme and armure.
-     * @param event The click event.
-     */
-    async _onEditEmbeddedItem(event) {
-        event.preventDefault();
-        const li = $(event.currentTarget).parents(".item");
-        const id = li.data("item-id");
-        const scope = li.data("scope");
-        const actor = scope === 'simulacre' ? AbstractFeature.simulacre(this.document) : this.document;
-        const item = actor.getEmbeddedDocument('Item', id);
-        item.sheet.render(true);
     }
 
     /**
@@ -283,21 +267,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         let scope = node.data("scope");
         scope = scope == null ? "actor" : scope;
         return new FeatureBuilder(this.document).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
-    }
-
-    /**
-     * Open the specified actor, simulacre or the fraternite.
-     * @param event The click event.
-     * @returns the instance.
-     */
-    async _onOpenActor(event) {
-        event.preventDefault();
-        const id = $(event.currentTarget).closest('.sheet-navigation-tab[data-tab="actor"]').data('id');
-        const actor = game.actors.get(id);
-        if (actor != null) {
-            actor.sheet.render(true);
-        }
-        return this;
     }
 
     /**
