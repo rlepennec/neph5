@@ -5,10 +5,6 @@ import { OptionsSelector } from "./optionsSelector.js";
 export class FraterniteSheet extends HistoricalSheet {
     
     static DEFAULT_OPTIONS = {
-        position: {
-            width: 1000,
-            height: 800
-        },
         // Actions propres à la fraternité. Les actions de périodes
         // (activatePeriode, editPeriode, deletePeriode, deleteEmbedded...) sont
         // héritées d'HistoricalSheet, et delete/open/lock/select/setup du mixin.

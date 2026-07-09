@@ -10,10 +10,6 @@ import { OptionsSelector } from "./optionsSelector.js";
 export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
 
     static DEFAULT_OPTIONS = {
-        position: {
-            width: 1000,
-            height: 800
-        },
         actions: {
             rollKa: FigurantSheet._onRollKa,
             rollMenace: FigurantSheet._onRollMenace,

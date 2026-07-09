@@ -14,6 +14,10 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
     static DEFAULT_OPTIONS = {
         classes: ["actor"],
+        position: {
+            width: 1000,
+            height: 800
+        },
         actions: {
             deleteItem: NephilimActorSheet._onDeleteEmbeddedItem
         }
