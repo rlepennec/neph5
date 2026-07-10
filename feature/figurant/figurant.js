@@ -50,10 +50,8 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
     /**
      * @override
      */
-    async _onSetup(event, target) {
-        await new OptionsSelector()
-            .withSheet(this)
-            .render(true);
+    get optionsSelector() {
+        return OptionsSelector;
     }
 
     static async _onRollKa(event, target) {

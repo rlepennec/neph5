@@ -30,6 +30,35 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         return true;
     }
 
+/**
+     * Classe du sélecteur d'options de la fiche.
+     * Chaque acteur la surcharge pour retourner SON OptionsSelector.
+     * @returns {Class|null}
+     */
+    get optionsSelector() {
+        return null;
+    }
+
+    /**
+     * Ouvre le sélecteur d'options de la fiche (logique unique, héritée par tous).
+     * @override
+     */
+    async _onSetup(event, target) {
+        const selector = this.optionsSelector;
+        if (selector == null) return;
+        this._optionsApp = await new selector().withSheet(this).render(true);
+    }
+
+/**
+     * Ferme le sélecteur d'options encore ouvert quand la fiche se ferme.
+     * @override
+     */
+    async _onClose(options) {
+        await super._onClose(options);
+        await this._optionsApp?.close();
+        this._optionsApp = null;
+    }
+
     /** 
      * @override
      */

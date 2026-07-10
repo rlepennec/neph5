@@ -283,10 +283,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /**
      * @override
      */
-    async _onSetup(event, target) {
-        await new OptionsSelector()
-            .withSheet(this)
-            .render(true);
+    get optionsSelector() {
+        return OptionsSelector;
     }
 
     /** @override */
