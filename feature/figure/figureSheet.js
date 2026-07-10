@@ -1,12 +1,12 @@
-import { Chute } from "../../feature/chute/chute.js";
+import { Chute } from "../chute/chute.js";
 import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../module/common/constants.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
+import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Game } from "../../module/common/game.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
 import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
-import { Science } from "../../feature/science/science.js";
+import { Science } from "../science/science.js";
 
 
 export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {

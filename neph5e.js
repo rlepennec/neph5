@@ -8,8 +8,8 @@ import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
-import { FigureSheet } from "./feature/figure/figure.js";
-import { FigurantSheet } from "./feature/figurant/figurant.js";
+import { FigureSheet } from "./feature/figure/figureSheet.js";
+import { FigurantSheet } from "./feature/figurant/figurantSheet.js";
 import { FraterniteSheet } from "./feature/fraternite/fraterniteSheet.js";
 
 import { AlchimieSheet } from "./feature/alchimie/item/alchimie.js";
