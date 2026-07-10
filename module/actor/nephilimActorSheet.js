@@ -64,6 +64,14 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
     }
 
+    async setOptions(options) {
+        const update = {};
+        for (const [key, value] of Object.entries(options)) {
+            update[`system.options.${key}`] = value;
+        }
+        await this.document.update(update);
+    }
+
     /**
      * Activate listeners about the combat panel used by figure and figurant actors.
      * @param html The html content to listen

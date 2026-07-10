@@ -47,13 +47,6 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
         },
     }
 
-    async setOptions(options) {
-        await this.document.update({
-            'system.options.theme': options.theme,
-            'system.options.degatAutomatique': options.degatAutomatique
-        });
-    }
-
     /**
      * @override
      */

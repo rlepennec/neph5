@@ -275,40 +275,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     }
 
     async setOptions(options) {
-        await this.document.update({
-            'system.options.theme': options.theme,
-            'system.options.nephilim': options.nephilim,
-            'system.options.magie': options.magie,
-            'system.options.analogie': options.analogie,
-            'system.options.kabbale': options.kabbale,
-            'system.options.alchimie': options.alchimie,
-            'system.options.dracomachie': options.dracomachie,
-            'system.options.selenim': options.selenim,
-            'system.options.necromancie': options.necromancie,
-            'system.options.conjuration': options.conjuration,
-            'system.options.luneNoire': options.luneNoire,
-            'system.options.baton': options.baton,
-            'system.options.coupe': options.coupe,
-            'system.options.denier': options.denier,
-            'system.options.epee': options.epee,
-            'system.options.gestionLaboratoire': options.gestionLaboratoire,
-            'system.options.daath': options.daath,
-            'system.options.degatAutomatique': options.degatAutomatique,
-            'system.options.defenseMJ': options.defenseMJ,
-            'system.options.vecus': options.vecus,
-            'system.options.incarnations': options.incarnations,
-            'system.options.combat': options.combat,
-            'system.options.capacites': options.capacites,
-            'system.options.simulacre': options.simulacre,
-            'system.options.soleil': options.soleil,
-            'system.options.akasha': options.akasha,
-            'system.options.fraternites': options.fraternites,
-            'system.options.atlanteide': options.atlanteide,
-            'system.options.bohemien': options.bohemien,
-            'system.options.chronologieDescendante': options.chronologieDescendante,
-            'system.options.degreGauche': options.degreGauche,
-            'system.options.incarnationsOuvertes': options.incarnationsOuvertes
-        });
+        await super.setOptions(options);
         this.elapsedPeriodes = this._elapsedPeriodes();
         await this.render(true);
     }

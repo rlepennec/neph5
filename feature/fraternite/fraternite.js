@@ -151,14 +151,4 @@ export class Fraternite {
         return move;
     }
 
-    async setOptions(options) {
-        await this.document.update({
-            'system.options.theme': options.theme,
-            'system.options.chronologieDescendante': options.chronologieDescendante,
-            'system.options.active': options.active,
-            'system.options.incarnationsOuvertes': options.incarnationsOuvertes
-        });
-        await this.render(true);
-    }
-
 }
