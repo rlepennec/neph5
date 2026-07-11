@@ -191,9 +191,13 @@ export class Periode extends AbstractFeature {
      */
     static getChronological(actor, chrono, actif, last) {
 
-        // Retrieve if the display order must be inverted
-        const inverse = ((chrono === true && actor.system.options.chronologieDescendante === false)
-                      || (chrono === false && actor.system.options.chronologieDescendante === true));
+        // Retrieve if the display order must be inverted.
+        // chrono === null : ordre d'affichage, piloté par l'option chronologieDescendante.
+        const descendante = actor.system.options.chronologieDescendante === true;
+        const inverse = (chrono === null)
+            ? !descendante
+            : ((chrono === true  && descendante === false)
+            || (chrono === false && descendante === true));
 
         // Retrieve periodes in display order
         let periodes = [];
@@ -215,8 +219,9 @@ export class Periode extends AbstractFeature {
                 found = true;
             }
 
-            // Skip the first periodes to the last if inverse order
-            if (inverse === true && found === false) {
+            // Skip the first periodes to the last if inverse order.
+            // Sans limite (last == null), il n'y a aucune periode a ignorer.
+            if (inverse === true && last != null && found === false) {
                 previous = p.sid;
                 continue;
             }
@@ -250,7 +255,7 @@ export class Periode extends AbstractFeature {
     static getAll(actor) {
 
         // Sort periodes to display
-        const periodes = Periode.getChronological(actor, null, null);
+        const periodes = Periode.getChronological(actor, true, null);
 
         // Process periodes to display.
         const all = [];
