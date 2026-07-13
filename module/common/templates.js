@@ -53,6 +53,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/list.hbs",
         "systems/neph5e/templates/select.hbs",
         "systems/neph5e/templates/checkbox.hbs",
+        "systems/neph5e/templates/portrait.hbs",
 
         "systems/neph5e/feature/figurant/description.hbs",
         "systems/neph5e/feature/figurant/combat.hbs",

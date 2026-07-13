@@ -1,0 +1,12 @@
+<div class="vk-meta-portrait-row">
+    <div class="vk-meta-row-header">
+        <i class="{{icon}} vk-meta-icon"></i>
+        <label>{{translate "siJetais"}} {{translate question}}</label>
+    </div>
+    <input
+        type="text"
+        name="{{name}}"
+        value="{{value}}"
+        {{#if document.sheet.locked}}disabled{{/if}}
+        {{#if value}}data-tooltip="{{value}}"{{/if}}/>
+</div>

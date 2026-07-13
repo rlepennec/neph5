@@ -5,8 +5,8 @@ export class MetamorpheSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 560,
-            height: 800
+            width: 1400,
+            height: 820
         }
     }
 
@@ -14,6 +14,18 @@ export class MetamorpheSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/nephilim/item/metamorphe.html`,
         }
+    }
+
+    /**
+     * Le bandeau de la fenêtre est hors de .item-root : on applique le skin
+     * du Ka sur la fenêtre elle-même pour qu'il en hérite les variables.
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+        const element = this.document.system.element;
+        if (element) this.element.classList.add(`skin-${element}`);
     }
 
     /** 
