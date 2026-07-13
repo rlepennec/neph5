@@ -131,12 +131,16 @@ form.nephilim.item {
 }
 
 // Bandeau supérieur des fiches d'item, coloré selon le Ka (skin posé sur la fenêtre).
+// Sans Ka (arme, armure...), on retombe sur le thème "global" du module :
+// fond bleu-gris translucide, sans dégradé.
 form.application.sheet.item > .window-header {
-    background-color: var(--vk-bg, transparent);
-    background-image: var(--vk-grad, none);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
+    background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+    background-image:
+        var(--vk-grad, none),
+        linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: 100% 100%, 100% 100%;
     backdrop-filter: blur(4px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     color: #ffffff;
@@ -145,4 +149,16 @@ form.application.sheet.item > .window-header {
         font-family: "NightjarDemi", serif;
         text-shadow: 0 0 4px black;
     }
+}
+
+form.nephilim.item section.window-content > section aside.vk-aside {
+    background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+    background-image:
+        var(--vk-grad, none),
+        linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 100%, 100% 100%;
+    backdrop-filter: blur(4px);
+    box-shadow: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }

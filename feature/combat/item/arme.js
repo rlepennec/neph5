@@ -4,9 +4,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class ArmeSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-orichalque"],
         position: {
-            width: 650,
-            height: 500
+            width: 730,
+            height: 800
         }
     }
 

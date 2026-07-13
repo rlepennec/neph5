@@ -6177,11 +6177,11 @@ form.nephilim.item section.window-content > section article main .mnemos-descrip
   color: #1a1a1a;
 }
 form.application.sheet.item > .window-header {
-  background-color: var(--vk-bg, transparent);
-  background-image: var(--vk-grad, none);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+  background-image: var(--vk-grad, none), linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100% 100%, 100% 100%;
   backdrop-filter: blur(4px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
@@ -6189,6 +6189,358 @@ form.application.sheet.item > .window-header {
 form.application.sheet.item > .window-header .window-title {
   font-family: "NightjarDemi", serif;
   text-shadow: 0 0 4px black;
+}
+form.nephilim.item section.window-content > section aside.vk-aside {
+  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+  background-image: var(--vk-grad, none), linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 100%, 100% 100%;
+  backdrop-filter: blur(4px);
+  box-shadow: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+/*
+.vk-nuit {
+    --vk-bg: rgba(5, 8, 25, 0.45);
+    --vk-glow: rgba(60, 80, 160, 0.55);
+    --vk-grad: linear-gradient(160deg, rgba(5, 10, 30, 0.65) 0%, rgba(20, 30, 80, 0.5) 60%, rgba(40, 20, 60, 0.4) 100%);
+}
+*/
+.vk-orichalque {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.item-root {
+  --vk-gold: #C9923A;
+  --vk-amber: #E8B86D;
+  --vk-bronze: #5C3D10;
+  --vk-dark: rgba(10, 6, 2, 0.88);
+  --vk-glass: rgba(12, 7, 2, 0.82);
+  --vk-border: rgba(201, 146, 58, 0.4);
+  --vk-radius: 8px;
+}
+.item-root .vk-arme-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+  padding: 14px 16px;
+  overflow-y: auto;
+}
+.item-root .vk-arme-readability-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--vk-glass);
+  border: 1px solid rgba(30, 60, 140, 0.35);
+  border-radius: var(--vk-radius);
+  box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
+}
+.item-root .vk-arme-type-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  overflow: hidden;
+}
+.item-root .vk-arme-type-row input[type="radio"] {
+  display: none;
+}
+.item-root .vk-arme-type-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 4px 14px;
+  margin: 0;
+  border: 1px solid var(--vk-border);
+  border-radius: 20px;
+  background: var(--vk-dark);
+  color: rgba(232, 184, 109, 0.65);
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.88em;
+  font-weight: normal;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.item-root .vk-arme-type-btn:hover {
+  background: rgba(201, 146, 58, 0.1);
+  border-color: var(--vk-gold);
+  color: var(--vk-amber);
+}
+.item-root .vk-arme-type-btn.active,
+.item-root .vk-arme-type-btn:has(input:checked) {
+  background: linear-gradient(135deg, rgba(201, 146, 58, 0.42), rgba(92, 61, 16, 0.62));
+  border-color: var(--vk-gold);
+  color: var(--vk-amber);
+  text-shadow: 0 0 8px rgba(232, 184, 109, 0.55), 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+.item-root .vk-arme-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+.item-root .vk-arme-stat {
+  flex: 1 1 50px;
+  min-width: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.item-root .vk-arme-stat label {
+  margin: 0;
+  padding: 0;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.76em;
+  font-weight: bold;
+  color: rgba(232, 184, 109, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.item-root .vk-arme-stat-input {
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--vk-amber);
+  background: var(--vk-dark);
+  border: 1px solid var(--vk-border);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(201, 146, 58, 0.15) inset, 0 2px 8px rgba(0, 0, 0, 0.65);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+.item-root .vk-arme-stat-input::-webkit-inner-spin-button,
+.item-root .vk-arme-stat-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.item-root .vk-arme-stat-input:focus {
+  border-color: var(--vk-gold);
+  box-shadow: 0 0 14px rgba(201, 146, 58, 0.4) inset;
+  outline: none;
+}
+.item-root .vk-arme-checks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 6px;
+}
+.item-root .vk-arme-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.9em;
+  font-weight: normal;
+  line-height: 1.4;
+  color: rgba(232, 184, 109, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+.item-root .vk-arme-check input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  margin-top: 7px;
+  border: 1px solid var(--vk-border);
+  border-radius: 3px;
+  background: var(--vk-dark);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.item-root .vk-arme-check input[type="checkbox"]::before,
+.item-root .vk-arme-check input[type="checkbox"]:checked::before {
+  content: none;
+}
+.item-root .vk-arme-check input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, var(--vk-bronze), rgba(201, 146, 58, 0.55));
+  border-color: var(--vk-gold);
+}
+.item-root .vk-arme-check input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0;
+  width: 5px;
+  height: 9px;
+  border: 2px solid var(--vk-amber);
+  border-top: none;
+  border-left: none;
+  transform: rotate(40deg);
+}
+.item-root .vk-arme-check:hover span {
+  color: var(--vk-amber);
+}
+.item-root .vk-arme-ammo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.item-root .vk-arme-ammo-label {
+  flex-shrink: 0;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.9em;
+  font-style: italic;
+  color: rgba(232, 184, 109, 0.65);
+  white-space: nowrap;
+}
+.item-root .vk-arme-ammo-type {
+  flex: 1;
+  padding: 2px 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--vk-border);
+  border-radius: 0;
+  color: var(--vk-amber);
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.9em;
+  transition: border-color 0.2s;
+}
+.item-root .vk-arme-ammo-type:focus {
+  border-bottom: 1px solid var(--vk-gold);
+  background: rgba(201, 146, 58, 0.06);
+  outline: none;
+}
+.item-root .vk-arme-ammo-type::placeholder {
+  color: rgba(232, 184, 109, 0.28);
+}
+.item-root .vk-arme-img-wrap {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: var(--vk-radius);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.75);
+}
+.item-root .vk-arme-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(201, 146, 58, 0.6);
+  border-radius: calc(var(--vk-radius) + 1px);
+  pointer-events: none;
+  z-index: 4;
+}
+.item-root .vk-arme-img-wrap:hover .vk-arme-img {
+  filter: brightness(1.1) saturate(1.08);
+}
+.item-root .vk-arme-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: cover;
+  border: none;
+  border-radius: var(--vk-radius);
+  cursor: pointer;
+  transition: filter 0.35s ease;
+  mask-image: radial-gradient(ellipse 70% 70% at center, black 55%, transparent 100%);
+}
+.item-root .vk-arme-skill-zone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 34px;
+  padding: 5px 10px;
+  flex-shrink: 0;
+  background: var(--vk-dark);
+  border: 1px dashed var(--vk-border);
+  border-radius: var(--vk-radius);
+  transition: border-color 0.25s, background 0.25s;
+}
+.item-root .vk-arme-skill-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.85em;
+  color: var(--vk-amber);
+}
+.item-root .vk-arme-skill-label i {
+  color: var(--vk-gold);
+}
+.item-root .vk-arme-skill-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.85em;
+  font-style: italic;
+  color: rgba(232, 184, 109, 0.45);
+}
+.item-root .vk-arme-glass-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 180px;
+  padding: 10px 12px;
+  background: var(--vk-glass);
+  border: 1px solid rgba(30, 60, 140, 0.35);
+  border-radius: var(--vk-radius);
+  box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+.item-root .vk-arme-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  color: #e0e0e0;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item section.window-content > section.item-root .vk-arme-stat-input:disabled {
+  opacity: 1;
+  cursor: default;
+  color: var(--vk-amber);
+  -webkit-text-fill-color: var(--vk-amber);
+  background: var(--vk-dark);
+  border: 1px solid var(--vk-border);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(201, 146, 58, 0.15) inset, 0 2px 8px rgba(0, 0, 0, 0.65);
+}
+form.nephilim.item section.window-content > section.item-root .vk-arme-ammo-type:disabled {
+  opacity: 1;
+  cursor: default;
+  color: var(--vk-amber);
+  -webkit-text-fill-color: var(--vk-amber);
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed var(--vk-border);
+}
+form.nephilim.item section.window-content > section.item-root .vk-arme-check input[type="checkbox"]:disabled {
+  opacity: 1;
+  cursor: default;
+  background: var(--vk-dark);
+  border: 1px solid var(--vk-border);
+}
+form.nephilim.item section.window-content > section.item-root .vk-arme-check input[type="checkbox"]:disabled:checked {
+  background: linear-gradient(135deg, var(--vk-bronze), rgba(201, 146, 58, 0.55));
+  border-color: var(--vk-gold);
 }
 .item-root .vk-layout {
   display: flex;
@@ -6285,6 +6637,15 @@ form.application.sheet.item > .window-header .window-title {
 }
 .item-root .vk-banner p {
   font-size: 1.1em;
+}
+form.nephilim.item section.window-content > section aside.vk-aside {
+  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+  background-image: var(--vk-grad, none);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  backdrop-filter: blur(4px);
+  box-shadow: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 form.nephilim.item section.window-content > section article main h1 {
   color: white;
