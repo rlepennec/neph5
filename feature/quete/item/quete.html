@@ -1,28 +1,48 @@
 <section class="item-root">
 
-    <aside style="--background-side: var(--background-side-quete)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+            <div class="vk-quete-layout">
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+
+                <div class="vk-quete-content">
+
+                    {{!-- GAUCHE : illustration balayée par une lueur --}}
+                    <div class="vk-quete-left">
+                        <div class="vk-quete-img-wrap">
+                            <img
+                                class="vk-quete-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-quete-right">
+                        <div class="vk-quete-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 

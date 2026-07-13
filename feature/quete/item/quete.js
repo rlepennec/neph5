@@ -4,9 +4,10 @@ import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 export class QueteSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-quete"],
         position: {
-            width: 560,
-            height: 500
+            width: 850,
+            height: 750
         }
     }
 
