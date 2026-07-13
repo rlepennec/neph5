@@ -27,7 +27,7 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/competences/Competence-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/competence-defaut.webp"
                 }
             )
         }

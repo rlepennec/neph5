@@ -28,15 +28,43 @@
         justify-content: center;
     }
 
+    // L'illustration s'estompe sur ses bords : c'est ce fondu qui laisse
+    // transparaître le cadre lumineux placé derrière elle.
     .vk-illustration {
         width: 200px;
         height: 200px;
         object-fit: cover;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 6px;
-        box-shadow: 0 0 10px var(--vk-glow, rgba(255, 255, 255, 0.4));
+        z-index: 10;
+        border: none;
+        border-radius: 4px;
         background: black;
         cursor: pointer;
+
+        -webkit-mask-image:
+            linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+            linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        mask-image:
+            linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
+            linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        -webkit-mask-composite: source-in;
+        mask-composite: intersect;
+    }
+
+    // Cadre lumineux en rotation lente, DERRIÈRE l'illustration (175 < 200).
+    .vk-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 175px;
+        height: 175px;
+        border-radius: 12px;
+        background: transparent;
+        border: 2px solid var(--vk-glow, rgba(255, 255, 255, 0.7));
+        box-shadow: 0 0 10px var(--vk-glow, rgba(255, 255, 255, 0.5));
+        transform: translate(-50%, -50%) rotate(0deg);
+        z-index: 1;
+        pointer-events: none;
+        animation: vk-slow-spin 20s linear infinite;
     }
 
     .vk-col-right {
@@ -109,6 +137,11 @@
 
     }
 
+}
+
+@keyframes vk-slow-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 // Barre latérale : même habillage que le bandeau supérieur (dégradé du Ka),

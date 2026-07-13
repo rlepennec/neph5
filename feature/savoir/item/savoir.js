@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class SavoirSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-savoir"],
         position: {
-            width: 560,
-            height: 500
+            width: 900,
+            height: 750
         }
     }
 

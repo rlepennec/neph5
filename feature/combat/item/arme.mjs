@@ -39,16 +39,19 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             attack: new foundry.data.fields.NumberField(
                 {
+                    initial: 0,
                     required: false
                 }
             ),
             defense: new foundry.data.fields.NumberField(
                 {
+                    initial: 0,
                     required: false
                 }
             ),
             damages: new foundry.data.fields.NumberField(
                 {
+                    initial: 0,
                     required: false
                 }
             ),
@@ -113,7 +116,7 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/armes/arme-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/arme-defaut.webp"
                 }
             )
         }
