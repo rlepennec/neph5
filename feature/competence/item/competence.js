@@ -1,4 +1,5 @@
 import { CompetenceDataModel } from "./competence.mjs";
+import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { Game } from "../../../module/common/game.js";
 
@@ -6,8 +7,8 @@ export class CompetenceSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 560,
-            height: 500
+            width: 800,
+            height: 470
         }
     }
 
@@ -27,6 +28,18 @@ export class CompetenceSheet extends NephilimItemSheet {
                 elements: CompetenceDataModel.defineSchema().element.choices,
             }
         }
+    }
+
+/**
+     * Le bandeau de la fenêtre est hors de .item-root : on applique le skin
+     * du Ka sur la fenêtre elle-même pour qu'il en hérite les variables.
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+        const element = this.document.system.element;
+        if (element) this.element.classList.add(`skin-${element}`);
     }
 
 }

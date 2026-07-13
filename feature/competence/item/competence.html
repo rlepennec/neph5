@@ -1,4 +1,4 @@
-<section class="item-root">
+<section class="item-root skin-{{document.system.element}}">
 
     <aside style="--background-side: var(--background-side-competence)"></aside>
 
@@ -6,30 +6,49 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="element"
-                name="system.element"
-                value=document.system.element
-                options=context.elements
-            }}
+            <div class="vk-layout">
 
-            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+                <div class="vk-col-left">
+                    <div class="vk-img-box">
+                        <img
+                            class="vk-illustration"
+                            src="{{document.system.illustration}}"
+                            title="{{translate 'illustration'}}"
+                            data-edit="system.illustration"
+                            data-action="editImage"/>
+                    </div>
+                </div>
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                <div class="vk-col-right">
+
+                    <div class="vk-banner">
+                        {{> "systems/neph5e/templates/select.hbs"
+                            title="element"
+                            name="system.element"
+                            value=document.system.element
+                            options=context.elements
+                        }}
+                    </div>
+
+                    <div class="vk-desc-box">
+                        <h3 class="vk-title">{{translate "description"}}</h3>
+                        <div class="vk-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 

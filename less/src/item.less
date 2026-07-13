@@ -106,3 +106,43 @@ form.nephilim.item {
     }
 
 }
+
+// ── Look "Vision Ka'Sh" : socle commun aux fiches d'item ──
+.item-root {
+
+    header {
+        background: var(--vk-header-background) center / cover;
+        box-shadow: 0 0 6px 2px #f5f4f4 inset;
+        color: #f5f4f4;
+    }
+
+    main.vk-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 20px;
+        overflow-y: auto;
+        background: var(--vk-body-background) center / cover no-repeat;
+        font-family: "AJensonProLtDisp", serif;
+        color: #1a1a1a;  
+    }
+
+}
+
+// Bandeau supérieur des fiches d'item, coloré selon le Ka (skin posé sur la fenêtre).
+form.application.sheet.item > .window-header {
+    background-color: var(--vk-bg, transparent);
+    background-image: var(--vk-grad, none);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+
+    .window-title {
+        font-family: "NightjarDemi", serif;
+        text-shadow: 0 0 4px black;
+    }
+}

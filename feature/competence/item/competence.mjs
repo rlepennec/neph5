@@ -22,6 +22,13 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
                     initial: 'air',
                     choices: Constants.ELEMENTS
                 }
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: "systems/neph5e/assets/vk/competences/Competence-Defaut.webp"
+                }
             )
         }
     }
