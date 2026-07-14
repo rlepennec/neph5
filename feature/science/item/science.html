@@ -1,34 +1,67 @@
-<section class="item-root"s>
+<section class="item-root">
 
-    <aside style="--background-side: var(--background-side-passe)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{#if (and debug isGM (not document.sheet.locked))}}
-            {{> "systems/neph5e/templates/input.hbs"
-                title="key"
-                name="system.key"
-                value=document.system.key
-            }}
-            {{/if}}
+            <div class="vk-layout">
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                {{#if (and debug isGM (not document.sheet.locked))}}
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="key"
+                    name="system.key"
+                    value=document.system.key
+                }}
+                {{/if}}
+
+                <div class="vk-split">
+
+                    <div class="vk-sci-seal">
+                        <svg class="vk-seal-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" stroke-width="1" opacity="0.55"/>
+                            <circle cx="100" cy="10"  r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="145" cy="22"  r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="178" cy="55"  r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="190" cy="100" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="178" cy="145" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="145" cy="178" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="100" cy="190" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="55"  cy="178" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="22"  cy="145" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="10"  cy="100" r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="22"  cy="55"  r="2.5" fill="currentColor" opacity="0.75"/>
+                            <circle cx="55"  cy="22"  r="2.5" fill="currentColor" opacity="0.75"/>
+                            <line x1="100" y1="8"   x2="100" y2="20"  stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
+                            <line x1="192" y1="100" x2="180" y2="100" stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
+                            <line x1="100" y1="192" x2="100" y2="180" stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
+                            <line x1="8"   y1="100" x2="20"  y2="100" stroke="currentColor" stroke-width="1.2" opacity="0.40"/>
+                            <circle cx="100" cy="100" r="68" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.42"/>
+                            <path d="M100 42 L150 128 L50 128 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.50"/>
+                            <path d="M100 158 L50 72 L150 72 Z" fill="none" stroke="currentColor" stroke-width="1" opacity="0.50"/>
+                            <circle cx="100" cy="100" r="36" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.38"/>
+                        </svg>
+                    </div>
+
+                    <div class="vk-box vk-sci-desc">
+                        <div class="vk-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 

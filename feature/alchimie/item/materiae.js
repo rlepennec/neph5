@@ -1,3 +1,4 @@
+import { Constants } from "../../../module/common/constants.js";
 import { Game } from "../../../module/common/game.js";
 import { MateriaeDataModel } from "./materiae.mjs";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
@@ -7,7 +8,7 @@ export class MateriaeSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         position: {
             width: 560,
-            height: 500
+            height: 640
         }
     }
 
@@ -15,6 +16,16 @@ export class MateriaeSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/alchimie/item/materiae.html`,
         }
+    }
+
+    /**
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+        const element = this.document.system.element;
+        if (element) this.element.classList.add(`skin-${element}`);
     }
 
     /** 

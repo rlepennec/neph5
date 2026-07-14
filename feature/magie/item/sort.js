@@ -1,3 +1,4 @@
+import { Constants } from "../../../module/common/constants.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { SortDataModel } from "./sort.mjs";
@@ -6,8 +7,8 @@ export class SortSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 560,
-            height: 500
+            width: 950,
+            height: 720
         }
     }
 
@@ -15,6 +16,16 @@ export class SortSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/magie/item/sort.html`,
         }
+    }
+
+    /**
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+        const element = this.document.system.element;
+        if (element) this.element.classList.add(`skin-${element}`);
     }
 
     /** 
@@ -25,6 +36,7 @@ export class SortSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: SortDataModel.defineSchema().element.choices,
+                cercle: this.document.system.cercle,
                 cercles: super.cerclesOf('magie')
             }
         }

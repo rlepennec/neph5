@@ -1,44 +1,63 @@
 <section class="item-root" data-drop="true">
 
-    <aside style="--background-side: var(--background-side-aspect)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="lieu"
-                name="system.contexte"
-                value=document.system.contexte
-            }}
+            <div class="vk-layout">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="epoque"
-                name="system.aube"
-                value=document.system.aube
-            }}
+                <div class="vk-banner">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="lieu" name="system.contexte" value=document.system.contexte }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="epoque" name="system.aube" value=document.system.aube }}
+                </div>
 
-            {{> "systems/neph5e/templates/list.hbs"
-                title="vecus"
-                values=context.vecus
-                names="vecus"
-            }}
+                <div class="vk-split">
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                    {{!-- GAUCHE : illustration + vécus --}}
+                    <div class="vk-per-left">
+
+                        <div class="vk-per-img-wrap">
+                            <img
+                                class="vk-per-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+
+                        <div class="vk-box vk-per-bloc">
+                            <h3 class="vk-box-title">{{translate "vecus"}}</h3>
+                            {{> "systems/neph5e/templates/list.hbs"
+                                values=context.vecus
+                                names="vecus"
+                            }}
+                        </div>
+
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-box vk-per-right">
+                        <div class="vk-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 

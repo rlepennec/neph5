@@ -1,0 +1,100 @@
+.item-root {
+
+    .vk-inv-left {
+        flex: 0 0 26%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
+    }
+
+    .vk-inv-sephirah-wrap {
+        position: relative;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .vk-inv-sephirah-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: none;
+        cursor: pointer;
+        filter: drop-shadow(0 0 10px var(--vk-glow, rgba(255, 255, 255, 0.3)));
+    }
+
+    .vk-inv-vignette {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(ellipse at center,
+            transparent 60%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .vk-inv-center {
+        flex: 0 0 32%;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+
+        > .vk-box {
+            flex: 1;
+            overflow-y: auto;
+        }
+    }
+
+    .vk-inv-right {
+        flex: 1;
+    }
+
+    .vk-inv-difficulty {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        padding-top: 6px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-family: "AJensonProLtDisp", serif;
+        color: var(--vk-glow, #e0e0e0);
+    }
+
+    // Cercle de degré (même style que l'arme).
+    .vk-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+
+        label {
+            font-family: "AJensonProLtDisp", serif;
+            font-size: 0.76em;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.85);
+            text-transform: uppercase;
+        }
+    }
+
+    .vk-stat-input {
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #ffffff;
+        background: rgba(10, 6, 2, 0.88);
+        border: 1px solid var(--vk-glow, rgba(255, 255, 255, 0.4));
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+        -moz-appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+
+}

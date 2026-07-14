@@ -54,6 +54,13 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
                         description: new foundry.data.fields.StringField()
                     }
                 )
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: "systems/neph5e/assets/vk/items/vecu-defaut.webp"
+                }
             )
         }
     }

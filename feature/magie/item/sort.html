@@ -1,88 +1,86 @@
 <section class="item-root" data-drop="true">
 
-    <aside style="--background-side: var(--background-side-sort)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body vk-sort-body">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="degre"
-                name="system.degre"
-                value=document.system.degre
-            }}
+            {{!-- Vidéo de fond, dérivée du cercle --}}
+            <div class="vk-sort-video-wrap">
+                <video class="vk-sort-video"
+                       src="systems/neph5e/assets/vk/sorts/{{document.system.cercle}}.webm"
+                       autoplay muted loop playsinline preload="auto"></video>
+                <div class="vk-sort-tint"></div>
+            </div>
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="cercle"
-                name="system.cercle"
-                value=document.system.cercle
-                options=context.cercles
-            }}
+            <div class="vk-sort-hexgrid"></div>
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="element"
-                name="system.element"
-                value=document.system.element
-                options=context.elements
-            }}
+            <div class="vk-sort-content">
 
-            {{#if (or (eq system.cercle "hauteMagie") (eq system.cercle "grandSecret"))}}
+                {{!-- GAUCHE : caractéristiques --}}
+                <div class="vk-box vk-sort-panel">
 
-            {{> "systems/neph5e/templates/list.hbs"
-                title="voies"
-                values=document.system.voies
-                names="system.voies"
-            }}
+                    <h3 class="vk-box-title">{{translate "sort"}}</h3>
 
-            {{/if}}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="cercle" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="portee"
-                name="system.portee"
-                value=document.system.portee
-            }}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="element" name="system.element"
+                        value=document.system.element options=context.elements }}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="duree"
-                name="system.duree"
-                value=document.system.duree
-            }}
+                    <div class="vk-fields">
+                        {{> "systems/neph5e/templates/input.hbs"
+                            title="degre" name="system.degre" value=document.system.degre }}
+                        {{> "systems/neph5e/templates/input.hbs"
+                            title="portee" name="system.portee" value=document.system.portee }}
+                        {{> "systems/neph5e/templates/input.hbs"
+                            title="duree" name="system.duree" value=document.system.duree }}
+                    </div>
 
-            {{#if (eq system.cercle "grandSecret")}}
+                    {{#if (or (eq system.cercle "hauteMagie") (eq system.cercle "grandSecret"))}}
+                    {{> "systems/neph5e/templates/list.hbs"
+                        title="voies"
+                        values=document.system.voies
+                        names="system.voies"
+                    }}
+                    {{/if}}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="incantation"
-                name="system.incantation"
-                value=document.system.incantation
-            }}
+                    {{#if (eq system.cercle "grandSecret")}}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="incantation" name="system.incantation" value=document.system.incantation }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="syntaxe" name="system.syntaxe" value=document.system.syntaxe }}
+                    {{/if}}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="syntaxe"
-                name="system.syntaxe"
-                value=document.system.syntaxe
-            }}
+                    {{#if (nonNull difficulty)}}
+                    <div class="vk-sort-difficulty">
+                        <span>{{translate "difficulte"}} :</span>
+                        <span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
+                    </div>
+                    {{/if}}
 
-            {{/if}}
+                </div>
 
-            {{#if (nonNull difficulty)}}
-            <span>{{translate "difficulte"}} : </span><span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
-            {{/if}}
+                {{!-- DROITE : description --}}
+                <div class="vk-box vk-sort-desc">
+                    <div class="vk-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+            </div>
 
         </main>
 

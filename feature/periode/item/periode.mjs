@@ -40,6 +40,13 @@ export class PeriodeDataModel extends foundry.abstract.TypeDataModel {
                     nullable: true,
                     initial: null
                 }
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: "systems/neph5e/assets/vk/items/periode-defaut.webp"
+                }
             )
         }
     }

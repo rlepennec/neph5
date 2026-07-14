@@ -1,0 +1,35 @@
+.vk-science {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+    --vk-seal-color: rgba(232, 184, 109, 0.85);
+}
+
+.item-root {
+
+    .vk-sci-seal {
+        flex: 0 0 42%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
+    }
+
+    // Le sceau tourne lentement ; currentColor le teinte via --vk-seal-color.
+    .vk-seal-svg {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        color: var(--vk-seal-color, rgba(255, 255, 255, 0.7));
+        filter: drop-shadow(0 0 8px var(--vk-glow, rgba(255, 255, 255, 0.35)));
+        animation: vk-seal-spin 60s linear infinite;
+    }
+
+    .vk-sci-desc {
+        flex: 1;
+    }
+
+}
+
+@keyframes vk-seal-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}

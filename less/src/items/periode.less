@@ -1,0 +1,81 @@
+.vk-periode {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+
+.item-root {
+
+    .vk-per-left {
+        flex: 0 0 45%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 0;
+    }
+
+    .vk-per-img-wrap {
+        position: relative;
+        width: 100%;
+        flex-shrink: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+
+        // Voile sépia : la période évoque le passé.
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg,
+                rgba(90, 60, 20, 0.10) 0%,
+                rgba(20, 15, 5, 0.45) 100%);
+        }
+    }
+
+    .vk-per-img {
+        display: block;
+        width: 100%;
+        max-height: 240px;
+        object-fit: cover;
+        border: none;
+        cursor: pointer;
+        filter: sepia(0.25) contrast(1.05);
+    }
+
+    // Bloc de dépôt : bordure en tirets, réagit au survol.
+    .vk-per-bloc {
+        flex: 1;
+        min-height: 120px;
+        border-style: dashed;
+        border-color: rgba(255, 255, 255, 0.25);
+        transition: border-color 0.25s, background 0.25s;
+
+        &:hover {
+            border-color: var(--vk-glow, rgba(255, 255, 255, 0.5));
+            background: rgba(40, 40, 40, 0.7);
+        }
+
+        ul, ol {
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            color: #ffffff;
+            font-family: "AJensonProLtDisp", serif;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 6px;
+            margin-bottom: 4px;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 5px;
+        }
+    }
+
+    .vk-per-right {
+        flex: 1;
+    }
+
+}

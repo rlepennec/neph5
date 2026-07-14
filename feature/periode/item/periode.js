@@ -4,9 +4,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class PeriodeSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-periode"],
         position: {
-            width: 560,
-            height: 500
+            width: 900,
+            height: 720
         }
     }
 

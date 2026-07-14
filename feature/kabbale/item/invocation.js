@@ -1,3 +1,4 @@
+import { Constants } from "../../../module/common/constants.js";
 import { InvocationDataModel } from "./invocation.mjs";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
@@ -5,8 +6,8 @@ export class InvocationSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 560,
-            height: 500
+            width: 1000,
+            height: 700
         }
     }
 
@@ -14,6 +15,16 @@ export class InvocationSheet extends NephilimItemSheet {
         main: {
             template: `systems/neph5e/feature/kabbale/item/invocation.html`,
         }
+    }
+
+    /**
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+        const element = this.document.system.element;
+        if (element) this.element.classList.add(`skin-${element}`);
     }
 
     /** 
