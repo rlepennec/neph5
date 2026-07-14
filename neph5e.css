@@ -6204,6 +6204,135 @@ form.nephilim.item section.window-content > section aside.vk-aside {
   box-shadow: none;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
+.item-root .vk-box {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(30, 30, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.item-root .vk-box-title {
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #f0f0f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.item-root .vk-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.item-root .vk-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: fit-content;
+  margin: 0 auto 12px auto;
+  padding: 6px 25px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+.item-root .vk-fields {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.item-root .vk-fields > * {
+  flex: 1;
+}
+.item-root .vk-split {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: 20px;
+  min-height: 0;
+}
+.item-root .vk-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+  padding: 15px 20px;
+  min-height: 0;
+  overflow: hidden;
+}
+@keyframes vk-light-scan {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+}
+.vk-arcane {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+.item-root .vk-arcane-left {
+  flex: 0 0 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.item-root .vk-arcane-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.item-root .vk-arcane-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: none;
+}
+.item-root .vk-arcane-bg {
+  z-index: 1;
+  pointer-events: none;
+}
+.item-root .vk-arcane-card {
+  z-index: 2;
+  width: 62%;
+  cursor: pointer;
+  border-radius: 6px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+  transition: transform 0.4s ease;
+}
+.item-root .vk-arcane-card:hover {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+.item-root .vk-arcane-rays {
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  mix-blend-mode: screen;
+}
+.item-root .vk-arcane-stack:hover .vk-arcane-rays {
+  opacity: 0.85;
+}
+.item-root .vk-arcane-right {
+  flex: 1;
+}
 /*
 .vk-nuit {
     --vk-bg: rgba(5, 8, 25, 0.45);

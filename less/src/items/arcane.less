@@ -1,0 +1,69 @@
+.vk-arcane {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+
+.item-root {
+
+    .vk-arcane-left {
+        flex: 0 0 45%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
+    }
+
+    .vk-arcane-stack {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .vk-arcane-layer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border: none;
+    }
+
+    // Couche 1 : la pile de cartes, en fond.
+    .vk-arcane-bg {
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    // Couche 2 : la carte de l'arcane, cliquable.
+    .vk-arcane-card {
+        z-index: 2;
+        width: 62%;
+        cursor: pointer;
+        border-radius: 6px;
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+        transition: transform 0.4s ease;
+
+        &:hover {
+            transform: translate(-50%, -50%) scale(1.04);
+        }
+    }
+
+    // Couche 3 : les rayons, révélés au survol de la pile.
+    .vk-arcane-rays {
+        z-index: 3;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease;
+        mix-blend-mode: screen;
+    }
+
+    .vk-arcane-stack:hover .vk-arcane-rays {
+        opacity: 0.85;
+    }
+
+    .vk-arcane-right {
+        flex: 1;
+    }
+
+}

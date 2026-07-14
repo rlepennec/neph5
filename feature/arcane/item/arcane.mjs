@@ -26,6 +26,13 @@ export class ArcaneDataModel extends foundry.abstract.TypeDataModel {
                 {
                     required: false
                 }
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: "systems/neph5e/assets/vk/items/arcane-defaut.webp"
+                }
             )
         }
     }

@@ -1,28 +1,49 @@
 <section class="item-root">
 
-    <aside style="--background-side: var(--background-side-arcane)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+            <div class="vk-layout">
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+
+                <div class="vk-split">
+
+                    <div class="vk-arcane-left">
+                        <div class="vk-arcane-stack">
+                            <img class="vk-arcane-layer vk-arcane-bg"
+                                 src="systems/neph5e/assets/vk/arcanes/pile-cartes.webp"/>
+                            <img class="vk-arcane-layer vk-arcane-card"
+                                 src="{{document.system.illustration}}"
+                                 title="{{document.name}}"
+                                 data-edit="system.illustration"
+                                 data-action="editImage"/>
+                            <img class="vk-arcane-layer vk-arcane-rays"
+                                 src="systems/neph5e/assets/vk/arcanes/rayons-soleil.webp"/>
+                        </div>
+                    </div>
+
+                    <div class="vk-box vk-arcane-right">
+                        <div class="vk-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 
