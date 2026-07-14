@@ -6139,7 +6139,6 @@ form.nephilim.item section.window-content > section article main {
 form.nephilim.item section.window-content > section article main h1 {
   color: var(--color-font-dark);
   font-family: var(--font-family-title);
-  font-size: 20px;
   margin-bottom: 5px;
   margin-top: 0px;
 }
@@ -6938,8 +6937,18 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
+  margin: unset;
   padding: 6px 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  font-family: "NightjarDemi", serif;
+}
+.item-root .vk-banner h1 {
+  font-size: 1.1em;
+  margin-right: 100px;
+}
+.item-root .vk-banner p {
+  font-size: 1.1em;
 }
 .item-root .vk-desc-box {
   width: 420px;
@@ -6968,17 +6977,6 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   padding-right: 5px;
   color: #e0e0e0;
   font-family: "AJensonProLtDisp", serif;
-  font-size: 1.1em;
-}
-.item-root .vk-banner {
-  color: white;
-  font-family: "NightjarDemi", serif;
-}
-.item-root .vk-banner h1 {
-  font-size: 1.1em;
-  margin-right: 100px;
-}
-.item-root .vk-banner p {
   font-size: 1.1em;
 }
 @keyframes vk-slow-spin {
