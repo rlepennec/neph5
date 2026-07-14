@@ -1,5 +1,23 @@
 .item-root {
 
+// Titres des partials (période, élément, compétences...) : taille réduite.
+    h1 {
+        font-size: 16px;
+    }
+
+    // Bandeau d'en-tête du vécu. Volontairement en display:block :
+    // un flex disloque les partials (h1 + champ) et écrase le <select>.
+    .vk-vecu-head {
+        display: block;
+        flex-shrink: 0;
+        padding: 8px 14px;
+        margin-bottom: 2px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
     .vk-vecu-left {
         flex: 0 0 40%;
         display: flex;
@@ -110,6 +128,24 @@
 
     .vk-vecu-desc {
         flex: 1;
+    }
+
+}
+
+// Le menu déroulant natif s'ouvre sur fond blanc : sans couleur explicite,
+// les <option> héritent du texte clair de la fiche et deviennent invisibles.
+.vk-vecu {
+
+    .vk-comp-banner {
+        width: 420px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        padding: 6px 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     }
 
 }

@@ -200,15 +200,14 @@ form.nephilim.item section.window-content > section aside.vk-aside {
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     }
 
-    // Bandeau centré (sélecteur d'élément, de cercle...).
+    // Bandeau d'en-tête. Pas de flex ni de fit-content : les partials
+    // (select.hbs, label.hbs, input.hbs) émettent un <h1> suivi de leur
+    // contenu, sans conteneur — un flex les disloque et écrase les <select>.
     .vk-banner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        width: fit-content;
-        margin: 0 auto 12px auto;
-        padding: 6px 25px;
+        display: block;
+        flex-shrink: 0;
+        padding: 8px 14px;
+        margin-bottom: 12px;
         background: rgba(0, 0, 0, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 5px;

@@ -6,6 +6,7 @@ import { Mnemos } from "./mnemos.js";
 export class VecuSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-vecu"],
         position: {
             width: 900,
             height: 700

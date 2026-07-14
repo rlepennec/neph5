@@ -6234,13 +6234,10 @@ form.nephilim.item section.window-content > section aside.vk-aside {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 .item-root .vk-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: fit-content;
-  margin: 0 auto 12px auto;
-  padding: 6px 25px;
+  display: block;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  margin-bottom: 12px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
@@ -7394,6 +7391,19 @@ form.nephilim.item section.window-content > section article main h1 {
 .vk-periode {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
+.vk-periode .item-root h1 {
+  font-size: 16px;
+}
+.item-root .vk-per-head {
+  display: block;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  margin-bottom: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
 .item-root .vk-per-left {
   flex: 0 0 45%;
   display: flex;
@@ -7714,6 +7724,19 @@ form.nephilim.item section.window-content > section article main h1 {
   font-family: "AJensonProLtDisp", serif;
   color: var(--vk-glow, #e0e0e0);
 }
+.item-root h1 {
+  font-size: 16px;
+}
+.item-root .vk-vecu-head {
+  display: block;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  margin-bottom: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
 .item-root .vk-vecu-left {
   flex: 0 0 40%;
   display: flex;
@@ -7803,6 +7826,17 @@ form.nephilim.item section.window-content > section article main h1 {
 }
 .item-root .vk-vecu-desc {
   flex: 1;
+}
+.vk-vecu .vk-comp-banner {
+  width: 420px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 6px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 .recherche table tr td {
   font-family: 'AJensonPro';
