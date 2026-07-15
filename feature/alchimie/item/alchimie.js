@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class AlchimieSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-alchimie"],
         position: {
-            width: 400,
-            height: 560
+            width: 850,
+            height: 650
         }
     }
 

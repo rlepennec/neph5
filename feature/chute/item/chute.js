@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class ChuteSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-chute"],
         position: {
-            width: 560,
-            height: 500
+            width: 850,
+            height: 700
         }
     }
 

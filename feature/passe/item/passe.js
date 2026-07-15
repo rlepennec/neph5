@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class PasseSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-passe"],
         position: {
-            width: 560,
-            height: 500
+            width: 850,
+            height: 700
         }
     }
 
