@@ -8348,6 +8348,104 @@ form.nephilim.item section.window-content > section article main h1 {
     transform: translateX(150%);
   }
 }
+.item-root .vk-rit-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-rit-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-rit-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-rit-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(10, 5, 15, 0.72), rgba(5, 2, 10, 0.88));
+}
+.item-root .vk-rit-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(200,180,255,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-rit-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-rit-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(12, 8, 18, 0.8);
+  border: 1px solid rgba(200, 180, 255, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-rit-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-rit-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #e6dcff;
+  border-bottom: 1px solid rgba(200, 180, 255, 0.3);
+}
+.item-root .vk-rit-difficulty {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(200, 180, 255, 0.25);
+  font-family: "AJensonProLtDisp", serif;
+  color: #c8b4ff;
+}
+.item-root .vk-rit-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(12, 8, 18, 0.8);
+  border: 1px solid rgba(200, 180, 255, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-rit-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .vk-savoir {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }

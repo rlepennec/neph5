@@ -4,9 +4,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class RiteSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-rite"],
         position: {
-            width: 560,
-            height: 500
+            width: 950,
+            height: 700
         }
     }
 
