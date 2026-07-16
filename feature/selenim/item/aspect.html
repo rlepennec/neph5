@@ -1,44 +1,64 @@
 <section class="item-root" data-drop="true">
 
-    <aside style="--background-side: var(--background-side-aspect)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="construction"
-                name="system.degre"
-                value=document.system.degre
-            }}
+            <div class="vk-asp-layout">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="activation"
-                name="system.activation"
-                value=document.system.activation
-            }}
+                <div class="vk-asp-head">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="construction"
+                        name="system.degre"
+                        value=document.system.degre
+                    }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="activation"
+                        name="system.activation"
+                        value=document.system.activation
+                    }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="duree"
+                        name="system.duree"
+                        value=document.system.duree
+                    }}
+                </div>
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="duree"
-                name="system.duree"
-                value=document.system.duree
-            }}
+                <div class="vk-asp-content">
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                    {{!-- GAUCHE : illustration balayée par une lueur --}}
+                    <div class="vk-asp-left">
+                        <div class="vk-asp-img-wrap">
+                            <img
+                                class="vk-asp-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-asp-right">
+                        <div class="vk-asp-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 
