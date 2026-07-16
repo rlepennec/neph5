@@ -28,6 +28,13 @@ export class TechniqueDataModel extends foundry.abstract.TypeDataModel {
                 {
                     required: false
                 }
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: "systems/neph5e/assets/vk/techniques/Technique-Defaut.webp"
+                }
             )
         }
     }

@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class TechniqueSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-technique"],
         position: {
-            width: 560,
-            height: 600
+            width: 950,
+            height: 700
         }
     }
 

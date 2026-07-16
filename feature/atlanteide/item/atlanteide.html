@@ -1,39 +1,54 @@
 <section class="item-root">
 
-    <aside style="--background-side: var(--background-side-sort)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body vk-atl-body">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="degre"
-                name="system.degre"
-                value=document.system.degre
-            }}
+            <div class="vk-atl-bg-wrap">
+                <img class="vk-atl-bg"
+                     src="{{document.system.illustration}}"
+                     title="{{document.name}}"
+                     data-edit="system.illustration"
+                     data-action="editImage"/>
+                <div class="vk-atl-tint"></div>
+            </div>
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="atlanteide"
-                name="system.cercle"
-                value=document.system.cercle
-                options=context.cercles
-            }}
+            <div class="vk-atl-hexgrid"></div>
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+            <div class="vk-atl-content">
+
+                <div class="vk-atl-panel">
+
+                    <h3 class="vk-atl-title">{{translate "atlanteide"}}</h3>
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="atlanteide" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre"
+                        value=document.system.degre }}
+
+                </div>
+
+                <div class="vk-atl-desc">
+                    <div class="vk-atl-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
 
         </main>
 

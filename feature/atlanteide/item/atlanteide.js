@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class AtlanteideSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-atlanteide"],
         position: {
-            width: 560,
-            height: 600
+            width: 950,
+            height: 700
         }
     }
 

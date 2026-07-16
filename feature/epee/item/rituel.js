@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class RituelSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-rituel"],
         position: {
-            width: 560,
-            height: 500
+            width: 950,
+            height: 700
         }
     }
 

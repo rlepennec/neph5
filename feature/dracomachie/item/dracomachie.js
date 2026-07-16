@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class DracomachieSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-dracomachie"],
         position: {
-            width: 560,
-            height: 500
+            width: 950,
+            height: 700
         }
     }
 

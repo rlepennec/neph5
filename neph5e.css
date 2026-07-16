@@ -7131,6 +7131,95 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
+.item-root .vk-atl-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-atl-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-atl-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-atl-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 22, 26, 0.7), rgba(1, 12, 15, 0.88));
+}
+.item-root .vk-atl-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(140,240,240,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-atl-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-atl-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(3, 18, 22, 0.8);
+  border: 1px solid rgba(140, 240, 240, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-atl-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-atl-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #d0f8f8;
+  border-bottom: 1px solid rgba(140, 240, 240, 0.3);
+}
+.item-root .vk-atl-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(3, 18, 22, 0.8);
+  border: 1px solid rgba(140, 240, 240, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-atl-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .vk-capacite {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
 }
@@ -7641,6 +7730,95 @@ form.nephilim.item section.window-content > section article main h1 {
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
+.item-root .vk-dra-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-dra-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-dra-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-dra-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(30, 16, 2, 0.7), rgba(15, 8, 1, 0.88));
+}
+.item-root .vk-dra-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(255,210,140,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-dra-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-dra-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(24, 14, 4, 0.8);
+  border: 1px solid rgba(255, 210, 140, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-dra-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-dra-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #ffe6c0;
+  border-bottom: 1px solid rgba(255, 210, 140, 0.3);
+}
+.item-root .vk-dra-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(24, 14, 4, 0.8);
+  border: 1px solid rgba(255, 210, 140, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-dra-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .item-root .vk-fm-left {
   flex: 0 0 34%;
   display: flex;
@@ -7745,6 +7923,105 @@ form.nephilim.item section.window-content > section article main h1 {
   min-height: 150px;
   background: rgba(12, 7, 2, 0.82);
   border-color: rgba(201, 146, 58, 0.4);
+}
+.item-root .vk-hab-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-hab-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-hab-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-hab-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.82)), var(--vk-grad, none);
+  mix-blend-mode: multiply;
+}
+.item-root .vk-hab-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-hab-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-hab-panel {
+  display: block;
+  flex: 0 0 44%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(12, 12, 16, 0.8);
+  border: 1px solid var(--vk-glow, rgba(255, 255, 255, 0.25));
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-hab-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-hab-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #f0f0f0;
+  border-bottom: 1px solid var(--vk-glow, rgba(255, 255, 255, 0.3));
+}
+.item-root .vk-hab-difficulty {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: "AJensonProLtDisp", serif;
+  color: var(--vk-glow, #e0e0e0);
+}
+.item-root .vk-hab-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(12, 12, 16, 0.8);
+  border: 1px solid var(--vk-glow, rgba(255, 255, 255, 0.25));
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-hab-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 .item-root .vk-inv-left {
   flex: 0 0 26%;
@@ -8279,6 +8556,95 @@ form.nephilim.item section.window-content > section article main h1 {
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
+.item-root .vk-pra-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-pra-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-pra-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-pra-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(26, 18, 6, 0.7), rgba(14, 9, 3, 0.88));
+}
+.item-root .vk-pra-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(230,200,150,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-pra-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-pra-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(20, 14, 6, 0.8);
+  border: 1px solid rgba(230, 200, 150, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-pra-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-pra-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #f0e0c0;
+  border-bottom: 1px solid rgba(230, 200, 150, 0.3);
+}
+.item-root .vk-pra-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(20, 14, 6, 0.8);
+  border: 1px solid rgba(230, 200, 150, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-pra-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .vk-periode {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
@@ -8535,6 +8901,95 @@ form.nephilim.item section.window-content > section article main h1 {
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
+.item-root .vk-rtl-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-rtl-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-rtl-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-rtl-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(30, 5, 8, 0.7), rgba(15, 2, 4, 0.88));
+}
+.item-root .vk-rtl-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(255,180,180,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-rtl-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-rtl-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(22, 8, 10, 0.8);
+  border: 1px solid rgba(255, 180, 180, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-rtl-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-rtl-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #ffdcdc;
+  border-bottom: 1px solid rgba(255, 180, 180, 0.3);
+}
+.item-root .vk-rtl-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(22, 8, 10, 0.8);
+  border: 1px solid rgba(255, 180, 180, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-rtl-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .vk-savoir {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
@@ -8712,6 +9167,184 @@ form.nephilim.item section.window-content > section article main h1 {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   font-family: "AJensonProLtDisp", serif;
   color: var(--vk-glow, #e0e0e0);
+}
+.item-root .vk-tec-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-tec-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-tec-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-tec-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(6, 22, 12, 0.7), rgba(3, 12, 6, 0.88));
+}
+.item-root .vk-tec-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(180,255,200,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-tec-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-tec-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(8, 20, 12, 0.8);
+  border: 1px solid rgba(180, 255, 200, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-tec-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-tec-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #dcffe6;
+  border-bottom: 1px solid rgba(180, 255, 200, 0.3);
+}
+.item-root .vk-tec-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(8, 20, 12, 0.8);
+  border: 1px solid rgba(180, 255, 200, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-tec-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.item-root .vk-tek-body {
+  position: relative;
+  overflow: hidden;
+}
+.item-root .vk-tek-bg-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.item-root .vk-tek-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  cursor: pointer;
+}
+.item-root .vk-tek-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(4, 12, 30, 0.7), rgba(2, 6, 16, 0.88));
+}
+.item-root .vk-tek-hexgrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(150,190,255,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+.item-root .vk-tek-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 15px 20px;
+  min-height: 0;
+}
+.item-root .vk-tek-panel {
+  display: block;
+  flex: 0 0 42%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px;
+  background: rgba(6, 12, 26, 0.8);
+  border: 1px solid rgba(150, 190, 255, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+.item-root .vk-tek-panel select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root .vk-tek-title {
+  margin: 0 0 10px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #d0e0ff;
+  border-bottom: 1px solid rgba(150, 190, 255, 0.3);
+}
+.item-root .vk-tek-desc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(6, 12, 26, 0.8);
+  border: 1px solid rgba(150, 190, 255, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.item-root .vk-tek-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 .item-root h1 {
   font-size: 16px;
