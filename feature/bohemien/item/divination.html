@@ -1,39 +1,57 @@
 <section class="item-root">
 
-    <aside style="--background-side: var(--background-side-sort)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body vk-div-body">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="degre"
-                name="system.degre"
-                value=document.system.degre
-            }}
+            {{!-- Illustration en fond, teintée --}}
+            <div class="vk-div-bg-wrap">
+                <img class="vk-div-bg"
+                     src="{{document.system.illustration}}"
+                     title="{{document.name}}"
+                     data-edit="system.illustration"
+                     data-action="editImage"/>
+                <div class="vk-div-tint"></div>
+            </div>
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="augure"
-                name="system.cercle"
-                value=document.system.cercle
-                options=context.cercles
-            }}
+            <div class="vk-div-hexgrid"></div>
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+            <div class="vk-div-content">
+
+                {{!-- GAUCHE : caractéristiques --}}
+                <div class="vk-div-panel">
+
+                    <h3 class="vk-div-title">{{translate "divination"}}</h3>
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="augure" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre"
+                        value=document.system.degre }}
+
+                </div>
+
+                {{!-- DROITE : description --}}
+                <div class="vk-div-desc">
+                    <div class="vk-div-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
 
         </main>
 
