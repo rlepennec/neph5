@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class MagieSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-magie"],
         position: {
-            width: 700,
-            height: 400
+            width: 850,
+            height: 650
         }
     }
 

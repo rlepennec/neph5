@@ -1,0 +1,104 @@
+// Thème du catalyseur : pas de Ka, fond iridescent translucide.
+.vk-catalyseur {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+
+.item-root {
+
+    .vk-cat-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+        gap: 10px;
+        padding: 15px 20px;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .vk-cat-content {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        height: 100%;
+        gap: 20px;
+        align-items: stretch;
+        min-height: 0;
+    }
+
+    // ── Gauche : illustration (callée en haut, garde sa taille) ──
+    .vk-cat-left {
+        flex: 0 0 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        align-self: flex-start;
+    }
+
+    // Le wrapper porte le balayage lumineux (overflow: hidden indispensable).
+    .vk-cat-img-wrap {
+        position: relative;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+
+        // Lueur qui traverse l'image en diagonale, en boucle.
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                transparent 35%,
+                rgba(255, 255, 255, 0.06) 45%,
+                rgba(255, 255, 255, 0.12) 50%,
+                rgba(255, 255, 255, 0.06) 55%,
+                transparent 65%,
+                transparent 100%
+            );
+            animation: vk-light-scan 8s linear infinite;
+        }
+    }
+
+    .vk-cat-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    // ── Droite : description (pleine hauteur) ──
+    .vk-cat-right {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+        min-height: 0;
+        padding: 12px;
+        background: rgba(30, 30, 30, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+
+    .vk-cat-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-right: 5px;
+        color: #ffffff;
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 1.1em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+}

@@ -1,33 +1,55 @@
-<section class="item-root"s>
+<section class="item-root">
 
-    <aside style="--background-side: var(--background-side-invocation)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="monde"
-                name="system.monde"
-                value=document.system.monde
-                options=context.mondes
-            }}
+            <div class="vk-ord-layout">
 
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
+                <div class="vk-ord-head">
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="monde"
+                        name="system.monde"
+                        value=document.system.monde
+                        options=context.mondes
+                    }}
+                </div>
+
+                <div class="vk-ord-content">
+
+                    {{!-- GAUCHE : illustration balayée par une lueur --}}
+                    <div class="vk-ord-left">
+                        <div class="vk-ord-img-wrap">
+                            <img
+                                class="vk-ord-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-ord-right">
+                        <div class="vk-ord-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </main>
 

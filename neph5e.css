@@ -6940,6 +6940,84 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(201, 146, 58, 0.18) inset, 0 3px 10px rgba(0, 0, 0, 0.7);
 }
+.vk-catalyseur {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+.item-root .vk-cat-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  gap: 10px;
+  padding: 15px 20px;
+  min-height: 0;
+  overflow: hidden;
+}
+.item-root .vk-cat-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 20px;
+  align-items: stretch;
+  min-height: 0;
+}
+.item-root .vk-cat-left {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+.item-root .vk-cat-img-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+.item-root .vk-cat-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
+  animation: vk-light-scan 8s linear infinite;
+}
+.item-root .vk-cat-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.item-root .vk-cat-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(30, 30, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.item-root .vk-cat-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .vk-chute {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
 }
@@ -7337,6 +7415,84 @@ form.nephilim.item section.window-content > section article main h1 {
   -webkit-appearance: none;
   margin: 0;
 }
+.vk-magie {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+.item-root .vk-mag-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  gap: 10px;
+  padding: 15px 20px;
+  min-height: 0;
+  overflow: hidden;
+}
+.item-root .vk-mag-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 20px;
+  align-items: stretch;
+  min-height: 0;
+}
+.item-root .vk-mag-left {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+.item-root .vk-mag-img-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+.item-root .vk-mag-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
+  animation: vk-light-scan 8s linear infinite;
+}
+.item-root .vk-mag-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.item-root .vk-mag-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(30, 30, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.item-root .vk-mag-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
 .item-root .vk-mat-img-wrap {
   position: relative;
   width: 100%;
@@ -7539,6 +7695,97 @@ form.nephilim.item section.window-content > section article main h1 {
   50% {
     opacity: 0.9;
   }
+}
+.vk-ordonnance {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+.item-root .vk-ord-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  gap: 10px;
+  padding: 15px 20px;
+  min-height: 0;
+  overflow: hidden;
+}
+.item-root .vk-ord-head {
+  display: block;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+.item-root .vk-ord-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  gap: 20px;
+  align-items: stretch;
+  min-height: 0;
+}
+.item-root .vk-ord-left {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: flex-start;
+}
+.item-root .vk-ord-img-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+.item-root .vk-ord-img-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
+  animation: vk-light-scan 8s linear infinite;
+}
+.item-root .vk-ord-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.item-root .vk-ord-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(30, 30, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.item-root .vk-ord-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.item-root select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
 }
 .vk-passe {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");

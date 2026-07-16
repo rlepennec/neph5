@@ -3,9 +3,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class CatalyseurSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-catalyseur"],
         position: {
-            width: 560,
-            height: 500
+            width: 850,
+            height: 650
         }
     }
 
