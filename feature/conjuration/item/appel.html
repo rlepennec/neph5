@@ -1,82 +1,87 @@
 <section class="item-root">
 
-    <aside style="--background-side: var(--background-side-appel)"></aside>
+    <aside class="vk-aside"></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main>
+        <main class="vk-body">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="degre"
-                name="system.degre"
-                value=document.system.degre
-            }}
+            <div class="vk-app-layout">
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="cercle"
-                name="system.cercle"
-                value=document.system.cercle
-                options=context.cercles
-            }}
+                <div class="vk-app-content">
 
-            {{> "systems/neph5e/templates/select.hbs"
-                title="appel"
-                name="system.appel"
-                value=document.system.appel
-                options=context.appels
-            }}
+                    {{!-- GAUCHE : illustration --}}
+                    <div class="vk-app-left">
+                        <div class="vk-app-img-wrap">
+                            <img
+                                class="vk-app-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                            <div class="vk-app-vignette"></div>
+                        </div>
+                    </div>
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="controle"
-                name="system.controle"
-                value=document.system.controle
-            }}
+                    {{!-- CENTRE : caractéristiques --}}
+                    <div class="vk-app-center">
+                        <div class="vk-app-fields">
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="visibilite"
-                name="system.visibilite"
-                value=document.system.visibilite
-            }}
+                            {{> "systems/neph5e/templates/select.hbs"
+                                title="cercle" name="system.cercle"
+                                value=document.system.cercle options=context.cercles }}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="entropie"
-                name="system.entropie"
-                value=document.system.entropie
-            }}
+                            {{> "systems/neph5e/templates/select.hbs"
+                                title="appel" name="system.appel"
+                                value=document.system.appel options=context.appels }}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="dommages"
-                name="system.dommages"
-                value=document.system.dommages
-            }}
+                            {{> "systems/neph5e/templates/input.hbs"
+                                title="degre" name="system.degre" value=document.system.degre }}
 
-            {{> "systems/neph5e/templates/input.hbs"
-                title="protection"
-                name="system.protection"
-                value=document.system.protection
-            }}
+                            {{> "systems/neph5e/templates/input.hbs"
+                                title="controle" name="system.controle" value=document.system.controle }}
 
-            {{#if (nonNull difficulty)}}
-            <div class="difficulte">
-                <span>{{translate "NEPH5E.difficulte"}} : </span><span>{{difficulty}}0%</span>
+                            {{> "systems/neph5e/templates/input.hbs"
+                                title="visibilite" name="system.visibilite" value=document.system.visibilite }}
+
+                            {{> "systems/neph5e/templates/input.hbs"
+                                title="entropie" name="system.entropie" value=document.system.entropie }}
+
+                            {{> "systems/neph5e/templates/input.hbs"
+                                title="dommages" name="system.dommages" value=document.system.dommages }}
+
+                            {{> "systems/neph5e/templates/input.hbs"
+                                title="protection" name="system.protection" value=document.system.protection }}
+
+                            {{#if (nonNull difficulty)}}
+                            <div class="vk-app-difficulty">
+                                <span>{{translate "NEPH5E.difficulte"}} :</span>
+                                <span>{{difficulty}}0%</span>
+                            </div>
+                            {{/if}}
+
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-app-right">
+                        <div class="vk-app-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-            {{/if}}
-
-            {{#if document.sheet.locked}}
-            {{{enrichedDescription}}}
-            {{else}}
-            <h1>{{translate "description"}}</h1>
-            <prose-mirror
-                name="system.description"
-                button="true"
-                editable="{{editable}}"
-                toggled="false"
-                value="{{document.system.description}}">
-                {{{enrichedDescription}}}
-            </prose-mirror>
-            {{/if}}
 
         </main>
 

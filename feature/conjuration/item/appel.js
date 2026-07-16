@@ -5,9 +5,10 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class AppelSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
+        classes: ["vk-appel"],
         position: {
-            width: 560,
-            height: 500
+            width: 1000,
+            height: 720
         }
     }
 
