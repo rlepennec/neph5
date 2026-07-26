@@ -1,5 +1,25 @@
 export const registerSystemSettings = function () {
 
+    game.settings.register('neph5e', 'styleItemSheet', {
+        config: true,
+        name: game.i18n.localize('SETTINGS.styleItemSheet'),
+        hint: game.i18n.localize('SETTINGS.styleItemSheetDesc'),
+        scope: "client",
+        type: String,
+        choices: {
+          'classique': game.i18n.localize('NEPHILIM.classique'),
+          'ashbury': game.i18n.localize('NEPHILIM.ashbury')
+        },
+        default: 'classique',
+        onChange: value => {
+            for (const app of foundry.applications.instances.values()) {
+                if (app.document?.documentName === "Item") {
+                    app.render(false);
+                }
+            }
+        }
+    });
+
     game.settings.register('neph5e', 'note', {
         config: true,
         scope: 'world',

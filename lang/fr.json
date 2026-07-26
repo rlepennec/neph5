@@ -55,6 +55,8 @@
     "SETTINGS.modifierRangeDesc": "Permet de définir l'intervalle des modificateurs",
     "SETTINGS.extraChatMessages": "Messages du tchat",
     "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
+    "SETTINGS.styleItemSheet": "Style",
+    "SETTINGS.styleItemSheetDesc": "Permet de définir le style des feuilles",
 
     "NEPHILIM": {
         "activation": "Activation",
@@ -86,6 +88,7 @@
         "armes": "Armes",
         "armure": "Armure",
         "armures": "Armures",
+        "ashbury": "Ashbury",
         "aTerre": "A terre",
         "athanor": "Athanor",
         "atlanteide": "Atlanteïde",
@@ -115,6 +118,7 @@
         "chesed": "Chesed",
         "choix": "Choix",
         "chokmah": "Chokmah",
+        "classique": "Classique",
         "competencesEtVecus": "Compétences et Vécus",
         "chronologieDescendante": "Epoque la plus récente en haut",
         "chutes": "Chutes",

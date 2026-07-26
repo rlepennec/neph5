@@ -1,0 +1,58 @@
+<section class="item-root">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body">
+
+            <div class="vk-ord-layout">
+
+                <div class="vk-ord-head">
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="monde"
+                        name="system.monde"
+                        value=document.system.monde
+                        options=context.mondes
+                    }}
+                </div>
+
+                <div class="vk-ord-content">
+
+                    {{!-- GAUCHE : illustration balayée par une lueur --}}
+                    <div class="vk-ord-left">
+                        <div class="vk-ord-img-wrap">
+                            <img
+                                class="vk-ord-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-ord-right">
+                        <div class="vk-ord-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

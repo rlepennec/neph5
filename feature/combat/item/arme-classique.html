@@ -1,0 +1,161 @@
+<section class="item-root" data-drop="true">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body">
+
+            <div class="vk-arme-layout">
+
+                {{!-- 1. Bandeau de lisibilité : type, stats, options, munitions --}}
+                <div class="vk-arme-readability-wrap">
+
+                    <div class="vk-arme-type-row">
+                        {{#each (selectChoices context.types) as |label key|}}
+                        <label class="vk-arme-type-btn {{#if (eq ../document.system.type key)}}active{{/if}}">
+                            <input
+                                type="radio"
+                                name="system.type"
+                                value="{{key}}"
+                                {{#if (eq ../document.system.type key)}}checked{{/if}}
+                                {{#if ../document.sheet.locked}}disabled{{/if}}/>
+                            {{label}}
+                        </label>
+                        {{/each}}
+                    </div>
+
+                    <div class="vk-arme-stats-row">
+
+                        <div class="vk-arme-stat">
+                            <input class="vk-arme-stat-input" type="number" name="system.attack"
+                                   value="{{document.system.attack}}"
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <label>{{translate "attaque"}}</label>
+                        </div>
+
+                        <div class="vk-arme-stat">
+                            <input class="vk-arme-stat-input" type="number" name="system.defense"
+                                   value="{{document.system.defense}}"
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <label>{{translate "defense"}}</label>
+                        </div>
+
+                        <div class="vk-arme-stat">
+                            <input class="vk-arme-stat-input" type="number" name="system.damages"
+                                   value="{{document.system.damages}}"
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <label>{{translate "dommages"}}</label>
+                        </div>
+
+                        {{#unless (isContact document.system.type)}}
+                        <div class="vk-arme-stat">
+                            <input class="vk-arme-stat-input" type="number" name="system.munitions"
+                                   value="{{document.system.munitions}}"
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <label>{{translate "chargeur"}}</label>
+                        </div>
+                        {{/unless}}
+
+                    </div>
+
+                    <div class="vk-arme-checks">
+
+                        <label class="vk-arme-check">
+                            <input type="checkbox" name="system.magique" data-dtype="Boolean"
+                                   {{#if document.system.magique}}checked{{/if}}
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <span>{{translate "dommagesMagiques"}}</span>
+                        </label>
+
+                        {{#if (eq document.system.type 'melee')}}
+                        <label class="vk-arme-check">
+                            <input type="checkbox" name="system.blocage" data-dtype="Boolean"
+                                   {{#if document.system.blocage}}checked{{/if}}
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <span>{{translate "blocageAutorise"}}</span>
+                        </label>
+                        <label class="vk-arme-check">
+                            <input type="checkbox" name="system.lance" data-dtype="Boolean"
+                                   {{#if document.system.lance}}checked{{/if}}
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <span>{{translate "lanceAutorise"}}</span>
+                        </label>
+                        {{/if}}
+
+                        {{#if (eq document.system.type 'feu')}}
+                        <label class="vk-arme-check">
+                            <input type="checkbox" name="system.salve" data-dtype="Boolean"
+                                   {{#if document.system.salve}}checked{{/if}}
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <span>{{translate "salve"}}</span>
+                        </label>
+                        <label class="vk-arme-check">
+                            <input type="checkbox" name="system.rafale" data-dtype="Boolean"
+                                   {{#if document.system.rafale}}checked{{/if}}
+                                   {{#if document.sheet.locked}}disabled{{/if}}/>
+                            <span>{{translate "rafale"}}</span>
+                        </label>
+                        {{/if}}
+
+                    </div>
+
+                    {{#unless (isContact document.system.type)}}
+                    <div class="vk-arme-ammo-row">
+                        <span class="vk-arme-ammo-label">{{translate "typeMunitions"}}</span>
+                        <input class="vk-arme-ammo-type" type="text" name="system.ammunition"
+                               value="{{document.system.ammunition}}"
+                               {{#if document.sheet.locked}}disabled{{/if}}/>
+                    </div>
+                    {{/unless}}
+
+                </div>
+
+                {{!-- 2. Illustration --}}
+                <div class="vk-arme-img-wrap">
+                    <img
+                        class="vk-arme-img"
+                        src="{{document.system.illustration}}"
+                        title="{{document.name}}"
+                        data-edit="system.illustration"
+                        data-action="editImage"/>
+                </div>
+
+                {{!-- 3. Zone de drop : vécu / compétence --}}
+                <div class="vk-arme-skill-zone">
+                    {{#if (isNull document.system.competence)}}
+                    <span class="vk-arme-skill-placeholder">
+                        <i class="fas fa-hand-point-right"></i>
+                        {{translate "deposerVecuCompetence"}}
+                    </span>
+                    {{else}}
+                    <span class="vk-arme-skill-label">
+                        <i class="fas fa-link"></i>
+                        {{#with (getIdentifier document.system.competence)}}{{name}}{{/with}}
+                    </span>
+                    {{/if}}
+                </div>
+
+                {{!-- 4. Description --}}
+                <div class="vk-arme-glass-box">
+                    <div class="vk-arme-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

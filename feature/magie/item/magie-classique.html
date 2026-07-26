@@ -1,0 +1,49 @@
+<section class="item-root">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body">
+
+            <div class="vk-mag-layout">
+
+                <div class="vk-mag-content">
+
+                    {{!-- GAUCHE : illustration balayée par une lueur --}}
+                    <div class="vk-mag-left">
+                        <div class="vk-mag-img-wrap">
+                            <img
+                                class="vk-mag-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-mag-right">
+                        <div class="vk-mag-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

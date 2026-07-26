@@ -1,0 +1,57 @@
+<section class="item-root">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body vk-tek-body">
+
+            <div class="vk-tek-bg-wrap">
+                <img class="vk-tek-bg"
+                     src="{{document.system.illustration}}"
+                     title="{{document.name}}"
+                     data-edit="system.illustration"
+                     data-action="editImage"/>
+                <div class="vk-tek-tint"></div>
+            </div>
+
+            <div class="vk-tek-hexgrid"></div>
+
+            <div class="vk-tek-content">
+
+                <div class="vk-tek-panel">
+
+                    <h3 class="vk-tek-title">{{translate "tekhne"}}</h3>
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="branche" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre"
+                        value=document.system.degre }}
+
+                </div>
+
+                <div class="vk-tek-desc">
+                    <div class="vk-tek-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

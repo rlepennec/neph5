@@ -1,0 +1,67 @@
+<section class="item-root" data-drop="true">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body vk-rit-body">
+
+            {{!-- Illustration en fond, teintée --}}
+            <div class="vk-rit-bg-wrap">
+                <img class="vk-rit-bg"
+                     src="{{document.system.illustration}}"
+                     title="{{document.name}}"
+                     data-edit="system.illustration"
+                     data-action="editImage"/>
+                <div class="vk-rit-tint"></div>
+            </div>
+
+            <div class="vk-rit-hexgrid"></div>
+
+            <div class="vk-rit-content">
+
+                {{!-- GAUCHE : caractéristiques --}}
+                <div class="vk-rit-panel">
+
+                    <h3 class="vk-rit-title">{{translate "rite"}}</h3>
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="oeuvre" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="desmos" name="system.desmos"
+                        value=document.system.desmos options=context.desmos }}
+
+                    {{#if (nonNull difficulty)}}
+                    <div class="vk-rit-difficulty">
+                        <span>{{translate "NEPH5E.difficulte"}} :</span>
+                        <span>{{difficulty}}0%</span>
+                    </div>
+                    {{/if}}
+
+                </div>
+
+                {{!-- DROITE : description --}}
+                <div class="vk-rit-desc">
+                    <div class="vk-rit-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

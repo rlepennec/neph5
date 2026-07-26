@@ -1,0 +1,63 @@
+<section class="item-root">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body">
+
+            <div class="vk-savoir-layout">
+
+                {{#if (and debug isGM)}}
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="key"
+                    name="system.key"
+                    value=document.system.key
+                }}
+                {{/if}}
+
+                {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+
+                <div class="vk-savoir-content">
+
+                    {{!-- GAUCHE : vidéo en fond + image du savoir par-dessus --}}
+                    <div class="vk-savoir-left">
+                        <div class="vk-savoir-stack">
+                            <video
+                                class="vk-savoir-video"
+                                src="systems/neph5e/assets/vk/items/savoir.webm"
+                                autoplay loop muted playsinline></video>
+                            <img
+                                class="vk-savoir-card"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-savoir-right">
+                        <div class="vk-savoir-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

@@ -1,0 +1,58 @@
+<section class="item-root skin-{{document.system.element}}">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body">
+
+            <div class="vk-layout">
+
+                <div class="vk-col-left">
+                    <div class="vk-img-box">
+                        <img
+                            class="vk-illustration"
+                            src="{{document.system.illustration}}"
+                            title="{{translate 'illustration'}}"
+                            data-edit="system.illustration"
+                            data-action="editImage"/>
+                        <div class="vk-glow"></div>
+                    </div>
+                </div>
+
+                <div class="vk-col-right">
+
+                    <div class="vk-banner">
+                        {{> "systems/neph5e/templates/select.hbs"
+                            title="element"
+                            name="system.element"
+                            value=document.system.element
+                            options=context.elements
+                        }}
+                    </div>
+
+                    <div class="vk-desc-box">
+                        <h3 class="vk-title">{{translate "description"}}</h3>
+                        <div class="vk-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

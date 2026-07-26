@@ -1,0 +1,60 @@
+<section class="item-root">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body vk-div-body">
+
+            {{!-- Illustration en fond, teintée --}}
+            <div class="vk-div-bg-wrap">
+                <img class="vk-div-bg"
+                     src="{{document.system.illustration}}"
+                     title="{{document.name}}"
+                     data-edit="system.illustration"
+                     data-action="editImage"/>
+                <div class="vk-div-tint"></div>
+            </div>
+
+            <div class="vk-div-hexgrid"></div>
+
+            <div class="vk-div-content">
+
+                {{!-- GAUCHE : caractéristiques --}}
+                <div class="vk-div-panel">
+
+                    <h3 class="vk-div-title">{{translate "divination"}}</h3>
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="augure" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre"
+                        value=document.system.degre }}
+
+                </div>
+
+                {{!-- DROITE : description --}}
+                <div class="vk-div-desc">
+                    <div class="vk-div-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

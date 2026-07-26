@@ -34,6 +34,14 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         return context;
     }
 
+    _configureRenderParts(options) {
+        const parts = super._configureRenderParts(options);
+        const style = game.settings.get('neph5e', 'styleItemSheet');
+        // remplace le suffixe du template par le style choisi
+        parts.main.template = parts.main.template.replace(/\.html$/, `-${style}.html`);
+        return parts;
+    }
+
     cerclesOf(science) {
         const cercles = {}
         for (let cercle of Science.cerclesOf(science)) {

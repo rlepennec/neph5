@@ -1,0 +1,66 @@
+<section class="item-root" data-drop="true">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body">
+
+            <div class="vk-layout">
+
+                <div class="vk-per-head">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="lieu" name="system.contexte" value=document.system.contexte }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="epoque" name="system.aube" value=document.system.aube }}
+                </div>
+
+                <div class="vk-split">
+
+                    {{!-- GAUCHE : illustration + vécus --}}
+                    <div class="vk-per-left">
+
+                        <div class="vk-per-img-wrap">
+                            <img
+                                class="vk-per-img"
+                                src="{{document.system.illustration}}"
+                                title="{{document.name}}"
+                                data-edit="system.illustration"
+                                data-action="editImage"/>
+                        </div>
+
+                        <div class="vk-box vk-per-bloc">
+                            <h3 class="vk-box-title">{{translate "vecus"}}</h3>
+                            {{> "systems/neph5e/templates/list.hbs"
+                                values=context.vecus
+                                names="vecus"
+                            }}
+                        </div>
+
+                    </div>
+
+                    {{!-- DROITE : description --}}
+                    <div class="vk-box vk-per-right">
+                        <div class="vk-editor">
+                            <prose-mirror
+                                name="system.description"
+                                button="true"
+                                editable="{{editable}}"
+                                toggled="false"
+                                value="{{document.system.description}}">
+                                {{{enrichedDescription}}}
+                            </prose-mirror>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

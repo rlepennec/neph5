@@ -1,0 +1,59 @@
+<section class="item-root">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main class="vk-body vk-dra-body">
+
+            <div class="vk-dra-bg-wrap">
+                <img class="vk-dra-bg"
+                     src="{{document.system.illustration}}"
+                     title="{{document.name}}"
+                     data-edit="system.illustration"
+                     data-action="editImage"/>
+                <div class="vk-dra-tint"></div>
+            </div>
+
+            <div class="vk-dra-hexgrid"></div>
+
+            <div class="vk-dra-content">
+
+                <div class="vk-dra-panel">
+
+                    <h3 class="vk-dra-title">{{translate "dracomachie"}}</h3>
+
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="dracomachie" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+
+                    {{#if (eq system.cercle "dracomachie@passes")}}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre"
+                        value=document.system.degre }}
+                    {{/if}}
+
+                </div>
+
+                <div class="vk-dra-desc">
+                    <div class="vk-dra-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>
