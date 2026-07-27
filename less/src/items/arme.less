@@ -1,17 +1,16 @@
-// Ka Nuit : thème fixe des fiches d'arme (aucun élément d'où dériver un Ka).
-// Posé sur la fenêtre via DEFAULT_OPTIONS.classes, donc hérité par le bandeau
-// supérieur, la barre latérale et le contenu.
-/*
-.vk-nuit {
-    --vk-bg: rgba(5, 8, 25, 0.45);
-    --vk-glow: rgba(60, 80, 160, 0.55);
-    --vk-grad: linear-gradient(160deg, rgba(5, 10, 30, 0.65) 0%, rgba(20, 30, 80, 0.5) 60%, rgba(40, 20, 60, 0.4) 100%);
+// ════════════════════════════════════════════════════════════════
+//  Fiche arme — deux looks scopés par la classe de la <section>
+//  .style-ashbury   : look "Vision Ka'Sh" (orichalque)
+//  .style-classique : look système v12
+// ════════════════════════════════════════════════════════════════
+
+.item-arme {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
 }
-*/
 
 // Ka Orichalque : thème des fiches d'arme et d'armure (module visionkash).
 // Posé sur la fenêtre via DEFAULT_OPTIONS.classes → hérité par le bandeau
-// supérieur, la barre latérale et le contenu.
+// supérieur, la barre latérale et le contenu. Reste au niveau racine.
 .vk-orichalque {
     --vk-bg: rgba(35, 45, 55, 0.3);
     --vk-glow: rgba(28, 77, 181, 0.35);
@@ -19,7 +18,11 @@
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
 }
 
-.item-root {
+
+// ─────────────────────────────────────────────
+//  PARTIE 1 — Look ASHBURY (orichalque)
+// ─────────────────────────────────────────────
+.item-root.style-ashbury {
 
     // Variables de la fiche arme (reprises du module).
     --vk-gold: #C9923A;
@@ -376,10 +379,9 @@
 
 }
 
-// Verrouillage : les stats et les cases à cocher gardent leur apparence
+// Verrouillage (ashbury) : les stats et cases gardent leur apparence
 // "déverrouillée" (seule l'édition est bloquée, pas le style).
-// Sélecteur préfixé pour dépasser la règle input:disabled de item.less.
-form.nephilim.item section.window-content > section.item-root {
+form.nephilim.item section.window-content > section.item-root.style-ashbury {
 
     .vk-arme-stat-input:disabled {
         opacity: 1;
@@ -416,4 +418,166 @@ form.nephilim.item section.window-content > section.item-root {
         }
     }
 
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 2 — Look CLASSIQUE (système v12)
+// ─────────────────────────────────────────────
+.item-root.style-classique {
+
+    aside {
+        flex: 0 0 auto;
+        width: 41px;
+        background-image: var(--vk-side-classique, none);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: top center;
+        box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+    }
+
+    .classique-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        font-family: 'AJensonPro';
+        font-size: 16px;
+        color: #191813;
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+    }
+
+    .classique-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px 20px;
+        gap: 10px;
+        overflow-y: auto;
+    }
+
+    // Bandeau du type d'arme (select).
+    .classique-head {
+        display: block;
+        flex-shrink: 0;
+        text-align: center;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #151156;
+
+        select {
+            outline: 0;
+            background-color: transparent;
+            min-width: 160px;
+            height: 35px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            text-align-last: center;
+            color: #191813;
+            border: 1px solid #151156;
+            border-radius: 10px;
+            box-shadow: 0 0 4px 1px #414048 inset;
+
+            option {
+                background-color: antiquewhite;
+                color: #191813;
+                text-align: center;
+            }
+        }
+
+        h1 {
+            font-weight: bold;
+            font-family: 'AJensonPro';
+            margin: 0 10px 0 0;
+            color: #191813;
+        }
+    }
+
+    // Stats en cercles (attaque / défense / dommages / chargeur).
+    .classique-stats {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid #151156;
+
+        // Chaque partial input.hbs = <h1> + <input> : on empile, input au-dessus.
+        > * {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+
+        input {
+            width: 40px;
+            height: 40px;
+            margin: 0;
+            text-align: center;
+            color: #191813;
+            border: 1px solid #151156;
+            border-radius: 50%;
+            box-shadow: 0 0 4px 1px #414048 inset;
+            background: transparent;
+        }
+
+        h1 {
+            font-size: 14px;
+            font-weight: normal;
+            font-family: 'AJensonPro';
+            color: #191813;
+            margin: 4px 0 0 0;
+        }
+    }
+
+    // Cases à cocher (style v12 sobre).
+    .checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-family: 'AJensonPro';
+        color: #191813;
+
+        i {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    .classique-desc-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 150px;
+        margin-top: 8px;
+    }
+
+    .classique-title {
+        margin: 0 0 6px 0;
+        font-weight: bold;
+        font-family: 'AJensonPro';
+        font-size: 18px;
+        color: #191813;
+    }
+
+    .classique-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        font-family: 'AJensonProLtDisp';
+        font-size: 16px;
+        color: #191813;
+    }
+}
+
+// Bandeau supérieur (window-header) du look classique : fond parchemin v12.
+form.application.sheet.item:has(.style-classique) > .window-header {
+    background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+    box-shadow: 0 0 6px 2px #f5f4f4 inset;
+    color: #f5f4f4;
+
+    .window-title {
+        font-family: 'NightjarDemi';
+    }
 }

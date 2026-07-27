@@ -6662,20 +6662,16 @@ form.application.sheet.item:has(.style-classique) > .window-header {
 form.application.sheet.item:has(.style-classique) > .window-header .window-title {
   font-family: 'NightjarDemi';
 }
-/*
-.vk-nuit {
-    --vk-bg: rgba(5, 8, 25, 0.45);
-    --vk-glow: rgba(60, 80, 160, 0.55);
-    --vk-grad: linear-gradient(160deg, rgba(5, 10, 30, 0.65) 0%, rgba(20, 30, 80, 0.5) 60%, rgba(40, 20, 60, 0.4) 100%);
+.item-arme {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
 }
-*/
 .vk-orichalque {
   --vk-bg: rgba(35, 45, 55, 0.3);
   --vk-glow: rgba(28, 77, 181, 0.35);
   --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
 }
-.item-root {
+.item-root.style-ashbury {
   --vk-gold: #C9923A;
   --vk-amber: #E8B86D;
   --vk-bronze: #5C3D10;
@@ -6684,7 +6680,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   --vk-border: rgba(201, 146, 58, 0.4);
   --vk-radius: 8px;
 }
-.item-root .vk-arme-layout {
+.item-root.style-ashbury .vk-arme-layout {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -6692,7 +6688,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   padding: 14px 16px;
   overflow-y: auto;
 }
-.item-root .vk-arme-readability-wrap {
+.item-root.style-ashbury .vk-arme-readability-wrap {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -6702,16 +6698,16 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: var(--vk-radius);
   box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
 }
-.item-root .vk-arme-type-row {
+.item-root.style-ashbury .vk-arme-type-row {
   display: flex;
   flex-wrap: nowrap;
   gap: 6px;
   overflow: hidden;
 }
-.item-root .vk-arme-type-row input[type="radio"] {
+.item-root.style-ashbury .vk-arme-type-row input[type="radio"] {
   display: none;
 }
-.item-root .vk-arme-type-btn {
+.item-root.style-ashbury .vk-arme-type-btn {
   flex: 1;
   display: inline-flex;
   align-items: center;
@@ -6733,25 +6729,25 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   user-select: none;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
-.item-root .vk-arme-type-btn:hover {
+.item-root.style-ashbury .vk-arme-type-btn:hover {
   background: rgba(201, 146, 58, 0.1);
   border-color: var(--vk-gold);
   color: var(--vk-amber);
 }
-.item-root .vk-arme-type-btn.active,
-.item-root .vk-arme-type-btn:has(input:checked) {
+.item-root.style-ashbury .vk-arme-type-btn.active,
+.item-root.style-ashbury .vk-arme-type-btn:has(input:checked) {
   background: linear-gradient(135deg, rgba(201, 146, 58, 0.42), rgba(92, 61, 16, 0.62));
   border-color: var(--vk-gold);
   color: var(--vk-amber);
   text-shadow: 0 0 8px rgba(232, 184, 109, 0.55), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
-.item-root .vk-arme-stats-row {
+.item-root.style-ashbury .vk-arme-stats-row {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   gap: 10px;
 }
-.item-root .vk-arme-stat {
+.item-root.style-ashbury .vk-arme-stat {
   flex: 1 1 50px;
   min-width: 48px;
   display: flex;
@@ -6759,7 +6755,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   align-items: center;
   gap: 3px;
 }
-.item-root .vk-arme-stat label {
+.item-root.style-ashbury .vk-arme-stat label {
   margin: 0;
   padding: 0;
   font-family: "AJensonProLtDisp", serif;
@@ -6770,7 +6766,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
-.item-root .vk-arme-stat-input {
+.item-root.style-ashbury .vk-arme-stat-input {
   width: 44px;
   height: 44px;
   text-align: center;
@@ -6785,17 +6781,17 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   transition: border-color 0.2s, box-shadow 0.2s;
   -moz-appearance: textfield;
 }
-.item-root .vk-arme-stat-input::-webkit-inner-spin-button,
-.item-root .vk-arme-stat-input::-webkit-outer-spin-button {
+.item-root.style-ashbury .vk-arme-stat-input::-webkit-inner-spin-button,
+.item-root.style-ashbury .vk-arme-stat-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.item-root .vk-arme-stat-input:focus {
+.item-root.style-ashbury .vk-arme-stat-input:focus {
   border-color: var(--vk-gold);
   box-shadow: 0 0 14px rgba(201, 146, 58, 0.4) inset;
   outline: none;
 }
-.item-root .vk-arme-checks {
+.item-root.style-ashbury .vk-arme-checks {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -6803,7 +6799,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   align-items: center;
   gap: 6px;
 }
-.item-root .vk-arme-check {
+.item-root.style-ashbury .vk-arme-check {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -6819,7 +6815,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   cursor: pointer;
   user-select: none;
 }
-.item-root .vk-arme-check input[type="checkbox"] {
+.item-root.style-ashbury .vk-arme-check input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
@@ -6834,15 +6830,15 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
 }
-.item-root .vk-arme-check input[type="checkbox"]::before,
-.item-root .vk-arme-check input[type="checkbox"]:checked::before {
+.item-root.style-ashbury .vk-arme-check input[type="checkbox"]::before,
+.item-root.style-ashbury .vk-arme-check input[type="checkbox"]:checked::before {
   content: none;
 }
-.item-root .vk-arme-check input[type="checkbox"]:checked {
+.item-root.style-ashbury .vk-arme-check input[type="checkbox"]:checked {
   background: linear-gradient(135deg, var(--vk-bronze), rgba(201, 146, 58, 0.55));
   border-color: var(--vk-gold);
 }
-.item-root .vk-arme-check input[type="checkbox"]:checked::after {
+.item-root.style-ashbury .vk-arme-check input[type="checkbox"]:checked::after {
   content: '';
   position: absolute;
   left: 4px;
@@ -6854,15 +6850,15 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-left: none;
   transform: rotate(40deg);
 }
-.item-root .vk-arme-check:hover span {
+.item-root.style-ashbury .vk-arme-check:hover span {
   color: var(--vk-amber);
 }
-.item-root .vk-arme-ammo-row {
+.item-root.style-ashbury .vk-arme-ammo-row {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.item-root .vk-arme-ammo-label {
+.item-root.style-ashbury .vk-arme-ammo-label {
   flex-shrink: 0;
   font-family: "AJensonProLtDisp", serif;
   font-size: 0.9em;
@@ -6870,7 +6866,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: rgba(232, 184, 109, 0.65);
   white-space: nowrap;
 }
-.item-root .vk-arme-ammo-type {
+.item-root.style-ashbury .vk-arme-ammo-type {
   flex: 1;
   padding: 2px 6px;
   background: transparent;
@@ -6882,22 +6878,22 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 0.9em;
   transition: border-color 0.2s;
 }
-.item-root .vk-arme-ammo-type:focus {
+.item-root.style-ashbury .vk-arme-ammo-type:focus {
   border-bottom: 1px solid var(--vk-gold);
   background: rgba(201, 146, 58, 0.06);
   outline: none;
 }
-.item-root .vk-arme-ammo-type::placeholder {
+.item-root.style-ashbury .vk-arme-ammo-type::placeholder {
   color: rgba(232, 184, 109, 0.28);
 }
-.item-root .vk-arme-img-wrap {
+.item-root.style-ashbury .vk-arme-img-wrap {
   position: relative;
   width: 100%;
   flex-shrink: 0;
   border-radius: var(--vk-radius);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.75);
 }
-.item-root .vk-arme-img-wrap::before {
+.item-root.style-ashbury .vk-arme-img-wrap::before {
   content: '';
   position: absolute;
   inset: -1px;
@@ -6906,10 +6902,10 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   pointer-events: none;
   z-index: 4;
 }
-.item-root .vk-arme-img-wrap:hover .vk-arme-img {
+.item-root.style-ashbury .vk-arme-img-wrap:hover .vk-arme-img {
   filter: brightness(1.1) saturate(1.08);
 }
-.item-root .vk-arme-img {
+.item-root.style-ashbury .vk-arme-img {
   display: block;
   width: 100%;
   height: auto;
@@ -6921,7 +6917,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   transition: filter 0.35s ease;
   mask-image: radial-gradient(ellipse 70% 70% at center, black 55%, transparent 100%);
 }
-.item-root .vk-arme-skill-zone {
+.item-root.style-ashbury .vk-arme-skill-zone {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6935,7 +6931,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: var(--vk-radius);
   transition: border-color 0.25s, background 0.25s;
 }
-.item-root .vk-arme-skill-label {
+.item-root.style-ashbury .vk-arme-skill-label {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -6943,10 +6939,10 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 0.85em;
   color: var(--vk-amber);
 }
-.item-root .vk-arme-skill-label i {
+.item-root.style-ashbury .vk-arme-skill-label i {
   color: var(--vk-gold);
 }
-.item-root .vk-arme-skill-placeholder {
+.item-root.style-ashbury .vk-arme-skill-placeholder {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -6955,7 +6951,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-style: italic;
   color: rgba(232, 184, 109, 0.45);
 }
-.item-root .vk-arme-glass-box {
+.item-root.style-ashbury .vk-arme-glass-box {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -6967,7 +6963,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
   overflow: hidden;
 }
-.item-root .vk-arme-editor {
+.item-root.style-ashbury .vk-arme-editor {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -6976,7 +6972,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-form.nephilim.item section.window-content > section.item-root .vk-arme-stat-input:disabled {
+form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-arme-stat-input:disabled {
   opacity: 1;
   cursor: default;
   color: var(--vk-amber);
@@ -6986,7 +6982,7 @@ form.nephilim.item section.window-content > section.item-root .vk-arme-stat-inpu
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(201, 146, 58, 0.15) inset, 0 2px 8px rgba(0, 0, 0, 0.65);
 }
-form.nephilim.item section.window-content > section.item-root .vk-arme-ammo-type:disabled {
+form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-arme-ammo-type:disabled {
   opacity: 1;
   cursor: default;
   color: var(--vk-amber);
@@ -6995,15 +6991,147 @@ form.nephilim.item section.window-content > section.item-root .vk-arme-ammo-type
   border: none;
   border-bottom: 1px dashed var(--vk-border);
 }
-form.nephilim.item section.window-content > section.item-root .vk-arme-check input[type="checkbox"]:disabled {
+form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-arme-check input[type="checkbox"]:disabled {
   opacity: 1;
   cursor: default;
   background: var(--vk-dark);
   border: 1px solid var(--vk-border);
 }
-form.nephilim.item section.window-content > section.item-root .vk-arme-check input[type="checkbox"]:disabled:checked {
+form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-arme-check input[type="checkbox"]:disabled:checked {
   background: linear-gradient(135deg, var(--vk-bronze), rgba(201, 146, 58, 0.55));
   border-color: var(--vk-gold);
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.item-root.style-classique .classique-head {
+  display: block;
+  flex-shrink: 0;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-head select {
+  outline: 0;
+  background-color: transparent;
+  min-width: 160px;
+  height: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #414048 inset;
+}
+.item-root.style-classique .classique-head select option {
+  background-color: antiquewhite;
+  color: #191813;
+  text-align: center;
+}
+.item-root.style-classique .classique-head h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  margin: 0 10px 0 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-stats > * {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.item-root.style-classique .classique-stats input {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  text-align: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px #414048 inset;
+  background: transparent;
+}
+.item-root.style-classique .classique-stats h1 {
+  font-size: 14px;
+  font-weight: normal;
+  font-family: 'AJensonPro';
+  color: #191813;
+  margin: 4px 0 0 0;
+}
+.item-root.style-classique .checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .checkbox i {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+  margin-top: 8px;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-root {
   --vk-gold: #C9923A;
