@@ -8634,10 +8634,13 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: #1a1a1a;
   background-color: #ffffff;
 }
+.item-passe {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-passe.webp");
+}
 .vk-passe {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
 }
-.item-root .vk-pas-layout {
+.item-root.style-ashbury .vk-pas-layout {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -8647,7 +8650,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   min-height: 0;
   overflow: hidden;
 }
-.item-root .vk-pas-content {
+.item-root.style-ashbury .vk-pas-content {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -8656,7 +8659,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   align-items: stretch;
   min-height: 0;
 }
-.item-root .vk-pas-left {
+.item-root.style-ashbury .vk-pas-left {
   flex: 0 0 45%;
   display: flex;
   flex-direction: column;
@@ -8664,14 +8667,14 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   justify-content: flex-start;
   align-self: flex-start;
 }
-.item-root .vk-pas-img-wrap {
+.item-root.style-ashbury .vk-pas-img-wrap {
   position: relative;
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
 }
-.item-root .vk-pas-img-wrap::before {
+.item-root.style-ashbury .vk-pas-img-wrap::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -8680,7 +8683,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
   animation: vk-light-scan 8s linear infinite;
 }
-.item-root .vk-pas-img {
+.item-root.style-ashbury .vk-pas-img {
   display: block;
   width: 100%;
   height: auto;
@@ -8689,7 +8692,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: 8px;
   cursor: pointer;
 }
-.item-root .vk-pas-right {
+.item-root.style-ashbury .vk-pas-right {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -8702,7 +8705,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-.item-root .vk-pas-editor {
+.item-root.style-ashbury .vk-pas-editor {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -8711,6 +8714,61 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 12px;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-root .vk-pra-body {
   position: relative;
