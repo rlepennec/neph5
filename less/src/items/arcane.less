@@ -1,8 +1,22 @@
+// ════════════════════════════════════════════════════════════════
+//  Fiche arcane — deux looks scopés par la classe de la <section>
+//  .style-ashbury   : look "Vision Ka'Sh"
+//  .style-classique : look système v12
+// ════════════════════════════════════════════════════════════════
+
+.item-arcane {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 1 — Look ASHBURY (Vision Ka'Sh)
+// ─────────────────────────────────────────────
 .vk-arcane {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
 
-.item-root {
+.item-root.style-ashbury {
 
     .vk-arcane-left {
         flex: 0 0 45%;
@@ -29,13 +43,11 @@
         border: none;
     }
 
-    // Couche 1 : la pile de cartes, en fond.
     .vk-arcane-bg {
         z-index: 1;
         pointer-events: none;
     }
 
-    // Couche 2 : la carte de l'arcane, cliquable.
     .vk-arcane-card {
         z-index: 2;
         width: 62%;
@@ -49,7 +61,6 @@
         }
     }
 
-    // Couche 3 : les rayons, révélés au survol de la pile.
     .vk-arcane-rays {
         z-index: 3;
         opacity: 0;
@@ -66,4 +77,116 @@
         flex: 1;
     }
 
+    // Structure commune (layout / split) réutilisée par l'arcane ashbury.
+    .vk-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 10px;
+        padding: 15px 20px;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .vk-split {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        gap: 20px;
+        min-height: 0;
+    }
+
+    .vk-box {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        padding: 12px;
+        background: rgba(30, 30, 30, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+
+    .vk-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-right: 5px;
+        color: #ffffff;
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 1.1em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 2 — Look CLASSIQUE (système v12)
+// ─────────────────────────────────────────────
+.item-root.style-classique {
+
+    aside {
+        flex: 0 0 auto;
+        width: 41px;
+        background-image: var(--vk-side-classique, none);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: top center;
+        box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+    }
+
+    .classique-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        font-family: 'AJensonPro';
+        font-size: 16px;
+        color: #191813;
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+    }
+
+    .classique-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px 20px;
+        gap: 12px;
+    }
+
+    .classique-desc-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .classique-title {
+        margin: 0 0 6px 0;
+        font-weight: bold;
+        font-family: 'AJensonPro';
+        font-size: 18px;
+        color: #191813;
+    }
+
+    .classique-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        font-family: 'AJensonProLtDisp';
+        font-size: 16px;
+        color: #191813;
+    }
+}
+
+// Bandeau supérieur (window-header) du look classique : fond parchemin v12.
+form.application.sheet.item:has(.style-classique) > .window-header {
+    background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+    box-shadow: 0 0 6px 2px #f5f4f4 inset;
+    color: #f5f4f4;
+
+    .window-title {
+        font-family: 'NightjarDemi';
+    }
 }
