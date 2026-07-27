@@ -30,7 +30,7 @@ export class CompetenceSheet extends NephilimItemSheet {
         }
     }
 
-/**
+    /**
      * Le bandeau de la fenêtre est hors de .item-root : on applique le skin
      * du Ka sur la fenêtre elle-même pour qu'il en hérite les variables.
      * @override
@@ -38,6 +38,11 @@ export class CompetenceSheet extends NephilimItemSheet {
     async _onRender(context, options) {
         await super._onRender(context, options);
         this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+
+        // Pas de skin en style classique.
+        const style = game.settings.get('neph5e', 'styleItemSheet');
+        if (style === 'classique') return;
+
         const element = this.document.system.element;
         if (element) this.element.classList.add(`skin-${element}`);
     }

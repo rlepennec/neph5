@@ -1,6 +1,5 @@
 .skin-air {
-  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
-        url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff), url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -164,8 +163,7 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-air-crayon.webp");
 }
 .skin-eau {
-  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-        url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #0d273d;
   --font-editor-color: #191813;
@@ -493,8 +491,7 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-feu-crayon.webp");
 }
 .skin-lune {
-  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
-        url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%), url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #121212;
   --font-editor-color: #191813;
@@ -658,8 +655,7 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-lune-crayon.webp");
 }
 .skin-lune-noire {
-  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
-        url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -3480,23 +3476,23 @@
 }
 @font-face {
   font-family: "AJensonPro";
-  src: url("../../systems/neph5e/assets/fonts/AJensonPro-Regular.otf");
+  src: url("../../assets/fonts/AJensonPro-Regular.otf");
 }
 @font-face {
   font-family: "AJensonProLtDisp";
-  src: url("../../systems/neph5e/assets/fonts/AJensonPro-LtDisp.otf");
+  src: url("../../assets/fonts/AJensonPro-LtDisp.otf");
 }
 @font-face {
   font-family: "MinionPro";
-  src: url("../../systems/neph5e/assets/fonts/MinionPro-Regular.otf");
+  src: url("../../assets/fonts/MinionPro-Regular.otf");
 }
 @font-face {
   font-family: "Nightjar";
-  src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Regular.ttf");
+  src: url("../../assets/fonts/T-26 - Nightjar Regular.ttf");
 }
 @font-face {
   font-family: "NightjarDemi";
-  src: url("../../systems/neph5e/assets/fonts/T-26 - Nightjar Demi.ttf");
+  src: url("../../assets/fonts/T-26 - Nightjar Demi.ttf");
 }
 .expanse {
   height: 100%;
@@ -6086,13 +6082,15 @@ form.nephilim.item section.window-content > section {
   flex-flow: unset;
   width: 100%;
   color: var(--color-font-dark);
-}
-form.nephilim.item section.window-content > section aside {
-  flex: 0 0 auto;
-  width: 41px;
-  background-image: var(--background-side);
-  background-repeat: no-repeat;
-  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+  /*
+        aside {
+            flex: 0 0 auto;
+            width: 41px;
+            background-image: var(--background-side);
+            background-repeat: no-repeat;
+            box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+        }
+            */
 }
 form.nephilim.item section.window-content > section article {
   display: flex;
@@ -7506,7 +7504,10 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.item-root .vk-layout {
+.item-competence {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-competence.webp");
+}
+.item-root.style-ashbury .vk-layout {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -7515,7 +7516,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   gap: 15px;
   overflow: hidden;
 }
-.item-root .vk-col-left {
+.item-root.style-ashbury .vk-col-left {
   flex: 0 0 auto;
   width: 220px;
   display: flex;
@@ -7523,7 +7524,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   align-items: center;
   padding-top: 20px;
 }
-.item-root .vk-img-box {
+.item-root.style-ashbury .vk-img-box {
   position: relative;
   width: 210px;
   height: 210px;
@@ -7531,7 +7532,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   align-items: center;
   justify-content: center;
 }
-.item-root .vk-illustration {
+.item-root.style-ashbury .vk-illustration {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -7545,7 +7546,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
-.item-root .vk-glow {
+.item-root.style-ashbury .vk-glow {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -7560,7 +7561,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   pointer-events: none;
   animation: vk-slow-spin 20s linear infinite;
 }
-.item-root .vk-col-right {
+.item-root.style-ashbury .vk-col-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -7570,7 +7571,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   padding-right: 20px;
   overflow: hidden;
 }
-.item-root .vk-banner {
+.item-root.style-ashbury .vk-banner {
   width: 420px;
   display: flex;
   justify-content: space-between;
@@ -7584,14 +7585,14 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   color: white;
   font-family: "NightjarDemi", serif;
 }
-.item-root .vk-banner h1 {
+.item-root.style-ashbury .vk-banner h1 {
   font-size: 1.1em;
   margin-right: 100px;
 }
-.item-root .vk-banner p {
+.item-root.style-ashbury .vk-banner p {
   font-size: 1.1em;
 }
-.item-root .vk-desc-box {
+.item-root.style-ashbury .vk-desc-box {
   width: 420px;
   flex: 1;
   min-height: 250px;
@@ -7604,7 +7605,7 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   padding: 10px;
   overflow: hidden;
 }
-.item-root .vk-title {
+.item-root.style-ashbury .vk-title {
   margin: 0 0 5px 0;
   padding-bottom: 5px;
   color: white;
@@ -7612,13 +7613,26 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   font-size: 1.1em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-.item-root .vk-editor {
+.item-root.style-ashbury .vk-editor {
   flex: 1;
   overflow-y: auto;
   padding-right: 5px;
   color: #e0e0e0;
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
+}
+form.nephilim.item section.window-content > section.style-ashbury aside.vk-aside {
+  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+  background-image: var(--vk-grad, none);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  backdrop-filter: blur(4px);
+  box-shadow: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+form.nephilim.item section.window-content > section.style-ashbury article main h1 {
+  color: white;
+  font-family: "NightjarDemi", serif;
 }
 @keyframes vk-slow-spin {
   from {
@@ -7628,18 +7642,94 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-form.nephilim.item section.window-content > section aside.vk-aside {
-  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
-  background-image: var(--vk-grad, none);
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-image: url("../../systems/neph5e/assets/core/side-competence.webp");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  backdrop-filter: blur(4px);
-  box-shadow: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
-form.nephilim.item section.window-content > section article main h1 {
-  color: white;
-  font-family: "NightjarDemi", serif;
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 12px;
+}
+.item-root.style-classique .classique-banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-banner select {
+  outline: 0;
+  background-color: transparent;
+  min-width: 160px;
+  height: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #414048 inset;
+}
+.item-root.style-classique .classique-banner select option {
+  background-color: antiquewhite;
+  color: #191813;
+  text-align: center;
+}
+.item-root.style-classique .classique-banner h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  margin: 0 10px 0 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-root .vk-div-body {
   position: relative;
@@ -9459,6 +9549,15 @@ form.nephilim.item section.window-content > section article main h1 {
   border-radius: 5px;
   padding: 6px 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+.item-arme {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
+}
+.item-sort {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-vecu {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
 }
 .recherche table tr td {
   font-family: 'AJensonPro';

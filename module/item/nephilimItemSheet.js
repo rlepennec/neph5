@@ -42,6 +42,14 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         return parts;
     }
 
+    /**
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        this.element.classList.add(`item-${this.document.type}`);
+    }
+
     cerclesOf(science) {
         const cercles = {}
         for (let cercle of Science.cerclesOf(science)) {
