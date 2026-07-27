@@ -1,9 +1,22 @@
-// Thème de l'ordonnance : pas de Ka, fond iridescent translucide.
+// ════════════════════════════════════════════════════════════════
+//  Fiche ordonnance — deux looks scopés par la classe de la <section>
+//  .style-ashbury   : look "Vision Ka'Sh"
+//  .style-classique : look système v12
+// ════════════════════════════════════════════════════════════════
+
+.item-ordonnance {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-ordonnance.webp");
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 1 — Look ASHBURY (Vision Ka'Sh)
+// ─────────────────────────────────────────────
 .vk-ordonnance {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
 }
 
-.item-root {
+.item-root.style-ashbury {
 
     .vk-ord-layout {
         display: flex;
@@ -38,7 +51,6 @@
         min-height: 0;
     }
 
-    // ── Gauche : illustration (callée en haut, garde sa taille) ──
     .vk-ord-left {
         flex: 0 0 45%;
         display: flex;
@@ -48,7 +60,6 @@
         align-self: flex-start;
     }
 
-    // Le wrapper porte le balayage lumineux (overflow: hidden indispensable).
     .vk-ord-img-wrap {
         position: relative;
         width: 100%;
@@ -56,7 +67,6 @@
         overflow: hidden;
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
 
-        // Lueur qui traverse l'image en diagonale, en boucle.
         &::before {
             content: '';
             position: absolute;
@@ -87,7 +97,6 @@
         cursor: pointer;
     }
 
-    // ── Droite : description (pleine hauteur) ──
     .vk-ord-right {
         display: flex;
         flex-direction: column;
@@ -118,5 +127,113 @@
         color: #1a1a1a;
         background-color: #ffffff;
     }
+}
 
+
+// ─────────────────────────────────────────────
+//  PARTIE 2 — Look CLASSIQUE (système v12)
+// ─────────────────────────────────────────────
+.item-root.style-classique {
+
+    aside {
+        flex: 0 0 auto;
+        width: 41px;
+        background-image: var(--vk-side-classique, none);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: top center;
+        box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+    }
+
+    .classique-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        font-family: 'AJensonPro';
+        font-size: 16px;
+        color: #191813;
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+    }
+
+    .classique-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px 20px;
+        gap: 12px;
+    }
+
+    // Bandeau du monde. En display:block : évite que le flex écrase le <select>.
+    .classique-head {
+        display: block;
+        flex-shrink: 0;
+        margin-top: 10px;
+        padding-bottom: 8px;
+        text-align: center;
+        border-bottom: 1px solid #151156;
+
+        select {
+            outline: 0;
+            background-color: transparent;
+            min-width: 160px;
+            height: 35px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            text-align-last: center;
+            color: #191813;
+            border: 1px solid #151156;
+            border-radius: 10px;
+            box-shadow: 0 0 4px 1px #414048 inset;
+
+            option {
+                background-color: antiquewhite;
+                color: #191813;
+                text-align: center;
+            }
+        }
+
+        h1 {
+            font-weight: bold;
+            font-family: 'AJensonPro';
+            margin: 0 0 6px 0;
+            color: #191813;
+        }
+    }
+
+    .classique-desc-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .classique-title {
+        margin: 0 0 6px 0;
+        font-weight: bold;
+        font-family: 'AJensonPro';
+        font-size: 18px;
+        color: #191813;
+    }
+
+    .classique-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        font-family: 'AJensonProLtDisp';
+        font-size: 16px;
+        color: #191813;
+    }
+}
+
+// Bandeau supérieur (window-header) du look classique : fond parchemin v12.
+form.application.sheet.item:has(.style-classique) > .window-header {
+    background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+    box-shadow: 0 0 6px 2px #f5f4f4 inset;
+    color: #f5f4f4;
+
+    .window-title {
+        font-family: 'NightjarDemi';
+    }
 }
