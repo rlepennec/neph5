@@ -23,7 +23,8 @@ export class MateriaeSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
+        const style = game.settings.get('neph5e', 'styleItemSheet');
+        if (style === 'classique') return;
         const element = this.document.system.element;
         if (element) this.element.classList.add(`skin-${element}`);
     }
