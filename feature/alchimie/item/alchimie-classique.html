@@ -1,43 +1,27 @@
-<section class="item-root">
+<section class="item-root style-classique">
 
-    <aside class="vk-aside"></aside>
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body">
+        <main class="classique-body">
 
-            <div class="vk-alc-layout">
+            <div class="classique-layout">
 
-                <div class="vk-alc-content">
-
-                    {{!-- GAUCHE : illustration balayée par une lueur --}}
-                    <div class="vk-alc-left">
-                        <div class="vk-alc-img-wrap">
-                            <img
-                                class="vk-alc-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
                     </div>
-
-                    {{!-- DROITE : description --}}
-                    <div class="vk-alc-right">
-                        <div class="vk-alc-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
