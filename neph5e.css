@@ -7133,14 +7133,17 @@ form.application.sheet.item:has(.style-classique) > .window-header {
 form.application.sheet.item:has(.style-classique) > .window-header .window-title {
   font-family: 'NightjarDemi';
 }
-.item-root {
+.item-armure {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
+}
+.item-root.style-ashbury {
   --vk-gold: #C9923A;
   --vk-amber: #E8B86D;
   --vk-glass: rgba(12, 7, 2, 0.82);
   --vk-glass-border: rgba(30, 60, 140, 0.35);
   --vk-radius: 8px;
 }
-.item-root .vk-armure-layout {
+.item-root.style-ashbury .vk-armure-layout {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -7149,7 +7152,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   min-height: 0;
   overflow-y: auto;
 }
-.item-root .vk-armure-stats-band {
+.item-root.style-ashbury .vk-armure-stats-band {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -7161,13 +7164,13 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: var(--vk-radius);
   box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
 }
-.item-root .vk-armure-stat-block {
+.item-root.style-ashbury .vk-armure-stat-block {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 18px;
 }
-.item-root .vk-armure-stat-label {
+.item-root.style-ashbury .vk-armure-stat-label {
   font-family: "AJensonProLtDisp", serif;
   font-size: 0.76em;
   font-weight: bold;
@@ -7176,13 +7179,13 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   text-transform: uppercase;
   white-space: nowrap;
 }
-.item-root .vk-armure-sep {
+.item-root.style-ashbury .vk-armure-sep {
   width: 1px;
   height: 50px;
   flex-shrink: 0;
   background: linear-gradient(180deg, transparent, rgba(201, 146, 58, 0.45) 30%, rgba(201, 146, 58, 0.45) 70%, transparent);
 }
-.item-root .vk-armure-stat-circle {
+.item-root.style-ashbury .vk-armure-stat-circle {
   width: 60px;
   height: 60px;
   flex-shrink: 0;
@@ -7198,17 +7201,17 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   transition: border-color 0.2s, box-shadow 0.2s;
   -moz-appearance: textfield;
 }
-.item-root .vk-armure-stat-circle::-webkit-inner-spin-button,
-.item-root .vk-armure-stat-circle::-webkit-outer-spin-button {
+.item-root.style-ashbury .vk-armure-stat-circle::-webkit-inner-spin-button,
+.item-root.style-ashbury .vk-armure-stat-circle::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.item-root .vk-armure-stat-circle:focus {
+.item-root.style-ashbury .vk-armure-stat-circle:focus {
   border-color: var(--vk-gold);
   box-shadow: 0 0 16px rgba(201, 146, 58, 0.4) inset;
   outline: none;
 }
-.item-root .vk-armure-body {
+.item-root.style-ashbury .vk-armure-body {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -7216,13 +7219,13 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   min-height: 0;
   align-items: stretch;
 }
-.item-root .vk-armure-desc-col {
+.item-root.style-ashbury .vk-armure-desc-col {
   flex: 0 0 44%;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
-.item-root .vk-armure-glass-box {
+.item-root.style-ashbury .vk-armure-glass-box {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -7234,7 +7237,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
   overflow: hidden;
 }
-.item-root .vk-armure-editor {
+.item-root.style-ashbury .vk-armure-editor {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -7243,13 +7246,13 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-.item-root .vk-armure-img-col {
+.item-root.style-ashbury .vk-armure-img-col {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
-.item-root .vk-armure-img-wrap {
+.item-root.style-ashbury .vk-armure-img-wrap {
   position: relative;
   width: 100%;
   height: 100%;
@@ -7257,7 +7260,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   overflow: visible;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.75);
 }
-.item-root .vk-armure-img-wrap::before {
+.item-root.style-ashbury .vk-armure-img-wrap::before {
   content: '';
   position: absolute;
   inset: -1px;
@@ -7266,7 +7269,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   pointer-events: none;
   z-index: 4;
 }
-.item-root .vk-armure-img-wrap::after {
+.item-root.style-ashbury .vk-armure-img-wrap::after {
   content: '';
   position: absolute;
   inset: -6px;
@@ -7277,10 +7280,10 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background-position: top left, top right, bottom left, bottom right;
   background-size: 28px 28px;
 }
-.item-root .vk-armure-img-wrap:hover .vk-armure-img {
+.item-root.style-ashbury .vk-armure-img-wrap:hover .vk-armure-img {
   filter: brightness(1.1) saturate(1.08);
 }
-.item-root .vk-armure-img {
+.item-root.style-ashbury .vk-armure-img {
   display: block;
   width: 100%;
   height: 100%;
@@ -7291,7 +7294,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   transition: filter 0.35s ease;
   mask-image: radial-gradient(ellipse 88% 88% at center, black 55%, transparent 100%);
 }
-.item-root .vk-armure-img-inner {
+.item-root.style-ashbury .vk-armure-img-inner {
   position: absolute;
   inset: 0;
   border-radius: var(--vk-radius);
@@ -7299,7 +7302,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   pointer-events: none;
   z-index: 3;
 }
-.item-root .vk-armure-scan-overlay {
+.item-root.style-ashbury .vk-armure-scan-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(160deg, transparent 0%, transparent 38%, rgba(201, 146, 58, 0.05) 46%, rgba(232, 184, 109, 0.15) 50%, rgba(201, 146, 58, 0.05) 54%, transparent 62%, transparent 100%);
@@ -7313,7 +7316,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
     transform: translateY(160%);
   }
 }
-form.nephilim.item section.window-content > section.item-root .vk-armure-stat-circle:disabled {
+form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-armure-stat-circle:disabled {
   opacity: 1;
   cursor: default;
   color: var(--vk-amber);
@@ -7322,6 +7325,94 @@ form.nephilim.item section.window-content > section.item-root .vk-armure-stat-ci
   border: 2px solid rgba(201, 146, 58, 0.5);
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(201, 146, 58, 0.18) inset, 0 3px 10px rgba(0, 0, 0, 0.7);
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+}
+.item-root.style-classique .classique-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 8px 0;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-stats > * {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.item-root.style-classique .classique-stats input {
+  width: 54px;
+  height: 54px;
+  margin: 0;
+  text-align: center;
+  font-size: 1.4em;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px #414048 inset;
+  background: transparent;
+}
+.item-root.style-classique .classique-stats h1 {
+  font-size: 14px;
+  font-weight: normal;
+  font-family: 'AJensonPro';
+  color: #191813;
+  margin: 4px 0 0 0;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+  margin-top: 8px;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .vk-aspect {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");

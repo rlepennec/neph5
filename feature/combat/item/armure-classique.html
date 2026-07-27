@@ -1,74 +1,34 @@
-<section class="item-root" data-drop="true">
+<section class="item-root style-classique">
 
-    <aside class="vk-aside"></aside>
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body">
+        <main class="classique-body">
 
-            <div class="vk-armure-layout">
+            <div class="classique-layout">
 
-                {{!-- 1. Bandeau : protection physique / magique --}}
-                <div class="vk-armure-stats-band">
-
-                    <div class="vk-armure-stat-block">
-                        <span class="vk-armure-stat-label">{{translate "physique"}}</span>
-                        <input
-                            class="vk-armure-stat-circle"
-                            type="number"
-                            name="system.physique"
-                            value="{{document.system.physique}}"
-                            {{#if document.sheet.locked}}disabled{{/if}}/>
-                    </div>
-
-                    <div class="vk-armure-sep"></div>
-
-                    <div class="vk-armure-stat-block">
-                        <span class="vk-armure-stat-label">{{translate "magique"}}</span>
-                        <input
-                            class="vk-armure-stat-circle"
-                            type="number"
-                            name="system.magique"
-                            value="{{document.system.magique}}"
-                            {{#if document.sheet.locked}}disabled{{/if}}/>
-                    </div>
-
+                <div class="classique-stats">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="physique" name="system.physique" value=document.system.physique }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="magique" name="system.magique" value=document.system.magique }}
                 </div>
 
-                {{!-- 2. Corps : description (gauche) + illustration (droite) --}}
-                <div class="vk-armure-body">
-
-                    <div class="vk-armure-desc-col">
-                        <div class="vk-armure-glass-box">
-                            <div class="vk-armure-editor">
-                                <prose-mirror
-                                    name="system.description"
-                                    button="true"
-                                    editable="{{editable}}"
-                                    toggled="false"
-                                    value="{{document.system.description}}">
-                                    {{{enrichedDescription}}}
-                                </prose-mirror>
-                            </div>
-                        </div>
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
                     </div>
-
-                    <div class="vk-armure-img-col">
-                        <div class="vk-armure-img-wrap">
-                            <img
-                                class="vk-armure-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                            <div class="vk-armure-img-inner">
-                                <div class="vk-armure-scan-overlay"></div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
