@@ -1,113 +1,84 @@
-<section class="item-root" data-drop="true">
 
-    <aside class="vk-aside"></aside>
+<section class="item-root style-classique" data-drop="true">
+
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body">
+        <main class="classique-body">
 
-            <div class="vk-layout">
+            <div class="classique-layout">
 
-                <div class="vk-split">
+                <div class="classique-head">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre" value=document.system.degre }}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="oeuvre" name="system.cercle"
+                        value=document.system.cercle options=context.cercles }}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="substance" name="system.substance"
+                        value=document.system.substance options=context.substances }}
 
-                    {{!-- GAUCHE : vidéo + badges --}}
-                    <div class="vk-fm-left">
+                    {{#if (eq system.cercle "oeuvreAuRouge")}}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="element" name="system.elements.[0]"
+                        value=document.system.elements.[0] options=context.elementsGS }}
+                    {{else}}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="element" name="system.elements.[0]"
+                        value=document.system.elements.[0] options=context.elements }}
+                    {{/if}}
 
-                        <div class="vk-fm-video-wrap">
-                            <video class="vk-fm-video"
-                                   src="systems/neph5e/assets/vk/formules/{{document.system.cercle}}.webm"
-                                   autoplay muted loop playsinline preload="auto"></video>
-                            <div class="vk-fm-vignette"></div>
-                        </div>
+                    {{#if (eq system.cercle "oeuvreAuBlanc")}}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="element" name="system.elements.[1]"
+                        value=document.system.elements.[1] options=context.elements }}
+                    {{/if}}
+                </div>
 
-                        <div class="vk-fm-badges">
-                            <div class="vk-fm-badge">
-                                <span class="vk-fm-badge-label">{{translate "substance"}}</span>
-                                <span class="vk-fm-badge-value">{{document.system.substance}}</span>
-                            </div>
-                            <div class="vk-fm-badge vk-fm-badge-cercle">
-                                {{document.system.cercle}}
-                            </div>
-                        </div>
+                <div class="classique-fields">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="enonce" name="system.enonce" value=document.system.enonce }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="aire" name="system.aire" value=document.system.aire }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="duree" name="system.duree" value=document.system.duree }}
 
+                    {{#if (eq system.cercle "oeuvreAuRouge")}}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="echec" name="system.echec" value=document.system.echec }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="maladresse" name="system.maladresse" value=document.system.maladresse }}
+                    {{/if}}
+                </div>
+
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="variantes" values=document.system.variantes names="system.variantes" }}
+
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="catalyseurs" values=document.system.catalyseurs names="system.catalyseurs" }}
+
+                {{#if (nonNull difficulty)}}
+                <div class="classique-difficulty">
+                    <span>{{translate "difficulte"}} :</span>
+                    <span>{{difficulty}}0%{{#if (eq item.system.elements.[0] 'quintuple')}} plus l'élément{{/if}}</span>
+                </div>
+                {{/if}}
+
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
                     </div>
-
-                    {{!-- DROITE : champs + listes + description --}}
-                    <div class="vk-fm-right">
-
-                        <div class="vk-box vk-fm-fields">
-
-                            <div class="vk-fields">
-                                {{> "systems/neph5e/templates/select.hbs"
-                                    title="oeuvre" name="system.cercle"
-                                    value=document.system.cercle options=context.cercles }}
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="degre" name="system.degre" value=document.system.degre }}
-                            </div>
-
-                            <div class="vk-fields">
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="substance" name="system.substance" value=document.system.substance }}
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="quantite" name="system.quantite" value=document.system.quantite }}
-                            </div>
-
-                            <div class="vk-fields">
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="aire" name="system.aire" value=document.system.aire }}
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="duree" name="system.duree" value=document.system.duree }}
-                            </div>
-
-                            {{> "systems/neph5e/templates/input.hbs"
-                                title="enonce" name="system.enonce" value=document.system.enonce }}
-
-                            <div class="vk-fields">
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="echec" name="system.echec" value=document.system.echec }}
-                                {{> "systems/neph5e/templates/input.hbs"
-                                    title="maladresse" name="system.maladresse" value=document.system.maladresse }}
-                            </div>
-
-                        </div>
-
-                        <div class="vk-fm-lists">
-
-                            <div class="vk-box vk-fm-list">
-                                {{> "systems/neph5e/templates/list.hbs"
-                                    title="variantes"
-                                    values=document.system.variantes
-                                    names="system.variantes"
-                                }}
-                            </div>
-
-                            <div class="vk-box vk-fm-list">
-                                {{> "systems/neph5e/templates/list.hbs"
-                                    title="catalyseurs"
-                                    values=document.system.catalyseurs
-                                    names="system.catalyseurs"
-                                }}
-                            </div>
-
-                        </div>
-
-                        <div class="vk-box vk-fm-desc">
-                            <div class="vk-editor">
-                                <prose-mirror
-                                    name="system.description"
-                                    button="true"
-                                    editable="{{editable}}"
-                                    toggled="false"
-                                    value="{{document.system.description}}">
-                                    {{{enrichedDescription}}}
-                                </prose-mirror>
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
 
             </div>

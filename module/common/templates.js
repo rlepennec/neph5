@@ -42,8 +42,6 @@ export const preloadTemplates = async function () {
         // Item parts
         "systems/neph5e/templates/item/parts/header/number.hbs",
 
-        "systems/neph5e/feature/alchimie/item/alchimie.html",
-
 
         // New reboot
         "systems/neph5e/templates/chronology.hbs",

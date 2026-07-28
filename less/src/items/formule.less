@@ -1,4 +1,18 @@
-.item-root {
+// ════════════════════════════════════════════════════════════════
+//  Fiche formule — deux looks scopés par la classe de la <section>
+//  .style-ashbury   : look "Vision Ka'Sh" (vidéo + badges, orichalque)
+//  .style-classique : look système v12
+// ════════════════════════════════════════════════════════════════
+
+.item-formule {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 1 — Look ASHBURY (orichalque)
+// ─────────────────────────────────────────────
+.item-root.style-ashbury {
 
     .vk-fm-left {
         flex: 0 0 34%;
@@ -122,4 +136,162 @@
         border-color: rgba(201, 146, 58, 0.40);
     }
 
+    // <select> : couleur des options (sinon invisibles sur fond sombre).
+    select option {
+        color: #1a1a1a;
+        background-color: #ffffff;
+    }
+
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 2 — Look CLASSIQUE (système v12)
+// ─────────────────────────────────────────────
+.item-root.style-classique {
+
+    aside {
+        flex: 0 0 auto;
+        width: 41px;
+        background-image: var(--vk-side-classique, none);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: top center;
+        box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+    }
+
+    .classique-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        font-family: 'AJensonPro';
+        font-size: 16px;
+        color: #191813;
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+    }
+
+    .classique-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px 20px;
+        gap: 10px;
+        overflow-y: auto;
+    }
+
+    // Bandeau : degré + œuvre + substance + élément(s). display:block.
+    .classique-head {
+        display: block;
+        flex-shrink: 0;
+        text-align: center;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #151156;
+
+        select {
+            outline: 0;
+            background-color: transparent;
+            min-width: 150px;
+            height: 35px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            text-align-last: center;
+            color: #191813;
+            border: 1px solid #151156;
+            border-radius: 10px;
+            box-shadow: 0 0 4px 1px #414048 inset;
+
+            option {
+                background-color: antiquewhite;
+                color: #191813;
+                text-align: center;
+            }
+        }
+
+        input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            color: #191813;
+            border: 1px solid #151156;
+            border-radius: 50%;
+            box-shadow: 0 0 4px 1px #414048 inset;
+            background: transparent;
+        }
+
+        h1 {
+            font-weight: bold;
+            font-family: 'AJensonPro';
+            margin: 0 0 4px 0;
+            color: #191813;
+        }
+    }
+
+    // Champs texte (énoncé, aire, durée, échec, maladresse).
+    .classique-fields {
+        font-family: 'AJensonPro';
+        color: #191813;
+
+        h1 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 8px 0 2px 0;
+        }
+
+        input {
+            border: 0;
+            background: transparent;
+            color: #191813;
+            width: 100%;
+        }
+    }
+
+    // Difficulté.
+    .classique-difficulty {
+        display: flex;
+        gap: 6px;
+        margin: 8px 0;
+        font-family: 'AJensonPro';
+        color: #191813;
+
+        span:first-child {
+            font-weight: bold;
+        }
+    }
+
+    .classique-desc-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 120px;
+    }
+
+    .classique-title {
+        margin: 0 0 6px 0;
+        font-weight: bold;
+        font-family: 'AJensonPro';
+        font-size: 18px;
+        color: #191813;
+    }
+
+    .classique-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        font-family: 'AJensonProLtDisp';
+        font-size: 16px;
+        color: #191813;
+    }
+}
+
+// Bandeau supérieur (window-header) du look classique : fond parchemin v12.
+form.application.sheet.item:has(.style-classique) > .window-header {
+    background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+    box-shadow: 0 0 6px 2px #f5f4f4 inset;
+    color: #f5f4f4;
+
+    .window-title {
+        font-family: 'NightjarDemi';
+    }
 }

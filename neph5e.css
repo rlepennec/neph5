@@ -8407,14 +8407,17 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.item-root .vk-fm-left {
+.item-formule {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
+}
+.item-root.style-ashbury .vk-fm-left {
   flex: 0 0 34%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-height: 0;
 }
-.item-root .vk-fm-video-wrap {
+.item-root.style-ashbury .vk-fm-video-wrap {
   position: relative;
   width: 100%;
   flex: 1;
@@ -8423,7 +8426,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.75);
 }
-.item-root .vk-fm-video-wrap::before {
+.item-root.style-ashbury .vk-fm-video-wrap::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -8432,27 +8435,27 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   pointer-events: none;
   z-index: 3;
 }
-.item-root .vk-fm-video {
+.item-root.style-ashbury .vk-fm-video {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: none;
 }
-.item-root .vk-fm-vignette {
+.item-root.style-ashbury .vk-fm-vignette {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.65) 100%);
 }
-.item-root .vk-fm-badges {
+.item-root.style-ashbury .vk-fm-badges {
   display: flex;
   flex-direction: column;
   gap: 8px;
   flex-shrink: 0;
 }
-.item-root .vk-fm-badge {
+.item-root.style-ashbury .vk-fm-badge {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8462,17 +8465,17 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: 20px;
   font-family: "AJensonProLtDisp", serif;
 }
-.item-root .vk-fm-badge-label {
+.item-root.style-ashbury .vk-fm-badge-label {
   font-size: 0.76em;
   font-weight: bold;
   color: rgba(232, 184, 109, 0.85);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.item-root .vk-fm-badge-value {
+.item-root.style-ashbury .vk-fm-badge-value {
   color: #E8B86D;
 }
-.item-root .vk-fm-badge-cercle {
+.item-root.style-ashbury .vk-fm-badge-cercle {
   justify-content: center;
   background: linear-gradient(135deg, rgba(201, 146, 58, 0.42), rgba(92, 61, 16, 0.62));
   border-color: #C9923A;
@@ -8480,7 +8483,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "NightjarDemi", serif;
   text-shadow: 0 0 8px rgba(232, 184, 109, 0.55);
 }
-.item-root .vk-fm-right {
+.item-root.style-ashbury .vk-fm-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -8488,29 +8491,156 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   min-height: 0;
   overflow-y: auto;
 }
-.item-root .vk-fm-fields {
+.item-root.style-ashbury .vk-fm-fields {
   flex: 0 0 auto;
   gap: 8px;
   background: rgba(12, 7, 2, 0.82);
   border-color: rgba(201, 146, 58, 0.4);
 }
-.item-root .vk-fm-lists {
+.item-root.style-ashbury .vk-fm-lists {
   display: flex;
   flex-direction: row;
   gap: 10px;
   flex: 0 0 auto;
 }
-.item-root .vk-fm-list {
+.item-root.style-ashbury .vk-fm-list {
   flex: 1;
   min-height: 110px;
   background: rgba(12, 7, 2, 0.82);
   border-color: rgba(201, 146, 58, 0.4);
 }
-.item-root .vk-fm-desc {
+.item-root.style-ashbury .vk-fm-desc {
   flex: 1;
   min-height: 150px;
   background: rgba(12, 7, 2, 0.82);
   border-color: rgba(201, 146, 58, 0.4);
+}
+.item-root.style-ashbury select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.item-root.style-classique .classique-head {
+  display: block;
+  flex-shrink: 0;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-head select {
+  outline: 0;
+  background-color: transparent;
+  min-width: 150px;
+  height: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #414048 inset;
+}
+.item-root.style-classique .classique-head select option {
+  background-color: antiquewhite;
+  color: #191813;
+  text-align: center;
+}
+.item-root.style-classique .classique-head input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px #414048 inset;
+  background: transparent;
+}
+.item-root.style-classique .classique-head h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  margin: 0 0 4px 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-fields {
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-fields h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0 2px 0;
+}
+.item-root.style-classique .classique-fields input {
+  border: 0;
+  background: transparent;
+  color: #191813;
+  width: 100%;
+}
+.item-root.style-classique .classique-difficulty {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-difficulty span:first-child {
+  font-weight: bold;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-root .vk-hab-body {
   position: relative;
