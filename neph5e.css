@@ -8740,30 +8740,33 @@ form.application.sheet.item:has(.style-classique) > .window-header {
 form.application.sheet.item:has(.style-classique) > .window-header .window-title {
   font-family: 'NightjarDemi';
 }
-.item-root .vk-hab-body {
+.item-habitus {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-habitus.webp");
+}
+.item-root.style-ashbury .vk-hab-body {
   position: relative;
   overflow: hidden;
 }
-.item-root .vk-hab-bg-wrap {
+.item-root.style-ashbury .vk-hab-bg-wrap {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
-.item-root .vk-hab-bg {
+.item-root.style-ashbury .vk-hab-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: none;
   cursor: pointer;
 }
-.item-root .vk-hab-tint {
+.item-root.style-ashbury .vk-hab-tint {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.82)), var(--vk-grad, none);
   mix-blend-mode: multiply;
 }
-.item-root .vk-hab-hexgrid {
+.item-root.style-ashbury .vk-hab-hexgrid {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -8772,7 +8775,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='46'%3E%3Cpath d='M20 1 L38 11 L38 33 L20 44 L2 33 L2 11 Z' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='0.6'/%3E%3C/svg%3E");
   background-repeat: repeat;
 }
-.item-root .vk-hab-content {
+.item-root.style-ashbury .vk-hab-content {
   position: relative;
   z-index: 2;
   display: flex;
@@ -8783,7 +8786,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   padding: 15px 20px;
   min-height: 0;
 }
-.item-root .vk-hab-panel {
+.item-root.style-ashbury .vk-hab-panel {
   display: block;
   flex: 0 0 44%;
   min-height: 0;
@@ -8795,11 +8798,11 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   color: #ffffff;
 }
-.item-root .vk-hab-panel select option {
+.item-root.style-ashbury .vk-hab-panel select option {
   color: #1a1a1a;
   background-color: #ffffff;
 }
-.item-root .vk-hab-title {
+.item-root.style-ashbury .vk-hab-title {
   margin: 0 0 10px 0;
   padding-bottom: 4px;
   text-align: center;
@@ -8808,7 +8811,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: #f0f0f0;
   border-bottom: 1px solid var(--vk-glow, rgba(255, 255, 255, 0.3));
 }
-.item-root .vk-hab-difficulty {
+.item-root.style-ashbury .vk-hab-difficulty {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
@@ -8817,7 +8820,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   color: var(--vk-glow, #e0e0e0);
 }
-.item-root .vk-hab-desc {
+.item-root.style-ashbury .vk-hab-desc {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -8829,7 +8832,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   overflow: hidden;
 }
-.item-root .vk-hab-editor {
+.item-root.style-ashbury .vk-hab-editor {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -8838,6 +8841,129 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.item-root.style-classique .classique-head {
+  display: block;
+  flex-shrink: 0;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-head select {
+  outline: 0;
+  background-color: transparent;
+  min-width: 150px;
+  height: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #414048 inset;
+}
+.item-root.style-classique .classique-head select option {
+  background-color: antiquewhite;
+  color: #191813;
+  text-align: center;
+}
+.item-root.style-classique .classique-head input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px #414048 inset;
+  background: transparent;
+}
+.item-root.style-classique .classique-head h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  margin: 0 0 4px 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-fields {
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-fields h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0 2px 0;
+}
+.item-root.style-classique .classique-fields input {
+  border: 0;
+  background: transparent;
+  color: #191813;
+  width: 100%;
+}
+.item-root.style-classique .difficulte {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .difficulte span:first-child {
+  font-weight: bold;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-invocation {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
