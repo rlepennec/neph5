@@ -1,91 +1,58 @@
-<section class="item-root">
 
-    <aside class="vk-aside"></aside>
+<section class="item-root style-classique">
+
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body">
+        <main class="classique-body">
 
-            <div class="vk-layout">
+            <div class="classique-layout">
 
-                <div class="vk-split">
+                <div class="classique-head">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre" name="system.degre" value=document.system.degre }}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="sephirah" name="system.sephirah"
+                        value=document.system.sephirah options=context.cercles }}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="monde" name="system.monde"
+                        value=document.system.monde options=context.mondes }}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="element" name="system.element"
+                        value=document.system.element options=context.elements }}
+                </div>
 
-                    {{!-- GAUCHE : séphirah --}}
-                    <div class="vk-inv-left">
-                        <div class="vk-inv-sephirah-wrap">
-                            <img
-                                class="vk-inv-sephirah-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.system.sephirah}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                            <div class="vk-inv-vignette"></div>
-                        </div>
+                <div class="classique-fields">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="portee" name="system.portee" value=document.system.portee }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="duree" name="system.duree" value=document.system.duree }}
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="visibilite" name="system.visibilite" value=document.system.visibilite }}
+                </div>
+
+                {{#if (nonNull difficulty)}}
+                <div class="classique-difficulty">
+                    <span>{{translate "difficulte"}} :</span>
+                    <span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
+                </div>
+                {{/if}}
+
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
                     </div>
-
-                    {{!-- CENTRE : caractéristiques --}}
-                    <div class="vk-inv-center">
-
-                        <div class="vk-box">
-                            <h3 class="vk-box-title">{{translate "invocation"}}</h3>
-
-                            {{> "systems/neph5e/templates/select.hbs"
-                                title="sephirah" name="system.sephirah"
-                                value=document.system.sephirah options=context.sephiroth }}
-
-                            {{> "systems/neph5e/templates/select.hbs"
-                                title="monde" name="system.monde"
-                                value=document.system.monde options=context.mondes }}
-
-                            {{> "systems/neph5e/templates/select.hbs"
-                                title="element" name="system.element"
-                                value=document.system.element options=context.elements }}
-
-                            <div class="vk-fields">
-                                <div class="vk-stat">
-                                    <input class="vk-stat-input" type="number" name="system.degre"
-                                           value="{{document.system.degre}}"
-                                           {{#if document.sheet.locked}}disabled{{/if}}/>
-                                    <label>{{translate "degre"}}</label>
-                                </div>
-                            </div>
-
-                            {{> "systems/neph5e/templates/input.hbs"
-                                title="portee" name="system.portee" value=document.system.portee }}
-
-                            {{> "systems/neph5e/templates/input.hbs"
-                                title="duree" name="system.duree" value=document.system.duree }}
-
-                            {{> "systems/neph5e/templates/input.hbs"
-                                title="visibilite" name="system.visibilite" value=document.system.visibilite }}
-
-                            {{#if (nonNull difficulty)}}
-                            <div class="vk-inv-difficulty">
-                                <span>{{translate "difficulte"}} :</span>
-                                <span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
-                            </div>
-                            {{/if}}
-
-                        </div>
-
-                    </div>
-
-                    {{!-- DROITE : description --}}
-                    <div class="vk-box vk-inv-right">
-                        <div class="vk-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>

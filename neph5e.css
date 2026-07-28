@@ -8741,21 +8741,79 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.item-root .vk-inv-left {
+.item-invocation {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
+}
+.item-root.style-ashbury .vk-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+  padding: 15px 20px;
+  min-height: 0;
+  overflow: hidden;
+}
+.item-root.style-ashbury .vk-split {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: 20px;
+  min-height: 0;
+}
+.item-root.style-ashbury .vk-box {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 12px;
+  background: rgba(30, 30, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.item-root.style-ashbury .vk-box-title {
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  text-align: center;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.15em;
+  color: #f0f0f0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.item-root.style-ashbury .vk-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 5px;
+  color: #ffffff;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.item-root.style-ashbury .vk-fields {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.item-root.style-ashbury .vk-fields > * {
+  flex: 1;
+}
+.item-root.style-ashbury .vk-inv-left {
   flex: 0 0 26%;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 0;
 }
-.item-root .vk-inv-sephirah-wrap {
+.item-root.style-ashbury .vk-inv-sephirah-wrap {
   position: relative;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
 }
-.item-root .vk-inv-sephirah-img {
+.item-root.style-ashbury .vk-inv-sephirah-img {
   display: block;
   width: 100%;
   height: auto;
@@ -8764,26 +8822,26 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   cursor: pointer;
   filter: drop-shadow(0 0 10px var(--vk-glow, rgba(255, 255, 255, 0.3)));
 }
-.item-root .vk-inv-vignette {
+.item-root.style-ashbury .vk-inv-vignette {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
 }
-.item-root .vk-inv-center {
+.item-root.style-ashbury .vk-inv-center {
   flex: 0 0 32%;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
-.item-root .vk-inv-center > .vk-box {
+.item-root.style-ashbury .vk-inv-center > .vk-box {
   flex: 1;
   overflow-y: auto;
 }
-.item-root .vk-inv-right {
+.item-root.style-ashbury .vk-inv-right {
   flex: 1;
 }
-.item-root .vk-inv-difficulty {
+.item-root.style-ashbury .vk-inv-difficulty {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
@@ -8792,20 +8850,20 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   color: var(--vk-glow, #e0e0e0);
 }
-.item-root .vk-stat {
+.item-root.style-ashbury .vk-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
 }
-.item-root .vk-stat label {
+.item-root.style-ashbury .vk-stat label {
   font-family: "AJensonProLtDisp", serif;
   font-size: 0.76em;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
 }
-.item-root .vk-stat-input {
+.item-root.style-ashbury .vk-stat-input {
   width: 44px;
   height: 44px;
   text-align: center;
@@ -8819,10 +8877,137 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
   -moz-appearance: textfield;
 }
-.item-root .vk-stat-input::-webkit-inner-spin-button,
-.item-root .vk-stat-input::-webkit-outer-spin-button {
+.item-root.style-ashbury .vk-stat-input::-webkit-inner-spin-button,
+.item-root.style-ashbury .vk-stat-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.item-root.style-ashbury select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.item-root.style-classique .classique-head {
+  display: block;
+  flex-shrink: 0;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-head select {
+  outline: 0;
+  background-color: transparent;
+  min-width: 150px;
+  height: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #414048 inset;
+}
+.item-root.style-classique .classique-head select option {
+  background-color: antiquewhite;
+  color: #191813;
+  text-align: center;
+}
+.item-root.style-classique .classique-head input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px #414048 inset;
+  background: transparent;
+}
+.item-root.style-classique .classique-head h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  margin: 0 0 4px 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-fields {
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-fields h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 8px 0 2px 0;
+}
+.item-root.style-classique .classique-fields input {
+  border: 0;
+  background: transparent;
+  color: #191813;
+  width: 100%;
+}
+.item-root.style-classique .classique-difficulty {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-difficulty span:first-child {
+  font-weight: bold;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-magie {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-magie.webp");
