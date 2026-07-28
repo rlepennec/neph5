@@ -3488,11 +3488,11 @@
 }
 @font-face {
   font-family: "Nightjar";
-  src: url("../../assets/fonts/T-26 - Nightjar Regular.ttf");
+  src: url("../../assets/fonts/T-26-Nightjar-Regular.ttf");
 }
 @font-face {
   font-family: "NightjarDemi";
-  src: url("../../assets/fonts/T-26 - Nightjar Demi.ttf");
+  src: url("../../assets/fonts/T-26-Nightjar-Demi.ttf");
 }
 .expanse {
   height: 100%;
@@ -8104,7 +8104,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-competence {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-competence.webp");
 }
-.item-root.style-ashbury .vk-layout {
+.item-root.style-ashbury div.vk-layout {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -8257,7 +8257,7 @@ form.nephilim.item section.window-content > section.style-ashbury article main h
 }
 .item-root.style-classique .classique-layout {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex: 1;
   min-height: 0;
   padding: 10px 20px;
