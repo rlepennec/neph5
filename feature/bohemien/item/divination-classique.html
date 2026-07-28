@@ -1,45 +1,27 @@
-<section class="item-root">
 
-    <aside class="vk-aside"></aside>
+<section class="item-root style-classique">
+
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body vk-div-body">
+        <main class="classique-body">
 
-            {{!-- Illustration en fond, teintée --}}
-            <div class="vk-div-bg-wrap">
-                <img class="vk-div-bg"
-                     src="{{document.system.illustration}}"
-                     title="{{document.name}}"
-                     data-edit="system.illustration"
-                     data-action="editImage"/>
-                <div class="vk-div-tint"></div>
-            </div>
+            <div class="classique-layout">
 
-            <div class="vk-div-hexgrid"></div>
-
-            <div class="vk-div-content">
-
-                {{!-- GAUCHE : caractéristiques --}}
-                <div class="vk-div-panel">
-
-                    <h3 class="vk-div-title">{{translate "divination"}}</h3>
-
+                <div class="classique-head">
                     {{> "systems/neph5e/templates/select.hbs"
-                        title="augure" name="system.cercle"
+                        title="branche" name="system.cercle"
                         value=document.system.cercle options=context.cercles }}
-
                     {{> "systems/neph5e/templates/input.hbs"
-                        title="degre" name="system.degre"
-                        value=document.system.degre }}
-
+                        title="degre" name="system.degre" value=document.system.degre }}
                 </div>
 
-                {{!-- DROITE : description --}}
-                <div class="vk-div-desc">
-                    <div class="vk-div-editor">
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
                         <prose-mirror
                             name="system.description"
                             button="true"
