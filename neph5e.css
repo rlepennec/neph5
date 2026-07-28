@@ -9475,13 +9475,16 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
+.item-periode {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-periode.webp");
+}
 .vk-periode {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
-.vk-periode .item-root h1 {
+.item-root.style-ashbury h1 {
   font-size: 16px;
 }
-.item-root .vk-per-head {
+.item-root.style-ashbury .vk-per-head {
   display: block;
   flex-shrink: 0;
   padding: 8px 14px;
@@ -9491,14 +9494,14 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
-.item-root .vk-per-left {
+.item-root.style-ashbury .vk-per-left {
   flex: 0 0 45%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-height: 0;
 }
-.item-root .vk-per-img-wrap {
+.item-root.style-ashbury .vk-per-img-wrap {
   position: relative;
   width: 100%;
   flex-shrink: 0;
@@ -9506,14 +9509,14 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
 }
-.item-root .vk-per-img-wrap::after {
+.item-root.style-ashbury .vk-per-img-wrap::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: linear-gradient(180deg, rgba(90, 60, 20, 0.1) 0%, rgba(20, 15, 5, 0.45) 100%);
 }
-.item-root .vk-per-img {
+.item-root.style-ashbury .vk-per-img {
   display: block;
   width: 100%;
   max-height: 240px;
@@ -9522,26 +9525,26 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   cursor: pointer;
   filter: sepia(0.25) contrast(1.05);
 }
-.item-root .vk-per-bloc {
+.item-root.style-ashbury .vk-per-bloc {
   flex: 1;
   min-height: 120px;
   border-style: dashed;
   border-color: rgba(255, 255, 255, 0.25);
   transition: border-color 0.25s, background 0.25s;
 }
-.item-root .vk-per-bloc:hover {
+.item-root.style-ashbury .vk-per-bloc:hover {
   border-color: var(--vk-glow, rgba(255, 255, 255, 0.5));
   background: rgba(40, 40, 40, 0.7);
 }
-.item-root .vk-per-bloc ul,
-.item-root .vk-per-bloc ol {
+.item-root.style-ashbury .vk-per-bloc ul,
+.item-root.style-ashbury .vk-per-bloc ol {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   color: #ffffff;
   font-family: "AJensonProLtDisp", serif;
 }
-.item-root .vk-per-bloc li {
+.item-root.style-ashbury .vk-per-bloc li {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -9550,8 +9553,110 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background: rgba(0, 0, 0, 0.35);
   border-radius: 5px;
 }
-.item-root .vk-per-right {
+.item-root.style-ashbury .vk-per-right {
   flex: 1;
+}
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.item-root.style-classique .classique-head {
+  display: block;
+  flex-shrink: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-head h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  margin: 0 0 2px 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-head input {
+  border: 0;
+  background: transparent;
+  color: #191813;
+  font-family: 'AJensonPro';
+}
+.item-root.style-classique .classique-vecus {
+  list-style: none;
+  columns: 2;
+  padding: 0;
+  margin: 8px 0;
+  border-bottom: 1px solid #151156;
+  padding-bottom: 8px;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-vecus li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  break-inside: avoid;
+  margin-bottom: 2px;
+}
+.item-root.style-classique .classique-vecus .delete-vecu {
+  color: indianred;
+  cursor: pointer;
+}
+.item-root.style-classique .classique-vecus .hoverable {
+  cursor: pointer;
+}
+.item-root.style-classique .classique-vecus .hoverable:hover {
+  text-decoration: underline;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-quete {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
@@ -10389,10 +10494,13 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.item-root h1 {
+.item-vecu {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
+}
+.item-root.style-ashbury h1 {
   font-size: 16px;
 }
-.item-root .vk-vecu-head {
+.item-root.style-ashbury .vk-vecu-head {
   display: block;
   flex-shrink: 0;
   padding: 8px 14px;
@@ -10402,14 +10510,14 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
-.item-root .vk-vecu-left {
+.item-root.style-ashbury .vk-vecu-left {
   flex: 0 0 40%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-height: 0;
 }
-.item-root .vk-vecu-img-wrap {
+.item-root.style-ashbury .vk-vecu-img-wrap {
   position: relative;
   width: 100%;
   flex-shrink: 0;
@@ -10417,7 +10525,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   overflow: hidden;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
 }
-.item-root .vk-vecu-img-wrap::before {
+.item-root.style-ashbury .vk-vecu-img-wrap::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -10426,7 +10534,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
   animation: vk-light-scan 8s linear infinite;
 }
-.item-root .vk-vecu-img {
+.item-root.style-ashbury .vk-vecu-img {
   display: block;
   width: 100%;
   max-height: 220px;
@@ -10435,37 +10543,37 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-radius: 8px;
   cursor: pointer;
 }
-.item-root .vk-vecu-competences {
+.item-root.style-ashbury .vk-vecu-competences {
   flex: 1;
   min-height: 100px;
 }
-.item-root .vk-vecu-right {
+.item-root.style-ashbury .vk-vecu-right {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
   min-height: 0;
 }
-.item-root .vk-vecu-degre {
+.item-root.style-ashbury .vk-vecu-degre {
   flex: 0 0 auto;
 }
-.item-root .vk-vecu-degre table {
+.item-root.style-ashbury .vk-vecu-degre table {
   width: 100%;
   color: #ffffff;
   font-family: "AJensonProLtDisp", serif;
 }
-.item-root .vk-vecu-degre th {
+.item-root.style-ashbury .vk-vecu-degre th {
   font-family: "NightjarDemi", serif;
   color: var(--vk-glow, #e0e0e0);
 }
-.item-root .vk-vecu-degre td {
+.item-root.style-ashbury .vk-vecu-degre td {
   text-align: center;
   font-size: 1.2em;
 }
-.item-root .vk-vecu-mnemos {
+.item-root.style-ashbury .vk-vecu-mnemos {
   flex: 1;
 }
-.item-root .vk-vecu-mnemos-list {
+.item-root.style-ashbury .vk-vecu-mnemos-list {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -10473,7 +10581,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: #ffffff;
   font-family: "AJensonProLtDisp", serif;
 }
-.item-root .vk-vecu-mnemos-list li {
+.item-root.style-ashbury .vk-vecu-mnemos-list li {
   padding: 6px 8px;
   margin-bottom: 6px;
   background: rgba(0, 0, 0, 0.35);
@@ -10482,26 +10590,185 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
 }
-.item-root .vk-vecu-mnemos-list li:hover {
+.item-root.style-ashbury .vk-vecu-mnemos-list li:hover {
   background: rgba(0, 0, 0, 0.5);
   border-color: var(--vk-glow, rgba(255, 255, 255, 0.4));
 }
-.item-root .vk-vecu-mnemos-list li label {
+.item-root.style-ashbury .vk-vecu-mnemos-list li label {
   margin-right: 8px;
 }
-.item-root .vk-vecu-desc {
+.item-root.style-ashbury .vk-vecu-desc {
   flex: 1;
 }
-.vk-vecu .vk-comp-banner {
-  width: 420px;
+.item-root.style-classique aside {
+  flex: 0 0 auto;
+  width: 41px;
+  background-image: var(--vk-side-classique, none);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: top center;
+  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+}
+.item-root.style-classique .classique-body {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  font-size: 16px;
+  color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique .classique-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px;
+  gap: 10px;
+  overflow-y: auto;
+}
+.item-root.style-classique .classique-head {
+  display: block;
+  flex-shrink: 0;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-head select {
+  outline: 0;
+  background-color: transparent;
+  min-width: 160px;
+  height: 35px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align-last: center;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 1px #414048 inset;
+}
+.item-root.style-classique .classique-head select option {
+  background-color: antiquewhite;
+  color: #191813;
+  text-align: center;
+}
+.item-root.style-classique .classique-head h1 {
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  margin: 0 0 4px 0;
+  color: #191813;
+}
+.item-root.style-classique .classique-degre-table {
+  margin: 8px auto;
+  border-collapse: collapse;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-degre-table th {
+  font-weight: bold;
+  padding: 2px 16px;
+}
+.item-root.style-classique .classique-degre-table td {
+  text-align: center;
+  font-size: 18px;
+  padding: 2px 16px;
+}
+.item-root.style-classique .classique-competences {
+  list-style: none;
+  columns: 2;
+  padding: 0;
+  margin: 8px 0;
+  border-bottom: 1px solid #151156;
+  padding-bottom: 8px;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-competences li {
+  display: flex;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
-  padding: 6px 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  gap: 6px;
+  break-inside: avoid;
+  margin-bottom: 2px;
+}
+.item-root.style-classique .classique-competences .delete-competence {
+  color: indianred;
+  cursor: pointer;
+}
+.item-root.style-classique .classique-competences .hoverable {
+  cursor: pointer;
+}
+.item-root.style-classique .classique-competences .hoverable:hover {
+  text-decoration: underline;
+}
+.item-root.style-classique .classique-mnemos {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.item-root.style-classique .classique-mnemos > li {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+.item-root.style-classique .classique-mnemos .classique-mnemos-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.item-root.style-classique .classique-mnemos .delete-mnemos {
+  color: indianred;
+  cursor: pointer;
+}
+.item-root.style-classique .classique-mnemos .classique-mnemos-desc {
+  margin-top: 4px;
+  font-family: 'AJensonProLtDisp';
+}
+.item-root.style-classique .classique-mnemos .add-mnemos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: indianred;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: none;
+}
+.item-root.style-classique .classique-desc-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+.item-root.style-classique .classique-desc-embedded {
+  margin: 8px 0;
+  font-family: 'AJensonProLtDisp';
+  color: #191813;
+}
+.item-root.style-classique .classique-title {
+  margin: 0 0 6px 0;
+  font-weight: bold;
+  font-family: 'AJensonPro';
+  font-size: 18px;
+  color: #191813;
+}
+.item-root.style-classique .classique-editor {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-family: 'AJensonProLtDisp';
+  font-size: 16px;
+  color: #191813;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .item-arme {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");

@@ -1,116 +1,89 @@
-<section class="item-root" data-drop="true">
 
-    <aside class="vk-aside"></aside>
+<section class="item-root style-classique" data-drop="true">
+
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body">
+        <main class="classique-body">
 
-            <div class="vk-layout">
+            <div class="classique-layout">
 
-                <div class="vk-vecu-head">
+                <div class="classique-head">
                     {{> "systems/neph5e/templates/label.hbs"
                         title="periode"
                         placeholder="periode"
-                        value=document.system.periode
-                    }}
+                        value=document.system.periode }}
                     {{> "systems/neph5e/templates/select.hbs"
                         title="element"
                         name="system.element"
                         value=document.system.element
-                        options=context.elements
-                    }}
+                        options=context.elements }}
                 </div>
 
-                <div class="vk-split">
-
-                    {{!-- GAUCHE : illustration + compétences --}}
-                    <div class="vk-vecu-left">
-
-                        <div class="vk-vecu-img-wrap">
-                            <img
-                                class="vk-vecu-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
-
-                        <div class="vk-box vk-vecu-competences">
-                            {{> "systems/neph5e/templates/list.hbs"
-                                title="competences"
-                                values=document.system.competences
-                                names="system.competences"
-                            }}
-                        </div>
-
-                    </div>
-
-                    {{!-- DROITE : degré, mnémos ou description --}}
-                    <div class="vk-vecu-right">
-
-                        {{#if document.isEmbedded}}
-
-                        <div class="vk-box vk-vecu-degre">
-                            <table>
-                                <tr>
-                                    <th>{{localize "degre"}}</th>
-                                    <th>{{localize "sapience"}}</th>
-                                </tr>
-                                <tr>
-                                    <td>{{document.system.degre}}</td>
-                                    <td>{{getNextCost document.system.degre}}</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="vk-box vk-vecu-mnemos">
-                            <h3 class="vk-box-title">{{translate "mnemos"}}</h3>
-                            <ol class="vk-vecu-mnemos-list">
-
-                                {{#each system.mnemos as |mnemos|}}
-                                <li class="edit" data-item-id="{{@index}}" data-action="editMnemos">
-                                    <div>
-                                        <i class="fas fa-trash" data-action="deleteMnemos"></i>
-                                        <label>{{mnemos.degre}}</label>
-                                        <label>{{mnemos.name}}</label>
-                                    </div>
-                                    <div>
-                                        {{html mnemos.description}}
-                                    </div>
-                                </li>
-                                {{/each}}
-
-                                <li data-action="addMnemos">
-                                    <i class="fa-solid fa-circle-plus fa-1xl"></i>
-                                    <span>{{translate "mnemos"}}</span>
-                                </li>
-
-                            </ol>
-                        </div>
-
-                        {{else}}
-
-                        <div class="vk-box vk-vecu-desc">
-                            <div class="vk-editor">
-                                <prose-mirror
-                                    name="system.description"
-                                    button="true"
-                                    editable="{{editable}}"
-                                    toggled="false"
-                                    value="{{document.system.description}}">
-                                    {{{enrichedDescription}}}
-                                </prose-mirror>
-                            </div>
-                        </div>
-
-                        {{/if}}
-
-                    </div>
-
+                {{#if document.isEmbedded}}
+                <div class="classique-desc-embedded">
+                    {{{enrichedDescription}}}
                 </div>
+
+                <table class="classique-degre-table">
+                    <tr>
+                        <th>{{localize 'degre'}}</th>
+                        <th>{{localize 'sapience'}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{document.system.degre}}</td>
+                        <td>{{getNextCost document.system.degre}}</td>
+                    </tr>
+                </table>
+                {{/if}}
+
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="competences"
+                    values=document.system.competences
+                    names="system.competences" }}
+
+                {{#if document.isEmbedded}}
+                <ol class="classique-mnemos">
+
+                    {{#each system.mnemos as |mnemos|}}
+                    <li class="edit-mnemos" data-item-id="{{@index}}" data-action="editMnemos">
+                        <div class="classique-mnemos-head">
+                            <i class="fas fa-trash delete-mnemos" data-action="deleteMnemos"></i>
+                            <label>{{mnemos.degre}}</label>
+                            <label>{{mnemos.name}}</label>
+                        </div>
+                        <div class="classique-mnemos-desc">
+                            {{html mnemos.description}}
+                        </div>
+                    </li>
+                    {{/each}}
+
+                    <li class="add-mnemos" data-action="addMnemos">
+                        <i class="fa-solid fa-circle-plus fa-1xl"></i>
+                        <span>{{localize 'mnemos'}}</span>
+                    </li>
+
+                </ol>
+                {{/if}}
+
+                {{#unless document.isEmbedded}}
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
+                    </div>
+                </div>
+                {{/unless}}
 
             </div>
 

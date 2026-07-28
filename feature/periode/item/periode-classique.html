@@ -1,60 +1,40 @@
-<section class="item-root" data-drop="true">
 
-    <aside class="vk-aside"></aside>
+<section class="item-root style-classique" data-drop="true">
+
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body">
+        <main class="classique-body">
 
-            <div class="vk-layout">
+            <div class="classique-layout">
 
-                <div class="vk-per-head">
+                <div class="classique-head">
                     {{> "systems/neph5e/templates/input.hbs"
                         title="lieu" name="system.contexte" value=document.system.contexte }}
                     {{> "systems/neph5e/templates/input.hbs"
                         title="epoque" name="system.aube" value=document.system.aube }}
                 </div>
 
-                <div class="vk-split">
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="vecus"
+                    values=context.vecus
+                    names="vecus" }}
 
-                    {{!-- GAUCHE : illustration + vécus --}}
-                    <div class="vk-per-left">
-
-                        <div class="vk-per-img-wrap">
-                            <img
-                                class="vk-per-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
-
-                        <div class="vk-box vk-per-bloc">
-                            <h3 class="vk-box-title">{{translate "vecus"}}</h3>
-                            {{> "systems/neph5e/templates/list.hbs"
-                                values=context.vecus
-                                names="vecus"
-                            }}
-                        </div>
-
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
+                        <prose-mirror
+                            name="system.description"
+                            button="true"
+                            editable="{{editable}}"
+                            toggled="false"
+                            value="{{document.system.description}}">
+                            {{{enrichedDescription}}}
+                        </prose-mirror>
                     </div>
-
-                    {{!-- DROITE : description --}}
-                    <div class="vk-box vk-per-right">
-                        <div class="vk-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
