@@ -1,9 +1,22 @@
-// Thème de la voie de magie : pas de Ka, fond iridescent translucide.
+// ════════════════════════════════════════════════════════════════
+//  Fiche voie de magie — deux looks scopés par la classe de la <section>
+//  .style-ashbury   : look "Vision Ka'Sh"
+//  .style-classique : look système v12
+// ════════════════════════════════════════════════════════════════
+
+.item-magie {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-magie.webp");
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 1 — Look ASHBURY (Vision Ka'Sh)
+// ─────────────────────────────────────────────
 .vk-magie {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
 }
 
-.item-root {
+.item-root.style-ashbury {
 
     .vk-mag-layout {
         display: flex;
@@ -101,4 +114,75 @@
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     }
 
+}
+
+
+// ─────────────────────────────────────────────
+//  PARTIE 2 — Look CLASSIQUE (système v12)
+// ─────────────────────────────────────────────
+.item-root.style-classique {
+
+    aside {
+        flex: 0 0 auto;
+        width: 41px;
+        background-image: var(--vk-side-classique, none);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: top center;
+        box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+    }
+
+    .classique-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        font-family: 'AJensonPro';
+        font-size: 16px;
+        color: #191813;
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+    }
+
+    .classique-layout {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px 20px;
+        gap: 12px;
+    }
+
+    .classique-desc-box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .classique-title {
+        margin: 0 0 6px 0;
+        font-weight: bold;
+        font-family: 'AJensonPro';
+        font-size: 18px;
+        color: #191813;
+    }
+
+    .classique-editor {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        font-family: 'AJensonProLtDisp';
+        font-size: 16px;
+        color: #191813;
+    }
+}
+
+// Bandeau supérieur (window-header) du look classique : fond parchemin v12.
+form.application.sheet.item:has(.style-classique) > .window-header {
+    background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+    box-shadow: 0 0 6px 2px #f5f4f4 inset;
+    color: #f5f4f4;
+
+    .window-title {
+        font-family: 'NightjarDemi';
+    }
 }
