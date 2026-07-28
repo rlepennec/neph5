@@ -1,42 +1,27 @@
-<section class="item-root">
 
-    <aside class="vk-aside"></aside>
+<section class="item-root style-classique">
+
+    <aside></aside>
 
     <article>
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-body vk-atl-body">
+        <main class="classique-body">
 
-            <div class="vk-atl-bg-wrap">
-                <img class="vk-atl-bg"
-                     src="{{document.system.illustration}}"
-                     title="{{document.name}}"
-                     data-edit="system.illustration"
-                     data-action="editImage"/>
-                <div class="vk-atl-tint"></div>
-            </div>
+            <div class="classique-layout">
 
-            <div class="vk-atl-hexgrid"></div>
-
-            <div class="vk-atl-content">
-
-                <div class="vk-atl-panel">
-
-                    <h3 class="vk-atl-title">{{translate "atlanteide"}}</h3>
-
+                <div class="classique-head">
                     {{> "systems/neph5e/templates/select.hbs"
                         title="atlanteide" name="system.cercle"
                         value=document.system.cercle options=context.cercles }}
-
                     {{> "systems/neph5e/templates/input.hbs"
-                        title="degre" name="system.degre"
-                        value=document.system.degre }}
-
+                        title="degre" name="system.degre" value=document.system.degre }}
                 </div>
 
-                <div class="vk-atl-desc">
-                    <div class="vk-atl-editor">
+                <div class="classique-desc-box">
+                    <h1 class="classique-title">{{translate "description"}}</h1>
+                    <div class="classique-editor">
                         <prose-mirror
                             name="system.description"
                             button="true"
