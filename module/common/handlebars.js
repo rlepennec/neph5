@@ -102,6 +102,22 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
+     * @param html The HTML content to check.
+     * @returns true if the content is null or visually empty (only empty tags, whitespace or &nbsp;).
+     */
+    static isEmptyHtml(html) {
+        if (html == null) {
+            return true;
+        }
+        const text = String(html)
+            .replace(/<[^>]*>/g, '')
+            .replace(/&nbsp;/gi, ' ')
+            .replace(/&#160;/g, ' ')
+            .trim();
+        return text === '';
+    }
+
+    /**
      * @param collection The collection to watch.
      * @returns true if the collection is empty.
      */

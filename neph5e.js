@@ -167,6 +167,7 @@ Hooks.once("init", function () {
         getNextCost: CustomHandlebarsHelpers.getNextCost,
         isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
         isEmptyString: CustomHandlebarsHelpers.isEmptyString,
+        isEmptyHtml: CustomHandlebarsHelpers.isEmptyHtml,
         isContact: CustomHandlebarsHelpers.isContact,
         cercles: CustomHandlebarsHelpers.cercles,
         focus: CustomHandlebarsHelpers.focus,

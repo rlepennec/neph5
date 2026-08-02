@@ -1,5 +1,6 @@
 .skin-air {
-  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff), url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
+        url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -163,7 +164,8 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-air-crayon.webp");
 }
 .skin-eau {
-  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #0d273d;
   --font-editor-color: #191813;
@@ -491,7 +493,8 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-feu-crayon.webp");
 }
 .skin-lune {
-  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%), url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
+        url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #121212;
   --font-editor-color: #191813;
@@ -655,7 +658,8 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-lune-crayon.webp");
 }
 .skin-lune-noire {
-  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
+        url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -10438,7 +10442,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;

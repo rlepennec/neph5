@@ -368,6 +368,7 @@ export const NephilimMixinSheet = Base => {
 			context.isGM = game.user.isGM;
         	context.debug = game.settings.get('neph5e', 'debug');
 			context.locked = this.locked;
+			context.editable = this.isEditable && !this.locked;
 			context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
 				this.document.system.description,
 				{
@@ -386,8 +387,6 @@ export const NephilimMixinSheet = Base => {
 		async _onSubmit(event, form, formData) {
 			await this.document.update(formData.object);
 		}
-		
-
 
 		/**
 		 * 
