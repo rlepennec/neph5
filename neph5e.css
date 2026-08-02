@@ -3480,23 +3480,23 @@
 }
 @font-face {
   font-family: "AJensonPro";
-  src: url("../../assets/fonts/AJensonPro-Regular.otf");
+  src: url("../../systems/neph5e/assets/fonts/AJensonPro-Regular.otf");
 }
 @font-face {
   font-family: "AJensonProLtDisp";
-  src: url("../../assets/fonts/AJensonPro-LtDisp.otf");
+  src: url("../../systems/neph5e/assets/fonts/AJensonPro-LtDisp.otf");
 }
 @font-face {
   font-family: "MinionPro";
-  src: url("../../assets/fonts/MinionPro-Regular.otf");
+  src: url("../../systems/neph5e/assets/fonts/MinionPro-Regular.otf");
 }
 @font-face {
   font-family: "Nightjar";
-  src: url("../../assets/fonts/T-26-Nightjar-Regular.ttf");
+  src: url("../../systems/neph5e/assets/fonts/T-26-Nightjar-Regular.ttf");
 }
 @font-face {
   font-family: "NightjarDemi";
-  src: url("../../assets/fonts/T-26-Nightjar-Demi.ttf");
+  src: url("../../systems/neph5e/assets/fonts/T-26-Nightjar-Demi.ttf");
 }
 .expanse {
   height: 100%;

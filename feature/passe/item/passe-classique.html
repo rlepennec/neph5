@@ -12,21 +12,7 @@
 
                 {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
 
-                {{#if editable}}
-                <prose-mirror
-                    name="system.description"
-                    value="{{document.system.description}}"
-                    editable="true"
-                    button="true">
-                    {{{enrichedDescription}}}
-                </prose-mirror>
-                {{else}}
-                {{#if (isEmptyHtml document.system.description)}}
-                <span>{{translate "description"}}</span>
-                {{else}}
-                <div>{{{enrichedDescription}}}</div>
-                {{/if}}
-                {{/if}}
+                {{> "systems/neph5e/templates/description.hbs"}}
 
             </div>
 
