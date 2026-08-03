@@ -19,19 +19,9 @@
                     }}
                 </div>
 
-                <div class="classique-desc-box">
-                    <h3 class="classique-title">{{translate "description"}}</h3>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+                {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.vecu'}}
+
+                {{> "systems/neph5e/templates/description.hbs"}}
 
             </div>
 
