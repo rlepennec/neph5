@@ -127,6 +127,7 @@ export const NephilimMixinSheet = Base => {
 		 * @protected
 		 */
 		async _onRender(context, options) {
+			await super._onRender(context, options);
 			this.dragDrop.forEach((d) => d.bind(this.element));
 		}
 

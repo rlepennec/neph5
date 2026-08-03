@@ -1,21 +1,25 @@
 {{#if (nonNull readOnly)}}
 <table class="chronology">
-    <tr>
-        <th>{{localize title}}</th>
-        <th>{{translate "degre"}}</th>
-        <th>{{translate "sapience"}}</th>
-    </tr>
-    {{#each periodes as |periode|}}
-    <tr>
-        <td class="periode-name">{{periode.name}}</td>
-        <td class="periode">{{periode.degre}}</td>
-        <td class="periode">{{periode.sapiences}}</td>
-    </tr>
-    {{/each}}
-    <tr>
-        <td></td>
-        <td class="infos">{{degre}}</td>
-        <td class="infos">{{next}}</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>{{localize title}}</th>
+            <th>{{translate "degre"}}</th>
+            <th>{{translate "sapience"}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each periodes as |periode|}}
+        <tr>
+            <td class="periode-name">{{periode.name}}</td>
+            <td class="periode">{{periode.degre}}</td>
+            <td class="periode">{{periode.sapiences}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td>{{translate "periodeActuelle"}} / {{translate "periodeSuivante"}}</td>
+            <td class="infos">{{degre}}</td>
+            <td class="infos">{{next}}</td>
+        </tr>
+    </tbody>
 </table>
 {{/if}}

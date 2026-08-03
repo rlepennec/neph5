@@ -6352,7 +6352,7 @@ form.nephilim.item section.window-content > section aside.vk-aside {
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -6508,7 +6508,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -6699,7 +6699,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -7093,7 +7093,7 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -7418,7 +7418,7 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -7596,7 +7596,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -7783,7 +7783,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -7962,7 +7962,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -8098,7 +8098,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -8234,7 +8234,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -8432,7 +8432,7 @@ form.nephilim.item section.window-content > section.style-ashbury article main h
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
@@ -8612,7 +8612,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -8802,7 +8802,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -9012,7 +9012,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -9237,7 +9237,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -9505,7 +9505,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -9709,7 +9709,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -9820,7 +9820,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -10067,7 +10067,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -10273,7 +10273,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -10449,43 +10449,47 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background-position: top center;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
-.item-root.style-classique .classique-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-family: 'AJensonPro';
-  font-size: 16px;
-  color: #191813;
-  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
-}
-.item-root.style-classique .classique-layout {
+.item-root.style-classique main {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-height: 0;
   padding: 10px 20px;
   gap: 12px;
-}
-.item-root.style-classique .classique-desc-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-.item-root.style-classique .classique-title {
-  margin: 0 0 6px 0;
-  font-weight: bold;
   font-family: 'AJensonPro';
-  font-size: 18px;
-  color: #191813;
-}
-.item-root.style-classique .classique-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
+  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique main table.chronology {
+  width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 0.5em 0;
+}
+.item-root.style-classique main table.chronology th {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.item-root.style-classique main table.chronology tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.item-root.style-classique main table.chronology tr:nth-child(odd) {
+  background-color: transparent;
+}
+.item-root.style-classique main table.chronology tr th,
+.item-root.style-classique main table.chronology tr td {
+  text-align: center;
+}
+.item-root.style-classique main table.chronology tr th:nth-child(1),
+.item-root.style-classique main table.chronology tr td:nth-child(1) {
+  width: 70%;
+}
+.item-root.style-classique main table.chronology tr th:nth-child(2),
+.item-root.style-classique main table.chronology tr td:nth-child(2),
+.item-root.style-classique main table.chronology tr th:nth-child(3),
+.item-root.style-classique main table.chronology tr td:nth-child(3) {
+  width: 15%;
 }
 form.application.sheet.item:has(.style-classique) > .window-header {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
@@ -10589,7 +10593,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -10768,7 +10772,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -10945,7 +10949,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -11101,7 +11105,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -11291,7 +11295,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -11479,7 +11483,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -11609,7 +11613,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -11737,7 +11741,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -11952,7 +11956,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -12142,7 +12146,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -12346,7 +12350,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 }
 .item-root.style-classique aside {
   flex: 0 0 auto;
-  width: 41px;
+  width: 60px;
   background-image: var(--vk-side-classique, none);
   background-repeat: no-repeat;
   background-size: 100% auto;
