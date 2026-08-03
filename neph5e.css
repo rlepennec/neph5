@@ -10468,8 +10468,9 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background: rgba(0, 0, 0, 0.05);
   margin: 0.5em 0;
 }
-.item-root.style-classique main table.chronology th {
-  background-color: rgba(255, 255, 255, 0.4);
+.item-root.style-classique main table.chronology thead {
+  background: rgba(200, 200, 200, 0.5);
+  border: none;
 }
 .item-root.style-classique main table.chronology tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
