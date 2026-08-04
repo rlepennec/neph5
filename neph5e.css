@@ -8383,79 +8383,6 @@ form.nephilim.item section.window-content > section.style-ashbury article main h
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-.item-root.style-classique .classique-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-family: 'AJensonPro';
-  font-size: 16px;
-  color: #191813;
-  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
-}
-.item-root.style-classique .classique-layout {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  min-height: 0;
-  padding: 10px 20px;
-  gap: 12px;
-}
-.item-root.style-classique .classique-banner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  margin-top: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #151156;
-}
-.item-root.style-classique .classique-banner select {
-  outline: 0;
-  background-color: transparent;
-  min-width: 160px;
-  height: 35px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-align-last: center;
-  color: #191813;
-  border: 1px solid #151156;
-  border-radius: 10px;
-  box-shadow: 0 0 4px 1px #414048 inset;
-}
-.item-root.style-classique .classique-banner select option {
-  background-color: antiquewhite;
-  color: #191813;
-  text-align: center;
-}
-.item-root.style-classique .classique-banner h1 {
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  margin: 0 10px 0 0;
-  color: #191813;
-}
-.item-root.style-classique .classique-desc-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-.item-root.style-classique .classique-title {
-  margin: 0 0 6px 0;
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  font-size: 18px;
-  color: #191813;
-}
-.item-root.style-classique .classique-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  font-family: 'AJensonProLtDisp';
-  font-size: 16px;
-  color: #191813;
-}
 form.application.sheet.item:has(.style-classique) > .window-header {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
   box-shadow: 0 0 6px 2px #f5f4f4 inset;
@@ -12395,6 +12322,27 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+}
+.item-root.style-classique main div.clef {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+  font-size: 16px;
+}
+.item-root.style-classique main div.clef h1 {
+  font-size: 20px;
+  margin-right: 30px;
+}
+.item-root.style-classique main div.clef input {
+  width: 300px;
+  border: 1px solid #151156;
+  color: #191813;
+  margin: 0px;
 }
 .item-root.style-classique main div.element {
   display: flex;

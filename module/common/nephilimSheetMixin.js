@@ -230,7 +230,7 @@ export const NephilimMixinSheet = Base => {
 			new DocumentIdentifier(target).toDocument().sheet.render(true);
 		}
 
-/**
+		/**
 		 * The callback used to copy the system identifier into the clipboard.
 		 * @param {*} event 
 		 * @param {*} target 

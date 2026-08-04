@@ -6,34 +6,17 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
-
-                {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
-
-                {{#if (and debug isGM)}}
-                <div class="key">
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="cle" name="system.key" value=document.system.key }}
-                </div>
-                {{/if}}
-
-                <div class="classique-desc-box">
-                    <h1 class="classique-title">{{translate "description"}}</h1>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
-
+            {{#if (and debug isGM (not locked))}}
+            <div class="clef">
+                {{> "systems/neph5e/templates/input.hbs" title="cle" name="system.key" value=document.system.key }}
             </div>
+            {{/if}}
+
+            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.periode'}}
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 
