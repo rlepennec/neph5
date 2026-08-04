@@ -6,34 +6,18 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
-
-                <div class="classique-banner">
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element"
-                        name="system.element"
-                        value=document.system.element
-                        options=context.elements
-                    }}
-                </div>
-
-                <div class="classique-desc-box">
-                    <h1 class="classique-title">{{translate "description"}}</h1>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
-
+            <div class="single-selector">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="element"
+                    name="system.element"
+                    value=document.system.element
+                    options=context.elements
+                }}
             </div>
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 
