@@ -28,6 +28,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             editCapacity: FigureSheet._onEditCapacity,
             openSimulacre: FigureSheet._onOpenSimulacre,
             openFraternite: FigureSheet._onOpenFraternite,
+            openChute: FigureSheet._onOpenChute,
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
@@ -369,6 +370,20 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** Ouvre la fiche de l'item (vécu, savoir, quête, compétence...). */
     static async _onOpenItem(event, target) {
         const feature = this._featureFromTarget(target);
+        await feature.editEmbeddedItem();
+    }
+
+    /** Ouvre la page (fiche d'item) d'une chute depuis l'onglet Néphilim. */
+    static async _onOpenChute(event, target) {
+        const node = target.closest('.chute');
+        const id = node?.dataset.id || null;
+        const sid = node?.dataset.sid || null;
+        if (id == null && sid == null) return;
+        const feature = new FeatureBuilder(this.document)
+            .withScope("actor")
+            .withEmbeddedItem(id)
+            .withOriginalItem(sid)
+            .create();
         await feature.editEmbeddedItem();
     }
 

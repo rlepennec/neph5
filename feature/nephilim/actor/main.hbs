@@ -110,9 +110,9 @@
             <ol class="body">
 
                 {{#with actor.khaiba as |chute|}}
-                <li class="chute">
+                <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
-                    <label class="name">{{translate "khaiba"}}{{#if (gt chute.degre 0)}} ({{chute.name}}){{/if}}</label>
+                    <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "khaiba"}}{{#if (gt chute.degre 0)}} ({{chute.name}}){{/if}}</label>
 
                     <div class="degres">
 
@@ -140,9 +140,9 @@
                 {{/with}}
 
                 {{#with actor.narcose as |chute|}}
-                <li class="chute">
+                <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
-                    <label class="name">{{translate "narcose"}}</label>
+                    <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "narcose"}}</label>
 
                     <div class="degres">
 
@@ -208,9 +208,9 @@
                 {{/with}}
 
                 {{#with actor.ombre as |chute|}}
-                <li class="chute">
+                <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
-                    <label class="name">{{translate "ombre"}}</label>
+                    <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "ombre"}}</label>
 
                     <div class="degres">
 
@@ -281,9 +281,9 @@
 
                 {{#if actor.system.options.luneNoire}}
                 {{#with actor.luneNoire as |chute|}}
-                <li class="chute">
+                <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
-                    <label class="name">{{translate "entropieLunaire"}}</label>
+                    <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "entropieLunaire"}}</label>
 
                     <div class="degres">
 

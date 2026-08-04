@@ -107,7 +107,7 @@ export class Chute extends HistoricalFeature {
      */
     static getChute(actor, type) {
 
-        let _chute = { degre: 0, name: null, sid: null };
+        let _chute = { degre: 0, name: null, sid: null, id: null };
 
         for (let periode of Periode.getChronological(actor, true, true, actor.system.periode)) {
             const chute = actor.items.find(i => i.type === 'chute' && i.system.key === type && i.system.periode === periode.sid);
@@ -115,9 +115,17 @@ export class Chute extends HistoricalFeature {
                 _chute = {
                     degre: _chute.degre + chute.system.degre,
                     name: chute.name,
-                    sid: chute.sid
+                    sid: chute.sid,
+                    id: chute.id
                 }
             }
+        }
+
+        // Aucune chute embarquée (degré 0) : on retombe sur l'item monde du type,
+        // afin de pouvoir tout de même ouvrir sa fiche. On ne touche ni au degré ni
+        // au nom pour préserver l'affichage.
+        if (_chute.sid == null) {
+            _chute.sid = game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid ?? null;
         }
 
         return _chute;
