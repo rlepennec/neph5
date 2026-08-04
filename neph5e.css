@@ -12141,7 +12141,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: #191813;
   margin: 0px;
 }
-.item-root.style-classique main div.element {
+.item-root.style-classique main div.single-selector {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12152,11 +12152,11 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-bottom: 1px solid #151156;
   font-size: 16px;
 }
-.item-root.style-classique main div.element h1 {
+.item-root.style-classique main div.single-selector h1 {
   font-size: 20px;
   margin-right: 30px;
 }
-.item-root.style-classique main div.element select {
+.item-root.style-classique main div.single-selector select {
   width: 100px;
 }
 .item-root.style-classique main table.chronology {
