@@ -6,24 +6,20 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
-
-                <div class="classique-banner">
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element"
-                        name="system.element"
-                        value=document.system.element
-                        options=context.elements
-                    }}
-                </div>
-
-                {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.vecu'}}
-
-                {{> "systems/neph5e/templates/description.hbs"}}
-
+            <div class="element">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="element"
+                    name="system.element"
+                    value=document.system.element
+                    options=context.elements
+                }}
             </div>
+
+            {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.vecu'}}
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 
