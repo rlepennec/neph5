@@ -34,3 +34,62 @@
 .item-arme       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp"); }
 .item-sort       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
 .item-vecu       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp"); }
+
+.item-root.style-classique {
+
+    aside {
+        flex: 0 0 auto;
+        width: 60px;
+        background-image: var(--vk-side-classique, none);
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: top center;
+        box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px 20px;
+        gap: 12px;
+        font-family: 'AJensonPro';
+        font-size: 16px;
+        color: #191813;
+        background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
+        
+        table.chronology {
+            width: 100%;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            background: rgba(0, 0, 0, 0.05);
+            margin: 0.5em 0;
+
+            thead {
+                background: rgba(200, 200, 200, 0.5);
+                border: none;
+            }
+
+            tr:nth-child(even) {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            tr:nth-child(odd) {
+                background-color: transparent;
+            }
+
+            tr {
+                th, td {
+                    text-align: center;
+                    &:nth-child(1) { width: 70%; }
+                    &:nth-child(2),
+                    &:nth-child(3) { width: 15%; }
+                }
+            }
+
+        }
+
+    }
+
+}
