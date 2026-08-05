@@ -1,13 +1,17 @@
-{{#if title}}
-<h1>{{translate title}}</h1>
-{{/if}}
+<div class="label">
 
-<span>
-    {{#if (isNull value)}}
-        {{translate placeholder}}
-    {{else}}
-        {{#with (getIdentifier value)}}
-            {{name}}
-        {{/with}}
+    {{#if title}}
+    <h1>{{translate title}}</h1>
     {{/if}}
-</span>
+
+    <span>
+        {{#if (isNull value)}}
+            {{translate placeholder}}
+        {{else}}
+            {{#with (getIdentifier value)}}
+                {{name}}
+            {{/with}}
+        {{/if}}
+    </span>
+    
+</div>

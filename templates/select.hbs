@@ -1,15 +1,19 @@
-{{#if title}}
-<h1>{{translate title}}</h1>
-{{/if}}
+<div class="selector">
 
-{{#if locked}}
-<p>{{lookup (selectChoices options) value}}</p>
-{{else}}
-<select name={{name}}>
-    {{#select value}}
-    {{#each (selectChoices options) as |label key|}}
-    <option value="{{key}}" class="option">{{label}}</option>
-    {{/each}}
-    {{/select}}
-</select>
-{{/if}}
+    {{#if title}}
+    <h1>{{translate title}}</h1>
+    {{/if}}
+
+    {{#if locked}}
+    <p>{{lookup (selectChoices options) value}}</p>
+    {{else}}
+    <select name={{name}}>
+        {{#select value}}
+        {{#each (selectChoices options) as |label key|}}
+        <option value="{{key}}" class="option">{{label}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+    {{/if}}
+
+</div>

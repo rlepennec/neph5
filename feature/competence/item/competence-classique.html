@@ -8,13 +8,15 @@
 
         <main>
 
-            <div class="single-selector">
+            <div class="banner">
+
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
                     name="system.element"
                     value=document.system.element
                     options=context.elements
                 }}
+
             </div>
 
             {{> "systems/neph5e/templates/chronology.hbs" title='NEPH5E.vecu'}}

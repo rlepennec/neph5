@@ -8,13 +8,15 @@
 
         <main>
 
-            <div class="single-selector">
+            <div class="banner">
+
                 {{> "systems/neph5e/templates/select.hbs"
                     title="monde"
                     name="system.monde"
                     value=document.system.monde
                     options=context.mondes
                 }}
+
             </div>
 
             {{> "systems/neph5e/templates/description.hbs"}}
