@@ -11878,6 +11878,19 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-root.style-classique main div.label span {
   width: 400px;
 }
+.item-root.style-classique main div.list {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+.item-root.style-classique main ol.column-2 {
+  column-count: 2;
+}
+.item-root.style-classique main ol.column-2 li {
+  margin-left: 50px;
+  margin-right: 50px;
+}
 .item-root.style-classique main table.chronology {
   width: 100%;
   border-top: 1px solid black;

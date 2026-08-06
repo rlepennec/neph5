@@ -1,25 +1,34 @@
-<h1 class="title">{{translate title}}</h1>
+<div class="list">
+    
+    {{#if title}}
+    <h1>{{translate title}}</h1>
+    {{/if}}
 
-{{#unless (isEmptyCollection values)}}
-<ol>
+    {{#unless (isEmptyCollection values)}}
+    <ol
+        {{#if class}}
+        class="{{class}}"
+        {{/if}}>
 
-    {{#each values as |item|}}
-    <li data-fsid="{{fsid item}}">
+        {{#each values as |item|}}
+        <li data-fsid="{{fsid item}}">
 
-        <input
-            name="{{../names}}.[{{@index}}]"
-            type="hidden"
-            value="{{item}}"
-            data-dtype="String"/>
+            <input
+                name="{{../names}}.[{{@index}}]"
+                type="hidden"
+                value="{{item}}"
+                data-dtype="String"/>
 
-        <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
 
-        {{#with (getIdentifier .)}}
-        <span class="hoverable" data-action="open">{{name}}</span>
-        {{/with}}
+            {{#with (getIdentifier .)}}
+            <span class="hoverable" data-action="open">{{name}}</span>
+            {{/with}}
 
-    </li>
-    {{/each}}
+        </li>
+        {{/each}}
 
-</ol>
-{{/unless}}
+    </ol>
+    {{/unless}}
+
+</div>

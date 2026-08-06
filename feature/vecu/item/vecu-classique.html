@@ -26,31 +26,39 @@
 
             </div>
 
-            <div class="classique-layout">
+            {{#unless (isEmptyCollection document.system.competences)}}
+            <div class="banner">
 
+                {{> "systems/neph5e/templates/list.hbs"
+                    class="column-2"
+                    values=document.system.competences
+                    names="system.competences" }}
 
+            </div>
+            {{/unless}}
 
-                {{#if document.isEmbedded}}
-                <div class="classique-desc-embedded">
-                    {{{enrichedDescription}}}
-                </div>
-
-                <table class="classique-degre-table">
+            {{#if document.isEmbedded}}
+            <table class="chronology">
+                <thead>
                     <tr>
-                        <th>{{localize 'degre'}}</th>
-                        <th>{{localize 'sapience'}}</th>
+                        <th></th>
+                        <th>{{translate "degre"}}</th>
+                        <th>{{translate "sapience"}}</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
+                        <td>{{translate "vecuActuel"}} / {{translate "degreSuivant"}}</td>
                         <td>{{document.system.degre}}</td>
                         <td>{{getNextCost document.system.degre}}</td>
                     </tr>
-                </table>
-                {{/if}}
+                </tbody>
+            </table>
+            {{/if}}
 
-                {{> "systems/neph5e/templates/list.hbs"
-                    title="competences"
-                    values=document.system.competences
-                    names="system.competences" }}
+
+
+            <div class="classique-layout">
 
                 {{#if document.isEmbedded}}
                 <ol class="classique-mnemos">
@@ -79,6 +87,10 @@
                 {{#unless document.isEmbedded}}
                 {{> "systems/neph5e/templates/description.hbs"}}
                 {{/unless}}
+
+                {{#if document.isEmbedded}}
+                {{enrichedDescription}}
+                {{/if}}
 
             </div>
 
