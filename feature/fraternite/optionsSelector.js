@@ -1,6 +1,6 @@
-import { AbstractOptionsSelector } from "../core/abstractOptionsSelector.js";
+import { ActorOptionsSelector } from "../core/actorOptionsSelector.js";
 
-export class OptionsSelector extends AbstractOptionsSelector {
+export class OptionsSelector extends ActorOptionsSelector {
 
     static DEFAULT_OPTIONS = {
         position: {

@@ -1,8 +1,7 @@
-import { Constants } from "../../module/common/constants.js";
-
 /**
- * Base commune des sélecteurs d'options d'acteur (figure/figurant/fraternité...).
- * Chaque sélecteur concret ne déclare que sa position et son template.
+ * Base commune des fenêtres de configuration (options d'acteur, style d'item...).
+ * Fournit la liaison à la fiche émettrice (withSheet) et l'action partagée "copy"
+ * qui copie l'UUID système du document dans le presse-papier.
  */
 export class AbstractOptionsSelector extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
 
@@ -13,52 +12,32 @@ export class AbstractOptionsSelector extends foundry.applications.api.Handlebars
 
     static DEFAULT_OPTIONS = {
         classes: ['nephilim'],
-        position: {
-            width: 300,
-            height: 600
-        },
-        window: {
-            resizable: true,
-            title: 'Nephilim form'
-        },
+        position: { width: 300, height: 600 },
+        window: { resizable: true, title: 'Nephilim form' },
         tag: "form",
-        form: {
-            handler: AbstractOptionsSelector.#onSubmit,
-            closeOnSubmit: true,
-            submitOnChange: false
-        },
+        form: { closeOnSubmit: true, submitOnChange: false },
+        actions: { copy: AbstractOptionsSelector.#onCopy },
         document: null,
     }
 
-    /**
-     * Les name= du formulaire correspondent aux clés de system.options,
-     * et setOptions (générique) écrit chaque champ → on passe formData.object tel quel.
-     */
-    static async #onSubmit(event, form, formData) {
-        event.preventDefault();
-        await this.sheet.setOptions(formData.object);
+    static async #onCopy(event, target) {
+        const id = this.sheet?.document?.system?.id;
+        if (id == null) {
+            ui.notifications.warn(game.i18n.localize("NEPHILIM.copyIdVide"));
+            return;
+        }
+        game.clipboard.copyPlainText(id);
+        ui.notifications.info(game.i18n.format("NEPHILIM.copyIdEffecutee", { id: id }));
     }
 
-    /**
-     * @param sheet La fiche émettrice.
-     * @returns l'instance (chaînable).
-     */
     withSheet(sheet) {
         this.sheet = sheet;
         return this;
     }
 
-    /**
-     * @override
-     */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        const opts = this.sheet.document.system.options;
-        Object.assign(context, opts);
-        context.themes = {
-            current: opts.theme,
-            all: Constants.THEMES
-        };
+        context.debug = game.user.isGM && game.settings.get('neph5e', 'debug');
         return context;
     }
 

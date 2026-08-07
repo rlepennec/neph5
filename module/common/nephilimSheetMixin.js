@@ -20,7 +20,6 @@ export const NephilimMixinSheet = Base => {
 				}
 			],
 			actions: {
-				copy: NephilimSheet._onCopy,
 				delete: NephilimSheet._onDelete,
 				open: NephilimSheet._onOpenLink,
 				lock: NephilimSheet._onLock,
@@ -116,13 +115,6 @@ export const NephilimMixinSheet = Base => {
 				const icon = 'fa-solid fa-gear';
 				const label = game.i18n.localize("NEPHILIM.setup");
 				const id = `<button type="button" class="header-control fa-solid ${icon} icon" data-action="setup" data-tooltip="${label}" aria-label="${label}"></button>`;
-				this.window.controls.insertAdjacentHTML("beforebegin", id);
-			}
-
-			if (game.user.isGM && game.settings.get('neph5e', 'debug')) {
-				const icon = 'fa-sharp fa-solid fa-book-copy';
-				const label = game.i18n.localize("NEPHILIM.copyId");
-				const id = `<button type="button" class="header-control fa-solid ${icon} icon" data-action="copy" data-tooltip="${label}" aria-label="${label}"></button>`;
 				this.window.controls.insertAdjacentHTML("beforebegin", id);
 			}
 
@@ -236,30 +228,6 @@ export const NephilimMixinSheet = Base => {
 
 		async _onOpenLink(event, target) {
 			new DocumentIdentifier(target).toDocument().sheet.render(true);
-		}
-
-		/**
-		 * The callback used to copy the system identifier into the clipboard.
-		 * @param {*} event 
-		 * @param {*} target 
-		 */
-		static async _onCopy(event, target) {
-			await this._onCopy(event, target);
-		}
-
-		/**
-		 * Copie l'identifiant système (system.id) dans le presse-papier.
-		 * @param {*} event 
-		 * @param {*} target 
-		 */
-		async _onCopy(event, target) {
-			const id = this.document.system?.id;
-			if (id == null) {
-				ui.notifications.warn(game.i18n.localize("NEPHILIM.copyIdVide"));
-				return;
-			}
-			game.clipboard.copyPlainText(id);
-			ui.notifications.info(game.i18n.format("NEPHILIM.copyIdEffecutee", { id: id }));
 		}
 
 		/**

@@ -17,7 +17,7 @@ export class ItemOptionsSelector extends AbstractOptionsSelector {
     }
 
     async _prepareContext(options) {
-        const context = await super._prepareContext(options);   // <-- pose context.debug via la base
+        const context = await super._prepareContext(options);
         context.style = {
             current: game.settings.get('neph5e', 'styleItemSheet'),
             all: ['classique', 'ashbury']
