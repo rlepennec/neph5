@@ -1,9 +1,14 @@
-{{#if title}}
-<h1>{{translate title}}</h1>
-{{/if}}
+<div class="input">
 
-<input
-    name={{name}}
-    {{#if type}}type="{{type}}"{{else}}type="text"type"{{/if}}
-    value="{{value}}"
-    {{#if (or disabled document.sheet.locked)}} disabled{{/if}}/>
+    {{#if title}}
+    <h1>{{translate title}}</h1>
+    {{/if}}
+
+    <input
+        name={{name}}
+        {{#if type}}type="{{type}}"{{else}}type="text"type" {{/if}}
+        {{#if class}}class="{{class}}" {{/if}}
+        value="{{value}}"
+        {{#if (or disabled document.sheet.locked)}} disabled{{/if}}/>
+
+</div>

@@ -38,12 +38,32 @@ export class VecuSheet extends NephilimItemSheet {
      * @override
      */
     async _prepareContext(options) {
-        return {
+        const context = {
             ...await super._prepareContext(options),
             context: {
                 elements: Constants.ELEMENTS
             }
+        };
+
+        // Ouvert depuis un acteur (item embarqué) : le vécu embarqué ne stocke pas de
+        // description propre. Elle est héritée de l'objet original et affichée en
+        // lecture seule (le template affiche enrichedDescription sans éditeur quand
+        // document.isEmbedded). L'original n'est jamais modifié.
+        // L'élément, lui, reste stocké et modifiable sur l'embarqué (propre à l'acteur).
+        if (this.document.isEmbedded) {
+            const original = game.items.find(i => i.type === 'vecu' && i.sid === this.document.sid);
+            if (original != null) {
+                context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
+                    original.system.description,
+                    {
+                        secrets: this.document.isOwner,
+                        relativeTo: this.document
+                    }
+                );
+            }
         }
+
+        return context;
     }
 
     /**

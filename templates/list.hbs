@@ -19,7 +19,9 @@
                 value="{{item}}"
                 data-dtype="String"/>
 
+            {{#unless ../locked}}
             <a data-action="delete"><i class="fas fa-trash"></i></a>
+            {{/unless}}
 
             {{#with (getIdentifier .)}}
             <span class="hoverable" data-action="open">{{name}}</span>

@@ -92,9 +92,15 @@
             margin-top: 10px;
             padding-bottom: 8px;
             border-bottom: 1px solid #151156;
+
+            div {
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+
         }
 
-        div.selector {
+        div.input {
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -107,8 +113,8 @@
                 margin-right: 30px;
             }
 
-            select {
-                width: 100px;
+            span {
+                width: 400px;
             }
 
         }
@@ -137,7 +143,36 @@
             flex-direction: column;
             flex-shrink: 0;
             font-size: 16px;
+        }
 
+        div.selector {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            
+            h1 {
+                font-size: 20px;
+                margin-right: 30px;
+            }
+
+            select {
+                width: 100px;
+            }
+
+        }
+
+        input.circle {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            color: #191813;
+            border: 1px solid #151156;
+            border-radius: 50%;
+            box-shadow: 0 0 4px 1px #414048 inset;
+            background: transparent;
         }
 
         ol.column-2 {
@@ -146,6 +181,48 @@
             li {
                 margin-left: 50px;
                 margin-right: 50px;
+            }
+
+        }
+
+        ol.mnemos {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0;
+            font-family: 'AJensonPro';
+            color: #191813;
+
+            > li {
+                margin-bottom: 10px;
+                padding-bottom: 8px;
+
+                &.mnemos {
+
+                    div:nth-child(1) {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 8px;
+                        padding-bottom: 5px;
+                        border-bottom: 1px dashed #191813;
+                    }
+
+                    div:nth-child(2) {
+                        margin-top: 4px;
+                        margin-left: 20px;
+                        font-family: 'AJensonProLtDisp';
+                    }
+
+                }
+
+                &.add {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+
             }
 
         }

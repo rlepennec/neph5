@@ -1,6 +1,6 @@
 
 <section class="item-root style-classique" data-drop="true">
-
+{{log .}}
     <aside></aside>
 
     <article>
@@ -31,6 +31,7 @@
 
                 {{> "systems/neph5e/templates/list.hbs"
                     class="column-2"
+                    locked=locked
                     values=document.system.competences
                     names="system.competences" }}
 
@@ -38,61 +39,58 @@
             {{/unless}}
 
             {{#if document.isEmbedded}}
-            <table class="chronology">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>{{translate "degre"}}</th>
-                        <th>{{translate "sapience"}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{translate "vecuActuel"}} / {{translate "degreSuivant"}}</td>
-                        <td>{{document.system.degre}}</td>
-                        <td>{{getNextCost document.system.degre}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            {{/if}}
 
+                {{{enrichedDescription}}}
 
+                <table class="chronology">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{translate "degre"}}</th>
+                            <th>{{translate "sapience"}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{translate "vecuActuel"}} / {{translate "degreSuivant"}}</td>
+                            <td>{{document.system.degre}}</td>
+                            <td>{{getNextCost document.system.degre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <div class="classique-layout">
-
-                {{#if document.isEmbedded}}
-                <ol class="classique-mnemos">
+                <ol class="mnemos">
 
                     {{#each system.mnemos as |mnemos|}}
-                    <li class="edit-mnemos" data-item-id="{{@index}}" data-action="editMnemos">
-                        <div class="classique-mnemos-head">
+                    <li class="mnemos" data-item-id="{{@index}}" data-action="editMnemos">
+                        <div>
+                            {{#if ../locked}}
+                            <i class="fa-solid fa-feather"></i>
+                            {{else}}
                             <i class="fas fa-trash delete-mnemos" data-action="deleteMnemos"></i>
-                            <label>{{mnemos.degre}}</label>
-                            <label>{{mnemos.name}}</label>
+                            {{/if}}
+                            <label>{{mnemos.degre}} <i class="fa-solid fa-quote-right"></i> {{mnemos.name}}</label>
                         </div>
-                        <div class="classique-mnemos-desc">
+                        <div>
                             {{html mnemos.description}}
                         </div>
                     </li>
                     {{/each}}
 
-                    <li class="add-mnemos" data-action="addMnemos">
+                    {{#unless locked}}
+                    <li class="add" data-action="addMnemos">
                         <i class="fa-solid fa-circle-plus fa-1xl"></i>
-                        <span>{{localize 'mnemos'}}</span>
+                        <span>{{translate 'mnemos'}}</span>
                     </li>
+                    {{/unless}}
 
                 </ol>
-                {{/if}}
 
-                {{#unless document.isEmbedded}}
+            {{else}}
+
                 {{> "systems/neph5e/templates/description.hbs"}}
-                {{/unless}}
-
-                {{#if document.isEmbedded}}
-                {{enrichedDescription}}
-                {{/if}}
-
-            </div>
+            
+            {{/if}}
 
         </main>
 
