@@ -166,7 +166,7 @@ export class Vecu extends HistoricalFeature {
         }
 
         // Process the drop on the incarnations for figure
-        if (currentTab === 'incarnations') {
+        if (currentTab === 'incarnations' || currentTab === 'vecus') {
 
             // Actor must be unlocked
             if (this.actor.sheet?.locked) {

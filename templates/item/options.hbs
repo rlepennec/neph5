@@ -1,0 +1,19 @@
+<section class="option-root">
+
+    <button type="submit">
+        <i class="fa-solid fa-floppy-disk" inert=""></i>
+        <span>Sauver</span>
+    </button>
+
+    <fieldset>
+        <legend>Style</legend>
+        <select name="style">
+            {{#select style.current}}
+            {{#each style.all as |s|}}
+            <option value="{{s}}">{{translate s}}</option>
+            {{/each}}
+            {{/select}}
+        </select>
+    </fieldset>
+
+</section>

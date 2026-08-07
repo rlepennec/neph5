@@ -55,7 +55,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             atlanteide: FigureSheet._onDropFocus,
             capacite: FigureSheet._onDropFocus,
             competence: FigureSheet._onDropManoeuver,
-            vecu: FigureSheet._onDropManoeuver,
+            vecu: FigureSheet._onDropVecu,
             figurant: FigureSheet._onDropSimulacre,
         }
     }
@@ -470,6 +470,21 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await feature.drop();
         this.editedCapacity = null;
         await this.render(true);
+    }
+
+    /** Drop d'un vécu : aiguillage selon l'onglet courant et l'état d'édition.
+     *  - Onglet combat + capacité en édition : le vécu sert de base à une manœuvre
+     *    (_onDropManoeuver).
+     *  - Onglet incarnations + période en édition : le vécu est rattaché à la période
+     *    éditée (_onDropFeature). */
+    static async _onDropVecu(event, document) {
+        const tab = this.tabGroups?.primary;
+        if (tab === 'combat' && this.editedCapacity != null) {
+            return FigureSheet._onDropManoeuver.call(this, event, document);
+        }
+        if ((tab === 'incarnations' || tab === 'vecus') && this.editedPeriode != null) {
+            return HistoricalSheet._onDropFeature.call(this, event, document);
+        }
     }
 
     /**

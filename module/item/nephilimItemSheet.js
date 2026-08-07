@@ -1,5 +1,6 @@
 import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
+import { ItemOptionsSelector } from "./itemOptionsSelector.js";
 
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Science } from "../../feature/science/science.js";
@@ -21,6 +22,15 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     constructor(...args) {
         super(...args);
         this.embeddedData = {};
+    }
+
+    /**
+     * Fenêtre de configuration des fiches d'item (choix du style). Sa présence
+     * fait apparaître l'engrenage dans la barre de titre (via setupable du mixin).
+     * @override
+     */
+    get optionsSelector() {
+        return ItemOptionsSelector;
     }
 
     /** 

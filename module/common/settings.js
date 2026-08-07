@@ -4,7 +4,7 @@ export const registerSystemSettings = function () {
         config: true,
         name: game.i18n.localize('SETTINGS.styleItemSheet'),
         hint: game.i18n.localize('SETTINGS.styleItemSheetDesc'),
-        scope: "client",
+        scope: "user",
         type: String,
         choices: {
           'classique': game.i18n.localize('NEPHILIM.classique'),

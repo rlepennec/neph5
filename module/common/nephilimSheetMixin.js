@@ -72,11 +72,17 @@ export const NephilimMixinSheet = Base => {
 			return locked ? 'fa-lock' : 'fa-lock-open';
 		}
 
-		/** 
-		 * @override
-		 */
 		get setupable() {
-			return false;
+			return this.optionsSelector != null;
+		}
+
+		/**
+		 * Classe de la fenêtre de configuration de la fiche. Surchargée par les fiches
+		 * concrètes (acteurs ou items) qui en possèdent une. null = pas d'engrenage.
+		 * @returns {Class|null}
+		 */
+		get optionsSelector() {
+			return null;
 		}
 
 		// Optional: Add getter to access the private property
@@ -85,7 +91,9 @@ export const NephilimMixinSheet = Base => {
 		 * @override
 		 * @protected
 		 */
-		async _onClose() {
+		async _onClose(options) {
+			await this._optionsApp?.close();
+			this._optionsApp = null;
 		}
 
 		/** 
@@ -354,11 +362,17 @@ export const NephilimMixinSheet = Base => {
 		 * @protected
 		 */
 		static async _onSetup(event, target) {
-			this._onSetup(event, target);
+			await this._onSetup(event, target);
 		}
 
+		/**
+		 * Ouvre la fenêtre de configuration de la fiche. Logique unique, partagée entre
+		 * acteurs et items : chaque fiche fournit sa fenêtre via le getter optionsSelector.
+		 */
 		async _onSetup(event, target) {
-			throw new Error("_onSetup method must be implemented");
+			const selector = this.optionsSelector;
+			if (selector == null) return;
+			this._optionsApp = await new selector().withSheet(this).render(true);
 		}
 
 		/** 
