@@ -33,6 +33,17 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         return ItemOptionsSelector;
     }
 
+    /**
+     * Réinitialise le contexte embarqué à la fermeture. Foundry met en cache une
+     * seule fiche par document ; sans ce reset, embeddedData resterait "collé" d'une
+     * ouverture à l'autre et fausserait la détection openedFromActor.
+     * @override
+     */
+    async _onClose(options) {
+        await super._onClose(options);
+        this.embeddedData = {};
+    }
+
     /** 
      * @override
      */

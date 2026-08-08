@@ -5,6 +5,14 @@ import { Game } from "../../../module/common/game.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
 
+    /**
+     * La compétence n'est pas éditable lorsqu'elle est ouverte depuis un acteur.
+     * @override
+     */
+    get editableFromActor() {
+        return false;
+    }
+
     static DEFAULT_OPTIONS = {
         position: {
             width: 800,

@@ -84,6 +84,38 @@ export const NephilimMixinSheet = Base => {
 			return null;
 		}
 
+		/**
+		 * Indique qu'un type d'objet n'est pas éditable lorsque sa fiche est ouverte
+		 * depuis un acteur (contexte embarqué). Par défaut faux ; les fiches concrètes
+		 * le surchargent (ex. CompetenceSheet) pour l'activer. Quand c'est vrai, la
+		 * fiche ouverte depuis un acteur est en lecture seule et ne montre pas le cadenas.
+		 * @returns {boolean}
+		 */
+		get editableFromActor() {
+			return true;
+		}
+
+		/**
+		 * @returns {boolean} true si la fiche a été ouverte depuis un acteur, c.-à-d.
+		 * avec des données embarquées (embeddedData non vide, posé par withEmbeddedData).
+		 */
+		get openedFromActor() {
+			return this.embeddedData != null && Object.keys(this.embeddedData).length > 0;
+		}
+
+		/**
+		 * @override
+		 * Un type "editableFromActor" est en lecture seule quand sa fiche est ouverte
+		 * depuis un acteur. Comme le cadenas, context.editable, la désactivation du
+		 * formulaire et le drag & drop dérivent tous d'isEditable, ce seul point suffit.
+		 */
+		get isEditable() {
+			if (!this.editableFromActor && this.openedFromActor) {
+				return false;
+			}
+			return super.isEditable;
+		}
+
 		// Optional: Add getter to access the private property
 
 		/** 
