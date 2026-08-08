@@ -5,6 +5,14 @@ import { Mnemos } from "./mnemos.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
+    /**
+     * Le vécu est éditable lorsqu'il est ouverte depuis un acteur.
+     * @override
+     */
+    get editableFromActor() {
+        return true;
+    }
+
     static DEFAULT_OPTIONS = {
         classes: ["vk-vecu"],
         position: {

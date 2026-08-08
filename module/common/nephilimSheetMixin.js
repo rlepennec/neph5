@@ -85,14 +85,14 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		/**
-		 * Indique qu'un type d'objet n'est pas éditable lorsque sa fiche est ouverte
+		 * Indique qu'un type d'objet est éditable lorsque sa fiche est ouverte
 		 * depuis un acteur (contexte embarqué). Par défaut faux ; les fiches concrètes
-		 * le surchargent (ex. CompetenceSheet) pour l'activer. Quand c'est vrai, la
+		 * le surchargent (ex. CompetenceSheet) pour l'activer. Quand c'est faux, la
 		 * fiche ouverte depuis un acteur est en lecture seule et ne montre pas le cadenas.
 		 * @returns {boolean}
 		 */
 		get editableFromActor() {
-			return true;
+			return false;
 		}
 
 		/**
