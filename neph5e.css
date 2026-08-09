@@ -11601,6 +11601,10 @@ form.nephilim.item .item-root.style-classique main div.input span {
 }
 form.nephilim.item .item-root.style-classique main div.input input {
   margin-bottom: 0px;
+  color: var(--color-font-dark);
+}
+form.nephilim.item .item-root.style-classique main div.input input:not(:disabled) {
+  border: 1px solid black;
 }
 form.nephilim.item .item-root.style-classique main div.label {
   display: flex;
