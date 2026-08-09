@@ -11528,7 +11528,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-vecu {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
 }
-.item-root.style-classique aside {
+form.nephilim.item .item-root.style-classique aside {
   flex: 0 0 auto;
   width: 60px;
   background-image: var(--vk-side-classique, none);
@@ -11537,7 +11537,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   background-position: top center;
   box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
 }
-.item-root.style-classique main {
+form.nephilim.item .item-root.style-classique main {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -11549,7 +11549,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: #191813;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
 }
-.item-root.style-classique main div.clef {
+form.nephilim.item .item-root.style-classique main div.clef {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11560,17 +11560,17 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   border-bottom: 1px solid #151156;
   font-size: 16px;
 }
-.item-root.style-classique main div.clef h1 {
+form.nephilim.item .item-root.style-classique main div.clef h1 {
   font-size: 20px;
   margin-right: 30px;
 }
-.item-root.style-classique main div.clef input {
+form.nephilim.item .item-root.style-classique main div.clef input {
   width: 300px;
   border: 1px solid #151156;
   color: #191813;
   margin: 0px;
 }
-.item-root.style-classique main div.banner {
+form.nephilim.item .item-root.style-classique main div.banner {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11580,11 +11580,11 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   padding-bottom: 8px;
   border-bottom: 1px solid #151156;
 }
-.item-root.style-classique main div.banner div {
+form.nephilim.item .item-root.style-classique main div.banner div {
   margin-left: 30px;
   margin-right: 30px;
 }
-.item-root.style-classique main div.input {
+form.nephilim.item .item-root.style-classique main div.input {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11592,14 +11592,17 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   flex-shrink: 0;
   font-size: 16px;
 }
-.item-root.style-classique main div.input h1 {
+form.nephilim.item .item-root.style-classique main div.input h1 {
   font-size: 20px;
   margin-right: 30px;
 }
-.item-root.style-classique main div.input span {
+form.nephilim.item .item-root.style-classique main div.input span {
   width: 400px;
 }
-.item-root.style-classique main div.label {
+form.nephilim.item .item-root.style-classique main div.input input {
+  margin-bottom: 0px;
+}
+form.nephilim.item .item-root.style-classique main div.label {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11607,21 +11610,20 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   flex-shrink: 0;
   font-size: 16px;
 }
-.item-root.style-classique main div.label h1 {
+form.nephilim.item .item-root.style-classique main div.label h1 {
   font-size: 20px;
   margin-right: 30px;
-  margin-bottom: 15px;
 }
-.item-root.style-classique main div.label span {
+form.nephilim.item .item-root.style-classique main div.label span {
   width: 400px;
 }
-.item-root.style-classique main div.list {
+form.nephilim.item .item-root.style-classique main div.list {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   font-size: 16px;
 }
-.item-root.style-classique main div.selector {
+form.nephilim.item .item-root.style-classique main div.selector {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11629,14 +11631,14 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   flex-shrink: 0;
   font-size: 16px;
 }
-.item-root.style-classique main div.selector h1 {
+form.nephilim.item .item-root.style-classique main div.selector h1 {
   font-size: 20px;
   margin-right: 30px;
 }
-.item-root.style-classique main div.selector select {
+form.nephilim.item .item-root.style-classique main div.selector select {
   width: 100px;
 }
-.item-root.style-classique main input.circle {
+form.nephilim.item .item-root.style-classique main input.circle {
   width: 40px;
   height: 40px;
   text-align: center;
@@ -11646,25 +11648,25 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   box-shadow: 0 0 4px 1px #414048 inset;
   background: transparent;
 }
-.item-root.style-classique main ol.column-2 {
+form.nephilim.item .item-root.style-classique main ol.column-2 {
   column-count: 2;
 }
-.item-root.style-classique main ol.column-2 li {
+form.nephilim.item .item-root.style-classique main ol.column-2 li {
   margin-left: 50px;
   margin-right: 50px;
 }
-.item-root.style-classique main ol.mnemos {
+form.nephilim.item .item-root.style-classique main ol.mnemos {
   list-style: none;
   padding: 0;
   margin: 8px 0;
   font-family: 'AJensonPro';
   color: #191813;
 }
-.item-root.style-classique main ol.mnemos > li {
+form.nephilim.item .item-root.style-classique main ol.mnemos > li {
   margin-bottom: 10px;
   padding-bottom: 8px;
 }
-.item-root.style-classique main ol.mnemos > li.mnemos div:nth-child(1) {
+form.nephilim.item .item-root.style-classique main ol.mnemos > li.mnemos div:nth-child(1) {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11672,47 +11674,47 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   padding-bottom: 5px;
   border-bottom: 1px dashed #191813;
 }
-.item-root.style-classique main ol.mnemos > li.mnemos div:nth-child(2) {
+form.nephilim.item .item-root.style-classique main ol.mnemos > li.mnemos div:nth-child(2) {
   margin-top: 4px;
   margin-left: 20px;
   font-family: 'AJensonProLtDisp';
 }
-.item-root.style-classique main ol.mnemos > li.add {
+form.nephilim.item .item-root.style-classique main ol.mnemos > li.add {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 20px;
   cursor: pointer;
 }
-.item-root.style-classique main table.chronology {
+form.nephilim.item .item-root.style-classique main table.chronology {
   width: 100%;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   background: rgba(0, 0, 0, 0.05);
   margin: 0.5em 0;
 }
-.item-root.style-classique main table.chronology thead {
+form.nephilim.item .item-root.style-classique main table.chronology thead {
   background: rgba(200, 200, 200, 0.5);
   border: none;
 }
-.item-root.style-classique main table.chronology tr:nth-child(even) {
+form.nephilim.item .item-root.style-classique main table.chronology tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.item-root.style-classique main table.chronology tr:nth-child(odd) {
+form.nephilim.item .item-root.style-classique main table.chronology tr:nth-child(odd) {
   background-color: transparent;
 }
-.item-root.style-classique main table.chronology tr th,
-.item-root.style-classique main table.chronology tr td {
+form.nephilim.item .item-root.style-classique main table.chronology tr th,
+form.nephilim.item .item-root.style-classique main table.chronology tr td {
   text-align: center;
 }
-.item-root.style-classique main table.chronology tr th:nth-child(1),
-.item-root.style-classique main table.chronology tr td:nth-child(1) {
+form.nephilim.item .item-root.style-classique main table.chronology tr th:nth-child(1),
+form.nephilim.item .item-root.style-classique main table.chronology tr td:nth-child(1) {
   width: 70%;
 }
-.item-root.style-classique main table.chronology tr th:nth-child(2),
-.item-root.style-classique main table.chronology tr td:nth-child(2),
-.item-root.style-classique main table.chronology tr th:nth-child(3),
-.item-root.style-classique main table.chronology tr td:nth-child(3) {
+form.nephilim.item .item-root.style-classique main table.chronology tr th:nth-child(2),
+form.nephilim.item .item-root.style-classique main table.chronology tr td:nth-child(2),
+form.nephilim.item .item-root.style-classique main table.chronology tr th:nth-child(3),
+form.nephilim.item .item-root.style-classique main table.chronology tr td:nth-child(3) {
   width: 15%;
 }
 form.application.sheet.item:has(.style-classique) > .window-header {
