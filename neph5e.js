@@ -105,45 +105,62 @@ Hooks.once("init", function () {
         save_enablewhendirty: true
     };
 
-    CONFIG.Actor.dataModels = {
-        figure: FigureDataModel,
-        figurant: FigurantDataModel,
-        fraternite: FraterniteDataModel
+    const ACTOR_TYPES = {
+        figure: { model: FigureDataModel, sheet: FigureSheet, label: "NEPHILIM.figure"},
+        figurant: { model: FigurantDataModel, sheet: FigurantSheet, label: "NEPHILIM.figurant"},
+        fraternite: { model: FraterniteDataModel, sheet: FraterniteSheet, label: "NEPHILIM.fraternite" }
     }
 
-    CONFIG.Item.dataModels = {
-        alchimie: AlchimieDataModel,
-        appel: AppelDataModel,
-        arcane: ArcaneDataModel,
-        arme: ArmeDataModel,
-        armure: ArmureDataModel,
-        aspect: AspectDataModel,
-        atlanteide: AtlanteideDataModel,
-        capacite: CapaciteDataModel,
-        catalyseur: CatalyseurDataModel,
-        chute: ChuteDataModel,
-        competence: CompetenceDataModel,
-        divination: DivinationDataModel,
-        dracomachie: DracomachieDataModel,
-        formule: FormuleDataModel,
-        habitus: HabitusDataModel,
-        invocation: InvocationDataModel,
-        magie: MagieDataModel,
-        materiae: MateriaeDataModel,
-        metamorphe: MetamorpheDataModel,
-        ordonnance: OrdonnanceDataModel,
-        passe: PasseDataModel,
-        periode: PeriodeDataModel,
-        pratique: PratiqueDataModel,
-        quete: QueteDataModel,
-        rite: RiteDataModel,
-        rituel: RituelDataModel,
-        savoir: SavoirDataModel,
-        science: ScienceDataModel,
-        sort: SortDataModel,
-        technique: TechniqueDataModel,
-        tekhne: TekhneDataModel,
-        vecu: VecuDataModel
+    CONFIG.Actor.dataModels = Object.fromEntries(
+        Object.entries(ACTOR_TYPES).map(([type, { model }]) => [type, model])
+    );
+
+    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+    for (const [type, { sheet, label }] of Object.entries(ACTOR_TYPES)) {
+        foundry.documents.collections.Actors.registerSheet('nephilim', sheet, { types: [type], makeDefault: true, label: label });
+    }
+
+    const ITEM_TYPES = {
+        alchimie: { model: AlchimieDataModel, sheet: AlchimieSheet },
+        appel: { model: AppelDataModel, sheet: AppelSheet },
+        arcane: { model: ArcaneDataModel, sheet: ArcaneSheet },
+        arme: { model: ArmeDataModel, sheet: ArmeSheet },
+        armure: { model: ArmureDataModel, sheet: ArmureSheet },
+        aspect: { model: AspectDataModel, sheet: AspectSheet },
+        atlanteide: { model: AtlanteideDataModel, sheet: AtlanteideSheet },
+        capacite: { model: CapaciteDataModel, sheet: CapaciteSheet },
+        catalyseur: { model: CatalyseurDataModel, sheet: CatalyseurSheet },
+        chute: { model: ChuteDataModel, sheet: ChuteSheet },
+        competence: { model: CompetenceDataModel, sheet: CompetenceSheet },
+        divination: { model: DivinationDataModel, sheet: DivinationSheet },
+        dracomachie: { model: DracomachieDataModel, sheet: DracomachieSheet },
+        formule: { model: FormuleDataModel, sheet: FormuleSheet },
+        habitus: { model: HabitusDataModel, sheet: HabitusSheet },
+        invocation: { model: InvocationDataModel, sheet: InvocationSheet },
+        magie: { model: MagieDataModel, sheet: MagieSheet },
+        materiae: { model: MateriaeDataModel, sheet: MateriaeSheet },
+        metamorphe: { model: MetamorpheDataModel, sheet: MetamorpheSheet },
+        ordonnance: { model: OrdonnanceDataModel, sheet: OrdonnanceSheet },
+        passe: { model: PasseDataModel, sheet: PasseSheet },
+        periode: { model: PeriodeDataModel, sheet: PeriodeSheet },
+        pratique: { model: PratiqueDataModel, sheet: PratiqueSheet },
+        quete: { model: QueteDataModel, sheet: QueteSheet },
+        rite: { model: RiteDataModel, sheet: RiteSheet },
+        rituel: { model: RituelDataModel, sheet: RituelSheet },
+        savoir: { model: SavoirDataModel, sheet: SavoirSheet },
+        science: { model: ScienceDataModel, sheet: ScienceSheet },
+        sort: { model: SortDataModel, sheet: SortSheet },
+        technique: { model: TechniqueDataModel, sheet: TechniqueSheet },
+        tekhne: { model: TekhneDataModel, sheet: TekhneSheet },
+        vecu: { model: VecuDataModel, sheet: VecuSheet }
+    };
+
+    CONFIG.Item.dataModels = Object.fromEntries(
+        Object.entries(ITEM_TYPES).map(([type, { model }]) => [type, model])
+    );
+
+    for (const [type, { sheet }] of Object.entries(ITEM_TYPES)) {
+        foundry.documents.collections.Items.registerSheet('nephilim', sheet, { types: [type], makeDefault: true });
     }
 
     Handlebars.registerHelper({
@@ -204,45 +221,6 @@ Hooks.once("init", function () {
             return value;
         }
     });
-
-    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-    foundry.documents.collections.Actors.registerSheet("nephilim", FigureSheet, { types: ["figure"], makeDefault: true, label: "NEPHILIM.figure" });
-    foundry.documents.collections.Actors.registerSheet("nephilim", FigurantSheet, { types: ["figurant"], makeDefault: true, label: "NEPHILIM.figurant" });
-    foundry.documents.collections.Actors.registerSheet("nephilim", FraterniteSheet, { types: ["fraternite"], makeDefault: true, label: "NEPHILIM.fraternite" });
-
-    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-    foundry.documents.collections.Items.registerSheet('nephilim', AlchimieSheet, { types: ['alchimie'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', AppelSheet, { types: ['appel'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', ArcaneSheet, { types: ['arcane'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', ArmeSheet, { types: ['arme'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', ArmureSheet, { types: ['armure'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', AspectSheet, { types: ['aspect'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', AtlanteideSheet, { types: ['atlanteide'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', CapaciteSheet, { types: ['capacite'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', CatalyseurSheet, { types: ['catalyseur'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', ChuteSheet, { types: ['chute'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', CompetenceSheet, { types: ['competence'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', DracomachieSheet, { types: ['dracomachie'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', DivinationSheet, { types: ['divination'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', FormuleSheet, { types: ['formule'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', HabitusSheet, { types: ['habitus'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', InvocationSheet, { types: ['invocation'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', PasseSheet, { types: ['passe'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', PeriodeSheet, { types: ['periode'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', PratiqueSheet, { types: ['pratique'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', QueteSheet, { types: ['quete'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', MagieSheet, { types: ['magie'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', MateriaeSheet, { types: ['materiae'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', MetamorpheSheet, { types: ['metamorphe'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', OrdonnanceSheet, { types: ['ordonnance'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', RiteSheet, { types: ['rite'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', RituelSheet, { types: ['rituel'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', SavoirSheet, { types: ['savoir'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', ScienceSheet, { types: ['science'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', SortSheet, { types: ['sort'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', TechniqueSheet, { types: ['technique'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', TekhneSheet, { types: ['tekhne'], makeDefault: true });
-    foundry.documents.collections.Items.registerSheet('nephilim', VecuSheet, { types: ['vecu'], makeDefault: true });
 
     preloadTemplates();
     registerSystemSettings();

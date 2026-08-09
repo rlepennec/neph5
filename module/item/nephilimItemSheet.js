@@ -1,6 +1,6 @@
 import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
-import { ItemOptionsSelector } from "./itemOptionsSelector.js";
+import { ItemOptionsSelector } from "../../feature/core/itemOptionsSelector.js";
 
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Science } from "../../feature/science/science.js";

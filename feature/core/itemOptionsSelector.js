@@ -1,4 +1,4 @@
-import { AbstractOptionsSelector } from "../../feature/core/abstractOptionsSelector.js";
+import { AbstractOptionsSelector } from "./abstractOptionsSelector.js";
 
 export class ItemOptionsSelector extends AbstractOptionsSelector {
 
