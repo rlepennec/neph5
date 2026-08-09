@@ -1,6 +1,5 @@
 .skin-air {
-  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
-        url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff), url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -164,8 +163,7 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-air-crayon.webp");
 }
 .skin-eau {
-  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-        url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #0d273d;
   --font-editor-color: #191813;
@@ -493,8 +491,7 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-feu-crayon.webp");
 }
 .skin-lune {
-  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
-        url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%), url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #121212;
   --font-editor-color: #191813;
@@ -658,8 +655,7 @@
   --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-lune-crayon.webp");
 }
 .skin-lune-noire {
-  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
-        url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
   --article-separator-margin-top: 0px;
   --font-color: #191813;
   --font-editor-color: #191813;
@@ -10190,108 +10186,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-root.style-ashbury .vk-per-right {
   flex: 1;
 }
-.item-root.style-classique aside {
-  flex: 0 0 auto;
-  width: 60px;
-  background-image: var(--vk-side-classique, none);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
-  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-}
-.item-root.style-classique .classique-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-family: 'AJensonPro';
-  font-size: 16px;
-  color: #191813;
-  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
-}
-.item-root.style-classique .classique-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  padding: 10px 20px;
-  gap: 10px;
-  overflow-y: auto;
-}
-.item-root.style-classique .classique-head {
-  display: block;
-  flex-shrink: 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #151156;
-}
-.item-root.style-classique .classique-head h1 {
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  font-size: 16px;
-  margin: 0 0 2px 0;
-  color: #191813;
-}
-.item-root.style-classique .classique-head input {
-  border: 0;
-  background: transparent;
-  color: #191813;
-  font-family: 'AJensonPro';
-}
-.item-root.style-classique .classique-vecus {
-  list-style: none;
-  columns: 2;
-  padding: 0;
-  margin: 8px 0;
-  border-bottom: 1px solid #151156;
-  padding-bottom: 8px;
-  font-family: 'AJensonPro';
-  color: #191813;
-}
-.item-root.style-classique .classique-vecus li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  break-inside: avoid;
-  margin-bottom: 2px;
-}
-.item-root.style-classique .classique-vecus .delete-vecu {
-  color: indianred;
-  cursor: pointer;
-}
-.item-root.style-classique .classique-vecus .hoverable {
-  cursor: pointer;
-}
-.item-root.style-classique .classique-vecus .hoverable:hover {
-  text-decoration: underline;
-}
-.item-root.style-classique .classique-desc-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 120px;
-}
-.item-root.style-classique .classique-title {
-  margin: 0 0 6px 0;
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  font-size: 18px;
-  color: #191813;
-}
-.item-root.style-classique .classique-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  font-family: 'AJensonProLtDisp';
-  font-size: 16px;
-  color: #191813;
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-quete {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
 }
@@ -11716,6 +11610,7 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-root.style-classique main div.label h1 {
   font-size: 20px;
   margin-right: 30px;
+  margin-bottom: 15px;
 }
 .item-root.style-classique main div.label span {
   width: 400px;
@@ -11819,6 +11714,14 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-root.style-classique main table.chronology tr th:nth-child(3),
 .item-root.style-classique main table.chronology tr td:nth-child(3) {
   width: 15%;
+}
+form.application.sheet.item:has(.style-classique) > .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
+  box-shadow: 0 0 6px 2px #f5f4f4 inset;
+  color: #f5f4f4;
+}
+form.application.sheet.item:has(.style-classique) > .window-header .window-title {
+  font-family: 'NightjarDemi';
 }
 .recherche table tr td {
   font-family: 'AJensonPro';
