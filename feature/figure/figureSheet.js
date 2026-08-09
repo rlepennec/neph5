@@ -74,6 +74,41 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             initial: "description"
         }
     }
+    /**
+     * Description déclarative des onglets de la fiche.
+     * - option : clé de system.options conditionnant l'affichage (absente = toujours affiché).
+     * - science : onglet de science, rendu par le template commun science.hbs ; le header
+     *   est calculé automatiquement.
+     * - extra : champs supplémentaires passés à l'onglet. Peut être une fonction quand la
+     *   valeur doit être évaluée à chaque rendu (réglages, données de jeu).
+     */
+    static TAB_DEFINITIONS = [
+        { id: "description", template: `feature/figure/description.hbs` },
+        { id: "nephilim", option: "nephilim", template: `feature/nephilim/actor/main.hbs` },
+        { id: "selenim", option: "selenim", template: `feature/selenim/actor/main.hbs` },
+        { id: "combat", option: "combat", template: `feature/figure/combat.hbs` },
+        { id: "incarnations", option: "incarnations", template: `feature/figure/incarnations.hbs`, extra: { from: "figure" } },
+        { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
+        { id: "magie", option: "magie", science: "magie" },
+        { id: "kabbale", option: "kabbale", science: "kabbale" },
+        { id: "arbre", option: "kabbale", template: `feature/kabbale/actor/arbre.hbs` },
+        { id: "ordonnances", option: "kabbale", template: `feature/kabbale/actor/ordonnances.hbs` },
+        { id: "alchimie", option: "alchimie", science: "alchimie" },
+        { id: "laboratoire", option: "alchimie", template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Game.alchimie.cercles }) },
+        { id: "materiae", option: "alchimie", template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
+        { id: "analogie", option: "analogie", science: "analogie" },
+        { id: "dracomachie", option: "dracomachie", science: "dracomachie" },
+        { id: "atlanteide", option: "atlanteide", science: "atlanteide" },
+        { id: "necromancie", option: "necromancie", science: "necromancie" },
+        { id: "conjuration", option: "conjuration", science: "conjuration" },
+        { id: "akasha", option: "akasha", template: `feature/akasha/actor/main.hbs` },
+        { id: "bohemien", option: "bohemien", science: "bohemien" },
+        { id: "baton", option: "baton", science: "baton" },
+        { id: "coupe", option: "coupe", science: "coupe" },
+        { id: "denier", option: "denier", science: "denier" },
+        { id: "epee", option: "epee", science: "epee" },
+        { id: "capacites", option: "capacites", template: `feature/capacite/actor/capacites.hbs`, extra: { from: "figure" } }
+    ];
 
     /**
      * @constructor
@@ -95,183 +130,25 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /**
      * @override
-     **/
+     * Construit les onglets à partir de TAB_DEFINITIONS, en ne retenant que ceux dont
+     * l'option associée est activée.
+     */
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
-        const tabs = [{
-            id: "description",
-            template: `systems/neph5e/feature/figure/description.hbs`
-        }];
         const o = this.document.system.options ?? {};
-        if (o.nephilim) {
-            tabs.push({
-                id: "nephilim",
-                template: `systems/neph5e/feature/nephilim/actor/main.hbs`
+        const tabs = FigureSheet.TAB_DEFINITIONS
+            .filter(d => d.option == null || o[d.option])
+            .map(d => {
+                const tab = {
+                    id: d.id,
+                    template: `systems/neph5e/${d.science == null ? d.template : 'feature/science/actor/science.hbs'}`
+                };
+                if (d.science != null) {
+                    tab.science = d.science;
+                    tab.header = Science._getHeader(d.science);
+                }
+                return Object.assign(tab, typeof d.extra === 'function' ? d.extra() : d.extra);
             });
-        }
-        if (o.selenim) {
-            tabs.push({
-                id: "selenim",
-                template: `systems/neph5e/feature/selenim/actor/main.hbs`
-            });
-        }
-        if (o.combat) {
-            tabs.push({
-                id: "combat",
-                template: `systems/neph5e/feature/figure/combat.hbs`
-            });
-        }
-        if (o.incarnations) {
-            tabs.push({
-                id: "incarnations",
-                template: `systems/neph5e/feature/figure/incarnations.hbs`,
-                from: "figure"
-            });
-        }
-        if (o.vecus) {
-            tabs.push({
-                id: "vecus",
-                template: `systems/neph5e/feature/figure/vecus.hbs`,
-                from: "figure"
-            });
-        }
-        if (o.magie) {
-            tabs.push({
-                id: "magie",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "magie",
-                header: Science._getHeader("magie")
-            });
-        }
-        if (o.kabbale) {
-            tabs.push({
-                id: "kabbale",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "kabbale",
-                header: Science._getHeader("kabbale")
-            });
-            tabs.push({
-                id: "arbre",
-                template: `systems/neph5e/feature/kabbale/actor/arbre.hbs`
-            });
-            if (this.document.ordonnances.items.length > 0) {
-                tabs.push({
-                    id: "ordonnances",
-                    template: `systems/neph5e/feature/kabbale/actor/ordonnances.hbs`
-                });
-            }
-        }
-        if (o.alchimie) {
-            tabs.push({
-                id: "alchimie",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "alchimie",
-                header: Science._getHeader("alchimie")
-            });
-            tabs.push({
-                id: "laboratoire",
-                template: `systems/neph5e/feature/alchimie/actor/laboratoire.hbs`,
-                cercles: Game.alchimie.cercles
-            });
-            tabs.push({
-                id: "materiae",
-                template: `systems/neph5e/feature/alchimie/actor/materiae.hbs`,
-                catalyseurs: game.settings.get('neph5e', 'catalyseurs')
-            });
-        }
-        if (o.analogie) {
-            tabs.push({
-                id: "analogie",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "analogie",
-                header: Science._getHeader("analogie")
-            });
-        }
-        if (o.dracomachie) {
-            tabs.push({
-                id: "dracomachie",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "dracomachie",
-                header: Science._getHeader("dracomachie")
-            });
-        }
-        if (o.atlanteide) {
-            tabs.push({
-                id: "atlanteide",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "atlanteide",
-                header: Science._getHeader("atlanteide")
-            });
-        }
-        if (o.necromancie) {
-            tabs.push({
-                id: "necromancie",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "necromancie",
-                header: Science._getHeader("necromancie")
-            });
-        }
-        if (o.conjuration) {
-            tabs.push({
-                id: "conjuration",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "conjuration",
-                header: Science._getHeader("conjuration")
-            });
-        }
-        if (o.akasha) {
-            tabs.push({
-                id: "akasha",
-                template: `systems/neph5e/feature/akasha/actor/main.hbs`
-            });
-        }
-        if (o.bohemien) {
-            tabs.push({
-                id: "bohemien",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "bohemien",
-                header: Science._getHeader("bohemien")
-            });
-        }
-        if (o.baton) {
-            tabs.push({
-                id: "baton",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "baton",
-                header: Science._getHeader("baton")
-            });
-        }
-        if (o.coupe) {
-            tabs.push({
-                id: "coupe",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "coupe",
-                header: Science._getHeader("coupe")
-            });
-        }
-        if (o.denier) {
-            tabs.push({
-                id: "denier",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "denier",
-                header: Science._getHeader("denier")
-            });
-        }
-        if (o.epee) {
-            tabs.push({
-                id: "epee",
-                template: `systems/neph5e/feature/science/actor/science.hbs`,
-                science: "epee",
-                header: Science._getHeader("epee")
-            });
-        }
-        if (o.capacites) {
-            tabs.push({
-                id: "capacites",
-                template: `systems/neph5e/feature/capacite/actor/capacites.hbs`,
-                from: "figure"
-            });
-        }
         return { tabs, initial: "description" };
     }
 
