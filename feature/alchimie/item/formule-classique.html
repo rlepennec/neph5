@@ -7,81 +7,112 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
+            <div class="banner">
 
-                <div class="classique-head">
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="degre" name="system.degre" value=document.system.degre }}
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="degre"
+                    class="circle"
+                    name="system.degre"
+                    value=document.system.degre
+                }}
+
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="oeuvre"
+                    name="system.cercle"
+                    value=document.system.cercle
+                    options=context.cercles
+                }}
+
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="substance"
+                    name="system.substance"
+                    value=document.system.substance
+                    options=context.substances
+                }}
+
+                {{#if (eq system.cercle "oeuvreAuRouge")}}
                     {{> "systems/neph5e/templates/select.hbs"
-                        title="oeuvre" name="system.cercle"
-                        value=document.system.cercle options=context.cercles }}
+                        title="element"
+                        name="system.elements.[0]"
+                        value=document.system.elements.[0]
+                        options=context.elementsGS
+                    }}
+                {{else}}
                     {{> "systems/neph5e/templates/select.hbs"
-                        title="substance" name="system.substance"
-                        value=document.system.substance options=context.substances }}
-
-                    {{#if (eq system.cercle "oeuvreAuRouge")}}
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element" name="system.elements.[0]"
-                        value=document.system.elements.[0] options=context.elementsGS }}
-                    {{else}}
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element" name="system.elements.[0]"
-                        value=document.system.elements.[0] options=context.elements }}
-                    {{/if}}
-
-                    {{#if (eq system.cercle "oeuvreAuBlanc")}}
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element" name="system.elements.[1]"
-                        value=document.system.elements.[1] options=context.elements }}
-                    {{/if}}
-                </div>
-
-                <div class="classique-fields">
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="enonce" name="system.enonce" value=document.system.enonce }}
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="aire" name="system.aire" value=document.system.aire }}
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="duree" name="system.duree" value=document.system.duree }}
-
-                    {{#if (eq system.cercle "oeuvreAuRouge")}}
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="echec" name="system.echec" value=document.system.echec }}
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="maladresse" name="system.maladresse" value=document.system.maladresse }}
-                    {{/if}}
-                </div>
-
-                {{> "systems/neph5e/templates/list.hbs"
-                    title="variantes" values=document.system.variantes names="system.variantes" }}
-
-                {{> "systems/neph5e/templates/list.hbs"
-                    title="catalyseurs" values=document.system.catalyseurs names="system.catalyseurs" }}
-
-                {{#if (nonNull difficulty)}}
-                <div class="classique-difficulty">
-                    <span>{{translate "difficulte"}} :</span>
-                    <span>{{difficulty}}0%{{#if (eq item.system.elements.[0] 'quintuple')}} plus l'élément{{/if}}</span>
-                </div>
+                        title="element"
+                        name="system.elements.[0]"
+                        value=document.system.elements.[0]
+                        options=context.elements
+                    }}
                 {{/if}}
 
-                <div class="classique-desc-box">
-                    <h1 class="classique-title">{{translate "description"}}</h1>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+                {{#if (eq system.cercle "oeuvreAuBlanc")}}
+                    {{> "systems/neph5e/templates/select.hbs"
+                        title="element"
+                        name="system.elements.[1]"
+                        value=document.system.elements.[1]
+                        options=context.elements
+                    }}
+                {{/if}}
 
             </div>
+
+            {{> "systems/neph5e/templates/input.hbs"
+                title="enonce"
+                name="system.enonce"
+                value=document.system.enonce
+            }}
+
+            {{> "systems/neph5e/templates/input.hbs"
+                title="aire"
+                name="system.aire"
+                value=document.system.aire
+            }}
+
+            {{> "systems/neph5e/templates/input.hbs"
+                title="duree"
+                name="system.duree"
+                value=document.system.duree
+            }}
+
+            {{#if (eq system.cercle "oeuvreAuRouge")}}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="echec"
+                    name="system.echec"
+                    value=document.system.echec
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="maladresse"
+                    name="system.maladresse"
+                    value=document.system.maladresse
+                }}
+
+            {{/if}}
+
+            {{> "systems/neph5e/templates/list.hbs"
+                title="variantes"
+                values=document.system.variantes
+                names="system.variantes"
+            }}
+
+            {{> "systems/neph5e/templates/list.hbs"
+                title="catalyseurs"
+                values=document.system.catalyseurs
+                names="system.catalyseurs"
+            }}
+
+            {{#if (nonNull difficulty)}}
+            <div class="label">
+                <h1>{{translate "difficulte"}}</h1>
+                <span>{{difficulty}}0%{{#if (eq item.system.elements.[0] 'quintuple')}} plus l'élément{{/if}}</span>
+            </div>
+            {{/if}}
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 
