@@ -7,43 +7,29 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
+            <div class="banner">
 
-                <div class="classique-head">
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element" name="system.element"
-                        value=document.system.element options=context.elements }}
-                </div>
-
-                <ol class="classique-metamorphoses">
-                    {{#range 0 9}}
-                    <li>
-                        <input
-                            type="text"
-                            name="system.metamorphoses.[{{this}}].name"
-                            value="{{lookup (lookup ../document.system.metamorphoses this) 'name'}}"
-                            {{#if ../document.sheet.locked}}disabled{{/if}}/>
-                    </li>
-                    {{/range}}
-                </ol>
-
-                <div class="classique-desc-box">
-                    <h1 class="classique-title">{{translate "description"}}</h1>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="element"
+                    name="system.element"
+                    value=document.system.element
+                    options=context.elements }}
 
             </div>
+
+            <ol>
+                {{#range 0 9}}
+                <li>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        name=(concat "system.metamorphoses.[" this "].name")
+                        value=(lookup (lookup ../document.system.metamorphoses this) "name") }}
+                </li>
+                {{/range}}
+            </ol>
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 

@@ -7,37 +7,31 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
+            <div class="banner">
 
-                <div class="classique-head">
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="construction" name="system.degre" value=document.system.degre }}
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="activation" name="system.activation" value=document.system.activation }}
-                </div>
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="construction"
+                    name="system.degre"
+                    value=document.system.degre
+                }}
 
-                <div class="classique-fields">
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="duree" name="system.duree" value=document.system.duree }}
-                </div>
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="activation"
+                    name="system.activation"
+                    value=document.system.activation
+                }}
 
-                <div class="classique-desc-box">
-                    <h1 class="classique-title">{{translate "description"}}</h1>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="duree"
+                    name="system.duree"
+                    value=document.system.duree
+                }}
 
             </div>
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 
