@@ -6346,14 +6346,6 @@ form.nephilim.item section.window-content > section aside.vk-aside {
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-rite {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp");
 }
@@ -6545,14 +6537,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-arcane {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
 }
@@ -6645,14 +6629,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-arme {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
@@ -7117,14 +7093,6 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-armure {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
 }
@@ -7398,14 +7366,6 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-aspect {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-aspect.webp");
 }
@@ -7582,14 +7542,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-atlanteide {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-atlanteide.webp");
@@ -7773,14 +7725,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-capacite {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-capacite.webp");
 }
@@ -7861,14 +7805,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-catalyseur {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-catalyseur.webp");
@@ -7951,14 +7887,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-chute {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-chute.webp");
 }
@@ -8039,14 +7967,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-competence {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-competence.webp");
@@ -8185,14 +8105,6 @@ form.nephilim.item section.window-content > section.style-ashbury article main h
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-divination {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-divination.webp");
@@ -8376,14 +8288,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-dracomachie {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-dracomachie.webp");
 }
@@ -8565,14 +8469,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-formule {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
@@ -8801,14 +8697,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-habitus {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-habitus.webp");
 }
@@ -9025,14 +8913,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-invocation {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
@@ -9294,14 +9174,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-magie {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-magie.webp");
 }
@@ -9383,14 +9255,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-materiae {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-materiae.webp");
 }
@@ -9446,14 +9310,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-root.style-ashbury .vk-mat-desc {
   flex: 1;
   min-height: 140px;
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-metamorphe {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
@@ -9716,14 +9572,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-ordonnance {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-ordonnance.webp");
 }
@@ -9818,14 +9666,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   color: #1a1a1a;
   background-color: #ffffff;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-passe {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-passe.webp");
 }
@@ -9906,14 +9746,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-pratique {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-pratique.webp");
@@ -10097,14 +9929,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-periode {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-periode.webp");
 }
@@ -10260,14 +10084,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-rite {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp");
@@ -10460,14 +10276,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-rituel {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rituel.webp");
 }
@@ -10650,14 +10458,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-savoir {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-savoir.webp");
 }
@@ -10748,14 +10548,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-science {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-science.webp");
 }
@@ -10825,14 +10617,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   to {
     transform: rotate(360deg);
   }
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-sort {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
@@ -11017,14 +10801,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-technique {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp");
 }
@@ -11206,14 +10982,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-family: 'AJensonProLtDisp';
   font-size: 16px;
   color: #191813;
-}
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
 }
 .item-tekhne {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-tekhne.webp");
@@ -11397,14 +11165,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
   font-size: 16px;
   color: #191813;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-vecu {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
 }
@@ -11511,14 +11271,6 @@ form.application.sheet.item:has(.style-classique) > .window-header .window-title
 .item-root.style-ashbury .vk-vecu-desc {
   flex: 1;
 }
-form.application.sheet.item:has(.style-classique) > .window-header {
-  background: url("../../systems/neph5e/assets/backgrounds/p.webp") center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
-form.application.sheet.item:has(.style-classique) > .window-header .window-title {
-  font-family: 'NightjarDemi';
-}
 .item-arme {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
 }
@@ -11549,6 +11301,21 @@ form.nephilim.item .item-root.style-classique main {
   color: #191813;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
 }
+form.nephilim.item .item-root.style-classique main > div.input,
+form.nephilim.item .item-root.style-classique main > div.label {
+  justify-content: flex-start;
+}
+form.nephilim.item .item-root.style-classique main > div.input > h1,
+form.nephilim.item .item-root.style-classique main > div.label > h1 {
+  flex: 0 0 110px;
+}
+form.nephilim.item .item-root.style-classique main > div.input > span,
+form.nephilim.item .item-root.style-classique main > div.label > span {
+  flex: 1 1 auto;
+  width: auto;
+  text-align: left;
+  padding: 0 0.5rem;
+}
 form.nephilim.item .item-root.style-classique main div.clef {
   display: flex;
   flex-direction: row;
@@ -11573,7 +11340,7 @@ form.nephilim.item .item-root.style-classique main div.clef input {
 form.nephilim.item .item-root.style-classique main div.banner {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-shrink: 0;
   margin-top: 10px;
@@ -11627,6 +11394,9 @@ form.nephilim.item .item-root.style-classique main div.list {
   flex-shrink: 0;
   font-size: 16px;
 }
+form.nephilim.item .item-root.style-classique main div.list h1 {
+  font-size: 20px;
+}
 form.nephilim.item .item-root.style-classique main div.selector {
   display: flex;
   flex-direction: row;
@@ -11640,7 +11410,9 @@ form.nephilim.item .item-root.style-classique main div.selector h1 {
   margin-right: 30px;
 }
 form.nephilim.item .item-root.style-classique main div.selector select {
-  width: 100px;
+  width: fit-content;
+  min-width: 100px;
+  flex: 0 0 auto;
 }
 form.nephilim.item .item-root.style-classique main input.circle {
   width: 40px;

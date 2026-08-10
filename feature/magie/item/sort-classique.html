@@ -35,44 +35,50 @@
             </div>
 
             {{#if (or (eq system.cercle "hauteMagie") (eq system.cercle "grandSecret"))}}
-            {{> "systems/neph5e/templates/list.hbs"
-                title="voies" values=document.system.voies names="system.voies" }}
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="voies"
+                    values=document.system.voies
+                    names="system.voies"
+                }}
             {{/if}}
 
-            <div class="classique-fields">
-                {{> "systems/neph5e/templates/input.hbs"
-                    title="portee" name="system.portee" value=document.system.portee }}
-                {{> "systems/neph5e/templates/input.hbs"
-                    title="duree" name="system.duree" value=document.system.duree }}
 
-                {{#if (eq system.cercle "grandSecret")}}
+            {{> "systems/neph5e/templates/input.hbs"
+                title="portee"
+                name="system.portee"
+                value=document.system.portee 
+            }}
+
+            {{> "systems/neph5e/templates/input.hbs"
+                title="duree"
+                name="system.duree"
+                value=document.system.duree
+            }}
+
+            {{#if (eq system.cercle "grandSecret")}}
+
                 {{> "systems/neph5e/templates/input.hbs"
-                    title="incantation" name="system.incantation" value=document.system.incantation }}
+                    title="incantation"
+                    name="system.incantation"
+                    value=document.system.incantation
+                    }}
+
                 {{> "systems/neph5e/templates/input.hbs"
-                    title="syntaxe" name="system.syntaxe" value=document.system.syntaxe }}
-                {{/if}}
-            </div>
+                    title="syntaxe"
+                    name="system.syntaxe"
+                    value=document.system.syntaxe
+                }}
+
+            {{/if}}
 
             {{#if (nonNull difficulty)}}
-            <div class="classique-difficulty">
-                <span>{{translate "difficulte"}} :</span>
-                <span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
+            <div class="label">
+                <h1>{{translate "difficulte"}}</h1>
+                <span>{{difficulty}}0%{{#if (eq document.system.element "choix")}} plus l'élément{{/if}}</span>
             </div>
             {{/if}}
 
-            <div class="classique-desc-box">
-                <h1 class="classique-title">{{translate "description"}}</h1>
-                <div class="classique-editor">
-                    <prose-mirror
-                        name="system.description"
-                        button="true"
-                        editable="{{editable}}"
-                        toggled="false"
-                        value="{{document.system.description}}">
-                        {{{enrichedDescription}}}
-                    </prose-mirror>
-                </div>
-            </div>
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 

@@ -59,6 +59,22 @@ form.nephilim.item .item-root.style-classique {
         color: #191813;
         background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
         
+        > div.input,
+        > div.label {
+            justify-content: flex-start;
+
+            > h1 {
+                flex: 0 0 110px;
+            }
+
+            > span {
+                flex: 1 1 auto;
+                width: auto;
+                text-align: left;
+                padding: 0 0.5rem;
+            }
+        }
+
         div.clef {
             display: flex;
             flex-direction: row;
@@ -86,7 +102,7 @@ form.nephilim.item .item-root.style-classique {
         div.banner {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             flex-shrink: 0;
             margin-top: 10px;
@@ -153,6 +169,10 @@ form.nephilim.item .item-root.style-classique {
             flex-direction: column;
             flex-shrink: 0;
             font-size: 16px;
+
+            h1 {
+                font-size: 20px;
+            }
         }
 
         div.selector {
@@ -169,7 +189,9 @@ form.nephilim.item .item-root.style-classique {
             }
 
             select {
-                width: 100px;
+                width: fit-content;
+                min-width: 100px;
+                flex: 0 0 auto;
             }
 
         }
