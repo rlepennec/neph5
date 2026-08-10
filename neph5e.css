@@ -6447,96 +6447,6 @@ form.nephilim.item section.window-content > section aside.vk-aside {
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.item-root.style-classique aside {
-  flex: 0 0 auto;
-  width: 60px;
-  background-image: var(--vk-side-classique, none);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
-  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-}
-.item-root.style-classique .classique-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-family: 'AJensonPro';
-  font-size: 16px;
-  color: #191813;
-  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
-}
-.item-root.style-classique .classique-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  padding: 10px 20px;
-  gap: 10px;
-  overflow-y: auto;
-}
-.item-root.style-classique .classique-head {
-  display: block;
-  flex-shrink: 0;
-  text-align: center;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #151156;
-}
-.item-root.style-classique .classique-head select {
-  outline: 0;
-  background-color: transparent;
-  min-width: 160px;
-  height: 35px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-align-last: center;
-  color: #191813;
-  border: 1px solid #151156;
-  border-radius: 10px;
-  box-shadow: 0 0 4px 1px #414048 inset;
-}
-.item-root.style-classique .classique-head select option {
-  background-color: antiquewhite;
-  color: #191813;
-  text-align: center;
-}
-.item-root.style-classique .classique-head h1 {
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  margin: 0 0 4px 0;
-  color: #191813;
-}
-.item-root.style-classique .difficulte {
-  display: flex;
-  gap: 6px;
-  margin: 8px 0;
-  font-family: 'AJensonPro';
-  color: #191813;
-}
-.item-root.style-classique .difficulte span:first-child {
-  font-weight: bold;
-}
-.item-root.style-classique .classique-desc-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 120px;
-}
-.item-root.style-classique .classique-title {
-  margin: 0 0 6px 0;
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  font-size: 18px;
-  color: #191813;
-}
-.item-root.style-classique .classique-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  font-family: 'AJensonProLtDisp';
-  font-size: 16px;
-  color: #191813;
-}
 .item-arcane {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
 }
@@ -9956,96 +9866,6 @@ form.nephilim.item section.window-content > section.style-ashbury article main h
   font-size: 1.1em;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
-.item-root.style-classique aside {
-  flex: 0 0 auto;
-  width: 60px;
-  background-image: var(--vk-side-classique, none);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: top center;
-  box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-}
-.item-root.style-classique .classique-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-family: 'AJensonPro';
-  font-size: 16px;
-  color: #191813;
-  background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
-}
-.item-root.style-classique .classique-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  padding: 10px 20px;
-  gap: 10px;
-  overflow-y: auto;
-}
-.item-root.style-classique .classique-head {
-  display: block;
-  flex-shrink: 0;
-  text-align: center;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #151156;
-}
-.item-root.style-classique .classique-head select {
-  outline: 0;
-  background-color: transparent;
-  min-width: 160px;
-  height: 35px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  text-align-last: center;
-  color: #191813;
-  border: 1px solid #151156;
-  border-radius: 10px;
-  box-shadow: 0 0 4px 1px #414048 inset;
-}
-.item-root.style-classique .classique-head select option {
-  background-color: antiquewhite;
-  color: #191813;
-  text-align: center;
-}
-.item-root.style-classique .classique-head h1 {
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  margin: 0 0 4px 0;
-  color: #191813;
-}
-.item-root.style-classique .difficulte {
-  display: flex;
-  gap: 6px;
-  margin: 8px 0;
-  font-family: 'AJensonPro';
-  color: #191813;
-}
-.item-root.style-classique .difficulte span:first-child {
-  font-weight: bold;
-}
-.item-root.style-classique .classique-desc-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 120px;
-}
-.item-root.style-classique .classique-title {
-  margin: 0 0 6px 0;
-  font-weight: bold;
-  font-family: 'AJensonPro';
-  font-size: 18px;
-  color: #191813;
-}
-.item-root.style-classique .classique-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  font-family: 'AJensonProLtDisp';
-  font-size: 16px;
-  color: #191813;
-}
 .item-rituel {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rituel.webp");
 }
@@ -10956,20 +10776,56 @@ form.nephilim.item .item-root.style-classique main {
   color: #191813;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
 }
+form.nephilim.item .item-root.style-classique main > div.checkbox,
 form.nephilim.item .item-root.style-classique main > div.input,
 form.nephilim.item .item-root.style-classique main > div.label {
   justify-content: flex-start;
 }
+form.nephilim.item .item-root.style-classique main > div.checkbox > h1,
 form.nephilim.item .item-root.style-classique main > div.input > h1,
 form.nephilim.item .item-root.style-classique main > div.label > h1 {
   flex: 0 0 110px;
 }
+form.nephilim.item .item-root.style-classique main > div.checkbox.wide > h1,
+form.nephilim.item .item-root.style-classique main > div.input.wide > h1,
+form.nephilim.item .item-root.style-classique main > div.label.wide > h1 {
+  flex: 0 0 200px;
+}
+form.nephilim.item .item-root.style-classique main > div.checkbox > span,
 form.nephilim.item .item-root.style-classique main > div.input > span,
 form.nephilim.item .item-root.style-classique main > div.label > span {
   flex: 1 1 auto;
   width: auto;
   text-align: left;
   padding: 0 0.5rem;
+}
+form.nephilim.item .item-root.style-classique main div.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #151156;
+}
+form.nephilim.item .item-root.style-classique main div.banner div {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+form.nephilim.item .item-root.style-classique main div.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+form.nephilim.item .item-root.style-classique main div.checkbox h1 {
+  font-size: 20px;
+  margin-right: 30px;
+}
+form.nephilim.item .item-root.style-classique main div.checkbox input {
+  display: none;
 }
 form.nephilim.item .item-root.style-classique main div.clef {
   display: flex;
@@ -10991,20 +10847,6 @@ form.nephilim.item .item-root.style-classique main div.clef input {
   border: 1px solid #151156;
   color: #191813;
   margin: 0px;
-}
-form.nephilim.item .item-root.style-classique main div.banner {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-shrink: 0;
-  margin-top: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #151156;
-}
-form.nephilim.item .item-root.style-classique main div.banner div {
-  margin-left: 30px;
-  margin-right: 30px;
 }
 form.nephilim.item .item-root.style-classique main div.input {
   display: flex;
@@ -11051,6 +10893,48 @@ form.nephilim.item .item-root.style-classique main div.list {
 }
 form.nephilim.item .item-root.style-classique main div.list h1 {
   font-size: 20px;
+}
+form.nephilim.item .item-root.style-classique main div.pills {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow: hidden;
+}
+form.nephilim.item .item-root.style-classique main div.pills input[type="radio"] {
+  display: none;
+}
+form.nephilim.item .item-root.style-classique main div.pills label {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 4px 20px;
+  margin: 0;
+  border: 1px solid rgba(21, 17, 86, 0.35);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(25, 24, 19, 0.7);
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+form.nephilim.item .item-root.style-classique main div.pills label:hover {
+  background: rgba(21, 17, 86, 0.08);
+  border-color: rgba(21, 17, 86, 0.65);
+  color: #191813;
+}
+form.nephilim.item .item-root.style-classique main div.pills label.active,
+form.nephilim.item .item-root.style-classique main div.pills label:has(input:checked) {
+  background: #151156;
+  border-color: #151156;
+  color: #f5f4f4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 form.nephilim.item .item-root.style-classique main div.selector {
   display: flex;

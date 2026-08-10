@@ -1,10 +1,16 @@
-{{#if title}}
-<h1>{{translate title}}</h1>
-{{/if}}
 
-<div class="checkbox{{#if document.sheet.locked}} locked{{/if}}{{#if class}} {{class}}{{/if}}">
+
+<div class="checkbox{{#if wide}} wide{{/if}}">
+
+    {{#if title}}
+    <h1>{{translate title}}</h1>
+    {{/if}}
 
     <input
+
+        {{#if document.sheet.locked}}
+        class="locked"
+        {{/if}}
 
         {{#if (or (nonNull difficulty) (lookup document.sheet "locked"))}}
             disabled

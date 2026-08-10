@@ -1,0 +1,22 @@
+<div class="pills">
+
+    {{#if title}}
+    <h1>{{translate title}}</h1>
+    {{/if}}
+
+    {{#each (selectChoices options) as |label key|}}
+    <label {{#if (eq ../value key)}}class="active"{{/if}}>
+
+        <input
+            type="radio"
+            name="{{../name}}"
+            value="{{key}}"
+            {{#if (eq ../value key)}}checked{{/if}}
+            {{#if (or ../disabled ../document.sheet.locked)}} disabled{{/if}}/>
+
+        {{label}}
+
+    </label>
+    {{/each}}
+
+</div>

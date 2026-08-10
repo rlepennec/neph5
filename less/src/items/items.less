@@ -59,6 +59,7 @@ form.nephilim.item .item-root.style-classique {
         color: #191813;
         background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
         
+        > div.checkbox,
         > div.input,
         > div.label {
             justify-content: flex-start;
@@ -67,12 +68,51 @@ form.nephilim.item .item-root.style-classique {
                 flex: 0 0 110px;
             }
 
+            &.wide > h1 {
+                flex: 0 0 200px;
+            }
+
             > span {
                 flex: 1 1 auto;
                 width: auto;
                 text-align: left;
                 padding: 0 0.5rem;
             }
+        }
+
+        div.banner {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-shrink: 0;
+            margin-top: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #151156;
+
+            div {
+                margin-left: 30px;
+                margin-right: 30px;
+            }
+
+        }
+
+        div.checkbox {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-shrink: 0;
+            font-size: 16px;
+            
+            h1 {
+                font-size: 20px;
+                margin-right: 30px;
+            }
+
+            input {
+                display: none;
+            }
+
         }
 
         div.clef {
@@ -97,23 +137,6 @@ form.nephilim.item .item-root.style-classique {
                 color: #191813;
                 margin: 0px;
             } 
-        }
-
-        div.banner {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            flex-shrink: 0;
-            margin-top: 10px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #151156;
-
-            div {
-                margin-left: 30px;
-                margin-right: 30px;
-            }
-
         }
 
         div.input {
@@ -173,6 +196,55 @@ form.nephilim.item .item-root.style-classique {
             h1 {
                 font-size: 20px;
             }
+        }
+
+        div.pills {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            overflow: hidden;
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            label {
+                flex: 1;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                height: 34px;
+                padding: 4px 20px;
+                margin: 0;
+                border: 1px solid rgba(21, 17, 86, 0.35);
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.30);
+                color: rgba(25, 24, 19, 0.70);
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 1.2;
+                text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+                white-space: nowrap;
+                cursor: pointer;
+                user-select: none;
+                transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+                &:hover {
+                    background: rgba(21, 17, 86, 0.08);
+                    border-color: rgba(21, 17, 86, 0.65);
+                    color: #191813;
+                }
+
+                &.active,
+                &:has(input:checked) {
+                    background: #151156;
+                    border-color: #151156;
+                    color: #f5f4f4;
+                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+                }
+
+            }
+            
         }
 
         div.selector {
