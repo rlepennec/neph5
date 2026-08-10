@@ -8,7 +8,7 @@
 
         <main>
 
-            <div class="banner">
+            <div class="banner stacked">
 
                 {{> "systems/neph5e/templates/pills.hbs"
                     name="system.type"
@@ -16,9 +16,16 @@
                     options=context.types
                 }}
 
+                {{> "systems/neph5e/templates/label.hbs"
+                    title="using"
+                    placeholder="deposerVecuCompetence"
+                    value=document.system.competence
+                    center=true
+                }}
+
             </div>
 
-            <div class="banner">
+            <div class="banner thick">
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="attaque"
@@ -49,13 +56,8 @@
 
             </div>
 
-            {{> "systems/neph5e/templates/label.hbs"
-                title="using"
-                placeholder="deposerVecuCompetence"
-                value=document.system.competence
-            }}
-
             {{#if (eq document.system.type 'melee')}}
+            <div class="banner thick">
 
                 {{> "systems/neph5e/templates/checkbox.hbs"
                     title="blocageAutorise"
@@ -71,9 +73,29 @@
                     wide=true
                 }}
 
+            </div>
             {{/if}}
 
             {{#unless (isContact document.system.type)}}
+            <div class="banner thick">
+
+                {{#if (eq document.system.type 'feu')}}
+
+                    {{> "systems/neph5e/templates/checkbox.hbs"
+                        title="salve"
+                        name="system.salve"
+                        value=document.system.salve
+                        wide=true
+                    }}
+
+                    {{> "systems/neph5e/templates/checkbox.hbs"
+                        title="rafale"
+                        name="system.rafale"
+                        value=document.system.rafale
+                        wide=true
+                    }}
+
+                {{/if}}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="chargeur"
@@ -83,35 +105,13 @@
                     wide=true
                 }}
 
-            {{/unless}}
-
-            {{#if (eq document.system.type 'feu')}}
-
-                {{> "systems/neph5e/templates/checkbox.hbs"
-                    title="salve"
-                    name="system.salve"
-                    value=document.system.salve
-                    wide=true
-                }}
-
-                {{> "systems/neph5e/templates/checkbox.hbs"
-                    title="rafale"
-                    name="system.rafale"
-                    value=document.system.rafale
-                    wide=true
-                }}
-
-            {{/if}}
-
-            {{#unless (isContact document.system.type)}}
-
                 {{> "systems/neph5e/templates/input.hbs"
-                    title="typeMunitions"
                     name="system.ammunition"
                     value=document.system.ammunition
                     wide=true
                 }}
 
+            </div>
             {{/unless}}
 
             {{> "systems/neph5e/templates/description.hbs"}}

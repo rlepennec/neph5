@@ -6,7 +6,7 @@ export class ArmeSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ["vk-orichalque"],
         position: {
-            width: 730,
+            width: 1000,
             height: 800
         }
     }

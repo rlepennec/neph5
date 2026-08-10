@@ -95,6 +95,52 @@ form.nephilim.item .item-root.style-classique {
                 margin-right: 30px;
             }
 
+            div.input,
+            div.label,
+            div.selector {
+                justify-content: center;
+            }
+
+            &.thick {
+                padding-bottom: 20px;
+            }
+
+            &.stacked {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+
+                > div {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+
+                div.checkbox,
+                div.input,
+                div.label,
+                div.selector {
+                    justify-content: flex-start;
+
+                    > h1 {
+                        flex: 0 0 110px;
+                    }
+
+                    &.wide > h1 {
+                        flex-basis: 200px;
+                    }
+
+                    &.center {
+                        justify-content: center;
+
+                        span {
+                            width: 200px;
+                        }
+                    }
+
+                }
+
+            }
+
         }
 
         div.checkbox {
@@ -142,7 +188,6 @@ form.nephilim.item .item-root.style-classique {
         div.input {
             display: flex;
             flex-direction: row;
-            justify-content: center;
             align-items: center;
             flex-shrink: 0;
             font-size: 16px;
@@ -171,7 +216,6 @@ form.nephilim.item .item-root.style-classique {
         div.label {
             display: flex;
             flex-direction: row;
-            justify-content: center;
             align-items: center;
             flex-shrink: 0;
             font-size: 16px;
