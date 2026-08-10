@@ -99,16 +99,18 @@
                 names="system.variantes"
             }}
 
-            {{> "systems/neph5e/templates/list.hbs"
-                title="catalyseurs"
-                values=document.system.catalyseurs
-                names="system.catalyseurs"
-            }}
+            {{#if context.catalyseurs}}
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="catalyseurs"
+                    values=document.system.catalyseurs
+                    names="system.catalyseurs"
+                }}
+            {{/if}}
 
             {{#if (nonNull difficulty)}}
             <div class="label">
                 <h1>{{translate "difficulte"}}</h1>
-                <span>{{difficulty}}0%{{#if (eq item.system.elements.[0] 'quintuple')}} plus l'élément{{/if}}</span>
+                <span>{{difficulty}}0%{{#if (eq document.system.elements.[0] "quintuple")}} plus l'élément{{/if}}</span>
             </div>
             {{/if}}
 
