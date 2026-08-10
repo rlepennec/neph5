@@ -7,41 +7,34 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="classique-body">
+        <main>
 
-            <div class="classique-layout">
+            <div class="banner">
 
-                <div class="classique-head">
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="cercle" name="system.cercle"
-                        value=document.system.cercle options=context.cercles }}
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="desmos" name="system.desmos"
-                        value=document.system.desmos options=context.desmos }}
-                </div>
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="cercle"
+                    name="system.cercle"
+                    value=document.system.cercle
+                    options=context.cercles
+                }}
 
-                {{#if (nonNull difficulty)}}
-                <div class="difficulte">
-                    <span>{{translate "difficulte"}} :</span>
-                    <span>{{difficulty}}0%</span>
-                </div>
-                {{/if}}
-
-                <div class="classique-desc-box">
-                    <h1 class="classique-title">{{translate "description"}}</h1>
-                    <div class="classique-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="desmos"
+                    name="system.desmos"
+                    value=document.system.desmos
+                    options=context.desmos
+                }}
 
             </div>
+
+            {{#if (nonNull difficulty)}}
+            <div class="label">
+                <h1>{{translate "difficulte"}}</h1>
+                <span>{{difficulty}}0%</span>
+            </div>
+            {{/if}}
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 
