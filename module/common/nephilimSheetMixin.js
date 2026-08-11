@@ -1,8 +1,9 @@
 import { DocumentIdentifier } from "./documentIdentifier.js";
+import { LockableMixin } from "./lockableMixin.js";
 
 export const NephilimMixinSheet = Base => {
 
-	return class NephilimSheet extends foundry.applications.api.HandlebarsApplicationMixin(Base) {
+	return class NephilimSheet extends LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(Base)) {
 
 		static DEFAULT_OPTIONS = {
 			classes: ["nephilim", "sheet"],
@@ -22,7 +23,6 @@ export const NephilimMixinSheet = Base => {
 			actions: {
 				delete: NephilimSheet._onDelete,
 				open: NephilimSheet._onOpenLink,
-				lock: NephilimSheet._onLock,
 				select: NephilimSheet._onSelect,
 				setup: NephilimSheet._onSetup,
 				exit: NephilimSheet._onExit
@@ -40,12 +40,6 @@ export const NephilimMixinSheet = Base => {
 			this.dropHandlers.set(type, handler);
 		}
 
-
-		/**
-		 * The sheet is locked by default.
-		 */
-		locked = true;
-
 		/**
 		 * The drag & drop handlers.
 		 */
@@ -62,13 +56,8 @@ export const NephilimMixinSheet = Base => {
 			return new foundry.applications.ux.DragDrop.implementation(d);
 		});
 
-		/**
-		 * @param {*} locked The lock state to display.
-		 * @returns the class to display the toggle icon.
-		 * @private
-		 */
-		static #getLockIcon(locked) {
-			return locked ? 'fa-lock' : 'fa-lock-open';
+		get lockable() {
+			return this.isEditable;
 		}
 
 		get setupable() {
@@ -134,14 +123,6 @@ export const NephilimMixinSheet = Base => {
 		async _renderFrame(options) {
 
 			const frame = await super._renderFrame(options);
-
-			if (this.isEditable) {
-				const icon = NephilimSheet.#getLockIcon(this.locked);
-				const label = game.i18n.localize("NEPHILIM.toggleLock");
-				const id = `<button type="button" class="header-control fa-solid ${icon} icon" data-action="lock" data-tooltip="${label}" aria-label="${label}"></button>`;
-				this.window.controls.insertAdjacentHTML("beforebegin", id);
-				this.window.lock = frame.querySelector("button[data-action=lock]");
-			}
 
 			if (this.setupable) {
 				const icon = 'fa-solid fa-gear';
@@ -262,18 +243,6 @@ export const NephilimMixinSheet = Base => {
 			new DocumentIdentifier(target).toDocument().sheet.render(true);
 		}
 
-		/**
-		 * The callback used to toggle the lock state.
-		 * @param {*} event 
-		 * @param {*} target 
-		 */
-		static async _onLock(event, target) {
-			this.window.lock.classList.remove(NephilimSheet.#getLockIcon(this.locked));
-			this.locked = !this.locked;
-			this.window.lock.classList.add(NephilimSheet.#getLockIcon(this.locked));
-			this.render(false);
-		}
-
 		static async _onSelect(event, target) {
 			this._onSelect(event, target)
 		}
@@ -382,7 +351,6 @@ export const NephilimMixinSheet = Base => {
 			const context = await super._prepareContext(options);
 			context.isGM = game.user.isGM;
         	context.debug = game.settings.get('neph5e', 'debug');
-			context.locked = this.locked;
 			context.editable = this.isEditable && !this.locked;
 			context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
 				this.document.system.description,

@@ -1,4 +1,6 @@
-export class Mnemos extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
+import { LockableMixin } from "../../../module/common/lockableMixin.js";
+
+export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2)) {
 
     /**
      * Constructor.

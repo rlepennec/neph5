@@ -8,7 +8,8 @@
             <input
                 name="name"
                 type="text"
-                value="{{name}}"/>
+                value="{{name}}"
+                {{#if locked}} disabled{{/if}}/>
         </header>
 
         <main class="vk-body">
@@ -17,13 +18,16 @@
                 <div class="vk-fields">
                     {{> "systems/neph5e/templates/input.hbs"
                         title="degre"
+                        class="circle"
                         name="degre"
                         value=degre
+                        disabled=locked
                     }}
                 </div>
             </div>
 
             <div class="vk-editor">
+                {{#if editable}}
                 <prose-mirror
                     name="description"
                     button="true"
@@ -31,15 +35,20 @@
                     value="{{description}}">
                     {{{enrichedDescription}}}
                 </prose-mirror>
+                {{else}}
+                <div>{{{enrichedDescription}}}</div>
+                {{/if}}
             </div>
 
         </main>
 
+        {{#if editable}}
         <footer class="mnemos-footer">
             <button type="submit">
                 <i class="fa-solid fa-floppy-disk"></i> Sauver
             </button>
         </footer>
+        {{/if}}
 
     </article>
 
