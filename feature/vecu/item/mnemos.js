@@ -34,12 +34,20 @@ export class Mnemos extends foundry.applications.api.HandlebarsApplicationMixin(
 
     static PARTS = {
         form: {
-            template: "systems/neph5e/feature/vecu/actor/mnemos.hbs"
+            template: "systems/neph5e/feature/vecu/actor/mnemos.html"
         }
+    }
+
+    _configureRenderParts(options) {
+        const parts = super._configureRenderParts(options);
+        const style = game.settings.get('neph5e', 'styleItemSheet');
+        parts.form.template = parts.form.template.replace(/\.html$/, `-${style}.html`);
+        return parts;
     }
 
     async _onRender(context, options) {
         await super._onRender(context, options);
+        this.element.classList.add('item-vecu');
         const pm = this.element.querySelector('prose-mirror[name="description"]');
         pm?.addEventListener('change', () => {
             this._pending = {

@@ -1,0 +1,46 @@
+<section class="item-root style-ashbury">
+
+    <aside class="vk-aside"></aside>
+
+    <article>
+
+        <header>
+            <input
+                name="name"
+                type="text"
+                value="{{name}}"/>
+        </header>
+
+        <main class="vk-body">
+
+            <div class="vk-banner">
+                <div class="vk-fields">
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="degre"
+                        name="degre"
+                        value=degre
+                    }}
+                </div>
+            </div>
+
+            <div class="vk-editor">
+                <prose-mirror
+                    name="description"
+                    button="true"
+                    editable="true"
+                    value="{{description}}">
+                    {{{enrichedDescription}}}
+                </prose-mirror>
+            </div>
+
+        </main>
+
+        <footer class="mnemos-footer">
+            <button type="submit">
+                <i class="fa-solid fa-floppy-disk"></i> Sauver
+            </button>
+        </footer>
+
+    </article>
+
+</section>
