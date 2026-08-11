@@ -19,10 +19,12 @@
 
             </div>
 
-            <ol>
+            <ol class="icons">
                 {{#range 0 9}}
                 <li>
+                    <i class="fa-solid fa-feather"></i>
                     {{> "systems/neph5e/templates/input.hbs"
+                        disabled=../document.sheet.locked
                         name=(concat "system.metamorphoses.[" this "].name")
                         value=(lookup (lookup ../document.system.metamorphoses this) "name") }}
                 </li>

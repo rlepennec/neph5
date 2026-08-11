@@ -9755,6 +9755,25 @@ form.nephilim.item .item-root.style-classique main div.clef input {
   color: #191813;
   margin: 0px;
 }
+form.nephilim.item .item-root.style-classique main ol.icons {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+form.nephilim.item .item-root.style-classique main ol.icons > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+form.nephilim.item .item-root.style-classique main ol.icons > li > i {
+  flex: 0 0 auto;
+  color: #151156;
+}
+form.nephilim.item .item-root.style-classique main ol.icons > li > div.input {
+  flex: 1 1 auto;
+}
 form.nephilim.item .item-root.style-classique main div.input {
   display: flex;
   flex-direction: row;

@@ -185,6 +185,30 @@ form.nephilim.item .item-root.style-classique {
             } 
         }
 
+        ol.icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            > li {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 6px;
+
+                > i {
+                    flex: 0 0 auto;
+                    color: #151156;
+                }
+
+                > div.input {
+                    flex: 1 1 auto;
+                }
+            }
+
+        }
+
         div.input {
             display: flex;
             flex-direction: row;
@@ -204,11 +228,11 @@ form.nephilim.item .item-root.style-classique {
             input {
                 margin-bottom: 0px;
                 color: var(--color-font-dark);
-
+                
                 &:not(:disabled) {
                     border: 1px solid black;
                 }
-                
+
             }
 
         }
