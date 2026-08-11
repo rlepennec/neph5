@@ -29,8 +29,8 @@ export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApp
         tag: "form",
         form: {
             handler: Mnemos.#onSubmit,
-            closeOnSubmit: true,
-            submitOnChange: false
+            closeOnSubmit: false,
+            submitOnChange: true
         }
     }
 
@@ -50,15 +50,6 @@ export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApp
     async _onRender(context, options) {
         await super._onRender(context, options);
         this.element.classList.add('item-vecu');
-        const pm = this.element.querySelector('prose-mirror[name="description"]');
-        pm?.addEventListener('change', () => {
-            this._pending = {
-                name: this.element.querySelector('[name="name"]')?.value,
-                degre: this.element.querySelector('[name="degre"]')?.value,
-                description: pm.value
-            };
-            this.render();
-        });
     }
 
     /**
@@ -68,13 +59,8 @@ export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApp
         const context = await super._prepareContext(options);
         context.system = this.data.system;
 
-        // Valeurs par défaut (données du mnémos), sauf si une édition est en cours (_pending).
         let name, degre, description;
-        if (this._pending != null) {
-            name = this._pending.name;
-            degre = this._pending.degre;
-            description = this._pending.description;
-        } else if (this.mnemos == null) {
+        if (this.mnemos == null) {
             name = this.data.name;
             degre = 0;
             description = "";
@@ -87,12 +73,12 @@ export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApp
 
         context.name = name;
         context.degre = degre;
-        // description = source brute (éditeur) ; enrichedDescription = HTML formaté (vue).
         context.description = description;
         context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
             description ?? "",
             { secrets: true, relativeTo: this.data }
         );
+        
         return context;
     }
 
