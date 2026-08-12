@@ -226,6 +226,9 @@ export class Formule extends AbstractFocus {
                 switch (this.item.system.elements[0]) {
                     case 'quintessence':
                         ka = Math.min(construct['air'], construct['eau'], construct['feu'], construct['lune'], construct['terre']);
+                        if (ka < 1) {
+                            return -111;
+                        }
                         break;
                     case 'quintuple':
                         ka = 0;
