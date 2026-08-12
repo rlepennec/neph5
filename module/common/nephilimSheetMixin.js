@@ -1,10 +1,12 @@
+import { DragDropMixin } from "./dragDropMixin.js";
 import { DocumentIdentifier } from "./documentIdentifier.js";
 import { LockableMixin } from "./lockableMixin.js";
 import { SetupableMixin } from "./setupableMixin.js";
+import { TabsMixin } from "./tabsMixin.js";
 
 export const NephilimMixinSheet = Base => {
 
-	return class NephilimSheet extends SetupableMixin(LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(Base))) {
+	return class NephilimSheet extends DragDropMixin(TabsMixin(SetupableMixin(LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(Base))))) {
 
 		static DEFAULT_OPTIONS = {
 			classes: ["nephilim", "sheet"],
@@ -15,12 +17,6 @@ export const NephilimMixinSheet = Base => {
 			},
 			editable: true,
 			tag: "form",
-			dragDrop: [
-				{ 
-					dragSelector: '[data-drag="true"], [data-macro]',
-					dropSelector: '[data-drop="true"]'
-				}
-			],
 			actions: {
 				delete: NephilimSheet._onDelete,
 				open: NephilimSheet._onOpenLink,
@@ -31,30 +27,6 @@ export const NephilimMixinSheet = Base => {
 				resizable: true,
 			}
 		}
-
-		registerDeleteHandler(type, handler) {
-			this.deleteHandlers.set(type, handler);
-		}
-
-		registerDropHandler(type, handler) {
-			this.dropHandlers.set(type, handler);
-		}
-
-		/**
-		 * The drag & drop handlers.
-		 */
-		dragDrop = this.options.dragDrop.map((d) => {
-			d.permissions = {
-				dragstart: this.#canDragStart.bind(this),
-				drop: this.#canDragDrop.bind(this),
-			};
-			d.callbacks = {
-				dragstart: this.#onDragStart.bind(this),
-				dragover: this.#onDragOver.bind(this),
-				drop: this.#onDrop.bind(this),
-			};
-			return new foundry.applications.ux.DragDrop.implementation(d);
-		});
 
 		get lockable() {
 			return this.isEditable;
@@ -92,103 +64,6 @@ export const NephilimMixinSheet = Base => {
 			return super.isEditable;
 		}
 
-		// Optional: Add getter to access the private property
-
-		/** 
-		 * @override
-		 * @protected
-		 */
-		async _onRender(context, options) {
-			await super._onRender(context, options);
-			this.dragDrop.forEach((d) => d.bind(this.element));
-		}
-
-		/**
-		 * Define whether a user is able to begin a dragstart workflow for a given drag selector
-		 * @param {string} selector       The candidate HTML selector for dragging
-		 * @returns {boolean}             Can the current user drag this selector?
-		 * @protected
-		 */
-		#canDragStart(selector) {
-			// game.user fetches the current user
-			return this.isEditable;
-		}
-
-		/**
-		 * Define whether a user is able to conclude a drag-and-drop workflow for a given drop selector
-		 * @param {string} selector       The candidate HTML selector for the drop target
-		 * @returns {boolean}             Can the current user drop on this selector?
-		 * @protected
-		 */
-		#canDragDrop(selector) {
-			// game.user fetches the current user
-			return this.isEditable;
-		}
-
-		static findDataset(element, attribute) {
-			while (element && !(attribute in element.dataset)) {
-				element = element.parentElement
-			}
-			return element?.dataset[attribute] || null
-		}
-
-		/**
-		 * Callback actions which occur at the beginning of a drag start workflow.
-		 * @param {*} event 
-		 */
-		#onDragStart(event) {
-
-			if ('link' in event.target.dataset) return;
-
-			// Drag d'un élément .macro vers la hotbar -> donnée de macro.
-			const macro = event.currentTarget.closest('[data-macro]');
-			if (macro != null) {
-				const data = { process: 'macro', type: macro.dataset.macro };
-				if (macro.dataset.id != null) data.id = macro.dataset.id;
-				if (macro.dataset.sid != null) data.sid = macro.dataset.sid;
-				// Arme / ressource : item embarqué résolu via fsid.
-				if (macro.dataset.fsid != null) {
-					const identifier = new DocumentIdentifier(macro);
-					data.actor = this.document.id;
-					data.id = identifier.id;
-					data.sid = identifier.sid;
-				}
-				event.dataTransfer.setData('text/plain', JSON.stringify(data));
-				return;
-			}
-
-			// Drag interne (fsid -> "Sheet").
-			const fsid = NephilimSheet.findDataset(event.currentTarget, 'fsid');
-			if (fsid != null) {
-				event.dataTransfer.setData('text/plain', JSON.stringify({
-					type: "Sheet",
-					fsid: fsid
-				}))
-			}
-
-		}
-
-		/**
-		 * Callback actions which occur when a dragged element is over a drop target.
-		 * @param {*} event 
-		 * @param {*} target 
-		 */
-		#onDragOver(event) {
-		}
-
-		/**
-		 * @param target The event part which describes the html target.
-		 * @returns the draggable element.
-		 */
-		_getDraggableTarget(target) {
-			if (target == null) return null;
-			if (target.classList.contains("draggable")) {
-				return target;
-			} else {
-				return this._getDraggableTarget(target.parentElement);
-			}
-		}
-
 		/**
 		 * The callback used to open a link.
 		 * @param {*} event 
@@ -204,48 +79,6 @@ export const NephilimMixinSheet = Base => {
 
 		static async _onSelect(event, target) {
 			this._onSelect(event, target)
-		}
-
-		/**
-		 * The callback used to drop an element on a target which must be overriden.
-		 * @param {*} event The drop event
-		 * @protected
-		 */
-		async #onDrop(event) {
-
-			if (this.locked) return;
-
-			const dropped = JSON.parse(event.dataTransfer.getData("text/plain"));
-			switch (dropped.type) {
-				case 'Sheet': {
-					const document = new DocumentIdentifier(new String(dropped.fsid)).toDocument();
-					if (document.parent === this.document) {
-						this._onDrop(event, document);
-					}
-					break;
-				}
-				case 'Actor':
-				case 'Item': {
-					const document = new DocumentIdentifier(event).toDocument();
-					this._onDrop(event, document);
-					break;
-				}
-			}
-
-		}
-
-		/**
-		 * The callback used to drop an element on a target which must be overriden.
-		 * @param {*} event    The drop event
-		 * @param {*} document The document which has been dropped.
-		 * @protected
-		 */
-		async _onDrop(event, document) {
-			const tab = this.tabGroups?.primary;
-			const handler = this.options.tabDropHandlers?.[tab]?.[document.type] ?? this.options.dropHandlers[document.type];
-			if (handler) {
-				return handler.call(this, event, document);
-			}
 		}
 
 		/**
@@ -310,74 +143,6 @@ export const NephilimMixinSheet = Base => {
 		async _onSubmit(event, form, formData) {
 			await this.document.update(formData.object);
 		}
-
-		/**
-		 * 
-		 * ---------- Tabs management ----------
-		 * 
-		 */
-
-		/**
-		 * Prepare application tab data for a single tab group.
-		 * @param {string} group The ID of the tab group to prepare
-		 * @returns {Record<string, ApplicationTab>}
-		 * @protected
-		 * @override
-		 */
-		_prepareTabs(group) {
-			const {tabs, initial=null} = this._getTabsConfig(group) ?? {tabs: []};
-			this.tabGroups[group] ??= initial;
-			tabs.forEach(t => {
-				t.group = group;
-				t.label = t.id;
-				t.active = t.id === this.tabGroups[group];
-			});
-			return tabs;
-		}
-
-		/**
-		 * Handle the click event on a tab.
-		 * @param {*} event The click event.
-		 * @protected
-		 * @override 
-		 */
-		_onClickTab(event) {
-			const button = event.target;
-			const tab = button.dataset.tab;
-			if (!tab || button.classList.contains("active") || (event.button !== 0)) return;
-			const group = button.dataset.group;
-			if (this._changeTab(tab, group)) {
-				this.render();
-			}
-		}
-
-		/**
-		 * Change the active tab within a tab group in this Application instance.
-		 * @param {string} tab        The name of the tab which should become active
-		 * @param {string} group      The name of the tab group which defines the set of tabs
-		 * @returns true if the a new tab has been selected.
-		 * @protected
-		 * @override
-		 */
-		_changeTab(tab, group) {
-
-			// Retrieve the tab element which should become active
-			if (!tab || !group) throw new Error("You must pass both the tab and tab group identifier");
-			if ((this.tabGroups[group] === tab)) return false;
-			const tabElement = this.form.querySelector(`nav [data-group="${group}"][data-tab="${tab}"]`);
-			if (!tabElement) throw new Error(`No matching tab element found for group "${group}" and tab "${tab}"`);
-
-			// Update tab navigation
-			for (const t of this.form.querySelectorAll(`nav [data-group="${group}"]`)) {
-				t.classList.toggle("active", t.dataset.tab === tab);
-				if (t instanceof HTMLButtonElement) t.ariaPressed = `${t.dataset.tab === tab}`;
-			}
-
-			this.tabGroups[group] = tab;
-			return true;
-
-		}
-
 
 	}
 
