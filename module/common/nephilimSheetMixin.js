@@ -1,9 +1,10 @@
 import { DocumentIdentifier } from "./documentIdentifier.js";
 import { LockableMixin } from "./lockableMixin.js";
+import { SetupableMixin } from "./setupableMixin.js";
 
 export const NephilimMixinSheet = Base => {
 
-	return class NephilimSheet extends LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(Base)) {
+	return class NephilimSheet extends SetupableMixin(LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(Base))) {
 
 		static DEFAULT_OPTIONS = {
 			classes: ["nephilim", "sheet"],
@@ -24,7 +25,6 @@ export const NephilimMixinSheet = Base => {
 				delete: NephilimSheet._onDelete,
 				open: NephilimSheet._onOpenLink,
 				select: NephilimSheet._onSelect,
-				setup: NephilimSheet._onSetup,
 				exit: NephilimSheet._onExit
 			},
 			window: {
@@ -60,19 +60,6 @@ export const NephilimMixinSheet = Base => {
 			return this.isEditable;
 		}
 
-		get setupable() {
-			return this.optionsSelector != null;
-		}
-
-		/**
-		 * Classe de la fenêtre de configuration de la fiche. Surchargée par les fiches
-		 * concrètes (acteurs ou items) qui en possèdent une. null = pas d'engrenage.
-		 * @returns {Class|null}
-		 */
-		get optionsSelector() {
-			return null;
-		}
-
 		/**
 		 * Indique qu'un type d'objet est éditable lorsque sa fiche est ouverte
 		 * depuis un acteur (contexte embarqué). Par défaut faux ; les fiches concrètes
@@ -106,34 +93,6 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		// Optional: Add getter to access the private property
-
-		/** 
-		 * @override
-		 * @protected
-		 */
-		async _onClose(options) {
-			await this._optionsApp?.close();
-			this._optionsApp = null;
-		}
-
-		/** 
-		 * @override
-		 * @protected
-		 */
-		async _renderFrame(options) {
-
-			const frame = await super._renderFrame(options);
-
-			if (this.setupable) {
-				const icon = 'fa-solid fa-gear';
-				const label = game.i18n.localize("NEPHILIM.setup");
-				const id = `<button type="button" class="header-control fa-solid ${icon} icon" data-action="setup" data-tooltip="${label}" aria-label="${label}"></button>`;
-				this.window.controls.insertAdjacentHTML("beforebegin", id);
-			}
-
-			return frame;
-
-		}
 
 		/** 
 		 * @override
@@ -323,26 +282,6 @@ export const NephilimMixinSheet = Base => {
 
 		async _onExit(event, target) {
 			throw new Error("_onExit method must be implemented");
-		}
-
-		/**
-		 * The callback used to setup the document.
-		 * @param {*} event 
-		 * @param {*} target 
-		 * @protected
-		 */
-		static async _onSetup(event, target) {
-			await this._onSetup(event, target);
-		}
-
-		/**
-		 * Ouvre la fenêtre de configuration de la fiche. Logique unique, partagée entre
-		 * acteurs et items : chaque fiche fournit sa fenêtre via le getter optionsSelector.
-		 */
-		async _onSetup(event, target) {
-			const selector = this.optionsSelector;
-			if (selector == null) return;
-			this._optionsApp = await new selector().withSheet(this).render(true);
 		}
 
 		/** 
