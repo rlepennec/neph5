@@ -1604,6 +1604,12 @@
   flex-direction: column;
   width: 40%;
 }
+.tab.combat .droite .caracteristiques div.input {
+  width: 10%;
+}
+.tab.combat .droite .caracteristiques div.input input {
+  width: 100%;
+}
 .tab.combat .droite .caracteristiques ol {
   list-style: none;
 }
@@ -1651,6 +1657,12 @@
   width: 20px;
   height: 20px;
   margin-right: 20px;
+}
+.tab.combat .droite .bonus div.input {
+  width: 10%;
+}
+.tab.combat .droite .bonus div.input input {
+  width: 100%;
 }
 .tab.combat .droite .bonus ol {
   list-style: none;
@@ -4166,6 +4178,12 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   flex-direction: column;
   width: 40%;
 }
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input input {
+  width: 100%;
+}
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol {
   list-style: none;
 }
@@ -4213,6 +4231,12 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   width: 20px;
   height: 20px;
   margin-right: 20px;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input {
+  width: 10%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input {
+  width: 100%;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
   list-style: none;
