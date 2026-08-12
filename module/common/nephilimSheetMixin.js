@@ -282,7 +282,8 @@ export const NephilimMixinSheet = Base => {
 		 * @protected
 		 */
 		async _onDrop(event, document) {
-			const handler = this.options.dropHandlers[document.type];
+			const tab = this.tabGroups?.primary;
+			const handler = this.options.tabDropHandlers?.[tab]?.[document.type] ?? this.options.dropHandlers[document.type];
 			if (handler) {
 				return handler.call(this, event, document);
 			}
