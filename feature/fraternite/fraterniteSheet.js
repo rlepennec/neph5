@@ -6,7 +6,7 @@ export class FraterniteSheet extends HistoricalSheet {
     
     static DEFAULT_OPTIONS = {
         // Actions propres à la fraternité. Les actions de périodes
-        // (activatePeriode, editPeriode, deletePeriode, deleteEmbedded...) sont
+        // (activatePeriode, deletePeriode, deleteEmbedded...) sont
         // héritées d'HistoricalSheet, et delete/open/lock/select/setup du mixin.
         actions: {
             editActor: FraterniteSheet._onEditActor,

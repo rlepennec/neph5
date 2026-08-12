@@ -70,25 +70,23 @@
 
                 <img class="separator"/>
 
-                {{#if (eq ../editedPeriode periode.original.sid)}}                
-                <label data-action="deletePeriode" class="fas fa-trash delete"></label>
-                {{/if}}
-
                 <label data-action="displayPeriode" class="periode-name display {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
-                <label class="periode-zone">...</label>
+                <div class="periode-actions">
 
-                <ul class="periode-menu">
-
-                    <li data-action="editPeriode" class="edit">{{#if (eq ../editedPeriode periode/original.sid)}}Afficher{{else}}Editer{{/if}}</li>
-
-                    {{#if ../isGM}}<li data-action="activatePeriode" class="activate">{{#if periode.embedded.actif}}Désactiver{{else}}Activer{{/if}}</li>{{/if}}
+                    {{#if ../isGM}}
+                    <label data-action="activatePeriode" class="{{#if periode.embedded.actif}}fa-solid{{else}}fa-regular{{/if}} fa-fire activate" data-tooltip="{{#if periode.embedded.actif}}Désactiver{{else}}Activer{{/if}}"></label>
+                    {{/if}}
 
                     {{#unless (eq ../actor.system.periode periode.original.sid)}}
-                    <li data-action="currentPeriode" class="define">Période courante</li>
+                    <label data-action="currentPeriode" class="fa-solid fa-thumbtack-angle" data-tooltip="Période courante"></label>
                     {{/unless}}
 
-                </ul>
+                    {{#if (eq ../editedPeriode periode.original.sid)}}
+                    <label data-action="deletePeriode" class="fas fa-trash delete" data-tooltip="Supprimer"></label>
+                    {{/if}}
+
+                </div>
 
             </div>
 

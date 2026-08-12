@@ -36,7 +36,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             sort: FigureSheet._onDropFocus,
             invocation: FigureSheet._onDropFocus,
             formule: FigureSheet._onDropFocus,
-            figure: FigureSheet._onDropLaboratory,
             materiae: FigureSheet._onDropScience,
             catalyseur: FigureSheet._onDropScience,
             metamorphe: FigureSheet._onDropScience,
@@ -55,8 +54,21 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             atlanteide: FigureSheet._onDropFocus,
             capacite: FigureSheet._onDropFocus,
             competence: FigureSheet._onDropManoeuver,
-            vecu: FigureSheet._onDropVecu,
             figurant: FigureSheet._onDropSimulacre,
+        },
+        tabDropHandlers: {
+            combat: {
+                vecu: FigureSheet._onDropManoeuver
+            },
+            incarnations: {
+                vecu: FigureSheet._onDropOnPeriode
+            },
+            vecus: {
+                vecu: FigureSheet._onDropOnPeriode
+            },
+            laboratoire: {
+                figure: FigureSheet._onDropLaboratory
+            }
         }
     }
 
@@ -349,19 +361,13 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.render(true);
     }
 
-    /** Drop d'un vécu : aiguillage selon l'onglet courant et l'état d'édition.
-     *  - Onglet combat + capacité en édition : le vécu sert de base à une manœuvre
-     *    (_onDropManoeuver).
-     *  - Onglet incarnations + période en édition : le vécu est rattaché à la période
-     *    éditée (_onDropFeature). */
-    static async _onDropVecu(event, document) {
-        const tab = this.tabGroups?.primary;
-        if (tab === 'combat' && this.editedCapacity != null) {
-            return FigureSheet._onDropManoeuver.call(this, event, document);
-        }
-        if ((tab === 'incarnations' || tab === 'vecus') && this.editedPeriode != null) {
-            return HistoricalSheet._onDropFeature.call(this, event, document);
-        }
+    /** 
+     * Rattache la feature à la période en cours d'édition. Sans période éditée, le
+     *  drop est sans effet : il faut d'abord choisir la période cible.
+     */
+    static async _onDropOnPeriode(event, document) {
+        if (this.editedPeriode == null) return;
+        return HistoricalSheet._onDropFeature.call(this, event, document);
     }
 
     /**
@@ -415,7 +421,6 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /** Ajoute un laboratoire en déposant un acteur alchimiste sur l'onglet laboratoire. */
     static async _onDropLaboratory(event, document) {
-        if (this.tabGroups.primary !== 'laboratoire') return;
         const laboratoires = this.document.system.alchimie.laboratoires;
         if (!laboratoires.includes(document.sid)) {
             await this.document.update({

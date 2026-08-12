@@ -7,7 +7,6 @@ export class HistoricalSheet extends NephilimActorSheet {
     static DEFAULT_OPTIONS = {
         actions: {
             displayPeriode: HistoricalSheet._onDisplayPeriode,
-            editPeriode: HistoricalSheet._onEditPeriode,
             currentPeriode: HistoricalSheet._onCurrentPeriode,
             deletePeriode: HistoricalSheet._onDeletePeriode,
             activatePeriode: HistoricalSheet._onActivatePeriode,
@@ -31,8 +30,17 @@ export class HistoricalSheet extends NephilimActorSheet {
      */
     constructor(...args) {
         super(...args);
-        this.editedPeriode = null;
         this.elapsedPeriodes = this._elapsedPeriodes();
+    }
+
+    /**
+     * La période en édition est la période courante de l'acteur, dès lors que la fiche
+     * est déverrouillée. Il n'y a plus de sélection manuelle : déverrouiller la fiche
+     * met la période courante en édition, et les items déposés lui sont rattachés.
+     * @returns {string|null} le sid de la période éditée, null si la fiche est verrouillée.
+     */
+    get editedPeriode() {
+        return this.locked ? null : this.document.system.periode;
     }
 
     /**
@@ -100,17 +108,6 @@ export class HistoricalSheet extends NephilimActorSheet {
      */
     _elapsedPeriodes() {
         return this.document.system.options.incarnationsOuvertes === true ? this.document.items.filter(i => i.type === 'periode').map(i => i.sid) : [];
-    }
-
-    /**
-     * Set the edition status of the specified periode.
-     * Only one periode can be edited at once.
-     * @param event The click event.
-     */
-    static async _onEditPeriode(event, target) {
-        const sid = target.closest('.item').dataset.sid;
-        this.editedPeriode = this.editedPeriode === sid ? null : sid;
-        await this.render(true);
     }
 
     static async _onDeleteEmbedded(event, target) {
