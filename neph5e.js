@@ -323,7 +323,14 @@ Hooks.once("init", function () {
     });
 
     // Handle the macro creation
-    Hooks.on("hotbarDrop", async (bar, data, slot) => await Macros.create(bar, data, slot));
+    // Le hook doit retourner false de façon SYNCHRONE pour annuler le traitement par
+    // défaut de Foundry (macro "Display ..." à l'icône générique). Un handler async
+    // retournerait une Promise, toujours vraie, et le défaut s'appliquerait quand même.
+    Hooks.on("hotbarDrop", (bar, data, slot) => {
+        if (!Macros.handles(data)) return;
+        Macros.create(bar, data, slot);
+        return false;
+    });
 
     // Register socket messages
     game.socket.on(Constants.SYSTEM_SOCKET_ID, async socketMessage => {

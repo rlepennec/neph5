@@ -1,11 +1,32 @@
 export class Macros {
 
     /**
-     * Create the macro.
+     * Indique si le dépôt doit être pris en charge par le système. Doit rester
+     * synchrone : le hook hotbarDrop s'en sert pour annuler le traitement par défaut
+     * de Foundry, qui créerait sinon une macro "Display ..." à l'icône générique.
+     * @param data Les données du dépôt.
+     * @returns {boolean}
      */
+    static handles(data) {
+        if (data?.process === 'macro') return true;
+        return data?.type === 'Item'
+            && typeof data?.uuid === 'string'
+            && data.uuid.startsWith('Item.');
+    }
+
     static async create(bar, data, slot) {
 
+        // Objet du monde glissé depuis le répertoire : macro d'affichage de la fiche,
+        // reprenant le nom et l'icône de l'objet (Foundry utiliserait une icône générique).
         if (data?.process !== 'macro') {
+            if (!Macros.handles(data)) return;
+            const dropped = await fromUuid(data.uuid);
+            if (dropped == null) return;
+            await Macros.assign(
+                dropped.name,
+                dropped.img,
+                `(await fromUuid("${data.uuid}"))?.sheet.render(true);`,
+                slot);
             return;
         }
 
@@ -67,16 +88,26 @@ export class Macros {
             }
         })()`;
 
-        let macro = await Macro.create({
+        await Macros.assign(name, img, command, slot);
+
+    }
+
+    /**
+     * Crée la macro et la place dans la barre.
+     * @param name    Le nom de la macro.
+     * @param img     L'icône de la macro.
+     * @param command Le script exécuté au clic.
+     * @param slot    L'emplacement de la barre.
+     */
+    static async assign(name, img, command, slot) {
+        const macro = await Macro.create({
             name: name,
             type: "script",
             img: img,
             command: command,
             flags: {"neph5e.macro": true}
         });
-
         game.user.assignHotbarMacro(macro, slot);
-
     }
     
 }
