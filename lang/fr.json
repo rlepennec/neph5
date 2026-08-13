@@ -60,7 +60,6 @@
 
     "NEPHILIM": {
         "activation": "Activation",
-        "actuel": "Actuel",
         "aideHistorique": "Déposer des Périodes d'incarnation, puis les éléments associés comme des Figures, Figurants, Sciences Occultes, Savoirs et Quêtes Esotériques.",
         "aideFocus": "Editer une période d'incarnation et déposer des Focus.",
         "aideIncarnations": "Déposer des Périodes d'incarnation, puis les éléments associés comme des Vécus, Sciences Occultes, Savoirs et Quêtes Esotériques.",
@@ -147,7 +146,6 @@
         "degatAutomatique": "Dégâts automatiques",
         "degre": "Degré",
         "degreGauche": "Degrés à gauche",
-        "degreSuivant": "Degré suivant",
         "demiurge": "Démiurge",
         "denier": "Denier",
         "deposerVecuCompetence": "Déposer un vécu ou une compétence",
@@ -309,7 +307,6 @@
         "spiritisme": "Spiritisme",
         "status": "Status",
         "substance": "Substance",
-        "suivant": "Suivant",
         "syntaxe": "Syntaxe",
         "technique": "Technique Templière",
         "tekhne": "Tekhne Rosicruxienne",
@@ -327,7 +324,6 @@
         "vapeur": "Vapeur",
         "variantes": "Variantes",
         "vecu": "Vécu",
-        "vecuActuel": "Vécu actuel",
         "vecus": "Vécus",
         "visage": "Visage",
         "viser": "Viser",
