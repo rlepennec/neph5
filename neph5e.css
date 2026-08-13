@@ -6125,15 +6125,6 @@ form.application.sheet.item > .window-header .window-title {
   font-family: "NightjarDemi", serif;
   text-shadow: 0 0 4px black;
 }
-form.nephilim.item section.window-content > section aside.vk-aside {
-  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
-  background-image: var(--vk-grad, none), linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
-  background-repeat: no-repeat, no-repeat;
-  background-size: 100% 100%, 100% 100%;
-  backdrop-filter: blur(4px);
-  box-shadow: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
-}
 .item-root .vk-box {
   display: flex;
   flex-direction: column;
@@ -7555,15 +7546,6 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
   color: #e0e0e0;
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
-}
-form.nephilim.item section.window-content > section.style-ashbury aside.vk-aside {
-  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
-  background-image: var(--vk-grad, none);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  backdrop-filter: blur(4px);
-  box-shadow: none;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 form.nephilim.item section.window-content > section.style-ashbury article main h1 {
   color: white;
@@ -9905,6 +9887,15 @@ form.application.sheet.item:has(.style-classique) > .window-header {
 }
 form.application.sheet.item:has(.style-classique) > .window-header .window-title {
   font-family: 'NightjarDemi';
+}
+form.nephilim.item .item-root.style-ashbury aside {
+  background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
+  background-image: var(--vk-grad, none), linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 100%, 100% 100%;
+  backdrop-filter: blur(4px);
+  box-shadow: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 .recherche table tr td {
   font-family: 'AJensonPro';
