@@ -1,222 +1,36 @@
-form.nephilim.item {
+@import "./item/common.less";
+@import "./item/classique.less";
+@import "./item/ashbury.less";
 
-    section.window-content > section {
-        display: flex;
-        flex-flow: unset;
-        width: 100%;
-        color: var(--color-font-dark);
-
-        article {
-            display: flex;
-            flex-direction: column;
-            font-family: var(--font-family-title);
-            font-size: 16px;
-            width: 100%;
-            overflow-y : auto;
-            background: var(--background-article-bright);
-
-            header {
-                display: flex;
-                height: 60px;
-                width: 100%;
-                box-shadow: 0 0 6px 0px var(--color-font-bright) inset;
-                background: var(--background-article-dark);
-                border-radius: 5px;
-                color: var(--color-font-bright);
-
-                input {
-                    background: initial;
-                    font-size: 30px;
-                    text-align: center;
-                    padding: 0px 10px 2px 10px;
-                    height: 100%;
-                    font-family: var(--font-family-content);
-                    border: none;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-                img {
-                    flex: 0 0 auto;
-                    margin: 6px 6px 6px 6px;
-                    border-radius: 6px;
-                }
-
-            }
-
-            main {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: 100%;
-                padding: 10px;
-
-                h1 {
-                    color: var(--color-font-dark);
-                    font-family: var(--font-family-title);
-                    margin-bottom: 5px;
-                    margin-top: 0px;
-                }
-
-                ul {
-                    list-style-type: none;
-                }
-
-                li {
-                    display: block;
-                }
-
-                input {
-                    margin-bottom: 10px;
-
-                    &:disabled {
-                        background: none;
-                        color: var(--color-font-dark);
-                        border: none;
-                    }
-
-                }
-
-                .fas {
-                    margin-right: 10px;
-                }
-
-                // Zone de description du dialogue Mnémos (textarea éditable).
-                .mnemos-description {
-                    width: 100%;
-                    box-sizing: border-box;
-                    resize: vertical;
-                }
-
-            }
-
-        }
-
-    }
-
-}
-
-// ── Look "Vision Ka'Sh" : socle commun aux fiches d'item ──
-.item-root {
-
-    header {
-        background: var(--vk-header-background) center / cover;
-        box-shadow: 0 0 6px 2px #f5f4f4 inset;
-        color: #f5f4f4;
-    }
-
-}
-
-// Bandeau supérieur des fiches d'item, coloré selon le Ka (skin posé sur la fenêtre).
-// Sans Ka (arme, armure...), on retombe sur le thème "global" du module :
-// fond bleu-gris translucide, sans dégradé.
-form.application.sheet.item > .window-header {
-    background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
-    background-image:
-        var(--vk-grad, none),
-        linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
-    background-repeat: no-repeat, no-repeat;
-    background-position: center, center;
-    background-size: 100% 100%, 100% 100%;
-    backdrop-filter: blur(4px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-
-    .window-title {
-        font-family: "NightjarDemi", serif;
-        text-shadow: 0 0 4px black;
-    }
-}
-
-// ══ Socle commun aux fiches d'item (look Vision Ka'Sh) ══
-.item-root {
-
-    // Boîte translucide : sert de conteneur à toutes les zones de contenu.
-    .vk-box {
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-        padding: 12px;
-        background: rgba(30, 30, 30, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-    }
-
-    .vk-box-title {
-        margin: 0 0 8px 0;
-        padding-bottom: 4px;
-        text-align: center;
-        font-family: "NightjarDemi", serif;
-        font-size: 1.15em;
-        color: #f0f0f0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    // Zone d'édition (prose-mirror) : occupe l'espace restant et défile.
-    .vk-editor {
-        flex: 1;
-        min-height: 0;
-        overflow-y: auto;
-        padding-right: 5px;
-        color: #ffffff;
-        font-family: "AJensonProLtDisp", serif;
-        font-size: 1.1em;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    }
-
-    // Bandeau d'en-tête. Pas de flex ni de fit-content : les partials
-    // (select.hbs, label.hbs, input.hbs) émettent un <h1> suivi de leur
-    // contenu, sans conteneur — un flex les disloque et écrase les <select>.
-    .vk-banner {
-        display: block;
-        flex-shrink: 0;
-        padding: 8px 14px;
-        margin-bottom: 12px;
-        background: rgba(0, 0, 0, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 5px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    }
-
-    // Rangée de champs.
-    .vk-fields {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-
-        > * {
-            flex: 1;
-        }
-    }
-
-    // Deux colonnes : média à gauche, texte à droite.
-    .vk-split {
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        gap: 20px;
-        min-height: 0;
-    }
-
-    // Layout vertical standard d'une fiche.
-    .vk-layout {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        gap: 10px;
-        padding: 15px 20px;
-        min-height: 0;
-        overflow: hidden;
-    }
-
-}
-
-// Balayage lumineux, réutilisé par plusieurs fiches.
-@keyframes vk-light-scan {
-    0%   { transform: translateX(-150%); }
-    100% { transform: translateX(150%); }
-}
+@import "./item/alchimie.less";
+@import "./item/appel.less";
+@import "./item/arcane.less";
+@import "./item/arme.less";
+@import "./item/armure.less";
+@import "./item/aspect.less";
+@import "./item/atlanteide.less";
+@import "./item/capacite.less";
+@import "./item/catalyseur.less";
+@import "./item/chute.less";
+@import "./item/competence.less";
+@import "./item/divination.less";
+@import "./item/dracomachie.less";
+@import "./item/formule.less";
+@import "./item/habitus.less";
+@import "./item/invocation.less";
+@import "./item/magie.less";
+@import "./item/materiae.less";
+@import "./item/metamorphe.less";
+@import "./item/ordonnance.less";
+@import "./item/passe.less";
+@import "./item/pratique.less";
+@import "./item/periode.less";
+@import "./item/quete.less";
+@import "./item/rite.less";
+@import "./item/rituel.less";
+@import "./item/savoir.less";
+@import "./item/science.less";
+@import "./item/sort.less";
+@import "./item/technique.less";
+@import "./item/tekhne.less";
+@import "./item/vecu.less";
