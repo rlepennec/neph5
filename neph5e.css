@@ -6565,6 +6565,151 @@ form.nephilim.item .item-root.style-ashbury article main {
   font-family: "AJensonProLtDisp", serif;
   color: #1a1a1a;
 }
+form.nephilim.item .item-root.style-ashbury article main h1 {
+  color: white;
+  font-family: "NightjarDemi", serif;
+}
+form.nephilim.item .item-root.style-ashbury article main:has(> .left) {
+  flex-direction: row;
+  gap: 15px;
+  overflow: hidden;
+}
+form.nephilim.item .item-root.style-ashbury article main .left {
+  flex: 0 0 auto;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+form.nephilim.item .item-root.style-ashbury article main .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+  gap: 10px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+form.nephilim.item .item-root.style-ashbury .image {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form.nephilim.item .item-root.style-ashbury .image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  z-index: 10;
+  border: none;
+  border-radius: 4px;
+  background: black;
+  cursor: pointer;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+form.nephilim.item .item-root.style-ashbury .image .glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 175px;
+  height: 175px;
+  border-radius: 12px;
+  background: transparent;
+  border: 2px solid var(--vk-glow, rgba(255, 255, 255, 0.7));
+  box-shadow: 0 0 10px var(--vk-glow, rgba(255, 255, 255, 0.5));
+  transform: translate(-50%, -50%) rotate(0deg);
+  z-index: 1;
+  pointer-events: none;
+  animation: vk-slow-spin 20s linear infinite;
+}
+form.nephilim.item .item-root.style-ashbury div.selector {
+  width: 420px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: unset;
+  padding: 6px 12px;
+  font-family: "NightjarDemi", serif;
+}
+form.nephilim.item .item-root.style-ashbury div.selector h1 {
+  font-size: 1.1em;
+  margin: 0;
+  border: none;
+  padding-right: 40px;
+}
+form.nephilim.item .item-root.style-ashbury div.selector select,
+form.nephilim.item .item-root.style-ashbury div.selector p {
+  font-size: 1.1em;
+  margin: 0;
+}
+form.nephilim.item .item-root.style-ashbury table.chronology {
+  width: 420px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  border-collapse: collapse;
+  padding: 6px 12px;
+  font-family: "AJensonProLtDisp", serif;
+}
+form.nephilim.item .item-root.style-ashbury table.chronology th {
+  padding: 4px 8px;
+  font-family: "NightjarDemi", serif;
+  font-size: 1.05em;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+form.nephilim.item .item-root.style-ashbury table.chronology td {
+  padding: 3px 8px;
+  text-align: center;
+}
+form.nephilim.item .item-root.style-ashbury table.chronology td.periode-name {
+  text-align: left;
+}
+form.nephilim.item .item-root.style-ashbury table.chronology tbody tr:last-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: "NightjarDemi", serif;
+}
+form.nephilim.item .item-root.style-ashbury .right > prose-mirror,
+form.nephilim.item .item-root.style-ashbury .right > div:not(.selector),
+form.nephilim.item .item-root.style-ashbury .right > span {
+  width: 420px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  flex: 1;
+  min-height: 250px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 10px;
+  color: #e0e0e0;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+@keyframes vk-slow-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
 .item-alchimie {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
 }

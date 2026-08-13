@@ -60,6 +60,7 @@
 
     "NEPHILIM": {
         "activation": "Activation",
+        "actuel": "Actuel",
         "aideHistorique": "Déposer des Périodes d'incarnation, puis les éléments associés comme des Figures, Figurants, Sciences Occultes, Savoirs et Quêtes Esotériques.",
         "aideFocus": "Editer une période d'incarnation et déposer des Focus.",
         "aideIncarnations": "Déposer des Périodes d'incarnation, puis les éléments associés comme des Vécus, Sciences Occultes, Savoirs et Quêtes Esotériques.",
@@ -263,8 +264,6 @@
         "pavane": "Pavane",
         "pentacle": "Pentacle",
         "periode": "Période",
-        "periodeActuelle": "Période actuelle",
-        "periodeSuivante": "Période suivante",
         "perspicacite": "Perspicacité",
         "physique": "Physique",
         "pointsIncarnations": "Points d'incarnation",
@@ -310,6 +309,7 @@
         "spiritisme": "Spiritisme",
         "status": "Status",
         "substance": "Substance",
+        "suivant": "Suivant",
         "syntaxe": "Syntaxe",
         "technique": "Technique Templière",
         "tekhne": "Tekhne Rosicruxienne",

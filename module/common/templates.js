@@ -46,6 +46,7 @@ export const preloadTemplates = async function () {
         // New reboot
         "systems/neph5e/templates/chronology.hbs",
         "systems/neph5e/templates/header.hbs",
+        "systems/neph5e/templates/image.hbs",
         "systems/neph5e/templates/input.hbs",
         "systems/neph5e/templates/label.hbs",
         "systems/neph5e/templates/list.hbs",
