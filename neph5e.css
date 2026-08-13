@@ -6100,17 +6100,6 @@ form.nephilim.item section.window-content > section article main .mnemos-descrip
   box-shadow: 0 0 6px 2px #f5f4f4 inset;
   color: #f5f4f4;
 }
-.item-root main.vk-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 20px;
-  overflow-y: auto;
-  background: var(--vk-body-background) center / cover no-repeat;
-  font-family: "AJensonProLtDisp", serif;
-  color: #1a1a1a;
-}
 form.application.sheet.item > .window-header {
   background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
   background-image: var(--vk-grad, none), linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
@@ -9896,6 +9885,17 @@ form.nephilim.item .item-root.style-ashbury aside {
   backdrop-filter: blur(4px);
   box-shadow: none;
   border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+form.nephilim.item .item-root.style-ashbury article main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 20px;
+  overflow-y: auto;
+  background: var(--vk-body-background) center / cover no-repeat;
+  font-family: "AJensonProLtDisp", serif;
+  color: #1a1a1a;
 }
 .recherche table tr td {
   font-family: 'AJensonPro';
