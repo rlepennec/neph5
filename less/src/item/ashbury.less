@@ -52,6 +52,18 @@ form.nephilim.item .item-root.style-ashbury {
                 flex-direction: column;
                 align-items: center;
                 padding-top: 20px;
+
+                // MODIF (migration savoir) : variante pour les fiches qui posent un
+                // bloc .media-stack (vidéo + illustration) au lieu d'une simple
+                // .image de taille fixe. On bascule alors sur une largeur
+                // proportionnelle et on étire la colonne sur toute la hauteur.
+                &:has(.media-stack) {
+                    width: auto;
+                    flex: 0 0 55%;
+                    align-items: stretch;
+                    padding-top: 0;
+                }
+
             }
 
             .right {
@@ -68,6 +80,19 @@ form.nephilim.item .item-root.style-ashbury {
         }
 
     }
+
+    // ── Vocabulaire commun aux fiches ashbury ──────────────────────────────
+    // Aspect des blocs de contenu (bandeaux, tableaux, description).
+    .panel() {
+        width: 420px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        color: white;
+    }
+
+
 
     // ── Partial image.hbs ──────────────────────────────────────────────────
     .image {
@@ -118,8 +143,59 @@ form.nephilim.item .item-root.style-ashbury {
         }
     }
 
+    // MODIF (migration savoir) : bloc média générique, alternative à .image
+    // pour les fiches qui ont besoin d'un habillage plus riche qu'une simple
+    // illustration (ex: savoir : vidéo d'ambiance en fond + illustration en
+    // médaillon par-dessus). Balisage attendu, réutilisable par tout item :
+    //   <div class="media-stack"><video ...></video><img .../></div>
+    .media-stack {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        background: black;
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        img {
+            position: absolute;
+            top: 49%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 45%;
+            height: auto;
+            object-fit: contain;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+            transition: transform 0.4s ease, filter 0.4s ease;
+            z-index: 2;
+
+            &:hover {
+                transform: translate(-50%, -50%) scale(1.05);
+                filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.8));
+            }
+        }
+    }
+
     // ── Partial select.hbs : bandeau ───────────────────────────────────────
-    div.selector {
+    // MODIF (migration savoir) : div.clef est ajouté au sélecteur pour que le
+    // champ debug "clef" (partial input.hbs) reçoive le même panneau que
+    // select.hbs — même vocabulaire, un seul point d'entretien.
+    div.selector,
+    div.clef {
         .panel();
         display: flex;
         flex-direction: row;
@@ -137,6 +213,20 @@ form.nephilim.item .item-root.style-ashbury {
         }
 
         select, p {
+            font-size: 1.1em;
+            margin: 0;
+        }
+    }
+
+    // MODIF (migration savoir) : input.hbs imbrique son <h1>+<input> dans un
+    // div.input intermédiaire. On le neutralise (display: contents) pour que
+    // ce h1 et cet input se comportent comme des enfants directs de div.clef
+    // et se rangent sur la même ligne que le bandeau ci-dessus, sans ajouter
+    // de boîte / marge parasite.
+    div.clef > div.input {
+        display: contents;
+
+        input {
             font-size: 1.1em;
             margin: 0;
         }
@@ -175,8 +265,12 @@ form.nephilim.item .item-root.style-ashbury {
     // ── Partial description.hbs : bloc défilant ────────────────────────────
     // Le partial émet un <prose-mirror> (édition), un <div> (lecture) ou un
     // <span> (vide) : les trois reçoivent le même cadre.
+    // MODIF (migration savoir) : :not(.clef) ajouté pour exclure le bandeau
+    // debug (div.clef, cf. plus haut) de ce sélecteur générique ".right > div" —
+    // sinon il hériterait par erreur du cadre "description" (hauteur fixe,
+    // fond scrollable) au lieu de son propre panneau compact.
     .right > prose-mirror,
-    .right > div:not(.selector),
+    .right > div:not(.selector):not(.clef),
     .right > span {
         .panel();
         flex: 1;
@@ -194,15 +288,4 @@ form.nephilim.item .item-root.style-ashbury {
 @keyframes vk-slow-spin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-// ── Vocabulaire commun aux fiches ashbury ──────────────────────────────
-// Aspect des blocs de contenu (bandeaux, tableaux, description).
-.panel() {
-    width: 420px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    color: white;
 }

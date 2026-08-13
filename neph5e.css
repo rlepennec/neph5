@@ -6582,6 +6582,12 @@ form.nephilim.item .item-root.style-ashbury article main .left {
   align-items: center;
   padding-top: 20px;
 }
+form.nephilim.item .item-root.style-ashbury article main .left:has(.media-stack) {
+  width: auto;
+  flex: 0 0 55%;
+  align-items: stretch;
+  padding-top: 0;
+}
 form.nephilim.item .item-root.style-ashbury article main .right {
   flex: 1;
   display: flex;
@@ -6629,7 +6635,46 @@ form.nephilim.item .item-root.style-ashbury .image .glow {
   pointer-events: none;
   animation: vk-slow-spin 20s linear infinite;
 }
-form.nephilim.item .item-root.style-ashbury div.selector {
+form.nephilim.item .item-root.style-ashbury .media-stack {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: black;
+}
+form.nephilim.item .item-root.style-ashbury .media-stack video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  z-index: 1;
+  pointer-events: none;
+}
+form.nephilim.item .item-root.style-ashbury .media-stack img {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: auto;
+  object-fit: contain;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+  transition: transform 0.4s ease, filter 0.4s ease;
+  z-index: 2;
+}
+form.nephilim.item .item-root.style-ashbury .media-stack img:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.8));
+}
+form.nephilim.item .item-root.style-ashbury div.selector,
+form.nephilim.item .item-root.style-ashbury div.clef {
   width: 420px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -6644,14 +6689,24 @@ form.nephilim.item .item-root.style-ashbury div.selector {
   padding: 6px 12px;
   font-family: "NightjarDemi", serif;
 }
-form.nephilim.item .item-root.style-ashbury div.selector h1 {
+form.nephilim.item .item-root.style-ashbury div.selector h1,
+form.nephilim.item .item-root.style-ashbury div.clef h1 {
   font-size: 1.1em;
   margin: 0;
   border: none;
   padding-right: 40px;
 }
 form.nephilim.item .item-root.style-ashbury div.selector select,
-form.nephilim.item .item-root.style-ashbury div.selector p {
+form.nephilim.item .item-root.style-ashbury div.clef select,
+form.nephilim.item .item-root.style-ashbury div.selector p,
+form.nephilim.item .item-root.style-ashbury div.clef p {
+  font-size: 1.1em;
+  margin: 0;
+}
+form.nephilim.item .item-root.style-ashbury div.clef > div.input {
+  display: contents;
+}
+form.nephilim.item .item-root.style-ashbury div.clef > div.input input {
   font-size: 1.1em;
   margin: 0;
 }
@@ -6685,7 +6740,7 @@ form.nephilim.item .item-root.style-ashbury table.chronology tbody tr:last-child
   font-family: "NightjarDemi", serif;
 }
 form.nephilim.item .item-root.style-ashbury .right > prose-mirror,
-form.nephilim.item .item-root.style-ashbury .right > div:not(.selector),
+form.nephilim.item .item-root.style-ashbury .right > div:not(.selector):not(.clef),
 form.nephilim.item .item-root.style-ashbury .right > span {
   width: 420px;
   background: rgba(0, 0, 0, 0.5);
@@ -9386,96 +9441,6 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
   overflow: hidden;
 }
 .item-root.style-ashbury .vk-rtl-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding-right: 5px;
-  color: #ffffff;
-  font-family: "AJensonProLtDisp", serif;
-  font-size: 1.1em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-.item-savoir {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-savoir.webp");
-}
-.vk-savoir {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
-}
-.item-root.style-ashbury .vk-savoir-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 10px;
-  padding: 15px 20px;
-  min-height: 0;
-  overflow: hidden;
-}
-.item-root.style-ashbury .vk-savoir-content {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  gap: 20px;
-  min-height: 0;
-}
-.item-root.style-ashbury .vk-savoir-left {
-  flex: 0 0 55%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
-}
-.item-root.style-ashbury .vk-savoir-stack {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #000;
-}
-.item-root.style-ashbury .vk-savoir-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: none;
-  border-radius: 8px;
-  z-index: 1;
-  pointer-events: none;
-}
-.item-root.style-ashbury .vk-savoir-card {
-  position: absolute;
-  top: 49%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 45%;
-  height: auto;
-  object-fit: contain;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
-  transition: transform 0.4s ease, filter 0.4s ease;
-  z-index: 2;
-}
-.item-root.style-ashbury .vk-savoir-card:hover {
-  transform: translate(-50%, -50%) scale(1.05);
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.8));
-}
-.item-root.style-ashbury .vk-savoir-right {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  padding: 12px;
-  background: rgba(30, 30, 30, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-.item-root.style-ashbury .vk-savoir-editor {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
