@@ -94,14 +94,6 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
-     * @param str The textual expression to check. 
-     * @returns true if the specified string is null or empty.
-     */
-    static isEmptyString(str) {
-        return str == null || str.trim() === '';
-    }
-
-    /**
      * @param html The HTML content to check.
      * @returns true if the content is null or visually empty (only empty tags, whitespace or &nbsp;).
      */
@@ -244,15 +236,6 @@ export class CustomHandlebarsHelpers {
     }
 
     /**
-     * @param terms The terms to add.
-     * @returns the sum of the terms.
-     */
-    static sum(...terms) {
-        terms.pop();
-        return terms.reduce((a, b) => parseInt(a) + parseInt(b), 0)
-    }
-
-    /**
      * @param collection The collection to watch.
      * @param item       The item to check.
      * @returns true if the colllection includes the specified item.
@@ -378,20 +361,6 @@ export class CustomHandlebarsHelpers {
      */
     static getMaxFinalMP(actor, element) {
         return actor.getMaxBaseMP(element) + actor.system.alchimie.primae[element].max;
-    }
-
-    /**
-     * @param actor     The actor which uses the laboratory.
-     * @param construct The name of the construct.
-     * @returns the construct parameters, null if the owner.
-     */
-    static constructOf(actor, construct) {
-        const sid = actor.system.alchimie.courant;
-        if (sid == null) {
-            return null;
-        }
-        const owner = game.actors.find(i => i.sid === sid);
-        return owner == null ? null : owner.system.alchimie.constructs[construct];
     }
 
     /**

@@ -80,18 +80,6 @@ export class HistoricalSheet extends NephilimActorSheet {
             .drop();
         await this.render(true);
     }
-
-    /**
-     * Edit the specified feature.
-     * @param feature The purpose of the edition.
-     * @param event   The click event.
-     * @returns the instance.
-     */
-    async _onEditFeature(feature, event) {
-        event.preventDefault();
-        await this.createFeature(".edit-" + feature, event).edit();
-        return this;
-    }
    
     /**
      * Set the current periode.
