@@ -6589,12 +6589,10 @@ form.nephilim.item .item-root.style-ashbury article main .right {
   align-items: flex-end;
   height: 100%;
   gap: 10px;
-  padding-right: 20px;
   overflow: hidden;
 }
 form.nephilim.item .item-root.style-ashbury .image {
   position: relative;
-  margin-top: 20px;
   width: 210px;
   height: 210px;
   display: flex;
@@ -6661,35 +6659,44 @@ form.nephilim.item .item-root.style-ashbury .media-stack {
   overflow: hidden;
   background: black;
 }
-form.nephilim.item .item-root.style-ashbury .media-stack video {
+form.nephilim.item .item-root.style-ashbury .media-stack video,
+form.nephilim.item .item-root.style-ashbury .media-stack img {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border: none;
   z-index: 1;
   pointer-events: none;
 }
-form.nephilim.item .item-root.style-ashbury .media-stack img {
-  position: absolute;
-  top: 49%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 45%;
+form.nephilim.item .item-root.style-ashbury .media-stack video {
+  object-fit: cover;
+}
+form.nephilim.item .item-root.style-ashbury .media-stack img[data-edit] {
+  width: var(--vk-media-width, 45%);
   height: auto;
-  object-fit: contain;
-  border: none;
+  z-index: 2;
   border-radius: 6px;
   cursor: pointer;
+  pointer-events: auto;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
   transition: transform 0.4s ease, filter 0.4s ease;
-  z-index: 2;
 }
-form.nephilim.item .item-root.style-ashbury .media-stack img:hover {
+form.nephilim.item .item-root.style-ashbury .media-stack img[data-edit]:hover {
   transform: translate(-50%, -50%) scale(1.05);
   filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.8));
+}
+form.nephilim.item .item-root.style-ashbury .media-stack img.overlay {
+  z-index: 3;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity 0.6s ease;
+}
+form.nephilim.item .item-root.style-ashbury .media-stack:hover img.overlay {
+  opacity: 0.85;
 }
 form.nephilim.item .item-root.style-ashbury div.selector,
 form.nephilim.item .item-root.style-ashbury div.clef {
@@ -6735,6 +6742,7 @@ form.nephilim.item .item-root.style-ashbury table.chronology {
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
   color: white;
+  margin: unset;
   border-collapse: collapse;
   padding: 6px 12px;
   font-family: "AJensonProLtDisp", serif;
@@ -6768,7 +6776,6 @@ form.nephilim.item .item-root.style-ashbury .right > span {
   color: white;
   flex: 1;
   min-height: 250px;
-  max-height: 250px;
   overflow-y: auto;
   padding: 10px;
   color: #e0e0e0;
@@ -6788,6 +6795,13 @@ form.nephilim.item .item-root.style-ashbury .right > span {
 }
 .vk-quete {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+.item-arcane {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
+  --vk-media-width: 62%;
+}
+.vk-arcane {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
 .item-alchimie {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
@@ -6962,99 +6976,6 @@ form.nephilim.item .item-root.style-ashbury .right > span {
   overflow: hidden;
 }
 .item-root.style-ashbury .vk-rit-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding-right: 5px;
-  color: #ffffff;
-  font-family: "AJensonProLtDisp", serif;
-  font-size: 1.1em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-.item-arcane {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
-}
-.vk-arcane {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
-}
-.item-root.style-ashbury .vk-arcane-left {
-  flex: 0 0 45%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
-}
-.item-root.style-ashbury .vk-arcane-stack {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.item-root.style-ashbury .vk-arcane-layer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border: none;
-}
-.item-root.style-ashbury .vk-arcane-bg {
-  z-index: 1;
-  pointer-events: none;
-}
-.item-root.style-ashbury .vk-arcane-card {
-  z-index: 2;
-  width: 62%;
-  cursor: pointer;
-  border-radius: 6px;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
-  transition: transform 0.4s ease;
-}
-.item-root.style-ashbury .vk-arcane-card:hover {
-  transform: translate(-50%, -50%) scale(1.04);
-}
-.item-root.style-ashbury .vk-arcane-rays {
-  z-index: 3;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  mix-blend-mode: screen;
-}
-.item-root.style-ashbury .vk-arcane-stack:hover .vk-arcane-rays {
-  opacity: 0.85;
-}
-.item-root.style-ashbury .vk-arcane-right {
-  flex: 1;
-}
-.item-root.style-ashbury .vk-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 10px;
-  padding: 15px 20px;
-  min-height: 0;
-  overflow: hidden;
-}
-.item-root.style-ashbury .vk-split {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  gap: 20px;
-  min-height: 0;
-}
-.item-root.style-ashbury .vk-box {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  padding: 12px;
-  background: rgba(30, 30, 30, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-.item-root.style-ashbury .vk-editor {
   flex: 1;
   min-height: 0;
   overflow-y: auto;

@@ -66,7 +66,6 @@ form.nephilim.item .item-root.style-ashbury {
                 align-items: flex-end;
                 height: 100%;
                 gap: 10px;
-                padding-right: 20px;
                 overflow: hidden;
             }
 
@@ -88,7 +87,6 @@ form.nephilim.item .item-root.style-ashbury {
     // ── Partial image.hbs ──────────────────────────────────────────────────
     .image {
         position: relative;
-        margin-top: 20px;
         width: 210px;
         height: 210px;
         display: flex;
@@ -188,38 +186,58 @@ form.nephilim.item .item-root.style-ashbury {
         overflow: hidden;
         background: black;
 
-        video {
+        // Calques de la pile, empilés au centre. Par défaut ils occupent tout le
+        // cadre : vidéo d'ambiance (savoir) ou image de fond (arcane : pile de
+        // cartes). Seul le média principal et le calque décoratif s'en écartent.
+        video,
+        img {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             border: none;
             z-index: 1;
             pointer-events: none;
         }
 
-        img {
-            position: absolute;
-            top: 49%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 45%;
+        video {
+            object-fit: cover;
+        }
+
+        // Média principal : la seule image éditable de la pile. Sa largeur varie
+        // selon le type (--vk-media-width posé sur .item-<type>).
+        img[data-edit] {
+            width: var(--vk-media-width, 45%);
             height: auto;
-            object-fit: contain;
-            border: none;
+            z-index: 2;
             border-radius: 6px;
             cursor: pointer;
+            pointer-events: auto;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
             transition: transform 0.4s ease, filter 0.4s ease;
-            z-index: 2;
 
             &:hover {
                 transform: translate(-50%, -50%) scale(1.05);
                 filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.8));
             }
+
         }
+
+        // Calque décoratif révélé au survol de la pile (rayons, halo...).
+        img.overlay {
+            z-index: 3;
+            opacity: 0;
+            mix-blend-mode: screen;
+            transition: opacity 0.6s ease;
+        }
+
+        &:hover img.overlay {
+            opacity: 0.85;
+        }
+
     }
 
     // ── Partial select.hbs : bandeau ───────────────────────────────────────
@@ -265,6 +283,7 @@ form.nephilim.item .item-root.style-ashbury {
     // ── Partial chronology.hbs : même aspect que les autres blocs ──────────
     table.chronology {
         .panel();
+        margin: unset;
         border-collapse: collapse;
         padding: 6px 12px;
         font-family: "AJensonProLtDisp", serif;
@@ -302,7 +321,6 @@ form.nephilim.item .item-root.style-ashbury {
         .panel();
         flex: 1;
         min-height: 250px;
-        max-height: 250px;
         overflow-y: auto;
         padding: 10px;
         color: #e0e0e0;
@@ -326,4 +344,18 @@ form.nephilim.item .item-root.style-ashbury {
 
 .vk-quete {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+
+// ════════════════════════════════════════════════════════════════
+//  Fiche arcane — variables des deux looks.
+// ════════════════════════════════════════════════════════════════
+
+.item-arcane {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
+    // La carte occupe une part plus large de la pile que le médaillon du savoir.
+    --vk-media-width: 62%;
+}
+
+.vk-arcane {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
