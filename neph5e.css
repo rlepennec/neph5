@@ -6575,21 +6575,15 @@ form.nephilim.item .item-root.style-ashbury article main:has(> .left) {
   overflow: hidden;
 }
 form.nephilim.item .item-root.style-ashbury article main .left {
-  flex: 0 0 auto;
-  width: 220px;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
-}
-form.nephilim.item .item-root.style-ashbury article main .left:has(.media-stack) {
-  width: auto;
-  flex: 0 0 55%;
-  align-items: stretch;
-  padding-top: 0;
+  overflow: hidden;
 }
 form.nephilim.item .item-root.style-ashbury article main .right {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -6600,6 +6594,7 @@ form.nephilim.item .item-root.style-ashbury article main .right {
 }
 form.nephilim.item .item-root.style-ashbury .image {
   position: relative;
+  margin-top: 20px;
   width: 210px;
   height: 210px;
   display: flex;
@@ -6635,10 +6630,33 @@ form.nephilim.item .item-root.style-ashbury .image .glow {
   pointer-events: none;
   animation: vk-slow-spin 20s linear infinite;
 }
+form.nephilim.item .item-root.style-ashbury .image:has(> .wrap) {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+form.nephilim.item .item-root.style-ashbury .image:has(> .wrap) img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+form.nephilim.item .item-root.style-ashbury .image .wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
+  animation: vk-light-scan 8s linear infinite;
+}
 form.nephilim.item .item-root.style-ashbury .media-stack {
   position: relative;
   width: 100%;
   height: 100%;
+  margin-top: 0;
   border-radius: 8px;
   overflow: hidden;
   background: black;
@@ -6764,6 +6782,12 @@ form.nephilim.item .item-root.style-ashbury .right > span {
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
+}
+.item-quete {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
+}
+.vk-quete {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
 }
 .item-alchimie {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
@@ -9181,81 +9205,6 @@ form.nephilim.item section.window-content > section.item-root.style-ashbury .vk-
 }
 .item-root.style-ashbury .vk-per-right {
   flex: 1;
-}
-.item-quete {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
-}
-.vk-quete {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-}
-.item-root.style-ashbury .vk-quete-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 10px;
-  padding: 15px 20px;
-  min-height: 0;
-  overflow: hidden;
-}
-.item-root.style-ashbury .vk-quete-content {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: flex-start;
-}
-.item-root.style-ashbury .vk-quete-left {
-  flex: 0 0 45%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-.item-root.style-ashbury .vk-quete-img-wrap {
-  position: relative;
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
-}
-.item-root.style-ashbury .vk-quete-img-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
-  animation: vk-light-scan 8s linear infinite;
-}
-.item-root.style-ashbury .vk-quete-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.item-root.style-ashbury .vk-quete-right {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  height: 66.67%;
-  padding: 12px;
-  background: rgba(30, 30, 30, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-.item-root.style-ashbury .vk-quete-editor {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding-right: 5px;
-  color: #ffffff;
-  font-family: "AJensonProLtDisp", serif;
-  font-size: 1.1em;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 .item-rite {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp");

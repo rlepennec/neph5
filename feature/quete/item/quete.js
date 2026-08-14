@@ -6,7 +6,7 @@ export class QueteSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ["vk-quete"],
         position: {
-            width: 850,
+            width: 900,
             height: 750
         }
     }
