@@ -1657,6 +1657,10 @@ form.nephilim.actor section.window-content > section article main.combat {
   flex-direction: row;
   color: #191813;
 }
+form.nephilim.actor section.window-content > section article main.combat input,
+form.nephilim.actor section.window-content > section article main.combat input:disabled {
+  color: inherit;
+}
 form.nephilim.actor section.window-content > section article main.combat .header {
   position: relative;
   height: 50px;
@@ -3964,6 +3968,10 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   display: flex;
   flex-direction: row;
   color: #191813;
+}
+.tab.combat input,
+.tab.combat input:disabled {
+  color: inherit;
 }
 .tab.combat .header {
   position: relative;

@@ -3,6 +3,14 @@
     flex-direction: row;
     color: rgb(25, 24, 19);
 
+    // Les champs de saisie n'héritent pas de la couleur du texte : on les aligne
+    // sur celle des libellés (degrés des ressources, bonus, caractéristiques...).
+    // Le :disabled est visé explicitement, le navigateur le grisant par défaut.
+    input,
+    input:disabled {
+        color: inherit;
+    }
+
     .header {
         position: relative;
         height: 50px;
