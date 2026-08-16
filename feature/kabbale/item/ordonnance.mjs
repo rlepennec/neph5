@@ -30,7 +30,7 @@ export class OrdonnanceDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/ordonnances/Ordonnance-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/ordonnance-defaut.webp"
                 }
             )
         }
