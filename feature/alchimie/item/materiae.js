@@ -7,7 +7,7 @@ export class MateriaeSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 560,
+            width: 700,
             height: 640
         }
     }

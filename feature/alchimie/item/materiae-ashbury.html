@@ -1,5 +1,5 @@
 <section class="item-root style-ashbury skin-{{document.system.element}}">
-
+{{log .}}
     <aside></aside>
 
     <article>
@@ -8,45 +8,27 @@
 
         <main>
 
-            <div class="vk-layout">
+            <div class="left">
 
-                <div class="vk-mat-img-wrap">
-                    <img
-                        class="vk-mat-image"
-                        src="{{document.system.illustration}}"
-                        title="{{document.name}}"
-                        data-edit="system.illustration"
-                        data-action="editImage"/>
-                    <div class="vk-mat-vignette"></div>
-                    <div class="vk-mat-name">{{document.name}}</div>
-                </div>
+                {{> "systems/neph5e/templates/image.hbs"
+                    class="vk-illustration"
+                    src=document.system.illustration
+                    title="illustration"
+                    editPath="system.illustration"
+                }}
 
-                <div class="vk-banner">
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element"
-                        name="system.element"
-                        value=document.system.element
-                        options=context.elements
-                    }}
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="quantite"
-                        name="system.quantite"
-                        value=document.system.quantite
-                    }}
-                </div>
+            </div>
 
-                <div class="vk-box vk-mat-desc">
-                    <div class="vk-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+            <div class="right">
+
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="element"
+                    name="system.element"
+                    value=document.system.element
+                    options=context.elements
+                }}
+
+                {{> "systems/neph5e/templates/description.hbs"}}
 
             </div>
 
