@@ -57,6 +57,27 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
     }
 
+    /**
+     * @override
+     * Ouvre la fiche d'un document référencé. Pour un item embarqué dans cet acteur,
+     * on passe par sa feature plutôt que par sheet.render() : c'est elle qui fournit
+     * les données du contexte acteur (chronologie des périodes, degré, readOnly).
+     * Sans cela, la fiche s'ouvre sans ces informations.
+     */
+    async _onOpenLink(event, target) {
+        const identifier = new DocumentIdentifier(target);
+        const document = identifier.toDocument();
+        if (document?.isEmbedded === true && document.parent === this.document) {
+            const feature = new FeatureBuilder(this.document)
+                .withScope("actor")
+                .withEmbeddedItem(identifier.id)
+                .withOriginalItem(identifier.sid)
+                .create();
+            return await feature.editEmbeddedItem();
+        }
+        await super._onOpenLink(event, target);
+    }
+
     async setOptions(options) {
         const update = {};
         for (const [key, value] of Object.entries(options)) {

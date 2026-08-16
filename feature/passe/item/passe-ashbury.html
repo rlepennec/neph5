@@ -8,39 +8,22 @@
 
         <main>
 
-            <div class="vk-pas-layout">
+            <div class="left">
+
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    title="illustration"
+                    editPath="system.illustration"
+                    wrap=true
+                }}
+
+            </div>
+
+            <div class="right">
 
                 {{> "systems/neph5e/templates/chronology.hbs" title='periode'}}
 
-                <div class="vk-pas-content">
-
-                    {{!-- GAUCHE : illustration balayée par une lueur --}}
-                    <div class="vk-pas-left">
-                        <div class="vk-pas-img-wrap">
-                            <img
-                                class="vk-pas-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
-                    </div>
-
-                    {{!-- DROITE : description --}}
-                    <div class="vk-pas-right">
-                        <div class="vk-pas-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-
-                </div>
+                {{> "systems/neph5e/templates/description.hbs"}}
 
             </div>
 

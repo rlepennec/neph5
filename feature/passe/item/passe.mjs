@@ -31,7 +31,7 @@ export class PasseDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/passes/passe-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/passe-defaut.webp"
                 }
             ),
         }
