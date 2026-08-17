@@ -8,37 +8,20 @@
 
         <main>
 
-            <div class="vk-mag-layout">
+            <div class="left">
 
-                <div class="vk-mag-content">
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    title="illustration"
+                    editPath="system.illustration"
+                    wrap=true
+                }}
 
-                    {{!-- GAUCHE : illustration balayée par une lueur --}}
-                    <div class="vk-mag-left">
-                        <div class="vk-mag-img-wrap">
-                            <img
-                                class="vk-mag-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
-                    </div>
+            </div>
 
-                    {{!-- DROITE : description --}}
-                    <div class="vk-mag-right">
-                        <div class="vk-mag-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
+            <div class="right">
 
-                </div>
+                {{> "systems/neph5e/templates/description.hbs"}}     
 
             </div>
 

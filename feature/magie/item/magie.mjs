@@ -19,7 +19,7 @@ export class MagieDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/magie/Voie-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/magie-defaut.webp"
                 }
             )
         }
