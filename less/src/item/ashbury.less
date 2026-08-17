@@ -244,6 +244,27 @@ form.nephilim.item .item-root.style-ashbury {
 
     }
 
+    // ── Partial science.hbs : sceau tracé en SVG ───────────────────────────
+    // Le tracé utilise currentColor : sans couleur explicite il hériterait du
+    // noir de main et resterait invisible sur le fond sombre.
+    div.science {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        svg {
+            width: 100%;
+            max-width: 260px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            color: var(rgba(232, 184, 109, 0.85), rgba(255, 255, 255, 0.85));
+            filter: drop-shadow(0 0 6px var(rgba(28, 77, 181, 0.35), rgba(255, 255, 255, 0.25)));
+            animation: vk-seal-spin 60s linear infinite;
+        }
+
+    }
+
     // ── Partial select.hbs : bandeau ───────────────────────────────────────
     // div.clef partage le même panneau que select.hbs : même vocabulaire,
     // un seul point d'entretien.
@@ -339,6 +360,11 @@ form.nephilim.item .item-root.style-ashbury {
     to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+@keyframes vk-seal-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
 // ════════════════════════════════════════════════════════════════
 //  Fiche quête — variables des deux looks.
 // ════════════════════════════════════════════════════════════════
@@ -362,4 +388,9 @@ form.nephilim.item .item-root.style-ashbury {
 
 .vk-arcane {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+
+.vk-science {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+    --vk-seal-color: rgba(232, 184, 109, 0.85);
 }

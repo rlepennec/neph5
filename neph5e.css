@@ -6711,6 +6711,21 @@ form.nephilim.item .item-root.style-ashbury .media-stack img.overlay {
 form.nephilim.item .item-root.style-ashbury .media-stack:hover img.overlay {
   opacity: 0.85;
 }
+form.nephilim.item .item-root.style-ashbury div.science {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+form.nephilim.item .item-root.style-ashbury div.science svg {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  color: var(rgba(232, 184, 109, 0.85), rgba(255, 255, 255, 0.85));
+  filter: drop-shadow(0 0 6px var(rgba(28, 77, 181, 0.35), rgba(255, 255, 255, 0.25)));
+  animation: vk-seal-spin 60s linear infinite;
+}
 form.nephilim.item .item-root.style-ashbury div.selector,
 form.nephilim.item .item-root.style-ashbury div.clef {
   width: 420px;
@@ -6803,6 +6818,14 @@ form.nephilim.item .item-root.style-ashbury .right > span {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+@keyframes vk-seal-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .item-quete {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
 }
@@ -6815,6 +6838,10 @@ form.nephilim.item .item-root.style-ashbury .right > span {
 }
 .vk-arcane {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+.vk-science {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+  --vk-seal-color: rgba(232, 184, 109, 0.85);
 }
 .item-rite {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp");
