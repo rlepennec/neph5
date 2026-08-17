@@ -8,47 +8,34 @@
 
         <main>
 
-            <div class="vk-chu-layout">
+            <div class="left">
 
-                {{#if (and debug isGM (not document.sheet.locked))}}
-                {{> "systems/neph5e/templates/input.hbs"
-                    title="key"
-                    name="system.key"
-                    value=document.system.key
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    title="illustration"
+                    editPath="system.illustration"
+                    wrap=true
                 }}
+
+            </div>
+
+            <div class="right">
+
+                {{#if (and debug isGM (not locked))}}
+                <div class="clef">
+
+                    {{> "systems/neph5e/templates/input.hbs"
+                        title="cle"
+                        name="system.key"
+                        value=document.system.key
+                    }}
+
+                </div>
                 {{/if}}
 
                 {{> "systems/neph5e/templates/chronology.hbs" title='periode'}}
 
-                <div class="vk-chu-content">
-
-                    {{!-- GAUCHE : illustration balayée par une lueur --}}
-                    <div class="vk-chu-left">
-                        <div class="vk-chu-img-wrap">
-                            <img
-                                class="vk-chu-img"
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
-                    </div>
-
-                    {{!-- DROITE : description --}}
-                    <div class="vk-chu-right">
-                        <div class="vk-chu-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-
-                </div>
+                {{> "systems/neph5e/templates/description.hbs"}}
 
             </div>
 

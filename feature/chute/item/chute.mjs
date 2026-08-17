@@ -37,7 +37,7 @@ export class ChuteDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/chutes/Chute-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/chute-defaut.webp"
                 }
             )
         }
