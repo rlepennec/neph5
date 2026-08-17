@@ -10,7 +10,13 @@
 
             {{#if (and debug isGM (not locked))}}
             <div class="clef">
-                {{> "systems/neph5e/templates/input.hbs" title="cle" name="system.key" value=document.system.key }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="cle"
+                    name="system.key"
+                    value=document.system.key
+                }}
+                
             </div>
             {{/if}}
 
