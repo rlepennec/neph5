@@ -6592,6 +6592,9 @@ form.nephilim.item .item-root.style-ashbury article main .left {
   align-items: center;
   overflow: hidden;
 }
+form.nephilim.item .item-root.style-ashbury article main .left.center {
+  justify-content: center;
+}
 form.nephilim.item .item-root.style-ashbury article main .right {
   flex: 0 0 auto;
   display: flex;
