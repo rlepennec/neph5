@@ -249,53 +249,78 @@ form.nephilim.item .item-root.style-ashbury {
         // Variante "case carrée à cocher" (checkbox.hbs, param square=true).
         // Isolée derrière ce modificateur pour ne pas imposer cette forme aux
         // futures fiches qui réutiliseraient checkbox.hbs avec un autre rendu.
-        &.square input[type="checkbox"] {
-            appearance: none;
-            -webkit-appearance: none;
-            position: relative;
-            flex-shrink: 0;
-            width: 16px;
-            height: 16px;
-            margin: 0;
-            border: 1px solid rgba(201, 146, 58, 0.40);
-            border-radius: 3px;
-            background: rgba(10, 6, 2, 0.88);
-            cursor: pointer;
-            transition: background 0.2s, border-color 0.2s;
+        //
+        // Constaté à l'inspecteur : Foundry v14 met l'<input> en display:none
+        // (absent du rendu, quelles que soient nos propriétés) et dessine sa
+        // propre case sur le <label for="..."/> qui le suit. Styliser l'input
+        // n'a donc aucun effet visible — on dessine la case sur le label via
+        // ::before/::after, piloté par l'état de l'input voisin (input+label).
+        // !important sur les propriétés visuelles : le label est justement
+        // l'élément que Foundry stylise lui-même pour dessiner sa case ronde
+        // (::before probable, avec sa propre icône) — donc plus un simple
+        // écart de spécificité comme pour l'input, un conflit direct sur le
+        // même pseudo-élément. Sans !important on récupère un mélange des
+        // deux (ex. son icône ronde par-dessus notre fond).
+        &.square {
 
-            // Foundry v14 injecte une icône Font Awesome en ::before : on la neutralise.
-            &::before {
-                content: none;
+            input[type="checkbox"] {
+                position: absolute;
+                opacity: 0;
+                pointer-events: none;
             }
 
-            &:checked {
-                background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55));
-                border-color: #C9923A;
+            label {
+                position: relative !important;
+                flex-shrink: 0;
+                width: 16px !important;
+                height: 16px !important;
+                cursor: pointer;
+
+                &::before {
+                    content: '' !important;
+                    position: absolute !important;
+                    inset: 0 !important;
+                    border: 1px solid rgba(201, 146, 58, 0.40) !important;
+                    border-radius: 3px !important;
+                    background: rgba(10, 6, 2, 0.88) !important;
+                    transition: background 0.2s, border-color 0.2s;
+                }
 
                 &::after {
-                    content: '';
-                    position: absolute;
-                    left: 4px;
-                    top: 0;
-                    width: 5px;
-                    height: 9px;
-                    border: 2px solid #E8B86D;
-                    border-top: none;
-                    border-left: none;
-                    transform: rotate(40deg);
+                    content: none !important;
                 }
             }
 
-            &:disabled {
-                opacity: 1;
-                cursor: default;
-                background: rgba(10, 6, 2, 0.88);
-                border-color: rgba(201, 146, 58, 0.40);
+            input[type="checkbox"]:checked + label::before {
+                background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55)) !important;
+                border-color: #C9923A !important;
+            }
 
-                &:checked {
-                    background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55));
-                    border-color: #C9923A;
+            input[type="checkbox"]:checked + label::after {
+                content: '' !important;
+                position: absolute !important;
+                left: 4px !important;
+                top: 0 !important;
+                width: 5px !important;
+                height: 9px !important;
+                border: 2px solid #E8B86D !important;
+                border-top: none !important;
+                border-left: none !important;
+                transform: rotate(40deg) !important;
+            }
+
+            input[type="checkbox"]:disabled + label {
+                cursor: default;
+
+                &::before {
+                    background: rgba(10, 6, 2, 0.88) !important;
+                    border-color: rgba(201, 146, 58, 0.40) !important;
                 }
+            }
+
+            input[type="checkbox"]:disabled:checked + label::before {
+                background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55)) !important;
+                border-color: #C9923A !important;
             }
         }
     }

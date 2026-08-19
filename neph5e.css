@@ -6720,47 +6720,55 @@ form.nephilim.item .item-root.style-ashbury div.checkbox:hover h1 {
   color: #E8B86D;
 }
 form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  position: relative;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+form.nephilim.item .item-root.style-ashbury div.checkbox.square label {
+  position: relative !important;
   flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  border: 1px solid rgba(201, 146, 58, 0.4);
-  border-radius: 3px;
-  background: rgba(10, 6, 2, 0.88);
+  width: 16px !important;
+  height: 16px !important;
   cursor: pointer;
+}
+form.nephilim.item .item-root.style-ashbury div.checkbox.square label::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border: 1px solid rgba(201, 146, 58, 0.4) !important;
+  border-radius: 3px !important;
+  background: rgba(10, 6, 2, 0.88) !important;
   transition: background 0.2s, border-color 0.2s;
 }
-form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]::before {
-  content: none;
+form.nephilim.item .item-root.style-ashbury div.checkbox.square label::after {
+  content: none !important;
 }
-form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:checked {
-  background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55));
-  border-color: #C9923A;
+form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:checked + label::before {
+  background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55)) !important;
+  border-color: #C9923A !important;
 }
-form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:checked::after {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 0;
-  width: 5px;
-  height: 9px;
-  border: 2px solid #E8B86D;
-  border-top: none;
-  border-left: none;
-  transform: rotate(40deg);
+form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:checked + label::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 4px !important;
+  top: 0 !important;
+  width: 5px !important;
+  height: 9px !important;
+  border: 2px solid #E8B86D !important;
+  border-top: none !important;
+  border-left: none !important;
+  transform: rotate(40deg) !important;
 }
-form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:disabled {
-  opacity: 1;
+form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:disabled + label {
   cursor: default;
-  background: rgba(10, 6, 2, 0.88);
-  border-color: rgba(201, 146, 58, 0.4);
 }
-form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:disabled:checked {
-  background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55));
-  border-color: #C9923A;
+form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:disabled + label::before {
+  background: rgba(10, 6, 2, 0.88) !important;
+  border-color: rgba(201, 146, 58, 0.4) !important;
+}
+form.nephilim.item .item-root.style-ashbury div.checkbox.square input[type="checkbox"]:disabled:checked + label::before {
+  background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55)) !important;
+  border-color: #C9923A !important;
 }
 form.nephilim.item .item-root.style-ashbury .circles {
   display: flex;
