@@ -45,6 +45,20 @@ form.nephilim.item .item-root.style-ashbury {
                 overflow: hidden;
             }
 
+            // Certains types (armure) placent un bandeau au-dessus de la
+            // disposition à deux colonnes : celle-ci est alors portée par une
+            // <section> neutre intercalée entre main et .left/.right, plutôt
+            // que par main directement — main doit rester en colonne pour
+            // empiler bandeau et section. Le déclencheur est donc dupliqué.
+            > section:has(> .left) {
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                min-height: 0;
+                overflow: hidden;
+            }
+
             // Colonne illustration : occupe tout l'espace laissé par la colonne
             // de droite. Les médias (image, media-stack) s'y adaptent, ce qui
             // évite une largeur par type.
@@ -86,6 +100,97 @@ form.nephilim.item .item-root.style-ashbury {
         border-radius: 5px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
         color: white;
+    }
+
+    // ── Bandeau statistique (armure : physique / magique) ─────────────────
+    // input.hbs imbrique <h1>+<input> dans un div.input ; on les remet en
+    // ligne pour reproduire le cercle + libellé côte à côte de l'ancien
+    // rendu, et on stylise le séparateur vertical semé par le template.
+    .banner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        flex-shrink: 0;
+        padding: 16px 24px;
+        background: rgba(12, 7, 2, 0.82);
+        border: 1px solid rgba(30, 60, 140, 0.35);
+        border-radius: 8px;
+        box-shadow:
+            inset 0 1px 0 rgba(60, 100, 220, 0.20),
+            0 4px 14px rgba(0, 0, 0, 0.55);
+
+        div.input {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 18px;
+            margin: unset;
+
+            h1 {
+                font-family: "AJensonProLtDisp", serif;
+                font-size: 0.76em;
+                font-weight: bold;
+                color: rgba(232, 184, 109, 0.85);
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                white-space: nowrap;
+                border: none;
+                margin: 0;
+            }
+        }
+
+        .separator {
+            width: 1px;
+            height: 50px;
+            flex-shrink: 0;
+            background: linear-gradient(180deg,
+                transparent,
+                rgba(201, 146, 58, 0.45) 30%,
+                rgba(201, 146, 58, 0.45) 70%,
+                transparent);
+        }
+    }
+
+    // Cercle de saisie (physique / magique) : même vocabulaire que le
+    // bandeau ci-dessus, réutilisable par tout type ayant besoin d'un
+    // input rond (input.hbs, param class="circle").
+    input.circle {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+        text-align: center;
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #E8B86D;
+        background: rgba(10, 6, 2, 0.90);
+        border: 2px solid rgba(201, 146, 58, 0.50);
+        border-radius: 50%;
+        box-shadow:
+            0 0 12px rgba(201, 146, 58, 0.18) inset,
+            0 3px 10px rgba(0, 0, 0, 0.70);
+        transition: border-color 0.2s, box-shadow 0.2s;
+        -moz-appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &:focus {
+            border-color: #C9923A;
+            box-shadow: 0 0 16px rgba(201, 146, 58, 0.40) inset;
+            outline: none;
+        }
+
+        &:disabled {
+            opacity: 1;
+            cursor: default;
+            color: #E8B86D;
+            -webkit-text-fill-color: #E8B86D;
+        }
     }
 
     // ── Partial image.hbs ──────────────────────────────────────────────────
@@ -393,4 +498,8 @@ form.nephilim.item .item-root.style-ashbury {
 .vk-science {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
     --vk-seal-color: rgba(232, 184, 109, 0.85);
+}
+
+.item-armure {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
 }
