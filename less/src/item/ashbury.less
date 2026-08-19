@@ -102,10 +102,26 @@ form.nephilim.item .item-root.style-ashbury {
         color: white;
     }
 
-    // ── Bandeau statistique (armure : physique / magique) ─────────────────
-    // input.hbs imbrique <h1>+<input> dans un div.input ; on les remet en
-    // ligne pour reproduire le cercle + libellé côte à côte de l'ancien
-    // rendu, et on stylise le séparateur vertical semé par le template.
+    // Libellé de stat (h1 au-dessus/à côté d'un input.circle) : même
+    // traitement partout où une valeur numérique est présentée en cercle.
+    .stat-label() {
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 0.76em;
+        font-weight: bold;
+        color: rgba(232, 184, 109, 0.85);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        border: none;
+        margin: 0;
+    }
+
+    // ── Bandeau statistique (armure : physique / magique ; arme : type,
+    // stats, options, munitions) ───────────────────────────────────────────
+    // input.hbs imbrique <h1>+<input> dans un div.input ; le combinateur
+    // enfant direct (> div.input) réserve cette mise en ligne aux fiches
+    // simples (armure) sans déborder sur les groupements internes d'arme
+    // (.circles, .checkboxes), qui ont leur propre disposition ci-dessous.
     .banner {
         display: flex;
         flex-direction: row;
@@ -120,7 +136,9 @@ form.nephilim.item .item-root.style-ashbury {
             inset 0 1px 0 rgba(60, 100, 220, 0.20),
             0 4px 14px rgba(0, 0, 0, 0.55);
 
-        div.input {
+        // :not(.dot) exclut la ligne munitions d'arme, qui a sa propre
+        // disposition ci-dessous (libellé italique + saisie soulignée).
+        > div.input:not(.dot) {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -128,15 +146,7 @@ form.nephilim.item .item-root.style-ashbury {
             margin: unset;
 
             h1 {
-                font-family: "AJensonProLtDisp", serif;
-                font-size: 0.76em;
-                font-weight: bold;
-                color: rgba(232, 184, 109, 0.85);
-                letter-spacing: 0.04em;
-                text-transform: uppercase;
-                white-space: nowrap;
-                border: none;
-                margin: 0;
+                .stat-label();
             }
         }
 
@@ -149,6 +159,252 @@ form.nephilim.item .item-root.style-ashbury {
                 rgba(201, 146, 58, 0.45) 30%,
                 rgba(201, 146, 58, 0.45) 70%,
                 transparent);
+        }
+
+        // Variante empilée (arme) : chaque groupe (pills, cercles, cases,
+        // munitions) occupe toute la largeur du bandeau, l'un sous l'autre.
+        &.stacked {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+    }
+
+    // ── Partial pills.hbs : sélecteur à boutons (type d'arme) ──────────────
+    .pills {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+
+        h1 {
+            flex: 0 0 100%;
+            font-size: 1.1em;
+            margin: 0 0 4px;
+            border: none;
+        }
+
+        label {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 34px;
+            padding: 4px 14px;
+            margin: 0;
+            border: 1px solid rgba(201, 146, 58, 0.40);
+            border-radius: 20px;
+            background: rgba(10, 6, 2, 0.88);
+            color: rgba(232, 184, 109, 0.65);
+            font-family: "AJensonProLtDisp", serif;
+            font-size: 0.88em;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+            input[type="radio"] {
+                display: none;
+            }
+
+            &:hover {
+                background: rgba(201, 146, 58, 0.10);
+                border-color: #C9923A;
+                color: #E8B86D;
+            }
+
+            &.active {
+                background: linear-gradient(135deg, rgba(201, 146, 58, 0.42), rgba(92, 61, 16, 0.62));
+                border-color: #C9923A;
+                color: #E8B86D;
+                text-shadow: 0 0 8px rgba(232, 184, 109, 0.55), 0 1px 3px rgba(0, 0, 0, 0.9);
+            }
+        }
+    }
+
+    // ── Partial checkbox.hbs ────────────────────────────────────────────────
+    div.checkbox {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 0.90em;
+        color: rgba(232, 184, 109, 0.85);
+        white-space: nowrap;
+
+        h1 {
+            font-size: 1em;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: normal;
+            border: none;
+            margin: 0;
+        }
+
+        &:hover h1 {
+            color: #E8B86D;
+        }
+
+        // Variante "case carrée à cocher" (checkbox.hbs, param square=true).
+        // Isolée derrière ce modificateur pour ne pas imposer cette forme aux
+        // futures fiches qui réutiliseraient checkbox.hbs avec un autre rendu.
+        &.square input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin: 0;
+            border: 1px solid rgba(201, 146, 58, 0.40);
+            border-radius: 3px;
+            background: rgba(10, 6, 2, 0.88);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+
+            // Foundry v14 injecte une icône Font Awesome en ::before : on la neutralise.
+            &::before {
+                content: none;
+            }
+
+            &:checked {
+                background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55));
+                border-color: #C9923A;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 4px;
+                    top: 0;
+                    width: 5px;
+                    height: 9px;
+                    border: 2px solid #E8B86D;
+                    border-top: none;
+                    border-left: none;
+                    transform: rotate(40deg);
+                }
+            }
+
+            &:disabled {
+                opacity: 1;
+                cursor: default;
+                background: rgba(10, 6, 2, 0.88);
+                border-color: rgba(201, 146, 58, 0.40);
+
+                &:checked {
+                    background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55));
+                    border-color: #C9923A;
+                }
+            }
+        }
+    }
+
+    // ── Groupements internes d'arme : cercles de stats et cases à cocher ───
+    // .circles et .checkboxes ne sont pas du vocabulaire de partial : ce
+    // sont des conteneurs de mise en page propres à la fiche d'arme.
+    .circles {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        // space-evenly répartit les cercles à intervalles réguliers sur toute
+        // la largeur du bandeau (3 ou 4 selon le type d'arme), plutôt qu'un
+        // espacement fixe qui les laisserait tassés à gauche.
+        justify-content: space-evenly;
+        row-gap: 16px;
+
+        > div.input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            margin: unset;
+
+            h1 {
+                .stat-label();
+            }
+        }
+    }
+
+    .checkboxes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px 20px;
+    }
+
+    // Variante "pointillée" (arme : type de munitions) : une ligne de texte
+    // libre, libellé + saisie soulignée en tirets plutôt qu'un cercle ou une
+    // case. Hypothèse de rendu à confirmer — signalé séparément.
+    .input.dot {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 8px;
+        margin: unset;
+
+        h1 {
+            flex-shrink: 0;
+            font-style: italic;
+            font-size: 0.90em;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: normal;
+            color: rgba(232, 184, 109, 0.65);
+            border: none;
+            margin: 0;
+        }
+
+        input {
+            flex: 1;
+            padding: 2px 6px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed rgba(201, 146, 58, 0.40);
+            border-radius: 0;
+            color: #E8B86D;
+            font-family: "AJensonProLtDisp", serif;
+            font-size: 0.90em;
+
+            &:focus {
+                border-bottom: 1px solid #C9923A;
+                background: rgba(201, 146, 58, 0.06);
+                outline: none;
+            }
+        }
+    }
+
+    // ── Partial label.hbs (zone de dépôt vécu / compétence) ────────────────
+    .label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        min-height: 34px;
+        padding: 5px 10px;
+        background: rgba(10, 6, 2, 0.88);
+        border: 1px dashed rgba(201, 146, 58, 0.40);
+        border-radius: 8px;
+        font-family: "AJensonProLtDisp", serif;
+        font-size: 0.85em;
+        color: #E8B86D;
+
+        h1 {
+            flex-shrink: 0;
+            margin: 0;
+            border: none;
+            font-size: 1em;
+        }
+
+        span {
+            flex: 1;
+        }
+
+        &.center span {
+            text-align: center;
         }
     }
 
@@ -499,7 +755,34 @@ form.nephilim.item .item-root.style-ashbury {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
     --vk-seal-color: rgba(232, 184, 109, 0.85);
 }
-
+// ════════════════════════════════════════════════════════════════
+//  Fiche armure — variable du look classique.
+//  Le fond ashbury (glow, dégradé, --vk-body-background) vient déjà de
+//  .vk-orichalque (posé par ArmureSheet.DEFAULT_OPTIONS, partagé avec
+//  arme et formule) : armure n'a besoin ici que du côté classique.
+// ════════════════════════════════════════════════════════════════
 .item-armure {
     --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
+}
+
+// ════════════════════════════════════════════════════════════════
+//  Ka Orichalque — thème ashbury partagé arme / armure / formule.
+//  Posé sur la fenêtre via DEFAULT_OPTIONS.classes de chaque sheet
+//  (ArmeSheet, ArmureSheet, FormuleSheet) : hérité par la sidebar,
+//  le fond de main (--vk-body-background) et le glow des médaillons.
+//  Déplacé ici depuis arme.less, qui était jusqu'ici son seul point
+//  de définition — sa suppression aurait cassé les trois fiches.
+// ════════════════════════════════════════════════════════════════
+.vk-orichalque {
+    --vk-bg: rgba(35, 45, 55, 0.3);
+    --vk-glow: rgba(28, 77, 181, 0.35);
+    --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+
+// ════════════════════════════════════════════════════════════════
+//  Fiche arme — variable du look classique.
+// ════════════════════════════════════════════════════════════════
+.item-arme {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
 }
