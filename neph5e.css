@@ -6613,16 +6613,16 @@ form.nephilim.item .item-root.style-ashbury article main .right {
   overflow: hidden;
 }
 form.nephilim.item .item-root.style-ashbury .banner {
+  background: rgba(12, 7, 2, 0.82);
+  border: 1px solid rgba(30, 60, 140, 0.35);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   flex-shrink: 0;
   padding: 16px 24px;
-  background: rgba(12, 7, 2, 0.82);
-  border: 1px solid rgba(30, 60, 140, 0.35);
-  border-radius: 8px;
-  box-shadow: inset 0 1px 0 rgba(60, 100, 220, 0.2), 0 4px 14px rgba(0, 0, 0, 0.55);
 }
 form.nephilim.item .item-root.style-ashbury .banner > div.input:not(.dot) {
   display: flex;
@@ -7014,8 +7014,8 @@ form.nephilim.item .item-root.style-ashbury div.science svg {
   max-width: 260px;
   height: auto;
   aspect-ratio: 1 / 1;
-  color: var(rgba(232, 184, 109, 0.85), rgba(255, 255, 255, 0.85));
-  filter: drop-shadow(0 0 6px var(rgba(28, 77, 181, 0.35), rgba(255, 255, 255, 0.25)));
+  color: var(--vk-seal-color, rgba(255, 255, 255, 0.85));
+  filter: drop-shadow(0 0 6px var(--vk-glow, rgba(255, 255, 255, 0.25)));
   animation: vk-seal-spin 60s linear infinite;
 }
 form.nephilim.item .item-root.style-ashbury div.selector,
@@ -7118,11 +7118,11 @@ form.nephilim.item .item-root.style-ashbury .right > span {
     transform: rotate(360deg);
   }
 }
-.item-quete {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
-}
-.vk-quete {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+.vk-orichalque {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
 }
 .item-arcane {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
@@ -7131,21 +7131,21 @@ form.nephilim.item .item-root.style-ashbury .right > span {
 .vk-arcane {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
-.vk-science {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-  --vk-seal-color: rgba(232, 184, 109, 0.85);
+.item-arme {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
 }
 .item-armure {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
 }
-.vk-orichalque {
-  --vk-bg: rgba(35, 45, 55, 0.3);
-  --vk-glow: rgba(28, 77, 181, 0.35);
-  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+.item-quete {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
 }
-.item-arme {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
+.vk-quete {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+.vk-science {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+  --vk-seal-color: rgba(232, 184, 109, 0.85);
 }
 .item-rite {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp");

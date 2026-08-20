@@ -1,9 +1,98 @@
-// ─────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
 //  Style ASHBURY des fiches d'item.
-//  Vocabulaire commun aux partials : image, select, chronology, description.
-// ─────────────────────────────────────────────
+//
+//  Les partials n'émettent que des classes sémantiques (image, selector, clef,
+//  checkbox, pills, label, input, separator, media-stack, science…) ; tout le
+//  style vient d'ici, sous l'ancêtre .item-root.style-ashbury. Un partial ne
+//  connaît donc jamais son apparence : ajouter un type ne demande pas de
+//  toucher au HTML partagé.
+//
+//  SOMMAIRE
+//    1. Palette et polices ......... variables LESS, source unique des couleurs
+//    2. Mixins ..................... blocs réutilisables (.panel, .glass-panel…)
+//    3. Socle ...................... aside, main, colonnes .left / .right
+//    4. Vocabulaire des partials ... un bloc par classe sémantique
+//    5. Animations ................. @keyframes propres à ashbury
+//    6. Variables par type ......... --vk-* posées sur .item-<type> / .vk-<type>
+// ═══════════════════════════════════════════════════════════════════════════
+
+
+// ───────────────────────────────────────────────────────────────────────────
+//  1. PALETTE ET POLICES
+//
+//  Toutes les déclinaisons d'une même teinte passent par fade() : changer
+//  @vk-gold met à jour d'un coup les ~20 endroits qui l'utilisaient en dur.
+//  Variables LESS (et non custom properties CSS) parce que ces teintes sont
+//  fixes : les variations réelles par type restent des --vk-* (section 6).
+// ───────────────────────────────────────────────────────────────────────────
+
+// Orichalque — accents des fiches arme / armure / formule.
+@vk-gold:       #C9923A;    // liseré, bordure active     (ex-rgba(201, 146, 58, …))
+@vk-amber:      #E8B86D;    // texte et valeurs saisies   (ex-rgba(232, 184, 109, …))
+@vk-bronze:     #5C3D10;    // base des remplissages cochés
+@vk-ink:        #0A0602;    // fond des contrôles         (ex-rgba(10, 6, 2, …))
+@vk-glass-ink:  #0C0702;    // fond des panneaux vitrés   (ex-rgba(12, 7, 2, …))
+
+// Panneaux neutres — communs à tous les types ashbury.
+@vk-panel-line: rgba(255, 255, 255, 0.3);
+
+@vk-font-body:  "AJensonProLtDisp", serif;
+@vk-font-title: "NightjarDemi", serif;
+
+
+// ───────────────────────────────────────────────────────────────────────────
+//  2. MIXINS
+// ───────────────────────────────────────────────────────────────────────────
+
+// Panneau neutre : aspect des blocs de contenu de la colonne de droite
+// (bandeau select, clef, chronologie, description). Sa largeur fixe est ce
+// qui dimensionne la colonne .right — voir section 3.
+.panel() {
+    width: 420px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid @vk-panel-line;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+// Panneau vitré : variante sombre et chaude des blocs pleine largeur
+// (bandeaux de stats). Pendant de .panel() pour le haut de fiche.
+.glass-panel() {
+    background: fade(@vk-glass-ink, 82%);
+    border: 1px solid rgba(30, 60, 140, 0.35);
+    border-radius: 8px;
+    box-shadow:
+        inset 0 1px 0 rgba(60, 100, 220, 0.20),
+        0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+// Libellé de stat (h1 accompagnant un input.circle) : même traitement partout
+// où une valeur numérique est présentée en cercle.
+.stat-label() {
+    font-family: @vk-font-body;
+    font-size: 0.76em;
+    font-weight: bold;
+    color: fade(@vk-amber, 85%);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: none;
+    margin: 0;
+}
+
+// Remplissage d'une case cochée — identique qu'elle soit active ou verrouillée.
+.square-checked() {
+    background: linear-gradient(135deg, @vk-bronze, fade(@vk-gold, 55%));
+    border-color: @vk-gold;
+}
+
 
 form.nephilim.item .item-root.style-ashbury {
+
+    // ───────────────────────────────────────────────────────────────────────
+    //  3. SOCLE
+    // ───────────────────────────────────────────────────────────────────────
 
     aside {
         background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
@@ -27,13 +116,13 @@ form.nephilim.item .item-root.style-ashbury {
             padding: 10px 20px;
             overflow-y: auto;
             background: var(--vk-body-background) center / cover no-repeat;
-            font-family: "AJensonProLtDisp", serif;
+            font-family: @vk-font-body;
             color: #1a1a1a;
 
             // Titres de section, communs à toutes les fiches ashbury.
             h1 {
                 color: white;
-                font-family: "NightjarDemi", serif;
+                font-family: @vk-font-title;
             }
 
             // Disposition deux colonnes : illustration à gauche, contenu à droite.
@@ -91,53 +180,31 @@ form.nephilim.item .item-root.style-ashbury {
 
     }
 
-    // ── Vocabulaire commun aux fiches ashbury ──────────────────────────────
-    // Aspect des blocs de contenu (bandeaux, tableaux, description).
-    .panel() {
-        width: 420px;
-        background: rgba(0, 0, 0, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 5px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-        color: white;
-    }
+    // ───────────────────────────────────────────────────────────────────────
+    //  4. VOCABULAIRE DES PARTIALS
+    //
+    //  L'ordre des blocs ci-dessous est significatif : plusieurs règles se
+    //  départagent par la cascade (ex. .banner > div.input:not(.dot) face à
+    //  .input.dot). Ne pas réordonner sans revérifier le rendu.
+    // ───────────────────────────────────────────────────────────────────────
 
-    // Libellé de stat (h1 au-dessus/à côté d'un input.circle) : même
-    // traitement partout où une valeur numérique est présentée en cercle.
-    .stat-label() {
-        font-family: "AJensonProLtDisp", serif;
-        font-size: 0.76em;
-        font-weight: bold;
-        color: rgba(232, 184, 109, 0.85);
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        white-space: nowrap;
-        border: none;
-        margin: 0;
-    }
-
-    // ── Bandeau statistique (armure : physique / magique ; arme : type,
-    // stats, options, munitions) ───────────────────────────────────────────
+    // ── Bandeau de stats (armure : physique / magique ; arme : type, stats,
+    // options, munitions) ──────────────────────────────────────────────────
     // input.hbs imbrique <h1>+<input> dans un div.input ; le combinateur
     // enfant direct (> div.input) réserve cette mise en ligne aux fiches
     // simples (armure) sans déborder sur les groupements internes d'arme
-    // (.circles, .checkboxes), qui ont leur propre disposition ci-dessous.
+    // (.circles, .checkboxes), qui ont leur propre disposition plus bas.
     .banner {
+        .glass-panel();
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-around;
         flex-shrink: 0;
         padding: 16px 24px;
-        background: rgba(12, 7, 2, 0.82);
-        border: 1px solid rgba(30, 60, 140, 0.35);
-        border-radius: 8px;
-        box-shadow:
-            inset 0 1px 0 rgba(60, 100, 220, 0.20),
-            0 4px 14px rgba(0, 0, 0, 0.55);
 
         // :not(.dot) exclut la ligne munitions d'arme, qui a sa propre
-        // disposition ci-dessous (libellé italique + saisie soulignée).
+        // disposition plus bas (libellé italique + saisie soulignée).
         > div.input:not(.dot) {
             display: flex;
             flex-direction: row;
@@ -156,8 +223,8 @@ form.nephilim.item .item-root.style-ashbury {
             flex-shrink: 0;
             background: linear-gradient(180deg,
                 transparent,
-                rgba(201, 146, 58, 0.45) 30%,
-                rgba(201, 146, 58, 0.45) 70%,
+                fade(@vk-gold, 45%) 30%,
+                fade(@vk-gold, 45%) 70%,
                 transparent);
         }
 
@@ -193,11 +260,11 @@ form.nephilim.item .item-root.style-ashbury {
             height: 34px;
             padding: 4px 14px;
             margin: 0;
-            border: 1px solid rgba(201, 146, 58, 0.40);
+            border: 1px solid fade(@vk-gold, 40%);
             border-radius: 20px;
-            background: rgba(10, 6, 2, 0.88);
-            color: rgba(232, 184, 109, 0.65);
-            font-family: "AJensonProLtDisp", serif;
+            background: fade(@vk-ink, 88%);
+            color: fade(@vk-amber, 65%);
+            font-family: @vk-font-body;
             font-size: 0.88em;
             white-space: nowrap;
             cursor: pointer;
@@ -209,28 +276,28 @@ form.nephilim.item .item-root.style-ashbury {
             }
 
             &:hover {
-                background: rgba(201, 146, 58, 0.10);
-                border-color: #C9923A;
-                color: #E8B86D;
+                background: fade(@vk-gold, 10%);
+                border-color: @vk-gold;
+                color: @vk-amber;
             }
 
             &.active {
-                background: linear-gradient(135deg, rgba(201, 146, 58, 0.42), rgba(92, 61, 16, 0.62));
-                border-color: #C9923A;
-                color: #E8B86D;
-                text-shadow: 0 0 8px rgba(232, 184, 109, 0.55), 0 1px 3px rgba(0, 0, 0, 0.9);
+                background: linear-gradient(135deg, fade(@vk-gold, 42%), fade(@vk-bronze, 62%));
+                border-color: @vk-gold;
+                color: @vk-amber;
+                text-shadow: 0 0 8px fade(@vk-amber, 55%), 0 1px 3px rgba(0, 0, 0, 0.9);
             }
         }
     }
 
-    // ── Partial checkbox.hbs ────────────────────────────────────────────────
+    // ── Partial checkbox.hbs ───────────────────────────────────────────────
     div.checkbox {
         display: flex;
         align-items: center;
         gap: 8px;
-        font-family: "AJensonProLtDisp", serif;
+        font-family: @vk-font-body;
         font-size: 0.90em;
-        color: rgba(232, 184, 109, 0.85);
+        color: fade(@vk-amber, 85%);
         white-space: nowrap;
 
         h1 {
@@ -243,7 +310,7 @@ form.nephilim.item .item-root.style-ashbury {
         }
 
         &:hover h1 {
-            color: #E8B86D;
+            color: @vk-amber;
         }
 
         // Variante "case carrée à cocher" (checkbox.hbs, param square=true).
@@ -251,16 +318,11 @@ form.nephilim.item .item-root.style-ashbury {
         // futures fiches qui réutiliseraient checkbox.hbs avec un autre rendu.
         //
         // Constaté à l'inspecteur : Foundry v14 met l'<input> en display:none
-        // (absent du rendu, quelles que soient nos propriétés) et dessine sa
-        // propre case sur le <label for="..."/> qui le suit. Styliser l'input
-        // n'a donc aucun effet visible — on dessine la case sur le label via
-        // ::before/::after, piloté par l'état de l'input voisin (input+label).
-        // !important sur les propriétés visuelles : le label est justement
-        // l'élément que Foundry stylise lui-même pour dessiner sa case ronde
-        // (::before probable, avec sa propre icône) — donc plus un simple
-        // écart de spécificité comme pour l'input, un conflit direct sur le
-        // même pseudo-élément. Sans !important on récupère un mélange des
-        // deux (ex. son icône ronde par-dessus notre fond).
+        // et dessine sa propre case sur le <label for="..."/> qui le suit.
+        // Styliser l'input n'a donc aucun effet visible — on dessine la case
+        // sur le label (::before = cadre, ::after = coche), piloté par l'état
+        // de l'input voisin. Le !important est nécessaire : c'est ce même
+        // pseudo-élément que Foundry occupe, pas un simple écart de spécificité.
         &.square {
 
             input[type="checkbox"] {
@@ -280,20 +342,20 @@ form.nephilim.item .item-root.style-ashbury {
                     content: '' !important;
                     position: absolute !important;
                     inset: 0 !important;
-                    border: 1px solid rgba(201, 146, 58, 0.40) !important;
+                    border: 1px solid fade(@vk-gold, 40%) !important;
                     border-radius: 3px !important;
-                    background: rgba(10, 6, 2, 0.88) !important;
+                    background: fade(@vk-ink, 88%) !important;
                     transition: background 0.2s, border-color 0.2s;
                 }
 
+                // Neutralise la coche que Foundry dessinerait lui-même.
                 &::after {
                     content: none !important;
                 }
             }
 
             input[type="checkbox"]:checked + label::before {
-                background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55)) !important;
-                border-color: #C9923A !important;
+                .square-checked() !important;
             }
 
             input[type="checkbox"]:checked + label::after {
@@ -303,31 +365,31 @@ form.nephilim.item .item-root.style-ashbury {
                 top: 0 !important;
                 width: 5px !important;
                 height: 9px !important;
-                border: 2px solid #E8B86D !important;
+                border: 2px solid @vk-amber !important;
                 border-top: none !important;
                 border-left: none !important;
                 transform: rotate(40deg) !important;
             }
 
+            // Verrouillée : l'apparence ne change pas, seule l'édition est bloquée.
             input[type="checkbox"]:disabled + label {
                 cursor: default;
 
                 &::before {
-                    background: rgba(10, 6, 2, 0.88) !important;
-                    border-color: rgba(201, 146, 58, 0.40) !important;
+                    background: fade(@vk-ink, 88%) !important;
+                    border-color: fade(@vk-gold, 40%) !important;
                 }
             }
 
             input[type="checkbox"]:disabled:checked + label::before {
-                background: linear-gradient(135deg, #5C3D10, rgba(201, 146, 58, 0.55)) !important;
-                border-color: #C9923A !important;
+                .square-checked() !important;
             }
         }
     }
 
-    // ── Groupements internes d'arme : cercles de stats et cases à cocher ───
-    // .circles et .checkboxes ne sont pas du vocabulaire de partial : ce
-    // sont des conteneurs de mise en page propres à la fiche d'arme.
+    // ── Groupements de mise en page (arme) ─────────────────────────────────
+    // .circles et .checkboxes ne sont pas du vocabulaire de partial : ce sont
+    // des conteneurs posés par le template pour regrouper plusieurs partials.
     .circles {
         display: flex;
         flex-direction: row;
@@ -361,9 +423,9 @@ form.nephilim.item .item-root.style-ashbury {
         gap: 10px 20px;
     }
 
-    // Variante "pointillée" (arme : type de munitions) : une ligne de texte
-    // libre, libellé + saisie soulignée en tirets plutôt qu'un cercle ou une
-    // case. Hypothèse de rendu à confirmer — signalé séparément.
+    // ── Partial input.hbs, variante pointillée (arme : type de munitions) ──
+    // Ligne de texte libre : libellé italique + saisie soulignée en tirets,
+    // par opposition au cercle de stat ci-dessous.
     .input.dot {
         display: flex;
         flex-direction: row;
@@ -378,7 +440,7 @@ form.nephilim.item .item-root.style-ashbury {
             font-weight: normal;
             text-transform: none;
             letter-spacing: normal;
-            color: rgba(232, 184, 109, 0.65);
+            color: fade(@vk-amber, 65%);
             border: none;
             margin: 0;
         }
@@ -388,15 +450,15 @@ form.nephilim.item .item-root.style-ashbury {
             padding: 2px 6px;
             background: transparent;
             border: none;
-            border-bottom: 1px dashed rgba(201, 146, 58, 0.40);
+            border-bottom: 1px dashed fade(@vk-gold, 40%);
             border-radius: 0;
-            color: #E8B86D;
-            font-family: "AJensonProLtDisp", serif;
+            color: @vk-amber;
+            font-family: @vk-font-body;
             font-size: 0.90em;
 
             &:focus {
-                border-bottom: 1px solid #C9923A;
-                background: rgba(201, 146, 58, 0.06);
+                border-bottom: 1px solid @vk-gold;
+                background: fade(@vk-gold, 6%);
                 outline: none;
             }
         }
@@ -410,12 +472,12 @@ form.nephilim.item .item-root.style-ashbury {
         gap: 8px;
         min-height: 34px;
         padding: 5px 10px;
-        background: rgba(10, 6, 2, 0.88);
-        border: 1px dashed rgba(201, 146, 58, 0.40);
+        background: fade(@vk-ink, 88%);
+        border: 1px dashed fade(@vk-gold, 40%);
         border-radius: 8px;
-        font-family: "AJensonProLtDisp", serif;
+        font-family: @vk-font-body;
         font-size: 0.85em;
-        color: #E8B86D;
+        color: @vk-amber;
 
         h1 {
             flex-shrink: 0;
@@ -433,23 +495,22 @@ form.nephilim.item .item-root.style-ashbury {
         }
     }
 
-    // Cercle de saisie (physique / magique) : même vocabulaire que le
-    // bandeau ci-dessus, réutilisable par tout type ayant besoin d'un
-    // input rond (input.hbs, param class="circle").
+    // ── Partial input.hbs, variante cercle (class="circle") ────────────────
+    // Réutilisable par tout type ayant besoin d'une valeur numérique ronde.
     input.circle {
         width: 60px;
         height: 60px;
         flex-shrink: 0;
         text-align: center;
-        font-family: "AJensonProLtDisp", serif;
+        font-family: @vk-font-body;
         font-size: 1.6em;
         font-weight: bold;
-        color: #E8B86D;
-        background: rgba(10, 6, 2, 0.90);
-        border: 2px solid rgba(201, 146, 58, 0.50);
+        color: @vk-amber;
+        background: fade(@vk-ink, 90%);
+        border: 2px solid fade(@vk-gold, 50%);
         border-radius: 50%;
         box-shadow:
-            0 0 12px rgba(201, 146, 58, 0.18) inset,
+            0 0 12px fade(@vk-gold, 18%) inset,
             0 3px 10px rgba(0, 0, 0, 0.70);
         transition: border-color 0.2s, box-shadow 0.2s;
         -moz-appearance: textfield;
@@ -461,16 +522,17 @@ form.nephilim.item .item-root.style-ashbury {
         }
 
         &:focus {
-            border-color: #C9923A;
-            box-shadow: 0 0 16px rgba(201, 146, 58, 0.40) inset;
+            border-color: @vk-gold;
+            box-shadow: 0 0 16px fade(@vk-gold, 40%) inset;
             outline: none;
         }
 
+        // Verrouillé : garde l'apparence "déverrouillée", seule l'édition cesse.
         &:disabled {
             opacity: 1;
             cursor: default;
-            color: #E8B86D;
-            -webkit-text-fill-color: #E8B86D;
+            color: @vk-amber;
+            -webkit-text-fill-color: @vk-amber;
         }
     }
 
@@ -562,10 +624,10 @@ form.nephilim.item .item-root.style-ashbury {
         }
     }
 
-    // Bloc média générique, alternative à .image pour les fiches qui ont besoin
-    // d'un habillage plus riche qu'une simple illustration (ex. savoir : vidéo
-    // d'ambiance en fond + illustration en médaillon par-dessus).
-    // Balisage attendu, réutilisable par tout item :
+    // ── Bloc média générique ───────────────────────────────────────────────
+    // Alternative à .image pour les fiches demandant un habillage plus riche
+    // qu'une simple illustration (savoir : vidéo d'ambiance en fond ;
+    // arcane : pile de cartes). Balisage attendu, réutilisable par tout item :
     //   <div class="media-stack"><video ...></video><img .../></div>
     .media-stack {
         position: relative;
@@ -632,7 +694,9 @@ form.nephilim.item .item-root.style-ashbury {
 
     // ── Partial science.hbs : sceau tracé en SVG ───────────────────────────
     // Le tracé utilise currentColor : sans couleur explicite il hériterait du
-    // noir de main et resterait invisible sur le fond sombre.
+    // noir de main et resterait invisible sur le fond sombre. La teinte vient
+    // de --vk-seal-color (posée par type, section 6) et le halo de --vk-glow,
+    // avec repli neutre pour un type qui ne les définirait pas.
     div.science {
         display: flex;
         align-items: center;
@@ -644,8 +708,8 @@ form.nephilim.item .item-root.style-ashbury {
             max-width: 260px;
             height: auto;
             aspect-ratio: 1 / 1;
-            color: var(rgba(232, 184, 109, 0.85), rgba(255, 255, 255, 0.85));
-            filter: drop-shadow(0 0 6px var(rgba(28, 77, 181, 0.35), rgba(255, 255, 255, 0.25)));
+            color: var(--vk-seal-color, rgba(255, 255, 255, 0.85));
+            filter: drop-shadow(0 0 6px var(--vk-glow, rgba(255, 255, 255, 0.25)));
             animation: vk-seal-spin 60s linear infinite;
         }
 
@@ -663,7 +727,7 @@ form.nephilim.item .item-root.style-ashbury {
         align-items: center;
         margin: unset;
         padding: 6px 12px;
-        font-family: "NightjarDemi", serif;
+        font-family: @vk-font-title;
 
         h1 {
             font-size: 1.1em;
@@ -697,14 +761,14 @@ form.nephilim.item .item-root.style-ashbury {
         margin: unset;
         border-collapse: collapse;
         padding: 6px 12px;
-        font-family: "AJensonProLtDisp", serif;
+        font-family: @vk-font-body;
 
         th {
             padding: 4px 8px;
-            font-family: "NightjarDemi", serif;
+            font-family: @vk-font-title;
             font-size: 1.05em;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid @vk-panel-line;
         }
 
         td {
@@ -717,8 +781,8 @@ form.nephilim.item .item-root.style-ashbury {
         }
 
         tbody tr:last-child {
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            font-family: "NightjarDemi", serif;
+            border-top: 1px solid @vk-panel-line;
+            font-family: @vk-font-title;
         }
     }
 
@@ -735,11 +799,17 @@ form.nephilim.item .item-root.style-ashbury {
         overflow-y: auto;
         padding: 10px;
         color: #e0e0e0;
-        font-family: "AJensonProLtDisp", serif;
+        font-family: @vk-font-body;
         font-size: 1.1em;
     }
 
 }
+
+
+// ───────────────────────────────────────────────────────────────────────────
+//  5. ANIMATIONS
+//  (vk-light-scan, partagée avec le style classique, vit dans common.less)
+// ───────────────────────────────────────────────────────────────────────────
 
 @keyframes vk-slow-spin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -751,20 +821,55 @@ form.nephilim.item .item-root.style-ashbury {
     to   { transform: rotate(360deg); }
 }
 
-// ════════════════════════════════════════════════════════════════
-//  Fiche quête — variables des deux looks.
-// ════════════════════════════════════════════════════════════════
-.item-quete {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
+
+// ───────────────────────────────────────────────────────────────────────────
+//  6. VARIABLES PAR TYPE
+//
+//  Deux porteurs distincts, à ne pas confondre :
+//    .item-<type>  posé par NephilimItemSheet._onRender sur la fiche
+//                  → --vk-side-classique (illustration latérale du classique),
+//                    --vk-media-width
+//    .vk-<theme>   posé par <Type>Sheet.DEFAULT_OPTIONS.classes sur la fenêtre
+//                  → --vk-bg, --vk-grad, --vk-glow, --vk-body-background,
+//                    --vk-seal-color
+//
+//  Section volontairement regroupée en fin de fichier : c'est elle qui a
+//  vocation à devenir less/src/item/variables.less une fois les 32 types
+//  couverts (le déplacer tel quel suffira).
+//
+//  TODO 1 — types migrés dont les variables ont été perdues avec leur fichier
+//  LESS (bande latérale vide en classique, fond absent en ashbury). Valeurs à
+//  récupérer d'une version antérieure, convention : assets/core/side-<type>.webp
+//    alchimie, capacite, catalyseur, chute, competence, magie,
+//    materiae, ordonnance, passe, savoir, science (--vk-body-background OK)
+//
+//  TODO 2 — doublons à résorber en créant variables.less. Sans effet visuel
+//  aujourd'hui (valeurs identiques de part et d'autre), mais deux sources de
+//  vérité pour une même variable :
+//    .item-arme  ici et classique.less:7
+//    .item-sort  classique.less:8 et sort.less:7
+//    .item-vecu  classique.less:9 et vecu.less:7
+//    .item-rite  rite.less:7 et appel.less:7  ← voir TODO 3
+//
+//  TODO 3 — appel.less est une copie non renommée de rite.less (même en-tête
+//  « Fiche rite », même sélecteur .item-rite, même side-rite.webp). Résultat :
+//  .item-appel n'est défini nulle part, la fiche appel n'a pas d'illustration
+//  latérale en classique. À corriger dans appel.less, pas ici.
+// ───────────────────────────────────────────────────────────────────────────
+
+// ── Thèmes partagés ────────────────────────────────────────────────────────
+
+// Ka Orichalque — arme, armure et formule (ArmeSheet, ArmureSheet,
+// FormuleSheet le posent via DEFAULT_OPTIONS.classes). Hérité par la barre
+// latérale, le fond de main et le halo des médaillons.
+.vk-orichalque {
+    --vk-bg: rgba(35, 45, 55, 0.3);
+    --vk-glow: rgba(28, 77, 181, 0.35);
+    --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
 }
 
-.vk-quete {
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-}
-
-// ════════════════════════════════════════════════════════════════
-//  Fiche arcane — variables des deux looks.
-// ════════════════════════════════════════════════════════════════
+// ── Par type, ordre alphabétique ───────────────────────────────────────────
 
 .item-arcane {
     --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
@@ -776,38 +881,24 @@ form.nephilim.item .item-root.style-ashbury {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
 }
 
-.vk-science {
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-    --vk-seal-color: rgba(232, 184, 109, 0.85);
+// arme et armure : fond ashbury fourni par .vk-orichalque ci-dessus.
+.item-arme {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
 }
-// ════════════════════════════════════════════════════════════════
-//  Fiche armure — variable du look classique.
-//  Le fond ashbury (glow, dégradé, --vk-body-background) vient déjà de
-//  .vk-orichalque (posé par ArmureSheet.DEFAULT_OPTIONS, partagé avec
-//  arme et formule) : armure n'a besoin ici que du côté classique.
-// ════════════════════════════════════════════════════════════════
+
 .item-armure {
     --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
 }
 
-// ════════════════════════════════════════════════════════════════
-//  Ka Orichalque — thème ashbury partagé arme / armure / formule.
-//  Posé sur la fenêtre via DEFAULT_OPTIONS.classes de chaque sheet
-//  (ArmeSheet, ArmureSheet, FormuleSheet) : hérité par la sidebar,
-//  le fond de main (--vk-body-background) et le glow des médaillons.
-//  Déplacé ici depuis arme.less, qui était jusqu'ici son seul point
-//  de définition — sa suppression aurait cassé les trois fiches.
-// ════════════════════════════════════════════════════════════════
-.vk-orichalque {
-    --vk-bg: rgba(35, 45, 55, 0.3);
-    --vk-glow: rgba(28, 77, 181, 0.35);
-    --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+.item-quete {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
 }
 
-// ════════════════════════════════════════════════════════════════
-//  Fiche arme — variable du look classique.
-// ════════════════════════════════════════════════════════════════
-.item-arme {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
+.vk-quete {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+
+.vk-science {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+    --vk-seal-color: rgba(232, 184, 109, 0.85);
 }
