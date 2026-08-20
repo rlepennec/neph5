@@ -7,7 +7,7 @@ export class HabitusSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ["vk-habitus"],
         position: {
-            width: 950,
+            width: 1220,
             height: 720
         }
     }

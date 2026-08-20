@@ -63,7 +63,7 @@ export class HabitusDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/habitus/Habitus-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/habitus-defaut.png"
                 }
             ),
         }
