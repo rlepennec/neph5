@@ -36,6 +36,7 @@ export class HabitusDataModel extends foundry.abstract.TypeDataModel {
             incantation: new foundry.data.fields.StringField
             (
                 {
+                    initial: 1,
                     required: false
                 }
             ),
