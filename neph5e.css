@@ -6655,6 +6655,12 @@ form.nephilim.item .item-root.style-ashbury article main .middle > div.input inp
 }
 form.nephilim.item .item-root.style-ashbury article main .middle > div.input input.circle {
   margin: 0;
+  color: white;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input.circle:disabled {
+  color: white;
+  -webkit-text-fill-color: white;
+  background: rgba(103, 93, 92, 0.9);
 }
 form.nephilim.item .item-root.style-ashbury article main .middle > .label {
   min-height: unset;

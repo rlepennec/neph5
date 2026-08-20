@@ -38,6 +38,16 @@
 @vk-panel-width:  420px;    // largeur des blocs de la colonne .right
 @vk-middle-width: 300px;    // largeur de la colonne .middle (invocation)
 
+// Texte des panneaux neutres : celui des libellés et des listes déroulantes.
+// La variante « locked » sert aux valeurs non modifiables, qui doivent rester
+// lisibles sans attirer l'œil comme un champ éditable.
+@vk-panel-text:        white;
+
+// Fond des cercles de saisie verrouillés dans la palette neutre — gris chaud,
+// plus clair que l'encre du thème orichalque. Équivaut à rgb(103 93 92 / 90%).
+// C'est ce fond, et non un texte atténué, qui signale une valeur figée.
+@vk-panel-circle-locked: fade(#675D5C, 90%);
+
 @vk-font-body:  "AJensonProLtDisp", serif;
 @vk-font-title: "NightjarDemi", serif;
 
@@ -57,7 +67,7 @@
     border: 1px solid @vk-panel-line;
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    color: white;
+    color: @vk-panel-text;
 }
 
 // Panneau vitré : variante sombre et chaude des blocs pleine largeur
@@ -245,11 +255,27 @@ form.nephilim.item .item-root.style-ashbury {
                     }
                 }
 
-                // Le cercle (degre) garde intégralement le rendu de input.circle ;
-                // seule la marge basse héritée de common.less est neutralisée
-                // pour qu'il reste centré sur sa ligne.
+                // Le cercle (degre) garde la forme définie par input.circle
+                // (section 4) mais pas sa couleur : l'ambre appartient au thème
+                // orichalque (arme, armure), alors que cette colonne suit la
+                // palette neutre des panneaux. La valeur prend donc la couleur
+                // des libellés et des listes déroulantes qui l'entourent.
+                // Le margin: 0 neutralise la marge basse héritée de common.less,
+                // sans laquelle le cercle serait décalé sur sa ligne.
                 > div.input input.circle {
                     margin: 0;
+                    color: @vk-panel-text;
+
+                    // Verrouillée, la valeur reste blanche comme le reste de la
+                    // colonne : c'est le fond qui change pour dire qu'elle n'est
+                    // plus modifiable. -webkit-text-fill-color est nécessaire,
+                    // il l'emporte sur color dans les moteurs WebKit et vaudrait
+                    // sinon l'ambre hérité de input.circle:disabled (section 4).
+                    &:disabled {
+                        color: @vk-panel-text;
+                        -webkit-text-fill-color: @vk-panel-text;
+                        background: @vk-panel-circle-locked;
+                    }
                 }
 
                 // .label sert ici d'affichage en lecture seule (difficulté) et
