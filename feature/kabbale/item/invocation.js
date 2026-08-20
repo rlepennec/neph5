@@ -6,7 +6,7 @@ export class InvocationSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 1120,
+            width: 1220,
             height: 700
         }
     }

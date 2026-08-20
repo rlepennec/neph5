@@ -6605,7 +6605,7 @@ form.nephilim.item .item-root.style-ashbury article main .left.center {
 }
 form.nephilim.item .item-root.style-ashbury article main .middle {
   --vk-panel-width: auto;
-  flex: 0 0 300px;
+  flex: 0 0 400px;
   min-width: 0;
   display: flex;
   flex-direction: column;
