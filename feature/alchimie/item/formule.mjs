@@ -1,7 +1,29 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Illustration } from "../../../module/common/illustration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 
 export class FormuleDataModel extends foundry.abstract.TypeDataModel {
+
+    /**
+     * The illustration of a formule follows its substance.
+     *
+     * ATTENTION — file names still to be confirmed. The three tables written so
+     * far never matched their key (chokmah -> Hokmah, tiphereth -> Tipheret,
+     * grandSecret -> Grand-Oeuvre), so these five are a placeholder built on the
+     * kabbale convention, not verified against the real directory.
+     */
+    static ILLUSTRATION = new Illustration({
+        root: "systems/neph5e/assets/vk/formules/",
+        field: 'substance',
+        fallback: 'ambre',
+        files: {
+            ambre:   "Ambre.webp",
+            liqueur: "Liqueur.webp",
+            metal:   "Metal.webp",
+            poudre:  "Poudre.webp",
+            vapeur:  "Vapeur.webp"
+        }
+    });
 
     static defineSchema() {
         return {
@@ -105,6 +127,13 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
             periode: new foundry.data.fields.StringField(
                 {
                     required: false
+                }
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: () => FormuleDataModel.ILLUSTRATION.of()
                 }
             ),
         }

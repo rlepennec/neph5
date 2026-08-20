@@ -2,6 +2,7 @@ import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
+import { FormuleDataModel } from "../../feature/alchimie/item/formule.mjs";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { Periode } from "../../feature/periode/periode.js";
 import { SortDataModel } from "../../feature/magie/item/sort.mjs";
@@ -29,6 +30,7 @@ export class NephilimItem extends Item {
      * through this single table.
      */
     static illustrations = {
+        formule: FormuleDataModel.ILLUSTRATION,
         invocation: InvocationDataModel.ILLUSTRATION,
         sort: SortDataModel.ILLUSTRATION
     };
