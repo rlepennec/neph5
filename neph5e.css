@@ -6603,6 +6603,70 @@ form.nephilim.item .item-root.style-ashbury article main .left {
 form.nephilim.item .item-root.style-ashbury article main .left.center {
   justify-content: center;
 }
+form.nephilim.item .item-root.style-ashbury article main .middle {
+  --vk-panel-width: auto;
+  flex: 0 0 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input,
+form.nephilim.item .item-root.style-ashbury article main .middle > .label {
+  width: var(--vk-panel-width, 420px);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: unset;
+  padding: 6px 12px;
+  font-family: "NightjarDemi", serif;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input h1,
+form.nephilim.item .item-root.style-ashbury article main .middle > .label h1 {
+  min-width: 0;
+  font-size: 1.1em;
+  margin: 0;
+  border: none;
+  padding-right: 20px;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input:not(.circle) {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 6px;
+  text-align: right;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: white;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input:not(.circle):focus {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input.circle {
+  margin: 0;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > .label {
+  min-height: unset;
+  font-size: inherit;
+}
+form.nephilim.item .item-root.style-ashbury article main .middle > .label span {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
 form.nephilim.item .item-root.style-ashbury article main .right {
   flex: 0 0 auto;
   display: flex;
@@ -7020,7 +7084,7 @@ form.nephilim.item .item-root.style-ashbury div.science svg {
 }
 form.nephilim.item .item-root.style-ashbury div.selector,
 form.nephilim.item .item-root.style-ashbury div.clef {
-  width: 420px;
+  width: var(--vk-panel-width, 420px);
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
@@ -7048,6 +7112,10 @@ form.nephilim.item .item-root.style-ashbury div.clef p {
   font-size: 1.1em;
   margin: 0;
 }
+form.nephilim.item .item-root.style-ashbury select option {
+  color: #1a1a1a;
+  background-color: #ffffff;
+}
 form.nephilim.item .item-root.style-ashbury div.clef > div.input {
   display: contents;
 }
@@ -7056,7 +7124,7 @@ form.nephilim.item .item-root.style-ashbury div.clef > div.input input {
   margin: 0;
 }
 form.nephilim.item .item-root.style-ashbury table.chronology {
-  width: 420px;
+  width: var(--vk-panel-width, 420px);
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
@@ -7088,7 +7156,7 @@ form.nephilim.item .item-root.style-ashbury table.chronology tbody tr:last-child
 form.nephilim.item .item-root.style-ashbury .right > prose-mirror,
 form.nephilim.item .item-root.style-ashbury .right > div:not(.selector):not(.clef),
 form.nephilim.item .item-root.style-ashbury .right > span {
-  width: 420px;
+  width: var(--vk-panel-width, 420px);
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
@@ -7136,6 +7204,9 @@ form.nephilim.item .item-root.style-ashbury .right > span {
 }
 .item-armure {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
+}
+.item-invocation {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
 }
 .item-quete {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");

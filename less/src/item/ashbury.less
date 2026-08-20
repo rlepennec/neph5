@@ -34,7 +34,9 @@
 @vk-glass-ink:  #0C0702;    // fond des panneaux vitrés   (ex-rgba(12, 7, 2, …))
 
 // Panneaux neutres — communs à tous les types ashbury.
-@vk-panel-line: rgba(255, 255, 255, 0.3);
+@vk-panel-line:   rgba(255, 255, 255, 0.3);
+@vk-panel-width:  420px;    // largeur des blocs de la colonne .right
+@vk-middle-width: 300px;    // largeur de la colonne .middle (invocation)
 
 @vk-font-body:  "AJensonProLtDisp", serif;
 @vk-font-title: "NightjarDemi", serif;
@@ -45,10 +47,12 @@
 // ───────────────────────────────────────────────────────────────────────────
 
 // Panneau neutre : aspect des blocs de contenu de la colonne de droite
-// (bandeau select, clef, chronologie, description). Sa largeur fixe est ce
-// qui dimensionne la colonne .right — voir section 3.
+// (bandeau select, clef, chronologie, description). Sa largeur est ce qui
+// dimensionne la colonne .right — voir section 3. Elle passe par une custom
+// property pour qu'une colonne puisse imposer la sienne : .middle la met à
+// « auto » et ses blocs remplissent alors la colonne au lieu des 420 px.
 .panel() {
-    width: 420px;
+    width: var(--vk-panel-width, @vk-panel-width);
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid @vk-panel-line;
     border-radius: 5px;
@@ -79,6 +83,19 @@
     white-space: nowrap;
     border: none;
     margin: 0;
+}
+
+// Ligne de réglage : un panneau sur une ligne, libellé à gauche et contrôle à
+// droite. Partagé par div.selector / div.clef et par les lignes de .middle.
+.setting-row() {
+    .panel();
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: unset;
+    padding: 6px 12px;
+    font-family: @vk-font-title;
 }
 
 // Remplissage d'une case cochée — identique qu'elle soit active ou verrouillée.
@@ -162,6 +179,97 @@ form.nephilim.item .item-root.style-ashbury {
 
             .left.center {
                 justify-content: center;
+            }
+
+            // Colonne intermédiaire (invocation) : les réglages empilés entre
+            // l'illustration et la description. Elle s'intercale simplement
+            // comme troisième enfant de main — la bascule en deux colonnes
+            // ci-dessus (:has(> .left)) suffit à la mettre en ligne.
+            //
+            // Contrairement à .right, ce n'est pas le contenu qui la
+            // dimensionne : --vk-panel-width: auto neutralise la largeur fixe
+            // de .panel(), les blocs remplissent alors la colonne, et c'est
+            // @vk-middle-width qui fixe la largeur. Un seul nombre à régler.
+            .middle {
+                --vk-panel-width: auto;
+                flex: 0 0 @vk-middle-width;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                overflow-y: auto;
+
+                // Chaque réglage occupe une ligne de la colonne : les <input>
+                // de input.hbs et le bloc de lecture seule (difficulté)
+                // reçoivent le même cadre que les <select> de select.hbs.
+                > div.input,
+                > .label {
+                    .setting-row();
+
+                    // min-width: 0 : sans lui un libellé long refuserait de
+                    // passer sous sa taille intrinsèque et ferait déborder la
+                    // ligne hors de la colonne au lieu de se replier.
+                    h1 {
+                        min-width: 0;
+                        font-size: 1.1em;
+                        margin: 0;
+                        border: none;
+                        padding-right: 20px;
+                    }
+                }
+
+                // Saisie libre (portee, duree, visibilite) : simple texte aligné
+                // à droite, sans cadre ni soulignement — le panneau de la ligne
+                // suffit à délimiter le champ.
+                //
+                // :not(.circle) est indispensable : ce sélecteur est plus
+                // spécifique que input.circle (section 4), et sans l'exclusion
+                // il écraserait le fond, la bordure et le border-radius du
+                // cercle, qui redeviendrait un rectangle.
+                > div.input input:not(.circle) {
+                    flex: 1;
+                    min-width: 0;
+                    margin: 0;
+                    padding: 2px 6px;
+                    text-align: right;
+                    background: transparent;
+                    border: none;
+                    border-radius: 0;
+                    color: white;
+                    font-family: @vk-font-body;
+                    font-size: 1.1em;
+
+                    &:focus {
+                        background: rgba(255, 255, 255, 0.06);
+                        outline: none;
+                    }
+                }
+
+                // Le cercle (degre) garde intégralement le rendu de input.circle ;
+                // seule la marge basse héritée de common.less est neutralisée
+                // pour qu'il reste centré sur sa ligne.
+                > div.input input.circle {
+                    margin: 0;
+                }
+
+                // .label sert ici d'affichage en lecture seule (difficulté) et
+                // non de zone de dépôt : pas de cadre pointillé, contrairement
+                // à l'usage qu'en fait la fiche d'arme.
+                > .label {
+                    min-height: unset;
+                    font-size: inherit;
+
+                    // La valeur occupe la place restante et s'aligne à droite :
+                    // « 20% plus l'élément » tient sur la ligne ou se replie,
+                    // sans jamais élargir la colonne.
+                    span {
+                        flex: 1;
+                        min-width: 0;
+                        text-align: right;
+                        font-family: @vk-font-body;
+                        font-size: 1.1em;
+                    }
+                }
             }
 
             // Colonne de contenu : sa largeur est celle de ses blocs (.panel),
@@ -720,14 +828,7 @@ form.nephilim.item .item-root.style-ashbury {
     // un seul point d'entretien.
     div.selector,
     div.clef {
-        .panel();
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin: unset;
-        padding: 6px 12px;
-        font-family: @vk-font-title;
+        .setting-row();
 
         h1 {
             font-size: 1.1em;
@@ -740,6 +841,16 @@ form.nephilim.item .item-root.style-ashbury {
             font-size: 1.1em;
             margin: 0;
         }
+    }
+
+    // Liste déroulante ouverte : le navigateur la peint hors du thème sombre.
+    // Sans couleur explicite les options sont illisibles (sombre sur sombre).
+    // Règle recopiée à l'identique dans 14 fichiers de type — elle est montée
+    // ici pour couvrir d'emblée tout type utilisant select.hbs, y compris ceux
+    // déjà migrés dont le fichier LESS a disparu.
+    select option {
+        color: #1a1a1a;
+        background-color: #ffffff;
     }
 
     // input.hbs imbrique son <h1>+<input> dans un div.input intermédiaire. On le
@@ -888,6 +999,14 @@ form.nephilim.item .item-root.style-ashbury {
 
 .item-armure {
     --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
+}
+
+// InvocationSheet ne pose aucune classe vk-* (DEFAULT_OPTIONS n'a que position) :
+// --vk-body-background reste donc indéfini et le fond ashbury est absent. Si un
+// fond est souhaité, l'ajouter ici plutôt que de créer une classe de thème —
+// .item-invocation est posée sur le même élément par _onRender.
+.item-invocation {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
 }
 
 .item-quete {
