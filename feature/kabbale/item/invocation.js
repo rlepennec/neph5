@@ -28,43 +28,9 @@ export class InvocationSheet extends NephilimItemSheet {
     }
 
     /**
-     * Realigns an illustration left behind by its sephirah before the context is
-     * built, so that the sheet displays the right one from its first paint.
-     *
-     * render: false is essential — the update happens during a render, and
-     * letting it queue another one would loop. It is harmless here: the context
-     * is built after this call and therefore reads the corrected value.
-     */
-    async alignIllustration() {
-
-        const document = this.document;
-
-        // Nothing to write on a locked compendium or without update permission:
-        // a player simply consulting the sheet must not trigger a failed update.
-        if (document.pack != null && game.packs.get(document.pack)?.locked === true) {
-            return;
-        }
-        if (document.canUserModify(game.user, 'update') === false) {
-            return;
-        }
-
-        const illustration = InvocationDataModel.outdatedIllustration(
-            document.system.sephirah,
-            document.system.illustration);
-
-        if (illustration == null) {
-            return;
-        }
-
-        await document.update({ 'system.illustration': illustration }, { render: false });
-
-    }
-
-    /**
      * @override
      */
     async _prepareContext(options) {
-        await this.alignIllustration();
         return {
             ...await super._prepareContext(options),
             context: {

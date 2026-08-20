@@ -1,7 +1,24 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Illustration } from "../../../module/common/illustration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 
 export class SortDataModel extends foundry.abstract.TypeDataModel {
+
+    /**
+     * The illustration of a sort follows its cercle. The table is explicit
+     * rather than derived from the key: grandSecret is illustrated by
+     * Grand-Oeuvre.webp, whose name does not match the cercle it stands for.
+     */
+    static ILLUSTRATION = new Illustration({
+        root: "systems/neph5e/assets/vk/magie/",
+        field: 'cercle',
+        fallback: 'basseMagie',
+        files: {
+            basseMagie:  "Basse-Magie.webp",
+            hauteMagie:  "Haute-Magie.webp",
+            grandSecret: "Grand-Oeuvre.webp"
+        }
+    });
 
     static defineSchema() {
         return {
@@ -82,6 +99,13 @@ export class SortDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     required: false
+                }
+            ),
+            illustration: new foundry.data.fields.FilePathField
+            (
+                {
+                    categories: ["IMAGE"],
+                    initial: () => SortDataModel.ILLUSTRATION.of()
                 }
             )
         }

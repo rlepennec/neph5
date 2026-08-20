@@ -278,6 +278,55 @@ form.nephilim.item .item-root.style-ashbury {
                     }
                 }
 
+                // list.hbs (voies d'un sort) : contrairement aux autres lignes,
+                // le contenu est une liste, pas une valeur unique. Le libellé
+                // surmonte donc la liste au lieu de lui faire face.
+                > div.list {
+                    .panel();
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                    margin: unset;
+                    padding: 6px 12px;
+                    font-family: @vk-font-title;
+
+                    h1 {
+                        font-size: 1.1em;
+                        margin: 0;
+                        border: none;
+                    }
+
+                    ol {
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                        font-family: @vk-font-body;
+                        font-size: 1.1em;
+                    }
+
+                    li {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 8px;
+                    }
+
+                    // Le lien de retrait garde sa taille, le nom prend le reste
+                    // et se tronque plutôt que d'élargir la colonne.
+                    a {
+                        flex: 0 0 auto;
+                        cursor: pointer;
+                    }
+
+                    span {
+                        flex: 1;
+                        min-width: 0;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+
                 // .label sert ici d'affichage en lecture seule (difficulté) et
                 // non de zone de dépôt : pas de cadre pointillé, contrairement
                 // à l'usage qu'en fait la fiche d'arme.

@@ -1,3 +1,4 @@
+
 <section class="item-root style-ashbury" data-drop="true">
 
     <aside></aside>
@@ -6,79 +7,89 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-sort-body">
+        <main>
 
-            {{!-- Vidéo de fond, dérivée du cercle --}}
-            <div class="vk-sort-video-wrap">
-                <video class="vk-sort-video"
-                       src="systems/neph5e/assets/vk/sorts/{{document.system.cercle}}.webm"
-                       autoplay muted loop playsinline preload="auto"></video>
-                <div class="vk-sort-tint"></div>
+            <div class="left">
+
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    editPath="system.illustration"
+                    wrap=true
+                }}
+
             </div>
 
-            <div class="vk-sort-hexgrid"></div>
+            <div class="middle">
 
-            <div class="vk-sort-content">
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="degre"
+                    class="circle"
+                    name="system.degre"
+                    value=document.system.degre
+                }}
 
-                {{!-- GAUCHE : caractéristiques --}}
-                <div class="vk-box vk-sort-panel">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="cercle"
+                    name="system.cercle"
+                    value=document.system.cercle
+                    options=context.cercles
+                }}
 
-                    <h3 class="vk-box-title">{{translate "sort"}}</h3>
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="element"
+                    name="system.element"
+                    value=document.system.element
+                    options=context.elements
+                }}
 
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="cercle" name="system.cercle"
-                        value=document.system.cercle options=context.cercles }}
-
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element" name="system.element"
-                        value=document.system.element options=context.elements }}
-
-                    <div class="vk-fields">
-                        {{> "systems/neph5e/templates/input.hbs"
-                            title="degre" name="system.degre" value=document.system.degre }}
-                        {{> "systems/neph5e/templates/input.hbs"
-                            title="portee" name="system.portee" value=document.system.portee }}
-                        {{> "systems/neph5e/templates/input.hbs"
-                            title="duree" name="system.duree" value=document.system.duree }}
-                    </div>
-
-                    {{#if (or (eq system.cercle "hauteMagie") (eq system.cercle "grandSecret"))}}
+                {{#if (or (eq system.cercle "hauteMagie") (eq system.cercle "grandSecret"))}}
                     {{> "systems/neph5e/templates/list.hbs"
                         title="voies"
                         values=document.system.voies
                         names="system.voies"
                     }}
-                    {{/if}}
+                {{/if}}
 
-                    {{#if (eq system.cercle "grandSecret")}}
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="portee"
+                    name="system.portee"
+                    value=document.system.portee
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="duree"
+                    name="system.duree"
+                    value=document.system.duree
+                }}
+
+                {{#if (eq system.cercle "grandSecret")}}
+
                     {{> "systems/neph5e/templates/input.hbs"
-                        title="incantation" name="system.incantation" value=document.system.incantation }}
+                        title="incantation"
+                        name="system.incantation"
+                        value=document.system.incantation
+                    }}
+
                     {{> "systems/neph5e/templates/input.hbs"
-                        title="syntaxe" name="system.syntaxe" value=document.system.syntaxe }}
-                    {{/if}}
+                        title="syntaxe"
+                        name="system.syntaxe"
+                        value=document.system.syntaxe
+                    }}
 
-                    {{#if (nonNull difficulty)}}
-                    <div class="vk-sort-difficulty">
-                        <span>{{translate "difficulte"}} :</span>
-                        <span>{{difficulty}}0%{{#if (eq item.system.element 'choix')}} plus l'élément{{/if}}</span>
-                    </div>
-                    {{/if}}
+                {{/if}}
 
+                {{#if (nonNull difficulty)}}
+                <div class="label">
+                    <h1>{{translate "difficulte"}}</h1>
+                    <span>{{difficulty}}0%{{#if (eq document.system.element "choix")}} plus l'élément{{/if}}</span>
                 </div>
+                {{/if}}
 
-                {{!-- DROITE : description --}}
-                <div class="vk-box vk-sort-desc">
-                    <div class="vk-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+            </div>
+
+            <div class="right">
+
+                {{> "systems/neph5e/templates/description.hbs" }}
 
             </div>
 

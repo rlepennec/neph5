@@ -4,6 +4,7 @@ import { Distance } from "../../feature/combat/core/distance.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { Periode } from "../../feature/periode/periode.js";
+import { SortDataModel } from "../../feature/magie/item/sort.mjs";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 
@@ -20,6 +21,24 @@ export class NephilimItem extends Item {
             periode: "systems/neph5e/assets/icons/periode.webp",
             vecu: "systems/neph5e/assets/icons/vecu.webp",
         }
+    }
+
+    /**
+     * Item types whose illustration is driven by one of their system fields.
+     * Adding a type here is enough: create, update and sheet opening all go
+     * through this single table.
+     */
+    static illustrations = {
+        invocation: InvocationDataModel.ILLUSTRATION,
+        sort: SortDataModel.ILLUSTRATION
+    };
+
+    /**
+     * @returns the illustration rule of the current item, or null if its
+     *          illustration is freely chosen.
+     */
+    get illustration() {
+        return NephilimItem.illustrations[this.type] ?? null;
     }
 
     /** 
@@ -62,15 +81,13 @@ export class NephilimItem extends Item {
             this.updateSource({ "system.id": CustomHandlebarsHelpers.UUID() });
         }
 
-        // An invocation created on a sephirah other than the default one must
-        // carry that sephirah illustration, not the one of the default sephirah.
-        switch (this.type) {
-            case 'invocation': {
-                const created = { system: foundry.utils.duplicate(data.system ?? {}) };
-                if (InvocationDataModel.alignIllustration(created)) {
-                    this.updateSource({ "system.illustration": created.system.illustration });
-                }
-                break;
+        // An item created on a value other than the default one must carry the
+        // illustration of that value, not the one of the default value.
+        const illustration = this.illustration;
+        if (illustration != null) {
+            const created = { system: foundry.utils.duplicate(data.system ?? {}) };
+            if (illustration.align(created)) {
+                this.updateSource({ "system.illustration": created.system.illustration });
             }
         }
 
@@ -83,18 +100,14 @@ export class NephilimItem extends Item {
         const allowed = await super._preUpdate(changes, options, user);
         if (allowed === false) return false;
 
-        // Specific processing
-        switch (this.type) {
-
-            // The illustration follows the sephirah as long as the user has not
-            // chosen one himself.
-            case 'invocation':
-                InvocationDataModel.alignIllustration(changes, {
-                    sephirah: this.system.sephirah,
-                    illustration: this.system.illustration
-                });
-                break;
-
+        // The illustration follows its driving field as long as the user has not
+        // chosen one himself.
+        const illustration = this.illustration;
+        if (illustration != null) {
+            illustration.align(changes, {
+                [illustration.field]: this.system[illustration.field],
+                illustration: this.system.illustration
+            });
         }
 
     }

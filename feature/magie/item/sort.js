@@ -7,8 +7,8 @@ export class SortSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 950,
-            height: 720
+            width: 1220,
+            height: 700
         }
     }
 

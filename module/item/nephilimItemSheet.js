@@ -44,10 +44,49 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         this.embeddedData = {};
     }
 
-    /** 
+    /**
+     * Realigns an illustration left behind by the field which drives it, before
+     * the context is built so that the sheet shows the right one from its first
+     * paint. Concerns the types listed in NephilimItem.illustrations only.
+     *
+     * render: false is essential — the update happens during a render, and
+     * letting it queue another one would loop. It is harmless here: the context
+     * is built after this call and therefore reads the corrected value.
+     */
+    async alignIllustration() {
+
+        const document = this.document;
+        const illustration = document.illustration;
+        if (illustration == null) {
+            return;
+        }
+
+        // Nothing to write on a locked compendium or without update permission:
+        // a player simply consulting the sheet must not trigger a failed update.
+        if (document.pack != null && game.packs.get(document.pack)?.locked === true) {
+            return;
+        }
+        if (document.canUserModify(game.user, 'update') === false) {
+            return;
+        }
+
+        const outdated = illustration.outdated(
+            document.system[illustration.field],
+            document.system.illustration);
+
+        if (outdated == null) {
+            return;
+        }
+
+        await document.update({ 'system.illustration': outdated }, { render: false });
+
+    }
+
+    /**
      * @override
      */
     async _prepareContext(options) {
+        await this.alignIllustration();
         const context = await super._prepareContext(options);
         context.id = null;
         foundry.utils.mergeObject(context, this.embeddedData);
