@@ -10,19 +10,9 @@
 
             <div class="left">
 
-                <div class="media-stack">
-
-                    <video
-                        src="systems/neph5e/assets/vk/formules/{{document.system.substance}}.webp"
-                        autoplay loop muted playsinline preload="auto"></video>
-
-                    <img
-                        src="{{document.system.illustration}}"
-                        title="{{document.name}}"
-                        data-edit="system.illustration"
-                        data-action="editImage"/>
-
-                </div>
+                {{> "systems/neph5e/templates/video.hbs"
+                    src=document.system.illustration
+                }}
 
             </div>
 

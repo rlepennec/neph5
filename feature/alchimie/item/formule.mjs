@@ -5,23 +5,20 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
 export class FormuleDataModel extends foundry.abstract.TypeDataModel {
 
     /**
-     * The illustration of a formule follows its substance.
-     *
-     * ATTENTION — file names still to be confirmed. The three tables written so
-     * far never matched their key (chokmah -> Hokmah, tiphereth -> Tipheret,
-     * grandSecret -> Grand-Oeuvre), so these five are a placeholder built on the
-     * kabbale convention, not verified against the real directory.
+     * The illustration of a formule follows its substance. Each substance is
+     * represented by the alchemical vessel that holds it, hence file names that
+     * have nothing in common with the key they illustrate.
      */
     static ILLUSTRATION = new Illustration({
         root: "systems/neph5e/assets/vk/formules/",
         field: 'substance',
         fallback: 'ambre',
         files: {
-            ambre:   "Ambre.webp",
-            liqueur: "Liqueur.webp",
-            metal:   "Metal.webp",
-            poudre:  "Poudre.webp",
-            vapeur:  "Vapeur.webp"
+            ambre:   "Cornue.webm",
+            liqueur: "Alambic.webm",
+            metal:   "Creuset.webm",
+            poudre:  "Athanor.webm",
+            vapeur:  "Aludel.webm"
         }
     });
 
@@ -132,7 +129,11 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
             illustration: new foundry.data.fields.FilePathField
             (
                 {
-                    categories: ["IMAGE"],
+                    // VIDEO is required: unlike the other types, whose illustration
+                    // is an image and whose video is hard coded in the template,
+                    // the illustration of a formule is itself a .webm. Without it
+                    // saving fails on "does not have a valid file extension".
+                    categories: ["VIDEO"],
                     initial: () => FormuleDataModel.ILLUSTRATION.of()
                 }
             ),

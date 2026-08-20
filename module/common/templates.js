@@ -58,6 +58,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/copy-uuid.hbs",
         "systems/neph5e/templates/item/options.hbs",
         "systems/neph5e/templates/science.hbs",
+        "systems/neph5e/templates/video.hbs",
 
         "systems/neph5e/feature/figurant/description.hbs",
         "systems/neph5e/feature/figurant/combat.hbs",
