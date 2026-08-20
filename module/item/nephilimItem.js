@@ -2,6 +2,7 @@ import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
+import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { Periode } from "../../feature/periode/periode.js";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
@@ -60,6 +61,42 @@ export class NephilimItem extends Item {
         if (duplicated || data.system?.id == null || data.system?.id === "") {
             this.updateSource({ "system.id": CustomHandlebarsHelpers.UUID() });
         }
+
+        // An invocation created on a sephirah other than the default one must
+        // carry that sephirah illustration, not the one of the default sephirah.
+        switch (this.type) {
+            case 'invocation': {
+                const created = { system: foundry.utils.duplicate(data.system ?? {}) };
+                if (InvocationDataModel.alignIllustration(created)) {
+                    this.updateSource({ "system.illustration": created.system.illustration });
+                }
+                break;
+            }
+        }
+
+    }
+
+    /**
+     * @override
+     */
+    async _preUpdate(changes, options, user) {
+        const allowed = await super._preUpdate(changes, options, user);
+        if (allowed === false) return false;
+
+        // Specific processing
+        switch (this.type) {
+
+            // The illustration follows the sephirah as long as the user has not
+            // chosen one himself.
+            case 'invocation':
+                InvocationDataModel.alignIllustration(changes, {
+                    sephirah: this.system.sephirah,
+                    illustration: this.system.illustration
+                });
+                break;
+
+        }
+
     }
 
     /**
