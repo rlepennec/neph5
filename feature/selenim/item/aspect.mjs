@@ -38,7 +38,7 @@ export class AspectDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/aspects/Aspect-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/aspect-defaut.webp"
                 }
             )
         }
