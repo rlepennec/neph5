@@ -170,6 +170,26 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+// Saisie posée à même le fond, sans boîte : un simple trait la matérialise.
+.field-line() {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 2px 6px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid @vk-panel-line;
+    border-radius: 0;
+    color: @vk-panel-text;
+    font-family: @vk-font-body;
+    font-size: 1.1em;
+
+    &:focus {
+        background: rgba(255, 255, 255, 0.06);
+        outline: none;
+    }
+}
+
 // Remplissage d'une case cochée — identique qu'elle soit active ou verrouillée.
 .square-checked() {
     background: linear-gradient(135deg, @vk-bronze, fade(@vk-gold, 55%));
@@ -274,6 +294,51 @@ form.nephilim.item .item-root.style-ashbury {
 
                 h1 {
                     .block-title();
+                }
+            }
+
+            // Disposition à quatre colonnes (métamorphe) : la fiche n'enveloppe
+            // pas ses colonnes, ce sont des enfants directs de main. La grille
+            // les range côte à côte et fait courir le bandeau sur toute la
+            // largeur, sans demander de conteneur supplémentaire au template.
+            &:has(> div.portraits) {
+                display: grid;
+                grid-template-columns:
+                    @vk-left-width
+                    1fr
+                    1.3fr
+                    minmax(@vk-panel-width, 1.2fr);
+                grid-template-rows: auto minmax(0, 1fr);
+                align-items: stretch;
+                overflow: hidden;
+
+                > .banner {
+                    grid-column: 1 / -1;
+                }
+
+                // L'illustration se cale en haut de sa colonne : étirée, elle
+                // se retrouverait centrée verticalement dans une colonne bien
+                // plus haute qu'elle.
+                > .image {
+                    align-self: start;
+                }
+
+                // La description suit la largeur de sa colonne au lieu des
+                // 420 px de .panel(), qui la faisaient déborder de sa piste.
+                // Posé sur le bloc lui-même et non sur main, pour ne pas
+                // élargir aussi le select du bandeau.
+                > prose-mirror,
+                > div:not(.banner):not(.portraits),
+                > span {
+                    --vk-panel-width: auto;
+                }
+
+                // Chaque colonne défile pour son propre compte : dix
+                // métamorphoses et dix portraits ne tiennent pas toujours.
+                > ol.icons,
+                > div.portraits {
+                    min-height: 0;
+                    overflow-y: auto;
                 }
             }
 
@@ -493,6 +558,92 @@ form.nephilim.item .item-root.style-ashbury {
             gap: 12px;
         }
 
+    }
+
+    // ── Liste à icônes (métamorphoses) ────────────────────────────────────
+    // Une icône suivie d'une saisie, autant de lignes que d'entrées. Comme
+    // pour les mnémos, la couleur est redéfinie : sans elle la liste hérite
+    // du #1a1a1a de main et disparaît sur le fond sombre.
+    ol.icons {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: @vk-panel-text;
+
+        > li {
+            margin-bottom: 6px;
+        }
+
+        // input.hbs enveloppe icône, titre et saisie dans un div.input : on le
+        // neutralise pour que les trois se rangent directement sur la ligne.
+        > li > div.input {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            margin: unset;
+        }
+
+        i {
+            flex: 0 0 22px;
+            text-align: center;
+            font-size: 1.1em;
+            color: var(--vk-glow, fade(#ffffff, 70%));
+        }
+
+        input {
+            .field-line();
+        }
+    }
+
+    // ── Portrait chinois (métamorphe) ─────────────────────────────────────
+    // Chaque entrée tient sur deux lignes : la question — icône et libellé —
+    // puis la réponse en dessous. La grille place les trois frères émis par
+    // input.hbs sans demander de conteneur intermédiaire au partial.
+    div.portraits {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        color: @vk-panel-text;
+
+        > div.input {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            column-gap: 8px;
+            margin: unset;
+
+            i {
+                grid-row: 1;
+                width: 22px;
+                text-align: center;
+                font-size: 1.1em;
+                color: var(--vk-glow, fade(#ffffff, 70%));
+            }
+
+            // Le libellé est une question posée au joueur, pas un intitulé de
+            // réglage : italique et discret, contrairement aux autres titres.
+            h1 {
+                grid-row: 1;
+                min-width: 0;
+                margin: 0;
+                border: none;
+                font-family: @vk-font-body;
+                font-size: 0.95em;
+                font-style: italic;
+                font-weight: normal;
+                color: fade(#ffffff, 75%);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            // La réponse court sous la question, sur toute la largeur.
+            input {
+                grid-column: 1 / -1;
+                .field-line();
+            }
+        }
     }
 
     // ── Effets mnémos (vécu) ───────────────────────────────────────────────
@@ -1158,9 +1309,15 @@ form.nephilim.item .item-root.style-ashbury {
     // Le partial émet un <prose-mirror> (édition), un <div> (lecture) ou un
     // <span> (vide) : les trois reçoivent le même cadre. Le :not(.clef) exclut
     // le bandeau debug, qui a son propre panneau compact.
+    //
+    // Deux ancêtres possibles : la colonne .right, ou main directement pour les
+    // fiches qui n'enveloppent pas leurs colonnes (métamorphe).
     .right > prose-mirror,
     .right > div:not(.selector):not(.clef),
-    .right > span {
+    .right > span,
+    main:has(> div.portraits) > prose-mirror,
+    main:has(> div.portraits) > div:not(.banner):not(.portraits),
+    main:has(> div.portraits) > span {
         .panel();
         flex: 1;
         min-height: 250px;
@@ -1264,6 +1421,10 @@ form.nephilim.item .item-root.style-ashbury {
 // .item-invocation est posée sur le même élément par _onRender.
 .item-invocation {
     --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
+}
+
+.item-metamorphe {
+    --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
 }
 
 .item-quete {

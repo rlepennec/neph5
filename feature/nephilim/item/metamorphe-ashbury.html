@@ -1,3 +1,4 @@
+
 <section class="item-root style-ashbury">
 
     <aside></aside>
@@ -8,119 +9,120 @@
 
         <main>
 
-            <div class="vk-meta-layout">
+            <div class="banner">
 
-                {{!-- Bandeau : élément dominant --}}
-                <div class="vk-meta-banner">
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="element"
-                        name="system.element"
-                        value=document.system.element
-                        options=context.elements
-                    }}
-                </div>
-
-                <div class="vk-meta-grid">
-
-                    {{!-- 1. Métamorphoses + symbole du Ka --}}
-                    <div class="vk-meta-col-wrapper">
-
-                        <div class="vk-meta-box vk-meta-metamorphoses">
-                            <h3 class="vk-meta-title">{{translate "metamorphoses"}}</h3>
-                            <div class="vk-meta-list">
-                                {{#range 0 9}}
-                                <div class="vk-meta-row">
-                                    <i class="fas fa-feather-alt vk-meta-icon"></i>
-                                    <input
-                                        type="text"
-                                        name="system.metamorphoses.[{{this}}].name"
-                                        value="{{lookup (lookup ../document.system.metamorphoses this) 'name'}}"
-                                        {{#if ../document.sheet.locked}}disabled{{/if}}/>
-                                </div>
-                                {{/range}}
-                            </div>
-                        </div>
-
-                        <div class="vk-meta-crayon"></div>
-
-                    </div>
-
-                    {{!-- 2. Portrait chinois --}}
-                    <div class="vk-meta-box vk-meta-portrait">
-                        <h3 class="vk-meta-title">{{translate "portraitChinois"}}</h3>
-                        <div class="vk-meta-list">
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-volcano" question="unPhenomeneNaturel"
-                                name="system.portrait.phenomene" value=document.system.portrait.phenomene }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-crown" question="unHumainCelebre"
-                                name="system.portrait.humain" value=document.system.portrait.humain }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-weight-hanging" question="unMetal"
-                                name="system.portrait.metal" value=document.system.portrait.metal }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-masks-theater" question="uneActiviteHumaine"
-                                name="system.portrait.activite" value=document.system.portrait.activite }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-dog" question="unAnimal"
-                                name="system.portrait.animal" value=document.system.portrait.animal }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-photo-film" question="uneOeuvre"
-                                name="system.portrait.oeuvre" value=document.system.portrait.oeuvre }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-palette" question="uneCouleur"
-                                name="system.portrait.couleur" value=document.system.portrait.couleur }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-gun" question="uneArme"
-                                name="system.portrait.arme" value=document.system.portrait.arme }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-dragon" question="unEtreMythologique"
-                                name="system.portrait.etre" value=document.system.portrait.etre }}
-
-                            {{> "systems/neph5e/templates/portrait.hbs"
-                                icon="fas fa-lightbulb" question="unObjet"
-                                name="system.portrait.objet" value=document.system.portrait.objet }}
-
-                        </div>
-                    </div>
-
-                    {{!-- 3. Description --}}
-                    <div class="vk-meta-box vk-meta-description">
-                        <div class="vk-meta-editor">
-                            <prose-mirror
-                                name="system.description"
-                                button="true"
-                                editable="{{editable}}"
-                                toggled="false"
-                                value="{{document.system.description}}">
-                                {{{enrichedDescription}}}
-                            </prose-mirror>
-                        </div>
-                    </div>
-
-                    {{!-- 4. Illustration --}}
-                    <div class="vk-meta-illustration">
-                        <div class="vk-meta-faded">
-                            <img
-                                src="{{document.system.illustration}}"
-                                title="{{document.name}}"
-                                data-edit="system.illustration"
-                                data-action="editImage"/>
-                        </div>
-                    </div>
-
-                </div>
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="element"
+                    name="system.element"
+                    value=document.system.element
+                    options=context.elements }}
 
             </div>
+
+            {{> "systems/neph5e/templates/image.hbs"
+                src=document.system.illustration
+                title="illustration"
+                editPath="system.illustration"
+                wrap=true
+            }}
+
+            <ol class="icons">
+                {{#range 0 9}}
+                <li>
+                    {{> "systems/neph5e/templates/input.hbs"
+                        icon="fa-solid fa-feather"
+                        disabled=../document.sheet.locked
+                        name=(concat "system.metamorphoses.[" this "].name")
+                        value=(lookup (lookup ../document.system.metamorphoses this) "name") }}
+                </li>
+                {{/range}}
+            </ol>
+
+            <div class="portraits">
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-volcano"
+                    title="unPhenomeneNaturel"
+                    name="system.portrait.phenomene"
+                    value=document.system.portrait.phenomene
+                    tooltip=document.system.portrait.phenomene
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-crown"
+                    title="unHumainCelebre"
+                    name="system.portrait.humain"
+                    value=document.system.portrait.humain
+                    tooltip=document.system.portrait.humain
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-weight-hanging"
+                    title="unMetal"
+                    name="system.portrait.metal"
+                    value=document.system.portrait.metal
+                    tooltip=document.system.portrait.metal
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-masks-theater"
+                    title="uneActiviteHumaine"
+                    name="system.portrait.activite"
+                    value=document.system.portrait.activite
+                    tooltip=document.system.portrait.activite
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-dog"
+                    title="unAnimal"
+                    name="system.portrait.animal"
+                    value=document.system.portrait.animal
+                    tooltip=document.system.portrait.animal
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-photo-film"
+                    title="uneOeuvre"
+                    name="system.portrait.oeuvre"
+                    value=document.system.portrait.oeuvre
+                    tooltip=document.system.portrait.oeuvre
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-palette"
+                    title="uneCouleur"
+                    name="system.portrait.couleur"
+                    value=document.system.portrait.couleur
+                    tooltip=document.system.portrait.couleur
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-gun"
+                    title="uneArme"
+                    name="system.portrait.arme"
+                    value=document.system.portrait.arme
+                    tooltip=document.system.portrait.arme
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-dragon"
+                    title="unEtreMythologique"
+                    name="system.portrait.etre"
+                    value=document.system.portrait.etre
+                    tooltip=document.system.portrait.etre
+                }}
+
+                {{> "systems/neph5e/templates/input.hbs"
+                    icon="fas fa-lightbulb"
+                    title="unObjet"
+                    name="system.portrait.objet"
+                    value=document.system.portrait.objet
+                    tooltip=document.system.portrait.objet
+                }}
+
+            </div>
+
+            {{> "systems/neph5e/templates/description.hbs"}}
 
         </main>
 

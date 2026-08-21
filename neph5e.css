@@ -6659,6 +6659,29 @@ form.nephilim.item .item-root.style-ashbury article main .left > div.list h1 {
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) {
+  display: grid;
+  grid-template-columns: 360px 1fr 1.3fr minmax(420px, 1.2fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+}
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > .banner {
+  grid-column: 1 / -1;
+}
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > .image {
+  align-self: start;
+}
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > prose-mirror,
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > div:not(.banner):not(.portraits),
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > span {
+  --vk-panel-width: auto;
+}
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > ol.icons,
+form.nephilim.item .item-root.style-ashbury article main:has(> div.portraits) > div.portraits {
+  min-height: 0;
+  overflow-y: auto;
+}
 form.nephilim.item .item-root.style-ashbury article main .middle {
   --vk-panel-width: auto;
   flex: 0 0 400px;
@@ -6841,6 +6864,97 @@ form.nephilim.item .item-root.style-ashbury .banner.stacked {
   flex-direction: column;
   align-items: stretch;
   gap: 12px;
+}
+form.nephilim.item .item-root.style-ashbury ol.icons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+form.nephilim.item .item-root.style-ashbury ol.icons > li {
+  margin-bottom: 6px;
+}
+form.nephilim.item .item-root.style-ashbury ol.icons > li > div.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: unset;
+}
+form.nephilim.item .item-root.style-ashbury ol.icons i {
+  flex: 0 0 22px;
+  text-align: center;
+  font-size: 1.1em;
+  color: var(--vk-glow, rgba(255, 255, 255, 0.7));
+}
+form.nephilim.item .item-root.style-ashbury ol.icons input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  color: white;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item .item-root.style-ashbury ol.icons input:focus {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+form.nephilim.item .item-root.style-ashbury div.portraits {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: white;
+}
+form.nephilim.item .item-root.style-ashbury div.portraits > div.input {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 8px;
+  margin: unset;
+}
+form.nephilim.item .item-root.style-ashbury div.portraits > div.input i {
+  grid-row: 1;
+  width: 22px;
+  text-align: center;
+  font-size: 1.1em;
+  color: var(--vk-glow, rgba(255, 255, 255, 0.7));
+}
+form.nephilim.item .item-root.style-ashbury div.portraits > div.input h1 {
+  grid-row: 1;
+  min-width: 0;
+  margin: 0;
+  border: none;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 0.95em;
+  font-style: italic;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.75);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+form.nephilim.item .item-root.style-ashbury div.portraits > div.input input {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+  color: white;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item .item-root.style-ashbury div.portraits > div.input input:focus {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
 }
 form.nephilim.item .item-root.style-ashbury .middle > h1,
 form.nephilim.item .item-root.style-ashbury .middle > div.list:has(> ol.mnemos) > h1 {
@@ -7359,7 +7473,10 @@ form.nephilim.item .item-root.style-ashbury table.chronology tbody tr:last-child
 }
 form.nephilim.item .item-root.style-ashbury .right > prose-mirror,
 form.nephilim.item .item-root.style-ashbury .right > div:not(.selector):not(.clef),
-form.nephilim.item .item-root.style-ashbury .right > span {
+form.nephilim.item .item-root.style-ashbury .right > span,
+form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > prose-mirror,
+form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > div:not(.banner):not(.portraits),
+form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
   width: var(--vk-panel-width, 420px);
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -7411,6 +7528,9 @@ form.nephilim.item .item-root.style-ashbury .right > span {
 }
 .item-invocation {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
+}
+.item-metamorphe {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
 }
 .item-quete {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
@@ -7578,112 +7698,6 @@ form.nephilim.item .item-root.style-ashbury .right > span {
   50% {
     opacity: 0.9;
   }
-}
-.item-vecu {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
-}
-.item-root.style-ashbury h1 {
-  font-size: 16px;
-}
-.item-root.style-ashbury .vk-vecu-head {
-  display: block;
-  flex-shrink: 0;
-  padding: 8px 14px;
-  margin-bottom: 2px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-}
-.item-root.style-ashbury .vk-vecu-left {
-  flex: 0 0 40%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 0;
-}
-.item-root.style-ashbury .vk-vecu-img-wrap {
-  position: relative;
-  width: 100%;
-  flex-shrink: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
-}
-.item-root.style-ashbury .vk-vecu-img-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  background: linear-gradient(135deg, transparent 0%, transparent 35%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.06) 55%, transparent 65%, transparent 100%);
-  animation: vk-light-scan 8s linear infinite;
-}
-.item-root.style-ashbury .vk-vecu-img {
-  display: block;
-  width: 100%;
-  max-height: 220px;
-  object-fit: cover;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.item-root.style-ashbury .vk-vecu-competences {
-  flex: 1;
-  min-height: 100px;
-}
-.item-root.style-ashbury .vk-vecu-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 0;
-}
-.item-root.style-ashbury .vk-vecu-degre {
-  flex: 0 0 auto;
-}
-.item-root.style-ashbury .vk-vecu-degre table {
-  width: 100%;
-  color: #ffffff;
-  font-family: "AJensonProLtDisp", serif;
-}
-.item-root.style-ashbury .vk-vecu-degre th {
-  font-family: "NightjarDemi", serif;
-  color: var(--vk-glow, #e0e0e0);
-}
-.item-root.style-ashbury .vk-vecu-degre td {
-  text-align: center;
-  font-size: 1.2em;
-}
-.item-root.style-ashbury .vk-vecu-mnemos {
-  flex: 1;
-}
-.item-root.style-ashbury .vk-vecu-mnemos-list {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding-right: 5px;
-  color: #ffffff;
-  font-family: "AJensonProLtDisp", serif;
-}
-.item-root.style-ashbury .vk-vecu-mnemos-list li {
-  padding: 6px 8px;
-  margin-bottom: 6px;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
-}
-.item-root.style-ashbury .vk-vecu-mnemos-list li:hover {
-  background: rgba(0, 0, 0, 0.5);
-  border-color: var(--vk-glow, rgba(255, 255, 255, 0.4));
-}
-.item-root.style-ashbury .vk-vecu-mnemos-list li label {
-  margin-right: 8px;
-}
-.item-root.style-ashbury .vk-vecu-desc {
-  flex: 1;
 }
 .recherche table tr td {
   font-family: 'AJensonPro';

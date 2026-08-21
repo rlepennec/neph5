@@ -1,5 +1,9 @@
 <div class="input{{#if wide}} wide{{/if}}{{#if dot}} dot{{/if}}">
 
+    {{#if icon}}
+    <i class="{{icon}}"></i>
+    {{/if}}
+
     {{#if title}}
     <h1>{{translate title}}</h1>
     {{/if}}
@@ -9,6 +13,7 @@
         {{#if type}}type="{{type}}"{{else}}type="text" {{/if}}
         {{#if class}}class="{{class}}" {{/if}}
         value="{{value}}"
+        {{#if tooltip}}data-tooltip="{{tooltip}}"{{/if}}
         {{#if (or disabled document.sheet.locked)}} disabled{{/if}}/>
 
 </div>
