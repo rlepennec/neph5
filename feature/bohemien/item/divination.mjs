@@ -21,6 +21,7 @@ export class DivinationDataModel extends foundry.abstract.TypeDataModel {
             ),
             degre: new foundry.data.fields.NumberField(
                 {
+                    initial: 1,
                     required: false
                 }
             ),
@@ -33,7 +34,7 @@ export class DivinationDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/divinations/Divination-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/divination-defaut.png"
                 }
             )
         }

@@ -21,6 +21,7 @@ export class TechniqueDataModel extends foundry.abstract.TypeDataModel {
             ),
             degre: new foundry.data.fields.NumberField(
                 {
+                    initial: 1,
                     required: false
                 }
             ),
@@ -33,7 +34,7 @@ export class TechniqueDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/techniques/Technique-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/technique-defaut.png"
                 }
             )
         }

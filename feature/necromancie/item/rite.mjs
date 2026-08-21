@@ -45,7 +45,7 @@ export class RiteDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/rites/Rite-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/rite-defaut.png"
                 }
             )
         }

@@ -21,6 +21,7 @@ export class DracomachieDataModel extends foundry.abstract.TypeDataModel {
             ),
             degre: new foundry.data.fields.NumberField(
                 {
+                    initial: 1,
                     required: false
                 }
             ),
@@ -33,7 +34,7 @@ export class DracomachieDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/dracomachie/Dracomachie-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/dracomachie-defaut.png"
                 }
             )
         }

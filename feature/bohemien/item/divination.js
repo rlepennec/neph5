@@ -5,8 +5,8 @@ export class DivinationSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ["vk-divination"],
         position: {
-            width: 950,
-            height: 700
+            width: 1220,
+            height: 720
         }
     }
 

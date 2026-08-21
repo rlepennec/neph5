@@ -6,47 +6,46 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-tek-body">
+        <main>
 
-            <div class="vk-tek-bg-wrap">
-                <img class="vk-tek-bg"
-                     src="{{document.system.illustration}}"
-                     title="{{document.name}}"
-                     data-edit="system.illustration"
-                     data-action="editImage"/>
-                <div class="vk-tek-tint"></div>
+            <div class="left">
+
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    editPath="system.illustration"
+                    wrap=true
+                }}
+
             </div>
 
-            <div class="vk-tek-hexgrid"></div>
+            <div class="middle">
 
-            <div class="vk-tek-content">
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="degre"
+                    class="circle"
+                    name="system.degre"
+                    value=document.system.degre
+                }}
 
-                <div class="vk-tek-panel">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="branche" 
+                    name="system.cercle"
+                    value=document.system.cercle 
+                    options=context.cercles
+                }}
 
-                    <h3 class="vk-tek-title">{{translate "tekhne"}}</h3>
-
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="branche" name="system.cercle"
-                        value=document.system.cercle options=context.cercles }}
-
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="degre" name="system.degre"
-                        value=document.system.degre }}
-
+                {{#if (nonNull difficulty)}}
+                <div class="label">
+                    <h1>{{translate "difficulte"}}</h1>
+                    <span>{{difficulty}}0%</span>
                 </div>
+                {{/if}}
 
-                <div class="vk-tek-desc">
-                    <div class="vk-tek-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+            </div>
+
+            <div class="right">
+
+                {{> "systems/neph5e/templates/description.hbs" }}
 
             </div>
 

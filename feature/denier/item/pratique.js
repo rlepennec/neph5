@@ -5,8 +5,8 @@ export class PratiqueSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ["vk-pratique"],
         position: {
-            width: 950,
-            height: 700
+            width: 1220,
+            height: 720
         }
     }
 

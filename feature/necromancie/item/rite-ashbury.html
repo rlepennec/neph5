@@ -1,4 +1,4 @@
-<section class="item-root style-ashbury" data-drop="true">
+<section class="item-root style-ashbury">
 
     <aside></aside>
 
@@ -6,57 +6,46 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-rit-body">
+        <main>
 
-            {{!-- Illustration en fond, teintée --}}
-            <div class="vk-rit-bg-wrap">
-                <img class="vk-rit-bg"
-                     src="{{document.system.illustration}}"
-                     title="{{document.name}}"
-                     data-edit="system.illustration"
-                     data-action="editImage"/>
-                <div class="vk-rit-tint"></div>
+            <div class="left">
+
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    editPath="system.illustration"
+                    wrap=true
+                }}
+
             </div>
 
-            <div class="vk-rit-hexgrid"></div>
+            <div class="middle">
 
-            <div class="vk-rit-content">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="cercle"
+                    name="system.cercle"
+                    value=document.system.cercle
+                    options=context.cercles
+                }}
 
-                {{!-- GAUCHE : caractéristiques --}}
-                <div class="vk-rit-panel">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="desmos"
+                    name="system.desmos"
+                    value=document.system.desmos
+                    options=context.desmos
+                }}
 
-                    <h3 class="vk-rit-title">{{translate "rite"}}</h3>
-
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="oeuvre" name="system.cercle"
-                        value=document.system.cercle options=context.cercles }}
-
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="desmos" name="system.desmos"
-                        value=document.system.desmos options=context.desmos }}
-
-                    {{#if (nonNull difficulty)}}
-                    <div class="vk-rit-difficulty">
-                        <span>{{translate "NEPH5E.difficulte"}} :</span>
-                        <span>{{difficulty}}0%</span>
-                    </div>
-                    {{/if}}
-
+                {{#if (nonNull difficulty)}}
+                <div class="label">
+                    <h1>{{translate "difficulte"}}</h1>
+                    <span>{{difficulty}}0%</span>
                 </div>
+                {{/if}}
 
-                {{!-- DROITE : description --}}
-                <div class="vk-rit-desc">
-                    <div class="vk-rit-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+            </div>
+
+            <div class="right">
+
+                {{> "systems/neph5e/templates/description.hbs" }}
 
             </div>
 

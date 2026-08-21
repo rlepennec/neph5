@@ -6,47 +6,46 @@
 
         {{> "systems/neph5e/templates/header.hbs"}}
 
-        <main class="vk-pra-body">
+        <main>
 
-            <div class="vk-pra-bg-wrap">
-                <img class="vk-pra-bg"
-                     src="{{document.system.illustration}}"
-                     title="{{document.name}}"
-                     data-edit="system.illustration"
-                     data-action="editImage"/>
-                <div class="vk-pra-tint"></div>
+            <div class="left">
+
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    editPath="system.illustration"
+                    wrap=true
+                }}
+
             </div>
 
-            <div class="vk-pra-hexgrid"></div>
+            <div class="middle">
 
-            <div class="vk-pra-content">
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="degre"
+                    class="circle"
+                    name="system.degre"
+                    value=document.system.degre
+                }}
 
-                <div class="vk-pra-panel">
+                {{> "systems/neph5e/templates/select.hbs"
+                    title="axe" 
+                    name="system.cercle"
+                    value=document.system.cercle 
+                    options=context.cercles
+                }}
 
-                    <h3 class="vk-pra-title">{{translate "pratique"}}</h3>
-
-                    {{> "systems/neph5e/templates/select.hbs"
-                        title="axe" name="system.cercle"
-                        value=document.system.cercle options=context.cercles }}
-
-                    {{> "systems/neph5e/templates/input.hbs"
-                        title="degre" name="system.degre"
-                        value=document.system.degre }}
-
+                {{#if (nonNull difficulty)}}
+                <div class="label">
+                    <h1>{{translate "difficulte"}}</h1>
+                    <span>{{difficulty}}0%</span>
                 </div>
+                {{/if}}
 
-                <div class="vk-pra-desc">
-                    <div class="vk-pra-editor">
-                        <prose-mirror
-                            name="system.description"
-                            button="true"
-                            editable="{{editable}}"
-                            toggled="false"
-                            value="{{document.system.description}}">
-                            {{{enrichedDescription}}}
-                        </prose-mirror>
-                    </div>
-                </div>
+            </div>
+
+            <div class="right">
+
+                {{> "systems/neph5e/templates/description.hbs" }}
 
             </div>
 
