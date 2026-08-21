@@ -108,6 +108,56 @@
     font-family: @vk-font-title;
 }
 
+// Partial list.hbs : bloc dont le contenu est une liste et non une valeur
+// unique, donc le libellé surmonte la liste au lieu de lui faire face.
+// Partagé par la colonne .middle (voies, variantes, catalyseurs) et par la
+// colonne .left (vécus d'une période). Le cadre du titre est laissé à
+// l'appelant : souligné en bloc autonome, absent en enfilade de réglages.
+.list-block() {
+    .panel();
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: unset;
+    padding: 6px 12px;
+    font-family: @vk-font-title;
+
+    h1 {
+        font-size: 1.1em;
+        margin: 0;
+    }
+
+    ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-family: @vk-font-body;
+        font-size: 1.1em;
+    }
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+    }
+
+    // Le lien de retrait garde sa taille, le nom prend le reste et se
+    // tronque plutôt que d'élargir la colonne.
+    a {
+        flex: 0 0 auto;
+        cursor: pointer;
+    }
+
+    span {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
 // Remplissage d'une case cochée — identique qu'elle soit active ou verrouillée.
 .square-checked() {
     background: linear-gradient(135deg, @vk-bronze, fade(@vk-gold, 55%));
@@ -184,11 +234,39 @@ form.nephilim.item .item-root.style-ashbury {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                // Écart entre blocs empilés (période : illustration puis vécus).
+                // Sans effet sur les types dont la colonne n'a qu'un seul bloc.
+                gap: 20px;
                 overflow: hidden;
             }
 
             .left.center {
                 justify-content: center;
+            }
+
+            // Bloc de liste sous l'illustration (vécus d'une période). Il n'est
+            // pas dimensionné par .panel() comme dans la colonne de droite :
+            // width auto + align-self stretch lui font suivre la largeur de la
+            // colonne, que le parent centre pourtant ses enfants.
+            .left > div.list {
+                .list-block();
+                width: auto;
+                align-self: stretch;
+                flex: 1;
+                min-height: 0;
+                overflow-y: auto;
+
+                // Le trait sous le titre, repris du bloc vécus précédent : ici
+                // la liste est un bloc autonome et non une ligne de réglage,
+                // le titre a besoin d'être détaché de son contenu.
+                h1 {
+                    flex-shrink: 0;
+                    margin-bottom: 4px;
+                    padding-bottom: 4px;
+                    text-align: center;
+                    border: none;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                }
             }
 
             // Colonne intermédiaire (invocation) : les réglages empilés entre
@@ -278,52 +356,13 @@ form.nephilim.item .item-root.style-ashbury {
                     }
                 }
 
-                // list.hbs (voies d'un sort) : contrairement aux autres lignes,
-                // le contenu est une liste, pas une valeur unique. Le libellé
-                // surmonte donc la liste au lieu de lui faire face.
+                // En enfilade de réglages, le titre reste au ras des autres
+                // libellés : pas de trait, la ligne se suffit à elle-même.
                 > div.list {
-                    .panel();
-                    display: flex;
-                    flex-direction: column;
-                    gap: 4px;
-                    margin: unset;
-                    padding: 6px 12px;
-                    font-family: @vk-font-title;
+                    .list-block();
 
                     h1 {
-                        font-size: 1.1em;
-                        margin: 0;
                         border: none;
-                    }
-
-                    ol {
-                        list-style: none;
-                        margin: 0;
-                        padding: 0;
-                        font-family: @vk-font-body;
-                        font-size: 1.1em;
-                    }
-
-                    li {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        gap: 8px;
-                    }
-
-                    // Le lien de retrait garde sa taille, le nom prend le reste
-                    // et se tronque plutôt que d'élargir la colonne.
-                    a {
-                        flex: 0 0 auto;
-                        cursor: pointer;
-                    }
-
-                    span {
-                        flex: 1;
-                        min-width: 0;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
                     }
                 }
 
@@ -397,6 +436,29 @@ form.nephilim.item .item-root.style-ashbury {
 
             h1 {
                 .stat-label();
+            }
+
+            // Saisie libre du bandeau (période : lieu, époque). Sans cette
+            // règle le navigateur pose une boîte blanche sur le panneau sombre.
+            // Même parti pris que dans la colonne .middle : le champ se fond
+            // dans le panneau. :not(.circle) laisse intacts les cercles de
+            // stats, dont ce sélecteur serait sinon plus spécifique.
+            input:not(.circle) {
+                flex: 1;
+                min-width: 0;
+                margin: 0;
+                padding: 2px 6px;
+                background: transparent;
+                border: none;
+                border-radius: 0;
+                color: @vk-panel-text;
+                font-family: @vk-font-body;
+                font-size: 1.1em;
+
+                &:focus {
+                    background: rgba(255, 255, 255, 0.06);
+                    outline: none;
+                }
             }
         }
 
@@ -804,6 +866,31 @@ form.nephilim.item .item-root.style-ashbury {
                 transparent 100%
             );
             animation: vk-light-scan 8s linear infinite;
+        }
+    }
+
+    // ── Partial video.hbs : média d'ambiance occupant toute la colonne ─────
+    // Pendant de .image pour une vidéo seule, sans illustration par-dessus.
+    // Pour une vidéo SURMONTÉE d'un média éditable, c'est .media-stack qu'il
+    // faut employer — les deux ne se combinent pas.
+    .video {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        background: black;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+
+        // object-fit: cover — la vidéo remplit le cadre quel que soit le format
+        // de la colonne, quitte à rogner, plutôt que de laisser des bandes.
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            display: block;
         }
     }
 
