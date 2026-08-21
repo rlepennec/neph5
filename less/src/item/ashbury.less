@@ -35,8 +35,9 @@
 
 // Panneaux neutres — communs à tous les types ashbury.
 @vk-panel-line:   rgba(255, 255, 255, 0.3);
-@vk-panel-width:  420px;    // largeur des blocs de la colonne .right
+@vk-panel-width:  420px;    // largeur plancher des blocs de la colonne .right
 @vk-middle-width: 400px;    // largeur de la colonne .middle (invocation)
+@vk-left-width:   360px;    // largeur souhaitée de la colonne .left
 
 // Texte des panneaux neutres : celui des libellés et des listes déroulantes.
 // La variante « locked » sert aux valeurs non modifiables, qui doivent rester
@@ -158,6 +159,17 @@
     }
 }
 
+// Titre d'un bloc autonome (compétences, mnémos) : détaché de son contenu par
+// un trait, contrairement au titre d'une ligne de réglage qui reste au ras.
+.block-title() {
+    flex-shrink: 0;
+    margin: 0 0 4px 0;
+    padding-bottom: 4px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 // Remplissage d'une case cochée — identique qu'elle soit active ou verrouillée.
 .square-checked() {
     background: linear-gradient(135deg, @vk-bronze, fade(@vk-gold, 55%));
@@ -228,8 +240,12 @@ form.nephilim.item .item-root.style-ashbury {
             // Colonne illustration : occupe tout l'espace laissé par la colonne
             // de droite. Les médias (image, media-stack) s'y adaptent, ce qui
             // évite une largeur par type.
+            // flex: 0 1 — la colonne a une largeur souhaitée et ne grandit
+            // plus au-delà : c'est la description qui absorbe l'espace libre
+            // quand la colonne du milieu est absente. Elle reste compressible,
+            // pour qu'une fenêtre étroite la rogne plutôt que la description.
             .left {
-                flex: 1;
+                flex: 0 1 @vk-left-width;
                 min-width: 0;
                 display: flex;
                 flex-direction: column;
@@ -256,16 +272,8 @@ form.nephilim.item .item-root.style-ashbury {
                 min-height: 0;
                 overflow-y: auto;
 
-                // Le trait sous le titre, repris du bloc vécus précédent : ici
-                // la liste est un bloc autonome et non une ligne de réglage,
-                // le titre a besoin d'être détaché de son contenu.
                 h1 {
-                    flex-shrink: 0;
-                    margin-bottom: 4px;
-                    padding-bottom: 4px;
-                    text-align: center;
-                    border: none;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                    .block-title();
                 }
             }
 
@@ -386,13 +394,17 @@ form.nephilim.item .item-root.style-ashbury {
                 }
             }
 
-            // Colonne de contenu : sa largeur est celle de ses blocs (.panel),
-            // jamais comprimée ni tronquée — la chronologie reste entière.
+            // Colonne de contenu : elle prend tout l'espace laissé par les
+            // autres, sans jamais passer sous la largeur d'un panneau — la
+            // chronologie reste entière. --vk-panel-width: auto fait suivre ses
+            // blocs, sans quoi ils resteraient à 420 px dans une colonne large.
             .right {
-                flex: 0 0 auto;
+                --vk-panel-width: auto;
+                flex: 1;
+                min-width: @vk-panel-width;
                 display: flex;
                 flex-direction: column;
-                align-items: flex-end;
+                align-items: stretch;
                 height: 100%;
                 gap: 10px;
                 overflow: hidden;
@@ -479,6 +491,89 @@ form.nephilim.item .item-root.style-ashbury {
             flex-direction: column;
             align-items: stretch;
             gap: 12px;
+        }
+
+    }
+
+    // ── Effets mnémos (vécu) ───────────────────────────────────────────────
+    // Balisage propre à la fiche de vécu, pas un partial. Présenté comme le
+    // bloc des compétences : un titre détaché par un trait, puis une entrée
+    // par ligne. La couleur est redéfinie explicitement, sans quoi la liste
+    // hérite du #1a1a1a de main et reste illisible sur fond sombre.
+    //
+    // Le titre est reconnu par la présence de la liste plutôt que par un
+    // modificateur : le balisage étant écrit à la main dans la fiche, il vaut
+    // mieux que la règle tienne que le <h1> soit posé directement dans la
+    // colonne ou enveloppé avec la liste.
+    .middle > h1,
+    .middle > div.list:has(> ol.mnemos) > h1 {
+        .block-title();
+        font-size: 1.1em;
+    }
+
+    ol.mnemos {
+        flex: 1;
+        min-width: 0;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: @vk-panel-text;
+        font-family: @vk-font-body;
+        font-size: 1.1em;
+
+        > li {
+            display: block;
+            margin-bottom: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        // Une entrée se lit comme une compétence : même ligne, même gouttière,
+        // le nom prenant la place restante. Le texte de l'effet vient ensuite,
+        // en retrait sous son titre.
+        > li.mnemos {
+            cursor: pointer;
+
+            > div:first-child {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+
+                label {
+                    flex: 1;
+                    min-width: 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    cursor: pointer;
+                }
+            }
+
+            > div:nth-child(2) {
+                margin-top: 4px;
+                margin-left: 20px;
+            }
+
+            &:hover > div:first-child label {
+                color: fade(#ffffff, 75%);
+            }
+        }
+
+        // Ligne d'ajout : discrète au repos, franche au survol.
+        > li.add {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: fade(#ffffff, 60%);
+
+            &:hover {
+                color: @vk-panel-text;
+            }
         }
     }
 

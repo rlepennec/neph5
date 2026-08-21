@@ -16,8 +16,8 @@ export class VecuSheet extends NephilimItemSheet {
     static DEFAULT_OPTIONS = {
         classes: ["vk-vecu"],
         position: {
-            width: 900,
-            height: 700
+            width: 1220,
+            height: 760
         },
         actions: {
             addMnemos: VecuSheet._onAddMnemos,
