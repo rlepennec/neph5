@@ -84,7 +84,12 @@ export class FormuleSheet extends NephilimItemSheet {
             elements.push(fst);
             delete formData.object["system.elements.[0]"];
             if (formData.object["system.cercle"] === "oeuvreAuBlanc") {
-                elements.push(snd);
+                // Le second menu n'est rendu que si le cercle valait DÉJÀ
+                // oeuvreAuBlanc. En basculant vers ce cercle, le champ est
+                // absent du formulaire et snd vaut undefined : sans cette
+                // garde on empilait undefined dans elements. Le second élément
+                // se saisit au rendu suivant, une fois le menu affiché.
+                if (snd != null) elements.push(snd);
                 delete formData.object["system.elements.[1]"];
             }
         }
