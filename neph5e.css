@@ -1,23 +1,14 @@
 .skin-air {
   --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff), url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
-  --article-separator-margin-top: 0px;
   --font-color: #191813;
-  --font-editor-color: #191813;
   --font-side-color: #191813;
-  --font-side-selected-color: #a1a1a1;
-  --shadow-navigation-color: black;
   --font-disabled-color: #a1a1a1;
-  --font-article-title: -internal-light-dark(black, white);
   --column-color: #5dd5f3;
   --side-background: url("../../systems/neph5e/assets/skins/air/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/air/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/air/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/air/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/air/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/air/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/air/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/air/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/air/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/air/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/air/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/air/separator.webp");
@@ -64,37 +55,9 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -17px;
-  --combat-carac-width: 48px;
-  --combat-carac-input-width: 35px;
-  --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -10px;
-  --combat-dommages-circle-top: 76px;
   --combat-dommages-circle-width: 100px;
   --combat-dommages-circle-height: 90px;
-  --combat-dommages-physique-left: calc(50% - 197px);
-  --combat-dommages-magique-left: calc(50% + 159px);
   --combat-triangle-width: 200px;
-  --combat-triangle-top: 10px;
-  --combat-triangle-left: -70px;
-  --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-left: calc(50% - 49px);
-  --combat-bonus-losange-top: 55px;
-  --combat-bonus-losange-width: 120px;
-  --combat-bonus-circle-width: 54px;
-  --combat-bonus-circle-height: 51px;
-  --combat-bonus-input-width: 28px;
-  --combat-bonus-input-height: 35px;
-  --combat-bonus-mouvement-top: calc(50% - -185px);
-  --combat-bonus-mouvement-left: calc(50% - 31px);
-  --combat-bonus-initiative-top: calc(50% - 3px);
-  --combat-bonus-initiative-left: calc(50% - 31px);
-  --combat-bonus-dommages-top: calc(50% - -91px);
-  --combat-bonus-dommages-left: calc(50% - 120px);
-  --combat-bonus-protection-top: calc(50% - -91px);
-  --combat-bonus-protection-left: calc(50% - -57px);
-  --options-body-margin-top: 0px;
-  --options-body-margin-bottom: -10px;
   --akasha-circle-width: 65px;
   --akasha-nef-transform: translate(119px, 82px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -149,39 +112,22 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 83px;
-  --soleil-tooltip-margin-top: 32px;
-  --soleil-tooltip-margin-left: -48px;
-  --color-scrollbar: #a1a1a1;
-  --vk-header-background: url("../../systems/neph5e/assets/vk/fonds/bandeau-bleu.webp");
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/air-paysage.webp");
   --vk-glow: rgba(220, 245, 255, 0.8);
-  --vk-glow-border: rgba(255, 255, 255, 0.7);
   --vk-grad: linear-gradient(135deg, rgba(130, 0, 0, 0.5) 0%, rgba(255, 69, 0, 0.4) 50%, rgba(255, 215, 0, 0.5) 100%);
   --vk-bg: rgba(80, 110, 120, 0.3);
-  --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-air-crayon.webp");
 }
 .skin-eau {
   --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
-  --article-separator-margin-top: 0px;
   --font-color: #0d273d;
-  --font-editor-color: #191813;
   --font-side-color: #191813;
-  --font-side-selected-color: #a1a1a1;
-  --shadow-navigation-color: black;
   --font-disabled-color: #4c8ba9;
-  --font-article-title: -internal-light-dark(black, white);
   --column-color: #5dd5f3;
   --side-background: url("../../systems/neph5e/assets/skins/eau/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/eau/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/eau/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/eau/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/eau/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/eau/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/eau/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/eau/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/eau/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/eau/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/eau/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/eau/separator.webp");
@@ -228,37 +174,9 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -30px;
-  --combat-carac-width: 48px;
-  --combat-carac-input-width: 35px;
-  --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -30px;
-  --combat-dommages-circle-top: 79px;
   --combat-dommages-circle-width: 85px;
   --combat-dommages-circle-height: 87px;
-  --combat-dommages-physique-left: calc(50% - 193px);
-  --combat-dommages-magique-left: calc(50% + 163px);
   --combat-triangle-width: 223px;
-  --combat-triangle-top: -17px;
-  --combat-triangle-left: -74px;
-  --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-left: calc(50% - 36px);
-  --combat-bonus-losange-top: 55px;
-  --combat-bonus-losange-width: 90px;
-  --combat-bonus-circle-width: 48px;
-  --combat-bonus-circle-height: 51px;
-  --combat-bonus-input-width: 35px;
-  --combat-bonus-input-height: 35px;
-  --combat-bonus-mouvement-top: calc(50% - -185px);
-  --combat-bonus-mouvement-left: calc(50% - 31px);
-  --combat-bonus-initiative-top: calc(50% - 3px);
-  --combat-bonus-initiative-left: calc(50% - 31px);
-  --combat-bonus-dommages-top: calc(50% - -91px);
-  --combat-bonus-dommages-left: calc(50% - 120px);
-  --combat-bonus-protection-top: calc(50% - -91px);
-  --combat-bonus-protection-left: calc(50% - -57px);
-  --options-body-margin-top: -31px;
-  --options-body-margin-bottom: -10px;
   --akasha-circle-width: 60px;
   --akasha-nef-transform: translate(123px, 127px) rotate(14deg);
   --akasha-nef-width: 154px;
@@ -313,39 +231,22 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 92px;
-  --soleil-tooltip-margin-top: 33px;
-  --soleil-tooltip-margin-left: -42px;
-  --color-scrollbar: #a1a1a1;
-  --vk-header-background: url("../../systems/neph5e/assets/vk/fonds/bandeau-bleu.webp");
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/eau-paysage.webp");
   --vk-glow: rgba(20, 120, 160, 0.8);
-  --vk-glow-border: rgba(255, 255, 255, 0.7);
   --vk-grad: linear-gradient(135deg, rgba(130, 0, 0, 0.5) 0%, rgba(255, 69, 0, 0.4) 50%, rgba(255, 215, 0, 0.5) 100%);
   --vk-bg: rgba(5, 30, 45, 0.35);
-  --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-eau-crayon.webp");
 }
 .skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
-  --article-separator-margin-top: -20px;
   --font-color: #e37e00;
-  --font-editor-color: #e37e00;
   --font-side-color: #b58468;
-  --font-side-selected-color: #362102;
-  --shadow-navigation-color: #520303;
   --font-disabled-color: #95703a;
-  --font-article-title: #ad521d;
   --column-color: #ad521d;
   --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/feu/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/feu/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/feu/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/feu/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/feu/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/feu/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/feu/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/feu/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/feu/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/feu/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/feu/separator.webp");
@@ -392,37 +293,9 @@
   --selenim-imago-top: -17px;
   --selenim-imago-left: -21px;
   --selenim-imago-bottom: -28px;
-  --combat-header-bottom: -22px;
-  --combat-carac-width: 44px;
-  --combat-carac-input-width: 35px;
-  --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -14px;
-  --combat-dommages-circle-top: 71px;
   --combat-dommages-circle-width: 94px;
   --combat-dommages-circle-height: 105px;
-  --combat-dommages-physique-left: calc(50% - 199px);
-  --combat-dommages-magique-left: calc(50% + 155px);
   --combat-triangle-width: 300px;
-  --combat-triangle-top: -40px;
-  --combat-triangle-left: -117px;
-  --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-left: calc(50% - 51px);
-  --combat-bonus-losange-top: 48px;
-  --combat-bonus-losange-width: 120px;
-  --combat-bonus-circle-width: 56px;
-  --combat-bonus-circle-height: 67px;
-  --combat-bonus-input-width: 31px;
-  --combat-bonus-input-height: 53px;
-  --combat-bonus-mouvement-top: calc(50% - -158px);
-  --combat-bonus-mouvement-left: calc(50% - 36px);
-  --combat-bonus-initiative-top: calc(50% - 10px);
-  --combat-bonus-initiative-left: calc(50% - 36px);
-  --combat-bonus-dommages-top: calc(50% + 74px);
-  --combat-bonus-dommages-left: calc(50% - 120px);
-  --combat-bonus-protection-top: calc(50% + 74px);
-  --combat-bonus-protection-left: calc(50% + 51px);
-  --options-body-margin-top: -25px;
-  --options-body-margin-bottom: -10px;
   --akasha-circle-width: 60px;
   --akasha-nef-transform: translate(119px, 91px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -477,39 +350,22 @@
   --materiae-input-left: 0px;
   --materiae-maximum-top: 28px;
   --materiae-maximum-left: 30px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 110px;
-  --soleil-tooltip-margin-top: 42px;
-  --soleil-tooltip-margin-left: -40px;
-  --color-scrollbar: #ad521d;
-  --vk-header-background: url("../../systems/neph5e/assets/vk/fonds/bandeau-bleu.webp");
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/feu-paysage.webp");
   --vk-glow: rgba(255, 40, 0, 0.8);
-  --vk-glow-border: rgba(255, 255, 255, 0.7);
   --vk-grad: linear-gradient(135deg, rgba(130, 0, 0, 0.5) 0%, rgba(255, 69, 0, 0.4) 50%, rgba(255, 215, 0, 0.5) 100%);
   ---vk-bg: rgba(60, 10, 0, 0.15);
-  --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-feu-crayon.webp");
 }
 .skin-lune {
   --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%), url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
-  --article-separator-margin-top: 0px;
   --font-color: #121212;
-  --font-editor-color: #191813;
   --font-side-color: #191813;
-  --font-side-selected-color: #dfdede;
-  --shadow-navigation-color: black;
   --font-disabled-color: #d9d1d1;
-  --font-article-title: -internal-light-dark(black, white);
   --column-color: #191813;
   --side-background: url("../../systems/neph5e/assets/skins/lune/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/lune/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/lune/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/lune/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/lune/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/lune/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/lune/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/lune/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/lune/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/lune/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/lune/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/lune/separator.webp");
@@ -556,37 +412,9 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -14px;
-  --combat-carac-width: 48px;
-  --combat-carac-input-width: 35px;
-  --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -10px;
-  --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 80px;
   --combat-dommages-circle-height: 85px;
-  --combat-dommages-physique-left: calc(50% - 190px);
-  --combat-dommages-magique-left: calc(50% + 166px);
   --combat-triangle-width: 254px;
-  --combat-triangle-top: -25px;
-  --combat-triangle-left: -95px;
-  --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-left: calc(50% - 51px);
-  --combat-bonus-losange-top: 48px;
-  --combat-bonus-losange-width: 120px;
-  --combat-bonus-circle-width: 48px;
-  --combat-bonus-circle-height: 51px;
-  --combat-bonus-input-width: 35px;
-  --combat-bonus-input-height: 35px;
-  --combat-bonus-mouvement-top: calc(50% - -185px);
-  --combat-bonus-mouvement-left: calc(50% - 31px);
-  --combat-bonus-initiative-top: calc(50% - 3px);
-  --combat-bonus-initiative-left: calc(50% - 31px);
-  --combat-bonus-dommages-top: calc(50% - -91px);
-  --combat-bonus-dommages-left: calc(50% - 120px);
-  --combat-bonus-protection-top: calc(50% - -91px);
-  --combat-bonus-protection-left: calc(50% - -57px);
-  --options-body-margin-top: 0px;
-  --options-body-margin-bottom: -10px;
   --akasha-circle-width: 60px;
   --akasha-nef-transform: translate(119px, 85px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -641,39 +469,22 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: 30px;
-  --soleil-tooltip-margin-left: -43px;
-  --color-scrollbar: #121212;
-  --vk-header-background: url("../../systems/neph5e/assets/vk/fonds/bandeau-bleu.webp");
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/lune-paysage.webp");
   --vk-glow: rgba(180, 180, 220, 0.8);
-  --vk-glow-border: rgba(255, 255, 255, 0.7);
   --vk-grad: linear-gradient(135deg, rgba(130, 0, 0, 0.5) 0%, rgba(255, 69, 0, 0.4) 50%, rgba(255, 215, 0, 0.5) 100%);
   --vk-bg: rgba(40, 40, 45, 0.2);
-  --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-lune-crayon.webp");
 }
 .skin-lune-noire {
   --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
-  --article-separator-margin-top: 0px;
   --font-color: #191813;
-  --font-editor-color: #191813;
   --font-side-color: #191813;
-  --font-side-selected-color: #383a3a;
-  --shadow-navigation-color: black;
   --font-disabled-color: #a1a1a1;
-  --font-article-title: -internal-light-dark(black, white);
   --column-color: #5e6061;
   --side-background: url("../../systems/neph5e/assets/skins/lune-noire/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/lune-noire/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/lune-noire/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/lune-noire/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/lune-noire/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/lune-noire/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/lune-noire/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/lune-noire/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/lune-noire/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/lune-noire/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/lune-noire/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/lune-noire/separator.webp");
@@ -720,37 +531,9 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -28px;
-  --combat-carac-width: 48px;
-  --combat-carac-input-width: 35px;
-  --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -19px;
-  --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 80px;
   --combat-dommages-circle-height: 85px;
-  --combat-dommages-physique-left: calc(50% - 190px);
-  --combat-dommages-magique-left: calc(50% + 166px);
   --combat-triangle-width: 254px;
-  --combat-triangle-top: -25px;
-  --combat-triangle-left: -95px;
-  --combat-bonus-margin-top: -16px;
-  --combat-bonus-losange-left: calc(50% - 51px);
-  --combat-bonus-losange-top: 57px;
-  --combat-bonus-losange-width: 120px;
-  --combat-bonus-circle-width: 48px;
-  --combat-bonus-circle-height: 51px;
-  --combat-bonus-input-width: 35px;
-  --combat-bonus-input-height: 35px;
-  --combat-bonus-mouvement-top: calc(50% - -185px);
-  --combat-bonus-mouvement-left: calc(50% - 31px);
-  --combat-bonus-initiative-top: calc(50% - 3px);
-  --combat-bonus-initiative-left: calc(50% - 31px);
-  --combat-bonus-dommages-top: calc(50% - -91px);
-  --combat-bonus-dommages-left: calc(50% - 120px);
-  --combat-bonus-protection-top: calc(50% - -91px);
-  --combat-bonus-protection-left: calc(50% - -57px);
-  --options-body-margin-top: -23px;
-  --options-body-margin-bottom: -10px;
   --akasha-circle-width: 61px;
   --akasha-nef-transform: translate(134px, 115px) rotate(0deg);
   --akasha-nef-width: 124px;
@@ -805,35 +588,21 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: 31px;
-  --soleil-tooltip-margin-left: -42px;
-  --color-scrollbar: #191813;
   --vk-bg: rgba(10, 10, 10, 0.35);
   --vk-grad: linear-gradient(135deg, rgba(0, 0, 0, 0.45) 0%, rgba(45, 45, 50, 0.4) 50%, rgba(120, 100, 60, 0.5) 100%);
   --vk-glow: #000000;
 }
 .skin-soleil {
   --background: url("../../systems/neph5e/assets/skins/soleil/background.webp") repeat;
-  --article-separator-margin-top: 0px;
   --font-color: #191813;
-  --font-editor-color: #191813;
   --font-side-color: #191813;
-  --font-side-selected-color: #4e3904;
-  --shadow-navigation-color: black;
   --font-disabled-color: #a1a1a1;
-  --font-article-title: -internal-light-dark(black, white);
   --column-color: #c3a049;
   --side-background: url("../../systems/neph5e/assets/skins/soleil/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/soleil/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/soleil/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/soleil/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/soleil/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/soleil/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/soleil/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/soleil/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/soleil/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/soleil/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/soleil/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/soleil/separator.webp");
@@ -880,37 +649,9 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: 7px;
-  --combat-header-bottom: -20px;
-  --combat-carac-width: 48px;
-  --combat-carac-input-width: 35px;
-  --combat-carac-input-top: 10px;
-  --combat-armures-bottom: -7px;
-  --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 80px;
   --combat-dommages-circle-height: 85px;
-  --combat-dommages-physique-left: calc(50% - 190px);
-  --combat-dommages-magique-left: calc(50% + 166px);
   --combat-triangle-width: 200px;
-  --combat-triangle-top: 10px;
-  --combat-triangle-left: -70px;
-  --combat-bonus-margin-top: 0px;
-  --combat-bonus-losange-left: calc(50% - 51px);
-  --combat-bonus-losange-top: 48px;
-  --combat-bonus-losange-width: 120px;
-  --combat-bonus-circle-width: 48px;
-  --combat-bonus-circle-height: 51px;
-  --combat-bonus-input-width: 35px;
-  --combat-bonus-input-height: 35px;
-  --combat-bonus-mouvement-top: calc(50% - -185px);
-  --combat-bonus-mouvement-left: calc(50% - 31px);
-  --combat-bonus-initiative-top: calc(50% - 3px);
-  --combat-bonus-initiative-left: calc(50% - 31px);
-  --combat-bonus-dommages-top: calc(50% - -91px);
-  --combat-bonus-dommages-left: calc(50% - 120px);
-  --combat-bonus-protection-top: calc(50% - -91px);
-  --combat-bonus-protection-left: calc(50% - -57px);
-  --options-body-margin-top: 0px;
-  --options-body-margin-bottom: -10px;
   --akasha-circle-width: 60px;
   --akasha-nef-transform: translate(91px, 80px) rotate(30deg);
   --akasha-nef-width: 218px;
@@ -965,35 +706,21 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: 30px;
-  --soleil-tooltip-margin-left: -38px;
-  --color-scrollbar: #4e3904;
   --vk-bg: rgba(50, 35, 10, 0.3);
   --vk-grad: linear-gradient(135deg, rgba(160, 90, 10, 0.6) 0%, rgba(255, 200, 40, 0.5) 50%, rgba(255, 255, 240, 0.3) 100%);
   --vk-glow: rgba(255, 255, 240, 0.55);
 }
 .skin-terre {
   --background: url("../../systems/neph5e/assets/skins/terre/background.webp") repeat;
-  --article-separator-margin-top: 0px;
   --font-color: #113203;
-  --font-editor-color: #191813;
   --font-side-color: #191813;
-  --font-side-selected-color: ##9eb58f;
-  --shadow-navigation-color: #113203;
   --font-disabled-color: #9eb58f;
-  --font-article-title: -internal-light-dark(#113203, #9eb58f);
   --column-color: #113203;
   --side-background: url("../../systems/neph5e/assets/skins/terre/side-background.webp");
   --img-article-separator: url("../../systems/neph5e/assets/skins/terre/article-separator.webp");
-  --img-article-corner: url("../../systems/neph5e/assets/skins/terre/article-corner.webp");
   --img-nef: url("../../systems/neph5e/assets/skins/terre/boussole.webp");
   --img-circle: url("../../systems/neph5e/assets/skins/terre/circle.webp");
   --img-barge: url("../../systems/neph5e/assets/skins/terre/compas.webp");
-  --img-corner: url("../../systems/neph5e/assets/skins/terre/corner.webp");
-  --img-hole: url("../../systems/neph5e/assets/skins/terre/hole.webp");
-  --img-losange: url("../../systems/neph5e/assets/skins/terre/losange.webp");
   --img-pin: url("../../systems/neph5e/assets/skins/terre/pin.webp");
   --img-puce: url("../../systems/neph5e/assets/skins/terre/puce.webp");
   --img-separator: url("../../systems/neph5e/assets/skins/terre/separator.webp");
@@ -1040,37 +767,9 @@
   --selenim-imago-top: 0px;
   --selenim-imago-left: 0px;
   --selenim-imago-bottom: -10px;
-  --combat-header-bottom: -3px;
-  --combat-carac-width: 52px;
-  --combat-carac-input-width: 39px;
-  --combat-carac-input-top: 8px;
-  --combat-armures-bottom: 3px;
-  --combat-dommages-circle-top: 81px;
   --combat-dommages-circle-width: 90px;
   --combat-dommages-circle-height: 85px;
-  --combat-dommages-physique-left: calc(50% - 194px);
-  --combat-dommages-magique-left: calc(50% + 162px);
   --combat-triangle-width: 247px;
-  --combat-triangle-top: -27px;
-  --combat-triangle-left: -93px;
-  --combat-bonus-margin-top: 20px;
-  --combat-bonus-losange-left: calc(50% - 51px);
-  --combat-bonus-losange-top: 61px;
-  --combat-bonus-losange-width: 120px;
-  --combat-bonus-circle-width: 51px;
-  --combat-bonus-circle-height: 51px;
-  --combat-bonus-input-width: 32px;
-  --combat-bonus-input-height: 35px;
-  --combat-bonus-mouvement-top: calc(50% - -185px);
-  --combat-bonus-mouvement-left: calc(50% - 34px);
-  --combat-bonus-initiative-top: calc(50% - 0px);
-  --combat-bonus-initiative-left: calc(50% - 34px);
-  --combat-bonus-dommages-top: calc(50% - -91px);
-  --combat-bonus-dommages-left: calc(50% - 127px);
-  --combat-bonus-protection-top: calc(50% - -91px);
-  --combat-bonus-protection-left: calc(50% - -57px);
-  --options-body-margin-top: 0px;
-  --options-body-margin-bottom: 0px;
   --akasha-circle-width: 66px;
   --akasha-nef-transform: translate(121px, 94px) rotate(0deg);
   --akasha-nef-width: 163px;
@@ -1125,18 +824,10 @@
   --materiae-input-left: -12px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 19px;
-  --soleil-circle-width: 90px;
-  --soleil-circle-height: 90px;
-  --soleil-tooltip-margin-top: 31px;
-  --soleil-tooltip-margin-left: -44px;
-  --color-scrollbar: #113203;
-  --vk-header-background: url("../../systems/neph5e/assets/vk/fonds/bandeau-bleu.webp");
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/terre-paysage.webp");
   --vk-glow: rgba(123, 42, 14, 0.8);
-  --vk-glow-border: rgba(255, 255, 255, 0.7);
   --vk-grad: linear-gradient(135deg, rgba(130, 0, 0, 0.5) 0%, rgba(255, 69, 0, 0.4) 50%, rgba(255, 215, 0, 0.5) 100%);
   --vk-bg: rgba(113, 75, 25, 0.3);
-  --vk-crayon: url("../../systems/neph5e/assets/vk/ka-elements/ka-terre-crayon.webp");
 }
 @font-face {
   font-family: "AJensonPro";
@@ -1158,10 +849,6 @@
   font-family: "NightjarDemi";
   src: url("../../systems/neph5e/assets/fonts/T-26-Nightjar-Demi.ttf");
 }
-.expanse {
-  height: 100%;
-  width: 100%;
-}
 .nephilim.sheet:not(.actor,.item) .window-content {
   padding: 4px;
 }
@@ -1175,7 +862,6 @@ form.nephilim {
   --background-article-dark: url("../../systems/neph5e/assets/backgrounds/p.webp");
   --color-font-bright: #f5f4f4;
   --color-font-dark: #191813;
-  --color-scrollbar: #2f3557;
   --font-family-title: 'AJensonPro';
   --font-family-content: 'NightjarDemi';
 }
@@ -3190,22 +2876,6 @@ form.nephilim.actor section.window-content > section article main.science .cercl
   font-family: 'AJensonPro';
   font-size: 21px;
   margin-bottom: -10px;
-}
-form.nephilim.actor section.window-content > section article main.science .cercles .cercle .header .losange {
-  position: absolute;
-  border: none;
-  width: var(--science-circle-width);
-  height: var(--science-circle-height);
-  background-color: transparent;
-  content: var(--img-losange);
-}
-form.nephilim.actor section.window-content > section article main.science .cercles .cercle .header .triangle {
-  position: absolute;
-  border: none;
-  width: var(--science-circle-width);
-  height: var(--science-circle-height);
-  background-color: transparent;
-  content: var(--img-triangle);
 }
 form.nephilim.actor section.window-content > section article main.science .cercles .cercle .header .circle {
   position: absolute;
@@ -5503,22 +5173,6 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   font-size: 21px;
   margin-bottom: -10px;
 }
-.tab.science .cercles .cercle .header .losange {
-  position: absolute;
-  border: none;
-  width: var(--science-circle-width);
-  height: var(--science-circle-height);
-  background-color: transparent;
-  content: var(--img-losange);
-}
-.tab.science .cercles .cercle .header .triangle {
-  position: absolute;
-  border: none;
-  width: var(--science-circle-width);
-  height: var(--science-circle-height);
-  background-color: transparent;
-  content: var(--img-triangle);
-}
 .tab.science .cercles .cercle .header .circle {
   position: absolute;
   border: none;
@@ -6308,16 +5962,6 @@ form.nephilim.item section.window-content > section article main input:disabled 
 form.nephilim.item section.window-content > section article main .fas {
   margin-right: 10px;
 }
-form.nephilim.item section.window-content > section article main .mnemos-description {
-  width: 100%;
-  box-sizing: border-box;
-  resize: vertical;
-}
-.item-root header {
-  background: var(--vk-header-background) center / cover;
-  box-shadow: 0 0 6px 2px #f5f4f4 inset;
-  color: #f5f4f4;
-}
 form.application.sheet.item > .window-header {
   background-color: var(--vk-bg, rgba(65, 84, 139, 0.2));
   background-image: var(--vk-grad, none), linear-gradient(rgba(12, 12, 18, 0.92), rgba(12, 12, 18, 0.92));
@@ -6331,26 +5975,6 @@ form.application.sheet.item > .window-header {
 form.application.sheet.item > .window-header .window-title {
   font-family: "NightjarDemi", serif;
   text-shadow: 0 0 4px black;
-}
-.item-root .vk-box {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  padding: 12px;
-  background: rgba(30, 30, 30, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-.item-root .vk-box-title {
-  margin: 0 0 8px 0;
-  padding-bottom: 4px;
-  text-align: center;
-  font-family: "NightjarDemi", serif;
-  font-size: 1.15em;
-  color: #f0f0f0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .item-root .vk-editor {
   flex: 1;
@@ -6380,22 +6004,6 @@ form.application.sheet.item > .window-header .window-title {
 }
 .item-root .vk-fields > * {
   flex: 1;
-}
-.item-root .vk-split {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  gap: 20px;
-  min-height: 0;
-}
-.item-root .vk-layout {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 10px;
-  padding: 15px 20px;
-  min-height: 0;
-  overflow: hidden;
 }
 @keyframes vk-light-scan {
   0% {
@@ -7755,7 +7363,6 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
   font-weight: bold;
 }
 .chat-message {
-  --background-side-chat: url("../../systems/neph5e/assets/backgrounds/background-side-chat.webp");
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   font-family: 'AJensonProLtDisp';
   font-size: 15px;
@@ -7873,9 +7480,6 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
 }
 .action {
   --box-shadow: 0 0 4px 1px #414048 inset;
-  --color-shadow-primary: #151156;
-  --color-widget-background: none;
-  --color-widget: #191813;
   display: flex;
   flex-direction: column;
 }
@@ -8220,9 +7824,6 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
 }
 form.combat {
   --box-shadow: 0 0 4px 1px #414048 inset;
-  --color-shadow-primary: #151156;
-  --color-widget-background: none;
-  --color-widget: #191813;
   display: flex;
   flex-direction: column;
 }

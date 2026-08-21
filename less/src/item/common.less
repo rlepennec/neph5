@@ -82,28 +82,10 @@ form.nephilim.item {
                     margin-right: 10px;
                 }
 
-                // Zone de description du dialogue Mnémos (textarea éditable).
-                .mnemos-description {
-                    width: 100%;
-                    box-sizing: border-box;
-                    resize: vertical;
-                }
-
             }
 
         }
 
-    }
-
-}
-
-// ── Look "Vision Ka'Sh" : socle commun aux fiches d'item ──
-.item-root {
-
-    header {
-        background: var(--vk-header-background) center / cover;
-        box-shadow: 0 0 6px 2px #f5f4f4 inset;
-        color: #f5f4f4;
     }
 
 }
@@ -131,29 +113,6 @@ form.application.sheet.item > .window-header {
 
 // ══ Socle commun aux fiches d'item (look Vision Ka'Sh) ══
 .item-root {
-
-    // Boîte translucide : sert de conteneur à toutes les zones de contenu.
-    .vk-box {
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-        padding: 12px;
-        background: rgba(30, 30, 30, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        overflow: hidden;
-    }
-
-    .vk-box-title {
-        margin: 0 0 8px 0;
-        padding-bottom: 4px;
-        text-align: center;
-        font-family: "NightjarDemi", serif;
-        font-size: 1.15em;
-        color: #f0f0f0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
 
     // Zone d'édition (prose-mirror) : occupe l'espace restant et défile.
     .vk-editor {
@@ -191,26 +150,6 @@ form.application.sheet.item > .window-header {
         > * {
             flex: 1;
         }
-    }
-
-    // Deux colonnes : média à gauche, texte à droite.
-    .vk-split {
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        gap: 20px;
-        min-height: 0;
-    }
-
-    // Layout vertical standard d'une fiche.
-    .vk-layout {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        gap: 10px;
-        padding: 15px 20px;
-        min-height: 0;
-        overflow: hidden;
     }
 
 }
