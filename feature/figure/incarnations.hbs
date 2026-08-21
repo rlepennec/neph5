@@ -75,15 +75,15 @@
                 <div class="periode-actions">
 
                     {{#if ../isGM}}
-                    <label data-action="activatePeriode" class="{{#if periode.embedded.actif}}fa-solid{{else}}fa-regular{{/if}} fa-fire activate" data-tooltip="{{#if periode.embedded.actif}}Désactiver{{else}}Activer{{/if}}"></label>
+                    <label data-action="activatePeriode" class="{{#if periode.embedded.actif}}fa-solid{{else}}fa-regular{{/if}} fa-fire activate" data-tooltip="{{#if periode.embedded.actif}}{{translate 'desactiver'}}{{else}}{{translate 'activer'}}{{/if}}"></label>
                     {{/if}}
 
                     {{#unless (eq ../actor.system.periode periode.original.sid)}}
-                    <label data-action="currentPeriode" class="fa-solid fa-thumbtack-angle" data-tooltip="Période courante"></label>
+                    <label data-action="currentPeriode" class="fa-solid fa-thumbtack-angle" data-tooltip="{{translate 'periodeCourante'}}"></label>
                     {{/unless}}
 
                     {{#if (eq ../editedPeriode periode.original.sid)}}
-                    <label data-action="deletePeriode" class="fas fa-trash delete" data-tooltip="Supprimer"></label>
+                    <label data-action="deletePeriode" class="fas fa-trash delete" data-tooltip="{{translate 'supprimer'}}"></label>
                     {{/if}}
 
                 </div>
