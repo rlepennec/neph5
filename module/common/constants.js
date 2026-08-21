@@ -4,6 +4,11 @@ export class Constants {
 
     static ARMES = ['naturelle', 'melee', 'trait', 'feu'];
 
+    // Les cercles alchimiques étaient déclarés dans game.js sous forme de table
+    // clef → chemin i18n. Ils rejoignent les autres énumérations : la liste vit
+    // ici, le libellé de chaque valeur vit dans fr.json (NEPHILIM.oeuvreAuNoir…).
+    static CERCLES_ALCHIMIE = ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];
+
     static DESMOS = ['spiritisme', 'apaisement', 'claivoyance', 'animation', 'possession', 'audela', 'corruption'];
 
     static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];

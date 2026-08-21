@@ -346,7 +346,7 @@ export class ActionDialog extends AbstractDialog {
         const selector = this.element?.querySelector("#approche");
         const approche = selector?.value;
         if (approche == null) return 0;
-        const element = approche.replaceAll("NEPH5E.", "").replaceAll("pentacle.elements.", "");
+        const element = approche.replaceAll("NEPHILIM.", "");
         return element === "none" ? 0 : this.actor.getKa(element) * 10;
     }
 

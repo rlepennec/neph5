@@ -16,7 +16,7 @@ export class Pratique extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.pratique';
+        return 'NEPHILIM.tenteSelfPratique';
     }
 
     /**

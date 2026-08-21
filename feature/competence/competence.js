@@ -35,7 +35,7 @@ export class Competence extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.competence';
+        return 'NEPHILIM.tenteSelfCompetence';
     }
 
     /**

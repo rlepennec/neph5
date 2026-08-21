@@ -22,7 +22,7 @@ export class Pavane extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.pavane';
+        return 'NEPHILIM.tenteSelfPavane';
     }
 
     /**

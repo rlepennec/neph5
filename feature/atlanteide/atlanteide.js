@@ -17,7 +17,7 @@ export class Atlanteide extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.atlanteide';
+        return 'NEPHILIM.tenteSelfAtlanteide';
     }
 
     /**

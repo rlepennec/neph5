@@ -17,7 +17,7 @@ export class Appel extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.appel';
+        return 'NEPHILIM.tenteSelfAppel';
     }
 
     /**

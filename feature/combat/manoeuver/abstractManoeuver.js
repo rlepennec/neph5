@@ -4,6 +4,19 @@ import { Constants } from "../../../module/common/constants.js";
 export class AbstractManoeuver {
 
     /**
+     * Construit la clef de traduction d'une manoeuvre.
+     * Les libellés vivaient sous NEPH5E.manoeuvres.<id>.<champ> ; ils sont
+     * désormais plats sous NEPHILIM, en camelCase : manoeuvre<Id><Champ>.
+     * Cette méthode est l'unique endroit qui connaît la convention.
+     * @param id    L'identifiant de la manoeuvre.
+     * @param champ 'Name', 'Sentence' ou 'Description'.
+     * @returns la clef complète.
+     */
+    static clef(id, champ) {
+        return `NEPHILIM.manoeuvre${id.charAt(0).toUpperCase()}${id.slice(1)}${champ}`;
+    }
+
+    /**
      * Constructor.
      * @param id     The identifier of the manoeuver.
      * @param family The famliy of the manoeuver.
@@ -13,7 +26,7 @@ export class AbstractManoeuver {
         this.id = id;
         this.advanced = false;
         this.family = family;
-        this.name = game.i18n.localize("NEPH5E.manoeuvres." + id + ".name");;
+        this.name = game.i18n.localize(AbstractManoeuver.clef(id, "Name"));
         this.description = "";
         this.times = 1;
         this.noAttack = false;
@@ -289,7 +302,7 @@ export class AbstractManoeuver {
     competenceUsed(actor, weapon) {
 
         const none = {
-            name: game.i18n.localize("NEPH5E.nonDefini"),
+            name: game.i18n.localize("NEPHILIM.nonDefini"),
             degre: 0
         }
 
@@ -315,7 +328,7 @@ export class AbstractManoeuver {
                 }
             case 'figurant':
                 return {
-                    name: game.i18n.localize('NEPH5E.menace')
+                    name: game.i18n.localize('NEPHILIM.menace')
                 }
         }
 

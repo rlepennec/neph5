@@ -811,7 +811,7 @@ export class NephilimActor extends Actor {
     approches() {
         const approches = {};
         approches['none'] = {
-            name: 'NEPH5E.none',
+            name: 'NEPHILIM.none',
             label: 'Aucune approche',
             degre: 0
         };
@@ -820,19 +820,21 @@ export class NephilimActor extends Actor {
                 if (this.system.options.selenim === true) {
                     if (this.system.ka.noyau > 0) {
                         approches['noyau'] = {
-                            name: 'NEPH5E.luneNoire',
-                            label: 'Approche de ' + game.i18n.localize('NEPH5E.luneNoire'),
+                            name: 'NEPHILIM.luneNoire',
+                            label: 'Approche de ' + game.i18n.localize('NEPHILIM.luneNoire'),
                             degre: this.system.ka.noyau
                         };
                     }
                 }
                 if (this.system.options.nephilim === true) {
-                    for (let elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
+                    // NEPHILIM porte déjà les mêmes libellés d'élément que
+                    // l'ancien bloc NEPH5E.pentacle.elements, à l'identique.
+                    for (let elt of Constants.ELEMENTS) {
                         const value = this.system.ka[elt];
                         if (value > 0) {
                             approches[elt] = {
-                                name: 'NEPH5E.pentacle.elements.' + elt,
-                                label: 'Approche de ' + game.i18n.localize('NEPH5E.pentacle.elements.' + elt),
+                                name: 'NEPHILIM.' + elt,
+                                label: 'Approche de ' + game.i18n.localize('NEPHILIM.' + elt),
                                 degre: value
                             };
                         }
@@ -841,8 +843,8 @@ export class NephilimActor extends Actor {
                 break;
             case 'figurant':
                 approches['ka'] = {
-                    name: 'NEPH5E.ka',
-                    label: 'Approche de ' + game.i18n.localize('NEPH5E.ka'),
+                    name: 'NEPHILIM.ka',
+                    label: 'Approche de ' + game.i18n.localize('NEPHILIM.ka'),
                     degre: this.system.ka
                 };
                 break;
@@ -899,7 +901,8 @@ export class NephilimActor extends Actor {
     }
 
     getSentence(quality, self) {
-        return self ? game.i18n.localize('NEPH5E.tente.self.' + quality) : game.i18n.localize('NEPH5E.tente.simulacre.' + quality);
+        const prefixe = self ? 'NEPHILIM.tenteSelf' : 'NEPHILIM.tenteSimulacre';
+        return game.i18n.localize(prefixe + quality.charAt(0).toUpperCase() + quality.slice(1));
     }
 
     /**

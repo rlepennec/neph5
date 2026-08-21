@@ -17,7 +17,7 @@ export class Formule extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.formule';
+        return 'NEPHILIM.tenteSelfFormule';
     }
 
     /**

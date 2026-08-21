@@ -16,7 +16,7 @@ export class Technique extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.technique';
+        return 'NEPHILIM.tenteSelfTechnique';
     }
 
     /**

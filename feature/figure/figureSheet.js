@@ -2,7 +2,6 @@ import { Chute } from "../chute/chute.js";
 import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
-import { Game } from "../../module/common/game.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
 import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
@@ -106,7 +105,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "arbre", option: "kabbale", template: `feature/kabbale/actor/arbre.hbs` },
         { id: "ordonnances", option: "kabbale", template: `feature/kabbale/actor/ordonnances.hbs` },
         { id: "alchimie", option: "alchimie", science: "alchimie" },
-        { id: "laboratoire", option: "alchimie", template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Game.alchimie.cercles }) },
+        { id: "laboratoire", option: "alchimie", template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
         { id: "materiae", option: "alchimie", template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
         { id: "analogie", option: "analogie", science: "analogie" },
         { id: "dracomachie", option: "dracomachie", science: "dracomachie" },

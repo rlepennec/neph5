@@ -68,14 +68,14 @@ export class Vecu extends HistoricalFeature {
             case 'figure':
                 switch (this.scope) {
                     case 'actor':
-                        return 'NEPH5E.tente.self.vecu-de';
+                        return 'NEPHILIM.tenteSelfVecu-de';
                     case 'simulacre':
-                        return 'NEPH5E.tente.simulacre.vecu-de';
+                        return 'NEPHILIM.tenteSimulacreVecu-de';
                     default:
                         throw new Error("Vecu.sentence scope " + this.scope + " not implemented");
                 }
             case 'figurant':
-                return 'NEPH5E.tente.self.vecu-de';
+                return 'NEPHILIM.tenteSelfVecu-de';
             default:
                 throw new Error("Vecu.sentence actor type " + this.actor.type + " not implemented");
         }
@@ -142,7 +142,7 @@ export class Vecu extends HistoricalFeature {
                 if (this.actor.items.find(i => i.sid === this.sid)) {
                     await this.actor.update({ ['system.manoeuvres.' + this.manoeuver]: this.sid });
                 } else {
-                    ui.notifications.warn(game.i18n.localize('NEPH5E.vecuNonDefini').replaceAll("${item}", this.name));
+                    ui.notifications.warn(game.i18n.localize('NEPHILIM.vecuNonDefini').replaceAll("${item}", this.name));
                 }
             }
             

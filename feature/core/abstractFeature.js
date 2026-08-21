@@ -1,4 +1,5 @@
 import { ActionDialog } from "./actionDialog.js";
+import { AbstractManoeuver } from "../combat/manoeuver/abstractManoeuver.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
 import { Liberer } from "../combat/manoeuver/liberer.js";
@@ -248,7 +249,7 @@ export class AbstractFeature {
         }
         const data = this.data;
         if (this.manoeuver != null) {
-            data.sentence = game.i18n.localize("NEPH5E.manoeuvres." + this.manoeuver.id + ".sentence").replaceAll("${arme}", this?.weapon?.name);
+            data.sentence = game.i18n.localize(AbstractManoeuver.clef(this.manoeuver.id, "Sentence")).replaceAll("${arme}", this?.weapon?.name);
         }
         if (this.manoeuver?.id === Liberer.ID) {
             data.sentence = "tente de" + data.sentence;

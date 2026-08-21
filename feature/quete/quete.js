@@ -39,7 +39,7 @@ export class Quete extends HistoricalFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.quete';
+        return 'NEPHILIM.tenteSelfQuete';
     }
 
     /**

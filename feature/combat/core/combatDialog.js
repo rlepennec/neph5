@@ -1,4 +1,5 @@
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
+import { AbstractManoeuver } from "../manoeuver/abstractManoeuver.js";
 import { ActionDialog } from "../../core/actionDialog.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -86,7 +87,7 @@ export class CombatDialog extends ActionDialog {
      * @return the sentence used to describe the manoeuver.
      */
     static getManoeuverDescription(manoeuver, impact, absorption) {
-        let sentence = game.i18n.localize("NEPH5E.manoeuvres." + manoeuver + ".description");
+        let sentence = game.i18n.localize(AbstractManoeuver.clef(manoeuver, "Description"));
         sentence = sentence.replaceAll("${impact}", CustomHandlebarsHelpers.html("<span>" + impact + " <i class='fas fa-heart-broken'></i></span>"));
         sentence = sentence.replaceAll("${absorption}", CustomHandlebarsHelpers.html("<span>" + absorption + " <i class='fas fa-shield'></i></span>"));
         return sentence;
@@ -166,7 +167,7 @@ export class CombatDialog extends ActionDialog {
             ActionDataBuilder.competenceOf(this.actor, this.data.weapon) :
             this.action.manoeuver.competenceUsed(this.actor, this.action.weapon);
         return {
-            name: item?.name ?? game.i18n.localize("NEPH5E.nonDefini"),
+            name: item?.name ?? game.i18n.localize("NEPHILIM.nonDefini"),
             degre: this.action.degre*10
         }
     }

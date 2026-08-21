@@ -41,7 +41,7 @@ export class Chute extends HistoricalFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.chute';
+        return 'NEPHILIM.tenteSelfChute';
     }
 
     /**
@@ -152,7 +152,7 @@ export class Chute extends HistoricalFeature {
             // Retrieve the sid of the world chute item from which to create the new chute
             const sid = previousChute.sid ?? game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid;
             if (sid == null) {
-                ui.notifications.warn(game.i18n.localize("NEPH5E.warning.chutes"));
+                ui.notifications.warn(game.i18n.localize("NEPHILIM.warningChutes"));
                 return;
             }
 

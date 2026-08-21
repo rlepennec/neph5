@@ -404,7 +404,7 @@ export class NephilimItem extends Item {
      * @return the status of the item, which can be connu, dechiffre, appris or tatoue.
      */
     get getStatus() {
-        return game.i18n.localize('NEPH5E.' + this.system.status)
+        return game.i18n.localize('NEPHILIM.' + this.system.status)
     }
 
     /**

@@ -79,7 +79,7 @@ export class Ordonnance extends AbstractFeature {
         for (let item of actor.items.filter(o => o.type === 'ordonnance' && AbstractFeature.isActive(actor, o))) {
             const original = AbstractFeature.original(item.sid);
             size++;
-            monde = game.i18n.localize('NEPH5E.' + original.system.monde);
+            monde = game.i18n.localize('NEPHILIM.' + original.system.monde);
             items.push({
                 original: {
                     id: original.id,

@@ -42,7 +42,7 @@ export class Science extends HistoricalFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.science';
+        return 'NEPHILIM.tenteSelfScience';
     }
 
     /**

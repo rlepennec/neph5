@@ -39,7 +39,7 @@ export class Savoir extends HistoricalFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.savoir';
+        return 'NEPHILIM.tenteSelfSavoir';
     }
 
     /**

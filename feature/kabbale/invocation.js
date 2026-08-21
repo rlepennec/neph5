@@ -10,14 +10,14 @@ export class Invocation extends AbstractFocus {
      * @Override
      */
     get title() {
-        return this.pacte ? game.i18n.localize('NEPH5E.jetInvocation') : game.i18n.localize('NEPH5E.jetPacte');
+        return this.pacte ? game.i18n.localize('NEPHILIM.jetInvocation') : game.i18n.localize('NEPHILIM.jetPacte');
     }
 
     /**
      * @Override
      */
     get sentence() {
-        return this.pacte ? 'NEPH5E.tente.self.invocation' : 'NEPH5E.tente.self.pacte';
+        return this.pacte ? 'NEPHILIM.tenteSelfInvocation' : 'NEPHILIM.tenteSelfPacte';
     }
 
     /**

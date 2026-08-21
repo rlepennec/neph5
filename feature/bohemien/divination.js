@@ -16,7 +16,7 @@ export class Divination extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.divination';
+        return 'NEPHILIM.tenteSelfDivination';
     }
 
     /**

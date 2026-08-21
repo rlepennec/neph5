@@ -35,7 +35,7 @@ export class Wrestle extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return this.manoeuver == null ? 'NEPH5E.tente.self.competence' : game.i18n.localize('NEPH5E.tente.self.lutte');
+        return this.manoeuver == null ? 'NEPHILIM.tenteSelfCompetence' : game.i18n.localize('NEPHILIM.tenteSelfLutte');
     }
 
     /**
@@ -84,7 +84,7 @@ export class Wrestle extends AbstractFeature {
             case 'figure':
                 return this.item.name;
             case 'figurant':
-                return game.i18n.localize('NEPH5E.menace');
+                return game.i18n.localize('NEPHILIM.menace');
         }
     }
 

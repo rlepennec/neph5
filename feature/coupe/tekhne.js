@@ -16,7 +16,7 @@ export class Tekhne extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.tekhne';
+        return 'NEPHILIM.tenteSelfTekhne';
     }
 
     /**

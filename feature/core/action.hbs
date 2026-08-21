@@ -93,7 +93,7 @@
                 {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>{{localize (concat 'NEPH5E.' aide)}}</label>
+                        <label>{{localize (concat 'NEPHILIM.' aide)}}</label>
                     </div>
                     <div class="line-value">
                         <input id="aide" type="Number" value="0"/>
@@ -103,7 +103,7 @@
                 {{else if (eq (getSystemOption 'modifierPolicy') 'liste')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>{{localize (concat 'NEPH5E.' aide)}}</label>
+                        <label>{{localize (concat 'NEPHILIM.' aide)}}</label>
                     </div>
                     <div class="line-value">
                         <select id="aide">
@@ -134,7 +134,7 @@
                 {{else if (eq (getSystemOption 'modifierPolicy') 'slider')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>{{localize (concat 'NEPH5E.' aide)}}</label>
+                        <label>{{localize (concat 'NEPHILIM.' aide)}}</label>
                         <input id="aide" class="slider" type="range" min="0" max="20" step="1" value="0"/>
                     </div>
                     <div class="line-value">
@@ -150,7 +150,7 @@
                 {{#if (eq (getSystemOption 'modifierPolicy') 'clavier')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>{{localize (concat 'NEPH5E.' opposition)}}</label>
+                        <label>{{localize (concat 'NEPHILIM.' opposition)}}</label>
                     </div>
                     <div class="line-value">
                         <input id="opposition" type="Number" value="5"/>
@@ -160,7 +160,7 @@
                 {{else if (eq (getSystemOption 'modifierPolicy') 'liste')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>{{localize (concat 'NEPH5E.' opposition)}}</label>
+                        <label>{{localize (concat 'NEPHILIM.' opposition)}}</label>
                     </div>
                     <div class="line-value">
                         <select id="opposition">
@@ -190,7 +190,7 @@
                 {{else if (eq (getSystemOption 'modifierPolicy') 'slider')}}
                 <div class="line">
                     <div class="line-title">
-                        <label>{{localize (concat 'NEPH5E.' opposition)}}</label>
+                        <label>{{localize (concat 'NEPHILIM.' opposition)}}</label>
                         <input id="opposition" class="slider" type="range" min="1" max="20" step="1" value="5"/>
                     </div>
                     <div class="line-value">
@@ -346,7 +346,7 @@
                 <div class="line-title">
                     <select id="condition" name="condition">
                         {{#each conditions as |condition|}}
-                        <option value="{{condition}}">{{localize (concat 'NEPH5E.' condition)}}</option>
+                        <option value="{{condition}}">{{localize (concat 'NEPHILIM.' condition)}}</option>
                         {{/each}}
                     </select>
                 </div>

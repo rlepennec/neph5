@@ -42,7 +42,7 @@ export class Distance extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return game.i18n.localize('NEPH5E.utiliseSon').replaceAll("${item}", this.weapon.name);
+        return game.i18n.localize('NEPHILIM.utiliseSon').replaceAll("${item}", this.weapon.name);
     }
 
     /**

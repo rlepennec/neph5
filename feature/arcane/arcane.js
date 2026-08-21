@@ -39,7 +39,7 @@ export class Arcane extends HistoricalFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.arcane';
+        return 'NEPHILIM.tenteSelfArcane';
     }
 
     /**

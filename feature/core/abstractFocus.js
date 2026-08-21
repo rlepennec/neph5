@@ -65,7 +65,7 @@ export class AbstractFocus extends AbstractFeature {
         const raw = this.rawDegre;
         if (raw < -99) {
             const error = -raw;
-            return "NEPH5E.erreur." + error;
+            return "NEPHILIM.erreur" + error;
         }
     }
 

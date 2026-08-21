@@ -17,7 +17,7 @@ export class Rite extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.rite';
+        return 'NEPHILIM.tenteSelfRite';
     }
 
     /**

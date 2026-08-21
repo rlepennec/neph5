@@ -44,14 +44,14 @@ export class Ka extends AbstractFeature {
             case 'figure':
                 switch (this.scope) {
                     case 'actor':
-                        return 'NEPH5E.tente.self.ka-de';
+                        return 'NEPHILIM.tenteSelfKa-de';
                     case 'simulacre':
-                        return 'NEPH5E.tente.simulacre.ka-de';
+                        return 'NEPHILIM.tenteSimulacreKa-de';
                     default:
                         throw new Error("Ka.sentence scope " + this.scope + " not implemented");
                 }
             case 'figurant':
-                return 'NEPH5E.tente.self.ka';
+                return 'NEPHILIM.tenteSelfKa';
             default:
                 throw new Error("Ka.sentence actor type " + this.actor.type + " not implemented");
         }

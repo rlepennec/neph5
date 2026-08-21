@@ -43,7 +43,7 @@ export class Metamorphe extends SimpleFeature {
         // Initialization
         let id = null;
         let sid = null;
-        let name = game.i18n.localize('NEPH5E.metamorphe');
+        let name = game.i18n.localize('NEPHILIM.metamorphe');
         let size = 0;
         let visibles = 0;
         let  metamorphoses = [];

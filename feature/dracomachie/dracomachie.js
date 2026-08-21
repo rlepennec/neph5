@@ -19,11 +19,11 @@ export class Dracomachie extends AbstractFocus {
     get sentence() {
         switch (this.domaine) {
             case 'charmes':
-                return 'NEPH5E.tente.self.dracomachie.charmes';
+                return 'NEPHILIM.tenteSelfDracomachieCharmes';
             case 'rites':
-                return 'NEPH5E.tente.self.dracomachie.rites';
+                return 'NEPHILIM.tenteSelfDracomachieRites';
             case 'passes':
-                return 'NEPH5E.tente.self.dracomachie.passes';
+                return 'NEPHILIM.tenteSelfDracomachiePasses';
         }
     }
 

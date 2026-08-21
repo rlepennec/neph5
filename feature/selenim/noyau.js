@@ -22,7 +22,7 @@ export class Noyau extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.noyau';
+        return 'NEPHILIM.tenteSelfNoyau';
     }
 
 

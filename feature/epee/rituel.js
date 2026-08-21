@@ -16,7 +16,7 @@ export class Rituel extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.rituel';
+        return 'NEPHILIM.tenteSelfRituel';
     }
 
     /**

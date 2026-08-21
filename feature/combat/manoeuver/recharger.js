@@ -46,8 +46,8 @@ export class Recharger extends AbstractManoeuver {
             .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: action.actor,
-                sentence: game.i18n.localize('NEPH5E.manoeuvres.recharger.sentence').replaceAll("${arme}", action.weapon.name),
-                richSentence: game.i18n.localize('NEPH5E.manoeuvres.recharger.sentence').replaceAll("${arme}", action.weapon.name),
+                sentence: game.i18n.localize('NEPHILIM.manoeuvreRechargerSentence').replaceAll("${arme}", action.weapon.name),
+                richSentence: game.i18n.localize('NEPHILIM.manoeuvreRechargerSentence').replaceAll("${arme}", action.weapon.name),
                 img: action.img,
                 reload: action.weapon.system.munitions
             })

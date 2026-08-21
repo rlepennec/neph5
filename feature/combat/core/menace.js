@@ -24,7 +24,7 @@ export class Menace extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.menace';
+        return 'NEPHILIM.tenteSelfMenace';
     }
 
     /**

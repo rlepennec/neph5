@@ -17,7 +17,7 @@ export class Sort extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.sort';
+        return 'NEPHILIM.tenteSelfSort';
     }
 
     /**
@@ -73,10 +73,10 @@ export class Sort extends AbstractFocus {
      */
     extraChatSentence(fumble, fail, critical, margin) {
         if (fumble === true) {
-            return game.i18n.localize('NEPH5E.fumbleSort');
+            return game.i18n.localize('NEPHILIM.fumbleSort');
         }
         if (critical === true) {
-            return game.i18n.localize('NEPH5E.criticalSort');
+            return game.i18n.localize('NEPHILIM.criticalSort');
         }
         return null;
     }

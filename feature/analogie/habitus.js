@@ -17,7 +17,7 @@ export class Habitus extends AbstractFocus {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.sort';
+        return 'NEPHILIM.tenteSelfSort';
     }
 
     /**

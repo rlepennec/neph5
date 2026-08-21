@@ -41,7 +41,7 @@ export class Naturelle extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return game.i18n.localize('NEPH5E.tente.self.attaque').replaceAll("${arme}", this.weapon.name);
+        return game.i18n.localize('NEPHILIM.tenteSelfAttaque').replaceAll("${arme}", this.weapon.name);
     }
 
     /**

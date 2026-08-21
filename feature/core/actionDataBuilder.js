@@ -4,21 +4,21 @@ export class ActionDataBuilder {
 
     static get ADVERSAIRE_AU_SOL() {
         return {
-            label: 'NEPH5E.adversaireAuSol',
+            label: 'NEPHILIM.adversaireAuSol',
             modifier: +20
         }
     }
 
     static get AU_SOL() {
         return {
-            label: 'NEPH5E.auSol',
+            label: 'NEPHILIM.auSol',
             modifier: -20
         }
     }
 
     static get DESORIENTE() {
         return {
-            label: 'NEPH5E.desoriente',
+            label: 'NEPHILIM.desoriente',
             modifier: -20
         }
     }
@@ -309,7 +309,7 @@ export class ActionDataBuilder {
         } else if (this.sentence != null) {
             data.sentence = this.actor.name + " " + game.i18n.localize(this.sentence);
         } else {
-            data.sentence = this.actor.name + " " + game.i18n.localize('NEPH5E.utiliseNonDefini');
+            data.sentence = this.actor.name + " " + game.i18n.localize('NEPHILIM.utiliseNonDefini');
         }
 
         if (this.item?.name != null) {
@@ -319,7 +319,7 @@ export class ActionDataBuilder {
         } else if (this.sentence != null) {
             data.richSentence = this.actor.name + " " + game.i18n.localize(this.sentence);
         } else {
-            data.richSentence = this.actor.name + " " + game.i18n.localize('NEPH5E.utiliseNonDefini');
+            data.richSentence = this.actor.name + " " + game.i18n.localize('NEPHILIM.utiliseNonDefini');
         }
 
         if (this.img != null) {
@@ -438,7 +438,7 @@ export class ActionDataBuilder {
                 return game.items.find(i => i.sid === weapon?.system?.competence);
             case 'figurant':
                 return {
-                    name: game.i18n.localize('NEPH5E.menace')
+                    name: game.i18n.localize('NEPHILIM.menace')
                 }
         }
     }

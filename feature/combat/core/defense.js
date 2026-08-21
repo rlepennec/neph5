@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../../core/abstractFeature.js";
+import { AbstractManoeuver } from "../manoeuver/abstractManoeuver.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -52,7 +53,7 @@ export class Defense extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return 'NEPH5E.tente.self.defense';
+        return 'NEPHILIM.tenteSelfDefense';
     }
 
     /**
@@ -96,13 +97,13 @@ export class Defense extends AbstractFeature {
                     case Constants.DODGE:
                         return this.actor.isEsquiveAvailable ? 
                                this.manoeuver.competenceUsed(this.actor, this.weapon).name :
-                               game.i18n.localize("NEPH5E.nonDefini");
+                               game.i18n.localize("NEPHILIM.nonDefini");
                     case Constants.PARADE:
                         const used = this.manoeuver.competenceUsed(this.actor, this.weapon)?.name;
-                        return used != null ? used : game.i18n.localize("NEPH5E.nonDefini");
+                        return used != null ? used : game.i18n.localize("NEPHILIM.nonDefini");
                 }
             case 'figurant':
-                return game.i18n.localize('NEPH5E.menace');
+                return game.i18n.localize('NEPHILIM.menace');
         }
     }
 
@@ -199,7 +200,7 @@ export class Defense extends AbstractFeature {
      * @returns the result sentence.
      */
     sentenceOf(winner) {
-        const sentence = this.manoeuver == null ? "se défendre" : game.i18n.localize("NEPH5E.manoeuvres." + this.manoeuver.id + ".sentence");
+        const sentence = this.manoeuver == null ? "se défendre" : game.i18n.localize(AbstractManoeuver.clef(this.manoeuver.id, "Sentence"));
         switch (winner) {
             case Constants.ACTION:
                 return " ne parvient pas à " + sentence;
