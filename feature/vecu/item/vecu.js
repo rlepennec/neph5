@@ -37,9 +37,7 @@ export class VecuSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
-        const element = this.document.system.element;
-        if (element) this.element.classList.add(`skin-${element}`);
+        this.applySkin(this.document.system.element);
     }
 
     /** 

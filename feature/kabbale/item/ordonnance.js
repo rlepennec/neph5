@@ -1,4 +1,3 @@
-import { Game } from "../../../module/common/game.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { OrdonnanceDataModel } from "./ordonnance.mjs";
 

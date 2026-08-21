@@ -2,7 +2,6 @@ import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 import { ItemOptionsSelector } from "../../feature/core/itemOptionsSelector.js";
 
-import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Science } from "../../feature/science/science.js";
 
 export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
@@ -108,6 +107,22 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     async _onRender(context, options) {
         await super._onRender(context, options);
         this.element.classList.add(`item-${this.document.type}`);
+    }
+
+    /**
+     * Applique sur la fenêtre le skin correspondant au Ka de l'item.
+     *
+     * Retire TOUTE classe skin-* présente avant d'ajouter la nouvelle, quelle
+     * que soit son origine : balayer une liste figée laissait derrière lui les
+     * valeurs absentes de cette liste (skin-luneNoire et skin-choix pour un
+     * sort, skin-choix pour une invocation) et les classes s'accumulaient.
+     *
+     * @param element La valeur de system.element, ou null pour ne rien poser.
+     */
+    applySkin(element) {
+        this.element.classList.remove(
+            ...[...this.element.classList].filter(c => c.startsWith('skin-')));
+        if (element) this.element.classList.add(`skin-${element}`);
     }
 
     cerclesOf(science) {

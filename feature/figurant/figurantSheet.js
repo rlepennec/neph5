@@ -4,7 +4,6 @@ import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Ka } from "../nephilim/ka.js";
 import { Menace } from "../combat/core/menace.js";
 import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
-import { NephilimItemSheet } from "../../module/item/nephilimItemSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
 export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {

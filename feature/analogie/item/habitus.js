@@ -1,6 +1,6 @@
-import { Constants } from "../../../module/common/constants.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { HabitusDataModel } from "./habitus.mjs";
 
 export class HabitusSheet extends NephilimItemSheet {
 
@@ -24,9 +24,7 @@ export class HabitusSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
-        const element = this.document.system.element;
-        if (element) this.element.classList.add(`skin-${element}`);
+        this.applySkin(this.document.system.element);
     }
 
     /** 
@@ -37,7 +35,7 @@ export class HabitusSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 cercles: super.cerclesOf('analogie'),
-                elements: Constants.ELEMENTS_CHOIX
+                elements: HabitusDataModel.defineSchema().element.choices
             }
         }
     }

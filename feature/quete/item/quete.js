@@ -1,5 +1,4 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 
 export class QueteSheet extends NephilimItemSheet {
 

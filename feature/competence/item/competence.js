@@ -1,7 +1,5 @@
 import { CompetenceDataModel } from "./competence.mjs";
-import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { Game } from "../../../module/common/game.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
 
@@ -45,14 +43,7 @@ export class CompetenceSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.element.classList.remove(...Constants.ELEMENTS.map(e => `skin-${e}`));
-
-        // Pas de skin en style classique.
-        const style = game.settings.get('neph5e', 'styleItemSheet');
-        if (style === 'classique') return;
-
-        const element = this.document.system.element;
-        if (element) this.element.classList.add(`skin-${element}`);
+        this.applySkin(this.document.system.element);
     }
 
 }
