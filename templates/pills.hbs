@@ -12,7 +12,7 @@
             name="{{../name}}"
             value="{{key}}"
             {{#if (eq ../value key)}}checked{{/if}}
-            {{#if (or ../disabled ../document.sheet.locked)}} disabled{{/if}}/>
+            {{#if @root.locked}} disabled{{/if}}/>
 
         {{label}}
 

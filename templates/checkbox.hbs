@@ -6,11 +6,11 @@
 
     <input
 
-        {{#if document.sheet.locked}}
+        {{#if @root.locked}}
         class="locked"
         {{/if}}
 
-        {{#if (or (nonNull difficulty) (lookup document.sheet "locked"))}}
+        {{#if (or (nonNull difficulty) @root.locked)}}
             disabled
         {{/if}}
 

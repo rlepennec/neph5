@@ -4,7 +4,7 @@
     <h1>{{translate title}}</h1>
     {{/if}}
 
-    {{#if locked}}
+    {{#if @root.locked}}
     <p>{{lookup (selectChoices options) value}}</p>
     {{else}}
     <select name={{name}}>

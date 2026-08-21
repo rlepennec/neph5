@@ -31,7 +31,6 @@
                 <li>
                     {{> "systems/neph5e/templates/input.hbs"
                         icon="fa-solid fa-feather"
-                        disabled=../document.sheet.locked
                         name=(concat "system.metamorphoses.[" this "].name")
                         value=(lookup (lookup ../document.system.metamorphoses this) "name") }}
                 </li>

@@ -19,7 +19,7 @@
                 value="{{item}}"
                 data-dtype="String"/>
 
-            {{#unless ../locked}}
+            {{#unless @root.locked}}
             <a data-action="delete"><i class="fas fa-trash"></i></a>
             {{/unless}}
 
