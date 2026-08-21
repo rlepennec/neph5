@@ -17,6 +17,7 @@ export class AppelDataModel extends foundry.abstract.TypeDataModel {
             ),
             degre: new foundry.data.fields.NumberField(
                 {
+                    intial: 1,
                     required: false
                 }
             ),
@@ -75,7 +76,7 @@ export class AppelDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/appels/Appel-Defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/appel-defaut.png"
                 }
             ),
         }
