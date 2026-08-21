@@ -1346,96 +1346,13 @@ form.nephilim.item .item-root.style-ashbury {
     to   { transform: rotate(360deg); }
 }
 
-
 // ───────────────────────────────────────────────────────────────────────────
-//  6. VARIABLES PAR TYPE
+//  6. VARIABLES PAR TYPE — DÉPLACÉES
 //
-//  Deux porteurs distincts, à ne pas confondre :
-//    .item-<type>  posé par NephilimItemSheet._onRender sur la fiche
-//                  → --vk-side-classique (illustration latérale du classique),
-//                    --vk-media-width
-//    .vk-<theme>   posé par <Type>Sheet.DEFAULT_OPTIONS.classes sur la fenêtre
-//                  → --vk-bg, --vk-grad, --vk-glow, --vk-body-background,
-//                    --vk-seal-color
+//  Cette section vit désormais dans less/src/item/variables.less, qui est la
+//  source unique des variables par type pour les deux styles.
 //
-//  Section volontairement regroupée en fin de fichier : c'est elle qui a
-//  vocation à devenir less/src/item/variables.less une fois les 32 types
-//  couverts (le déplacer tel quel suffira).
-//
-//  TODO 1 — types migrés dont les variables ont été perdues avec leur fichier
-//  LESS (bande latérale vide en classique, fond absent en ashbury). Valeurs à
-//  récupérer d'une version antérieure, convention : assets/core/side-<type>.webp
-//    alchimie, capacite, catalyseur, chute, competence, magie,
-//    materiae, ordonnance, passe, savoir, science (--vk-body-background OK)
-//
-//  TODO 2 — doublons à résorber en créant variables.less. Sans effet visuel
-//  aujourd'hui (valeurs identiques de part et d'autre), mais deux sources de
-//  vérité pour une même variable :
-//    .item-arme  ici et classique.less:7
-//    .item-sort  classique.less:8 et sort.less:7
-//    .item-vecu  classique.less:9 et vecu.less:7
-//    .item-rite  rite.less:7 et appel.less:7  ← voir TODO 3
-//
-//  TODO 3 — appel.less est une copie non renommée de rite.less (même en-tête
-//  « Fiche rite », même sélecteur .item-rite, même side-rite.webp). Résultat :
-//  .item-appel n'est défini nulle part, la fiche appel n'a pas d'illustration
-//  latérale en classique. À corriger dans appel.less, pas ici.
+//  Ne rien redéclarer ici : item.less importe variables.less AVANT ce fichier,
+//  donc une déclaration de même sélecteur laissée ici l'emporterait en silence
+//  et rendrait toute modification faite là-bas sans effet.
 // ───────────────────────────────────────────────────────────────────────────
-
-// ── Thèmes partagés ────────────────────────────────────────────────────────
-
-// Ka Orichalque — arme, armure et formule (ArmeSheet, ArmureSheet,
-// FormuleSheet le posent via DEFAULT_OPTIONS.classes). Hérité par la barre
-// latérale, le fond de main et le halo des médaillons.
-.vk-orichalque {
-    --vk-bg: rgba(35, 45, 55, 0.3);
-    --vk-glow: rgba(28, 77, 181, 0.35);
-    --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
-}
-
-// ── Par type, ordre alphabétique ───────────────────────────────────────────
-
-.item-arcane {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
-    // La carte occupe une part plus large de la pile que le médaillon du savoir.
-    --vk-media-width: 62%;
-}
-
-.vk-arcane {
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
-}
-
-// arme et armure : fond ashbury fourni par .vk-orichalque ci-dessus.
-.item-arme {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
-}
-
-.item-armure {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
-}
-
-// InvocationSheet ne pose aucune classe vk-* (DEFAULT_OPTIONS n'a que position) :
-// --vk-body-background reste donc indéfini et le fond ashbury est absent. Si un
-// fond est souhaité, l'ajouter ici plutôt que de créer une classe de thème —
-// .item-invocation est posée sur le même élément par _onRender.
-.item-invocation {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
-}
-
-.item-metamorphe {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
-}
-
-.item-quete {
-    --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
-}
-
-.vk-quete {
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-}
-
-.vk-science {
-    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-    --vk-seal-color: rgba(232, 184, 109, 0.85);
-}

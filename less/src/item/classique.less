@@ -2,11 +2,13 @@
 //  Style CLASSIQUE des fiches d'item (look v12).
 //  Vocabulaire commun aux partials : div.input, div.label, div.selector,
 //  div.checkbox, div.list, div.pills, ol.icons, table.chronology...
+//
+//  Les variables par type (--vk-side-classique) ont été déplacées dans
+//  variables.less, qui couvre désormais les 32 types. Ne pas en redéclarer
+//  ici : ce fichier étant importé après, une déclaration concurrente
+//  l'emporterait et rendrait la modification faite dans variables.less
+//  silencieusement sans effet.
 // ─────────────────────────────────────────────
-
-.item-arme       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp"); }
-.item-sort       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
-.item-vecu       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp"); }
 
 form.nephilim.item .item-root.style-classique {
 

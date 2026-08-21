@@ -1,0 +1,204 @@
+// ═══════════════════════════════════════════════════════════════════════════
+//  VARIABLES PAR TYPE D'ITEM
+//
+//  Source unique des réglages visuels qui dépendent du type d'item.
+//  Ce fichier ne contient QUE des déclarations de variables CSS : aucune
+//  règle de style, aucun sélecteur de mise en page. Les styles vivent dans
+//  classique.less et ashbury.less, qui consomment ces variables.
+//
+//  Objectif : pouvoir régler l'apparence d'un type — ou d'un style entier —
+//  sans ouvrir les fichiers de style.
+//
+//  ── Deux porteurs distincts, à ne pas confondre ───────────────────────────
+//
+//    .item-<type>   posé par NephilimItemSheet._onRender sur la fenêtre.
+//                   Toujours disponible, pour les 32 types.
+//
+//    .vk-<theme>    posé par <Type>Sheet.DEFAULT_OPTIONS.classes, également
+//                   sur la fenêtre. Facultatif, et partagé entre types
+//                   lorsqu'ils se ressemblent (vk-orichalque : arme, armure,
+//                   formule).
+//
+//    .skin-<element> posé dynamiquement en JS depuis system.element, sur la
+//                   fenêtre aussi. Défini dans less/src/skins/ — hors de ce
+//                   fichier, car il dépend d'une donnée et non du type.
+//
+//  Les trois atterrissent sur le MÊME élément (this.element). L'ordre des
+//  @import et la spécificité départagent donc seuls les conflits — d'où la
+//  règle ci-dessous.
+//
+//  ── Règle de tenue du fichier ─────────────────────────────────────────────
+//
+//  Une variable ne doit être déclarée QU'ICI. Une déclaration concurrente
+//  laissée dans classique.less ou ashbury.less, à sélecteur égal, l'emporte
+//  par simple ordre d'import (ces fichiers sont importés après) et rend toute
+//  modification faite ici silencieusement sans effet.
+//  Vérifié en compilant : c'est exactement ce qui se produisait pour les six
+//  types dont --vk-side-classique était déclaré des deux côtés.
+// ═══════════════════════════════════════════════════════════════════════════
+
+
+// ───────────────────────────────────────────────────────────────────────────
+//  1. STYLE CLASSIQUE
+//
+//  --vk-side-classique : illustration de la bande latérale (l'<aside> de
+//  60 px). Unique consommateur : classique.less, règle « aside ».
+//  Une valeur absente n'est pas une erreur bloquante : background-image
+//  retombe sur « none » et la bande reste vide.
+//
+//  Onze types partagent deux images, volontairement :
+//    side-sort.webp      → alchimie, atlanteide, divination, dracomachie,
+//                          habitus, magie, science, sort
+//    side-technique.webp → pratique, rituel, technique, tekhne
+//  Pour différencier l'un d'eux plus tard, il suffit de changer sa ligne.
+// ───────────────────────────────────────────────────────────────────────────
+
+.item-alchimie    { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-appel       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-appel.webp"); }
+.item-arcane      { --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp"); }
+.item-arme        { --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp"); }
+.item-armure      { --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp"); }
+.item-aspect      { --vk-side-classique: url("../../systems/neph5e/assets/core/side-aspect.webp"); }
+.item-atlanteide  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-capacite    { --vk-side-classique: url("../../systems/neph5e/assets/core/side-capacite.webp"); }
+.item-catalyseur  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-catalyseur.webp"); }
+.item-chute       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-chute.webp"); }
+.item-competence  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-competence.webp"); }
+.item-divination  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-dracomachie { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-formule     { --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp"); }
+.item-habitus     { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-invocation  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp"); }
+.item-magie       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-materiae    { --vk-side-classique: url("../../systems/neph5e/assets/core/side-materiae.webp"); }
+.item-metamorphe  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp"); }
+.item-ordonnance  { --vk-side-classique: url("../../systems/neph5e/assets/core/side-ordonnance.webp"); }
+.item-passe       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-passe.webp"); }
+.item-periode     { --vk-side-classique: url("../../systems/neph5e/assets/core/side-periode.webp"); }
+.item-pratique    { --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp"); }
+.item-quete       { --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp"); }
+.item-rite        { --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp"); }
+.item-rituel      { --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp"); }
+.item-savoir      { --vk-side-classique: url("../../systems/neph5e/assets/core/side-savoir.webp"); }
+.item-science     { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-sort        { --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp"); }
+.item-technique   { --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp"); }
+.item-tekhne      { --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp"); }
+.item-vecu        { --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp"); }
+
+
+// ───────────────────────────────────────────────────────────────────────────
+//  2. STYLE ASHBURY
+//
+//  Variables consommées par ashbury.less et common.less :
+//    --vk-body-background  fond de <main>            (porté par .vk-<theme>)
+//    --vk-bg               fond du bandeau de titre  (porté par .vk-<theme>)
+//    --vk-grad             dégradé du bandeau        (porté par .vk-<theme>)
+//    --vk-glow             halo des médaillons       (porté par .vk-<theme>)
+//    --vk-seal-color       couleur du sceau SVG      (porté par .vk-<theme>)
+//    --vk-media-width      largeur du média empilé   (porté par .item-<type>)
+//
+//  ── Ne JAMAIS poser de fond sur le thème d'un type à skin ─────────────────
+//
+//  Sept types tirent leur apparence de .skin-<element>, posée en JS depuis
+//  system.element : competence, habitus, invocation, materiae, metamorphe,
+//  sort, vecu. Or neph5e.less importe skins/ AVANT item/, et .vk-<theme> a la
+//  même spécificité que .skin-<element> — les deux atterrissant sur le même
+//  élément. Une déclaration posée ici l'emporterait donc sur le skin.
+//  Mesuré : .vk-habitus avec le fond orichalque + .skin-feu → orichalque.webp
+//  au lieu de feu-paysage.webp, le Ka de la fiche est perdu.
+//  → .vk-habitus et .vk-vecu restent donc délibérément VIDES ci-dessous.
+//    Les cinq autres ne posent aucune classe vk-*, la question ne se pose pas.
+// ───────────────────────────────────────────────────────────────────────────
+
+
+// ── Thème par défaut, provisoire ───────────────────────────────────────────
+//
+// Reprend les valeurs de .vk-orichalque. Sert de remplissage aux 19 types qui
+// n'avaient aucun fond : sans --vk-body-background, la règle « main » de
+// ashbury.less (§3) devient invalide au calcul et perd tout, y compris son
+// « center / cover no-repeat ».
+// Mesuré avant correction : background-image: none, size: auto, repeat: repeat.
+//
+// Chaque appel ci-dessous est un emplacement en attente de sa vraie valeur.
+// Pour donner son identité à un type, remplacer son « .vk-theme-defaut(); »
+// par les déclarations voulues — le reste du fichier n'a pas à bouger.
+
+.vk-theme-defaut() {
+    --vk-bg: rgba(35, 45, 55, 0.3);
+    --vk-glow: rgba(28, 77, 181, 0.35);
+    --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+
+
+// ── Thèmes partagés ────────────────────────────────────────────────────────
+
+// Ka Orichalque — arme, armure et formule (ArmeSheet, ArmureSheet,
+// FormuleSheet le posent via DEFAULT_OPTIONS.classes). Hérité par la barre
+// latérale, le fond de main et le halo des médaillons.
+.vk-orichalque {
+    .vk-theme-defaut();
+}
+
+
+// ── Thèmes aboutis, par type ───────────────────────────────────────────────
+
+.vk-arcane {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+
+.vk-quete {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+
+.vk-science {
+    --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+    --vk-seal-color: rgba(232, 184, 109, 0.85);
+}
+
+
+// ── Thèmes en attente de leur identité ─────────────────────────────────────
+//
+// Ces 19 thèmes étaient posés par les feuilles sans qu'aucune règle CSS ne
+// leur corresponde : classes inertes, fiches sans fond. Ils portent désormais
+// le thème par défaut.
+
+.vk-alchimie    { .vk-theme-defaut(); }
+.vk-appel       { .vk-theme-defaut(); }
+.vk-aspect      { .vk-theme-defaut(); }
+.vk-atlanteide  { .vk-theme-defaut(); }
+.vk-capacite    { .vk-theme-defaut(); }
+.vk-catalyseur  { .vk-theme-defaut(); }
+.vk-chute       { .vk-theme-defaut(); }
+.vk-divination  { .vk-theme-defaut(); }
+.vk-dracomachie { .vk-theme-defaut(); }
+.vk-magie       { .vk-theme-defaut(); }
+.vk-ordonnance  { .vk-theme-defaut(); }
+.vk-passe       { .vk-theme-defaut(); }
+.vk-periode     { .vk-theme-defaut(); }
+.vk-pratique    { .vk-theme-defaut(); }
+.vk-rite        { .vk-theme-defaut(); }
+.vk-rituel      { .vk-theme-defaut(); }
+.vk-savoir      { .vk-theme-defaut(); }
+.vk-technique   { .vk-theme-defaut(); }
+.vk-tekhne      { .vk-theme-defaut(); }
+
+// .vk-habitus et .vk-vecu : VOLONTAIREMENT absents. Voir l'avertissement en
+// tête de section — leurs fiches suivent .skin-<element>, qu'une déclaration
+// ici écraserait.
+
+
+// ── Réglages fins, par type ────────────────────────────────────────────────
+
+.item-arcane {
+    // La carte occupe une part plus large de la pile que le médaillon du savoir.
+    --vk-media-width: 62%;
+}
+
+// InvocationSheet et MetamorpheSheet ne posent aucune classe vk-*
+// (DEFAULT_OPTIONS n'a que position) : elles s'appuient sur .skin-<element>,
+// posée en JS depuis system.element, qui fournit --vk-body-background.
+// Un fond fixe, s'il en fallait un, se poserait sur .item-invocation /
+// .item-metamorphe — mêmes éléments, posés par _onRender — et non sur un
+// thème, pour la raison expliquée en tête de section.

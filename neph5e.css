@@ -1173,27 +1173,6 @@
 form.nephilim {
   --background-article-bright: url("../../systems/neph5e/assets/skins/soleil/background.webp");
   --background-article-dark: url("../../systems/neph5e/assets/backgrounds/p.webp");
-  --background-side-appel: url("../../systems/neph5e/assets/core/side-appel.webp");
-  --background-side-arcane: url("../../systems/neph5e/assets/core/side-arcane.webp");
-  --background-side-arme: url("../../systems/neph5e/assets/core/side-arme.webp");
-  --background-side-armure: url("../../systems/neph5e/assets/core/side-armure.webp");
-  --background-side-aspect: url("../../systems/neph5e/assets/core/side-aspect.webp");
-  --background-side-capacite: url("../../systems/neph5e/assets/core/side-capacite.webp");
-  --background-side-catalyseur: url("../../systems/neph5e/assets/core/side-catalyseur.webp");
-  --background-side-chute: url("../../systems/neph5e/assets/core/side-chute.webp");
-  --background-side-competence: url("../../systems/neph5e/assets/core/side-competence.webp");
-  --background-side-materiae: url("../../systems/neph5e/assets/core/side-materiae.webp");
-  --background-side-metamorphe: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
-  --background-side-passe: url("../../systems/neph5e/assets/core/side-passe.webp");
-  --background-side-periode: url("../../systems/neph5e/assets/core/side-periode.webp");
-  --background-side-quete: url("../../systems/neph5e/assets/core/side-quete.webp");
-  --background-side-rite: url("../../systems/neph5e/assets/core/side-rite.webp");
-  --background-side-savoir: url("../../systems/neph5e/assets/core/side-savoir.webp");
-  --background-side-sort: url("../../systems/neph5e/assets/core/side-sort.webp");
-  --background-side-vecu: url("../../systems/neph5e/assets/core/side-vecu.webp");
-  --background-side-formule: url("../../systems/neph5e/assets/core/side-formule.webp");
-  --background-side-invocation: url("../../systems/neph5e/assets/core/side-invocation.webp");
-  --background-side-technique: url("../../systems/neph5e/assets/core/side-technique.webp");
   --color-font-bright: #f5f4f4;
   --color-font-dark: #191813;
   --color-scrollbar: #2f3557;
@@ -6029,6 +6008,235 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.vecus .body .vecu:hover {
   text-shadow: 0px 0px 1px var(--font-color);
 }
+.item-alchimie {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-appel {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-appel.webp");
+}
+.item-arcane {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
+}
+.item-arme {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
+}
+.item-armure {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
+}
+.item-aspect {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-aspect.webp");
+}
+.item-atlanteide {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-capacite {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-capacite.webp");
+}
+.item-catalyseur {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-catalyseur.webp");
+}
+.item-chute {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-chute.webp");
+}
+.item-competence {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-competence.webp");
+}
+.item-divination {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-dracomachie {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-formule {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-formule.webp");
+}
+.item-habitus {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-invocation {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
+}
+.item-magie {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-materiae {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-materiae.webp");
+}
+.item-metamorphe {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
+}
+.item-ordonnance {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-ordonnance.webp");
+}
+.item-passe {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-passe.webp");
+}
+.item-periode {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-periode.webp");
+}
+.item-pratique {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp");
+}
+.item-quete {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
+}
+.item-rite {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-rite.webp");
+}
+.item-rituel {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp");
+}
+.item-savoir {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-savoir.webp");
+}
+.item-science {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-sort {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
+}
+.item-technique {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp");
+}
+.item-tekhne {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-technique.webp");
+}
+.item-vecu {
+  --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
+}
+.vk-orichalque {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-arcane {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+.vk-quete {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+}
+.vk-science {
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
+  --vk-seal-color: rgba(232, 184, 109, 0.85);
+}
+.vk-alchimie {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-appel {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-aspect {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-atlanteide {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-capacite {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-catalyseur {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-chute {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-divination {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-dracomachie {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-magie {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-ordonnance {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-passe {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-periode {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-pratique {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-rite {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-rituel {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-savoir {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-technique {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-tekhne {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.item-arcane {
+  --vk-media-width: 62%;
+}
 form.nephilim.item section.window-content > section {
   display: flex;
   flex-flow: unset;
@@ -6196,15 +6404,6 @@ form.application.sheet.item > .window-header .window-title {
   100% {
     transform: translateX(150%);
   }
-}
-.item-arme {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
-}
-.item-sort {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-sort.webp");
-}
-.item-vecu {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
 }
 form.nephilim.item .item-root.style-classique aside {
   flex: 0 0 auto;
@@ -7506,41 +7705,6 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
   to {
     transform: rotate(360deg);
   }
-}
-.vk-orichalque {
-  --vk-bg: rgba(35, 45, 55, 0.3);
-  --vk-glow: rgba(28, 77, 181, 0.35);
-  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
-}
-.item-arcane {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arcane.webp");
-  --vk-media-width: 62%;
-}
-.vk-arcane {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
-}
-.item-arme {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-arme.webp");
-}
-.item-armure {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-armure.webp");
-}
-.item-invocation {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-invocation.webp");
-}
-.item-metamorphe {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-metamorphe.webp");
-}
-.item-quete {
-  --vk-side-classique: url("../../systems/neph5e/assets/core/side-quete.webp");
-}
-.vk-quete {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-}
-.vk-science {
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp-iri.webp");
-  --vk-seal-color: rgba(232, 184, 109, 0.85);
 }
 .recherche table tr td {
   font-family: 'AJensonPro';
