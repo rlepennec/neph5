@@ -27,7 +27,7 @@ export class AbstractOptionsSelector extends foundry.applications.api.Handlebars
             return;
         }
         game.clipboard.copyPlainText(id);
-        ui.notifications.info(game.i18n.format("NEPHILIM.copyIdEffecutee", { id: id }));
+        ui.notifications.info(game.i18n.format("NEPHILIM.copyIdEffectuee", { id: id }));
     }
 
     withSheet(sheet) {
