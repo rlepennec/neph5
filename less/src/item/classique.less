@@ -33,7 +33,36 @@ form.nephilim.item .item-root.style-classique {
         font-size: 16px;
         color: #191813;
         background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
-        
+
+        // Disposition à trois colonnes (métamorphe) : métamorphoses, portrait
+        // chinois, description. Reprise de la grille ashbury moins la colonne
+        // d'illustration, que la fiche classique n'a pas.
+        //
+        // Comme en ashbury, la fiche n'enveloppe pas ses colonnes : ce sont des
+        // enfants directs de main, et le bandeau court sur toute la largeur.
+        // Le déclencheur est la présence du bloc portraits, seule fiche
+        // classique à trois colonnes à ce jour.
+        &:has(> div.portraits) {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr 1.4fr;
+            grid-template-rows: auto minmax(0, 1fr);
+            align-items: stretch;
+            overflow: hidden;
+
+            > div.banner {
+                grid-column: 1 / -1;
+            }
+
+            // Chaque colonne défile pour son propre compte : dix métamorphoses
+            // et dix portraits ne tiennent pas toujours dans la hauteur.
+            > ol.icons,
+            > div.portraits,
+            > div.description {
+                min-height: 0;
+                overflow-y: auto;
+            }
+        }
+
         > div.checkbox,
         > div.input,
         > div.label {
@@ -182,6 +211,55 @@ form.nephilim.item .item-root.style-classique {
                 }
             }
 
+        }
+
+        // ── Portrait chinois (métamorphe) ──────────────────────────────────
+        // Même structure qu'en ashbury : la question — icône et libellé — sur
+        // une ligne, la réponse en dessous. Dans une colonne au tiers de la
+        // fiche, la disposition en ligne de div.input mettrait le libellé et
+        // la saisie à l'étroit.
+        // Le rendu reste classique : AJensonPro, encre #191813, bleu #151156
+        // des icônes, et le cadre noir des champs de saisie.
+        div.portraits {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            > div.input {
+                display: grid;
+                grid-template-columns: auto minmax(0, 1fr);
+                align-items: center;
+                column-gap: 8px;
+
+                > i {
+                    grid-row: 1;
+                    width: 22px;
+                    text-align: center;
+                    color: #151156;
+                }
+
+                // Le libellé est une question posée au joueur, pas un intitulé
+                // de réglage : italique, à la taille du texte courant, et non
+                // aux 20 px des autres titres. La marge de droite de div.input
+                // n'a plus lieu d'être, l'écart venant du column-gap.
+                > h1 {
+                    grid-row: 1;
+                    min-width: 0;
+                    margin: 0;
+                    font-size: 16px;
+                    font-style: italic;
+                    font-weight: normal;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                // La réponse court sous la question, sur toute la largeur.
+                > input {
+                    grid-column: 1 / -1;
+                    width: 100%;
+                }
+            }
         }
 
         div.input {

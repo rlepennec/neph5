@@ -6035,6 +6035,22 @@ form.nephilim.item .item-root.style-classique main {
   color: #191813;
   background: url("../../systems/neph5e/assets/skins/soleil/background.webp") center / cover;
 }
+form.nephilim.item .item-root.style-classique main:has(> div.portraits) {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.4fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+}
+form.nephilim.item .item-root.style-classique main:has(> div.portraits) > div.banner {
+  grid-column: 1 / -1;
+}
+form.nephilim.item .item-root.style-classique main:has(> div.portraits) > ol.icons,
+form.nephilim.item .item-root.style-classique main:has(> div.portraits) > div.portraits,
+form.nephilim.item .item-root.style-classique main:has(> div.portraits) > div.description {
+  min-height: 0;
+  overflow-y: auto;
+}
 form.nephilim.item .item-root.style-classique main > div.checkbox,
 form.nephilim.item .item-root.style-classique main > div.input,
 form.nephilim.item .item-root.style-classique main > div.label {
@@ -6172,6 +6188,38 @@ form.nephilim.item .item-root.style-classique main ol.icons > li > i {
 }
 form.nephilim.item .item-root.style-classique main ol.icons > li > div.input {
   flex: 1 1 auto;
+}
+form.nephilim.item .item-root.style-classique main div.portraits {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+form.nephilim.item .item-root.style-classique main div.portraits > div.input {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 8px;
+}
+form.nephilim.item .item-root.style-classique main div.portraits > div.input > i {
+  grid-row: 1;
+  width: 22px;
+  text-align: center;
+  color: #151156;
+}
+form.nephilim.item .item-root.style-classique main div.portraits > div.input > h1 {
+  grid-row: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+form.nephilim.item .item-root.style-classique main div.portraits > div.input > input {
+  grid-column: 1 / -1;
+  width: 100%;
 }
 form.nephilim.item .item-root.style-classique main div.input {
   display: flex;
