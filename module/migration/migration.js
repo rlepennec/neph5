@@ -24,15 +24,37 @@ export class MigrationTools {
     }
 
     /**
+     * La barre en cours, et le libellé qui l'a ouverte.
+     *
+     * [V14] SceneNavigation.displayProgressBar est déprécié depuis la v13 et
+     * sera RETIRÉ en v15 ; il émettait un avertissement à chaque appel, soit
+     * plusieurs milliers par migration. Son remplaçant est une notification de
+     * progression, qui n'est pas sans état : il faut conserver l'objet rendu
+     * par ui.notifications.info(..., { progress: true }) et l'actualiser.
+     * On en ouvre donc une par libellé, réutilisée tant qu'il ne change pas —
+     * une migration qui change de libellé ouvre une nouvelle barre.
+     */
+    static #barre = null;
+    static #libelle = null;
+
+    /**
      * Display the progress bar.
      * @param label     The title of the bar.
      * @param iteration The current iteration.
      * @param size      The maximum number of iteration.
      */
     static progress(label, iteration, size) {
-        SceneNavigation.displayProgressBar({
-            label: label,
-            pct: Math.round(iteration * 100 / size)
+
+        if (MigrationTools.#libelle !== label) {
+            MigrationTools.#libelle = label;
+            MigrationTools.#barre = ui.notifications.info(label, { progress: true });
+        }
+
+        // Le remplaçant attend une FRACTION entre 0 et 1, là où
+        // displayProgressBar attendait un pourcentage entre 0 et 100.
+        MigrationTools.#barre?.update({
+            pct: size > 0 ? iteration / size : 1,
+            message: label
         });
     }
 

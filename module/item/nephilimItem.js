@@ -60,6 +60,17 @@ export class NephilimItem extends Item {
     }
 
     /**
+     * @returns un identifiant métier qu'aucun item du monde ne porte.
+     */
+    static identifiantLibre() {
+        let sid;
+        do {
+            sid = CustomHandlebarsHelpers.UUID();
+        } while (game.items.find(i => i.sid === sid) != null);
+        return sid;
+    }
+
+    /**
      * @returns the item description from the embedded or the original item if necessary.
      */
     get description() {
@@ -78,9 +89,23 @@ export class NephilimItem extends Item {
     async _preCreate(data, options, user) {
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return false;
+        // Un item EMBARQUÉ doit conserver le system.id de sa source : c'est le
+        // lien entre l'item du monde et sa copie sur la fiche. EmbeddedItem
+        // crée l'embarqué par item.toObject(), identifiant compris, et le
+        // retrouve par actor.items.find(i => i.sid === sid). On ne régénère
+        // donc jamais l'identifiant d'un embarqué, sauf s'il n'en a aucun.
         const duplicated = data._stats?.duplicateSource != null && !this.isEmbedded;
-        if (duplicated || data.system?.id == null || data.system?.id === "") {
-            this.updateSource({ "system.id": CustomHandlebarsHelpers.UUID() });
+        const absent = data.system?.id == null || data.system?.id === "";
+
+        // Filet de sécurité ajouté : un identifiant déjà porté par un item du
+        // monde. Couvre le copier-coller et le ré-import d'un item déjà présent,
+        // que duplicateSource ne marque pas. Laisser l'identifiant au premier ne
+        // casse aucun lien : game.items.find renvoie déjà celui-là.
+        const pris = !this.isEmbedded && !duplicated && !absent
+            && game.items.find(i => i.sid === data.system.id) != null;
+
+        if (duplicated || absent || pris) {
+            this.updateSource({ "system.id": NephilimItem.identifiantLibre() });
         }
 
         // An item created on a value other than the default one must carry the

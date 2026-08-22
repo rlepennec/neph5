@@ -273,40 +273,13 @@ Hooks.once("init", function () {
         await combat.setFlag("world", "combat", status);
     })
 
-    // The hook to pre-create actor
-    //
-    // [V14] Handler SYNCHRONE, comme hotbarDrop plus bas et pour la meme raison :
-    // un hook preCreate annule la creation en retournant false, et un handler
-    // async retourne une Promise, toujours vraie. Le mot-cle async etait ici une
-    // mine posee sous un futur return false ; il ne servait a rien, aucun await
-    // ne figure dans le corps.
-    Hooks.on("preCreateActor", (actor, data, options, user) => {
-
-        // If duplicate, create a new uuid
-        if (actor.link.startsWith("@UUID[Actor") && actor.link.endsWith(" (Copy)}")) {
-            const uuid = CustomHandlebarsHelpers.UUID();
-            actor.system.id = uuid;
-            data.system.id = uuid;
-            actor._source.system.id = uuid;
-            return true; 
-        }
-
-    });
-
-    // The hook to pre-create item
-    // [V14] Synchrone, meme raison que preCreateActor ci-dessus.
-    Hooks.on("preCreateItem", (item, data, options, user) => {
-
-        // If duplicate, create a new uuid
-        if (item.link.startsWith("@UUID[Item") && item.link.endsWith(" (Copy)}")) {
-            const uuid = CustomHandlebarsHelpers.UUID();
-            item.system.id = uuid;
-            data.system.id = uuid;
-            item._source.system.id = uuid;
-            return true;
-        }
-
-    });
+    // [V14] Les hooks preCreateActor et preCreateItem ont ete supprimes.
+    // Ils regeneraient system.id d'un doublon en reconnaissant le suffixe
+    // " (Copy)" du nom -- donc uniquement le bouton Dupliquer, et seulement
+    // en anglais. La regle vit desormais dans NephilimActor._preCreate et
+    // NephilimItem._preCreate, ou elle s'appuie sur data._stats.duplicateSource
+    // (marqueur pose par Foundry, independant de la langue), sur l'absence
+    // d'identifiant, et sur un controle d'unicite dans le monde.
 
     // Handle chat message for opposed rolls, especially combat system
     //

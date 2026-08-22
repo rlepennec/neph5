@@ -6,6 +6,7 @@ import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/chute/chute.js";
 import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
+import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
@@ -30,6 +31,64 @@ export class NephilimActor extends Actor {
      */
     get sid() {
         return this?.system?.id;
+    }
+
+    /**
+     * Garantit l'unicité de l'identifiant métier system.id.
+     *
+     * system.id est distinct de l'_id de Foundry : c'est par lui que les
+     * documents se retrouvent (game.actors.find(a => a.sid === …)). Deux
+     * acteurs du monde qui le partagent rendent ces recherches ambiguës, sans
+     * la moindre erreur affichée.
+     *
+     * L'ancienne règle vivait dans un hook global de neph5e.js et reconnaissait
+     * un doublon au suffixe " (Copy)" du nom : elle ne couvrait que le bouton
+     * Dupliquer, et seulement tant que le module de traduction française du
+     * cœur de Foundry n'était pas installé — sinon le nom finit par « (Copie) »
+     * et plus aucun doublon n'était détecté. La règle porte désormais sur trois
+     * signaux indépendants de la langue, dans l'ordre du moins cher au plus
+     * cher. C'est la transposition de ce que NephilimItem._preCreate faisait
+     * déjà pour les items ; les acteurs n'en avaient pas d'équivalent.
+     *
+     * @override
+     */
+    async _preCreate(data, options, user) {
+        const allowed = await super._preCreate(data, options, user);
+        if (allowed === false) return false;
+
+        // 1. Foundry marque lui-même les duplications, quelle que soit la langue.
+        const duplique = data._stats?.duplicateSource != null && !this.isToken;
+
+        // 2. Identifiant absent : UUIDField en fournit normalement un, mais un
+        //    document importé d'une version ancienne peut arriver sans.
+        const absent = data.system?.id == null || data.system?.id === "";
+
+        // 3. Filet de sécurité : identifiant déjà porté par un acteur du monde.
+        //    Couvre le copier-coller et le ré-import d'un acteur déjà présent,
+        //    que duplicateSource ne marque pas. Laisser l'identifiant au premier
+        //    ne casse aucun lien : game.actors.find renvoie déjà celui-là.
+        //
+        //    L'acteur d'un token non lié est exclu, comme l'est un item embarqué
+        //    dans NephilimItem : il est une copie de l'acteur du monde et doit en
+        //    garder l'identifiant. Sans cette exclusion, il en recevrait un neuf
+        //    et se détacherait de sa source.
+        const pris = !this.isToken && !duplique && !absent
+            && game.actors.find(a => a.sid === data.system.id) != null;
+
+        if (duplique || absent || pris) {
+            this.updateSource({ "system.id": NephilimActor.identifiantLibre() });
+        }
+    }
+
+    /**
+     * @returns un identifiant métier qu'aucun acteur du monde ne porte.
+     */
+    static identifiantLibre() {
+        let sid;
+        do {
+            sid = CustomHandlebarsHelpers.UUID();
+        } while (game.actors.find(a => a.sid === sid) != null);
+        return sid;
     }
 
     /**
