@@ -126,7 +126,10 @@ export class Melee extends AbstractFeature {
 
             // Use token
             } else {
-                new CombatDialog(this.actor, this)
+                // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
+                // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
+                // retrait du drapeau pendant que le rendu courait encore.
+                await new CombatDialog(this.actor, this)
                     .withTitle(this.title)
                     .withTemplate("systems/neph5e/feature/combat/core/contact.hbs")
                     .withHeight(465)

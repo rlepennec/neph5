@@ -12,6 +12,53 @@ import { Wrestle } from "../combat/core/wrestle.js";
 export class OpposedRollBuilder {
 
     /**
+     * Identifiants des messages d'opposition déjà pris en charge par ce client.
+     *
+     * Le drapeau porté par le message ne peut pas servir de verrou : il est
+     * retiré par NephilimChat.unsetFlags() bien après plusieurs await, alors
+     * que Foundry rend un même message plusieurs fois de suite. Mesuré sur une
+     * défense : quatre passages du hook renderChatMessageHTML, quatre défenses
+     * construites, quatre fenêtres superposées au pixel près — d'où l'impression
+     * que la fenêtre ne se ferme pas quand on lance le dé.
+     *
+     * Ce jeu d'identifiants est le seul verrou que la réentrance ne peut pas
+     * contourner, parce qu'il est posé de façon SYNCHRONE, avant le premier
+     * await. Il est local au client : chaque client décide pour lui-même.
+     */
+    static #reserves = new Set();
+
+    /**
+     * Réserve le traitement d'un message d'opposition. À appeler avant toute
+     * opération asynchrone : c'est ce qui rend le hook idempotent.
+     *
+     * @param message Le message de chat rendu.
+     * @returns true si l'appelant doit prendre ce message en charge.
+     */
+    static claim(message) {
+        const flags = message?.flags?.[game.system.id];
+        if (flags == null || !flags.hasOwnProperty(Constants.OPPOSED)) {
+            return false;
+        }
+        if (OpposedRollBuilder.#reserves.has(message.id)) {
+            return false;
+        }
+        OpposedRollBuilder.#reserves.add(message.id);
+        return true;
+    }
+
+    /**
+     * Libère un message réservé qui n'a finalement ouvert aucune réaction —
+     * par exemple parce que la défense revient à un autre client. Un rendu
+     * ultérieur pourra le reconsidérer ; seule l'ouverture effective d'une
+     * fenêtre rend la réservation définitive.
+     *
+     * @param message Le message de chat à libérer.
+     */
+    static release(message) {
+        OpposedRollBuilder.#reserves.delete(message?.id);
+    }
+
+    /**
      * Create the specified reaction roll.
      * @param data The chat message data.
      */

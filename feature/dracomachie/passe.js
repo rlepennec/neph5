@@ -1,9 +1,9 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
-import { ActionDialog } from "../core/actionDialog.js";
+import { ActionDialog } from "./actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
-export class Passe extends AbstractFeature {
+export class ReactionRoll extends AbstractFeature {
 
     /**
      * Constructor.
@@ -15,7 +15,7 @@ export class Passe extends AbstractFeature {
         super(actor);
         this.result = result;
         this.item = purpose;
-        this.base = purpose.system.degre;
+        this.base = 0;
     }
 
     /**
@@ -29,7 +29,7 @@ export class Passe extends AbstractFeature {
      * @Override
      */
     get sentence() {
-        return this.item.name + " s'oppose à l'invocateur";
+        return "La situation n'est pas si simple";
     }
 
     /**
@@ -40,7 +40,7 @@ export class Passe extends AbstractFeature {
             self: this,
             actor: this.actor,
             sentence: this.sentence,
-            img: this.item.img,
+            img: this.img,
             name: "Opposition",
             base: {
                 name: 'Opposition',
@@ -48,6 +48,22 @@ export class Passe extends AbstractFeature {
             },
             opposed: true
         }
+    }
+
+    /**
+     * @Override
+     */
+    get img() {
+        return 'systems/neph5e/assets/icons/opposition.webp';
+    }
+
+    /**
+     * @param base The base value to set. 
+     * @returns the instance.
+     */
+    withBase(base) {
+        this.base = base;
+        return this;
     }
 
     /**
@@ -62,7 +78,10 @@ export class Passe extends AbstractFeature {
      * @Override
      */
     async initializeRoll() {
-        new ActionDialog(this.actor, this)
+        // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
+        // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
+        // retrait du drapeau pendant que le rendu courait encore.
+        await new ActionDialog(this.actor, this)
             .withTitle(this.title)
             .withTemplate("systems/neph5e/feature/core/action.hbs")
             .withData(this.data)
@@ -78,7 +97,7 @@ export class Passe extends AbstractFeature {
             .withData({
                 actor: this.actor,
                 richSentence: this.sentenceOf(result),
-                img: this.item.img,
+                img: this.img,
                 total: result.roll._total,
             })
             .withRoll(result.roll)
@@ -86,15 +105,15 @@ export class Passe extends AbstractFeature {
     }
 
     /**
-     * @Override
+     * @Overrides
      */
     sentenceOf(result) {
         switch (AbstractFeature.winner(this.result, result)) {
             case Constants.ACTION:
-                return " parvient à établir un pacte avec la créature";
+                return " parvient à ses fins";
             case Constants.REACTION:
             case Constants.TIE:
-                return " ne parvient pas à établir un pacte avec la créature";
+                return " ne parvient pas à ses fins";
         }
     }
 

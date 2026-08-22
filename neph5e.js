@@ -302,12 +302,22 @@ Hooks.once("init", function () {
     });
 
     // Handle chat message for opposed rolls, especially combat system
+    //
+    // Foundry rend un même message de chat plusieurs fois. Ce handler étant
+    // asynchrone, Foundry ne l'attend pas : quatre rendus rapprochés entraient
+    // tous dans create() avant que le premier n'ait retiré le drapeau, et
+    // ouvraient quatre fenêtres de défense superposées. claim() pose un verrou
+    // SYNCHRONE, avant le premier await ; release() le rend si aucune réaction
+    // n'a finalement été ouverte.
     Hooks.on("renderChatMessageHTML", async (message, html) => {
+        if (!OpposedRollBuilder.claim(message)) return;
         const reaction = await OpposedRollBuilder.create(message);
-        if (reaction != null) {
-            await reaction.initializeRoll();
-            await NephilimChat.unsetFlags(message.id);
+        if (reaction == null) {
+            OpposedRollBuilder.release(message);
+            return;
         }
+        await reaction.initializeRoll();
+        await NephilimChat.unsetFlags(message.id);
     });
 
     // Handle the macro creation
