@@ -301,14 +301,6 @@ Hooks.once("init", function () {
 
     });
 
-    // Handle the actor sheet creation to apply the defined or the default skin
-    Hooks.on("renderActorSheet", (app, html, data) => {
-        const skin = data.actor.system?.options?.theme;
-        $(html[0])
-            .removeClass( "skin-soleil skin-air skin-eau skin-feu skin-lune skin-luneNoire skin-terre")
-            .addClass( "skin-" + (skin == null ? 'soleil' : skin));
-    });
-
     // Handle chat message for opposed rolls, especially combat system
     Hooks.on("renderChatMessageHTML", async (message, html) => {
         const reaction = await OpposedRollBuilder.create(message);
