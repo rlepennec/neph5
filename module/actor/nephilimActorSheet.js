@@ -148,12 +148,13 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     createFeature(purpose, event) {
         switch (purpose) {
             case '.roll-ka': {
-                const element = $(event.currentTarget).closest(purpose).data("element");
-                const scope = $(event.currentTarget).closest(purpose).data("scope"); 
+                const noeud = event.currentTarget.closest(purpose);
+                const element = noeud?.dataset.element;
+                const scope = noeud?.dataset.scope;
                 return new FeatureBuilder(this.document).withKa(element).withScope(scope).create();
             }
             case '.roll-science': {
-                const key = $(event.currentTarget).closest(".roll").data("item"); 
+                const key = event.currentTarget.closest(".roll")?.dataset.item;
                 const item = game.items.find(i => i.type === 'science' && i?.system?.key === key);
                 const builder = new FeatureBuilder(this.document).withOriginalItem(item.sid);
                 return builder.create();
@@ -167,8 +168,9 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
                 return builder.create();
             }
             default: {
-                const id = $(event.currentTarget).closest(purpose).data("id");
-                const scope = $(event.currentTarget).closest(purpose).data("scope");
+                const noeud = event.currentTarget.closest(purpose);
+                const id = noeud?.dataset.id;
+                const scope = noeud?.dataset.scope;
 
                 if (scope == null) {
                     const item = game.items.get(id);
@@ -241,24 +243,24 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
         // Retrieve basic data
         this._onDragStart(event);
-        const node = $(event.currentTarget);
+        const node = event.currentTarget;
 
         let data = {
             process: "macro",
-            type: node.data("macro")
+            type: node.dataset.macro
         };
 
         switch (data.type) {
 
             // A macro which used an original item
             case 'item':
-                data.sid = node.data("sid");
+                data.sid = node.dataset.sid;
                 break;
 
             // A macro about vecu item
             case 'vecu':
-                data.sid = node.data("sid");
-                data.id = node.data("id");
+                data.sid = node.dataset.sid;
+                data.id = node.dataset.id;
                 break;
 
             // A combat macro used to wrestle
@@ -266,13 +268,13 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
                 break;
 
             case 'weapon':
-                data.actor = node.data("actor");
-                data.id = node.data("id");
+                data.actor = node.dataset.actor;
+                data.id = node.dataset.id;
                 break;
 
             // A ka macro
             case 'ka':
-                data.id = node.data("id");
+                data.id = node.dataset.id;
                 break;
 
             default:
@@ -294,10 +296,10 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      */
     _createFeature(event) {
         event.preventDefault();
-        const node = $(event.currentTarget).closest('.item');
-        const id = node.data('id');
-        const sid = node.data('sid');
-        let scope = node.data("scope");
+        const node = event.currentTarget.closest('.item');
+        const id = node?.dataset.id;
+        const sid = node?.dataset.sid;
+        let scope = node?.dataset.scope;
         scope = scope == null ? "actor" : scope;
         return new FeatureBuilder(this.document).withScope(scope).withEmbeddedItem(id).withOriginalItem(sid).create();
     }
