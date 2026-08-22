@@ -181,8 +181,8 @@
             <div class="line">
                 <div class="line-title">
                     <select id="approche" name="approche">
-                        {{#each approches as |approche|}}
-                        <option value="{{approche.name}}">{{approche.label}}</option>
+                        {{#each approches as |approche cle|}}
+                        <option value="{{cle}}">{{approche.label}}</option>
                         {{/each}}
                     </select>
                 </div>

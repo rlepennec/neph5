@@ -344,10 +344,14 @@ export class ActionDialog extends AbstractDialog {
         // [V14] this.object.getKa() → this.actor.getKa() : this.object n'existe plus
         //       en V2 (c'était le document passé à super() en FormApplication).
         const selector = this.element?.querySelector("#approche");
+        // La valeur de l'option est désormais la clef du ka ('noyau', 'air',
+        // 'ka'), celle-là même qu'attend getKa(). Le retrait du préfixe
+        // 'NEPHILIM.' qui figurait ici compensait le fait que le gabarit
+        // émettait un chemin i18n ; il n'a plus lieu d'être, et il masquait
+        // que 'NEPHILIM.luneNoire' ne redonnait pas la clef 'noyau'.
         const approche = selector?.value;
         if (approche == null) return 0;
-        const element = approche.replaceAll("NEPHILIM.", "");
-        return element === "none" ? 0 : this.actor.getKa(element) * 10;
+        return approche === "none" ? 0 : this.actor.getKa(approche) * 10;
     }
 
     /**

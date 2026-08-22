@@ -806,13 +806,23 @@ export class NephilimActor extends Actor {
     }
 
     /**
-     * @returns the allowed approches with the name of the element and the value if > 0.
+     * @returns the allowed approches with the label of the element and the value if > 0.
+     *
+     * La clef de chaque entrée est le nom du ka dans le schéma — 'noyau', 'air',
+     * 'ka' — et c'est elle, et elle seule, qui identifie l'approche : c'est
+     * l'argument attendu par getKa(). Les gabarits l'émettent en valeur d'option.
+     *
+     * Le champ 'name' portait auparavant un chemin i18n ('NEPHILIM.luneNoire')
+     * qui servait aussi de valeur d'option, ce qui mélangeait identité et
+     * affichage. Comme il ne coïncidait pas toujours avec la clef, l'approche
+     * de noyau d'un sélénim était résolue en getKa('luneNoire') — champ
+     * inexistant, donc bonus nul. Le champ est supprimé : le libellé traduit
+     * suffit à l'affichage, la clef suffit à l'identité.
      */
     approches() {
         const approches = {};
         approches['none'] = {
-            name: 'NEPHILIM.none',
-            label: 'Aucune approche',
+            label: game.i18n.localize('NEPHILIM.aucuneApproche'),
             degre: 0
         };
         switch (this.type) {
@@ -820,8 +830,7 @@ export class NephilimActor extends Actor {
                 if (this.system.options.selenim === true) {
                     if (this.system.ka.noyau > 0) {
                         approches['noyau'] = {
-                            name: 'NEPHILIM.luneNoire',
-                            label: 'Approche de ' + game.i18n.localize('NEPHILIM.luneNoire'),
+                            label: NephilimActor.libelleApproche('luneNoire'),
                             degre: this.system.ka.noyau
                         };
                     }
@@ -833,8 +842,7 @@ export class NephilimActor extends Actor {
                         const value = this.system.ka[elt];
                         if (value > 0) {
                             approches[elt] = {
-                                name: 'NEPHILIM.' + elt,
-                                label: 'Approche de ' + game.i18n.localize('NEPHILIM.' + elt),
+                                label: NephilimActor.libelleApproche(elt),
                                 degre: value
                             };
                         }
@@ -843,13 +851,25 @@ export class NephilimActor extends Actor {
                 break;
             case 'figurant':
                 approches['ka'] = {
-                    name: 'NEPHILIM.ka',
-                    label: 'Approche de ' + game.i18n.localize('NEPHILIM.ka'),
+                    label: NephilimActor.libelleApproche('ka'),
                     degre: this.system.ka
                 };
                 break;
         }
         return approches;
+    }
+
+    /**
+     * Le libellé d'une approche était construit en concaténant la chaîne
+     * française 'Approche de ' au nom traduit du ka : le système n'était donc
+     * pas traduisible sur ce point. La phrase entière vit désormais dans
+     * NEPHILIM.approcheDe, avec le ka en paramètre.
+     *
+     * @param ka Le nom du ka, tel qu'il sert de clef dans NEPHILIM.
+     * @returns le libellé affiché dans la liste des approches.
+     */
+    static libelleApproche(ka) {
+        return game.i18n.format('NEPHILIM.approcheDe', { ka: game.i18n.localize('NEPHILIM.' + ka) });
     }
 
     /**
