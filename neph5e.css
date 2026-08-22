@@ -474,21 +474,21 @@
   --vk-grad: linear-gradient(135deg, rgba(130, 0, 0, 0.5) 0%, rgba(255, 69, 0, 0.4) 50%, rgba(255, 215, 0, 0.5) 100%);
   --vk-bg: rgba(40, 40, 45, 0.2);
 }
-.skin-lune-noire {
-  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/lune-noire/background.webp") repeat;
+.skin-luneNoire {
+  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/luneNoire/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-disabled-color: #a1a1a1;
   --column-color: #5e6061;
-  --side-background: url("../../systems/neph5e/assets/skins/lune-noire/side-background.webp");
-  --img-article-separator: url("../../systems/neph5e/assets/skins/lune-noire/article-separator.webp");
-  --img-nef: url("../../systems/neph5e/assets/skins/lune-noire/boussole.webp");
-  --img-circle: url("../../systems/neph5e/assets/skins/lune-noire/circle.webp");
-  --img-barge: url("../../systems/neph5e/assets/skins/lune-noire/compas.webp");
-  --img-pin: url("../../systems/neph5e/assets/skins/lune-noire/pin.webp");
-  --img-puce: url("../../systems/neph5e/assets/skins/lune-noire/puce.webp");
-  --img-separator: url("../../systems/neph5e/assets/skins/lune-noire/separator.webp");
-  --img-triangle: url("../../systems/neph5e/assets/skins/lune-noire/triangle.webp");
+  --side-background: url("../../systems/neph5e/assets/skins/luneNoire/side-background.webp");
+  --img-article-separator: url("../../systems/neph5e/assets/skins/luneNoire/article-separator.webp");
+  --img-nef: url("../../systems/neph5e/assets/skins/luneNoire/boussole.webp");
+  --img-circle: url("../../systems/neph5e/assets/skins/luneNoire/circle.webp");
+  --img-barge: url("../../systems/neph5e/assets/skins/luneNoire/compas.webp");
+  --img-pin: url("../../systems/neph5e/assets/skins/luneNoire/pin.webp");
+  --img-puce: url("../../systems/neph5e/assets/skins/luneNoire/puce.webp");
+  --img-separator: url("../../systems/neph5e/assets/skins/luneNoire/separator.webp");
+  --img-triangle: url("../../systems/neph5e/assets/skins/luneNoire/triangle.webp");
   --incarnations-menu-first-color: #191813;
   --incarnations-menu-second-color: #e2e0d2;
   --nephilim-margin-top: -10px;
@@ -588,6 +588,7 @@
   --materiae-input-left: -17px;
   --materiae-maximum-top: 11px;
   --materiae-maximum-left: 14px;
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
   --vk-bg: rgba(10, 10, 10, 0.35);
   --vk-grad: linear-gradient(135deg, rgba(0, 0, 0, 0.45) 0%, rgba(45, 45, 50, 0.4) 50%, rgba(120, 100, 60, 0.5) 100%);
   --vk-glow: #000000;
