@@ -818,20 +818,24 @@ export class NephilimActor extends Actor {
      * de noyau d'un sélénim était résolue en getKa('luneNoire') — champ
      * inexistant, donc bonus nul. Le champ est supprimé : le libellé traduit
      * suffit à l'affichage, la clef suffit à l'identité.
+     *
+     * Un champ 'degre' recopiait par ailleurs le niveau du ka dans chaque
+     * entrée, sans qu'aucun lecteur ne s'en serve : le bonus est recalculé
+     * depuis la clef par actionDialog._approche(), via getKa(). Cette copie
+     * muette est supprimée — deux sources pour une même valeur finissent par
+     * diverger.
      */
     approches() {
         const approches = {};
         approches['none'] = {
-            label: game.i18n.localize('NEPHILIM.aucuneApproche'),
-            degre: 0
+            label: game.i18n.localize('NEPHILIM.aucuneApproche')
         };
         switch (this.type) {
             case 'figure':
                 if (this.system.options.selenim === true) {
                     if (this.system.ka.noyau > 0) {
                         approches['noyau'] = {
-                            label: NephilimActor.libelleApproche('luneNoire'),
-                            degre: this.system.ka.noyau
+                            label: NephilimActor.libelleApproche('luneNoire')
                         };
                     }
                 }
@@ -839,11 +843,9 @@ export class NephilimActor extends Actor {
                     // NEPHILIM porte déjà les mêmes libellés d'élément que
                     // l'ancien bloc NEPH5E.pentacle.elements, à l'identique.
                     for (let elt of Constants.ELEMENTS) {
-                        const value = this.system.ka[elt];
-                        if (value > 0) {
+                        if (this.system.ka[elt] > 0) {
                             approches[elt] = {
-                                label: NephilimActor.libelleApproche(elt),
-                                degre: value
+                                label: NephilimActor.libelleApproche(elt)
                             };
                         }
                     }
@@ -851,8 +853,7 @@ export class NephilimActor extends Actor {
                 break;
             case 'figurant':
                 approches['ka'] = {
-                    label: NephilimActor.libelleApproche('ka'),
-                    degre: this.system.ka
+                    label: NephilimActor.libelleApproche('ka')
                 };
                 break;
         }

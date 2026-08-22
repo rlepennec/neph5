@@ -144,19 +144,11 @@ export class CombatDialog extends ActionDialog {
             .join("");
     }
 
-    /**
-     * @param manoeuver The identifier of the manoeuver.
-     * @returns the approches to display in the action dialog according to the manoeuver and the actor.
-     */
-    _approches(manoeuver) {
-        const approches = this.action.approches(manoeuver);
-        let html = "<select id='approche' name='approche' style='padding-left:15px;flex: 0 0 auto;border:none;outline:0px;background-color:transparent;'>";
-        for (const a in approches) {
-            html = html + "<option value='" + a + "'>" + approches[a].label + "</option>";
-        }
-        html = html + "</select>";
-        return html;
-    }
+    // [V14] _approches(manoeuver) supprimée : elle fabriquait le <select> des
+    // approches entier en chaîne de caractères, style en ligne compris, et
+    // n'avait aucun appelant — vestige de l'époque où le dialogue s'assemblait
+    // ainsi. Le gabarit rend désormais le <select>, et _setApprocheOptions
+    // ci-dessus n'en réécrit que les <option> quand la manoeuvre change.
 
     /**
      * @returns the name and the degre of the competence or the vecu used as
