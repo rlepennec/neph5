@@ -13,7 +13,13 @@ export class Health {
     }
 
     static async onSocketMessage(socketMessage) {
-        if (game.user.isGM !== true) return;
+        // Un message socket est livré à TOUS les clients connectés. La garde
+        // « je suis MJ » ne suffit donc pas : avec deux MJ à la table, chacun
+        // exécuterait applyDamagesOn et les dommages seraient appliqués deux
+        // fois. game.users.activeGM désigne un unique MJ primaire, le même pour
+        // tous les clients, ce qui rend le traitement idempotent quel que soit
+        // le nombre de récepteurs.
+        if (game.user !== game.users.activeGM) return;
         switch (socketMessage.msg) {
           case Constants.MSG_APPLY_DAMAGES_ON:
             await Health.applyDamagesOn(

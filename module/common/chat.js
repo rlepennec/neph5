@@ -146,7 +146,9 @@ export class NephilimChat {
      * @returns 
      */
     static async onSocketMessage(socketMessage) {
-        if (game.user.isGM !== true) return;
+        // Même raison que dans Health.onSocketMessage : le message est livré à
+        // tous les clients, seul le MJ primaire doit y répondre.
+        if (game.user !== game.users.activeGM) return;
         switch (socketMessage.msg) {
           case Constants.MSG_UNSET_CHAT_MESSAGE:
             await NephilimChat.unsetFlags(socketMessage.data.id);

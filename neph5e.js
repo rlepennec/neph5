@@ -274,7 +274,13 @@ Hooks.once("init", function () {
     })
 
     // The hook to pre-create actor
-    Hooks.on("preCreateActor", async (actor, data, options, user) => {
+    //
+    // [V14] Handler SYNCHRONE, comme hotbarDrop plus bas et pour la meme raison :
+    // un hook preCreate annule la creation en retournant false, et un handler
+    // async retourne une Promise, toujours vraie. Le mot-cle async etait ici une
+    // mine posee sous un futur return false ; il ne servait a rien, aucun await
+    // ne figure dans le corps.
+    Hooks.on("preCreateActor", (actor, data, options, user) => {
 
         // If duplicate, create a new uuid
         if (actor.link.startsWith("@UUID[Actor") && actor.link.endsWith(" (Copy)}")) {
@@ -288,7 +294,8 @@ Hooks.once("init", function () {
     });
 
     // The hook to pre-create item
-    Hooks.on("preCreateItem", async (item, data, options, user) => {
+    // [V14] Synchrone, meme raison que preCreateActor ci-dessus.
+    Hooks.on("preCreateItem", (item, data, options, user) => {
 
         // If duplicate, create a new uuid
         if (item.link.startsWith("@UUID[Item") && item.link.endsWith(" (Copy)}")) {
