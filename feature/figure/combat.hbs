@@ -286,9 +286,17 @@
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
                     <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+                    {{!-- Affichage seul du degré : cet input est disabled, donc
+                          jamais soumis. Il portait un name={{name}} et un
+                          {{#if type}} repris tels quels d'input.hbs, alors que
+                          ni name ni type n'existent ici : dans un {{#each … as
+                          |item|}}, this reste l'élément courant, si bien que
+                          name recevait le NOM de l'item et type son TYPE. Un nom
+                          comportant une espace produisait des attributs
+                          parasites, et « passe » n'est pas un type d'input
+                          valide. Les deux attributs sont retirés. --}}
                     <input
-                        name={{name}}
-                        {{#if type}}type="{{type}}"{{else}}type="text"type"{{/if}}
+                        type="text"
                         value="{{item.system.degre}}"
                         disabled/>
                 </li>

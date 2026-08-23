@@ -7,7 +7,7 @@
     {{#if @root.locked}}
     <p>{{lookup (selectChoices options) value}}</p>
     {{else}}
-    <select name={{name}}>
+    <select name="{{name}}">
         {{#select value}}
         {{#each (selectChoices options) as |label key|}}
         <option value="{{key}}" class="option">{{label}}</option>
