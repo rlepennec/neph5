@@ -53,7 +53,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         const document = identifier.toDocument();
         switch (document.type) {
             case 'vecu':
-                await document.update({ ['system.periode']: "" });
+                await document.update({ ['system.periode']: null });
                 await this.render(true);
                 break;
         }

@@ -110,13 +110,17 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     esquive: new foundry.data.fields.StringField(
-                        {
-                            required: false
+                    {
+                            required: false,
+                            nullable: true,
+                            initial: null
                         }
                     ),
                     lutte: new foundry.data.fields.StringField(
                         {
-                            required: false
+                            required: false,
+                            nullable: true,
+                            initial: null
                         }
                     )
                 }

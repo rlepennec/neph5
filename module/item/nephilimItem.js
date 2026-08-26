@@ -262,10 +262,10 @@ export class NephilimItem extends Item {
                 await actor.deleteEmbeddedDocuments('Item', [item.id]);
             }
             if (actor.system?.manoeuvres?.esquive === this.sid) {
-                await this.actor.update({ ['system.manoeuvres.esquive']: null });
+                await actor.update({ ['system.manoeuvres.esquive']: null });
             }
             if (actor.system?.manoeuvres?.lutte === this.sid) {
-                await this.actor.update({ ['system.manoeuvres.lutte']: null });
+                await actor.update({ ['system.manoeuvres.lutte']: null });
             }
         }
         for (let scene of game.scenes) {

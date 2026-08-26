@@ -129,38 +129,38 @@ export class _1_0_3 {
                 
                 // Move salve
                 const salve = item.system.ranged.actions.salve;
-                await item.update({ ['item.system.ranged.actions.salve']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.salve']: salve });
+                await item.update({ ['system.ranged.actions.salve']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.salve']: salve });
 
                 // Move rafale
                 const rafale = item.system.ranged.actions.rafale;
-                await item.update({ ['item.system.ranged.actions.rafale']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.rafale']: salve });
+                await item.update({ ['system.ranged.actions.rafale']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.rafale']: rafale });
 
                 // Move ammunition
                 const ammunition = item.system.ranged.ammunition;
-                await item.update({ ['item.system.ranged.ammunition']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.ammunition']: ammunition });
+                await item.update({ ['system.ranged.ammunition']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.ammunition']: ammunition });
 
                 // Move munitions
                 const munitions = item.system.ranged.munitions;
-                await item.update({ ['item.system.ranged.munitions']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.munitions']: munitions });
+                await item.update({ ['system.ranged.munitions']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.munitions']: munitions });
 
                 // Replace utilise by tire
                 const tire = item.system.ranged.utilise;
-                await item.update({ ['item.system.ranged.utilise']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.tire']: tire });
+                await item.update({ ['system.ranged.utilise']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.tire']: tire });
 
                 // Move visee
                 const visee = item.system.ranged.visee;
-                await item.update({ ['item.system.ranged.visee']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.visee']: visee });
+                await item.update({ ['system.ranged.visee']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.visee']: visee });
 
                 // Replace target by cible
                 const cible = item.system.ranged.target;
-                await item.update({ ['item.system.ranged.target']: new foundry.data.operators.ForcedDeletion() });
-                await item.update({ ['item.system.cible']: cible });
+                await item.update({ ['system.ranged.target']: new foundry.data.operators.ForcedDeletion() });
+                await item.update({ ['system.cible']: cible });
 
                 // Remove some properties
                 await item.update({ ['system.melee.blocage']: new foundry.data.operators.ForcedDeletion() });

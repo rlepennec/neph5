@@ -32,7 +32,9 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
             periode: new foundry.data.fields.StringField
             (
                 {
-                    required: false
+                    required: false,
+                    nullable: true,
+                    initial: null
                 }
             ),
             competences: new foundry.data.fields.ArrayField

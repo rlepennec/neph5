@@ -34,7 +34,9 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             competence: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    required: false,
+                    nullable: true,
+                    initial: null
                 }
             ),
             attack: new foundry.data.fields.NumberField(
@@ -89,7 +91,9 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             ),
             cible: new foundry.data.fields.StringField(
                 {
-                    required: false
+                    required: false,
+                    nullable: true,
+                    initial: null
                 }
             ),
             visee: new foundry.data.fields.NumberField(
