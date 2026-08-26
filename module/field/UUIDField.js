@@ -1,3 +1,5 @@
+import { CustomHandlebarsHelpers } from "../common/handlebars.js";
+
 export class UUIDField extends foundry.data.fields.StringField {
 
     /**
@@ -11,7 +13,7 @@ export class UUIDField extends foundry.data.fields.StringField {
      *  @override
      */
     getInitialValue(data) {
-        return crypto.randomUUID();
+        return CustomHandlebarsHelpers.UUID();
     }
 
 }
