@@ -929,7 +929,7 @@ export class NephilimActor extends Actor {
      * @returns le libellé affiché dans la liste des approches.
      */
     static libelleApproche(ka) {
-        return game.i18n.format('NEPHILIM.approcheDe', { ka: game.i18n.localize('NEPHILIM.' + ka) });
+        return game.i18n.localize('NEPHILIM.approcheDe' + ka.charAt(0).toUpperCase() + ka.slice(1));
     }
 
     /**
