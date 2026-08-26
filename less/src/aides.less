@@ -91,3 +91,111 @@
     }
 
 }
+
+// Nettoyage des items orphelins (bouton MJ des reglages du systeme).
+// Le message d'aide precede le tableau : la fenetre s'ouvre sur une
+// explication, pas sur une liste brute.
+.nettoyage {
+
+    .nettoyage-root {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 8px 4px;
+        font-family: 'AJensonPro';
+        color: #191813;
+    }
+
+    .aide {
+        padding: 10px 14px;
+        border-left: 3px solid #151156;
+        background: rgba(21, 17, 86, 0.06);
+
+        h1 {
+            margin: 0 0 6px 0;
+            font-family: 'NightjarDemi';
+            font-size: 18px;
+            border: none;
+        }
+
+        p {
+            margin: 4px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        p.exclusions {
+            font-style: italic;
+        }
+    }
+
+    .barre {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+
+        .compte {
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        a {
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    }
+
+    table.orphelins {
+        width: 100%;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        background: rgba(0, 0, 0, 0.05);
+
+        thead {
+            background: rgba(200, 200, 200, 0.5);
+            border: none;
+            font-family: 'Nightjar';
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        th, td {
+            text-align: left;
+            padding: 3px 8px;
+            font-size: 14px;
+        }
+
+        th.case, td.case {
+            width: 28px;
+            text-align: center;
+        }
+
+        // L'identifiant sert au diagnostic, pas a la lecture courante.
+        td.sid {
+            font-family: monospace;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            width: auto;
+            flex: 0 0 auto;
+        }
+    }
+
+    p.aucun {
+        font-style: italic;
+        text-align: center;
+        padding: 12px;
+    }
+
+}

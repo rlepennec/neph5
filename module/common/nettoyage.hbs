@@ -1,0 +1,60 @@
+{{!-- Nettoyage des items embarqués orphelins. Le message d'aide est en tête :
+      la fenêtre s'ouvre sur une explication, pas sur un tableau brut. --}}
+<section class="nettoyage-root">
+
+    <div class="aide">
+        <h1>{{localize "NEPHILIM.nettoyageTitreAide"}}</h1>
+        <p>{{localize "NEPHILIM.nettoyageAide1"}}</p>
+        <p>{{localize "NEPHILIM.nettoyageAide2"}}</p>
+        <p class="exclusions">{{localize "NEPHILIM.nettoyageAide3"}}</p>
+    </div>
+
+    {{#if nombre}}
+
+    <div class="barre">
+        <span class="compte">{{localize "NEPHILIM.nettoyageTrouves"}} {{nombre}}</span>
+        <a data-action="toutCocher">{{localize "NEPHILIM.nettoyageToutCocher"}}</a>
+        <a data-action="toutDecocher">{{localize "NEPHILIM.nettoyageToutDecocher"}}</a>
+    </div>
+
+    <table class="orphelins">
+        <thead>
+            <tr>
+                <th class="case"></th>
+                <th>{{localize "NEPHILIM.nettoyageActeur"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageOrigine"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageItem"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageType"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageIdentifiant"}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orphelins as |orphelin|}}
+            <tr>
+                <td class="case">
+                    <input class="selection" type="checkbox" data-uuid="{{orphelin.uuid}}" checked/>
+                </td>
+                <td>{{orphelin.acteur}}</td>
+                <td>{{orphelin.origine}}</td>
+                <td>{{orphelin.item}}</td>
+                <td>{{orphelin.type}}</td>
+                <td class="sid">{{orphelin.sid}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <button type="button" data-action="supprimer">
+            <i class="fas fa-trash"></i>
+            {{localize "NEPHILIM.nettoyageSupprimer"}}
+        </button>
+    </div>
+
+    {{else}}
+
+    <p class="aucun">{{localize "NEPHILIM.nettoyageAucun"}}</p>
+
+    {{/if}}
+
+</section>

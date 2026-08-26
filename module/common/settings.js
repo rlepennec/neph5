@@ -1,4 +1,18 @@
+import { NettoyageDialog } from "./nettoyage.js";
+
 export const registerSystemSettings = function () {
+
+    // Bouton d'outil, reserve au MJ par restricted: true.
+    // registerMenu attend une classe d'application ; NettoyageDialog est une
+    // ApplicationV2, le systeme n'utilisant plus aucune application V1.
+    game.settings.registerMenu('neph5e', 'nettoyage', {
+        name: game.i18n.localize('SETTINGS.nettoyage'),
+        hint: game.i18n.localize('SETTINGS.nettoyageDesc'),
+        label: game.i18n.localize('SETTINGS.nettoyageLabel'),
+        icon: 'fas fa-broom',
+        type: NettoyageDialog,
+        restricted: true
+    });
 
     game.settings.register('neph5e', 'styleItemSheet', {
         config: true,

@@ -1,5 +1,6 @@
 .skin-air {
-  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff), url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), #ffffff),
+        url("../../systems/neph5e/assets/skins/air/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-disabled-color: #a1a1a1;
@@ -118,7 +119,8 @@
   --vk-bg: rgba(80, 110, 120, 0.3);
 }
 .skin-eau {
-  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
+  --background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        url("../../systems/neph5e/assets/skins/eau/background.webp") repeat;
   --font-color: #0d273d;
   --font-side-color: #191813;
   --font-disabled-color: #4c8ba9;
@@ -356,7 +358,8 @@
   --vk-bg: rgba(60, 10, 0, 0.15);
 }
 .skin-lune {
-  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%), url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #e8e8ed 9%, rgba(34, 34, 34, 0.5) 19%, rgba(72, 72, 72, 0.1) 119%),
+        url("../../systems/neph5e/assets/skins/lune/background.webp") repeat;
   --font-color: #121212;
   --font-side-color: #191813;
   --font-disabled-color: #d9d1d1;
@@ -475,7 +478,8 @@
   --vk-bg: rgba(40, 40, 45, 0.2);
 }
 .skin-luneNoire {
-  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%), url("../../systems/neph5e/assets/skins/luneNoire/background.webp") repeat;
+  --background: radial-gradient(circle at 100% 0%, #000000 10%, rgba(106, 106, 106, 0.42) 14%, rgba(200, 200, 200, 0.5) 15%, rgba(220, 220, 220, 0.5) 101%, rgba(106, 106, 106, 0) 177%),
+        url("../../systems/neph5e/assets/skins/luneNoire/background.webp") repeat;
   --font-color: #191813;
   --font-side-color: #191813;
   --font-disabled-color: #a1a1a1;
@@ -7410,6 +7414,91 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
 }
 .experience table tr:nth-child(2) {
   font-weight: bold;
+}
+.nettoyage .nettoyage-root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 4px;
+  font-family: 'AJensonPro';
+  color: #191813;
+}
+.nettoyage .aide {
+  padding: 10px 14px;
+  border-left: 3px solid #151156;
+  background: rgba(21, 17, 86, 0.06);
+}
+.nettoyage .aide h1 {
+  margin: 0 0 6px 0;
+  font-family: 'NightjarDemi';
+  font-size: 18px;
+  border: none;
+}
+.nettoyage .aide p {
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.nettoyage .aide p.exclusions {
+  font-style: italic;
+}
+.nettoyage .barre {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+.nettoyage .barre .compte {
+  font-weight: bold;
+  margin-right: auto;
+}
+.nettoyage .barre a {
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
+.nettoyage table.orphelins {
+  width: 100%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background: rgba(0, 0, 0, 0.05);
+}
+.nettoyage table.orphelins thead {
+  background: rgba(200, 200, 200, 0.5);
+  border: none;
+  font-family: 'Nightjar';
+}
+.nettoyage table.orphelins tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.nettoyage table.orphelins th,
+.nettoyage table.orphelins td {
+  text-align: left;
+  padding: 3px 8px;
+  font-size: 14px;
+}
+.nettoyage table.orphelins th.case,
+.nettoyage table.orphelins td.case {
+  width: 28px;
+  text-align: center;
+}
+.nettoyage table.orphelins td.sid {
+  font-family: monospace;
+  font-size: 12px;
+  opacity: 0.7;
+}
+.nettoyage .actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.nettoyage .actions button {
+  width: auto;
+  flex: 0 0 auto;
+}
+.nettoyage p.aucun {
+  font-style: italic;
+  text-align: center;
+  padding: 12px;
 }
 .chat-message {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
