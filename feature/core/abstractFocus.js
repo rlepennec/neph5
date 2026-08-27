@@ -94,13 +94,6 @@ export class AbstractFocus extends AbstractFeature {
     /**
      * @Override
      */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-    }
-
-    /**
-     * @Override
-     */
     async drop() {
 
         // A periode must be defined

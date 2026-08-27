@@ -26,14 +26,6 @@ export class Aspect extends SimpleFeature {
     /**
      * @Override
      */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
-    }
-
-    /**
-     * @Override
-     */
     getEmbeddedData() {
         return {
             difficulty: 0

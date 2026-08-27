@@ -35,14 +35,6 @@ export class Ordonnance extends AbstractFeature {
     }
 
     /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
-    }
-
-    /**
      * @returns the number of ordonnances.
      */
     get ordonnances() {
