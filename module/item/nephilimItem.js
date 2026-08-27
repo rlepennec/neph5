@@ -185,14 +185,13 @@ export class NephilimItem extends Item {
         // Specific processing
         switch (this.type) {
 
-            // Remove the catalyseur reference from formule items
             case 'catalyseur':
-                const catalyseurs = foundry.utils.duplicate(this.system.catalyseurs);
-                const i = catalyseurs.findIndex(o => o.refid === this.sid);
-                if (i !== -1) {
-                    catalyseurs.splice(i, 1);
-                    await this.update({ ['system.catalyseurs']: catalyseurs });
+
+                // Remove the catalyseur reference from formule items
+                for (let item of game.items.filter(i => i.type === 'formule')) {
+                    await item.deleteCatalyseur(this);
                 }
+
                 break;
 
             case 'competence':
@@ -316,7 +315,7 @@ export class NephilimItem extends Item {
 
     /**
      * Delete the specified variante.
-     * @param {*} sid The system identifier of the item to delete.
+     * @param {*} item The system item of the item to delete.
      */
     async deleteVariante(item) {
         const variantes = foundry.utils.duplicate(this.system.variantes);
@@ -329,11 +328,11 @@ export class NephilimItem extends Item {
 
     /**
      * Delete the specified catalyseur.
-     * @param sid The system identifier of the catalyseur to delete from the formule.
+     * @param item The system item of the catalyseur to delete from the formule.
      */
-    async deleteCatalyseur(sid) {
+    async deleteCatalyseur(item) {
         const catalyseurs = foundry.utils.duplicate(this.system.catalyseurs);
-        const i = catalyseurs.findIndex(o => o === sid);
+        const i = catalyseurs.findIndex(o => item.sid === o);
         if (i !== -1) {
             catalyseurs.splice(i, 1);
             await this.update({ ["system.catalyseurs"]: catalyseurs });
