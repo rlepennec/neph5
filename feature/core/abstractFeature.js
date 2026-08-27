@@ -381,31 +381,6 @@ export class AbstractFeature {
     }
 
     /**
-     * Delete the specified embedded item if exists.
-     * @param sid The system identifier of the item to delete.
-     * @returns the instance.
-     */
-    async deleteEmbeddedItem(sid) {
-        const item = this.actor.items.find(i => i.sid === sid);
-        if (item != null) {
-            await this.actor.deleteEmbeddedDocuments('Item', item.id);
-        }
-        return this;
-    }
-
-    /**
-     * Delete all specified embedded items.
-     * @param sid The system identifier of the items to delete.
-     * @returns the instance.
-     */
-    async deleteEmbeddedItems(sid) {
-        for (let item of this.actor.items.filter(i => i.sid === sid)) {
-            await this.actor.deleteEmbeddedDocuments('Item', item.id);
-        }
-        return this;
-    }
-
-    /**
      * @param sid The system identifier of the item for which to return the degre.
      * @returns the degre from the periodes.
      */

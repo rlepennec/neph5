@@ -42,12 +42,4 @@ export class SimpleFeature extends AbstractFeature {
         return this;
     }
 
-    /**
-     * @Override
-     */
-    async delete() {
-        await this.deleteEmbeddedItem(this.sid);
-        return this;
-    }
-
 }
