@@ -3,7 +3,7 @@ import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/capacite/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/chute/chute.js";
-import { CombattantMixin } from "./combatantMixin.js";
+import { CombattantMixin } from "./combattantMixin.js";
 import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
