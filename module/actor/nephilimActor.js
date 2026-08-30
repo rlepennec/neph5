@@ -9,7 +9,6 @@ import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
-import { HistoricalFeature } from "../../feature/core/historicalFeature.js";
 import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
 import { Materiae } from "../../feature/alchimie/materiae.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
