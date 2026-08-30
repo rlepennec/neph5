@@ -13,7 +13,7 @@ export class Liberer extends AbstractManoeuver {
         super(Liberer.ID, Constants.BRAWL);
         this.withApproches(['eau','feu', 'ka']);
         this.whithImmobilized();
-        this.withFamilly(Constants.BRAWL);
+        this.withFamily(Constants.BRAWL);
         this.withEffect(ActiveEffects.LIBERE);
     }
 

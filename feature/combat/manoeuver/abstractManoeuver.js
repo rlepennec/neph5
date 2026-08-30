@@ -181,7 +181,7 @@ export class AbstractManoeuver {
      *  - throw
      * @returns the instance.
      */
-    withFamilly(skill) {
+    withFamily(skill) {
         this.skill = skill;
         return this;
     }
