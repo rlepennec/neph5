@@ -123,19 +123,29 @@ export class Distance extends AbstractFeature {
      * @Override
      */
     async initializeRoll() {
-        if (this.weapon.system.used === true && this.effects.restrained === false) {
 
-            // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
-            // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
-            // retrait du drapeau pendant que le rendu courait encore.
-            await new DistanceDialog(this.actor, this)
-                .withTitle(this.title)
-                .withTemplate("systems/neph5e/feature/combat/core/distance.hbs")
-                .withHeight(465)
-                .withData(this.data)
-                .render(true);
-
+        // L'arme doit être en main.
+        if (this.weapon.system.used !== true) {
+            ui.notifications.info("L'arme n'est pas en main");
+            return;
         }
+
+        // Le personnage doit être libre de ses mouvements.
+        if (this.effects.restrained === true) {
+            ui.notifications.info("Le personnage est immobilisé");
+            return;
+        }
+
+        // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
+        // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
+        // retrait du drapeau pendant que le rendu courait encore.
+        await new DistanceDialog(this.actor, this)
+            .withTitle(this.title)
+            .withTemplate("systems/neph5e/feature/combat/core/distance.hbs")
+            .withHeight(465)
+            .withData(this.data)
+            .render(true);
+
     }
 
     /**

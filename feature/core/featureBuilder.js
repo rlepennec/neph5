@@ -256,4 +256,28 @@ export class FeatureBuilder {
         }
     }
 
+    /**
+     * @param actor L'acteur pour lequel dresser la liste.
+     * @param type  Le type d'item : 'chute', 'passe', 'quete', 'savoir', 'science'.
+     * @returns les features a afficher sur la fiche, degre non nul.
+     *
+     * [V14] Deplacee depuis HistoricalFeature, dont elle etait le seul usage de
+     * FeatureBuilder -- et donc la cause d'un cycle d'import.
+     */
+    static getAll(actor, type) {
+        const features = [];
+        for (let item of game.items.filter(i => i.type === type)) {
+            const feature = new FeatureBuilder(actor).withOriginalItem(item.sid).create();
+            if (feature.degre !== 0) {
+                features.push({
+                    name: feature.name,
+                    sid: feature.sid,
+                    id: item.id,
+                    degre: feature.degre
+                });
+            }
+        }
+        return features;
+    }
+
 }

@@ -219,15 +219,6 @@ export class AbstractManoeuver {
     }
 
     /**
-     * @param actor  The actor object which execute the manoeuver.
-     * @param target The actor object which is the target of the manoeuver.
-     * @returns true if the action is allowed.
-     */
-    isAllowed(actor, target) {
-        throw new Error("AbstractManoeuver.isAllowed not implemented");
-    }
-
-    /**
      * @returns the identifier used to store the skill of the manoeuver in the actor data model.
      */
     actorDataPath() {

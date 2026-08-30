@@ -1,6 +1,5 @@
 import { AbstractFeature } from "./abstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
-import { FeatureBuilder } from "./featureBuilder.js";
 
 export class HistoricalFeature extends AbstractFeature {
 
@@ -82,26 +81,6 @@ export class HistoricalFeature extends AbstractFeature {
                 .withoutAlreadyEmbeddedError()
                 .create();
         }
-    }
-
-    /**
-     * @param type The type of item.
-     * @returns all features to display in the actor sheet according to the active periodes.
-     */
-    getAll(type) {
-        const features = [];
-        for (let item of game.items.filter(i => i.type === type)) {
-            const feature = new FeatureBuilder(this.actor).withOriginalItem(item.sid).create();
-            if (feature.degre !== 0) {
-                features.push({
-                    name: feature.name,
-                    sid: feature.sid,
-                    id: item.id,
-                    degre: feature.degre
-                });
-            }
-        }
-        return features;
     }
 
 }

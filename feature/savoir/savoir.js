@@ -1,6 +1,6 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { HistoricalFeature } from "../core/historicalFeature.js";
+import { HistoricalFeature } from "../core/historicalFeature.js"; 
 
 export class Savoir extends HistoricalFeature {
 
