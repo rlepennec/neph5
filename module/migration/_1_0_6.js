@@ -73,6 +73,9 @@ export class _1_0_6 {
             MigrationTools.progress(msg, ++migrated, size);
         }
 
+        // Le réglage retiré : après les données, avant l'écriture de version.
+        const reglageRetire = await _1_0_6.supprimer_reglage('neph5e.useCombatSystem');
+
         game.settings.set("neph5e", "worldTemplateVersion", target);
 
         const rapport = [];
@@ -81,6 +84,7 @@ export class _1_0_6 {
         const combles = acteurs.combles + items.combles;
         if (regeneres > 0) rapport.push(regeneres + " identifiant(s) en double régénéré(s)");
         if (combles > 0) rapport.push(combles + " identifiant(s) manquant(s) comblé(s)");
+        if (reglageRetire) rapport.push("réglage useCombatSystem supprimé");
 
         ui.notifications.info("Update to " + target + " done"
             + (rapport.length > 0 ? " (" + rapport.join(", ") + ")" : ""));
@@ -180,6 +184,33 @@ export class _1_0_6 {
             }
         }
         return liste;
+    }
+
+    /**
+     * Efface le document Setting d'un réglage retiré du système.
+     *
+     * On le retrouve par son champ `key` dans la collection 'world' plutôt que
+     * par une méthode d'accès dédiée : le nom de cette méthode a changé
+     * plusieurs fois entre les versions de Foundry, alors que la collection et
+     * le champ `key` sont stables. Une clef est de la forme 'neph5e.<réglage>'.
+     *
+     * Ne lève jamais : un réglage déjà absent est le cas normal, et l'échec de
+     * ce nettoyage ne doit pas interrompre la migration des données.
+     *
+     * @param clef La clef complète du réglage, par exemple 'neph5e.useCombatSystem'.
+     * @returns true si un document a été supprimé.
+     */
+    static async supprimer_reglage(clef) {
+        try {
+            const monde = game.settings.storage.get('world');
+            const document = monde?.contents?.find(s => s.key === clef);
+            if (document == null) return false;
+            await document.delete();
+            return true;
+        } catch (e) {
+            console.warn("Nephilim | suppression du réglage " + clef + " impossible : " + e.message);
+            return false;
+        }
     }
 
 }
