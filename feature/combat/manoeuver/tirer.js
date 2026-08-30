@@ -10,7 +10,6 @@ export class Tirer extends AbstractManoeuver {
      */
     constructor() {
         super(Tirer.ID, Constants.FIRE);
-        this.withAdvanced(false);
         this.withApproches(['air', 'ka']);
         this.withImpact({modifier: 0});
     }

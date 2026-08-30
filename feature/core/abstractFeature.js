@@ -228,9 +228,6 @@ export class AbstractFeature {
      * customize the action roll by adding modifier for example.
      */
     async initializeRoll() {
-        // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
-        // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
-        // retrait du drapeau pendant que le rendu courait encore.
         await new ActionDialog(this.actor, this)
             .withTitle(this.title)
             .withData(this.data)

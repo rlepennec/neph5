@@ -438,8 +438,6 @@ export class NephilimItem extends Item {
         return new Periode(this.actor, this).actif();
     }
 
-
-
     /**
      * @returns the number of munitions left of the weapon item.
      */
@@ -514,44 +512,6 @@ export class NephilimItem extends Item {
 
         }
 
-    }
-
-    /**
-     * Indicates if the roll dice can be clicked on the combat panel.
-     * @returns true if the attack roll can be performed with the item.
-     */
-    get attackAvailable() {
-
-        // Item must be an embedded and used weapon
-        if (this?.type !== 'arme' || this.actor == null || this.system.used !== true) {
-            return false;
-        }
-
-        // Actor must be free
-        if (this.actor.immobilise === true) {
-            return false;
-        }
-
-        // The actor token has selected a token target
-        if (this.actor.tokenOf == null || this.actor.target == null) {
-            return false;
-        }
-
-        switch (this.system.type) {
-
-            case Constants.NATURELLE:
-            case Constants.MELEE:
-            case Constants.TRAIT:
-                return true;
-
-            case Constants.FEU:
-                return this.system.munitions - this.system.tire > 0;
-
-            default:
-                return false;
-
-        }
-        
     }
 
     static initializeEmbedded(data) {

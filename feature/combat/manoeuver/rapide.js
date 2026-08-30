@@ -10,7 +10,6 @@ export class Rapide extends AbstractManoeuver {
      */
     constructor() {
         super(Rapide.ID, Constants.STRIKE);
-        this.withAdvanced(true);
         this.withApproches(['air','eau']);
         this.withTimes({modifier: 2});
         this.withAttack({modifier: -20});

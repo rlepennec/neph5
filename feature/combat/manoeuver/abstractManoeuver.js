@@ -24,7 +24,6 @@ export class AbstractManoeuver {
      */
     constructor(id, family) {
         this.id = id;
-        this.advanced = false;
         this.family = family;
         this.name = game.i18n.localize(AbstractManoeuver.clef(id, "Name"));
         this.description = "";
@@ -42,15 +41,6 @@ export class AbstractManoeuver {
         this.immobilized = false;
         this.shots = null;
         this.clearViser = true;
-    }
-
-    /**
-     * @param advanced True if this manoeuver needs to be activated by an option.
-     * @returns the instance.
-     */
-    withAdvanced(advanced) {
-        this.advanced = advanced;
-        return this;
     }
 
     /**

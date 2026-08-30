@@ -7,7 +7,6 @@ import { Chute } from "../../feature/chute/chute.js";
 import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
-import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { Game } from "../common/game.js";
@@ -15,14 +14,11 @@ import { HistoricalFeature } from "../../feature/core/historicalFeature.js";
 import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
 import { Materiae } from "../../feature/alchimie/materiae.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
-import { Melee } from "../../feature/combat/core/melee.js";
-import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Periode } from "../../feature/periode/periode.js";
 import { Savoir } from "../../feature/savoir/savoir.js";
 import { Science } from "../../feature/science/science.js";
 import { Vecu } from "../../feature/vecu/vecu.js";
-import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
 export class NephilimActor extends Actor {
 
@@ -281,22 +277,6 @@ export class NephilimActor extends Actor {
      */
     get isLutteAvailable() {
         return this.type !== 'figure' || this.system.manoeuvres.lutte != null;
-    }
-
-    /**
-     * @returns true if the lutte manoeuver can be performed.
-     */
-    get lutteCanBePerformed() {
-        if (this.isLutteAvailable === false) {
-            return false;
-        }
-        if (this.tokenOf == null) {
-            return true;
-        }
-        if (this.immobilise) {
-            return true;
-        }
-        return this.target != null;
     }
 
     /**
@@ -716,6 +696,8 @@ export class NephilimActor extends Actor {
 
             case 'weapon': {
 
+                //TODO: cf combatantSheetMixin@_onRollWeapon
+
                 const weapon = this.items.get(id);
 
                 if (weapon == null) {
@@ -723,22 +705,14 @@ export class NephilimActor extends Actor {
                     return;
                 }
 
-                if (weapon.attackAvailable === false) {
-                    ui.notifications.warn("Vous ne pouvez pas attaquer avec cette arme.");
-                    return;
-                }
-
-                switch (weapon.system.type) {
-                    case Constants.NATURELLE:
-                        await new Naturelle(this, weapon).initializeRoll();
-                        break;
-                    case Constants.MELEE:
-                        await new Melee(this, weapon).initializeRoll();
-                        break;
-                    case Constants.FEU:
-                    case Constants.TRAIT:
-                        await new Distance(this, weapon).initializeRoll();
-                        break;
+                const feature = new FeatureBuilder(this)
+                    .withScope("actor")
+                    .withOriginalItem(weapon.system.competence)
+                    .create();
+                if (feature != null) {
+                    await feature.initializeRoll();
+                } else {
+                    ui.notifications.error("Error while creating a feature");
                 }
 
                 break;
@@ -746,8 +720,16 @@ export class NephilimActor extends Actor {
             }
 
             case 'wrestle': {
-                if (this.lutteCanBePerformed) {
-                    await new Wrestle(this).initializeRoll();
+                //TODO: cf combatantSheetMixin@_onRollWrestle
+
+                const feature = new FeatureBuilder(this)
+                    .withScope("actor")
+                    .withOriginalItem(this.system.manoeuvres.lutte)
+                    .create();
+                if (feature != null) {
+                    await feature.initializeRoll();
+                } else {
+                    ui.notifications.error("Error while creating a feature");
                 }
                 break;
             }

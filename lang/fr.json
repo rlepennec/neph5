@@ -46,8 +46,6 @@
     "SETTINGS.fraternitePolicyDesc": "Application des bonus de fraternité",
     "SETTINGS.note": "Note de démarrage",
     "SETTINGS.noteDesc": "Permet d'afficher les notes de démarrage",
-    "SETTINGS.useCombatSystem": "Système de combat",
-    "SETTINGS.useCombatSystemDesc": "Permet d'utiliser le système de combat automatique",
     "SETTINGS.catalyseurs": "Catalyseurs alchimiques",
     "SETTINGS.catalyseursDesc": "Les catalyseurs alchimiques apparaitront dans l'onglet Laboratoire",
     "SETTINGS.sciencesOccultes": "Sciences Occultes",

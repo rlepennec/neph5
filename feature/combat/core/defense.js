@@ -77,14 +77,7 @@ export class Defense extends AbstractFeature {
      * @Override
      */
     get defaultApproche() {
-        switch (game.settings.get('neph5e', 'useCombatSystem')) {
-          case 'normal':
-            return Eviter.ID;
-          case 'low':
-            return Esquiver.ID;
-          default:
-            return null;
-        }
+        return Eviter.ID;
     }
 
     /**
@@ -190,11 +183,9 @@ export class Defense extends AbstractFeature {
             .withRoll(result.roll)
             .create();
 
-        // Apply damages automaticaly if necessary
-        if (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem'))) {
-            await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver, this.result.critical);
-            await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
-        }
+        // Apply damages
+        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver, this.result.critical);
+        await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
 
     }
 
@@ -240,7 +231,7 @@ export class Defense extends AbstractFeature {
     async defenseToPerform() {
         // No manoeuver possible, apply dammages automaticaly
         if (Object.keys(this.data.manoeuvers).length === 0) {
-            if (['normal', 'low'].includes(game.settings.get('neph5e', 'useCombatSystem')) && this.result.success) {
+            if (this.result.success) {
                 await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
             }

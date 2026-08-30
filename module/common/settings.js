@@ -61,20 +61,6 @@ export const registerSystemSettings = function () {
         default: false
     });
 
-    game.settings.register('neph5e', 'useCombatSystem', {
-        config: true,
-        scope: 'world',
-        name: game.i18n.localize('SETTINGS.useCombatSystem'),
-        hint: game.i18n.localize('SETTINGS.useCombatSystemDesc'),
-        type: String,
-        choices: {
-            'normal': 'Standard',
-            'low': 'Simplifié',
-            'none': 'Aucun'
-          },
-          default: 'none'
-    });
-
     game.settings.register('neph5e', 'worldTemplateVersion', {
         name: 'World Template Version',
         hint: 'Used to automatically upgrade worlds data when the template is upgraded.',

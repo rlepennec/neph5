@@ -11,7 +11,6 @@ export class Immobiliser extends AbstractManoeuver {
      */
     constructor() {
         super(Immobiliser.ID, Constants.BRAWL);
-        this.withAdvanced(false);
         this.withApproches(['eau','terre', 'ka']);
         this.withImpact({fix: 1});
         this.withEffect(ActiveEffects.IMMOBILISE);

@@ -181,7 +181,7 @@
                 <li class="hoverable macro" data-macro="wrestle">
                     <a><i></i></a>
                     <label class="hoverable">{{translate "lutte"}}</label>
-                    <a data-action="rollWrestle"><i class="fas fa-dice-d20 {{#unless (eq document.lutteCanBePerformed true)}}disabled{{/unless}}"></i></a>
+                    <a data-action="rollWrestle"><i class="fas fa-dice-d20"></i></a>
                     <a><i class="fa-solid fa-hand-fist"></i></a>
                 </li>
 
@@ -191,7 +191,7 @@
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <a><i class="fa-solid fa-hand-fist"></i></a>
                 </li>
                 {{/each}}
@@ -200,7 +200,7 @@
                 <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <a data-action="useWeapon"><i class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
                 </li>
                 {{/each}}
@@ -215,7 +215,7 @@
                             <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
                         </div>
                     </a>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false) }}disabled{{/if}}"></i></a>
+                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
                 </li>
                 {{/each}}
@@ -236,7 +236,7 @@
                             <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
                         </div>
                     </a>
-                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20 {{#if (eq item.attackAvailable false)}}disabled{{/if}}"></i></a>
+                    <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
                 </li>
                 {{/each}}
