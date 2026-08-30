@@ -7,18 +7,25 @@ import { Chute } from "../../feature/chute/chute.js";
 import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
+import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
 import { Game } from "../common/game.js";
 import { HistoricalFeature } from "../../feature/core/historicalFeature.js";
 import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
 import { Materiae } from "../../feature/alchimie/materiae.js";
+import { Melee } from "../../feature/combat/core/melee.js";
+import { Menace } from "../../feature/combat/core/menace.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
+import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Periode } from "../../feature/periode/periode.js";
+import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
 import { Savoir } from "../../feature/savoir/savoir.js";
 import { Science } from "../../feature/science/science.js";
 import { Vecu } from "../../feature/vecu/vecu.js";
+import { Viser } from "../../feature/combat/manoeuver/viser.js";
+import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
 export class NephilimActor extends Actor {
 
@@ -695,44 +702,18 @@ export class NephilimActor extends Actor {
             }
 
             case 'weapon': {
-
-                //TODO: cf combatantSheetMixin@_onRollWeapon
-
                 const weapon = this.items.get(id);
-
                 if (weapon == null) {
-                    ui.notifications.warn("Vous ne possédez pas cette d'arme pour attaquer.");
+                    ui.notifications.warn("Vous ne possédez pas cette arme pour attaquer.");
                     return;
                 }
-
-                const feature = new FeatureBuilder(this)
-                    .withScope("actor")
-                    .withOriginalItem(weapon.system.competence)
-                    .create();
-                if (feature != null) {
-                    await feature.initializeRoll();
-                } else {
-                    ui.notifications.error("Error while creating a feature");
-                }
-
-                break;
-
-            }
-
-            case 'wrestle': {
-                //TODO: cf combatantSheetMixin@_onRollWrestle
-
-                const feature = new FeatureBuilder(this)
-                    .withScope("actor")
-                    .withOriginalItem(this.system.manoeuvres.lutte)
-                    .create();
-                if (feature != null) {
-                    await feature.initializeRoll();
-                } else {
-                    ui.notifications.error("Error while creating a feature");
-                }
+                await this.rollWeapon(weapon, this.combatant);
                 break;
             }
+
+            case 'wrestle':
+                await this.rollWrestle(this.combatant);
+                break;
 
         }
 
@@ -1077,6 +1058,273 @@ export class NephilimActor extends Actor {
         if (this?.sheet?.rendered === true) {
             await this.sheet.render(true);
         }
+    }
+
+    /**
+     * Le jet d'un passé.
+     *
+     * Le passé peut arriver sous sa forme embarquée — c'est ce que la fiche a
+     * sous la main — ou comme item du monde. Les deux voies convergent :
+     * HistoricalFeature.withEmbeddedItem repose this.item sur l'item du monde
+     * retrouvé par sid, et le degré vient de degreFromPeriodes(sid).
+     *
+     * @param item Le passé, embarqué ou item du monde. Ne doit pas être null,
+     *             l'appelant s'en assure.
+     */
+    async rollPasse(item) {
+
+        const builder = new FeatureBuilder(this).withScope('actor');
+        const feature = (item.isEmbedded
+            ? builder.withEmbeddedItem(item.id)
+            : builder.withOriginalItem(item.sid)).create();
+
+        if (feature == null) {
+            ui.notifications.error("Le passé est introuvable");
+            return;
+        }
+
+        // La feature peut exister sans son item du monde : withEmbeddedItem le
+        // retrouve par sid et rend undefined pour un embarqué ORPHELIN. data lit
+        // alors this.item.name et lèverait, après le contrôle ci-dessus.
+        if (feature.item == null) {
+            ui.notifications.error("Le passé « " + item.name + " » ne correspond à aucun item du monde");
+            return;
+        }
+
+        await feature.initializeRoll();
+    }
+
+    /**
+     * Le combattant de cet acteur dans le combat en cours, vu depuis l'acteur seul.
+     * Moins précis que CombatantSheet.combatant : faute de clic, tokenOf rend le
+     * PREMIER token trouvé sur la scène quand l'acteur en a plusieurs.
+     */
+    get combatant() {
+        return this.tokenOf?.combatant ?? null;
+    }
+
+    /**
+     * Le jet d'attaque avec une arme.
+     * @param weapon    L'arme embarquée.
+     * @param combatant Le combattant à considérer, null hors combat. La fiche
+     *                  passe celui de son token d'ouverture, la macro le sien.
+     */
+    async rollWeapon(weapon, combatant) {
+
+        if (combatant == null) {
+            const feature = new FeatureBuilder(this)
+                .withScope("actor")
+                .withOriginalItem(weapon.system.competence)
+                .create();
+            if (feature == null) {
+                ui.notifications.error("Aucune compétence n'est associée à cette arme");
+                return;
+            }
+            await feature.initializeRoll();
+            return;
+        }
+
+        if (this.immobilise === true) {
+            ui.notifications.info("Le personnage est immobilisé");
+            return;
+        }
+        if (this.target == null) {
+            ui.notifications.info("Le personnage n'a pas sélectionné de cible");
+            return;
+        }
+
+        switch (weapon.system.type) {
+            case Constants.NATURELLE: await new Naturelle(this, weapon).initializeRoll(); break;
+            case Constants.MELEE:     await new Melee(this, weapon).initializeRoll();     break;
+            case Constants.TRAIT:     await new Distance(this, weapon).initializeRoll();  break;
+            case Constants.FEU:
+                if (weapon.system.munitions - weapon.system.tire > 0) {
+                    await new Distance(this, weapon).initializeRoll();
+                } else {
+                    ui.notifications.info("L'arme du personnage n'a plus de munitions");
+                }
+                break;
+            default:
+                ui.notifications.info("Type d'arme " + weapon.system.type + " inconnu");
+        }
+    }
+
+    /**
+     * Le jet de lutte.
+     *
+     * Même partage que rollWeapon : la règle vit ici, la fiche et la macro
+     * n'apportent que leur propre notion de combattant.
+     *
+     * Les gardes ne sont PAS celles de rollWeapon, et c'est délibéré :
+     * l'immobilisation n'interdit pas la lutte, elle en est le motif. La
+     * manœuvre Libérer, du pool de Wrestle, a pour garde
+     * `canBePerformed(action) { return action.actor.immobilise; }` — bloquer ici
+     * la rendrait injouable. Un personnage qui se dégage d'une prise n'a par
+     * ailleurs personne à cibler.
+     *
+     * @param combatant Le combattant de cet acteur, null s'il n'est pas engagé.
+     */
+    async rollWrestle(combatant) {
+
+        // Engagé : le système de combat.
+        if (combatant != null) {
+
+            // Une figure doit avoir défini sa lutte : le constructeur de Wrestle
+            // lit system.manoeuvres.lutte et baseName déréférence l'item trouvé.
+            // isLutteAvailable rend vrai pour un figurant, que Wrestle sait
+            // traiter par sa Menace.
+            if (this.isLutteAvailable === false) {
+                ui.notifications.info("La lutte n'est pas définie pour le personnage");
+                return;
+            }
+
+            // Cible exigée, SAUF immobilisé : voir l'en-tête.
+            if (this.immobilise !== true && this.target == null) {
+                ui.notifications.info("Le personnage n'a pas sélectionné de cible");
+                return;
+            }
+
+            await new Wrestle(this).initializeRoll();
+            return;
+
+        }
+
+        // Hors combat : le jet simple dépend du type d'acteur.
+        switch (this.type) {
+
+            // Un figurant n'a pas de system.manoeuvres — seul figure.mjs déclare
+            // le champ. Son jet martial est un jet de Menace, comme le fait
+            // Combat.simpleAttack.
+            case 'figurant':
+                await new Menace(this).initializeRoll();
+                return;
+
+            case 'figure': {
+
+                if (this.isLutteAvailable === false) {
+                    ui.notifications.info("La lutte n'est pas définie pour le personnage");
+                    return;
+                }
+
+                const feature = new FeatureBuilder(this)
+                    .withScope("actor")
+                    .withOriginalItem(this.system.manoeuvres.lutte)
+                    .create();
+                if (feature == null) {
+                    ui.notifications.error("La compétence de lutte est introuvable");
+                    return;
+                }
+                await feature.initializeRoll();
+                return;
+
+            }
+
+        }
+
+    }
+
+    /**
+     * Viser la cible désignée avec l'arme.
+     *
+     * Le prédicat vit désormais ici, aimAvailable ayant disparu de l'item. Les
+     * gardes vont du moins cher au plus cher, la construction de Distance étant
+     * la seule qui coûte.
+     *
+     * @param weapon    L'arme EMBARQUÉE : cible, visée et munitions sont l'état
+     *                  de cet acteur. Non null, l'appelant s'en assure.
+     * @param combatant Le combattant de cet acteur, null s'il n'est pas engagé.
+     */
+    async aim(weapon, combatant) {
+
+        // L'arme doit être embarquée et en main.
+        if (weapon?.type !== 'arme' || weapon.actor == null || weapon.system.used !== true) {
+            ui.notifications.info("L'arme n'est pas en main");
+            return;
+        }
+
+        // Viser est une manœuvre de combat.
+        if (combatant == null) {
+            ui.notifications.info("Le personnage n'est pas engagé dans le combat");
+            return;
+        }
+
+        // Le personnage doit être libre de ses mouvements.
+        if (this.immobilise === true) {
+            ui.notifications.info("Le personnage est immobilisé");
+            return;
+        }
+
+        // Une cible, et une seule : target rend null pour zéro comme pour plusieurs.
+        if (this.target == null) {
+            ui.notifications.info("Le personnage n'a pas sélectionné de cible");
+            return;
+        }
+
+        // Seules les armes à distance se visent.
+        switch (weapon.system.type) {
+            case Constants.TRAIT:
+            case Constants.FEU:
+                break;
+            default:
+                ui.notifications.info("Cette arme ne se vise pas");
+                return;
+        }
+
+        // Viser.canBePerformed porte la règle propre à la manœuvre : munitions
+        // restantes, et trois rounds de visée au maximum sur la même cible.
+        const action = new Distance(this, weapon);
+        const viser = new Viser();
+        if (viser.canBePerformed(action) === false) {
+            ui.notifications.info("La visée est déjà à son maximum sur cette cible");
+            return;
+        }
+
+        await viser.apply(action);
+
+    }
+
+    /**
+     * Recharger l'arme.
+     *
+     * @param weapon    L'arme embarquée à recharger.
+     * @param combatant Le combattant de cet acteur, null s'il n'est pas engagé.
+     */
+    async reload(weapon, combatant) {
+
+        if (weapon?.type !== 'arme' || weapon.actor == null || weapon.system.used !== true) {
+            ui.notifications.info("L'arme n'est pas en main");
+            return;
+        }
+
+        if (combatant == null) {
+            ui.notifications.info("Le personnage n'est pas engagé dans le combat");
+            return;
+        }
+
+        if (this.immobilise === true) {
+            ui.notifications.info("Le personnage est immobilisé");
+            return;
+        }
+
+        switch (weapon.system.type) {
+            case Constants.TRAIT:
+            case Constants.FEU:
+                break;
+            default:
+                ui.notifications.info("Cette arme ne se recharge pas");
+                return;
+        }
+
+        // Recharger.canBePerformed : au moins un coup tiré.
+        const action = new Distance(this, weapon);
+        const recharger = new Recharger();
+        if (recharger.canBePerformed(action) === false) {
+            ui.notifications.info("L'arme n'a pas besoin d'être rechargée");
+            return;
+        }
+
+        await recharger.apply(action);
+
     }
 
 }

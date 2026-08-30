@@ -210,7 +210,7 @@
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
                     <a data-action="aim" class="tooltip">
-                        <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}disabled{{/if}}"></i>
+                        <i class="fas fa-crosshairs"></i>
                         <div class="tooltiptext">
                             <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
                         </div>
@@ -225,13 +225,13 @@
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
                     <label data-action="open">{{item.name}}</label>
                     <a data-action="reload" class="tooltip">
-                        <i class="fas fa-spinner {{#if (eq item.reloadAvailable false) }}disabled{{/if}}"></i>
+                        <i class="fas fa-spinner"></i>
                         <div class="tooltiptext">
                             <label>Le nombre de munitions de l'arme est de {{minus item.system.munitions item.system.tire}} sur {{item.system.munitions}}.</label>
                         </div>
                     </a>
                     <a data-action="aim" class="tooltip">
-                        <i class="fas fa-crosshairs {{#if (eq item.aimAvailable false) }}disabled{{/if}}"></i>
+                        <i class="fas fa-crosshairs"></i>
                         <div class="tooltiptext">
                             <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
                         </div>
