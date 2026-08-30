@@ -110,15 +110,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         const created = await this.document.createEmbeddedDocuments("Item", [data]);
     }
 
-    /** Supprime un item embarqué (materia, catalyseur, ...) via son id Foundry. */
-    static async _onDeleteEmbeddedItem(event, target) {
-        if (this.locked) return;
-        const id = target.closest('.item').dataset.id;
-        const item = this.document.items.get(id);
-        await this.document.deleteEmbeddedItem(item);
-    }
-
-    
     /** Supprime un item embarqué (materia, catalyseur, vécu, ...) via son id Foundry. */
     static async _onDeleteEmbeddedItem(event, target) {
         if (this.locked) return;

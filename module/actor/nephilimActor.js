@@ -1134,9 +1134,15 @@ export class NephilimActor extends Actor {
         }
 
         switch (weapon.system.type) {
-            case Constants.NATURELLE: await new Naturelle(this, weapon).initializeRoll(); break;
-            case Constants.MELEE:     await new Melee(this, weapon).initializeRoll();     break;
-            case Constants.TRAIT:     await new Distance(this, weapon).initializeRoll();  break;
+            case Constants.NATURELLE:
+                 await new Naturelle(this, weapon).initializeRoll();
+                 break;
+            case Constants.MELEE:
+                await new Melee(this, weapon).initializeRoll();
+                break;
+            case Constants.TRAIT:
+                await new Distance(this, weapon).initializeRoll();
+                break;
             case Constants.FEU:
                 if (weapon.system.munitions - weapon.system.tire > 0) {
                     await new Distance(this, weapon).initializeRoll();

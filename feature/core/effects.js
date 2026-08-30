@@ -48,7 +48,14 @@ export class ActiveEffects {
     }
 
     /**
-     * 
+     * [V14] Le champ `restrained` a ete retire de l'objet rendu. Il valait
+     * exactement `actor.immobilise` (meme appel isActive(actor, IMMOBILISE)) et
+     * n'etait lu que par les trois initializeRoll de Naturelle, Melee et
+     * Distance -- lesquels ne sont construits que par NephilimActor.rollWeapon,
+     * qui a deja refuse le jet sur `this.immobilise`. La garde y etait donc
+     * inatteignable et le champ sans lecteur. L'immobilisation se lit desormais
+     * sur l'acteur, source unique.
+     *
      * @param actor  The actor object.
      * @param target The targeted actor object.
      * @returns all actor effects.
@@ -57,8 +64,7 @@ export class ActiveEffects {
         return {
             foeOnGround: ActiveEffects.isActive(target, ActiveEffects.PROJETE),
             onGround: ActiveEffects.isActive(actor, ActiveEffects.PROJETE),
-            stunned: ActiveEffects.isActive(actor, ActiveEffects.DESORIENTE),
-            restrained: ActiveEffects.isActive(actor, ActiveEffects.IMMOBILISE)
+            stunned: ActiveEffects.isActive(actor, ActiveEffects.DESORIENTE)
         }
     }
 

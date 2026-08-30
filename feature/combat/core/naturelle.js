@@ -119,12 +119,6 @@ export class Naturelle extends AbstractFeature {
      */
     async initializeRoll() {
 
-        // Le personnage doit être libre de ses mouvements.
-        if (this.effects.restrained === true) {
-            ui.notifications.info("Le personnage est immobilisé");
-            return;
-        }
-
         // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
         // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
         // retrait du drapeau pendant que le rendu courait encore.
