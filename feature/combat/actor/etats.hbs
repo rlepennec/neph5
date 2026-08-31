@@ -1,0 +1,40 @@
+<div class="etats">
+
+    <div class="header">
+        <img class="puce"/>
+        <img class="separator"/>
+        <label class="title">{{translate "etats"}}</label>
+    </div>
+
+    <ol>
+
+        <li data-action="setDesoriente" data-id="stun">
+            {{> "systems/neph5e/templates/checkbox.hbs"
+                name="desoriente"
+                type="boolean"
+                value=document.desoriente
+            }}
+            <label>{{translate "desoriente"}}</label>
+        </li>
+
+        <li data-action="setImmobilise" data-id="restrain">
+            {{> "systems/neph5e/templates/checkbox.hbs"
+                name="immobilise"
+                type="boolean"
+                value=document.immobilise
+            }}
+            <label>{{translate "immobilise"}}</label>
+        </li>
+
+        <li data-action="setProjete" data-id="prone">
+            {{> "systems/neph5e/templates/checkbox.hbs"
+                name="projete"
+                type="boolean"
+                value=document.projete
+            }}
+            <label>{{translate "aTerre"}}</label>
+        </li>
+
+    </ol>
+
+</div>

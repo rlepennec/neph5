@@ -1,0 +1,40 @@
+<div class="ressources">
+
+    <div class="header">
+        <img class="puce"/>
+        <img class="separator"/>
+        <label class="title">{{translate "ressources"}}</label>
+    </div>
+
+    <ol class="body">
+
+        {{#each document.items as |item id|}}
+        {{#if (eq item.type 'passe')}}
+        <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <label data-action="open">{{item.name}}</label>
+            <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+        {{!-- Le degré d'un passé se saisit chez le figurant ; chez la figure il
+             vient des périodes et n'est donc affiché qu'en lecture. --}}
+        {{#if ../degreEditable}}
+        {{> "systems/neph5e/templates/input.hbs"
+            name=(concat 'items.' (fsid item) '.system.degre')
+            type="number"
+            value=item.system.degre
+        }}
+        {{else}}
+        {{!-- input nu et disabled : surtout pas input.hbs sans name ni type,
+             qui les hériterait du contexte de boucle (name = nom de l'item,
+             type = son type) et produirait des attributs parasites. --}}
+        <input
+            type="text"
+            value="{{item.system.degre}}"
+            disabled/>
+        {{/if}}
+        </li>
+        {{/if}}
+        {{/each}}
+
+    </ol>
+
+</div>

@@ -1,0 +1,22 @@
+<div class="armures">
+
+    <div class="header">
+        <img class="puce"/>
+        <img class="separator"/>
+        <label class="title">{{translate "armures"}}</label>
+    </div>
+
+   <ol class="body">
+
+        {{#each document.armors as |item|}}
+        <li data-fsid="{{fsid item}}">
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <label data-action="open">{{item.name}}</label>
+            <a><i></i></a>
+            <a data-action="useArmor"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>
+        </li>
+        {{/each}}
+
+    </ol>
+
+</div>

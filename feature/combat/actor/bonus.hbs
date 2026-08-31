@@ -1,0 +1,50 @@
+<div class="bonus">
+
+    <div class="header">
+        <img class="puce"/>
+        <img class="separator"/>
+        <label class="title">{{translate "bonus"}}</label>
+    </div>
+
+    <ol>
+
+        <li>
+            <label>{{translate "mouvement"}}</label>
+            {{> "systems/neph5e/templates/input.hbs"
+                name="system.bonus.mouvement"
+                type="number"
+                value=document.system.bonus.mouvement
+            }}
+        </li>
+
+        <li>
+            <label>{{translate "initiative"}}</label>
+            {{> "systems/neph5e/templates/input.hbs"
+                name="system.bonus.initiative"
+                type="number"
+                value=document.system.bonus.initiative
+            }}
+        </li>
+
+
+        <li>
+            <label>{{translate "dommages"}}</label>
+            {{> "systems/neph5e/templates/input.hbs"
+                name="system.bonus.dommage"
+                type="number"
+                value=document.system.bonus.dommage
+            }}
+        </li>
+
+        <li>
+            <label>{{translate "protection"}}</label>
+            {{> "systems/neph5e/templates/input.hbs"
+                name="system.bonus.protection"
+                type="number"
+                value=document.system.bonus.protection
+            }}
+        </li>
+
+    </ol>
+
+</div>

@@ -42,7 +42,6 @@ export const preloadTemplates = async function () {
         // Item parts
         "systems/neph5e/templates/item/parts/header/number.hbs",
 
-
         // New reboot
         "systems/neph5e/templates/chronology.hbs",
         "systems/neph5e/templates/header.hbs",
@@ -58,6 +57,16 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/item/options.hbs",
         "systems/neph5e/templates/science.hbs",
         "systems/neph5e/templates/video.hbs",
+
+        // Combat — les six blocs partages par les onglets combat de la figure et
+        // du figurant. Un partial absent de cette liste leve « The partial ... could
+        // not be found » au premier rendu.
+        "systems/neph5e/feature/combat/actor/sante.hbs",
+        "systems/neph5e/feature/combat/actor/armes.hbs",
+        "systems/neph5e/feature/combat/actor/armures.hbs",
+        "systems/neph5e/feature/combat/actor/ressources.hbs",
+        "systems/neph5e/feature/combat/actor/etats.hbs",
+        "systems/neph5e/feature/combat/actor/bonus.hbs",
 
         "systems/neph5e/feature/figurant/description.hbs",
         "systems/neph5e/feature/figurant/combat.hbs",

@@ -1,0 +1,78 @@
+<div class="armes">
+
+    <div class="header">
+        <img class="puce"/>
+        <img class="separator"/>
+        <label class="title">{{translate "armes"}}</label>
+    </div>
+
+    <ol class="body">
+
+        <li class="hoverable macro" data-macro="wrestle">
+            <a><i></i></a>
+            <label class="hoverable">{{translate "lutte"}}</label>
+            <a data-action="rollWrestle"><i class="fas fa-dice-d20"></i></a>
+            <a><i class="fa-solid fa-hand-fist"></i></a>
+        </li>
+
+        {{#with document.weapons as |weapons|}}
+
+        {{#each weapons.naturelle as |item|}}
+        <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <label data-action="open">{{item.name}}</label>
+            <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            <a><i class="fa-solid fa-hand-fist"></i></a>
+        </li>
+        {{/each}}
+
+        {{#each weapons.melee as |item|}}
+        <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <label data-action="open">{{item.name}}</label>
+            <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            <a data-action="useWeapon"><i class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
+        </li>
+        {{/each}}
+
+        {{#each weapons.trait as |item|}}
+        <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <label data-action="open">{{item.name}}</label>
+            <a data-action="aim" class="tooltip">
+                <i class="fas fa-crosshairs"></i>
+                <div class="tooltiptext">
+                    <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
+                </div>
+            </a>
+            <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
+        </li>
+        {{/each}}
+
+        {{#each weapons.feu as |item|}}
+        <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">
+            <a data-action="delete"><i class="fas fa-trash"></i></a>
+            <label data-action="open">{{item.name}}</label>
+            <a data-action="reload" class="tooltip">
+                <i class="fas fa-spinner"></i>
+                <div class="tooltiptext">
+                    <label>Le nombre de munitions de l'arme est de {{minus item.system.munitions item.system.tire}} sur {{item.system.munitions}}.</label>
+                </div>
+            </a>
+            <a data-action="aim" class="tooltip">
+                <i class="fas fa-crosshairs"></i>
+                <div class="tooltiptext">
+                    <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
+                </div>
+            </a>
+            <a data-action="rollWeapon"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            <a data-action="useWeapon"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
+        </li>
+        {{/each}}
+
+        {{/with}}
+
+    </ol>
+
+</div>
