@@ -3,7 +3,43 @@ import { ActionDialog } from "./actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
-export class ReactionRoll extends AbstractFeature {
+/**
+ * [V14] CHANTIER OUVERT — la reaction opposee propre a la dracomachie.
+ *
+ * ETAT REEL : ce fichier est encore, au corps pres, une copie de
+ * feature/core/reactionRoll.js. Seuls le nom de la classe et le chemin de
+ * l'import ont ete corriges. Les libelles ci-dessous sont ceux de la reaction
+ * GENERIQUE et ne parlent pas encore du dragon.
+ *
+ * POURQUOI ELLE EXISTE. Dracomachie est le seul focus a poser
+ * withOpposition("effetDragon"), sur ses domaines charmes ET passes
+ * (dracomachie.js:42 et 62). Quand le jet reussit en opposition,
+ * abstractFeature ecrit le drapeau { actor, purpose: item, result } et
+ * OpposedRollBuilder aiguille sur purpose.type, c'est-a-dire le TYPE D'ITEM.
+ * Pour un item de type dracomachie aucun case n'existe : on tombe dans
+ * default, donc sur ReactionRoll, dont la phrase est « parvient a ses fins »
+ * et dont la difficulte vaut 0 — base reste a 0, withBase() n'etant appelee
+ * par personne. C'est cet ecart que cette classe doit combler.
+ *
+ * CE QUI RESTE A FAIRE :
+ *  1. Brancher le cas dans OpposedRollBuilder.rollOf :
+ *         case 'dracomachie': return new Passe(actor, purpose, result);
+ *     Sans cela la classe reste inatteignable, quel que soit son contenu.
+ *  2. Trancher le perimetre. purpose.type vaut 'dracomachie' pour les charmes
+ *     COMME pour les passes ; le case ne les distingue pas. Les separer
+ *     demande de lire purpose.system.cercle ('dracomachie@charmes' ou
+ *     'dracomachie@passes'). Si les deux partagent la meme opposition, le nom
+ *     Passe est trop etroit.
+ *  3. Poser la base. Pacte, issu du meme moule, prend
+ *     this.base = purpose.system.degre ; Dracomachie.rawDegre lit le meme
+ *     champ. Reste a confirmer que c'est bien la difficulte voulue par la regle.
+ *  4. Ecrire les libelles : title, sentence et les deux branches de
+ *     sentenceOf, qui doivent parler de l'effet du dragon.
+ *
+ * Tant que le point 1 n'est pas fait, ce fichier n'est importe par personne.
+ */
+
+export class Passe extends AbstractFeature {
 
     /**
      * Constructor.
