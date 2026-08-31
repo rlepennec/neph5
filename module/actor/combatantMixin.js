@@ -27,7 +27,7 @@ import { Wrestle } from "../../feature/combat/core/wrestle.js";
  *
  * PAS DE CYCLE D'IMPORT. Verifie : aucun des onze modules importes ici n'atteint
  * nephilimActor.js, meme indirectement (97 modules explores). La clause
- * `extends CombattantMixin(Actor)` ne peut donc pas rencontrer la zone morte
+ * `extends CombatantMixin(Actor)` ne peut donc pas rencontrer la zone morte
  * temporelle qui avait frappe savoir.js.
  *
  * CE FICHIER NE FAIT QUE DEPLACER. Aucun corps n'a ete modifie : meme code, meme
@@ -36,7 +36,7 @@ import { Wrestle } from "../../feature/combat/core/wrestle.js";
  *
  * @param Base La classe de base a etendre, Actor en pratique.
  */
-export const CombattantMixin = Base => {
+export const CombatantMixin = Base => {
 
     return class Combattant extends Base {
 

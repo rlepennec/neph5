@@ -3,7 +3,7 @@ import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/capacite/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/chute/chute.js";
-import { CombattantMixin } from "./combattantMixin.js";
+import { CombatantMixin } from "./combatantMixin.js";
 import { Competence } from "../../feature/competence/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
@@ -19,13 +19,13 @@ import { Science } from "../../feature/science/science.js";
 import { Vecu } from "../../feature/vecu/vecu.js";
 
 /**
- * [V14] Le combat a ete extrait dans CombattantMixin (combattantMixin.js) :
+ * [V14] Le combat a ete extrait dans CombatantMixin (combatantMixin.js) :
  * jets d'arme et de lutte, viser, recharger, etats actifs, armes et armures,
  * degats, initiative, protection et modificateurs de blessures. Les membres
  * restent accessibles sur l'acteur, donc les fiches et les macros n'ont pas
  * change. Ce fichier ne garde que ce qui n'est pas martial.
  */
-export class NephilimActor extends CombattantMixin(Actor) {
+export class NephilimActor extends CombatantMixin(Actor) {
 
     /**
      * @returns the system identifier.
