@@ -38,7 +38,7 @@ import { Wrestle } from "../../feature/combat/core/wrestle.js";
  */
 export const CombatantMixin = Base => {
 
-    return class Combattant extends Base {
+    return class Combatant extends Base {
 
         /**
          * @returns true if the actor is desoriente.

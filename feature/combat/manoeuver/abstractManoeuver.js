@@ -65,7 +65,7 @@ export class AbstractManoeuver {
      * Specify the action can be done while being immobilized 
      * @returns the instance.
      */
-    whithImmobilized() {
+    withImmobilized() {
         this.immobilized = true;
         return this;
     }

@@ -3,7 +3,6 @@ import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js"
 import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
-import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
 import { Science } from "../science/science.js";
 

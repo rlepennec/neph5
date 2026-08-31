@@ -1,5 +1,3 @@
-import { NephilimItem } from "../item/nephilimItem.js";
-
 export class EmbeddedItem {
 
     /**
