@@ -6,14 +6,6 @@ import { SimpleFeature } from "../core/simpleFeature.js";
 export class Metamorphe extends SimpleFeature {
 
     /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
      * @Override
      */
     async drop() {

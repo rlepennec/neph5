@@ -4,14 +4,6 @@ import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 export class Magie extends SimpleFeature {
 
     /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
      * @Override
      */
     async drop() {

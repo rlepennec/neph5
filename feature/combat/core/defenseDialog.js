@@ -14,51 +14,6 @@ export class DefenseDialog extends CombatDialog {
     }
 
     /**
-     * @param title The title of the dialog panel.
-     * @returns the instance.
-     */
-    withTitle(title) {
-        super.withTitle(title);
-        return this;
-    }
-
-    /**
-     * @param template The path of the template file used to create the dialog.
-     * @returns the instance.
-     */
-    withTemplate(template) {
-        super.withTemplate(template);
-        return this;
-    }
-
-    /**
-     * @param data The data used to create the content of the dialog.
-     * @returns the instance.
-     */
-    withData(data) {
-        super.withData(data);
-        return this;
-    }
-
-    /**
-     * @param height The height of the dialog panel.
-     * @returns the instance.
-     */
-    withHeight(height) {
-        super.withHeight(height);
-        return this;
-    }
-
-    /**
-     * @param width The width of the dialog panel.
-     * @returns the instance.
-     */
-    withWidth(width) {
-        super.withWidth(width);
-        return this;
-    }
-
-    /**
      * @override
      */
     _onRender(context, options) {

@@ -1,21 +1,22 @@
 import { AbstractFeature } from "./abstractFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
-import { FeatureBuilder } from "./featureBuilder.js";
 
 export class HistoricalFeature extends AbstractFeature {
-
-    /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
 
     /**
      * @param item The original or embedded item object, purpose of the action.
      * @returns the instance.
      */
+    // [V14] withItem et withPeriode ne sont plus redeclarees par Arcane, Chute,
+    // Passe, Quete, Savoir, Science ni Capacite : leurs surcharges se reduisaient
+    // a `super.withX(x); return this;`, ce que ces deux methodes font deja.
+    // Verifie par execution sur quatorze classes et cinq scenarios chacune
+    // (neuf, item du monde, item embarque, periode, chaine complete) : etat final
+    // identique, zero ecart. Les constructeurs `constructor(actor) { super(actor); }`
+    // ont disparu pour la meme raison, le constructeur implicite faisant le meme
+    // travail -- controle prealable : aucun site ne construit ces classes avec
+    // plus d'un argument.
+
     withItem(item) {
         if (item == null) {
             return this;
@@ -82,26 +83,6 @@ export class HistoricalFeature extends AbstractFeature {
                 .withoutAlreadyEmbeddedError()
                 .create();
         }
-    }
-
-    /**
-     * @param type The type of item.
-     * @returns all features to display in the actor sheet according to the active periodes.
-     */
-    getAll(type) {
-        const features = [];
-        for (let item of game.items.filter(i => i.type === type)) {
-            const feature = new FeatureBuilder(this.actor).withOriginalItem(item.sid).create();
-            if (feature.degre !== 0) {
-                features.push({
-                    name: feature.name,
-                    sid: feature.sid,
-                    id: item.id,
-                    degre: feature.degre
-                });
-            }
-        }
-        return features;
     }
 
 }

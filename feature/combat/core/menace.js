@@ -5,15 +5,6 @@ import { Constants } from "../../../module/common/constants.js";
 export class Menace extends AbstractFeature {
 
     /**
-     * Constructor.
-     * @param actor     The actor which performs the action.
-
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
      * @Override
      */
     get title() {

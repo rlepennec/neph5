@@ -7,22 +7,6 @@ import { Savoir } from "../savoir/savoir.js";
 export class Science extends HistoricalFeature {
 
     /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
-     * @Override
-     */
-    withItem(item) {
-        super.withItem(item);
-        return this;
-    }
-
-    /**
      * The system identifier of the periode to registrer.
      * @returns the instance.
      */

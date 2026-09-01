@@ -3,14 +3,6 @@ import { AbstractFeature } from "./abstractFeature.js";
 export class SimpleFeature extends AbstractFeature {
 
     /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
      * @param item The original or embedded item object, purpose of the action.
      * @returns the instance.
      */
