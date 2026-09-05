@@ -3,14 +3,6 @@ import { AbstractFeature } from "../core/abstractFeature.js";
 export class AbstractFocus extends AbstractFeature {
 
     /**
-     * Constructor.
-     * @param actor   The actor which owns the focus.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
      * @param item The original or embedded item object, purpose of the action.
      * @returns the instance.
      */

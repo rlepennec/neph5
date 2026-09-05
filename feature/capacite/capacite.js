@@ -4,14 +4,6 @@ import { HistoricalFeature } from "../core/historicalFeature.js";
 export class Capacite extends HistoricalFeature {
 
     /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
      * @param item The original or embedded item object, purpose of the action.
      * @returns the instance.
      */
@@ -43,14 +35,6 @@ export class Capacite extends HistoricalFeature {
         return this;
     }
     
-    /**
-     * @Override
-     */
-    withPeriode(periode) {
-        super.withPeriode(periode);
-        return this;
-    }
-
     /**
      * @Override
      */

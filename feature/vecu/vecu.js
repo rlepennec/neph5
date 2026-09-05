@@ -19,14 +19,6 @@ export class Vecu extends HistoricalFeature {
     }
 
     /**
-     * @Override
-     */
-    withItem(item) {
-        super.withItem(item);
-        return this;
-    }
-
-    /**
      * The system identifier of the periode to registrer.
      * @returns the instance.
      */

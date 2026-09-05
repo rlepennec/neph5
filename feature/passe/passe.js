@@ -6,30 +6,6 @@ import { HistoricalFeature } from "../core/historicalFeature.js";
 export class Passe extends HistoricalFeature {
 
     /**
-     * Constructor.
-     * @param actor The actor which performs the action.
-     */
-    constructor(actor) {
-        super(actor);
-    }
-
-    /**
-     * @Override
-     */
-    withItem(item) {
-        super.withItem(item);
-        return this;
-    }
-    
-    /**
-     * @Override
-     */
-    withPeriode(periode) {
-        super.withPeriode(periode);
-        return this;
-    }
-
-    /**
      * @Override
      */
     get title() {

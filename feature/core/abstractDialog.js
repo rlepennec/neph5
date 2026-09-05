@@ -20,6 +20,20 @@ export class AbstractDialog extends HandlebarsApplicationMixin(ApplicationV2) {
         this.data = null;
     }
 
+    // [V14] Les cinq setters fluides ci-dessous sont declares ICI et NULLE PART
+    // ailleurs. ActionDialog, CombatDialog, DefenseDialog et DistanceDialog les
+    // redeclaraient chacun a l'identique -- vingt methodes dont le corps etait
+    // `super.withX(x); return this;` -- et ces vingt-la ont ete supprimees.
+    //
+    // Ne pas les remettre. Le motif est utile en typage statique, ou
+    // super.withTitle() a pour type declare AbstractDialog et casse le chainage
+    // d'une methode propre a la sous-classe. En JavaScript il n'y a pas de type
+    // declare : `return this` rend deja l'instance reelle. Mesure sur les trois
+    // dialogues concrets, avec et sans les surcharges : apres quatre maillons,
+    // constructor.name reste DistanceDialog / CombatDialog / DefenseDialog, et
+    // l'objet rendu est le meme. Aucune sous-classe n'ajoute d'ailleurs de
+    // methode fluide : il n'y a rien a chainer apres.
+
     /**
      * @param title The title of the dialog panel.
      * @returns the instance.
