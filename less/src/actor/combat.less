@@ -273,16 +273,52 @@
                         text-shadow: 0px 0px 1px var(--font-color);
                     }
 
+                    // Ces listes ont un nombre VARIABLE de colonnes : une arme de
+                    // contact porte deux icônes finales (jet, équiper), une arme de
+                    // trait trois (visée en plus), une arme à feu quatre (rechargement
+                    // en plus). Avec `width` sur des éléments flex, la largeur n'est
+                    // qu'une BASE : flex-shrink vaut 1 par défaut, donc dès que la somme
+                    // dépasse 100 % tout le monde rétrécit, libellé compris, et les
+                    // icônes se décalent d'une ligne à l'autre.
+                    //
+                    // Mesuré dans Chromium sur une colonne de 602 px, avant correction :
+                    //   contact  colonnes de 60 px, glyphe du jet à 522
+                    //   trait    colonnes de 55 px, glyphe du jet à 533
+                    //   feu      colonnes de 50 px, glyphe du jet à 542
+                    // soit 20 px de dérive sur le jet et 10 px sur l'équipement.
+                    //
+                    // `flex: 0 0 10%` fixe la base ET interdit le rétrécissement : les
+                    // colonnes d'icônes gardent leur dixième quoi qu'il arrive, donc le
+                    // jet est toujours à 80 % et l'équipement à 90 %. Le libellé prend
+                    // tout le reste, et récupère de lui-même la place des colonnes
+                    // rechargement et visée quand elles sont absentes.
+                    //
+                    // div.input : le partial input.hbs enveloppe le champ ; c'est
+                    // l'enveloppe qui porte la colonne, le champ la remplit. Même
+                    // principe que dans .caracteristiques.
                     label {
-                        width: 70%;
+                        flex: 1 1 auto;
+                        // sans min-width: 0, un élément flex ne descend pas sous la
+                        // largeur de son contenu et repousserait les colonnes.
+                        min-width: 0;
                     }
 
-                    a {
-                        width: 10%;
+                    a,
+                    input,
+                    div.input {
+                        flex: 0 0 10%;
+                        // min-width: auto est la valeur initiale d'un élément flex :
+                        // elle vaut la taille MINIMALE DE CONTENU quand aucune largeur
+                        // explicite n'est posée. Mesuré : sans cette ligne, l'<input>
+                        // du degré d'un passé était plancherisé à 177 px — la largeur
+                        // intrinsèque d'un champ texte de 20 caractères — au lieu des
+                        // 60 px de sa colonne. L'ancien `width: 10%` y échappait parce
+                        // qu'une largeur définie sert elle-même de plancher.
+                        min-width: 0;
                     }
 
-                    input {
-                        width: 10%;
+                    div.input input {
+                        width: 100%;
                     }
 
                 }

@@ -1529,17 +1529,25 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li label,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li label,
 form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li label {
-  width: 70%;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li a,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li a,
-form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li a {
-  width: 10%;
-}
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li a,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input,
-form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input {
-  width: 10%;
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input {
+  flex: 0 0 10%;
+  min-width: 0;
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input {
+  width: 100%;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite {
   display: flex;
@@ -3825,17 +3833,25 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .gauche .armes ol li label,
 .tab.combat .gauche .armures ol li label,
 .tab.combat .gauche .ressources ol li label {
-  width: 70%;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .tab.combat .gauche .armes ol li a,
 .tab.combat .gauche .armures ol li a,
-.tab.combat .gauche .ressources ol li a {
-  width: 10%;
-}
+.tab.combat .gauche .ressources ol li a,
 .tab.combat .gauche .armes ol li input,
 .tab.combat .gauche .armures ol li input,
-.tab.combat .gauche .ressources ol li input {
-  width: 10%;
+.tab.combat .gauche .ressources ol li input,
+.tab.combat .gauche .armes ol li div.input,
+.tab.combat .gauche .armures ol li div.input,
+.tab.combat .gauche .ressources ol li div.input {
+  flex: 0 0 10%;
+  min-width: 0;
+}
+.tab.combat .gauche .armes ol li div.input input,
+.tab.combat .gauche .armures ol li div.input input,
+.tab.combat .gauche .ressources ol li div.input input {
+  width: 100%;
 }
 .tab.combat .droite {
   display: flex;
