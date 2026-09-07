@@ -37,30 +37,40 @@
                     <span class="cercle-possede">{{translate "focus"}}</span>
                     {{/if}}
 
+                    {{!-- Les intitulés de colonnes sont rendus quel que soit le degré du
+                         cercle : ils décrivent les colonnes des focus, qui sont là même
+                         quand le cercle n'est pas développé. Les enfermer dans un
+                         {{#unless (eq cercle.degre 0)}} les faisait disparaître, et
+                         .cercle-name (flex: 1 1 auto) absorbait la place libérée, ce qui
+                         renvoyait « Focus » 230 px trop à droite. --}}
+                    {{#if (includes ../header 'quantite')}}
+                    <span class="cercle-quantite">{{translate "quantite"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'transporte')}}
+                    <span class="cercle-transporte">{{translate "soi"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'pacte')}}
+                    <span class="cercle-pacte">{{translate "pacte"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'status')}}
+                    <span class="cercle-status">{{translate "status"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'percentage')}}
+                    <span class="cercle-percentage">{{localize "%"}}</span>
+                    {{/if}}
+
+                    {{!-- Le dé, lui, reste conditionnel : on ne lance pas un cercle non
+                         développé. Mais sa colonne doit rester RÉSERVÉE, sinon
+                         .cercle-name s'y étend et décale les cinq intitulés de 50 px.
+                         Même procédé que le <a><i></i></a> vide des armures. --}}
                     {{#unless (eq cercle.degre 0)}}
-                        
-                        {{#if (includes ../header 'quantite')}}
-                        <span class="cercle-quantite">{{translate "quantite"}}</span>
-                        {{/if}}
-
-                        {{#if (includes ../header 'transporte')}}
-                        <span class="cercle-transporte">{{translate "soi"}}</span>
-                        {{/if}}
-
-                        {{#if (includes ../header 'pacte')}}
-                        <span class="cercle-pacte">{{translate "pacte"}}</span>
-                        {{/if}}
-
-                        {{#if (includes ../header 'status')}}
-                        <span class="cercle-status">{{translate "status"}}</span>
-                        {{/if}}
-
-                        {{#if (includes ../header 'percentage')}}
-                        <span class="cercle-percentage">{{localize "%"}}</span>
-                        {{/if}}
-
-                        <a class="cercle-dice roll" data-action="roll"><i class="fas fa-dice-d20"></i></a>
-
+                    <a class="cercle-dice roll" data-action="roll"><i class="fas fa-dice-d20"></i></a>
+                    {{else}}
+                    <a class="cercle-dice"></a>
                     {{/unless}}
 
                 </div>
