@@ -317,6 +317,28 @@
                         min-width: 0;
                     }
 
+                    // [V14] Foundry habille les <input> : mesuré sur la vraie fiche,
+                    // line-height: 32px et height: 32px, là où le libellé est à 17.5px.
+                    // Même police, même corps — Signika 14px — mais le texte du champ se
+                    // centre dans une ligne de 32 px pendant que celui du libellé se pose
+                    // sur une ligne de 17,5. D'où la valeur décalée vers le bas.
+                    //
+                    // Ici la rangée est en plus figée à 22 px : le champ de 32 px en
+                    // débordait de 10 px, ce qui collait les cadres les uns aux autres.
+                    //
+                    // Les deux déclarations sont nécessaires, mesuré séparément :
+                    //   line-height seul  écart 5 px -> 5 px  (height: 32px recentre)
+                    //   height seul       écart 5 px -> 6 px  (la ligne reste à 32)
+                    //   les deux          écart 5 px -> 0 px, débordement 10 px -> 0
+                    //
+                    // min-height: 0 lève le plancher `auto` que Foundry laisse sur les
+                    // champs de cette liste.
+                    input {
+                        line-height: inherit;
+                        height: auto;
+                        min-height: 0;
+                    }
+
                     div.input input {
                         width: 100%;
                     }
@@ -438,6 +460,16 @@
                 input {
                     width: 100%;
                 }
+            }
+
+            // Même correction que pour les listes de gauche : Foundry impose
+            // line-height: 32px et height: 32px aux champs, le libellé étant à
+            // 17.5px. Mesuré : écart de 5 px ramené à 0, et la rangée retrouve sa
+            // hauteur naturelle (32 px -> 20 px) au lieu de celle du champ.
+            input {
+                line-height: inherit;
+                height: auto;
+                min-height: 0;
             }
 
             ol {

@@ -1544,6 +1544,13 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   flex: 0 0 10%;
   min-width: 0;
 }
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input {
+  line-height: inherit;
+  height: auto;
+  min-height: 0;
+}
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input input,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input input,
 form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input {
@@ -1613,6 +1620,11 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input {
   width: 100%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus input {
+  line-height: inherit;
+  height: auto;
+  min-height: 0;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
   list-style: none;
@@ -3852,6 +3864,13 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   flex: 0 0 10%;
   min-width: 0;
 }
+.tab.combat .gauche .armes ol li input,
+.tab.combat .gauche .armures ol li input,
+.tab.combat .gauche .ressources ol li input {
+  line-height: inherit;
+  height: auto;
+  min-height: 0;
+}
 .tab.combat .gauche .armes ol li div.input input,
 .tab.combat .gauche .armures ol li div.input input,
 .tab.combat .gauche .ressources ol li div.input input {
@@ -3921,6 +3940,11 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.combat .droite .bonus div.input input {
   width: 100%;
+}
+.tab.combat .droite .bonus input {
+  line-height: inherit;
+  height: auto;
+  min-height: 0;
 }
 .tab.combat .droite .bonus ol {
   list-style: none;
