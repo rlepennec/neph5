@@ -282,8 +282,24 @@
                         text-overflow: ellipsis;
                     }
 
+                    // [V14] Ces deux colonnes sont des <input>, pas des <label>, et
+                    // c'est ce qui les distingue de toutes les autres.
+                    //
+                    // min-width vaut `auto` par defaut sur un element flex : la taille
+                    // MINIMALE DE CONTENU. Pour un champ texte, c'est sa largeur
+                    // intrinseque de vingt caracteres. Mesure : la colonne occupait
+                    // 181 px au lieu des 50 demandes, et repoussait le nom du focus,
+                    // si bien que la ligne ne s'alignait plus sur son bandeau
+                    // (possede a 468 dans la ligne contre 730 dans le bandeau).
+                    //
+                    // box-sizing : le systeme ne le pose nulle part, on ne depend donc
+                    // pas de la valeur heritee. En content-box, les 50 px de flex-basis
+                    // s'entendent hors bordure et remplissage, et la colonne mesure 54 px
+                    // -- 8 px de decalage cumule sur les deux champs. On le fixe ici.
                     .focus-quantite {
                         flex: 0 0 50px;
+                        min-width: 0;
+                        box-sizing: border-box;
                         margin-top: -5px;
                         border: none;
                         background-color: transparent;
@@ -292,6 +308,8 @@
 
                     .focus-transporte {
                         flex: 0 0 50px;
+                        min-width: 0;
+                        box-sizing: border-box;
                         margin-top: -5px;
                         border: none;
                         background-color: transparent;

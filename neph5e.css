@@ -2982,6 +2982,8 @@ form.nephilim.actor section.window-content > section article main.science .cercl
 }
 form.nephilim.actor section.window-content > section article main.science .cercles .cercle .all-focus .focus .focus-quantite {
   flex: 0 0 50px;
+  min-width: 0;
+  box-sizing: border-box;
   margin-top: -5px;
   border: none;
   background-color: transparent;
@@ -2989,6 +2991,8 @@ form.nephilim.actor section.window-content > section article main.science .cercl
 }
 form.nephilim.actor section.window-content > section article main.science .cercles .cercle .all-focus .focus .focus-transporte {
   flex: 0 0 50px;
+  min-width: 0;
+  box-sizing: border-box;
   margin-top: -5px;
   border: none;
   background-color: transparent;
@@ -5286,6 +5290,8 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.science .cercles .cercle .all-focus .focus .focus-quantite {
   flex: 0 0 50px;
+  min-width: 0;
+  box-sizing: border-box;
   margin-top: -5px;
   border: none;
   background-color: transparent;
@@ -5293,6 +5299,8 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.science .cercles .cercle .all-focus .focus .focus-transporte {
   flex: 0 0 50px;
+  min-width: 0;
+  box-sizing: border-box;
   margin-top: -5px;
   border: none;
   background-color: transparent;
