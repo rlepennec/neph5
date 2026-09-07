@@ -343,6 +343,27 @@
                         width: 100%;
                     }
 
+                    // Le cadre annonce un champ saisissable ; verrouillé il ment. input.hbs pose
+                    // `disabled` quand @root.locked — relevé sur la fiche : disabled = true.
+                    //
+                    // Écrite à la racine de .tab.combat, la règle PERDAIT. Le relevé des valeurs
+                    // calculées le montre sur un même champ : height, line-height et min-height
+                    // prennent bien nos valeurs — posées par un sélecteur à quatre classes — mais
+                    // la bordure reste à 1px solid #302831, qui est --input-border-color, donc
+                    // Foundry. Ce qui l'impose se situe entre trois et quatre classes de force.
+                    // On écrit donc la règle à la même profondeur que celles qui gagnent déjà,
+                    // plutôt qu'à la racine, et sans !important.
+                    //
+                    // border-radius suit : sans lui, le champ garde ses coins arrondis de 4px,
+                    // invisibles sans bordure mais qui reviendraient à la moindre couleur de fond.
+                    //
+                    // CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence
+                    // — il vient des périodes — donc sans cadre dans les deux états.
+                    input:disabled {
+                        border: none;
+                        border-radius: 0;
+                    }
+
                 }
 
             }
@@ -470,6 +491,27 @@
                 line-height: inherit;
                 height: auto;
                 min-height: 0;
+            }
+
+            // Le cadre annonce un champ saisissable ; verrouillé il ment. input.hbs pose
+            // `disabled` quand @root.locked — relevé sur la fiche : disabled = true.
+            //
+            // Écrite à la racine de .tab.combat, la règle PERDAIT. Le relevé des valeurs
+            // calculées le montre sur un même champ : height, line-height et min-height
+            // prennent bien nos valeurs — posées par un sélecteur à quatre classes — mais
+            // la bordure reste à 1px solid #302831, qui est --input-border-color, donc
+            // Foundry. Ce qui l'impose se situe entre trois et quatre classes de force.
+            // On écrit donc la règle à la même profondeur que celles qui gagnent déjà,
+            // plutôt qu'à la racine, et sans !important.
+            //
+            // border-radius suit : sans lui, le champ garde ses coins arrondis de 4px,
+            // invisibles sans bordure mais qui reviendraient à la moindre couleur de fond.
+            //
+            // CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence
+            // — il vient des périodes — donc sans cadre dans les deux états.
+            input:disabled {
+                border: none;
+                border-radius: 0;
             }
 
             ol {

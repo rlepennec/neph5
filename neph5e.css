@@ -1556,6 +1556,12 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
 form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input {
   width: 100%;
 }
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input:disabled,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input:disabled,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input:disabled {
+  border: none;
+  border-radius: 0;
+}
 form.nephilim.actor section.window-content > section article main.combat .droite {
   display: flex;
   flex-direction: column;
@@ -1625,6 +1631,10 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   line-height: inherit;
   height: auto;
   min-height: 0;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus input:disabled {
+  border: none;
+  border-radius: 0;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
   list-style: none;
@@ -3876,6 +3886,12 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .gauche .ressources ol li div.input input {
   width: 100%;
 }
+.tab.combat .gauche .armes ol li input:disabled,
+.tab.combat .gauche .armures ol li input:disabled,
+.tab.combat .gauche .ressources ol li input:disabled {
+  border: none;
+  border-radius: 0;
+}
 .tab.combat .droite {
   display: flex;
   flex-direction: column;
@@ -3945,6 +3961,10 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   line-height: inherit;
   height: auto;
   min-height: 0;
+}
+.tab.combat .droite .bonus input:disabled {
+  border: none;
+  border-radius: 0;
 }
 .tab.combat .droite .bonus ol {
   list-style: none;
