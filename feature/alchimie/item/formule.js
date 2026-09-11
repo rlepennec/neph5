@@ -6,7 +6,7 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class FormuleSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-orichalque"],
+        classes: ["vk-formule"],
         position: {
             width: 1385,
             height: 780
