@@ -165,7 +165,7 @@ export class AbstractManoeuver {
      * @returns the instance.
      */
     withNoOther() {
-        this.withNoOther;
+        this.withNoOther = true;
         return this;
     }
 
