@@ -54,23 +54,6 @@ export class HistoricalSheet extends NephilimActorSheet {
         return context;
     }
 
-    /**
-     * @param event The drop event.
-     * @returns the dropped object. 
-     */
-    async droppedObject(event) {
-        event.preventDefault();
-        let object = await NephilimItemSheet.droppedItem(event);
-        if (object != null) {
-            return {'type': 'item', 'object': object};
-        }
-        object = await NephilimActorSheet.droppedActor(event);
-        if (object != null) {
-            return {'type': 'actor', 'object': object};
-        }
-        return null;
-    }
-
     static async _onDropFeature(event, document) {
         await new FeatureBuilder(this.document)
             .withOriginalItem(document.sid)

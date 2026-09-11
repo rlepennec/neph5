@@ -8098,30 +8098,6 @@ form.combat .body .roll .parameters #element {
   background-color: transparent;
   width: 70px;
 }
-form.combat .body .roll .parameters .impact {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body .roll .parameters .impact #impact {
-  padding-top: 4px;
-  text-align: right;
-}
-form.combat .body .roll .parameters .impact .heart {
-  margin-left: 10px;
-  padding-top: 5px;
-}
-form.combat .body .roll .parameters .absorption {
-  display: flex;
-  flex-direction: row;
-}
-form.combat .body .roll .parameters .absorption #absorption {
-  padding-top: 4px;
-  text-align: right;
-}
-form.combat .body .roll .parameters .absorption .shield {
-  margin-left: 10px;
-  padding-top: 5px;
-}
 form.combat .body .roll .parameters #details {
   width: 20px;
   padding-top: 5px;

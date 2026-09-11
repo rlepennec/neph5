@@ -415,7 +415,6 @@ export class Science extends HistoricalFeature {
         
         for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 
-            //const embedded = actor.items.find(i => i.sid === original.sid);
             const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;

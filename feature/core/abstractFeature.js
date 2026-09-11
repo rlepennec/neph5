@@ -424,34 +424,6 @@ export class AbstractFeature {
     }
 
     /**
-     * Edit the focus.
-     * @param template The path of the template file.
-     * @param data     The data used to build the html content.
-     * @param title    The title of the panel to localize.
-     * @param width    The width of the panel.
-     * @param height   The height of the panel.
-     */
-    async edit(template, data, title, width, height) {
-
-        // Create the dialog panel to display.
-        const html = await renderTemplate(template, data);
-
-        // Display the action panel
-        await new Dialog({
-            title: game.i18n.localize(title),
-            content: html,
-            buttons: {},
-            default: null,
-            close: () => {}
-        }, {
-            width: width,
-            height: height,
-            resizable: true
-        }).render(true);
-
-    }
-
-    /**
      * @param degre The degre value, at least 0.
      * @returns the textual description of the degre.
      */

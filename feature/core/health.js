@@ -111,20 +111,6 @@ export class Health {
     }
 
     /**
-     * @param damages The number of damages points.
-     */
-    async applyPhysicalDamages(damages) {
-        await new Damages(this.actor, 'physique').apply(damages);
-    }
-
-    /**
-     * @param damages The number of damages points.
-     */
-    async applyMagicalDamages(damages) {
-        await new Damages(this.actor, 'magique').apply(damages);
-    }
-
-    /**
      * 
      * @param token     The token id of the defender.
      * @param attacker  The actor id of the attacker.
