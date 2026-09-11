@@ -3,11 +3,8 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class TechniqueSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-technique"],
-        position: {
-            width: 1220,
-            height: 720
-        }
+        // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+        classes: ["vk-technique"]
     }
 
     static PARTS = {

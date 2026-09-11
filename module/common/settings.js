@@ -1,4 +1,5 @@
 import { NettoyageDialog } from "./nettoyage.js";
+import { positionOf } from "../item/positions.js";
 
 export const registerSystemSettings = function () {
 
@@ -28,6 +29,10 @@ export const registerSystemSettings = function () {
         onChange: value => {
             for (const app of foundry.applications.instances.values()) {
                 if (app.document?.documentName === "Item") {
+                    // Les fiches deja ouvertes changent aussi de taille : sans
+                    // cela, le nouveau style s'afficherait dans les dimensions
+                    // de l'ancien jusqu'a la prochaine ouverture.
+                    app.setPosition(positionOf(app.document.type, value));
                     app.render(false);
                 }
             }

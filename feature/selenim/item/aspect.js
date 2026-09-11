@@ -3,11 +3,8 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class AspectSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-aspect"],
-        position: {
-            width: 850,
-            height: 700
-        }
+        // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+        classes: ["vk-aspect"]
     }
 
     static PARTS = {

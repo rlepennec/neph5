@@ -4,11 +4,8 @@ import { OrdonnanceDataModel } from "./ordonnance.mjs";
 export class OrdonnanceSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-ordonnance"],
-        position: {
-            width: 850,
-            height: 680
-        }
+        // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+        classes: ["vk-ordonnance"]
     }
 
     static PARTS = {

@@ -3,11 +3,8 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class ArmureSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-armure"],
-        position: {
-            width: 750,
-            height: 800
-        }
+        // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+        classes: ["vk-armure"]
     }
 
     static PARTS = {

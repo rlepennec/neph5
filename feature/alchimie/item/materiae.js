@@ -3,12 +3,7 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class MateriaeSheet extends NephilimItemSheet {
 
-    static DEFAULT_OPTIONS = {
-        position: {
-            width: 700,
-            height: 640
-        }
-    }
+    // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
 
     static PARTS = {
         main: {

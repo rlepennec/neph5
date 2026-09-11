@@ -3,12 +3,7 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class InvocationSheet extends NephilimItemSheet {
 
-    static DEFAULT_OPTIONS = {
-        position: {
-            width: 1220,
-            height: 700
-        }
-    }
+    // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
 
     static PARTS = {
         main: {

@@ -1,6 +1,7 @@
 import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 import { ItemOptionsSelector } from "../../feature/core/itemOptionsSelector.js";
+import { positionOf } from "./positions.js";
 
 import { Science } from "../../feature/science/science.js";
 
@@ -12,6 +13,39 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
 
     static DEFAULT_OPTIONS = {
         classes: ["item"],
+    }
+
+    /**
+     * Pose la taille d'ouverture correspondant au type ET au style courant.
+     *
+     * Pourquoi ici : `static DEFAULT_OPTIONS` est evalue une seule fois, au
+     * chargement de la classe, alors que `styleItemSheet` est un reglage
+     * utilisateur qui peut changer a tout moment. La taille ne peut donc pas
+     * etre statique. `_initializeApplicationOptions` est le point ou
+     * ApplicationV2 fusionne les DEFAULT_OPTIONS de toute la chaine d'heritage
+     * avec les options d'instance : c'est la derniere occasion d'intervenir
+     * avant que la fenetre ne soit dimensionnee, et la premiere ou l'on
+     * connaisse le document.
+     *
+     * ATTENTION : on lit `options.document` et NON `this.document`. La methode
+     * est appelee depuis le constructeur d'ApplicationV2, donc AVANT que
+     * DocumentSheetV2 n'ait affecte son champ prive : `this.document` y est
+     * encore indefini.
+     *
+     * La taille calculee ecrase tout `position` heriter des DEFAULT_OPTIONS,
+     * puisque la fusion a deja eu lieu. Les feuilles n'ont donc plus a en
+     * declarer — toutes les valeurs sont dans positions.js.
+     *
+     * @override
+     */
+    _initializeApplicationOptions(options) {
+        const merged = super._initializeApplicationOptions(options);
+        const type = options.document?.type;
+        if (type != null) {
+            const style = game.settings.get('neph5e', 'styleItemSheet');
+            merged.position = Object.assign({}, merged.position, positionOf(type, style));
+        }
+        return merged;
     }
 
     /**

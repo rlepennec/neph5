@@ -3,12 +3,7 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class MetamorpheSheet extends NephilimItemSheet {
 
-    static DEFAULT_OPTIONS = {
-        position: {
-            width: 1400,
-            height: 820
-        }
-    }
+    // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
 
     static PARTS = {
         main: {

@@ -3,11 +3,8 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 export class ScienceSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-science"],
-        position: {
-            width: 820,
-            height: 620
-        }
+        // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+        classes: ["vk-science"]
     }
 
     static PARTS = {

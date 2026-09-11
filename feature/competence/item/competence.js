@@ -3,6 +3,8 @@ import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
 
+    // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+
     /**
      * La compétence n'est pas éditable lorsqu'elle est ouverte depuis un acteur.
      * @override
@@ -11,12 +13,6 @@ export class CompetenceSheet extends NephilimItemSheet {
         return false;
     }
 
-    static DEFAULT_OPTIONS = {
-        position: {
-            width: 800,
-            height: 470
-        }
-    }
 
     static PARTS = {
         main: {

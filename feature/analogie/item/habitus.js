@@ -5,11 +5,8 @@ import { HabitusDataModel } from "./habitus.mjs";
 export class HabitusSheet extends NephilimItemSheet {
 
     static DEFAULT_OPTIONS = {
-        classes: ["vk-habitus"],
-        position: {
-            width: 1220,
-            height: 720
-        }
+        // Taille d'ouverture : voir module/item/positions.js (elle depend du style).
+        classes: ["vk-habitus"]
     }
 
     static PARTS = {
