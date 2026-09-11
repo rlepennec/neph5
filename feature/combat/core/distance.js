@@ -2,6 +2,7 @@ import { AbstractFeature } from "../../core/abstractFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
+import { CombatHistory } from "./combatHistory.js";
 import { Constants } from "../../../module/common/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
 import { Health } from "../../core/health.js";
@@ -150,6 +151,7 @@ export class Distance extends AbstractFeature {
             const impact = this.impact(this.manoeuver.id);
             await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical);
             await Health.applyEffectsOn(this.target.id, this.actor.id, Constants.ACTION, this.manoeuver);
+            await CombatHistory.record(this.actor, this.manoeuver.id, this.target?.actor);
         }
     }
 

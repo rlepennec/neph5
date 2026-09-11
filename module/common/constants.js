@@ -47,6 +47,7 @@ export class Constants {
     static MSG_UNSET_CHAT_MESSAGE = 'unsetChatMessage';
     static MSG_APPLY_DAMAGES_ON = 'applyDamagesOn';
     static MSG_APPLY_EFFECTS_ON = 'applyEffectsOn';
+    static MSG_RECORD_MANOEUVRE = 'recordManoeuvre';
     static NATURELLE = 'naturelle';
     static NONE = 'none';
     static OPPOSED = 'opposed';

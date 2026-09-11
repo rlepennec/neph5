@@ -1,4 +1,5 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
+import { CombatHistory } from "../../feature/combat/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
@@ -478,6 +479,7 @@ export const CombatantMixin = Base => {
             }
 
             await viser.apply(action);
+            await CombatHistory.record(this, Viser.ID, this.target?.actor);
 
         }
 
@@ -522,6 +524,7 @@ export const CombatantMixin = Base => {
             }
 
             await recharger.apply(action);
+            await CombatHistory.record(this, Recharger.ID, null);
 
         }
 

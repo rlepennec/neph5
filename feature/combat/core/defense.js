@@ -5,6 +5,7 @@ import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Bloquer } from "../manoeuver/bloquer.js";
 import { Combat } from "./combat.js";
+import { CombatHistory } from "./combatHistory.js";
 import { Contrer } from "../manoeuver/contrer.js";
 import { DefenseDialog } from "./defenseDialog.js";
 import { Desarmer } from "../manoeuver/desarmer.js";
@@ -187,6 +188,10 @@ export class Defense extends AbstractFeature {
         await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver, this.result.critical);
         await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
 
+        // Record the maneuvers played by both combatants
+        await CombatHistory.record(this.attack.actor, this.attack.manoeuver.id, this.actor);
+        await CombatHistory.record(this.actor, this.manoeuver.id, this.attack.actor);
+
     }
 
     /**
@@ -234,6 +239,7 @@ export class Defense extends AbstractFeature {
             if (this.result.success) {
                 await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
+                await CombatHistory.record(this.attack.actor, this.attack.manoeuver.id, this.actor);
             }
             return null;
         } else {

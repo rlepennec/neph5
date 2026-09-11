@@ -22,6 +22,7 @@ import { AspectSheet } from "./feature/selenim/item/aspect.js";
 import { CapaciteSheet } from "./feature/capacite/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/chute/item/chute.js";
+import { CombatHistory } from "./feature/combat/core/combatHistory.js";
 import { CompetenceSheet } from "./feature/competence/item/competence.js";
 import { DivinationSheet } from "./feature/bohemien/item/divination.js";
 import { DracomachieSheet } from "./feature/dracomachie/item/dracomachie.js";
@@ -258,19 +259,12 @@ Hooks.once("init", function () {
         }
     })
 
-    // Add data to combatant
-    Hooks.on("createCombatant", async (combat, data) => {
-        if (!game.user.isGM) return;
-        const status = {
-            effects: [],
-            history: {
-                round: null,
-                attacks: [],
-                defenses: [],
-                exclusive: null
-            }
+    // Le combat automatique ne concerne que les figures et les figurants.
+    Hooks.on("preCreateCombatant", (combatant, data, options, userId) => {
+        if (combatant.actor?.type === 'fraternite') {
+            ui.notifications.warn("Une fraternité ne peut pas participer à un combat.");
+            return false;
         }
-        await combat.setFlag("world", "combat", status);
     })
 
     // [V14] Les hooks preCreateActor et preCreateItem ont ete supprimes.
@@ -321,6 +315,9 @@ Hooks.once("init", function () {
                 break;
             case Constants.MSG_APPLY_EFFECTS_ON:
                 await Health.onSocketMessage(socketMessage);
+                break;
+            case Constants.MSG_RECORD_MANOEUVRE:
+                await CombatHistory.onSocketMessage(socketMessage);
                 break;
           }
     });
