@@ -15,9 +15,7 @@
 //                   Toujours disponible, pour les 32 types.
 //
 //    .vk-<theme>    posé par <Type>Sheet.DEFAULT_OPTIONS.classes, également
-//                   sur la fenêtre. Facultatif, et partagé entre types
-//                   lorsqu'ils se ressemblent (vk-orichalque : arme, armure,
-//                   formule).
+//                   sur la fenêtre.
 //
 //    .skin-<element> posé dynamiquement en JS depuis system.element, sur la
 //                   fenêtre aussi. Défini dans less/src/skins/ — hors de ce
@@ -114,10 +112,10 @@
 
 // ── Thème par défaut, provisoire ───────────────────────────────────────────
 //
-// Reprend les valeurs de .vk-orichalque. Sert de remplissage aux 19 types qui
-// n'avaient aucun fond : sans --vk-body-background, la règle « main » de
-// ashbury.less (§3) devient invalide au calcul et perd tout, y compris son
-// « center / cover no-repeat ».
+// Sert de remplissage aux 19 types qui  n'avaient aucun fond : sans
+// --vk-body-background, la règle « main » de ashbury.less (§3) devient
+// invalide au calcul et perd tout, y compris son « center / cover no-repeat ».
+// 
 // Mesuré avant correction : background-image: none, size: auto, repeat: repeat.
 //
 // Chaque appel ci-dessous est un emplacement en attente de sa vraie valeur.
@@ -129,16 +127,6 @@
     --vk-glow: rgba(28, 77, 181, 0.35);
     --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
-}
-
-
-// ── Thèmes partagés ────────────────────────────────────────────────────────
-
-// Ka Orichalque — arme, armure et formule (ArmeSheet, ArmureSheet,
-// FormuleSheet le posent via DEFAULT_OPTIONS.classes). Hérité par la barre
-// latérale, le fond de main et le halo des médaillons.
-.vk-orichalque {
-    .vk-theme-defaut();
 }
 
 // ── Thèmes aboutis, par type ───────────────────────────────────────────────
@@ -153,6 +141,14 @@
 
 .vk-arcane {
     --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+
+.vk-arme {
+    .vk-theme-defaut();
+}
+
+.vk-armure {
+    .vk-theme-defaut();
 }
 
 .vk-aspect {

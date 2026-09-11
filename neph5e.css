@@ -5831,12 +5831,6 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .item-vecu {
   --vk-side-classique: url("../../systems/neph5e/assets/core/side-vecu.webp");
 }
-.vk-orichalque {
-  --vk-bg: rgba(35, 45, 55, 0.3);
-  --vk-glow: rgba(28, 77, 181, 0.35);
-  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
-  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
-}
 .vk-alchimie {
   --vk-body-background: url("../../systems/neph5e/assets/backgrounds/alchimie 2.webp");
 }
@@ -5845,6 +5839,18 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .vk-arcane {
   --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/bckgd-trsp.webp");
+}
+.vk-arme {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
+}
+.vk-armure {
+  --vk-bg: rgba(35, 45, 55, 0.3);
+  --vk-glow: rgba(28, 77, 181, 0.35);
+  --vk-grad: linear-gradient(135deg, rgba(35, 50, 70, 0.6) 0%, rgba(100, 130, 150, 0.5) 50%, rgba(180, 220, 240, 0.3) 100%);
+  --vk-body-background: url("../../systems/neph5e/assets/vk/fonds/orichalque.webp");
 }
 .vk-aspect {
   --vk-body-background: url("../../systems/neph5e/assets/backgrounds/verre 3.webp");
