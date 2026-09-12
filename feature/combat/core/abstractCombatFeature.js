@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../../core/abstractFeature.js";
+import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 
 export class AbstractCombatFeature extends AbstractFeature {
 
@@ -26,6 +27,14 @@ export class AbstractCombatFeature extends AbstractFeature {
      */
     weaponModifier(weapon) {
         return 0;
+    }
+
+    /**
+     * @param parameters All the action parameters.
+     * @returns the attack modifier of the maneuver in use.
+     */
+    manoeuverModifier(parameters) {
+        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
 }

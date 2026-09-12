@@ -6,7 +6,6 @@ import { CombatDialog } from "./combatDialog.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Immobiliser } from "../manoeuver/immobiliser.js";
 import { Liberer } from "../manoeuver/liberer.js";
-import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Projeter } from "../manoeuver/projeter.js";
 
@@ -86,13 +85,6 @@ export class Wrestle extends AbstractCombatFeature {
             case 'figurant':
                 return game.i18n.localize('NEPHILIM.menace');
         }
-    }
-
-    /**
-     * @Override
-     */
-    manoeuverModifier(parameters) {
-        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
     /**

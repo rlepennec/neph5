@@ -7,7 +7,6 @@ import { Constants } from "../../../module/common/constants.js";
 import { Etrange } from "../manoeuver/etrange.js";
 import { Force } from "../manoeuver/force.js";
 import { Lancer } from "../manoeuver/lancer.js";
-import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Puissante } from "../manoeuver/puissante.js";
 import { Rapide } from "../manoeuver/rapide.js";
@@ -81,13 +80,6 @@ export class Melee extends AbstractCombatFeature {
             .withOnGround(this.effects.onGround)
             .withStunned(this.effects.stunned)
             .export();
-    }
-
-    /**
-     * @Override
-     */
-    manoeuverModifier(parameters) {
-        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
     /**
