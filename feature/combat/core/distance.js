@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../../core/abstractFeature.js";
+import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -16,7 +16,7 @@ import { Salve } from "../manoeuver/salve.js";
 import { Tirer } from "../manoeuver/tirer.js";
 import { Viser } from "../manoeuver/viser.js";
 
-export class Distance extends AbstractFeature {
+export class Distance extends AbstractCombatFeature {
 
     /**
      * Constructor.
@@ -92,32 +92,17 @@ export class Distance extends AbstractFeature {
     /**
      * @Override
      */
-    difficulty(parameters) {
-        const data = this.data;
-        return AbstractFeature.toInt(data?.base?.difficulty)
-             + AbstractFeature.toInt(parameters?.modifier)
-             + AbstractFeature.toInt(parameters?.approche)
-             + AbstractFeature.toInt(parameters?.blessures, data.blessures)
-             + AbstractFeature.toInt(this.data.visee)
-             + this.weaponModifier(data.weapon)
-             + this.manoeuverModifier(parameters);
+    manoeuverModifier(parameters) {
+        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
+        const shot = parameters?.shot == null ? null : parameters.shot - 1;
+        return AbstractCombatFeature.toInt(manoeuver?.attack?.modifier) + AbstractCombatFeature.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
     }
 
     /**
      * @Override
      */
-    manoeuverModifier(parameters) {
-        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
-        const shot = parameters?.shot == null ? null : parameters.shot - 1;
-        return AbstractFeature.toInt(manoeuver?.attack?.modifier) + AbstractFeature.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
-    }
-
-    /**
-     * @param weapon The weapon object used for the attack.
-     * @returns the attack modififer.
-     */
     weaponModifier(weapon) {
-        return AbstractFeature.toInt(weapon?.system.attack * 10);
+        return AbstractCombatFeature.toInt(weapon?.system.attack * 10);
     }
 
     /**

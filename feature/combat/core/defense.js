@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../../core/abstractFeature.js";
+import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { AbstractManoeuver } from "../manoeuver/abstractManoeuver.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
@@ -22,7 +22,7 @@ import { Parer } from "../manoeuver/parer.js";
 import { ParerLance } from "../manoeuver/parerLance.js";
 import { ParerProjectile } from "../manoeuver/parerProjectile.js";
 
-export class Defense extends AbstractFeature {
+export class Defense extends AbstractCombatFeature {
 
     /**
      * Constructor.
@@ -112,36 +112,18 @@ export class Defense extends AbstractFeature {
     /**
      * @Override
      */
-    difficulty(parameters) {
-        const data = this.data;
-        return AbstractFeature.toInt(data?.base?.difficulty)
-             + AbstractFeature.toInt(parameters?.modifier)
-             + AbstractFeature.toInt(parameters?.approche)
-             + AbstractFeature.toInt(parameters?.blessures, data.blessures)
-             + AbstractFeature.toInt(data?.foeOnGround?.modifier)
-             + AbstractFeature.toInt(data?.onGround?.modifier)
-             + AbstractFeature.toInt(data?.stunned?.modifier)
-             + AbstractFeature.toInt(data?.attack?.modifier)
-             + this.weaponModifier(data?.weapon)
-             + this.manoeuverModifier(parameters);
+    manoeuverModifier(parameters) {
+        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
+        const shot = parameters?.shot == null ? null : parameters.shot - 1;
+        return AbstractCombatFeature.toInt(manoeuver?.update(this)?.defense?.modifier) +
+               AbstractCombatFeature.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
     }
 
     /**
      * @Override
      */
-    manoeuverModifier(parameters) {
-        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
-        const shot = parameters?.shot == null ? null : parameters.shot - 1;
-        return AbstractFeature.toInt(manoeuver?.update(this)?.defense?.modifier) +
-               AbstractFeature.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
-    }
-
-    /**
-     * @param weapon The weapon object used for the defense.
-     * @returns the attack modififer.
-     */
     weaponModifier(weapon) {
-        return weapon == null ? 0 : AbstractFeature.toInt(weapon.system.defense * 10);
+        return weapon == null ? 0 : AbstractCombatFeature.toInt(weapon.system.defense * 10);
     }
 
     /**
@@ -165,7 +147,7 @@ export class Defense extends AbstractFeature {
     async apply(result) { 
 
         // Process the opposition roll
-        const winner = AbstractFeature.winner(this.result, result);
+        const winner = AbstractCombatFeature.winner(this.result, result);
 
         // Determine manoeuver absorption
         const absorption = winner !== Constants.ACTION ? this.manoeuver.absorption : null;

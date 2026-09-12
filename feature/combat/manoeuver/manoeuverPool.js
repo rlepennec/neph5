@@ -1,3 +1,5 @@
+import { CombatHistory } from "../core/combatHistory.js";
+
 export class ManoeuverPool {
 
     /**
@@ -66,6 +68,14 @@ export class ManoeuverPool {
             }
         });
         return all;
+    }
+
+    /**
+     * @returns the maneuvers already played this round by the current actor, empty array if
+     *          the actor isn't engaged in a combat.
+     */
+    get history() {
+        return this.actor == null ? [] : CombatHistory.thisRound(this.actor);
     }
 
     /**

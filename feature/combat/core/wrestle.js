@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../../core/abstractFeature.js";
+import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -10,7 +10,7 @@ import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Projeter } from "../manoeuver/projeter.js";
 
-export class Wrestle extends AbstractFeature {
+export class Wrestle extends AbstractCombatFeature {
 
     /**
      * Constructor.
@@ -91,23 +91,8 @@ export class Wrestle extends AbstractFeature {
     /**
      * @Override
      */
-    difficulty(parameters) {
-        const data = this.data;
-        return AbstractFeature.toInt(data?.base?.difficulty)
-             + AbstractFeature.toInt(parameters?.modifier)
-             + AbstractFeature.toInt(parameters?.approche)
-             + AbstractFeature.toInt(parameters?.blessures, data.blessures)
-             + AbstractFeature.toInt(data?.foeOnGround?.modifier)
-             + AbstractFeature.toInt(data?.onGround?.modifier)
-             + AbstractFeature.toInt(data?.stunned?.modifier) +
-             this.manoeuverModifier(parameters);
-    }
-
-    /**
-     * @Override
-     */
     manoeuverModifier(parameters) {
-        return AbstractFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
+        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
     /**

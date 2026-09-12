@@ -1,4 +1,5 @@
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
+import { CombatHistory } from "../core/combatHistory.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class AbstractManoeuver {
@@ -41,6 +42,14 @@ export class AbstractManoeuver {
         this.immobilized = false;
         this.shots = null;
         this.clearViser = true;
+    }
+
+    /**
+     * @param actor The actor for which to retrieve the history.
+     * @returns the maneuvers already played this round by the actor.
+     */
+    historyOf(actor) {
+        return CombatHistory.thisRound(actor);
     }
 
     /**

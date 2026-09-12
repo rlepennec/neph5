@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../../core/abstractFeature.js";
+import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -14,7 +14,7 @@ import { Rapide } from "../manoeuver/rapide.js";
 import { Standard } from "../manoeuver/standard.js";
 import { Subtile } from "../manoeuver/subtile.js";
 
-export class Melee extends AbstractFeature {
+export class Melee extends AbstractCombatFeature {
 
     /**
      * Constructor.
@@ -86,32 +86,15 @@ export class Melee extends AbstractFeature {
     /**
      * @Override
      */
-    difficulty(parameters) {
-        const data = this.data;
-        return AbstractFeature.toInt(data?.base?.difficulty)
-             + AbstractFeature.toInt(parameters?.modifier)
-             + AbstractFeature.toInt(parameters?.approche)
-             + AbstractFeature.toInt(parameters?.blessures, data.blessures)
-             + AbstractFeature.toInt(data?.foeOnGround?.modifier)
-             + AbstractFeature.toInt(data?.onGround?.modifier)
-             + AbstractFeature.toInt(data?.stunned?.modifier)
-             + this.weaponModifier(data.weapon)
-             + this.manoeuverModifier(parameters);
+    manoeuverModifier(parameters) {
+        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
     }
 
     /**
      * @Override
      */
-    manoeuverModifier(parameters) {
-        return AbstractFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
-    }
-
-    /**
-     * @param weapon The weapon object used for the attack.
-     * @returns the attack modififer.
-     */
     weaponModifier(weapon) {
-        return AbstractFeature.toInt(weapon?.system.attack * 10);
+        return AbstractCombatFeature.toInt(weapon?.system.attack * 10);
     }
 
     /**

@@ -3,8 +3,9 @@ import { Constants } from "../../../module/common/constants.js";
 /**
  * Chronologie du combat automatique : enregistre chaque manœuvre jouée par un combattant
  * (figure ou figurant) engagé dans un Combat, sous la forme d'une entrée plate
- * {round, actor, target, manoeuver, timestamp} stockée dans le flag world.combat du document
- * Combat lui-même.
+ * {round, actor, target, manoeuver} stockée dans le flag world.combat du document Combat
+ * lui-même. Le round de combat est la seule datation qui compte ici : l'ordre d'ajout dans
+ * le tableau suffit à départager deux manœuvres du même round.
  */
 export class CombatHistory {
 
@@ -32,8 +33,7 @@ export class CombatHistory {
             round: combatant.combat?.round ?? null,
             actor: actor.id,
             target: target?.id ?? null,
-            manoeuver: manoeuver,
-            timestamp: Date.now()
+            manoeuver: manoeuver
         };
         if (game.user.isGM === true) {
             await CombatHistory.#append(combatant.combat, entry);
@@ -67,6 +67,18 @@ export class CombatHistory {
      */
     static of(combat = game.combat) {
         return combat?.getFlag("world", "combat")?.history ?? [];
+    }
+
+    /**
+     * @param actor The acting combatant.
+     * @returns the maneuvers already recorded for this actor during the current round of its
+     *          combat, empty array if the actor isn't engaged in a combat.
+     */
+    static thisRound(actor) {
+        const combatant = CombatHistory.combatantOf(actor);
+        if (combatant == null) return [];
+        const round = combatant.combat?.round;
+        return CombatHistory.of(combatant.combat).filter(e => e.round === round && e.actor === actor.id);
     }
 
 }
