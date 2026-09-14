@@ -67,7 +67,7 @@ export class Defense extends AbstractCombatFeature {
             .withImage("systems/neph5e/assets/icons/defense.webp")
             .withBase(this.baseName, this.degre)
             .withBlessures(Constants.PHYSICAL)
-            .withManoeuvers(Defense.manoeuvers().against(this.attack))
+            .withManoeuvers(this.noDefenseThisRound ? new ManoeuverPool() : Defense.manoeuvers().against(this.attack))
             .withApproches(this.approches(this.defaultApproche))
             .withWeapon(this.weapon)
             .withAttack(this.attack.defenseModifier())
@@ -79,6 +79,17 @@ export class Defense extends AbstractCombatFeature {
      */
     get defaultApproche() {
         return Eviter.ID;
+    }
+
+    /**
+     * @returns true si l'acteur a déjà joué ce round une manœuvre qui interdit toute
+     *          défense (AbstractManoeuver.noDefense — ex: Force, Rapide). Dans ce cas
+     *          aucune manœuvre de défense n'est proposée : defenseToPerform() applique
+     *          alors les dégâts automatiquement, sans fenêtre, comme pour toute liste
+     *          de manœuvres vide.
+     */
+    get noDefenseThisRound() {
+        return this.history.some(e => ManoeuverBuilder.create(e.manoeuver)?.noDefense === true);
     }
 
     /**
