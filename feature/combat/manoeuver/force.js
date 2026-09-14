@@ -17,4 +17,11 @@ export class Force extends AbstractManoeuver {
         this.withNoDefense();
     }
 
+    /**
+     * @Override
+     */
+    canBePerformed(action) {
+        return !this.timesReached(action);
+    }
+
 }

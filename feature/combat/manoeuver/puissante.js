@@ -16,4 +16,11 @@ export class Puissante extends AbstractManoeuver {
         this.withImpact({modifier: 2});
     }
 
+    /**
+     * @Override
+     */
+    canBePerformed(action) {
+        return !this.timesReached(action);
+    }
+
 }

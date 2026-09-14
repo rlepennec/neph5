@@ -212,6 +212,16 @@ export class AbstractManoeuver {
     }
 
     /**
+     * @param action The action which perform the manoeuver to test.
+     * @returns true if this maneuver has already been played `this.times` times this round
+     *          by the acting actor, according to the combat history (action.history).
+     */
+    timesReached(action) {
+        const used = (action.history ?? []).filter(e => e.manoeuver === this.id).length;
+        return used >= this.times;
+    }
+
+    /**
      * Update the manoeuver according to ther specified action.
      * @param action The action for which to update the manoeuver.
      * @returns the instance

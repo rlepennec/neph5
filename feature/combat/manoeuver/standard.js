@@ -16,4 +16,11 @@ export class Standard extends AbstractManoeuver {
         this.withImpact({modifier: 0});
     }
 
+    /**
+     * @Override
+     */
+    canBePerformed(action) {
+        return !this.timesReached(action);
+    }
+
 }
