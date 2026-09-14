@@ -13,7 +13,7 @@
         <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
             <a data-action="delete"><i class="fas fa-trash"></i></a>
             <label data-action="open">{{item.name}}</label>
-            <a data-action="rollPasse"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            <a data-action="rollPasse" class="{{#unless ../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
         {{!-- Le degré d'un passé se saisit chez le figurant ; chez la figure il
              vient des périodes et n'est donc affiché qu'en lecture. --}}
         {{#if ../degreEditable}}

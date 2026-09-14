@@ -30,6 +30,7 @@ export const CombatantMixinSheet = Base => {
 
 		static async _onRollWeapon(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			const weapon = new DocumentIdentifier(target).toDocument();
 			if (weapon == null) {
 				ui.notifications.error("Arme introuvable");
@@ -40,11 +41,13 @@ export const CombatantMixinSheet = Base => {
 
 		static async _onRollWrestle(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			await this.document.rollWrestle(this.combatant);
 		}
 
 		static async _onAim(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			const weapon = new DocumentIdentifier(target).toDocument();
 			if (weapon == null) {
 				ui.notifications.error("Arme introuvable");
@@ -55,6 +58,7 @@ export const CombatantMixinSheet = Base => {
 
 		static async _onReload(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			const weapon = new DocumentIdentifier(target).toDocument();
 			if (weapon == null) {
 				ui.notifications.error("Arme introuvable");
@@ -65,6 +69,7 @@ export const CombatantMixinSheet = Base => {
 
         static async _onRollPasse(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			const item = new DocumentIdentifier(target).toDocument();
 			if (item == null) {
 				ui.notifications.error("Passé introuvable");
@@ -75,6 +80,7 @@ export const CombatantMixinSheet = Base => {
 
 		static async _onUseEquipment(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			const document = new DocumentIdentifier(target).toDocument();
 			switch (document.type) {
 				case 'arme':
@@ -92,6 +98,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetDesoriente(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			await this.document.setActiveEffect("Stunned");
 		}
 
@@ -101,6 +108,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetImmobilise(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			await this.document.setActiveEffect("Restrained");
 		}
 
@@ -110,7 +118,26 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetProjete(event, target) {
 			event.preventDefault();
+			if (!this.canAct) return;
 			await this.document.setActiveEffect("Prone");
+		}
+
+		/** @override */
+		async _prepareContext(options) {
+			const context = await super._prepareContext(options);
+			context.canAct = this.canAct;
+			return context;
+		}
+
+		/**
+		 * @returns true si l'acteur peut agir : ce n'est pas son combattant dans un combat
+		 *          en cours qui bloque, ou bien c'est son tour. Le MJ n'est jamais bloqué.
+		 */
+		get canAct() {
+			if (game.user.isGM) return true;
+			const combatant = this.combatant;
+			if (combatant == null) return true;
+			return game.combat?.combatant?.id === combatant.id;
 		}
 
 		/**

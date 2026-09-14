@@ -303,6 +303,14 @@
                         min-width: 0;
                     }
 
+                    // Posée quand ce n'est pas le tour du combattant dans le combat en
+                    // cours (canAct = false côté contexte) : l'icône reste visible mais
+                    // inerte, le clic est de toute façon ignoré côté handler.
+                    a.disabled {
+                        opacity: 0.35;
+                        pointer-events: none;
+                    }
+
                     a,
                     input,
                     div.input {
@@ -455,8 +463,15 @@
                         text-shadow: 0px 0px 1px var(--font-color);
                     }
 
+                    // Même logique que .armes/.armures/.ressources ci-dessus : hors du
+                    // tour du combattant, l'état reste visible mais n'est plus actionnable.
+                    &.disabled {
+                        opacity: 0.35;
+                        pointer-events: none;
+                    }
+
                     div {
-    
+
                         label {
                             width: 20px;
                             height: 20px;

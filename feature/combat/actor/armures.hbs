@@ -13,7 +13,7 @@
             <a data-action="delete"><i class="fas fa-trash"></i></a>
             <label data-action="open">{{item.name}}</label>
             <a><i></i></a>
-            <a data-action="useArmor"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>
+            <a data-action="useArmor" class="{{#unless ../canAct}}disabled{{/unless}}"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>
         </li>
         {{/each}}
 

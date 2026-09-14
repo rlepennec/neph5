@@ -8,7 +8,7 @@
 
     <ol>
 
-        <li data-action="setDesoriente" data-id="stun">
+        <li data-action="setDesoriente" data-id="stun" class="{{#unless canAct}}disabled{{/unless}}">
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name="desoriente"
                 type="boolean"
@@ -17,7 +17,7 @@
             <label>{{translate "desoriente"}}</label>
         </li>
 
-        <li data-action="setImmobilise" data-id="restrain">
+        <li data-action="setImmobilise" data-id="restrain" class="{{#unless canAct}}disabled{{/unless}}">
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name="immobilise"
                 type="boolean"
@@ -26,7 +26,7 @@
             <label>{{translate "immobilise"}}</label>
         </li>
 
-        <li data-action="setProjete" data-id="prone">
+        <li data-action="setProjete" data-id="prone" class="{{#unless canAct}}disabled{{/unless}}">
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name="projete"
                 type="boolean"
