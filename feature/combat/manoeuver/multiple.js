@@ -18,7 +18,7 @@ export class Multiple extends AbstractManoeuver {
     /**
      * @Override
      */
-    canBePerformed(action) {
+    isAllowed(action) {
         return action.weapon.system.munitions - action.weapon.system.tire > 0;
     }
 

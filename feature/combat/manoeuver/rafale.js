@@ -18,7 +18,7 @@ export class Rafale extends AbstractManoeuver {
     /**
      * @Override
      */
-     canBePerformed(action) {
+     isAllowed(action) {
         return action.weapon.system.rafale === true &&
                action.weapon.system.munitions > action.weapon.system.tire + 5;
     }

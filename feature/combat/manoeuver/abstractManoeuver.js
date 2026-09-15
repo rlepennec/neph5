@@ -204,21 +204,33 @@ export class AbstractManoeuver {
     }
 
     /**
+     * Scellée : porte la règle commune à toutes les manœuvres d'action (attaque/tactique) —
+     * une seule manœuvre choisie par round, jouable au plus `this.times` fois. La défense
+     * est une réaction, ses manœuvres redéfinissent canBePerformed directement et ne
+     * passent donc jamais par cette règle. Les sous-classes d'action ajoutent leurs
+     * propres conditions via isAllowed(action), pas en redéfinissant canBePerformed.
      * @param action The action which perform the manoeuver to test.
-     * @returns true if the action can perform the manoeuver. 
+     * @returns true if the action can perform the manoeuver.
      */
     canBePerformed(action) {
-        return true;
+        const history = action.history ?? [];
+        if (history.some(e => e.manoeuver !== this.id)) {
+            return false;
+        }
+        if (history.filter(e => e.manoeuver === this.id).length >= this.times) {
+            return false;
+        }
+        return this.isAllowed(action);
     }
 
     /**
      * @param action The action which perform the manoeuver to test.
-     * @returns true if this maneuver has already been played `this.times` times this round
-     *          by the acting actor, according to the combat history (action.history).
+     * @returns true by default ; à redéfinir pour les conditions propres à une manœuvre
+     *          d'action (arme en main, munitions, cible...), sans se soucier de la règle
+     *          de round déjà appliquée par canBePerformed.
      */
-    timesReached(action) {
-        const used = (action.history ?? []).filter(e => e.manoeuver === this.id).length;
-        return used >= this.times;
+    isAllowed(action) {
+        return true;
     }
 
     /**

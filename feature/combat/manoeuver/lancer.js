@@ -17,8 +17,8 @@ export class Lancer extends AbstractManoeuver {
     /**
      * @Override
      */
-    canBePerformed(action) {
-        return action.weapon.system.lance === true && !this.timesReached(action);
+    isAllowed(action) {
+        return action.weapon.system.lance === true;
     }
 
     /**

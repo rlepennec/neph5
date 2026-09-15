@@ -58,12 +58,12 @@ export class Viser extends AbstractManoeuver {
     /**
      * @Override
      */
-    canBePerformed(action) {
+    isAllowed(action) {
         return action.actor != null &&
                action.target != null &&
               (action.weapon.system.type !== Constants.FEU || action.weapon.system.munitions - action.weapon.system.tire > 0) &&
               (action.weapon.system.cible !== action.target.id || action.weapon.system.visee < 3);
-        
+
     }
 
     /**

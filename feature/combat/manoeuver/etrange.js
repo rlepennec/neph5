@@ -18,11 +18,4 @@ export class Etrange extends AbstractManoeuver {
         this.withEffect(ActiveEffects.DESORIENTE);
     }
 
-    /**
-     * @Override
-     */
-    canBePerformed(action) {
-        return !this.timesReached(action);
-    }
-
 }

@@ -20,7 +20,7 @@ export class Liberer extends AbstractManoeuver {
     /**
      * @Override
      */
-    canBePerformed(action) {
+    isAllowed(action) {
         return action.actor.immobilise;
     }
 

@@ -18,7 +18,7 @@ export class Instinctif extends AbstractManoeuver {
     /**
      * @Override
      */
-    canBePerformed(action) {
+    isAllowed(action) {
         return action.weapon.system.type === 'trait' ||
               (action.weapon.system.munitions > action.weapon.system.tire);
     }

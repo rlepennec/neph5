@@ -19,7 +19,7 @@ export class Immobiliser extends AbstractManoeuver {
     /**
      * @Override
      */
-    canBePerformed(action) {
+    isAllowed(action) {
         return !action.actor.immobilise;
     }
 }
