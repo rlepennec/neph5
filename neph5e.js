@@ -44,6 +44,7 @@ import { PratiqueSheet } from "./feature/denier/item/pratique.js";
 import { QueteSheet } from "./feature/quete/item/quete.js";
 import { RechercheDialog } from "./feature/recherche/recherche.js";
 import { RiteSheet } from "./feature/necromancie/item/rite.js";
+import { RoundUpdate } from "./feature/combat/core/roundUpdate.js";
 import { RituelSheet } from "./feature/epee/item/rituel.js";
 import { SavoirSheet } from "./feature/savoir/item/savoir.js";
 import { ScienceSheet } from "./feature/science/item/science.js";
@@ -265,6 +266,13 @@ Hooks.once("init", function () {
             ui.notifications.warn("Une fraternité ne peut pas participer à un combat.");
             return false;
         }
+    })
+
+    // Mise à jour de tous les combattants au début de chaque round (ex: désorientation
+    // qui s'estompe faute d'être ré-infligée). Un seul client l'exécute.
+    Hooks.on("combatRound", async (combat, updateData, updateOptions) => {
+        if (!game.user.isGM) return;
+        await RoundUpdate.apply(combat);
     })
 
     // [V14] Les hooks preCreateActor et preCreateItem ont ete supprimes.

@@ -124,12 +124,12 @@ export class Health {
                 if (manoeuver.effect != null) {
                     const actor = canvas.tokens?.objects?.children.find(t => t.id === token)?.actor;
                     if (actor != null) {
-                        await actor.activateEffect(manoeuver.effect.id);
+                        await actor.activateEffect(manoeuver.effect.name);
                     }
                 } else if (manoeuver.id === Liberer.ID) {
                     const actor = canvas.tokens?.objects?.children.find(t => t.actor.id === attacker)?.actor;
                     if (actor != null) {
-                        await actor.deactivateEffect(ActiveEffects.IMMOBILISE.id);
+                        await actor.deactivateEffect(ActiveEffects.IMMOBILISE.name);
                     }
                 }
             }
