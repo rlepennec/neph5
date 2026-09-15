@@ -132,12 +132,22 @@ export const CombatantMixinSheet = Base => {
 		/**
 		 * @returns true si l'acteur peut agir : ce n'est pas son combattant dans un combat
 		 *          en cours qui bloque, ou bien c'est son tour. Le MJ n'est jamais bloqué.
+		 *
+		 * Ne passe PAS par `this.combatant` : celui-ci dépend d'`openingToken`, qui repose
+		 * sur le token sélectionné sur le canevas (cf son propre commentaire — une
+		 * convention, pas la réponse exacte). Juste après le début d'un combat ou après un
+		 * F5, rien n'est encore sélectionné : `openingToken` renverrait null, `combatant`
+		 * aussi, et canAct autoriserait alors l'action à tort. Ici on vérifie directement,
+		 * via l'acteur, si UN de ses combattants (quel que soit le token) est celui dont
+		 * c'est le tour — indépendant de toute sélection sur le canevas.
 		 */
 		get canAct() {
 			if (game.user.isGM) return true;
-			const combatant = this.combatant;
-			if (combatant == null) return true;
-			return game.combat?.combatant?.id === combatant.id;
+			const combat = game.combat;
+			if (combat == null) return true;
+			const combatants = combat.getCombatantsByActor(this.document);
+			if (combatants.length === 0) return true;
+			return combatants.includes(combat.combatant);
 		}
 
 		/**
