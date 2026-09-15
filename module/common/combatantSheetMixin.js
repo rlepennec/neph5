@@ -91,7 +91,6 @@ export const CombatantMixinSheet = Base => {
 			}
 		}
 
-
 		/**
 		 * Toggle the specified effect which can be restrain, prone and stun.
 		 * @param event The event to handle.
@@ -152,24 +151,32 @@ export const CombatantMixinSheet = Base => {
 
 		/**
 		 * @return the actor combatant or null.
+		 *
+		 * Même raison que canAct ci-dessus : ne dépend d'openingToken (donc de la
+		 * sélection sur le canevas) qu'en dernier recours. Dans l'immense majorité des
+		 * cas l'acteur n'a qu'un seul combattant engagé dans le combat en cours — on le
+		 * renvoie directement, sans passer par le canevas. openingToken ne sert plus
+		 * qu'à départager le cas rare de plusieurs combattants pour le même acteur
+		 * (plusieurs tokens liés engagés simultanément).
 		 */
 		get combatant() {
 
-			// The opening token
-			const token = this.openingToken;
-			if (token == null || token.combatant == null) {
-				return null;
-			}
-
-			// The active combat
 			const combat = game.combat;
 			if (combat == null) {
 				return null;
 			}
 
-			// The combatant
-			const combatants = combat?.getCombatantsByActor(this.document);
-			return combatants.includes(token.combatant) ? token.combatant : null;
+			const combatants = combat.getCombatantsByActor(this.document);
+			if (combatants.length === 0) {
+				return null;
+			}
+			if (combatants.length === 1) {
+				return combatants[0];
+			}
+
+			const token = this.openingToken;
+			const combatant = token?.combatant;
+			return combatant != null && combatants.includes(combatant) ? combatant : combatants[0];
 
 		}
 
