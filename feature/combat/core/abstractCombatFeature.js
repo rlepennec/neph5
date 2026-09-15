@@ -1,7 +1,16 @@
 import { AbstractFeature } from "../../core/abstractFeature.js";
+import { CombatHistory } from "./combatHistory.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 
 export class AbstractCombatFeature extends AbstractFeature {
+
+    /**
+     * @returns the maneuvers already played this round by the acting actor, empty array if
+     *          the actor isn't engaged in a combat.
+     */
+    get history() {
+        return CombatHistory.thisRound(this.actor);
+    }
 
     difficulty(parameters) {
 
