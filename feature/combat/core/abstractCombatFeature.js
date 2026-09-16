@@ -12,6 +12,15 @@ export class AbstractCombatFeature extends AbstractFeature {
         return CombatHistory.thisRound(this.actor);
     }
 
+    /**
+     * @returns true si cette action n'a plus aucune manœuvre à proposer ce round — chacune a
+     *          déjà atteint sa propre limite de répétitions, ou une défense exclusive
+     *          (noAttack=true) a verrouillé le round entier.
+     */
+    get actionsExhausted() {
+        return Object.keys(this.data.manoeuvers ?? {}).length === 0;
+    }
+
     difficulty(parameters) {
 
         const data = this.data;

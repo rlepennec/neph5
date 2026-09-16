@@ -304,11 +304,12 @@
                     }
 
                     // Posée quand ce n'est pas le tour du combattant dans le combat en
-                    // cours (canAct = false côté contexte) : l'icône reste visible mais
-                    // inerte, le clic est de toute façon ignoré côté handler.
+                    // cours (canAct = false côté contexte) : l'icône reste visible ET
+                    // cliquable — le handler la bloque et affiche un message expliquant
+                    // pourquoi. PAS de pointer-events: none ici : ça empêcherait le clic
+                    // d'atteindre le handler, donc le message de ne jamais s'afficher.
                     a.disabled {
                         opacity: 0.35;
-                        pointer-events: none;
                     }
 
                     a,
@@ -463,11 +464,11 @@
                         text-shadow: 0px 0px 1px var(--font-color);
                     }
 
-                    // Même logique que .armes/.armures/.ressources ci-dessus : hors du
-                    // tour du combattant, l'état reste visible mais n'est plus actionnable.
+                    // Même logique que .armes/.armures/.ressources ci-dessus : reste
+                    // cliquable (pas de pointer-events: none), sinon le message expliquant
+                    // pourquoi l'action est refusée ne s'affiche jamais.
                     &.disabled {
                         opacity: 0.35;
-                        pointer-events: none;
                     }
 
                     div {

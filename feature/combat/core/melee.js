@@ -100,13 +100,19 @@ export class Melee extends AbstractCombatFeature {
             return;
         }
 
+        const data = this.data;
+        if (Object.keys(data.manoeuvers).length === 0) {
+            ui.notifications.info(`${this.actor.name} a déjà effectué toutes ses actions pour ce round de combat.`);
+            return;
+        }
+
         // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
         // avant que la fenetre existe. Le hook d'opposition enchainait alors sur le
         // retrait du drapeau pendant que le rendu courait encore.
         await new CombatDialog(this.actor, this)
             .withTitle(this.title)
             .withTemplate("systems/neph5e/feature/combat/core/contact.hbs")
-            .withData(this.data)
+            .withData(data)
             .render(true);
 
     }
