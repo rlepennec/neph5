@@ -11,7 +11,7 @@ export class Bloquer extends AbstractManoeuver {
     constructor() {
         super(Bloquer.ID, Constants.PARADE);
         this.withApproches(['terre', 'ka']);
-        this.withShots(0, -20, -40, -60, -80, -100);
+        this.withNextDefenseModifier(-20);
         this.withAbsorption({modifier: 2});
     }
 

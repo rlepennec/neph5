@@ -42,6 +42,7 @@ export class AbstractManoeuver {
         this.immobilized = false;
         this.shots = null;
         this.clearViser = true;
+        this.nextDefenseModifier = 0;
     }
 
     /**
@@ -192,6 +193,17 @@ export class AbstractManoeuver {
      */
     withFamily(skill) {
         this.skill = skill;
+        return this;
+    }
+
+    /**
+     * Set the modifier to apply to the next defense reaction.
+     * Used for defense reaction only.
+     * @param modifier The modifier to set.
+     * @return this instance.
+     */
+    withNextDefenseModifier(modifier) {
+        this.nextDefenseModifier = modifier;
         return this;
     }
 

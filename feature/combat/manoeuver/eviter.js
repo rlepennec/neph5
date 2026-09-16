@@ -11,7 +11,7 @@ export class Eviter extends AbstractManoeuver {
     constructor() {
         super(Eviter.ID, Constants.DODGE);
         this.withApproches(['ka']);
-        this.withShots(0, -20, -40, -60, -80, -100);
+        this.withNextDefenseModifier(-20);
         this.withAbsorption({modifier: 1});
     }
 
