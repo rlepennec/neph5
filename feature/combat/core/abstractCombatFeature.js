@@ -24,6 +24,7 @@ export class AbstractCombatFeature extends AbstractFeature {
             + AbstractCombatFeature.toInt(data?.onGround?.modifier)
             + AbstractCombatFeature.toInt(data?.stunned?.modifier)
             + AbstractCombatFeature.toInt(data?.attack?.modifier)
+            + AbstractCombatFeature.toInt(data?.nextDefense?.modifier)
             + AbstractCombatFeature.toInt(data.visee)
             + this.manoeuverModifier(parameters)
             + this.weaponModifier(data?.weapon);

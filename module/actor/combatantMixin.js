@@ -479,7 +479,7 @@ export const CombatantMixin = Base => {
             }
 
             await viser.apply(action);
-            await CombatHistory.record(this, Viser.ID, this.target?.actor);
+            await CombatHistory.record(this, viser, this.target?.actor);
 
         }
 
@@ -524,7 +524,7 @@ export const CombatantMixin = Base => {
             }
 
             await recharger.apply(action);
-            await CombatHistory.record(this, Recharger.ID, null);
+            await CombatHistory.record(this, recharger, null);
 
         }
 

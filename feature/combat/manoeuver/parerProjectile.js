@@ -19,6 +19,7 @@ export class ParerProjectile extends AbstractManoeuver {
      * @Override
      */
     canBePerformed(action) {
+        if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.family === Constants.FIRE &&
                action.attack.weapon.system.type === 'trait' &&
                action.weapon != null &&

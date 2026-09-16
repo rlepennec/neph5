@@ -19,6 +19,7 @@ export class ParerLance extends AbstractManoeuver {
      * @Override
      */
     canBePerformed(action) {
+        if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.family === Constants.THROW &&
                action.weapon != null &&
                action.weapon.system.blocage === true;

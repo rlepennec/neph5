@@ -47,6 +47,7 @@ export class ActionDataBuilder {
         this.viser = null;
         this.recharger = null;
         this.attack = null;
+        this.nextDefense = null;
         this.fraternite = 0;
         this.metamorphe = null;
         this.mnemos = [];
@@ -253,10 +254,20 @@ export class ActionDataBuilder {
 
     /**
      * @param attack The attack object.
-     * @returns the instance. 
+     * @returns the instance.
      */
     withAttack(attack) {
         this.attack = attack;
+        return this;
+    }
+
+    /**
+     * @param nextDefense The cumulative malus object inherited from defenses already
+     *                    played this round.
+     * @returns the instance.
+     */
+    withNextDefense(nextDefense) {
+        this.nextDefense = nextDefense;
         return this;
     }
 
@@ -397,6 +408,10 @@ export class ActionDataBuilder {
 
         if (this.attack != null) {
             data.attack = this.attack;
+        }
+
+        if (this.nextDefense != null) {
+            data.nextDefense = this.nextDefense;
         }
 
         if (this.note != null) {

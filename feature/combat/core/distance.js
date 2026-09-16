@@ -135,7 +135,7 @@ export class Distance extends AbstractCombatFeature {
             const impact = this.impact(this.manoeuver.id);
             await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical);
             await Health.applyEffectsOn(this.target.id, this.actor.id, Constants.ACTION, this.manoeuver);
-            await CombatHistory.record(this.actor, this.manoeuver.id, this.target?.actor);
+            await CombatHistory.record(this.actor, this.manoeuver, this.target?.actor);
         }
     }
 

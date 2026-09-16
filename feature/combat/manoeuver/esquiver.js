@@ -19,6 +19,7 @@ export class Esquiver extends AbstractManoeuver {
      * @Override
      */
     canBePerformed(action) {
+        if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.family !== Constants.FIRE &&
                action.attack.manoeuver.family !== Constants.THROW &&
                action.actor.isEsquiveAvailable;

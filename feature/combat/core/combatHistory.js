@@ -3,9 +3,15 @@ import { Constants } from "../../../module/common/constants.js";
 /**
  * Chronologie du combat automatique : enregistre chaque manœuvre jouée par un combattant
  * (figure ou figurant) engagé dans un Combat, sous la forme d'une entrée plate
- * {round, actor, target, manoeuver} stockée dans le flag world.combat du document Combat
- * lui-même. Le round de combat est la seule datation qui compte ici : l'ordre d'ajout dans
- * le tableau suffit à départager deux manœuvres du même round.
+ * {round, actor, target, manoeuver, family, noAttack, nextDefenseModifier} stockée dans le
+ * flag world.combat du document Combat lui-même. Le round de combat est la seule datation
+ * qui compte ici : l'ordre d'ajout dans le tableau suffit à départager deux manœuvres du
+ * même round.
+ *
+ * family/noAttack/nextDefenseModifier sont recopiés depuis l'instance de manœuvre au moment
+ * de l'enregistrement plutôt que reconstruits plus tard via ManoeuverBuilder : ce module est
+ * importé par AbstractManoeuver (via l'historique des actions), et ManoeuverBuilder importe
+ * toutes les manœuvres concrètes — les importer ici créerait un cycle.
  */
 export class CombatHistory {
 
@@ -23,7 +29,9 @@ export class CombatHistory {
      * engaged in a combat. Silently does nothing otherwise: being tracked is a consequence of
      * being a combatant, not a precondition callers need to check themselves.
      * @param actor     The actor performing the maneuver.
-     * @param manoeuver The identifier of the maneuver performed (e.g. Standard.ID, Viser.ID).
+     * @param manoeuver The maneuver instance performed (e.g. new Standard(), a Viser()
+     *                  instance already in hand) — not just its identifier, so its
+     *                  family/noAttack/nextDefenseModifier can be recorded alongside.
      * @param target    The optional actor targeted by the maneuver.
      */
     static async record(actor, manoeuver, target = null) {
@@ -33,7 +41,10 @@ export class CombatHistory {
             round: combatant.combat?.round ?? null,
             actor: actor.id,
             target: target?.id ?? null,
-            manoeuver: manoeuver
+            manoeuver: manoeuver.id,
+            family: manoeuver.family,
+            noAttack: manoeuver.noAttack === true,
+            nextDefenseModifier: manoeuver.nextDefenseModifier
         };
         if (game.user.isGM === true) {
             await CombatHistory.#append(combatant.combat, entry);

@@ -18,6 +18,7 @@ export class Contrer extends AbstractManoeuver {
      * @Override
      */
     canBePerformed(action) {
+        if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.family === Constants.STRIKE ||
               (action.attack.manoeuver.family === Constants.BRAWL && action.weapon != null);
     }

@@ -19,6 +19,10 @@ export class Elaboree extends AbstractManoeuver {
      * @Override
      */
     canBePerformed(action) {
+        const history = action.history ?? [];
+        if (history.some(e => e.manoeuver !== this.id)) {
+            return false;
+        }
         return action.attack.manoeuver.family === Constants.STRIKE ||
               (action.attack.manoeuver.family === Constants.BRAWL);
     }

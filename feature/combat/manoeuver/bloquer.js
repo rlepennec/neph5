@@ -19,6 +19,7 @@ export class Bloquer extends AbstractManoeuver {
      * @Override
      */
     canBePerformed(action) {
+        if (this.exclusiveDefensePlayed(action)) return false;
         switch (action.attack.manoeuver.family) {
             case Constants.BRAWL:
                 return true;

@@ -221,15 +221,24 @@ export class AbstractManoeuver {
      * est une réaction, ses manœuvres redéfinissent canBePerformed directement et ne
      * passent donc jamais par cette règle. Les sous-classes d'action ajoutent leurs
      * propres conditions via isAllowed(action), pas en redéfinissant canBePerformed.
+     *
+     * Les défenses déjà jouées ce round ne comptent PAS pour le verrou "une seule manœuvre
+     * par round" : se défendre est une réaction, ça ne doit pas consommer le tour du
+     * combattant. Exception : une défense exclusive (noAttack=true, ex: Élaborée) verrouille
+     * tout de même le round entier, attaque et tactique comprises.
      * @param action The action which perform the manoeuver to test.
      * @returns true if the action can perform the manoeuver.
      */
     canBePerformed(action) {
         const history = action.history ?? [];
-        if (history.some(e => e.manoeuver !== this.id)) {
+        if (history.some(e => e.noAttack === true)) {
             return false;
         }
-        if (history.filter(e => e.manoeuver === this.id).length >= this.times) {
+        const own = history.filter(e => e.family !== Constants.DODGE && e.family !== Constants.PARADE);
+        if (own.some(e => e.manoeuver !== this.id)) {
+            return false;
+        }
+        if (own.filter(e => e.manoeuver === this.id).length >= this.times) {
             return false;
         }
         return this.isAllowed(action);
@@ -243,6 +252,17 @@ export class AbstractManoeuver {
      */
     isAllowed(action) {
         return true;
+    }
+
+    /**
+     * À utiliser dans le canBePerformed propre à une manœuvre de défense normale
+     * (noAttack=false) : une défense exclusive (noAttack=true, ex: Élaborée) déjà jouée ce
+     * round par l'acteur verrouille tout le reste, cette défense-ci comprise.
+     * @param action The action which perform the manoeuver to test.
+     * @returns true if an exclusive defense has already been played this round.
+     */
+    exclusiveDefensePlayed(action) {
+        return (action.history ?? []).some(e => e.noAttack === true);
     }
 
     /**

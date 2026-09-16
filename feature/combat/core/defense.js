@@ -71,6 +71,7 @@ export class Defense extends AbstractCombatFeature {
             .withApproches(this.approches(this.defaultApproche))
             .withWeapon(this.weapon)
             .withAttack(this.attack.defenseModifier())
+            .withNextDefense({modifier: this.nextDefenseMalus})
             .export();
     }
 
@@ -90,6 +91,19 @@ export class Defense extends AbstractCombatFeature {
      */
     get noDefenseThisRound() {
         return this.history.some(e => ManoeuverBuilder.create(e.manoeuver)?.noDefense === true);
+    }
+
+    /**
+     * @returns le malus cumulatif hérité de chaque défense déjà jouée ce round — la première
+     *          défense du round n'en hérite d'aucun (historique vide), chaque défense
+     *          ultérieure porte la somme des nextDefenseModifier de celles jouées avant elle.
+     *          Élaborée fixe le sien à 0 : l'utiliser ne pénalise donc pas ce qui suit (mais
+     *          verrouille tout de même le round par ailleurs — voir AbstractManoeuver).
+     */
+    get nextDefenseMalus() {
+        return this.history
+            .filter(e => e.family === Constants.DODGE || e.family === Constants.PARADE)
+            .reduce((sum, e) => sum + AbstractCombatFeature.toInt(e.nextDefenseModifier), 0);
     }
 
     /**
@@ -181,8 +195,8 @@ export class Defense extends AbstractCombatFeature {
         await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
 
         // Record the maneuvers played by both combatants
-        await CombatHistory.record(this.attack.actor, this.attack.manoeuver.id, this.actor);
-        await CombatHistory.record(this.actor, this.manoeuver.id, this.attack.actor);
+        await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
+        await CombatHistory.record(this.actor, this.manoeuver, this.attack.actor);
 
     }
 
@@ -231,7 +245,7 @@ export class Defense extends AbstractCombatFeature {
             if (this.result.success) {
                 await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
-                await CombatHistory.record(this.attack.actor, this.attack.manoeuver.id, this.actor);
+                await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
             }
             return null;
         } else {
