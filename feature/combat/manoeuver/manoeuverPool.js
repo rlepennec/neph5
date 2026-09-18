@@ -10,6 +10,18 @@ export class ManoeuverPool {
         this.actor = null;
         this.weapon = null;
         this.attack = null;
+        this.unrestricted = false;
+    }
+
+    /**
+     * Marque ce pool comme libre : ses manœuvres sont proposées sans passer par
+     * canBePerformed. Sert aux actions gratuites (ex: la contre-attaque de Contrer), qui
+     * échappent aux règles de round puisqu'elles ne consomment pas l'action du combattant.
+     * @returns the instance.
+     */
+    free() {
+        this.unrestricted = true;
+        return this;
     }
 
     /**
@@ -63,7 +75,7 @@ export class ManoeuverPool {
     get all() {
         const all = {};
         Object.entries(this.manoeuvers).forEach(([id, manoeuver]) => {
-            if (manoeuver.canBePerformed(this)) {
+            if (this.unrestricted === true || manoeuver.canBePerformed(this)) {
                 all[id] = manoeuver;
             }
         });

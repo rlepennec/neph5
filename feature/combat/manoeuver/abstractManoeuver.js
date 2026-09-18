@@ -266,6 +266,22 @@ export class AbstractManoeuver {
     }
 
     /**
+     * Applique au défenseur les conséquences de son jet de défense. Par défaut, les dégâts
+     * de l'attaque initiale sont appliqués aussitôt, amortis par l'absorption de la manœuvre
+     * lorsque la défense a réussi.
+     *
+     * Une manœuvre peut remplacer ce traitement pour enchaîner sur autre chose — ex: Contrer
+     * et sa contre-attaque, dont le jet n'aura lieu que plus tard. À elle, dans ce cas,
+     * d'appeler defense.applyDamages() au terme de son propre enchaînement.
+     *
+     * @param defense The defense action.
+     * @param winner  The winner of the opposed roll.
+     */
+    async resolveDefense(defense, winner) {
+        await defense.applyDamages(winner !== Constants.ACTION ? this.absorption : null);
+    }
+
+    /**
      * Update the manoeuver according to ther specified action.
      * @param action The action for which to update the manoeuver.
      * @returns the instance

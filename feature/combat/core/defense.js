@@ -6,6 +6,7 @@ import { Constants } from "../../../module/common/constants.js";
 import { Bloquer } from "../manoeuver/bloquer.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
+import { ContreAttaque } from "./contreAttaque.js";
 import { Contrer } from "../manoeuver/contrer.js";
 import { DefenseDialog } from "./defenseDialog.js";
 import { Desarmer } from "../manoeuver/desarmer.js";
@@ -168,31 +169,33 @@ export class Defense extends AbstractCombatFeature {
     /**
      * @Overrides
      */
-    async apply(result) { 
+    async apply(result) {
 
-        // Process the opposition roll
-        const winner = AbstractCombatFeature.winner(this.result, result);
+        // Process the opposition roll. Mémorisé sur l'instance : une manœuvre peut différer
+        // l'application des dégâts (Contrer ouvre une contre-attaque et ne conclut qu'une
+        // fois ce second jet effectué), applyDamages en a alors encore besoin.
+        this.winner = AbstractCombatFeature.winner(this.result, result);
 
         // Determine manoeuver absorption
-        const absorption = winner !== Constants.ACTION ? this.manoeuver.absorption : null;
-        
+        const absorption = this.winner !== Constants.ACTION ? this.manoeuver.absorption : null;
+
         // Display result in chat
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
-                richSentence: this.sentenceOf(winner),
+                richSentence: this.sentenceOf(this.winner),
                 img: this.attack.actor.img,
                 total: result.roll._total,
-                effects : this.effectsOf(winner),
+                effects : this.effectsOf(this.winner),
                 absorption: absorption
             })
             .withRoll(result.roll)
             .create();
 
-        // Apply damages
-        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, winner, this.attack.manoeuver, this.result.critical);
-        await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, winner, this.attack.manoeuver);
+        // La manœuvre décide de la suite : dégâts appliqués aussitôt par défaut.
+        await this.manoeuver.resolveDefense(this, this.winner);
+        await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, this.winner, this.attack.manoeuver);
 
         // Record the maneuvers played by both combatants
         await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
@@ -234,6 +237,39 @@ export class Defense extends AbstractCombatFeature {
      */
     weapon() {
         return this.actor.items.find(i => i.type === 'arme' && i.system.used === true && i.system.parade === true);
+    }
+
+    /**
+     * Applique au défenseur les dégâts de l'attaque initiale.
+     * @param absorption L'absorption à appliquer : {modifier: x} amortit, {fix: x} annule
+     *                   tout dégât, null n'amortit rien.
+     */
+    async applyDamages(absorption) {
+        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical);
+    }
+
+    /**
+     * @returns l'arme avec laquelle riposter : celle de parade si le défenseur en a une,
+     *          sinon n'importe quelle arme de contact en main. `weapon()` ne retient que les
+     *          armes marquées pour la parade, or une riposte ne l'exige pas : on ne peut pas
+     *          s'appuyer sur elle seule sans priver de contre-attaque un défenseur armé.
+     *          Null s'il n'a rien en main.
+     */
+    get counterWeapon() {
+        return this.weapon ?? this.actor.items.find(i => i.type === 'arme' &&
+                                                         i.system.used === true &&
+                                                        (i.system.type === Constants.MELEE || i.system.type === Constants.NATURELLE));
+    }
+
+    /**
+     * Ouvre l'attaque gratuite d'une manœuvre de riposte (ex: Contrer). Manœuvre imposée et
+     * non modifiable, jet simple donc indéfendable, et aucune consommation de l'action du
+     * round.
+     * @param manoeuver La manœuvre de défense à l'origine de la riposte : son
+     *                  counterResolved() sera rappelé une fois le second jet effectué.
+     */
+    async counterAttack(manoeuver) {
+        await new ContreAttaque(this, manoeuver).initializeRoll();
     }
 
     /**
