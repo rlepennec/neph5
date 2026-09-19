@@ -230,6 +230,12 @@ form.combat {
                         .dommage-checkbox {
                             cursor: pointer;
 
+                            // Cases en lecture seule (tir : elles affichent le rang du tir en
+                            // cours, elles ne se saisissent pas) : pas de curseur de clic.
+                            &:has(.item-checkbox:disabled) {
+                                cursor: default;
+                            }
+
                             .item-checkbox {
                                 display: none;
                             }

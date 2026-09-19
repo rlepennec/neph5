@@ -22,4 +22,12 @@ export class Multiple extends AbstractManoeuver {
         return action.weapon.system.munitions - action.weapon.system.tire > 0;
     }
 
+    /**
+     * @Override
+     * Chaque tir du tir multiple est une attaque à part entière : une balle par tir.
+     */
+    async apply(action) {
+        await action.weapon.update({ ['system.tire']: action.weapon.system.tire + 1 });
+    }
+
 }

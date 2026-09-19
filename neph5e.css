@@ -8190,6 +8190,9 @@ form.combat .body .lines .line .line-title #times > .dommage-checkbox.shown {
 form.combat .body .lines .line .line-title #times .dommage-checkbox {
   cursor: pointer;
 }
+form.combat .body .lines .line .line-title #times .dommage-checkbox:has(.item-checkbox:disabled) {
+  cursor: default;
+}
 form.combat .body .lines .line .line-title #times .dommage-checkbox .item-checkbox {
   display: none;
 }

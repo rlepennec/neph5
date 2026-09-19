@@ -348,7 +348,9 @@ export class AbstractFeature {
      * @returns the allowed approches according to the actor and the manoeuver.
      */
     approches(manoeuver) {
-        return manoeuver == null ? this.actor.approches() : ManoeuverBuilder.create(manoeuver).approchesOf(this.actor);
+        // update(this) : les approches d'une manœuvre peuvent dépendre de l'action (ex: Tirer,
+        // selon que la cible est visée ou non). Sans effet pour les autres manœuvres.
+        return manoeuver == null ? this.actor.approches() : ManoeuverBuilder.create(manoeuver).update(this).approchesOf(this.actor);
     }
 
     /**

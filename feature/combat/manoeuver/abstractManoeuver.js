@@ -149,6 +149,9 @@ export class AbstractManoeuver {
      */
     withShots(...shots) {
         this.shots = shots;
+        // Chaque entrée est un tir du round, avec son propre malus : il y a donc autant de
+        // tirs possibles dans le round que d'entrées.
+        this.times = shots.length;
         return this;
     }
 
@@ -238,10 +241,19 @@ export class AbstractManoeuver {
         if (own.some(e => e.manoeuver !== this.id)) {
             return false;
         }
-        if (own.filter(e => e.manoeuver === this.id).length >= this.times) {
+        if (this.played(action) >= this.times) {
             return false;
         }
         return this.isAllowed(action);
+    }
+
+    /**
+     * @param action The action which perform the manoeuver.
+     * @returns le nombre de fois où l'acteur a déjà joué cette manœuvre ce round — c'est
+     *          aussi, dans `shots`, l'index du tir en cours (0 pour le premier).
+     */
+    played(action) {
+        return (action.history ?? []).filter(e => e.manoeuver === this.id).length;
     }
 
     /**

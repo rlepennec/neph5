@@ -6,7 +6,6 @@ import { CombatHistory } from "./combatHistory.js";
 import { Constants } from "../../../module/common/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
 import { Health } from "../../core/health.js";
-import { Instinctif } from "../manoeuver/instinctif.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Multiple } from "../manoeuver/multiple.js";
@@ -77,7 +76,7 @@ export class Distance extends AbstractCombatFeature {
             .withBase(this.item.name, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Distance.manoeuvers())
-            .withApproches(this.approches(Tirer.ID))
+            .withApproches(this.approches(this.manoeuver.id))
             .withWeapon(this.weapon)
             .withTarget(this.target)
             .withFoeOnGround(this.effects.foeOnGround)
@@ -93,9 +92,12 @@ export class Distance extends AbstractCombatFeature {
      * @Override
      */
     manoeuverModifier(parameters) {
-        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
-        const shot = parameters?.shot == null ? null : parameters.shot - 1;
-        return AbstractCombatFeature.toInt(manoeuver?.attack?.modifier) + AbstractCombatFeature.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
+        // Sans DOM (premier calcul du dialogue), la manœuvre retenue est celle de l'action.
+        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver ?? this.manoeuver?.id);
+        // Le rang du tir se lit dans la chronologie du round : le n-ième tir d'un tir multiple
+        // ou d'une salve prend le n-ième malus de `shots`.
+        return AbstractCombatFeature.toInt(manoeuver?.attack?.modifier)
+             + AbstractCombatFeature.toInt(manoeuver?.shots?.[manoeuver.played(this)]);
     }
 
     /**
@@ -116,10 +118,18 @@ export class Distance extends AbstractCombatFeature {
             return;
         }
 
-        const data = this.data;
-        if (Object.keys(data.manoeuvers).length === 0) {
+        let data = this.data;
+        const disponibles = Object.keys(data.manoeuvers);
+        if (disponibles.length === 0) {
             ui.notifications.info(`${this.actor.name} a déjà effectué toutes ses actions pour ce round de combat.`);
             return;
+        }
+
+        // Après le premier tir d'un tir multiple ou d'une salve, Tirer n'est plus proposé :
+        // le dialogue s'ouvre alors sur la seule manœuvre restante, approches comprises.
+        if (!disponibles.includes(this.manoeuver.id)) {
+            this.setManoeuver(disponibles[0]);
+            data = this.data;
         }
 
         // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
@@ -137,12 +147,21 @@ export class Distance extends AbstractCombatFeature {
      * @Override
      */
     async finalize(result) {
+
+        // Tir non opposé réussi : les dégâts tombent, sans défense possible.
         if (result.opposed === false && result.success === true) {
             const impact = this.impact(this.manoeuver.id);
             await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical);
             await Health.applyEffectsOn(this.target.id, this.actor.id, Constants.ACTION, this.manoeuver);
+        }
+
+        // Tout tir compte dans le round, qu'il touche ou non : c'est lui qui fait avancer la
+        // cadence d'un tir multiple ou d'une salve. Seul le tir opposé réussi est enregistré
+        // ailleurs, par la défense qui le résout.
+        if (result.opposed === false || result.success !== true) {
             await CombatHistory.record(this.actor, this.manoeuver, this.target?.actor);
         }
+
     }
 
     /**
@@ -154,8 +173,7 @@ export class Distance extends AbstractCombatFeature {
             .withManoeuver(new Tirer())
             .withManoeuver(new Multiple())
             .withManoeuver(new Salve())
-            .withManoeuver(new Rafale())
-            .withManoeuver(new Instinctif());
+            .withManoeuver(new Rafale());
     }
 
 }

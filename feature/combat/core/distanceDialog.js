@@ -10,51 +10,28 @@ export class DistanceDialog extends CombatDialog {
      */
     constructor(actor, action) {
         super(actor, action);
-        this.defaultManoeuver = Tirer.ID;
+        // Tirer d'ordinaire ; mais au-delà du premier tir d'un tir multiple ou d'une salve,
+        // l'action s'ouvre sur la seule manœuvre encore permise (voir Distance.initializeRoll).
+        this.defaultManoeuver = action.manoeuver?.id ?? Tirer.ID;
+    }
+
+    /**
+     * @override
+     * CombatDialog calcule l'impact avec Standard, sans incidence tant que la manœuvre par
+     * défaut est Tirer (même impact). Ce n'est plus vrai quand le dialogue s'ouvre sur une
+     * salve, dont l'impact est majoré : la description doit porter le sien.
+     */
+    async _prepareContext(options) {
+        const data = await super._prepareContext(options);
+        data.impact = this.action.impact(this.defaultManoeuver);
+        data.description = CombatDialog.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
+        return data;
     }
 
     _onRender(context, options) {
         super._onRender(context, options);
-        this._on(this.element, "#shot-1", ["click"],  (e) => this._onSelectShot(1, e));
-        this._on(this.element, "#shot2",  ["change"], (e) => this._onSelectShot(2, e));
-        this._on(this.element, "#shot3",  ["change"], (e) => this._onSelectShot(3, e));
-        this._on(this.element, "#shot4",  ["change"], (e) => this._onSelectShot(4, e));
-        this._on(this.element, "#shot5",  ["change"], (e) => this._onSelectShot(5, e));
-    }
-
-    /**
-     * Handle the manoeuver change.
-     * @param shot  The index of the shot on which the user has clicked, from 1 to 5.
-     * @param event The event to handle.
-     */
-    async _onSelectShot(shot, event) {
-        event.preventDefault();
-        const check = (i, val) => {
-            const c = this.element?.querySelector('#shot' + i);
-            if (c) c.checked = val;
-        };
-        if (shot === 1) {
-            for (let s=2; s<6; s++) {
-                check(s, false);
-            }
-        } else {
-            const checked = this._shot(shot);
-            if (checked) {
-                for (let i=2; i<shot; i++) {
-                    check(i, true);
-                }
-            } else {
-                check(shot, true);
-                for (let i=shot+1; i<this.action.manoeuver.shots.length+1; i++) {
-                    check(i, false);
-                }
-            }
-        }
-
-        const parameters = this.parameters();
-        this._setText("#manoeuverModifier", this.action.manoeuverModifier(parameters));
-        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
-
+        this._setText("#manoeuverModifier", this.action.manoeuverModifier(this.parameters()));
+        this._showShots();
     }
 
     /**
@@ -63,30 +40,23 @@ export class DistanceDialog extends CombatDialog {
      */
     async _onSelectManoeuver(event) {
         await super._onSelectManoeuver(event);
-        this._uncheckShots();
         this._showShots();
     }
 
-    _uncheckShots() {
-        for (let shot=2; shot<6; shot++) {
-            const c = this.element?.querySelector('#shot' + shot);
-            if (c) c.checked = false;
-        }
-    }
-
     /**
-     * Display shots according to the current manoeuver.
+     * Affiche la cadence de tir de la manœuvre courante : une case par tir possible dans le
+     * round (une par entrée de `shots`), cochées jusqu'au tir en cours. Purement indicatif :
+     * le rang du tir se lit dans la chronologie du round, ces cases ne se saisissent pas.
      */
     _showShots() {
-        if (this.action.manoeuver == null) return;
-        for (let shot=1; shot<6; shot++) {          // défense : <7
-            const el = this.element?.querySelector('#shot-' + shot);
-            if (el == null) continue;
-            const hidden = (
-                this.action.manoeuver.shots === null ||
-                this.action.manoeuver.shots.length == 1 ||
-                shot > this.action.manoeuver.shots.length );
-            el.classList.toggle("shown", !hidden);
+        const manoeuver = this.action.manoeuver;
+        if (manoeuver == null) return;
+        const tirs = manoeuver.shots?.length ?? 0;
+        const courant = manoeuver.played(this.action) + 1;
+        for (let shot = 1; shot < 6; shot++) {
+            this.element?.querySelector('#shot-' + shot)?.classList.toggle("shown", tirs > 1 && shot <= tirs);
+            const coche = this.element?.querySelector('#shot' + shot);
+            if (coche) coche.checked = shot <= courant;
         }
     }
 
