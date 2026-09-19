@@ -214,6 +214,7 @@ form.combat {
                         padding-top: 10px;
                         margin-left: 10px;
                         width: 200px;
+                        white-space: nowrap;
 
                         // Cases de cadence de tir : masquées par défaut,
                         // révélées par _showShots() via la classe .shown.
@@ -223,6 +224,19 @@ form.combat {
 
                             &.shown {
                                 display: inline;
+                            }
+                        }
+
+                        .dommage-checkbox {
+                            cursor: pointer;
+
+                            .item-checkbox {
+                                display: none;
+                            }
+
+                            .item-checkbox:checked ~ .unchecked,
+                            .item-checkbox:not(:checked) ~ .checked {
+                                display: none;
                             }
                         }
                     }

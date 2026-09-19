@@ -8177,6 +8177,7 @@ form.combat .body .lines .line .line-title #times {
   padding-top: 10px;
   margin-left: 10px;
   width: 200px;
+  white-space: nowrap;
 }
 form.combat .body .lines .line .line-title #times > i,
 form.combat .body .lines .line .line-title #times > .dommage-checkbox {
@@ -8185,6 +8186,16 @@ form.combat .body .lines .line .line-title #times > .dommage-checkbox {
 form.combat .body .lines .line .line-title #times > i.shown,
 form.combat .body .lines .line .line-title #times > .dommage-checkbox.shown {
   display: inline;
+}
+form.combat .body .lines .line .line-title #times .dommage-checkbox {
+  cursor: pointer;
+}
+form.combat .body .lines .line .line-title #times .dommage-checkbox .item-checkbox {
+  display: none;
+}
+form.combat .body .lines .line .line-title #times .dommage-checkbox .item-checkbox:checked ~ .unchecked,
+form.combat .body .lines .line .line-title #times .dommage-checkbox .item-checkbox:not(:checked) ~ .checked {
+  display: none;
 }
 form.combat .body .lines .line .line-value {
   display: flex;
