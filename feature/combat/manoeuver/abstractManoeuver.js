@@ -44,6 +44,8 @@ export class AbstractManoeuver {
         this.clearViser = true;
         this.nextDefenseModifier = 0;
         this.leaveCombat = false;
+        this.strike = false;
+        this.automatic = false;
     }
 
     /**
@@ -212,6 +214,26 @@ export class AbstractManoeuver {
     }
 
     /**
+     * Specify the manoeuver resolves without any roll : elle se joue d'office, son issue ne
+     * dépend d'aucun dé (ex: Éviter).
+     * @returns the instance.
+     */
+    withAutomatic() {
+        this.automatic = true;
+        return this;
+    }
+
+    /**
+     * Specify the manoeuver is a blow : un coup porté, par opposition à une empoignade, un
+     * tir ou une manœuvre tactique. Certaines défenses n'ont de sens que face à un coup.
+     * @returns the instance.
+     */
+    withStrike() {
+        this.strike = true;
+        return this;
+    }
+
+    /**
      * Specify the manoeuver takes its actor out of the fight : réussie, elle retire son
      * combattant du combat en cours (ex: Fuir).
      * @returns the instance.
@@ -302,6 +324,32 @@ export class AbstractManoeuver {
      */
     async resolveDefense(defense, winner) {
         await defense.applyDamages(winner !== Constants.ACTION ? this.absorption : null);
+    }
+
+    /**
+     * Phrase standard d'une manœuvre de défense : le défenseur parvient — ou non — à ce que
+     * décrit la manœuvre (sa clef de traduction 'Sentence'). C'est l'issue de la très grande
+     * majorité des défenses ; les manœuvres l'appellent depuis leur defenseSentenceOf.
+     * @param winner The winner of the opposed roll.
+     * @returns la phrase de résultat.
+     */
+    defenseSentence(winner) {
+        const sentence = game.i18n.localize(AbstractManoeuver.clef(this.id, "Sentence"));
+        return winner === Constants.ACTION
+            ? " ne parvient pas à " + sentence
+            : " parvient à " + sentence;
+    }
+
+    /**
+     * Chaque manœuvre de défense redéfinit cette méthode — même pour reprendre la phrase
+     * standard : c'est elle, et non l'action de défense, qui décide de ce qui est annoncé.
+     * Une manœuvre dont l'issue ne se résume pas à réussir ou échouer (ex: Éviter, où le coup
+     * touche toujours) rédige alors la sienne.
+     * @param winner The winner of the opposed roll.
+     * @returns la phrase de résultat affichée dans le chat.
+     */
+    defenseSentenceOf(winner) {
+        return this.defenseSentence(winner);
     }
 
     /**

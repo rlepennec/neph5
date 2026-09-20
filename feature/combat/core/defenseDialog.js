@@ -10,7 +10,9 @@ export class DefenseDialog extends CombatDialog {
      */
     constructor(actor, action) {
         super(actor, action);
-        this.defaultManoeuver = Eviter.ID;
+        // Éviter d'ordinaire, mais elle n'est pas toujours proposée : face à un tir ou à une
+        // empoignade, l'action s'ouvre sur une autre (voir Defense.defenseToPerform).
+        this.defaultManoeuver = action.manoeuver?.id ?? Eviter.ID;
     }
 
     /**
@@ -57,7 +59,7 @@ export class DefenseDialog extends CombatDialog {
 
         const parameters = this.parameters();
         this._setText("#manoeuverModifier", this.action.manoeuverModifier(parameters));
-        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty", this.difficultyText(this.action.difficulty(parameters)));
 
     }
 

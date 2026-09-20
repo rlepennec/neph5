@@ -1,5 +1,4 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
-import { AbstractManoeuver } from "../manoeuver/abstractManoeuver.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -168,6 +167,29 @@ export class Defense extends AbstractCombatFeature {
     }
 
     /**
+     * Réaction jouée sans dé : perdue d'avance face à une attaque qui a réussi, donc le coup
+     * touche. Seule l'absorption de la manœuvre joue encore, à sa charge de l'appliquer
+     * (voir Eviter.resolveDefense).
+     */
+    static get AUTOMATIQUE() {
+        return { roll: null, opposed: true, success: false, critical: false, fumble: false, margin: 0 };
+    }
+
+    /**
+     * @Overrides
+     * Une manœuvre automatique (Éviter) se résout sans jet : on enchaîne directement sur
+     * l'application du résultat.
+     */
+    async roll(parameters) {
+        this.setManoeuver(parameters.manoeuver);
+        if (this.manoeuver?.automatic === true) {
+            await this.apply(Defense.AUTOMATIQUE);
+            return;
+        }
+        await super.roll(parameters);
+    }
+
+    /**
      * @Overrides
      */
     async apply(result) {
@@ -187,7 +209,7 @@ export class Defense extends AbstractCombatFeature {
                 actor: this.actor,
                 richSentence: this.sentenceOf(this.winner),
                 img: this.attack.actor.img,
-                total: result.roll._total,
+                total: result.roll?._total,
                 effects : this.effectsOf(this.winner),
                 absorption: absorption
             })
@@ -212,17 +234,10 @@ export class Defense extends AbstractCombatFeature {
 
     /**
      * @param winner The winner of the opposed action.
-     * @returns the result sentence.
+     * @returns the result sentence, rédigée par la manœuvre de défense jouée.
      */
     sentenceOf(winner) {
-        const sentence = this.manoeuver == null ? "se défendre" : game.i18n.localize(AbstractManoeuver.clef(this.manoeuver.id, "Sentence"));
-        switch (winner) {
-            case Constants.ACTION:
-                return " ne parvient pas à " + sentence;
-            case Constants.TIE:
-            case Constants.REACTION:
-                return " parvient à " + sentence;
-        }
+        return this.manoeuver.defenseSentenceOf(winner);
     }
 
     /**
@@ -283,17 +298,26 @@ export class Defense extends AbstractCombatFeature {
      * @return the instance if a defense can be performed, otherswise apply damage and return null.
      */
     async defenseToPerform() {
+
         // No manoeuver possible, apply dammages automaticaly
-        if (Object.keys(this.data.manoeuvers).length === 0) {
+        const manoeuvers = Object.keys(this.data.manoeuvers);
+        if (manoeuvers.length === 0) {
             if (this.result.success) {
                 await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
                 await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
             }
             return null;
-        } else {
-            return this;
         }
+
+        // Éviter, la défense par défaut, n'est proposée que face à un coup : le dialogue
+        // s'ouvre sinon sur la première réellement disponible, base et difficulté comprises.
+        if (!manoeuvers.includes(this.manoeuver.id)) {
+            this.setManoeuver(manoeuvers[0]);
+        }
+
+        return this;
+
     }
 
     /**

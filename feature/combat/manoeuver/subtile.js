@@ -10,6 +10,7 @@ export class Subtile extends AbstractManoeuver {
      */
     constructor() {
         super(Subtile.ID, Constants.STRIKE);
+        this.withStrike();
         this.withApproches(['air','eau']);
         this.withAttack({modifier: -20});
         this.withDefense({modifier: -40});

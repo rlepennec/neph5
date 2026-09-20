@@ -18,6 +18,13 @@ export class EsquiverLance extends AbstractManoeuver {
     /**
      * @Override
      */
+    defenseSentenceOf(winner) {
+        return this.defenseSentence(winner);
+    }
+
+    /**
+     * @Override
+     */
     canBePerformed(action) {
         if (this.exclusiveDefensePlayed(action)) return false;
         return action.actor.isEsquiveAvailable &&

@@ -18,6 +18,13 @@ export class Elaboree extends AbstractManoeuver {
     /**
      * @Override
      */
+    defenseSentenceOf(winner) {
+        return this.defenseSentence(winner);
+    }
+
+    /**
+     * @Override
+     */
     canBePerformed(action) {
         const history = action.history ?? [];
         if (history.some(e => e.manoeuver !== this.id)) {

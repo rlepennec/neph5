@@ -26,7 +26,17 @@ export class CombatDialog extends ActionDialog {
         data.impact = this.action.impact(Standard.ID);
         data.absorption = this.action.absorption(Eviter.ID);
         data.description = CombatDialog.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
+        data.difficulty = this.difficultyText(data.difficulty);
         return data;
+    }
+
+    /**
+     * @param difficulty La difficulté chiffrée du jet.
+     * @returns le texte affiché à côté du dé — la manœuvre en cours ne se joue pas toujours
+     *          aux dés (ex: Éviter), auquel cas aucun pourcentage n'a de sens.
+     */
+    difficultyText(difficulty) {
+        return this.action.manoeuver?.automatic === true ? "Auto" : difficulty + "%";
     }
 
     _onRender(context, options) {
@@ -61,7 +71,7 @@ export class CombatDialog extends ActionDialog {
         const base = this._base();
         const difficulty = this.action.difficulty(parameters);
 
-        this._setText("#difficulty", difficulty + "%");
+        this._setText("#difficulty", this.difficultyText(difficulty));
         this._setApprocheOptions(parameters.manoeuver);
         this._setText("#approcheModifier", "0");
         this._setText("#vecu", base.name);

@@ -10,6 +10,7 @@ export class Lancer extends AbstractManoeuver {
      */
     constructor() {
         super(Lancer.ID, Constants.THROW);
+        this.withStrike();
         this.withApproches(['feu']);
         this.withImpact({modifier: 0});
     }

@@ -106,6 +106,16 @@ export class ActionDialog extends AbstractDialog {
     }
 
     /**
+     * @param difficulty La difficulté chiffrée du jet.
+     * @returns le texte affiché à côté du dé. Surchargée par CombatDialog : une manœuvre de
+     *          combat peut se jouer sans dé (ex: Éviter), auquel cas un pourcentage n'a pas
+     *          de sens.
+     */
+    difficultyText(difficulty) {
+        return difficulty + "%";
+    }
+
+    /**
      * Handle the modifier change.
      * @param event The event to handle.
      */
@@ -114,7 +124,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         const difficulty = this.action.difficulty(parameters);
         // [V14] $('#difficulty').html(...) remplacé par _setText() (DOM natif, pas jQuery).
-        this._setText("#difficulty", difficulty + "%");
+        this._setText("#difficulty", this.difficultyText(difficulty));
         this._setText("#sliderModifier", parameters.modifier);
     }
 
@@ -127,7 +137,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText() que dans _onSetModifier.
         this._setText("#fraterniteModifier", parameters.fraternite);
-        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty", this.difficultyText(this.action.difficulty(parameters)));
     }
 
     /**
@@ -139,7 +149,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText().
         this._setText("#blessuresModifier", parameters.blessures);
-        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty", this.difficultyText(this.action.difficulty(parameters)));
     }
 
     /**
@@ -151,7 +161,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText().
         this._setText("#approcheModifier", parameters.approche);
-        this._setText("#difficulty", this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty", this.difficultyText(this.action.difficulty(parameters)));
     }
 
     /**
@@ -161,7 +171,7 @@ export class ActionDialog extends AbstractDialog {
     async _onSelectMnemos(event) {
         event.preventDefault();
         // [V14] Même remplacement jQuery → _setText().
-        this._setText("#difficulty", this.action.difficulty(this.parameters()) + "%");
+        this._setText("#difficulty", this.difficultyText(this.action.difficulty(this.parameters())));
     }
 
     /**
@@ -171,7 +181,7 @@ export class ActionDialog extends AbstractDialog {
     async _onSelectElement(event) {
         event.preventDefault();
         // [V14] Même remplacement jQuery → _setText().
-        this._setText("#difficulty", this.action.difficulty(this.parameters()) + "%");
+        this._setText("#difficulty", this.difficultyText(this.action.difficulty(this.parameters())));
     }
 
     /**
@@ -182,7 +192,7 @@ export class ActionDialog extends AbstractDialog {
         event.preventDefault();
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText().
-        this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty",         this.difficultyText(this.action.difficulty(parameters)));
         this._setText("#sliderOpposition",   parameters.opposition);
         this._setText("#conditionsModifier", this.action.condition(parameters));
         this._setText("#note",               this.action.note(parameters));
@@ -196,7 +206,7 @@ export class ActionDialog extends AbstractDialog {
         event.preventDefault();
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText().
-        this._setText("#difficulty",   this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty",   this.difficultyText(this.action.difficulty(parameters)));
         this._setText("#sliderAide",   parameters.aide);
         this._setText("#aideModifier", this.action.aide(parameters));
     }
@@ -210,7 +220,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText().
         this._setText("#conditionsModifier", this.action.condition(parameters));
-        this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty",         this.difficultyText(this.action.difficulty(parameters)));
     }
 
     /**
@@ -222,7 +232,7 @@ export class ActionDialog extends AbstractDialog {
         const parameters = this.parameters();
         // [V14] Même remplacement jQuery → _setText().
         this._setText("#metamorpheModifier", parameters.metamorphe);
-        this._setText("#difficulty",         this.action.difficulty(parameters) + "%");
+        this._setText("#difficulty",         this.difficultyText(this.action.difficulty(parameters)));
     }
 
     async _onRoll(event) {

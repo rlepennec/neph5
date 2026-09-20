@@ -17,6 +17,13 @@ export class Desarmer extends AbstractManoeuver {
     /**
      * @Override
      */
+    defenseSentenceOf(winner) {
+        return this.defenseSentence(winner);
+    }
+
+    /**
+     * @Override
+     */
     canBePerformed(action) {
         if (this.exclusiveDefensePlayed(action)) return false;
         const performable = action.attack.manoeuver.family === Constants.STRIKE;
