@@ -12,7 +12,6 @@ import { DefenseDialog } from "./defenseDialog.js";
 import { Desarmer } from "../manoeuver/desarmer.js";
 import { Elaboree } from "../manoeuver/elaboree.js";
 import { Esquiver } from "../manoeuver/esquiver.js";
-import { EsquiverLance } from "../manoeuver/esquiverLance.js";
 import { Eviter } from "../manoeuver/eviter.js";
 import { Fuir } from "../manoeuver/fuir.js";
 import { Health } from "../../core/health.js";
@@ -333,7 +332,6 @@ export class Defense extends AbstractCombatFeature {
             .withManoeuver(new Eviter())
             .withManoeuver(new Fuir())
             .withManoeuver(new Parer())
-            .withManoeuver(new EsquiverLance())
             .withManoeuver(new ParerLance())
             .withManoeuver(new ParerProjectile());
     }

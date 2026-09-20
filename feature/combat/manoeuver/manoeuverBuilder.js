@@ -3,7 +3,6 @@ import { Contrer } from "./contrer.js";
 import { Desarmer } from "./desarmer.js";
 import { Elaboree } from "./elaboree.js";
 import { Esquiver } from "./esquiver.js";
-import { EsquiverLance } from "./esquiverLance.js";
 import { Etrange } from "./etrange.js";
 import { Eviter } from "./eviter.js";
 import { Force } from "./force.js";
@@ -46,8 +45,6 @@ export class ManoeuverBuilder {
                 return new Elaboree();
             case Esquiver.ID:
                 return new Esquiver();
-            case EsquiverLance.ID:
-                return new EsquiverLance();
             case Etrange.ID:
                 return new Etrange();
             case Eviter.ID:
