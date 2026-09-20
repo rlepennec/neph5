@@ -23,6 +23,7 @@ import { CapaciteSheet } from "./feature/capacite/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/item/catalyseur.js";
 import { ChuteSheet } from "./feature/chute/item/chute.js";
 import { CombatHistory } from "./feature/combat/core/combatHistory.js";
+import { Combatants } from "./feature/combat/core/combatants.js";
 import { CompetenceSheet } from "./feature/competence/item/competence.js";
 import { DivinationSheet } from "./feature/bohemien/item/divination.js";
 import { DracomachieSheet } from "./feature/dracomachie/item/dracomachie.js";
@@ -326,6 +327,9 @@ Hooks.once("init", function () {
                 break;
             case Constants.MSG_RECORD_MANOEUVRE:
                 await CombatHistory.onSocketMessage(socketMessage);
+                break;
+            case Constants.MSG_LEAVE_COMBAT:
+                await Combatants.onSocketMessage(socketMessage);
                 break;
           }
     });

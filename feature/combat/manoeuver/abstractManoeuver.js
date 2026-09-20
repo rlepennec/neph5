@@ -43,6 +43,7 @@ export class AbstractManoeuver {
         this.shots = null;
         this.clearViser = true;
         this.nextDefenseModifier = 0;
+        this.leaveCombat = false;
     }
 
     /**
@@ -207,6 +208,16 @@ export class AbstractManoeuver {
      */
     withNextDefenseModifier(modifier) {
         this.nextDefenseModifier = modifier;
+        return this;
+    }
+
+    /**
+     * Specify the manoeuver takes its actor out of the fight : réussie, elle retire son
+     * combattant du combat en cours (ex: Fuir).
+     * @returns the instance.
+     */
+    withLeaveCombat() {
+        this.leaveCombat = true;
         return this;
     }
 

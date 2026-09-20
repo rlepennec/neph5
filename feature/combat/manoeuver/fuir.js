@@ -1,6 +1,10 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
 import { Constants } from "../../../module/common/constants.js";
 
+/**
+ * Fuir : quitter le combat. Réussie, elle ne protège de rien — le combattant encaisse tous
+ * les dommages du coup qu'il prend en partant — mais elle le sort du combat en cours.
+ */
 export class Fuir extends AbstractManoeuver {
 
     static ID = "fuir";
@@ -13,7 +17,7 @@ export class Fuir extends AbstractManoeuver {
         this.withApproches(['air','eau','lune', 'ka']);
         this.withNoTarget();
         this.withNoDefense();
-        this.withAbsorption({fix: 0});
+        this.withLeaveCombat();
     }
 
     /**

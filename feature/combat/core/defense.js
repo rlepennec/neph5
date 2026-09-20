@@ -6,6 +6,7 @@ import { Constants } from "../../../module/common/constants.js";
 import { Bloquer } from "../manoeuver/bloquer.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
+import { Combatants } from "./combatants.js";
 import { ContreAttaque } from "./contreAttaque.js";
 import { Contrer } from "../manoeuver/contrer.js";
 import { DefenseDialog } from "./defenseDialog.js";
@@ -200,6 +201,12 @@ export class Defense extends AbstractCombatFeature {
         // Record the maneuvers played by both combatants
         await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
         await CombatHistory.record(this.actor, this.manoeuver, this.attack.actor);
+
+        // Une manœuvre de sortie réussie (Fuir) retire son combattant du combat. En dernier :
+        // la chronologie ci-dessus passe par le combattant, qui n'existera plus après.
+        if (this.winner !== Constants.ACTION && this.manoeuver.leaveCombat === true) {
+            await Combatants.leave(this.actor);
+        }
 
     }
 
