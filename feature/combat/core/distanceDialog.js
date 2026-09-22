@@ -24,7 +24,7 @@ export class DistanceDialog extends CombatDialog {
     async _prepareContext(options) {
         const data = await super._prepareContext(options);
         data.impact = this.action.impact(this.defaultManoeuver);
-        data.description = CombatDialog.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
+        data.description = this.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
         return data;
     }
 

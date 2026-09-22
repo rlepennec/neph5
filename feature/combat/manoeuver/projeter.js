@@ -9,11 +9,11 @@ export class Projeter extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Projeter.ID, Constants.BRAWL);
-        this.withApproches(['feu','terre', 'ka']);
-        this.withImpact({fix: 1});
-        this.withEffect(ActiveEffects.PROJETE);
+    constructor(action) {
+        super(Projeter.ID, Constants.BRAWL, action);
+        this.approches = ['feu','terre', 'ka'];
+        this.impact = {fix: 1};
+        this.effect = ActiveEffects.PROJETE;
     }
 
     /**

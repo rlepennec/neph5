@@ -21,9 +21,13 @@ export class AbstractManoeuver {
      * Constructor.
      * @param id     The identifier of the manoeuver.
      * @param family The famliy of the manoeuver.
-     * @param name   The name of the manoeuver to display as choice.
+     * @param action L'action — ou le pool — pour le compte de laquelle la manœuvre est créée,
+     *               null si aucune. Elle offre toujours le même contrat : actor, weapon,
+     *               attack, history. Une manœuvre naît ainsi complète — celles dont les
+     *               propriétés en dépendent les déduisent dans leur propre constructeur (voir
+     *               Tirer, Esquiver, Désarmer) — et plus rien ne la modifie ensuite.
      */
-    constructor(id, family) {
+    constructor(id, family, action = null) {
         this.id = id;
         this.family = family;
         this.name = game.i18n.localize(AbstractManoeuver.clef(id, "Name"));
@@ -46,6 +50,19 @@ export class AbstractManoeuver {
         this.leaveCombat = false;
         this.strike = false;
         this.automatic = false;
+        this.action = action;
+    }
+
+    /**
+     * L'action est une référence de travail vers celle qui a créé la manœuvre, pas une donnée :
+     * elle boucle sur l'acteur, ses jetons et l'attaque. Le contexte du dialogue passe par
+     * foundry.utils.duplicate, donc par JSON.stringify, qui échouerait sur cette structure
+     * circulaire : la manœuvre se sérialise sans elle.
+     * @returns the serializable state of the manoeuver.
+     */
+    toJSON() {
+        const { action, ...data } = this;
+        return data;
     }
 
     /**
@@ -54,96 +71,6 @@ export class AbstractManoeuver {
      */
     historyOf(actor) {
         return CombatHistory.thisRound(actor);
-    }
-
-    /**
-     * @param approches The approche to set.
-     * @returns the instance.
-     */
-    withApproches(approches) {
-        this.approches = approches;
-        return this;
-    }
-
-    /**
-     * @param attack The attack modifier to set.
-     * @returns the instance.
-     */
-    withAttack(attack) {
-        this.attack = attack;
-        return this;
-    }
-
-    /**
-     * Specify the action can be done while being immobilized 
-     * @returns the instance.
-     */
-    withImmobilized() {
-        this.immobilized = true;
-        return this;
-    }
-
-    /**
-     * @param defense The defense modifier to set.
-     * @returns the instance.
-     */
-    withDefense(defense) {
-        this.defense = defense;
-        return this;
-    }
-
-    /**
-     * @param description The description to set.
-     * @returns the instance.
-     */
-    withDescription(description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * @param effect The effect to set.
-     * @returns the instance.
-     */
-    withEffect(effect) {
-        this.effect = effect;
-        return this;
-    }
-
-    /**
-     * @param impact The impact bonus to set.
-     * @returns the instance.
-     */
-    withImpact(impact) {
-        this.impact = impact;
-        return this;
-    }
-
-    /**
-     * @param absorption The absorption bonus to set.
-     * @returns the instance.
-     */
-    withAbsorption(absorption) {
-        this.absorption = absorption;
-        return this;
-    }
-
-    /**
-     * Specify the action doesn't need any target.
-     * @returns the instance.
-     */
-    withNoTarget() {
-        this.target = false;
-        return this;
-    }
-
-    /**
-     * @param times The number of times to set.
-     * @returns the instance.
-     */
-    withTimes(times) {
-        this.times = times;
-        return this;
     }
 
     /**
@@ -156,99 +83,6 @@ export class AbstractManoeuver {
         // tirs possibles dans le round que d'entrées.
         this.times = shots.length;
         return this;
-    }
-
-    /**
-     * Specify no attack possible.
-     * @returns the instance.
-     */
-    withNoAttack() {
-        this.noAttack = true;
-        return this;
-    }
-
-    /**
-     * Specify no defense possible.
-     * @returns the instance.
-     */
-    withNoDefense() {
-        this.noDefense = true;
-        return this;
-    }
-
-    /**
-     * Specify the manoeuver is exclusive.
-     * @returns the instance.
-     */
-    withNoOther() {
-        this.withNoOther = true;
-        return this;
-    }
-
-    /**
-     * Specify the manoeuver skill to set.
-     * @param skill The identifier of the skill used by the action:
-     *  - brawl
-     *  - dodge
-     *  - fire
-     *  - parade
-     *  - strike
-     *  - tactic
-     *  - throw
-     * @returns the instance.
-     */
-    withFamily(skill) {
-        this.skill = skill;
-        return this;
-    }
-
-    /**
-     * Set the modifier to apply to the next defense reaction.
-     * Used for defense reaction only.
-     * @param modifier The modifier to set.
-     * @return this instance.
-     */
-    withNextDefenseModifier(modifier) {
-        this.nextDefenseModifier = modifier;
-        return this;
-    }
-
-    /**
-     * Specify the manoeuver resolves without any roll : elle se joue d'office, son issue ne
-     * dépend d'aucun dé (ex: Éviter).
-     * @returns the instance.
-     */
-    withAutomatic() {
-        this.automatic = true;
-        return this;
-    }
-
-    /**
-     * Specify the manoeuver is a blow : un coup porté, par opposition à une empoignade, un
-     * tir ou une manœuvre tactique. Certaines défenses n'ont de sens que face à un coup.
-     * @returns the instance.
-     */
-    withStrike() {
-        this.strike = true;
-        return this;
-    }
-
-    /**
-     * Specify the manoeuver takes its actor out of the fight : réussie, elle retire son
-     * combattant du combat en cours (ex: Fuir).
-     * @returns the instance.
-     */
-    withLeaveCombat() {
-        this.leaveCombat = true;
-        return this;
-    }
-
-    /**
-     * Without clear viser.
-     * @returns the instance.
-     */
-    withoutClearViser() {
-        this.clearViser = false;
     }
 
     /**
@@ -341,6 +175,15 @@ export class AbstractManoeuver {
     }
 
     /**
+     * @returns la clef de traduction de la description à afficher. Une manœuvre qui n'arrête
+     *          pas tout de la même façon décrit le cas en cours plutôt que l'ensemble — voir
+     *          Parer, qui ne pare pas un projectile comme un coup.
+     */
+    descriptionKey() {
+        return AbstractManoeuver.clef(this.id, "Description");
+    }
+
+    /**
      * Chaque manœuvre de défense redéfinit cette méthode — même pour reprendre la phrase
      * standard : c'est elle, et non l'action de défense, qui décide de ce qui est annoncé.
      * Une manœuvre dont l'issue ne se résume pas à réussir ou échouer (ex: Éviter, où le coup
@@ -350,15 +193,6 @@ export class AbstractManoeuver {
      */
     defenseSentenceOf(winner) {
         return this.defenseSentence(winner);
-    }
-
-    /**
-     * Update the manoeuver according to ther specified action.
-     * @param action The action for which to update the manoeuver.
-     * @returns the instance
-     */
-    update(action) {
-        return this;
     }
 
     /**

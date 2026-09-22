@@ -53,7 +53,7 @@ export class AbstractCombatFeature extends AbstractFeature {
      * @returns the attack modifier of the maneuver in use.
      */
     manoeuverModifier(parameters) {
-        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver)?.attack?.modifier);
+        return AbstractCombatFeature.toInt(ManoeuverBuilder.create(parameters?.manoeuver, this)?.attack?.modifier);
     }
 
 }

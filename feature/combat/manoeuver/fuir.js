@@ -12,12 +12,12 @@ export class Fuir extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Fuir.ID, Constants.DODGE);
-        this.withApproches(['air','eau','lune', 'ka']);
-        this.withNoTarget();
-        this.withNoDefense();
-        this.withLeaveCombat();
+    constructor(action) {
+        super(Fuir.ID, Constants.DODGE, action);
+        this.approches = ['air','eau','lune', 'ka'];
+        this.target = false;
+        this.noDefense = true;
+        this.leaveCombat = true;
     }
 
     /**

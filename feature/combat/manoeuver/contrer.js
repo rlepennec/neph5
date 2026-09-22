@@ -25,10 +25,10 @@ export class Contrer extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Contrer.ID,  Constants.PARADE);
-        this.withApproches(['feu','terre', 'ka']);
-        this.withNextDefenseModifier(-20);
+    constructor(action) {
+        super(Contrer.ID,  Constants.PARADE, action);
+        this.approches = ['feu','terre', 'ka'];
+        this.nextDefenseModifier = -20;
     }
 
     /**
@@ -59,7 +59,7 @@ export class Contrer extends AbstractManoeuver {
         }
 
         // Rien en main : il n'y a pas de quoi riposter, on s'en tient à la parade.
-        if (defense.counterWeapon == null) {
+        if (defense.weapon == null) {
             ui.notifications.warn(`${defense.actor.name} n'a aucune arme en main pour contre-attaquer.`);
             await super.resolveDefense(defense, winner);
             return;

@@ -26,11 +26,11 @@ export class ContreAttaque extends Melee {
      * @param manoeuver La manœuvre de défense qui riposte.
      */
     constructor(defense, manoeuver) {
-        super(defense.actor, defense.counterWeapon);
+        super(defense.actor, defense.weapon);
         this.defense = defense;
         this.riposte = manoeuver;
         this.target = defense.attack.actor.tokenOf;
-        this.manoeuver = new Standard();
+        this.setManoeuver(Standard.ID);
     }
 
     /**
@@ -49,7 +49,7 @@ export class ContreAttaque extends Melee {
             .withType(Constants.SIMPLE)
             .withBase(this.item?.name ?? game.i18n.localize("NEPHILIM.nonDefini"), this.degre)
             .withBlessures(Constants.PHYSICAL)
-            .withManoeuvers(new ManoeuverPool().withManoeuver(new Standard()).free())
+            .withManoeuvers(new ManoeuverPool().withManoeuver(Standard.ID).free())
             .withApproches(this.approches(Standard.ID))
             .withWeapon(this.weapon)
             .withTarget(this.target)

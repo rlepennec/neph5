@@ -8,13 +8,13 @@ export class Subtile extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Subtile.ID, Constants.STRIKE);
-        this.withStrike();
-        this.withApproches(['air','eau']);
-        this.withAttack({modifier: -20});
-        this.withDefense({modifier: -40});
-        this.withImpact({modifier: 0});
+    constructor(action) {
+        super(Subtile.ID, Constants.STRIKE, action);
+        this.strike = true;
+        this.approches = ['air','eau'];
+        this.attack = {modifier: -20};
+        this.defense = {modifier: -40};
+        this.impact = {modifier: 0};
     }
 
 }

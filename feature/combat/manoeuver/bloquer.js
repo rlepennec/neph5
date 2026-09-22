@@ -8,11 +8,11 @@ export class Bloquer extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Bloquer.ID, Constants.PARADE);
-        this.withApproches(['terre', 'ka']);
-        this.withNextDefenseModifier(-20);
-        this.withAbsorption({modifier: 2});
+    constructor(action) {
+        super(Bloquer.ID, Constants.PARADE, action);
+        this.approches = ['terre', 'ka'];
+        this.nextDefenseModifier = -20;
+        this.absorption = {modifier: 2};
     }
 
     /**

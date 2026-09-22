@@ -8,13 +8,13 @@ export class Standard extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Standard.ID, Constants.STRIKE);
-        this.withStrike();
-        this.withApproches(['ka']);
-        this.withAttack({modifier: 0});
-        this.withDefense({modifier: 0});
-        this.withImpact({modifier: 0});
+    constructor(action) {
+        super(Standard.ID, Constants.STRIKE, action);
+        this.strike = true;
+        this.approches = ['ka'];
+        this.attack = {modifier: 0};
+        this.defense = {modifier: 0};
+        this.impact = {modifier: 0};
     }
 
 }

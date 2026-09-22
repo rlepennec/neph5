@@ -16,10 +16,10 @@ export class Recharger extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Recharger.ID, Constants.TACTIC);
-        this.withNoTarget();
-        this.withImpact({fix: 0});
+    constructor(action) {
+        super(Recharger.ID, Constants.TACTIC, action);
+        this.target = false;
+        this.impact = {fix: 0};
     }
 
     /**

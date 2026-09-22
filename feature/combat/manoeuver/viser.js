@@ -22,10 +22,10 @@ export class Viser extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Viser.ID, Constants.TACTIC);
-        this.withImpact({fix: 0});
-        this.withoutClearViser();
+    constructor(action) {
+        super(Viser.ID, Constants.TACTIC, action);
+        this.impact = {fix: 0};
+        this.clearViser = false;
     }
 
     /**

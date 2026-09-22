@@ -26,7 +26,7 @@ export class Naturelle extends AbstractCombatFeature {
         this.weapon = weapon;
         this.target = actor.target;
         this.effects = ActiveEffects.effectsOf(actor, this.target?.actor);
-        this.manoeuver = new Frapper();
+        this.setManoeuver(Frapper.ID);
     }
 
     /**
@@ -116,13 +116,13 @@ export class Naturelle extends AbstractCombatFeature {
      */
     static manoeuvers() {
         return new ManoeuverPool()
-            .withManoeuver(new Etrange())
-            .withManoeuver(new Force())
-            .withManoeuver(new Frapper())
-            .withManoeuver(new Puissante())
-            .withManoeuver(new Rapide())
-            .withManoeuver(new Standard())
-            .withManoeuver(new Subtile());
+            .withManoeuver(Etrange.ID)
+            .withManoeuver(Force.ID)
+            .withManoeuver(Frapper.ID)
+            .withManoeuver(Puissante.ID)
+            .withManoeuver(Rapide.ID)
+            .withManoeuver(Standard.ID)
+            .withManoeuver(Subtile.ID);
     }
 
 }

@@ -28,7 +28,7 @@ export class Distance extends AbstractCombatFeature {
         this.weapon = weapon;
         this.target = actor.target;
         this.effects = ActiveEffects.effectsOf(actor, this.target?.actor);
-        this.manoeuver = new Tirer();
+        this.setManoeuver(Tirer.ID);
     }
 
     /**
@@ -82,9 +82,9 @@ export class Distance extends AbstractCombatFeature {
             .withFoeOnGround(this.effects.foeOnGround)
             .withOnGround(this.effects.onGround)
             .withStunned(this.effects.stunned)
-            .withViser(new Viser().canBePerformed(this))
-            .withVisee(new Viser().modifier(this))
-            .withRecharger(new Recharger().canBePerformed(this))
+            .withViser(new Viser(this).canBePerformed(this))
+            .withVisee(new Viser(this).modifier(this))
+            .withRecharger(new Recharger(this).canBePerformed(this))
             .export();
     }
 
@@ -93,7 +93,7 @@ export class Distance extends AbstractCombatFeature {
      */
     manoeuverModifier(parameters) {
         // Sans DOM (premier calcul du dialogue), la manœuvre retenue est celle de l'action.
-        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver ?? this.manoeuver?.id);
+        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver ?? this.manoeuver?.id, this);
         // Le rang du tir se lit dans la chronologie du round : le n-ième tir d'un tir multiple
         // ou d'une salve prend le n-ième malus de `shots`.
         return AbstractCombatFeature.toInt(manoeuver?.attack?.modifier)
@@ -170,10 +170,10 @@ export class Distance extends AbstractCombatFeature {
      */
     static manoeuvers() {
         return new ManoeuverPool()
-            .withManoeuver(new Tirer())
-            .withManoeuver(new Multiple())
-            .withManoeuver(new Salve())
-            .withManoeuver(new Rafale());
+            .withManoeuver(Tirer.ID)
+            .withManoeuver(Multiple.ID)
+            .withManoeuver(Salve.ID)
+            .withManoeuver(Rafale.ID);
     }
 
 }

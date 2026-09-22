@@ -8,11 +8,11 @@ export class Elaboree extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Elaboree.ID, Constants.PARADE);
-        this.withApproches(['air','eau', 'ka']);
-        this.withNextDefenseModifier(0);
-        this.withNoAttack();
+    constructor(action) {
+        super(Elaboree.ID, Constants.PARADE, action);
+        this.approches = ['air','eau', 'ka'];
+        this.nextDefenseModifier = 0;
+        this.noAttack = true;
     }
 
     /**

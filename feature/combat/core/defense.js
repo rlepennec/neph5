@@ -19,8 +19,6 @@ import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { NephilimChat } from "../../../module/common/chat.js";
 import { Parer } from "../manoeuver/parer.js";
-import { ParerLance } from "../manoeuver/parerLance.js";
-import { ParerProjectile } from "../manoeuver/parerProjectile.js";
 
 export class Defense extends AbstractCombatFeature {
 
@@ -40,7 +38,7 @@ export class Defense extends AbstractCombatFeature {
         this.attack = attack;
         this.weapon = this.weapon();
         this.effects = ActiveEffects.effectsOf(actor, attack.attacker);
-        this.manoeuver = new Eviter();
+        this.setManoeuver(Eviter.ID);
     }
 
     /**
@@ -138,9 +136,9 @@ export class Defense extends AbstractCombatFeature {
      * @Override
      */
     manoeuverModifier(parameters) {
-        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver);
+        const manoeuver = ManoeuverBuilder.create(parameters?.manoeuver, this);
         const shot = parameters?.shot == null ? null : parameters.shot - 1;
-        return AbstractCombatFeature.toInt(manoeuver?.update(this)?.defense?.modifier) +
+        return AbstractCombatFeature.toInt(manoeuver?.defense?.modifier) +
                AbstractCombatFeature.toInt(shot == null || manoeuver?.shots == null ? null : manoeuver.shots[shot]);
     }
 
@@ -254,10 +252,29 @@ export class Defense extends AbstractCombatFeature {
     }
 
     /**
-     * @returns the weapon used for defense, null if not found.
+     * @returns l'arme avec laquelle le combattant se défend de cette attaque-ci, null s'il n'a
+     *          rien qui convienne. C'est elle qui donne la compétence du jet et son
+     *          modificateur de défense, et qui ouvre les manœuvres exigeant une arme.
+     *
+     *          Face à une arme lancée ou à un tir, seul un bouclier — une arme de mêlée
+     *          marquée « blocages autorisés » — arrête quelque chose : on n'oppose ni son épée
+     *          ni son poing à un javelot ou à une flèche.
+     *
+     *          Face au reste, l'arme mise en position de parade s'il y en a une, sinon celle
+     *          qu'il a simplement en main : on pare avec son épée même quand on s'en sert pour
+     *          attaquer.
      */
     weapon() {
-        return this.actor.items.find(i => i.type === 'arme' && i.system.used === true && i.system.parade === true);
+        const used = this.actor.items.filter(i => i.type === 'arme' && i.system.used === true);
+        switch (this.attack.manoeuver.family) {
+            case Constants.THROW:
+            case Constants.FIRE:
+                return used.find(i => i.system.blocage === true) ?? null;
+            default:
+                return used.find(i => i.system.parade === true)
+                    ?? used.find(i => i.system.type === Constants.MELEE || i.system.type === Constants.NATURELLE)
+                    ?? null;
+        }
     }
 
     /**
@@ -267,19 +284,6 @@ export class Defense extends AbstractCombatFeature {
      */
     async applyDamages(absorption) {
         await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical);
-    }
-
-    /**
-     * @returns l'arme avec laquelle riposter : celle de parade si le défenseur en a une,
-     *          sinon n'importe quelle arme de contact en main. `weapon()` ne retient que les
-     *          armes marquées pour la parade, or une riposte ne l'exige pas : on ne peut pas
-     *          s'appuyer sur elle seule sans priver de contre-attaque un défenseur armé.
-     *          Null s'il n'a rien en main.
-     */
-    get counterWeapon() {
-        return this.weapon ?? this.actor.items.find(i => i.type === 'arme' &&
-                                                         i.system.used === true &&
-                                                        (i.system.type === Constants.MELEE || i.system.type === Constants.NATURELLE));
     }
 
     /**
@@ -324,16 +328,14 @@ export class Defense extends AbstractCombatFeature {
      */
     static manoeuvers() {
         return new ManoeuverPool()
-            .withManoeuver(new Bloquer())
-            .withManoeuver(new Contrer())
-            .withManoeuver(new Desarmer())
-            .withManoeuver(new Elaboree())
-            .withManoeuver(new Esquiver())
-            .withManoeuver(new Eviter())
-            .withManoeuver(new Fuir())
-            .withManoeuver(new Parer())
-            .withManoeuver(new ParerLance())
-            .withManoeuver(new ParerProjectile());
+            .withManoeuver(Bloquer.ID)
+            .withManoeuver(Contrer.ID)
+            .withManoeuver(Desarmer.ID)
+            .withManoeuver(Elaboree.ID)
+            .withManoeuver(Esquiver.ID)
+            .withManoeuver(Eviter.ID)
+            .withManoeuver(Fuir.ID)
+            .withManoeuver(Parer.ID);
     }
 
 }

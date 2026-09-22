@@ -8,11 +8,11 @@ export class Salve extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Salve.ID, Constants.FIRE);
-        this.withApproches(['air', 'ka']);
+    constructor(action) {
+        super(Salve.ID, Constants.FIRE, action);
+        this.approches = ['air', 'ka'];
         this.withShots(0, -30, -50);
-        this.withImpact({modifier: 2});
+        this.impact = {modifier: 2};
     }
 
     /**

@@ -20,7 +20,7 @@ export class Wrestle extends AbstractCombatFeature {
         this.item = actor.type === 'figure' ? game.items.find(i => i.sid === actor.system?.manoeuvres.lutte) : null;
         this.target = actor.target;
         this.effects = ActiveEffects.effectsOf(this.actor, this.target?.actor);
-        this.manoeuver = new Immobiliser();
+        this.setManoeuver(Immobiliser.ID);
     }
 
     /**
@@ -116,9 +116,9 @@ export class Wrestle extends AbstractCombatFeature {
      */
     static manoeuvers() {
         return new ManoeuverPool()
-            .withManoeuver(new Immobiliser())
-            .withManoeuver(new Liberer())
-            .withManoeuver(new Projeter());
+            .withManoeuver(Immobiliser.ID)
+            .withManoeuver(Liberer.ID)
+            .withManoeuver(Projeter.ID);
     }
 
 }

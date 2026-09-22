@@ -8,11 +8,11 @@ export class Multiple extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Multiple.ID, Constants.FIRE);
-        this.withApproches(['air', 'ka']);
+    constructor(action) {
+        super(Multiple.ID, Constants.FIRE, action);
+        this.approches = ['air', 'ka'];
         this.withShots(-20, -20, -30, -50, -70);
-        this.withImpact({modifier: 0});
+        this.impact = {modifier: 0};
     }
 
     /**

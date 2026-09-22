@@ -8,10 +8,10 @@ export class Instinctif extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Instinctif.ID, Constants.FIRE);
-        this.withApproches(['feu']);
-        this.withImpact({modifier: 0});
+    constructor(action) {
+        super(Instinctif.ID, Constants.FIRE, action);
+        this.approches = ['feu'];
+        this.impact = {modifier: 0};
     }
 
     /**

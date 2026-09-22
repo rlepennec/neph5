@@ -9,14 +9,14 @@ export class Etrange extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Etrange.ID, Constants.STRIKE);
-        this.withStrike();
-        this.withApproches(['lune']);
-        this.withAttack({modifier: -30});
-        this.withDefense({modifier: 0});
-        this.withImpact({modifier: 0});
-        this.withEffect(ActiveEffects.DESORIENTE);
+    constructor(action) {
+        super(Etrange.ID, Constants.STRIKE, action);
+        this.strike = true;
+        this.approches = ['lune'];
+        this.attack = {modifier: -30};
+        this.defense = {modifier: 0};
+        this.impact = {modifier: 0};
+        this.effect = ActiveEffects.DESORIENTE;
     }
 
 }

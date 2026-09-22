@@ -154,7 +154,7 @@ export class AbstractFeature {
      * @returns the instance.
      */
     setManoeuver(manoeuver) {
-        this.manoeuver = ManoeuverBuilder.create(manoeuver);
+        this.manoeuver = ManoeuverBuilder.create(manoeuver, this);
         return this;
     }
 
@@ -286,7 +286,7 @@ export class AbstractFeature {
      * @param parameters All the action parameters.  
      */
     async roll(parameters) {
-        this.manoeuver = ManoeuverBuilder.create(parameters.manoeuver);
+        this.manoeuver = ManoeuverBuilder.create(parameters.manoeuver, this);
         const roll = await new Roll("1d100").roll();
         const result = this.resultOf(parameters, roll);
         await this.apply(result);
@@ -348,9 +348,9 @@ export class AbstractFeature {
      * @returns the allowed approches according to the actor and the manoeuver.
      */
     approches(manoeuver) {
-        // update(this) : les approches d'une manœuvre peuvent dépendre de l'action (ex: Tirer,
-        // selon que la cible est visée ou non). Sans effet pour les autres manœuvres.
-        return manoeuver == null ? this.actor.approches() : ManoeuverBuilder.create(manoeuver).update(this).approchesOf(this.actor);
+        // La manœuvre est créée pour cette action : ses approches peuvent en dépendre (ex:
+        // Tirer, selon que la cible est visée ou non), elles sont donc déjà à jour ici.
+        return manoeuver == null ? this.actor.approches() : ManoeuverBuilder.create(manoeuver, this).approchesOf(this.actor);
     }
 
     /**
@@ -359,10 +359,10 @@ export class AbstractFeature {
      */
     impact(manoeuver) {
         if (manoeuver != null) {
-            return ManoeuverBuilder.create(manoeuver).impactOf(this.actor, this.weapon);
+            return ManoeuverBuilder.create(manoeuver, this).impactOf(this.actor, this.weapon);
         }
         if (this.manoeuver != null) {
-            return ManoeuverBuilder.create(this.manoeuver.id).impactOf(this.actor, this.weapon);
+            return ManoeuverBuilder.create(this.manoeuver.id, this).impactOf(this.actor, this.weapon);
         }
     }
 
@@ -372,11 +372,21 @@ export class AbstractFeature {
      */
     absorption(manoeuver) {
         if (manoeuver != null) {
-            return ManoeuverBuilder.create(manoeuver).absorptionOf();
+            return ManoeuverBuilder.create(manoeuver, this).absorptionOf();
         }
         if (this.manoeuver != null) {
-            return ManoeuverBuilder.create(this.manoeuver.id).absorptionOf();
+            return ManoeuverBuilder.create(this.manoeuver.id, this).absorptionOf();
         }
+    }
+
+    /**
+     * @param manoeuver The identifier of the manoeuver to describe.
+     * @returns la clef de traduction de sa description, dans le contexte de cette action : la
+     *          manœuvre est créée pour elle, donc elle se décrit selon ce à quoi elle répond
+     *          (ex: Parer).
+     */
+    descriptionKey(manoeuver) {
+        return ManoeuverBuilder.create(manoeuver, this)?.descriptionKey();
     }
 
     /**

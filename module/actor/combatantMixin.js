@@ -472,7 +472,7 @@ export const CombatantMixin = Base => {
             // Viser.canBePerformed porte la règle propre à la manœuvre : munitions
             // restantes, et trois rounds de visée au maximum sur la même cible.
             const action = new Distance(this, weapon);
-            const viser = new Viser();
+            const viser = new Viser(action);
             if (viser.canBePerformed(action) === false) {
                 ui.notifications.info("La visée est déjà à son maximum sur cette cible");
                 return;
@@ -517,7 +517,7 @@ export const CombatantMixin = Base => {
 
             // Recharger.canBePerformed : au moins un coup tiré.
             const action = new Distance(this, weapon);
-            const recharger = new Recharger();
+            const recharger = new Recharger(action);
             if (recharger.canBePerformed(action) === false) {
                 ui.notifications.info("L'arme n'a pas besoin d'être rechargée");
                 return;

@@ -9,11 +9,11 @@ export class Immobiliser extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Immobiliser.ID, Constants.BRAWL);
-        this.withApproches(['eau','terre', 'ka']);
-        this.withImpact({fix: 1});
-        this.withEffect(ActiveEffects.IMMOBILISE);
+    constructor(action) {
+        super(Immobiliser.ID, Constants.BRAWL, action);
+        this.approches = ['eau','terre', 'ka'];
+        this.impact = {fix: 1};
+        this.effect = ActiveEffects.IMMOBILISE;
     }
 
     /**

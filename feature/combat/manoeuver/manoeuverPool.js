@@ -1,4 +1,5 @@
 import { CombatHistory } from "../core/combatHistory.js";
+import { ManoeuverBuilder } from "./manoeuverBuilder.js";
 
 export class ManoeuverPool {
 
@@ -6,7 +7,7 @@ export class ManoeuverPool {
      * Constructor.
      */
     constructor() {
-        this.manoeuvers = {};
+        this.manoeuvers = [];
         this.actor = null;
         this.weapon = null;
         this.attack = null;
@@ -25,12 +26,14 @@ export class ManoeuverPool {
     }
 
     /**
-     * Register the specified manoeuver if allowed.
-     * @param manoeuver The manoeuver to register.
+     * Register the specified manoeuver.
+     * Le pool ne retient que des identifiants : il n'est complet — acteur, arme, attaque —
+     * qu'après ce premier enregistrement, et les manœuvres naissent liées à un pool complet.
+     * @param manoeuver The identifier of the manoeuver to register.
      * @returns the instance.
      */
     withManoeuver(manoeuver) {
-        this.manoeuvers[manoeuver.id] = manoeuver;
+        this.manoeuvers.push(manoeuver);
         return this;
     }
 
@@ -74,7 +77,10 @@ export class ManoeuverPool {
      */
     get all() {
         const all = {};
-        Object.entries(this.manoeuvers).forEach(([id, manoeuver]) => {
+        this.manoeuvers.forEach(id => {
+            // Le pool est complet à cet instant : les manœuvres naissent donc en connaissant
+            // l'acteur, l'arme et l'attaque à laquelle elles répondent.
+            const manoeuver = ManoeuverBuilder.create(id, this);
             if (this.unrestricted === true || manoeuver.canBePerformed(this)) {
                 all[id] = manoeuver;
             }
@@ -94,7 +100,7 @@ export class ManoeuverPool {
      * @returns all registered manoeuvers ids.
      */
     get ids() {
-        return Object.keys(this.manoeuvers);
+        return this.manoeuvers;
     }
 
 }

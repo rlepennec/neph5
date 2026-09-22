@@ -7,24 +7,16 @@ export class Tirer extends AbstractManoeuver {
 
     /**
      * Constructor.
-     */
-    constructor() {
-        super(Tirer.ID, Constants.FIRE);
-        this.withApproches(['air', 'ka']);
-        this.withImpact({modifier: 0});
-    }
-
-    /**
-     * @Override
      * Sans visée en cours sur la cible, un tir peut être instinctif (approche de feu) ou posé
      * (approche d'air) : c'est tout ce qui les distinguait, Instinctif n'est donc plus une
      * manœuvre à part. Dès que la cible est visée (état tenu par Viser sur l'arme), seul le
      * tir posé a du sens. 'ka' reste l'approche des figurants dans les deux cas.
      */
-    update(action) {
-        const vise = action.target != null && action.weapon?.system.cible === action.target.id;
-        this.withApproches(vise ? ['air', 'ka'] : ['feu', 'air', 'ka']);
-        return this;
+    constructor(action) {
+        super(Tirer.ID, Constants.FIRE, action);
+        const vise = action?.target != null && action.weapon?.system.cible === action.target.id;
+        this.approches = vise ? ['air', 'ka'] : ['feu', 'air', 'ka'];
+        this.impact = {modifier: 0};
     }
 
     /**

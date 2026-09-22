@@ -8,13 +8,13 @@ export class Puissante extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Puissante.ID, Constants.STRIKE);
-        this.withStrike();
-        this.withApproches(['feu','terre']);
-        this.withAttack({modifier: -20});
-        this.withDefense({modifier: 0});
-        this.withImpact({modifier: 2});
+    constructor(action) {
+        super(Puissante.ID, Constants.STRIKE, action);
+        this.strike = true;
+        this.approches = ['feu','terre'];
+        this.attack = {modifier: -20};
+        this.defense = {modifier: 0};
+        this.impact = {modifier: 2};
     }
 
 }

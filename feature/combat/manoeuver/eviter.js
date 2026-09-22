@@ -12,12 +12,12 @@ export class Eviter extends AbstractManoeuver {
     /**
      * Constructor.
      */
-    constructor() {
-        super(Eviter.ID, Constants.DODGE);
-        this.withAutomatic();
-        this.withApproches(['ka']);
-        this.withNextDefenseModifier(-20);
-        this.withAbsorption({modifier: 1});
+    constructor(action) {
+        super(Eviter.ID, Constants.DODGE, action);
+        this.automatic = true;
+        this.approches = ['ka'];
+        this.nextDefenseModifier = -20;
+        this.absorption = {modifier: 1};
     }
 
     /**

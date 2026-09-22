@@ -63,6 +63,10 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      * on passe par sa feature plutôt que par sheet.render() : c'est elle qui fournit
      * les données du contexte acteur (chronologie des périodes, degré, readOnly).
      * Sans cela, la fiche s'ouvre sans ces informations.
+     *
+     * Tous les items n'ont pas de feature : une arme, une armure n'en ont pas, rien ne vient
+     * donc enrichir leur fiche, et elle s'ouvre telle quelle comme n'importe quel document
+     * référencé.
      */
     async _onOpenLink(event, target) {
         const identifier = new DocumentIdentifier(target);
@@ -73,7 +77,9 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
                 .withEmbeddedItem(identifier.id)
                 .withOriginalItem(identifier.sid)
                 .create();
-            return await feature.editEmbeddedItem();
+            if (feature != null) {
+                return await feature.editEmbeddedItem();
+            }
         }
         await super._onOpenLink(event, target);
     }

@@ -1,5 +1,4 @@
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
-import { AbstractManoeuver } from "../manoeuver/abstractManoeuver.js";
 import { ActionDialog } from "../../core/actionDialog.js";
 import { CustomHandlebarsHelpers } from "../../../module/common/handlebars.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -25,7 +24,7 @@ export class CombatDialog extends ActionDialog {
         const data = await super._prepareContext(options);
         data.impact = this.action.impact(Standard.ID);
         data.absorption = this.action.absorption(Eviter.ID);
-        data.description = CombatDialog.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
+        data.description = this.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
         data.difficulty = this.difficultyText(data.difficulty);
         return data;
     }
@@ -50,9 +49,12 @@ export class CombatDialog extends ActionDialog {
      * @param impact     The impact of the attack.
      * @param absorption The absorption of the defense.
      * @return the sentence used to describe the manoeuver.
+     *
+     * D'instance, et non statique : la description dépend de l'action — la manœuvre décide de
+     * ce qu'elle annonce selon ce à quoi elle répond (voir AbstractFeature.descriptionKey).
      */
-    static getManoeuverDescription(manoeuver, impact, absorption) {
-        let sentence = game.i18n.localize(AbstractManoeuver.clef(manoeuver, "Description"));
+    getManoeuverDescription(manoeuver, impact, absorption) {
+        let sentence = game.i18n.localize(this.action.descriptionKey(manoeuver));
         sentence = sentence.replaceAll("${impact}", CustomHandlebarsHelpers.html("<span>" + impact + " <i class='fas fa-heart-broken'></i></span>"));
         sentence = sentence.replaceAll("${absorption}", CustomHandlebarsHelpers.html("<span>" + absorption + " <i class='fas fa-shield'></i></span>"));
         return sentence;
@@ -87,13 +89,13 @@ export class CombatDialog extends ActionDialog {
             case Constants.THROW:
             case Constants.TACTIC: {
                 const impact = this.action.impact(parameters.manoeuver);
-                if (description) description.innerHTML = CombatDialog.getManoeuverDescription(parameters.manoeuver, impact, 0);
+                if (description) description.innerHTML = this.getManoeuverDescription(parameters.manoeuver, impact, 0);
                 break;
             }
             case Constants.DODGE:
             case Constants.PARADE: {
                 const absorption = this.action.absorption(parameters.manoeuver);
-                if (description) description.innerHTML = CombatDialog.getManoeuverDescription(parameters.manoeuver, 0, absorption);
+                if (description) description.innerHTML = this.getManoeuverDescription(parameters.manoeuver, 0, absorption);
                 break;
             }
         }

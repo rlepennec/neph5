@@ -91,23 +91,40 @@ export class Health {
             return;
         }
 
-        const absorption = manoeuver == null ? 0 : manoeuver.modifier;
-        const minDamages = weapon == null ? 0 : weapon.system.damages > 1 ? 1 : 0;
+        // Modificateur de la manœuvre : positif il amortit le coup (Parer, Bloquer), négatif
+        // il le majore (Contrer, Désarmer ratés). Il s'applique après l'armure.
+        const absorption = manoeuver?.modifier ?? 0;
+
+        // Une arme de 2 dommages ou plus traverse toujours l'armure pour au moins 1. Une arme
+        // plus légère, elle, peut être arrêtée net — et ce qu'elle laisse est alors bel et bien
+        // négatif : une majoration de 2 ne suffit pas à faire passer une dague à travers une
+        // armure de 4.
+        const perforante = weapon != null && weapon.system.damages >= 2;
 
         if (physical === true) {
-            const armor = this.actor.protection("physique");
-            const encaisse = Math.max(minDamages, impact - armor);
-            const damages = (winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : Math.max(0, encaisse - absorption)) * (critical === true ? 2 : 1);
+            const encaisse = Health.damagesOf(impact, this.actor.protection("physique"), perforante, absorption);
+            const damages = (winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : encaisse) * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'physique').apply(damages);
         }
 
         if (weapon?.system?.magique === true) {
-            const armor = this.actor.protection("magique");
-            const encaisse = Math.max(minDamages, impact - armor);
-            const damages = Math.max(0, encaisse - absorption) * (critical === true ? 2 : 1);
+            const damages = Health.damagesOf(impact, this.actor.protection("magique"), perforante, absorption) * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'magique').apply(damages);
         }
 
+    }
+
+    /**
+     * Dommages reçus = impact - protection de l'armure, puis le modificateur de la manœuvre.
+     * @param impact     L'impact du coup porté.
+     * @param armor      La protection qui lui est opposée.
+     * @param perforante True si l'arme traverse toujours l'armure pour au moins 1 dommage.
+     * @param absorption Le modificateur de la manœuvre : positif il amortit, négatif il majore.
+     * @returns les dommages effectivement reçus, jamais négatifs.
+     */
+    static damagesOf(impact, armor, perforante, absorption) {
+        const encaisse = impact - armor;
+        return Math.max(0, (perforante ? Math.max(1, encaisse) : encaisse) - absorption);
     }
 
     /**

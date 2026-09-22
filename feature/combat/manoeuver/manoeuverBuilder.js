@@ -14,8 +14,6 @@ import { Lancer } from "./lancer.js";
 import { Liberer } from "./liberer.js";
 import { Multiple } from "./multiple.js";
 import { Parer } from "./parer.js";
-import { ParerLance } from "./parerLance.js";
-import { ParerProjectile } from "./parerProjectile.js";
 import { Projeter } from "./projeter.js";
 import { Puissante } from "./puissante.js";
 import { Rafale } from "./rafale.js";
@@ -30,67 +28,66 @@ import { Viser } from "./viser.js";
 export class ManoeuverBuilder {
 
     /**
-     * @param id The identifier if the manoeuver.
-     * @returns the new manoeuver.
+     * @param id     The identifier if the manoeuver.
+     * @param action The optional action — ou pool — pour le compte de laquelle la manœuvre est
+     *               créée. La manœuvre naît ainsi liée à son contexte : tout ce qu'elle en
+     *               déduit est à jour avant la première lecture.
+     * @returns the new manoeuver, null if the identifier is unknown.
      */
-    static create(id) {
+    static create(id, action = null) {
         switch (id) {
             case Bloquer.ID:
-                return new Bloquer();
+                return new Bloquer(action);
             case Contrer.ID:
-                return new Contrer();
+                return new Contrer(action);
             case Desarmer.ID:
-                return new Desarmer();
+                return new Desarmer(action);
             case Elaboree.ID:
-                return new Elaboree();
+                return new Elaboree(action);
             case Esquiver.ID:
-                return new Esquiver();
+                return new Esquiver(action);
             case Etrange.ID:
-                return new Etrange();
+                return new Etrange(action);
             case Eviter.ID:
-                return new Eviter();
+                return new Eviter(action);
             case Force.ID:
-                return new Force();
+                return new Force(action);
             case Frapper.ID:
-                return new Frapper();
+                return new Frapper(action);
             case Fuir.ID:
-                return new Fuir();
+                return new Fuir(action);
             case Immobiliser.ID:
-                return new Immobiliser();
+                return new Immobiliser(action);
             case Instinctif.ID:
-                return new Instinctif();
+                return new Instinctif(action);
             case Lancer.ID:
-                return new Lancer();
+                return new Lancer(action);
             case Liberer.ID:
-                return new Liberer();
+                return new Liberer(action);
             case Multiple.ID:
-                return new Multiple(); 
+                return new Multiple(action); 
             case Parer.ID:
-                return new Parer();
-            case ParerLance.ID:
-                return new ParerLance();
-            case ParerProjectile.ID:
-                return new ParerProjectile();
+                return new Parer(action);
             case Projeter.ID:
-                return new Projeter();
+                return new Projeter(action);
             case Puissante.ID:
-                return new Puissante();
+                return new Puissante(action);
             case Rafale.ID:
-                return new Rafale();
+                return new Rafale(action);
             case Rapide.ID:
-                return new Rapide();
+                return new Rapide(action);
             case Recharger.ID:
-                return new Recharger();
+                return new Recharger(action);
             case Salve.ID:
-                return new Salve();
+                return new Salve(action);
             case Standard.ID:
-                return new Standard();
+                return new Standard(action);
             case Subtile.ID:
-                return new Subtile();
+                return new Subtile(action);
             case Tirer.ID:
-                return new Tirer();
+                return new Tirer(action);
             case Viser.ID:
-                return new Viser();
+                return new Viser(action);
             default:
                 return null;
         }

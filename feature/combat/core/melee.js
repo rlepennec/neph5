@@ -26,7 +26,7 @@ export class Melee extends AbstractCombatFeature {
         this.weapon = weapon;
         this.target = actor.target;
         this.effects = ActiveEffects.effectsOf(actor, this.target?.actor);
-        this.manoeuver = new Standard();
+        this.setManoeuver(Standard.ID);
     }
 
     /**
@@ -122,13 +122,13 @@ export class Melee extends AbstractCombatFeature {
      */
     static manoeuvers() {
         return new ManoeuverPool()
-            .withManoeuver(new Etrange())
-            .withManoeuver(new Force())
-            .withManoeuver(new Puissante())
-            .withManoeuver(new Rapide())
-            .withManoeuver(new Standard())
-            .withManoeuver(new Subtile())
-            .withManoeuver(new Lancer());
+            .withManoeuver(Etrange.ID)
+            .withManoeuver(Force.ID)
+            .withManoeuver(Puissante.ID)
+            .withManoeuver(Rapide.ID)
+            .withManoeuver(Standard.ID)
+            .withManoeuver(Subtile.ID)
+            .withManoeuver(Lancer.ID);
     }
 
 }
