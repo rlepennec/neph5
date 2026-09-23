@@ -11,6 +11,14 @@
         <li class="hoverable macro" data-macro="wrestle">
             <a><i></i></a>
             <label class="hoverable">{{translate "lutte"}}</label>
+            {{!-- Se relever : proposé tant que le combattant est au sol, et seulement s'il
+                  n'est pas tenu — il lui faudrait alors d'abord se libérer. L'icône occupe
+                  la colonne de la visée et disparaît dès qu'il est debout. --}}
+            {{#if document.projete}}
+            {{#unless document.immobilise}}
+            <a data-action="getUp" class="{{#unless canAct}}disabled{{/unless}}"><i class="fa-solid fa-person-walking"></i></a>
+            {{/unless}}
+            {{/if}}
             <a data-action="rollWrestle" class="{{#unless canAct}}disabled{{/unless}}"><i class="fas fa-dice-d20"></i></a>
             <a><i class="fa-solid fa-hand-fist"></i></a>
         </li>

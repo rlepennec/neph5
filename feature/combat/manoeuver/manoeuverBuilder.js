@@ -9,6 +9,7 @@ import { Eviter } from "./eviter.js";
 import { Force } from "./force.js";
 import { Frapper } from "./frapper.js";
 import { Fuir } from "./fuir.js";
+import { Getup } from "./getup.js";
 import { Immobiliser } from "./immobiliser.js";
 import { Instinctif } from "./instinctif.js";
 import { Lancer } from "./lancer.js";
@@ -59,6 +60,8 @@ export class ManoeuverBuilder {
                 return new Frapper(action);
             case Fuir.ID:
                 return new Fuir(action);
+            case Getup.ID:
+                return new Getup(action);
             case Immobiliser.ID:
                 return new Immobiliser(action);
             case Instinctif.ID:

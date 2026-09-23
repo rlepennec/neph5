@@ -16,7 +16,8 @@ export const CombatantMixinSheet = Base => {
 				useArmor: CombatantSheet._onUseEquipment,
 				useWeapon: CombatantSheet._onUseEquipment,
 				aim: CombatantSheet._onAim,
-				reload: CombatantSheet._onReload
+				reload: CombatantSheet._onReload,
+				getUp: CombatantSheet._onGetUp
 			},
 			deleteHandlers: {
 				"arme": NephilimActorSheet._onDeleteItem,
@@ -43,6 +44,12 @@ export const CombatantMixinSheet = Base => {
 			event.preventDefault();
 			if (!this.canAct) return;
 			await this.document.rollWrestle(this.combatant);
+		}
+
+		static async _onGetUp(event, target) {
+			event.preventDefault();
+			if (!this.canAct) return;
+			await this.document.getUp(this.combatant);
 		}
 
 		static async _onAim(event, target) {

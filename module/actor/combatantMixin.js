@@ -3,6 +3,7 @@ import { CombatHistory } from "../../feature/combat/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
+import { Getup } from "../../feature/combat/manoeuver/getup.js";
 import { Game } from "../common/game.js";
 import { Melee } from "../../feature/combat/core/melee.js";
 import { Menace } from "../../feature/combat/core/menace.js";
@@ -525,6 +526,38 @@ export const CombatantMixin = Base => {
 
             await recharger.apply(action);
             await CombatHistory.record(this, recharger, null);
+
+        }
+
+        /**
+         * Se relever.
+         *
+         * Même partage que rollWeapon et rollWrestle : la règle vit ici, la fiche n'apporte
+         * que sa propre notion de combattant. Se relever ne demande ni jet ni cible, mais
+         * occupe le round comme un rechargement — d'où l'enregistrement dans la chronologie,
+         * qui verrouille l'action du combattant.
+         *
+         * @param combatant Le combattant de cet acteur, null s'il n'est pas engagé.
+         */
+        async getUp(combatant) {
+
+            if (combatant == null) {
+                ui.notifications.info("Le personnage n'est pas engagé dans le combat");
+                return;
+            }
+
+            // Getup.isAllowed : à terre, et pas tenu par un adversaire.
+            const action = new Wrestle(this);
+            const getup = new Getup(action);
+            if (getup.canBePerformed(action) === false) {
+                ui.notifications.info(this.immobilise === true
+                    ? "Le personnage doit d'abord se libérer de la prise"
+                    : "Le personnage n'a pas à se relever");
+                return;
+            }
+
+            await getup.apply(action);
+            await CombatHistory.record(this, getup, null);
 
         }
 
