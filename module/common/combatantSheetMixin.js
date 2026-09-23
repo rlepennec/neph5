@@ -85,8 +85,13 @@ export const CombatantMixinSheet = Base => {
 			await this.document.rollPasse(item);
 		}
 
+		/**
+		 * Équiper, dégainer, mettre en parade : c'est modifier l'objet, donc soumis au
+		 * cadenas — comme la suppression d'un item ou un dépôt par glisser-déposer.
+		 */
 		static async _onUseEquipment(event, target) {
 			event.preventDefault();
+			if (this.locked) return;
 			if (!this.canAct) return;
 			const document = new DocumentIdentifier(target).toDocument();
 			switch (document.type) {
@@ -100,10 +105,12 @@ export const CombatantMixinSheet = Base => {
 
 		/**
 		 * Toggle the specified effect which can be restrain, prone and stun.
+		 * Un état se pose sur l'acteur : le cadenas le protège, comme le reste de la fiche.
 		 * @param event The event to handle.
 		 */
 		static async _onSetDesoriente(event, target) {
 			event.preventDefault();
+			if (this.locked) return;
 			if (!this.canAct) return;
 			await this.document.setActiveEffect("Stunned");
 		}
@@ -114,6 +121,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetImmobilise(event, target) {
 			event.preventDefault();
+			if (this.locked) return;
 			if (!this.canAct) return;
 			await this.document.setActiveEffect("Restrained");
 		}
@@ -124,6 +132,7 @@ export const CombatantMixinSheet = Base => {
 		 */
 		static async _onSetProjete(event, target) {
 			event.preventDefault();
+			if (this.locked) return;
 			if (!this.canAct) return;
 			await this.document.setActiveEffect("Prone");
 		}

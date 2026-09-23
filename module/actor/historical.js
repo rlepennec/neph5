@@ -66,9 +66,12 @@ export class HistoricalSheet extends NephilimActorSheet {
    
     /**
      * Set the current periode.
+     * Modifie la fiche, donc soumis au cadenas — comme la suppression d'une période ou d'un
+     * item, que le gabarit ne propose déjà que fiche déverrouillée.
      * @param event The click event.
      */
     static async _onCurrentPeriode(event, target) {
+        if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
         await this.document.setCurrentPeriode(sid);
         await this.render(true);
@@ -111,6 +114,7 @@ export class HistoricalSheet extends NephilimActorSheet {
      * @param event The click event. 
      */
     static async _onActivatePeriode(event, target) {
+        if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
         await new FeatureBuilder(this.document).withOriginalItem(sid).create().toggleActive();
         await this.render(true);

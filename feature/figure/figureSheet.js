@@ -401,8 +401,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.document.update({ ['system.akasha.' + vaisseau + '.active']: !activated });
     }
 
+    /**
+     * Ouvre ou referme l'édition d'une capacité — l'esquive, la lutte. Elle n'existe que pour
+     * y déposer une compétence ou un vécu, donc pour modifier la fiche : le cadenas la ferme,
+     * comme il ferme déjà le dépôt lui-même (voir DragDropMixin).
+     */
     static async _onEditCapacity(event, target) {
         event.preventDefault();
+        if (this.locked) return;
         const capacity = target.closest('.capacite').dataset.id;
         this.editedCapacity = this.editedCapacity === capacity ? null : capacity;
         await this.render(true);
