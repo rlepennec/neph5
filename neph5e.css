@@ -1561,11 +1561,17 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
 form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input {
   width: 100%;
 }
-form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input:disabled,
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input:disabled,
-form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input:disabled {
-  border-color: transparent;
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input input,
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input {
+  border: 1px solid transparent;
   border-radius: 0;
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input input:not(:disabled),
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input input:not(:disabled),
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input:not(:disabled) {
+  border-color: #302831;
+  border-radius: 4px;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite {
   display: flex;
@@ -1577,6 +1583,14 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input input {
   width: 100%;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input input {
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input input:not(:disabled) {
+  border-color: #302831;
+  border-radius: 4px;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol {
   list-style: none;
@@ -1640,9 +1654,13 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   height: auto;
   min-height: 0;
 }
-form.nephilim.actor section.window-content > section article main.combat .droite .bonus input:disabled {
-  border-color: transparent;
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input {
+  border: 1px solid transparent;
   border-radius: 0;
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input:not(:disabled) {
+  border-color: #302831;
+  border-radius: 4px;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
   list-style: none;
@@ -3899,11 +3917,17 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .gauche .ressources ol li div.input input {
   width: 100%;
 }
-.tab.combat .gauche .armes ol li input:disabled,
-.tab.combat .gauche .armures ol li input:disabled,
-.tab.combat .gauche .ressources ol li input:disabled {
-  border-color: transparent;
+.tab.combat .gauche .armes ol li div.input input,
+.tab.combat .gauche .armures ol li div.input input,
+.tab.combat .gauche .ressources ol li div.input input {
+  border: 1px solid transparent;
   border-radius: 0;
+}
+.tab.combat .gauche .armes ol li div.input input:not(:disabled),
+.tab.combat .gauche .armures ol li div.input input:not(:disabled),
+.tab.combat .gauche .ressources ol li div.input input:not(:disabled) {
+  border-color: #302831;
+  border-radius: 4px;
 }
 .tab.combat .droite {
   display: flex;
@@ -3915,6 +3939,14 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.combat .droite .caracteristiques div.input input {
   width: 100%;
+}
+.tab.combat .droite .caracteristiques div.input input {
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+.tab.combat .droite .caracteristiques div.input input:not(:disabled) {
+  border-color: #302831;
+  border-radius: 4px;
 }
 .tab.combat .droite .caracteristiques ol {
   list-style: none;
@@ -3978,9 +4010,13 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   height: auto;
   min-height: 0;
 }
-.tab.combat .droite .bonus input:disabled {
-  border-color: transparent;
+.tab.combat .droite .bonus div.input input {
+  border: 1px solid transparent;
   border-radius: 0;
+}
+.tab.combat .droite .bonus div.input input:not(:disabled) {
+  border-color: #302831;
+  border-radius: 4px;
 }
 .tab.combat .droite .bonus ol {
   list-style: none;

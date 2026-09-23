@@ -1,3 +1,43 @@
+// Un cadre annonce un champ saisissable : il n'apparaît donc que fiche déverrouillée.
+// input.hbs pose `disabled` sur les champs quand @root.locked.
+//
+// Les deux états sont posés explicitement plutôt que de laisser Foundry décider : relevé sur
+// la fiche, il borde les champs DÉSACTIVÉS et laisse les autres nus, soit l'inverse de ce
+// qu'on veut dire.
+//
+// La bordure est TOUJOURS là, seule sa couleur change : `border: none` verrouillé retirerait
+// ses 2 px de hauteur, et les rangées ne tomberaient plus aux mêmes ordonnées d'un état à
+// l'autre. border-radius suit la couleur : sans lui, les coins arrondis reviendraient à la
+// moindre couleur de fond.
+//
+// SPÉCIFICITÉ. Deux précautions, mesurées sur la fiche :
+//   - à appeler à la profondeur des blocs (.caracteristiques, .bonus, listes d'objets) et NON
+//     à la racine de .tab.combat, où la règle perdait contre Foundry ;
+//   - viser `div.input input` — l'enveloppe posée par input.hbs — et non `input` seul. À
+//     trois classes, la règle du champ ACTIF faisait jeu égal avec celle de Foundry, chargée
+//     après la nôtre, donc gagnante sur une égalité ; le cadre n'apparaissait jamais. La
+//     règle du champ verrouillé, elle, passait déjà grâce à sa pseudo-classe.
+//
+// COULEUR EN DUR. var(--input-border-color) ne donnait rien dans ce contexte : la règle
+// gagnait — le cadre verrouillé avait bien disparu — mais le cadre actif restait invisible.
+// #302831 est la valeur que Foundry donnait lui-même à ces champs, relevée sur la fiche.
+//
+// CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence — il vient des
+// périodes — donc sans cadre dans les deux états.
+.champ-saisissable() {
+
+    div.input input {
+        border: 1px solid transparent;
+        border-radius: 0;
+    }
+
+    div.input input:not(:disabled) {
+        border-color: #302831;
+        border-radius: 4px;
+    }
+
+}
+
 .tab.combat {
     display: flex;
     flex-direction: row;
@@ -352,30 +392,7 @@
                         width: 100%;
                     }
 
-                    // Le cadre annonce un champ saisissable ; verrouillé il ment. input.hbs pose
-                    // `disabled` quand @root.locked — relevé sur la fiche : disabled = true.
-                    //
-                    // Écrite à la racine de .tab.combat, la règle PERDAIT. Le relevé des valeurs
-                    // calculées le montre sur un même champ : height, line-height et min-height
-                    // prennent bien nos valeurs — posées par un sélecteur à quatre classes — mais
-                    // la bordure reste à 1px solid #302831, qui est --input-border-color, donc
-                    // Foundry. Ce qui l'impose se situe entre trois et quatre classes de force.
-                    // On écrit donc la règle à la même profondeur que celles qui gagnent déjà,
-                    // plutôt qu'à la racine, et sans !important.
-                    //
-                    // border-radius suit : sans lui, le champ garde ses coins arrondis de 4px,
-                    // invisibles sans bordure mais qui reviendraient à la moindre couleur de fond.
-                    //
-                    // CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence
-                    // — il vient des périodes — donc sans cadre dans les deux états.
-                    // border-COLOR, et non border: none : retirer la bordure retirerait
-                    // aussi ses 2 px de hauteur, et les rangées ne tomberaient plus aux
-                    // mêmes ordonnées selon que la fiche est verrouillée ou non. La
-                    // bordure reste donc là, invisible.
-                    input:disabled {
-                        border-color: transparent;
-                        border-radius: 0;
-                    }
+                    .champ-saisissable();
 
                 }
 
@@ -401,6 +418,8 @@
                     width: 100%;
                 }
             }
+
+            .champ-saisissable();
 
             ol {
                 list-style: none;
@@ -513,30 +532,7 @@
                 min-height: 0;
             }
 
-            // Le cadre annonce un champ saisissable ; verrouillé il ment. input.hbs pose
-            // `disabled` quand @root.locked — relevé sur la fiche : disabled = true.
-            //
-            // Écrite à la racine de .tab.combat, la règle PERDAIT. Le relevé des valeurs
-            // calculées le montre sur un même champ : height, line-height et min-height
-            // prennent bien nos valeurs — posées par un sélecteur à quatre classes — mais
-            // la bordure reste à 1px solid #302831, qui est --input-border-color, donc
-            // Foundry. Ce qui l'impose se situe entre trois et quatre classes de force.
-            // On écrit donc la règle à la même profondeur que celles qui gagnent déjà,
-            // plutôt qu'à la racine, et sans !important.
-            //
-            // border-radius suit : sans lui, le champ garde ses coins arrondis de 4px,
-            // invisibles sans bordure mais qui reviendraient à la moindre couleur de fond.
-            //
-            // CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence
-            // — il vient des périodes — donc sans cadre dans les deux états.
-            // border-COLOR, et non border: none : retirer la bordure retirerait aussi
-            // ses 2 px de hauteur, et les quatre rangées de bonus ne tomberaient plus aux
-            // mêmes ordonnées selon que la fiche est verrouillée ou non. La bordure reste
-            // donc là, invisible.
-            input:disabled {
-                border-color: transparent;
-                border-radius: 0;
-            }
+            .champ-saisissable();
 
             ol {
                 list-style: none;
