@@ -1564,7 +1564,7 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input:disabled,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input:disabled,
 form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input:disabled {
-  border: none;
+  border-color: transparent;
   border-radius: 0;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite {
@@ -1641,7 +1641,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   min-height: 0;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus input:disabled {
-  border: none;
+  border-color: transparent;
   border-radius: 0;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
@@ -3902,7 +3902,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .gauche .armes ol li input:disabled,
 .tab.combat .gauche .armures ol li input:disabled,
 .tab.combat .gauche .ressources ol li input:disabled {
-  border: none;
+  border-color: transparent;
   border-radius: 0;
 }
 .tab.combat .droite {
@@ -3979,7 +3979,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   min-height: 0;
 }
 .tab.combat .droite .bonus input:disabled {
-  border: none;
+  border-color: transparent;
   border-radius: 0;
 }
 .tab.combat .droite .bonus ol {

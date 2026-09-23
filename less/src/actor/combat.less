@@ -368,8 +368,12 @@
                     //
                     // CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence
                     // — il vient des périodes — donc sans cadre dans les deux états.
+                    // border-COLOR, et non border: none : retirer la bordure retirerait
+                    // aussi ses 2 px de hauteur, et les rangées ne tomberaient plus aux
+                    // mêmes ordonnées selon que la fiche est verrouillée ou non. La
+                    // bordure reste donc là, invisible.
                     input:disabled {
-                        border: none;
+                        border-color: transparent;
                         border-radius: 0;
                     }
 
@@ -525,8 +529,12 @@
             //
             // CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence
             // — il vient des périodes — donc sans cadre dans les deux états.
+            // border-COLOR, et non border: none : retirer la bordure retirerait aussi
+            // ses 2 px de hauteur, et les quatre rangées de bonus ne tomberaient plus aux
+            // mêmes ordonnées selon que la fiche est verrouillée ou non. La bordure reste
+            // donc là, invisible.
             input:disabled {
-                border: none;
+                border-color: transparent;
                 border-radius: 0;
             }
 
