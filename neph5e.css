@@ -1598,6 +1598,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
@@ -1663,6 +1664,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
@@ -3949,6 +3951,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .droite .caracteristiques ol li {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .tab.combat .droite .caracteristiques ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);
@@ -4014,6 +4017,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .droite .bonus ol li {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .tab.combat .droite .bonus ol li:hover {
   text-shadow: 0px 0px 1px var(--font-color);

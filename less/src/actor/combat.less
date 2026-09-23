@@ -427,6 +427,10 @@
                 li {
                     display: flex;
                     flex-direction: row;
+                    // Le libellé se cale en haut de la rangée, le champ fait 32 px : sans
+                    // centrage, le texte flotte au-dessus de son cadre. Les deux cellules
+                    // partagent ainsi la même ligne médiane.
+                    align-items: center;
 
                     &:hover {
                         text-shadow: 0px 0px 1px var(--font-color);
@@ -530,6 +534,10 @@
                 li {
                     display: flex;
                     flex-direction: row;
+                    // Le libellé se cale en haut de la rangée, le champ fait 32 px : sans
+                    // centrage, le texte flotte au-dessus de son cadre. Les deux cellules
+                    // partagent ainsi la même ligne médiane.
+                    align-items: center;
 
                     &:hover {
                         text-shadow: 0px 0px 1px var(--font-color);
