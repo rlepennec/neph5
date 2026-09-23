@@ -522,16 +522,6 @@
                 }
             }
 
-            // Même correction que pour les listes de gauche : Foundry impose
-            // line-height: 32px et height: 32px aux champs, le libellé étant à
-            // 17.5px. Mesuré : écart de 5 px ramené à 0, et la rangée retrouve sa
-            // hauteur naturelle (32 px -> 20 px) au lieu de celle du champ.
-            input {
-                line-height: inherit;
-                height: auto;
-                min-height: 0;
-            }
-
             .champ-saisissable();
 
             ol {
@@ -549,8 +539,13 @@
                         width: 10%;
                     }
 
+                    // 80 % et non 70 % : une ligne de caractéristique porte un <a> de jet à
+                    // gauche et un <a> vide à droite, ce qui place son champ entre 80 et
+                    // 90 %. Une ligne de bonus n'a ni l'un ni l'autre ; c'est le libellé qui
+                    // reprend leur dixième de gauche pour que les deux cadres tombent dans
+                    // la même colonne.
                     label {
-                        width: 70%;
+                        width: 80%;
                     }
 
                 }

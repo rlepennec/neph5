@@ -1649,11 +1649,6 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input {
   width: 100%;
 }
-form.nephilim.actor section.window-content > section article main.combat .droite .bonus input {
-  line-height: inherit;
-  height: auto;
-  min-height: 0;
-}
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input {
   border: 1px solid transparent;
   border-radius: 0;
@@ -1676,7 +1671,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   width: 10%;
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li label {
-  width: 70%;
+  width: 80%;
 }
 form.nephilim.actor section.window-content > section article main.description {
   display: unset;
@@ -4005,11 +4000,6 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .droite .bonus div.input input {
   width: 100%;
 }
-.tab.combat .droite .bonus input {
-  line-height: inherit;
-  height: auto;
-  min-height: 0;
-}
 .tab.combat .droite .bonus div.input input {
   border: 1px solid transparent;
   border-radius: 0;
@@ -4032,7 +4022,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   width: 10%;
 }
 .tab.combat .droite .bonus ol li label {
-  width: 70%;
+  width: 80%;
 }
 .tab.description {
   display: unset;
