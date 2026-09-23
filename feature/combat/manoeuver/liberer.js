@@ -1,6 +1,6 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
+import { Controler } from "./controler.js";
 
 export class Liberer extends AbstractManoeuver {
 
@@ -14,7 +14,9 @@ export class Liberer extends AbstractManoeuver {
         this.approches = ['eau','feu', 'ka'];
         this.immobilized = true;
         this.skill = Constants.BRAWL;
-        this.effect = ActiveEffects.LIBERE;
+        // Se dégager d'une prise ne s'esquive ni ne se pare : celui qui tient resserre sa
+        // prise, ou la perd.
+        this.onlyDefense = Controler.ID;
     }
 
     /**

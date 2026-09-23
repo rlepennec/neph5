@@ -64,10 +64,11 @@ export class Wrestle extends AbstractCombatFeature {
     get data() {
         return new ActionDataBuilder(this)
             .withItem(this.item)
+            .withType(Constants.OPPOSED)
             .withBase(this.baseName, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Wrestle.manoeuvers())
-            .withApproches(this.approches(Immobiliser.ID))
+            .withApproches(this.approches(this.manoeuver.id))
             .withTarget(this.target)
             .withFoeOnGround(this.effects.foeOnGround)
             .withOnGround(this.effects.onGround)
@@ -93,10 +94,19 @@ export class Wrestle extends AbstractCombatFeature {
     async initializeRoll() {
         if (this.actor.isLutteAvailable) {
 
-            const data = this.data;
-            if (Object.keys(data.manoeuvers).length === 0) {
+            let data = this.data;
+            const disponibles = Object.keys(data.manoeuvers);
+            if (disponibles.length === 0) {
                 ui.notifications.info(`${this.actor.name} a déjà effectué toutes ses actions pour ce round de combat.`);
                 return;
+            }
+
+            // Immobiliser d'ordinaire, mais elle n'est pas toujours proposée : un combattant
+            // pris dans une prise ne peut que s'en libérer. Le dialogue s'ouvre alors sur la
+            // seule manœuvre restante, approches et base comprises.
+            if (!disponibles.includes(this.manoeuver.id)) {
+                this.setManoeuver(disponibles[0]);
+                data = this.data;
             }
 
             // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main

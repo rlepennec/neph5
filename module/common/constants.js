@@ -48,6 +48,7 @@ export class Constants {
     static MSG_APPLY_DAMAGES_ON = 'applyDamagesOn';
     static MSG_APPLY_EFFECTS_ON = 'applyEffectsOn';
     static MSG_DISARM = 'disarm';
+    static MSG_RELEASE_HOLD = 'releaseHold';
     static MSG_LEAVE_COMBAT = 'leaveCombat';
     static MSG_RECORD_MANOEUVRE = 'recordManoeuvre';
     static NATURELLE = 'naturelle';

@@ -1,4 +1,5 @@
 import { AbstractDialog } from "./abstractDialog.js";
+import { Constants } from "../../module/common/constants.js";
 
 export class ActionDialog extends AbstractDialog {
 
@@ -387,9 +388,14 @@ export class ActionDialog extends AbstractDialog {
      * @returns true if opposed action, false for simple action.
      */
     _opposed() {
+        // Un type imposé par l'action se lit sur les données : le gabarit de combat n'affiche
+        // plus qu'un libellé, dont il n'y a aucune valeur à relire.
         // [V14] this.form → this.element (voir _manoeuver).
         return this.data.opposed ? true
              : this.data.simple  ? false
+             : this.data.type === Constants.OPPOSED ? true
+             : this.data.type === Constants.REACTION ? true
+             : this.data.type === Constants.SIMPLE  ? false
              : this.element?.querySelector("#rollType")?.value === "opposed";
     }
 

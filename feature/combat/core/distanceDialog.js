@@ -15,18 +15,6 @@ export class DistanceDialog extends CombatDialog {
         this.defaultManoeuver = action.manoeuver?.id ?? Tirer.ID;
     }
 
-    /**
-     * @override
-     * CombatDialog calcule l'impact avec Standard, sans incidence tant que la manœuvre par
-     * défaut est Tirer (même impact). Ce n'est plus vrai quand le dialogue s'ouvre sur une
-     * salve, dont l'impact est majoré : la description doit porter le sien.
-     */
-    async _prepareContext(options) {
-        const data = await super._prepareContext(options);
-        data.impact = this.action.impact(this.defaultManoeuver);
-        data.description = this.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
-        return data;
-    }
 
     _onRender(context, options) {
         super._onRender(context, options);

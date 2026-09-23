@@ -70,6 +70,7 @@ export class Melee extends AbstractCombatFeature {
     get data() {
         return new ActionDataBuilder(this)
             .withItem(this.item)
+            .withType(Constants.OPPOSED)
             .withBase(this.item.name, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Melee.manoeuvers())

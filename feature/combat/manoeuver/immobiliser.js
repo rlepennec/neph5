@@ -14,6 +14,7 @@ export class Immobiliser extends AbstractManoeuver {
         this.approches = ['eau','terre', 'ka'];
         this.impact = {fix: 1};
         this.effect = ActiveEffects.IMMOBILISE;
+        this.holds = true;
     }
 
     /**

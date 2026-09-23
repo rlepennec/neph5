@@ -14,7 +14,9 @@ export class CombatDialog extends ActionDialog {
      */
     constructor(actor, action) {
         super(actor, action);
-        this.defaultManoeuver = Standard.ID;
+        // La manœuvre retenue par l'action, et non Standard d'office : une lutte s'ouvre sur
+        // Immobiliser — ou sur Libérer quand on est pris —, une attaque naturelle sur Frapper.
+        this.defaultManoeuver = action.manoeuver?.id ?? Standard.ID;
     }
 
     /**
@@ -22,9 +24,12 @@ export class CombatDialog extends ActionDialog {
      */
     async _prepareContext(options) {
         const data = await super._prepareContext(options);
-        data.impact = this.action.impact(Standard.ID);
+        data.impact = this.action.impact(this.defaultManoeuver);
         data.absorption = this.action.absorption(Eviter.ID);
         data.description = this.getManoeuverDescription(this.defaultManoeuver, data.impact, data.absorption);
+        // Le gabarit coche l'option correspondante : le libellé du choix ne peut plus
+        // contredire la description affichée juste en dessous.
+        data.selected = this.defaultManoeuver;
         data.difficulty = this.difficultyText(data.difficulty);
         return data;
     }

@@ -15,9 +15,9 @@
             <div class="parameters">
 
                 <div class="type">
-                    <select id="rollType" name="rollType" disabled>
-                        <option value="opposed">{{translate 'jetOppose'}}</option>
-                    </select>
+                    {{!-- Une défense est une réaction : elle s'oppose toujours à l'attaque,
+                          il n'y a rien à choisir. --}}
+                    <label id="rollType">{{translate 'opposition'}}</label>
                 </div>
 
                 <div id="details" class="item-control">
@@ -41,7 +41,7 @@
                     <select id="manoeuver" name="manoeuver">
                         {{#each manoeuvers as |manoeuver|}}
                         <option
-                            {{#if (eq manoeuver.id 'eviter')}}
+                            {{#if (eq manoeuver.id ../selected)}}
                             selected
                             {{/if}}
                             value="{{manoeuver.id}}">{{manoeuver.name}}</option>

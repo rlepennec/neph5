@@ -4,6 +4,7 @@ export class ActiveEffects {
         return {
             name: 'Stunned',
             img: 'systems/neph5e/assets/icons/svg/daze.svg',
+            sentence: 'NEPHILIM.estDesoriente',
             duration: {
                 rounds: 1
             }
@@ -14,6 +15,7 @@ export class ActiveEffects {
         return {
             name: 'Restrained',
             img: 'systems/neph5e/assets/icons/svg/net.svg',
+            sentence: 'NEPHILIM.estImmobilise',
             duration: {
                 seconds: 1
             }
@@ -24,6 +26,7 @@ export class ActiveEffects {
         return {
             name: 'Prone',
             img: 'systems/neph5e/assets/icons/svg/falling.svg',
+            sentence: 'NEPHILIM.estProjete',
             duration: {
                 seconds: 1
             }

@@ -50,6 +50,14 @@ export class AbstractManoeuver {
         this.leaveCombat = false;
         this.strike = false;
         this.automatic = false;
+        // Une prise : la manœuvre immobilise son adversaire et le retient tant que celui qui
+        // la tient ne joue rien d'autre (voir CombatHistory.heldBy).
+        this.holds = false;
+        // La seule manœuvre qui ne lâche pas la prise de celui qui la joue : Contrôler.
+        this.maintainsHold = false;
+        // Une attaque peut n'admettre qu'une seule réponse : l'identifiant de cette manœuvre
+        // de défense, le pool n'en proposant alors aucune autre (voir ManoeuverPool.all).
+        this.onlyDefense = null;
         this.action = action;
     }
 
@@ -203,17 +211,28 @@ export class AbstractManoeuver {
     }
 
     /**
-     * @returns the identifier used to store the skill of the manoeuver in the actor data model.
+     * @returns le champ de system.manoeuvres où l'acteur range la compétence que cette
+     *          manœuvre emploie, null si elle s'appuie plutôt sur l'arme. Il découle de la
+     *          famille, sauf pour une manœuvre qui emprunte la base d'une autre — voir
+     *          Contrôler, une réaction qui se joue en lutte.
      */
-    actorDataPath() {
+    competenceField() {
         switch (this.family) {
             case Constants.BRAWL:
-                return 'data.manoeuvres.lutte';
+                return 'lutte';
             case Constants.DODGE:
-                return 'data.manoeuvres.esquive';
+                return 'esquive';
             default:
                 return null;
         }
+    }
+
+    /**
+     * @returns the identifier used to store the skill of the manoeuver in the actor data model.
+     */
+    actorDataPath() {
+        const field = this.competenceField();
+        return field == null ? null : 'data.manoeuvres.' + field;
     }
 
     /**
@@ -272,25 +291,18 @@ export class AbstractManoeuver {
         }
 
         switch (actor.type) {
-            case 'figure':
-                switch (this.family) {
-                    case Constants.BRAWL: {
-                        const sid = actor.system.manoeuvres.lutte;
-                        const item = game.items.find(i => i.sid === sid);
-                        return item == null ? none : item.type === 'competence' ? item : actor.items.find(i => i.sid === sid);
-                    }
-                    case Constants.DODGE: {
-                        const sid = actor.system.manoeuvres.esquive;
-                        const item = game.items.find(i => i.sid === sid);
-                        return item == null ? none : item.type === 'competence' ? item : actor.items.find(i => i.sid === sid);
-                    }
-                    case Constants.PARADE:
-                    case Constants.WEAPON: {
-                        return ActionDataBuilder.competenceOf(actor, weapon);
-                    }
-                    default:
-                        return null;
+            case 'figure': {
+                const field = this.competenceField();
+                if (field == null) {
+                    // Ni lutte ni esquive : la compétence est celle de l'arme employée.
+                    return this.family === Constants.PARADE || this.family === Constants.WEAPON
+                        ? ActionDataBuilder.competenceOf(actor, weapon)
+                        : null;
                 }
+                const sid = actor.system.manoeuvres[field];
+                const item = game.items.find(i => i.sid === sid);
+                return item == null ? none : item.type === 'competence' ? item : actor.items.find(i => i.sid === sid);
+            }
             case 'figurant':
                 return {
                     name: game.i18n.localize('NEPHILIM.menace')

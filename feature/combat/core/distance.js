@@ -72,7 +72,7 @@ export class Distance extends AbstractCombatFeature {
     get data() {
         return new ActionDataBuilder(this)
             .withItem(this.item)
-            .withType(this.weapon.system.type === 'trait' ? Constants.NONE : Constants.SIMPLE)
+            .withType(this.weapon.system.type === Constants.TRAIT ? Constants.OPPOSED : Constants.SIMPLE)
             .withBase(this.item.name, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Distance.manoeuvers())

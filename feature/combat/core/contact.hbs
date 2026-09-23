@@ -16,22 +16,16 @@
 
                 <div class="type">
 
+                    {{!-- Le type de jet découle de l'attaque — opposé au contact et au tir
+                          de trait, simple à l'arme à feu, faute de défense possible : il
+                          s'affiche, il ne se choisit pas. Voir Melee, Naturelle, Wrestle
+                          et Distance. --}}
                     {{#switch type}}
-                    {{#case 'none'}}
-                    <select id="rollType" name="rollType">
-                        <option value="opposed">{{translate 'jetOppose'}}</option>
-                        <option value="simple">{{translate 'jetSimple'}}</option>
-                    </select>
-                    {{/case}}
                     {{#case 'simple'}}
-                    <select id="rollType" name="rollType" disabled>
-                        <option value="simple">{{translate 'jetSimple'}}</option>
-                    </select>
+                    <label id="rollType">{{translate 'jetSimple'}}</label>
                     {{/case}}
                     {{#case 'opposed'}}
-                    <select id="rollType" name="rollType" disabled>
-                        <option value="opposed">{{translate 'jetOppose'}}</option>
-                    </select>
+                    <label id="rollType">{{translate 'jetOppose'}}</label>
                     {{/case}}
                     {{/switch}}
 
@@ -57,7 +51,7 @@
                     <select id="manoeuver" name="manoeuver">
                         {{#each manoeuvers as |manoeuver|}}
                         <option
-                            {{#if (eq manoeuver.id 'standard')}}
+                            {{#if (eq manoeuver.id ../selected)}}
                             selected
                             {{/if}}
                             value="{{manoeuver.id}}">{{manoeuver.name}}</option>

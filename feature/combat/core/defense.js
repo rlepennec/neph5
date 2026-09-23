@@ -8,6 +8,7 @@ import { CombatHistory } from "./combatHistory.js";
 import { Combatants } from "./combatants.js";
 import { ContreAttaque } from "./contreAttaque.js";
 import { Contrer } from "../manoeuver/contrer.js";
+import { Controler } from "../manoeuver/controler.js";
 import { DefenseDialog } from "./defenseDialog.js";
 import { Desarmer } from "../manoeuver/desarmer.js";
 import { Elaboree } from "../manoeuver/elaboree.js";
@@ -244,11 +245,12 @@ export class Defense extends AbstractCombatFeature {
         if (winner !== Constants.ACTION) {
             return null;
         }
-        const manoeuver = ManoeuverBuilder.create(this.attack.manoeuver.id);
-        if (manoeuver?.effect == null) {
+        // Tous les effets n'annoncent pas quelque chose : sans phrase, rien à afficher.
+        const sentence = ManoeuverBuilder.create(this.attack.manoeuver.id)?.effect?.sentence;
+        if (sentence == null) {
             return null;
         }
-        return game.i18n.localize(manoeuver.effect.sentence).replaceAll("${actor}", this.actor.name);
+        return game.i18n.localize(sentence).replaceAll("${actor}", this.actor.name);
     }
 
     /**
@@ -330,6 +332,7 @@ export class Defense extends AbstractCombatFeature {
         return new ManoeuverPool()
             .withManoeuver(Bloquer.ID)
             .withManoeuver(Contrer.ID)
+            .withManoeuver(Controler.ID)
             .withManoeuver(Desarmer.ID)
             .withManoeuver(Elaboree.ID)
             .withManoeuver(Esquiver.ID)

@@ -1,5 +1,6 @@
 import { Bloquer } from "./bloquer.js";
 import { Contrer } from "./contrer.js";
+import { Controler } from "./controler.js";
 import { Desarmer } from "./desarmer.js";
 import { Elaboree } from "./elaboree.js";
 import { Esquiver } from "./esquiver.js";
@@ -40,6 +41,8 @@ export class ManoeuverBuilder {
                 return new Bloquer(action);
             case Contrer.ID:
                 return new Contrer(action);
+            case Controler.ID:
+                return new Controler(action);
             case Desarmer.ID:
                 return new Desarmer(action);
             case Elaboree.ID:

@@ -8107,6 +8107,11 @@ form.combat .body .roll .parameters .type label {
   margin-right: 5px;
   padding-top: 5px;
 }
+form.combat .body .roll .parameters .type label#rollType {
+  margin-left: 0px;
+  padding-top: 9px;
+  text-align: center;
+}
 form.combat .body .roll .parameters #element {
   flex: 0 0 auto;
   border: none;

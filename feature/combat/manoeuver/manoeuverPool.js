@@ -77,7 +77,15 @@ export class ManoeuverPool {
      */
     get all() {
         const all = {};
+
+        // Une attaque peut n'admettre qu'une seule réponse — Libérer ne se contre que par
+        // Contrôler : les autres défenses ne sont alors même pas proposées.
+        const seule = this.attack?.manoeuver?.onlyDefense;
+
         this.manoeuvers.forEach(id => {
+            if (seule != null && id !== seule) {
+                return;
+            }
             // Le pool est complet à cet instant : les manœuvres naissent donc en connaissant
             // l'acteur, l'arme et l'attaque à laquelle elles répondent.
             const manoeuver = ManoeuverBuilder.create(id, this);

@@ -70,6 +70,7 @@ export class Naturelle extends AbstractCombatFeature {
     get data() {
         return new ActionDataBuilder(this)
             .withItem(this.item)
+            .withType(Constants.OPPOSED)
             .withBase(this.item?.name ?? "Non défini", this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Naturelle.manoeuvers())
