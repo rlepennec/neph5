@@ -22,8 +22,10 @@
 // gagnait — le cadre verrouillé avait bien disparu — mais le cadre actif restait invisible.
 // #302831 est la valeur que Foundry donnait lui-même à ces champs, relevée sur la fiche.
 //
-// CONSÉQUENCE : chez la figure, le degré d'un passé est disabled en permanence — il vient des
-// périodes — donc sans cadre dans les deux états.
+// CHAMPS NUS. ressources.hbs rend le degré d'un passé sans passer par input.hbs quand il
+// n'est pas saisissable — chez la figure, il vient des périodes. Il n'a donc pas l'enveloppe
+// div.input que visent les deux premières règles, d'où la troisième : toujours désactivé,
+// jamais de cadre. Sa pseudo-classe lui donne le poids qui manque à `input` seul.
 .champ-saisissable() {
 
     div.input input {
@@ -32,6 +34,16 @@
     }
 
     div.input input:not(:disabled) {
+        border-color: #302831;
+        border-radius: 4px;
+    }
+
+    input:disabled {
+        border-color: transparent;
+        border-radius: 0;
+    }
+
+    input:disabled.unlocked {
         border-color: #302831;
         border-radius: 4px;
     }
@@ -308,6 +320,10 @@
                     display: flex;
                     flex-direction: row;
                     height: 22px;
+                    // Le libellé se pose sur une ligne de 17,5 px, le champ sur une de 20 :
+                    // sans centrage, le texte et le degré ne partagent pas la même ligne
+                    // médiane.
+                    align-items: center;
 
                     &:hover {
                         text-shadow: 0px 0px 1px var(--font-color);

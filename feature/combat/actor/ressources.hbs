@@ -25,9 +25,15 @@
         {{else}}
         {{!-- input nu et disabled : surtout pas input.hbs sans name ni type,
              qui les hériterait du contexte de boucle (name = nom de l'item,
-             type = son type) et produirait des attributs parasites. --}}
+             type = son type) et produirait des attributs parasites.
+
+             Faute de cette enveloppe, le style ne peut pas lire l'état de la fiche sur
+             le champ : la classe le lui dit, pour que le cadre apparaisse fiche
+             déverrouillée comme partout ailleurs — même si la valeur, elle, reste en
+             lecture seule. --}}
         <input
             type="text"
+            class="{{#unless @root.locked}}unlocked{{/unless}}"
             value="{{item.system.degre}}"
             disabled/>
         {{/if}}
