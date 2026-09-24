@@ -55,7 +55,6 @@ export const preloadTemplates = async function () {
         "systems/neph5e/templates/description.hbs",
         "systems/neph5e/templates/copy-uuid.hbs",
         "systems/neph5e/templates/item/options.hbs",
-        "systems/neph5e/templates/science.hbs",
         "systems/neph5e/templates/video.hbs",
 
         // Combat — les six blocs partages par les onglets combat de la figure et

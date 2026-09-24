@@ -8,10 +8,15 @@
 
         <main>
 
-            <div class="left center">
+            <div class="left">
 
-                {{> "systems/neph5e/templates/science.hbs"}}
-                
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    title="illustration"
+                    editPath="system.illustration"
+                    wrap=true
+                }}
+
             </div>
 
             <div class="right">

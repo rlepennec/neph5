@@ -7368,21 +7368,6 @@ form.nephilim.item .item-root.style-ashbury .media-stack img.overlay {
 form.nephilim.item .item-root.style-ashbury .media-stack:hover img.overlay {
   opacity: 0.85;
 }
-form.nephilim.item .item-root.style-ashbury div.science {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-form.nephilim.item .item-root.style-ashbury div.science svg {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  color: var(--vk-seal-color, rgba(255, 255, 255, 0.85));
-  filter: drop-shadow(0 0 6px var(--vk-glow, rgba(255, 255, 255, 0.25)));
-  animation: vk-seal-spin 60s linear infinite;
-}
 form.nephilim.item .item-root.style-ashbury div.selector,
 form.nephilim.item .item-root.style-ashbury div.clef {
   width: var(--vk-panel-width, 420px);
@@ -7480,14 +7465,6 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
   }
   to {
     transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-@keyframes vk-seal-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 .recherche table tr td {

@@ -1209,28 +1209,6 @@ form.nephilim.item .item-root.style-ashbury {
     }
 
     // ── Partial science.hbs : sceau tracé en SVG ───────────────────────────
-    // Le tracé utilise currentColor : sans couleur explicite il hériterait du
-    // noir de main et resterait invisible sur le fond sombre. La teinte vient
-    // de --vk-seal-color (posée par type, section 6) et le halo de --vk-glow,
-    // avec repli neutre pour un type qui ne les définirait pas.
-    div.science {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-
-        svg {
-            width: 100%;
-            max-width: 260px;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            color: var(--vk-seal-color, rgba(255, 255, 255, 0.85));
-            filter: drop-shadow(0 0 6px var(--vk-glow, rgba(255, 255, 255, 0.25)));
-            animation: vk-seal-spin 60s linear infinite;
-        }
-
-    }
-
     // ── Partial select.hbs : bandeau ───────────────────────────────────────
     // div.clef partage le même panneau que select.hbs : même vocabulaire,
     // un seul point d'entretien.
@@ -1339,11 +1317,6 @@ form.nephilim.item .item-root.style-ashbury {
 @keyframes vk-slow-spin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes vk-seal-spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
 }
 
 // ───────────────────────────────────────────────────────────────────────────
