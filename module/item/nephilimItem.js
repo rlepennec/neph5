@@ -3,7 +3,6 @@ import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { FormuleDataModel } from "../../feature/alchimie/item/formule.mjs";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { Periode } from "../../feature/periode/periode.js";
-import { SortDataModel } from "../../feature/magie/item/sort.mjs";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 
 export class NephilimItem extends Item {
@@ -28,8 +27,7 @@ export class NephilimItem extends Item {
      */
     static illustrations = {
         formule: FormuleDataModel.ILLUSTRATION,
-        invocation: InvocationDataModel.ILLUSTRATION,
-        sort: SortDataModel.ILLUSTRATION
+        invocation: InvocationDataModel.ILLUSTRATION
     };
 
     /**
