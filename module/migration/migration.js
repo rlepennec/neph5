@@ -4,6 +4,7 @@ import { _1_0_3 } from "./_1_0_3.js";
 import { _1_0_4 } from "./_1_0_4.js";
 import { _1_0_5 } from "./_1_0_5.js";
 import { _1_0_6 } from "./_1_0_6.js";
+import { _1_0_7 } from "./_1_0_7.js";
 
 export class MigrationTools {
 
@@ -110,6 +111,10 @@ export class MigrationTools {
 
         if (foundry.utils.isNewerVersion('1.0.6', worldTemplateVersion)) {
             await _1_0_6.migrate('1.0.6');
+        }
+
+        if (foundry.utils.isNewerVersion('1.0.7', worldTemplateVersion)) {
+            await _1_0_7.migrate('1.0.7');
         }
 
         if (game.settings.get('neph5e', 'note')) {
