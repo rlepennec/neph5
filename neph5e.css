@@ -6590,6 +6590,8 @@ form.nephilim.item .item-root.style-ashbury article main .left.center {
 form.nephilim.item .item-root.style-ashbury article main .left.settings {
   --vk-panel-width: auto;
   gap: 10px;
+  min-height: 0;
+  overflow-y: auto;
 }
 form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input,
 form.nephilim.item .item-root.style-ashbury article main .left.settings > .label {
@@ -7572,11 +7574,20 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span {
   color: white;
   flex: 1;
   min-height: 250px;
-  overflow-y: auto;
   padding: 10px;
   color: #e0e0e0;
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+form.nephilim.item .item-root.style-ashbury .right > prose-mirror *:not(a):not(.content-link):not(.inline-roll),
+form.nephilim.item .item-root.style-ashbury .right > div:not(.selector):not(.clef) *:not(a):not(.content-link):not(.inline-roll),
+form.nephilim.item .item-root.style-ashbury .right > span *:not(a):not(.content-link):not(.inline-roll),
+form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > prose-mirror *:not(a):not(.content-link):not(.inline-roll),
+form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > div:not(.banner):not(.portraits) *:not(a):not(.content-link):not(.inline-roll),
+form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:not(a):not(.content-link):not(.inline-roll) {
+  color: inherit !important;
 }
 @keyframes vk-slow-spin {
   from {

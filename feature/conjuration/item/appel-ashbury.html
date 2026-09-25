@@ -8,17 +8,7 @@
 
         <main>
 
-            <div class="left center">
-
-                {{> "systems/neph5e/templates/image.hbs"
-                    src=document.system.illustration
-                    editPath="system.illustration"
-                    wrap=true
-                }}
-
-            </div>
-
-            <div class="middle">
+            <div class="left settings">
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="degre"
@@ -77,6 +67,12 @@
                     <span>{{difficulty}}0%</span>
                 </div>
                 {{/if}}
+
+                {{> "systems/neph5e/templates/image.hbs"
+                    src=document.system.illustration
+                    editPath="system.illustration"
+                    wrap=true
+                }}
 
             </div>
 

@@ -288,6 +288,12 @@ form.nephilim.item .item-root.style-ashbury {
             .left.settings {
                 --vk-panel-width: auto;
                 gap: 10px;
+                // Les enfilades longues — appel, sort, habitus, invocation comptent
+                // huit à neuf réglages — peuvent dépasser la hauteur disponible :
+                // la colonne défile pour son propre compte plutôt que de rogner
+                // l'illustration, que le débordement caché de .left ferait disparaître.
+                min-height: 0;
+                overflow-y: auto;
 
                 .settings-stack();
 
@@ -1335,11 +1341,38 @@ form.nephilim.item .item-root.style-ashbury {
         .panel();
         flex: 1;
         min-height: 250px;
-        overflow-y: auto;
         padding: 10px;
         color: #e0e0e0;
         font-family: @vk-font-body;
         font-size: 1.1em;
+
+        // overflow-x EXPLICITE. Avec overflow-y: auto seul, la spécification fait
+        // passer l'autre axe de visible à auto : le panneau se dotait donc d'une
+        // barre de défilement horizontale dès que la barre d'outils de l'éditeur
+        // la débordait — elle est en flex-wrap: nowrap et ne se replie jamais.
+        // C'est le trait violet visible en bas du cadre en mode édition : le
+        // pouce de cette barre, que Foundry colore avec --color-scrollbar
+        // (#303260). Le fixer à hidden le supprime sans rien masquer d'utile,
+        // la barre d'outils restant accessible.
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        // Deux sources de couleur se disputent ce texte, et toutes deux l'emportent
+        // sur la teinte héritée du panneau :
+        //   - Foundry colore certains éléments — h1 à h6 prennent
+        //     --color-text-emphatic ou --color-text-primary, sombres en thème clair ;
+        //   - le contenu lui-même porte des styles EN LIGNE, hérités de l'import des
+        //     compendiums. Vérifié par élimination : ce sélecteur pèse six classes,
+        //     seul un attribut style peut encore le battre.
+        //
+        // !important est donc ici le seul recours — le reste du fichier s'en passe
+        // délibérément, mais rien d'autre ne prime un style en ligne. La solution
+        // propre serait de nettoyer ces couleurs à la source, dans le texte des
+        // descriptions ; tant qu'elles sont là, la lisibilité passe avant.
+        // Les liens gardent leur teinte, ils doivent rester repérables.
+        *:not(a):not(.content-link):not(.inline-roll) {
+            color: inherit !important;
+        }
     }
 
 }
