@@ -120,7 +120,7 @@ export class ArmeDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/arme-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/arme.webp"
                 }
             )
         }

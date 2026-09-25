@@ -18,7 +18,7 @@ export class CatalyseurDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/catalyseur-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/catalyseur.webp"
                 }
             )
         }

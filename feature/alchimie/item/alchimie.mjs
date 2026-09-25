@@ -18,7 +18,7 @@ export class AlchimieDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/alchimie-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/alchimie.webp"
                 }
             )
         }

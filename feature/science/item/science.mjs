@@ -37,7 +37,7 @@ export class ScienceDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/science-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/science.webp"
                 }
             )
         }

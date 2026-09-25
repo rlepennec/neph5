@@ -46,7 +46,7 @@ export const POSITIONS = {
     magie:        { classique: [  850, 650 ], ashbury: [  850, 650 ] },
     materiae:     { classique: [  700, 500 ], ashbury: [  700, 500 ] },
     metamorphe:   { classique: [ 1400, 820 ], ashbury: [ 1400, 820 ] },
-    ordonnance:   { classique: [  850, 680 ], ashbury: [  850, 680 ] },
+    ordonnance:   { classique: [  700, 500 ], ashbury: [  700, 500 ] },
     passe:        { classique: [  850, 700 ], ashbury: [  850, 700 ] },
     periode:      { classique: [  900, 720 ], ashbury: [  900, 720 ] },
     pratique:     { classique: [ 1220, 720 ], ashbury: [ 1220, 720 ] },

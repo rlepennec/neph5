@@ -31,7 +31,7 @@ export class ArcaneDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/arcane-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/arcane.webp"
                 }
             )
         }

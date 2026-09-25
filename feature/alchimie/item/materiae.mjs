@@ -30,7 +30,7 @@ export class MateriaeDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/materiae-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/materiae.webp"
                 }
             )
         }

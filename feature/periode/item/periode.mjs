@@ -45,7 +45,7 @@ export class PeriodeDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/periode-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/periode.webp"
                 }
             )
         }
