@@ -34,7 +34,7 @@ export class TekhneDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/tekhne-defaut.png"
+                    initial: "systems/neph5e/assets/vk/items/tekhne.webp"
                 }
             )
         }

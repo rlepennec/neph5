@@ -280,6 +280,33 @@ form.nephilim.item .item-root.style-ashbury {
                 justify-content: center;
             }
 
+            // Colonne unique : les réglages en haut, l'illustration en dernier,
+            // centrée dans la place qui reste (pratique, tekhne, rituel myste,
+            // technique templière, dracomachie, atlantéide). Elle remplace la paire
+            // .left + .middle, dont ces fiches n'avaient plus l'usage une fois la
+            // description seule à droite.
+            .left.settings {
+                --vk-panel-width: auto;
+                gap: 10px;
+
+                .settings-stack();
+
+                // .left centre ses enfants ; les réglages, eux, occupent toute la
+                // largeur de la colonne, comme dans .middle.
+                > div.input,
+                > div.selector,
+                > div.list,
+                > .label {
+                    align-self: stretch;
+                }
+
+                // Marges automatiques en haut ET en bas : l'illustration se centre
+                // dans l'espace laissé libre sous les réglages.
+                > .image {
+                    margin-block: auto;
+                }
+            }
+
             // Bloc de liste sous l'illustration (vécus d'une période). Il n'est
             // pas dimensionné par .panel() comme dans la colonne de droite :
             // width auto + align-self stretch lui font suivre la largeur de la
@@ -342,23 +369,11 @@ form.nephilim.item .item-root.style-ashbury {
                 }
             }
 
-            // Colonne intermédiaire (invocation) : les réglages empilés entre
-            // l'illustration et la description. Elle s'intercale simplement
-            // comme troisième enfant de main — la bascule en deux colonnes
-            // ci-dessus (:has(> .left)) suffit à la mettre en ligne.
-            //
-            // Contrairement à .right, ce n'est pas le contenu qui la
-            // dimensionne : --vk-panel-width: auto neutralise la largeur fixe
-            // de .panel(), les blocs remplissent alors la colonne, et c'est
-            // @vk-middle-width qui fixe la largeur. Un seul nombre à régler.
-            .middle {
-                --vk-panel-width: auto;
-                flex: 0 0 @vk-middle-width;
-                min-width: 0;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                overflow-y: auto;
+            // Réglages empilés : le vocabulaire commun à la colonne intermédiaire
+            // (.middle, invocation) et à la colonne unique qui porte à la fois les
+            // réglages et l'illustration (.left.settings). Écrit une seule fois,
+            // appelé par les deux — les sélecteurs enfants valent pour l'appelant.
+            .settings-stack() {
 
                 // Chaque réglage occupe une ligne de la colonne : les <input>
                 // de input.hbs et le bloc de lecture seule (difficulté)
@@ -457,6 +472,27 @@ form.nephilim.item .item-root.style-ashbury {
                         font-size: 1.1em;
                     }
                 }
+            }
+
+            // Colonne intermédiaire (invocation) : les réglages empilés entre
+            // l'illustration et la description. Elle s'intercale simplement
+            // comme troisième enfant de main — la bascule en deux colonnes
+            // ci-dessus (:has(> .left)) suffit à la mettre en ligne.
+            //
+            // Contrairement à .right, ce n'est pas le contenu qui la
+            // dimensionne : --vk-panel-width: auto neutralise la largeur fixe
+            // de .panel(), les blocs remplissent alors la colonne, et c'est
+            // @vk-middle-width qui fixe la largeur. Un seul nombre à régler.
+            .middle {
+                --vk-panel-width: auto;
+                flex: 0 0 @vk-middle-width;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                overflow-y: auto;
+
+                .settings-stack();
             }
 
             // Colonne de contenu : elle prend tout l'espace laissé par les

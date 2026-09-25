@@ -34,7 +34,7 @@ export class DracomachieDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/dracomachie-defaut.png"
+                    initial: "systems/neph5e/assets/vk/items/dracomachie.webp"
                 }
             )
         }

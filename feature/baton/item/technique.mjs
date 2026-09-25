@@ -34,7 +34,7 @@ export class TechniqueDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/technique-defaut.png"
+                    initial: "systems/neph5e/assets/vk/items/technique.webp"
                 }
             )
         }

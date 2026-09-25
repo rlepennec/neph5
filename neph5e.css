@@ -6587,6 +6587,125 @@ form.nephilim.item .item-root.style-ashbury article main .left {
 form.nephilim.item .item-root.style-ashbury article main .left.center {
   justify-content: center;
 }
+form.nephilim.item .item-root.style-ashbury article main .left.settings {
+  --vk-panel-width: auto;
+  gap: 10px;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input,
+form.nephilim.item .item-root.style-ashbury article main .left.settings > .label {
+  width: var(--vk-panel-width, 420px);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: unset;
+  padding: 6px 12px;
+  font-family: "NightjarDemi", serif;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input h1,
+form.nephilim.item .item-root.style-ashbury article main .left.settings > .label h1 {
+  min-width: 0;
+  font-size: 1.1em;
+  margin: 0;
+  border: none;
+  padding-right: 20px;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input:not(.circle) {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 6px;
+  text-align: right;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: white;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input:not(.circle):focus {
+  background: rgba(255, 255, 255, 0.06);
+  outline: none;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input.circle {
+  margin: 0;
+  color: white;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input.circle:disabled {
+  color: white;
+  -webkit-text-fill-color: white;
+  background: rgba(103, 93, 92, 0.9);
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list {
+  width: var(--vk-panel-width, 420px);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: unset;
+  padding: 6px 12px;
+  font-family: "NightjarDemi", serif;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list h1 {
+  font-size: 1.1em;
+  margin: 0;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list a {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list h1 {
+  border: none;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > .label {
+  min-height: unset;
+  font-size: inherit;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > .label span {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  font-family: "AJensonProLtDisp", serif;
+  font-size: 1.1em;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input,
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.selector,
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.list,
+form.nephilim.item .item-root.style-ashbury article main .left.settings > .label {
+  align-self: stretch;
+}
+form.nephilim.item .item-root.style-ashbury article main .left.settings > .image {
+  margin-block: auto;
+}
 form.nephilim.item .item-root.style-ashbury article main .left > div.list {
   width: var(--vk-panel-width, 420px);
   background: rgba(0, 0, 0, 0.5);

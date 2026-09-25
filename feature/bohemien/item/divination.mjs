@@ -34,7 +34,7 @@ export class DivinationDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/divination-defaut.png"
+                    initial: "systems/neph5e/assets/vk/items/divination.webp"
                 }
             )
         }
