@@ -76,7 +76,7 @@ export class AppelDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/appel-defaut.png"
+                    initial: "systems/neph5e/assets/vk/items/appel.webp"
                 }
             ),
         }

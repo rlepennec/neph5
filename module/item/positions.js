@@ -28,7 +28,7 @@
 export const POSITIONS = {
 
     alchimie:     { classique: [  700, 500 ], ashbury: [  700, 500 ] },
-    appel:        { classique: [ 1220, 720 ], ashbury: [ 1220, 720 ] },
+    appel:        { classique: [ 1220, 720 ], ashbury: [ 1190, 585 ] },
     arcane:       { classique: [  850, 700 ], ashbury: [  850, 700 ] },
     arme:         { classique: [ 1000, 800 ], ashbury: [ 1000, 800 ] },
     armure:       { classique: [  750, 800 ], ashbury: [  750, 800 ] },

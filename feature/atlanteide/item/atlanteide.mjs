@@ -34,7 +34,7 @@ export class AtlanteideDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/atlanteide-defaut.png"
+                    initial: "systems/neph5e/assets/vk/items/atlanteide.png"
                 }
             ),
         }

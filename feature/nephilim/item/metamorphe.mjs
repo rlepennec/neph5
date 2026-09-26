@@ -80,7 +80,7 @@ export class MetamorpheDataModel extends foundry.abstract.TypeDataModel {
             (
                 {
                     categories: ["IMAGE"],
-                    initial: "systems/neph5e/assets/vk/items/metamorphe-defaut.webp"
+                    initial: "systems/neph5e/assets/vk/items/metamorphe.webp"
                 }
             )
         }
