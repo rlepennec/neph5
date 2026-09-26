@@ -61,7 +61,11 @@
                         type="number"
                         value=item.system.degre
                     }}
+                    {{!-- La corbeille est un moyen de modifier la fiche : elle ne
+                         s'affiche que déverrouillée, comme celles des périodes. --}}
+                    {{#unless @root.locked}}
                     <a data-action="delete"><i class="fas fa-trash"></i></a>
+                    {{/unless}}
                 </li>
                 {{/if}}
                 {{/each}}
