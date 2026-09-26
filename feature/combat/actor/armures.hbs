@@ -10,7 +10,13 @@
 
         {{#each document.armors as |item|}}
         <li data-fsid="{{fsid item}}">
+            {{!-- Corbeille déverrouillée, espaceur verrouillé : cette colonne est la
+                 première de la ligne, la retirer décalerait le libellé. --}}
+            {{#if @root.locked}}
+            <a><i></i></a>
+            {{else}}
             <a data-action="delete"><i class="fas fa-trash"></i></a>
+            {{/if}}
             <label data-action="open">{{item.name}}</label>
             <a><i></i></a>
             <a data-action="useArmor" class="{{#unless ../canAct}}disabled{{/unless}}"><i class="fa-shield {{#if item.system.used}}fa-solid{{else}}fa-regular{{/if}}"></i></a>

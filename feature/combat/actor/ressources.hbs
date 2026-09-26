@@ -11,7 +11,13 @@
         {{#each document.items as |item id|}}
         {{#if (eq item.type 'passe')}}
         <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
+            {{!-- Corbeille déverrouillée, espaceur verrouillé : cette colonne est la
+                 première de la ligne, la retirer décalerait le libellé. --}}
+            {{#if @root.locked}}
+            <a><i></i></a>
+            {{else}}
             <a data-action="delete"><i class="fas fa-trash"></i></a>
+            {{/if}}
             <label data-action="open">{{item.name}}</label>
             <a data-action="rollPasse" class="{{#unless ../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
         {{!-- Le degré d'un passé se saisit chez le figurant ; chez la figure il
