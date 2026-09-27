@@ -37,7 +37,8 @@ export class AbstractOptionsSelector extends foundry.applications.api.Handlebars
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        context.debug = game.user.isGM && game.settings.get('neph5e', 'debug');
+        context.isGM = game.user.isGM;
+        context.debug = context.isGM && game.settings.get('neph5e', 'debug');
         return context;
     }
 

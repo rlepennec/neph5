@@ -18,6 +18,7 @@
         </select>
     </fieldset>
 
+    {{#if isGM}}
     <fieldset>
         <legend>Nephilim</legend>
 
@@ -40,7 +41,9 @@
         <input type="checkbox" name="dracomachie" {{checked dracomachie}}/>
 
     </fieldset>
+    {{/if}}
 
+    {{#if isGM}}
     <fieldset>
         <legend>Selenim</legend>
 
@@ -57,7 +60,9 @@
         <input type="checkbox" name="luneNoire" {{checked luneNoire}}/>
 
     </fieldset>
+    {{/if}}
 
+    {{#if isGM}}
     <fieldset>
         <legend>Arcanes mineurs</legend>
 
@@ -74,7 +79,9 @@
         <input type="checkbox" name="epee" {{checked epee}}/>
 
     </fieldset>
+    {{/if}}
 
+    {{#if isGM}}
     <fieldset>
         <legend>Sciences occultes</legend>
 
@@ -85,7 +92,9 @@
         <input type="checkbox" name="daath" {{checked daath}}/>
 
     </fieldset>
+    {{/if}}
 
+    {{#if isGM}}
     <fieldset>
         <legend>Monde profane</legend>
         <label>{{translate "vecus"}}</label>
@@ -104,7 +113,9 @@
         <input type="checkbox" name="simulacre" {{checked simulacre}}/>
 
     </fieldset>
+    {{/if}}
 
+    {{#if isGM}}
     <fieldset>
         <legend>Monde occulte</legend>
 
@@ -124,6 +135,7 @@
         <input type="checkbox" name="bohemien" {{checked bohemien}}/>
 
     </fieldset>
+    {{/if}}
 
     <fieldset>
         <legend>Affichage</legend>
@@ -139,6 +151,7 @@
 
     </fieldset>
 
+    {{#if isGM}}
     <fieldset>
         <legend>Automatisation</legend>
 
@@ -149,5 +162,6 @@
         <input type="checkbox" name="defenseMJ" {{checked defenseMJ}}/>
 
     </fieldset>
+    {{/if}}
 
 </section>

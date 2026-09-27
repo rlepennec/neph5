@@ -15,4 +15,15 @@ export class OptionsSelector extends ActorOptionsSelector {
         }
     }
 
+    /**
+     * @override
+     */
+    _initializeApplicationOptions(options) {
+        const merged = super._initializeApplicationOptions(options);
+        if (game.user.isGM !== true) {
+            merged.position = Object.assign({}, merged.position, { height: 310 });
+        }
+        return merged;
+    }
+
 }
