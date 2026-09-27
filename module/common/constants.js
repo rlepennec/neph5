@@ -29,7 +29,6 @@ export class Constants {
 
     static THEMES = ['air', 'eau', 'feu', 'lune', 'luneNoire', 'soleil', 'terre'];
 
-    static STYLES = ['classique', 'ashbury'];
     
     // OLD
     

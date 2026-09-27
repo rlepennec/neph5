@@ -1,4 +1,3 @@
-import { AbstractFeature } from "../../feature/core/abstractFeature.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";

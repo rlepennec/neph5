@@ -12,8 +12,6 @@ export class Liberer extends AbstractManoeuver {
     constructor(action) {
         super(Liberer.ID, Constants.BRAWL, action);
         this.approches = ['eau','feu', 'ka'];
-        this.immobilized = true;
-        this.skill = Constants.BRAWL;
         // Se dégager d'une prise ne s'esquive ni ne se pare : celui qui tient resserre sa
         // prise, ou la perd.
         this.onlyDefense = Controler.ID;

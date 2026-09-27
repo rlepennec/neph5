@@ -188,25 +188,6 @@ export class DocumentIdentifier {
     }
 
     /**
-     * @param type The type of identifier to return, 'id', 'sid', 'fsid', 'uuid'.
-     * @returns the specified document identifier.
-     */
-    identifierOf(type) {
-        switch (type) {
-            case 'id':
-                return this.#id;
-            case 'sid':
-                return this.#sid;
-            case 'fsid':
-                return this.fsid;
-            case 'uuid':
-                return this.uuid;
-            default:
-                throw new Error("Invalid identifier type " + type);
-        }
-    }
-
-    /**
      * @returns true if this identifier is well defined.
      */
     isNull() {

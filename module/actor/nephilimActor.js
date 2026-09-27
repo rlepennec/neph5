@@ -694,11 +694,6 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }
 
 
-    getSentence(quality, self) {
-        const prefixe = self ? 'NEPHILIM.tenteSelf' : 'NEPHILIM.tenteSimulacre';
-        return game.i18n.localize(prefixe + quality.charAt(0).toUpperCase() + quality.slice(1));
-    }
-
     /**
      * Deletes the specified embedded item.
      * @param item The embedded item to delete.

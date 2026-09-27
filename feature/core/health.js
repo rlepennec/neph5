@@ -286,7 +286,6 @@ class Damage {
     constructor() {
         this.size = null;
         this.boxes = new Set();
-        this.sentence = null;
     }
 
     /**
@@ -304,15 +303,6 @@ class Damage {
      */
     withBox(value) {
         this.boxes.add(value);
-        return this;
-    }
-
-    /**
-     * @param value The sentence to set.
-     * @returns the instance.
-     */
-    withSentence(value) {
-        this.sentence = value;
         return this;
     }
 

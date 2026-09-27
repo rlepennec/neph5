@@ -19,9 +19,7 @@ export const NephilimMixinSheet = Base => {
 			tag: "form",
 			actions: {
 				delete: NephilimSheet._onDelete,
-				open: NephilimSheet._onOpenLink,
-				select: NephilimSheet._onSelect,
-				exit: NephilimSheet._onExit
+				open: NephilimSheet._onOpenLink
 			},
 			window: {
 				resizable: true,
@@ -77,10 +75,6 @@ export const NephilimMixinSheet = Base => {
 			new DocumentIdentifier(target).toDocument().sheet.render(true);
 		}
 
-		static async _onSelect(event, target) {
-			await this._onSelect(event, target);
-		}
-
 		/**
 		 * The callback used to delete a referenced document from the current one.
 		 * @param {*} event 
@@ -97,24 +91,6 @@ export const NephilimMixinSheet = Base => {
 			if (handler) {
 				return handler.call(this, event, document);
 			}
-		}
-
-		/**
-		 * The callback used to select an element which must be overriden.
-		 * @param {*} event  The select event
-		 * @param {*} target The selected HTML target
-		 * @protected
-		 */
-		async _onSelect(event, target) {
-			throw new Error("_onSelect method must be implemented");
-		}
-
-		static async _onExit(event, target) {
-			await this._onExit(event, target);
-		}
-
-		async _onExit(event, target) {
-			throw new Error("_onExit method must be implemented");
 		}
 
 		/** 

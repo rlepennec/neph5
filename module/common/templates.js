@@ -37,7 +37,6 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/science/actor/science.hbs",
     
         // Actor parts
-        "systems/neph5e/templates/actor/parts/option.hbs",
 
         // Item parts
         "systems/neph5e/templates/item/parts/header/number.hbs",

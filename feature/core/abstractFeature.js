@@ -436,39 +436,6 @@ export class AbstractFeature {
     }
 
     /**
-     * @param degre The degre value, at least 0.
-     * @returns the textual description of the degre.
-     */
-    static nameOfDegre(degre) {
-        switch (degre) {
-            case 0:
-                return 'Profane';
-            case 1:
-                return 'Néophyte';
-            case 2:
-                return 'Apprenti';
-            case 3:
-                return 'Acolyte';
-            case 4:
-                return 'Compagnon';
-            case 5:
-                return 'Initié';
-            case 6:
-                return 'Maître';
-            case 7:
-                return 'Sage';
-            case 8:
-                return 'Vénérable';
-            case 9:
-                return 'Figure';
-            case 10:
-                return 'Agarthien';
-            default:
-                return 'Agarthien';
-        }
-    }
-
-    /**
      * @param n The number to evaluate.
      * @returns true if a double has been rolled.
      */
@@ -523,18 +490,6 @@ export class AbstractFeature {
      */
     static embedded(actor, sid) {
         return actor.items.find(i => i.sid === sid);
-    }
-
-    /**
-     * @param actor The actor object which performs the action.
-     * @param item  The embedded item object, purpose of the action.
-     * @param scope Indicates if scope is 'actor' or 'simulacre'.
-     * @return the item of the actor.
-     */
-    static embeddedOf(actor, item, scope) {
-        const a = AbstractFeature.actor(actor,scope);
-        const sid = item.system.id;
-        return AbstractFeature.embedded(a,sid);
     }
 
     /**

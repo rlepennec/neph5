@@ -1,6 +1,5 @@
 import { NephilimActorSheet } from "./nephilimActorSheet.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { NephilimItemSheet } from "../item/nephilimItemSheet.js";
 
 export class HistoricalSheet extends NephilimActorSheet {
 

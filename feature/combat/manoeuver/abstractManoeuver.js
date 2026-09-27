@@ -1,5 +1,4 @@
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
-import { CombatHistory } from "../core/combatHistory.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class AbstractManoeuver {
@@ -31,11 +30,9 @@ export class AbstractManoeuver {
         this.id = id;
         this.family = family;
         this.name = game.i18n.localize(AbstractManoeuver.clef(id, "Name"));
-        this.description = "";
         this.times = 1;
         this.noAttack = false;
         this.noDefense = false;
-        this.withNoOther = false;
         this.approches = [];
         this.attack = null;
         this.defense = null;
@@ -43,7 +40,6 @@ export class AbstractManoeuver {
         this.absorption = null;
         this.effect = null;
         this.target = true;
-        this.immobilized = false;
         this.shots = null;
         this.clearViser = true;
         this.nextDefenseModifier = 0;
@@ -71,14 +67,6 @@ export class AbstractManoeuver {
     toJSON() {
         const { action, ...data } = this;
         return data;
-    }
-
-    /**
-     * @param actor The actor for which to retrieve the history.
-     * @returns the maneuvers already played this round by the actor.
-     */
-    historyOf(actor) {
-        return CombatHistory.thisRound(actor);
     }
 
     /**

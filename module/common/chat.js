@@ -17,16 +17,6 @@ export class NephilimChat {
     }
 
     /**
-     * Sets the specified message content.
-     * @param content The content to set.
-     * @returns the instance.
-     */
-    withContent(content) {
-        this.content = content;
-        return this;
-    }
-
-    /**
      * Sets the specified template used to create the message content.
      * @param template The path of the file template to set.
      * @returns the instance.
