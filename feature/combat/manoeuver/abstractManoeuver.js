@@ -294,8 +294,12 @@ export class AbstractManoeuver {
             case 'figure': {
                 const field = this.competenceField();
                 if (field == null) {
-                    // Ni lutte ni esquive : la compétence est celle de l'arme employée.
-                    return this.family === Constants.PARADE || this.family === Constants.WEAPON
+                    // Ni lutte ni esquive. Une parade se fait avec ce qu'on a en main, donc
+                    // avec la compétence de l'arme. Les familles d'attaque — frapper, lancer,
+                    // tirer — n'ont rien à répondre ici : le dialogue de combat va chercher
+                    // leur compétence lui-même, dans CombatDialog._base(), dès que la manœuvre
+                    // n'en désigne aucune sur la fiche.
+                    return this.family === Constants.PARADE
                         ? ActionDataBuilder.competenceOf(actor, weapon)
                         : null;
                 }

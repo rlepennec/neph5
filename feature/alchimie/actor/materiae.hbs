@@ -148,7 +148,15 @@
                 {{#each actor.materiae as |item|}}
                 <li class="materiae item" data-id="{{item.embedded.id}}" data-sid="{{item.original.sid}}">
 
+                    {{!-- Supprimer est une modification : la corbeille ne s'affiche que
+                          déverrouillée. Verrouillée, un espaceur prend sa place, car cette
+                          colonne ouvre la ligne et vaut 30px : sans lui, les noms se
+                          décaleraient d'autant. --}}
+                    {{#if @root.locked}}
+                    <i class="delete"></i>
+                    {{else}}
                     <i data-action="deleteItem" class="delete fas fa-trash"></i>
+                    {{/if}}
 
                     <label data-action="openItem" class="name open">{{item.original.name}}</label>
 
@@ -194,7 +202,11 @@
                 {{#each actor.catalyseurs as |item|}}
                 <li class="catalyseur item" data-id="{{item.embedded.id}}">
 
+                    {{#if @root.locked}}
+                    <i class="delete"></i>
+                    {{else}}
                     <i data-action="deleteItem" class="delete fas fa-trash"></i>
+                    {{/if}}
 
                     <label data-action="openItem" class="name open">{{item.original.name}}</label>
 

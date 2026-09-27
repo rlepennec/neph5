@@ -172,6 +172,10 @@
                 }
 
                 .delete {
+                    // inline-block, sinon la largeur est ignorée : verrouillée, la liste
+                    // met à la place de la corbeille un espaceur sans glyphe, qui doit
+                    // occuper la même colonne pour que les noms ne se décalent pas.
+                    display: inline-block;
                     font-size: 13px;
                     width: 30px;
                 }
@@ -205,6 +209,10 @@
                 }
 
                 .delete {
+                    // inline-block, sinon la largeur est ignorée : verrouillée, la liste
+                    // met à la place de la corbeille un espaceur sans glyphe, qui doit
+                    // occuper la même colonne pour que les noms ne se décalent pas.
+                    display: inline-block;
                     font-size: 13px;
                     width: 30px;
                 }

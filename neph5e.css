@@ -2372,6 +2372,7 @@ form.nephilim.actor section.window-content > section article main.materiae .righ
   width: 100%;
 }
 form.nephilim.actor section.window-content > section article main.materiae .right .body .materiae .delete {
+  display: inline-block;
   font-size: 13px;
   width: 30px;
 }
@@ -2399,6 +2400,7 @@ form.nephilim.actor section.window-content > section article main.materiae .righ
   width: 100%;
 }
 form.nephilim.actor section.window-content > section article main.materiae .right .body .catalyseur .delete {
+  display: inline-block;
   font-size: 13px;
   width: 30px;
 }
@@ -4754,6 +4756,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   width: 100%;
 }
 .tab.materiae .right .body .materiae .delete {
+  display: inline-block;
   font-size: 13px;
   width: 30px;
 }
@@ -4781,6 +4784,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   width: 100%;
 }
 .tab.materiae .right .body .catalyseur .delete {
+  display: inline-block;
   font-size: 13px;
   width: 30px;
 }
