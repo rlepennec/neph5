@@ -76,7 +76,7 @@ export class _1_0_6 {
         // Le réglage retiré : après les données, avant l'écriture de version.
         const reglageRetire = await _1_0_6.supprimer_reglage('neph5e.useCombatSystem');
 
-        game.settings.set("neph5e", "worldTemplateVersion", target);
+        await game.settings.set("neph5e", "worldTemplateVersion", target);
 
         const rapport = [];
         if (convertis > 0) rapport.push(convertis + " thème(s) Lune Noire converti(s)");

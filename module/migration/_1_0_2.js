@@ -28,7 +28,7 @@ export class _1_0_2 {
             await pack.configure({ locked: wasLocked });
         }
 
-        game.settings.set("neph5e", "worldTemplateVersion", target);
+        await game.settings.set("neph5e", "worldTemplateVersion", target);
         ui.notifications.info("Update to " + target + " done");
 
     }

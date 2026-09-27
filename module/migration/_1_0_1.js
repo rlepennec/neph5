@@ -46,7 +46,7 @@ export class _1_0_1 {
             MigrationTools.progress(msg, ++migrated, size);
         }
 
-        game.settings.set("neph5e", "worldTemplateVersion", target);
+        await game.settings.set("neph5e", "worldTemplateVersion", target);
         ui.notifications.info("Update to " + target + " done");
 
     }
