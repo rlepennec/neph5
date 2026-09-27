@@ -28,6 +28,9 @@ export class ActionDataBuilder {
      * @param action The action to perform.
      */
     constructor(action) {
+        // L'action est conservée pour ce qu'elle seule sait : l'exemplaire de l'item que
+        // porte l'acteur, vers lequel pointe le lien du tchat (voir export()).
+        this.action = action;
         this.actor = action.actor;
         this.sentence = action.sentence;
         this.type = Constants.NONE;
@@ -324,7 +327,11 @@ export class ActionDataBuilder {
         }
 
         if (this.item?.name != null) {
-            data.richSentence = data.richSentence.replaceAll("${item}", this.item.link);
+            // Le lien vise l'exemplaire porté par l'acteur quand il existe, et non l'item
+            // du monde dont il est issu : un joueur n'a en général aucun droit sur ce
+            // dernier, et le lien restait inerte sous son clic. Les deux portent le même
+            // nom et la même image — seul le document ouvert change.
+            data.richSentence = data.richSentence.replaceAll("${item}", (this.action?.embedded ?? this.item).link);
         } else if (this.ka != null) {
             data.richSentence = data.richSentence.replaceAll("${ka}", this.ka);
         } else if (this.sentence != null) {
