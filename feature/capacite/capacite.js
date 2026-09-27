@@ -40,7 +40,6 @@ export class Capacite extends HistoricalFeature {
      */
     getEmbeddedData() {
         return {
-            periodes: this.detailsFromPeriodes(this.sid),
             readOnly: true
         }
     }

@@ -43,14 +43,14 @@
                 <table class="chronology">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>{{translate "periode"}}</th>
                             <th>{{translate "degre"}}</th>
                             <th>{{translate "sapience"}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
+                            <td class="periode-name">{{#with (getIdentifier document.system.periode)}}{{name}}{{/with}}</td>
                             <td>{{document.system.degre}}</td>
                             <td>{{getNextCost document.system.degre}}</td>
                         </tr>
