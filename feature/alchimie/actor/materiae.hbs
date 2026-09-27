@@ -24,6 +24,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         name="system.alchimie.primae.air.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.air.quantite}}"
@@ -32,6 +33,7 @@
                 </div>
                 <label class="maximum">/</label>
                 <input
+                    {{#if @root.locked}}disabled{{/if}}
                     class="max"
                     name="system.alchimie.primae.air.max"
                     type="text"
@@ -43,6 +45,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         name="system.alchimie.primae.eau.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.eau.quantite}}"
@@ -51,6 +54,7 @@
                 </div>
                 <label class="maximum">/</label>
                 <input
+                    {{#if @root.locked}}disabled{{/if}}
                     class="max"
                     name="system.alchimie.primae.eau.max"
                     type="text"
@@ -62,6 +66,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         name="system.alchimie.primae.feu.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.feu.quantite}}"
@@ -70,6 +75,7 @@
                 </div>
                 <label class="maximum">/</label>
                 <input
+                    {{#if @root.locked}}disabled{{/if}}
                     class="max"
                     name="system.alchimie.primae.feu.max"
                     type="text"
@@ -81,6 +87,7 @@
                 <img class="circle lune"/>
                 <div class="tooltip lune">
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         name="system.alchimie.primae.lune.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.lune.quantite}}"
@@ -89,6 +96,7 @@
                 </div>
                 <label class="maximum">/</label>
                 <input
+                    {{#if @root.locked}}disabled{{/if}}
                     class="max"
                     name="system.alchimie.primae.lune.max"
                     type="text"
@@ -100,6 +108,7 @@
                 <img class="circle"/>
                 <div class="tooltip">
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         name="system.alchimie.primae.terre.quantite"
                         type="text"
                         value="{{actor.system.alchimie.primae.terre.quantite}}"
@@ -108,6 +117,7 @@
                 </div>
                 <label class="maximum">/</label>
                 <input
+                    {{#if @root.locked}}disabled{{/if}}
                     class="max"
                     name="system.alchimie.primae.terre.max"
                     type="text"
@@ -151,6 +161,7 @@
                     <label data-action="openItem" class="name open">{{item.original.name}}</label>
 
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         class="quantite"
                         type="number"
                         value="{{item.embedded.quantite}}"

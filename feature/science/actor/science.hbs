@@ -143,6 +143,7 @@
                     <!-- The quantity produced by the laboratory. -->
                     {{#if (includes ../../header 'quantite')}}
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         class="focus-quantite change"
                         type="number"
                         value="{{item.embedded.system.quantite}}"
@@ -152,6 +153,7 @@
                     <!-- The quantity carried by the character. -->
                     {{#if (includes ../../header 'transporte')}}
                     <input
+                        {{#if @root.locked}}disabled{{/if}}
                         class="focus-transporte change"
                         type="number"
                         value="{{item.embedded.system.transporte}}"
