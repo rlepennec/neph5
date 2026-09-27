@@ -44,7 +44,7 @@
 
             <label class="name">{{translate "creuset"}}</label>
 
-            {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
             <select name="actor.system.alchimie.constructs.creuset.degre" disabled>
             {{#select actor.system.alchimie.constructs.creuset.degre}}
                 {{#each ../cercles as |cercle|}}
@@ -68,7 +68,7 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -89,7 +89,7 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -110,7 +110,7 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -131,7 +131,7 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -152,7 +152,7 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -179,7 +179,7 @@
 
             <label class="name">{{translate "aludel"}}</label>
 
-            {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
             <select name="actor.system.alchimie.constructs.aludel.degre" disabled>
             {{#select actor.system.alchimie.constructs.aludel.degre}}
                 {{#each ../cercles as |cercle|}}
@@ -204,7 +204,7 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -225,7 +225,7 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -246,7 +246,7 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -267,7 +267,7 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -288,7 +288,7 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -315,7 +315,7 @@
 
             <label class="name">{{translate "cornue"}}</label>
 
-            {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
             <select name="actor.system.alchimie.constructs.cornue.degre" disabled>
             {{#select actor.system.alchimie.constructs.cornue.degre}}
                 {{#each ../cercles as |cercle|}}
@@ -340,7 +340,7 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -361,7 +361,7 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -382,7 +382,7 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -403,7 +403,7 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -424,7 +424,7 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -451,7 +451,7 @@
 
             <label class="name">{{translate "alambic"}}</label>
 
-            {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
             <select name="actor.system.alchimie.constructs.alambic.degre" disabled>
             {{#select actor.system.alchimie.constructs.alambic.degre}}
                 {{#each ../cercles as |cercle|}}
@@ -475,7 +475,7 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -496,7 +496,7 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -517,7 +517,7 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -538,7 +538,7 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -559,7 +559,7 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -586,7 +586,7 @@
 
             <label class="name">{{translate "athanor"}}</label>
 
-            {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
             <select name="actor.system.alchimie.constructs.athanor.degre" disabled>
             {{#select actor.system.alchimie.constructs.athanor.degre}}
                 {{#each ../cercles as |cercle|}}
@@ -611,7 +611,7 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -632,7 +632,7 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -653,7 +653,7 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -674,7 +674,7 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
@@ -695,7 +695,7 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or (eq ../document.sheet.locked true) (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"

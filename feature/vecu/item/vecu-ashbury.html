@@ -69,7 +69,7 @@
                         {{#each system.mnemos as |mnemos|}}
                         <li class="mnemos" data-item-id="{{@index}}" data-action="editMnemos">
                             <div>
-                                {{#if ../locked}}
+                                {{#if @root.locked}}
                                 <i class="fa-solid fa-feather"></i>
                                 {{else}}
                                 <i class="fas fa-trash delete-mnemos" data-action="deleteMnemos"></i>
@@ -82,7 +82,7 @@
                         </li>
                         {{/each}}
 
-                        {{#unless locked}}
+                        {{#unless @root.locked}}
                         <li class="add" data-action="addMnemos">
                             <i class="fa-solid fa-circle-plus fa-1xl"></i>
                             <span>{{translate 'mnemos'}}</span>

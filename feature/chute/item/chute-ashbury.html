@@ -21,7 +21,7 @@
 
             <div class="right">
 
-                {{#if (and debug isGM (not locked))}}
+                {{#if (and debug isGM (not @root.locked))}}
                 <div class="clef">
 
                     {{> "systems/neph5e/templates/input.hbs"

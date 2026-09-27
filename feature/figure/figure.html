@@ -24,7 +24,7 @@
             <img class="circle"/>
             <div class="tooltip">
                 <input
-                    {{#if document.sheet.locked}}disabled{{/if}}
+                    {{#if @root.locked}}disabled{{/if}}
                     name="system.ka.soleil"
                     type="text"
                     value="{{system.ka.soleil}}"
@@ -57,7 +57,7 @@
                 type="text"
                 value="{{document.name}}"
                 spellcheck="false"
-                {{#if document.sheet.locked}} disabled{{/if}}/>
+                {{#if @root.locked}} disabled{{/if}}/>
 
             <img/>
 

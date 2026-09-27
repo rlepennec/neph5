@@ -6,7 +6,7 @@
             <a class="dice roll"><i class="fas fa-dice-d20"></i></a>
             <div class="tooltip">
                 <input
-                    {{#if ../document.sheet.locked}}disabled{{/if}}
+                    {{#if @root.locked}}disabled{{/if}}
                     name="system.ka.brume"
                     type="text"
                     value="{{../system.ka.brume}}"
