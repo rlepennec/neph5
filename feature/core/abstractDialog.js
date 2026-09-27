@@ -68,40 +68,6 @@ export class AbstractDialog extends HandlebarsApplicationMixin(ApplicationV2) {
     }
 
     /**
-     * @param height The height of the dialog panel.
-     * @returns the instance.
-     */
-    withHeight(height) {
-        // [V14] setPosition() nécessite this.element, qui n'existe qu'APRÈS le premier
-        //       render. Appelé dans la chaîne de construction (avant .render()), il
-        //       plantait (#applyPosition lit this.element.style). On mémorise donc la
-        //       hauteur et on l'applique dans _onRender(), une fois le DOM présent.
-        this._pendingPosition = { ...(this._pendingPosition ?? {}), height };
-        return this;
-    }
-
-    /**
-     * @param width The width of the dialog panel.
-     * @returns the instance.
-     */
-    withWidth(width) {
-        // [V14] Même raison que withHeight : appliqué dans _onRender().
-        this._pendingPosition = { ...(this._pendingPosition ?? {}), width };
-        return this;
-    }
-
-    /**
-     * [V14] Applique la position mémorisée (withHeight/withWidth) une fois le DOM
-     *       rendu : this.element existe alors et setPosition() fonctionne.
-     */
-    _onRender(context, options) {
-        super._onRender(context, options);
-        if (this._pendingPosition != null) {
-            this.setPosition(this._pendingPosition);
-        }
-    }
-
-    /**
      * @returns the default options to manage the dialog.
      */
     // [V14] defaultOptions (static getter retournant foundry.utils.mergeObject(...))

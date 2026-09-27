@@ -279,32 +279,6 @@ class Damages {
 
     }
 
-    /**
-     * @param amount The amount of damages.
-     * @returns the mininum damages, null if too much.
-     */
-    dommages(amount) {
-        for (const c of this.damages) {
-            if (amount <= c.size) {
-                return c;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * @param amount The amount of damages.
-     * @returns the mininum consequences, null if too much.
-     */
-    consequences(amount) {
-        for (const c of this.consequences) {
-            if (amount <= c.size) {
-                return c;
-            }
-        }
-        return null;
-    }
-
 }
 
 class Damage {

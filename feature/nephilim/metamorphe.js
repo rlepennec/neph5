@@ -19,15 +19,6 @@ export class Metamorphe extends SimpleFeature {
     }
 
     /**
-     * @Override
-     */
-    getEmbeddedData() {
-        return {
-            readOnly: true
-        }
-    }
-
-    /**
      * @returns the data used to display the actor item.
      */
     static getAll(actor) {
