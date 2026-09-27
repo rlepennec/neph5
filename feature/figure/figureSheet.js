@@ -453,6 +453,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /** Supprime le laboratoire courant. */
     static async _onDeleteLaboratory(event, target) {
+        if (this.locked) return;
         const sid = this.document.system.alchimie.courant;
         const labs = this.document.system.alchimie.laboratoires.filter(i => i !== sid);
         await this.document.update({ ['system.alchimie.laboratoires']: labs });

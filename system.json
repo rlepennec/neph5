@@ -27,7 +27,7 @@
             "label": "Systeme",
             "system": "neph5e",
             "module": "neph5e",
-            "path": "./packs/system.db",
+            "path": "packs/system",
             "type": "Item",
             "tags" : [ "item", "system" ]
         }

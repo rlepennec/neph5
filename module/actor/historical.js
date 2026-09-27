@@ -85,6 +85,7 @@ export class HistoricalSheet extends NephilimActorSheet {
     }
 
     static async _onDeleteEmbedded(event, target) {
+        if (this.locked) return;
         const id = target.closest('.item').dataset.id;
         const item = this.document.items.get(id);
         await this.document.deleteEmbeddedItem(item);

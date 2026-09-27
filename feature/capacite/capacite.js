@@ -94,11 +94,10 @@ export class Capacite extends HistoricalFeature {
 
         const all = [];
         for (let folder in sorted) {
-            console.log(folder)
-             all.push({
-                 folder: folder,
-                 capacites: sorted[folder]
-             })
+            all.push({
+                folder: folder,
+                capacites: sorted[folder]
+            })
         }
 
         return all;

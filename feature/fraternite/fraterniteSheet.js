@@ -87,6 +87,7 @@ export class FraterniteSheet extends HistoricalSheet {
      * @param event The click event.
      */
     static async _onDeleteActor(event, target) {
+        if (this.locked) return;
         const id = target.closest(".actor")?.dataset.id;
         const actor = game.actors.get(id);
         const periode = target.closest(".periode")?.dataset.sid;

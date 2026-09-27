@@ -109,20 +109,15 @@ export class Defense extends AbstractCombatFeature {
      * @returns the name of the base.
      */
     get baseName() {
-        switch (this.actor.type) {
-            case 'figure':
-                switch (this.manoeuver.family) {
-                    case Constants.DODGE:
-                        return this.actor.isEsquiveAvailable ? 
-                               this.manoeuver.competenceUsed(this.actor, this.weapon).name :
-                               game.i18n.localize("NEPHILIM.nonDefini");
-                    case Constants.PARADE:
-                        const used = this.manoeuver.competenceUsed(this.actor, this.weapon)?.name;
-                        return used != null ? used : game.i18n.localize("NEPHILIM.nonDefini");
-                }
-            case 'figurant':
-                return game.i18n.localize('NEPHILIM.menace');
-        }
+        // competenceUsed répond déjà pour tous les cas : « Menace » pour un figurant, la
+        // compétence d'esquive ou de lutte d'une figure selon la famille de la manœuvre,
+        // celle de l'arme pour une parade, et « non défini » quand la fiche ne la renseigne
+        // pas. Le double switch qui se trouvait ici refaisait ce tri à sa façon, et son
+        // case 'figure' n'avait pas de sortie : une figure défendant avec une manœuvre
+        // d'une autre famille — une prise, par exemple — tombait dans le case 'figurant'
+        // et se voyait annoncer « Menace ».
+        return this.manoeuver.competenceUsed(this.actor, this.weapon)?.name
+            ?? game.i18n.localize("NEPHILIM.nonDefini");
     }
 
     /**

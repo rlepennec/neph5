@@ -105,6 +105,7 @@ export class VecuSheet extends NephilimItemSheet {
      * Supprime un mnémos de la liste.
      */
     static async _onDeleteMnemos(event, target) {
+        if (this.locked) return;
         const index = target.closest('[data-item-id]')?.dataset.itemId;
         const system = foundry.utils.duplicate(this.document.system);
         system.mnemos.splice(Number(index), 1);
@@ -116,6 +117,7 @@ export class VecuSheet extends NephilimItemSheet {
      * Ouvre le dialogue d'ajout d'un mnémos.
      */
     static async _onAddMnemos(event, target) {
+        if (this.locked) return;
         new Mnemos(this.document.parent, this.document).render(true);
     }
 
