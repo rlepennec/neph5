@@ -93,11 +93,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      *   valeur doit être évaluée à chaque rendu (réglages, données de jeu).
      */
     static TAB_DEFINITIONS = [
+        // L'onglet des incarnations ne sert qu'à bâtir le personnage — y déposer des
+        // périodes, des vécus, des focus. Il n'a donc de sens que la fiche déverrouillée,
+        // et vient alors en tête : c'est par là qu'on entre quand on construit.
+        { id: "incarnations", option: "incarnations", unlocked: true, template: `feature/figure/incarnations.hbs`, extra: { from: "figure" } },
         { id: "description", template: `feature/figure/description.hbs` },
         { id: "nephilim", option: "nephilim", template: `feature/nephilim/actor/main.hbs` },
         { id: "selenim", option: "selenim", template: `feature/selenim/actor/main.hbs` },
         { id: "combat", option: "combat", template: `feature/figure/combat.hbs` },
-        { id: "incarnations", option: "incarnations", template: `feature/figure/incarnations.hbs`, extra: { from: "figure" } },
         { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
         { id: "magie", option: "magie", science: "magie" },
         { id: "kabbale", option: "kabbale", science: "kabbale" },
@@ -148,6 +151,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         const o = this.document.system.options ?? {};
         const tabs = FigureSheet.TAB_DEFINITIONS
             .filter(d => d.option == null || o[d.option])
+            .filter(d => d.unlocked !== true || this.locked === false)
             .map(d => {
                 const tab = {
                     id: d.id,
@@ -159,6 +163,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 }
                 return Object.assign(tab, typeof d.extra === 'function' ? d.extra() : d.extra);
             });
+        // Verrouiller la fiche retire l'onglet des incarnations. S'il était actif, plus
+        // aucun onglet ne l'est — _prepareTabs compare l'identifiant retenu à ceux qu'on
+        // lui donne — et le corps de la fiche resterait vide. On revient donc à la
+        // description, celle que l'on affiche de toute façon à l'ouverture.
+        if (tabs.some(t => t.id === this.tabGroups.primary) === false) {
+            this.tabGroups.primary = "description";
+        }
+
         return { tabs, initial: "description" };
     }
 
