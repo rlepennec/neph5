@@ -837,11 +837,6 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                             initial: false
                         }
                     ),
-                    "locked": new foundry.data.fields.BooleanField(
-                        {
-                            initial: false
-                        }
-                    ),
                     "defenseMJ": new foundry.data.fields.BooleanField(
                         {
                             initial: false

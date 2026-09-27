@@ -494,11 +494,6 @@ export class NephilimActor extends CombatantMixin(Actor) {
         return new Fraternite(this).isNewMember(actor, periode);
     }
 
-
-    get locked() {
-        return this.system.options.locked;
-    }
-
     /**
      * Create the specified feature.
      * @param type The type of macro which can be 

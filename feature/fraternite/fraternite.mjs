@@ -53,11 +53,6 @@ export class FraterniteDataModel extends foundry.abstract.TypeDataModel {
                         {
                             initial: "soleil"
                         }
-                    ),
-                    locked: new foundry.data.fields.BooleanField(
-                        {
-                            initial: false
-                        }
                     )
                 }
             )
