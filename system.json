@@ -55,9 +55,10 @@
         },
         "Item": {
             "alchimie": {},
+            "appel": {},
+            "arcane": {},
             "arme": {},
             "armure": {},
-            "appel": {},
             "aspect": {},
             "atlanteide": {},
             "capacite": {},
@@ -69,13 +70,13 @@
             "formule": {},
             "habitus": {},
             "invocation": {},
+            "magie": {},
             "materiae": {},
             "metamorphe": {},
             "ordonnance": {},
             "passe": {},
             "periode": {},
             "pratique": {},
-            "arcane": {},
             "quete": {},
             "rite": {},
             "rituel": {},
@@ -84,8 +85,7 @@
             "sort": {},
             "tekhne": {},
             "technique": {},
-            "vecu": {},
-            "magie": {}
+            "vecu": {}
         }
     }
 }
