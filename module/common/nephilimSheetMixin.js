@@ -78,7 +78,7 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		static async _onSelect(event, target) {
-			this._onSelect(event, target)
+			await this._onSelect(event, target);
 		}
 
 		/**
@@ -110,7 +110,7 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		static async _onExit(event, target) {
-			this._onExit(event, target)
+			await this._onExit(event, target);
 		}
 
 		async _onExit(event, target) {

@@ -106,14 +106,14 @@ export const DragDropMixin = Base => {
                 case 'Sheet': {
                     const document = new DocumentIdentifier(new String(dropped.fsid)).toDocument();
                     if (document.parent === this.document) {
-                        this._onDrop(event, document);
+                        await this._onDrop(event, document);
                     }
                     break;
                 }
                 case 'Actor':
                 case 'Item': {
                     const document = new DocumentIdentifier(event).toDocument();
-                    this._onDrop(event, document);
+                    await this._onDrop(event, document);
                     break;
                 }
             }
