@@ -4,8 +4,8 @@ export class OptionsSelector extends ActorOptionsSelector {
 
     static DEFAULT_OPTIONS = {
         position: {
-            width: 200,
-            height: 270
+            width: 225,
+            height: 320
         }
     }
 
