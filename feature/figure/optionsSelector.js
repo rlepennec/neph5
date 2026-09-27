@@ -21,7 +21,7 @@ export class OptionsSelector extends ActorOptionsSelector {
     _initializeApplicationOptions(options) {
         const merged = super._initializeApplicationOptions(options);
         if (game.user.isGM !== true) {
-            merged.position = Object.assign({}, merged.position, { height: 310 });
+            merged.position = Object.assign({}, merged.position, { width: 260, height: 325 });
         }
         return merged;
     }
