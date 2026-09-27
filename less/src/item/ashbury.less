@@ -714,6 +714,17 @@ form.nephilim.item .item-root.style-ashbury {
         font-family: @vk-font-body;
         font-size: 1.1em;
 
+        // Le titre « Effets Mnemos » est écrit à la main dans la fiche du vécu, À
+        // L'INTÉRIEUR de la liste : les règles de titre de la colonne, qui visent
+        // .middle > h1, ne l'atteignent pas et il gardait les 2em du navigateur.
+        // font-size: inherit lui donne le 1.1em de la liste, soit exactement la taille
+        // du titre d'une liste ordinaire — « Compétences » et ses semblables, posés par
+        // list.hbs. La police de titre, elle, lui vient déjà de la règle main h1.
+        > h1 {
+            font-size: inherit;
+            margin: 20px 0 4px 0;
+        }
+
         > li {
             display: block;
             margin-bottom: 10px;

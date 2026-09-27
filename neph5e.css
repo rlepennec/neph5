@@ -7080,6 +7080,10 @@ form.nephilim.item .item-root.style-ashbury ol.mnemos {
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
+form.nephilim.item .item-root.style-ashbury ol.mnemos > h1 {
+  font-size: inherit;
+  margin: 20px 0 4px 0;
+}
 form.nephilim.item .item-root.style-ashbury ol.mnemos > li {
   display: block;
   margin-bottom: 10px;
