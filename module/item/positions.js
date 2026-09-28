@@ -25,7 +25,7 @@
 
 //  type              classique          ashbury
 //                  larg.  haut.       larg.  haut.
-export const POSITIONS = {
+const POSITIONS = {
 
     alchimie:     { classique: [  550, 500 ], ashbury: [  700, 500 ] },
     appel:        { classique: [  750, 550 ], ashbury: [ 1190, 585 ] },
@@ -67,7 +67,7 @@ export const POSITIONS = {
  * la ligne ouvrira une fenêtre viable plutôt que la fenêtre par défaut de
  * Foundry, qui ignore la mise en page du système.
  */
-export const POSITION_DEFAUT = { classique: [ 850, 650 ], ashbury: [ 1220, 720 ] };
+const POSITION_DEFAUT = { classique: [ 850, 650 ], ashbury: [ 1220, 720 ] };
 
 /**
  * @param type  Le type d'item (`document.type`).

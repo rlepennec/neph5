@@ -8081,32 +8081,6 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
   margin-top: 7px;
   margin-left: 5px;
 }
-.mnemos .article .id {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.mnemos .article .name {
-  display: flex;
-  flex-direction: row;
-  height: 60px;
-}
-.mnemos .article .name input {
-  font-size: 25px;
-  text-align: center;
-  margin-bottom: 10px;
-  height: 100%;
-  width: 100%;
-  font-family: Calibri;
-}
-.mnemos .article .name img {
-  flex: 0 0 auto;
-  margin-left: 10px;
-}
-.mnemos .article .desc {
-  border-width: 2px;
-  margin-top: 10px;
-}
 /**
  * options.less
  *

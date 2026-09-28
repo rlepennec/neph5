@@ -8,7 +8,6 @@ export class Laboratoire {
     static ATHANOR = 'athanor';
     static ALUDEL = 'aludel';
     static ALAMBIC = 'alambic';
-    static CONSTRUCTS = [Laboratoire.CORNUE, Laboratoire.CREUSET, Laboratoire.ATHANOR, Laboratoire.ALUDEL, Laboratoire.ALAMBIC];
 
     /**
      * The substances.
