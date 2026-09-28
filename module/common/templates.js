@@ -39,7 +39,6 @@ export const preloadTemplates = async function () {
         // Actor parts
 
         // Item parts
-        "systems/neph5e/templates/item/parts/header/number.hbs",
 
         // New reboot
         "systems/neph5e/templates/chronology.hbs",
