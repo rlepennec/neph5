@@ -7,6 +7,7 @@ import { MigrationTools } from "./module/migration/migration.js";
 import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/nephilimItem.js";
+import { NephilimItemDirectory } from "./module/item/nephilimItemDirectory.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { FigureSheet } from "./feature/figure/figureSheet.js";
 import { FigurantSheet } from "./feature/figurant/figurantSheet.js";
@@ -99,6 +100,12 @@ Hooks.once("init", function () {
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
+
+    // Le répertoire des items de la barre latérale. Tant que NephilimItemDirectory.TYPES
+    // vaut null, il se comporte comme celui de Foundry ; lui donner une liste de types
+    // restreint la boîte de création sans toucher au manifeste.
+    CONFIG.ui.items = NephilimItemDirectory;
+
     CONFIG.Canvas.layers.nephilim = { layerClass: foundry.canvas.layers.ControlsLayer, group: "primary" };
     CONFIG.TinyMCE = {
         branding: false,
