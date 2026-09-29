@@ -1,5 +1,6 @@
 import { NettoyageDialog } from "./nettoyage.js";
 import { positionOf } from "../item/positions.js";
+import { Version } from "./version.js";
 
 export const registerSystemSettings = function () {
 
@@ -37,6 +38,21 @@ export const registerSystemSettings = function () {
                 }
             }
         }
+    });
+
+    // La version des règles retenue quand personne n'en a choisi : celle qu'une fiche
+    // affiche à son ouverture, et celle que lisent le chat et les listes, qui n'ont pas
+    // de fiche pour trancher. Le choix reste ensuite propre à chaque fenêtre ouverte,
+    // d'où l'absence de onChange : changer le réglage ne doit pas défaire sous les yeux
+    // du MJ une version qu'il a choisie dans une fiche.
+    game.settings.register('neph5e', 'version', {
+        config: true,
+        scope: 'world',
+        name: game.i18n.localize('SETTINGS.version'),
+        hint: game.i18n.localize('SETTINGS.versionDesc'),
+        type: String,
+        choices: Object.fromEntries(Version.ALL.map(v => [v, game.i18n.localize('NEPHILIM.' + v)])),
+        default: 'v5'
     });
 
     game.settings.register('neph5e', 'note', {

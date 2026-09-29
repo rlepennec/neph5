@@ -58,6 +58,8 @@
     "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
     "SETTINGS.styleItemSheet": "Style",
     "SETTINGS.styleItemSheetDesc": "Permet de définir le style des feuilles",
+    "SETTINGS.version": "Version des règles",
+    "SETTINGS.versionDesc": "Version affichée à l'ouverture d'une fiche, et retenue partout où aucune fiche ne permet de choisir",
 
     "NEPHILIM": {
         "activation": "Activation",
@@ -536,6 +538,8 @@
         "utilisant": "Utilisant",
         "utiliseNonDefini": "tente d'utiliser une capacité non définie",
         "utiliseSon": "utilise son ${item}",
+        "v1": "Première édition",
+        "v5": "Cinquième édition",
         "vapeur": "Vapeur",
         "variantes": "Variantes",
         "vecu": "Vécu",
