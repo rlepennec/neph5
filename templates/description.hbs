@@ -1,15 +1,17 @@
 <div class="description">
 
+    {{!-- La description appartient à la version affichée : la fiche fournit ses données et
+          le préfixe d'écriture, car ni l'un ni l'autre ne se déduisent du document seul. --}}
     {{#if editable}}
     <prose-mirror
-        name="system.description"
-        value="{{document.system.description}}"
+        name="{{versionPath}}.description"
+        value="{{data.description}}"
         editable="true"
         button="true">
         {{{enrichedDescription}}}
     </prose-mirror>
     {{else}}
-    {{#if (isEmptyHtml document.system.description)}}
+    {{#if (isEmptyHtml data.description)}}
     <span>{{translate "description"}}</span>
     {{else}}
     <div>{{{enrichedDescription}}}</div>
