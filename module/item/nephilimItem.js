@@ -4,6 +4,7 @@ import { FormuleDataModel } from "../../feature/alchimie/item/formule.mjs";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { Periode } from "../../feature/periode/periode.js";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
+import { Version } from "../common/version.js";
 
 export class NephilimItem extends Item {
 
@@ -69,13 +70,17 @@ export class NephilimItem extends Item {
      * @returns the item description from the embedded or the original item if necessary.
      */
     get description() {
-        if (this.system.hasOwnProperty('description')) {
-            return this.system.description;
+
+        // Hors d'une fiche, personne n'a choisi de version : on prend celle du monde.
+        const description = Version.data(this).description;
+        if (description != null) {
+            return description;
         }
+
         if (this.sid != null) {
             const original = game.items.find(i => i.sid === this.sid);
             if (original != null) {
-                return original.system.description;
+                return Version.data(original).description;
             }
         }
         return null;
@@ -230,7 +235,7 @@ export class NephilimItem extends Item {
                 await this._actors('deletePeriode');
 
                 // Delete from all vecus of the world
-                for (let item of game.items.filter(i => i.type === 'vecu' && i.system.periode === this.sid)) {
+                for (let item of game.items.filter(i => i.type === 'vecu' && Version.data(i).periode === this.sid)) {
                     await item.update({ ['system.periode']: null });
                 }
 
@@ -287,11 +292,11 @@ export class NephilimItem extends Item {
      * @param item The competence item to remove from the vecu item.
      */
     async deleteCompetence(item) {
-        const competences = foundry.utils.duplicate(this.system.competences);
+        const competences = foundry.utils.duplicate(Version.data(this).competences);
         const i = competences.findIndex(o => item.sid === o);
         if (i !== -1) {
             competences.splice(i, 1);
-            await this.update({ ["system.competences"]: competences });
+            await this.update({ [Version.path(this, 'competences')]: competences });
         }
     }
 

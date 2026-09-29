@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Fraternite } from "../fraternite/fraternite.js";
@@ -143,7 +144,7 @@ export class Periode extends AbstractFeature {
         }
 
         // Delete all related vecus items
-        for (let embedded of this.actor.items.filter(i => i.type === 'vecu' && i.system.periode === this.item.sid)) {
+        for (let embedded of this.actor.items.filter(i => i.type === 'vecu' && Version.data(i).periode === this.item.sid)) {
             await this.actor.deleteVecu(embedded);
         }
 
@@ -279,7 +280,7 @@ export class Periode extends AbstractFeature {
                             id: i.id,
                             wid: original.id,
                             sid: i.sid,
-                            degre: i.system.degre
+                            degre: Version.data(i).degre
                         });
                     }
                 }

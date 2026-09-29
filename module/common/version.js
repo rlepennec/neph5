@@ -30,7 +30,13 @@ export class Version {
      * @returns {string} l'identifiant de la version.
      */
     static get world() {
-        return game.settings.get('neph5e', 'version') ?? 'v5';
+        // Le réglage n'existe pas encore pendant l'initialisation, et game.settings.get
+        // lève plutôt que de rendre undefined : on retombe alors sur l'édition courante.
+        try {
+            return game.settings.get('neph5e', 'version') ?? 'v5';
+        } catch {
+            return 'v5';
+        }
     }
 
     /**
@@ -59,15 +65,26 @@ export class Version {
 
     /**
      * @param document The document to write to.
+     * @param version  The version to write to, the world one if omitted.
+     * @returns {string} le préfixe des chemins d'écriture de cette version — `system` tant
+     *          que le document n'est pas porté, `system.versions.v5` ensuite. Les gabarits
+     *          l'utilisent tel quel : name="{{versionPath}}.element".
+     */
+    static prefix(document, version = null) {
+        return document?.system?.versions == null
+            ? 'system'
+            : 'system.versions.' + (version ?? Version.world);
+    }
+
+    /**
+     * @param document The document to write to.
      * @param field    The name of the field, without prefix.
      * @param version  The version to write to, the world one if omitted.
      * @returns {string} le chemin de mise à jour du champ, à donner à l'attribut name d'un
      *          formulaire ou à document.update().
      */
     static path(document, field, version = null) {
-        return document?.system?.versions == null
-            ? 'system.' + field
-            : 'system.versions.' + (version ?? Version.world) + '.' + field;
+        return Version.prefix(document, version) + '.' + field;
     }
 
 }

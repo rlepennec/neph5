@@ -1,4 +1,5 @@
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
+import { Version } from "../../module/common/version.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 
 export class Capacite extends HistoricalFeature {
@@ -59,7 +60,7 @@ export class Capacite extends HistoricalFeature {
         }
 
         // The capacite must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === this.item.sid && i.system.periode === this.embedded.periode) != null) {
+        if (this.actor.items.find(i => i.sid === this.item.sid && Version.data(i).periode === this.embedded.periode) != null) {
             return;
         }
 
@@ -86,7 +87,7 @@ export class Capacite extends HistoricalFeature {
             .map(f => ({
                 name: f.name,
                 sid: f.sid,
-                description: f.item.system.description,
+                description: Version.data(f.item).description,
                 folder: f.item.folder.name }));
 
         const sorted = Object.groupBy(array, ({ folder }) => folder);

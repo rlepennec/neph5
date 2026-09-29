@@ -1,5 +1,6 @@
 import { CompetenceDataModel } from "./competence.mjs";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { Version } from "../../../module/common/version.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
 
@@ -24,10 +25,12 @@ export class CompetenceSheet extends NephilimItemSheet {
      * @override
      */
     async _prepareContext(options) {
+        // L'élément appartient désormais à la v5 : on lit ses choix là où le schéma les
+        // déclare plutôt que de les redire ici.
         return {
             ...await super._prepareContext(options),
             context: {
-                elements: CompetenceDataModel.defineSchema().element.choices,
+                elements: CompetenceDataModel.defineSchema().versions.fields.v5.fields.element.choices,
             }
         }
     }
@@ -39,7 +42,9 @@ export class CompetenceSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.applySkin(this.document.system.element);
+        // Le Ka dépend de la version affichée, et peut n'être pas défini : une version que
+        // le modèle ne décrit pas encore n'a pas d'élément, donc pas de skin.
+        this.applySkin(Version.data(this.document, this.version).element);
     }
 
 }

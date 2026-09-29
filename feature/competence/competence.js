@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
@@ -72,8 +73,8 @@ export class Competence extends AbstractFeature {
         for (let vecu of this.actor.items.filter(v =>
             v.type === 'vecu' &&
             AbstractFeature.isActive(this.actor, v) &&
-            v.system.competences.find(c => c === this.sid) != null)) {
-            total = total + CustomHandlebarsHelpers.getSapiences(vecu.system.degre);
+            Version.data(v).competences.find(c => c === this.sid) != null)) {
+            total = total + CustomHandlebarsHelpers.getSapiences(Version.data(vecu).degre);
         }
         return total;
     }
@@ -84,7 +85,7 @@ export class Competence extends AbstractFeature {
     get vecus() {
         const vecus = [];
         for (let v of this.actor.items.filter(i => i.type === 'vecu')) {
-            if (v.system.competences.find(c => c === this.sid) != null) {
+            if (Version.data(v).competences.find(c => c === this.sid) != null) {
                 vecus.push(v);
             }
         }
@@ -123,8 +124,8 @@ export class Competence extends AbstractFeature {
 
         // Remove the competence from all embedded vecus
         for (let o of this.actor.items.filter(i => i.type === 'vecu')) {
-            const competences = o.system.competences.filter(i => i !== this.item.sid);
-            await o.update({ ['system.competences']: competences });
+            const competences = Version.data(o).competences.filter(i => i !== this.item.sid);
+            await o.update({ [Version.path(o, 'competences')]: competences });
         }
 
         // Delete the competence from all embedded weapons

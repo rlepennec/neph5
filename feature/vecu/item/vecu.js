@@ -1,4 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Version } from "../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { Mnemos } from "./mnemos.js";
@@ -34,7 +35,7 @@ export class VecuSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.applySkin(this.document.system.element);
+        this.applySkin(Version.data(this.document, this.version).element);
     }
 
     /** 
@@ -57,7 +58,7 @@ export class VecuSheet extends NephilimItemSheet {
             const original = game.items.find(i => i.type === 'vecu' && i.sid === this.document.sid);
             if (original != null) {
                 context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-                    original.system.description,
+                    Version.data(original).description,
                     {
                         secrets: this.document.isOwner,
                         relativeTo: this.document
@@ -77,7 +78,9 @@ export class VecuSheet extends NephilimItemSheet {
         const document = identifier.toDocument();
         switch (document.type) {
             case 'competence':
-                await this.document.deleteReference(identifier.fsid, this.document.system.competences, "system.competences");
+                await this.document.deleteReference(identifier.fsid,
+                    Version.data(this.document, this.version).competences,
+                    Version.path(this.document, 'competences', this.version));
                 break;
         }
     }
@@ -93,10 +96,14 @@ export class VecuSheet extends NephilimItemSheet {
         event.preventDefault();
         switch (document.type) {
             case "competence":
-                await this.document.updateItemRefs(document.system, this.document.system.competences, "system.competences");
+                await this.document.updateItemRefs(document.system,
+                    Version.data(this.document, this.version).competences,
+                    Version.path(this.document, 'competences', this.version));
                 break;
             case "periode":
-                await this.document.updateItemRef('periode', document.sid);
+                await this.document.update({
+                    [Version.path(this.document, 'periode', this.version)]: document.sid
+                });
                 break;
         }
     }
@@ -107,9 +114,11 @@ export class VecuSheet extends NephilimItemSheet {
     static async _onDeleteMnemos(event, target) {
         if (this.locked) return;
         const index = target.closest('[data-item-id]')?.dataset.itemId;
-        const system = foundry.utils.duplicate(this.document.system);
-        system.mnemos.splice(Number(index), 1);
-        await this.document.update({ system: system });
+        const mnemos = foundry.utils.duplicate(Version.data(this.document, this.version).mnemos ?? []);
+        mnemos.splice(Number(index), 1);
+        await this.document.update({
+            [Version.path(this.document, 'mnemos', this.version)]: mnemos
+        });
         this.document.sheet.render(true);
     }
 
@@ -118,7 +127,7 @@ export class VecuSheet extends NephilimItemSheet {
      */
     static async _onAddMnemos(event, target) {
         if (this.locked) return;
-        new Mnemos(this.document.parent, this.document).render(true);
+        new Mnemos(this.document.parent, this.document, null, this.version).render(true);
     }
 
     /**
@@ -126,7 +135,7 @@ export class VecuSheet extends NephilimItemSheet {
      */
     static async _onEditMnemos(event, target) {
         const index = target.closest('[data-item-id]')?.dataset.itemId;
-        new Mnemos(this.document.parent, this.document, Number(index)).render(true);
+        new Mnemos(this.document.parent, this.document, Number(index), this.version).render(true);
     }
 
     /**
@@ -134,33 +143,24 @@ export class VecuSheet extends NephilimItemSheet {
      */
     async _onSubmit(event, form, formData) {
 
+        // Les champs du vécu appartiennent à la version affichée : les clefs du
+        // formulaire portent donc son préfixe, celui-là même que les gabarits ont posé.
+        const data = Version.data(this.document, this.version);
+        const prefixe = Version.prefix(this.document, this.version);
+
         // Update competences
-        let size = this.document.system.competences.length;
+        let size = data.competences.length;
         const competences = [];
         for (let index = 0; index < size; index++) {
-            const name = "system.competences.[" + index + "]";
+            const name = prefixe + ".competences.[" + index + "]";
             competences.push(formData.object[name]);
             delete formData.object[name];
         }
-        formData.object["system.competences"] = competences;
+        formData.object[prefixe + ".competences"] = competences;
 
-        // Update mnemos
-        if (this.document.system.mnemos != null) {
-            size = this.document.system.mnemos.length;
-            const mnemos = [];
-            for (let index = 0; index < size; index++) {
-                const key = "system.mnemos.[" + index + "].";
-                mnemos.push({
-                    name: formData.object[key + "name"],
-                    degre: formData.object[key + "degre"],
-                    description: formData.object[key + "description"],
-                });
-                delete formData.object[key + "name"];
-                delete formData.object[key + "degre"];
-                delete formData.object[key + "description"];
-            }
-            formData.object["system.mnemos"] = mnemos;
-        }
+        // Les mnémos ne sont plus saisis dans la fiche mais dans leur propre dialogue :
+        // aucun champ du formulaire ne les porte. La boucle qui les relisait ici les
+        // réécrivait donc vides à chaque enregistrement — elle est retirée.
 
         // Update object
         await this.document.update(formData.object);

@@ -1,5 +1,6 @@
 import { DragDropMixin } from "./dragDropMixin.js";
 import { DocumentIdentifier } from "./documentIdentifier.js";
+import { Version } from "./version.js";
 import { LockableMixin } from "./lockableMixin.js";
 import { SetupableMixin } from "./setupableMixin.js";
 import { TabsMixin } from "./tabsMixin.js";
@@ -19,7 +20,8 @@ export const NephilimMixinSheet = Base => {
 			tag: "form",
 			actions: {
 				delete: NephilimSheet._onDelete,
-				open: NephilimSheet._onOpenLink
+				open: NephilimSheet._onOpenLink,
+				version: NephilimSheet._onVersion
 			},
 			window: {
 				resizable: true,
@@ -28,6 +30,66 @@ export const NephilimMixinSheet = Base => {
 
 		get lockable() {
 			return this.isEditable;
+		}
+
+		/**
+		 * La version des règles affichée par cette fenêtre.
+		 *
+		 * C'est un état de la FICHE, comme le cadenas : deux fenêtres ouvertes sur le même
+		 * document peuvent montrer deux éditions, et rien n'est écrit dans le document.
+		 * La valeur est résolue au premier accès et non à la construction, car le réglage
+		 * du monde n'existe pas encore quand les classes sont chargées.
+		 */
+		#version = null;
+
+		get version() {
+			return this.#version ??= Version.world;
+		}
+
+		/**
+		 * @override
+		 * Le bouton de version, à côté du cadenas. Il n'apparaît que sur les documents qui
+		 * portent réellement plusieurs versions : les types pas encore portés n'en ont pas,
+		 * et rien ne change pour eux.
+		 */
+		async _renderFrame(options) {
+			const frame = await super._renderFrame(options);
+			const versions = Version.of(this.document);
+			if (versions.length > 1) {
+				const label = game.i18n.localize('NEPHILIM.' + this.version);
+				this.window.controls.insertAdjacentHTML("beforebegin",
+					`<button type="button" class="header-control fa-solid fa-book icon" data-action="version"`
+					+ ` data-tooltip="${label}" aria-label="${label}"></button>`);
+				this.window.version = frame.querySelector("button[data-action=version]");
+			}
+			return frame;
+		}
+
+		/**
+		 * Passe à la version suivante, et revient à la première après la dernière.
+		 */
+		static async _onVersion(event, target) {
+			const versions = Version.of(this.document);
+			if (versions.length < 2) return;
+			const suivante = versions[(versions.indexOf(this.version) + 1) % versions.length];
+			const label = game.i18n.localize('NEPHILIM.' + suivante);
+
+			// Le cadre n'est pas reconstruit par un rendu : l'infobulle est mise à jour ici.
+			if (this.window.version != null) {
+				this.window.version.dataset.tooltip = label;
+				this.window.version.setAttribute("aria-label", label);
+			}
+			this.setVersion(suivante);
+		}
+
+		/**
+		 * @param value The version to display.
+		 */
+		setVersion(value) {
+			if (this.version !== value) {
+				this.#version = value;
+				this.render(true);
+			}
 		}
 
 		/**
@@ -101,8 +163,21 @@ export const NephilimMixinSheet = Base => {
 			context.isGM = game.user.isGM;
         	context.debug = game.settings.get('neph5e', 'debug');
 			context.editable = this.isEditable && !this.locked;
+
+			// Les données de la version affichée, et le préfixe pour y écrire. Les deux
+			// valent quelle que soit la forme du document — ancienne, à plat, ou nouvelle,
+			// rangée par version — ce qui laisse cohabiter les types portés et les autres.
+			// Un gabarit lit {{data.element}} et écrit name="{{versionPath}}.element".
+			context.version = this.version;
+			context.versions = Version.of(this.document);
+			context.data = Version.data(this.document, this.version);
+			context.versionPath = Version.prefix(this.document, this.version);
+
+			// Une version que le modèle n'a pas encore décrite n'a aucun champ : la fiche
+			// s'en sert pour ne rien montrer plutôt que d'afficher des cases vides.
+			context.versionEmpty = Object.keys(context.data ?? {}).length === 0;
 			context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
-				this.document.system.description,
+				context.data.description,
 				{
 					secrets: this.document.isOwner,
 					relativeTo: this.document

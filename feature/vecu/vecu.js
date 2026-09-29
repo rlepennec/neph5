@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
@@ -97,7 +98,7 @@ export class Vecu extends HistoricalFeature {
      * @Override
      */
     get degre() {
-        return this.embedded.system.degre;
+        return Version.data(this.embedded).degre;
     }
 
     /**
@@ -105,7 +106,7 @@ export class Vecu extends HistoricalFeature {
      */
     get mmenos() {
         const mnemos = [];
-        for (const m of this.embedded.system.mnemos) {
+        for (const m of Version.data(this.embedded).mnemos ?? []) {
             mnemos.push({
                 name: m.name,
                 degre: m.degre
@@ -140,13 +141,13 @@ export class Vecu extends HistoricalFeature {
             
             // For figurant only, attach a new vecu if not in combat option edition
             else if (this.actor.type === 'figurant' &&
-                this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+                this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) == null) {
 
                 await new EmbeddedItem(this.actor, this.sid)
                     .withContext("Drop a vecu")
                     .withData("degre", 0)
                     .withData("mnemos", [])
-                    .withData("element", this.item.system.element)
+                    .withData("element", Version.data(this.item).element)
                     .withoutData('description')
                     .withoutAlreadyEmbeddedError()
                     .create();
@@ -169,20 +170,20 @@ export class Vecu extends HistoricalFeature {
             if (this.periode == null) {
 
                 // The vecu must have a periode defined
-                if (this.item.system.periode == null) {
+                if (Version.data(this.item).periode == null) {
                     ui.notifications.warn("Le vécu doit avoir une période pour pouvoir être déposé");
                     return;
                 }
 
                 // The vecu must not already exist
-                if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) != null) {
+                if (this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) != null) {
                     ui.notifications.warn("Le vécu existe déjà");
                     return;
                 }
 
                 // Create the related periode if necessary
-                if (this.actor.items.find(i => i.sid === this.item.system.periode) == null) {
-                    this.periode = game.items.find(i => i.sid === this.item.system.periode);
+                if (this.actor.items.find(i => i.sid === Version.data(this.item).periode) == null) {
+                    this.periode = game.items.find(i => i.sid === Version.data(this.item).periode);
                     if (this.periode == null) {
                         ui.notifications.error("La période auquelle est rattachée le vécu n'existe pas");
                         return;
@@ -198,14 +199,14 @@ export class Vecu extends HistoricalFeature {
             }
             
             // Create the vecu
-            if (this.actor.items.find(i => i.sid === this.sid && i.system.periode === this.periode) == null) {
+            if (this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) == null) {
 
                 await new EmbeddedItem(this.actor, this.sid)
                     .withContext("Drop of a vecu on periode " + this.periode)
                     .withData("degre", 0)
                     .withData("mnemos", [])
                     .withData("periode", this.periode)
-                    .withData("element", this.item.system.element)
+                    .withData("element", Version.data(this.item).element)
                     .withoutData('description')
                     .withoutAlreadyEmbeddedError()
                     .create();
@@ -255,7 +256,7 @@ export class Vecu extends HistoricalFeature {
             for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractFeature.isActive(actor, v)))) {
                 const original = AbstractFeature.original(v.sid);
                 if (original != null) {
-                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(v.system.periode);
+                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(Version.data(v).periode);
                     vecus.push({
                         name: original.name,
                         id: v.id,

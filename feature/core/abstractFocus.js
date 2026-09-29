@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 
 export class AbstractFocus extends AbstractFeature {
 
@@ -94,7 +95,7 @@ export class AbstractFocus extends AbstractFeature {
         }
 
         // The focus must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === this.item.sid && i.system.periode === this.embedded.periode) != null) {
+        if (this.actor.items.find(i => i.sid === this.item.sid && Version.data(i).periode === this.embedded.periode) != null) {
             return;
         }
 

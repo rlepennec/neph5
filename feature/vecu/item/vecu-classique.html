@@ -13,25 +13,25 @@
                 {{> "systems/neph5e/templates/label.hbs"
                     title="periode"
                     placeholder="periode"
-                    value=document.system.periode
+                    value=data.periode
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
-                    name="system.element"
-                    value=document.system.element
+                    name=(concat versionPath ".element")
+                    value=data.element
                     options=context.elements
                 }}
 
             </div>
 
-            {{#unless (isEmptyCollection document.system.competences)}}
+            {{#unless (isEmptyCollection data.competences)}}
             <div class="banner">
 
                 {{> "systems/neph5e/templates/list.hbs"
                     class="column-2"
-                    values=document.system.competences
-                    names="system.competences" }}
+                    values=data.competences
+                    names=(concat versionPath ".competences") }}
 
             </div>
             {{/unless}}
@@ -50,16 +50,16 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="periode-name">{{#with (getIdentifier document.system.periode)}}{{name}}{{/with}}</td>
-                            <td>{{document.system.degre}}</td>
-                            <td>{{getNextCost document.system.degre}}</td>
+                            <td class="periode-name">{{#with (getIdentifier data.periode)}}{{name}}{{/with}}</td>
+                            <td>{{data.degre}}</td>
+                            <td>{{getNextCost data.degre}}</td>
                         </tr>
                     </tbody>
                 </table>
 
                 <ol class="mnemos">
 
-                    {{#each system.mnemos as |mnemos|}}
+                    {{#each data.mnemos as |mnemos|}}
                     <li class="mnemos" data-item-id="{{@index}}" data-action="editMnemos">
                         <div>
                             {{#if @root.locked}}

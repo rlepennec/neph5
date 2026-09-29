@@ -1,4 +1,5 @@
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
+import { Version } from "../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class PeriodeSheet extends NephilimItemSheet {
@@ -63,7 +64,7 @@ export class PeriodeSheet extends NephilimItemSheet {
      */
     _getVecus(periode) {
         const vecus = [];
-        for (let vecu of game.items.filter(i => i.type === 'vecu' && i.system.periode === periode)) {
+        for (let vecu of game.items.filter(i => i.type === 'vecu' && Version.data(i).periode === periode)) {
             vecus.push(vecu.sid);
         }
         return vecus;

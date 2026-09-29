@@ -1,4 +1,5 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { Version } from "../../module/common/version.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 import { Periode } from "../periode/periode.js";
@@ -224,7 +225,7 @@ export class Science extends HistoricalFeature {
         const cercle = Science.getCercle(science);
 
         // Retrieve 
-        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
+        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === Version.data(i).periode)).actif()).map(i => i.sid);
 
         for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 
@@ -411,7 +412,7 @@ export class Science extends HistoricalFeature {
 
         let items = [];
         const cercle = Science.getCercle(science);
-        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === i.system.periode)).actif()).map(i => i.sid);
+        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === Version.data(i).periode)).actif()).map(i => i.sid);
         
         for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
 

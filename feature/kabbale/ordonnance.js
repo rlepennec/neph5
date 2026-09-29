@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
 export class Ordonnance extends AbstractFeature {
@@ -76,7 +77,7 @@ export class Ordonnance extends AbstractFeature {
                 original: {
                     id: original.id,
                     name: original.name,
-                    description: original.system.description
+                    description: Version.data(original).description
                 },
                 embedded: {
                     id: item.id

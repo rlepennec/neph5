@@ -1,4 +1,4 @@
-<section class="item-root style-ashbury skin-{{document.system.element}}">
+<section class="item-root style-ashbury skin-{{data.element}}">
 
     <aside></aside>
 
@@ -21,16 +21,20 @@
 
             <div class="right">
 
+                {{#unless versionEmpty}}
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
-                    name="system.element"
-                    value=document.system.element
+                    name=(concat versionPath ".element")
+                    value=data.element
                     options=context.elements
                 }}
+                {{/unless}}
 
                 {{> "systems/neph5e/templates/chronology.hbs" title='vecu'}}
 
+                {{#unless versionEmpty}}
                 {{> "systems/neph5e/templates/description.hbs"}}
+                {{/unless}}
 
             </div>
 

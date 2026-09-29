@@ -1,4 +1,5 @@
 import { ActionDialog } from "./actionDialog.js";
+import { Version } from "../../module/common/version.js";
 import { AbstractManoeuver } from "../combat/manoeuver/abstractManoeuver.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
@@ -396,9 +397,9 @@ export class AbstractFeature {
     degreFromPeriodes(sid) {
         let sum = 0;
         for (let item of this.actor.items.filter(i => i.sid === sid)) {
-            const periode = this.actor.items.find(i => i.sid === item.system.periode);
+            const periode = this.actor.items.find(i => i.sid === Version.data(item).periode);
             if (periode.actif === true) {
-                sum = sum + item.system.degre;
+                sum = sum + Version.data(item).degre;
             }
         }
         return sum;
@@ -414,8 +415,8 @@ export class AbstractFeature {
         if (original.type === 'competence') {
             for (let v of this.actor.items.filter(i => i.type === 'vecu' && AbstractFeature.isActive(this.actor, i))) {
                 const item = game.items.find(i => i.sid === v.sid);
-                if (v.system.competences.find(c => c === sid) != null) {
-                    const degre = v.system.degre;
+                if (Version.data(v).competences.find(c => c === sid) != null) {
+                    const degre = Version.data(v).degre;
                     const sapiences = AbstractFeature.degreToSapiences(degre);
                     details.push({
                         name: item.name,
@@ -425,10 +426,10 @@ export class AbstractFeature {
             }
         } else {
             for (let item of this.actor.items.filter(i => i.sid === sid)) {
-                const periode = AbstractFeature.embedded(this.actor, item.system.periode);
+                const periode = AbstractFeature.embedded(this.actor, Version.data(item).periode);
                 details.push({
                     name: periode?.name,
-                    degre: item.system.degre,
+                    degre: Version.data(item).degre,
                     sapiences: "-"});
             }
         }
@@ -549,7 +550,7 @@ export class AbstractFeature {
      * @return true if the linked periode is active.
      */
     static isActive(actor, item) {
-        const periode = actor.items.find(i => i.sid === item.system.periode);
+        const periode = actor.items.find(i => i.sid === Version.data(item).periode);
         return periode != null && periode.actif;
     }
 
