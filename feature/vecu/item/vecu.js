@@ -135,7 +135,7 @@ export class VecuSheet extends NephilimItemSheet {
     async _onSubmit(event, form, formData) {
 
         // Update competences
-        let size = this.document.system.competences.length;
+        const size = this.document.system.competences.length;
         const competences = [];
         for (let index = 0; index < size; index++) {
             const name = "system.competences.[" + index + "]";
@@ -144,23 +144,10 @@ export class VecuSheet extends NephilimItemSheet {
         }
         formData.object["system.competences"] = competences;
 
-        // Update mnemos
-        if (this.document.system.mnemos != null) {
-            size = this.document.system.mnemos.length;
-            const mnemos = [];
-            for (let index = 0; index < size; index++) {
-                const key = "system.mnemos.[" + index + "].";
-                mnemos.push({
-                    name: formData.object[key + "name"],
-                    degre: formData.object[key + "degre"],
-                    description: formData.object[key + "description"],
-                });
-                delete formData.object[key + "name"];
-                delete formData.object[key + "degre"];
-                delete formData.object[key + "description"];
-            }
-            formData.object["system.mnemos"] = mnemos;
-        }
+        // Les mnémos ne sont plus saisis dans la fiche : depuis qu'ils ont leur propre
+        // dialogue, aucun champ du formulaire ne les porte. La boucle qui les relisait ici
+        // reconstruisait donc, à chaque enregistrement, autant d'entrées vides qu'il y en
+        // avait — elle les effaçait. Seul le dialogue les écrit désormais.
 
         // Update object
         await this.document.update(formData.object);
