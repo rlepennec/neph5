@@ -14,17 +14,17 @@
         <ol class="menu">
 
             {{#each actor.laboratoires as |item|}}
-            {{#if (ne ../actor.system.alchimie.courant item.id)}}    
+            {{#if (ne @root.data.alchimie.courant item.id)}}    
             <li data-action="selectLaboratory" class="name select"data-sid="{{item.id}}">{{item.name}}</li>
             {{/if}}
             {{/each}}
 
-            {{#if (nonNull actor.system.alchimie.courant)}}
+            {{#if (nonNull @root.data.alchimie.courant)}}
             <li data-action="selectLaboratory" class="name select">{{actor.name}}</li>
             {{/if}}
 
             {{#each actor.laboratoires as |item|}}
-            {{#if (eq ../actor.system.alchimie.courant item.id)}} 
+            {{#if (eq @root.data.alchimie.courant item.id)}} 
             <li data-action="deleteLaboratory" class="name delete">
                 <label>{{item.name}}</label>
                 <i class="fas fa-trash"></i>
@@ -40,21 +40,21 @@
     {{#with (laboratoryOwner actor) as |actor|}}
     <div class="constructs">
 
-        <div class="construct creuset {{#unless actor.system.alchimie.constructs.creuset.active}}disabled{{/unless}}">
+        <div class="construct creuset {{#unless @root.data.alchimie.constructs.creuset.active}}disabled{{/unless}}">
 
             <label class="name">{{translate "creuset"}}</label>
 
-            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
-            <select name="actor.system.alchimie.constructs.creuset.degre" disabled>
-            {{#select actor.system.alchimie.constructs.creuset.degre}}
+            {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
+            <select name="@root.data.alchimie.constructs.creuset.degre" disabled>
+            {{#select @root.data.alchimie.constructs.creuset.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
             {{/select}}
             </select>
             {{else}}
-            <select name="system.alchimie.constructs.creuset.degre">
-            {{#select system.alchimie.constructs.creuset.degre}}
+            <select name="{{@root.versionPath}}.alchimie.constructs.creuset.degre">
+            {{#select @root.data.alchimie.constructs.creuset.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
@@ -68,20 +68,20 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.creuset.air"
+                        name="@root.data.alchimie.constructs.creuset.air"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.creuset.air}}"
+                        value="{{@root.data.alchimie.constructs.creuset.air}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.creuset.air"
+                        name="{{@root.versionPath}}.alchimie.constructs.creuset.air"
                         type="text"
-                        value="{{system.alchimie.constructs.creuset.air}}"
+                        value="{{@root.data.alchimie.constructs.creuset.air}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "air"}}</label>
@@ -89,20 +89,20 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.creuset.eau"
+                        name="@root.data.alchimie.constructs.creuset.eau"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.creuset.eau}}"
+                        value="{{@root.data.alchimie.constructs.creuset.eau}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.creuset.eau"
+                        name="{{@root.versionPath}}.alchimie.constructs.creuset.eau"
                         type="text"
-                        value="{{system.alchimie.constructs.creuset.eau}}"
+                        value="{{@root.data.alchimie.constructs.creuset.eau}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "eau"}}</label>
@@ -110,20 +110,20 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.creuset.feu"
+                        name="@root.data.alchimie.constructs.creuset.feu"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.creuset.feu}}"
+                        value="{{@root.data.alchimie.constructs.creuset.feu}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.creuset.feu"
+                        name="{{@root.versionPath}}.alchimie.constructs.creuset.feu"
                         type="text"
-                        value="{{system.alchimie.constructs.creuset.feu}}"
+                        value="{{@root.data.alchimie.constructs.creuset.feu}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "feu"}}</label>
@@ -131,20 +131,20 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.creuset.lune"
+                        name="@root.data.alchimie.constructs.creuset.lune"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.creuset.lune}}"
+                        value="{{@root.data.alchimie.constructs.creuset.lune}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.creuset.lune"
+                        name="{{@root.versionPath}}.alchimie.constructs.creuset.lune"
                         type="text"
-                        value="{{system.alchimie.constructs.creuset.lune}}"
+                        value="{{@root.data.alchimie.constructs.creuset.lune}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "lune"}}</label>
@@ -152,20 +152,20 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.creuset.terre"
+                        name="@root.data.alchimie.constructs.creuset.terre"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.creuset.terre}}"
+                        value="{{@root.data.alchimie.constructs.creuset.terre}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.creuset.terre"
+                        name="{{@root.versionPath}}.alchimie.constructs.creuset.terre"
                         type="text"
-                        value="{{system.alchimie.constructs.creuset.terre}}"
+                        value="{{@root.data.alchimie.constructs.creuset.terre}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "terre"}}</label>
@@ -175,21 +175,21 @@
 
         </div>
 
-        <div class="construct aludel {{#unless actor.system.alchimie.constructs.aludel.active}}disabled{{/unless}}">
+        <div class="construct aludel {{#unless @root.data.alchimie.constructs.aludel.active}}disabled{{/unless}}">
 
             <label class="name">{{translate "aludel"}}</label>
 
-            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
-            <select name="actor.system.alchimie.constructs.aludel.degre" disabled>
-            {{#select actor.system.alchimie.constructs.aludel.degre}}
+            {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
+            <select name="@root.data.alchimie.constructs.aludel.degre" disabled>
+            {{#select @root.data.alchimie.constructs.aludel.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
             {{/select}}
             </select>
             {{else}}
-            <select name="system.alchimie.constructs.aludel.degre">
-            {{#select system.alchimie.constructs.aludel.degre}}
+            <select name="{{@root.versionPath}}.alchimie.constructs.aludel.degre">
+            {{#select @root.data.alchimie.constructs.aludel.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
@@ -204,20 +204,20 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.aludel.air"
+                        name="@root.data.alchimie.constructs.aludel.air"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.aludel.air}}"
+                        value="{{@root.data.alchimie.constructs.aludel.air}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.aludel.air"
+                        name="{{@root.versionPath}}.alchimie.constructs.aludel.air"
                         type="text"
-                        value="{{system.alchimie.constructs.aludel.air}}"
+                        value="{{@root.data.alchimie.constructs.aludel.air}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "air"}}</label>
@@ -225,20 +225,20 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.aludel.eau"
+                        name="@root.data.alchimie.constructs.aludel.eau"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.aludel.eau}}"
+                        value="{{@root.data.alchimie.constructs.aludel.eau}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.aludel.eau"
+                        name="{{@root.versionPath}}.alchimie.constructs.aludel.eau"
                         type="text"
-                        value="{{system.alchimie.constructs.aludel.eau}}"
+                        value="{{@root.data.alchimie.constructs.aludel.eau}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "eau"}}</label>
@@ -246,20 +246,20 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.aludel.feu"
+                        name="@root.data.alchimie.constructs.aludel.feu"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.aludel.feu}}"
+                        value="{{@root.data.alchimie.constructs.aludel.feu}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.aludel.feu"
+                        name="{{@root.versionPath}}.alchimie.constructs.aludel.feu"
                         type="text"
-                        value="{{system.alchimie.constructs.aludel.feu}}"
+                        value="{{@root.data.alchimie.constructs.aludel.feu}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "feu"}}</label>
@@ -267,20 +267,20 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.aludel.lune"
+                        name="@root.data.alchimie.constructs.aludel.lune"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.aludel.lune}}"
+                        value="{{@root.data.alchimie.constructs.aludel.lune}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.aludel.lune"
+                        name="{{@root.versionPath}}.alchimie.constructs.aludel.lune"
                         type="text"
-                        value="{{system.alchimie.constructs.aludel.lune}}"
+                        value="{{@root.data.alchimie.constructs.aludel.lune}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "lune"}}</label>
@@ -288,20 +288,20 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.aludel.terre"
+                        name="@root.data.alchimie.constructs.aludel.terre"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.aludel.terre}}"
+                        value="{{@root.data.alchimie.constructs.aludel.terre}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.aludel.terre"
+                        name="{{@root.versionPath}}.alchimie.constructs.aludel.terre"
                         type="text"
-                        value="{{system.alchimie.constructs.aludel.terre}}"
+                        value="{{@root.data.alchimie.constructs.aludel.terre}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "terre"}}</label>
@@ -311,21 +311,21 @@
 
         </div>
 
-        <div class="construct cornue {{#unless actor.system.alchimie.constructs.cornue.active}}disabled{{/unless}}">
+        <div class="construct cornue {{#unless @root.data.alchimie.constructs.cornue.active}}disabled{{/unless}}">
 
             <label class="name">{{translate "cornue"}}</label>
 
-            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
-            <select name="actor.system.alchimie.constructs.cornue.degre" disabled>
-            {{#select actor.system.alchimie.constructs.cornue.degre}}
+            {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
+            <select name="@root.data.alchimie.constructs.cornue.degre" disabled>
+            {{#select @root.data.alchimie.constructs.cornue.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
             {{/select}}
             </select>
             {{else}}
-            <select name="system.alchimie.constructs.cornue.degre">
-            {{#select system.alchimie.constructs.cornue.degre}}
+            <select name="{{@root.versionPath}}.alchimie.constructs.cornue.degre">
+            {{#select @root.data.alchimie.constructs.cornue.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
@@ -340,20 +340,20 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.cornue.air"
+                        name="@root.data.alchimie.constructs.cornue.air"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.cornue.air}}"
+                        value="{{@root.data.alchimie.constructs.cornue.air}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.cornue.air"
+                        name="{{@root.versionPath}}.alchimie.constructs.cornue.air"
                         type="text"
-                        value="{{system.alchimie.constructs.cornue.air}}"
+                        value="{{@root.data.alchimie.constructs.cornue.air}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "air"}}</label>
@@ -361,20 +361,20 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.cornue.eau"
+                        name="@root.data.alchimie.constructs.cornue.eau"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.cornue.eau}}"
+                        value="{{@root.data.alchimie.constructs.cornue.eau}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.cornue.eau"
+                        name="{{@root.versionPath}}.alchimie.constructs.cornue.eau"
                         type="text"
-                        value="{{system.alchimie.constructs.cornue.eau}}"
+                        value="{{@root.data.alchimie.constructs.cornue.eau}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "eau"}}</label>
@@ -382,20 +382,20 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.cornue.feu"
+                        name="@root.data.alchimie.constructs.cornue.feu"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.cornue.feu}}"
+                        value="{{@root.data.alchimie.constructs.cornue.feu}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.cornue.feu"
+                        name="{{@root.versionPath}}.alchimie.constructs.cornue.feu"
                         type="text"
-                        value="{{system.alchimie.constructs.cornue.feu}}"
+                        value="{{@root.data.alchimie.constructs.cornue.feu}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "feu"}}</label>
@@ -403,20 +403,20 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.cornue.lune"
+                        name="@root.data.alchimie.constructs.cornue.lune"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.cornue.lune}}"
+                        value="{{@root.data.alchimie.constructs.cornue.lune}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.cornue.lune"
+                        name="{{@root.versionPath}}.alchimie.constructs.cornue.lune"
                         type="text"
-                        value="{{system.alchimie.constructs.cornue.lune}}"
+                        value="{{@root.data.alchimie.constructs.cornue.lune}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "lune"}}</label>
@@ -424,20 +424,20 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.cornue.terre"
+                        name="@root.data.alchimie.constructs.cornue.terre"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.cornue.terre}}"
+                        value="{{@root.data.alchimie.constructs.cornue.terre}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.cornue.terre"
+                        name="{{@root.versionPath}}.alchimie.constructs.cornue.terre"
                         type="text"
-                        value="{{system.alchimie.constructs.cornue.terre}}"
+                        value="{{@root.data.alchimie.constructs.cornue.terre}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "terre"}}</label>
@@ -447,21 +447,21 @@
 
         </div>
 
-        <div class="construct alambic {{#unless actor.system.alchimie.constructs.alambic.active}}disabled{{/unless}}">
+        <div class="construct alambic {{#unless @root.data.alchimie.constructs.alambic.active}}disabled{{/unless}}">
 
             <label class="name">{{translate "alambic"}}</label>
 
-            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
-            <select name="actor.system.alchimie.constructs.alambic.degre" disabled>
-            {{#select actor.system.alchimie.constructs.alambic.degre}}
+            {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
+            <select name="@root.data.alchimie.constructs.alambic.degre" disabled>
+            {{#select @root.data.alchimie.constructs.alambic.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
             {{/select}}
             </select>
             {{else}}
-            <select name="system.alchimie.constructs.alambic.degre">
-            {{#select system.alchimie.constructs.alambic.degre}}
+            <select name="{{@root.versionPath}}.alchimie.constructs.alambic.degre">
+            {{#select @root.data.alchimie.constructs.alambic.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
@@ -475,20 +475,20 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.alambic.air"
+                        name="@root.data.alchimie.constructs.alambic.air"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.alambic.air}}"
+                        value="{{@root.data.alchimie.constructs.alambic.air}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.alambic.air"
+                        name="{{@root.versionPath}}.alchimie.constructs.alambic.air"
                         type="text"
-                        value="{{system.alchimie.constructs.alambic.air}}"
+                        value="{{@root.data.alchimie.constructs.alambic.air}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "air"}}</label>
@@ -496,20 +496,20 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.alambic.eau"
+                        name="@root.data.alchimie.constructs.alambic.eau"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.alambic.eau}}"
+                        value="{{@root.data.alchimie.constructs.alambic.eau}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.alambic.eau"
+                        name="{{@root.versionPath}}.alchimie.constructs.alambic.eau"
                         type="text"
-                        value="{{system.alchimie.constructs.alambic.eau}}"
+                        value="{{@root.data.alchimie.constructs.alambic.eau}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "eau"}}</label>
@@ -517,20 +517,20 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.alambic.feu"
+                        name="@root.data.alchimie.constructs.alambic.feu"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.alambic.feu}}"
+                        value="{{@root.data.alchimie.constructs.alambic.feu}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.alambic.feu"
+                        name="{{@root.versionPath}}.alchimie.constructs.alambic.feu"
                         type="text"
-                        value="{{system.alchimie.constructs.alambic.feu}}"
+                        value="{{@root.data.alchimie.constructs.alambic.feu}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "feu"}}</label>
@@ -538,20 +538,20 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.alambic.lune"
+                        name="@root.data.alchimie.constructs.alambic.lune"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.alambic.lune}}"
+                        value="{{@root.data.alchimie.constructs.alambic.lune}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.alambic.lune"
+                        name="{{@root.versionPath}}.alchimie.constructs.alambic.lune"
                         type="text"
-                        value="{{system.alchimie.constructs.alambic.lune}}"
+                        value="{{@root.data.alchimie.constructs.alambic.lune}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "lune"}}</label>
@@ -559,20 +559,20 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.alambic.terre"
+                        name="@root.data.alchimie.constructs.alambic.terre"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.alambic.terre}}"
+                        value="{{@root.data.alchimie.constructs.alambic.terre}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.alambic.terre"
+                        name="{{@root.versionPath}}.alchimie.constructs.alambic.terre"
                         type="text"
-                        value="{{system.alchimie.constructs.alambic.terre}}"
+                        value="{{@root.data.alchimie.constructs.alambic.terre}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "terre"}}</label>
@@ -582,21 +582,21 @@
 
         </div>
 
-        <div class="construct athanor {{#unless actor.system.alchimie.constructs.athanor.active}}disabled{{/unless}}">
+        <div class="construct athanor {{#unless @root.data.alchimie.constructs.athanor.active}}disabled{{/unless}}">
 
             <label class="name">{{translate "athanor"}}</label>
 
-            {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
-            <select name="actor.system.alchimie.constructs.athanor.degre" disabled>
-            {{#select actor.system.alchimie.constructs.athanor.degre}}
+            {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
+            <select name="@root.data.alchimie.constructs.athanor.degre" disabled>
+            {{#select @root.data.alchimie.constructs.athanor.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
             {{/select}}
             </select>
             {{else}}
-            <select name="system.alchimie.constructs.athanor.degre">
-            {{#select system.alchimie.constructs.athanor.degre}}
+            <select name="{{@root.versionPath}}.alchimie.constructs.athanor.degre">
+            {{#select @root.data.alchimie.constructs.athanor.degre}}
                 {{#each ../cercles as |cercle|}}
                 <option value="{{cercle}}">{{translate cercle}}</option>
                 {{/each}}
@@ -611,20 +611,20 @@
 
                 <div class="element tooltip air">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.athanor.air"
+                        name="@root.data.alchimie.constructs.athanor.air"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.athanor.air}}"
+                        value="{{@root.data.alchimie.constructs.athanor.air}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.athanor.air"
+                        name="{{@root.versionPath}}.alchimie.constructs.athanor.air"
                         type="text"
-                        value="{{system.alchimie.constructs.athanor.air}}"
+                        value="{{@root.data.alchimie.constructs.athanor.air}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "air"}}</label>
@@ -632,20 +632,20 @@
 
                 <div class="element tooltip eau">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.athanor.eau"
+                        name="@root.data.alchimie.constructs.athanor.eau"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.athanor.eau}}"
+                        value="{{@root.data.alchimie.constructs.athanor.eau}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.athanor.eau"
+                        name="{{@root.versionPath}}.alchimie.constructs.athanor.eau"
                         type="text"
-                        value="{{system.alchimie.constructs.athanor.eau}}"
+                        value="{{@root.data.alchimie.constructs.athanor.eau}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "eau"}}</label>
@@ -653,20 +653,20 @@
 
                 <div class="element tooltip feu">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.athanor.feu"
+                        name="@root.data.alchimie.constructs.athanor.feu"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.athanor.feu}}"
+                        value="{{@root.data.alchimie.constructs.athanor.feu}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.athanor.feu"
+                        name="{{@root.versionPath}}.alchimie.constructs.athanor.feu"
                         type="text"
-                        value="{{system.alchimie.constructs.athanor.feu}}"
+                        value="{{@root.data.alchimie.constructs.athanor.feu}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "feu"}}</label>
@@ -674,20 +674,20 @@
 
                 <div class="element tooltip lune">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.athanor.lune"
+                        name="@root.data.alchimie.constructs.athanor.lune"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.athanor.lune}}"
+                        value="{{@root.data.alchimie.constructs.athanor.lune}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.athanor.lune"
+                        name="{{@root.versionPath}}.alchimie.constructs.athanor.lune"
                         type="text"
-                        value="{{system.alchimie.constructs.athanor.lune}}"
+                        value="{{@root.data.alchimie.constructs.athanor.lune}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "lune"}}</label>
@@ -695,20 +695,20 @@
 
                 <div class="element tooltip terre">
                     <img class="circle"/>
-                    {{#if (or @root.locked (nonNull ../actor.system.alchimie.courant))}}
+                    {{#if (or @root.locked (nonNull @root.data.alchimie.courant))}}
                     <input
                         disabled
                         class="degre"
-                        name="actor.system.alchimie.constructs.athanor.terre"
+                        name="@root.data.alchimie.constructs.athanor.terre"
                         type="text"
-                        value="{{actor.system.alchimie.constructs.athanor.terre}}"
+                        value="{{@root.data.alchimie.constructs.athanor.terre}}"
                         data-dtype="Number" />
                     {{else}}
                     <input
                         class="degre"
-                        name="system.alchimie.constructs.athanor.terre"
+                        name="{{@root.versionPath}}.alchimie.constructs.athanor.terre"
                         type="text"
-                        value="{{system.alchimie.constructs.athanor.terre}}"
+                        value="{{@root.data.alchimie.constructs.athanor.terre}}"
                         data-dtype="Number" />
                     {{/if}}
                     <label class="tooltiptext">{{translate "terre"}}</label>
@@ -721,27 +721,27 @@
         <div class="artefacts">
 
             <div class="athanor tooltip" data-type="athanor">
-                <img data-action="construct" src="systems/neph5e/assets/backgrounds/athanor.webp" class="activate {{#unless actor.system.alchimie.constructs.athanor.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/athanor.webp" class="activate {{#unless @root.data.alchimie.constructs.athanor.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "athanor"}}</label>
             </div>
 
             <div class="alambic tooltip" data-type="alambic">
-                <img data-action="construct" src="systems/neph5e/assets/backgrounds/alambic.webp" class="activate {{#unless actor.system.alchimie.constructs.alambic.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/alambic.webp" class="activate {{#unless @root.data.alchimie.constructs.alambic.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "alambic"}}</label>
             </div>
 
             <div class="aludel tooltip" data-type="aludel">
-                <img data-action="construct" src="systems/neph5e/assets/backgrounds/aludel.webp" class="activate {{#unless actor.system.alchimie.constructs.aludel.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/aludel.webp" class="activate {{#unless @root.data.alchimie.constructs.aludel.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "aludel"}}</label>
             </div>
 
             <div class="cornue tooltip" data-type="cornue">
-                <img data-action="construct" src="systems/neph5e/assets/backgrounds/cornue.webp" class="activate {{#unless actor.system.alchimie.constructs.cornue.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/cornue.webp" class="activate {{#unless @root.data.alchimie.constructs.cornue.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "cornue"}}</label>
             </div>
 
             <div class="creuset tooltip" data-type="creuset">
-                <img data-action="construct" src="systems/neph5e/assets/backgrounds/creuset.webp" class="activate {{#unless actor.system.alchimie.constructs.creuset.active}}undeveloped{{/unless}}"/>
+                <img data-action="construct" src="systems/neph5e/assets/backgrounds/creuset.webp" class="activate {{#unless @root.data.alchimie.constructs.creuset.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "creuset"}}</label>
             </div>
 

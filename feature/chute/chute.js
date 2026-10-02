@@ -86,7 +86,7 @@ export class Chute extends HistoricalFeature {
 
         let _chute = { degre: 0, name: null, sid: null, id: null };
 
-        for (let periode of Periode.getChronological(actor, true, true, actor.system.periode)) {
+        for (let periode of Periode.getChronological(actor, true, true, Version.data(actor).periode)) {
             const chute = actor.items.find(i => i.type === 'chute' && Version.data(i).key === type && Version.data(i).periode === periode.sid);
             if (chute != null) {
                 _chute = {
@@ -121,7 +121,7 @@ export class Chute extends HistoricalFeature {
         const previousChute = Chute.getChute(this.actor, type);
 
         // Create or update current chute according to the current periode, first chute by default
-        const chute = this.actor.items.find(i => i.type === "chute" && Version.data(i).key === type && Version.data(i).periode === this.actor.system.periode);
+        const chute = this.actor.items.find(i => i.type === "chute" && Version.data(i).key === type && Version.data(i).periode === Version.data(this.actor).periode);
 
         // Create a new chute
         if (chute == null) {
@@ -135,7 +135,7 @@ export class Chute extends HistoricalFeature {
 
             // Create the new embedded actor item
             await new EmbeddedItem(this.actor, sid)
-                .withData("periode", this.actor.system.periode)
+                .withData("periode", Version.data(this.actor).periode)
                 .withData("degre", degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
                 .withData("key", type)
                 .withoutData('description')

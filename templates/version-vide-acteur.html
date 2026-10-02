@@ -1,0 +1,32 @@
+<section class="actor-root">
+
+    <aside>
+
+        <img src="{{document.img}}"/>
+
+    </aside>
+
+    <article>
+
+        <header>
+
+            <input
+                name="name"
+                type="text"
+                value="{{document.name}}"
+                spellcheck="false"
+                {{#if @root.locked}} disabled{{/if}}/>
+
+        </header>
+
+        <main>
+
+            <div class="description">
+                <span>{{translate "versionNonDecrite"}}</span>
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

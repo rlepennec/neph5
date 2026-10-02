@@ -260,11 +260,11 @@ export class NephilimItem extends Item {
             for (let item of actor.items.filter(i => i.sid === this.sid)) {
                 await actor.deleteEmbeddedDocuments('Item', [item.id]);
             }
-            if (actor.system?.manoeuvres?.esquive === this.sid) {
-                await actor.update({ ['system.manoeuvres.esquive']: null });
+            if (Version.data(actor).manoeuvres?.esquive === this.sid) {
+                await actor.update({ [Version.path(actor, 'manoeuvres') + '.esquive']: null });
             }
-            if (actor.system?.manoeuvres?.lutte === this.sid) {
-                await actor.update({ ['system.manoeuvres.lutte']: null });
+            if (Version.data(actor).manoeuvres?.lutte === this.sid) {
+                await actor.update({ [Version.path(actor, 'manoeuvres') + '.lutte']: null });
             }
         }
         for (let scene of game.scenes) {
@@ -273,11 +273,11 @@ export class NephilimItem extends Item {
                     for (let item of token.actor.items.filter(i => i.sid === this.sid)) {
                         await token.actor.deleteEmbeddedDocuments('Item', [item.id]);
                     }
-                    if (token.actor.system?.manoeuvres?.esquive === this.sid) {
-                        await token.actor.update({ ['system.manoeuvres.esquive']: null });
+                    if (Version.data(token.actor).manoeuvres?.esquive === this.sid) {
+                        await token.actor.update({ [Version.path(token.actor, 'manoeuvres') + '.esquive']: null });
                     }
-                    if (token.actor.system?.manoeuvres?.lutte === this.sid) {
-                        await token.actor.update({ ['system.manoeuvres.lutte']: null });
+                    if (Version.data(token.actor).manoeuvres?.lutte === this.sid) {
+                        await token.actor.update({ [Version.path(token.actor, 'manoeuvres') + '.lutte']: null });
                     }
                 }
             }

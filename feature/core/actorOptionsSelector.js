@@ -1,4 +1,5 @@
 import { AbstractOptionsSelector } from "./abstractOptionsSelector.js";
+import { Version } from "../../module/common/version.js";
 import { Constants } from "../../module/common/constants.js";
 
 export class ActorOptionsSelector extends AbstractOptionsSelector {
@@ -14,7 +15,7 @@ export class ActorOptionsSelector extends AbstractOptionsSelector {
 
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        const opts = this.sheet.document.system.options;
+        const opts = Version.data(this.sheet.document).options;
         Object.assign(context, opts);
         context.themes = { current: opts.theme, all: Constants.THEMES };
         return context;

@@ -137,7 +137,7 @@ export class Periode extends AbstractFeature {
             }
 
             // Remove the current actor periode if necessary
-            if (this.actor.system.periode === this.item.sid) {
+            if (Version.data(this.actor).periode === this.item.sid) {
                 await this.actor.setCurrentPeriode(null);
             }
 
@@ -149,7 +149,7 @@ export class Periode extends AbstractFeature {
         }
 
         // Delete other embedded items which are related to the periode
-        await this.actor.deleteEmbeddedDocuments('Item', this.actor.items.filter(i => i.system?.periode === this.item.sid).map(i => i.id));
+        await this.actor.deleteEmbeddedDocuments('Item', this.actor.items.filter(i => Version.data(i).periode === this.item.sid).map(i => i.id));
 
         // Delete the embedded periode item
         await this.actor.deleteEmbeddedDocuments('Item', [AbstractFeature.embedded(this.actor, this.item.sid).id]);
@@ -179,7 +179,7 @@ export class Periode extends AbstractFeature {
      * @returns true if the periode is active according to his activation and the current one.
      */
     actif() {
-        const p = Periode.getChronological(this.actor, true, true, this.actor.system.periode).find(i => i.sid === this.sid);
+        const p = Periode.getChronological(this.actor, true, true, Version.data(this.actor).periode).find(i => i.sid === this.sid);
         return p != null && Version.data(p).actif === true;
     }
 
@@ -194,7 +194,7 @@ export class Periode extends AbstractFeature {
 
         // Retrieve if the display order must be inverted.
         // chrono === null : ordre d'affichage, piloté par l'option chronologieDescendante.
-        const descendante = actor.system.options.chronologieDescendante === true;
+        const descendante = Version.data(actor).options.chronologieDescendante === true;
         const inverse = (chrono === null)
             ? !descendante
             : ((chrono === true  && descendante === false)
@@ -271,7 +271,7 @@ export class Periode extends AbstractFeature {
             // Create all embedded items
             const vecus = [];
             for (let type of ['vecu','savoir','quete','arcane','chute','science', 'passe']) {
-                for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
+                for (let i of actor.items.filter(i => Version.data(i).periode === p.sid && i.type === type)) {
                     const original = AbstractFeature.original(i.sid);
                     if (original != null) {
                         vecus.push({
@@ -288,7 +288,7 @@ export class Periode extends AbstractFeature {
 
             const focus = [];
             for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus','pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie', 'divination']) {
-                for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
+                for (let i of actor.items.filter(i => Version.data(i).periode === p.sid && i.type === type)) {
                     const original = AbstractFeature.original(i.sid);
                     if (original != null) {
                         focus.push({
@@ -304,7 +304,7 @@ export class Periode extends AbstractFeature {
 
             const capacites = [];
             for (let type of ['capacite']) {
-                for (let i of actor.items.filter(i => i.system?.periode === p.sid && i.type === type)) {
+                for (let i of actor.items.filter(i => Version.data(i).periode === p.sid && i.type === type)) {
                     const original = AbstractFeature.original(i.sid);
                     if (original != null) {
                         capacites.push({
@@ -321,7 +321,7 @@ export class Periode extends AbstractFeature {
             // Create all linked actors
             const actors = [];
             if (actor.type === 'fraternite') {
-                for (let fa of actor.system.effectif.filter(a => a.periode === p.sid)) {
+                for (let fa of Version.data(actor).effectif.filter(a => a.periode === p.sid)) {
                     const original = game.actors.find(a => a.sid === fa.actor);
                     actors.push({
                         id: original.id,

@@ -1,4 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Version } from "../../../module/common/version.js";
 
 export class NephilimCombatant extends Combatant {
 
@@ -8,7 +9,7 @@ export class NephilimCombatant extends Combatant {
     _getInitiativeFormula() {
         if (!this.actor) return "1d6";
         let malus = this.actor.getWoundsModifier(Constants.PHYSICAL) / 10;
-        let bonus = this.actor.system.bonus.initiative;
+        let bonus = Version.data(this.actor).bonus.initiative;
         let base = this.actor.initiative;
         return "1d6" + 
             (malus === 0 ? "" : malus.toString()) +

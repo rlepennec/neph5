@@ -19,13 +19,13 @@
 
             <div class="vecu-definition">
 
-                {{#if ../../actor.system.options.degreGauche}}
+                {{#if @root.data.options.degreGauche}}
                 <label class="vecu-degre">{{item.degre}}</label>
                 {{/if}}
 
                 <label data-action="openItem" class="vecu-name open">{{item.name}}</label>
 
-                {{#unless ../../actor.system.options.degreGauche}}
+                {{#unless @root.data.options.degreGauche}}
                 <label class="vecu-degre">{{item.degre}}</label>
                 {{/unless}}
 

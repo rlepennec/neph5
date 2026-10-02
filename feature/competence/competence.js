@@ -112,7 +112,7 @@ export class Competence extends AbstractFeature {
 
         // Process the drop on the manoeuver definition
         if (this.manoeuver != null && this.actor.sheet?.locked !== true) {
-            await this.actor.update({ ['system.manoeuvres.' + this.manoeuver]: this.sid });
+            await this.actor.update({ [Version.path(this.actor, 'manoeuvres') + '.' + this.manoeuver]: this.sid });
         }
 
     }
@@ -137,10 +137,10 @@ export class Competence extends AbstractFeature {
 
         // Update actor manoeuvres, lutte and esquive
         if (this.actor.type === 'figure') {
-            const manoeuvres = foundry.utils.duplicate(this.actor.system.manoeuvres);
+            const manoeuvres = foundry.utils.duplicate(Version.data(this.actor).manoeuvres);
             manoeuvres.esquive = manoeuvres.esquive === this.item.sid ? null : manoeuvres.esquive;
             manoeuvres.lutte = manoeuvres.lutte === this.item.sid ? null : manoeuvres.lutte;
-            await this.actor.update({['system.manoeuvres']: manoeuvres});
+            await this.actor.update({ [Version.path(this.actor, 'manoeuvres')]: manoeuvres});
         }
 
         // Render the sheet if opened

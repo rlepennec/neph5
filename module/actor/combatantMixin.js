@@ -69,12 +69,12 @@ export const CombatantMixin = Base => {
          */
         get dommage() {
             if (this.type === 'figure') {
-                if (this.system?.options?.nephilim === true) {
-                    return Math.floor(this.system.ka.feu / 5);
-                } else if (this.system?.options?.selenim === true) {
-                    return Math.floor(this.system.ka.noyau / 10);
+                if (Version.data(this).options?.nephilim === true) {
+                    return Math.floor(Version.data(this).ka.feu / 5);
+                } else if (Version.data(this).options?.selenim === true) {
+                    return Math.floor(Version.data(this).ka.noyau / 10);
                 } else {
-                    return this.system?.ka.soleil ?? 0;
+                    return Version.data(this).ka.soleil ?? 0;
                 }
             } else {
                 return 0;
@@ -87,20 +87,20 @@ export const CombatantMixin = Base => {
         get initiative() {
              switch (this.type) {
                  case 'figure':
-                    if (this.system.options?.nephilim === true) {
-                        return this.system.ka.eau * 2;
+                    if (Version.data(this).options?.nephilim === true) {
+                        return Version.data(this).ka.eau * 2;
                     }
-                    if (this.system.options?.selenim === true) {
-                        return this.system.ka.noyau;
+                    if (Version.data(this).options?.selenim === true) {
+                        return Version.data(this).ka.noyau;
                     }
                     for (let elt of ['soleil', 'orichalque', 'brume', 'air', 'feu', 'lune', 'terre']) {
-                        const val = this.system.ka[elt];
+                        const val = Version.data(this).ka[elt];
                         if (val !== undefined) {
                             return val;
                         }
                     }
                 case 'figurant':
-                    return this.system.menace;
+                    return Version.data(this).menace;
                 default:
                     return 0;
              }
@@ -110,7 +110,7 @@ export const CombatantMixin = Base => {
          * @returns true if lutte manoeuver is available for the actor. 
          */
         get isLutteAvailable() {
-            return this.type !== 'figure' || this.system.manoeuvres.lutte != null;
+            return this.type !== 'figure' || Version.data(this).manoeuvres.lutte != null;
         }
 
         /**
@@ -120,7 +120,7 @@ export const CombatantMixin = Base => {
             if (this.type !== 'figure') {
                 return "";
             }
-            const sid = this.system.manoeuvres.lutte;
+            const sid = Version.data(this).manoeuvres.lutte;
             if (sid == null) {
                 return "";
             } else {
@@ -133,7 +133,7 @@ export const CombatantMixin = Base => {
          * @returns true if esquive manoeuver is available for the actor. 
          */
         get isEsquiveAvailable() {
-            return this.type !== 'figure' || this.system.manoeuvres.esquive != null;
+            return this.type !== 'figure' || Version.data(this).manoeuvres.esquive != null;
         }
 
         /**
@@ -143,7 +143,7 @@ export const CombatantMixin = Base => {
             if (this.type !== 'figure') {
                 return "";
             }
-            const sid = this.system.manoeuvres.esquive;
+            const sid = Version.data(this).manoeuvres.esquive;
             if (sid == null) {
                 return "";
             } else {
@@ -178,7 +178,7 @@ export const CombatantMixin = Base => {
         protection(type) {
 
             // Initialization
-            let protection = this.system.bonus.protection;
+            let protection = Version.data(this).bonus.protection;
 
             // Add the armor if exists
             const armor = this.items.find(i => i.type === "armure" && Version.data(i).used === true);
@@ -277,7 +277,7 @@ export const CombatantMixin = Base => {
          */
         getWoundsModifier(type) {
             let modifier = 0;
-            const baseDommage = type === Constants.PHYSICAL ? this.system.dommage.physique : this.system.dommage.magique;
+            const baseDommage = type === Constants.PHYSICAL ? Version.data(this).dommage.physique : Version.data(this).dommage.magique;
             for (const w in Game.wounds) {
                 const wound = Game.wounds[w];
                 if (baseDommage[wound.id]) {
@@ -409,7 +409,7 @@ export const CombatantMixin = Base => {
 
                     const feature = new FeatureBuilder(this)
                         .withScope("actor")
-                        .withOriginalItem(this.system.manoeuvres.lutte)
+                        .withOriginalItem(Version.data(this).manoeuvres.lutte)
                         .create();
                     if (feature == null) {
                         ui.notifications.error("La compétence de lutte est introuvable");

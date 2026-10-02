@@ -173,70 +173,70 @@ class Damages {
         this.actor = actor;
         this.type = type;
         this.damages = [];
-        if (actor.system.dommage[type]['_1'] === false) {
+        if (Version.data(actor).dommage[type]['_1'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_1'));
         }
-        if (type === 'physique' && actor.system.ka.terre > 4 && actor.system.dommage[type]['_4'] === false) {
+        if (type === 'physique' && Version.data(actor).ka.terre > 4 && Version.data(actor).dommage[type]['_4'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_4'));
         }
-        if (type === 'physique' && actor.system.ka.terre > 9 && actor.system.dommage[type]['_5'] === false) {
+        if (type === 'physique' && Version.data(actor).ka.terre > 9 && Version.data(actor).dommage[type]['_5'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_5'));
         }
-        if (actor.system.dommage[type]['_2'] === false) {
+        if (Version.data(actor).dommage[type]['_2'] === false) {
             this.damages.push(new Damage()
                 .withSize(2)
                 .withBox('_2'));
         }
-        if (actor.system.dommage[type]['_3'] === false) {
+        if (Version.data(actor).dommage[type]['_3'] === false) {
             this.damages.push(new Damage()
                 .withSize(3)
                 .withBox('_3'));
         }
-        if (actor.system.dommage[type]['mineure'] === false) {
+        if (Version.data(actor).dommage[type]['mineure'] === false) {
             this.damages.push(new Damage()
                 .withSize(2)
                 .withBox('mineure'));
         }
-        if (actor.system.dommage[type]['serieuse'] === false) {
+        if (Version.data(actor).dommage[type]['serieuse'] === false) {
             this.damages.push(new Damage()
                 .withSize(4)
                 .withBox('serieuse'));
         }
-        if (actor.system.dommage[type]['mineure'] === false &&
-            actor.system.dommage[type]['serieuse'] === false) {
+        if (Version.data(actor).dommage[type]['mineure'] === false &&
+            Version.data(actor).dommage[type]['serieuse'] === false) {
             this.damages.push(new Damage()
                 .withSize(6)
                 .withBox('mineure')
                 .withBox('serieuse'));
         }
-        if (actor.system.dommage[type]['grave'] === false) {
+        if (Version.data(actor).dommage[type]['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(6)
                 .withBox('grave'));
         }
-        if (actor.system.dommage[type]['mineure'] === false &&
-            actor.system.dommage[type]['grave'] === false) {
+        if (Version.data(actor).dommage[type]['mineure'] === false &&
+            Version.data(actor).dommage[type]['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(8)
                 .withBox('mineure')
                 .withBox('grave'));
         }
-        if (actor.system.dommage[type]['serieuse'] === false &&
-            actor.system.dommage[type]['grave'] === false) {
+        if (Version.data(actor).dommage[type]['serieuse'] === false &&
+            Version.data(actor).dommage[type]['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(10)
                 .withBox('serieuse')
                 .withBox('grave'));
         }
-        if (actor.system.dommage[type]['mineure'] === false &&
-            actor.system.dommage[type]['serieuse'] === false &&
-            actor.system.dommage[type]['grave'] === false) {
+        if (Version.data(actor).dommage[type]['mineure'] === false &&
+            Version.data(actor).dommage[type]['serieuse'] === false &&
+            Version.data(actor).dommage[type]['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(12)
                 .withBox('mineure')
@@ -251,12 +251,12 @@ class Damages {
     async apply(amount) {
 
         // Exit if manual dammages
-        if (this.actor.system.options.degatAutomatique !== true) {
+        if (Version.data(this.actor).options.degatAutomatique !== true) {
             return;
         }
 
         // Exit if no damages or if the actor is already out
-        if (amount <= 0 || this.actor.system.dommage[this.type]['mortelle'] === true) {
+        if (amount <= 0 || Version.data(this.actor).dommage[this.type]['mortelle'] === true) {
             return;
         } 
 
@@ -275,7 +275,7 @@ class Damages {
 
         // To much damage
         } else {
-            await this.actor.update({ ["system.dommage." + this.type + ".mortelle"]: true });
+            await this.actor.update({ [Version.path(this.actor, 'dommage') + "." + this.type + ".mortelle"]: true });
         }
 
     }
@@ -313,9 +313,9 @@ class Damage {
      * @param type  The type of damage to apply.
      */
     async apply(actor, type) {
-        const data = foundry.utils.duplicate(actor.system.dommage[type]);
+        const data = foundry.utils.duplicate(Version.data(actor).dommage[type]);
         this.boxes.forEach(box => data[box] = true);
-        await actor.update({ ["system.dommage." + type]: data });
+        await actor.update({ [Version.path(actor, 'dommage') + "." + type]: data });
     }
 
 }

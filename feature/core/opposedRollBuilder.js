@@ -1,4 +1,5 @@
 import { Attack } from "../combat/core/attack.js";
+import { Version } from "../../module/common/version.js";
 import { Constants } from "../../module/common/constants.js";
 import { Defense } from "../combat/core/defense.js";
 import { Distance } from "../combat/core/distance.js";
@@ -151,7 +152,7 @@ export class OpposedRollBuilder {
         }
 
         // The current player is the owner of the target and the defense of the figure token is managed by the PJ.
-        if (!game.user.isGM && token.isOwner && token.actor.system?.options?.defenseMJ !== true) {
+        if (!game.user.isGM && token.isOwner && Version.data(token.actor).options?.defenseMJ !== true) {
             return true;
         }
 
@@ -170,7 +171,7 @@ export class OpposedRollBuilder {
             if (perm === 3) {
                 const user = game.users.get(userId);
                 if (user != null) {
-                    if (!user.isGM && user.active && token.actor.system?.options?.defenseMJ !== true) {
+                    if (!user.isGM && user.active && Version.data(token.actor).options?.defenseMJ !== true) {
                         return false;
                     }
                 }

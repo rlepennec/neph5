@@ -1,4 +1,5 @@
 import { Arcane } from "../../feature/arcane/arcane.js";
+import { Version } from "../../module/common/version.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/capacite/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
@@ -99,7 +100,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the simulacre as actor object, undefined if not exist.
      */
     get simulacre() {
-        return game.actors.find(a => a.sid === this.system.simulacre);
+        return game.actors.find(a => a.sid === Version.data(this).simulacre);
     }
 
 
@@ -109,13 +110,13 @@ export class NephilimActor extends CombatantMixin(Actor) {
     get mouvement() {
         switch (this.type) {
             case 'figure':
-                if (this.system.options?.nephilim === true) {
-                    return this.system.ka.eau * 2;
+                if (Version.data(this).options?.nephilim === true) {
+                    return Version.data(this).ka.eau * 2;
                 }
-                if (this.system.options?.selenim === true) {
-                    return this.system.ka.noyau;
+                if (Version.data(this).options?.selenim === true) {
+                    return Version.data(this).ka.noyau;
                 }
-                return this.system.ka.soleil ?? 0;
+                return Version.data(this).ka.soleil ?? 0;
             case 'figurant':
             default:
                 return 0;
@@ -128,13 +129,13 @@ export class NephilimActor extends CombatantMixin(Actor) {
     get perspicacite() {
         switch (this.type) {
             case 'figure':
-                if (this.system.options?.nephilim === true) {
-                    return 11 - this.system.ka.air;
+                if (Version.data(this).options?.nephilim === true) {
+                    return 11 - Version.data(this).ka.air;
                 }
-                if (this.system.options?.selenim === true) {
-                    return 11 - this.system.ka.noyau;
+                if (Version.data(this).options?.selenim === true) {
+                    return 11 - Version.data(this).ka.noyau;
                 }
-                return 11 - (this.system.ka.soleil ?? 0);
+                return 11 - (Version.data(this).ka.soleil ?? 0);
             case 'figurant':
             default:
                 return 0;
@@ -147,11 +148,11 @@ export class NephilimActor extends CombatantMixin(Actor) {
     get recuperation() {
         switch (this.type) {
             case 'figure':
-                if (this.system.options?.nephilim === true) {
-                    return 11 - this.system.ka.terre;
+                if (Version.data(this).options?.nephilim === true) {
+                    return 11 - Version.data(this).ka.terre;
                 }
-                if (this.system.options?.selenim === true) {
-                    return 11 - this.system.ka.noyau;
+                if (Version.data(this).options?.selenim === true) {
+                    return 11 - Version.data(this).ka.noyau;
                 }
                 return 11 - this.system.soleil;
             case 'figurant':
@@ -166,13 +167,13 @@ export class NephilimActor extends CombatantMixin(Actor) {
     get voile() {
         switch (this.type) {
             case 'figure':
-                if (this.system.options?.nephilim === true) {
-                    return Math.floor(this.system.ka.lune / 5);
+                if (Version.data(this).options?.nephilim === true) {
+                    return Math.floor(Version.data(this).ka.lune / 5);
                 }
-                if (this.system.options?.selenim === true) {
-                    return Math.floor(this.system.ka.noyau / 10);
+                if (Version.data(this).options?.selenim === true) {
+                    return Math.floor(Version.data(this).ka.noyau / 10);
                 }
-                return Math.floor((this.system.ka.soleil ?? 0) / 10);
+                return Math.floor((Version.data(this).ka.soleil ?? 0) / 10);
             case 'figurant':
             default:
                 return 0;
@@ -186,20 +187,20 @@ export class NephilimActor extends CombatantMixin(Actor) {
     get ka() {
         switch (this.type) {
             case 'figure':
-                if (this.system.options?.nephilim === true) {
+                if (Version.data(this).options?.nephilim === true) {
                     return Math.max(
-                        this.system.ka.air,
-                        this.system.ka.eau,
-                        this.system.ka.feu,
-                        this.system.ka.lune,
-                        this.system.ka.terre);
+                        Version.data(this).ka.air,
+                        Version.data(this).ka.eau,
+                        Version.data(this).ka.feu,
+                        Version.data(this).ka.lune,
+                        Version.data(this).ka.terre);
                 }
-                if (this.system.options?.selenim === true) {
-                    return this.system.ka.noyau;
+                if (Version.data(this).options?.selenim === true) {
+                    return Version.data(this).ka.noyau;
                 }
                 return 0;
             case 'figurant':
-                return this.system.ka;
+                return Version.data(this).ka;
             default:
                 return 0;
         }
@@ -329,10 +330,10 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the name of the current periode.
      */
     get currentPeriode() {
-        if (this.system.periode == null) {
+        if (Version.data(this).periode == null) {
             return "Aucune periode courante";
         }
-        const periode = game.items.find(i => i.sid === this.system.periode);
+        const periode = game.items.find(i => i.sid === Version.data(this).periode);
         return periode == null ? "Periode non trouvee" : periode.name;
     }
 
@@ -377,8 +378,8 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     fraternite(sid) {
         let degre = 0;
-        if (this.system?.options?.fraternites === true) {
-            for (let f of this.fraternites.filter(a => a.system.options.active === true)) {
+        if (Version.data(this).options?.fraternites === true) {
+            for (let f of this.fraternites.filter(a => Version.data(a).options.active === true)) {
                 const d = new FeatureBuilder(f).withOriginalItem(sid).create().degre;
                 if (d != null && d > degre) {
                     degre = d;
@@ -525,7 +526,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 builder = new FeatureBuilder(this)
                     .withOriginalItem(sid)
                     .withScope('actor')
-                    .withPeriode(this.system.periode);
+                    .withPeriode(Version.data(this).periode);
                 break;
             }
 
@@ -533,7 +534,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 builder = new FeatureBuilder(this)
                     .withEmbeddedItem(id)
                     .withScope(this.items.get(id) != null ? 'actor' : 'simulacre')
-                    .withPeriode(this.system.periode);
+                    .withPeriode(Version.data(this).periode);
                 break;
             }
 
@@ -628,18 +629,18 @@ export class NephilimActor extends CombatantMixin(Actor) {
         };
         switch (this.type) {
             case 'figure':
-                if (this.system.options.selenim === true) {
-                    if (this.system.ka.noyau > 0) {
+                if (Version.data(this).options.selenim === true) {
+                    if (Version.data(this).ka.noyau > 0) {
                         approches['noyau'] = {
                             label: NephilimActor.libelleApproche('luneNoire')
                         };
                     }
                 }
-                if (this.system.options.nephilim === true) {
+                if (Version.data(this).options.nephilim === true) {
                     // NEPHILIM porte déjà les mêmes libellés d'élément que
                     // l'ancien bloc NEPH5E.pentacle.elements, à l'identique.
                     for (let elt of Constants.ELEMENTS) {
-                        if (this.system.ka[elt] > 0) {
+                        if (Version.data(this).ka[elt] > 0) {
                             approches[elt] = {
                                 label: NephilimActor.libelleApproche(elt)
                             };
@@ -687,9 +688,9 @@ export class NephilimActor extends CombatantMixin(Actor) {
     getKa(element) {
         switch (this.type) {
             case 'figure':
-                return this.system.ka[element] ?? 0;
+                return Version.data(this).ka[element] ?? 0;
             case 'figurant':
-                return this.system.ka;
+                return Version.data(this).ka;
         }
     }
 
@@ -750,7 +751,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @param sid The system identifier of current periode to set.
      */
     async setCurrentPeriode(sid) {
-        await this.update({ ["system.periode"]: sid });
+        await this.update({ [Version.path(this, 'periode')]: sid });
     }
 
     /**
@@ -786,8 +787,8 @@ export class NephilimActor extends CombatantMixin(Actor) {
     async onDeleteEmbeddedActor(actor) {
 
         // Remove the current actor if it is a simulacre of a figure
-        if (actor.system?.simulacre === this.sid) {
-            await actor.update({ ['system.simulacre']: null });
+        if (Version.data(actor).simulacre === this.sid) {
+            await actor.update({ [Version.path(actor, 'simulacre')]: null });
         }
 
         // Remove the current actor if it is a member of a fraternite

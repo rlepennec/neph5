@@ -367,7 +367,7 @@ export class CustomHandlebarsHelpers {
      * @returns the owner actor of the laboratory.
      */
     static laboratoryOwner(actor) {
-        const sid = actor.system.alchimie.courant;
+        const sid = Version.data(actor).alchimie.courant;
         return sid == null ? actor : game.actors.find(i => i.sid === sid);
     }
 
@@ -386,7 +386,7 @@ export class CustomHandlebarsHelpers {
      * @returns the maximum number of materiae primae.
      */
     static getMaxFinalMP(actor, element) {
-        return actor.getMaxBaseMP(element) + actor.system.alchimie.primae[element].max;
+        return actor.getMaxBaseMP(element) + Version.data(actor).alchimie.primae[element].max;
     }
 
     /**

@@ -7,9 +7,9 @@
             <div class="tooltip">
                 <input
                     {{#if @root.locked}}disabled{{/if}}
-                    name="system.ka.brume"
+                    name="{{@root.versionPath}}.ka.brume"
                     type="text"
-                    value="{{../system.ka.brume}}"
+                    value="{{@root.data.ka.brume}}"
                     data-dtype="Number"/>
                 <span class="tooltiptext">{{translate "brume"}}</span>
             </div>

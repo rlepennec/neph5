@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../../core/abstractFeature.js";
+import { Version } from "../../../module/common/version.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { Constants } from "../../../module/common/constants.js";
 
@@ -40,7 +41,7 @@ export class Menace extends AbstractFeature {
      * @Override
      */
     get degre() {
-        return this.actor.system.menace;
+        return Version.data(this.actor).menace;
     }
 
 }

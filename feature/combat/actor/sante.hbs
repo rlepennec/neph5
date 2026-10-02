@@ -30,55 +30,55 @@
 
             <label class="title">{{translate "dommages"}}</label>
 
-            {{#if (gt document.system.ka.terre 9)}}
+            {{#if (gt @root.data.ka.terre 9)}}
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique._5"
-                value=document.system.dommage.physique._5
+                name=(concat @root.versionPath ".dommage.physique._5")
+                value=@root.data.dommage.physique._5
                 class="physique-5"
             }}
             {{/if}}
 
-            {{#if (gt document.system.ka.terre 4)}}
+            {{#if (gt @root.data.ka.terre 4)}}
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique._4"
-                value=document.system.dommage.physique._4
+                name=(concat @root.versionPath ".dommage.physique._4")
+                value=@root.data.dommage.physique._4
                 class="physique-4"
             }}
             {{/if}}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique._3"
-                value=document.system.dommage.physique._3
+                name=(concat @root.versionPath ".dommage.physique._3")
+                value=@root.data.dommage.physique._3
                 class="physique-3"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique._2"
-                value=document.system.dommage.physique._2
+                name=(concat @root.versionPath ".dommage.physique._2")
+                value=@root.data.dommage.physique._2
                 class="physique-2"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique._1"
-                value=document.system.dommage.physique._1
+                name=(concat @root.versionPath ".dommage.physique._1")
+                value=@root.data.dommage.physique._1
                 class="physique-1"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique._1"
-                value=document.system.dommage.magique._1
+                name=(concat @root.versionPath ".dommage.magique._1")
+                value=@root.data.dommage.magique._1
                 class="magique-1"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique._2"
-                value=document.system.dommage.magique._2
+                name=(concat @root.versionPath ".dommage.magique._2")
+                value=@root.data.dommage.magique._2
                 class="magique-2"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique._3"
-                value=document.system.dommage.magique._3
+                name=(concat @root.versionPath ".dommage.magique._3")
+                value=@root.data.dommage.magique._3
                 class="magique-3"
             }}
 
@@ -89,14 +89,14 @@
             <label class="title">{{translate "mineure"}}</label>
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique.mineure"
-                value=document.system.dommage.physique.mineure
+                name=(concat @root.versionPath ".dommage.physique.mineure")
+                value=@root.data.dommage.physique.mineure
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique.mineure"
-                value=document.system.dommage.magique.mineure
+                name=(concat @root.versionPath ".dommage.magique.mineure")
+                value=@root.data.dommage.magique.mineure
                 class="magique"
             }}
 
@@ -107,14 +107,14 @@
             <label class="title">{{translate "serieuse"}}</label>
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique.serieuse"
-                value=document.system.dommage.physique.serieuse
+                name=(concat @root.versionPath ".dommage.physique.serieuse")
+                value=@root.data.dommage.physique.serieuse
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique.serieuse"
-                value=document.system.dommage.magique.serieuse
+                name=(concat @root.versionPath ".dommage.magique.serieuse")
+                value=@root.data.dommage.magique.serieuse
                 class="magique"
             }}
 
@@ -125,14 +125,14 @@
             <label class="title">{{translate "grave"}}</label>
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique.grave"
-                value=document.system.dommage.physique.grave
+                name=(concat @root.versionPath ".dommage.physique.grave")
+                value=@root.data.dommage.physique.grave
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique.grave"
-                value=document.system.dommage.magique.grave
+                name=(concat @root.versionPath ".dommage.magique.grave")
+                value=@root.data.dommage.magique.grave
                 class="magique"
             }}
 
@@ -143,14 +143,14 @@
             <label class="title">{{translate "mortelle"}}</label>
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.physique.mortelle"
-                value=document.system.dommage.physique.mortelle
+                name=(concat @root.versionPath ".dommage.physique.mortelle")
+                value=@root.data.dommage.physique.mortelle
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
-                name="system.dommage.magique.mortelle"
-                value=document.system.dommage.magique.mortelle
+                name=(concat @root.versionPath ".dommage.magique.mortelle")
+                value=@root.data.dommage.magique.mortelle
                 class="magique"
             }}
 

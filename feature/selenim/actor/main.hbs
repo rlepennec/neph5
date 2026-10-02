@@ -30,9 +30,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.pavane"
+                                name="{{@root.versionPath}}.ka.pavane"
                                 type="text"
-                                value="{{system.ka.pavane}}"
+                                value="{{@root.data.ka.pavane}}"
                                 data-dtype="Number"/>
                             <span class="tooltiptext">{{translate "pavane"}}</span>
                         </div>
@@ -44,9 +44,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.noyau"
+                                name="{{@root.versionPath}}.ka.noyau"
                                 type="text"
-                                value="{{system.ka.noyau}}"
+                                value="{{@root.data.ka.noyau}}"
                                 data-dtype="Number"/>
                             <span class="tooltiptext">{{translate "noyau"}}</span>
                         </div>
@@ -57,9 +57,9 @@
                         <div class="tooltip reserveCourante">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.reserveCourante"
+                                name="{{@root.versionPath}}.ka.reserveCourante"
                                 type="text"
-                                value="{{system.ka.reserveCourante}}"
+                                value="{{@root.data.ka.reserveCourante}}"
                                 data-dtype="Number"/>
                             <span class="tooltiptext">{{translate "reserveCourante"}}</span>
                         </div>
@@ -67,9 +67,9 @@
                         <div class="tooltip reserveMaximale">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.reserve"
+                                name="{{@root.versionPath}}.ka.reserve"
                                 type="text"
-                                value="{{system.ka.reserve}}"
+                                value="{{@root.data.ka.reserve}}"
                                 data-dtype="Number"/>
                             <span class="tooltiptext">{{translate "reserveMaximale"}}</span>
                         </div>

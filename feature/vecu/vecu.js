@@ -133,7 +133,7 @@ export class Vecu extends HistoricalFeature {
             // For figure only, edit combat option
             if (this.manoeuver != null) {
                 if (this.actor.items.find(i => i.sid === this.sid)) {
-                    await this.actor.update({ ['system.manoeuvres.' + this.manoeuver]: this.sid });
+                    await this.actor.update({ [Version.path(this.actor, 'manoeuvres') + '.' + this.manoeuver]: this.sid });
                 } else {
                     ui.notifications.warn(game.i18n.localize('NEPHILIM.vecuNonDefini').replaceAll("${item}", this.name));
                 }
@@ -232,10 +232,10 @@ export class Vecu extends HistoricalFeature {
 
         // Update actor manoeuvres, lutte and esquive
         if (this.actor.type === 'figure') {
-            const manoeuvres = foundry.utils.duplicate(this.actor.system.manoeuvres);
+            const manoeuvres = foundry.utils.duplicate(Version.data(this.actor).manoeuvres);
             manoeuvres.esquive = manoeuvres.esquive === this.embedded.sid ? null : manoeuvres.esquive;
             manoeuvres.lutte = manoeuvres.lutte === this.embedded.sid ? null : manoeuvres.lutte;
-            await this.actor.update({['system.manoeuvres']: manoeuvres});
+            await this.actor.update({ [Version.path(this.actor, 'manoeuvres')]: manoeuvres});
         }
 
         // Render the actor sheet if opened

@@ -12,10 +12,10 @@
             <input
                 {{#if @root.locked}}disabled{{/if}}
                 class="middle"
-                name="system.pointsIncarnations"
+                name="{{@root.versionPath}}.pointsIncarnations"
                 placeholder="0"
                 type="text"
-                value="{{system.pointsIncarnations}}"
+                value="{{@root.data.pointsIncarnations}}"
                 data-dtype="Number"/>
             <span class="tooltiptext">{{translate "pointsIncarnations"}}</span>
         </div>
@@ -24,10 +24,10 @@
             <img class="circle"/>
             <input
                 {{#if @root.locked}}disabled{{/if}}
-                name="system.sapienceDepensee"
+                name="{{@root.versionPath}}.sapienceDepensee"
                 placeholder="0"
                 type="text"
-                value="{{system.sapienceDepensee}}"
+                value="{{@root.data.sapienceDepensee}}"
                 data-dtype="Number"/>
             <span class="tooltiptext">{{translate "sapienceDepensee"}}</span>
         </div>
@@ -36,10 +36,10 @@
             <img class="circle"/>
             <input
                 {{#if @root.locked}}disabled{{/if}}
-                name="system.sapience"
+                name="{{@root.versionPath}}.sapience"
                 placeholder="0"
                 type="text"
-                value="{{system.sapience}}"
+                value="{{@root.data.sapience}}"
                 data-dtype="Number"/>
             <span class="tooltiptext">{{translate "sapienceCourante"}}</span>
         </div>
@@ -70,7 +70,7 @@
 
                 <img class="separator"/>
 
-                <label data-action="displayPeriode" class="periode-name display {{#if (eq ../actor.system.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label data-action="displayPeriode" class="periode-name display {{#if (eq @root.data.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <div class="periode-actions">
 
@@ -78,7 +78,7 @@
                     <label data-action="activatePeriode" class="{{#if periode.embedded.actif}}fa-solid{{else}}fa-regular{{/if}} fa-fire activate" data-tooltip="{{#if periode.embedded.actif}}{{translate 'desactiver'}}{{else}}{{translate 'activer'}}{{/if}}"></label>
                     {{/if}}
 
-                    {{#unless (eq ../actor.system.periode periode.original.sid)}}
+                    {{#unless (eq @root.data.periode periode.original.sid)}}
                     <label data-action="currentPeriode" class="fa-solid fa-thumbtack-angle" data-tooltip="{{translate 'periodeCourante'}}"></label>
                     {{/unless}}
 

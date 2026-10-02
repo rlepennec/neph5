@@ -229,7 +229,7 @@ export class Science extends HistoricalFeature {
 
         for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
 
-            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
+            const feature = new FeatureBuilder(actor).withPeriode(Version.data(actor).periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;
             const uncastable = feature.uncastable;
@@ -326,7 +326,7 @@ export class Science extends HistoricalFeature {
         for (let cercle of cercles) {
 
             // Skip Daath if not activated for the character
-            if (cercle === 'daath' && actor.system.options.daath !== true) {
+            if (cercle === 'daath' && Version.data(actor).options.daath !== true) {
                 continue;
             }
 
@@ -425,7 +425,7 @@ export class Science extends HistoricalFeature {
         
         for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
 
-            const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
+            const feature = new FeatureBuilder(actor).withPeriode(Version.data(actor).periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;
             const uncastable = feature.uncastable;

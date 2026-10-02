@@ -29,9 +29,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.air"
+                                name="{{@root.versionPath}}.ka.air"
                                 type="text"
-                                value="{{system.ka.air}}"
+                                value="{{@root.data.ka.air}}"
                                 data-dtype="Number"/>
                         </div>
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
@@ -42,9 +42,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.eau"
+                                name="{{@root.versionPath}}.ka.eau"
                                 type="text"
-                                value="{{system.ka.eau}}"
+                                value="{{@root.data.ka.eau}}"
                                 data-dtype="Number"/>
                         </div>
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
@@ -55,9 +55,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.feu"
+                                name="{{@root.versionPath}}.ka.feu"
                                 type="text"
-                                value="{{system.ka.feu}}"
+                                value="{{@root.data.ka.feu}}"
                                 data-dtype="Number"/>
                         </div>
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
@@ -68,9 +68,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.lune"
+                                name="{{@root.versionPath}}.ka.lune"
                                 type="text"
-                                value="{{system.ka.lune}}"
+                                value="{{@root.data.ka.lune}}"
                                 data-dtype="Number"/>
                         </div>
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
@@ -81,9 +81,9 @@
                         <div class="tooltip">
                             <input
                                 {{#if @root.locked}}disabled{{/if}}
-                                name="system.ka.terre"
+                                name="{{@root.versionPath}}.ka.terre"
                                 type="text"
-                                value="{{system.ka.terre}}"
+                                value="{{@root.data.ka.terre}}"
                                 data-dtype="Number"/>
                         </div>
                         <a class="dice"><i class="fas fa-dice-d20"></i></a>
@@ -279,7 +279,7 @@
                 </li>
                 {{/with}}
 
-                {{#if actor.system.options.luneNoire}}
+                {{#if @root.data.options.luneNoire}}
                 {{#with actor.luneNoire as |chute|}}
                 <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
@@ -466,9 +466,9 @@
                 <input
                     {{#if @root.locked}}disabled{{/if}}
                     class="degre"
-                    name="system.stase.ka"
+                    name="{{@root.versionPath}}.stase.ka"
                     type="text"
-                    value="{{system.stase.ka}}"
+                    value="{{@root.data.stase.ka}}"
                     data-dtype="Number"/>
 
                 <img class="separator"/>
@@ -476,9 +476,9 @@
                 <input
                     {{#if @root.locked}}disabled{{/if}}
                     class="name"
-                    name="system.stase.description"
+                    name="{{@root.versionPath}}.stase.description"
                     type="text"
-                    value="{{system.stase.description}}"
+                    value="{{@root.data.stase.description}}"
                     data-dtype="String"
                     placeholder="{{translate 'stase'}}"/>
 

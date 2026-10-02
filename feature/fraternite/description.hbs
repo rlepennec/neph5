@@ -7,11 +7,11 @@
     {{{enrichedDescription}}}
     {{else}}
     <prose-mirror
-        name="system.description"
+        name="{{@root.versionPath}}.description"
         button="true"
         editable="{{editable}}"
         toggled="false"
-        value="{{document.system.description}}">
+        value="{{@root.data.description}}">
         {{{enrichedDescription}}}
     </prose-mirror>
     {{/if}}

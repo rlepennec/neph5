@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 
 export class Noyau extends AbstractFeature {
@@ -40,7 +41,7 @@ export class Noyau extends AbstractFeature {
      * @Override
      */
     get degre() {
-        return this.actor.system.ka.noyau;
+        return Version.data(this.actor).ka.noyau;
     }
 
 }

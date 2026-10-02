@@ -13,19 +13,19 @@
     <ol class="body">
 
         <!-- Display the vecus of the simulacre -->
-        {{#if (and (nonNull system.simulacre) (eq system.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
+        {{#if (and (nonNull @root.data.simulacre) (eq @root.data.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
         {{#each actor.vecusOfSimulacre as |item|}}
         <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}" data-scope="simulacre">
 
             <div class="vecu-definition">
 
-                {{#if ../../actor.system.options.degreGauche}}
+                {{#if @root.data.options.degreGauche}}
                 <label class="vecu-degre">{{item.degre}}</label>
                 {{/if}}
 
                 <label data-action="openItem" class="vecu-name open">{{item.name}}</label>
 
-                {{#unless ../../actor.system.options.degreGauche}}
+                {{#unless @root.data.options.degreGauche}}
                 <label class="vecu-degre">{{item.degre}}</label>
                 {{/unless}}
 
@@ -51,13 +51,13 @@
 
             <div class="vecu-definition">
 
-                {{#if ../../actor.system.options.degreGauche}}
+                {{#if @root.data.options.degreGauche}}
                 <label class="vecu-degre">{{item.degre}}</label>
                 {{/if}}
 
                 <label data-action="openItem" class="vecu-name open">{{item.name}}</label>
 
-                {{#unless ../../actor.system.options.degreGauche}}
+                {{#unless @root.data.options.degreGauche}}
                 <label class="vecu-degre">{{item.degre}}</label>
                 {{/unless}}
 
@@ -82,13 +82,13 @@
 
             <div class="vecu-definition">
 
-                {{#if ../../actor.system.options.degreGauche}}
+                {{#if @root.data.options.degreGauche}}
                 <label class="vecu-degre {{#if (eq item.degre 0)}}undeveloped{{/if}}">{{item.degre}}</label>
                 {{/if}}
 
                 <label data-action="openItem" class="vecu-name open {{#if (eq item.degre 0)}}undeveloped{{/if}}">{{item.name}}</label>
 
-                {{#unless ../../actor.system.options.degreGauche}}
+                {{#unless @root.data.options.degreGauche}}
                 <label class="vecu-degre {{#if (eq item.degre 0)}}undeveloped{{/if}}">{{item.degre}}</label>
                 {{/unless}}
 

@@ -235,7 +235,7 @@ export class AbstractManoeuver {
                 return this.impact.modifier
                     + (Version.data(weapon).damages ?? 0)
                     + actor.dommage
-                    + actor.system.bonus.dommage;
+                    + Version.data(actor).bonus.dommage;
             }
             if (this.impact.hasOwnProperty('fix')) {
                 return this.impact.fix;
@@ -292,7 +292,7 @@ export class AbstractManoeuver {
                         ? ActionDataBuilder.competenceOf(actor, weapon)
                         : null;
                 }
-                const sid = actor.system.manoeuvres[field];
+                const sid = Version.data(actor).manoeuvres[field];
                 const item = game.items.find(i => i.sid === sid);
                 return item == null ? none : item.type === 'competence' ? item : actor.items.find(i => i.sid === sid);
             }

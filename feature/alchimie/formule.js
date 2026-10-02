@@ -38,7 +38,7 @@ export class Formule extends AbstractFocus {
      */
     async finalize(result) {
 
-        if (this.actor.system.options.gestionLaboratoire !== true) {
+        if (Version.data(this.actor).options.gestionLaboratoire !== true) {
             return;
         }
 
@@ -50,8 +50,8 @@ export class Formule extends AbstractFocus {
             // If not critical, spend materiae primae
             if (result.critical === false) {
                 for (let element of Version.data(this.item).elements) {
-                    const quantite = Math.max(0, this.actor.system.alchimie.primae[element].quantite - Version.data(this.item).degre);
-                    await this.actor.update({ ['system.alchimie.primae.' + element + ".quantite"]: quantite });
+                    const quantite = Math.max(0, Version.data(this.actor).alchimie.primae[element].quantite - Version.data(this.item).degre);
+                    await this.actor.update({ [Version.path(this.actor, 'alchimie') + '.primae.' + element + ".quantite"]: quantite });
                 }
             }
 
@@ -67,15 +67,15 @@ export class Formule extends AbstractFocus {
             const substance = Version.data(this.item).substance;
             const construct = this.actor.getConstruct(substance);
             if (parameters == null || parameters.elt == null) {
-                if (this.actor.system.alchimie.primae.air.quantite > 4) {
+                if (Version.data(this.actor).alchimie.primae.air.quantite > 4) {
                     return construct['air'] * 10;
-                } else if (this.actor.system.alchimie.primae.eau.quantite > 4) {
+                } else if (Version.data(this.actor).alchimie.primae.eau.quantite > 4) {
                     return construct['eau'] * 10;
-                } else if (this.actor.system.alchimie.primae.feu.quantite > 4) {
+                } else if (Version.data(this.actor).alchimie.primae.feu.quantite > 4) {
                     return construct['feu'] * 10;
-                } else if (this.actor.system.alchimie.primae.lune.quantite > 4) {
+                } else if (Version.data(this.actor).alchimie.primae.lune.quantite > 4) {
                     return construct['lune'] * 10;
-                } else if (this.actor.system.alchimie.primae.terre.quantite > 4) {
+                } else if (Version.data(this.actor).alchimie.primae.terre.quantite > 4) {
                     return construct['terre'] * 10;
                 } else {
                     return 0;
@@ -121,7 +121,7 @@ export class Formule extends AbstractFocus {
      */
     getOwner() {
         if (this.actor.type === 'figure') {
-            const sid = this.actor.system.alchimie.courant;
+            const sid = Version.data(this.actor).alchimie.courant;
             return sid == null ? this.actor : game.actors.find(i => i.sid === sid);
         } else {
             return null;
@@ -178,27 +178,27 @@ export class Formule extends AbstractFocus {
                 case 'feu':
                 case 'lune':
                 case 'terre':
-                    if (this.actor.system.alchimie.primae[element].quantite < Version.data(this.item).degre) {
+                    if (Version.data(this.actor).alchimie.primae[element].quantite < Version.data(this.item).degre) {
                         return -110;
                     }
                     break;
 
                 case 'quintuple':
-                    if (this.actor.system.alchimie.primae['air'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['eau'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['feu'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['lune'].quantite < 5 &&
-                        this.actor.system.alchimie.primae['terre'].quantite < 5) {
+                    if (Version.data(this.actor).alchimie.primae['air'].quantite < 5 &&
+                        Version.data(this.actor).alchimie.primae['eau'].quantite < 5 &&
+                        Version.data(this.actor).alchimie.primae['feu'].quantite < 5 &&
+                        Version.data(this.actor).alchimie.primae['lune'].quantite < 5 &&
+                        Version.data(this.actor).alchimie.primae['terre'].quantite < 5) {
                         return -110;
                     }
                     break;
 
                 case 'quintessence':
-                    if (this.actor.system.alchimie.primae['air'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['eau'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['feu'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['lune'].quantite < 1 ||
-                        this.actor.system.alchimie.primae['terre'].quantite < 1) {
+                    if (Version.data(this.actor).alchimie.primae['air'].quantite < 1 ||
+                        Version.data(this.actor).alchimie.primae['eau'].quantite < 1 ||
+                        Version.data(this.actor).alchimie.primae['feu'].quantite < 1 ||
+                        Version.data(this.actor).alchimie.primae['lune'].quantite < 1 ||
+                        Version.data(this.actor).alchimie.primae['terre'].quantite < 1) {
                         return -110;
                     }
                     break;

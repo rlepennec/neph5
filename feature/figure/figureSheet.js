@@ -149,7 +149,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      */
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
-        const o = this.document.system.options ?? {};
+        const o = Version.data(this.document).options ?? {};
         const tabs = FigureSheet.TAB_DEFINITIONS
             .filter(d => d.option == null || o[d.option])
             .filter(d => d.unlocked !== true || this.locked === false)
@@ -234,7 +234,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** Fixe le degré d'une chute (clic sur un cercle). */
     async _onChute(event) {
         if (this.locked) return;
-        if (this.document.system.periode == null) return;
+        if (Version.data(this.document).periode == null) return;
         const target = event.currentTarget;
         const type = ['khaiba', 'narcose', 'ombre', 'luneNoire'].find(t => target.classList.contains(t));
         await new Chute(this.document).set(type, parseInt(target.dataset.id));
@@ -353,7 +353,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     static async _onDropFocus(event, document) {
         await new FeatureBuilder(this.document)
             .withOriginalItem(document.sid)
-            .withPeriode(this.document.system.periode)
+            .withPeriode(Version.data(this.document).periode)
             .create()
             .drop();
         await this.render(true);
@@ -385,8 +385,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      * Drop d'un figurant sur la figure : le définit comme simulacre.
      */
     static async _onDropSimulacre(event, document) {
-        if (this.document.system.options?.simulacre !== true) return;
-        await this.document.update({ ['system.simulacre']: document.sid });
+        if (Version.data(this.document).options?.simulacre !== true) return;
+        await this.document.update({ [Version.path(this.document, 'simulacre')]: document.sid });
     }
 
     /**
@@ -410,8 +410,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         event.preventDefault();
         if (this.locked) return;
         const vaisseau = event.currentTarget.closest('.vaisseau').dataset.type;
-        const activated = this.document.system.akasha[vaisseau].active;
-        await this.document.update({ ['system.akasha.' + vaisseau + '.active']: !activated });
+        const activated = Version.data(this.document).akasha[vaisseau].active;
+        await this.document.update({ [Version.path(this.document, 'akasha') + '.' + vaisseau + '.active']: !activated });
     }
 
     /**
@@ -429,19 +429,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /** Active/désactive un construct (seulement sur son propre labo, déverrouillé). */
     static async _onConstruct(event, target) {
-        if (this.document.system.alchimie.courant == null && this.locked === false) {
+        if (Version.data(this.document).alchimie.courant == null && this.locked === false) {
             const construct = target.closest('.tooltip').dataset.type;
-            const activated = this.document.system.alchimie.constructs[construct].active;
-            await this.document.update({ ['system.alchimie.constructs.' + construct + ".active"]: !activated });
+            const activated = Version.data(this.document).alchimie.constructs[construct].active;
+            await this.document.update({ [Version.path(this.document, 'alchimie') + '.constructs.' + construct + ".active"]: !activated });
         }
     }
 
     /** Ajoute un laboratoire en déposant un acteur alchimiste sur l'onglet laboratoire. */
     static async _onDropLaboratory(event, document) {
-        const laboratoires = this.document.system.alchimie.laboratoires;
+        const laboratoires = Version.data(this.document).alchimie.laboratoires;
         if (!laboratoires.includes(document.sid)) {
             await this.document.update({
-                ['system.alchimie.laboratoires']: [...laboratoires, document.sid]
+                [Version.path(this.document, 'alchimie') + '.laboratoires']: [...laboratoires, document.sid]
             });
         }
     }
@@ -449,16 +449,16 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** Sélectionne un laboratoire (le sien si pas de data-sid). */
     static async _onSelectLaboratory(event, target) {
         const sid = target.dataset.sid;
-        await this.document.update({ ['system.alchimie.courant']: sid == null ? null : sid });
+        await this.document.update({ [Version.path(this.document, 'alchimie') + '.courant']: sid == null ? null : sid });
     }
 
     /** Supprime le laboratoire courant. */
     static async _onDeleteLaboratory(event, target) {
         if (this.locked) return;
-        const sid = this.document.system.alchimie.courant;
-        const labs = this.document.system.alchimie.laboratoires.filter(i => i !== sid);
-        await this.document.update({ ['system.alchimie.laboratoires']: labs });
-        await this.document.update({ ['system.alchimie.courant']: null });
+        const sid = Version.data(this.document).alchimie.courant;
+        const labs = Version.data(this.document).alchimie.laboratoires.filter(i => i !== sid);
+        await this.document.update({ [Version.path(this.document, 'alchimie') + '.laboratoires']: labs });
+        await this.document.update({ [Version.path(this.document, 'alchimie') + '.courant']: null });
     }
 
     /** Édite la quantité d'une materia (input .quantite de la liste). */
@@ -475,7 +475,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      */
     async _onSubmit(event, form, formData) {
         for (const elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
-            const key = 'system.alchimie.primae.' + elt + '.max';
+            const key = Version.path(this.document, 'alchimie') + '.primae.' + elt + '.max';
             const input = formData.object[key];
             if (input !== undefined) {
                 formData.object[key] = input - this.document.getMaxBaseMP(elt);

@@ -1,4 +1,5 @@
 import { Periode } from "../periode/periode.js"; 
+import { Version } from "../../module/common/version.js";
 
 export class Fraternite {
 
@@ -34,8 +35,8 @@ export class Fraternite {
      */
     isActiveMember(actor) {
         let active = null;
-        for (let periode of Periode.getChronological(this.actor, true, null, this.actor.system.periode)) {
-            const found = this.actor.system.effectif.find(m => m.periode === periode.sid && m.actor === actor.sid);
+        for (let periode of Periode.getChronological(this.actor, true, null, Version.data(this.actor).periode)) {
+            const found = Version.data(this.actor).effectif.find(m => m.periode === periode.sid && m.actor === actor.sid);
             if (found != null) {
                 if (active === null) {
                     active = true;
@@ -52,7 +53,7 @@ export class Fraternite {
      */
     status() {
         const status = [];
-        for (let s of this.actor.system.effectif.map(e => e.status)) {
+        for (let s of Version.data(this.actor).effectif.map(e => e.status)) {
             if (status.includes(s) !== true) {
                 status.push(s);
             }
@@ -66,8 +67,8 @@ export class Fraternite {
      */
     membresWithStatus(status) {
         let membres = [];
-        for (let periode of Periode.getChronological(this.actor, true, null, this.actor.system.periode)) {
-            for (let membre of this.actor.system.effectif.filter(m => m.status === status && m.periode === periode.sid)) {
+        for (let periode of Periode.getChronological(this.actor, true, null, Version.data(this.actor).periode)) {
+            for (let membre of Version.data(this.actor).effectif.filter(m => m.status === status && m.periode === periode.sid)) {
                 const actor = membres.find(m => m.sid === membre.actor);
                 if (actor == null) {
                     membres.push(game.actors.find(a => a.sid === membre.actor));
@@ -88,7 +89,7 @@ export class Fraternite {
     async addMember(event, actor, periode, status) {
 
         // Check the actor is already a member
-        const effectif = foundry.utils.duplicate(this.actor.system.effectif);
+        const effectif = foundry.utils.duplicate(Version.data(this.actor).effectif);
         const found = effectif.find(m => m.actor === actor.sid && m.periode === periode);
         if (found != null) {
             return;
@@ -100,7 +101,7 @@ export class Fraternite {
             periode: periode,
             actor: actor.sid
         });
-        await this.actor.update({ ['system.effectif']: effectif });
+        await this.actor.update({ [Version.path(this.actor, 'effectif')]: effectif });
 
     }
 
@@ -110,8 +111,8 @@ export class Fraternite {
      */
     async deleteMember(actor, periode) {
         if (actor?.type === 'figure' || actor?.type === 'figurant') {
-            const effectif = this.actor.system.effectif.filter(m => m.actor !== actor.sid || m.periode !== periode);
-            await this.actor.update({ ['system.effectif']: effectif });
+            const effectif = Version.data(this.actor).effectif.filter(m => m.actor !== actor.sid || m.periode !== periode);
+            await this.actor.update({ [Version.path(this.actor, 'effectif')]: effectif });
         }
     }
 
@@ -119,16 +120,16 @@ export class Fraternite {
      * @param periode The periode object to delete.
      */
     async onDeletePeriode(periode) {
-        const effectif = this.actor.system.effectif.filter(m => m.periode !== periode.sid);
-        await this.actor.update({ ['system.effectif']: effectif });
+        const effectif = Version.data(this.actor).effectif.filter(m => m.periode !== periode.sid);
+        await this.actor.update({ [Version.path(this.actor, 'effectif')]: effectif });
     }
 
     /**
      * @param actor The actor object to delete.
      */
     async onDeleteActor(actor) {
-        const effectif = this.actor.system.effectif.filter(m => m.actor !== actor.sid);
-        await this.actor.update({ ['system.effectif']: effectif });
+        const effectif = Version.data(this.actor).effectif.filter(m => m.actor !== actor.sid);
+        await this.actor.update({ [Version.path(this.actor, 'effectif')]: effectif });
     }
 
     /**
@@ -140,7 +141,7 @@ export class Fraternite {
         const member = game.actors.get(actor);
         let move = null;
         for (let p of Periode.getChronological(this.actor, true, null, periode)) {
-            if (this.actor.system.effectif.find(m => m.actor === member.sid && m.periode === p.sid) != null) {
+            if (Version.data(this.actor).effectif.find(m => m.actor === member.sid && m.periode === p.sid) != null) {
                 if (move == null) {
                     move = true;
                 } else {

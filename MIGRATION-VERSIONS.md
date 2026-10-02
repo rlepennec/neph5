@@ -19,7 +19,7 @@ système affiche l'une d'elles, et pourra décrire les autres plus tard.
 
 | Décision | Raison |
 |---|---|
-| Le **tronc commun** se limite à `id` et `illustration` | `id` porte toutes les références — `sid` n'est qu'un accesseur sur `system.id`, donc la migration ne touche pas à la machinerie des références. `illustration` ne dépend pas des règles et le système la pose lui-même à la création comme à la duplication. |
+| Le **tronc commun** se limite à `id` et `illustration` — à `id` **seul** pour les acteurs, `options` compris dans les versions (choix explicite) | `id` porte toutes les références — `sid` n'est qu'un accesseur sur `system.id`, donc la migration ne touche pas à la machinerie des références. `illustration` ne dépend pas des règles et le système la pose lui-même à la création comme à la duplication. |
 | La **description appartient aux versions** | Le texte d'un objet peut être réécrit d'une édition à l'autre. Conséquence : les 35 modèles en ont une, donc **aucun type ne peut être laissé de côté**. |
 | La version affichée est un état de **fiche**, pas de document | Deux fenêtres ouvertes sur le même objet peuvent montrer deux éditions ; rien n'est écrit dans le document. |
 | La version **par défaut** est un réglage de monde, réservé au MJ | Hors d'une fiche — chat, listes sur une feuille d'acteur — personne ne choisit : on prend celle du monde. |
@@ -112,25 +112,35 @@ portés et les autres**, et autorise à migrer par lots. Il disparaîtra avec le
 
 ## 3. État au 2 octobre 2026
 
-**32 types portés sur 35** — la table de `VersionMigration` fait foi :
+**Les 35 types sont portés** — la table de `VersionMigration` fait foi :
 
 > alchimie, appel, arcane, arme, armure, aspect, atlanteide, capacite, catalyseur, chute, competence,
-> divination, dracomachie, formule, habitus, invocation, magie, materiae, metamorphe, ordonnance, passe,
+> divination, dracomachie, figurant, figure, formule, fraternite, habitus, invocation, magie, materiae, metamorphe, ordonnance, passe,
 > periode, pratique, quete, rite, rituel, savoir, science, sort, technique, tekhne, vecu
 
-Migrations écrites et enregistrées : **1.0.9** à **1.0.17** — la dernière pour le
-métamorphe.
+Migrations écrites et enregistrées : **1.0.9** à **1.0.18** — la dernière pour les
+acteurs, et les deltas des tokens non liés (voir point dur n° 5).
 
-**Restent 3 types** : les trois acteurs figure, figurant, fraternite.
 
 **Rien n'a encore tourné dans Foundry.** Tout est vérifié statiquement : modèles chargés
 sous node avec la couche de données réelle, gabarits précompilés, `node --check`, tests de
 `migrateData` sur les cas limites.
 
-### Prochains lots
+### Suite
 
-Les trois **acteurs**. Points connus : 16 sites lisent `actor.system.periode`, et
-`options` / `setOptions`.
+Plus aucun type à porter. Restent : l'essai dans Foundry (sur une copie de monde), le
+compendium (point dur n° 6), le garde-fou et la suppression des passerelles (n° 7), puis
+l'objet incarnation (point 6 du plan initial).
+
+### Fiches d'acteur
+
+Les gabarits de fiche lisent `@root.data.<champ>` et écrivent
+`name=(concat @root.versionPath ".<champ>")` dans une moustache, `name="{{@root.versionPath}}.<champ>"`
+en HTML nu : `@root`, parce que les partiels reçoivent l'acteur par `actor`, `../actor`,
+`document` ou `system` selon l'endroit. Le dialogue de jet (`action.hbs`) n'est pas une
+fiche : il reçoit `actorPrimae` résolu par `ActionDataBuilder.export()`. Une version vide
+rend `templates/version-vide-acteur.html` (image et nom), via
+`NephilimActorSheet._configureRenderParts`.
 
 ---
 
@@ -215,11 +225,15 @@ Porter **par grappes de types qui partagent leurs champs**, pas par ordre alphab
    les dialogues de combat (`contact.hbs`, `defense.hbs`, `distance.hbs`) appellent
    `versionValue weapon 'x'` sans version : celle du monde.
 
-5. **Les acteurs sont le vrai morceau.** Seize sites lisent `actor.system.periode`, la période
-   **courante du personnage** — homonyme du champ d'un item, sémantiquement différente, et
-   délibérément laissée intacte. S'y ajoutent les `options`, écrites par le panneau de réglages
-   via `setOptions`, et la convention tacite où la non-vacuité de `getEmbeddedData()` décide de
-   la lecture seule d'une fiche ouverte depuis un acteur.
+5. **Les tokens non liés — traité par 1.0.18, non essayé.** `ActorDelta.system` est un
+   `ObjectField` brut : aucun `migrateData` de modèle ne le voit. Foundry le fusionne sur
+   l'acteur de base, déjà versionné, avant de construire l'acteur synthétique, et la
+   passerelle laisse gagner la valeur rangée — celle de la base. Un figurant blessé
+   reprendrait les dommages de son modèle (vérifié sous node : `menace` 9 dans le delta
+   donnait 2). La migration 1.0.18 déplace donc les écarts de chaque delta, scène par scène,
+   par `token.delta.update({ system: ForcedReplacement })` — **ce chemin d'écriture est le
+   moins sûr du chantier, à vérifier en premier dans Foundry**. Les scènes des compendiums
+   ne sont pas traitées.
 
 6. **Le compendium verrouille la sortie.** `packs/system/` est livré avec le système et
    expédie l'ancienne forme : chaque import la réintroduit. Il doit être transformé hors ligne

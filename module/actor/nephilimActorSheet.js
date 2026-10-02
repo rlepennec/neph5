@@ -1,4 +1,5 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
+import { Version } from "../../module/common/version.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { NephilimActor } from "./nephilimActor.js"
@@ -20,6 +21,20 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         actions: {
             deleteItem: NephilimActorSheet._onDeleteEmbeddedItem
         }
+    }
+
+    /**
+     * @override
+     * Une version que le modèle ne décrit pas encore n'a aucun champ : la fiche rend alors
+     * une page qui garde l'image et le nom, et annonce qu'il n'y a rien à montrer — comme
+     * la fiche d'item, pour les trois types d'acteur à la fois.
+     */
+    _configureRenderParts(options) {
+        const parts = super._configureRenderParts(options);
+        if (Object.keys(Version.data(this.document, this.version) ?? {}).length === 0) {
+            parts.main.template = `systems/neph5e/templates/version-vide-acteur.html`;
+        }
+        return parts;
     }
 
     /** 
@@ -86,7 +101,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     async setOptions(options) {
         const update = {};
         for (const [key, value] of Object.entries(options)) {
-            update[`system.options.${key}`] = value;
+            update[Version.path(this.document, 'options', this.version) + '.' + key] = value;
         }
         await this.document.update(update);
     }

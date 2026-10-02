@@ -1,3 +1,5 @@
+import { Version } from "../../module/common/version.js";
+
 export class Laboratoire {
 
     /**
@@ -32,7 +34,7 @@ export class Laboratoire {
      * @returns true if the construct is active.
      */
     isActive(construct) {
-        return this.actor.system.alchimie.constructs[construct].active;
+        return Version.data(this.actor).alchimie.constructs[construct].active;
     }
 
     /**
@@ -41,13 +43,13 @@ export class Laboratoire {
      */
     static getAll(actor) {
         const all = [];
-        for (let sid of actor.system.alchimie.laboratoires) {
+        for (let sid of Version.data(actor).alchimie.laboratoires) {
             const _actor = game.actors.find(i => i.sid === sid);
             if (_actor != null) {
                 all.push({
                     id: _actor.sid,
                     name: _actor.name,
-                    active: actor.system.alchimie.courant === _actor.sid
+                    active: Version.data(actor).alchimie.courant === _actor.sid
                 });
             }
         }
@@ -62,15 +64,15 @@ export class Laboratoire {
     getConstruct(substance) {
         switch (substance) {
             case Laboratoire.AMBRE:
-                return this.actor.system.alchimie.constructs.cornue;
+                return Version.data(this.actor).alchimie.constructs.cornue;
             case Laboratoire.LIQUEUR:
-                return this.actor.system.alchimie.constructs.alambic;
+                return Version.data(this.actor).alchimie.constructs.alambic;
             case Laboratoire.METAL:
-                return this.actor.system.alchimie.constructs.creuset;
+                return Version.data(this.actor).alchimie.constructs.creuset;
             case Laboratoire.POUDRE:
-                return this.actor.system.alchimie.constructs.athanor;
+                return Version.data(this.actor).alchimie.constructs.athanor;
             case Laboratoire.VAPEUR:
-                return this.actor.system.alchimie.constructs.aludel;
+                return Version.data(this.actor).alchimie.constructs.aludel;
         }
     }
 
@@ -82,7 +84,7 @@ export class Laboratoire {
         return this.actor.science('oeuvreAuNoir') +
             this.actor.science('oeuvreAuBlanc') +
             this.actor.science('oeuvreAuRouge') +
-            this.actor.system.ka[element];
+            Version.data(this.actor).ka[element];
     }
 
 }

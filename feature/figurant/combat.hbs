@@ -33,9 +33,9 @@
                     <a data-action="rollMenace"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <label>{{translate "menace"}}</label>
                     {{> "systems/neph5e/templates/input.hbs"
-                        name="system.menace"
+                        name=(concat @root.versionPath ".menace")
                         type="number"
-                        value=document.system.menace
+                        value=@root.data.menace
                     }}
                     <a><i></i></a>
                 </li>
@@ -44,9 +44,9 @@
                     <a data-action="rollKa"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <label>{{translate "ka"}}</label>
                     {{> "systems/neph5e/templates/input.hbs"
-                        name="system.ka"
+                        name=(concat @root.versionPath ".ka")
                         type="number"
-                        value=document.system.ka
+                        value=@root.data.ka
                     }}
                     <a><i></i></a>
                 </li>

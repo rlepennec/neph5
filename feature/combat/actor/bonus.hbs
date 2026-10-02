@@ -11,18 +11,18 @@
         <li>
             <label>{{translate "mouvement"}}</label>
             {{> "systems/neph5e/templates/input.hbs"
-                name="system.bonus.mouvement"
+                name=(concat @root.versionPath ".bonus.mouvement")
                 type="number"
-                value=document.system.bonus.mouvement
+                value=@root.data.bonus.mouvement
             }}
         </li>
 
         <li>
             <label>{{translate "initiative"}}</label>
             {{> "systems/neph5e/templates/input.hbs"
-                name="system.bonus.initiative"
+                name=(concat @root.versionPath ".bonus.initiative")
                 type="number"
-                value=document.system.bonus.initiative
+                value=@root.data.bonus.initiative
             }}
         </li>
 
@@ -30,18 +30,18 @@
         <li>
             <label>{{translate "dommages"}}</label>
             {{> "systems/neph5e/templates/input.hbs"
-                name="system.bonus.dommage"
+                name=(concat @root.versionPath ".bonus.dommage")
                 type="number"
-                value=document.system.bonus.dommage
+                value=@root.data.bonus.dommage
             }}
         </li>
 
         <li>
             <label>{{translate "protection"}}</label>
             {{> "systems/neph5e/templates/input.hbs"
-                name="system.bonus.protection"
+                name=(concat @root.versionPath ".bonus.protection")
                 type="number"
-                value=document.system.bonus.protection
+                value=@root.data.bonus.protection
             }}
         </li>
 

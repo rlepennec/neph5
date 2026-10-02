@@ -1,4 +1,5 @@
 import { Competence } from "../../competence/competence.js";
+import { Version } from "../../../module/common/version.js";
 import { Vecu } from "../../vecu/vecu.js";
 
 export class Combat {
@@ -33,7 +34,7 @@ export class Combat {
                 }
             case 'figurant':
                 if (item?.name === 'Menace') {
-                    return this.actor.system.menace;
+                    return Version.data(this.actor).menace;
                 }
         }
     }

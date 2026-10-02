@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 
 export class Pavane extends AbstractFeature {
@@ -39,7 +40,7 @@ export class Pavane extends AbstractFeature {
      * @Override
      */
     get degre() {
-        return this.actor.system.ka.pavane;
+        return Version.data(this.actor).ka.pavane;
     }
 
 }

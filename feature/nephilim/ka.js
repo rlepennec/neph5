@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 
 export class Ka extends AbstractFeature {
@@ -84,14 +85,14 @@ export class Ka extends AbstractFeature {
             case 'figure':
                 switch (this.scope) {
                     case 'actor':
-                        return this.actor.system.ka[this.ka];
+                        return Version.data(this.actor).ka[this.ka];
                     case 'simulacre':
-                        return game.actors.find(a => a.sid === this.actor.system.simulacre).system.ka;
+                        return Version.data(game.actors.find(a => a.sid === Version.data(this.actor).simulacre)).ka;
                     default:
                         throw new Error("Ka.degre scope " + this.scope + " not implemented");
                 }
             case 'figurant':
-                return this.actor.system.ka;
+                return Version.data(this.actor).ka;
             default:
                 throw new Error("Ka.degre actor type " + this.actor.type + " not implemented");
         }

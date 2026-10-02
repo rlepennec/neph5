@@ -1,4 +1,5 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
+import { Version } from "../../../module/common/version.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -17,7 +18,7 @@ export class Wrestle extends AbstractCombatFeature {
      */
     constructor(actor) {
         super(actor);
-        this.item = actor.type === 'figure' ? game.items.find(i => i.sid === actor.system?.manoeuvres.lutte) : null;
+        this.item = actor.type === 'figure' ? game.items.find(i => i.sid === Version.data(actor).manoeuvres.lutte) : null;
         this.target = actor.target;
         this.effects = ActiveEffects.effectsOf(this.actor, this.target?.actor);
         this.setManoeuver(Immobiliser.ID);
