@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Instinctif extends AbstractManoeuver {
@@ -18,8 +19,8 @@ export class Instinctif extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.weapon.system.type === 'trait' ||
-              (action.weapon.system.munitions > action.weapon.system.tire);
+        return Version.data(action.weapon).type === 'trait' ||
+              (Version.data(action.weapon).munitions > Version.data(action.weapon).tire);
     }
 
 }

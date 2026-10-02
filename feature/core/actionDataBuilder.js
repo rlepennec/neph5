@@ -1,4 +1,5 @@
 import { Constants } from "../../module/common/constants.js";
+import { Version } from "../../module/common/version.js";
 
 export class ActionDataBuilder {
 
@@ -313,6 +314,10 @@ export class ActionDataBuilder {
             richSentence: game.i18n.localize(this.sentence),
             type: this.type,
             element: this.element,
+            // L'élément de l'objet lancé appartient à sa version : le gabarit du dialogue,
+            // commun à tous les types, ne saurait pas où le lire.
+            itemElement: Version.data(this.item).element,
+            itemElements: Version.data(this.item).elements,
             note: this.note
         };
 
@@ -457,7 +462,7 @@ export class ActionDataBuilder {
     static competenceOf(actor, weapon) {
         switch (actor.type) {
             case 'figure':
-                return game.items.find(i => i.sid === weapon?.system?.competence);
+                return game.items.find(i => i.sid === Version.data(weapon).competence);
             case 'figurant':
                 return {
                     name: game.i18n.localize('NEPHILIM.menace')

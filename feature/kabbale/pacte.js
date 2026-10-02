@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDialog } from "../core/actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { NephilimChat } from "../../module/common/chat.js";
@@ -15,7 +16,7 @@ export class Pacte extends AbstractFeature {
         super(actor);
         this.result = result;
         this.item = purpose;
-        this.base = purpose.system.degre;
+        this.base = Version.data(purpose).degre;
     }
 
     /**

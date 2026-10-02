@@ -1,4 +1,5 @@
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
+import { Version } from "../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { SortDataModel } from "./sort.mjs";
 
@@ -17,7 +18,7 @@ export class SortSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.applySkin(this.document.system.element);
+        this.applySkin(Version.data(this.document, this.version).element);
     }
 
     /** 
@@ -28,7 +29,7 @@ export class SortSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: SortDataModel.defineSchema().element.choices,
-                cercle: this.document.system.cercle,
+                cercle: Version.data(this.document, this.version).cercle,
                 cercles: super.cerclesOf('magie')
             }
         }
@@ -42,7 +43,7 @@ export class SortSheet extends NephilimItemSheet {
         const document = identifier.toDocument();
         switch (document.type) {
             case 'magie':
-                await this.document.deleteReference(identifier.fsid, this.document.system.voies, "system.voies");
+                await this.document.deleteReference(identifier.fsid, Version.data(this.document, this.version).voies, Version.path(this.document, 'voies', this.version));
                 break;
         }
     }
@@ -55,7 +56,7 @@ export class SortSheet extends NephilimItemSheet {
         event.preventDefault();
         switch (document.type) {
             case "magie":
-                await this.document.updateItemRefs(document.system, this.document.system.voies, "system.voies");
+                await this.document.updateItemRefs(document.system, Version.data(this.document, this.version).voies, Version.path(this.document, 'voies', this.version));
                 break;
         }
     }
@@ -65,24 +66,29 @@ export class SortSheet extends NephilimItemSheet {
      */
     async _onSubmit(event, form, formData) {
 
+        // Les champs du sort appartiennent à la version affichée : les clefs du formulaire
+        // portent son préfixe, celui-là même que le gabarit a posé.
+        const data = Version.data(this.document, this.version);
+        const prefixe = Version.prefix(this.document, this.version);
+
         // Update voies
-        if (formData.object["system.cercle"] === "basseMagie") {
-            formData.object["system.voies"] = [];
+        if (formData.object[prefixe + ".cercle"] === "basseMagie") {
+            formData.object[prefixe + ".voies"] = [];
         } else {
-            let size = this.document.system.voies == null ? 0 : this.document.system.voies.length;
+            let size = data.voies == null ? 0 : data.voies.length;
             const voies = [];
             for (let index = 0; index < size; index++) {
-                const name = "system.voies.[" + index + "]";
+                const name = prefixe + ".voies.[" + index + "]";
                 voies.push(formData.object[name]);
                 delete formData.object[name];
             }
-            formData.object["system.voies"] = voies;
+            formData.object[prefixe + ".voies"] = voies;
         }
 
         // Update syntaxe & incantation
-        if (formData.object["system.cercle"] !== "grandSecret") {
-            formData.object['system.syntaxe'] = new foundry.data.operators.ForcedDeletion();
-            formData.object['system.incantation'] = new foundry.data.operators.ForcedDeletion();
+        if (formData.object[prefixe + ".cercle"] !== "grandSecret") {
+            formData.object[prefixe + '.syntaxe'] = new foundry.data.operators.ForcedDeletion();
+            formData.object[prefixe + '.incantation'] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object

@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Tirer extends AbstractManoeuver {
@@ -14,7 +15,7 @@ export class Tirer extends AbstractManoeuver {
      */
     constructor(action) {
         super(Tirer.ID, Constants.FIRE, action);
-        const vise = action?.target != null && action.weapon?.system.cible === action.target.id;
+        const vise = action?.target != null && Version.data(action.weapon).cible === action.target.id;
         this.approches = vise ? ['air', 'ka'] : ['feu', 'air', 'ka'];
         this.impact = {modifier: 0};
     }
@@ -23,15 +24,15 @@ export class Tirer extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.weapon.system.type === 'trait' ||
-              (action.weapon.system.munitions > action.weapon.system.tire);
+        return Version.data(action.weapon).type === 'trait' ||
+              (Version.data(action.weapon).munitions > Version.data(action.weapon).tire);
     }
 
     /**
      * @Override
      */
     async apply(action) {
-        await action.weapon.update({ ['system.tire']: action.weapon.system.tire + 1 });
+        await action.weapon.update({ [Version.path(action.weapon, 'tire')]: Version.data(action.weapon).tire + 1 });
     }
 
 }

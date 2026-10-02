@@ -35,7 +35,7 @@
                 {{/if}}
                 </div>
 
-                {{#if (or (eq item.system.element 'choix') (eq element 'choix'))}}
+                {{#if (or (eq itemElement 'choix') (eq element 'choix'))}}
                 <select id="element" name="element">
                     <option value='air'>{{translate "air"}}</option>
                     <option value='eau'>{{translate 'eau'}}</option>
@@ -45,7 +45,7 @@
                 </select>
                 {{/if}}
 
-                {{#if (eq item.system.elements.[0] 'quintuple')}}
+                {{#if (eq itemElements.[0] 'quintuple')}}
                 <select id="element" name="element">
                     {{#if (gt actor.system.alchimie.primae.air.quantite 4)}}
                     <option value='air'>{{translate "air"}}</option>

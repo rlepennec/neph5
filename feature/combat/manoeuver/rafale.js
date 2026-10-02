@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Rafale extends AbstractManoeuver {
@@ -19,15 +20,15 @@ export class Rafale extends AbstractManoeuver {
      * @Override
      */
      isAllowed(action) {
-        return action.weapon.system.rafale === true &&
-               action.weapon.system.munitions > action.weapon.system.tire + 5;
+        return Version.data(action.weapon).rafale === true &&
+               Version.data(action.weapon).munitions > Version.data(action.weapon).tire + 5;
     }
 
     /**
      * @Override
      */
     async apply(action) {
-        await action.weapon.update({ ['system.tire']: action.weapon.system.munitions });
+        await action.weapon.update({ [Version.path(action.weapon, 'tire')]: Version.data(action.weapon).munitions });
     }
 
 }

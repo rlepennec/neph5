@@ -306,7 +306,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ ['system.transporte']: parseInt(event.target.value) });
+        await item.update({ [Version.path(item, 'transporte')]: parseInt(event.target.value) });
     }
 
     /** Toggle le pacte de l'invocation. */
@@ -314,7 +314,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ ['system.pacte']: !item.system.pacte });
+        await item.update({ [Version.path(item, 'pacte')]: !Version.data(item).pacte });
     }
 
     /** Toggle la possession du focus (icône parchemin). */
@@ -322,7 +322,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ ['system.focus']: !item.system.focus });
+        await item.update({ [Version.path(item, 'focus')]: !Version.data(item).focus });
     }
 
     /** Cycle le statut : connu → déchiffré → appris → tatoué → connu. */
@@ -330,12 +330,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
-        switch (item.system.status) {
-            case Constants.CONNU:     await item.update({ ['system.status']: Constants.DECHIFFRE }); break;
-            case Constants.DECHIFFRE: await item.update({ ['system.status']: Constants.APPRIS });   break;
-            case Constants.APPRIS:    await item.update({ ['system.status']: Constants.TATOUE });    break;
-            case Constants.TATOUE:    await item.update({ ['system.status']: Constants.CONNU });     break;
-            default: throw new Error("Status " + item.system.status + " not implemented");
+        switch (Version.data(item).status) {
+            case Constants.CONNU:     await item.update({ [Version.path(item, 'status')]: Constants.DECHIFFRE }); break;
+            case Constants.DECHIFFRE: await item.update({ [Version.path(item, 'status')]: Constants.APPRIS });   break;
+            case Constants.APPRIS:    await item.update({ [Version.path(item, 'status')]: Constants.TATOUE });    break;
+            case Constants.TATOUE:    await item.update({ [Version.path(item, 'status')]: Constants.CONNU });     break;
+            default: throw new Error("Status " + Version.data(item).status + " not implemented");
         }
     }
 

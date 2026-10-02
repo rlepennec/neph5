@@ -1,4 +1,5 @@
 import { ActiveEffects } from "../core/effects.js";
+import { Version } from "../../module/common/version.js";
 import { Constants } from "../../module/common/constants.js";
 import { Liberer } from "../combat/manoeuver/liberer.js";
 
@@ -99,7 +100,7 @@ export class Health {
         // plus légère, elle, peut être arrêtée net — et ce qu'elle laisse est alors bel et bien
         // négatif : une majoration de 2 ne suffit pas à faire passer une dague à travers une
         // armure de 4.
-        const perforante = weapon != null && weapon.system.damages >= 2;
+        const perforante = weapon != null && Version.data(weapon).damages >= 2;
 
         if (physical === true) {
             const encaisse = Health.damagesOf(impact, this.actor.protection("physique"), perforante, absorption);
@@ -107,7 +108,7 @@ export class Health {
             await new Damages(this.actor, 'physique').apply(damages);
         }
 
-        if (weapon?.system?.magique === true) {
+        if (Version.data(weapon).magique === true) {
             const damages = Health.damagesOf(impact, this.actor.protection("magique"), perforante, absorption) * (critical === true ? 2 : 1);
             await new Damages(this.actor, 'magique').apply(damages);
         }

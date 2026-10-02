@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Equipment } from "../core/equipment.js";
 
@@ -18,7 +19,7 @@ export class Desarmer extends AbstractManoeuver {
         this.approches = ['lune', 'ka'];
         this.nextDefenseModifier = -20;
         this.defense = {
-            modifier: action?.attack?.weapon?.system?.type === Constants.MELEE && action.weapon == null ? -80 : -40
+            modifier: Version.data(action?.attack?.weapon).type === Constants.MELEE && action.weapon == null ? -80 : -40
         };
         // Absorption fixe : Health.applyDamages sort aussitôt, la parade réussie annule tout.
         this.absorption = { fix: 0 };
@@ -55,7 +56,7 @@ export class Desarmer extends AbstractManoeuver {
     canBePerformed(action) {
         if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.family === Constants.STRIKE &&
-               action.attack.weapon?.system?.type === Constants.MELEE;
+               Version.data(action.attack.weapon).type === Constants.MELEE;
     }
 
 }

@@ -49,8 +49,8 @@ export class Formule extends AbstractFocus {
 
             // If not critical, spend materiae primae
             if (result.critical === false) {
-                for (let element of this.item.system.elements) {
-                    const quantite = Math.max(0, this.actor.system.alchimie.primae[element].quantite - this.item.system.degre);
+                for (let element of Version.data(this.item).elements) {
+                    const quantite = Math.max(0, this.actor.system.alchimie.primae[element].quantite - Version.data(this.item).degre);
                     await this.actor.update({ ['system.alchimie.primae.' + element + ".quantite"]: quantite });
                 }
             }
@@ -63,8 +63,8 @@ export class Formule extends AbstractFocus {
      * @Override
      */
     modifier(parameters) {
-        if (this.item.system.elements[0] === 'quintuple') {
-            const substance = this.item.system.substance;
+        if (Version.data(this.item).elements[0] === 'quintuple') {
+            const substance = Version.data(this.item).substance;
             const construct = this.actor.getConstruct(substance);
             if (parameters == null || parameters.elt == null) {
                 if (this.actor.system.alchimie.primae.air.quantite > 4) {
@@ -97,8 +97,8 @@ export class Formule extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
-            .withData("focus", (previous == null ? false : previous.system.focus))
-            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
+            .withData("focus", (previous == null ? false : Version.data(previous).focus))
+            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withData("quantite", 0)
             .withData("transporte", 0)
             .withData("periode", this.periode)
@@ -137,22 +137,22 @@ export class Formule extends AbstractFocus {
             return -100;
         }
 
-        if (this.embedded.system.status === 'connu') {
+        if (Version.data(this.embedded).status === 'connu') {
             return -101;
         }
 
-        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+        if (Version.data(this.embedded).focus !== true && Version.data(this.embedded).status === 'dechiffre') {
             return -102;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle).degre;
         if (science === 0) {
             return -107;
         }
 
         const owner = this.getOwner();
-        const construct = owner == null ? null : owner.getConstruct(this.item.system.substance);
+        const construct = owner == null ? null : owner.getConstruct(Version.data(this.item).substance);
 
         // Construct inactif
         if (construct?.active !== true) {
@@ -160,17 +160,17 @@ export class Formule extends AbstractFocus {
         }
 
         // Construct pas au niveau requis
-        if (construct.degre === "oeuvreAuNoir" && (this.item.system.cercle === "oeuvreAuBlanc" || this.item.system.cercle === "oeuvreAuRouge")) {
+        if (construct.degre === "oeuvreAuNoir" && (Version.data(this.item).cercle === "oeuvreAuBlanc" || Version.data(this.item).cercle === "oeuvreAuRouge")) {
             return -109;
         }
 
         // Construct pas au niveau requis
-        if (construct.degre === "oeuvreAuBlanc" && this.item.system.cercle === "oeuvreAuRouge") {
+        if (construct.degre === "oeuvreAuBlanc" && Version.data(this.item).cercle === "oeuvreAuRouge") {
             return -109;
         }
 
         // Vous ne possédez pas les materiae primae necessaires
-        for (let element of this.item.system.elements) {
+        for (let element of Version.data(this.item).elements) {
 
             switch (element) {
                 case 'air':
@@ -178,7 +178,7 @@ export class Formule extends AbstractFocus {
                 case 'feu':
                 case 'lune':
                 case 'terre':
-                    if (this.actor.system.alchimie.primae[element].quantite < this.item.system.degre) {
+                    if (this.actor.system.alchimie.primae[element].quantite < Version.data(this.item).degre) {
                         return -110;
                     }
                     break;
@@ -210,21 +210,21 @@ export class Formule extends AbstractFocus {
         // Retrieve all elements used to cast the focus
         // All elements must be owned by the construct
         let ka = 0;
-        switch (this.item.system.cercle) {
+        switch (Version.data(this.item).cercle) {
             case 'oeuvreAuNoir':
-                ka = construct[this.item.system.elements[0]] ?? 0
+                ka = construct[Version.data(this.item).elements[0]] ?? 0
                 if (ka < 1) {
                     return -111;
                 }
                 break;
             case 'oeuvreAuBlanc':
-                ka = Math.min(construct[this.item.system.elements[0]] ?? 0, construct[this.item.system.elements[1]] ?? 0);
+                ka = Math.min(construct[Version.data(this.item).elements[0]] ?? 0, construct[Version.data(this.item).elements[1]] ?? 0);
                 if (ka < 1) {
                     return -111;
                 }
                 break;
             case 'oeuvreAuRouge':
-                switch (this.item.system.elements[0]) {
+                switch (Version.data(this.item).elements[0]) {
                     case 'quintessence':
                         ka = Math.min(construct['air'], construct['eau'], construct['feu'], construct['lune'], construct['terre']);
                         if (ka < 1) {
@@ -239,7 +239,7 @@ export class Formule extends AbstractFocus {
         }
 
         // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
+        const focus = Version.data(this.item).degre;
 
         // Final result
         return science + ka - focus;

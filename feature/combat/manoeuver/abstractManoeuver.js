@@ -1,4 +1,5 @@
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class AbstractManoeuver {
@@ -232,7 +233,7 @@ export class AbstractManoeuver {
         if (this.impact != null) {
             if (this.impact.hasOwnProperty('modifier')) {
                 return this.impact.modifier
-                    + (weapon?.system.damages ?? 0)
+                    + (Version.data(weapon).damages ?? 0)
                     + actor.dommage
                     + actor.system.bonus.dommage;
             }

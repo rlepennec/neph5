@@ -1,4 +1,5 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { Version } from "../../module/common/version.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
@@ -86,10 +87,10 @@ export class Chute extends HistoricalFeature {
         let _chute = { degre: 0, name: null, sid: null, id: null };
 
         for (let periode of Periode.getChronological(actor, true, true, actor.system.periode)) {
-            const chute = actor.items.find(i => i.type === 'chute' && i.system.key === type && i.system.periode === periode.sid);
+            const chute = actor.items.find(i => i.type === 'chute' && Version.data(i).key === type && Version.data(i).periode === periode.sid);
             if (chute != null) {
                 _chute = {
-                    degre: _chute.degre + chute.system.degre,
+                    degre: _chute.degre + Version.data(chute).degre,
                     name: chute.name,
                     sid: chute.sid,
                     id: chute.id
@@ -101,7 +102,7 @@ export class Chute extends HistoricalFeature {
         // afin de pouvoir tout de même ouvrir sa fiche. On ne touche ni au degré ni
         // au nom pour préserver l'affichage.
         if (_chute.sid == null) {
-            _chute.sid = game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid ?? null;
+            _chute.sid = game.items.find(i => i.type === 'chute' && Version.data(i).key === type)?.sid ?? null;
         }
 
         return _chute;
@@ -120,13 +121,13 @@ export class Chute extends HistoricalFeature {
         const previousChute = Chute.getChute(this.actor, type);
 
         // Create or update current chute according to the current periode, first chute by default
-        const chute = this.actor.items.find(i => i.type === "chute" && i.system.key === type && i.system.periode === this.actor.system.periode);
+        const chute = this.actor.items.find(i => i.type === "chute" && Version.data(i).key === type && Version.data(i).periode === this.actor.system.periode);
 
         // Create a new chute
         if (chute == null) {
 
             // Retrieve the sid of the world chute item from which to create the new chute
-            const sid = previousChute.sid ?? game.items.find(i => i.type === 'chute' && i.system.key === type)?.sid;
+            const sid = previousChute.sid ?? game.items.find(i => i.type === 'chute' && Version.data(i).key === type)?.sid;
             if (sid == null) {
                 ui.notifications.warn(game.i18n.localize("NEPHILIM.warningChutes"));
                 return;
@@ -143,7 +144,7 @@ export class Chute extends HistoricalFeature {
 
         // Update the current chute
         } else {
-            await chute.update({ ['system.degre']: chute.system.degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre) }); 
+            await chute.update({ [Version.path(chute, 'degre')]: Version.data(chute).degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre) }); 
         }
 
     }

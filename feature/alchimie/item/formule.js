@@ -1,4 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Version } from "../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { FormuleDataModel } from "./formule.mjs";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
@@ -40,11 +41,11 @@ export class FormuleSheet extends NephilimItemSheet {
         const document = identifier.toDocument();
         switch (document.type) {
             case 'formule':
-                await this.document.deleteReference(identifier.fsid, this.document.system.variantes, "system.variantes");
-                await document.deleteReference(new DocumentIdentifier(this.document).fsid, document.system.variantes, "system.variantes");
+                await this.document.deleteReference(identifier.fsid, Version.data(this.document, this.version).variantes, Version.path(this.document, 'variantes', this.version));
+                await document.deleteReference(new DocumentIdentifier(this.document).fsid, Version.data(document).variantes, Version.path(document, 'variantes'));
                 break;
             case "catalyseur":
-                await this.document.deleteReference(identifier.fsid, this.document.system.catalyseurs, "system.catalyseurs");
+                await this.document.deleteReference(identifier.fsid, Version.data(this.document, this.version).catalyseurs, Version.path(this.document, 'catalyseurs', this.version));
                 break;
         }
     }
@@ -59,11 +60,11 @@ export class FormuleSheet extends NephilimItemSheet {
         event.preventDefault();
         switch (document.type) {
             case "formule":
-                await this.document.updateItemRefs(document.system, this.document.system.variantes, "system.variantes");
-                await document.updateItemRefs(this.document.system, document.system.variantes, "system.variantes");
+                await this.document.updateItemRefs(document.system, Version.data(this.document, this.version).variantes, Version.path(this.document, 'variantes', this.version));
+                await document.updateItemRefs(this.document.system, Version.data(document).variantes, Version.path(document, 'variantes'));
                 break;
             case "catalyseur":
-                await this.document.updateItemRefs(document.system, this.document.system.catalyseurs, "system.catalyseurs");
+                await this.document.updateItemRefs(document.system, Version.data(this.document, this.version).catalyseurs, Version.path(this.document, 'catalyseurs', this.version));
                 break;
         }
     }
@@ -73,49 +74,54 @@ export class FormuleSheet extends NephilimItemSheet {
      */
     async _onSubmit(event, form, formData) {
 
+        // Les champs de la formule appartiennent à la version affichée : les clefs du
+        // formulaire portent son préfixe, celui-là même que le gabarit a posé.
+        const data = Version.data(this.document, this.version);
+        const prefixe = Version.prefix(this.document, this.version);
+
         // Update elements
-        const fst = formData.object["system.elements.[0]"];
-        const elements = fst == null ? this.document.system.elements : [];
+        const fst = formData.object[prefixe + ".elements.[0]"];
+        const elements = fst == null ? data.elements : [];
         if (fst != null) {
-            const snd = formData.object["system.elements.[1]"];
+            const snd = formData.object[prefixe + ".elements.[1]"];
             elements.push(fst);
-            delete formData.object["system.elements.[0]"];
-            if (formData.object["system.cercle"] === "oeuvreAuBlanc") {
+            delete formData.object[prefixe + ".elements.[0]"];
+            if (formData.object[prefixe + ".cercle"] === "oeuvreAuBlanc") {
                 // Le second menu n'est rendu que si le cercle valait DÉJÀ
                 // oeuvreAuBlanc. En basculant vers ce cercle, le champ est
                 // absent du formulaire et snd vaut undefined : sans cette
                 // garde on empilait undefined dans elements. Le second élément
                 // se saisit au rendu suivant, une fois le menu affiché.
                 if (snd != null) elements.push(snd);
-                delete formData.object["system.elements.[1]"];
+                delete formData.object[prefixe + ".elements.[1]"];
             }
         }
-        formData.object["system.elements"] = elements;
+        formData.object[prefixe + ".elements"] = elements;
 
         // Update catalyseurs
-        let size = this.document.system.catalyseurs == null ? 0 : this.document.system.catalyseurs.length;
+        let size = data.catalyseurs == null ? 0 : data.catalyseurs.length;
         const catalyseurs = [];
         for (let index = 0; index < size; index++) {
-            const name = "system.catalyseurs.[" + index + "]";
+            const name = prefixe + ".catalyseurs.[" + index + "]";
             catalyseurs.push(formData.object[name]);
             delete formData.object[name];
         }
-        formData.object["system.catalyseurs"] = catalyseurs;
+        formData.object[prefixe + ".catalyseurs"] = catalyseurs;
 
         // Update variantes
-        size = this.document.system.variantes == null ? 0 : this.document.system.variantes.length;
+        size = data.variantes == null ? 0 : data.variantes.length;
         const variantes = [];
         for (let index = 0; index < size; index++) {
-            const name = "system.variantes.[" + index + "]";
+            const name = prefixe + ".variantes.[" + index + "]";
             variantes.push(formData.object[name]);
             delete formData.object[name];
         }
-        formData.object["system.variantes"] = variantes;
+        formData.object[prefixe + ".variantes"] = variantes;
 
         // Update echec & maladresse
-        if (formData.object["system.cercle"] !== "oeuvreAuRouge") {
-            formData.object['system.echec'] = new foundry.data.operators.ForcedDeletion();
-            formData.object['system.maladresse'] = new foundry.data.operators.ForcedDeletion();
+        if (formData.object[prefixe + ".cercle"] !== "oeuvreAuRouge") {
+            formData.object[prefixe + '.echec'] = new foundry.data.operators.ForcedDeletion();
+            formData.object[prefixe + '.maladresse'] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object

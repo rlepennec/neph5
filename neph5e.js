@@ -181,6 +181,8 @@ Hooks.once("init", function () {
         getIdentifier: CustomHandlebarsHelpers.getIdentifier,
         translate: CustomHandlebarsHelpers.translate,
         concat: CustomHandlebarsHelpers.concat,
+        versionValue: CustomHandlebarsHelpers.versionValue,
+        versionPrefix: CustomHandlebarsHelpers.versionPrefix,
         isNull: CustomHandlebarsHelpers.isNull,
         nonNull: CustomHandlebarsHelpers.nonNull,
         select: CustomHandlebarsHelpers.select,

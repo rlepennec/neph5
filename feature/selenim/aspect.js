@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { SimpleFeature } from "../core/simpleFeature.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
@@ -45,7 +46,7 @@ export class Aspect extends SimpleFeature {
         for (let item of AbstractFeature.items(actor,'aspect')) {
 
             // Update the number of points of the imago.
-            size = size + parseInt(item.original.system.degre);
+            size = size + parseInt(Version.data(item.original).degre);
 
             // Add the aspect
             aspects.push({
@@ -56,7 +57,7 @@ export class Aspect extends SimpleFeature {
                 },
                 embedded: {
                     id: item.embedded.id,
-                    active: item.embedded.system.active
+                    active: Version.data(item.embedded).active
                 }
             });
 
@@ -76,9 +77,7 @@ export class Aspect extends SimpleFeature {
      */
     async toggleActive() {
         const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        const system = foundry.utils.duplicate(embedded.system);
-        system.active = !system.active;
-        await embedded.update({ ['system']: system });
+        await embedded.update({ [Version.path(embedded, 'active')]: !Version.data(embedded).active });
         return this;
     }
 

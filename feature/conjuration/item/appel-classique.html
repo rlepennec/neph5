@@ -13,21 +13,21 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="degre"
                     class="circle"
-                    name="system.degre"
-                    value=document.system.degre
+                    name=(concat versionPath ".degre")
+                    value=data.degre
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="cercle"
-                    name="system.cercle"
-                    value=document.system.cercle
+                    name=(concat versionPath ".cercle")
+                    value=data.cercle
                     options=context.cercles
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="appel"
-                    name="system.appel"
-                    value=document.system.appel
+                    name=(concat versionPath ".appel")
+                    value=data.appel
                     options=context.appels
                 }}
 
@@ -35,32 +35,32 @@
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="controle"
-                name="system.controle"
-                value=document.system.controle
+                name=(concat versionPath ".controle")
+                value=data.controle
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="visibilite"
-                name="system.visibilite"
-                value=document.system.visibilite
+                name=(concat versionPath ".visibilite")
+                value=data.visibilite
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="entropie"
-                name="system.entropie"
-                value=document.system.entropie
+                name=(concat versionPath ".entropie")
+                value=data.entropie
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="dommages"
-                name="system.dommages"
-                value=document.system.dommages
+                name=(concat versionPath ".dommages")
+                value=data.dommages
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="protection"
-                name="system.protection"
-                value=document.system.protection
+                name=(concat versionPath ".protection")
+                value=data.protection
             }}
 
             {{#if (nonNull difficulty)}}

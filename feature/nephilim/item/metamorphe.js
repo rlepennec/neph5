@@ -1,4 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Version } from "../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class MetamorpheSheet extends NephilimItemSheet {
@@ -18,7 +19,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.applySkin(this.document.system.element);
+        this.applySkin(Version.data(this.document, this.version).element);
     }
 
     /** 
@@ -38,14 +39,18 @@ export class MetamorpheSheet extends NephilimItemSheet {
      */
     async _onSubmit(event, form, formData) {
 
+        // Les métamorphoses appartiennent à la version affichée : les clefs du formulaire
+        // portent son préfixe, celui-là même que le gabarit a posé.
+        const prefixe = Version.prefix(this.document, this.version);
+
         // Update metamorphoses
         const metamorphoses = [];
         for (let index = 0; index < 10; index++) {
-            const name = "system.metamorphoses.[" + index + "]";
+            const name = prefixe + ".metamorphoses.[" + index + "]";
             metamorphoses.push({ name: formData.object[name + ".name"] });
             delete formData.object[name + ".name"];
         }
-        formData.object["system.metamorphoses"] = metamorphoses;
+        formData.object[prefixe + ".metamorphoses"] = metamorphoses;
 
         // Update object
         await this.document.update(formData.object);

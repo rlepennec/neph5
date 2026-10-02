@@ -113,7 +113,7 @@ export class NephilimItem extends Item {
         const illustration = this.illustration;
         if (illustration != null) {
             const created = { system: foundry.utils.duplicate(data.system ?? {}) };
-            if (illustration.align(created)) {
+            if (illustration.align(created, {}, Version.path(this, illustration.field))) {
                 this.updateSource({ "system.illustration": created.system.illustration });
             }
         }
@@ -132,9 +132,9 @@ export class NephilimItem extends Item {
         const illustration = this.illustration;
         if (illustration != null) {
             illustration.align(changes, {
-                [illustration.field]: this.system[illustration.field],
+                [illustration.field]: Version.data(this)[illustration.field],
                 illustration: this.system.illustration
-            });
+            }, Version.path(this, illustration.field));
         }
 
     }
@@ -205,8 +205,8 @@ export class NephilimItem extends Item {
                 }
 
                 // Delete from all armes of the world
-                for (let item of game.items.filter(i => i.type === 'arme' && i.system.competence === this.sid)) {
-                    await item.update({ ['system.competence']: null });
+                for (let item of game.items.filter(i => i.type === 'arme' && Version.data(i).competence === this.sid)) {
+                    await item.update({ [Version.path(item, 'competence')]: null });
                 }
 
                 break;
@@ -236,7 +236,7 @@ export class NephilimItem extends Item {
 
                 // Delete from all vecus of the world
                 for (let item of game.items.filter(i => i.type === 'vecu' && Version.data(i).periode === this.sid)) {
-                    await item.update({ ['system.periode']: null });
+                    await item.update({ [Version.path(item, 'periode')]: null });
                 }
 
                 break;
@@ -247,8 +247,8 @@ export class NephilimItem extends Item {
                 await this._actors('deleteVecu');
 
                 // Delete from all armes of the world
-                for (let item of game.items.filter(i => i.type === 'arme' && i.system.competence === this.sid)) {
-                    await item.update({ ['system.competence']: null });
+                for (let item of game.items.filter(i => i.type === 'arme' && Version.data(i).competence === this.sid)) {
+                    await item.update({ [Version.path(item, 'competence')]: null });
                 }
 
                 break;
@@ -305,11 +305,11 @@ export class NephilimItem extends Item {
      * @param {*} item The item to delete.
      */
     async deleteMagie(item) {
-        const voies = foundry.utils.duplicate(this.system.voies);
+        const voies = foundry.utils.duplicate(Version.data(this).voies);
         const i = voies.findIndex(o => item.sid === o);
         if (i !== -1) {
             voies.splice(i, 1);
-            await this.update({ ["system.voies"]: voies });
+            await this.update({ [Version.path(this, 'voies')]: voies });
         }
     }
 
@@ -318,11 +318,11 @@ export class NephilimItem extends Item {
      * @param {*} item The system item of the item to delete.
      */
     async deleteVariante(item) {
-        const variantes = foundry.utils.duplicate(this.system.variantes);
+        const variantes = foundry.utils.duplicate(Version.data(this).variantes);
         const i = variantes.findIndex(o => item.sid === o);
         if (i !== -1) {
             variantes.splice(i, 1);
-            await this.update({ ["system.variantes"]: variantes });
+            await this.update({ [Version.path(this, 'variantes')]: variantes });
         }
     }
 
@@ -331,11 +331,11 @@ export class NephilimItem extends Item {
      * @param item The system item of the catalyseur to delete from the formule.
      */
     async deleteCatalyseur(item) {
-        const catalyseurs = foundry.utils.duplicate(this.system.catalyseurs);
+        const catalyseurs = foundry.utils.duplicate(Version.data(this).catalyseurs);
         const i = catalyseurs.findIndex(o => item.sid === o);
         if (i !== -1) {
             catalyseurs.splice(i, 1);
-            await this.update({ ["system.catalyseurs"]: catalyseurs });
+            await this.update({ [Version.path(this, 'catalyseurs')]: catalyseurs });
         }
     }
 
@@ -370,9 +370,9 @@ export class NephilimItem extends Item {
      * @param {*} ref  The item reference to drop.
      */
     async updateItemRef(name, ref) {
-        const system = foundry.utils.duplicate(this.system);
-        system[name] = ref
-        await this.update({ ['system']: system });
+        // Écrire le seul champ, à son chemin de version : réécrire tout le system avec la
+        // référence posée à la racine laisserait gagner l'ancienne valeur rangée dans la version.
+        await this.update({ [Version.path(this, name)]: ref });
     }
 
     /**
@@ -428,7 +428,7 @@ export class NephilimItem extends Item {
      * @return the status of the item, which can be connu, dechiffre, appris or tatoue.
      */
     get getStatus() {
-        return game.i18n.localize('NEPHILIM.' + this.system.status)
+        return game.i18n.localize('NEPHILIM.' + Version.data(this).status)
     }
 
     /**

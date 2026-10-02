@@ -11,15 +11,15 @@
             <div class="banner stacked">
 
                 {{> "systems/neph5e/templates/pills.hbs"
-                    name="system.type"
-                    value=document.system.type
+                    name=(concat versionPath ".type")
+                    value=data.type
                     options=context.types
                 }}
 
                 {{> "systems/neph5e/templates/label.hbs"
                     title="using"
                     placeholder="deposerVecuCompetence"
-                    value=document.system.competence
+                    value=data.competence
                     center=true
                 }}
 
@@ -30,68 +30,68 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="attaque"
                     class="circle"
-                    name="system.attack"
-                    value=document.system.attack
+                    name=(concat versionPath ".attack")
+                    value=data.attack
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="defense"
                     class="circle"
-                    name="system.defense"
-                    value=document.system.defense
+                    name=(concat versionPath ".defense")
+                    value=data.defense
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="dommages"
                     class="circle"
-                    name="system.damages"
-                    value=document.system.damages
+                    name=(concat versionPath ".damages")
+                    value=data.damages
                 }}
 
                 {{> "systems/neph5e/templates/checkbox.hbs"
                     title="dommagesMagiques"
-                    name="system.magique"
-                    value=document.system.magique
+                    name=(concat versionPath ".magique")
+                    value=data.magique
                 }}
 
             </div>
 
-            {{#if (eq document.system.type 'melee')}}
+            {{#if (eq data.type 'melee')}}
             <div class="banner thick">
 
                 {{> "systems/neph5e/templates/checkbox.hbs"
                     title="blocageAutorise"
-                    name="system.blocage"
-                    value=document.system.blocage
+                    name=(concat versionPath ".blocage")
+                    value=data.blocage
                     wide=true
                 }}
 
                 {{> "systems/neph5e/templates/checkbox.hbs"
                     title="lanceAutorise"
-                    name="system.lance"
-                    value=document.system.lance
+                    name=(concat versionPath ".lance")
+                    value=data.lance
                     wide=true
                 }}
 
             </div>
             {{/if}}
 
-            {{#unless (isContact document.system.type)}}
+            {{#unless (isContact data.type)}}
             <div class="banner thick">
 
-                {{#if (eq document.system.type 'feu')}}
+                {{#if (eq data.type 'feu')}}
 
                     {{> "systems/neph5e/templates/checkbox.hbs"
                         title="salve"
-                        name="system.salve"
-                        value=document.system.salve
+                        name=(concat versionPath ".salve")
+                        value=data.salve
                         wide=true
                     }}
 
                     {{> "systems/neph5e/templates/checkbox.hbs"
                         title="rafale"
-                        name="system.rafale"
-                        value=document.system.rafale
+                        name=(concat versionPath ".rafale")
+                        value=data.rafale
                         wide=true
                     }}
 
@@ -100,14 +100,14 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="chargeur"
                     class="circle"
-                    name="system.munitions"
-                    value=document.system.munitions
+                    name=(concat versionPath ".munitions")
+                    value=data.munitions
                     wide=true
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
-                    name="system.ammunition"
-                    value=document.system.ammunition
+                    name=(concat versionPath ".ammunition")
+                    value=data.ammunition
                     wide=true
                 }}
 

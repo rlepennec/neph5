@@ -1,4 +1,5 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
+import { Version } from "../../module/common/version.js";
 import { CombatHistory } from "../../feature/combat/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
@@ -180,9 +181,9 @@ export const CombatantMixin = Base => {
             let protection = this.system.bonus.protection;
 
             // Add the armor if exists
-            const armor = this.items.find(i => i.type === "armure" && i.system.used === true);
+            const armor = this.items.find(i => i.type === "armure" && Version.data(i).used === true);
             if (armor != null) {
-                protection = protection + armor.system[type];
+                protection = protection + Version.data(armor)[type];
             }
 
             return protection;
@@ -211,40 +212,40 @@ export const CombatantMixin = Base => {
                 return;
             }
 
-            const used = item.system.used;
+            const used = Version.data(item).used;
 
             switch (item.type) {
 
                 case 'armure':
-                    await item.update({ ['system.used']: !used });
+                    await item.update({ [Version.path(item, 'used')]: !used });
                     break;
 
                 case 'arme':
-                    if (item.system.type === 'melee') {
-                        const parade = item.system.parade;
+                    if (Version.data(item).type === 'melee') {
+                        const parade = Version.data(item).parade;
                     
                         // Not used to attack weapon
                         if (used === false) {
-                            await item.update({ ['system.used']: true });
-                            await item.update({ ['system.parade']: false });
+                            await item.update({ [Version.path(item, 'used')]: true });
+                            await item.update({ [Version.path(item, 'parade')]: false });
 
                         // Attack weapon to parade weapon
                         } else if (parade === false) {
-                                await item.update({ ['system.used']: true });
+                                await item.update({ [Version.path(item, 'used')]: true });
                                 for (let arme of this.items.filter(i => i.type === 'arme' && i.id !== item.id)) {
-                                    await arme.update({ ['system.parade']: false });
+                                    await arme.update({ [Version.path(arme, 'parade')]: false });
                                 }
-                                await item.update({ ['system.parade']: true });
+                                await item.update({ [Version.path(item, 'parade')]: true });
 
                         // Parade weapon to not used
                         } else {
-                            await item.update({ ['system.used']: false });
-                            await item.update({ ['system.parade']: false });
+                            await item.update({ [Version.path(item, 'used')]: false });
+                            await item.update({ [Version.path(item, 'parade')]: false });
                         
                         }
 
                     } else {
-                        await item.update({ ['system.used']: !used });
+                        await item.update({ [Version.path(item, 'used')]: !used });
                     }
                     break;
 
@@ -258,7 +259,7 @@ export const CombatantMixin = Base => {
         get weapons() {
             const equipments = {naturelle: [], melee: [], trait: [], feu: [] };
             for (let item of this.items.filter(i => i.type === 'arme')) {
-                equipments[item.system.type].push(item);
+                equipments[Version.data(item).type].push(item);
             }
             return equipments;
         }
@@ -314,7 +315,7 @@ export const CombatantMixin = Base => {
             if (combatant == null) {
                 const feature = new FeatureBuilder(this)
                     .withScope("actor")
-                    .withOriginalItem(weapon.system.competence)
+                    .withOriginalItem(Version.data(weapon).competence)
                     .create();
                 if (feature == null) {
                     ui.notifications.error("Aucune compétence n'est associée à cette arme");
@@ -333,19 +334,19 @@ export const CombatantMixin = Base => {
                 return;
             }
 
-            switch (weapon.system.type) {
+            switch (Version.data(weapon).type) {
                 case Constants.NATURELLE: await new Naturelle(this, weapon).initializeRoll(); break;
                 case Constants.MELEE:     await new Melee(this, weapon).initializeRoll();     break;
                 case Constants.TRAIT:     await new Distance(this, weapon).initializeRoll();  break;
                 case Constants.FEU:
-                    if (weapon.system.munitions - weapon.system.tire > 0) {
+                    if (Version.data(weapon).munitions - Version.data(weapon).tire > 0) {
                         await new Distance(this, weapon).initializeRoll();
                     } else {
                         ui.notifications.info("L'arme du personnage n'a plus de munitions");
                     }
                     break;
                 default:
-                    ui.notifications.info("Type d'arme " + weapon.system.type + " inconnu");
+                    ui.notifications.info("Type d'arme " + Version.data(weapon).type + " inconnu");
             }
         }
 
@@ -437,7 +438,7 @@ export const CombatantMixin = Base => {
         async aim(weapon, combatant) {
 
             // L'arme doit être embarquée et en main.
-            if (weapon?.type !== 'arme' || weapon.actor == null || weapon.system.used !== true) {
+            if (weapon?.type !== 'arme' || weapon.actor == null || Version.data(weapon).used !== true) {
                 ui.notifications.info("L'arme n'est pas en main");
                 return;
             }
@@ -461,7 +462,7 @@ export const CombatantMixin = Base => {
             }
 
             // Seules les armes à distance se visent.
-            switch (weapon.system.type) {
+            switch (Version.data(weapon).type) {
                 case Constants.TRAIT:
                 case Constants.FEU:
                     break;
@@ -492,7 +493,7 @@ export const CombatantMixin = Base => {
          */
         async reload(weapon, combatant) {
 
-            if (weapon?.type !== 'arme' || weapon.actor == null || weapon.system.used !== true) {
+            if (weapon?.type !== 'arme' || weapon.actor == null || Version.data(weapon).used !== true) {
                 ui.notifications.info("L'arme n'est pas en main");
                 return;
             }
@@ -507,7 +508,7 @@ export const CombatantMixin = Base => {
                 return;
             }
 
-            switch (weapon.system.type) {
+            switch (Version.data(weapon).type) {
                 case Constants.TRAIT:
                 case Constants.FEU:
                     break;

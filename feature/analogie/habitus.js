@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -39,19 +40,19 @@ export class Habitus extends AbstractFocus {
     get rawDegre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.domaine).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).domaine).degre;
         if (science < 1) {
             return -121;
         }
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
+        const ka = this.actor.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
         if (ka < 1) {
             return -105;
         }
 
         // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
+        const focus = Version.data(this.item).degre;
 
         // Final result
         return science + ka - focus + 1;

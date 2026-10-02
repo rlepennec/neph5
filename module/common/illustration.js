@@ -77,12 +77,17 @@ export class Illustration {
      * discarding an illustration chosen by the user. Called on create and update.
      * @param changes The data to be applied, updated in place.
      * @param current The driving field and the illustration before the change.
+     * @param path    The update path of the driving field, when it lives in a rules
+     *                version (system.versions.v5.sephirah) rather than at the root.
      * @returns true if the illustration has been changed.
      */
-    align(changes, current = {}) {
+    align(changes, current = {}, path = null) {
 
-        // Nothing to do unless the driving field actually changes
-        const value = changes?.system?.[this.field];
+        // Nothing to do unless the driving field actually changes. The field is looked
+        // for at its version path first, then at the root: data not yet migrated (an
+        // old compendium entry being imported) still carries it there.
+        const value = (path == null ? undefined : foundry.utils.getProperty(changes, path))
+            ?? changes?.system?.[this.field];
         if (value == null || value === current[this.field]) {
             return false;
         }

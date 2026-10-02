@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -37,7 +38,7 @@ export class Sort extends AbstractFocus {
      * @Override
      */
     modifier(parameters) {
-        if (this.item.system.element === 'choix') {
+        if (Version.data(this.item).element === 'choix') {
             return parameters == null ? this.actor.getKa('air') : parameters.ka;
         } else {
             return 0;
@@ -52,8 +53,8 @@ export class Sort extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
-            .withData("focus", (previous == null ? false : previous.system.focus))
-            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
+            .withData("focus", (previous == null ? false : Version.data(previous).focus))
+            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withData("periode", this.periode)
             .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
             .create();
@@ -90,26 +91,26 @@ export class Sort extends AbstractFocus {
             return -100;
         }
 
-        if (this.embedded.system.status === 'connu') {
+        if (Version.data(this.embedded).status === 'connu') {
             return -101;
         }
 
-        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+        if (Version.data(this.embedded).focus !== true && Version.data(this.embedded).status === 'dechiffre') {
             return -102;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle).degre;
         if (science === 0) {
             return -103;
         }
 
         // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
+        const focus = Version.data(this.item).degre;
 
         // The sort needs the actor to follow a voie
         if (this.item.system?.voies.length > 0 &&
-            this.item.system.voies.includes(this.actor.voieMagique?.sid) === false) {
+            Version.data(this.item).voies.includes(this.actor.voieMagique?.sid) === false) {
             if ( Math.ceil(focus/2) >= Math.ceil(science/2) ) {
                 return -104;
             }
@@ -117,8 +118,8 @@ export class Sort extends AbstractFocus {
 
         // Retrieve the degre of the ka used to cast the focus
         let ka = 0;
-        if (this.item.system.element !== 'choix') {
-            ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
+        if (Version.data(this.item).element !== 'choix') {
+            ka = this.actor.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
             if (ka === 0) {
                 return -105;
             }

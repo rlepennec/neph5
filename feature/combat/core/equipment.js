@@ -1,4 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Version } from "../../../module/common/version.js";
 
 /**
  * L'équipement que les combattants ont en main. Le faire tomber porte sur l'acteur d'en face —
@@ -13,7 +14,7 @@ export class Equipment {
      * @param weapon The weapon item to unequip.
      */
     static async disarm(weapon) {
-        if (weapon?.system?.used !== true) return;
+        if (Version.data(weapon).used !== true) return;
         if (game.user.isGM === true) {
             await Equipment.unequip(weapon);
         } else {
@@ -41,10 +42,10 @@ export class Equipment {
      * @param weapon The weapon item to unequip.
      */
     static async unequip(weapon) {
-        if (weapon?.system?.used !== true) return;
+        if (Version.data(weapon).used !== true) return;
         await weapon.update({
-            ['system.used']: false,
-            ['system.parade']: false
+            [Version.path(weapon, 'used')]: false,
+            [Version.path(weapon, 'parade')]: false
         });
     }
 

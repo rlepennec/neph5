@@ -240,13 +240,13 @@
             </div>
             {{/if}}
 
-            {{#if (and (nonNull weapon) (ne weapon.system.attack 0))}}
+            {{#if (and (nonNull weapon) (ne (versionValue weapon 'attack') 0))}}
             <div class="line hiddable hidden">
                 <div class="line-title">
                     <label>{{weapon.name}}</label>
                 </div>
                 <div class="line-value">
-                    <label>{{weapon.system.attack}}0</label>
+                    <label>{{versionValue weapon 'attack'}}0</label>
                     <label class="base-percentage">%</label>
                 </div>
             </div>

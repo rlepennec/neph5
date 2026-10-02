@@ -13,55 +13,55 @@
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="domaine"
-                    name="system.domaine"
-                    value=document.system.domaine
+                    name=(concat versionPath ".domaine")
+                    value=data.domaine
                     options=context.cercles
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
-                    name="system.element"
-                    value=document.system.element
+                    name=(concat versionPath ".element")
+                    value=data.element
                     options=context.elements
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="degre"
                     class="circle"
-                    name="system.degre"
-                    value=document.system.degre
+                    name=(concat versionPath ".degre")
+                    value=data.degre
                 }}
 
             </div>
 
             {{> "systems/neph5e/templates/list.hbs"
                 title="voies"
-                values=document.system.voies
-                names="system.voies"
+                values=data.voies
+                names=(concat versionPath ".voies")
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="incantation"
-                name="system.incantation"
-                value=document.system.incantation
+                name=(concat versionPath ".incantation")
+                value=data.incantation
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="portee"
-                name="system.portee"
-                value=document.system.portee
+                name=(concat versionPath ".portee")
+                value=data.portee
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="duree"
-                name="system.duree"
-                value=document.system.duree
+                name=(concat versionPath ".duree")
+                value=data.duree
             }}
 
             {{#if (nonNull difficulty)}}
             <div class="label">
                 <h1>{{translate "difficulte"}}</h1>
-                <span>{{difficulty}}0%{{#if (eq document.system.element 'choix')}} plus l'élément{{/if}}</span>
+                <span>{{difficulty}}0%{{#if (eq data.element 'choix')}} plus l'élément{{/if}}</span>
             </div>
             {{/if}}
 

@@ -36,7 +36,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         event.preventDefault();
         switch (document.type) {
             case "vecu":
-                await document.update({ ['system.periode']: this.document.sid });
+                await document.update({ [Version.path(document, 'periode')]: this.document.sid });
                 await this.render(true);
                 break;
 
@@ -51,7 +51,7 @@ export class PeriodeSheet extends NephilimItemSheet {
         const document = identifier.toDocument();
         switch (document.type) {
             case 'vecu':
-                await document.update({ ['system.periode']: null });
+                await document.update({ [Version.path(document, 'periode')]: null });
                 await this.render(true);
                 break;
         }

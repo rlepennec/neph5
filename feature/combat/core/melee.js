@@ -1,4 +1,5 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
+import { Version } from "../../../module/common/version.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -87,7 +88,7 @@ export class Melee extends AbstractCombatFeature {
      * @Override
      */
     weaponModifier(weapon) {
-        return AbstractCombatFeature.toInt(weapon?.system.attack * 10);
+        return AbstractCombatFeature.toInt(Version.data(weapon).attack * 10);
     }
 
     /**
@@ -96,7 +97,7 @@ export class Melee extends AbstractCombatFeature {
     async initializeRoll() {
 
         // L'arme doit être en main.
-        if (this.weapon.system.used !== true) {
+        if (Version.data(this.weapon).used !== true) {
             ui.notifications.info("L'arme n'est pas en main");
             return;
         }

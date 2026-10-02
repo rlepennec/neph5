@@ -226,7 +226,7 @@ export class Vecu extends HistoricalFeature {
         await this.actor.deleteEmbeddedDocuments('Item', [this.embedded.id]);
 
         // Delete embedded weapons which use the vecu
-        for (let o of this.actor.items.filter(i => i.type === 'arme' && i.system?.competence === this.embedded.sid)) {
+        for (let o of this.actor.items.filter(i => i.type === 'arme' && Version.data(i).competence === this.embedded.sid)) {
             await this.actor.deleteEmbeddedDocuments('Item', [o.id]);
         }
 

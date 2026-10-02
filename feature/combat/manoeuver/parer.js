@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Frapper } from "./frapper.js";
 
@@ -89,7 +90,7 @@ export class Parer extends AbstractManoeuver {
             case Constants.THROW:
                 return this.blocage(action);
             case Constants.FIRE:
-                return action.attack.weapon?.system?.type === Constants.TRAIT && this.blocage(action);
+                return Version.data(action.attack.weapon).type === Constants.TRAIT && this.blocage(action);
             default:
                 return (action.weapon != null && action.attack.manoeuver.family === Constants.STRIKE) ||
                         action.attack.manoeuver.id === Frapper.ID;
@@ -103,7 +104,7 @@ export class Parer extends AbstractManoeuver {
      *          et Defense.weapon() ne retient d'ailleurs qu'un bouclier face à ces attaques.
      */
     blocage(action) {
-        return action.weapon != null && action.weapon.system.blocage === true;
+        return action.weapon != null && Version.data(action.weapon).blocage === true;
     }
 
 }

@@ -10,6 +10,11 @@ import { _1_0_9 } from "./_1_0_9.js";
 import { _1_0_10 } from "./_1_0_10.js";
 import { _1_0_11 } from "./_1_0_11.js";
 import { _1_0_12 } from "./_1_0_12.js";
+import { _1_0_13 } from "./_1_0_13.js";
+import { _1_0_14 } from "./_1_0_14.js";
+import { _1_0_15 } from "./_1_0_15.js";
+import { _1_0_16 } from "./_1_0_16.js";
+import { _1_0_17 } from "./_1_0_17.js";
 
 export class MigrationTools {
 
@@ -140,6 +145,26 @@ export class MigrationTools {
 
         if (foundry.utils.isNewerVersion('1.0.12', worldTemplateVersion)) {
             await _1_0_12.migrate('1.0.12');
+        }
+
+        if (foundry.utils.isNewerVersion('1.0.13', worldTemplateVersion)) {
+            await _1_0_13.migrate('1.0.13');
+        }
+
+        if (foundry.utils.isNewerVersion('1.0.14', worldTemplateVersion)) {
+            await _1_0_14.migrate('1.0.14');
+        }
+
+        if (foundry.utils.isNewerVersion('1.0.15', worldTemplateVersion)) {
+            await _1_0_15.migrate('1.0.15');
+        }
+
+        if (foundry.utils.isNewerVersion('1.0.16', worldTemplateVersion)) {
+            await _1_0_16.migrate('1.0.16');
+        }
+
+        if (foundry.utils.isNewerVersion('1.0.17', worldTemplateVersion)) {
+            await _1_0_17.migrate('1.0.17');
         }
 
         if (game.settings.get('neph5e', 'note')) {

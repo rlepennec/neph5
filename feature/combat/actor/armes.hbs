@@ -51,7 +51,7 @@
             {{/if}}
             <label data-action="open">{{item.name}}</label>
             <a data-action="rollWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-            <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if item.system.used}}{{#if item.system.parade}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
+            <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if (versionValue item 'used' @root.version)}}{{#if (versionValue item 'parade' @root.version)}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
         </li>
         {{/each}}
 
@@ -66,11 +66,11 @@
             <a data-action="aim" class="tooltip {{#unless ../../canAct}}disabled{{/unless}}">
                 <i class="fas fa-crosshairs"></i>
                 <div class="tooltiptext">
-                    <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
+                    <label>Le nombre de rounds de visée est de {{versionValue item 'visee' @root.version}} sur 3.</label>
                 </div>
             </a>
             <a data-action="rollWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-            <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if item.system.used}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
+            <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if (versionValue item 'used' @root.version)}}fa-solid fa-bow-arrow{{else}}far fa-hand-paper{{/if}}"></i></a>
         </li>
         {{/each}}
 
@@ -85,17 +85,17 @@
             <a data-action="reload" class="tooltip {{#unless ../../canAct}}disabled{{/unless}}">
                 <i class="fas fa-spinner"></i>
                 <div class="tooltiptext">
-                    <label>Le nombre de munitions de l'arme est de {{minus item.system.munitions item.system.tire}} sur {{item.system.munitions}}.</label>
+                    <label>Le nombre de munitions de l'arme est de {{minus (versionValue item 'munitions' @root.version) (versionValue item 'tire' @root.version)}} sur {{versionValue item 'munitions' @root.version}}.</label>
                 </div>
             </a>
             <a data-action="aim" class="tooltip {{#unless ../../canAct}}disabled{{/unless}}">
                 <i class="fas fa-crosshairs"></i>
                 <div class="tooltiptext">
-                    <label>Le nombre de rounds de visée est de {{item.system.visee}} sur 3.</label>
+                    <label>Le nombre de rounds de visée est de {{versionValue item 'visee' @root.version}} sur 3.</label>
                 </div>
             </a>
             <a data-action="rollWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
-            <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if item.system.used}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
+            <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if (versionValue item 'used' @root.version)}}fa-duotone fa-gun{{else}}far fa-hand-paper{{/if}}"></i></a>
         </li>
         {{/each}}
 

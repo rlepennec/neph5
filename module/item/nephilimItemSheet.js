@@ -105,7 +105,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         }
 
         const outdated = illustration.outdated(
-            document.system[illustration.field],
+            Version.data(document)[illustration.field],
             document.system.illustration);
 
         if (outdated == null) {
@@ -176,7 +176,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         const cercles = {}
         for (let cercle of Science.cerclesOf(science)) {
             if (cercle.includes('@')) {
-                const item = game.items.find(i => i.system.key === cercle);
+                const item = game.items.find(i => Version.data(i).key === cercle);
                 cercles[cercle] = item != null ? item.name : cercle.split('@')[1];
             } else {
                 cercles[cercle] = cercle;

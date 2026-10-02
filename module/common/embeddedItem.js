@@ -1,3 +1,4 @@
+import { Version } from "./version.js";
 export class EmbeddedItem {
 
     /**
@@ -122,8 +123,11 @@ export class EmbeddedItem {
         //let raw = await NephilimItem.fromDropData({ uuid: "Item." + item.id });
         //let data = raw.toObject();
         let data = item.toObject();
+        // Chaque valeur va au chemin de la version : posée à plat, elle perdrait contre la
+        // valeur que l'item du monde a déjà rangée dans sa version (la passerelle de
+        // migrateData ne remplace pas une valeur déjà rangée).
         for (const [name, value] of this.data) {
-            data.system[name] = value;
+            foundry.utils.setProperty(data, Version.path(item, name), value);
         }
         data = data instanceof Array ? data : [data];
 
@@ -158,7 +162,7 @@ export class EmbeddedItem {
         } else {
             const update = {};
             for (const name of this.removeData) {
-                update['system.' + name] = new foundry.data.operators.ForcedDeletion();
+                update[Version.path(this.item, name)] = new foundry.data.operators.ForcedDeletion();
             }
             await this.item.update(update);
         }

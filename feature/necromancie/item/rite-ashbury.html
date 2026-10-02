@@ -12,15 +12,15 @@
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="cercle"
-                    name="system.cercle"
-                    value=document.system.cercle
+                    name=(concat versionPath ".cercle")
+                    value=data.cercle
                     options=context.cercles
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="desmos"
-                    name="system.desmos"
-                    value=document.system.desmos
+                    name=(concat versionPath ".desmos")
+                    value=data.desmos
                     options=context.desmos
                 }}
 

@@ -21,101 +21,101 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="degre"
                     class="circle"
-                    name="system.degre"
-                    value=document.system.degre
+                    name=(concat versionPath ".degre")
+                    value=data.degre
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="oeuvre"
-                    name="system.cercle"
-                    value=document.system.cercle
+                    name=(concat versionPath ".cercle")
+                    value=data.cercle
                     options=context.cercles
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="substance"
-                    name="system.substance"
-                    value=document.system.substance
+                    name=(concat versionPath ".substance")
+                    value=data.substance
                     options=context.substances
                 }}
 
-                {{#if (eq system.cercle "oeuvreAuRouge")}}
+                {{#if (eq data.cercle "oeuvreAuRouge")}}
                     {{> "systems/neph5e/templates/select.hbs"
                         title="element"
-                        name="system.elements.[0]"
-                        value=document.system.elements.[0]
+                        name=(concat versionPath ".elements.[0]")
+                        value=data.elements.[0]
                         options=context.elementsGS
                     }}
                 {{else}}
                     {{> "systems/neph5e/templates/select.hbs"
                         title="element"
-                        name="system.elements.[0]"
-                        value=document.system.elements.[0]
+                        name=(concat versionPath ".elements.[0]")
+                        value=data.elements.[0]
                         options=context.elements
                     }}
                 {{/if}}
 
-                {{#if (eq system.cercle "oeuvreAuBlanc")}}
+                {{#if (eq data.cercle "oeuvreAuBlanc")}}
                     {{> "systems/neph5e/templates/select.hbs"
                         title="element"
-                        name="system.elements.[1]"
-                        value=document.system.elements.[1]
+                        name=(concat versionPath ".elements.[1]")
+                        value=data.elements.[1]
                         options=context.elements
                     }}
                 {{/if}}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="enonce"
-                    name="system.enonce"
-                    value=document.system.enonce
+                    name=(concat versionPath ".enonce")
+                    value=data.enonce
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="aire"
-                    name="system.aire"
-                    value=document.system.aire
+                    name=(concat versionPath ".aire")
+                    value=data.aire
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="duree"
-                    name="system.duree"
-                    value=document.system.duree
+                    name=(concat versionPath ".duree")
+                    value=data.duree
                 }}
 
-                {{#if (eq system.cercle "oeuvreAuRouge")}}
+                {{#if (eq data.cercle "oeuvreAuRouge")}}
 
                     {{> "systems/neph5e/templates/input.hbs"
                         title="echec"
-                        name="system.echec"
-                        value=document.system.echec
+                        name=(concat versionPath ".echec")
+                        value=data.echec
                     }}
 
                     {{> "systems/neph5e/templates/input.hbs"
                         title="maladresse"
-                        name="system.maladresse"
-                        value=document.system.maladresse
+                        name=(concat versionPath ".maladresse")
+                        value=data.maladresse
                     }}
 
                 {{/if}}
 
                 {{> "systems/neph5e/templates/list.hbs"
                     title="variantes"
-                    values=document.system.variantes
-                    names="system.variantes"
+                    values=data.variantes
+                    names=(concat versionPath ".variantes")
                 }}
 
                 {{#if context.catalyseurs}}
                     {{> "systems/neph5e/templates/list.hbs"
                         title="catalyseurs"
-                        values=document.system.catalyseurs
-                        names="system.catalyseurs"
+                        values=data.catalyseurs
+                        names=(concat versionPath ".catalyseurs")
                     }}
                 {{/if}}
 
                 {{#if (nonNull difficulty)}}
                 <div class="label">
                     <h1>{{translate "difficulte"}}</h1>
-                    <span>{{difficulty}}0%{{#if (eq document.system.elements.[0] "quintuple")}} plus l'élément{{/if}}</span>
+                    <span>{{difficulty}}0%{{#if (eq data.elements.[0] "quintuple")}} plus l'élément{{/if}}</span>
                 </div>
                 {{/if}}
 

@@ -26,8 +26,8 @@
 
                     {{> "systems/neph5e/templates/input.hbs"
                         title="cle"
-                        name="system.key"
-                        value=document.system.key
+                        name=(concat versionPath ".key")
+                        value=data.key
                     }}
 
                 </div>

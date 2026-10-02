@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 import { NephilimChat } from "../../../module/common/chat.js";
 
@@ -26,7 +27,7 @@ export class Recharger extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.weapon.system.tire > 0;
+        return Version.data(action.weapon).tire > 0;
     }
 
     /**
@@ -39,7 +40,7 @@ export class Recharger extends AbstractManoeuver {
             return;
         }
 
-        await action.weapon.update({ ['system.tire']: 0 });
+        await action.weapon.update({ [Version.path(action.weapon, 'tire')]: 0 });
 
         await new NephilimChat(action.actor)
             .withTemplate("systems/neph5e/feature/core/chat.hbs")
@@ -48,7 +49,7 @@ export class Recharger extends AbstractManoeuver {
                 sentence: game.i18n.localize('NEPHILIM.manoeuvreRechargerSentence').replaceAll("${arme}", action.weapon.name),
                 richSentence: game.i18n.localize('NEPHILIM.manoeuvreRechargerSentence').replaceAll("${arme}", action.weapon.name),
                 img: action.img,
-                reload: action.weapon.system.munitions
+                reload: Version.data(action.weapon).munitions
             })
             .withFlags({})
             .create();

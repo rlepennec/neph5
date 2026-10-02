@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 import { NephilimChat } from "../../../module/common/chat.js";
 
@@ -35,17 +36,17 @@ export class Viser extends AbstractManoeuver {
     modifier(action) {
 
         // On the current target
-        if (action.weapon.system.cible === action.target?.id) {
-            switch (action.weapon.system.type) {
+        if (Version.data(action.weapon).cible === action.target?.id) {
+            switch (Version.data(action.weapon).type) {
                 case Constants.FEU:
-                    return action.weapon.system.visee === null ? -40 : action.weapon.system.visee * 20;
+                    return Version.data(action.weapon).visee === null ? -40 : Version.data(action.weapon).visee * 20;
                 case Constants.TRAIT:
-                    return action.weapon.system.visee * 20;
+                    return Version.data(action.weapon).visee * 20;
             }
 
         // An other target
         } else {
-            switch (action.weapon.system.type) {
+            switch (Version.data(action.weapon).type) {
                 case Constants.FEU:
                     return -40;
                 case Constants.TRAIT:
@@ -61,8 +62,8 @@ export class Viser extends AbstractManoeuver {
     isAllowed(action) {
         return action.actor != null &&
                action.target != null &&
-              (action.weapon.system.type !== Constants.FEU || action.weapon.system.munitions - action.weapon.system.tire > 0) &&
-              (action.weapon.system.cible !== action.target.id || action.weapon.system.visee < 3);
+              (Version.data(action.weapon).type !== Constants.FEU || Version.data(action.weapon).munitions - Version.data(action.weapon).tire > 0) &&
+              (Version.data(action.weapon).cible !== action.target.id || Version.data(action.weapon).visee < 3);
 
     }
 
@@ -77,11 +78,11 @@ export class Viser extends AbstractManoeuver {
         }
 
         // New target or one round more on same target
-        if (action.weapon.system.cible !== action.target.id) {
-            await action.weapon.update({ ['system.cible']: action.target.id });
-            await action.weapon.update({ ['system.visee']: 1 });
+        if (Version.data(action.weapon).cible !== action.target.id) {
+            await action.weapon.update({ [Version.path(action.weapon, 'cible')]: action.target.id });
+            await action.weapon.update({ [Version.path(action.weapon, 'visee')]: 1 });
         } else {
-            await action.weapon.update({ ['system.visee']: action.weapon.system.visee + 1 });
+            await action.weapon.update({ [Version.path(action.weapon, 'visee')]: Version.data(action.weapon).visee + 1 });
         }
 
         // Chat
@@ -92,7 +93,7 @@ export class Viser extends AbstractManoeuver {
                 sentence: game.i18n.localize('NEPHILIM.manoeuvreViserSentence').replaceAll("${arme}", action.weapon.name),
                 richSentence: game.i18n.localize('NEPHILIM.manoeuvreViserSentence').replaceAll("${arme}", action.weapon.name),
                 img: action.img,
-                aim: action.weapon.system.visee
+                aim: Version.data(action.weapon).visee
             })
             .withFlags({})
             .create();

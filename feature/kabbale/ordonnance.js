@@ -46,7 +46,7 @@ export class Ordonnance extends AbstractFeature {
      * @returns the monde of kabbale.
      */
     get monde() {
-        return this.actor.items.find(i => i.type === 'ordonnance')?.system.monde;
+        return Version.data(this.actor.items.find(i => i.type === 'ordonnance')).monde;
     }
 
     /**
@@ -72,7 +72,7 @@ export class Ordonnance extends AbstractFeature {
         for (let item of actor.items.filter(o => o.type === 'ordonnance' && AbstractFeature.isActive(actor, o))) {
             const original = AbstractFeature.original(item.sid);
             size++;
-            monde = game.i18n.localize('NEPHILIM.' + original.system.monde);
+            monde = game.i18n.localize('NEPHILIM.' + Version.data(original).monde);
             items.push({
                 original: {
                     id: original.id,

@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -41,7 +42,7 @@ export class Appel extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a appel")
             .withDeleteExisting()
-            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
+            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withData("periode", this.periode)
             .withoutData('description', 'degre', 'appel', 'controle', 'visibilite', 'entropie', 'dommages', 'protection')
             .create();
@@ -66,16 +67,16 @@ export class Appel extends AbstractFocus {
             return -100;
         }
 
-        if (this.embedded.system.status === 'connu') {
+        if (Version.data(this.embedded).status === 'connu') {
             return -101;
         }
 
-        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+        if (Version.data(this.embedded).focus !== true && Version.data(this.embedded).status === 'dechiffre') {
             return -102;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle).degre;
         if (science === 0) {
             return -103;
         }

@@ -14,28 +14,28 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="degre"
                     class="circle"
-                    name="system.degre"
-                    value=document.system.degre
+                    name=(concat versionPath ".degre")
+                    value=data.degre
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="sephirah"
-                    name="system.sephirah"
-                    value=document.system.sephirah
+                    name=(concat versionPath ".sephirah")
+                    value=data.sephirah
                     options=context.cercles
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="monde"
-                    name="system.monde"
-                    value=document.system.monde
+                    name=(concat versionPath ".monde")
+                    value=data.monde
                     options=context.mondes
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
-                    name="system.element"
-                    value=document.system.element
+                    name=(concat versionPath ".element")
+                    value=data.element
                     options=context.elements
                 }}
 
@@ -43,26 +43,26 @@
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="portee"
-                name="system.portee"
-                value=document.system.portee
+                name=(concat versionPath ".portee")
+                value=data.portee
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="duree"
-                name="system.duree"
-                value=document.system.duree
+                name=(concat versionPath ".duree")
+                value=data.duree
             }}
 
             {{> "systems/neph5e/templates/input.hbs"
                 title="visibilite"
-                name="system.visibilite"
-                value=document.system.visibilite
+                name=(concat versionPath ".visibilite")
+                value=data.visibilite
             }}
 
             {{#if (nonNull difficulty)}}
             <div class="label">
                 <h1>{{translate "difficulte"}}</h1>
-                <span>{{difficulty}}0%{{#if (eq document.system.element 'choix')}} plus l'élément{{/if}}</span>
+                <span>{{difficulty}}0%{{#if (eq data.element 'choix')}} plus l'élément{{/if}}</span>
             </div>
             {{/if}}
 

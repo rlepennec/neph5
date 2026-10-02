@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Salve extends AbstractManoeuver {
@@ -19,15 +20,15 @@ export class Salve extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.weapon.system.salve === true &&
-               action.weapon.system.munitions > action.weapon.system.tire + 2;
+        return Version.data(action.weapon).salve === true &&
+               Version.data(action.weapon).munitions > Version.data(action.weapon).tire + 2;
     }
 
     /**
      * @Override
      */
     async apply(action) {
-        await action.weapon.update({ ['system.tire']: action.weapon.system.tire + 3 });
+        await action.weapon.update({ [Version.path(action.weapon, 'tire')]: Version.data(action.weapon).tire + 3 });
     }
 
 }

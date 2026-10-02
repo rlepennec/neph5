@@ -1,4 +1,5 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
+import { Version } from "../../../module/common/version.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
@@ -72,7 +73,7 @@ export class Distance extends AbstractCombatFeature {
     get data() {
         return new ActionDataBuilder(this)
             .withItem(this.item)
-            .withType(this.weapon.system.type === Constants.TRAIT ? Constants.OPPOSED : Constants.SIMPLE)
+            .withType(Version.data(this.weapon).type === Constants.TRAIT ? Constants.OPPOSED : Constants.SIMPLE)
             .withBase(this.item.name, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Distance.manoeuvers())
@@ -104,7 +105,7 @@ export class Distance extends AbstractCombatFeature {
      * @Override
      */
     weaponModifier(weapon) {
-        return AbstractCombatFeature.toInt(weapon?.system.attack * 10);
+        return AbstractCombatFeature.toInt(Version.data(weapon).attack * 10);
     }
 
     /**
@@ -113,7 +114,7 @@ export class Distance extends AbstractCombatFeature {
     async initializeRoll() {
 
         // L'arme doit être en main.
-        if (this.weapon.system.used !== true) {
+        if (Version.data(this.weapon).used !== true) {
             ui.notifications.info("L'arme n'est pas en main");
             return;
         }

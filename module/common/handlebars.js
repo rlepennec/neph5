@@ -1,5 +1,6 @@
 import { Constants } from "./constants.js";
 import { DocumentIdentifier } from "./documentIdentifier.js";
+import { Version } from "./version.js";
 
 export class CustomHandlebarsHelpers {
 
@@ -230,6 +231,31 @@ export class CustomHandlebarsHelpers {
      * @param words The words to concat. 
      * @returns the concated words.
      */
+    /**
+     * Lit un champ versionné d'un document qui n'est pas celui de la fiche — un item
+     * d'une liste sur la feuille d'acteur, typiquement. Le gabarit ne peut pas savoir si
+     * le document est porté aux versions : le helper le résout, avec le même repli que
+     * Version.data.
+     * @param document The document to read.
+     * @param field    The field name.
+     * @param version  The version, the world one if omitted.
+     * @returns the value.
+     */
+    static versionValue(document, field, version) {
+        return Version.data(document, typeof version === "string" ? version : null)?.[field];
+    }
+
+    /**
+     * Le préfixe d'écriture d'un document listé — 'system' ou 'system.versions.v5' —
+     * pour composer l'attribut name d'un champ de saisie.
+     * @param document The document to write to.
+     * @param version  The version, the world one if omitted.
+     * @returns the prefix.
+     */
+    static versionPrefix(document, version) {
+        return Version.prefix(document, typeof version === "string" ? version : null);
+    }
+
     static concat(...words) {
         words.pop();
         return words.join('');

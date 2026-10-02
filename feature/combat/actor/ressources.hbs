@@ -24,9 +24,9 @@
              vient des périodes et n'est donc affiché qu'en lecture. --}}
         {{#if ../degreEditable}}
         {{> "systems/neph5e/templates/input.hbs"
-            name=(concat 'items.' (fsid item) '.system.degre')
+            name=(concat 'items.' (fsid item) '.' (versionPrefix item @root.version) '.degre')
             type="number"
-            value=item.system.degre
+            value=(versionValue item 'degre' @root.version)
         }}
         {{else}}
         {{!-- input nu et disabled : surtout pas input.hbs sans name ni type,
@@ -40,7 +40,7 @@
         <input
             type="text"
             class="{{#unless @root.locked}}unlocked{{/unless}}"
-            value="{{item.system.degre}}"
+            value="{{versionValue item 'degre' @root.version}}"
             disabled/>
         {{/if}}
         </li>

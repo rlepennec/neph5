@@ -130,7 +130,7 @@ export class Competence extends AbstractFeature {
 
         // Delete the competence from all embedded weapons
         for (let o of this.actor.items.filter(i => i.type === 'arme')) {
-            if (o.system?.competence === this.item.sid) {
+            if (Version.data(o).competence === this.item.sid) {
                 await this.actor.deleteEmbeddedDocuments('Item', [o.id]);
             }
         }

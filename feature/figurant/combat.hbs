@@ -57,9 +57,9 @@
                     <a data-action="rollVecu"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
                     <label data-action="open">{{item.name}}</label>
                     {{> "systems/neph5e/templates/input.hbs"
-                        name=(concat 'items.' (fsid item) '.system.degre')
+                        name=(concat 'items.' (fsid item) '.' (versionPrefix item @root.version) '.degre')
                         type="number"
-                        value=item.system.degre
+                        value=(versionValue item 'degre' @root.version)
                     }}
                     {{!-- La corbeille est un moyen de modifier la fiche : elle ne
                          s'affiche que déverrouillée, comme celles des périodes. --}}

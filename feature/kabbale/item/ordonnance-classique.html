@@ -12,8 +12,8 @@
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="monde"
-                    name="system.monde"
-                    value=document.system.monde
+                    name=(concat versionPath ".monde")
+                    value=data.monde
                     options=context.mondes
                 }}
 

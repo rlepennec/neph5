@@ -86,7 +86,7 @@
                     <!-- The only element of the focus. -->
                     {{#if (includes ../../header 'element')}}
                     <label class="focus-element tooltip">
-                        {{#switch item.original.system.element}}
+                        {{#switch item.element}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                         {{/switch}}
                     </label>
@@ -96,12 +96,12 @@
                     {{#if (includes ../../header 'elements')}}
                     <label class="focus-elements">
                         <div class="tooltip">
-                        {{#switch item.original.system.elements.[0]}}
+                        {{#switch item.elements.[0]}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                         {{/switch}}
                         </div>
                         <div class="tooltip">
-                        {{#switch item.original.system.elements.[1]}}
+                        {{#switch item.elements.[1]}}
                             {{> "systems/neph5e/feature/science/actor/elements.hbs"}}
                         {{/switch}}
                         </div>
@@ -132,7 +132,7 @@
                     <!-- Indicates id the character has the focus. -->
                     {{#if (includes ../../header 'possede')}}
                     <label class="focus-possede" data-action="changeFocus">
-                        {{#if item.embedded.system.focus}}
+                        {{#if item.focus}}
                         <i class="fa-solid fa-scroll"></i>
                         {{else}}
                         <i class="fa-regular fa-scroll"></i>
@@ -156,14 +156,14 @@
                         {{#if @root.locked}}disabled{{/if}}
                         class="focus-transporte change"
                         type="number"
-                        value="{{item.embedded.system.transporte}}"
+                        value="{{item.transporte}}"
                         data-dtype="Number"/>
                     {{/if}}
 
                     <!-- The status of the pacte with the kabbale creature. -->
                     {{#if (includes ../../header 'pacte')}}
                     <label data-action="changePacte" class="focus-pacte change">
-                        {{#if item.embedded.system.pacte}}
+                        {{#if item.pacte}}
                         <i class="fa-solid fa-feather-pointed"></i>
                         {{else}}
                         <i class="fa-regular fa-feather-pointed"></i>
@@ -180,7 +180,7 @@
                     {{#if item.uncastable}}
                     <label class="focus-difficulty">0</label>
                     {{else}}
-                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (or (eq item.original.system.element 'choix') (eq item.original.system.elements.[0] 'quintuple') (eq item.original.system.cercle 'dracomachie@passes'))}}+{{/if}}</label>
+                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (or (eq item.element 'choix') (eq item.elements.[0] 'quintuple') (eq item.cercle 'dracomachie@passes'))}}+{{/if}}</label>
                     {{/if}}
                     {{/if}}
 

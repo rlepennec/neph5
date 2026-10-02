@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Lancer extends AbstractManoeuver {
@@ -19,14 +20,14 @@ export class Lancer extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.weapon.system.lance === true;
+        return Version.data(action.weapon).lance === true;
     }
 
     /**
      * @Override
      */
     async apply(action) {
-        await action.weapon.update({ ['system.used']: false });
+        await action.weapon.update({ [Version.path(action.weapon, 'used')]: false });
     }
 
 }

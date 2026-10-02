@@ -227,7 +227,7 @@ export class Science extends HistoricalFeature {
         // Retrieve 
         const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === Version.data(i).periode)).actif()).map(i => i.sid);
 
-        for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
+        for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
 
             const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
@@ -247,6 +247,12 @@ export class Science extends HistoricalFeature {
                 // La quantité peut appartenir à une version : on la résout ici, car le
                 // gabarit est générique et ne sait pas de quel type est l'item listé.
                 quantite: Version.data(embedded).quantite,
+                transporte: Version.data(embedded).transporte,
+                element: Version.data(item).element,
+                elements: Version.data(item).elements,
+                cercle: Version.data(item).cercle,
+                focus: Version.data(embedded).focus,
+                pacte: Version.data(embedded).pacte,
                 uncastable: uncastable,
                 limitation: limitation
             });
@@ -262,7 +268,7 @@ export class Science extends HistoricalFeature {
      * @returns the science.
      */
     static scienceOf(actor, cercle) {
-        const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
+        const item = game.items.find(i => i.type === 'science' && Version.data(i).key === cercle);
         return item == null ? null : new Science(actor).withItem(item);
     }
 
@@ -324,7 +330,7 @@ export class Science extends HistoricalFeature {
                 continue;
             }
 
-            const item = game.items.find(i => i.type === 'science' && i.system.key === cercle);
+            const item = game.items.find(i => i.type === 'science' && Version.data(i).key === cercle);
             if (item != null) {
                 const feature = new Science(actor).withItem(item);
                 const degre = feature.degre;
@@ -417,7 +423,7 @@ export class Science extends HistoricalFeature {
         const cercle = Science.getCercle(science);
         const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === Version.data(i).periode)).actif()).map(i => i.sid);
         
-        for (let item of game.items.filter(i => i.system[cercle?.property] === science && sids.includes(i.sid))) {
+        for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
 
             const feature = new FeatureBuilder(actor).withPeriode(actor.system.periode).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
@@ -437,6 +443,12 @@ export class Science extends HistoricalFeature {
                 // La quantité peut appartenir à une version : on la résout ici, car le
                 // gabarit est générique et ne sait pas de quel type est l'item listé.
                 quantite: Version.data(embedded).quantite,
+                transporte: Version.data(embedded).transporte,
+                element: Version.data(item).element,
+                elements: Version.data(item).elements,
+                cercle: Version.data(item).cercle,
+                focus: Version.data(embedded).focus,
+                pacte: Version.data(embedded).pacte,
                 uncastable: uncastable,
                 limitation: limitation
             });
@@ -463,8 +475,8 @@ export class Science extends HistoricalFeature {
             case 'necromancie':
                 return ['fossoyeur', 'embaumeur', 'imputrescible'];
             case 'analogie': {
-                const addons = game.items.filter(i => i.type === 'science' && i.system.key?.startsWith(science + '@'));
-                return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => addon.system.key));
+                const addons = game.items.filter(i => i.type === 'science' && Version.data(i).key?.startsWith(science + '@'));
+                return ['comprendre', 'controler', 'creer', 'detruire', 'transformer'].concat(Array.from(addons, addon => Version.data(addon).key));
             }
             case 'atlanteide':
             case 'baton':
@@ -473,8 +485,8 @@ export class Science extends HistoricalFeature {
             case 'bohemien':
             case 'dracomachie':
             case 'epee': {
-                const addons = game.items.filter(i => i.type === 'science' && i.system.key?.startsWith(science + '@'));
-                return Array.from(addons, addon => addon.system.key);
+                const addons = game.items.filter(i => i.type === 'science' && Version.data(i).key?.startsWith(science + '@'));
+                return Array.from(addons, addon => Version.data(addon).key);
             }
             default:
                 return [];

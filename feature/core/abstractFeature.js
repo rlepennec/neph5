@@ -241,9 +241,9 @@ export class AbstractFeature {
     async apply(result) {
         if (this.manoeuver != null) {
             if (this.manoeuver.clearViser === true) {
-                for (let w of this.actor.items.filter(i => i.type === 'arme' && (i.system.type === Constants.FEU || i.system.type === Constants.TRAIT))) {
-                    await w.update({ ['system.cible']: null });
-                    await w.update({ ['system.visee']: 0 });
+                for (let w of this.actor.items.filter(i => i.type === 'arme' && (Version.data(i).type === Constants.FEU || Version.data(i).type === Constants.TRAIT))) {
+                    await w.update({ [Version.path(w, 'cible')]: null });
+                    await w.update({ [Version.path(w, 'visee')]: 0 });
                 }
             }
             await this.manoeuver.apply(this);

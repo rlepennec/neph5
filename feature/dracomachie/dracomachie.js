@@ -169,7 +169,7 @@ export class Dracomachie extends AbstractFocus {
      */
     get domaine() {
         const science = Science.scienceOf(this.actor, Version.data(this.item).cercle);
-        return science.item.system.key.replace("dracomachie@","");
+        return Version.data(science.item).key.replace("dracomachie@","");
     }
 
     /**

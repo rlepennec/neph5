@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -36,7 +37,7 @@ export class Invocation extends AbstractFocus {
      * @Override
      */
     modifier(parameters) {
-        if (this.item.system.element === 'choix') {
+        if (Version.data(this.item).element === 'choix') {
             return parameters == null ? this.actor.getKa('air') : parameters.ka;
         } else {
             return 0;
@@ -47,7 +48,7 @@ export class Invocation extends AbstractFocus {
      * @returns true if a pacte has already be done.
      */
     get pacte() {
-        return this.embedded.system.pacte;
+        return Version.data(this.embedded).pacte;
     }
 
     /**
@@ -59,9 +60,9 @@ export class Invocation extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
             .withDeleteExisting()
-            .withData("focus", (previous == null ? false : previous.system.focus))
-            .withData("status", (previous == null ? Constants.CONNU : previous.system.status))
-            .withData("pacte", (previous == null ? false : previous.system.pacte))
+            .withData("focus", (previous == null ? false : Version.data(previous).focus))
+            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
+            .withData("pacte", (previous == null ? false : Version.data(previous).pacte))
             .withData("periode", this.periode)
             .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')
             .create();
@@ -86,24 +87,24 @@ export class Invocation extends AbstractFocus {
             return -100;
         }
 
-        if (this.embedded.system.status === 'connu') {
+        if (Version.data(this.embedded).status === 'connu') {
             return -101;
         }
 
-        if (this.embedded.system.focus !== true && this.embedded.system.status === 'dechiffre') {
+        if (Version.data(this.embedded).focus !== true && Version.data(this.embedded).status === 'dechiffre') {
             return -102;
         }
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.sephirah).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).sephirah).degre;
         if (science === 0) {
             return -106;
         }
 
         // Retrieve the degre of the ka used to cast the focus
         let ka = 0;
-        if (this.item.system.element !== 'choix') {
-            ka = this.actor.getKa(this.item.system.element === "luneNoire" ? "noyau" : this.item.system.element);
+        if (Version.data(this.item).element !== 'choix') {
+            ka = this.actor.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
             if (ka === 0) {
                 return -105;
             }

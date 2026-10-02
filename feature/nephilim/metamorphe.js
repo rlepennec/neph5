@@ -1,5 +1,6 @@
 
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { SimpleFeature } from "../core/simpleFeature.js";
 
@@ -46,14 +47,15 @@ export class Metamorphe extends SimpleFeature {
                 id = original.id;
                 sid = original.sid;
                 name = original.name;
-                size = embedded?.system.formed.filter(v => v === true).length;
+                const etat = Version.data(embedded);
+                size = etat.formed.filter(v => v === true).length;
                 for (let i=0; i<10; i++) {
                     metamorphoses[i] = {
-                        name: original.system.metamorphoses[i].name,
-                        formed: embedded.system.formed[i],
-                        visible: embedded.system.visible[i]
+                        name: Version.data(original).metamorphoses[i]?.name,
+                        formed: etat.formed[i],
+                        visible: etat.visible[i]
                     };
-                    if (embedded.system.formed[i] === true && embedded.system.visible[i] == true) {
+                    if (etat.formed[i] === true && etat.visible[i] == true) {
                         visibles = visibles + 1;
                     }
                 }
@@ -86,9 +88,9 @@ export class Metamorphe extends SimpleFeature {
      */
     async toggleFormed(index) {
         const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        const system = foundry.utils.duplicate(embedded.system);
-        system.formed[index] = !system.formed[index];
-        await embedded.update({ ['system']: system });
+        const formed = foundry.utils.duplicate(Version.data(embedded).formed);
+        formed[index] = !formed[index];
+        await embedded.update({ [Version.path(embedded, 'formed')]: formed });
         return this;
     }
 
@@ -99,9 +101,9 @@ export class Metamorphe extends SimpleFeature {
      */
     async toggleVisible(index) {
         const embedded = AbstractFeature.embedded(this.actor, this.sid);
-        const system = foundry.utils.duplicate(embedded.system);
-        system.visible[index] = !system.visible[index];
-        await embedded.update({ ['system']: system });
+        const visible = foundry.utils.duplicate(Version.data(embedded).visible);
+        visible[index] = !visible[index];
+        await embedded.update({ [Version.path(embedded, 'visible')]: visible });
         return this;
     }
 

@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Multiple extends AbstractManoeuver {
@@ -19,7 +20,7 @@ export class Multiple extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.weapon.system.munitions - action.weapon.system.tire > 0;
+        return Version.data(action.weapon).munitions - Version.data(action.weapon).tire > 0;
     }
 
     /**
@@ -27,7 +28,7 @@ export class Multiple extends AbstractManoeuver {
      * Chaque tir du tir multiple est une attaque à part entière : une balle par tir.
      */
     async apply(action) {
-        await action.weapon.update({ ['system.tire']: action.weapon.system.tire + 1 });
+        await action.weapon.update({ [Version.path(action.weapon, 'tire')]: Version.data(action.weapon).tire + 1 });
     }
 
 }

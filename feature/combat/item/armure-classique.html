@@ -13,15 +13,15 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="physique"
                     class="circle"
-                    name="system.physique"
-                    value=document.system.physique
+                    name=(concat versionPath ".physique")
+                    value=data.physique
                 }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="magique"
                     class="circle"
-                    name="system.magique"
-                    value=document.system.magique
+                    name=(concat versionPath ".magique")
+                    value=data.magique
                 }}
 
             </div>

@@ -1,4 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
+import { Version } from "../../../module/common/version.js";
 import { Constants } from "../../../module/common/constants.js";
 
 export class Bloquer extends AbstractManoeuver {
@@ -31,7 +32,7 @@ export class Bloquer extends AbstractManoeuver {
             case Constants.BRAWL:
                 return true;
             case Constants.STRIKE:
-                return action.attack.weapon?.system?.type === Constants.NATURELLE || (action.attack.weapon?.system?.type === Constants.MELEE && action.weapon?.system?.type === Constants.MELEE);
+                return Version.data(action.attack.weapon).type === Constants.NATURELLE || (Version.data(action.attack.weapon).type === Constants.MELEE && Version.data(action.weapon).type === Constants.MELEE);
             default:
                 return false;
         }

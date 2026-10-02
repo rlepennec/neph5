@@ -1,4 +1,5 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
+import { Version } from "../../../module/common/version.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -142,7 +143,7 @@ export class Defense extends AbstractCombatFeature {
      * @Override
      */
     weaponModifier(weapon) {
-        return weapon == null ? 0 : AbstractCombatFeature.toInt(weapon.system.defense * 10);
+        return weapon == null ? 0 : AbstractCombatFeature.toInt(Version.data(weapon).defense * 10);
     }
 
     /**
@@ -262,14 +263,14 @@ export class Defense extends AbstractCombatFeature {
      *          attaquer.
      */
     weapon() {
-        const used = this.actor.items.filter(i => i.type === 'arme' && i.system.used === true);
+        const used = this.actor.items.filter(i => i.type === 'arme' && Version.data(i).used === true);
         switch (this.attack.manoeuver.family) {
             case Constants.THROW:
             case Constants.FIRE:
-                return used.find(i => i.system.blocage === true) ?? null;
+                return used.find(i => Version.data(i).blocage === true) ?? null;
             default:
-                return used.find(i => i.system.parade === true)
-                    ?? used.find(i => i.system.type === Constants.MELEE || i.system.type === Constants.NATURELLE)
+                return used.find(i => Version.data(i).parade === true)
+                    ?? used.find(i => Version.data(i).type === Constants.MELEE || Version.data(i).type === Constants.NATURELLE)
                     ?? null;
         }
     }

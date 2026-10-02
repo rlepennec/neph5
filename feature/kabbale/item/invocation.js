@@ -1,4 +1,5 @@
 import { InvocationDataModel } from "./invocation.mjs";
+import { Version } from "../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class InvocationSheet extends NephilimItemSheet {
@@ -16,7 +17,7 @@ export class InvocationSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.applySkin(this.document.system.element);
+        this.applySkin(Version.data(this.document, this.version).element);
     }
 
     /**
