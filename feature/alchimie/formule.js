@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -43,8 +44,8 @@ export class Formule extends AbstractFocus {
 
         // If success, produce 1 dose
         if (result.success === true) {
-            const quantite = this.embedded.system.quantite + 1;
-            await this.embedded.update({ ['system.quantite']: quantite });
+            const quantite = Version.data(this.embedded).quantite + 1;
+            await this.embedded.update({ [Version.path(this.embedded, 'quantite')]: quantite });
 
             // If not critical, spend materiae primae
             if (result.critical === false) {

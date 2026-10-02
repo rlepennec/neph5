@@ -13,13 +13,13 @@
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="lieu"
-                    name="system.contexte"
-                    value=document.system.contexte }}
+                    name=(concat versionPath ".contexte")
+                    value=data.contexte }}
 
                 {{> "systems/neph5e/templates/input.hbs"
                     title="epoque"
-                    name="system.aube"
-                    value=document.system.aube }}
+                    name=(concat versionPath ".aube")
+                    value=data.aube }}
 
             </div>
 

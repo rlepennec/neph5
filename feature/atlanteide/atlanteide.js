@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -38,7 +39,7 @@ export class Atlanteide extends AbstractFocus {
     get rawDegre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle).degre;
         if (science < 1) {
             return -120;
         }
@@ -50,7 +51,7 @@ export class Atlanteide extends AbstractFocus {
         }
 
         // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
+        const focus = Version.data(this.item).degre;
 
         // Final result
         return science + ka - focus;

@@ -1,4 +1,5 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { Version } from "../../../module/common/version.js";
 
 export class DracomachieSheet extends NephilimItemSheet {
 
@@ -30,12 +31,16 @@ export class DracomachieSheet extends NephilimItemSheet {
      */
     async _onSubmit(event, form, formData) {
 
+        // Les champs appartiennent à la version affichée : les clefs du formulaire portent
+        // son préfixe, celui-là même que le gabarit a posé.
+        const prefixe = Version.prefix(this.document, this.version);
+
         // Set element for passes
-        if (formData.object["system.cercle"] === "dracomachie@passes" || formData.object["system.cercle"] === "dracomachie@charmes") {
-            formData.object['system.element'] = "choix"
+        if (formData.object[prefixe + ".cercle"] === "dracomachie@passes" || formData.object[prefixe + ".cercle"] === "dracomachie@charmes") {
+            formData.object[prefixe + ".element"] = "choix"
         } else {
-            formData.object['system.element'] = new foundry.data.operators.ForcedDeletion();
-            formData.object['system.degre'] = new foundry.data.operators.ForcedDeletion();
+            formData.object[prefixe + ".element"] = new foundry.data.operators.ForcedDeletion();
+            formData.object[prefixe + ".degre"] = new foundry.data.operators.ForcedDeletion();
         }
 
         // Update object

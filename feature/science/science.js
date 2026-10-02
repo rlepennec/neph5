@@ -244,6 +244,9 @@ export class Science extends HistoricalFeature {
             items.push({
                 original: item,
                 embedded: embedded,
+                // La quantité peut appartenir à une version : on la résout ici, car le
+                // gabarit est générique et ne sait pas de quel type est l'item listé.
+                quantite: Version.data(embedded).quantite,
                 uncastable: uncastable,
                 limitation: limitation
             });
@@ -431,6 +434,9 @@ export class Science extends HistoricalFeature {
             items.push({
                 original: item,
                 embedded: embedded,
+                // La quantité peut appartenir à une version : on la résout ici, car le
+                // gabarit est générique et ne sait pas de quel type est l'item listé.
+                quantite: Version.data(embedded).quantite,
                 uncastable: uncastable,
                 limitation: limitation
             });

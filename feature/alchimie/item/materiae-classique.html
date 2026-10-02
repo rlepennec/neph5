@@ -12,8 +12,8 @@
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
-                    name="system.element"
-                    value=document.system.element
+                    name=(concat versionPath ".element")
+                    value=data.element
                     options=context.elements
                 }}
 

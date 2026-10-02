@@ -13,14 +13,14 @@
                 {{> "systems/neph5e/templates/input.hbs"
                     title="degre"
                     class="circle"
-                    name="system.degre"
-                    value=document.system.degre
+                    name=(concat versionPath ".degre")
+                    value=data.degre
                 }}
 
                 {{> "systems/neph5e/templates/select.hbs"
                     title="atlanteide" 
-                    name="system.cercle"
-                    value=document.system.cercle 
+                    name=(concat versionPath ".cercle")
+                    value=data.cercle 
                     options=context.cercles
                 }}
 

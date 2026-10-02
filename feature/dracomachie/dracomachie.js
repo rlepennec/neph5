@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -75,7 +76,7 @@ export class Dracomachie extends AbstractFocus {
     get rawDegre() {
 
         // Retrieve the degre of the cercle used to cast the focus
-        const science = Science.scienceOf(this.actor, this.item.system.cercle).degre;
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle).degre;
         if (science === 0) {
             return -112;
         }
@@ -86,7 +87,7 @@ export class Dracomachie extends AbstractFocus {
             case 'rites':
                 return science;
             case 'passes':
-                const focus = this.item.system.degre;
+                const focus = Version.data(this.item).degre;
                 return science - (focus == null ? 0 : focus);
             default:
                 return -100;
@@ -167,7 +168,7 @@ export class Dracomachie extends AbstractFocus {
      * 
      */
     get domaine() {
-        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle);
         return science.item.system.key.replace("dracomachie@","");
     }
 
@@ -188,7 +189,7 @@ export class Dracomachie extends AbstractFocus {
     }
 
     contraint(menace) {
-        const science = Science.scienceOf(this.actor, this.item.system.cercle);
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle);
         const contraint = menace <= this.actor.ka && menace <= science.degre;
         return contraint ? "L'effet dragon est contraint automatiquement" : "L'effet dragon n'est pas contraint automatiquement";
     }

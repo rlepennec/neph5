@@ -173,9 +173,6 @@ export const NephilimMixinSheet = Base => {
 			context.data = Version.data(this.document, this.version);
 			context.versionPath = Version.prefix(this.document, this.version);
 
-			// Une version que le modèle n'a pas encore décrite n'a aucun champ : la fiche
-			// s'en sert pour ne rien montrer plutôt que d'afficher des cases vides.
-			context.versionEmpty = Object.keys(context.data ?? {}).length === 0;
 			context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(
 				context.data.description,
 				{

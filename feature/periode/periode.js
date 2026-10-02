@@ -35,7 +35,7 @@ export class Periode extends AbstractFeature {
         if (this.actor.items.find(i => i.sid === this.sid) == null) {
             
             // Insert the first periode or the new periode at the top of the incarnations list if necessary
-            const first = this.actor.items.find(i => i.type === 'periode' && i.system.previous === null);
+            const first = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === null);
             if (first != null) {
                 await Periode.setPrevious(first, this.sid);
             } else {
@@ -99,14 +99,14 @@ export class Periode extends AbstractFeature {
         const moved = this.actor.items.find(i => i.type === 'periode' && i.sid === this.sid);
 
         // The old next periode of the moved periode
-        const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.sid);
+        const next = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === this.sid);
 
         // The periode which have his new previous periode equal to the moved periode
-        const previous = this.actor.items.find(i => i.type === 'periode' && i.system.previous === parentId);
+        const previous = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === parentId);
 
         // A move is done
-        if (moved.system.previous !== parentId && moved.sid !== parentId && moved.sid !== previous?.sid) {
-            await Periode.setPrevious(next, moved.system.previous);
+        if (Version.data(moved).previous !== parentId && moved.sid !== parentId && moved.sid !== previous?.sid) {
+            await Periode.setPrevious(next, Version.data(moved).previous);
             await Periode.setPrevious(moved, parentId);
             await Periode.setPrevious(previous, this.sid);
         }
@@ -119,7 +119,7 @@ export class Periode extends AbstractFeature {
      * @param previous The system identifier of the previous periode.
      */
     static async setPrevious(item, previous) {
-        await item?.update({ ['system.previous']: previous });
+        await item?.update({ [Version.path(item, 'previous')]: previous });
     }
 
     /**
@@ -131,9 +131,9 @@ export class Periode extends AbstractFeature {
         if (this.actor.type === 'figure' || this.actor.type === 'fraternite') {
 
             // Update the next previous periode
-            const next = this.actor.items.find(i => i.type === 'periode' && i.system.previous === this.item.sid);
+            const next = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === this.item.sid);
             if (next != null) {
-                await next.update({ ["system.previous"]: this.embedded.system.previous });
+                await next.update({ [Version.path(next, 'previous')]: Version.data(this.embedded).previous });
             }
 
             // Remove the current actor periode if necessary
@@ -170,8 +170,8 @@ export class Periode extends AbstractFeature {
      * @returns the instance.
      */
     async toggleActive() {
-        const actif = this.embedded.system.actif;
-        await this.embedded.update({ ['system.actif']: !actif });
+        const actif = Version.data(this.embedded).actif;
+        await this.embedded.update({ [Version.path(this.embedded, 'actif')]: !actif });
         return this;
     }
 
@@ -180,7 +180,7 @@ export class Periode extends AbstractFeature {
      */
     actif() {
         const p = Periode.getChronological(this.actor, true, true, this.actor.system.periode).find(i => i.sid === this.sid);
-        return p != null && p.system.actif === true;
+        return p != null && Version.data(p).actif === true;
     }
 
     /**
@@ -208,7 +208,7 @@ export class Periode extends AbstractFeature {
         while (true) {
 
             // Retrieve the next periode
-            const p = actor.items.find(i => i.type === 'periode' && i.system.previous === previous);
+            const p = actor.items.find(i => i.type === 'periode' && Version.data(i).previous === previous);
 
             // Stop if the last periode
             if (p == null) {
@@ -228,7 +228,7 @@ export class Periode extends AbstractFeature {
             }
 
             // Add periode if required
-            if (actif == null || last === p.sid || p.system.actif === actif) {
+            if (actif == null || last === p.sid || Version.data(p).actif === actif) {
                 periodes.push(p);
             }
 
@@ -339,13 +339,13 @@ export class Periode extends AbstractFeature {
                     name: periode.name,
                     id: periode.id,
                     sid: periode.sid,
-                    contexte: periode.system.contexte,
-                    aube: periode.system.aube
+                    contexte: Version.data(periode).contexte,
+                    aube: Version.data(periode).aube
                 },
                 embedded: {
                     id: p.id,
                     fsid: new DocumentIdentifier(p).fsid,
-                    actif: p.system.actif,
+                    actif: Version.data(p).actif,
                     vecus: vecus,
                     focus: focus,
                     capacites: capacites,

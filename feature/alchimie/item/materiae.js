@@ -1,4 +1,5 @@
 import { MateriaeDataModel } from "./materiae.mjs";
+import { Version } from "../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
 export class MateriaeSheet extends NephilimItemSheet {
@@ -16,7 +17,7 @@ export class MateriaeSheet extends NephilimItemSheet {
      */
     async _onRender(context, options) {
         await super._onRender(context, options);
-        this.applySkin(this.document.system.element);
+        this.applySkin(Version.data(this.document, this.version).element);
     }
 
     /** 

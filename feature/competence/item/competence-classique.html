@@ -10,22 +10,18 @@
 
             <div class="banner">
 
-                {{#unless versionEmpty}}
                 {{> "systems/neph5e/templates/select.hbs"
                     title="element"
                     name=(concat versionPath ".element")
                     value=data.element
                     options=context.elements
                 }}
-                {{/unless}}
 
             </div>
 
             {{> "systems/neph5e/templates/chronology.hbs" title='vecu'}}
 
-            {{#unless versionEmpty}}
             {{> "systems/neph5e/templates/description.hbs"}}
-            {{/unless}}
 
         </main>
 

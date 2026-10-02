@@ -33,13 +33,25 @@ export class VersionMigration {
      * Les champs qui ont quitté la racine, par type de document puis par version.
      */
     static CHAMPS = {
-        arcane:     { v5: ['description', 'degre', 'periode'] },
-        capacite:   { v5: ['description', 'degre', 'periode'] },
-        competence: { v5: ['description', 'element'] },
-        passe:      { v5: ['description', 'degre', 'periode'] },
-        quete:      { v5: ['description', 'degre', 'periode'] },
-        savoir:     { v5: ['description', 'degre', 'periode'] },
-        vecu:       { v5: ['description', 'degre', 'periode', 'element', 'competences', 'mnemos'] }
+        alchimie:    { v5: ['description'] },
+        arcane:      { v5: ['description', 'degre', 'periode'] },
+        atlanteide:  { v5: ['description', 'cercle', 'degre', 'periode'] },
+        capacite:    { v5: ['description', 'degre', 'periode'] },
+        catalyseur:  { v5: ['description'] },
+        competence:  { v5: ['description', 'element'] },
+        divination:  { v5: ['description', 'cercle', 'degre', 'periode'] },
+        dracomachie: { v5: ['description', 'cercle', 'degre', 'periode'] },
+        magie:       { v5: ['description'] },
+        materiae:    { v5: ['description', 'element', 'quantite'] },
+        passe:       { v5: ['description', 'degre', 'periode'] },
+        periode:     { v5: ['description', 'aube', 'contexte', 'actif', 'previous'] },
+        pratique:    { v5: ['description', 'cercle', 'degre', 'periode'] },
+        quete:       { v5: ['description', 'degre', 'periode'] },
+        rituel:      { v5: ['description', 'cercle', 'degre', 'periode'] },
+        savoir:      { v5: ['description', 'degre', 'periode'] },
+        technique:   { v5: ['description', 'cercle', 'degre', 'periode'] },
+        tekhne:      { v5: ['description', 'cercle', 'degre', 'periode'] },
+        vecu:        { v5: ['description', 'degre', 'periode', 'element', 'competences', 'mnemos'] }
     };
 
     /**

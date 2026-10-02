@@ -2,6 +2,7 @@ import { NephilimItem } from "./nephilimItem.js"
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 import { ItemOptionsSelector } from "../../feature/core/itemOptionsSelector.js";
 import { positionOf } from "./positions.js";
+import { Version } from "../common/version.js";
 
 import { Science } from "../../feature/science/science.js";
 
@@ -122,6 +123,8 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         await this.alignIllustration();
         const context = await super._prepareContext(options);
         context.id = null;
+        // Le style, pour les gabarits partagés qui ne sont pas déclinés par style.
+        context.style = game.settings.get('neph5e', 'styleItemSheet');
         foundry.utils.mergeObject(context, this.embeddedData);
         foundry.utils.mergeObject(context, this.getOriginalData());
         return context;
@@ -130,6 +133,16 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
     _configureRenderParts(options) {
         const parts = super._configureRenderParts(options);
         const style = game.settings.get('neph5e', 'styleItemSheet');
+
+        // Une version que le modèle ne décrit pas encore n'a aucun champ : plutôt que de
+        // laisser chaque fiche masquer ses blocs un à un, on en rend une autre, qui garde
+        // l'en-tête et annonce qu'il n'y a rien à montrer. Un seul endroit pour trente-cinq
+        // types, et rien à défaire le jour où la version sera décrite.
+        if (Object.keys(Version.data(this.document, this.version) ?? {}).length === 0) {
+            parts.main.template = `systems/neph5e/templates/version-vide.html`;
+            return parts;
+        }
+
         // remplace le suffixe du template par le style choisi
         parts.main.template = parts.main.template.replace(/\.html$/, `-${style}.html`);
         return parts;

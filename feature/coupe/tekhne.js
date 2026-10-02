@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -48,7 +49,7 @@ export class Tekhne extends AbstractFocus {
         }
 
         // Retrieve the degre of the focus to cast
-        const focus = this.item.system.degre;
+        const focus = Version.data(this.item).degre;
 
         return savoir + ka - focus;
 

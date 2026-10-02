@@ -1,4 +1,5 @@
 import { Chute } from "../chute/chute.js";
+import { Version } from "../../module/common/version.js";
 import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
@@ -297,7 +298,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ ['system.quantite']: parseInt(event.target.value) });
+        await item.update({ [Version.path(item, 'quantite')]: parseInt(event.target.value) });
     }
 
     /** Modifie la quantité transportées de vaisseaux alchimiques  */
@@ -465,7 +466,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ ['system.quantite']: parseInt(event.target.value) });
+        await item.update({ [Version.path(item, 'quantite')]: parseInt(event.target.value) });
     }
 
     /**

@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Version } from "../../module/common/version.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { SimpleFeature } from "../core/simpleFeature.js";
 
@@ -35,11 +36,11 @@ export class Materiae extends SimpleFeature {
                     id: item.original.id,
                     sid: item.original.sid,
                     name: item.original.name,
-                    element: item.original.system.element
+                    element: Version.data(item.original).element
                 },
                 embedded: {
                     id: item.embedded.id,
-                    quantite: item.embedded.system.quantite
+                    quantite: Version.data(item.embedded).quantite
                 }
             });
         }
