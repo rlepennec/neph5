@@ -21,7 +21,7 @@ export class OrdonnanceSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                mondes: OrdonnanceDataModel.defineSchema().monde.choices,
+                mondes: OrdonnanceDataModel.defineSchema().versions.fields.v5.fields.monde.choices,
             }
         }
     }

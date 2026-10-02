@@ -27,7 +27,7 @@ export class FormuleSheet extends NephilimItemSheet {
                 elements: Constants.ELEMENTS,
                 elementsGS: Constants.ELEMENTS_GRAND_OEUVRE,
                 cercles: super.cerclesOf('alchimie'),
-                substances: FormuleDataModel.defineSchema().substance.choices,
+                substances: FormuleDataModel.defineSchema().versions.fields.v5.fields.substance.choices,
                 catalyseurs: game.settings.get('neph5e', 'catalyseurs')
             }
         }

@@ -33,7 +33,7 @@ export class HabitusSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 cercles: super.cerclesOf('analogie'),
-                elements: HabitusDataModel.defineSchema().element.choices
+                elements: HabitusDataModel.defineSchema().versions.fields.v5.fields.element.choices
             }
         }
     }

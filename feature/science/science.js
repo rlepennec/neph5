@@ -61,7 +61,7 @@ export class Science extends HistoricalFeature {
      * @returns the specified world item, null if not found. 
      */
     static getScience(key) {
-        return game.items.find(i => i.system?.key === key);
+        return game.items.find(i => Version.data(i).key === key);
     }
 
     /**

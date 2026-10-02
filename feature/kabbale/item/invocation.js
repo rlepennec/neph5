@@ -27,10 +27,10 @@ export class InvocationSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                elements: InvocationDataModel.defineSchema().element.choices,
+                elements: InvocationDataModel.defineSchema().versions.fields.v5.fields.element.choices,
                 cercles: super.cerclesOf('kabbale'),
-                mondes: InvocationDataModel.defineSchema().monde.choices,
-                sephiroth: InvocationDataModel.defineSchema().sephirah.choices
+                mondes: InvocationDataModel.defineSchema().versions.fields.v5.fields.monde.choices,
+                sephiroth: InvocationDataModel.defineSchema().versions.fields.v5.fields.sephirah.choices
             }
         }
     }

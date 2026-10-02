@@ -154,7 +154,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 if (Version.data(this).options?.selenim === true) {
                     return 11 - Version.data(this).ka.noyau;
                 }
-                return 11 - this.system.soleil;
+                return 11 - Version.data(this).ka.soleil;
             case 'figurant':
             default:
                 return 0;

@@ -114,7 +114,7 @@ export class _1_0_9 {
         if (brut == null || Object.keys(brut).length === 0) return false;
 
         const deplace = VersionMigration.apply(type, foundry.utils.deepClone(brut));
-        if (foundry.utils.objectsEqual(deplace, brut)) return false;
+        if (foundry.utils.equals(deplace, brut)) return false;
 
         await token.delta.update({
             ['system']: new foundry.data.operators.ForcedReplacement(deplace)

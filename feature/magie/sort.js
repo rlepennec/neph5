@@ -109,7 +109,7 @@ export class Sort extends AbstractFocus {
         const focus = Version.data(this.item).degre;
 
         // The sort needs the actor to follow a voie
-        if (this.item.system?.voies.length > 0 &&
+        if (Version.data(this.item).voies?.length > 0 &&
             Version.data(this.item).voies.includes(this.actor.voieMagique?.sid) === false) {
             if ( Math.ceil(focus/2) >= Math.ceil(science/2) ) {
                 return -104;

@@ -27,7 +27,7 @@ export class MateriaeSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                elements: MateriaeDataModel.defineSchema().element.choices,
+                elements: MateriaeDataModel.defineSchema().versions.fields.v5.fields.element.choices,
             }
         }
     }
