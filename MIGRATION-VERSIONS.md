@@ -81,7 +81,7 @@ Deux conséquences :
 
 ### Partage des rôles avec les scripts de migration
 
-Les scripts `_1_0_9` à `_1_0_12` **ne déplacent rien**. Ils forcent une écriture par document
+Le script `_1_0_9` **ne déplace rien** (hors deltas de tokens, point dur n° 5). Il force une écriture par document
 pour fixer en base la forme que la passerelle a déjà produite en mémoire. Le remplacement
 forcé est nécessaire : une mise à jour ordinaire aux mêmes valeurs produit un diff vide et
 Foundry n'écrit alors rien.
@@ -118,8 +118,10 @@ portés et les autres**, et autorise à migrer par lots. Il disparaîtra avec le
 > divination, dracomachie, figurant, figure, formule, fraternite, habitus, invocation, magie, materiae, metamorphe, ordonnance, passe,
 > periode, pratique, quete, rite, rituel, savoir, science, sort, technique, tekhne, vecu
 
-Migrations écrites et enregistrées : **1.0.9** à **1.0.18** — la dernière pour les
-acteurs, et les deltas des tokens non liés (voir point dur n° 5).
+Une **migration unique, 1.0.9**, couvre tout le chantier, sous une seule barre de progression :
+elle parcourt les types de `VersionMigration.CHAMPS` — items du monde, acteurs et leurs items
+embarqués — puis déplace les deltas des tokens non liés (voir point dur n° 5). Les dix
+migrations écrites lot par lot (1.0.9 à 1.0.18) y ont été fusionnées : aucune n'avait tourné.
 
 
 **Rien n'a encore tourné dans Foundry.** Tout est vérifié statiquement : modèles chargés
@@ -165,7 +167,8 @@ rend `templates/version-vide-acteur.html` (image et nom), via
    - gabarit : `value=document.system.champ` → `value=data.champ`, et
      `name="system.champ"` → `name=(concat versionPath ".champ")`.
 
-4. **La migration** — copier la précédente, changer le numéro, la liste `TYPES` et l'en-tête.
+4. **La migration** — rien à écrire : `_1_0_9` lit la table de l'étape 2. Pour une future
+   version de règles livrée après 1.0.9, ajouter une nouvelle migration sur le même modèle.
    `foundry.utils.isNewerVersion` compare numériquement (`1.0.10 > 1.0.9` est vrai, vérifié).
 
 5. **Balayer** — après chaque lot, chercher dans TOUT le code (JS et gabarits) les lectures
@@ -225,12 +228,12 @@ Porter **par grappes de types qui partagent leurs champs**, pas par ordre alphab
    les dialogues de combat (`contact.hbs`, `defense.hbs`, `distance.hbs`) appellent
    `versionValue weapon 'x'` sans version : celle du monde.
 
-5. **Les tokens non liés — traité par 1.0.18, non essayé.** `ActorDelta.system` est un
+5. **Les tokens non liés — traité par 1.0.9, non essayé.** `ActorDelta.system` est un
    `ObjectField` brut : aucun `migrateData` de modèle ne le voit. Foundry le fusionne sur
    l'acteur de base, déjà versionné, avant de construire l'acteur synthétique, et la
    passerelle laisse gagner la valeur rangée — celle de la base. Un figurant blessé
    reprendrait les dommages de son modèle (vérifié sous node : `menace` 9 dans le delta
-   donnait 2). La migration 1.0.18 déplace donc les écarts de chaque delta, scène par scène,
+   donnait 2). La migration 1.0.9 déplace donc les écarts de chaque delta, scène par scène,
    par `token.delta.update({ system: ForcedReplacement })` — **ce chemin d'écriture est le
    moins sûr du chantier, à vérifier en premier dans Foundry**. Les scènes des compendiums
    ne sont pas traitées.
