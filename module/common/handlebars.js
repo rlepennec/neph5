@@ -1,4 +1,5 @@
 import { Constants } from "./constants.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { DocumentIdentifier } from "./documentIdentifier.js";
 import { Version } from "./version.js";
 
@@ -254,6 +255,16 @@ export class CustomHandlebarsHelpers {
      */
     static versionPrefix(document, version) {
         return Version.prefix(document, typeof version === "string" ? version : null);
+    }
+
+    /**
+     * @param item An embedded item.
+     * @returns its degre, summed over the incarnations which count — or the one it carries
+     *          itself, for an actor without incarnations.
+     */
+    static degreIncarne(item) {
+        const incarnations = new Incarnations(item?.parent);
+        return incarnations.porte ? incarnations.degre(item.sid) : Version.data(item).degre;
     }
 
     static concat(...words) {

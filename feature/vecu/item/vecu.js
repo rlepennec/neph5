@@ -1,4 +1,5 @@
 import { Constants } from "../../../module/common/constants.js";
+import { Incarnations } from "../../../feature/incarnation/incarnations.js";
 import { Version } from "../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
@@ -55,6 +56,10 @@ export class VecuSheet extends NephilimItemSheet {
         // document.isEmbedded). L'original n'est jamais modifié.
         // L'élément, lui, reste stocké et modifiable sur l'embarqué (propre à l'acteur).
         if (this.document.isEmbedded) {
+
+            // Le degré d'un vécu embarqué est celui de son incarnation.
+            context.data = { ...context.data, degre: new Incarnations(this.document.parent).degreAcquis(this.document) };
+
             const original = game.items.find(i => i.type === 'vecu' && i.sid === this.document.sid);
             if (original != null) {
                 context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(

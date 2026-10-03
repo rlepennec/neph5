@@ -79,6 +79,8 @@ import { MetamorpheDataModel } from "./feature/nephilim/item/metamorphe.mjs";
 import { OrdonnanceDataModel } from "./feature/kabbale/item/ordonnance.mjs";
 import { PasseDataModel } from "./feature/passe/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
+import { IncarnationDataModel } from "./feature/incarnation/item/incarnation.mjs";
+import { Incarnations } from "./feature/incarnation/incarnations.js";
 import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
 import { RiteDataModel } from "./feature/necromancie/item/rite.mjs";
 import { RituelDataModel } from "./feature/epee/item/rituel.mjs";
@@ -171,6 +173,12 @@ Hooks.once("init", function () {
         Object.entries(ITEM_TYPES).map(([type, { model }]) => [type, model])
     );
 
+    // L'incarnation n'existe qu'embarquée, et seule la façade Incarnations la crée : pas de
+    // fiche, et elle n'est pas proposée à la création dans la barre latérale.
+    CONFIG.Item.dataModels.incarnation = IncarnationDataModel;
+    NephilimItemDirectory.TYPES = Object.keys(ITEM_TYPES);
+    Incarnations.ecouter();
+
     for (const [type, { sheet }] of Object.entries(ITEM_TYPES)) {
         foundry.documents.collections.Items.registerSheet('nephilim', sheet, { types: [type], makeDefault: true });
     }
@@ -183,6 +191,7 @@ Hooks.once("init", function () {
         concat: CustomHandlebarsHelpers.concat,
         versionValue: CustomHandlebarsHelpers.versionValue,
         versionPrefix: CustomHandlebarsHelpers.versionPrefix,
+        degreIncarne: CustomHandlebarsHelpers.degreIncarne,
         isNull: CustomHandlebarsHelpers.isNull,
         nonNull: CustomHandlebarsHelpers.nonNull,
         select: CustomHandlebarsHelpers.select,

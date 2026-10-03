@@ -29,29 +29,21 @@ export class Periode extends AbstractFeature {
      */
     async drop() {
 
-        // Add a new periode
-        if (this.actor.items.find(i => i.sid === this.sid) == null) {
-            
-            // Insert the new periode at the top of the incarnations list
-            await new Incarnations(this.actor).ajouter(this.sid);
+        // Une incarnation de figure se crée en déposant un vécu : elle en prend la période.
+        // Une fraternité, qui ne vit pas de vécus, incarne directement la période déposée.
+        const incarnations = new Incarnations(this.actor);
+        if (Incarnations.AVEC_VECU.includes(this.actor.type)) {
+            ui.notifications.warn("Une incarnation se crée en déposant un vécu");
+            return;
+        }
+        const cle = await incarnations.ajouter(this.sid);
 
-            // Si déposée sur une période existante, l'insérer à cet endroit
-            if (this.event != null) {
-                const parentId = this.getParentPeriode(this.event.target);
-                if (parentId != null) {
-                    await this.moveTo(parentId);
-                }
+        // Si déposée sur une incarnation existante, l'insérer à cet endroit
+        if (cle != null && this.event != null) {
+            const parent = this.getParentPeriode(this.event.target);
+            if (parent != null) {
+                await incarnations.deplacer(cle, parent);
             }
-
-        // Move the current periode below the event described by the event
-        } else if (this.event != null) {
-
-            // Retrieve the parent periode in which to drop the periode
-            const parentId = this.getParentPeriode(this.event.target);
-            if (parentId != null) {
-                await this.moveTo(parentId);
-            }
-
         }
     
     }
@@ -74,7 +66,6 @@ export class Periode extends AbstractFeature {
      * @returns the instance.
      */
     async moveTo(parentId) {
-        await new Incarnations(this.actor).deplacer(this.sid, parentId);
         return this;
     }
 

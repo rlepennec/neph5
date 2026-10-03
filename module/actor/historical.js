@@ -16,6 +16,7 @@ export class HistoricalSheet extends NephilimActorSheet {
         },
         dropHandlers: {
             periode: HistoricalSheet._onDropPeriode,
+            incarnation: HistoricalSheet._onDropIncarnation,
             ...Object.fromEntries(
                 ['vecu', 'savoir', 'quete', 'arcane', 'chute', 'science', 'passe', 'capacite',
                 'sort', 'invocation', 'formule', 'rite', 'ordonnance', 'appel', 'habitus',
@@ -85,10 +86,20 @@ export class HistoricalSheet extends NephilimActorSheet {
         return Version.data(this.document).options.incarnationsOuvertes === true ? new Incarnations(this.document).toutes().map(i => i.sid) : [];
     }
 
+    /**
+     * Retire un item d'une incarnation. Un item peut avoir progressé sur plusieurs : il ne
+     * quitte l'acteur que lorsqu'il ne doit plus rien à aucune.
+     */
     static async _onDeleteEmbedded(event, target) {
         if (this.locked) return;
         const id = target.closest('.item').dataset.id;
         const item = this.document.items.get(id);
+        const periode = target.closest('li.periode')?.dataset.sid;
+        if (item == null) return;
+        if (periode != null && await new Incarnations(this.document).detacher(item.sid, periode) > 0) {
+            await this.render(true);
+            return;
+        }
         await this.document.deleteEmbeddedItem(item);
     }
 
@@ -98,16 +109,15 @@ export class HistoricalSheet extends NephilimActorSheet {
      */
     static async _onDeletePeriode(event, target) {
 
-        // Retrieve the data
+        // Retrieve the key of the incarnation
         const sid = target.closest('.item').dataset.sid;
-        const original = game.items.find(i => i.sid === sid);
 
         // Update the periode edition options
         this.editedPeriode = this.editedPeriode === sid ? null : this.editedPeriode;
         this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
 
         // Used to remove vecus & combat options
-        await this.document.deletePeriode(original.sid);
+        await this.document.deletePeriode(sid);
     }
 
     /**
@@ -118,7 +128,7 @@ export class HistoricalSheet extends NephilimActorSheet {
     static async _onActivatePeriode(event, target) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
-        await new FeatureBuilder(this.document).withOriginalItem(sid).create().toggleActive();
+        await new Incarnations(this.document).basculer(sid);
         await this.render(true);
     }
 
@@ -132,6 +142,22 @@ export class HistoricalSheet extends NephilimActorSheet {
             this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
         } else {
             this.elapsedPeriodes.push(sid);
+        }
+        await this.render(true);
+    }
+
+    /**
+     * Une incarnation glissée sur une autre se range juste derrière elle.
+     */
+    static async _onDropIncarnation(event, document) {
+        if (document.parent !== this.document) return;
+        let target = event.target;
+        while (target != null && target.getAttribute?.("draggable") !== "true") {
+            target = target.parentElement;
+        }
+        const parent = target?.dataset?.sid;
+        if (parent != null) {
+            await new Incarnations(this.document).deplacer(document.sid, parent);
         }
         await this.render(true);
     }
@@ -154,7 +180,8 @@ export class HistoricalSheet extends NephilimActorSheet {
         const id = el.closest('.item').dataset.id;
         const item = this.document.items.get(id);
         const converted = parseInt(el.value);
-        await new Incarnations(this.document).modifierDegre(item, isNaN(converted) ? 0 : converted);
+        const periode = el.closest('li.periode')?.dataset.sid;
+        await new Incarnations(this.document).modifierDegre(item, isNaN(converted) ? 0 : converted, periode);
     }
 
     /**

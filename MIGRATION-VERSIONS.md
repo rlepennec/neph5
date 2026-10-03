@@ -312,21 +312,68 @@ Une période **compte** si elle est activée et ne vient pas après la courante.
    du monde), l'effectif de la fraternité (membres par période), et le degré éditable des
    figurants, qui n'ont pas d'incarnations. Le gabarit `incarnations.hbs` lit encore
    `@root.data.periode` pour marquer la courante — à donner par le contexte à l'étape 3.
-3. **Le stockage** — type `incarnation`, bascule de l'intérieur de la façade, migration :
-   une incarnation par période embarquée, apports versés depuis les copies, copies fusionnées,
-   chaîne `previous` → ordre, `periode` de l'acteur → incarnation courante, deltas de tokens.
+3. **Le stockage** — fait. Item `incarnation` (`feature/incarnation/item/incarnation.mjs`),
+   embarqué seulement, **de même sid que sa période** : tout ce qui cherche la période d'un
+   acteur par son sid la trouve. v5 : `actif`, `rang` (le plus grand est le plus récent ;
+   remplace la chaîne `previous`), `apports: [{ sid, degre }]` (degré null pour un focus, une
+   capacité : `degreDans` rend alors celui que porte l'item, comme l'ancien code). Un item
+   embarqué n'existe plus qu'**en un exemplaire** : `EmbeddedItem.withIncarnation` réemploie
+   l'exemplaire déjà embarqué et lui ajoute un apport ; avec `withDeleteExisting` (focus,
+   capacité) il le « déplace » en l'oubliant de toutes les incarnations. Retirer une ligne de
+   l'onglet incarnations ne retire que l'apport ; l'item ne part qu'à son dernier apport. Un
+   écouteur `deleteItem` (`Incarnations.ecouter`) oublie les apports d'un item supprimé
+   ailleurs — option `incarnations: false` pour s'en passer. L'acteur garde `periode` pour
+   la courante. Type enregistré sans fiche, absent de la boîte de création
+   (`NephilimItemDirectory.TYPES`). **Migration 1.0.10** (`_1_0_10.js`) : par figure et
+   fraternité, une incarnation par période embarquée (chaîne cassée : en queue), apports versés
+   depuis les copies, un exemplaire gardé par item (de préférence rattaché), périodes et
+   doublons supprimés ; relançable. Vérifié sous node avec la vraie migration sur des données
+   à l'ancienne forme (copies multiples, période inactive, copie orpheline) : 960 lectures
+   comparées à l'ancien code, aucun écart ; 37 vérifications d'écriture (déplacements comparés
+   aux anciens pointeurs, retrait, bascule, degré, réemploi, déplacement d'un focus).
+   **Non traités** : les tokens non liés (figurants seulement, sans incarnations) et les
+   compendiums.
 4. **Le nettoyage, une version plus tard** — retrait de `periode` / `degre` des schémas et
    de `actif` / `previous` : les retirer avec la migration les ferait élaguer avant lecture.
 
-### Décisions ouvertes
+### Décisions prises pour l'étape 3
 
-- Granularité : une incarnation par **période** (proposé) ou par **vécu** (task/reboot).
-- Unité : garder le **degré** (v5 actuelle) ou passer à la **sapience** allouée (task/reboot).
-- Périmètre des apports : toutes les acquisitions, ou vécus, compétences et cercles seulement.
+Pour que l'étape 3 reste un pur changement de stockage, sans changement de règles : l'unité
+reste le **degré**, et **toutes** les acquisitions passent par les apports.
 
-### Défauts relevés en chemin, non corrigés
+### Changement de paradigme (décidé par l'utilisateur, après l'étape 3)
 
-`capacite.js:63` et `abstractFocus.js:98` comparent à `this.embedded.periode` — propriété
-inexistante sur un document : le contrôle « déjà rattaché à la période courante » ne joue
-jamais. Présent aussi sur task/v14. Laissé tel quel pour que l'étape 1 ne change rien ; la
-correction serait `new Incarnations(this.actor).aRattache(this.item.sid, this.periode)`.
+**Une incarnation, un vécu, et un seul.** L'incarnation porte sa période ; plusieurs
+incarnations peuvent porter la même. Une incarnation de figure a **toujours** un vécu ; une
+fraternité, qui ne vit pas de vécus, a des incarnations sans vécu (hypothèse, à confirmer).
+
+- **Données** : l'incarnation a sa propre **clé** (son sid, UUID). v5 : `periode`, `vecu`,
+  `actif`, `rang`, `apports` (les autres items). Le vécu porte la période de son incarnation
+  et son propre degré ; il n'est pas un apport. La clé est ce que contiennent `actor.periode`
+  (la courante), les variables `periode` des features et l'effectif d'une fraternité.
+- **Enchaînements** (`Incarnations`) : `creerDepuisVecu(vecu)` — l'incarnation prend la
+  période du vécu (refus : déjà embarqué, vécu sans période, période inconnue) ;
+  `definirVecu(cle, vecu)` — le nouveau vécu prend la période de l'incarnation, l'ancien part ;
+  `changerPeriode(cle, periode)` — le vécu suit ; `retirer(cle)` — son vécu part avec elle ;
+  supprimer le vécu d'une incarnation (par n'importe quel chemin) la retire, par l'écouteur
+  `deleteItem` ; `ajouter(periode)` — fraternité seulement.
+- **Dépôts** : un vécu déposé crée une incarnation ; une période déposée sur une figure est
+  refusée (« Une incarnation se crée en déposant un vécu ») ; glisser une incarnation sur une
+  autre la range derrière (`_onDropIncarnation`). Les gabarits d'incarnations utilisent la clé
+  (`periode.cle`) au lieu du sid de la période.
+- **Migration 1.0.10** : une incarnation par vécu de chaque période ; la première garde comme
+  clé le sid de la période, si bien que `actor.periode` et l'effectif restent justes sans
+  réécriture ; elle reçoit les apports de la période (de **toutes** les copies, doublons
+  compris). Période de figure sans vécu : incarnation sans vécu, comptée et signalée.
+- Vérifié sous node : 960 lectures équivalentes à l'ancien code ; 62 vérifications d'écriture
+  (enchaînements, refus, cascade de l'écouteur, période à deux vécus, fraternité).
+- **Corrigé en chemin** : `NephilimItem._actors('deletePeriode')` passait le document de la
+  période du monde à une méthode qui attendait un sid — supprimer une période du monde ne
+  nettoyait aucun acteur. `deletePeriode` accepte maintenant une clé ou ce document.
+
+### Défauts relevés en chemin
+
+`capacite.js:63` et `abstractFocus.js:98` comparaient à `this.embedded.periode` — propriété
+inexistante : le contrôle « déjà rattaché à cette période » ne jouait jamais. Avec des items
+sans période, il aurait joué toujours (un focus n'aurait plus pu changer de période) : corrigés
+à l'étape 3 en `new Incarnations(this.actor).aRattache(this.item.sid, this.periode)`.

@@ -62,7 +62,7 @@
     {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
     <ol class="periodes item-list">
 
-        <li class="periode draggable item" draggable="true" data-drag="true" data-fsid="{{periode.embedded.fsid}}" data-sid="{{periode.original.sid}}" data-item-id="{{periode.embedded.id}}">
+        <li class="periode draggable item" draggable="true" data-drag="true" data-fsid="{{periode.embedded.fsid}}" data-sid="{{periode.cle}}" data-item-id="{{periode.embedded.id}}">
 
             <div class="periode-header">
 
@@ -70,7 +70,7 @@
 
                 <img class="separator"/>
 
-                <label data-action="displayPeriode" class="periode-name display {{#if (eq @root.data.periode periode.original.sid)}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label data-action="displayPeriode" class="periode-name display {{#if periode.embedded.courante}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
 
                 <div class="periode-actions">
 
@@ -78,11 +78,11 @@
                     <label data-action="activatePeriode" class="{{#if periode.embedded.actif}}fa-solid{{else}}fa-regular{{/if}} fa-fire activate" data-tooltip="{{#if periode.embedded.actif}}{{translate 'desactiver'}}{{else}}{{translate 'activer'}}{{/if}}"></label>
                     {{/if}}
 
-                    {{#unless (eq @root.data.periode periode.original.sid)}}
+                    {{#unless periode.embedded.courante}}
                     <label data-action="currentPeriode" class="fa-solid fa-thumbtack-angle" data-tooltip="{{translate 'periodeCourante'}}"></label>
                     {{/unless}}
 
-                    {{#if (eq ../editedPeriode periode.original.sid)}}
+                    {{#if (eq ../editedPeriode periode.cle)}}
                     <label data-action="deletePeriode" class="fas fa-trash delete" data-tooltip="{{translate 'supprimer'}}"></label>
                     {{/if}}
 
@@ -91,7 +91,7 @@
             </div>
 
             <div class="periode-body"
-                 {{#unless (or (includes ../elapsedPeriodes periode.original.sid) (eq ../editedPeriode periode.original.sid))}}
+                 {{#unless (or (includes ../elapsedPeriodes periode.cle) (eq ../editedPeriode periode.cle))}}
                  style="display: none;"
                  {{/unless}}>
 
@@ -106,7 +106,7 @@
 
                         <label data-action="openItem" class="name open">{{actor.name}}</label>
 
-                        {{#if (eq ../../editedPeriode ../original.sid)}}
+                        {{#if (eq ../../editedPeriode ../cle)}}
                         <label class="fas fa-trash delete"></label>
                         {{/if}}
 
@@ -125,7 +125,7 @@
                     <div class="definition">
 
                         <input
-                            {{#unless (eq ../../editedPeriode ../original.sid)}}disabled{{/unless}}
+                            {{#unless (eq ../../editedPeriode ../cle)}}disabled{{/unless}}
                             class="degre set"
                             type="number"
                             value="{{item.degre}}"
@@ -133,7 +133,7 @@
 
                         <label data-action="openItem" class="name open">{{item.name}}</label>
 
-                        {{#if (eq ../../editedPeriode ../original.sid)}}                
+                        {{#if (eq ../../editedPeriode ../cle)}}                
                         <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
                         {{/if}}
 
@@ -155,7 +155,7 @@
 
                         <label data-action="openItem" class="focus-name open">{{item.name}}</label>
 
-                        {{#if (eq ../../editedPeriode ../original.sid)}}
+                        {{#if (eq ../../editedPeriode ../cle)}}
                         <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
                         {{/if}}
 
@@ -178,7 +178,7 @@
 
                         <label data-action="openItem" class="focus-name open">{{item.name}}</label>
 
-                        {{#if (eq ../../editedPeriode ../original.sid)}}
+                        {{#if (eq ../../editedPeriode ../cle)}}
                         <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
                         {{/if}}
 

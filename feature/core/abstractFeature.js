@@ -411,7 +411,7 @@ export class AbstractFeature {
             for (let v of incarnations.vecusActifs()) {
                 const item = game.items.find(i => i.sid === v.sid);
                 if (Version.data(v).competences.find(c => c === sid) != null) {
-                    const degre = Version.data(v).degre;
+                    const degre = incarnations.degreAcquis(v);
                     const sapiences = AbstractFeature.degreToSapiences(degre);
                     details.push({
                         name: item.name,
@@ -422,8 +422,8 @@ export class AbstractFeature {
         } else {
             for (let apport of incarnations.apports(sid)) {
                 details.push({
-                    name: incarnations.periode(apport.periode)?.name,
-                    degre: Version.data(apport.item).degre,
+                    name: incarnations.incarnation(apport.periode)?.name,
+                    degre: apport.degre,
                     sapiences: "-"});
             }
         }

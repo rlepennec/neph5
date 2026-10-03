@@ -1,4 +1,5 @@
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
 
@@ -60,7 +61,7 @@ export class Capacite extends HistoricalFeature {
         }
 
         // The capacite must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === this.item.sid && Version.data(i).periode === this.embedded.periode) != null) {
+        if (new Incarnations(this.actor).aRattache(this.item.sid, this.periode)) {
             return;
         }
 

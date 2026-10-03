@@ -91,7 +91,7 @@ export class Chute extends HistoricalFeature {
             const chute = incarnations.rattaches(periode.sid, ['chute']).find(i => Version.data(i).key === type);
             if (chute != null) {
                 _chute = {
-                    degre: _chute.degre + Version.data(chute).degre,
+                    degre: _chute.degre + incarnations.degreDans(chute.sid, periode.sid),
                     name: chute.name,
                     sid: chute.sid,
                     id: chute.id
@@ -145,7 +145,7 @@ export class Chute extends HistoricalFeature {
 
         // Update the current chute
         } else {
-            await incarnations.modifierDegre(chute, Version.data(chute).degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre)); 
+            await incarnations.modifierDegre(chute, incarnations.degreDans(chute.sid, incarnations.courante) - previousChute.degre + (degre === previousChute.degre ? 0 : degre)); 
         }
 
     }

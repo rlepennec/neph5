@@ -5,7 +5,6 @@ import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Constants } from "../../module/common/constants.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
-import { Periode } from "../periode/periode.js";
 
 export class Vecu extends HistoricalFeature {
 
@@ -99,7 +98,7 @@ export class Vecu extends HistoricalFeature {
      * @Override
      */
     get degre() {
-        return Version.data(this.embedded).degre;
+        return new Incarnations(this.embedded?.parent).degreAcquis(this.embedded);
     }
 
     /**
@@ -167,50 +166,10 @@ export class Vecu extends HistoricalFeature {
                 return;
             }
 
-            // Drop the vecu with the related periode if none in current edition
-            if (this.periode == null) {
-
-                // The vecu must have a periode defined
-                if (Version.data(this.item).periode == null) {
-                    ui.notifications.warn("Le vécu doit avoir une période pour pouvoir être déposé");
-                    return;
-                }
-
-                // The vecu must not already exist
-                if (new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
-                    ui.notifications.warn("Le vécu existe déjà");
-                    return;
-                }
-
-                // Create the related periode if necessary
-                if (new Incarnations(this.actor).periode(Version.data(this.item).periode) == null) {
-                    this.periode = game.items.find(i => i.sid === Version.data(this.item).periode);
-                    if (this.periode == null) {
-                        ui.notifications.error("La période auquelle est rattachée le vécu n'existe pas");
-                        return;
-                    }
-                    await new Periode(this.actor, this.periode).drop();
-                }
-
-                // Just keep the sid to create the vecu
-                if (this.periode != null) {
-                    this.periode = this.periode.sid;
-                }
-
-            }
-            
-            // Create the vecu
-            if (!new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
-
-                await new EmbeddedItem(this.actor, this.sid)
-                    .withContext("Drop of a vecu on periode " + this.periode)
-                    .withData("mnemos", [])
-                    .withIncarnation(this.periode, 0)
-                    .withData("element", Version.data(this.item).element)
-                    .withoutData('description')
-                    .withoutAlreadyEmbeddedError()
-                    .create();
-
+            // Un vécu déposé définit une incarnation : elle prend la période du vécu
+            const refus = await new Incarnations(this.actor).creerDepuisVecu(this.sid);
+            if (refus != null) {
+                ui.notifications.warn(refus);
             }
 
         }

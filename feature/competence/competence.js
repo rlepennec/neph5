@@ -73,7 +73,7 @@ export class Competence extends AbstractFeature {
         let total = 0;
         for (let vecu of new Incarnations(this.actor).vecusActifs().filter(v =>
             Version.data(v).competences.find(c => c === this.sid) != null)) {
-            total = total + CustomHandlebarsHelpers.getSapiences(Version.data(vecu).degre);
+            total = total + CustomHandlebarsHelpers.getSapiences(new Incarnations(this.actor).degreAcquis(vecu));
         }
         return total;
     }

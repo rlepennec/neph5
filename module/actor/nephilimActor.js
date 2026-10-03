@@ -331,11 +331,11 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the name of the current periode.
      */
     get currentPeriode() {
-        const courante = new Incarnations(this).courante;
-        if (courante == null) {
+        const incarnations = new Incarnations(this);
+        if (incarnations.courante == null) {
             return "Aucune periode courante";
         }
-        const periode = game.items.find(i => i.sid === courante);
+        const periode = game.items.find(i => i.sid === incarnations.periodeDe(incarnations.courante));
         return periode == null ? "Periode non trouvee" : periode.name;
     }
 
@@ -705,6 +705,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
         if (item != null) {
             switch (item.type) {
                 case 'periode':
+                case 'incarnation':
                     await this.deletePeriode(item.sid);
                     break;
                 case 'vecu':
@@ -742,11 +743,22 @@ export class NephilimActor extends CombatantMixin(Actor) {
     /**
      * @param sid The system identifier of the periode to delete.
      */
-    async deletePeriode(sid) {
-        const original = game.items.find(i => i.sid === sid);
-        if (original != null) {
-            await new Periode(this, original).delete();
+    /**
+     * Retire une incarnation, ou toutes celles d'une période du monde qu'on supprime.
+     * @param periode The key of the incarnation, or the world periode document.
+     */
+    async deletePeriode(periode) {
+        const incarnations = new Incarnations(this);
+        const cles = typeof periode === 'string'
+            ? [periode]
+            : incarnations.toutes().filter(i => incarnations.periodeDe(i.sid) === periode?.sid).map(i => i.sid);
+        for (const cle of cles) {
+            await incarnations.retirer(cle);
+            if (this.type === 'fraternite') {
+                await new Fraternite(this).onDeletePeriode({ sid: cle });
+            }
         }
+        await this.render();
     }
  
     /**

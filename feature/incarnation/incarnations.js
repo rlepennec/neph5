@@ -5,28 +5,40 @@ import { Version } from "../../module/common/version.js";
 /**
  * Les incarnations d'un acteur, vues d'un seul endroit.
  *
- * Aujourd'hui, une incarnation n'est pas un objet : c'est une PÉRIODE embarquée sur l'acteur.
- * Les périodes sont chaînées par leur champ `previous` (la première a `previous === null`),
- * chacune peut être activée ou non (`actif`), et l'acteur désigne la période courante par
- * son champ `periode`. Tout item acquis pendant une incarnation est une copie embarquée qui
- * porte le sid de sa période dans `periode`, et souvent son degré dans `degre` : un même item
- * qui a progressé sur plusieurs incarnations existe donc en plusieurs exemplaires.
+ * Une incarnation est un item `incarnation` embarqué sur l'acteur. Elle a sa propre identité :
+ * son sid, la CLÉ par laquelle tout le reste la désigne — la période courante de l'acteur
+ * (`actor.periode`), les variables `periode` des features, l'effectif d'une fraternité. Elle
+ * porte, en v5 :
  *
- * Cette classe est la seule à connaître cette représentation. Les lecteurs passent par elle
- * plutôt que de lire `periode`, `previous` et `actif` eux-mêmes : le jour où les incarnations
- * deviendront des items à part entière, seule cette classe changera.
+ *   - `periode` : le sid de la période du monde qu'elle incarne ; plusieurs incarnations
+ *                 peuvent porter la même ;
+ *   - `vecu`    : le sid de SON vécu embarqué. Une incarnation de figure a toujours un vécu et
+ *                 un seul ; ce vécu porte la période de l'incarnation, et son propre degré.
+ *                 Une fraternité, qui ne vit pas de vécus, a des incarnations sans vécu ;
+ *   - `actif`   : l'incarnation compte-t-elle pour l'acteur ;
+ *   - `rang`    : sa place dans la chronologie — le plus grand est le plus récent ;
+ *   - `apports` : les autres items acquis pendant l'incarnation, `{ sid, degre }`, le degré
+ *                 étant celui acquis pendant l'incarnation (null pour un focus, une capacité).
  *
- * Elle lit, et elle écrit : ajout, déplacement, activation et retrait d'une période, période
- * courante, degré acquis pendant une incarnation, et — par `EmbeddedItem.withIncarnation` —
- * les champs qui rattachent un item créé à son incarnation.
+ * Les enchaînements :
+ *   - créer une incarnation depuis un vécu : elle prend la période du vécu ;
+ *   - donner un vécu à une incarnation : le vécu prend la période de l'incarnation ;
+ *   - changer la période d'une incarnation : son vécu la suit ;
+ *   - supprimer le vécu d'une incarnation la supprime ; supprimer une incarnation supprime
+ *     son vécu, et les items qui ne doivent rien à une autre incarnation.
  *
- * Une instance est faite pour être utilisée sur le champ, puis jetée : elle ne met rien en
- * cache, et lit toujours l'état courant de l'acteur.
+ * Un item embarqué n'existe qu'en un exemplaire : ce sont les apports qui portent l'historique.
+ * L'ordre « de chaîne » va de la plus récente à la plus ancienne, comme l'ancienne chaîne de
+ * `previous` ; `ordonnees` le conserve.
+ *
+ * Cette classe est la seule à connaître cette représentation. Une instance est faite pour être
+ * utilisée sur le champ, puis jetée : elle ne met rien en cache.
  */
 export class Incarnations {
 
     /**
-     * Les types d'items affichés pour une incarnation, par rubrique de la fiche.
+     * Les types d'items affichés pour une incarnation, par rubrique de la fiche. Les premiers
+     * acquièrent un degré pendant l'incarnation ; les autres y sont seulement rattachés.
      */
     static VECUS = ['vecu', 'savoir', 'quete', 'arcane', 'chute', 'science', 'passe'];
     static FOCUS = ['sort', 'invocation', 'formule', 'rite', 'ordonnance', 'appel', 'habitus', 'pratique',
@@ -34,61 +46,118 @@ export class Incarnations {
     static CAPACITES = ['capacite'];
 
     /**
-     * @param actor The actor (figure or fraternite) whose incarnations to read.
+     * Les types d'acteur qui vivent des incarnations, et ceux dont chaque incarnation a un vécu.
+     */
+    static ACTEURS = ['figure', 'fraternite'];
+    static AVEC_VECU = ['figure'];
+
+    /**
+     * Les raisons pour lesquelles une incarnation ne peut être créée depuis un vécu.
+     */
+    static SANS_PERIODE = "Le vécu doit avoir une période pour pouvoir être déposé";
+    static PERIODE_INCONNUE = "La période auquelle est rattachée le vécu n'existe pas";
+    static DEJA_VECU = "Le vécu existe déjà";
+
+    /**
+     * @param actor The actor whose incarnations to read or write.
      */
     constructor(actor) {
         this.actor = actor;
     }
 
-    // ------------------------------------------------------------------ les périodes
+    /**
+     * @returns true if the actor lives incarnations. A figurant does not: the degre of its
+     *          items is carried by the items themselves.
+     */
+    get porte() {
+        return Incarnations.ACTEURS.includes(this.actor?.type);
+    }
+
+    // ------------------------------------------------------------------ les incarnations
 
     /**
-     * @returns {string|null} le sid de la période courante, null si aucune.
+     * @returns {string|null} la clé de l'incarnation courante, null si aucune.
      */
     get courante() {
         return Version.data(this.actor).periode ?? null;
     }
 
     /**
-     * @param sid The system identifier of the periode.
-     * @returns the embedded periode, null if the actor has not lived it.
+     * @param cle The key of the incarnation.
+     * @returns the incarnation, null if none.
      */
-    periode(sid) {
-        if (sid == null) return null;
-        return this.actor.items.find(i => i.type === 'periode' && i.sid === sid) ?? null;
+    incarnation(cle) {
+        if (cle == null) return null;
+        return this.actor.items.find(i => i.type === 'incarnation' && i.sid === cle) ?? null;
     }
 
     /**
-     * @returns all the embedded periodes, in no particular order.
+     * @param cle The key of the incarnation.
+     * @returns {string|null} le sid de la période du monde que l'incarnation incarne.
+     */
+    periodeDe(cle) {
+        return Version.data(this.incarnation(cle))?.periode ?? null;
+    }
+
+    /**
+     * @param cle The key of the incarnation.
+     * @returns the embedded vecu of the incarnation, null if none.
+     */
+    vecuDe(cle) {
+        const sid = Version.data(this.incarnation(cle))?.vecu;
+        return sid == null ? null : this.actor.items.find(i => i.type === 'vecu' && i.sid === sid) ?? null;
+    }
+
+    /**
+     * @param vecu An embedded vecu.
+     * @returns the incarnation whose vecu it is, null if none.
+     */
+    incarnationDe(vecu) {
+        if (vecu?.sid == null) return null;
+        return this.toutes().find(i => Version.data(i).vecu === vecu.sid) ?? null;
+    }
+
+    /**
+     * @returns all the incarnations, in no particular order.
      */
     toutes() {
-        return this.actor.items.filter(i => i.type === 'periode');
+        return this.actor.items.filter(i => i.type === 'incarnation');
     }
 
     /**
-     * @returns the first periode of the chain, null if none.
+     * @returns the incarnations in chain order: from the most recent to the oldest.
+     */
+    #chaine() {
+        return this.toutes().sort((a, b) => (Version.data(b).rang ?? 0) - (Version.data(a).rang ?? 0));
+    }
+
+    /**
+     * @returns the most recent incarnation, null if none.
      */
     premiere() {
-        return this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === null) ?? null;
+        return this.#chaine()[0] ?? null;
     }
 
     /**
-     * @param sid The system identifier of a periode.
-     * @returns the periode which follows the specified one, null if none.
+     * @param cle The key of an incarnation, null for the head of the chain.
+     * @returns the incarnation which follows the specified one in chain order, null if none.
      */
-    suivante(sid) {
-        return this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === sid) ?? null;
+    suivante(cle) {
+        const chaine = this.#chaine();
+        if (cle == null) return chaine[0] ?? null;
+        const index = chaine.findIndex(i => i.sid === cle);
+        return index === -1 ? null : chaine[index + 1] ?? null;
     }
 
     /**
-     * Les périodes dans l'ordre de la chaîne, filtrées et bornées.
+     * Les incarnations dans l'ordre, filtrées et bornées.
      *
      * @param chrono True for chronological order, false for antichronological, null for the
      *               display order, which follows the option chronologieDescendante.
-     * @param actif  True for active periodes only, false for passive ones, null for all. The
-     *               bounding periode is always included, whatever its activation.
-     * @param jusqua The sid of the last periode included, null for no bound.
-     * @returns the sorted embedded periodes.
+     * @param actif  True for active incarnations only, false for passive ones, null for all.
+     *               The bounding one is always included, whatever its activation.
+     * @param jusqua The key of the last incarnation included, null for no bound.
+     * @returns the sorted incarnations.
      */
     ordonnees({ chrono = true, actif = null, jusqua = null } = {}) {
 
@@ -101,18 +170,9 @@ export class Incarnations {
             || (chrono === false && descendante === true));
 
         let periodes = [];
-        let previous = null;
         let found = false;
 
-        while (true) {
-
-            // Retrieve the next periode
-            const p = this.suivante(previous);
-
-            // Stop if the last periode
-            if (p == null) {
-                break;
-            }
+        for (const p of this.#chaine()) {
 
             // Check if the last periode
             if (jusqua != null && found === false && jusqua === p.sid) {
@@ -122,7 +182,6 @@ export class Incarnations {
             // Skip the first periodes to the last if inverse order.
             // Sans limite (jusqua == null), il n'y a aucune periode a ignorer.
             if (inverse === true && jusqua != null && found === false) {
-                previous = p.sid;
                 continue;
             }
 
@@ -135,8 +194,6 @@ export class Incarnations {
             if (inverse === false && found === true && jusqua === p.sid) {
                 break;
             }
-
-            previous = p.sid;
         }
 
         // Sort the periodes according to the order
@@ -148,76 +205,110 @@ export class Incarnations {
     }
 
     /**
-     * Une période compte si elle est activée et ne vient pas après la période courante.
-     * @param sid The system identifier of the periode.
-     * @returns true if the periode counts for the actor.
+     * Une incarnation compte si elle est activée et ne vient pas après la courante.
+     * @param cle The key of the incarnation.
+     * @returns true if the incarnation counts for the actor.
      */
-    estActive(sid) {
-        if (sid == null) return false;
-        const p = this.ordonnees({ actif: true, jusqua: this.courante }).find(i => i.sid === sid);
+    estActive(cle) {
+        if (cle == null) return false;
+        const p = this.ordonnees({ actif: true, jusqua: this.courante }).find(i => i.sid === cle);
         return p != null && Version.data(p).actif === true;
     }
 
     // ------------------------------------------------------------------ les rattachements
 
     /**
-     * @param item An embedded item.
-     * @returns {string|null} le sid de la période à laquelle l'item est rattaché.
+     * @param sid The system identifier of an item.
+     * @returns the incarnations to which the item owes something — as their vecu or as a
+     *          contribution — in chain order.
      */
-    rattachement(item) {
-        return Version.data(item).periode ?? null;
+    #porteuses(sid) {
+        return this.#chaine().filter(i => Version.data(i).vecu === sid
+            || (Version.data(i).apports ?? []).some(a => a.sid === sid));
     }
 
     /**
      * @param item An embedded item.
-     * @returns true if the item is attached to a periode which counts for the actor.
+     * @returns {string|null} la clé de l'incarnation à laquelle l'item est rattaché — la plus
+     *          récente s'il a progressé pendant plusieurs.
+     */
+    rattachement(item) {
+        return this.#porteuses(item?.sid)[0]?.sid ?? null;
+    }
+
+    /**
+     * @param item An embedded item.
+     * @returns true if the item owes something to an incarnation which counts.
      */
     estActif(item) {
-        return this.periode(this.rattachement(item)) != null && this.estActive(this.rattachement(item));
+        return this.#porteuses(item?.sid).some(i => this.estActive(i.sid));
     }
 
     /**
      * @param sid The system identifier of an item.
-     * @returns every embedded copy of the item, one per periode where it was acquired.
+     * @returns the embedded items with this sid — one, since an item is embedded once.
      */
     exemplaires(sid) {
-        return this.actor.items.filter(i => i.sid === sid);
+        return this.actor.items.filter(i => i.sid === sid && i.type !== 'incarnation');
     }
 
     /**
-     * @param sid     The system identifier of an item.
-     * @param periode The system identifier of a periode.
-     * @returns true if the item has a copy attached to the periode.
+     * @param sid The system identifier of an item.
+     * @param cle The key of an incarnation.
+     * @returns true if the item owes something to the incarnation.
      */
-    aRattache(sid, periode) {
-        return this.exemplaires(sid).some(i => this.rattachement(i) === periode);
+    aRattache(sid, cle) {
+        const data = Version.data(this.incarnation(cle));
+        return data?.vecu === sid || (data?.apports ?? []).some(a => a.sid === sid);
     }
 
     /**
-     * @param periode The system identifier of a periode.
-     * @param types   The item types to keep, all if omitted.
-     * @returns the embedded items attached to the periode.
+     * @param cle   The key of an incarnation.
+     * @param types The item types to keep, all if omitted.
+     * @returns the embedded items which owe something to the incarnation — its vecu first —
+     *          in actor order.
      */
-    rattaches(periode, types = null) {
-        return this.actor.items.filter(i => this.rattachement(i) === periode && (types == null || types.includes(i.type)));
+    rattaches(cle, types = null) {
+        const data = Version.data(this.incarnation(cle));
+        const sids = new Set((data?.apports ?? []).map(a => a.sid));
+        if (data?.vecu != null) sids.add(data.vecu);
+        return this.actor.items.filter(i => i.type !== 'incarnation' && sids.has(i.sid)
+            && (types == null || types.includes(i.type)));
     }
 
     /**
      * Ce qu'un item doit à chaque incarnation, active ou non.
      * @param sid The system identifier of an item.
-     * @returns the contributions, as { item, periode, degre }.
+     * @returns the contributions, as { item, periode, degre }, periode being the key of the
+     *          incarnation.
      */
     apports(sid) {
-        return this.exemplaires(sid).map(item => ({
+        const item = this.exemplaires(sid)[0] ?? null;
+        return this.#porteuses(sid).map(i => ({
             item: item,
-            periode: this.rattachement(item),
-            degre: Version.data(item).degre ?? 0
+            periode: i.sid,
+            degre: this.degreDans(sid, i.sid)
         }));
     }
 
     /**
      * @param sid The system identifier of an item.
-     * @returns the degre of the item, summed over the periodes which count.
+     * @param cle The key of an incarnation.
+     * @returns the degre acquired by the item during the incarnation, 0 if none. The vecu of
+     *          the incarnation carries its own degre; so does an item whose contribution has
+     *          none (focus, capacite).
+     */
+    degreDans(sid, cle) {
+        const data = Version.data(this.incarnation(cle));
+        if (data?.vecu === sid) return Version.data(this.exemplaires(sid)[0])?.degre ?? 0;
+        const apport = (data?.apports ?? []).find(a => a.sid === sid);
+        if (apport == null) return 0;
+        return apport.degre ?? Version.data(this.exemplaires(sid)[0])?.degre ?? 0;
+    }
+
+    /**
+     * @param sid The system identifier of an item.
+     * @returns the degre of the item, summed over the incarnations which count.
      */
     degre(sid) {
         return this.apports(sid)
@@ -226,146 +317,317 @@ export class Incarnations {
     }
 
     /**
-     * @returns the embedded vecus attached to a periode which counts.
+     * Le degré d'un item tel que l'acteur l'a acquis, toutes incarnations confondues — celui
+     * d'un vécu, qui n'appartient qu'à une incarnation. Pour un acteur sans incarnations, le
+     * degré porté par l'item lui-même.
+     * @param item An embedded item.
+     * @returns the acquired degre.
+     */
+    degreAcquis(item) {
+        if (!this.porte) return Version.data(item).degre;
+        return this.apports(item.sid).reduce((total, a) => total + a.degre, 0);
+    }
+
+    /**
+     * @returns the embedded vecus whose incarnation counts.
      */
     vecusActifs() {
         return this.actor.items.filter(i => i.type === 'vecu' && this.estActif(i));
     }
 
-    // ------------------------------------------------------------------ les écritures
+    // ------------------------------------------------------------------ créer, supprimer
 
     /**
-     * Les champs qui rattachent un item, au moment de sa création, à une incarnation.
-     * `EmbeddedItem.withIncarnation` les pose sur l'item créé : la façade décide seule de ce
-     * qu'un rattachement écrit.
-     * @param periode The system identifier of the periode.
-     * @param degre   The degre acquired during the periode, undefined if the item has none.
-     * @returns the fields to set, as [name, value] pairs.
+     * Crée une incarnation à partir d'un vécu du monde : elle prend la période du vécu, et le
+     * vécu est embarqué avec elle. Elle devient la plus récente, et la courante si c'est la
+     * première.
+     * @param sid The system identifier of the world vecu.
+     * @returns {string|null} la raison d'un refus (voir SANS_PERIODE...), null si créée.
      */
-    static champsDeRattachement(periode, degre = undefined) {
-        const champs = [['periode', periode]];
-        if (degre !== undefined) champs.push(['degre', degre]);
-        return champs;
+    async creerDepuisVecu(sid) {
+        if (this.exemplaires(sid).length > 0) return Incarnations.DEJA_VECU;
+        const monde = game.items.find(i => i.type === 'vecu' && i.sid === sid);
+        const periode = Version.data(monde)?.periode ?? null;
+        if (periode == null) return Incarnations.SANS_PERIODE;
+        if (game.items.find(i => i.type === 'periode' && i.sid === periode) == null) return Incarnations.PERIODE_INCONNUE;
+        await this.#embarquerVecu(monde, periode);
+        await this.#creer(periode, sid);
+        return null;
     }
 
     /**
-     * @param sid The system identifier of the periode to make current, null for none.
+     * Crée une incarnation sans vécu — pour une fraternité, qui n'en vit pas.
+     * @param periode The system identifier of the world periode.
+     * @returns {string|null} la clé de l'incarnation créée.
      */
-    async definirCourante(sid) {
-        await this.actor.update({ [Version.path(this.actor, 'periode')]: sid });
+    async ajouter(periode) {
+        if (Incarnations.AVEC_VECU.includes(this.actor.type)) return null;
+        if (game.items.find(i => i.type === 'periode' && i.sid === periode) == null) return null;
+        return await this.#creer(periode, null);
     }
 
     /**
-     * @param item  The embedded item attached to an incarnation.
-     * @param degre The degre acquired during this incarnation.
+     * Donne à une incarnation un autre vécu : il prend la période de l'incarnation, et
+     * l'ancien vécu quitte l'acteur.
+     * @param cle The key of the incarnation.
+     * @param sid The system identifier of the world vecu.
+     * @returns {string|null} la raison d'un refus, null si fait.
      */
-    async modifierDegre(item, degre) {
-        await item.update({ [Version.path(item, 'degre')]: degre });
-    }
-
-    /**
-     * Ajoute une période vécue en tête de chaîne — la tête est la plus récente. La première
-     * période ajoutée devient la courante.
-     * @param sid The system identifier of the world periode.
-     */
-    async ajouter(sid) {
-        const premiere = this.premiere();
-        if (premiere != null) {
-            await this.#chainer(premiere, sid);
-        } else {
-            await this.definirCourante(sid);
+    async definirVecu(cle, sid) {
+        const incarnation = this.incarnation(cle);
+        const monde = game.items.find(i => i.type === 'vecu' && i.sid === sid);
+        if (incarnation == null || monde == null) return null;
+        if (this.exemplaires(sid).length > 0) return Incarnations.DEJA_VECU;
+        const ancien = this.vecuDe(cle);
+        await this.#embarquerVecu(monde, Version.data(incarnation).periode);
+        // Le nouveau vécu est posé avant que l'ancien parte : sa suppression n'emporte plus
+        // l'incarnation.
+        await incarnation.update({ [Version.path(incarnation, 'vecu')]: sid });
+        if (ancien != null) {
+            await this.actor.deleteVecu(ancien);
         }
-        await new EmbeddedItem(this.actor, sid)
-            .withContext("Drop of a periode")
-            .withData("actif", true)
-            .withData("previous", null)
-            .withoutData('description', 'aube', 'contexte')
-            .create();
+        return null;
     }
 
     /**
-     * Déplace une période dans la chaîne, juste derrière une autre.
-     * @param sid    The system identifier of the periode to move.
-     * @param parent The system identifier of the periode which will precede it.
+     * Change la période d'une incarnation : son vécu la suit.
+     * @param cle     The key of the incarnation.
+     * @param periode The system identifier of the world periode.
      */
-    async deplacer(sid, parent) {
-
-        // The target is not a periode
-        if (this.periode(parent) == null) {
-            return;
-        }
-
-        // The moved item
-        const moved = this.periode(sid);
-
-        // The old next periode of the moved periode
-        const next = this.suivante(sid);
-
-        // The periode which have his new previous periode equal to the moved periode
-        const previous = this.suivante(parent);
-
-        // A move is done
-        if (Version.data(moved).previous !== parent && moved.sid !== parent && moved.sid !== previous?.sid) {
-            await this.#chainer(next, Version.data(moved).previous);
-            await this.#chainer(moved, parent);
-            await this.#chainer(previous, sid);
+    async changerPeriode(cle, periode) {
+        const incarnation = this.incarnation(cle);
+        const monde = game.items.find(i => i.type === 'periode' && i.sid === periode);
+        if (incarnation == null || monde == null) return;
+        await incarnation.update({ name: monde.name, img: monde.img, [Version.path(incarnation, 'periode')]: periode });
+        const vecu = this.vecuDe(cle);
+        if (vecu != null) {
+            await vecu.update({ [Version.path(vecu, 'periode')]: periode });
         }
     }
 
     /**
-     * Retire une période et tout ce qui lui est rattaché : la chaîne est recousue, la période
-     * courante oubliée si c'était elle, les vécus supprimés avec leurs dépendances.
-     * @param sid The system identifier of the periode to remove.
+     * Retire une incarnation : son vécu part avec elle, et les items qui ne doivent rien à
+     * une autre incarnation ; les autres perdent seulement cet apport.
+     * @param cle The key of the incarnation.
      */
-    async retirer(sid) {
+    async retirer(cle) {
 
-        // Figure or fraternite use chronological data
-        if (this.actor.type === 'figure' || this.actor.type === 'fraternite') {
+        const incarnation = this.incarnation(cle);
+        if (incarnation == null) return;
 
-            // Update the next previous periode
-            const next = this.suivante(sid);
-            if (next != null) {
-                await this.#chainer(next, Version.data(this.periode(sid)).previous);
-            }
-
-            // Remove the current actor periode if necessary
-            if (this.courante === sid) {
-                await this.definirCourante(null);
-            }
+        // Remove the current incarnation if necessary
+        if (this.courante === cle) {
+            await this.definirCourante(null);
         }
 
-        // Delete all related vecus items
-        for (const vecu of this.rattaches(sid, ['vecu'])) {
+        // The items which owe nothing to another incarnation go with this one
+        const autres = this.toutes().filter(i => i.sid !== cle);
+        const orphelins = this.rattaches(cle).filter(item => !autres.some(i =>
+            Version.data(i).vecu === item.sid || (Version.data(i).apports ?? []).some(a => a.sid === item.sid)));
+
+        // Delete the incarnation first: its vecu no longer holds it, and the other items lose
+        // their contribution with it
+        await this.actor.deleteEmbeddedDocuments('Item', [incarnation.id]);
+
+        // Delete the vecus, with their dependencies
+        for (const vecu of orphelins.filter(i => i.type === 'vecu')) {
             await this.actor.deleteVecu(vecu);
         }
 
-        // Delete other embedded items which are related to the periode
-        await this.actor.deleteEmbeddedDocuments('Item', this.rattaches(sid).map(i => i.id));
-
-        // Delete the embedded periode item
-        await this.actor.deleteEmbeddedDocuments('Item', [this.actor.items.find(i => i.sid === sid).id]);
+        // Delete the other items
+        const ids = orphelins.filter(i => i.type !== 'vecu').map(i => i.id);
+        if (ids.length > 0) {
+            await this.actor.deleteEmbeddedDocuments('Item', ids);
+        }
     }
 
     /**
-     * @param sid The system identifier of the periode to activate or deactivate.
+     * @param periode The system identifier of the world periode.
+     * @param vecu    The system identifier of the embedded vecu, null for none.
+     * @returns {string} la clé de l'incarnation créée.
      */
-    async basculer(sid) {
-        const periode = this.periode(sid);
-        await periode.update({ [Version.path(periode, 'actif')]: !Version.data(periode).actif });
+    async #creer(periode, vecu) {
+        const monde = game.items.find(i => i.type === 'periode' && i.sid === periode);
+        const premiere = this.premiere();
+        // Sans system.id, l'item reçoit un identifiant neuf à sa création (NephilimItem._preCreate).
+        const [cree] = await this.actor.createEmbeddedDocuments('Item', [{
+            name: monde?.name ?? periode,
+            type: 'incarnation',
+            img: monde?.img,
+            system: {
+                versions: {
+                    v5: {
+                        periode: periode,
+                        vecu: vecu,
+                        actif: true,
+                        rang: premiere == null ? 0 : (Version.data(premiere).rang ?? 0) + 1,
+                        apports: []
+                    }
+                }
+            }
+        }]);
+        if (premiere == null) {
+            await this.definirCourante(cree.sid);
+        }
+        return cree.sid;
     }
 
     /**
-     * @param periode  The embedded periode to update, nothing done if null.
-     * @param previous The system identifier of the periode which precedes it in the chain.
+     * Embarque un vécu du monde, avec la période de son incarnation.
+     * @param monde   The world vecu.
+     * @param periode The system identifier of the world periode.
      */
-    async #chainer(periode, previous) {
-        await periode?.update({ [Version.path(periode, 'previous')]: previous });
+    async #embarquerVecu(monde, periode) {
+        await new EmbeddedItem(this.actor, monde.sid)
+            .withContext("Drop of a vecu on periode " + periode)
+            .withData("degre", 0)
+            .withData("mnemos", [])
+            .withData("periode", periode)
+            .withData("element", Version.data(monde).element)
+            .withoutData('description')
+            .create();
+    }
+
+    // ------------------------------------------------------------------ les autres écritures
+
+    /**
+     * @param cle The key of the incarnation to make current, null for none.
+     */
+    async definirCourante(cle) {
+        await this.actor.update({ [Version.path(this.actor, 'periode')]: cle });
+    }
+
+    /**
+     * Déplace une incarnation dans la chronologie : en ordre de chaîne, juste derrière une autre.
+     * @param cle    The key of the incarnation to move.
+     * @param parent The key of the incarnation which will precede it.
+     */
+    async deplacer(cle, parent) {
+
+        const chaine = this.#chaine();
+        const moved = chaine.find(i => i.sid === cle);
+        const index = chaine.findIndex(i => i.sid === parent);
+
+        // The target is not an incarnation, or the move changes nothing
+        if (moved == null || index === -1 || cle === parent || chaine[index + 1]?.sid === cle) {
+            return;
+        }
+
+        // Move the incarnation just behind its new parent, then number the chain again
+        const ordre = chaine.filter(i => i.sid !== cle);
+        ordre.splice(ordre.findIndex(i => i.sid === parent) + 1, 0, moved);
+        const updates = [];
+        ordre.forEach((item, i) => {
+            const rang = ordre.length - 1 - i;
+            if (Version.data(item).rang !== rang) {
+                updates.push({ _id: item.id, [Version.path(item, 'rang')]: rang });
+            }
+        });
+        if (updates.length > 0) {
+            await this.actor.updateEmbeddedDocuments('Item', updates);
+        }
+    }
+
+    /**
+     * @param cle The key of the incarnation to activate or deactivate.
+     */
+    async basculer(cle) {
+        const incarnation = this.incarnation(cle);
+        if (incarnation == null) return;
+        await incarnation.update({ [Version.path(incarnation, 'actif')]: !Version.data(incarnation).actif });
+    }
+
+    /**
+     * Rattache un item embarqué à une incarnation, comme apport. Sans effet s'il l'est déjà.
+     * Un vécu ne se rattache pas ainsi : voir creerDepuisVecu et definirVecu.
+     * @param sid   The system identifier of the embedded item.
+     * @param cle   The key of the incarnation.
+     * @param degre The degre acquired during the incarnation, null if the item has none.
+     */
+    async rattacher(sid, cle, degre = null) {
+        const incarnation = this.incarnation(cle);
+        if (incarnation == null || this.aRattache(sid, cle)) return;
+        await this.#apports(incarnation, [...(Version.data(incarnation).apports ?? []), { sid: sid, degre: degre }]);
+    }
+
+    /**
+     * Retire à une incarnation l'apport d'un item.
+     * @param sid The system identifier of the embedded item.
+     * @param cle The key of the incarnation.
+     * @returns the number of incarnations to which the item still owes something.
+     */
+    async detacher(sid, cle) {
+        const incarnation = this.incarnation(cle);
+        const apports = Version.data(incarnation)?.apports ?? [];
+        if (apports.some(a => a.sid === sid)) {
+            await this.#apports(incarnation, apports.filter(a => a.sid !== sid));
+        }
+        return this.#porteuses(sid).filter(i => i.sid !== cle || Version.data(i).vecu === sid).length;
+    }
+
+    /**
+     * Retire à toutes les incarnations l'apport d'un item — l'item a quitté l'acteur.
+     * @param sid The system identifier of the embedded item.
+     */
+    async oublier(sid) {
+        const updates = this.toutes()
+            .filter(i => (Version.data(i).apports ?? []).some(a => a.sid === sid))
+            .map(i => ({ _id: i.id, [Version.path(i, 'apports')]: Version.data(i).apports.filter(a => a.sid !== sid) }));
+        if (updates.length > 0) {
+            await this.actor.updateEmbeddedDocuments('Item', updates);
+        }
+    }
+
+    /**
+     * @param item  The embedded item which owes something to the incarnation.
+     * @param degre The degre acquired during the incarnation.
+     * @param cle   The key of the incarnation, the current one if omitted.
+     */
+    async modifierDegre(item, degre, cle = this.courante) {
+        const incarnation = this.incarnation(cle);
+        if (incarnation == null) return;
+        if (Version.data(incarnation).vecu === item.sid) {
+            await item.update({ [Version.path(item, 'degre')]: degre });
+            return;
+        }
+        await this.#apports(incarnation, (Version.data(incarnation).apports ?? [])
+            .map(a => a.sid === item.sid ? { sid: a.sid, degre: degre } : a));
+    }
+
+    /**
+     * @param incarnation The incarnation to update.
+     * @param apports     Its new contributions.
+     */
+    async #apports(incarnation, apports) {
+        await incarnation.update({ [Version.path(incarnation, 'apports')]: apports });
+    }
+
+    /**
+     * Garde les incarnations en accord avec les items, quel que soit le chemin de suppression :
+     * le vécu d'une incarnation supprimé l'emporte — une incarnation de figure a toujours un
+     * vécu ; tout autre item supprimé ne doit plus rien à aucune incarnation, sans quoi un
+     * apport orphelin le ferait revivre à son prochain dépôt. Les suppressions qui s'en
+     * chargent elles-mêmes passent l'option `incarnations: false`.
+     */
+    static ecouter() {
+        Hooks.on('deleteItem', (item, options, userId) => {
+            if (userId !== game.user.id || options?.incarnations === false) return;
+            if (item.parent == null || item.type === 'incarnation' || item.type === 'periode') return;
+            const incarnations = new Incarnations(item.parent);
+            if (!incarnations.porte || incarnations.exemplaires(item.sid).length > 0) return;
+            const tenue = item.type === 'vecu' ? incarnations.incarnationDe(item) : null;
+            if (tenue != null) {
+                incarnations.retirer(tenue.sid);
+            } else {
+                incarnations.oublier(item.sid);
+            }
+        });
     }
 
     // ------------------------------------------------------------------ l'affichage
 
     /**
-     * @returns the periodes and their attached items, as displayed by the incarnations tab.
+     * @returns the incarnations and their attached items, as displayed by the incarnations tab.
      */
     chronologie() {
 
@@ -373,7 +635,7 @@ export class Incarnations {
         for (const p of this.ordonnees()) {
 
             // Retrieve the periode of the world
-            const periode = game.items.find(i => i.sid === p.sid);
+            const periode = game.items.find(i => i.sid === Version.data(p).periode);
             if (periode == null) {
                 continue;
             }
@@ -398,6 +660,7 @@ export class Incarnations {
             }
 
             all.push({
+                cle: p.sid,
                 original: {
                     name: periode.name,
                     id: periode.id,
@@ -409,6 +672,7 @@ export class Incarnations {
                     id: p.id,
                     fsid: new DocumentIdentifier(p).fsid,
                     actif: Version.data(p).actif,
+                    courante: this.courante === p.sid,
                     vecus: vecus,
                     focus: focus,
                     capacites: capacites,
@@ -421,15 +685,15 @@ export class Incarnations {
     }
 
     /**
-     * @param periode The system identifier of the periode.
-     * @param types   The item types to list, in display order.
-     * @param degre   True to add the degre of each item.
-     * @returns the display lines of the items attached to the periode.
+     * @param cle    The key of the incarnation.
+     * @param types  The item types to list, in display order.
+     * @param degre  True to add the degre acquired during the incarnation.
+     * @returns the display lines of the items attached to the incarnation.
      */
-    #lignes(periode, types, degre) {
+    #lignes(cle, types, degre) {
         const lignes = [];
         for (const type of types) {
-            for (const i of this.rattaches(periode, [type])) {
+            for (const i of this.rattaches(cle, [type])) {
                 const original = game.items.find(o => o.sid === i.sid);
                 if (original == null) continue;
                 const ligne = {
@@ -439,7 +703,7 @@ export class Incarnations {
                     wid: original.id,
                     sid: i.sid
                 };
-                if (degre) ligne.degre = Version.data(i).degre;
+                if (degre) ligne.degre = this.degreDans(i.sid, cle);
                 lignes.push(ligne);
             }
         }

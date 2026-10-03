@@ -18,6 +18,7 @@ export class EmbeddedItem {
         this.deleteExisting = false;
         this.notCreatedError = true;
         this.alreadyEmbeddedError = true;
+        this.incarnation = null;
     }
 
     /**
@@ -41,16 +42,17 @@ export class EmbeddedItem {
     }
 
     /**
-     * Rattache l'item créé à une incarnation. Les champs écrits sont ceux que décide la façade
-     * des incarnations : les sites de dépôt n'ont pas à les connaître.
+     * Rattache l'item à une incarnation, par la façade des incarnations.
+     *
+     * Un item n'est embarqué qu'une fois : s'il l'est déjà, il n'est pas recréé, il doit
+     * simplement quelque chose de plus à cette incarnation — sauf withDeleteExisting, qui le
+     * « déplace » (focus, capacité : une seule période), en le détachant de toutes les autres.
      * @param periode The system identifier of the periode.
      * @param degre   The degre acquired during the periode, omitted if the item has none.
      * @returns the instance.
      */
-    withIncarnation(periode, degre = undefined) {
-        for (const [name, value] of Incarnations.champsDeRattachement(periode, degre)) {
-            this.data.set(name, value);
-        }
+    withIncarnation(periode, degre = null) {
+        this.incarnation = { periode: periode, degre: degre };
         return this;
     }
 
@@ -116,10 +118,18 @@ export class EmbeddedItem {
         }
 
         // Check if an item is already embbeded
-        const already = this.actor.items.find(i => i.sid === this.sid);
+        const already = this.actor.items.find(i => i.sid === this.sid && i.type !== 'incarnation');
         if (already != null) {
             if (this.deleteExisting === true) {
-                await this.actor.deleteEmbeddedDocuments('Item', [already.id]);
+                if (this.incarnation != null) {
+                    await new Incarnations(this.actor).oublier(this.sid);
+                }
+                await this.actor.deleteEmbeddedDocuments('Item', [already.id], { incarnations: false });
+            } else if (this.incarnation != null) {
+                // Déjà embarqué : il doit seulement quelque chose de plus à cette incarnation.
+                this.item = already;
+                await new Incarnations(this.actor).rattacher(this.sid, this.incarnation.periode, this.incarnation.degre);
+                return this;
             } else if (this.alreadyEmbeddedError === true) {
                 this.error("Error occurs during embedded item creation because actor item already embedded");
                 return this;
@@ -148,6 +158,11 @@ export class EmbeddedItem {
 
         // Create the embedded item
         this.item = (await this.actor.createEmbeddedDocuments("Item", data))[0];
+
+        // Attach it to its incarnation
+        if (this.incarnation != null) {
+            await new Incarnations(this.actor).rattacher(this.sid, this.incarnation.periode, this.incarnation.degre);
+        }
 
         // Remove optional data
         if (this.removeData != null) {
