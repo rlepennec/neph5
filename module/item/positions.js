@@ -55,7 +55,7 @@ const POSITIONS = {
     rituel:       { classique: [  550, 500 ], ashbury: [  960, 670 ] },
     savoir:       { classique: [  550, 500 ], ashbury: [  900, 750 ] },
     science:      { classique: [  550, 500 ], ashbury: [  820, 620 ] },
-    sort:         { classique: [  850, 550 ], ashbury: [ 1220, 700 ] },
+    sort:         { classique: [  850, 550 ], ashbury: [ 1220, 820 ] },
     technique:    { classique: [  550, 500 ], ashbury: [  960, 670 ] },
     tekhne:       { classique: [  550, 500 ], ashbury: [  960, 670 ] },
     vecu:         { classique: [  880, 580 ], ashbury: [ 1220, 760 ] },
