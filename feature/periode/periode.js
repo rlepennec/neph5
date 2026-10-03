@@ -1,6 +1,6 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
-import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Fraternite } from "../fraternite/fraternite.js";
 
@@ -35,7 +35,7 @@ export class Periode extends AbstractFeature {
         if (this.actor.items.find(i => i.sid === this.sid) == null) {
             
             // Insert the first periode or the new periode at the top of the incarnations list if necessary
-            const first = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === null);
+            const first = new Incarnations(this.actor).premiere();
             if (first != null) {
                 await Periode.setPrevious(first, this.sid);
             } else {
@@ -99,10 +99,10 @@ export class Periode extends AbstractFeature {
         const moved = this.actor.items.find(i => i.type === 'periode' && i.sid === this.sid);
 
         // The old next periode of the moved periode
-        const next = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === this.sid);
+        const next = new Incarnations(this.actor).suivante(this.sid);
 
         // The periode which have his new previous periode equal to the moved periode
-        const previous = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === parentId);
+        const previous = new Incarnations(this.actor).suivante(parentId);
 
         // A move is done
         if (Version.data(moved).previous !== parentId && moved.sid !== parentId && moved.sid !== previous?.sid) {
@@ -131,25 +131,25 @@ export class Periode extends AbstractFeature {
         if (this.actor.type === 'figure' || this.actor.type === 'fraternite') {
 
             // Update the next previous periode
-            const next = this.actor.items.find(i => i.type === 'periode' && Version.data(i).previous === this.item.sid);
+            const next = new Incarnations(this.actor).suivante(this.item.sid);
             if (next != null) {
                 await next.update({ [Version.path(next, 'previous')]: Version.data(this.embedded).previous });
             }
 
             // Remove the current actor periode if necessary
-            if (Version.data(this.actor).periode === this.item.sid) {
+            if (new Incarnations(this.actor).courante === this.item.sid) {
                 await this.actor.setCurrentPeriode(null);
             }
 
         }
 
         // Delete all related vecus items
-        for (let embedded of this.actor.items.filter(i => i.type === 'vecu' && Version.data(i).periode === this.item.sid)) {
+        for (let embedded of new Incarnations(this.actor).rattaches(this.item.sid, ['vecu'])) {
             await this.actor.deleteVecu(embedded);
         }
 
         // Delete other embedded items which are related to the periode
-        await this.actor.deleteEmbeddedDocuments('Item', this.actor.items.filter(i => Version.data(i).periode === this.item.sid).map(i => i.id));
+        await this.actor.deleteEmbeddedDocuments('Item', new Incarnations(this.actor).rattaches(this.item.sid).map(i => i.id));
 
         // Delete the embedded periode item
         await this.actor.deleteEmbeddedDocuments('Item', [AbstractFeature.embedded(this.actor, this.item.sid).id]);
@@ -179,185 +179,7 @@ export class Periode extends AbstractFeature {
      * @returns true if the periode is active according to his activation and the current one.
      */
     actif() {
-        const p = Periode.getChronological(this.actor, true, true, Version.data(this.actor).periode).find(i => i.sid === this.sid);
-        return p != null && Version.data(p).actif === true;
-    }
-
-    /**
-     * @param actor  The actor object.
-     * @param chrono True for chronologic order, false for antichronologic, null for display order.
-     * @param actif  True if only active periode, false for only passive, null for all.
-     * @param last   The identifier of the last periode included, null if no limit.
-     * @returns an sorted array of periodes items objects.
-     */
-    static getChronological(actor, chrono, actif, last) {
-
-        // Retrieve if the display order must be inverted.
-        // chrono === null : ordre d'affichage, piloté par l'option chronologieDescendante.
-        const descendante = Version.data(actor).options.chronologieDescendante === true;
-        const inverse = (chrono === null)
-            ? !descendante
-            : ((chrono === true  && descendante === false)
-            || (chrono === false && descendante === true));
-
-        // Retrieve periodes in display order
-        let periodes = [];
-        let previous = null;
-        let found = false;
-
-        while (true) {
-
-            // Retrieve the next periode
-            const p = actor.items.find(i => i.type === 'periode' && Version.data(i).previous === previous);
-
-            // Stop if the last periode
-            if (p == null) {
-                break;
-            }
-
-            // Check if the last periode
-            if (last != null && found === false && last === p.sid) {
-                found = true;
-            }
-
-            // Skip the first periodes to the last if inverse order.
-            // Sans limite (last == null), il n'y a aucune periode a ignorer.
-            if (inverse === true && last != null && found === false) {
-                previous = p.sid;
-                continue;
-            }
-
-            // Add periode if required
-            if (actif == null || last === p.sid || Version.data(p).actif === actif) {
-                periodes.push(p);
-            }
-
-            // Skip the last periodes if the last and normal order
-            if (inverse === false && found === true && last === p.sid) {
-                break;
-            }
-
-            previous = p.sid;
-        }
-
-        // Sort the periodes according to the order 
-        if (inverse === true) {
-            periodes = periodes.reverse();
-        }
-
-        return periodes;
-
-    }
-
-    /**
-     * @param actor The actor object.
-     * @returns the periodes and each linked items to display in the character sheet.
-     */
-    static getAll(actor) {
-
-        // Sort periodes to display
-        const periodes = Periode.getChronological(actor, true, null);
-
-        // Process periodes to display.
-        const all = [];
-        for (let p of periodes) {
-
-            // Retrieve the periode of the world
-            const periode = AbstractFeature.original(p.sid);
-            if (periode == null) {
-                continue;
-            }
-
-            // Create all embedded items
-            const vecus = [];
-            for (let type of ['vecu','savoir','quete','arcane','chute','science', 'passe']) {
-                for (let i of actor.items.filter(i => Version.data(i).periode === p.sid && i.type === type)) {
-                    const original = AbstractFeature.original(i.sid);
-                    if (original != null) {
-                        vecus.push({
-                            name: original.name,
-                            type: original.type,
-                            id: i.id,
-                            wid: original.id,
-                            sid: i.sid,
-                            degre: Version.data(i).degre
-                        });
-                    }
-                }
-            }
-
-            const focus = [];
-            for (let type of ['sort','invocation','formule','rite','ordonnance','appel','habitus','pratique', 'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie', 'divination']) {
-                for (let i of actor.items.filter(i => Version.data(i).periode === p.sid && i.type === type)) {
-                    const original = AbstractFeature.original(i.sid);
-                    if (original != null) {
-                        focus.push({
-                            name: original.name,
-                            type: original.type,
-                            id: i.id,
-                            wid: original.id,
-                            sid: i.sid
-                        });
-                    }
-                }
-            }
-
-            const capacites = [];
-            for (let type of ['capacite']) {
-                for (let i of actor.items.filter(i => Version.data(i).periode === p.sid && i.type === type)) {
-                    const original = AbstractFeature.original(i.sid);
-                    if (original != null) {
-                        capacites.push({
-                            name: original.name,
-                            type: original.type,
-                            id: i.id,
-                            wid: original.id,
-                            sid: i.sid
-                        });
-                    }
-                }
-            }
-
-            // Create all linked actors
-            const actors = [];
-            if (actor.type === 'fraternite') {
-                for (let fa of Version.data(actor).effectif.filter(a => a.periode === p.sid)) {
-                    const original = game.actors.find(a => a.sid === fa.actor);
-                    actors.push({
-                        id: original.id,
-                        sid: original.sid,
-                        name: original.name,
-                        status: fa.status,
-                        newer: actor.isNewMember(original.id, p.sid)
-                    });
-                }
-            }
-
-            // Push the new periode
-            all.push({
-                original: {
-                    name: periode.name,
-                    id: periode.id,
-                    sid: periode.sid,
-                    contexte: Version.data(periode).contexte,
-                    aube: Version.data(periode).aube
-                },
-                embedded: {
-                    id: p.id,
-                    fsid: new DocumentIdentifier(p).fsid,
-                    actif: Version.data(p).actif,
-                    vecus: vecus,
-                    focus: focus,
-                    capacites: capacites,
-                    items: items,
-                    actors: actors
-                }
-            });
-
-        }
-
-        return all;
-
+        return new Incarnations(this.actor).estActive(this.sid);
     }
 
 }

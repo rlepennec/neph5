@@ -1,4 +1,5 @@
 import { ActionDialog } from "./actionDialog.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { AbstractManoeuver } from "../combat/manoeuver/abstractManoeuver.js";
 import { Constants } from "../../module/common/constants.js";
@@ -395,14 +396,7 @@ export class AbstractFeature {
      * @returns the degre from the periodes.
      */
     degreFromPeriodes(sid) {
-        let sum = 0;
-        for (let item of this.actor.items.filter(i => i.sid === sid)) {
-            const periode = this.actor.items.find(i => i.sid === Version.data(item).periode);
-            if (periode.actif === true) {
-                sum = sum + Version.data(item).degre;
-            }
-        }
-        return sum;
+        return new Incarnations(this.actor).degre(sid);
     }
     
     /**
@@ -412,8 +406,9 @@ export class AbstractFeature {
     detailsFromPeriodes(sid) {
         const details = [];
         const original = AbstractFeature.original(sid);
+        const incarnations = new Incarnations(this.actor);
         if (original.type === 'competence') {
-            for (let v of this.actor.items.filter(i => i.type === 'vecu' && AbstractFeature.isActive(this.actor, i))) {
+            for (let v of incarnations.vecusActifs()) {
                 const item = game.items.find(i => i.sid === v.sid);
                 if (Version.data(v).competences.find(c => c === sid) != null) {
                     const degre = Version.data(v).degre;
@@ -425,11 +420,10 @@ export class AbstractFeature {
                 }
             }
         } else {
-            for (let item of this.actor.items.filter(i => i.sid === sid)) {
-                const periode = AbstractFeature.embedded(this.actor, Version.data(item).periode);
+            for (let apport of incarnations.apports(sid)) {
                 details.push({
-                    name: periode?.name,
-                    degre: Version.data(item).degre,
+                    name: incarnations.periode(apport.periode)?.name,
+                    degre: Version.data(apport.item).degre,
                     sapiences: "-"});
             }
         }
@@ -550,8 +544,7 @@ export class AbstractFeature {
      * @return true if the linked periode is active.
      */
     static isActive(actor, item) {
-        const periode = actor.items.find(i => i.sid === Version.data(item).periode);
-        return periode != null && periode.actif;
+        return new Incarnations(actor).estActif(item);
     }
 
     /**

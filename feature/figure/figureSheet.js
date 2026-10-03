@@ -1,4 +1,5 @@
 import { Chute } from "../chute/chute.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../module/common/constants.js";
@@ -234,7 +235,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** Fixe le degré d'une chute (clic sur un cercle). */
     async _onChute(event) {
         if (this.locked) return;
-        if (Version.data(this.document).periode == null) return;
+        if (new Incarnations(this.document).courante == null) return;
         const target = event.currentTarget;
         const type = ['khaiba', 'narcose', 'ombre', 'luneNoire'].find(t => target.classList.contains(t));
         await new Chute(this.document).set(type, parseInt(target.dataset.id));
@@ -353,7 +354,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     static async _onDropFocus(event, document) {
         await new FeatureBuilder(this.document)
             .withOriginalItem(document.sid)
-            .withPeriode(Version.data(this.document).periode)
+            .withPeriode(new Incarnations(this.document).courante)
             .create()
             .drop();
         await this.render(true);

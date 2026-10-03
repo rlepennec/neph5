@@ -1,9 +1,9 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
-import { Periode } from "../periode/periode.js";
 
 export class Chute extends HistoricalFeature {
 
@@ -86,8 +86,9 @@ export class Chute extends HistoricalFeature {
 
         let _chute = { degre: 0, name: null, sid: null, id: null };
 
-        for (let periode of Periode.getChronological(actor, true, true, Version.data(actor).periode)) {
-            const chute = actor.items.find(i => i.type === 'chute' && Version.data(i).key === type && Version.data(i).periode === periode.sid);
+        const incarnations = new Incarnations(actor);
+        for (let periode of incarnations.ordonnees({ actif: true, jusqua: incarnations.courante })) {
+            const chute = incarnations.rattaches(periode.sid, ['chute']).find(i => Version.data(i).key === type);
             if (chute != null) {
                 _chute = {
                     degre: _chute.degre + Version.data(chute).degre,
@@ -121,7 +122,8 @@ export class Chute extends HistoricalFeature {
         const previousChute = Chute.getChute(this.actor, type);
 
         // Create or update current chute according to the current periode, first chute by default
-        const chute = this.actor.items.find(i => i.type === "chute" && Version.data(i).key === type && Version.data(i).periode === Version.data(this.actor).periode);
+        const incarnations = new Incarnations(this.actor);
+        const chute = incarnations.rattaches(incarnations.courante, ['chute']).find(i => Version.data(i).key === type);
 
         // Create a new chute
         if (chute == null) {
@@ -135,7 +137,7 @@ export class Chute extends HistoricalFeature {
 
             // Create the new embedded actor item
             await new EmbeddedItem(this.actor, sid)
-                .withData("periode", Version.data(this.actor).periode)
+                .withData("periode", incarnations.courante)
                 .withData("degre", degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
                 .withData("key", type)
                 .withoutData('description')

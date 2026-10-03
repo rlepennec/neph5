@@ -1,4 +1,5 @@
 import { Arcane } from "../../feature/arcane/arcane.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/capacite/capacite.js";
@@ -323,17 +324,18 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the data to display. 
      */
     get periodes() {
-        return Periode.getAll(this);
+        return new Incarnations(this).chronologie();
     }
 
     /**
      * @returns the name of the current periode.
      */
     get currentPeriode() {
-        if (Version.data(this).periode == null) {
+        const courante = new Incarnations(this).courante;
+        if (courante == null) {
             return "Aucune periode courante";
         }
-        const periode = game.items.find(i => i.sid === Version.data(this).periode);
+        const periode = game.items.find(i => i.sid === courante);
         return periode == null ? "Periode non trouvee" : periode.name;
     }
 
@@ -526,7 +528,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 builder = new FeatureBuilder(this)
                     .withOriginalItem(sid)
                     .withScope('actor')
-                    .withPeriode(Version.data(this).periode);
+                    .withPeriode(new Incarnations(this).courante);
                 break;
             }
 
@@ -534,7 +536,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 builder = new FeatureBuilder(this)
                     .withEmbeddedItem(id)
                     .withScope(this.items.get(id) != null ? 'actor' : 'simulacre')
-                    .withPeriode(Version.data(this).periode);
+                    .withPeriode(new Incarnations(this).courante);
                 break;
             }
 

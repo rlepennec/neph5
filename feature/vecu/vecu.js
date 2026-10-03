@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
@@ -141,7 +142,7 @@ export class Vecu extends HistoricalFeature {
             
             // For figurant only, attach a new vecu if not in combat option edition
             else if (this.actor.type === 'figurant' &&
-                this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) == null) {
+                !new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
 
                 await new EmbeddedItem(this.actor, this.sid)
                     .withContext("Drop a vecu")
@@ -176,13 +177,13 @@ export class Vecu extends HistoricalFeature {
                 }
 
                 // The vecu must not already exist
-                if (this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) != null) {
+                if (new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
                     ui.notifications.warn("Le vécu existe déjà");
                     return;
                 }
 
                 // Create the related periode if necessary
-                if (this.actor.items.find(i => i.sid === Version.data(this.item).periode) == null) {
+                if (new Incarnations(this.actor).periode(Version.data(this.item).periode) == null) {
                     this.periode = game.items.find(i => i.sid === Version.data(this.item).periode);
                     if (this.periode == null) {
                         ui.notifications.error("La période auquelle est rattachée le vécu n'existe pas");
@@ -199,7 +200,7 @@ export class Vecu extends HistoricalFeature {
             }
             
             // Create the vecu
-            if (this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) == null) {
+            if (!new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
 
                 await new EmbeddedItem(this.actor, this.sid)
                     .withContext("Drop of a vecu on periode " + this.periode)
@@ -256,7 +257,7 @@ export class Vecu extends HistoricalFeature {
             for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractFeature.isActive(actor, v)))) {
                 const original = AbstractFeature.original(v.sid);
                 if (original != null) {
-                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(Version.data(v).periode);
+                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(new Incarnations(a).rattachement(v));
                     vecus.push({
                         name: original.name,
                         id: v.id,

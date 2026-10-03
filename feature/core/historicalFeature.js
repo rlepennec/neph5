@@ -1,5 +1,5 @@
 import { AbstractFeature } from "./abstractFeature.js";
-import { Version } from "../../module/common/version.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
 export class HistoricalFeature extends AbstractFeature {
@@ -75,7 +75,7 @@ export class HistoricalFeature extends AbstractFeature {
      * @Override
      */
     async drop() {
-        if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) == null) {
+        if (this.periode != null && !new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
             await new EmbeddedItem(this.actor, this.sid)
                 .withContext("Drop of the item " + this.sid + " on periode " + this.periode)
                 .withData("degre", 0)

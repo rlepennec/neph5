@@ -1,8 +1,8 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { FormuleDataModel } from "../../feature/alchimie/item/formule.mjs";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
-import { Periode } from "../../feature/periode/periode.js";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Version } from "../common/version.js";
 
@@ -435,7 +435,7 @@ export class NephilimItem extends Item {
      * @returns true if the periode is active according to his activation and the current one.
      */
     get actif() {
-        return new Periode(this.actor, this).actif();
+        return new Incarnations(this.actor).estActive(this.sid);
     }
 
     static initializeEmbedded(data) {

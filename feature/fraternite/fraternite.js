@@ -1,4 +1,4 @@
-import { Periode } from "../periode/periode.js"; 
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 
 export class Fraternite {
@@ -35,7 +35,7 @@ export class Fraternite {
      */
     isActiveMember(actor) {
         let active = null;
-        for (let periode of Periode.getChronological(this.actor, true, null, Version.data(this.actor).periode)) {
+        for (let periode of new Incarnations(this.actor).ordonnees({ jusqua: new Incarnations(this.actor).courante })) {
             const found = Version.data(this.actor).effectif.find(m => m.periode === periode.sid && m.actor === actor.sid);
             if (found != null) {
                 if (active === null) {
@@ -67,7 +67,7 @@ export class Fraternite {
      */
     membresWithStatus(status) {
         let membres = [];
-        for (let periode of Periode.getChronological(this.actor, true, null, Version.data(this.actor).periode)) {
+        for (let periode of new Incarnations(this.actor).ordonnees({ jusqua: new Incarnations(this.actor).courante })) {
             for (let membre of Version.data(this.actor).effectif.filter(m => m.status === status && m.periode === periode.sid)) {
                 const actor = membres.find(m => m.sid === membre.actor);
                 if (actor == null) {
@@ -140,7 +140,7 @@ export class Fraternite {
     isNewMember(actor, periode) {
         const member = game.actors.get(actor);
         let move = null;
-        for (let p of Periode.getChronological(this.actor, true, null, periode)) {
+        for (let p of new Incarnations(this.actor).ordonnees({ jusqua: periode })) {
             if (Version.data(this.actor).effectif.find(m => m.actor === member.sid && m.periode === p.sid) != null) {
                 if (move == null) {
                     move = true;

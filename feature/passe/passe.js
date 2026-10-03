@@ -1,5 +1,5 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
-import { Version } from "../../module/common/version.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Constants } from "../../module/common/constants.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
@@ -62,7 +62,7 @@ export class Passe extends HistoricalFeature {
     async drop() {
         switch (this.actor.type) {
             case 'figure':
-                if (this.periode != null && this.actor.items.find(i => i.sid === this.sid && Version.data(i).periode === this.periode) == null) {
+                if (this.periode != null && !new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
                     await new EmbeddedItem(this.actor, this.sid)
                         .withContext("Drop of the item " + this.sid + " on periode " + this.periode)
                         .withData("degre", 0)

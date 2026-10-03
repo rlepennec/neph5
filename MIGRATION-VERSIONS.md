@@ -274,3 +274,50 @@ feature/vecu/item/vecu.js` (en fusion, « ours » est la branche où l'on se tro
 **Commiter avant de changer de branche.** Les fichiers non commités suivent le changement
 de branche, et les fichiers non suivis sont invisibles pour Git : un `git clean` les efface
 sans retour. Ce document lui-même a été perdu une fois de cette façon.
+
+---
+
+## 7. L'objet incarnation (point 6 du plan initial)
+
+### Aujourd'hui
+
+L'incarnation n'est pas un objet : c'est la **période embarquée**. Les périodes sont chaînées
+par `previous` — **de la plus récente à la plus ancienne** : la tête de chaîne
+(`previous === null`) est la dernière déposée, et l'ordre chronologique inverse la chaîne.
+Chacune est activée ou non (`actif`), et l'acteur désigne la courante par `periode`. Tout
+item acquis pendant une incarnation est une copie embarquée qui porte `periode` et souvent
+`degre` : un item qui a progressé sur plusieurs incarnations existe en plusieurs exemplaires.
+Une période **compte** si elle est activée et ne vient pas après la courante.
+
+### Le plan, en quatre étapes
+
+1. **La façade** — fait. `feature/incarnation/incarnations.js`, classe `Incarnations(actor)`,
+   seule à connaître cette représentation : `courante`, `periode(sid)`, `toutes()`,
+   `premiere()`, `suivante(sid)`, `ordonnees({ chrono, actif, jusqua })`, `estActive(sid)`,
+   `rattachement(item)`, `estActif(item)`, `exemplaires(sid)`, `aRattache(sid, periode)`,
+   `rattaches(periode, types)`, `apports(sid)`, `degre(sid)`, `vecusActifs()`, `chronologie()`.
+   Elle **lit les données actuelles** ; tous les lecteurs passent par elle (degrés, activité,
+   détails par période, chutes, sciences, compétences, fraternité, onglet incarnations).
+   `Periode.getChronological` et `Periode.getAll` ont disparu. Équivalence vérifiée sous node
+   contre l'ancien code recopié : 1 040 cas, aucun écart.
+2. **Les écritures par la façade** — dépôts (`withData("periode")`), `_onChangeDegre`,
+   déplacement / activation / suppression d'une période (`periode.js`, lignes encore
+   directes), `setCurrentPeriode`. Le gabarit `incarnations.hbs` lit aussi `@root.data.periode`.
+3. **Le stockage** — type `incarnation`, bascule de l'intérieur de la façade, migration :
+   une incarnation par période embarquée, apports versés depuis les copies, copies fusionnées,
+   chaîne `previous` → ordre, `periode` de l'acteur → incarnation courante, deltas de tokens.
+4. **Le nettoyage, une version plus tard** — retrait de `periode` / `degre` des schémas et
+   de `actif` / `previous` : les retirer avec la migration les ferait élaguer avant lecture.
+
+### Décisions ouvertes
+
+- Granularité : une incarnation par **période** (proposé) ou par **vécu** (task/reboot).
+- Unité : garder le **degré** (v5 actuelle) ou passer à la **sapience** allouée (task/reboot).
+- Périmètre des apports : toutes les acquisitions, ou vécus, compétences et cercles seulement.
+
+### Défauts relevés en chemin, non corrigés
+
+`capacite.js:63` et `abstractFocus.js:98` comparent à `this.embedded.periode` — propriété
+inexistante sur un document : le contrôle « déjà rattaché à la période courante » ne joue
+jamais. Présent aussi sur task/v14. Laissé tel quel pour que l'étape 1 ne change rien ; la
+correction serait `new Incarnations(this.actor).aRattache(this.item.sid, this.periode)`.

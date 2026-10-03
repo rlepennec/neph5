@@ -1,8 +1,8 @@
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
-import { Periode } from "../periode/periode.js";
 import { Savoir } from "../savoir/savoir.js";
 
 export class Science extends HistoricalFeature {
@@ -225,11 +225,12 @@ export class Science extends HistoricalFeature {
         const cercle = Science.getCercle(science);
 
         // Retrieve 
-        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === Version.data(i).periode)).actif()).map(i => i.sid);
+        const incarnations = new Incarnations(actor);
+        const sids = actor.items.filter(i => i.type === cercle?.type && incarnations.estActif(i)).map(i => i.sid);
 
         for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
 
-            const feature = new FeatureBuilder(actor).withPeriode(Version.data(actor).periode).withOriginalItem(item.sid).create();
+            const feature = new FeatureBuilder(actor).withPeriode(incarnations.courante).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;
             const uncastable = feature.uncastable;
@@ -421,11 +422,12 @@ export class Science extends HistoricalFeature {
 
         let items = [];
         const cercle = Science.getCercle(science);
-        const sids = actor.items.filter(i => i.type === cercle?.type && new Periode(actor, actor.items.find(j => j.sid === Version.data(i).periode)).actif()).map(i => i.sid);
+        const incarnations = new Incarnations(actor);
+        const sids = actor.items.filter(i => i.type === cercle?.type && incarnations.estActif(i)).map(i => i.sid);
         
         for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
 
-            const feature = new FeatureBuilder(actor).withPeriode(Version.data(actor).periode).withOriginalItem(item.sid).create();
+            const feature = new FeatureBuilder(actor).withPeriode(incarnations.courante).withOriginalItem(item.sid).create();
             const embedded = feature.embedded;
             const degre = feature.degre;
             const uncastable = feature.uncastable;

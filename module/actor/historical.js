@@ -1,4 +1,5 @@
 import { NephilimActorSheet } from "./nephilimActorSheet.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../common/version.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 
@@ -40,7 +41,7 @@ export class HistoricalSheet extends NephilimActorSheet {
      * @returns {string|null} le sid de la période éditée, null si la fiche est verrouillée.
      */
     get editedPeriode() {
-        return this.locked ? null : Version.data(this.document).periode;
+        return this.locked ? null : new Incarnations(this.document).courante;
     }
 
     /**
@@ -81,7 +82,7 @@ export class HistoricalSheet extends NephilimActorSheet {
      * @return the system identifiers of all periodes if option has been set.
      */
     _elapsedPeriodes() {
-        return Version.data(this.document).options.incarnationsOuvertes === true ? this.document.items.filter(i => i.type === 'periode').map(i => i.sid) : [];
+        return Version.data(this.document).options.incarnationsOuvertes === true ? new Incarnations(this.document).toutes().map(i => i.sid) : [];
     }
 
     static async _onDeleteEmbedded(event, target) {

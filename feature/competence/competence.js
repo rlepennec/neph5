@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
@@ -70,9 +71,7 @@ export class Competence extends AbstractFeature {
      */
     get sapiences() {
         let total = 0;
-        for (let vecu of this.actor.items.filter(v =>
-            v.type === 'vecu' &&
-            AbstractFeature.isActive(this.actor, v) &&
+        for (let vecu of new Incarnations(this.actor).vecusActifs().filter(v =>
             Version.data(v).competences.find(c => c === this.sid) != null)) {
             total = total + CustomHandlebarsHelpers.getSapiences(Version.data(vecu).degre);
         }
