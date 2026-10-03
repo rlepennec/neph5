@@ -67,7 +67,7 @@ export class Atlanteide extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a rituel altantéide")
             .withDeleteExisting()
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'degre')
             .create();
 

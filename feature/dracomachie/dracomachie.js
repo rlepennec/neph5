@@ -111,7 +111,7 @@ export class Dracomachie extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a passe")
             .withDeleteExisting()
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'degre')
             .create();
 

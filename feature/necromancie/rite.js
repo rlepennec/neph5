@@ -43,7 +43,7 @@ export class Rite extends AbstractFocus {
             .withContext("Drop of a rite")
             .withDeleteExisting()
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'desmos')
             .create();
 

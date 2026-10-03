@@ -68,7 +68,7 @@ export class Capacite extends HistoricalFeature {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a capacite")
             .withDeleteExisting()
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description')
             .create();
 

@@ -753,7 +753,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @param sid The system identifier of current periode to set.
      */
     async setCurrentPeriode(sid) {
-        await this.update({ [Version.path(this, 'periode')]: sid });
+        await new Incarnations(this).definirCourante(sid);
     }
 
     /**

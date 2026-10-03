@@ -30,7 +30,7 @@ export class Ordonnance extends AbstractFeature {
     async drop() {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of an ordonnance")
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'monde')
             .create();
     }

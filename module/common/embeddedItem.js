@@ -1,3 +1,4 @@
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "./version.js";
 export class EmbeddedItem {
 
@@ -36,6 +37,20 @@ export class EmbeddedItem {
      */
     withData(name, value) {
         this.data.set(name, value);
+        return this;
+    }
+
+    /**
+     * Rattache l'item créé à une incarnation. Les champs écrits sont ceux que décide la façade
+     * des incarnations : les sites de dépôt n'ont pas à les connaître.
+     * @param periode The system identifier of the periode.
+     * @param degre   The degre acquired during the periode, omitted if the item has none.
+     * @returns the instance.
+     */
+    withIncarnation(periode, degre = undefined) {
+        for (const [name, value] of Incarnations.champsDeRattachement(periode, degre)) {
+            this.data.set(name, value);
+        }
         return this;
     }
 

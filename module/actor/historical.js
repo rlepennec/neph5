@@ -154,9 +154,7 @@ export class HistoricalSheet extends NephilimActorSheet {
         const id = el.closest('.item').dataset.id;
         const item = this.document.items.get(id);
         const converted = parseInt(el.value);
-        // Écrire le seul champ, à son chemin de version : réécrire tout le system avec un
-        // degré posé à la racine laisserait gagner l'ancienne valeur rangée dans la version.
-        await item.update({ [Version.path(item, 'degre')]: isNaN(converted) ? 0 : converted });
+        await new Incarnations(this.document).modifierDegre(item, isNaN(converted) ? 0 : converted);
     }
 
     /**

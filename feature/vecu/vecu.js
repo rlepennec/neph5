@@ -204,9 +204,8 @@ export class Vecu extends HistoricalFeature {
 
                 await new EmbeddedItem(this.actor, this.sid)
                     .withContext("Drop of a vecu on periode " + this.periode)
-                    .withData("degre", 0)
                     .withData("mnemos", [])
-                    .withData("periode", this.periode)
+                    .withIncarnation(this.periode, 0)
                     .withData("element", Version.data(this.item).element)
                     .withoutData('description')
                     .withoutAlreadyEmbeddedError()

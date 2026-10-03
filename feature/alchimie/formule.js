@@ -101,7 +101,7 @@ export class Formule extends AbstractFocus {
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withData("quantite", 0)
             .withData("transporte", 0)
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'degre', 'cercle', 'enonce', 'substance', 'aire', 'duree')
             .create();
 

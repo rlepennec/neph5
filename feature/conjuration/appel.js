@@ -43,7 +43,7 @@ export class Appel extends AbstractFocus {
             .withContext("Drop of a appel")
             .withDeleteExisting()
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'degre', 'appel', 'controle', 'visibilite', 'entropie', 'dommages', 'protection')
             .create();
 

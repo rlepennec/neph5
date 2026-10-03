@@ -65,8 +65,7 @@ export class Passe extends HistoricalFeature {
                 if (this.periode != null && !new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
                     await new EmbeddedItem(this.actor, this.sid)
                         .withContext("Drop of the item " + this.sid + " on periode " + this.periode)
-                        .withData("degre", 0)
-                        .withData("periode", this.periode)
+                        .withIncarnation(this.periode, 0)
                         .withoutData('description')
                         .withoutAlreadyEmbeddedError()
                         .create();

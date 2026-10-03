@@ -55,7 +55,7 @@ export class Sort extends AbstractFocus {
             .withDeleteExisting()
             .withData("focus", (previous == null ? false : Version.data(previous).focus))
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
             .create();
     }

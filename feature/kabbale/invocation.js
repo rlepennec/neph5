@@ -63,7 +63,7 @@ export class Invocation extends AbstractFocus {
             .withData("focus", (previous == null ? false : Version.data(previous).focus))
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withData("pacte", (previous == null ? false : Version.data(previous).pacte))
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')
             .create();
 

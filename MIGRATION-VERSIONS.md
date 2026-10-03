@@ -300,9 +300,18 @@ Une période **compte** si elle est activée et ne vient pas après la courante.
    détails par période, chutes, sciences, compétences, fraternité, onglet incarnations).
    `Periode.getChronological` et `Periode.getAll` ont disparu. Équivalence vérifiée sous node
    contre l'ancien code recopié : 1 040 cas, aucun écart.
-2. **Les écritures par la façade** — dépôts (`withData("periode")`), `_onChangeDegre`,
-   déplacement / activation / suppression d'une période (`periode.js`, lignes encore
-   directes), `setCurrentPeriode`. Le gabarit `incarnations.hbs` lit aussi `@root.data.periode`.
+2. **Les écritures par la façade** — fait. `ajouter(sid)` (en tête de chaîne ; la première
+   devient la courante), `deplacer(sid, parent)`, `retirer(sid)` (chaîne recousue, courante
+   oubliée, vécus et items rattachés supprimés), `basculer(sid)`, `definirCourante(sid)`,
+   `modifierDegre(item, degre)`. Les 19 dépôts écrivent par `EmbeddedItem.withIncarnation(periode,
+   degre?)`, qui pose les champs que décide `Incarnations.champsDeRattachement`. `Periode` ne
+   garde que la logique d'interface (cible du dépôt, rendu, fraternité) ; `Periode.setPrevious`
+   a disparu, `NephilimActor.setCurrentPeriode` délègue. Vérifié sous node contre l'ancien code
+   recopié : 84 cas de déplacement, retrait et bascule sans écart, et l'ajout par `EmbeddedItem`.
+   **Hors façade, volontairement** : les écritures sur les items du monde (la période d'un vécu
+   du monde), l'effectif de la fraternité (membres par période), et le degré éditable des
+   figurants, qui n'ont pas d'incarnations. Le gabarit `incarnations.hbs` lit encore
+   `@root.data.periode` pour marquer la courante — à donner par le contexte à l'étape 3.
 3. **Le stockage** — type `incarnation`, bascule de l'intérieur de la façade, migration :
    une incarnation par période embarquée, apports versés depuis les copies, copies fusionnées,
    chaîne `previous` → ordre, `periode` de l'acteur → incarnation courante, deltas de tokens.

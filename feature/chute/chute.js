@@ -137,8 +137,7 @@ export class Chute extends HistoricalFeature {
 
             // Create the new embedded actor item
             await new EmbeddedItem(this.actor, sid)
-                .withData("periode", incarnations.courante)
-                .withData("degre", degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
+                .withIncarnation(incarnations.courante, degre === previousChute.degre == 1 ? -degre : degre - previousChute.degre)
                 .withData("key", type)
                 .withoutData('description')
                 .withoutAlreadyEmbeddedError()
@@ -146,7 +145,7 @@ export class Chute extends HistoricalFeature {
 
         // Update the current chute
         } else {
-            await chute.update({ [Version.path(chute, 'degre')]: Version.data(chute).degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre) }); 
+            await incarnations.modifierDegre(chute, Version.data(chute).degre - previousChute.degre + (degre === previousChute.degre ? 0 : degre)); 
         }
 
     }

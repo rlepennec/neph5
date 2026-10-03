@@ -64,7 +64,7 @@ export class Divination extends AbstractFocus {
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a divination")
             .withDeleteExisting()
-            .withData("periode", this.periode)
+            .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'degre')
             .create();
 
