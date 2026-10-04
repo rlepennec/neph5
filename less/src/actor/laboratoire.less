@@ -152,7 +152,10 @@
                 border: none;
                 background-color: transparent;
                 z-index: 98;
-                width: 160px;
+                width: auto;
+                min-width: 160px;
+                height: auto;
+                line-height: normal;
             }
 
             .elements {
@@ -231,8 +234,12 @@
 
         .artefacts {
             position: relative;
+            // Le conteneur reste dans le flux en haut de la zone, où il recouvrait la liste
+            // du creuset : seules les icônes, décalées à leur place, reçoivent les clics.
+            pointer-events: none;
 
             .tooltip {
+                pointer-events: auto;
 
                 img {
                     width: 51px;
