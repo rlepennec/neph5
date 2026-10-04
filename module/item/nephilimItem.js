@@ -173,14 +173,61 @@ export class NephilimItem extends Item {
     }
 
     /**
+     * Nettoie le monde des références aux items supprimés.
+     *
+     * Ce nettoyage se fait une fois par opération de suppression, et non dans _onDelete.
+     * Foundry appelle _onDelete pour chaque document supprimé sans l'attendre, et sur
+     * tous les clients connectés. Supprimer plusieurs items d'un coup lançait donc des
+     * mises à jour concurrentes des mêmes documents : chacune partait de l'état d'avant,
+     * la dernière écrite l'emportait, et des références aux items supprimés restaient
+     * (compétences d'un vécu, chaînage des périodes...).
+     *
+     * Les items sont traités l'un après l'autre, sur un seul client : le MJ actif, ou à
+     * défaut l'auteur de la suppression. La suppression d'un item de compendium ne
+     * touche pas le monde.
+     *
+     * [rules] Les items embarqués suivent le même chemin pour tenir les incarnations de leur
+     * acteur à jour (Incarnations.apresSuppression) : c'était un écouteur deleteItem, qui
+     * avait le même défaut.
+     *
      * @Override
      */
-    async _onDelete(options, userId) {
+    static async _onDeleteOperation(documents, operation, user) {
+        await super._onDeleteOperation(documents, operation, user);
 
-        // On process world item deletion
-        if (this.isEmbedded === true) {
+        // Only world items — and, on rules, embedded items for their incarnations
+        if (operation.pack != null) {
             return;
         }
+
+        // Embedded items: the incarnations of their actor, one deleted item after the other, on
+        // the client of the author — who owns the actor, and whose own chain of writes (move a
+        // focus, change a vecu) must not race with this cleanup on another client
+        if (operation.parent != null) {
+            if (user?.id === game.user.id && operation.incarnations !== false) {
+                for (let item of documents) {
+                    await Incarnations.apresSuppression(item);
+                }
+            }
+            return;
+        }
+
+        // Only one client
+        const designated = game.users.activeGM ?? user;
+        if (designated?.id !== game.user.id) {
+            return;
+        }
+
+        // One deleted item after the other
+        for (let item of documents) {
+            await item._onDeleteWorldItem();
+        }
+    }
+
+    /**
+     * Removes the references to the current deleted world item.
+     */
+    async _onDeleteWorldItem() {
 
         // Specific processing
         switch (this.type) {
@@ -282,8 +329,6 @@ export class NephilimItem extends Item {
                 }
             }
         }
-
-        await super._onDelete(options, userId);
 
     }
 

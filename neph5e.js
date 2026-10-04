@@ -80,7 +80,6 @@ import { OrdonnanceDataModel } from "./feature/kabbale/item/ordonnance.mjs";
 import { PasseDataModel } from "./feature/passe/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
 import { IncarnationDataModel } from "./feature/incarnation/item/incarnation.mjs";
-import { Incarnations } from "./feature/incarnation/incarnations.js";
 import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
 import { RiteDataModel } from "./feature/necromancie/item/rite.mjs";
 import { RituelDataModel } from "./feature/epee/item/rituel.mjs";
@@ -177,7 +176,6 @@ Hooks.once("init", function () {
     // fiche, et elle n'est pas proposée à la création dans la barre latérale.
     CONFIG.Item.dataModels.incarnation = IncarnationDataModel;
     NephilimItemDirectory.TYPES = Object.keys(ITEM_TYPES);
-    Incarnations.ecouter();
 
     for (const [type, { sheet }] of Object.entries(ITEM_TYPES)) {
         foundry.documents.collections.Items.registerSheet('nephilim', sheet, { types: [type], makeDefault: true });

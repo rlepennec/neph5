@@ -71,7 +71,10 @@ export class Fraternite {
             for (let membre of Version.data(this.actor).effectif.filter(m => m.status === status && m.periode === periode.sid)) {
                 const actor = membres.find(m => m.sid === membre.actor);
                 if (actor == null) {
-                    membres.push(game.actors.find(a => a.sid === membre.actor));
+                    const original = game.actors.find(a => a.sid === membre.actor);
+                    if (original != null) {
+                        membres.push(original);
+                    }
                 } else {
                     membres = membres.filter(m => m.sid != membre.actor)
                 } 
@@ -125,11 +128,20 @@ export class Fraternite {
     }
 
     /**
-     * @param actor The actor object to delete.
+     * @returns the members of the effectif whose actor is not found in the world.
      */
-    async onDeleteActor(actor) {
-        const effectif = Version.data(this.actor).effectif.filter(m => m.actor !== actor.sid);
-        await this.actor.update({ [Version.path(this.actor, 'effectif')]: effectif });
+    membresIntrouvables() {
+        return Version.data(this.actor).effectif.filter(m => game.actors.find(a => a.sid === m.actor) == null);
+    }
+
+    /**
+     * @param sids The system identifiers of the actors to delete.
+     */
+    async onDeleteActors(sids) {
+        const effectif = Version.data(this.actor).effectif.filter(m => !sids.includes(m.actor));
+        if (effectif.length !== Version.data(this.actor).effectif.length) {
+            await this.actor.update({ [Version.path(this.actor, 'effectif')]: effectif });
+        }
     }
 
     /**

@@ -279,6 +279,19 @@ feature/vecu/item/vecu.js` (en fusion, « ours » est la branche où l'on se tro
   `capacite.js` et `abstractFocus.js` (ici `aRattache`), `nephilimActor.js` (`ka.soleil` via
   `Version.data`, et `deletePeriode`), `periode.js` (`getAll` n'existe plus ici).
 
+**Nettoyage à la suppression, reporté de task/v14** (commits v14 `fb3583cd` et `e382155b`,
+fiches 02, 03 et 05 de `D:\Dev\Foundry\corrections-neph5e\`). Le nettoyage quitte `_onDelete`
+(appelé sans attente, sur tous les clients, et pour les compendiums) pour `_onDeleteOperation`.
+Conflits attendus à la fusion, à résoudre en gardant **la structure de v14 avec les accès de
+rules** (`Version.data` / `Version.path`) — c'est l'état de cette branche :
+- `nephilimActor.js` : `_onDeleteOperation` + `onDeleteEmbeddedActors(actor, sids)` (simulacre) ;
+- `fraternite.js` : `onDeleteActors(sids)`, `membresIntrouvables()`, garde dans `membresWithStatus` ;
+- `nephilimItem.js` : `_onDeleteOperation` + `_onDeleteWorldItem`. **Écart voulu** : rules y fait
+  aussi passer les items **embarqués** (`Incarnations.apresSuppression`, sur le client de
+  l'auteur), qui remplace l'ancien écouteur `deleteItem` de la façade, atteint du même défaut ;
+- `periode.js` (garde `original == null` dans `getAll`) : sans objet ici, la garde est dans
+  `Incarnations.chronologie`. `fraterniteSheet.js` (`_onFirstRender`) : identique.
+
 Ici, `deletePeriode(sid)` reçoit le sid d'une **période du monde** et retire toutes ses
 incarnations ; `deleteIncarnation(cle)` retire une incarnation (fiche, `deleteEmbeddedItem`).
 

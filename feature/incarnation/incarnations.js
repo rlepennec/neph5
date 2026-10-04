@@ -603,25 +603,26 @@ export class Incarnations {
     }
 
     /**
-     * Garde les incarnations en accord avec les items, quel que soit le chemin de suppression :
-     * le vécu d'une incarnation supprimé l'emporte — une incarnation de figure a toujours un
-     * vécu ; tout autre item supprimé ne doit plus rien à aucune incarnation, sans quoi un
-     * apport orphelin le ferait revivre à son prochain dépôt. Les suppressions qui s'en
-     * chargent elles-mêmes passent l'option `incarnations: false`.
+     * Garde les incarnations en accord avec un item embarqué qu'on vient de supprimer, quel que
+     * soit le chemin de suppression : le vécu d'une incarnation supprimé l'emporte — une
+     * incarnation de figure a toujours un vécu ; tout autre item supprimé ne doit plus rien à
+     * aucune incarnation, sans quoi un apport orphelin le ferait revivre à son prochain dépôt.
+     *
+     * Appelée par NephilimItem._onDeleteOperation, une fois par item supprimé, l'un après
+     * l'autre et sur un seul client. Les suppressions qui s'en chargent elles-mêmes passent
+     * l'option `incarnations: false`.
+     * @param item The deleted embedded item.
      */
-    static ecouter() {
-        Hooks.on('deleteItem', (item, options, userId) => {
-            if (userId !== game.user.id || options?.incarnations === false) return;
-            if (item.parent == null || item.type === 'incarnation' || item.type === 'periode') return;
-            const incarnations = new Incarnations(item.parent);
-            if (!incarnations.porte || incarnations.exemplaires(item.sid).length > 0) return;
-            const tenue = item.type === 'vecu' ? incarnations.incarnationDe(item) : null;
-            if (tenue != null) {
-                incarnations.retirer(tenue.sid);
-            } else {
-                incarnations.oublier(item.sid);
-            }
-        });
+    static async apresSuppression(item) {
+        if (item.type === 'incarnation' || item.type === 'periode') return;
+        const incarnations = new Incarnations(item.actor);
+        if (!incarnations.porte || incarnations.exemplaires(item.sid).length > 0) return;
+        const tenue = item.type === 'vecu' ? incarnations.incarnationDe(item) : null;
+        if (tenue != null) {
+            await incarnations.retirer(tenue.sid);
+        } else {
+            await incarnations.oublier(item.sid);
+        }
     }
 
     // ------------------------------------------------------------------ l'affichage
@@ -649,6 +650,9 @@ export class Incarnations {
             if (this.actor.type === 'fraternite') {
                 for (const fa of Version.data(this.actor).effectif.filter(a => a.periode === p.sid)) {
                     const original = game.actors.find(a => a.sid === fa.actor);
+                    if (original == null) {
+                        continue;
+                    }
                     actors.push({
                         id: original.id,
                         sid: original.sid,

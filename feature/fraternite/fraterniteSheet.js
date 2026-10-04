@@ -63,6 +63,21 @@ export class FraterniteSheet extends HistoricalSheet {
     }
 
     /**
+     * Signale à l'ouverture les membres de l'effectif dont l'acteur est introuvable.
+     * La fiche s'ouvre quand même : ces membres ne sont pas affichés.
+     * @override
+     */
+    async _onFirstRender(context, options) {
+        await super._onFirstRender(context, options);
+        const introuvables = new Fraternite(this.document).membresIntrouvables();
+        if (introuvables.length > 0) {
+            console.error("Nephilim | Fraternité « " + this.document.name + " » : membre(s) introuvable(s) dans le monde", introuvables);
+            ui.notifications.error("La fraternité « " + this.document.name + " » référence " + introuvables.length
+                + " membre(s) introuvable(s) dans le monde. Ils ne sont pas affichés. Détail dans la console (F12).");
+        }
+    }
+
+    /**
      * Edit the specified original item from embedded item.
      * @param event The click event.
      */
