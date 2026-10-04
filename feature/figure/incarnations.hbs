@@ -7,6 +7,10 @@
     {{#if (eq from "figure")}}
     <div class="incarnations-header">
 
+        {{#unless @root.locked}}
+        <a class="ajouter-incarnation" data-action="addIncarnation" data-tooltip="{{translate 'ajouterIncarnation'}}"><i class="fa-solid fa-plus"></i></a>
+        {{/unless}}
+
         <div class="points tooltip">
             <img class="circle"/>
             <input
@@ -66,11 +70,11 @@
 
             <div class="periode-header">
 
-                <img class="puce"/>
+                <img class="puce" data-action="displayPeriode"/>
 
                 <img class="separator"/>
 
-                <label data-action="displayPeriode" class="periode-name display {{#if periode.embedded.courante}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}">{{periode.original.name}}: {{periode.original.contexte}}, {{periode.original.aube}}</label>
+                <label data-action="openIncarnation" class="periode-name display {{#if periode.embedded.courante}}current{{/if}} {{#unless periode.embedded.actif}}disabled{{/unless}}" data-tooltip="{{periode.original.contexte}}, {{periode.original.aube}}">{{periode.original.name}}{{#if periode.embedded.vecu}} — {{periode.embedded.vecu}}{{/if}}</label>
 
                 <div class="periode-actions">
 

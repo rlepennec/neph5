@@ -383,6 +383,20 @@ courante.
 4. **Le nettoyage, une version plus tard** — retrait de `periode` / `degre` des schémas et
    de `actif` / `previous` : les retirer avec la migration les ferait élaguer avant lecture.
 
+### Le formulaire d'incarnation (interface)
+
+`feature/incarnation/incarnationForm.js` + `incarnation-form.hbs` (style : `less/src/incarnation.less`).
+Ouvert en cliquant sur le libellé d'une incarnation (période — vécu) dans l'onglet incarnations
+de la figure ; la puce déroule toujours le détail. Le bouton « + » (fiche déverrouillée) ouvre
+une incarnation nouvelle. Glisser-déposer depuis le monde : période (`changerPeriode`), vécu
+(`definirVecu`, degré réglable), savoir / quête / arcane / science / passe / chute avec degré,
+focus et capacités (par la feature de l'item, `withPeriode(cle).drop()`). Retrait d'une ligne :
+`detacher`, l'item ne quitte la figure qu'à son dernier apport. Une incarnation nouvelle reste un
+**brouillon** en mémoire tant que sa période et son vécu ne sont pas tous deux définis, puis est
+enregistrée par `Incarnations.creerAvecVecu(periode, vecu, degre)` ; les acquisitions ne se
+déposent qu'ensuite. Le formulaire s'ouvre verrouillé si la fiche l'est, et suit les changements
+de la figure (`actor.apps`). La fraternité garde son onglet sans formulaire.
+
 ### Décisions prises pour l'étape 3
 
 Pour que l'étape 3 reste un pur changement de stockage, sans changement de règles : l'unité

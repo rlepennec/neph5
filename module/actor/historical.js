@@ -1,5 +1,6 @@
 import { NephilimActorSheet } from "./nephilimActorSheet.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { IncarnationForm } from "../../feature/incarnation/incarnationForm.js";
 import { Version } from "../common/version.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 
@@ -12,6 +13,8 @@ export class HistoricalSheet extends NephilimActorSheet {
             deletePeriode: HistoricalSheet._onDeletePeriode,
             activatePeriode: HistoricalSheet._onActivatePeriode,
             deleteEmbedded: HistoricalSheet._onDeleteEmbedded,
+            openIncarnation: HistoricalSheet._onOpenIncarnation,
+            addIncarnation: HistoricalSheet._onAddIncarnation,
             openItem: HistoricalSheet._onOpenItem
         },
         dropHandlers: {
@@ -130,6 +133,24 @@ export class HistoricalSheet extends NephilimActorSheet {
         const sid = target.closest('.item').dataset.sid;
         await new Incarnations(this.document).basculer(sid);
         await this.render(true);
+    }
+
+    /**
+     * Ouvre le formulaire de l'incarnation. Verrouillé si la fiche l'est : toute modification
+     * demande la fiche déverrouillée.
+     */
+    static async _onOpenIncarnation(event, target) {
+        const cle = target.closest('.item').dataset.sid;
+        new IncarnationForm(this.document, cle, { locked: this.locked }).render(true);
+    }
+
+    /**
+     * Ouvre le formulaire d'une nouvelle incarnation. Elle ne sera enregistrée que lorsque sa
+     * période et son vécu seront définis.
+     */
+    static async _onAddIncarnation(event, target) {
+        if (this.locked) return;
+        new IncarnationForm(this.document, null, { locked: false }).render(true);
     }
 
     /**

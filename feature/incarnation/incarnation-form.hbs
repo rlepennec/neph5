@@ -1,0 +1,88 @@
+<section class="item-root style-{{style}} incarnation" data-drop="true">
+
+    <aside></aside>
+
+    <article>
+
+        <header>
+            <h1>{{#if periode}}{{periode.name}}{{else}}{{translate "incarnation"}}{{/if}}</h1>
+        </header>
+
+        <main>
+
+            {{#if nouvelle}}
+            <p class="brouillon">{{translate "incarnationBrouillon"}}</p>
+            {{/if}}
+
+            <h3>{{translate "periode"}}</h3>
+            {{#if periode}}
+            <div class="ligne periode" data-sid="{{periode.sid}}">
+                <img src="{{periode.img}}"/>
+                <label data-action="ouvrirPeriode" class="open">{{periode.name}}</label>
+                <span class="precision">{{periode.contexte}}{{#if periode.aube}}, {{periode.aube}}{{/if}}</span>
+            </div>
+            {{else}}
+            <div class="vide">{{translate "deposerPeriode"}}</div>
+            {{/if}}
+
+            <h3>{{translate "vecu"}}</h3>
+            {{#if vecu}}
+            <div class="ligne item" data-id="{{vecu.id}}" data-sid="{{vecu.sid}}">
+                <img src="{{vecu.img}}"/>
+                <label {{#if vecu.id}}data-action="ouvrir" class="open"{{/if}}>{{vecu.name}}</label>
+                <input
+                    class="degre"
+                    type="number"
+                    name="vecu"
+                    value="{{vecu.degre}}"
+                    data-tooltip="{{translate 'degre'}}"
+                    {{#if @root.locked}}disabled{{/if}}/>
+            </div>
+            {{else}}
+            <div class="vide">{{translate "deposerVecu"}}</div>
+            {{/if}}
+
+            {{#unless nouvelle}}
+            <h3>{{translate "acquis"}}</h3>
+            <ol class="liste">
+
+                {{#each acquis as |item|}}
+                <li class="ligne item" data-id="{{item.id}}" data-sid="{{item.sid}}">
+                    <img src="{{item.img}}"/>
+                    <label data-action="ouvrir" class="open">{{item.name}}</label>
+                    <span class="precision">{{item.type}}</span>
+                    <input
+                        class="degre"
+                        type="number"
+                        name="degre.{{item.sid}}"
+                        value="{{item.degre}}"
+                        data-tooltip="{{translate 'degre'}}"
+                        {{#if @root.locked}}disabled{{/if}}/>
+                    {{#unless @root.locked}}
+                    <a data-action="retirer" class="fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
+                    {{/unless}}
+                </li>
+                {{/each}}
+
+                {{#each focus as |item|}}
+                <li class="ligne item" data-id="{{item.id}}" data-sid="{{item.sid}}">
+                    <img src="{{item.img}}"/>
+                    <label data-action="ouvrir" class="open">{{item.name}}</label>
+                    <span class="precision">{{item.type}}</span>
+                    {{#unless @root.locked}}
+                    <a data-action="retirer" class="fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
+                    {{/unless}}
+                </li>
+                {{/each}}
+
+            </ol>
+            {{#unless @root.locked}}
+            <div class="vide">{{translate "deposerAcquis"}}</div>
+            {{/unless}}
+            {{/unless}}
+
+        </main>
+
+    </article>
+
+</section>

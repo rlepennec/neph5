@@ -63,6 +63,7 @@ export class Incarnations {
     static SANS_PERIODE = "Le vécu doit avoir une période pour pouvoir être déposé";
     static PERIODE_INCONNUE = "La période auquelle est rattachée le vécu n'existe pas";
     static DEJA_VECU = "Le vécu existe déjà";
+    static VECU_INCONNU = "Le vécu n'existe pas dans le monde";
 
     /**
      * @param actor The actor whose incarnations to read or write.
@@ -343,10 +344,28 @@ export class Incarnations {
         const monde = game.items.find(i => i.type === 'vecu' && i.sid === sid);
         const periode = Version.data(monde)?.periode ?? null;
         if (periode == null) return Incarnations.SANS_PERIODE;
-        if (game.items.find(i => i.type === 'periode' && i.sid === periode) == null) return Incarnations.PERIODE_INCONNUE;
-        await this.#embarquerVecu(monde, periode);
-        await this.#creer(periode, sid);
-        return null;
+        return (await this.creerAvecVecu(periode, sid)).refus;
+    }
+
+    /**
+     * Crée une incarnation à partir d'une période et d'un vécu choisis séparément — par le
+     * formulaire d'incarnation : le vécu est embarqué avec la période de l'incarnation, et le
+     * degré donné. Elle prend la tête de la chaîne, et devient la courante si c'est la première.
+     * @param periode The system identifier of the world periode.
+     * @param sid     The system identifier of the world vecu.
+     * @param degre   The degre of the vecu.
+     * @returns {{ cle: string|null, refus: string|null }} la clé de l'incarnation créée, ou la
+     *          raison d'un refus.
+     */
+    async creerAvecVecu(periode, sid, degre = 0) {
+        if (this.exemplaires(sid).length > 0) return { cle: null, refus: Incarnations.DEJA_VECU };
+        const monde = game.items.find(i => i.type === 'vecu' && i.sid === sid);
+        if (monde == null) return { cle: null, refus: Incarnations.VECU_INCONNU };
+        if (game.items.find(i => i.type === 'periode' && i.sid === periode) == null) {
+            return { cle: null, refus: Incarnations.PERIODE_INCONNUE };
+        }
+        await this.#embarquerVecu(monde, periode, degre);
+        return { cle: await this.#creer(periode, sid), refus: null };
     }
 
     /**
@@ -470,11 +489,12 @@ export class Incarnations {
      * Embarque un vécu du monde, avec la période de son incarnation.
      * @param monde   The world vecu.
      * @param periode The system identifier of the world periode.
+     * @param degre   The degre of the vecu.
      */
-    async #embarquerVecu(monde, periode) {
+    async #embarquerVecu(monde, periode, degre = 0) {
         await new EmbeddedItem(this.actor, monde.sid)
             .withContext("Drop of a vecu on periode " + periode)
-            .withData("degre", 0)
+            .withData("degre", degre)
             .withData("mnemos", [])
             .withData("periode", periode)
             .withData("element", Version.data(monde).element)
@@ -672,6 +692,7 @@ export class Incarnations {
                     fsid: new DocumentIdentifier(p).fsid,
                     actif: Version.data(p).actif,
                     courante: this.courante === p.sid,
+                    vecu: this.vecuDe(p.sid)?.name ?? null,
                     vecus: vecus,
                     focus: focus,
                     capacites: capacites,

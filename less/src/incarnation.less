@@ -1,0 +1,103 @@
+// Le formulaire d'une incarnation (feature/incarnation/incarnation-form.hbs).
+form.nephilim.item.incarnation-form {
+
+    section.window-content > section.incarnation {
+
+        article {
+
+            header h1 {
+                flex: 1;
+                margin: 0;
+                border: none;
+                line-height: 60px;
+                font-size: 26px;
+                text-align: center;
+                font-family: var(--font-family-content);
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            main {
+
+                h3 {
+                    margin: 12px 0 4px 0;
+                    border-bottom: 1px solid var(--color-font-dark);
+                    font-family: var(--font-family-title);
+                }
+
+                .brouillon {
+                    margin: 0 0 6px 0;
+                    font-style: italic;
+                }
+
+                .vide {
+                    margin-top: 4px;
+                    padding: 6px;
+                    border: 1px dashed var(--color-font-dark);
+                    border-radius: 4px;
+                    font-style: italic;
+                    text-align: center;
+                    opacity: 0.7;
+                }
+
+                ol.liste {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .ligne {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    min-height: 36px;
+
+                    img {
+                        flex: 0 0 auto;
+                        width: 30px;
+                        height: 30px;
+                        border: none;
+                        border-radius: 4px;
+                    }
+
+                    label {
+                        flex: 1;
+
+                        &.open {
+                            cursor: pointer;
+
+                            &:hover {
+                                text-shadow: 0 0 6px var(--color-font-dark);
+                            }
+                        }
+                    }
+
+                    .precision {
+                        font-size: 13px;
+                        opacity: 0.75;
+                    }
+
+                    input.degre {
+                        flex: 0 0 auto;
+                        width: 48px;
+                        text-align: center;
+                    }
+
+                    a {
+                        flex: 0 0 auto;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Le bouton « Ajouter une incarnation » de l'onglet incarnations
+.tab.incarnations .incarnations-header .ajouter-incarnation {
+    align-self: center;
+    margin-right: 12px;
+    font-size: 20px;
+    cursor: pointer;
+}
