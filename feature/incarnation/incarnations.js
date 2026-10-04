@@ -28,8 +28,14 @@ import { Version } from "../../module/common/version.js";
  *     son vécu, et les items qui ne doivent rien à une autre incarnation.
  *
  * Un item embarqué n'existe qu'en un exemplaire : ce sont les apports qui portent l'historique.
- * L'ordre « de chaîne » va de la plus récente à la plus ancienne, comme l'ancienne chaîne de
- * `previous` ; `ordonnees` le conserve.
+ * L'ordre « de chaîne » est l'ordre chronologique, de la plus ancienne à la plus récente, comme
+ * l'ancienne chaîne de `previous` (sa tête, sans prédécesseur, était la plus ancienne). Une
+ * incarnation déposée prend la tête : elle devient la plus ancienne, comme une période déposée
+ * sur v14 — on découvre ses vies passées en remontant le temps.
+ *
+ * Pour les calculs comptent l'incarnation courante et les incarnations ANTÉRIEURES non
+ * désactivées ; les postérieures jamais. L'option chronologieDescendante ne règle que l'ordre
+ * d'affichage.
  *
  * Cette classe est la seule à connaître cette représentation. Une instance est faite pour être
  * utilisée sur le champ, puis jetée : elle ne met rien en cache.
@@ -125,14 +131,14 @@ export class Incarnations {
     }
 
     /**
-     * @returns the incarnations in chain order: from the most recent to the oldest.
+     * @returns the incarnations in chain order: from the oldest to the most recent.
      */
     #chaine() {
-        return this.toutes().sort((a, b) => (Version.data(b).rang ?? 0) - (Version.data(a).rang ?? 0));
+        return this.toutes().sort((a, b) => (Version.data(a).rang ?? 0) - (Version.data(b).rang ?? 0));
     }
 
     /**
-     * @returns the most recent incarnation, null if none.
+     * @returns the oldest incarnation, the head of the chain, null if none.
      */
     premiere() {
         return this.#chaine()[0] ?? null;
@@ -140,7 +146,8 @@ export class Incarnations {
 
     /**
      * @param cle The key of an incarnation, null for the head of the chain.
-     * @returns the incarnation which follows the specified one in chain order, null if none.
+     * @returns the incarnation which follows the specified one in chain order — the next more
+     *          recent — null if none.
      */
     suivante(cle) {
         const chaine = this.#chaine();
@@ -152,46 +159,33 @@ export class Incarnations {
     /**
      * Les incarnations dans l'ordre, filtrées et bornées.
      *
-     * @param chrono True for chronological order, false for antichronological, null for the
-     *               display order, which follows the option chronologieDescendante.
+     * @param chrono True for chronological order (from the oldest to the bound), false for the
+     *               reverse, null for the display order, which follows the option
+     *               chronologieDescendante — the only use of that option.
      * @param actif  True for active incarnations only, false for passive ones, null for all.
      *               The bounding one is always included, whatever its activation.
-     * @param jusqua The key of the last incarnation included, null for no bound.
+     * @param jusqua The key of the last incarnation included, null for no bound: the
+     *               incarnations more recent than it are never read.
      * @returns the sorted incarnations.
      */
     ordonnees({ chrono = true, actif = null, jusqua = null } = {}) {
 
-        // Retrieve if the display order must be inverted.
-        // chrono === null : ordre d'affichage, piloté par l'option chronologieDescendante.
+        // Retrieve if the most recent incarnation comes first
         const descendante = Version.data(this.actor).options?.chronologieDescendante === true;
-        const inverse = (chrono === null)
-            ? !descendante
-            : ((chrono === true  && descendante === false)
-            || (chrono === false && descendante === true));
+        const inverse = (chrono === null) ? !descendante : (chrono === false);
 
+        // Retrieve incarnations from the oldest to the last one
         let periodes = [];
-        let found = false;
 
         for (const p of this.#chaine()) {
-
-            // Check if the last periode
-            if (jusqua != null && found === false && jusqua === p.sid) {
-                found = true;
-            }
-
-            // Skip the first periodes to the last if inverse order.
-            // Sans limite (jusqua == null), il n'y a aucune periode a ignorer.
-            if (inverse === true && jusqua != null && found === false) {
-                continue;
-            }
 
             // Add periode if required
             if (actif == null || jusqua === p.sid || Version.data(p).actif === actif) {
                 periodes.push(p);
             }
 
-            // Skip the last periodes if the last and normal order
-            if (inverse === false && found === true && jusqua === p.sid) {
+            // The incarnations more recent than the last one are skipped
+            if (jusqua != null && jusqua === p.sid) {
                 break;
             }
         }
@@ -220,7 +214,7 @@ export class Incarnations {
     /**
      * @param sid The system identifier of an item.
      * @returns the incarnations to which the item owes something — as their vecu or as a
-     *          contribution — in chain order.
+     *          contribution — in chain order, from the oldest.
      */
     #porteuses(sid) {
         return this.#chaine().filter(i => Version.data(i).vecu === sid
@@ -233,7 +227,7 @@ export class Incarnations {
      *          récente s'il a progressé pendant plusieurs.
      */
     rattachement(item) {
-        return this.#porteuses(item?.sid)[0]?.sid ?? null;
+        return this.#porteuses(item?.sid).at(-1)?.sid ?? null;
     }
 
     /**
@@ -339,8 +333,8 @@ export class Incarnations {
 
     /**
      * Crée une incarnation à partir d'un vécu du monde : elle prend la période du vécu, et le
-     * vécu est embarqué avec elle. Elle devient la plus récente, et la courante si c'est la
-     * première.
+     * vécu est embarqué avec elle. Elle prend la tête de la chaîne — la plus ancienne —, et
+     * devient la courante si c'est la première.
      * @param sid The system identifier of the world vecu.
      * @returns {string|null} la raison d'un refus (voir SANS_PERIODE...), null si créée.
      */
@@ -460,7 +454,7 @@ export class Incarnations {
                         periode: periode,
                         vecu: vecu,
                         actif: true,
-                        rang: premiere == null ? 0 : (Version.data(premiere).rang ?? 0) + 1,
+                        rang: premiere == null ? 0 : (Version.data(premiere).rang ?? 0) - 1,
                         apports: []
                     }
                 }
@@ -498,7 +492,8 @@ export class Incarnations {
     }
 
     /**
-     * Déplace une incarnation dans la chronologie : en ordre de chaîne, juste derrière une autre.
+     * Déplace une incarnation dans la chronologie : juste après une autre, c'est-à-dire juste
+     * plus récente qu'elle.
      * @param cle    The key of the incarnation to move.
      * @param parent The key of the incarnation which will precede it.
      */
@@ -513,12 +508,12 @@ export class Incarnations {
             return;
         }
 
-        // Move the incarnation just behind its new parent, then number the chain again
+        // Move the incarnation just after its new parent, then number the chain again
         const ordre = chaine.filter(i => i.sid !== cle);
         ordre.splice(ordre.findIndex(i => i.sid === parent) + 1, 0, moved);
         const updates = [];
         ordre.forEach((item, i) => {
-            const rang = ordre.length - 1 - i;
+            const rang = i;
             if (Version.data(item).rang !== rang) {
                 updates.push({ _id: item.id, [Version.path(item, 'rang')]: rang });
             }
@@ -633,7 +628,7 @@ export class Incarnations {
     chronologie() {
 
         const all = [];
-        for (const p of this.ordonnees()) {
+        for (const p of this.ordonnees({ chrono: null })) {
 
             // Retrieve the periode of the world
             const periode = game.items.find(i => i.sid === Version.data(p).periode);

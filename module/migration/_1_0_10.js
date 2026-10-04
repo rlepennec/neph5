@@ -6,7 +6,7 @@ import { Version } from "../common/version.js";
  * Migration 1.0.10 — les incarnations deviennent des items.
  *
  * AVANT. Une incarnation était une période embarquée : chaînée aux autres par `previous`
- * (la tête de chaîne, `previous === null`, étant la plus récente), activée ou non par
+ * (la tête de chaîne, `previous === null`, étant la plus ancienne), activée ou non par
  * `actif`. Tout item acquis pendant une incarnation était une copie embarquée portant le sid
  * de sa période dans `periode`, et souvent son degré dans `degre` : un item qui avait
  * progressé sur plusieurs incarnations existait en plusieurs exemplaires. Une période pouvait
@@ -20,11 +20,12 @@ import { Version } from "../common/version.js";
  * `Incarnations`.
  *
  * CE QU'ELLE FAIT, acteur par acteur (figures et fraternités) :
- *   1. lit la chaîne des périodes embarquées ; une période hors chaîne (chaîne cassée) est
- *      rangée en queue, avec les plus anciennes ;
+ *   1. lit la chaîne des périodes embarquées, de la plus ancienne à la plus récente ; une
+ *      période hors chaîne (chaîne cassée) est rangée en queue, avec les plus récentes ;
  *   2. pour chaque période, crée une incarnation par vécu rattaché. La première garde comme
  *      clé le sid de la période : la période courante de l'acteur et l'effectif d'une
- *      fraternité, qui la désignent ainsi, restent justes sans être réécrits. Elle reçoit les
+ *      fraternité, qui la désignent ainsi, restent justes sans être réécrits. Elle se range la
+ *      plus récente de sa période : courante, elle compte avec les autres. Elle reçoit les
  *      autres apports de la période ; les suivantes, leur seul vécu. Une période sans vécu
  *      donne une incarnation sans vécu — normal pour une fraternité, une anomalie à corriger
  *      pour une figure, que la migration compte et signale ;
@@ -87,7 +88,7 @@ export class _1_0_10 {
             return null;
         }
 
-        // 1. La chaîne, de la plus récente à la plus ancienne
+        // 1. La chaîne, de la plus ancienne à la plus récente
         const chaine = [];
         const vus = new Set();
         let previous = null;
@@ -139,10 +140,13 @@ export class _1_0_10 {
                 sansVecu++;
             }
 
-            // La première garde la clé de la période ; les suivantes reçoivent une clé neuve
+            // La première garde la clé de la période ; les suivantes reçoivent une clé neuve. Elle
+            // est rangée la DERNIÈRE de sa période, la plus récente : quand elle est la courante,
+            // les autres incarnations de la même période lui sont antérieures et comptent avec elle.
             const parVecu = vecus.length === 0 ? [null] : vecus.map(v => v.sid);
+            const dePeriode = [];
             parVecu.forEach((vecu, n) => {
-                incarnations.push({
+                dePeriode.push({
                     name: p.name,
                     type: 'incarnation',
                     img: p.img,
@@ -159,10 +163,11 @@ export class _1_0_10 {
                     }
                 });
             });
+            incarnations.push(...dePeriode.slice(1), dePeriode[0]);
         }
 
-        // Les rangs : la plus récente en tête de la chaîne a le plus grand
-        incarnations.forEach((data, i) => data.system.versions.v5.rang = incarnations.length - 1 - i);
+        // Les rangs suivent la chronologie : la tête de chaîne, la plus ancienne, a le plus petit
+        incarnations.forEach((data, i) => data.system.versions.v5.rang = i);
 
         // 4. Les incarnations, puis le ménage
         await actor.createEmbeddedDocuments('Item', incarnations);

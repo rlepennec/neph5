@@ -306,12 +306,23 @@ sans retour. Ce document lui-même a été perdu une fois de cette façon.
 ### Aujourd'hui
 
 L'incarnation n'est pas un objet : c'est la **période embarquée**. Les périodes sont chaînées
-par `previous` — **de la plus récente à la plus ancienne** : la tête de chaîne
-(`previous === null`) est la dernière déposée, et l'ordre chronologique inverse la chaîne.
-Chacune est activée ou non (`actif`), et l'acteur désigne la courante par `periode`. Tout
-item acquis pendant une incarnation est une copie embarquée qui porte `periode` et souvent
-`degre` : un item qui a progressé sur plusieurs incarnations existe en plusieurs exemplaires.
-Une période **compte** si elle est activée et ne vient pas après la courante.
+par `previous` — **de la plus ancienne à la plus récente** : la tête de chaîne
+(`previous === null`) est la **plus ancienne**, et c'est la dernière déposée (on découvre ses
+vies passées en remontant le temps). Une première version de ce document disait l'inverse :
+c'était faux, rectifié par l'utilisateur (fiche v14 n° 06). Chacune est activée ou non
+(`actif`), et l'acteur désigne la courante par `periode`. Tout item acquis pendant une
+incarnation est une copie embarquée qui porte `periode` et souvent `degre` : un item qui a
+progressé sur plusieurs incarnations existe en plusieurs exemplaires.
+
+**Règle de calcul** (fiche 06) : comptent la période courante et les périodes **antérieures**
+non désactivées ; les postérieures jamais. L'option `chronologieDescendante` ne règle **que
+l'ordre d'affichage** — l'ancien code la faisait aussi jouer sur les calculs, et retenait les
+périodes postérieures quand elle valait false. Corrigé sur v14 et ici
+(`Incarnations.ordonnees`, `chronologie()` en ordre d'affichage). Sur rules, `rang` croît avec
+la chronologie : la tête, la plus ancienne, a le plus petit ; une incarnation créée prend
+`rang` = plus petit − 1. Dans la migration, l'incarnation d'une période qui garde la clé de la
+période se range la plus récente de sa période, pour compter avec les autres quand elle est la
+courante.
 
 ### Le plan, en quatre étapes
 
@@ -338,7 +349,7 @@ Une période **compte** si elle est activée et ne vient pas après la courante.
    `@root.data.periode` pour marquer la courante — à donner par le contexte à l'étape 3.
 3. **Le stockage** — fait. Item `incarnation` (`feature/incarnation/item/incarnation.mjs`),
    embarqué seulement, **de même sid que sa période** : tout ce qui cherche la période d'un
-   acteur par son sid la trouve. v5 : `actif`, `rang` (le plus grand est le plus récent ;
+   acteur par son sid la trouve. v5 : `actif`, `rang` (croît avec la chronologie ;
    remplace la chaîne `previous`), `apports: [{ sid, degre }]` (degré null pour un focus, une
    capacité : `degreDans` rend alors celui que porte l'item, comme l'ancien code). Un item
    embarqué n'existe plus qu'**en un exemplaire** : `EmbeddedItem.withIncarnation` réemploie
