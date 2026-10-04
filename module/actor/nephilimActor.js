@@ -1,6 +1,7 @@
 import { Arcane } from "../../feature/arcane/arcane.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
+import { VersionMigration } from "../migration/versionMigration.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/capacite/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
@@ -28,6 +29,15 @@ import { Vecu } from "../../feature/vecu/vecu.js";
  * change. Ce fichier ne garde que ce qui n'est pas martial.
  */
 export class NephilimActor extends CombatantMixin(Actor) {
+
+    /**
+     * Le crochet du document Actor, avant tout élagage — voir VersionMigration.releveIncarnations.
+     * @param source The raw source data, as stored.
+     * @returns the migrated source data.
+     */
+    static migrateData(source) {
+        return super.migrateData(VersionMigration.releveIncarnations(source));
+    }
 
     /**
      * @returns the system identifier.

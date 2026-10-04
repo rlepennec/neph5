@@ -28,13 +28,8 @@ export class Periode extends AbstractFeature {
      */
     async drop() {
 
-        // Une incarnation de figure se crée en déposant un vécu : elle en prend la période.
-        // Une fraternité, qui ne vit pas de vécus, incarne directement la période déposée.
+        // Une période déposée crée une incarnation, encore sans vécu
         const incarnations = new Incarnations(this.actor);
-        if (Incarnations.AVEC_VECU.includes(this.actor.type)) {
-            ui.notifications.warn("Une incarnation se crée en déposant un vécu");
-            return;
-        }
         const cle = await incarnations.ajouter(this.sid);
 
         // Si déposée sur une incarnation existante, l'insérer à cet endroit

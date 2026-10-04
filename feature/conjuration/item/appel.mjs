@@ -78,11 +78,6 @@ export class AppelDataModel extends foundry.abstract.TypeDataModel {
                                     required: false
                                 }
                             ),
-                            periode: new foundry.data.fields.StringField(
-                                {
-                                    required: false
-                                }
-                            ),
                             focus: new foundry.data.fields.BooleanField(
                                 {
                                     required: false

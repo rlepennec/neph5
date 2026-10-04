@@ -166,8 +166,13 @@ export class Vecu extends HistoricalFeature {
                 return;
             }
 
-            // Un vécu déposé définit une incarnation : elle prend la période du vécu
-            const refus = await new Incarnations(this.actor).creerDepuisVecu(this.sid);
+            // Le vécu s'ajoute à l'incarnation en édition (la courante, fiche déverrouillée) et
+            // en prend la période ; sans incarnation en édition, il en crée une, qui prend la
+            // période du vécu.
+            const incarnations = new Incarnations(this.actor);
+            const refus = incarnations.incarnation(this.periode) != null
+                ? await incarnations.ajouterVecu(this.periode, this.sid)
+                : await incarnations.creerDepuisVecu(this.sid);
             if (refus != null) {
                 ui.notifications.warn(refus);
             }

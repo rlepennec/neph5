@@ -70,11 +70,6 @@ export class HabitusDataModel extends foundry.abstract.TypeDataModel {
                                 {
                                     required: false
                                 }
-                            ),
-                            periode: new foundry.data.fields.StringField(
-                                {
-                                    required: false
-                                }
                             )
                         },
                         { scope: 'v5' }

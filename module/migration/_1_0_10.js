@@ -1,4 +1,6 @@
 import { MigrationTools } from "./migration.js";
+import { VersionMigration } from "./versionMigration.js";
+import { _1_0_9 } from "./_1_0_9.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../common/version.js";
 
@@ -13,35 +15,36 @@ import { Version } from "../common/version.js";
  * porter plusieurs vécus.
  *
  * APRÈS. Une incarnation est un item `incarnation` embarqué, avec sa propre clé. Il porte sa
- * `periode`, son `vecu` — un et un seul pour une figure, aucun pour une fraternité —, `actif`,
+ * `periode`, ses `vecus` — aucun, un ou plusieurs —, `actif`,
  * son `rang` dans la chronologie (le plus grand est le plus récent) et ses `apports` :
- * `{ sid, degre }` pour chaque autre item acquis pendant l'incarnation. Le vécu garde sa
+ * `{ sid, degre }` pour chaque autre item acquis pendant l'incarnation. Chaque vécu garde sa
  * période et son degré. Un item embarqué n'existe plus qu'en un exemplaire. Voir la façade
  * `Incarnations`.
  *
  * CE QU'ELLE FAIT, acteur par acteur (figures et fraternités) :
  *   1. lit la chaîne des périodes embarquées, de la plus ancienne à la plus récente ; une
  *      période hors chaîne (chaîne cassée) est rangée en queue, avec les plus récentes ;
- *   2. pour chaque période, crée une incarnation par vécu rattaché. La première garde comme
- *      clé le sid de la période : la période courante de l'acteur et l'effectif d'une
- *      fraternité, qui la désignent ainsi, restent justes sans être réécrits. Elle se range la
- *      plus récente de sa période : courante, elle compte avec les autres. Elle reçoit les
- *      autres apports de la période ; les suivantes, leur seul vécu. Une période sans vécu
- *      donne une incarnation sans vécu — normal pour une fraternité, une anomalie à corriger
- *      pour une figure, que la migration compte et signale ;
+ *   2. pour chaque période, crée UNE incarnation, de même clé que la période : la période
+ *      courante de l'acteur et l'effectif d'une fraternité, qui la désignent ainsi, restent
+ *      justes sans être réécrits. Elle reçoit tous les vécus de l'époque — éventuellement
+ *      aucun —, et tous les apports de la période ;
  *   3. verse chaque copie rattachée dans les apports — le degré pour les types qui en
  *      acquièrent un (savoir, quête, arcane, chute, science, passe), null pour les autres ;
  *   4. supprime les périodes embarquées et les copies en double, en gardant un exemplaire par
  *      item — de préférence un exemplaire rattaché. Un vécu présent sur plusieurs périodes
  *      reste à la première rencontrée dans la chaîne.
+ *   5. fixe en base la forme nouvelle des items restants, que 1.0.9 a laissés à cette
+ *      conversion (voir _1_0_9.aConvertir) : ils ne sont réécrits sans leurs anciens champs
+ *      qu'une fois ces champs versés dans les incarnations.
  *
  * Une copie dont la période n'est pas embarquée ne comptait pas : elle ne verse rien. Elle
  * reste sur l'acteur si c'est le seul exemplaire de son item.
  *
- * CE QU'ELLE LAISSE. Les champs `periode` et `degre` des items, et `actif` / `previous` des
- * périodes, restent dans les schémas : plus personne ne les lit, hors la période et le degré
- * du vécu, mais les retirer maintenant les ferait élaguer avant que cette migration puisse
- * les lire. Les acteurs synthétiques des tokens non liés ne sont pas traités : seuls les
+ * CE QU'ELLE RETIRE. Les champs `periode` et `degre` des items (sauf le vécu, qui garde les
+ * deux, et la passe d'armes et les focus, qui gardent leur degré), et `actif` / `previous`
+ * des périodes, quittent les schémas avec elle. Foundry les élaguerait au chargement, avant
+ * que la migration puisse les lire : ils sont donc relevés à ce moment-là, sur les données
+ * brutes, par NephilimActor.migrateData (VersionMigration.releveIncarnations). Les acteurs synthétiques des tokens non liés ne sont pas traités : seuls les
  * figurants le sont d'ordinaire, et ils n'ont pas d'incarnations.
  *
  * Un acteur qui porte déjà des incarnations n'est pas retouché : la migration peut être
@@ -56,44 +59,47 @@ export class _1_0_10 {
         const size = acteurs.length;
         let etape = 0;
         let convertis = 0;
-        let sansVecu = 0;
 
         MigrationTools.progress(msg, etape, size);
 
         for (const actor of acteurs) {
-            const bilan = await _1_0_10.convertir(actor);
-            if (bilan != null) {
+            if (await _1_0_10.convertir(actor)) {
                 convertis++;
-                sansVecu += bilan.sansVecu;
             }
             MigrationTools.progress(msg, ++etape, size);
         }
 
         await game.settings.set("neph5e", "worldTemplateVersion", target);
 
-        const details = [];
-        if (convertis > 0) details.push(convertis + " acteur(s) converti(s)");
-        if (sansVecu > 0) details.push(sansVecu + " incarnation(s) de figure sans vécu, à compléter");
-        ui.notifications.info("Update to " + target + " done" + (details.length > 0 ? " (" + details.join(", ") + ")" : ""));
+        ui.notifications.info("Update to " + target + " done"
+            + (convertis > 0 ? " (" + convertis + " acteur(s) converti(s))" : ""));
     }
 
     /**
      * @param actor The figure or fraternite to convert.
-     * @returns the result, { sansVecu }, null if the actor has nothing to convert.
+     * @returns true if the actor has been converted.
      */
     static async convertir(actor) {
 
         const periodes = actor.items.filter(i => i.type === 'periode');
         if (periodes.length === 0 || actor.items.some(i => i.type === 'incarnation')) {
-            return null;
+            return false;
         }
+
+        // Les champs lus ici ont quitté les schémas avec cette migration : ils sont relevés au
+        // chargement, avant élagage (VersionMigration.releveIncarnations). Sans relevé — un
+        // acteur créé en cours de partie —, ils sont lus sur les items.
+        const releve = actor.flags?.neph5e?.releveIncarnations ?? {};
+        const lire = (item, champ) => (releve[item.id] != null && champ in releve[item.id])
+            ? releve[item.id][champ]
+            : Version.data(item)[champ];
 
         // 1. La chaîne, de la plus ancienne à la plus récente
         const chaine = [];
         const vus = new Set();
         let previous = null;
         while (true) {
-            const p = periodes.find(i => Version.data(i).previous === previous && !vus.has(i.sid));
+            const p = periodes.find(i => lire(i, 'previous') === previous && !vus.has(i.sid));
             if (p == null) break;
             chaine.push(p);
             vus.add(p.sid);
@@ -106,64 +112,53 @@ export class _1_0_10 {
 
         // L'exemplaire gardé pour chaque item : de préférence un exemplaire rattaché
         const copies = new Map();
-        for (const item of actor.items.filter(i => i.type !== 'periode' && Version.data(i).periode != null)) {
+        for (const item of actor.items.filter(i => i.type !== 'periode' && lire(i, 'periode') != null)) {
             const liste = copies.get(item.sid) ?? [];
             liste.push(item);
             copies.set(item.sid, liste);
         }
         const doublons = [];
         for (const liste of copies.values()) {
-            const garde = liste.find(i => embarquees.has(Version.data(i).periode)) ?? liste[0];
+            const garde = liste.find(i => embarquees.has(lire(i, 'periode'))) ?? liste[0];
             doublons.push(...liste.filter(i => i !== garde).map(i => i.id));
         }
 
         // 2. et 3. Les incarnations, période par période
         const incarnations = [];
         const vecusPris = new Set();
-        let sansVecu = 0;
         for (const p of chaine) {
 
             // Toutes les copies versent leur apport, doublons compris : ce sont eux qui portent
             // ce que l'item doit aux autres périodes. Seul l'exemplaire gardé reste ensuite.
-            const rattaches = actor.items.filter(i => i.type !== 'periode' && Version.data(i).periode === p.sid);
+            const rattaches = actor.items.filter(i => i.type !== 'periode' && lire(i, 'periode') === p.sid);
             const vecus = rattaches.filter(i => i.type === 'vecu' && !vecusPris.has(i.sid));
             vecus.forEach(v => vecusPris.add(v.sid));
 
             const apports = [];
             for (const item of rattaches.filter(i => i.type !== 'vecu')) {
                 if (apports.some(a => a.sid === item.sid)) continue;
-                const degre = Incarnations.VECUS.includes(item.type) ? (Version.data(item).degre ?? 0) : null;
+                const degre = Incarnations.VECUS.includes(item.type) ? (lire(item, 'degre') ?? 0) : null;
                 apports.push({ sid: item.sid, degre: degre });
             }
 
-            if (vecus.length === 0 && Incarnations.AVEC_VECU.includes(actor.type)) {
-                sansVecu++;
-            }
-
-            // La première garde la clé de la période ; les suivantes reçoivent une clé neuve. Elle
-            // est rangée la DERNIÈRE de sa période, la plus récente : quand elle est la courante,
-            // les autres incarnations de la même période lui sont antérieures et comptent avec elle.
-            const parVecu = vecus.length === 0 ? [null] : vecus.map(v => v.sid);
-            const dePeriode = [];
-            parVecu.forEach((vecu, n) => {
-                dePeriode.push({
-                    name: p.name,
-                    type: 'incarnation',
-                    img: p.img,
-                    system: {
-                        ...(n === 0 ? { id: p.sid } : {}),
-                        versions: {
-                            v5: {
-                                periode: p.sid,
-                                vecu: vecu,
-                                actif: Version.data(p).actif === true,
-                                apports: n === 0 ? apports : []
-                            }
+            // Une incarnation par période, de même clé que la période : elle reçoit tous les
+            // vécus de l'époque, et tous ses apports.
+            incarnations.push({
+                name: p.name,
+                type: 'incarnation',
+                img: p.img,
+                system: {
+                    id: p.sid,
+                    versions: {
+                        v5: {
+                            periode: p.sid,
+                            vecus: [...new Set(vecus.map(v => v.sid))],
+                            actif: lire(p, 'actif') === true,
+                            apports: apports
                         }
                     }
-                });
+                }
             });
-            incarnations.push(...dePeriode.slice(1), dePeriode[0]);
         }
 
         // Les rangs suivent la chronologie : la tête de chaîne, la plus ancienne, a le plus petit
@@ -173,7 +168,13 @@ export class _1_0_10 {
         await actor.createEmbeddedDocuments('Item', incarnations);
         await actor.deleteEmbeddedDocuments('Item', [...periodes.map(p => p.id), ...doublons], { incarnations: false });
 
-        return { sansVecu: sansVecu };
+        // 5. Les items restants, que 1.0.9 a laissés pour cette conversion : leur forme nouvelle
+        //    est fixée en base, maintenant que ce qu'ils portaient est versé dans les incarnations.
+        for (const item of actor.items.filter(i => i.type !== 'incarnation' && VersionMigration.CHAMPS[i.type] != null)) {
+            await _1_0_9.fixer(item);
+        }
+
+        return true;
     }
 
 }

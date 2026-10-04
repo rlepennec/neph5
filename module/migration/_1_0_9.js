@@ -66,6 +66,13 @@ export class _1_0_9 {
 
         for (const actor of acteurs) {
             if (portes(actor) && await _1_0_9.fixer(actor)) documents++;
+            // Les items d'une figure ou d'une fraternité encore à convertir en incarnations ne
+            // sont pas réécrits ici : leur forme nouvelle n'a plus les champs (période, degré)
+            // que la conversion 1.0.10 doit lire. Elle les réécrit elle-même, après.
+            if (_1_0_9.aConvertir(actor)) {
+                MigrationTools.progress(msg, ++etape, size);
+                continue;
+            }
             for (const item of actor.items.filter(portes)) {
                 if (await _1_0_9.fixer(item)) documents++;
             }
@@ -85,6 +92,15 @@ export class _1_0_9 {
         if (documents > 0) details.push(documents + " document(s) réécrit(s)");
         if (deltas > 0) details.push(deltas + " token(s) non lié(s) déplacé(s)");
         ui.notifications.info("Update to " + target + " done" + (details.length > 0 ? " (" + details.join(", ") + ")" : ""));
+    }
+
+    /**
+     * @param actor An actor.
+     * @returns true if the actor still carries embedded periodes, not yet converted into
+     *          incarnations by the migration 1.0.10.
+     */
+    static aConvertir(actor) {
+        return actor.items.some(i => i.type === 'periode') && !actor.items.some(i => i.type === 'incarnation');
     }
 
     /**

@@ -10,6 +10,14 @@
 
         <main>
 
+            {{#unless @root.locked}}
+            <div class="barre">
+                <a data-action="supprimer" data-tooltip="{{translate 'supprimerIncarnation'}}">
+                    <i class="fas fa-trash"></i> {{translate "supprimerIncarnation"}}
+                </a>
+            </div>
+            {{/unless}}
+
             {{#if nouvelle}}
             <p class="brouillon">{{translate "incarnationBrouillon"}}</p>
             {{/if}}
@@ -25,22 +33,28 @@
             <div class="vide">{{translate "deposerPeriode"}}</div>
             {{/if}}
 
-            <h3>{{translate "vecu"}}</h3>
-            {{#if vecu}}
-            <div class="ligne item" data-id="{{vecu.id}}" data-sid="{{vecu.sid}}">
-                <img src="{{vecu.img}}"/>
-                <label {{#if vecu.id}}data-action="ouvrir" class="open"{{/if}}>{{vecu.name}}</label>
-                <input
-                    class="degre"
-                    type="number"
-                    name="vecu"
-                    value="{{vecu.degre}}"
-                    data-tooltip="{{translate 'degre'}}"
-                    {{#if @root.locked}}disabled{{/if}}/>
-            </div>
-            {{else}}
+            <h3>{{translate "vecus"}}</h3>
+            <ol class="liste">
+                {{#each vecus as |vecu|}}
+                <li class="ligne item" data-id="{{vecu.id}}" data-sid="{{vecu.sid}}">
+                    <img src="{{vecu.img}}"/>
+                    <label {{#if vecu.id}}data-action="ouvrir" class="open"{{/if}}>{{vecu.name}}</label>
+                    <input
+                        class="degre"
+                        type="number"
+                        name="vecus.{{vecu.sid}}"
+                        value="{{vecu.degre}}"
+                        data-tooltip="{{translate 'degre'}}"
+                        {{#if @root.locked}}disabled{{/if}}/>
+                    {{#unless @root.locked}}
+                    <a data-action="retirer" class="fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
+                    {{/unless}}
+                </li>
+                {{/each}}
+            </ol>
+            {{#unless @root.locked}}
             <div class="vide">{{translate "deposerVecu"}}</div>
-            {{/if}}
+            {{/unless}}
 
             {{#unless nouvelle}}
             <h3>{{translate "acquis"}}</h3>

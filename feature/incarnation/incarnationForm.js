@@ -8,17 +8,19 @@ import { Version } from "../../module/common/version.js";
  * Le formulaire d'une incarnation de figure, ouvert depuis l'onglet incarnations.
  *
  * On y définit l'incarnation par glisser-déposer depuis le monde :
- *   1. une période — elle remplace celle de l'incarnation, et son vécu la suit ;
- *   2. un vécu — il remplace celui de l'incarnation et prend sa période ; son degré se règle
- *      dans le formulaire ;
+ *   1. une période — elle remplace celle de l'incarnation, et ses vécus la suivent ;
+ *   2. un vécu — il s'ajoute à ceux de l'incarnation et prend sa période ; son degré se règle
+ *      dans le formulaire. Une incarnation peut avoir zéro, un ou plusieurs vécus ;
  *   3. un savoir, une quête, un arcane, une science, une passe d'armes, une chute — acquis
  *      pendant l'incarnation, avec le degré acquis ;
  *   4. un focus (formule, sort, invocation...) ou une capacité — rattachés à l'incarnation.
  * Le formulaire liste ce qui est défini, avec les degrés.
  *
- * Une incarnation NOUVELLE n'existe d'abord qu'ici, à l'état de brouillon : elle n'est
- * enregistrée que lorsque sa période et son vécu sont tous deux définis. Les acquisitions
+ * Une incarnation NOUVELLE n'existe d'abord qu'ici, à l'état de brouillon : elle est enregistrée
+ * dès que sa période est définie, avec le vécu déjà déposé s'il y en a un. Les acquisitions
  * (3, 4) ne se déposent qu'ensuite, sur une incarnation enregistrée.
+ *
+ * La barre du haut supprime l'incarnation ouverte, après confirmation, et ramène à la fiche.
  *
  * Toutes les écritures passent par la façade Incarnations, ou par la feature de l'item déposé
  * (qui rattache par la façade). Les modifications demandent le formulaire déverrouillé.
@@ -62,6 +64,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         },
         actions: {
             retirer: IncarnationForm.#onRetirer,
+            supprimer: IncarnationForm.#onSupprimer,
             ouvrir: IncarnationForm.#onOuvrir,
             ouvrirPeriode: IncarnationForm.#onOuvrirPeriode
         },
@@ -146,11 +149,12 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
 
         if (this.nouvelle) {
             const vecu = game.items.find(i => i.type === 'vecu' && i.sid === this.brouillon.vecu);
-            context.vecu = vecu == null ? null : { name: vecu.name, img: vecu.img, degre: this.brouillon.degre };
+            context.vecus = vecu == null ? [] : [{ sid: vecu.sid, name: vecu.name, img: vecu.img, degre: this.brouillon.degre }];
         } else {
-            const vecu = incarnations.vecuDe(this.cle);
-            context.vecu = vecu == null ? null : { id: vecu.id, sid: vecu.sid, name: vecu.name, img: vecu.img, degre: Version.data(vecu).degre ?? 0 };
+            context.vecus = incarnations.vecusDe(this.cle).map(vecu =>
+                ({ id: vecu.id, sid: vecu.sid, name: vecu.name, img: vecu.img, degre: Version.data(vecu).degre ?? 0 }));
         }
+
 
         // Ce qui a été acquis pendant l'incarnation
         const ligne = (item, degre) => ({
@@ -168,8 +172,8 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
     }
 
     /**
-     * Les degrés saisis : celui du vécu (« vecu »), et ceux des acquisitions (« degre.<sid> »).
-     * Seules les valeurs qui changent sont écrites.
+     * Les degrés saisis : ceux des vécus (« vecus.<sid> »), et ceux des acquisitions
+     * (« degre.<sid> »). Seules les valeurs qui changent sont écrites.
      */
     static async #onSubmit(event, form, formData) {
         if (this.locked) return;
@@ -177,14 +181,17 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         const entier = (v) => { const n = parseInt(v); return isNaN(n) ? 0 : n; };
 
         if (this.nouvelle) {
-            if (valeurs.vecu !== undefined) this.brouillon.degre = entier(valeurs.vecu);
+            const saisi = Object.values(valeurs.vecus ?? {})[0];
+            if (saisi !== undefined) this.brouillon.degre = entier(saisi);
             return;
         }
 
         const incarnations = new Incarnations(this.actor);
-        const vecu = incarnations.vecuDe(this.cle);
-        if (vecu != null && valeurs.vecu !== undefined && entier(valeurs.vecu) !== (Version.data(vecu).degre ?? 0)) {
-            await incarnations.modifierDegre(vecu, entier(valeurs.vecu), this.cle);
+        for (const vecu of incarnations.vecusDe(this.cle)) {
+            const saisi = valeurs.vecus?.[vecu.sid];
+            if (saisi !== undefined && entier(saisi) !== (Version.data(vecu).degre ?? 0)) {
+                await incarnations.modifierDegre(vecu, entier(saisi), this.cle);
+            }
         }
         for (const [sid, valeur] of Object.entries(valeurs.degre ?? {})) {
             const item = incarnations.exemplaires(sid)[0];
@@ -210,7 +217,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
     }
 
     /**
-     * Le vécu déposé : celui du brouillon, ou le nouveau vécu de l'incarnation.
+     * Le vécu déposé : celui du brouillon, ou un vécu de plus pour l'incarnation.
      */
     static async #onDropVecu(event, document) {
         if (document.parent != null) return;
@@ -223,7 +230,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             this.brouillon.vecu = document.sid;
             await this.#enregistrer();
         } else {
-            const refus = await incarnations.definirVecu(this.cle, document.sid);
+            const refus = await incarnations.ajouterVecu(this.cle, document.sid);
             if (refus != null) ui.notifications.warn(refus);
         }
         this.#rafraichir();
@@ -251,10 +258,26 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
      * aucune autre incarnation.
      */
     static async #onRetirer(event, target) {
-        if (this.locked || this.nouvelle) return;
+        if (this.locked) return;
+
+        // Le vécu d'un brouillon n'existe pas encore sur la figure : on l'oublie seulement
+        if (this.nouvelle) {
+            if (target.closest('.item')?.dataset.sid === this.brouillon.vecu) {
+                this.brouillon.vecu = null;
+                this.render();
+            }
+            return;
+        }
+
         const item = this.actor.items.get(target.closest('.item').dataset.id);
         if (item == null) return;
-        if (await new Incarnations(this.actor).detacher(item.sid, this.cle) === 0) {
+        const incarnations = new Incarnations(this.actor);
+        if (item.type === 'vecu') {
+            await incarnations.retirerVecu(this.cle, item.sid);
+            this.#rafraichir();
+            return;
+        }
+        if (await incarnations.detacher(item.sid, this.cle) === 0) {
             await this.actor.deleteEmbeddedItem(item);
         }
         this.#rafraichir();
@@ -283,12 +306,44 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
     }
 
     /**
-     * Enregistre le brouillon dès que sa période et son vécu sont définis.
+     * Supprime l'incarnation ouverte, après confirmation, et ramène à la fiche de la figure.
+     * Un brouillon n'est que refermé : rien n'est encore enregistré.
+     */
+    static async #onSupprimer(event, target) {
+        if (this.locked) return;
+        if (this.nouvelle) {
+            await this.close();
+            return;
+        }
+        const incarnations = new Incarnations(this.actor);
+        const periode = game.items.find(i => i.type === 'periode' && i.sid === incarnations.periodeDe(this.cle));
+        const confirme = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("NEPHILIM.supprimerIncarnation") },
+            content: "<p>" + game.i18n.format("NEPHILIM.supprimerIncarnationConfirmation",
+                { periode: periode?.name ?? incarnations.incarnation(this.cle)?.name ?? "" }) + "</p>",
+            rejectClose: false,
+            modal: true
+        });
+        if (confirme !== true) return;
+        const cle = this.cle;
+        this.cle = null;
+        await this.close();
+        await this.actor.deleteIncarnation(cle);
+        this.actor.sheet?.render(true);
+    }
+
+    /**
+     * Enregistre le brouillon dès que sa période est définie, avec le vécu déjà déposé s'il y
+     * en a un.
      */
     async #enregistrer() {
-        if (this.brouillon.periode == null || this.brouillon.vecu == null) return;
-        const { cle, refus } = await new Incarnations(this.actor)
-            .creerAvecVecu(this.brouillon.periode, this.brouillon.vecu, this.brouillon.degre);
+        if (this.brouillon.periode == null) return;
+        const incarnations = new Incarnations(this.actor);
+        if (this.brouillon.vecu == null) {
+            this.cle = await incarnations.ajouter(this.brouillon.periode);
+            return;
+        }
+        const { cle, refus } = await incarnations.creerAvecVecu(this.brouillon.periode, this.brouillon.vecu, this.brouillon.degre);
         if (refus != null) {
             ui.notifications.warn(refus);
             this.brouillon.vecu = null;

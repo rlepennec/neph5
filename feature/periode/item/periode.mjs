@@ -42,20 +42,6 @@ export class PeriodeDataModel extends foundry.abstract.TypeDataModel {
                                 {
                                     required: false
                                 }
-                            ),
-                            actif: new foundry.data.fields.BooleanField
-                            (
-                                {
-                                    required: false
-                                }
-                            ),
-                            previous: new foundry.data.fields.StringField
-                            (
-                                {
-                                    required: false,
-                                    nullable: true,
-                                    initial: null
-                                }
                             )
                         },
                         { scope: 'v5' }

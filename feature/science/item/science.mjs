@@ -36,18 +36,6 @@ export class ScienceDataModel extends foundry.abstract.TypeDataModel {
                                 {
                                     required: false
                                 }
-                            ),
-                            degre: new foundry.data.fields.NumberField
-                            (
-                                {
-                                    required: false
-                                }
-                            ),
-                            periode: new foundry.data.fields.StringField
-                            (
-                                {
-                                    required: false
-                                }
                             )
                         },
                         { scope: 'v5' }

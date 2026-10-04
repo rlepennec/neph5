@@ -1,5 +1,6 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { VersionMigration } from "../../../module/migration/versionMigration.js";
 
 /**
  * Une incarnation : une vie d'un acteur — figure ou fraternité — pendant une période.
@@ -8,8 +9,8 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  * Il porte, par version de règles :
  *
  *   - `periode` : le sid de la période du monde ; plusieurs incarnations peuvent la partager ;
- *   - `vecu`    : le sid de son vécu embarqué — un et un seul pour une figure, aucun pour une
- *                 fraternité. Le vécu porte la période de l'incarnation, et son propre degré ;
+ *   - `vecus`   : les sids de ses vécus embarqués — au moins un pour une figure, aucun pour
+ *                 une fraternité. Chacun porte la période de l'incarnation, et son propre degré ;
  *   - `actif`   : l'incarnation compte-t-elle pour l'acteur ;
  *   - `rang`    : sa place dans la chronologie, du plus ancien (petit) au plus récent (grand) ;
  *   - `apports` : les autres items acquis pendant l'incarnation, par sid d'item embarqué, avec
@@ -41,12 +42,9 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                     initial: null
                                 }
                             ),
-                            vecu: new foundry.data.fields.StringField
+                            vecus: new foundry.data.fields.ArrayField
                             (
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
+                                new foundry.data.fields.StringField()
                             ),
                             actif: new foundry.data.fields.BooleanField
                             (
@@ -84,6 +82,16 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                 { scope: 'versions' }
             )
         }
+    }
+
+    /**
+     * Le crochet que Foundry appelle avant d'élaguer les champs hors schéma — voir
+     * VersionMigration.incarnation.
+     * @param source The raw source data, as stored.
+     * @returns the migrated source data.
+     */
+    static migrateData(source) {
+        return VersionMigration.incarnation(source);
     }
 
 }

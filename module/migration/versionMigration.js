@@ -71,6 +71,71 @@ export class VersionMigration {
     };
 
     /**
+     * Les champs que la migration 1.0.10 lit sur les items embarqués d'une figure ou d'une
+     * fraternité pas encore convertie : la chaîne des périodes (`previous`, `actif`) et le
+     * rattachement de chaque copie (`periode`, `degre`).
+     */
+    static CHAMPS_INCARNATIONS = ['periode', 'degre', 'actif', 'previous'];
+
+    /**
+     * Relève, au chargement d'un acteur pas encore converti en incarnations, les champs dont
+     * la migration 1.0.10 a besoin, avant que les modèles des items les élaguent : ces champs
+     * ont quitté les schémas avec cette même migration. Le relevé est rangé, en mémoire, dans
+     * le drapeau `neph5e.releveIncarnations` de l'acteur, par identifiant d'item ; la
+     * migration le lit à la place des champs. Un acteur déjà converti — il porte des
+     * incarnations, plus de période — n'est pas relevé.
+     *
+     * Appelé par NephilimActor.migrateData : le crochet du document Actor est le seul à voir
+     * les items embarqués bruts, tels qu'ils sont stockés.
+     * @param source The raw source data of an actor, possibly partial.
+     * @returns the source data, with the survey when needed.
+     */
+    static releveIncarnations(source) {
+        if (!['figure', 'fraternite'].includes(source?.type) || !Array.isArray(source.items)) return source;
+        const items = source.items;
+        if (!items.some(i => i?.type === 'periode') || items.some(i => i?.type === 'incarnation')) return source;
+
+        // Le champ, rangé dans la version (après 1.0.9) ou encore à la racine (avant)
+        const lire = (item, champ) => {
+            const v5 = item.system?.versions?.v5;
+            if (v5 != null && champ in v5) return v5[champ];
+            return item.system?.[champ];
+        };
+
+        const releve = {};
+        for (const item of items) {
+            if (item?._id == null) continue;
+            const champs = {};
+            for (const champ of VersionMigration.CHAMPS_INCARNATIONS) {
+                const valeur = lire(item, champ);
+                if (valeur !== undefined) champs[champ] = valeur;
+            }
+            if (Object.keys(champs).length > 0) releve[item._id] = champs;
+        }
+
+        source.flags ??= {};
+        source.flags.neph5e ??= {};
+        source.flags.neph5e.releveIncarnations = releve;
+        return source;
+    }
+
+    /**
+     * Une incarnation portait un seul vécu (`vecu`, un sid) ; elle en porte désormais un ou
+     * plusieurs (`vecus`). Les mondes migrés en 1.0.10 avant ce changement gardent la forme
+     * ancienne : elle est convertie ici, au chargement, avant que `vecu` soit élagué.
+     * @param source The raw source data of an incarnation, possibly partial.
+     * @returns the migrated source data.
+     */
+    static incarnation(source) {
+        const v5 = source?.versions?.v5;
+        if (v5 != null && v5.vecu !== undefined) {
+            v5.vecus ??= v5.vecu == null ? [] : [v5.vecu];
+            delete v5.vecu;
+        }
+        return source;
+    }
+
+    /**
      * @param type   The document type, as declared by the manifest.
      * @param source The raw source data, possibly partial.
      * @returns the migrated source data.

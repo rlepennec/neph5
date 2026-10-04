@@ -40,11 +40,6 @@ export class RituelDataModel extends foundry.abstract.TypeDataModel {
                                     initial: 1,
                                     required: false
                                 }
-                            ),
-                            periode: new foundry.data.fields.StringField(
-                                {
-                                    required: false
-                                }
                             )
                         },
                         { scope: 'v5' }

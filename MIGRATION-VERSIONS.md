@@ -380,20 +380,33 @@ courante.
    aux anciens pointeurs, retrait, bascule, degré, réemploi, déplacement d'un focus).
    **Non traités** : les tokens non liés (figurants seulement, sans incarnations) et les
    compendiums.
-4. **Le nettoyage, une version plus tard** — retrait de `periode` / `degre` des schémas et
-   de `actif` / `previous` : les retirer avec la migration les ferait élaguer avant lecture.
+4. **Le nettoyage** — fait le 4 octobre, **dans la même version que 1.0.10** (choix de
+   l'utilisateur : 1.0.9 livrée d'abord, 1.0.10 regroupe tout le reste ; v14 = 1.7.x, rules = 1.8.x).
+   Retirés des schémas : `periode` de tous les items rattachés sauf le vécu ; `degre` de savoir,
+   quête, arcane, science, chute, capacité ; `actif` / `previous` de la période. Gardés : vécu
+   (`periode`, `degre`), passe d'armes (`degre`, saisi chez le figurant), focus et aspect
+   (`degre` = niveau). Pour que 1.0.10 lise encore ces champs, `NephilimActor.migrateData` les
+   **relève au chargement**, sur les items embarqués bruts, avant élagage
+   (`VersionMigration.releveIncarnations` → drapeau `neph5e.releveIncarnations`, en mémoire) ; la
+   conversion lit le relevé. 1.0.9 ne réécrit pas les items d'un acteur encore à convertir
+   (`_1_0_9.aConvertir`) — sa forme nouvelle n'a plus ces champs, et un arrêt entre les deux
+   migrations les aurait perdus — : 1.0.10 les réécrit après conversion. Vérifié sous node depuis
+   un monde 1.0.8 à plat, champs élagués : chronologie, activité, degrés, vécus multiples, focus,
+   capacités retrouvés. `actor.periode` (clé de l'incarnation courante) n'est pas renommé.
 
 ### Le formulaire d'incarnation (interface)
 
 `feature/incarnation/incarnationForm.js` + `incarnation-form.hbs` (style : `less/src/incarnation.less`).
 Ouvert en cliquant sur le libellé d'une incarnation (période — vécu) dans l'onglet incarnations
 de la figure ; la puce déroule toujours le détail. Le bouton « + » (fiche déverrouillée) ouvre
-une incarnation nouvelle. Glisser-déposer depuis le monde : période (`changerPeriode`), vécu
-(`definirVecu`, degré réglable), savoir / quête / arcane / science / passe / chute avec degré,
+une incarnation nouvelle. Glisser-déposer depuis le monde : période (`changerPeriode`), vécus
+(`ajouterVecu`, degré réglable ; tous retirables par `retirerVecu`), savoir / quête / arcane / science / passe / chute avec degré,
 focus et capacités (par la feature de l'item, `withPeriode(cle).drop()`). Retrait d'une ligne :
 `detacher`, l'item ne quitte la figure qu'à son dernier apport. Une incarnation nouvelle reste un
-**brouillon** en mémoire tant que sa période et son vécu ne sont pas tous deux définis, puis est
-enregistrée par `Incarnations.creerAvecVecu(periode, vecu, degre)` ; les acquisitions ne se
+**brouillon** en mémoire tant que sa période n'est pas définie, puis est enregistrée par
+`Incarnations.ajouter(periode)`, ou `creerAvecVecu(periode, vecu, degre)` si un vécu était déjà
+déposé. Une barre en haut du formulaire supprime l'incarnation ouverte, après confirmation
+(`deleteIncarnation`), et ramène à la fiche ; les acquisitions ne se
 déposent qu'ensuite. Le formulaire s'ouvre verrouillé si la fiche l'est, et suit les changements
 de la figure (`actor.apps`). La fraternité garde son onglet sans formulaire.
 
@@ -403,6 +416,24 @@ Pour que l'étape 3 reste un pur changement de stockage, sans changement de règ
 reste le **degré**, et **toutes** les acquisitions passent par les apports.
 
 ### Changement de paradigme (décidé par l'utilisateur, après l'étape 3)
+
+**Révisé le 4 octobre : une incarnation porte ZÉRO, UN OU PLUSIEURS vécus** (`vecus`).
+`definirVecu` est remplacé par `ajouterVecu(cle, vecu, degre)` et `retirerVecu(cle, vecu)` ;
+supprimer un vécu, par quelque chemin que ce soit, le fait seulement lâcher par son incarnation,
+qui peut rester sans vécu. Une période déposée seule sur la fiche crée une incarnation sans vécu
+(`ajouter`, pour la figure comme pour la fraternité) ;
+**Confirmé par l'utilisateur** : une incarnation nouvelle est enregistrée dès que sa période est
+définie ; une période déposée seule sur la fiche d'une figure crée une incarnation sans vécu.
+Aussi confirmé : une incarnation **désactivée ne compte pas**, même si c'est la courante ; une
+incarnation créée arrive **en tête** de la chronologie (la plus ancienne), à charge du joueur de
+la déplacer.
+`changerPeriode` déplace tous les vécus. Un vécu déposé sur la fiche s'ajoute à l'incarnation en
+édition (la courante, fiche déverrouillée), sinon en crée une. **La migration 1.0.10 crée de
+nouveau une incarnation par période**, de même clé que la période, qui reçoit **tous** les
+vécus de l'époque. Une incarnation déjà migrée sous la forme `vecu` est convertie au chargement
+(`VersionMigration.incarnation`, délégué par `IncarnationDataModel.migrateData`) ; les
+incarnations qu'une ancienne 1.0.10 a créées vécu par vécu ne sont pas regroupées. Le texte
+ci-dessous décrit l'état d'avant cette révision.
 
 **Une incarnation, un vécu, et un seul.** L'incarnation porte sa période ; plusieurs
 incarnations peuvent porter la même. Une incarnation de figure a **toujours** un vécu ; une

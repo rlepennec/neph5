@@ -36,11 +36,6 @@ export class OrdonnanceDataModel extends foundry.abstract.TypeDataModel {
                                     initial: 'sohar',
                                     choices: Constants.MONDES
                                 }
-                            ),
-                            periode: new foundry.data.fields.StringField(
-                                {
-                                    required: false
-                                }
                             )
                         },
                         { scope: 'v5' }
