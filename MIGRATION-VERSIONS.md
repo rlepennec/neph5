@@ -250,6 +250,18 @@ Porter **par grappes de types qui partagent leurs champs**, pas par ordre alphab
 
 ---
 
+### Performance : la version du monde est gardée en cache
+
+Premier essai dans Foundry (4 octobre) : rules beaucoup plus lent que v14. Cause : `Version.world`
+appelait `game.settings.get('neph5e', 'version')` à **chaque** `Version.data` / `Version.path`.
+Dans Foundry v14, ce `get` parcourt tous les réglages du monde et, tant que le réglage garde sa
+valeur par défaut, **construit un document `Setting`** à chaque appel : ~29 µs mesurés sous node.
+Un rendu de fiche de figure fait de l'ordre de 50 000 lectures, soit ~1,4 s. `Version.world` garde
+désormais la valeur, oubliée par l'`onChange` du réglage (`Version.oublierMonde`). Ne jamais
+relire un réglage dans un chemin aussi fréquent. La façade `Incarnations` reste ~4 fois plus
+coûteuse que l'ancienne chaîne (2 ms contre 0,6 ms par rendu mesuré) : sans effet perceptible, à
+optimiser seulement si besoin (garder la chaîne triée par instance).
+
 ## 6. Les deux branches
 
 `task/v14` est la branche de travail courante ; `task/v14-rules` porte le chantier.

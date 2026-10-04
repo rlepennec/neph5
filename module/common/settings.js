@@ -42,10 +42,11 @@ export const registerSystemSettings = function () {
 
     // La version des règles retenue quand personne n'en a choisi : celle qu'une fiche
     // affiche à son ouverture, et celle que lisent le chat et les listes, qui n'ont pas
-    // de fiche pour trancher. Le choix reste ensuite propre à chaque fenêtre ouverte,
-    // d'où l'absence de onChange : changer le réglage ne doit pas défaire sous les yeux
-    // du MJ une version qu'il a choisie dans une fiche.
+    // de fiche pour trancher. Le choix reste ensuite propre à chaque fenêtre ouverte :
+    // changer le réglage ne défait pas sous les yeux du MJ une version qu'il a choisie dans
+    // une fiche. onChange ne fait qu'oublier la valeur que Version garde en cache.
     game.settings.register('neph5e', 'version', {
+        onChange: () => Version.oublierMonde(),
         config: true,
         scope: 'world',
         name: game.i18n.localize('SETTINGS.version'),

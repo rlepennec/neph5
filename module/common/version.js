@@ -26,17 +26,40 @@ export class Version {
     static ALL = ['v1', 'v5'];
 
     /**
+     * La version du monde, lue une fois puis gardée : voir world.
+     */
+    static #monde = null;
+
+    /**
      * La version retenue quand personne n'en a choisi : celle du monde.
+     *
+     * Elle est lue à chaque lecture d'un champ de règles (Version.data, Version.path) : des
+     * milliers de fois par rendu de fiche. Or game.settings.get parcourt tous les réglages du
+     * monde et, tant que le réglage garde sa valeur par défaut, construit à chaque appel un
+     * document Setting — une trentaine de microsecondes l'appel. La valeur est donc gardée,
+     * et oubliée quand le réglage change (onChange, dans settings.js).
      * @returns {string} l'identifiant de la version.
      */
     static get world() {
+        if (Version.#monde != null) {
+            return Version.#monde;
+        }
         // Le réglage n'existe pas encore pendant l'initialisation, et game.settings.get
-        // lève plutôt que de rendre undefined : on retombe alors sur l'édition courante.
+        // lève plutôt que de rendre undefined : on retombe alors sur l'édition courante,
+        // sans la garder.
         try {
-            return game.settings.get('neph5e', 'version') ?? 'v5';
+            Version.#monde = game.settings.get('neph5e', 'version') ?? 'v5';
+            return Version.#monde;
         } catch {
             return 'v5';
         }
+    }
+
+    /**
+     * Oublie la version du monde gardée : la prochaine lecture relira le réglage.
+     */
+    static oublierMonde() {
+        Version.#monde = null;
     }
 
     /**
