@@ -2069,7 +2069,10 @@ form.nephilim.actor section.window-content > section article main.laboratoire .c
   border: none;
   background-color: transparent;
   z-index: 98;
-  width: 160px;
+  width: auto;
+  min-width: 160px;
+  height: auto;
+  line-height: normal;
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs .construct .elements {
   position: relative;
@@ -2129,6 +2132,10 @@ form.nephilim.actor section.window-content > section article main.laboratoire .c
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs .artefacts {
   position: relative;
+  pointer-events: none;
+}
+form.nephilim.actor section.window-content > section article main.laboratoire .constructs .artefacts .tooltip {
+  pointer-events: auto;
 }
 form.nephilim.actor section.window-content > section article main.laboratoire .constructs .artefacts .tooltip img {
   width: 51px;
@@ -4453,7 +4460,10 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   border: none;
   background-color: transparent;
   z-index: 98;
-  width: 160px;
+  width: auto;
+  min-width: 160px;
+  height: auto;
+  line-height: normal;
 }
 .tab.laboratoire .constructs .construct .elements {
   position: relative;
@@ -4513,6 +4523,10 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.laboratoire .constructs .artefacts {
   position: relative;
+  pointer-events: none;
+}
+.tab.laboratoire .constructs .artefacts .tooltip {
+  pointer-events: auto;
 }
 .tab.laboratoire .constructs .artefacts .tooltip img {
   width: 51px;
