@@ -252,6 +252,8 @@
         "imputrescible": "Imputrescible",
         "incantation": "Incantation",
         "incarnation": "Incarnation",
+        "migrationImpossibleTitre": "Migration impossible",
+        "migrationImpossible": "Les données de ce monde sont en version {version}. La version {systeme} du système Nephilim ne migre que les mondes déjà en {minimale} ou plus. Aucune donnée n'a été modifiée. Fermez ce monde sans rien y modifier, installez d'abord la version {prealable} du système, ouvrez-y ce monde pour qu'il soit migré, puis réinstallez la version {systeme}.",
         "incarnations": "Incarnations",
         "ajouterIncarnation": "Ajouter une incarnation",
         "incarnationBrouillon": "L'incarnation sera enregistrée dès que sa période sera définie.",

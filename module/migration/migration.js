@@ -86,11 +86,55 @@ export class MigrationTools {
     /**
      * Process to full migration.
      */
+    /**
+     * La version de données en deçà de laquelle ce système ne migre pas un monde, et la version
+     * du système qui sait l'y amener.
+     *
+     * Les migrations 1.0.9 et 1.0.10 supposent un monde déjà en 1.0.8 : les anciennes migrations
+     * (1.0.1 à 1.0.8) écrivent des champs que les schémas de ce système n'ont plus — la 1.0.3
+     * crée par exemple des périodes avec `actif` et `previous`. Rejouées ici, ces écritures
+     * seraient élaguées, et la chronologie des incarnations perdue sans erreur visible.
+     */
+    static VERSION_MINIMALE = '1.0.8';
+    static SYSTEME_PREALABLE = '1.7.0';
+
+    /**
+     * Le garde-fou : un monde dont les données sont en deçà de VERSION_MINIMALE n'est pas
+     * migré ; le MJ est invité à passer d'abord par la version SYSTEME_PREALABLE du système. Un
+     * monde vide — un monde neuf, encore à la version par défaut — n'a rien à perdre : il est
+     * migré normalement.
+     * @param version The data version of the world.
+     * @returns true if the world may be migrated.
+     */
+    static async migrable(version) {
+        if (!foundry.utils.isNewerVersion(MigrationTools.VERSION_MINIMALE, version)) return true;
+        if (game.actors.size === 0 && game.items.size === 0) return true;
+
+        const message = game.i18n.format('NEPHILIM.migrationImpossible', {
+            version: version,
+            minimale: MigrationTools.VERSION_MINIMALE,
+            prealable: MigrationTools.SYSTEME_PREALABLE,
+            systeme: game.system.version
+        });
+        console.error("Nephilim | " + message);
+        ui.notifications.error(message, { permanent: true });
+        await foundry.applications.api.DialogV2.prompt({
+            window: { title: game.i18n.localize('NEPHILIM.migrationImpossibleTitre') },
+            content: '<p>' + message + '</p>',
+            modal: true,
+            rejectClose: false
+        });
+        return false;
+    }
+
     static async migrate() {
 
         if (!game.user.isGM) return;
 
         const worldTemplateVersion = game.settings.get("neph5e", "worldTemplateVersion");
+
+        // Le garde-fou : rien n'est migré, rien n'est écrit
+        if (!await MigrationTools.migrable(worldTemplateVersion)) return;
 
         if (foundry.utils.isNewerVersion('1.0.1', worldTemplateVersion)) {
             await _1_0_1.migrate('1.0.1');

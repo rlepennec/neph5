@@ -4,8 +4,8 @@ Ce document permet de reprendre le portage des modèles de données vers les ver
 règles sans rien redécouvrir : la conception retenue, ce qui est fait, la recette à
 appliquer type par type, et les pièges qui ont déjà coûté du temps.
 
-**Où vit le travail** : branche `task/v14-rules`. (Git refuse `task/v14/rules` tant qu'une
-branche `task/v14` existe : une référence ne peut pas être à la fois un fichier et un
+**Où vit le travail** : branche `task/v14-1.8.0`. (Git refuse `task/v14-1.7.0/rules` tant qu'une
+branche `task/v14-1.7.0` existe : une référence ne peut pas être à la fois un fichier et un
 répertoire.)
 
 ---
@@ -243,6 +243,15 @@ Porter **par grappes de types qui partagent leurs champs**, pas par ordre alphab
    — base LevelDB, clefs `!items!<id>`, Foundry arrêté, sauvegarde préalable, CLI officiel
    `fvtt package unpack/pack` — **avant** que les passerelles puissent disparaître.
 
+8. **Le garde-fou — fait le 4 octobre.** `MigrationTools.migrable` (`module/migration/migration.js`)
+   refuse de migrer un monde dont les données sont en deçà de **1.0.8**, s'il contient des acteurs
+   ou des items : un message (dialogue, notification permanente, console) demande de passer
+   d'abord par le système **1.7.0** (task/v14-1.7.0), puis de revenir en 1.8.0 ; rien n'est
+   écrit. Raison : les migrations 1.0.1 à 1.0.8 écrivent des champs que les schémas de la 1.8.0
+   n'ont plus (la 1.0.3 crée des périodes avec `actif` / `previous`) — rejouées ici, elles
+   perdraient la chronologie. Un monde vide (neuf, version par défaut 1.0.0) est migré
+   normalement.
+
 7. **Conditions pour supprimer les `migrateData`** — toutes nécessaires : mondes réécrits par
    les scripts de migration ; compendium transformé ; et un garde-fou refusant d'ouvrir un
    monde resté en deçà de la dernière version, pour que celui qui saute des versions voie un
@@ -264,14 +273,14 @@ optimiser seulement si besoin (garder la chaîne triée par instance).
 
 ## 6. Les deux branches
 
-`task/v14` est la branche de travail courante ; `task/v14-rules` porte le chantier.
+`task/v14-1.7.0` est la branche de travail courante ; `task/v14-1.8.0` porte le chantier.
 
 **Reporter les correctifs de v14 vers rules** se fait en fusionnant v14 dans rules, plutôt
 qu'en cueillant les commits un à un : la fusion règle les conflits une fois pour toutes.
 
 ```
-git switch task/v14-rules
-git merge task/v14
+git switch task/v14-1.8.0
+git merge task/v14-1.7.0
 ```
 
 En une ligne, la forme dépend du shell : `;` et `if ($?)` sous Windows PowerShell, où `&&`
@@ -283,15 +292,15 @@ l'intérieur du portage du vécu. Les deux suppriment la même boucle morte, mai
 réécrit `_onSubmit` autour. **Garder la version de rules** : `git checkout --ours
 feature/vecu/item/vecu.js` (en fusion, « ours » est la branche où l'on se trouve).
 
-**Correctifs de task/v14 déjà alignés ici** (commit v14 `4fa68eda`, « cinq défauts connus »).
-À la fusion de task/v14 dans cette branche :
+**Correctifs de task/v14-1.7.0 déjà alignés ici** (commit v14 `4fa68eda`, « cinq défauts connus »).
+À la fusion de task/v14-1.7.0 dans cette branche :
 - `nephilimItem.js` (`_actors(callback, type, arg)`, `_actors('deletePeriode', null, this.sid)`) et
   les deux gabarits de savoir sont identiques des deux côtés : fusion sans conflit ;
 - conflits attendus, à résoudre en **gardant la version de cette branche** :
   `capacite.js` et `abstractFocus.js` (ici `aRattache`), `nephilimActor.js` (`ka.soleil` via
   `Version.data`, et `deletePeriode`), `periode.js` (`getAll` n'existe plus ici).
 
-**Nettoyage à la suppression, reporté de task/v14** (commits v14 `fb3583cd` et `e382155b`,
+**Nettoyage à la suppression, reporté de task/v14-1.7.0** (commits v14 `fb3583cd` et `e382155b`,
 fiches 02, 03 et 05 de `D:\Dev\Foundry\corrections-neph5e\`). Le nettoyage quitte `_onDelete`
 (appelé sans attente, sur tous les clients, et pour les compendiums) pour `_onDeleteOperation`.
 Conflits attendus à la fusion, à résoudre en gardant **la structure de v14 avec les accès de
