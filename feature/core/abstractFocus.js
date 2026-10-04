@@ -94,7 +94,7 @@ export class AbstractFocus extends AbstractFeature {
         }
 
         // The focus must not be defined for the current periode.
-        if (this.actor.items.find(i => i.sid === this.item.sid && i.system.periode === this.embedded.periode) != null) {
+        if (this.actor.items.find(i => i.sid === this.item.sid && i.system.periode === this.periode) != null) {
             return;
         }
 

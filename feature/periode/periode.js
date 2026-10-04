@@ -348,7 +348,6 @@ export class Periode extends AbstractFeature {
                     vecus: vecus,
                     focus: focus,
                     capacites: capacites,
-                    items: items,
                     actors: actors
                 }
             });

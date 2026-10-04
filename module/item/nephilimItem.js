@@ -227,7 +227,7 @@ export class NephilimItem extends Item {
             case 'periode':
 
                 // Update each actor of the world and scenes
-                await this._actors('deletePeriode');
+                await this._actors('deletePeriode', null, this.sid);
 
                 // Delete from all vecus of the world
                 for (let item of game.items.filter(i => i.type === 'vecu' && i.system.periode === this.sid)) {
@@ -397,14 +397,15 @@ export class NephilimItem extends Item {
     /**
      * @param callback The name of the method of the actor item object to call.
      * @param type     The optional actor type to match.
+     * @param arg      The argument passed to the callback, the item itself by default.
      * @returns actors of the world and actors of the scenes.
      */
-    async _actors(callback, type) {
+    async _actors(callback, type, arg = this) {
 
         // Process each actor of the world and scenes
         for (let actor of game.actors) {
             if (type == null || actor.type === type) {
-                await actor[callback](this);
+                await actor[callback](arg);
             }
         }
 
@@ -412,7 +413,7 @@ export class NephilimItem extends Item {
         for (let scene of game.scenes) {
             for (let token of scene.tokens) {
                 if (token.actor != null && (type == null || token.actor.type === type)) {
-                    await token.actor[callback](this);
+                    await token.actor[callback](arg);
                 }
             }
         }

@@ -153,7 +153,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 if (this.system.options?.selenim === true) {
                     return 11 - this.system.ka.noyau;
                 }
-                return 11 - this.system.soleil;
+                return 11 - this.system.ka.soleil;
             case 'figurant':
             default:
                 return 0;
@@ -740,8 +740,9 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @param sid The system identifier of the periode to delete.
      */
     async deletePeriode(sid) {
-        const original = game.items.find(i => i.sid === sid);
-        if (original != null) {
+        const embedded = this.items.find(i => i.type === 'periode' && i.sid === sid);
+        if (embedded != null) {
+            const original = game.items.find(i => i.sid === sid) ?? embedded;
             await new Periode(this, original).delete();
         }
     }
