@@ -127,6 +127,13 @@ export class Fraternite {
     }
 
     /**
+     * @returns the members of the effectif whose actor is not found in the world.
+     */
+    membresIntrouvables() {
+        return this.actor.system.effectif.filter(m => game.actors.find(a => a.sid === m.actor) == null);
+    }
+
+    /**
      * @param sids The system identifiers of the actors to delete.
      */
     async onDeleteActors(sids) {
