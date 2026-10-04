@@ -322,6 +322,9 @@ export class Periode extends AbstractFeature {
             if (actor.type === 'fraternite') {
                 for (let fa of actor.system.effectif.filter(a => a.periode === p.sid)) {
                     const original = game.actors.find(a => a.sid === fa.actor);
+                    if (original == null) {
+                        continue;
+                    }
                     actors.push({
                         id: original.id,
                         sid: original.sid,

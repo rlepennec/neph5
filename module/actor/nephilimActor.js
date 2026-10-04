@@ -755,45 +755,67 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }
 
     /**
+     * Retire les acteurs supprimés des simulacres et des effectifs de fraternité.
+     *
+     * Ce nettoyage se fait une fois par opération de suppression, et non dans _onDelete.
+     * Foundry appelle _onDelete pour chaque document supprimé sans l'attendre, et sur
+     * tous les clients connectés. Supprimer plusieurs acteurs d'un coup (sélection
+     * multiple, dossier) lançait donc des mises à jour concurrentes du même effectif :
+     * chacune partait de l'effectif d'avant et n'en retirait qu'un acteur, la dernière
+     * écrite l'emportait, et les autres membres supprimés restaient dans l'effectif.
+     *
+     * Un seul client agit : le MJ actif, ou à défaut l'auteur de la suppression.
+     * La suppression d'un acteur de compendium ne touche pas le monde.
+     *
      * @Override
      */
-     async _onDelete(options, userId) {
+    static async _onDeleteOperation(documents, operation, user) {
+        await super._onDeleteOperation(documents, operation, user);
 
-        // On process world actor deletion
-        if (this.isEmbedded === true) {
+        // Only world actors
+        if (operation.pack != null || operation.parent != null) {
+            return;
+        }
+
+        // Only one client
+        const designated = game.users.activeGM ?? user;
+        if (designated?.id !== game.user.id) {
+            return;
+        }
+
+        const sids = documents.map(d => d.sid).filter(sid => sid != null);
+        if (sids.length === 0) {
             return;
         }
 
         for (let actor of game.actors) {
-            await this.onDeleteEmbeddedActor(actor);
+            await NephilimActor.onDeleteEmbeddedActors(actor, sids);
         }
 
         for (let scene of game.scenes) {
             for (let token of scene.tokens) {
                 if (token.actor != null) {
-                    await this.onDeleteEmbeddedActor(token.actor);
+                    await NephilimActor.onDeleteEmbeddedActors(token.actor, sids);
                 }
             }
         }
-
-        await super._onDelete(options, userId);
-
     }
 
     /**
-     * Delete the current actor from the specified container actor
-     * @param actor The actor for which to delete the current actor object.
+     * Delete the deleted actors from the specified container actor.
+     * @param actor The actor for which to delete the deleted actors.
+     * @param sids  The system identifiers of the deleted actors.
      */
-    async onDeleteEmbeddedActor(actor) {
+    static async onDeleteEmbeddedActors(actor, sids) {
 
-        // Remove the current actor if it is a simulacre of a figure
-        if (actor.system?.simulacre === this.sid) {
+        // Remove the deleted actor if it is a simulacre of a figure
+        if (sids.includes(actor.system?.simulacre)) {
             await actor.update({ ['system.simulacre']: null });
         }
 
-        // Remove the current actor if it is a member of a fraternite
+        // Remove the deleted actors if they are members of a fraternite
         if (actor.type === 'fraternite') {
-            await new Fraternite(actor).onDeleteActor(this);
+            await new Fraternite(actor).onDeleteActors(sids);
         }
 
     }
