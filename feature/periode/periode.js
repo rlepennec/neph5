@@ -1,6 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { Fraternite } from "../fraternite/fraternite.js";
 
 export class Periode extends AbstractFeature {
 
@@ -74,17 +73,8 @@ export class Periode extends AbstractFeature {
      */
     async delete() {
 
-        // Remove the periode, everything attached to it, and mend the chain
-        await new Incarnations(this.actor).retirer(this.item.sid);
-
-        // Update the members of the fraternite if necessary
-        if (this.actor.type === 'fraternite') {
-            await new Fraternite(this.actor).onDeletePeriode(this.item);
-        }
-
-        // Render the sheet if opened.
-        await this.actor.render();
-
+        // Remove every incarnation of the periode, and what they alone hold
+        await this.actor.deletePeriode(this.item.sid);
         return this;
     }
 

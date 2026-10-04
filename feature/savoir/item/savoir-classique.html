@@ -8,12 +8,6 @@
 
         <main>
 
-            {{#if (and debug isGM (not @root.locked))}}
-            <div class="clef">
-                {{> "systems/neph5e/templates/input.hbs" title="cle" name="system.key" value=document.system.key }}
-            </div>
-            {{/if}}
-
             {{> "systems/neph5e/templates/chronology.hbs" title='periode'}}
 
             {{> "systems/neph5e/templates/description.hbs"}}

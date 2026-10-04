@@ -117,7 +117,7 @@ export class HistoricalSheet extends NephilimActorSheet {
         this.elapsedPeriodes = this.elapsedPeriodes.filter(i => i !== sid);
 
         // Used to remove vecus & combat options
-        await this.document.deletePeriode(sid);
+        await this.document.deleteIncarnation(sid);
     }
 
     /**

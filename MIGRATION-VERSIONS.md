@@ -271,6 +271,17 @@ l'intérieur du portage du vécu. Les deux suppriment la même boucle morte, mai
 réécrit `_onSubmit` autour. **Garder la version de rules** : `git checkout --ours
 feature/vecu/item/vecu.js` (en fusion, « ours » est la branche où l'on se trouve).
 
+**Correctifs de task/v14 déjà alignés ici** (commit v14 `4fa68eda`, « cinq défauts connus »).
+À la fusion de task/v14 dans cette branche :
+- `nephilimItem.js` (`_actors(callback, type, arg)`, `_actors('deletePeriode', null, this.sid)`) et
+  les deux gabarits de savoir sont identiques des deux côtés : fusion sans conflit ;
+- conflits attendus, à résoudre en **gardant la version de cette branche** :
+  `capacite.js` et `abstractFocus.js` (ici `aRattache`), `nephilimActor.js` (`ka.soleil` via
+  `Version.data`, et `deletePeriode`), `periode.js` (`getAll` n'existe plus ici).
+
+Ici, `deletePeriode(sid)` reçoit le sid d'une **période du monde** et retire toutes ses
+incarnations ; `deleteIncarnation(cle)` retire une incarnation (fiche, `deleteEmbeddedItem`).
+
 **Commiter avant de changer de branche.** Les fichiers non commités suivent le changement
 de branche, et les fichiers non suivis sont invisibles pour Git : un `git clean` les efface
 sans retour. Ce document lui-même a été perdu une fois de cette façon.

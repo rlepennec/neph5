@@ -705,8 +705,10 @@ export class NephilimActor extends CombatantMixin(Actor) {
         if (item != null) {
             switch (item.type) {
                 case 'periode':
-                case 'incarnation':
                     await this.deletePeriode(item.sid);
+                    break;
+                case 'incarnation':
+                    await this.deleteIncarnation(item.sid);
                     break;
                 case 'vecu':
                     await this.deleteVecu(item);
@@ -741,24 +743,35 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }   
 
     /**
-     * @param sid The system identifier of the periode to delete.
+     * Retire toutes les incarnations d'une période du monde — la période est supprimée.
+     * @param sid The system identifier of the world periode.
      */
-    /**
-     * Retire une incarnation, ou toutes celles d'une période du monde qu'on supprime.
-     * @param periode The key of the incarnation, or the world periode document.
-     */
-    async deletePeriode(periode) {
+    async deletePeriode(sid) {
         const incarnations = new Incarnations(this);
-        const cles = typeof periode === 'string'
-            ? [periode]
-            : incarnations.toutes().filter(i => incarnations.periodeDe(i.sid) === periode?.sid).map(i => i.sid);
-        for (const cle of cles) {
-            await incarnations.retirer(cle);
-            if (this.type === 'fraternite') {
-                await new Fraternite(this).onDeletePeriode({ sid: cle });
-            }
+        for (const incarnation of incarnations.toutes().filter(i => incarnations.periodeDe(i.sid) === sid)) {
+            await this.#retirerIncarnation(incarnations, incarnation.sid);
         }
         await this.render();
+    }
+
+    /**
+     * Retire une incarnation, son vécu et ce qui ne doit rien à une autre.
+     * @param cle The key of the incarnation.
+     */
+    async deleteIncarnation(cle) {
+        await this.#retirerIncarnation(new Incarnations(this), cle);
+        await this.render();
+    }
+
+    /**
+     * @param incarnations The incarnations of this actor.
+     * @param cle          The key of the incarnation to remove.
+     */
+    async #retirerIncarnation(incarnations, cle) {
+        await incarnations.retirer(cle);
+        if (this.type === 'fraternite') {
+            await new Fraternite(this).onDeletePeriode({ sid: cle });
+        }
     }
  
     /**
