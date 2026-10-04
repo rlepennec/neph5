@@ -183,26 +183,27 @@ export class Periode extends AbstractFeature {
     }
 
     /**
+     * La chaîne des périodes part de la plus ancienne (previous === null) et va vers la
+     * plus récente. L'option chronologieDescendante ne règle que l'ordre d'affichage
+     * (chrono === null) : elle ne change ni l'ordre chronologique ni les périodes
+     * retenues jusqu'à last, sur lesquelles reposent les calculs.
+     *
      * @param actor  The actor object.
      * @param chrono True for chronologic order, false for antichronologic, null for display order.
      * @param actif  True if only active periode, false for only passive, null for all.
      * @param last   The identifier of the last periode included, null if no limit.
+     *               The periodes more recent than the last one are excluded.
      * @returns an sorted array of periodes items objects.
      */
     static getChronological(actor, chrono, actif, last) {
 
-        // Retrieve if the display order must be inverted.
-        // chrono === null : ordre d'affichage, piloté par l'option chronologieDescendante.
+        // Retrieve if the most recent periode comes first
         const descendante = actor.system.options.chronologieDescendante === true;
-        const inverse = (chrono === null)
-            ? !descendante
-            : ((chrono === true  && descendante === false)
-            || (chrono === false && descendante === true));
+        const inverse = (chrono === null) ? !descendante : (chrono === false);
 
-        // Retrieve periodes in display order
+        // Retrieve periodes from the oldest to the last one
         let periodes = [];
         let previous = null;
-        let found = false;
 
         while (true) {
 
@@ -214,32 +215,20 @@ export class Periode extends AbstractFeature {
                 break;
             }
 
-            // Check if the last periode
-            if (last != null && found === false && last === p.sid) {
-                found = true;
-            }
-
-            // Skip the first periodes to the last if inverse order.
-            // Sans limite (last == null), il n'y a aucune periode a ignorer.
-            if (inverse === true && last != null && found === false) {
-                previous = p.sid;
-                continue;
-            }
-
             // Add periode if required
             if (actif == null || last === p.sid || p.system.actif === actif) {
                 periodes.push(p);
             }
 
-            // Skip the last periodes if the last and normal order
-            if (inverse === false && found === true && last === p.sid) {
+            // The periodes more recent than the last one are skipped
+            if (last != null && last === p.sid) {
                 break;
             }
 
             previous = p.sid;
         }
 
-        // Sort the periodes according to the order 
+        // Sort the periodes according to the order
         if (inverse === true) {
             periodes = periodes.reverse();
         }
@@ -255,7 +244,7 @@ export class Periode extends AbstractFeature {
     static getAll(actor) {
 
         // Sort periodes to display
-        const periodes = Periode.getChronological(actor, true, null);
+        const periodes = Periode.getChronological(actor, null, null);
 
         // Process periodes to display.
         const all = [];
