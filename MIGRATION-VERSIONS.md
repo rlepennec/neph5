@@ -339,11 +339,13 @@ progressé sur plusieurs incarnations existe en plusieurs exemplaires.
 non désactivées ; les postérieures jamais. L'option `chronologieDescendante` ne règle **que
 l'ordre d'affichage** — l'ancien code la faisait aussi jouer sur les calculs, et retenait les
 périodes postérieures quand elle valait false. Corrigé sur v14 et ici
-(`Incarnations.ordonnees`, `chronologie()` en ordre d'affichage). Sur rules, `rang` croît avec
-la chronologie : la tête, la plus ancienne, a le plus petit ; une incarnation créée prend
-`rang` = plus petit − 1. Dans la migration, l'incarnation d'une période qui garde la clé de la
-période se range la plus récente de sa période, pour compter avec les autres quand elle est la
-courante.
+(`Incarnations.ordonnees`, `chronologie()` en ordre d'affichage). Sur rules, l'ordre est porté
+par une **liste doublement chaînée** (`predecesseur` / `successeur`, depuis le 5 octobre ; un
+`rang` numérique avant) : la tête, sans prédécesseur, est la plus ancienne ; une incarnation
+créée prend la tête. `#chaine` lit en suivant les successeurs (chaîne abîmée : le reste en
+queue, boucle sans effet) ; ajouter, déplacer et retirer réécrivent les liens qui changent en une
+seule requête (`#chainer`) ; une incarnation supprimée par un autre chemin raccroche son
+prédécesseur à son successeur (`#raccrocher`).
 
 ### Le plan, en quatre étapes
 
@@ -370,7 +372,7 @@ courante.
    `@root.data.periode` pour marquer la courante — à donner par le contexte à l'étape 3.
 3. **Le stockage** — fait. Item `incarnation` (`feature/incarnation/item/incarnation.mjs`),
    embarqué seulement, **de même sid que sa période** : tout ce qui cherche la période d'un
-   acteur par son sid la trouve. v5 : `actif`, `rang` (croît avec la chronologie ;
+   acteur par son sid la trouve. v5 : `actif`, `predecesseur` / `successeur` (liste chaînée, à l'origine un `rang` ;
    remplace la chaîne `previous`), `apports: [{ sid, degre }]` (degré null pour un focus, une
    capacité : `degreDans` rend alors celui que porte l'item, comme l'ancien code). Un item
    embarqué n'existe plus qu'**en un exemplaire** : `EmbeddedItem.withIncarnation` réemploie

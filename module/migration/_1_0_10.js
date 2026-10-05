@@ -16,7 +16,8 @@ import { Version } from "../common/version.js";
  *
  * APRÈS. Une incarnation est un item `incarnation` embarqué, avec sa propre clé. Il porte sa
  * `periode`, ses `vecus` — aucun, un ou plusieurs —, `actif`,
- * son `rang` dans la chronologie (le plus grand est le plus récent) et ses `apports` :
+ * sa place dans la chronologie (`predecesseur`, `successeur` : une liste doublement chaînée,
+ * de la plus ancienne à la plus récente) et ses `apports` :
  * `{ sid, degre }` pour chaque autre item acquis pendant l'incarnation. Chaque vécu garde sa
  * période et son degré. Un item embarqué n'existe plus qu'en un exemplaire. Voir la façade
  * `Incarnations`.
@@ -161,8 +162,12 @@ export class _1_0_10 {
             });
         }
 
-        // Les rangs suivent la chronologie : la tête de chaîne, la plus ancienne, a le plus petit
-        incarnations.forEach((data, i) => data.system.versions.v5.rang = i);
+        // Le chaînage suit la chronologie : la tête, la plus ancienne, n'a pas de prédécesseur.
+        // Chaque incarnation garde la clé de sa période : les liens se posent dès la création.
+        incarnations.forEach((data, i) => {
+            data.system.versions.v5.predecesseur = incarnations[i - 1]?.system.id ?? null;
+            data.system.versions.v5.successeur = incarnations[i + 1]?.system.id ?? null;
+        });
 
         // 4. Les incarnations, puis le ménage
         await actor.createEmbeddedDocuments('Item', incarnations);

@@ -11,7 +11,9 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `vecus`   : les sids de ses vécus embarqués — aucun, un ou plusieurs. Chacun porte la
  *                 période de l'incarnation, et son propre degré ;
  *   - `actif`   : l'incarnation compte-t-elle pour l'acteur ;
- *   - `rang`    : sa place dans la chronologie, du plus ancien (petit) au plus récent (grand) ;
+ *   - `predecesseur` : la clé de l'incarnation immédiatement plus ancienne, null pour la tête
+ *                 de la chronologie (la plus ancienne) ;
+ *   - `successeur` : la clé de l'incarnation immédiatement plus récente, null pour la queue ;
  *   - `apports` : les autres items acquis pendant l'incarnation, par sid d'item embarqué, avec
  *                 le degré acquis pour ceux qui en ont un (savoir, quête, arcane, science, passe
  *                 d'armes, chute), null pour les autres (focus, capacité).
@@ -51,11 +53,18 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                     initial: true
                                 }
                             ),
-                            rang: new foundry.data.fields.NumberField
+                            predecesseur: new foundry.data.fields.StringField
                             (
                                 {
-                                    integer: true,
-                                    initial: 0
+                                    nullable: true,
+                                    initial: null
+                                }
+                            ),
+                            successeur: new foundry.data.fields.StringField
+                            (
+                                {
+                                    nullable: true,
+                                    initial: null
                                 }
                             ),
                             apports: new foundry.data.fields.ArrayField

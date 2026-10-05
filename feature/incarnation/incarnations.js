@@ -15,7 +15,9 @@ import { Version } from "../../module/common/version.js";
  *   - `vecus`   : les sids de SES vécus embarqués — aucun, un ou plusieurs ; chacun porte la
  *                 période de l'incarnation, et son propre degré ;
  *   - `actif`   : l'incarnation compte-t-elle pour l'acteur ;
- *   - `rang`    : sa place dans la chronologie — le plus grand est le plus récent ;
+ *   - `predecesseur`, `successeur` : les clés des incarnations immédiatement plus ancienne et
+ *                 plus récente — une liste doublement chaînée, dont la tête (sans
+ *                 prédécesseur) est la plus ancienne ;
  *   - `apports` : les autres items acquis pendant l'incarnation, `{ sid, degre }`, le degré
  *                 étant celui acquis pendant l'incarnation (null pour un focus, une capacité).
  *
@@ -139,10 +141,55 @@ export class Incarnations {
     }
 
     /**
+     * La chronologie se lit en partant de la tête — l'incarnation sans prédécesseur, ou dont le
+     * prédécesseur a disparu — et en suivant les successeurs. Une chaîne abîmée reste lisible :
+     * les incarnations qu'on n'atteint pas sont rangées en queue, dans l'ordre de l'acteur, et
+     * une boucle ne fait pas tourner la lecture sans fin.
      * @returns the incarnations in chain order: from the oldest to the most recent.
      */
     #chaine() {
-        return this.toutes().sort((a, b) => (Version.data(a).rang ?? 0) - (Version.data(b).rang ?? 0));
+        const toutes = this.toutes();
+        const parCle = new Map(toutes.map(i => [i.sid, i]));
+        const chaine = [];
+        const vus = new Set();
+        let courante = toutes.find(i => {
+            const predecesseur = Version.data(i).predecesseur;
+            return predecesseur == null || !parCle.has(predecesseur);
+        });
+        while (courante != null && !vus.has(courante.sid)) {
+            chaine.push(courante);
+            vus.add(courante.sid);
+            const successeur = Version.data(courante).successeur;
+            courante = successeur == null ? null : parCle.get(successeur);
+        }
+        for (const incarnation of toutes) {
+            if (!vus.has(incarnation.sid)) chaine.push(incarnation);
+        }
+        return chaine;
+    }
+
+    /**
+     * Réécrit les liens pour que la chaîne suive l'ordre donné : seules les incarnations dont
+     * un lien change sont écrites, en une seule requête.
+     * @param ordre The incarnations, from the oldest to the most recent.
+     */
+    async #chainer(ordre) {
+        const updates = [];
+        ordre.forEach((incarnation, i) => {
+            const predecesseur = ordre[i - 1]?.sid ?? null;
+            const successeur = ordre[i + 1]?.sid ?? null;
+            const data = Version.data(incarnation);
+            if ((data.predecesseur ?? null) !== predecesseur || (data.successeur ?? null) !== successeur) {
+                updates.push({
+                    _id: incarnation.id,
+                    [Version.path(incarnation, 'predecesseur')]: predecesseur,
+                    [Version.path(incarnation, 'successeur')]: successeur
+                });
+            }
+        });
+        if (updates.length > 0) {
+            await this.actor.updateEmbeddedDocuments('Item', updates);
+        }
     }
 
     /**
@@ -456,8 +503,9 @@ export class Incarnations {
         const orphelins = this.rattaches(cle).filter(item => !autres.some(i =>
             (Version.data(i).vecus ?? []).includes(item.sid) || (Version.data(i).apports ?? []).some(a => a.sid === item.sid)));
 
-        // Delete the incarnation first: its vecus no longer hold it, and the other items lose
-        // their contribution with it
+        // Mend the chain around it, then delete it: its vecus no longer hold it, and the other
+        // items lose their contribution with it
+        await this.#chainer(this.#chaine().filter(i => i.sid !== cle));
         await this.actor.deleteEmbeddedDocuments('Item', [incarnation.id]);
 
         // Delete the vecus, with their dependencies
@@ -491,7 +539,8 @@ export class Incarnations {
                         periode: periode,
                         vecus: vecus,
                         actif: true,
-                        rang: premiere == null ? 0 : (Version.data(premiere).rang ?? 0) - 1,
+                        predecesseur: null,
+                        successeur: premiere?.sid ?? null,
                         apports: []
                     }
                 }
@@ -499,6 +548,8 @@ export class Incarnations {
         }]);
         if (premiere == null) {
             await this.definirCourante(cree.sid);
+        } else {
+            await premiere.update({ [Version.path(premiere, 'predecesseur')]: cree.sid });
         }
         return cree.sid;
     }
@@ -546,19 +597,10 @@ export class Incarnations {
             return;
         }
 
-        // Move the incarnation just after its new parent, then number the chain again
+        // Move the incarnation just after its new parent, then link the chain again
         const ordre = chaine.filter(i => i.sid !== cle);
         ordre.splice(ordre.findIndex(i => i.sid === parent) + 1, 0, moved);
-        const updates = [];
-        ordre.forEach((item, i) => {
-            const rang = i;
-            if (Version.data(item).rang !== rang) {
-                updates.push({ _id: item.id, [Version.path(item, 'rang')]: rang });
-            }
-        });
-        if (updates.length > 0) {
-            await this.actor.updateEmbeddedDocuments('Item', updates);
-        }
+        await this.#chainer(ordre);
     }
 
     /**
@@ -647,7 +689,11 @@ export class Incarnations {
      * @param item The deleted embedded item.
      */
     static async apresSuppression(item) {
-        if (item.type === 'incarnation' || item.type === 'periode') return;
+        if (item.type === 'periode') return;
+        if (item.type === 'incarnation') {
+            await new Incarnations(item.actor).#raccrocher(item);
+            return;
+        }
         const incarnations = new Incarnations(item.actor);
         if (!incarnations.porte || incarnations.exemplaires(item.sid).length > 0) return;
         const tenue = item.type === 'vecu' ? incarnations.incarnationDe(item) : null;
@@ -657,6 +703,26 @@ export class Incarnations {
         }
         // Un vécu supprimé est lâché par son incarnation, qui peut rester sans vécu
         await tenue.update({ [Version.path(tenue, 'vecus')]: (Version.data(tenue).vecus ?? []).filter(v => v !== item.sid) });
+    }
+
+    /**
+     * Une incarnation supprimée sans passer par `retirer` laisse un trou dans la chaîne : son
+     * prédécesseur est raccroché à son successeur. Sans effet si la chaîne a déjà été recousue.
+     * @param supprimee The deleted incarnation.
+     */
+    async #raccrocher(supprimee) {
+        const predecesseur = this.incarnation(Version.data(supprimee).predecesseur);
+        const successeur = this.incarnation(Version.data(supprimee).successeur);
+        const updates = [];
+        if (predecesseur != null && Version.data(predecesseur).successeur === supprimee.sid) {
+            updates.push({ _id: predecesseur.id, [Version.path(predecesseur, 'successeur')]: successeur?.sid ?? null });
+        }
+        if (successeur != null && Version.data(successeur).predecesseur === supprimee.sid) {
+            updates.push({ _id: successeur.id, [Version.path(successeur, 'predecesseur')]: predecesseur?.sid ?? null });
+        }
+        if (updates.length > 0) {
+            await this.actor.updateEmbeddedDocuments('Item', updates);
+        }
     }
 
     // ------------------------------------------------------------------ l'affichage
