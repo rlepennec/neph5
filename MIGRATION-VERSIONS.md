@@ -439,9 +439,8 @@ la déplacer.
 `changerPeriode` déplace tous les vécus. Un vécu déposé sur la fiche s'ajoute à l'incarnation en
 édition (la courante, fiche déverrouillée), sinon en crée une. **La migration 1.0.10 crée de
 nouveau une incarnation par période**, de même clé que la période, qui reçoit **tous** les
-vécus de l'époque. Une incarnation déjà migrée sous la forme `vecu` est convertie au chargement
-(`VersionMigration.incarnation`, délégué par `IncarnationDataModel.migrateData`) ; les
-incarnations qu'une ancienne 1.0.10 a créées vécu par vécu ne sont pas regroupées. Le texte
+vécus de l'époque. La conversion de l'ancienne forme `vecu` au chargement a été retirée le 5 octobre : la 1.8.0
+n'ayant jamais été livrée, aucun monde réel ne la porte (l'utilisateur repart de mondes 1.7.0). Le texte
 ci-dessous décrit l'état d'avant cette révision.
 
 **Une incarnation, un vécu, et un seul.** L'incarnation porte sa période ; plusieurs

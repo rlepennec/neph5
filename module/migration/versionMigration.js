@@ -120,22 +120,6 @@ export class VersionMigration {
     }
 
     /**
-     * Une incarnation portait un seul vécu (`vecu`, un sid) ; elle en porte désormais un ou
-     * plusieurs (`vecus`). Les mondes migrés en 1.0.10 avant ce changement gardent la forme
-     * ancienne : elle est convertie ici, au chargement, avant que `vecu` soit élagué.
-     * @param source The raw source data of an incarnation, possibly partial.
-     * @returns the migrated source data.
-     */
-    static incarnation(source) {
-        const v5 = source?.versions?.v5;
-        if (v5 != null && v5.vecu !== undefined) {
-            v5.vecus ??= v5.vecu == null ? [] : [v5.vecu];
-            delete v5.vecu;
-        }
-        return source;
-    }
-
-    /**
      * @param type   The document type, as declared by the manifest.
      * @param source The raw source data, possibly partial.
      * @returns the migrated source data.
