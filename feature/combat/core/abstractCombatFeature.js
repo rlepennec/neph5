@@ -44,10 +44,28 @@ export class AbstractCombatFeature extends AbstractFeature {
             const points = Excedent.points(result);
             if (points > 0) {
                 result.excedent = await Excedent.repartir(this.actor, points, Excedent.ATTAQUE);
-                result.sentence = result.sentence + Excedent.phrase(result.excedent, Excedent.ATTAQUE);
             }
         }
         await super.apply(result);
+    }
+
+    /**
+     * En combat, le chat ne donne ni degré ni chiffre : la marge n'est pas annoncée.
+     * @Override
+     */
+    marginSentence(margin) {
+        return "";
+    }
+
+    /**
+     * Les blessures infligées sont annoncées une fois les dommages appliqués (voir Health) :
+     * l'impact n'est affiché que si le MJ applique lui-même les dégâts de la cible, ou sans
+     * cible.
+     * @Override
+     */
+    displayedImpact() {
+        const cible = this.target?.actor;
+        return cible?.system?.options?.degatAutomatique === true ? null : this.impact();
     }
 
     /**

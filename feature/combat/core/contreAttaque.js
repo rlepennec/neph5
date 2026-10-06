@@ -64,7 +64,7 @@ export class ContreAttaque extends Melee {
         // Touché : l'attaquant initial encaisse, sans défense possible.
         if (result.success === true) {
             const impact = this.impact(this.manoeuver.id);
-            await Health.applyDamagesOn(this.target?.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical);
+            await Health.applyDamagesOn(this.target?.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, this.actor.id);
             await Health.applyEffectsOn(this.target?.id, this.actor.id, Constants.ACTION, this.manoeuver);
         }
 

@@ -265,7 +265,7 @@ export class AbstractFeature {
                 total: result.roll._total,
                 result: result.sentence,
                 extra: result.extra,
-                impact: this.impact()
+                impact: this.displayedImpact()
             })
             .withRoll(result.roll)
             .withFlags(result.opposed && result.success === true ? {
@@ -312,9 +312,7 @@ export class AbstractFeature {
             if (critical) {
                 sentence = sentence + " de façon spectaculaire";
             }
-            if (margin !== 0) {
-                sentence = sentence + " avec une marge de " + margin;
-            }
+            sentence = sentence + this.marginSentence(margin);
         }
         return {
             difficulty: difficulty,
@@ -349,6 +347,13 @@ export class AbstractFeature {
         // La manœuvre est créée pour cette action : ses approches peuvent en dépendre (ex:
         // Tirer, selon que la cible est visée ou non), elles sont donc déjà à jour ici.
         return manoeuver == null ? this.actor.approches() : ManoeuverBuilder.create(manoeuver, this).approchesOf(this.actor);
+    }
+
+    /**
+     * @returns the impact displayed with the action in the chat, null to hide it.
+     */
+    displayedImpact() {
+        return this.impact();
     }
 
     /**
@@ -549,6 +554,14 @@ export class AbstractFeature {
     static isActive(actor, item) {
         const periode = actor.items.find(i => i.sid === item.system.periode);
         return periode != null && periode.actif;
+    }
+
+    /**
+     * @param margin The margin of a successful roll.
+     * @returns the part of the result sentence which gives the margin.
+     */
+    marginSentence(margin) {
+        return margin !== 0 ? " avec une marge de " + margin : "";
     }
 
     /**

@@ -236,11 +236,13 @@ export class Defense extends AbstractCombatFeature {
             .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
-                richSentence: this.sentenceOf(this.winner) + Excedent.phrase(this.excedent, Excedent.DEFENSE),
+                richSentence: this.sentenceOf(this.winner),
                 img: this.attack.actor.img,
                 total: result.roll?._total,
                 effects : this.effectsOf(this.winner),
-                absorption: absorption
+                // Les blessures sont annoncées une fois appliquées (voir Health) : l'absorption
+                // ne s'affiche que si le MJ applique lui-même les dégâts du défenseur.
+                absorption: this.actor.system?.options?.degatAutomatique === true ? null : absorption
             })
             .withRoll(result.roll)
             .create();
@@ -316,7 +318,7 @@ export class Defense extends AbstractCombatFeature {
      *                   tout dégât, null n'amortit rien.
      */
     async applyDamages(absorption) {
-        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical);
+        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
     }
 
     /**
@@ -339,7 +341,7 @@ export class Defense extends AbstractCombatFeature {
         const manoeuvers = Object.keys(this.data.manoeuvers);
         if (manoeuvers.length === 0) {
             if (this.result.success) {
-                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
+                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
                 await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
             }

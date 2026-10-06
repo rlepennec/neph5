@@ -1,6 +1,7 @@
 import { ActiveEffects } from "../core/effects.js";
 import { Constants } from "../../module/common/constants.js";
 import { Liberer } from "../combat/manoeuver/liberer.js";
+import { NephilimChat } from "../../module/common/chat.js";
 
 export class Health {
 
@@ -30,7 +31,8 @@ export class Health {
                 socketMessage.data.manoeuver,
                 socketMessage.data.winner,
                 socketMessage.data.attack,
-                socketMessage.data.critical );
+                socketMessage.data.critical,
+                socketMessage.data.attacker );
             break;
         case Constants.MSG_APPLY_EFFECTS_ON:
             await Health.applyEffectsOn(
@@ -52,11 +54,11 @@ export class Health {
      * @param attack    The attack manoeuver
      * @param critical  True if attack twices the damages.
      */
-    static async applyDamagesOn(token, impact, physical, weapon, manoeuver, winner, attack, critical) {
+    static async applyDamagesOn(token, impact, physical, weapon, manoeuver, winner, attack, critical, attacker) {
         if (game.user.isGM === true) {
             const t = canvas.tokens?.objects?.children.find(t => t.id === token);
             if (t != null) {
-                await new Health(t.actor).applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical);
+                await new Health(t.actor).applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical, attacker);
             }
         } else {
             game.socket.emit(Constants.SYSTEM_SOCKET_ID, {
@@ -69,7 +71,8 @@ export class Health {
                     manoeuver: manoeuver,
                     winner: winner,
                     attack: attack,
-                    critical: critical
+                    critical: critical,
+                    attacker: attacker
                 }
             });
         }
@@ -83,8 +86,9 @@ export class Health {
      * @param winner    The action winner
      * @param attack    The attack manoeuver
      * @param critical  True if attack twices the damages.
+     * @param attacker  The actor id of the attacker, named in the wound sentence.
      */
-    async applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical) {
+    async applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical, attacker) {
 
         // Because dodge all damages
         if (manoeuver != null && manoeuver.hasOwnProperty('fix')) {
@@ -101,17 +105,81 @@ export class Health {
         // armure de 4.
         const perforante = weapon != null && weapon.system.damages >= 2;
 
+        // Cases cochées par type de dommages, null si rien n'a été traité
+        const resultats = [];
+
         if (physical === true) {
             const encaisse = Health.damagesOf(impact, this.actor.protection("physique"), perforante, absorption);
             const damages = (winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : encaisse) * (critical === true ? 2 : 1);
-            await new Damages(this.actor, 'physique').apply(damages);
+            resultats.push(await new Damages(this.actor, 'physique').apply(damages));
         }
 
         if (weapon?.system?.magique === true) {
             const damages = Health.damagesOf(impact, this.actor.protection("magique"), perforante, absorption) * (critical === true ? 2 : 1);
-            await new Damages(this.actor, 'magique').apply(damages);
+            resultats.push(await new Damages(this.actor, 'magique').apply(damages));
         }
 
+        await this.announceWounds(attacker, resultats);
+
+    }
+
+    /**
+     * Annonce dans le chat le résultat final d'une attaque : la gravité des blessures
+     * infligées, sans degré ni chiffre. Rien n'est annoncé si les dommages n'ont pas été
+     * traités (dégâts manuels, cible déjà hors de combat).
+     * @param attacker  The actor id of the attacker.
+     * @param resultats Les cases cochées par type de dommages, null si rien n'a été traité.
+     */
+    async announceWounds(attacker, resultats) {
+        const traites = resultats.filter(r => r != null);
+        if (traites.length === 0) {
+            return;
+        }
+        const gravite = Health.graviteOf(traites.flatMap(r => [...r]));
+        const sender = canvas.tokens?.objects?.children.find(t => t.actor?.id === attacker)?.actor
+            ?? game.actors.get(attacker);
+        let sentence;
+        if (sender != null) {
+            sentence = gravite == null
+                ? sender.name + " touche " + this.actor.name + " sans le blesser"
+                : sender.name + " blesse " + this.actor.name + " " + gravite;
+        } else {
+            sentence = gravite == null
+                ? this.actor.name + " n'est pas blessé"
+                : this.actor.name + " est blessé " + gravite;
+        }
+        await new NephilimChat(sender ?? this.actor)
+            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withData({
+                actor: sender ?? this.actor,
+                richSentence: sentence,
+                img: this.actor.img
+            })
+            .create();
+    }
+
+    /**
+     * @param cases Les cases cochées, tous types de dommages confondus.
+     * @returns la gravité des blessures : « très légèrement » pour de simples dommages,
+     *          « légèrement », « sérieusement », « gravement » selon la plus grave blessure,
+     *          précédée de « très » s'il y a plusieurs blessures, « mortellement » pour une
+     *          blessure mortelle, null si aucune case n'est cochée.
+     */
+    static graviteOf(cases) {
+        if (cases.length === 0) {
+            return null;
+        }
+        if (cases.includes('mortelle')) {
+            return "mortellement";
+        }
+        const blessures = cases.filter(c => c === 'mineure' || c === 'serieuse' || c === 'grave');
+        if (blessures.length === 0) {
+            return "très légèrement";
+        }
+        const adverbe = blessures.includes('grave') ? "gravement"
+            : blessures.includes('serieuse') ? "sérieusement"
+            : "légèrement";
+        return blessures.length > 1 ? "très " + adverbe : adverbe;
     }
 
     /**
@@ -246,18 +314,25 @@ class Damages {
 
     /**
      * @param amount The amount of damages to apply.
+     * @returns les cases cochées (Set), vide si aucun dommage, null si rien n'a été traité :
+     *          dégâts manuels ou acteur déjà hors de combat.
      */
     async apply(amount) {
 
         // Exit if manual dammages
         if (this.actor.system.options.degatAutomatique !== true) {
-            return;
+            return null;
         }
 
-        // Exit if no damages or if the actor is already out
-        if (amount <= 0 || this.actor.system.dommage[this.type]['mortelle'] === true) {
-            return;
-        } 
+        // Exit if the actor is already out
+        if (this.actor.system.dommage[this.type]['mortelle'] === true) {
+            return null;
+        }
+
+        // No damages
+        if (amount <= 0) {
+            return new Set();
+        }
 
         // Compute the damages to apply
         let damageToApply = null;
@@ -271,10 +346,12 @@ class Damages {
         // Damage can be managed
         if (damageToApply !== null) {
             await damageToApply.apply(this.actor, this.type);
+            return damageToApply.boxes;
 
         // To much damage
         } else {
             await this.actor.update({ ["system.dommage." + this.type + ".mortelle"]: true });
+            return new Set(['mortelle']);
         }
 
     }

@@ -69,23 +69,4 @@ export class Excedent {
         };
     }
 
-    /**
-     * @param choix { dommages, malus }
-     * @param role  Excedent.ATTAQUE ou Excedent.DEFENSE.
-     * @returns la phrase qui annonce la répartition dans le chat.
-     */
-    static phrase(choix, role) {
-        if (choix == null) {
-            return "";
-        }
-        const parts = [];
-        if (choix.dommages > 0) {
-            parts.push("dommages " + (role === Excedent.ATTAQUE ? "+" : "-") + choix.dommages);
-        }
-        if (choix.malus > 0) {
-            parts.push((role === Excedent.ATTAQUE ? "défense" : "attaque") + " adverse -" + (choix.malus * 10) + " %");
-        }
-        return parts.length === 0 ? "" : " (marge au-delà de " + Excedent.SEUIL + " : " + parts.join(", ") + ")";
-    }
-
 }
