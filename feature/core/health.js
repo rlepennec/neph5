@@ -96,31 +96,44 @@ export class Health {
             return;
         }
 
-        // Modificateur de la manœuvre : positif il amortit le coup (Parer, Bloquer), négatif
-        // il le majore (Contrer, Désarmer ratés). Il s'applique après l'armure.
+        // Modificateur de la manœuvre de défense : positif il amortit le coup (Parer, Bloquer,
+        // Éviter), négatif il le majore (Contrer, Désarmer ratés). C'est un modificateur de
+        // combat : il s'applique avant la protection (voir damagesOf).
         const absorption = manoeuver?.modifier ?? 0;
 
-        // Une arme de 2 dommages ou plus traverse toujours l'armure pour au moins 1. Une arme
-        // plus légère, elle, peut être arrêtée net — et ce qu'elle laisse est alors bel et bien
-        // négatif : une majoration de 2 ne suffit pas à faire passer une dague à travers une
-        // armure de 4.
+        // Une arme dont la caractéristique de dommages vaut 2 ou plus inflige toujours au moins
+        // 1 dommage physique quand l'armure ramène ses dommages à 0 ou moins. Une arme plus
+        // légère peut être arrêtée net. Les dommages magiques n'en bénéficient pas.
         const perforante = weapon != null && Version.data(weapon).damages >= 2;
 
         // Cases cochées par type de dommages, null si rien n'a été traité
         const resultats = [];
 
+        // Détail du calcul, affiché sous les blessures si le réglage « Combat détaillé » est actif
+        const detaille = game.settings.get('neph5e', 'combatDetaille') === true;
+        const details = [];
+
         if (physical === true) {
-            const encaisse = Health.damagesOf(impact, this.actor.protection("physique"), perforante, absorption);
-            const damages = (winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : encaisse) * (critical === true ? 2 : 1);
+            const armor = this.actor.protection("physique");
+            const fix = winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : null;
+            const encaisse = Health.damagesOf(impact, armor, perforante, absorption);
+            const damages = (fix ?? encaisse) * (critical === true ? 2 : 1);
             resultats.push(await new Damages(this.actor, 'physique').apply(damages));
+            if (detaille) {
+                details.push(Health.detailOf("Dommages physiques", impact, absorption, armor, perforante, critical, fix));
+            }
         }
 
         if (Version.data(weapon).magique === true) {
-            const damages = Health.damagesOf(impact, this.actor.protection("magique"), perforante, absorption) * (critical === true ? 2 : 1);
+            const armor = this.actor.protection("magique");
+            const damages = Health.damagesOf(impact, armor, false, absorption) * (critical === true ? 2 : 1);
             resultats.push(await new Damages(this.actor, 'magique').apply(damages));
+            if (detaille) {
+                details.push(Health.detailOf("Dommages magiques", impact, absorption, armor, false, critical, null));
+            }
         }
 
-        await this.announceWounds(attacker, resultats);
+        await this.announceWounds(attacker, resultats, details);
 
     }
 
@@ -130,8 +143,9 @@ export class Health {
      * traités (dégâts manuels, cible déjà hors de combat).
      * @param attacker  The actor id of the attacker.
      * @param resultats Les cases cochées par type de dommages, null si rien n'a été traité.
+     * @param details   Le détail du calcul par type de dommages, vide sans « Combat détaillé ».
      */
-    async announceWounds(attacker, resultats) {
+    async announceWounds(attacker, resultats, details = []) {
         const traites = resultats.filter(r => r != null);
         if (traites.length === 0) {
             return;
@@ -154,9 +168,47 @@ export class Health {
             .withData({
                 actor: sender ?? this.actor,
                 richSentence: sentence,
-                img: this.actor.img
+                img: this.actor.img,
+                details: details
             })
             .create();
+    }
+
+    /**
+     * @param titre      Le type de dommages détaillé.
+     * @param impact     L'impact du coup porté.
+     * @param absorption Le modificateur de la manœuvre de défense.
+     * @param armor      La protection opposée.
+     * @param perforante True si le minimum de 1 peut s'appliquer.
+     * @param critical   True si l'attaque est un critique.
+     * @param fix        Les dommages fixes de la manœuvre d'attaque, null sinon.
+     * @returns le détail du calcul de damagesOf, puis du doublement : par exemple
+     *          « Dommages physiques : impact 4, défense −2, protection −3 = −1 → minimum 1
+     *          → critique ×2 = 2 ».
+     */
+    static detailOf(titre, impact, absorption, armor, perforante, critical, fix) {
+        let texte;
+        let valeur;
+        if (fix != null) {
+            texte = "dommages fixes " + fix;
+            valeur = fix;
+        } else {
+            const signe = v => (v < 0 ? "+" : "−") + Math.abs(v);
+            const brut = impact - absorption - armor;
+            texte = "impact " + impact;
+            if (absorption !== 0) {
+                texte += ", défense " + signe(absorption);
+            }
+            texte += ", protection −" + armor + " = " + String(brut).replace("-", "−");
+            valeur = Health.damagesOf(impact, armor, perforante, absorption);
+            if (valeur !== brut) {
+                texte += valeur > 0 ? " → minimum " + valeur : " → 0";
+            }
+        }
+        if (critical === true) {
+            texte += " → critique ×2 = " + (valeur * 2);
+        }
+        return titre + " : " + texte;
     }
 
     /**
@@ -184,16 +236,24 @@ export class Health {
     }
 
     /**
-     * Dommages reçus = impact - protection de l'armure, puis le modificateur de la manœuvre.
+     * Dommages reçus = degré de dommages de l'arme +/- modificateurs de combat - degré de
+     * protection. L'impact porte déjà les modificateurs de l'attaquant (manœuvre, Ka, bonus,
+     * marge) ; le modificateur de la manœuvre de défense s'y ajoute, avant la protection.
+     * Une arme perforante (2 degrés ou plus) dont l'armure ramène les dommages à 0 ou moins
+     * inflige tout de même 1 degré, à condition que l'armure en soit la cause : une défense
+     * qui absorbe déjà tout ne laisse rien passer.
+     * Le doublement d'un critique s'applique ensuite, au résultat final (voir applyDamages).
      * @param impact     L'impact du coup porté.
      * @param armor      La protection qui lui est opposée.
-     * @param perforante True si l'arme traverse toujours l'armure pour au moins 1 dommage.
-     * @param absorption Le modificateur de la manœuvre : positif il amortit, négatif il majore.
+     * @param perforante True si l'arme inflige au moins 1 degré malgré l'armure.
+     * @param absorption Le modificateur de la manœuvre de défense : positif il amortit,
+     *                   négatif il majore.
      * @returns les dommages effectivement reçus, jamais négatifs.
      */
     static damagesOf(impact, armor, perforante, absorption) {
-        const encaisse = impact - armor;
-        return Math.max(0, (perforante ? Math.max(1, encaisse) : encaisse) - absorption);
+        const avantArmure = impact - absorption;
+        const encaisse = avantArmure - armor;
+        return Math.max(0, perforante && avantArmure > 0 ? Math.max(1, encaisse) : encaisse);
     }
 
     /**
