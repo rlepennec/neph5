@@ -184,7 +184,7 @@
     font-family: @vk-font-body;
     font-size: 1.1em;
 
-    &:focus {
+    &:focus:not([data-verrouille]) {
         background: rgba(255, 255, 255, 0.06);
         outline: none;
     }
@@ -421,7 +421,7 @@ form.nephilim.item .item-root.style-ashbury {
                     font-family: @vk-font-body;
                     font-size: 1.1em;
 
-                    &:focus {
+                    &:focus:not([data-verrouille]) {
                         background: rgba(255, 255, 255, 0.06);
                         outline: none;
                     }
@@ -443,7 +443,8 @@ form.nephilim.item .item-root.style-ashbury {
                     // plus modifiable. -webkit-text-fill-color est nécessaire,
                     // il l'emporte sur color dans les moteurs WebKit et vaudrait
                     // sinon l'ambre hérité de input.circle:disabled (section 4).
-                    &:disabled {
+                    &:disabled,
+                    &[data-verrouille] {
                         color: @vk-panel-text;
                         -webkit-text-fill-color: @vk-panel-text;
                         background: @vk-panel-circle-locked;
@@ -574,7 +575,7 @@ form.nephilim.item .item-root.style-ashbury {
                 font-family: @vk-font-body;
                 font-size: 1.1em;
 
-                &:focus {
+                &:focus:not([data-verrouille]) {
                     background: rgba(255, 255, 255, 0.06);
                     outline: none;
                 }
@@ -1000,7 +1001,7 @@ form.nephilim.item .item-root.style-ashbury {
             font-family: @vk-font-body;
             font-size: 0.90em;
 
-            &:focus {
+            &:focus:not([data-verrouille]) {
                 border-bottom: 1px solid @vk-gold;
                 background: fade(@vk-gold, 6%);
                 outline: none;
@@ -1065,14 +1066,15 @@ form.nephilim.item .item-root.style-ashbury {
             margin: 0;
         }
 
-        &:focus {
+        &:focus:not([data-verrouille]) {
             border-color: @vk-gold;
             box-shadow: 0 0 16px fade(@vk-gold, 40%) inset;
             outline: none;
         }
 
         // Verrouillé : garde l'apparence "déverrouillée", seule l'édition cesse.
-        &:disabled {
+        &:disabled,
+        &[data-verrouille] {
             opacity: 1;
             cursor: default;
             color: @vk-amber;

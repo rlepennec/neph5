@@ -33,12 +33,13 @@
         border-radius: 0;
     }
 
-    div.input input:not(:disabled) {
+    div.input input:not(:disabled):not([data-verrouille]) {
         border-color: #302831;
         border-radius: 4px;
     }
 
-    input:disabled {
+    input:disabled,
+    input[data-verrouille] {
         border-color: transparent;
         border-radius: 0;
     }
