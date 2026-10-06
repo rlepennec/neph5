@@ -1429,8 +1429,12 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   top: 20px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .physique-3 {
-  left: calc(50% + -147px);
-  top: 20px;
+  left: calc(50% - 70px);
+  top: 13px;
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .physique-3 label {
+  width: 30px;
+  height: 30px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .physique-2 {
   left: calc(50% - 110px);
@@ -1441,12 +1445,8 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   height: 25px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .physique-1 {
-  left: calc(50% - 70px);
-  top: 13px;
-}
-form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .physique-1 label {
-  width: 30px;
-  height: 30px;
+  left: calc(50% + -147px);
+  top: 20px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .dommages .magique-3 {
   left: calc(50% + 40px);
@@ -3833,8 +3833,12 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   top: 20px;
 }
 .tab.combat .gauche .sante .dommages .physique-3 {
-  left: calc(50% + -147px);
-  top: 20px;
+  left: calc(50% - 70px);
+  top: 13px;
+}
+.tab.combat .gauche .sante .dommages .physique-3 label {
+  width: 30px;
+  height: 30px;
 }
 .tab.combat .gauche .sante .dommages .physique-2 {
   left: calc(50% - 110px);
@@ -3845,12 +3849,8 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   height: 25px;
 }
 .tab.combat .gauche .sante .dommages .physique-1 {
-  left: calc(50% - 70px);
-  top: 13px;
-}
-.tab.combat .gauche .sante .dommages .physique-1 label {
-  width: 30px;
-  height: 30px;
+  left: calc(50% + -147px);
+  top: 20px;
 }
 .tab.combat .gauche .sante .dommages .magique-3 {
   left: calc(50% + 40px);
