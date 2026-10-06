@@ -858,6 +858,20 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }
 
     /**
+     * Un lien vers un acteur (chat, description...) ouvre sa fiche. Sans droit de lecture,
+     * la fiche refuse de s'afficher et Foundry ne le signale que dans la console : le
+     * joueur cliquait sans rien voir. Il est désormais averti.
+     * @override
+     */
+    _onClickDocumentLink(event) {
+        if (this.sheet?.isVisible === false) {
+            ui.notifications.error("Vous n'avez pas les droits de lecture sur « " + this.name + " ».");
+            return null;
+        }
+        return super._onClickDocumentLink(event);
+    }
+
+    /**
      * Render the sheet if opened.
      */
     async render() {
