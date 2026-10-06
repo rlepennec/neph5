@@ -14,6 +14,7 @@ import { DefenseDialog } from "./defenseDialog.js";
 import { Desarmer } from "../manoeuver/desarmer.js";
 import { Elaboree } from "../manoeuver/elaboree.js";
 import { Esquiver } from "../manoeuver/esquiver.js";
+import { Excedent } from "./excedent.js";
 import { Eviter } from "../manoeuver/eviter.js";
 import { Fuir } from "../manoeuver/fuir.js";
 import { Health } from "../../core/health.js";
@@ -70,9 +71,35 @@ export class Defense extends AbstractCombatFeature {
             .withManoeuvers(this.noDefenseThisRound ? new ManoeuverPool() : Defense.manoeuvers().against(this.attack))
             .withApproches(this.approches(this.defaultApproche))
             .withWeapon(this.weapon)
-            .withAttack(this.attack.defenseModifier())
+            .withAttack(this.attackModifier())
             .withNextDefense({modifier: this.nextDefenseMalus})
             .export();
+    }
+
+    /**
+     * @returns le modificateur de défense imposé par l'attaque : celui de sa manœuvre, plus
+     *          le malus choisi par l'attaquant sur sa marge au-delà de 10 (-10 % par degré).
+     */
+    attackModifier() {
+        const manoeuver = this.attack.defenseModifier();
+        const malus = -10 * (this.result?.excedent?.malus ?? 0);
+        if (malus === 0) {
+            return manoeuver;
+        }
+        return {
+            name: manoeuver == null ? "Marge de l'attaquant" : manoeuver.name + " et marge de l'attaquant",
+            modifier: (manoeuver?.modifier ?? 0) + malus
+        };
+    }
+
+    /**
+     * @returns l'impact de l'attaque, modifié des degrés de dommages choisis par l'attaquant
+     *          (en plus) et par le défenseur (en moins) sur leurs marges au-delà de 10.
+     */
+    impactFinal() {
+        return AbstractCombatFeature.toInt(this.attack.impact)
+            + (this.result?.excedent?.dommages ?? 0)
+            - (this.excedent?.dommages ?? 0);
     }
 
     /**
@@ -188,6 +215,15 @@ export class Defense extends AbstractCombatFeature {
      */
     async apply(result) {
 
+        // Marge du défenseur supérieure à 10 : il répartit ses degrés entre réduction des
+        // dommages et malus sur l'attaque, qui est alors recalculée avec le même dé avant
+        // de désigner le vainqueur.
+        const points = Excedent.points(result);
+        if (points > 0) {
+            this.excedent = await Excedent.repartir(this.actor, points, Excedent.DEFENSE);
+            this.result = Excedent.penaliser(this.result, this.excedent.malus);
+        }
+
         // Process the opposition roll. Mémorisé sur l'instance : une manœuvre peut différer
         // l'application des dégâts (Contrer ouvre une contre-attaque et ne conclut qu'une
         // fois ce second jet effectué), applyDamages en a alors encore besoin.
@@ -201,7 +237,7 @@ export class Defense extends AbstractCombatFeature {
             .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
-                richSentence: this.sentenceOf(this.winner),
+                richSentence: this.sentenceOf(this.winner) + Excedent.phrase(this.excedent, Excedent.DEFENSE),
                 img: this.attack.actor.img,
                 total: result.roll?._total,
                 effects : this.effectsOf(this.winner),
@@ -281,7 +317,7 @@ export class Defense extends AbstractCombatFeature {
      *                   tout dégât, null n'amortit rien.
      */
     async applyDamages(absorption) {
-        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical);
+        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical);
     }
 
     /**
@@ -304,7 +340,7 @@ export class Defense extends AbstractCombatFeature {
         const manoeuvers = Object.keys(this.data.manoeuvers);
         if (manoeuvers.length === 0) {
             if (this.result.success) {
-                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.attack.impact, true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
+                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical);
                 await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
                 await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
             }

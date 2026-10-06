@@ -1,5 +1,6 @@
 import { AbstractFeature } from "../../core/abstractFeature.js";
 import { CombatHistory } from "./combatHistory.js";
+import { Excedent } from "./excedent.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 
 export class AbstractCombatFeature extends AbstractFeature {
@@ -29,6 +30,24 @@ export class AbstractCombatFeature extends AbstractFeature {
             + this.manoeuverModifier(parameters)
             + this.weaponModifier(data?.weapon);
 
+    }
+
+    /**
+     * Attaque opposée sur une cible avec une marge supérieure à 10 : l'attaquant répartit
+     * ses degrés au-delà de 10 entre dommages et malus de défense adverse, avant que le
+     * message ne propose la défense. Sa répartition voyage dans le résultat de l'attaque
+     * (result.excedent), que la défense reçoit (voir Defense).
+     * @Override
+     */
+    async apply(result) {
+        if (result?.opposed === true && this.purpose?.type === 'combat' && this.purpose?.target != null) {
+            const points = Excedent.points(result);
+            if (points > 0) {
+                result.excedent = await Excedent.repartir(this.actor, points, Excedent.ATTAQUE);
+                result.sentence = result.sentence + Excedent.phrase(result.excedent, Excedent.ATTAQUE);
+            }
+        }
+        await super.apply(result);
     }
 
     /**
