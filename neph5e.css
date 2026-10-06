@@ -978,6 +978,10 @@ form.nephilim.actor section.window-content > section aside nav {
   position: relative;
   width: 100%;
   margin-top: 20px;
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: 'AJensonPro';
   font-size: 25px;
   font-weight: bolder;
@@ -993,6 +997,9 @@ form.nephilim.actor section.window-content > section aside img.simulacre {
   margin-top: 80px;
   margin-bottom: 10px;
   width: 80px;
+}
+form.nephilim.actor section.window-content > section aside .element.soleil + img.simulacre {
+  margin-top: 40px;
 }
 form.nephilim.actor section.window-content > section aside a.simulacre-name {
   margin-bottom: 10px;
