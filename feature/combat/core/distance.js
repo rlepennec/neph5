@@ -152,7 +152,7 @@ export class Distance extends AbstractCombatFeature {
         // Tir non opposé réussi : les dégâts tombent, sans défense possible.
         if (result.opposed === false && result.success === true) {
             const impact = this.impact(this.manoeuver.id);
-            await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical);
+            await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, this.actor.id);
             await Health.applyEffectsOn(this.target.id, this.actor.id, Constants.ACTION, this.manoeuver);
         }
 
