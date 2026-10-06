@@ -35,6 +35,13 @@ form.nephilim.actor {
                 position: relative;
                 width: 100%;
                 margin-top: 20px;
+                // Trop d'onglets pour la hauteur de la fiche : seuls les onglets défilent,
+                // avec une barre qui n'apparaît que dans ce cas. La liste rétrécit
+                // (min-height: 0 l'y autorise dans la colonne flex) sans jamais grandir.
+                flex: 0 1 auto;
+                min-height: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
                 font-family: 'AJensonPro';
                 font-size: 25px;
                 font-weight: bolder;
@@ -53,6 +60,11 @@ form.nephilim.actor {
                 margin-top: 80px;
                 margin-bottom: 10px;
                 width: 80px;
+            }
+
+            // Sous le Ka Soleil, l'écart avec le simulacre est réduit de moitié.
+            .element.soleil + img.simulacre {
+                margin-top: 40px;
             }
 
             a.simulacre-name {
