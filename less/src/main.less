@@ -83,6 +83,13 @@ form.nephilim {
 
     }
 
+    // Champ verrouillé en lecture seule (voir nephilimSheetMixin._onRender) : il reçoit
+    // le focus pour la sélection et le défilement, sans le cadre qui annonce une saisie.
+    input[data-verrouille]:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
     .tooltip {
         position: relative;
         display: inline-block;

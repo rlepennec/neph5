@@ -112,7 +112,31 @@ export const NephilimMixinSheet = Base => {
 			return context;
 		}
 
+		/**
+		 * Fiche verrouillée ou non modifiable : les champs texte sont en lecture seule
+		 * plutôt que désactivés. On peut cliquer dedans, sélectionner le texte et le faire
+		 * défiler, sans pouvoir le modifier. Ils sont marqués data-verrouille, ce qui leur
+		 * garde l'apparence d'un champ désactivé (voir le LESS) et les retire des données
+		 * enregistrées (voir _onSubmit), comme l'étaient les champs désactivés.
+		 * @override
+		 */
+		async _onRender(context, options) {
+			await super._onRender(context, options);
+			if (this.locked !== true && this.isEditable === true) {
+				return;
+			}
+			for (const field of this.element.querySelectorAll('input:disabled:is([type="text"], :not([type]))')) {
+				field.disabled = false;
+				field.readOnly = true;
+				field.dataset.verrouille = "";
+			}
+		}
+
 		static async _onSubmit(event, form, formData) {
+			// Les champs verrouillés en lecture seule ne sont pas enregistrés (voir _onRender)
+			for (const field of form.querySelectorAll('[data-verrouille]')) {
+				delete formData.object[field.name];
+			}
 			await this._onSubmit(event, form, formData);
 		}
 

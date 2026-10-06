@@ -33,21 +33,6 @@ export class FormuleSheet extends NephilimItemSheet {
     }
 
     /**
-     * L'énoncé reste consultable quand la fiche est verrouillée ou non modifiable : en
-     * lecture seule plutôt que désactivé, on peut cliquer dans le champ et faire défiler
-     * le texte.
-     * @override
-     */
-    async _onRender(context, options) {
-        await super._onRender(context, options);
-        const enonce = this.element.querySelector('input[name="system.enonce"]');
-        if (enonce?.disabled === true) {
-            enonce.disabled = false;
-            enonce.readOnly = true;
-        }
-    }
-
-    /**
      * @override
      */
     async _onDelete(event, target) {

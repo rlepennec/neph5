@@ -900,6 +900,10 @@ form.nephilim .checkbox label {
 form.nephilim .checkbox input:checked + label {
   background: #000;
 }
+form.nephilim input[data-verrouille]:focus {
+  outline: none;
+  box-shadow: none;
+}
 form.nephilim .tooltip {
   position: relative;
   display: inline-block;
@@ -1568,15 +1572,18 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
   border: 1px solid transparent;
   border-radius: 0;
 }
-form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input input:not(:disabled),
-form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input input:not(:disabled),
-form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input:not(:disabled) {
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li div.input input:not(:disabled):not([data-verrouille]),
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li div.input input:not(:disabled):not([data-verrouille]),
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li div.input input:not(:disabled):not([data-verrouille]) {
   border-color: #302831;
   border-radius: 4px;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input:disabled,
 form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input:disabled,
-form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input:disabled {
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input:disabled,
+form.nephilim.actor section.window-content > section article main.combat .gauche .armes ol li input[data-verrouille],
+form.nephilim.actor section.window-content > section article main.combat .gauche .armures ol li input[data-verrouille],
+form.nephilim.actor section.window-content > section article main.combat .gauche .ressources ol li input[data-verrouille] {
   border-color: transparent;
   border-radius: 0;
 }
@@ -1601,11 +1608,12 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   border: 1px solid transparent;
   border-radius: 0;
 }
-form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input input:not(:disabled) {
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques div.input input:not(:disabled):not([data-verrouille]) {
   border-color: #302831;
   border-radius: 4px;
 }
-form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques input:disabled {
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques input:disabled,
+form.nephilim.actor section.window-content > section article main.combat .droite .caracteristiques input[data-verrouille] {
   border-color: transparent;
   border-radius: 0;
 }
@@ -1675,11 +1683,12 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   border: 1px solid transparent;
   border-radius: 0;
 }
-form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input:not(:disabled) {
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input input:not(:disabled):not([data-verrouille]) {
   border-color: #302831;
   border-radius: 4px;
 }
-form.nephilim.actor section.window-content > section article main.combat .droite .bonus input:disabled {
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus input:disabled,
+form.nephilim.actor section.window-content > section article main.combat .droite .bonus input[data-verrouille] {
   border-color: transparent;
   border-radius: 0;
 }
@@ -3967,15 +3976,18 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   border: 1px solid transparent;
   border-radius: 0;
 }
-.tab.combat .gauche .armes ol li div.input input:not(:disabled),
-.tab.combat .gauche .armures ol li div.input input:not(:disabled),
-.tab.combat .gauche .ressources ol li div.input input:not(:disabled) {
+.tab.combat .gauche .armes ol li div.input input:not(:disabled):not([data-verrouille]),
+.tab.combat .gauche .armures ol li div.input input:not(:disabled):not([data-verrouille]),
+.tab.combat .gauche .ressources ol li div.input input:not(:disabled):not([data-verrouille]) {
   border-color: #302831;
   border-radius: 4px;
 }
 .tab.combat .gauche .armes ol li input:disabled,
 .tab.combat .gauche .armures ol li input:disabled,
-.tab.combat .gauche .ressources ol li input:disabled {
+.tab.combat .gauche .ressources ol li input:disabled,
+.tab.combat .gauche .armes ol li input[data-verrouille],
+.tab.combat .gauche .armures ol li input[data-verrouille],
+.tab.combat .gauche .ressources ol li input[data-verrouille] {
   border-color: transparent;
   border-radius: 0;
 }
@@ -4000,11 +4012,12 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   border: 1px solid transparent;
   border-radius: 0;
 }
-.tab.combat .droite .caracteristiques div.input input:not(:disabled) {
+.tab.combat .droite .caracteristiques div.input input:not(:disabled):not([data-verrouille]) {
   border-color: #302831;
   border-radius: 4px;
 }
-.tab.combat .droite .caracteristiques input:disabled {
+.tab.combat .droite .caracteristiques input:disabled,
+.tab.combat .droite .caracteristiques input[data-verrouille] {
   border-color: transparent;
   border-radius: 0;
 }
@@ -4074,11 +4087,12 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   border: 1px solid transparent;
   border-radius: 0;
 }
-.tab.combat .droite .bonus div.input input:not(:disabled) {
+.tab.combat .droite .bonus div.input input:not(:disabled):not([data-verrouille]) {
   border-color: #302831;
   border-radius: 4px;
 }
-.tab.combat .droite .bonus input:disabled {
+.tab.combat .droite .bonus input:disabled,
+.tab.combat .droite .bonus input[data-verrouille] {
   border-color: transparent;
   border-radius: 0;
 }
@@ -6116,7 +6130,8 @@ form.nephilim.item section.window-content > section article main li {
 form.nephilim.item section.window-content > section article main input {
   margin-bottom: 10px;
 }
-form.nephilim.item section.window-content > section article main input:disabled {
+form.nephilim.item section.window-content > section article main input:disabled,
+form.nephilim.item section.window-content > section article main input[data-verrouille] {
   background: none;
   color: var(--color-font-dark);
   border: none;
@@ -6400,7 +6415,7 @@ form.nephilim.item .item-root.style-classique main div.input input {
   margin-bottom: 0px;
   color: var(--color-font-dark);
 }
-form.nephilim.item .item-root.style-classique main div.input input:not(:disabled) {
+form.nephilim.item .item-root.style-classique main div.input input:not(:disabled):not([data-verrouille]) {
   border: 1px solid black;
 }
 form.nephilim.item .item-root.style-classique main div.label {
@@ -6664,7 +6679,7 @@ form.nephilim.item .item-root.style-ashbury article main .left.settings > div.in
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input:not(.circle):focus {
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input:not(.circle):focus:not([data-verrouille]) {
   background: rgba(255, 255, 255, 0.06);
   outline: none;
 }
@@ -6672,7 +6687,8 @@ form.nephilim.item .item-root.style-ashbury article main .left.settings > div.in
   margin: 0;
   color: white;
 }
-form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input.circle:disabled {
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input.circle:disabled,
+form.nephilim.item .item-root.style-ashbury article main .left.settings > div.input input.circle[data-verrouille] {
   color: white;
   -webkit-text-fill-color: white;
   background: rgba(103, 93, 92, 0.9);
@@ -6866,7 +6882,7 @@ form.nephilim.item .item-root.style-ashbury article main .middle > div.input inp
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-form.nephilim.item .item-root.style-ashbury article main .middle > div.input input:not(.circle):focus {
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input:not(.circle):focus:not([data-verrouille]) {
   background: rgba(255, 255, 255, 0.06);
   outline: none;
 }
@@ -6874,7 +6890,8 @@ form.nephilim.item .item-root.style-ashbury article main .middle > div.input inp
   margin: 0;
   color: white;
 }
-form.nephilim.item .item-root.style-ashbury article main .middle > div.input input.circle:disabled {
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input.circle:disabled,
+form.nephilim.item .item-root.style-ashbury article main .middle > div.input input.circle[data-verrouille] {
   color: white;
   -webkit-text-fill-color: white;
   background: rgba(103, 93, 92, 0.9);
@@ -6988,7 +7005,7 @@ form.nephilim.item .item-root.style-ashbury .banner > div.input:not(.dot) input:
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-form.nephilim.item .item-root.style-ashbury .banner > div.input:not(.dot) input:not(.circle):focus {
+form.nephilim.item .item-root.style-ashbury .banner > div.input:not(.dot) input:not(.circle):focus:not([data-verrouille]) {
   background: rgba(255, 255, 255, 0.06);
   outline: none;
 }
@@ -7038,7 +7055,7 @@ form.nephilim.item .item-root.style-ashbury ol.icons input {
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-form.nephilim.item .item-root.style-ashbury ol.icons input:focus {
+form.nephilim.item .item-root.style-ashbury ol.icons input:focus:not([data-verrouille]) {
   background: rgba(255, 255, 255, 0.06);
   outline: none;
 }
@@ -7090,7 +7107,7 @@ form.nephilim.item .item-root.style-ashbury div.portraits > div.input input {
   font-family: "AJensonProLtDisp", serif;
   font-size: 1.1em;
 }
-form.nephilim.item .item-root.style-ashbury div.portraits > div.input input:focus {
+form.nephilim.item .item-root.style-ashbury div.portraits > div.input input:focus:not([data-verrouille]) {
   background: rgba(255, 255, 255, 0.06);
   outline: none;
 }
@@ -7340,7 +7357,7 @@ form.nephilim.item .item-root.style-ashbury .input.dot input {
   font-family: "AJensonProLtDisp", serif;
   font-size: 0.9em;
 }
-form.nephilim.item .item-root.style-ashbury .input.dot input:focus {
+form.nephilim.item .item-root.style-ashbury .input.dot input:focus:not([data-verrouille]) {
   border-bottom: 1px solid #C9923A;
   background: rgba(201, 146, 58, 0.06);
   outline: none;
@@ -7392,12 +7409,13 @@ form.nephilim.item .item-root.style-ashbury input.circle::-webkit-outer-spin-but
   -webkit-appearance: none;
   margin: 0;
 }
-form.nephilim.item .item-root.style-ashbury input.circle:focus {
+form.nephilim.item .item-root.style-ashbury input.circle:focus:not([data-verrouille]) {
   border-color: #C9923A;
   box-shadow: 0 0 16px rgba(201, 146, 58, 0.4) inset;
   outline: none;
 }
-form.nephilim.item .item-root.style-ashbury input.circle:disabled {
+form.nephilim.item .item-root.style-ashbury input.circle:disabled,
+form.nephilim.item .item-root.style-ashbury input.circle[data-verrouille] {
   opacity: 1;
   cursor: default;
   color: #E8B86D;
