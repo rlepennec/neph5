@@ -1707,6 +1707,14 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 form.nephilim.actor section.window-content > section article main.description {
   display: unset;
 }
+form.nephilim.actor section.window-content > section article main.description h1,
+form.nephilim.actor section.window-content > section article main.description h2,
+form.nephilim.actor section.window-content > section article main.description h3,
+form.nephilim.actor section.window-content > section article main.description h4,
+form.nephilim.actor section.window-content > section article main.description h5,
+form.nephilim.actor section.window-content > section article main.description h6 {
+  color: inherit;
+}
 form.nephilim.actor section.window-content > section article main.incarnations .incarnations-header {
   display: flex;
   flex-direction: row;
@@ -4097,6 +4105,14 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.description {
   display: unset;
+}
+.tab.description h1,
+.tab.description h2,
+.tab.description h3,
+.tab.description h4,
+.tab.description h5,
+.tab.description h6 {
+  color: inherit;
 }
 .tab.incarnations .incarnations-header {
   display: flex;

@@ -1,3 +1,11 @@
 .tab.description {
     display: unset;
+
+    // Foundry colore lui-même les titres (h1, h2 : --color-text-emphatic ; h3, h4 :
+    // --color-text-primary ; h5, h6 : --color-text-secondary), clairs en thème sombre
+    // et illisibles sur le fond de la fiche. Ils prennent la couleur du texte. Une
+    // couleur choisie dans l'éditeur, posée en style en ligne sur le texte, l'emporte.
+    h1, h2, h3, h4, h5, h6 {
+        color: inherit;
+    }
 }
