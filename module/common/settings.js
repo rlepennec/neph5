@@ -125,6 +125,15 @@ export const registerSystemSettings = function () {
         default: true
     });
 
+    game.settings.register('neph5e', 'combatDetaille', {
+        config: true,
+        scope: 'world',
+        name: game.i18n.localize('SETTINGS.combatDetaille'),
+        hint: game.i18n.localize('SETTINGS.combatDetailleDesc'),
+        type: Boolean,
+        default: false
+    });
+
     game.settings.register('neph5e', 'debug', {
         config: true,
         scope: 'world',
