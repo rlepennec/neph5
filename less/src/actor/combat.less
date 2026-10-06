@@ -172,9 +172,18 @@
                     top: 20px;
                 }
 
+                // Comme du côté magique : le grand rond (capacité 3) près du centre, le moyen
+                // (2), puis le petit (1) à l'extérieur, à côté des petits ronds du Ka Terre
+                // (_4, _5, capacité 1). Voir Damages, dans feature/core/health.js.
                 .physique-3 {
-                    left: calc(50% + -147px);
-                    top: 20px;
+                    left: calc(50% - 70px);
+                    top: 13px;
+
+                    label {
+                        width: 30px;
+                        height: 30px;
+                    }
+
                 }
 
                 .physique-2 {
@@ -189,14 +198,8 @@
                 }
 
                 .physique-1 {
-                    left: calc(50% - 70px);
-                    top: 13px;
-
-                    label {
-                        width: 30px;
-                        height: 30px;
-                    }
-
+                    left: calc(50% + -147px);
+                    top: 20px;
                 }
 
                 .magique-3 {
