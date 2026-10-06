@@ -1,0 +1,35 @@
+<form class="combat excedent">
+
+    <div class="header">
+        <img src="{{actor.img}}"/>
+        <span>{{sentence}}</span>
+    </div>
+
+    <div class="body">
+
+        <div class="repartition">
+
+            <div class="choix">
+                <label>{{role.dommages}}</label>
+                <span class="valeur">{{dommages}}</span>
+            </div>
+
+            <div class="fleches">
+                <a data-action="gauche" class="{{#unless versGauche}}inactive{{/unless}}"><i class="fas fa-circle-arrow-left"></i></a>
+                <a data-action="droite" class="{{#unless versDroite}}inactive{{/unless}}"><i class="fas fa-circle-arrow-right"></i></a>
+            </div>
+
+            <div class="choix">
+                <label>{{role.malus}}</label>
+                <span class="valeur">{{malus}}</span>
+            </div>
+
+        </div>
+
+        <div class="valider">
+            <button type="button" data-action="valider">Valider</button>
+        </div>
+
+    </div>
+
+</form>

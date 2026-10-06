@@ -8461,3 +8461,71 @@ form.combat .body p.hiddable {
   font-size: 18px;
   font-family: 'AJensonProLtDisp';
 }
+form.combat.excedent .repartition {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15px 10px;
+  font-size: 15px;
+}
+form.combat.excedent .repartition .choix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+  text-align: center;
+}
+form.combat.excedent .repartition .choix label {
+  min-height: 3em;
+}
+form.combat.excedent .repartition .choix .valeur {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #151156;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  font-size: 24px;
+  line-height: 1;
+  font-family: 'AJensonProLtDisp';
+}
+form.combat.excedent .repartition .fleches {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 0 10px;
+  font-size: 26px;
+}
+form.combat.excedent .repartition .fleches a {
+  color: #151156;
+  cursor: pointer;
+}
+form.combat.excedent .repartition .fleches a:hover {
+  text-shadow: 0px 0px 2px #191813;
+}
+form.combat.excedent .repartition .fleches a.inactive {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+form.combat.excedent .valider {
+  display: flex;
+  justify-content: center;
+  margin: 0 10px 15px 10px;
+}
+form.combat.excedent .valider button {
+  width: 200px;
+  background-color: transparent;
+  color: #191813;
+  border: 1px solid #151156;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  font-size: 15px;
+  cursor: pointer;
+}
+form.combat.excedent .valider button:hover {
+  text-shadow: 0px 0px 1px #191813;
+}

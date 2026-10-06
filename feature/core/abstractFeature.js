@@ -300,10 +300,8 @@ export class AbstractFeature {
      */
     resultOf(parameters, roll) {
         const difficulty = this.difficulty(parameters);
-        const fail = roll._total === 100 || (roll._total > difficulty && roll._total !== 1);
-        const fumble = AbstractFeature.isDouble(roll._total) && fail;
-        const critical = AbstractFeature.isDouble(roll._total) && !fail;
-        const margin = fail ? 0 : Math.floor(roll._total / 10) + (difficulty > 100 ? Math.floor((difficulty - 100) / 10) : 0);
+        const { success, fumble, critical, margin } = AbstractFeature.evaluate(roll._total, difficulty);
+        const fail = !success;
         let sentence = "";
         if (fumble) {
             sentence = "échoue de façon désastreuse";
@@ -551,6 +549,21 @@ export class AbstractFeature {
     static isActive(actor, item) {
         const periode = actor.items.find(i => i.sid === item.system.periode);
         return periode != null && periode.actif;
+    }
+
+    /**
+     * @param total      The dice total.
+     * @param difficulty The difficulty of the roll.
+     * @returns { success, fumble, critical, margin } of the roll.
+     */
+    static evaluate(total, difficulty) {
+        const fail = total === 100 || (total > difficulty && total !== 1);
+        return {
+            success: !fail,
+            fumble: AbstractFeature.isDouble(total) && fail,
+            critical: AbstractFeature.isDouble(total) && !fail,
+            margin: fail ? 0 : Math.floor(total / 10) + (difficulty > 100 ? Math.floor((difficulty - 100) / 10) : 0)
+        };
     }
 
     /**
