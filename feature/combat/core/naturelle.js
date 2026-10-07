@@ -4,6 +4,7 @@ import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
 import { CombatDialog } from "./combatDialog.js";
+import { CombatHistory } from "./combatHistory.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Etrange } from "../manoeuver/etrange.js";
 import { Force } from "../manoeuver/force.js";
@@ -90,6 +91,19 @@ export class Naturelle extends AbstractCombatFeature {
      */
     weaponModifier(weapon) {
         return AbstractCombatFeature.toInt(Version.data(weapon).attack * 10);
+    }
+
+    /**
+     * Une attaque qui n'ouvre pas de défense (ratée, ou sans cible) n'est enregistrée par
+     * personne d'autre : elle compte pourtant dans le round (une seule manœuvre par round,
+     * Rapide jouable deux fois). Une attaque réussie sur une cible est enregistrée par la
+     * défense qui la résout. Même règle que Distance.finalize.
+     * @Override
+     */
+    async finalize(result) {
+        if (result.success !== true || this.target == null) {
+            await CombatHistory.record(this.actor, this.manoeuver, this.target?.actor);
+        }
     }
 
     /**
