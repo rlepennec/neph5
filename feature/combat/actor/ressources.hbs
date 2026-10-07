@@ -12,8 +12,11 @@
         {{#if (eq item.type 'passe')}}
         <li class="ressources item macro" data-macro="item" data-fsid="{{fsid item}}">
             {{!-- Corbeille déverrouillée, espaceur verrouillé : cette colonne est la
-                 première de la ligne, la retirer décalerait le libellé. --}}
-            {{#if @root.locked}}
+                 première de la ligne, la retirer décalerait le libellé.
+                 Chez la figure (degré non saisissable), un passé vient des époques
+                 d'incarnation et ne se supprime que par elles : jamais de corbeille,
+                 seulement l'espaceur. --}}
+            {{#if (or @root.locked (not ../degreEditable))}}
             <a><i></i></a>
             {{else}}
             <a data-action="delete"><i class="fas fa-trash"></i></a>
