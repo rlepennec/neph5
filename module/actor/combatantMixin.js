@@ -489,8 +489,18 @@ export const CombatantMixin = Base => {
             // restantes, et trois rounds de visée au maximum sur la même cible.
             const action = new Distance(this, weapon);
             const viser = new Viser(action);
+            // Le message dit la vraie raison du refus : la visée n'est pas la seule en cause.
             if (viser.canBePerformed(action) === false) {
-                ui.notifications.info("La visée est déjà à son maximum sur cette cible");
+                const reste = weapon.system.munitions - weapon.system.tire;
+                if (weapon.system.type === Constants.FEU && !(reste > 0)) {
+                    ui.notifications.info("L'arme n'a plus de munitions : il faut la recharger");
+                } else if (weapon.system.cible === this.target.id && weapon.system.visee >= 3) {
+                    ui.notifications.info("La visée est déjà à son maximum sur cette cible");
+                } else if (action.history.some(e => e.manoeuver === Viser.ID)) {
+                    ui.notifications.info(this.name + " a déjà visé ce round");
+                } else {
+                    ui.notifications.info(this.name + " a déjà effectué une autre action ce round");
+                }
                 return;
             }
 
