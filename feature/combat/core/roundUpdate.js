@@ -1,6 +1,7 @@
 import { ActiveEffects } from "../../core/effects.js";
 import { CombatHistory } from "./combatHistory.js";
 import { Etrange } from "../manoeuver/etrange.js";
+import { Riposte } from "./riposte.js";
 
 /**
  * Mises à jour élémentaires appliquées à chaque combattant au début d'un round. Chaque
@@ -20,6 +21,14 @@ const UPDATES = [
         if (combat.round - lastHit >= 2) {
             await ActiveEffects.deactivate(actor, ActiveEffects.DESORIENTE);
         }
+    },
+
+    // Riposte (Contrer réussi) encore en attente : le défenseur n'a pas contre-attaqué
+    // pendant le round, il subit l'attaque initiale majorée de 2. Un seul MJ l'applique.
+    async (actor, combat) => {
+        if (game.user !== game.users.activeGM) return;
+        if (Riposte.of(actor) == null) return;
+        await Riposte.conclure(actor, false);
     }
 
 ];

@@ -1,4 +1,5 @@
 import { DocumentIdentifier } from "./documentIdentifier.js";
+import { Riposte } from "../../feature/combat/core/riposte.js";
 import { NephilimActorSheet } from "../actor/nephilimActorSheet.js";
 
 export const CombatantMixinSheet = Base => {
@@ -31,11 +32,19 @@ export const CombatantMixinSheet = Base => {
 
 		static async _onRollWeapon(event, target) {
 			event.preventDefault();
-			if (!this.canAct) return;
 			const weapon = new DocumentIdentifier(target).toDocument();
 			if (weapon == null) {
 				ui.notifications.error("Arme introuvable");
 				return;
+			}
+			// Hors de son tour, seule la contre-attaque d'une riposte en attente est permise,
+			// avec une arme naturelle ou une arme de mêlée en main (voir Riposte).
+			if (!this.canAct) {
+				if (!this.canRiposte) return;
+				if (!Riposte.armes(this.document).some(a => a.id === weapon.id)) {
+					ui.notifications.info("La contre-attaque se fait avec une arme naturelle ou une arme de mêlée en main.");
+					return;
+				}
 			}
 			await this.document.rollWeapon(weapon, this.combatant);
 		}
@@ -141,6 +150,7 @@ export const CombatantMixinSheet = Base => {
 		async _prepareContext(options) {
 			const context = await super._prepareContext(options);
 			context.canAct = this.canAct;
+			context.canRiposte = this.canRiposte;
 			return context;
 		}
 
@@ -163,6 +173,14 @@ export const CombatantMixinSheet = Base => {
 			const combatants = combat.getCombatantsByActor(this.document);
 			if (combatants.length === 0) return true;
 			return combatants.includes(combat.combatant);
+		}
+
+		/**
+		 * @returns true si l'acteur a une riposte en attente (Contrer réussi) : il peut alors
+		 *          contre-attaquer hors de son tour, avec une arme de mêlée ou naturelle.
+		 */
+		get canRiposte() {
+			return Riposte.of(this.document) != null;
 		}
 
 		/**

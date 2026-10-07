@@ -37,7 +37,8 @@
             <a data-action="delete"><i class="fas fa-trash"></i></a>
             {{/if}}
             <label data-action="open">{{item.name}}</label>
-            <a data-action="rollWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            {{!-- Riposte en attente : la contre-attaque se joue hors de son tour. --}}
+            <a data-action="rollWeapon" class="{{#unless (or ../../canAct ../../canRiposte)}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
             <a><i class="fa-solid fa-hand-fist"></i></a>
         </li>
         {{/each}}
@@ -50,7 +51,7 @@
             <a data-action="delete"><i class="fas fa-trash"></i></a>
             {{/if}}
             <label data-action="open">{{item.name}}</label>
-            <a data-action="rollWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
+            <a data-action="rollWeapon" class="{{#unless (or ../../canAct (and ../../canRiposte (versionValue item 'used' @root.version)))}}disabled{{/unless}}"><i class="fa-duotone fa-thin fa-dice-d20"></i></a>
             <a data-action="useWeapon" class="{{#unless ../../canAct}}disabled{{/unless}}"><i class="{{#if (versionValue item 'used' @root.version)}}{{#if (versionValue item 'parade' @root.version)}}fas fa-shield-alt{{else}}fa-solid fa-sword{{/if}}{{else}}far fa-hand-paper{{/if}}"></i></a>
         </li>
         {{/each}}

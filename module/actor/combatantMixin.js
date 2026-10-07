@@ -10,6 +10,7 @@ import { Melee } from "../../feature/combat/core/melee.js";
 import { Menace } from "../../feature/combat/core/menace.js";
 import { Naturelle } from "../../feature/combat/core/naturelle.js";
 import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
+import { Riposte } from "../../feature/combat/core/riposte.js";
 import { Viser } from "../../feature/combat/manoeuver/viser.js";
 import { Wrestle } from "../../feature/combat/core/wrestle.js";
 
@@ -329,7 +330,10 @@ export const CombatantMixin = Base => {
                 ui.notifications.info("Le personnage est immobilisé");
                 return;
             }
-            if (this.target == null) {
+            // Contre-attaque d'une riposte en attente : sa cible est l'attaquant initial, pas
+            // le token sélectionné (voir Riposte).
+            const riposte = Riposte.of(this) != null && Riposte.armes(this).some(a => a.id === weapon.id);
+            if (this.target == null && !riposte) {
                 ui.notifications.info("Le personnage n'a pas sélectionné de cible");
                 return;
             }

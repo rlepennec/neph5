@@ -12,6 +12,7 @@ import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Puissante } from "../manoeuver/puissante.js";
 import { Rapide } from "../manoeuver/rapide.js";
 import { Standard } from "../manoeuver/standard.js";
+import { Riposte } from "./riposte.js";
 import { Subtile } from "../manoeuver/subtile.js";
 
 export class Melee extends AbstractCombatFeature {
@@ -95,6 +96,11 @@ export class Melee extends AbstractCombatFeature {
      * @Override
      */
     async initializeRoll() {
+
+        // Riposte en attente (Contrer réussi) : cette attaque est la contre-attaque.
+        if (await Riposte.intercepter(this.actor, this.weapon)) {
+            return;
+        }
 
         // L'arme doit être en main.
         if (Version.data(this.weapon).used !== true) {
