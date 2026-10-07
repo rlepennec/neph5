@@ -111,6 +111,21 @@ export class CombatHistory {
     }
 
     /**
+     * @param held The held actor.
+     * @returns l'acteur qui maintient celui-ci immobilisé, null s'il n'est tenu par personne.
+     *          L'inverse de heldBy : la dernière prise jouée sur lui, à condition que son
+     *          auteur le tienne toujours.
+     */
+    static holderOf(held) {
+        const combatant = CombatHistory.combatantOf(held);
+        if (combatant == null) return null;
+        const prise = [...CombatHistory.of(combatant.combat)].reverse().find(e => e.holds === true && e.target === held.id);
+        if (prise == null) return null;
+        const holder = combatant.combat.combatants.find(c => c.actor?.id === prise.actor)?.actor;
+        return holder != null && CombatHistory.heldBy(holder)?.id === held.id ? holder : null;
+    }
+
+    /**
      * @param actor The acting combatant.
      * @returns the maneuvers already recorded for this actor during the current round of its
      *          combat, empty array if the actor isn't engaged in a combat.

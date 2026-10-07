@@ -3,6 +3,7 @@ import { Version } from "../../../module/common/version.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Combat } from "./combat.js";
+import { CombatHistory } from "./combatHistory.js";
 import { CombatDialog } from "./combatDialog.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Immobiliser } from "../manoeuver/immobiliser.js";
@@ -19,7 +20,11 @@ export class Wrestle extends AbstractCombatFeature {
     constructor(actor) {
         super(actor);
         this.item = actor.type === 'figure' ? game.items.find(i => i.sid === Version.data(actor).manoeuvres.lutte) : null;
-        this.target = actor.target;
+        // Immobilisé, on ne lutte que pour se libérer : contre celui qui tient la prise, sans
+        // avoir à le cibler. Sans cible, Libérer tomberait dans un jet d'opposition générique,
+        // qui ne lève jamais l'immobilisation.
+        const holder = actor.immobilise === true ? CombatHistory.holderOf(actor) : null;
+        this.target = (holder == null ? null : canvas.tokens?.get(holder.tokenOf?.id)) ?? actor.target;
         this.effects = ActiveEffects.effectsOf(this.actor, this.target?.actor);
         this.setManoeuver(Immobiliser.ID);
     }
