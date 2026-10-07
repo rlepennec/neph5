@@ -40,7 +40,14 @@ export class Wrestle extends AbstractCombatFeature {
      * @Override
      */
     get sentence() {
-        return this.manoeuver == null ? 'NEPHILIM.tenteSelfCompetence' : game.i18n.localize('NEPHILIM.tenteSelfLutte');
+        if (this.manoeuver == null) {
+            return 'NEPHILIM.tenteSelfCompetence';
+        }
+        // Une prise nomme sa cible : « A tente d'immobiliser B ».
+        if (this.manoeuver.id === Immobiliser.ID && this.target != null) {
+            return game.i18n.localize('NEPHILIM.tenteSelfImmobiliser').replaceAll("${cible}", this.target.name);
+        }
+        return game.i18n.localize('NEPHILIM.tenteSelfLutte');
     }
 
     /**

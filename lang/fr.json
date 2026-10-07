@@ -508,6 +508,7 @@
         "tenteSelfInvocation": "invoque ${item}",
         "tenteSelfKa": "fait appel à son ka",
         "tenteSelfKa-de": "fait appel à son ka ${ka}",
+        "tenteSelfImmobiliser": "tente d'immobiliser ${cible}",
         "tenteSelfLutte": "tente de lutter",
         "tenteSelfMenace": "fait appel à ses compétences martiales",
         "tenteSelfNoyau": "utilise son noyau",
