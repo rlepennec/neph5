@@ -241,7 +241,7 @@
 .skin-feu {
   --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
   --font-color: #e37e00;
-  --font-side-color: #b58468;
+  --font-side-color: #362102;
   --font-disabled-color: #95703a;
   --column-color: #ad521d;
   --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
@@ -297,6 +297,16 @@
   --selenim-imago-bottom: -28px;
   --combat-dommages-circle-width: 94px;
   --combat-dommages-circle-height: 105px;
+  --combat-dommages-value-left: 3px;
+  --combat-dommages-value-top: 0px;
+  --combat-dommages-value-width: var(--combat-dommages-circle-width);
+  --combat-dommages-value-height: var(--combat-dommages-circle-height);
+  --combat-liste-retrait: 65px;
+  --combat-triangle-top: -60px;
+  --combat-dommages-title-left: 0px;
+  --combat-dommages-title-width: var(--combat-dommages-circle-width);
+  --combat-dommages-title-top: calc(var(--combat-dommages-circle-height) - 1px);
+  --combat-case-color: #e37e00;
   --combat-triangle-width: 300px;
   --akasha-circle-width: 60px;
   --akasha-nef-transform: translate(119px, 91px) rotate(0deg);
@@ -1055,7 +1065,7 @@ form.nephilim.actor section.window-content > section article {
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--color-font-dark);
+  color: var(--font-color);
   overflow-y: auto;
 }
 form.nephilim.actor section.window-content > section article header {
@@ -1336,7 +1346,7 @@ form.nephilim.actor section.window-content > section article main.arbre .daath .
 form.nephilim.actor section.window-content > section article main.combat {
   display: flex;
   flex-direction: row;
-  color: #191813;
+  color: var(--font-color);
 }
 form.nephilim.actor section.window-content > section article main.combat input,
 form.nephilim.actor section.window-content > section article main.combat input:disabled {
@@ -1378,11 +1388,18 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .body .checkbox {
   position: absolute;
 }
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .body .checkbox label {
+  border-color: var(--combat-case-color, #000);
+}
+form.nephilim.actor section.window-content > section article main.combat .gauche .sante .body .checkbox input:checked + label {
+  background: var(--combat-case-color, #000);
+}
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .pyramide {
   content: var(--img-triangle);
   width: var(--combat-triangle-width);
   position: absolute;
   left: calc(50% - var(--combat-triangle-width)/2);
+  top: var(--combat-triangle-top, auto);
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur {
   position: absolute;
@@ -1397,13 +1414,20 @@ form.nephilim.actor section.window-content > section article main.combat .gauche
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .value {
   position: absolute;
-  left: 30px;
-  top: 35px;
+  left: var(--combat-dommages-value-left, 30px);
+  top: var(--combat-dommages-value-top, 35px);
+  width: var(--combat-dommages-value-width, auto);
+  height: var(--combat-dommages-value-height, auto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .title {
   position: absolute;
-  left: 12px;
-  top: 85px;
+  left: var(--combat-dommages-title-left, 12px);
+  top: var(--combat-dommages-title-top, 85px);
+  width: var(--combat-dommages-title-width, auto);
+  text-align: center;
 }
 form.nephilim.actor section.window-content > section article main.combat .gauche .sante .modificateur .physique {
   position: absolute;
@@ -1650,6 +1674,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .capacites ol {
   list-style: none;
+  padding-left: var(--combat-liste-retrait, 1.5em);
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .capacites ol li {
   display: flex;
@@ -1664,6 +1689,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .etats ol {
   list-style: none;
+  padding-left: var(--combat-liste-retrait, 1.5em);
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .etats ol li {
   display: flex;
@@ -1679,6 +1705,10 @@ form.nephilim.actor section.window-content > section article main.combat .droite
   width: 20px;
   height: 20px;
   margin-right: 20px;
+  border-color: var(--combat-case-color, #000);
+}
+form.nephilim.actor section.window-content > section article main.combat .droite .etats ol li div input:checked + label {
+  background: var(--combat-case-color, #000);
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus div.input {
   width: 10%;
@@ -1705,6 +1735,7 @@ form.nephilim.actor section.window-content > section article main.combat .droite
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol {
   list-style: none;
+  padding-left: var(--combat-liste-retrait, 1.5em);
 }
 form.nephilim.actor section.window-content > section article main.combat .droite .bonus ol li {
   display: flex;
@@ -3740,7 +3771,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat {
   display: flex;
   flex-direction: row;
-  color: #191813;
+  color: var(--font-color);
 }
 .tab.combat input,
 .tab.combat input:disabled {
@@ -3782,11 +3813,18 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 .tab.combat .gauche .sante .body .checkbox {
   position: absolute;
 }
+.tab.combat .gauche .sante .body .checkbox label {
+  border-color: var(--combat-case-color, #000);
+}
+.tab.combat .gauche .sante .body .checkbox input:checked + label {
+  background: var(--combat-case-color, #000);
+}
 .tab.combat .gauche .sante .pyramide {
   content: var(--img-triangle);
   width: var(--combat-triangle-width);
   position: absolute;
   left: calc(50% - var(--combat-triangle-width)/2);
+  top: var(--combat-triangle-top, auto);
 }
 .tab.combat .gauche .sante .modificateur {
   position: absolute;
@@ -3801,13 +3839,20 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.combat .gauche .sante .modificateur .value {
   position: absolute;
-  left: 30px;
-  top: 35px;
+  left: var(--combat-dommages-value-left, 30px);
+  top: var(--combat-dommages-value-top, 35px);
+  width: var(--combat-dommages-value-width, auto);
+  height: var(--combat-dommages-value-height, auto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .tab.combat .gauche .sante .modificateur .title {
   position: absolute;
-  left: 12px;
-  top: 85px;
+  left: var(--combat-dommages-title-left, 12px);
+  top: var(--combat-dommages-title-top, 85px);
+  width: var(--combat-dommages-title-width, auto);
+  text-align: center;
 }
 .tab.combat .gauche .sante .modificateur .physique {
   position: absolute;
@@ -4054,6 +4099,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.combat .droite .capacites ol {
   list-style: none;
+  padding-left: var(--combat-liste-retrait, 1.5em);
 }
 .tab.combat .droite .capacites ol li {
   display: flex;
@@ -4068,6 +4114,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.combat .droite .etats ol {
   list-style: none;
+  padding-left: var(--combat-liste-retrait, 1.5em);
 }
 .tab.combat .droite .etats ol li {
   display: flex;
@@ -4083,6 +4130,10 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
   width: 20px;
   height: 20px;
   margin-right: 20px;
+  border-color: var(--combat-case-color, #000);
+}
+.tab.combat .droite .etats ol li div input:checked + label {
+  background: var(--combat-case-color, #000);
 }
 .tab.combat .droite .bonus div.input {
   width: 10%;
@@ -4109,6 +4160,7 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.combat .droite .bonus ol {
   list-style: none;
+  padding-left: var(--combat-liste-retrait, 1.5em);
 }
 .tab.combat .droite .bonus ol li {
   display: flex;

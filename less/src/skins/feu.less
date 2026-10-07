@@ -1,7 +1,7 @@
 .skin-feu {
     --background: url("../../systems/neph5e/assets/skins/feu/background.webp") repeat;
     --font-color: #e37e00;
-    --font-side-color: #b58468;
+    --font-side-color: #362102;
     --font-disabled-color: #95703a;
     --column-color: #ad521d;
     --side-background: url("../../systems/neph5e/assets/skins/feu/side-background.webp");
@@ -57,6 +57,23 @@
     --selenim-imago-bottom: -28px;
     --combat-dommages-circle-width: 94px;
     --combat-dommages-circle-height: 105px;
+    // Le cercle du Feu est plus grand que les autres : la valeur du malus y est centrée.
+    --combat-dommages-value-left: 3px;
+    --combat-dommages-value-top: 0px;
+    --combat-dommages-value-width: var(--combat-dommages-circle-width);
+    --combat-dommages-value-height: var(--combat-dommages-circle-height);
+    // La figurine du Feu (60 x 72 px) dépasse de l'en-tête : les listes commencent
+    // entre sa fin (60 px) et le début du titre (70 px).
+    --combat-liste-retrait: 65px;
+    // Triangle de santé remonté : sa base passe sous « Mortelle », sa pointe au-dessus
+    // de « Dommages ».
+    --combat-triangle-top: -60px;
+    // « Physique » et « Magique » centrés sous leur cercle.
+    --combat-dommages-title-left: 0px;
+    --combat-dommages-title-width: var(--combat-dommages-circle-width);
+    --combat-dommages-title-top: calc(var(--combat-dommages-circle-height) - 1px);
+    // Cases de dommages, de blessures et d'états de la couleur des cercles.
+    --combat-case-color: #e37e00;
     --combat-triangle-width: 300px;
     --akasha-circle-width: 60px;
     --akasha-nef-transform: translate(119px, 91px) rotate(0deg);
