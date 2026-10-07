@@ -52,6 +52,7 @@ export class CombatHistory {
             manoeuver: manoeuver.id,
             family: manoeuver.family,
             noAttack: manoeuver.noAttack === true,
+            seuleDefense: manoeuver.seuleDefense === true,
             nextDefenseModifier: manoeuver.nextDefenseModifier,
             holds: manoeuver.holds === true
         };
