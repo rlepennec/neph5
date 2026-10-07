@@ -15,6 +15,7 @@ import { Esquiver } from "../manoeuver/esquiver.js";
 import { Excedent } from "./excedent.js";
 import { Eviter } from "../manoeuver/eviter.js";
 import { Fuir } from "../manoeuver/fuir.js";
+import { Immobiliser } from "../manoeuver/immobiliser.js";
 import { Health } from "../../core/health.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
@@ -269,6 +270,12 @@ export class Defense extends AbstractCombatFeature {
      * @returns the result sentence, rédigée par la manœuvre de défense jouée.
      */
     sentenceOf(winner) {
+        // Contre une prise, la phrase dit l'issue de la prise, quelle que soit la défense.
+        if (this.attack.manoeuver?.id === Immobiliser.ID) {
+            return (winner === Constants.ACTION
+                ? " ne parvient pas à empêcher l'immobilisation de "
+                : " parvient à empêcher l'immobilisation de ") + this.attack.actor.name;
+        }
         return this.manoeuver.defenseSentenceOf(winner);
     }
 

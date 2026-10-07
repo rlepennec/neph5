@@ -1,5 +1,6 @@
 import { ActiveEffects } from "../core/effects.js";
 import { Constants } from "../../module/common/constants.js";
+import { Immobiliser } from "../combat/manoeuver/immobiliser.js";
 import { Liberer } from "../combat/manoeuver/liberer.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
@@ -90,8 +91,15 @@ export class Health {
      */
     async applyDamages(impact, physical, weapon, manoeuver, winner, attack, critical, attacker) {
 
+        // Une prise s'annonce par son issue, réussie ou non, et non par la blessure : même
+        // quand aucun dommage n'est traité (esquive totale, dégâts manuels).
+        const prise = attack?.id === Immobiliser.ID;
+
         // Because dodge all damages
         if (manoeuver != null && manoeuver.hasOwnProperty('fix')) {
+            if (prise) {
+                await this.announceHold(attacker, winner);
+            }
             return;
         }
 
@@ -132,8 +140,44 @@ export class Health {
             }
         }
 
-        await this.announceWounds(attacker, resultats, details);
+        if (prise) {
+            await this.announceHold(attacker, winner, details);
+        } else {
+            await this.announceWounds(attacker, resultats, details);
+        }
 
+    }
+
+    /**
+     * Annonce dans le chat l'issue d'une prise (Immobiliser) : « A parvient à immobiliser B »
+     * si l'attaque l'emporte, « A ne parvient pas à immobiliser B » sinon.
+     * @param attacker The actor id of the attacker.
+     * @param winner   The action winner.
+     * @param details  Le détail du calcul des dommages, vide sans « Combat détaillé ».
+     */
+    async announceHold(attacker, winner, details = []) {
+        const sender = Health.senderOf(attacker);
+        const sentence = (sender?.name ?? "L'attaquant")
+            + (winner === Constants.ACTION ? " parvient à immobiliser " : " ne parvient pas à immobiliser ")
+            + this.actor.name;
+        await new NephilimChat(sender ?? this.actor)
+            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withData({
+                actor: sender ?? this.actor,
+                richSentence: sentence,
+                img: this.actor.img,
+                details: details
+            })
+            .create();
+    }
+
+    /**
+     * @param attacker The actor id of the attacker.
+     * @returns l'acteur attaquant, d'un token de la scène ou du monde, null s'il est introuvable.
+     */
+    static senderOf(attacker) {
+        return canvas.tokens?.objects?.children.find(t => t.actor?.id === attacker)?.actor
+            ?? game.actors.get(attacker);
     }
 
     /**
@@ -150,8 +194,7 @@ export class Health {
             return;
         }
         const gravite = Health.graviteOf(traites.flatMap(r => [...r]));
-        const sender = canvas.tokens?.objects?.children.find(t => t.actor?.id === attacker)?.actor
-            ?? game.actors.get(attacker);
+        const sender = Health.senderOf(attacker);
         let sentence;
         if (sender != null) {
             sentence = gravite == null
