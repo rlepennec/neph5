@@ -18,11 +18,13 @@
             checked
         {{/if}}
 
-        id="{{name}}"
+        id="{{@root.document.uuid}}.{{name}}"
         name="{{name}}"
         type="checkbox"
         data-dtype="Boolean"/>
 
-    <label for="{{name}}"/>
+    {{!-- Identifiant préfixé de l'uuid du document : sans lui, deux fiches ouvertes portaient
+         les mêmes identifiants, et cliquer une case de l'une cochait celle de l'autre. --}}
+    <label for="{{@root.document.uuid}}.{{name}}"/>
 
 </div>
