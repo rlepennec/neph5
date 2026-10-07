@@ -13,6 +13,8 @@ export class Elaboree extends AbstractManoeuver {
         this.approches = ['air','eau', 'ka'];
         this.nextDefenseModifier = 0;
         this.noAttack = true;
+        // Comme l'annonce sa description : en cas de réussite, dommages minorés de 2.
+        this.absorption = {modifier: 2};
     }
 
     /**

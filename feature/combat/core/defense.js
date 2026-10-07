@@ -68,7 +68,9 @@ export class Defense extends AbstractCombatFeature {
             .withBase(this.baseName, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(this.noDefenseThisRound ? new ManoeuverPool() : Defense.manoeuvers().against(this.attack))
-            .withApproches(this.approches(this.defaultApproche))
+            // Celles de la manœuvre retenue : aux défenses suivantes du round, Éviter peut ne
+            // plus être proposée (voir defenseToPerform), et la liste n'offre alors qu'un choix.
+            .withApproches(this.approches(this.manoeuver?.id ?? this.defaultApproche))
             .withWeapon(this.weapon)
             .withAttack(this.attackModifier())
             .withNextDefense({modifier: this.nextDefenseMalus})
