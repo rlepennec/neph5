@@ -18,7 +18,7 @@ const UPDATES = [
     async (actor, combat) => {
         if (!ActiveEffects.isActive(actor, ActiveEffects.DESORIENTE)) return;
         const lastHit = CombatHistory.of(combat)
-            .filter(e => e.target === actor.id && e.manoeuver === Etrange.ID)
+            .filter(e => e.target === CombatHistory.keyOf(actor) && e.manoeuver === Etrange.ID)
             .reduce((max, e) => Math.max(max, e.round ?? -Infinity), -Infinity);
         if (combat.round - lastHit >= 2) {
             await ActiveEffects.deactivate(actor, ActiveEffects.DESORIENTE);
@@ -61,8 +61,8 @@ async function proposerDommageDePrise(holder, held) {
     });
     if (accord !== true) return;
     // La prise a pu être lâchée pendant que la question attendait.
-    if (CombatHistory.heldBy(holder)?.id !== held.id) return;
-    await Health.applyDamagesOn(held.tokenOf?.id, 0, true, null, null, Constants.ACTION, { impact: { fix: 1 } }, false, holder.id);
+    if (CombatHistory.keyOf(CombatHistory.heldBy(holder)) !== CombatHistory.keyOf(held)) return;
+    await Health.applyDamagesOn(held.tokenOf?.id, 0, true, null, null, Constants.ACTION, { impact: { fix: 1 } }, false, Health.refOf(holder));
 }
 
 export class RoundUpdate {

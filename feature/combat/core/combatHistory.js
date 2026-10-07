@@ -26,6 +26,18 @@ export class CombatHistory {
     }
 
     /**
+     * @param actor The actor to identify.
+     * @returns la clé qui désigne ce combattant dans la chronologie : l'identifiant de son
+     *          token pour un acteur synthétique (token non lié), celui de l'acteur sinon.
+     *          Plusieurs tokens non liés d'un même acteur partagent l'identifiant de l'acteur :
+     *          s'en servir confondait leurs manœuvres (l'un « avait déjà agi » pour l'autre).
+     */
+    static keyOf(actor) {
+        if (actor == null) return null;
+        return actor.isToken === true ? (actor.token?.id ?? actor.id) : actor.id;
+    }
+
+    /**
      * Records a maneuver performed by an actor, if — and only if — that actor is currently
      * engaged in a combat. Silently does nothing otherwise: being tracked is a consequence of
      * being a combatant, not a precondition callers need to check themselves.
@@ -47,8 +59,8 @@ export class CombatHistory {
 
         const entry = {
             round: combatant.combat?.round ?? null,
-            actor: actor.id,
-            target: target?.id ?? null,
+            actor: CombatHistory.keyOf(actor),
+            target: CombatHistory.keyOf(target),
             manoeuver: manoeuver.id,
             family: manoeuver.family,
             noAttack: manoeuver.noAttack === true,
@@ -103,10 +115,11 @@ export class CombatHistory {
         const combatant = CombatHistory.combatantOf(actor);
         if (combatant == null) return null;
         const history = [...CombatHistory.of(combatant.combat)].reverse();
-        const prise = history.find(e => e.holds === true && e.actor === actor.id);
+        const key = CombatHistory.keyOf(actor);
+        const prise = history.find(e => e.holds === true && e.actor === key);
         if (prise?.target == null) return null;
-        if (history.find(e => e.holds === true && e.target === prise.target).actor !== actor.id) return null;
-        const held = combatant.combat.combatants.find(c => c.actor?.id === prise.target)?.actor;
+        if (history.find(e => e.holds === true && e.target === prise.target).actor !== key) return null;
+        const held = combatant.combat.combatants.find(c => CombatHistory.keyOf(c.actor) === prise.target)?.actor;
         return held?.immobilise === true ? held : null;
     }
 
@@ -119,10 +132,11 @@ export class CombatHistory {
     static holderOf(held) {
         const combatant = CombatHistory.combatantOf(held);
         if (combatant == null) return null;
-        const prise = [...CombatHistory.of(combatant.combat)].reverse().find(e => e.holds === true && e.target === held.id);
+        const key = CombatHistory.keyOf(held);
+        const prise = [...CombatHistory.of(combatant.combat)].reverse().find(e => e.holds === true && e.target === key);
         if (prise == null) return null;
-        const holder = combatant.combat.combatants.find(c => c.actor?.id === prise.actor)?.actor;
-        return holder != null && CombatHistory.heldBy(holder)?.id === held.id ? holder : null;
+        const holder = combatant.combat.combatants.find(c => CombatHistory.keyOf(c.actor) === prise.actor)?.actor;
+        return holder != null && CombatHistory.keyOf(CombatHistory.heldBy(holder)) === key ? holder : null;
     }
 
     /**
@@ -134,7 +148,8 @@ export class CombatHistory {
         const combatant = CombatHistory.combatantOf(actor);
         if (combatant == null) return [];
         const round = combatant.combat?.round;
-        return CombatHistory.of(combatant.combat).filter(e => e.round === round && e.actor === actor.id);
+        const key = CombatHistory.keyOf(actor);
+        return CombatHistory.of(combatant.combat).filter(e => e.round === round && e.actor === key);
     }
 
 }

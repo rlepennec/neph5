@@ -93,8 +93,8 @@ export class ContreAttaque extends Melee {
         // Touché : l'attaquant initial encaisse, sans défense possible.
         if (result.success === true) {
             const impact = this.impact(this.manoeuver.id);
-            await Health.applyDamagesOn(this.target?.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, this.actor.id);
-            await Health.applyEffectsOn(this.target?.id, this.actor.id, Constants.ACTION, this.manoeuver);
+            await Health.applyDamagesOn(this.target?.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, Health.refOf(this.actor));
+            await Health.applyEffectsOn(this.target?.id, Health.refOf(this.actor), Constants.ACTION, this.manoeuver);
         }
 
         // La riposte conclut : rien pour le défenseur si elle a réussi, sinon l'attaque

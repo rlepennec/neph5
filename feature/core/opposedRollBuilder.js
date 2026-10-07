@@ -98,7 +98,8 @@ export class OpposedRollBuilder {
                     } else {
                         const token = OpposedRollBuilder.tokenFromId(flags.opposed.purpose.target);
                         if (OpposedRollBuilder.handle(token)) {
-                            const attacker = OpposedRollBuilder.actorFromId(flags.opposed.purpose.attacker);
+                            // L'attaquant est l'émetteur du message, retrouvé par son token.
+                            const attacker = actor;
                             const manoeuver = ManoeuverBuilder.create(flags.opposed.purpose.manoeuver);
                             const attack = new Attack(
                                 attacker,
@@ -192,6 +193,14 @@ export class OpposedRollBuilder {
         const id = flags.opposed.actor;
         let actor = null;
 
+        // Retrieve the actor from its token: several unlinked tokens share the same actor id.
+        if (flags.opposed.token != null) {
+            actor = game.canvas?.tokens?.get(flags.opposed.token)?.actor;
+            if (actor != null) {
+                return actor;
+            }
+        }
+
         // Retrieve the actor from scene.
         actor = game.canvas?.scene?.tokens.find(t => t.actorId === id)?.actor;
         if (actor != null) {
@@ -215,14 +224,6 @@ export class OpposedRollBuilder {
      */
     static tokenFromId(id) {
         return canvas.tokens?.objects?.children.find(t => t.id === id);
-    }
-
-    /**
-     * @param id The idenfier of the actor.
-     * @return the actor.
-     */
-    static actorFromId(id) {
-        return canvas.tokens?.objects?.children.find(t => t.actor.id === id)?.actor;
     }
 
 }

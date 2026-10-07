@@ -176,8 +176,29 @@ export class Health {
      * @returns l'acteur attaquant, d'un token de la scène ou du monde, null s'il est introuvable.
      */
     static senderOf(attacker) {
-        return canvas.tokens?.objects?.children.find(t => t.actor?.id === attacker)?.actor
-            ?? game.actors.get(attacker);
+        return Health.actorOf(attacker) ?? game.actors.get(attacker);
+    }
+
+    /**
+     * @param actor The actor to designate.
+     * @returns la référence à transmettre pour désigner cet acteur : l'identifiant de son
+     *          token sur la scène, sinon le sien. Plusieurs tokens non liés d'un même acteur
+     *          partagent l'identifiant de l'acteur : seul le token les distingue.
+     */
+    static refOf(actor) {
+        return actor?.tokenOf?.id ?? actor?.id ?? null;
+    }
+
+    /**
+     * @param ref La référence d'un acteur (voir refOf) : identifiant de token ou d'acteur.
+     * @returns l'acteur sur la scène : par son token d'abord, sinon le premier token de cet
+     *          acteur (anciennes références, acteur sans token désigné).
+     */
+    static actorOf(ref) {
+        if (ref == null) return null;
+        return canvas.tokens?.get(ref)?.actor
+            ?? canvas.tokens?.objects?.children.find(t => t.actor?.id === ref)?.actor
+            ?? null;
     }
 
     /**
@@ -315,7 +336,8 @@ export class Health {
                         await actor.activateEffect(manoeuver.effect.name);
                     }
                 } else if (manoeuver.id === Liberer.ID) {
-                    const actor = canvas.tokens?.objects?.children.find(t => t.actor.id === attacker)?.actor;
+                    // Celui qui se libère : retrouvé par son token (voir refOf).
+                    const actor = Health.actorOf(attacker);
                     if (actor != null) {
                         await actor.deactivateEffect(ActiveEffects.IMMOBILISE.name);
                     }

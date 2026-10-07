@@ -164,8 +164,8 @@ export class Distance extends AbstractCombatFeature {
         if (result.opposed === false && result.success === true) {
             const impact = this.impact(this.manoeuver.id);
             for (const cible of this.plusieursCibles ? this.cibles : [this.target]) {
-                await Health.applyDamagesOn(cible.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, this.actor.id);
-                await Health.applyEffectsOn(cible.id, this.actor.id, Constants.ACTION, this.manoeuver);
+                await Health.applyDamagesOn(cible.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, Health.refOf(this.actor));
+                await Health.applyEffectsOn(cible.id, Health.refOf(this.actor), Constants.ACTION, this.manoeuver);
             }
         }
 

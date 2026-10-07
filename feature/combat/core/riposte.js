@@ -55,7 +55,7 @@ export class Riposte {
         await defense.actor.setFlag('neph5e', Riposte.FLAG, {
             token: defense.actor.tokenOf?.id ?? null,
             attaquant: defense.attack.actor.tokenOf?.id ?? null,
-            attaquantActeur: defense.attack.actor.id,
+            attaquantActeur: Health.refOf(defense.attack.actor),
             impact: defense.impactFinal(),
             arme: weapon == null ? null : {
                 system: {

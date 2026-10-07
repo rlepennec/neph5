@@ -272,6 +272,8 @@ export class AbstractFeature {
                 neph5e: {
                     opposed: {
                         actor: this.actor.id,
+                        // Le token précise l'acteur : plusieurs tokens non liés partagent son id.
+                        token: this.actor.tokenOf?.id ?? null,
                         purpose: this.purpose,
                         result: result
                     }
