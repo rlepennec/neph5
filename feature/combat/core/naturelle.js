@@ -74,7 +74,7 @@ export class Naturelle extends AbstractCombatFeature {
             .withBase(this.item?.name ?? "Non défini", this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withManoeuvers(Naturelle.manoeuvers())
-            .withApproches(this.approches(Frapper.ID))
+            .withApproches(this.approches(this.manoeuver.id))
             .withWeapon(this.weapon)
             .withTarget(this.target)
             .withFoeOnGround(this.effects.foeOnGround)
@@ -95,10 +95,19 @@ export class Naturelle extends AbstractCombatFeature {
      */
     async initializeRoll() {
 
-        const data = this.data;
-        if (Object.keys(data.manoeuvers).length === 0) {
+        let data = this.data;
+        const disponibles = Object.keys(data.manoeuvers);
+        if (disponibles.length === 0) {
             ui.notifications.info(`${this.actor.name} a déjà effectué toutes ses actions pour ce round de combat.`);
             return;
+        }
+
+        // Après la première attaque d'une manœuvre jouable plusieurs fois (Rapide), la
+        // manœuvre par défaut n'est plus proposée : le dialogue s'ouvre alors sur la
+        // première disponible, approches, description et impact compris.
+        if (!disponibles.includes(this.manoeuver.id)) {
+            this.setManoeuver(disponibles[0]);
+            data = this.data;
         }
 
         // [V14] render() est asynchrone : sans await, initializeRoll() rendait la main
