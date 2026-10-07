@@ -161,6 +161,13 @@ export const CombatantMixin = Base => {
         }
 
         /**
+         * @returns toutes les cibles sélectionnées : un tir en rafale peut en viser plusieurs.
+         */
+        get targets() {
+            return Array.from(game.user.targets);
+        }
+
+        /**
          * @returns the token of the actor on the scene, null if none
          */
         get tokenOf() {
@@ -332,8 +339,12 @@ export const CombatantMixin = Base => {
             // Contre-attaque d'une riposte en attente : sa cible est l'attaquant initial, pas
             // le token sélectionné (voir Riposte).
             const riposte = Riposte.of(this) != null && Riposte.armes(this).some(a => a.id === weapon.id);
-            if (this.target == null && !riposte) {
-                ui.notifications.info("Le personnage n'a pas sélectionné de cible");
+            // Plusieurs cibles : seul le tir en rafale d'une arme à feu le permet (voir Distance).
+            const rafale = this.targets.length > 1 && weapon.system.type === Constants.FEU && weapon.system.rafale === true;
+            if (this.target == null && !riposte && !rafale) {
+                ui.notifications.info(this.targets.length > 1
+                    ? "Plusieurs cibles : seul un tir en rafale permet de les viser toutes"
+                    : "Le personnage n'a pas sélectionné de cible");
                 return;
             }
 
