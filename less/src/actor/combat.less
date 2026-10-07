@@ -54,7 +54,7 @@
 .tab.combat {
     display: flex;
     flex-direction: row;
-    color: rgb(25, 24, 19);
+    color: var(--font-color);
 
     // Les champs de saisie n'héritent pas de la couleur du texte : on les aligne
     // sur celle des libellés (degrés des ressources, bonus, caractéristiques...).
@@ -107,6 +107,16 @@
                 .checkbox {
                     position: absolute;
                 }
+
+                // Cases de dommages et de blessures : noires par défaut, comme partout, ou de
+                // la couleur du thème (voir skins/feu.less).
+                .checkbox label {
+                    border-color: var(--combat-case-color, #000);
+                }
+
+                .checkbox input:checked + label {
+                    background: var(--combat-case-color, #000);
+                }
             }
 
             .pyramide {
@@ -114,6 +124,7 @@
                 width: var(--combat-triangle-width);
                 position: absolute;
                 left: calc(50% - var(--combat-triangle-width)/2);
+                top: var(--combat-triangle-top, auto);
             }
 
             .modificateur {
@@ -128,16 +139,27 @@
                     height: var(--combat-dommages-circle-height);
                 }
  
+                // Placée pour un cercle de 80 x 85 px ; un thème au cercle différent la
+                // recentre par ses variables (voir skins/feu.less).
                 .value {
                     position: absolute;
-                    left: 30px;
-                    top: 35px;
+                    left: var(--combat-dommages-value-left, 30px);
+                    top: var(--combat-dommages-value-top, 35px);
+                    width: var(--combat-dommages-value-width, auto);
+                    height: var(--combat-dommages-value-height, auto);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
+                // Placé pour un cercle de 80 x 85 px ; un thème au cercle différent le centre
+                // sous son cercle par ses variables (voir skins/feu.less).
                 .title {
                     position: absolute;
-                    left: 12px;
-                    top: 85px;
+                    left: var(--combat-dommages-title-left, 12px);
+                    top: var(--combat-dommages-title-top, 85px);
+                    width: var(--combat-dommages-title-width, auto);
+                    text-align: center;
                 }
 
                 .physique {
@@ -478,6 +500,7 @@
 
             ol {
                 list-style: none;
+                padding-left: var(--combat-liste-retrait, 1.5em);
 
                 li {
                     display: flex;
@@ -502,6 +525,7 @@
 
             ol {
                 list-style: none;
+                padding-left: var(--combat-liste-retrait, 1.5em);
 
                 li {
                     display: flex;
@@ -524,6 +548,12 @@
                             width: 20px;
                             height: 20px;
                             margin-right: 20px;
+                            // Même couleur que les cases de la santé (voir skins/feu.less).
+                            border-color: var(--combat-case-color, #000);
+                        }
+
+                        input:checked + label {
+                            background: var(--combat-case-color, #000);
                         }
 
                     }
@@ -550,6 +580,9 @@
 
             ol {
                 list-style: none;
+                // Retrait de la liste sous la figurine de l'en-tête (1.5em comme Foundry, ou
+                // celui du thème : voir skins/feu.less). Même règle pour États et Capacités.
+                padding-left: var(--combat-liste-retrait, 1.5em);
 
                 li {
                     display: flex;

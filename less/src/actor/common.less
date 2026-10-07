@@ -121,7 +121,9 @@ form.nephilim.actor {
             display: flex;
             flex-direction: column;
             width: 100%;
-            color: var(--color-font-dark);
+            // La couleur du texte du thème, comme en v13 : une couleur sombre fixe rendait
+            // illisible le thème Feu, seul à avoir un fond sombre et un texte clair.
+            color: var(--font-color);
             overflow-y : auto;
 
             header {
