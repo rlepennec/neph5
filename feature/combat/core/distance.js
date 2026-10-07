@@ -28,8 +28,17 @@ export class Distance extends AbstractCombatFeature {
         this.item = ActionDataBuilder.competenceOf(actor, weapon);
         this.weapon = weapon;
         this.target = actor.target;
+        this.cibles = actor.targets ?? [];
         this.effects = ActiveEffects.effectsOf(actor, this.target?.actor);
         this.setManoeuver(Tirer.ID);
+    }
+
+    /**
+     * @returns true si le tir vise plusieurs cibles : seule une rafale le permet, et ses
+     *          dommages tombent sur chacune d'elles (voir finalize).
+     */
+    get plusieursCibles() {
+        return this.target == null && this.cibles.length > 1;
     }
 
     /**
@@ -76,7 +85,7 @@ export class Distance extends AbstractCombatFeature {
             .withType(Version.data(this.weapon).type === Constants.TRAIT ? Constants.OPPOSED : Constants.SIMPLE)
             .withBase(this.item.name, this.degre)
             .withBlessures(Constants.PHYSICAL)
-            .withManoeuvers(Distance.manoeuvers())
+            .withManoeuvers(this.plusieursCibles ? new ManoeuverPool().withManoeuver(Rafale.ID) : Distance.manoeuvers())
             .withApproches(this.approches(this.manoeuver.id))
             .withWeapon(this.weapon)
             .withTarget(this.target)
@@ -122,7 +131,9 @@ export class Distance extends AbstractCombatFeature {
         let data = this.data;
         const disponibles = Object.keys(data.manoeuvers);
         if (disponibles.length === 0) {
-            ui.notifications.info(`${this.actor.name} a déjà effectué toutes ses actions pour ce round de combat.`);
+            ui.notifications.info(this.plusieursCibles
+                ? `Plusieurs cibles : seul un tir en rafale le permet, et ${this.actor.name} ne peut pas tirer en rafale maintenant.`
+                : `${this.actor.name} a déjà effectué toutes ses actions pour ce round de combat.`);
             return;
         }
 
@@ -149,11 +160,14 @@ export class Distance extends AbstractCombatFeature {
      */
     async finalize(result) {
 
-        // Tir non opposé réussi : les dégâts tombent, sans défense possible.
+        // Tir non opposé réussi : les dégâts tombent, sans défense possible — sur chacune des
+        // cibles d'une rafale qui en vise plusieurs.
         if (result.opposed === false && result.success === true) {
             const impact = this.impact(this.manoeuver.id);
-            await Health.applyDamagesOn(this.target.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, this.actor.id);
-            await Health.applyEffectsOn(this.target.id, this.actor.id, Constants.ACTION, this.manoeuver);
+            for (const cible of this.plusieursCibles ? this.cibles : [this.target]) {
+                await Health.applyDamagesOn(cible.id, impact, true, this.weapon, null, Constants.ACTION, this.manoeuver, result.critical, this.actor.id);
+                await Health.applyEffectsOn(cible.id, this.actor.id, Constants.ACTION, this.manoeuver);
+            }
         }
 
         // Tout tir compte dans le round, qu'il touche ou non : c'est lui qui fait avancer la
