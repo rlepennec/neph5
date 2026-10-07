@@ -33,6 +33,10 @@ export class AbstractManoeuver {
         this.times = 1;
         this.noAttack = false;
         this.noDefense = false;
+        // La seule défense du round : une fois jouée, plus aucune défense n'est proposée à
+        // l'acteur ce round-ci — sans rien interdire d'autre, à la différence de noAttack
+        // (voir exclusiveDefensePlayed). Ex: Éviter.
+        this.seuleDefense = false;
         this.approches = [];
         this.attack = null;
         this.defense = null;
@@ -132,12 +136,21 @@ export class AbstractManoeuver {
     /**
      * À utiliser dans le canBePerformed propre à une manœuvre de défense normale
      * (noAttack=false) : une défense exclusive (noAttack=true, ex: Élaborée) déjà jouée ce
-     * round par l'acteur verrouille tout le reste, cette défense-ci comprise.
+     * round par l'acteur verrouille tout le reste, cette défense-ci comprise ; une seule
+     * défense (seuleDefense=true, ex: Éviter) verrouille toute autre défense.
      * @param action The action which perform the manoeuver to test.
      * @returns true if an exclusive defense has already been played this round.
      */
     exclusiveDefensePlayed(action) {
-        return (action.history ?? []).some(e => e.noAttack === true);
+        return (action.history ?? []).some(e => e.noAttack === true || e.seuleDefense === true);
+    }
+
+    /**
+     * @param action The action which perform the manoeuver to test.
+     * @returns true if the actor has already played a defense this round.
+     */
+    defensePlayed(action) {
+        return (action.history ?? []).some(e => e.family === Constants.DODGE || e.family === Constants.PARADE);
     }
 
     /**
