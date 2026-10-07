@@ -6,7 +6,6 @@ import { Bloquer } from "../manoeuver/bloquer.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
 import { Combatants } from "./combatants.js";
-import { ContreAttaque } from "./contreAttaque.js";
 import { Contrer } from "../manoeuver/contrer.js";
 import { Controler } from "../manoeuver/controler.js";
 import { DefenseDialog } from "./defenseDialog.js";
@@ -319,17 +318,6 @@ export class Defense extends AbstractCombatFeature {
      */
     async applyDamages(absorption) {
         await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
-    }
-
-    /**
-     * Ouvre l'attaque gratuite d'une manœuvre de riposte (ex: Contrer). Manœuvre imposée et
-     * non modifiable, jet simple donc indéfendable, et aucune consommation de l'action du
-     * round.
-     * @param manoeuver La manœuvre de défense à l'origine de la riposte : son
-     *                  counterResolved() sera rappelé une fois le second jet effectué.
-     */
-    async counterAttack(manoeuver) {
-        await new ContreAttaque(this, manoeuver).initializeRoll();
     }
 
     /**

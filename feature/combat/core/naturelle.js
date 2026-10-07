@@ -11,6 +11,7 @@ import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Puissante } from "../manoeuver/puissante.js";
 import { Rapide } from "../manoeuver/rapide.js";
 import { Standard } from "../manoeuver/standard.js";
+import { Riposte } from "./riposte.js";
 import { Subtile } from "../manoeuver/subtile.js";
 
 export class Naturelle extends AbstractCombatFeature {
@@ -94,6 +95,11 @@ export class Naturelle extends AbstractCombatFeature {
      * @Override
      */
     async initializeRoll() {
+
+        // Riposte en attente (Contrer réussi) : cette attaque est la contre-attaque.
+        if (await Riposte.intercepter(this.actor, this.weapon)) {
+            return;
+        }
 
         let data = this.data;
         const disponibles = Object.keys(data.manoeuvers);
