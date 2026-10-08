@@ -8711,6 +8711,69 @@ body.neph5e-interface #sidebar {
   background: url("../../systems/neph5e/assets/backgrounds/p.webp");
   background-size: cover;
 }
+body.neph5e-interface #sidebar button:not(.ui-control):not(.plain):not(.icon) {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  border: 1px solid #f5f4f4;
+  border-radius: 6px;
+  box-shadow: 0 0 3px 0 #f5f4f4 inset;
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface #sidebar button:not(.ui-control):not(.plain):not(.icon):hover {
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 4px 3px #bebdbd inset;
+}
+body.neph5e-interface #interface search {
+  --input-background-color: transparent;
+  --input-border-color: transparent;
+  --input-text-color: #f5f4f4;
+  --input-focus-text-color: #ffffff;
+  --input-placeholder-color: #a9a7a2;
+  --input-focus-outline-color: transparent;
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  border: 1px solid #f5f4f4;
+  border-radius: 6px;
+  box-shadow: 0 0 3px 0 #f5f4f4 inset;
+  padding-inline: 6px;
+}
+body.neph5e-interface #interface search:focus-within {
+  border-color: #c0272d;
+}
+body.neph5e-interface #interface search input {
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface #interface search button,
+body.neph5e-interface #interface search .inline-control {
+  color: #f5f4f4;
+  text-shadow: none;
+}
+body.neph5e-interface #interface search button:hover,
+body.neph5e-interface #interface search .inline-control:hover {
+  color: #ffffff;
+}
+body.neph5e-interface #sidebar-tabs .ui-control[data-action="tab"],
+body.neph5e-interface #sidebar-tabs .ui-control.collapse {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  border: 1px solid #f5f4f4;
+  border-radius: 6px;
+  color: #f5f4f4;
+  box-shadow: 0 0 5px #444 inset;
+}
+body.neph5e-interface #sidebar-tabs .ui-control[data-action="tab"]:hover,
+body.neph5e-interface #sidebar-tabs .ui-control.collapse:hover {
+  color: #ffffff;
+  box-shadow: 0 0 4px 3px #bebdbd inset;
+}
+body.neph5e-interface #sidebar-tabs .ui-control[data-action="tab"][aria-pressed="true"],
+body.neph5e-interface #sidebar-tabs .ui-control.collapse[aria-pressed="true"] {
+  border-color: #c0272d;
+  color: #ffffff;
+}
 body.neph5e-interface #chat-message {
   background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
   background-size: cover;
@@ -8770,14 +8833,51 @@ body.neph5e-interface .application:not(.nephilim) .window-content {
   font-family: 'AJensonPro', var(--font-body);
 }
 body.neph5e-interface .application:not(.nephilim) button:not(.ui-control):not(.plain):not(.icon) {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  border: 1px solid #f5f4f4;
   border-radius: 6px;
   box-shadow: 0 0 3px 0 #f5f4f4 inset;
+  font-family: 'AJensonPro', var(--font-body);
 }
 body.neph5e-interface .application:not(.nephilim) button:not(.ui-control):not(.plain):not(.icon):hover {
+  color: #ffffff;
+  border-color: #ffffff;
   box-shadow: 0 0 4px 3px #bebdbd inset;
 }
 body.neph5e-interface .application:not(.nephilim) select {
   border-radius: 6px;
+}
+body.neph5e-interface .application:not(.nephilim) search {
+  --input-background-color: transparent;
+  --input-border-color: transparent;
+  --input-text-color: #f5f4f4;
+  --input-focus-text-color: #ffffff;
+  --input-placeholder-color: #a9a7a2;
+  --input-focus-outline-color: transparent;
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  color: #f5f4f4;
+  border: 1px solid #f5f4f4;
+  border-radius: 6px;
+  box-shadow: 0 0 3px 0 #f5f4f4 inset;
+  padding-inline: 6px;
+}
+body.neph5e-interface .application:not(.nephilim) search:focus-within {
+  border-color: #c0272d;
+}
+body.neph5e-interface .application:not(.nephilim) search input {
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface .application:not(.nephilim) search button,
+body.neph5e-interface .application:not(.nephilim) search .inline-control {
+  color: #f5f4f4;
+  text-shadow: none;
+}
+body.neph5e-interface .application:not(.nephilim) search button:hover,
+body.neph5e-interface .application:not(.nephilim) search .inline-control:hover {
+  color: #ffffff;
 }
 body.neph5e-interface .application:not(.nephilim) .journal-entry-page,
 body.neph5e-interface .application:not(.nephilim) .journal-page-content,

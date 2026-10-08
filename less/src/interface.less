@@ -66,6 +66,60 @@
     --color-scrollbar: @n-accent;
 }
 
+// Bouton Nephilim (hors contrôles de l'interface) : bleu nuit texturé, bordure claire,
+// arrondi, ombre intérieure qui s'accentue au survol.
+.n-bouton() {
+    background: @n-fond;
+    background-size: cover;
+    color: @n-clair;
+    border: 1px solid @n-clair;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 @n-clair inset;
+    font-family: @n-police, var(--font-body);
+
+    &:hover {
+        color: #ffffff;
+        border-color: #ffffff;
+        box-shadow: @n-ombre-survol;
+    }
+}
+
+// Widget de recherche (élément <search> de Foundry : bouton de mode, champ, tri…) : même
+// fond sombre et même texte clair que les boutons qui l'entourent, bordure rouge quand on y
+// saisit.
+.n-recherche() {
+    --input-background-color: transparent;
+    --input-border-color: transparent;
+    --input-text-color: @n-clair;
+    --input-focus-text-color: #ffffff;
+    --input-placeholder-color: #a9a7a2;
+    --input-focus-outline-color: transparent;
+    background: @n-fond;
+    background-size: cover;
+    color: @n-clair;
+    border: 1px solid @n-clair;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0 @n-clair inset;
+    padding-inline: 6px;
+
+    &:focus-within {
+        border-color: @n-accent;
+    }
+
+    input {
+        font-family: @n-police, var(--font-body);
+    }
+
+    button, .inline-control {
+        color: @n-clair;
+        text-shadow: none;
+
+        &:hover {
+            color: #ffffff;
+        }
+    }
+}
+
 // Textes sombres sur parchemin (messages du chat, pages de journal).
 .n-encre() {
     --color-text-emphatic: @n-encre;
@@ -166,6 +220,39 @@ body.neph5e-interface {
     #sidebar {
         background: @n-fond;
         background-size: cover;
+
+        // Boutons : en-têtes des répertoires (« Créer une scène », « Créer un dossier »…),
+        // onglet Paramètres, etc.
+        button:not(.ui-control):not(.plain):not(.icon) {
+            .n-bouton();
+        }
+    }
+
+    // Widgets de recherche de l'interface (répertoires de la barre latérale…).
+    #interface search {
+        .n-recherche();
+    }
+
+    // Onglets de la barre latérale : boutons « plain » de Foundry, rendus visibles comme en
+    // v12, l'onglet ouvert bordé de rouge.
+    #sidebar-tabs .ui-control[data-action="tab"],
+    #sidebar-tabs .ui-control.collapse {
+        background: @n-fond;
+        background-size: cover;
+        border: 1px solid @n-clair;
+        border-radius: 6px;
+        color: @n-clair;
+        box-shadow: @n-ombre;
+
+        &:hover {
+            color: #ffffff;
+            box-shadow: @n-ombre-survol;
+        }
+
+        &[aria-pressed="true"] {
+            border-color: @n-accent;
+            color: #ffffff;
+        }
     }
 
     // Saisie du chat sur parchemin.
@@ -205,16 +292,16 @@ body.neph5e-interface {
         }
 
         button:not(.ui-control):not(.plain):not(.icon) {
-            border-radius: 6px;
-            box-shadow: 0 0 3px 0 @n-clair inset;
-
-            &:hover {
-                box-shadow: @n-ombre-survol;
-            }
+            .n-bouton();
         }
 
         select {
             border-radius: 6px;
+        }
+
+        // Widgets de recherche des fenêtres (filtre des paramètres, des modules…).
+        search {
+            .n-recherche();
         }
 
         // Contenu des journaux et éditeurs : parchemin et encre, comme en v12.
