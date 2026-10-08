@@ -57,6 +57,8 @@
     "SETTINGS.modifierRangeDesc": "Permet de définir l'intervalle des modificateurs",
     "SETTINGS.extraChatMessages": "Messages du tchat",
     "SETTINGS.extraChatMessagesDesc": "Permet d'afficher plus d'information dans le tchat",
+    "SETTINGS.interfaceNephilim": "Interface Nephilim",
+    "SETTINGS.interfaceNephilimDesc": "Applique le style de Nephilim à l'interface de Foundry (contrôles, barre latérale, chat, fenêtres), en plus du thème clair ou sombre. Réglage propre à chaque utilisateur.",
     "SETTINGS.combatDetaille": "Combat détaillé",
     "SETTINGS.combatDetailleDesc": "Affiche, sous les blessures infligées, le détail du calcul des dommages (impact, défense, protection, minimum, critique)",
     "SETTINGS.styleItemSheet": "Style",
