@@ -8581,3 +8581,216 @@ form.combat.excedent .valider button {
 form.combat.excedent .valider button:hover {
   text-shadow: 0px 0px 1px #191813;
 }
+body.neph5e-interface #interface {
+  --color-text-emphatic: #f5f4f4;
+  --color-text-primary: #f5f4f4;
+  --color-text-secondary: #dcdad4;
+  --color-text-subtle: #a9a7a2;
+  --color-text-selection: #ffffff;
+  --color-text-selection-bg: #c0272d;
+  --background: rgba(5, 23, 50, 0.92);
+  --color-header-background: rgba(5, 23, 50, 0.85);
+  --color-border: #6d7690;
+  --color-tabs-border: #f5f4f4;
+  --color-fieldset-border: #6d7690;
+  --color-form-label: #e6e4df;
+  --color-form-label-hover: #ffffff;
+  --color-form-hint: #a9a7a2;
+  --color-form-hint-hover: #dcdad4;
+  --input-background-color: #051732;
+  --input-border-color: #6d7690;
+  --input-text-color: #f5f4f4;
+  --input-focus-outline-color: #c0272d;
+  --input-placeholder-color: #8a8f9c;
+  --input-focus-text-color: #ffffff;
+  --button-background-color: #051732;
+  --button-border-color: #f5f4f4;
+  --button-text-color: #f5f4f4;
+  --button-focus-outline-color: #c0272d;
+  --button-hover-background-color: #0d2a57;
+  --button-hover-border-color: #ffffff;
+  --button-hover-text-color: #ffffff;
+  --color-scrollbar: #c0272d;
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface #interface .themed {
+  --color-text-emphatic: #f5f4f4;
+  --color-text-primary: #f5f4f4;
+  --color-text-secondary: #dcdad4;
+  --color-text-subtle: #a9a7a2;
+  --color-text-selection: #ffffff;
+  --color-text-selection-bg: #c0272d;
+  --background: rgba(5, 23, 50, 0.92);
+  --color-header-background: rgba(5, 23, 50, 0.85);
+  --color-border: #6d7690;
+  --color-tabs-border: #f5f4f4;
+  --color-fieldset-border: #6d7690;
+  --color-form-label: #e6e4df;
+  --color-form-label-hover: #ffffff;
+  --color-form-hint: #a9a7a2;
+  --color-form-hint-hover: #dcdad4;
+  --input-background-color: #051732;
+  --input-border-color: #6d7690;
+  --input-text-color: #f5f4f4;
+  --input-focus-outline-color: #c0272d;
+  --input-placeholder-color: #8a8f9c;
+  --input-focus-text-color: #ffffff;
+  --button-background-color: #051732;
+  --button-border-color: #f5f4f4;
+  --button-text-color: #f5f4f4;
+  --button-focus-outline-color: #c0272d;
+  --button-hover-background-color: #0d2a57;
+  --button-hover-border-color: #ffffff;
+  --button-hover-text-color: #ffffff;
+  --color-scrollbar: #c0272d;
+}
+body.neph5e-interface .ui-control:not(.toggle) {
+  --control-bg-color: #051732;
+  --control-border-color: #f5f4f4;
+  --control-icon-color: #f5f4f4;
+  --control-hover-bg-color: #0d2a57;
+  --control-hover-border-color: #ffffff;
+  --control-hover-icon-color: #ffffff;
+  --control-active-bg-color: #051732;
+  --control-active-border-color: #c0272d;
+  --control-active-icon-color: #ffffff;
+  --control-button-border-color: #f5f4f4;
+  --control-button-hover-bg-color: #0d2a57;
+  --control-button-hover-border-color: #ffffff;
+}
+body.neph5e-interface .ui-control.toggle {
+  --toggle-bg-color: #051732;
+  --toggle-border-color: #f5f4f4;
+  --toggle-active-bg-color: #0d2a57;
+  --toggle-active-border-color: #c0272d;
+}
+body.neph5e-interface button.ui-control,
+body.neph5e-interface a.ui-control,
+body.neph5e-interface li.ui-control,
+body.neph5e-interface div.ui-control {
+  background-image: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  box-shadow: 0 0 5px #444 inset;
+}
+body.neph5e-interface button.ui-control:hover,
+body.neph5e-interface a.ui-control:hover,
+body.neph5e-interface li.ui-control:hover,
+body.neph5e-interface div.ui-control:hover {
+  box-shadow: 0 0 4px 3px #bebdbd inset;
+}
+body.neph5e-interface #scene-controls .ui-control,
+body.neph5e-interface #hotbar .hotbar-controls .ui-control {
+  border-radius: 50%;
+}
+body.neph5e-interface #scene-navigation .scene.ui-control {
+  border-radius: 6px;
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface #players #players-active,
+body.neph5e-interface #players #players-inactive {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  border: 1px solid #f5f4f4;
+  border-radius: 6px;
+  box-shadow: 0 0 5px #444 inset;
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface #action-bar .slot {
+  background-image: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  border-color: #f5f4f4;
+  box-shadow: 0 0 5px #444 inset;
+}
+body.neph5e-interface #action-bar .slot:hover {
+  box-shadow: 0 0 4px 3px #bebdbd inset;
+}
+body.neph5e-interface #hotbar-page-controls {
+  color: #f5f4f4;
+}
+body.neph5e-interface #sidebar {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+}
+body.neph5e-interface #chat-message {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  color: #191813;
+  font-family: 'AJensonProLtDisp', var(--font-body);
+}
+body.neph5e-interface .chat-message {
+  --color-text-emphatic: #191813;
+  --color-text-primary: #191813;
+  --color-text-secondary: #4b4a44;
+  --color-text-subtle: #6b6a64;
+  color: #191813;
+}
+body.neph5e-interface #pause img {
+  content: url("../../systems/neph5e/assets/core/logo.webp");
+}
+body.neph5e-interface .application:not(.nephilim) {
+  --color-text-emphatic: #f5f4f4;
+  --color-text-primary: #f5f4f4;
+  --color-text-secondary: #dcdad4;
+  --color-text-subtle: #a9a7a2;
+  --color-text-selection: #ffffff;
+  --color-text-selection-bg: #c0272d;
+  --background: rgba(5, 23, 50, 0.92);
+  --color-header-background: rgba(5, 23, 50, 0.85);
+  --color-border: #6d7690;
+  --color-tabs-border: #f5f4f4;
+  --color-fieldset-border: #6d7690;
+  --color-form-label: #e6e4df;
+  --color-form-label-hover: #ffffff;
+  --color-form-hint: #a9a7a2;
+  --color-form-hint-hover: #dcdad4;
+  --input-background-color: #051732;
+  --input-border-color: #6d7690;
+  --input-text-color: #f5f4f4;
+  --input-focus-outline-color: #c0272d;
+  --input-placeholder-color: #8a8f9c;
+  --input-focus-text-color: #ffffff;
+  --button-background-color: #051732;
+  --button-border-color: #f5f4f4;
+  --button-text-color: #f5f4f4;
+  --button-focus-outline-color: #c0272d;
+  --button-hover-background-color: #0d2a57;
+  --button-hover-border-color: #ffffff;
+  --button-hover-text-color: #ffffff;
+  --color-scrollbar: #c0272d;
+}
+body.neph5e-interface .application:not(.nephilim) .window-header {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  border-bottom: 1px solid #c0272d;
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface .application:not(.nephilim) .window-content {
+  background: url("../../systems/neph5e/assets/backgrounds/p.webp");
+  background-size: cover;
+  font-family: 'AJensonPro', var(--font-body);
+}
+body.neph5e-interface .application:not(.nephilim) button:not(.ui-control):not(.plain):not(.icon) {
+  border-radius: 6px;
+  box-shadow: 0 0 3px 0 #f5f4f4 inset;
+}
+body.neph5e-interface .application:not(.nephilim) button:not(.ui-control):not(.plain):not(.icon):hover {
+  box-shadow: 0 0 4px 3px #bebdbd inset;
+}
+body.neph5e-interface .application:not(.nephilim) select {
+  border-radius: 6px;
+}
+body.neph5e-interface .application:not(.nephilim) .journal-entry-page,
+body.neph5e-interface .application:not(.nephilim) .journal-page-content,
+body.neph5e-interface .application:not(.nephilim) .editor-content {
+  --color-text-emphatic: #191813;
+  --color-text-primary: #191813;
+  --color-text-secondary: #4b4a44;
+  --color-text-subtle: #6b6a64;
+  color: #191813;
+}
+body.neph5e-interface .application:not(.nephilim) .journal-entry-content,
+body.neph5e-interface .application:not(.nephilim) .editor-content {
+  background: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+  background-size: cover;
+  font-family: 'AJensonProLtDisp', var(--font-body);
+}

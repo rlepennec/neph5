@@ -1,0 +1,235 @@
+// ═══════════════════════════════════════════════════════════════════════════
+//  Interface Nephilim : le style propre au système pour l'interface de Foundry
+//  (contrôles de scène, navigation, joueurs, barre de macros, barre latérale, chat,
+//  fenêtres de configuration…), hors fiches et dialogues du système.
+//
+//  Activé par le réglage utilisateur « Interface Nephilim » (module/common/settings.js),
+//  qui pose la classe neph5e-interface sur <body>. Toutes les règles en dépendent :
+//  réglage désactivé, l'interface reste exactement celle de Foundry.
+//
+//  Il s'ajoute au choix clair/sombre de Foundry : Foundry ne permet pas de déclarer un
+//  troisième thème d'interface (choix figés de core.uiConfig). On redéfinit donc surtout
+//  ses variables de thème et de contrôle, plutôt que de réécrire ses règles : la feuille
+//  du cœur est en couches CSS (@layer), une feuille de système sans couche l'emporte.
+//
+//  Fiches et dialogues du système (classe .nephilim) : exclus, ils ont leur propre style.
+//  Reprend les intentions de l'interface v12 (less/src/general.less de la v1.5.5) : fond
+//  bleu nuit texturé, contrôles ronds bordés de clair, ombre intérieure au survol, police
+//  AJensonPro, parchemin pour la saisie du chat.
+// ═══════════════════════════════════════════════════════════════════════════
+
+@n-fond: url("../../systems/neph5e/assets/backgrounds/p.webp");
+@n-parchemin: url("../../systems/neph5e/assets/backgrounds/parchemin 1.webp");
+@n-logo: url("../../systems/neph5e/assets/core/logo.webp");
+@n-bleu: #051732;
+@n-bleu-survol: #0d2a57;
+@n-clair: #f5f4f4;
+@n-gris: #bebdbd;
+@n-bordure: #6d7690;
+@n-accent: #c0272d;
+@n-encre: #191813;
+@n-police: 'AJensonPro';
+
+@n-ombre: 0 0 5px #444 inset;
+@n-ombre-survol: 0 0 4px 3px @n-gris inset;
+
+// Variables de thème de Foundry (thème sombre comme clair), aux couleurs Nephilim.
+.n-theme() {
+    --color-text-emphatic: @n-clair;
+    --color-text-primary: @n-clair;
+    --color-text-secondary: #dcdad4;
+    --color-text-subtle: #a9a7a2;
+    --color-text-selection: #ffffff;
+    --color-text-selection-bg: @n-accent;
+    --background: fade(@n-bleu, 92%);
+    --color-header-background: fade(@n-bleu, 85%);
+    --color-border: @n-bordure;
+    --color-tabs-border: @n-clair;
+    --color-fieldset-border: @n-bordure;
+    --color-form-label: #e6e4df;
+    --color-form-label-hover: #ffffff;
+    --color-form-hint: #a9a7a2;
+    --color-form-hint-hover: #dcdad4;
+    --input-background-color: @n-bleu;
+    --input-border-color: @n-bordure;
+    --input-text-color: @n-clair;
+    --input-focus-outline-color: @n-accent;
+    --input-placeholder-color: #8a8f9c;
+    --input-focus-text-color: #ffffff;
+    --button-background-color: @n-bleu;
+    --button-border-color: @n-clair;
+    --button-text-color: @n-clair;
+    --button-focus-outline-color: @n-accent;
+    --button-hover-background-color: @n-bleu-survol;
+    --button-hover-border-color: #ffffff;
+    --button-hover-text-color: #ffffff;
+    --color-scrollbar: @n-accent;
+}
+
+// Textes sombres sur parchemin (messages du chat, pages de journal).
+.n-encre() {
+    --color-text-emphatic: @n-encre;
+    --color-text-primary: @n-encre;
+    --color-text-secondary: #4b4a44;
+    --color-text-subtle: #6b6a64;
+    color: @n-encre;
+}
+
+body.neph5e-interface {
+
+    // ─── Interface de jeu ───────────────────────────────────────────────────
+
+    #interface {
+        .n-theme();
+        font-family: @n-police, var(--font-body);
+
+        .themed {
+            .n-theme();
+        }
+    }
+
+    // Tous les contrôles de l'interface : bleu nuit texturé, bordure et icône claires,
+    // bordure rouge quand le contrôle est actif.
+    .ui-control:not(.toggle) {
+        --control-bg-color: @n-bleu;
+        --control-border-color: @n-clair;
+        --control-icon-color: @n-clair;
+        --control-hover-bg-color: @n-bleu-survol;
+        --control-hover-border-color: #ffffff;
+        --control-hover-icon-color: #ffffff;
+        --control-active-bg-color: @n-bleu;
+        --control-active-border-color: @n-accent;
+        --control-active-icon-color: #ffffff;
+        --control-button-border-color: @n-clair;
+        --control-button-hover-bg-color: @n-bleu-survol;
+        --control-button-hover-border-color: #ffffff;
+    }
+
+    .ui-control.toggle {
+        --toggle-bg-color: @n-bleu;
+        --toggle-border-color: @n-clair;
+        --toggle-active-bg-color: @n-bleu-survol;
+        --toggle-active-border-color: @n-accent;
+    }
+
+    button.ui-control, a.ui-control, li.ui-control, div.ui-control {
+        background-image: @n-fond;
+        background-size: cover;
+        box-shadow: @n-ombre;
+
+        &:hover {
+            box-shadow: @n-ombre-survol;
+        }
+    }
+
+    // Contrôles de scène et commandes de la barre de macros : ronds, comme en v12.
+    #scene-controls .ui-control,
+    #hotbar .hotbar-controls .ui-control {
+        border-radius: 50%;
+    }
+
+    // Navigation des scènes : cartouches arrondis, police du système.
+    #scene-navigation .scene.ui-control {
+        border-radius: 6px;
+        font-family: @n-police, var(--font-body);
+    }
+
+    // Liste des joueurs.
+    #players {
+        #players-active, #players-inactive {
+            background: @n-fond;
+            background-size: cover;
+            border: 1px solid @n-clair;
+            border-radius: 6px;
+            box-shadow: @n-ombre;
+            font-family: @n-police, var(--font-body);
+        }
+    }
+
+    // Barre de macros : emplacements sur le même fond.
+    #action-bar .slot {
+        background-image: @n-fond;
+        background-size: cover;
+        border-color: @n-clair;
+        box-shadow: @n-ombre;
+
+        &:hover {
+            box-shadow: @n-ombre-survol;
+        }
+    }
+
+    #hotbar-page-controls {
+        color: @n-clair;
+    }
+
+    // Barre latérale.
+    #sidebar {
+        background: @n-fond;
+        background-size: cover;
+    }
+
+    // Saisie du chat sur parchemin.
+    #chat-message {
+        background: @n-parchemin;
+        background-size: cover;
+        color: @n-encre;
+        font-family: 'AJensonProLtDisp', var(--font-body);
+    }
+
+    // Messages du chat : texte sombre (le fond parchemin vient de chat.less).
+    .chat-message {
+        .n-encre();
+    }
+
+    // Pause : le pentacle du système à la place du logo de Foundry.
+    #pause img {
+        content: @n-logo;
+    }
+
+    // ─── Fenêtres de Foundry (configuration, options, raccourcis, journaux…) ──
+
+    .application:not(.nephilim) {
+        .n-theme();
+
+        .window-header {
+            background: @n-fond;
+            background-size: cover;
+            border-bottom: 1px solid @n-accent;
+            font-family: @n-police, var(--font-body);
+        }
+
+        .window-content {
+            background: @n-fond;
+            background-size: cover;
+            font-family: @n-police, var(--font-body);
+        }
+
+        button:not(.ui-control):not(.plain):not(.icon) {
+            border-radius: 6px;
+            box-shadow: 0 0 3px 0 @n-clair inset;
+
+            &:hover {
+                box-shadow: @n-ombre-survol;
+            }
+        }
+
+        select {
+            border-radius: 6px;
+        }
+
+        // Contenu des journaux et éditeurs : parchemin et encre, comme en v12.
+        .journal-entry-page,
+        .journal-page-content,
+        .editor-content {
+            .n-encre();
+        }
+
+        .journal-entry-content,
+        .editor-content {
+            background: @n-parchemin;
+            background-size: cover;
+            font-family: 'AJensonProLtDisp', var(--font-body);
+        }
+    }
+
+}

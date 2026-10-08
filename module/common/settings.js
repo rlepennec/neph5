@@ -125,6 +125,19 @@ export const registerSystemSettings = function () {
         default: true
     });
 
+    // Interface Nephilim : le style du système pour l'interface de Foundry (voir
+    // less/src/interface.less). Propre à chaque utilisateur, appliqué sans recharger.
+    game.settings.register('neph5e', 'interfaceNephilim', {
+        config: true,
+        scope: 'client',
+        name: game.i18n.localize('SETTINGS.interfaceNephilim'),
+        hint: game.i18n.localize('SETTINGS.interfaceNephilimDesc'),
+        type: Boolean,
+        default: true,
+        onChange: value => document.body.classList.toggle('neph5e-interface', value === true)
+    });
+    document.body.classList.toggle('neph5e-interface', game.settings.get('neph5e', 'interfaceNephilim') === true);
+
     game.settings.register('neph5e', 'combatDetaille', {
         config: true,
         scope: 'world',
