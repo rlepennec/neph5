@@ -8876,8 +8876,16 @@ body.neph5e-interface .chat-message {
   --color-text-subtle: #6b6a64;
   color: #191813;
 }
+body.neph5e-interface #pause {
+  height: 280px;
+  top: calc(50vh - 150px);
+}
 body.neph5e-interface #pause img {
   content: url("../../systems/neph5e/assets/core/logo.webp");
+  width: 200px;
+  height: 200px;
+  transform-origin: 49.2% 53.1%;
+  translate: 0.8% -3.1%;
 }
 body.neph5e-interface .application:not(.nephilim) {
   --color-text-emphatic: #f5f4f4;

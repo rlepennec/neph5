@@ -268,9 +268,21 @@ body.neph5e-interface {
         .n-encre();
     }
 
-    // Pause : le pentacle du système à la place du logo de Foundry.
-    #pause img {
-        content: @n-logo;
+    // Pause : le pentacle du système à la place du logo de Foundry, deux fois plus grand.
+    // Dans logo.webp (128 px), l'anneau a pour centre (62,5 ; 67,5) et non le centre de
+    // l'image (63,5 ; 63,5) — mesuré sur la couche alpha. La rotation (fa-spin) tourne donc
+    // autour du centre de l'anneau, et un léger décalage le ramène au milieu du bandeau.
+    #pause {
+        height: 280px;
+        top: calc(50vh - 150px);
+
+        img {
+            content: @n-logo;
+            width: 200px;
+            height: 200px;
+            transform-origin: 49.2% 53.1%;
+            translate: 0.8% -3.1%;
+        }
     }
 
     // ─── Fenêtres de Foundry (configuration, options, raccourcis, journaux…) ──
