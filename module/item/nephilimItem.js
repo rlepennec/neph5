@@ -467,12 +467,40 @@ export class NephilimItem extends Item {
      * Un lien vers un item (chat, description...) ouvre sa fiche. Sans droit de lecture,
      * la fiche refuse de s'afficher et Foundry ne le signale que dans la console : le
      * joueur cliquait sans rien voir. Il est désormais averti.
+     *
+     * Un lien vers une copie embarquée (celui du chat après un jet) s'ouvre comme depuis la
+     * fiche du personnage : la copie ne porte pas la description, le degré, le cercle… de
+     * l'item du monde, et sa fiche seule paraissait vide.
      * @override
      */
     _onClickDocumentLink(event) {
         if (this.sheet?.isVisible === false) {
             ui.notifications.error("Vous n'avez pas les droits de lecture sur « " + this.name + " ».");
             return null;
+        }
+        if (this.isEmbedded === true && this.actor != null) {
+            return this.openAsFromActor(event);
+        }
+        return super._onClickDocumentLink(event);
+    }
+
+    /**
+     * Ouvre cette copie embarquée comme la fiche du personnage l'ouvre (voir
+     * NephilimActorSheet._onOpenLink) : selon la fonctionnalité, la fiche de l'item du monde
+     * avec les données du personnage, ou celle de la copie. Si l'item à ouvrir n'est pas
+     * lisible par l'utilisateur, la fiche de la copie s'ouvre, comme avant.
+     * @param event The triggering click event.
+     */
+    async openAsFromActor(event) {
+        // Import dynamique : FeatureBuilder importe les fonctionnalités, qui importent ce module.
+        const { FeatureBuilder } = await import("../../feature/core/featureBuilder.js");
+        const feature = new FeatureBuilder(this.actor)
+            .withScope("actor")
+            .withEmbeddedItem(this.id)
+            .withOriginalItem(this.sid)
+            .create();
+        if (feature != null && feature.openingItem()?.sheet?.isVisible !== false) {
+            return await feature.editEmbeddedItem();
         }
         return super._onClickDocumentLink(event);
     }
