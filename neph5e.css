@@ -7787,6 +7787,17 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
 .nettoyage .aide p.exclusions {
   font-style: italic;
 }
+.nettoyage h2.section {
+  margin: 8px 0 0 0;
+  font-family: 'NightjarDemi';
+  font-size: 17px;
+  border-bottom: 1px solid #151156;
+}
+.nettoyage table.membres select.rattachement {
+  width: 100%;
+  font-family: 'AJensonPro';
+  font-size: 13px;
+}
 .nettoyage .barre {
   display: flex;
   flex-direction: row;

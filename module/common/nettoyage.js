@@ -1,7 +1,12 @@
 import { AbstractDialog } from "../../feature/core/abstractDialog.js";
 
 /**
- * Nettoyage des items embarqués orphelins.
+ * Nettoyage du monde : recherche les incohérences laissées dans les données du monde et
+ * permet de les corriger, un traitement par section de la fenêtre :
+ *  - les items embarqués orphelins (ci-dessous) ;
+ *  - les membres de fraternité introuvables (voir membresIntrouvables).
+ *
+ * ITEMS EMBARQUÉS ORPHELINS
  *
  * QU'EST-CE QU'UN ORPHELIN
  *
@@ -52,6 +57,7 @@ export class NettoyageDialog extends AbstractDialog {
         },
         actions: {
             supprimer: NettoyageDialog._onSupprimer,
+            rattacher: NettoyageDialog._onRattacher,
             toutCocher: NettoyageDialog._onToutCocher,
             toutDecocher: NettoyageDialog._onToutDecocher
         }
@@ -72,11 +78,97 @@ export class NettoyageDialog extends AbstractDialog {
      */
     async _prepareContext(options) {
         const orphelins = await NettoyageDialog.inventaire();
+        const membres = NettoyageDialog.membresIntrouvables();
         return {
             orphelins: orphelins,
             nombre: orphelins.length,
-            autonomes: NettoyageDialog.AUTONOMES.map(t => game.i18n.localize('TYPES.Item.' + t)).join(', ')
+            autonomes: NettoyageDialog.AUTONOMES.map(t => game.i18n.localize('TYPES.Item.' + t)).join(', '),
+            membres: membres,
+            nombreMembres: membres.length,
+            candidats: NettoyageDialog.candidats()
         };
+    }
+
+    /**
+     * Dresse la liste des membres de fraternité introuvables : les entrées d'effectif
+     * dont l'identifiant ne correspond plus à aucune fiche du monde (identifiant changé
+     * par une duplication, une réimportation, la migration 1.0.6, ou fiche supprimée).
+     * Même critère que Fraternite.membresIntrouvables.
+     * @returns les entrées introuvables, chacune décrite pour l'affichage.
+     */
+    static membresIntrouvables() {
+        const lignes = [];
+        for (const fraternite of game.actors.filter(a => a.type === 'fraternite')) {
+            for (const membre of fraternite.system.effectif ?? []) {
+                if (game.actors.find(a => a.system?.id === membre.actor) != null) continue;
+                const periode = fraternite.items.find(i => i.type === 'periode' && i.system?.id === membre.periode);
+                lignes.push({
+                    fraternite: fraternite.name,
+                    fraterniteUuid: fraternite.uuid,
+                    sid: membre.actor,
+                    periode: membre.periode ?? "",
+                    periodeNom: periode?.name ?? membre.periode ?? "",
+                    statut: membre.status
+                });
+            }
+        }
+        return lignes;
+    }
+
+    /**
+     * @returns les fiches auxquelles rattacher un membre : figures et figurants du monde,
+     *          par ordre alphabétique.
+     */
+    static candidats() {
+        return game.actors
+            .filter(a => (a.type === 'figure' || a.type === 'figurant') && a.system?.id != null)
+            .map(a => ({ sid: a.system.id, nom: a.name }))
+            .sort((a, b) => a.nom.localeCompare(b.nom));
+    }
+
+    /**
+     * Applique les choix faits sur les membres introuvables : retrait de l'effectif, ou
+     * rattachement à une fiche existante. Si cette fiche est déjà membre pour la même
+     * période, l'entrée introuvable est retirée, pour ne pas créer de doublon.
+     */
+    static async _onRattacher(event, target) {
+
+        event.preventDefault();
+
+        const choix = [...this.element.querySelectorAll('select.rattachement')]
+            .filter(select => select.value !== "")
+            .map(select => ({
+                fraternite: select.dataset.fraternite,
+                sid: select.dataset.sid,
+                periode: select.dataset.periode,
+                action: select.value
+            }));
+        if (choix.length === 0) {
+            ui.notifications.info(game.i18n.localize('NEPHILIM.nettoyageMembresAucuneAction'));
+            return;
+        }
+
+        let corriges = 0;
+        for (const uuid of new Set(choix.map(c => c.fraternite))) {
+            const fraternite = await fromUuid(uuid);
+            if (fraternite == null) continue;
+            const effectif = foundry.utils.duplicate(fraternite.system.effectif);
+            for (const c of choix.filter(c => c.fraternite === uuid)) {
+                const memePeriode = m => (m.periode ?? "") === c.periode;
+                const index = effectif.findIndex(m => m.actor === c.sid && memePeriode(m));
+                if (index < 0) continue;
+                if (c.action === 'retirer' || effectif.some(m => m.actor === c.action && memePeriode(m))) {
+                    effectif.splice(index, 1);
+                } else {
+                    effectif[index] = { ...effectif[index], actor: c.action };
+                }
+                corriges++;
+            }
+            await fraternite.update({ 'system.effectif': effectif });
+        }
+
+        ui.notifications.info(game.i18n.format('NEPHILIM.nettoyageMembresTermine', { nombre: corriges }));
+        await this.render(false);
     }
 
     /**

@@ -1,9 +1,15 @@
-{{!-- Nettoyage des items embarqués orphelins. Le message d'aide est en tête :
-      la fenêtre s'ouvre sur une explication, pas sur un tableau brut. --}}
+{{!-- Nettoyage du monde : un traitement par section, chacun avec son aide. --}}
 <section class="nettoyage-root">
 
     <div class="aide">
         <h1>{{localize "NEPHILIM.nettoyageTitreAide"}}</h1>
+        <p>{{localize "NEPHILIM.nettoyageIntro"}}</p>
+    </div>
+
+    {{!-- Items orphelins --}}
+    <h2 class="section">{{localize "NEPHILIM.nettoyageSectionItems"}}</h2>
+
+    <div class="aide">
         <p>{{localize "NEPHILIM.nettoyageAide1"}}</p>
         <p>{{localize "NEPHILIM.nettoyageAide2"}}</p>
         <p class="exclusions">{{localize "NEPHILIM.nettoyageAide3"}}</p>
@@ -54,6 +60,65 @@
     {{else}}
 
     <p class="aucun">{{localize "NEPHILIM.nettoyageAucun"}}</p>
+
+    {{/if}}
+
+    {{!-- Membres de fraternité introuvables --}}
+    <h2 class="section">{{localize "NEPHILIM.nettoyageSectionMembres"}}</h2>
+
+    <div class="aide">
+        <p>{{localize "NEPHILIM.nettoyageMembresAide"}}</p>
+    </div>
+
+    {{#if nombreMembres}}
+
+    <div class="barre">
+        <span class="compte">{{localize "NEPHILIM.nettoyageMembresTrouves"}} {{nombreMembres}}</span>
+    </div>
+
+    <table class="orphelins membres">
+        <thead>
+            <tr>
+                <th>{{localize "NEPHILIM.nettoyageFraternite"}}</th>
+                <th>{{localize "NEPHILIM.nettoyagePeriode"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageStatut"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageIdentifiant"}}</th>
+                <th>{{localize "NEPHILIM.nettoyageAction"}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each membres as |membre|}}
+            <tr>
+                <td>{{membre.fraternite}}</td>
+                <td>{{membre.periodeNom}}</td>
+                <td>{{membre.statut}}</td>
+                <td class="sid">{{membre.sid}}</td>
+                <td>
+                    <select class="rattachement" data-fraternite="{{membre.fraterniteUuid}}" data-sid="{{membre.sid}}" data-periode="{{membre.periode}}">
+                        <option value="">{{localize "NEPHILIM.nettoyageNeRienFaire"}}</option>
+                        <option value="retirer">{{localize "NEPHILIM.nettoyageRetirer"}}</option>
+                        <optgroup label="{{localize "NEPHILIM.nettoyageRattacherA"}}">
+                            {{#each @root.candidats as |candidat|}}
+                            <option value="{{candidat.sid}}">{{candidat.nom}}</option>
+                            {{/each}}
+                        </optgroup>
+                    </select>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <button type="button" data-action="rattacher">
+            <i class="fas fa-check"></i>
+            {{localize "NEPHILIM.nettoyageAppliquer"}}
+        </button>
+    </div>
+
+    {{else}}
+
+    <p class="aucun">{{localize "NEPHILIM.nettoyageMembresAucun"}}</p>
 
     {{/if}}
 
