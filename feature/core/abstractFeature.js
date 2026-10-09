@@ -181,10 +181,11 @@ export class AbstractFeature {
                 break;
         }
 
-        return base
+        // Le malus de blessure réduit d'abord le Vécu (ou la Compétence) utilisé, jusqu'à 0 ;
+        // l'approche et les autres modificateurs s'ajoutent ensuite (voir baseBlessee).
+        return AbstractFeature.baseBlessee(base, AbstractFeature.toInt(parameters?.blessures, this.data.blessures))
             + AbstractFeature.toInt(parameters?.modifier)
             + AbstractFeature.toInt(parameters?.approche)
-            + AbstractFeature.toInt(parameters?.blessures, this.data.blessures)
             + AbstractFeature.toInt(parameters?.metamorphe, 0)
             + AbstractFeature.toInt(parameters?.mnemos)
             + this.modifier(parameters);
@@ -197,6 +198,19 @@ export class AbstractFeature {
      */
     note(parameters) {
         return null;
+    }
+
+    /**
+     * Application du malus de blessure : « on commence par enlever le malus au Vécu utilisé,
+     * avec un minimum de 0. Un Nephilim peut toujours utiliser une approche ; son degré de
+     * Ka-élément vient alors s'ajouter à ce Vécu réduit du malus, même si ce Vécu est réduit à
+     * zéro. » Vécu vaut ici aussi pour Compétence et Menace.
+     * @param base      La difficulté de base (Vécu, Compétence ou Menace), en %.
+     * @param blessures Le malus de blessure, négatif ou nul, en %.
+     * @returns la base réduite du malus, jamais négative.
+     */
+    static baseBlessee(base, blessures) {
+        return Math.max(0, base + blessures);
     }
 
     /**
