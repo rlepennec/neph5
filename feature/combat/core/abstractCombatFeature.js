@@ -18,10 +18,11 @@ export class AbstractCombatFeature extends AbstractFeature {
 
         const data = this.data;
 
-        return AbstractCombatFeature.toInt(data?.base?.difficulty)
+        // Le malus de blessure réduit d'abord la Compétence (ou la Menace) utilisée, jusqu'à 0 ;
+        // l'approche et les autres modificateurs s'ajoutent ensuite (voir baseBlessee).
+        return AbstractFeature.baseBlessee(AbstractCombatFeature.toInt(data?.base?.difficulty), AbstractFeature.toInt(parameters?.blessures, data.blessures))
             + AbstractFeature.toInt(parameters?.modifier)
             + AbstractFeature.toInt(parameters?.approche)
-            + AbstractFeature.toInt(parameters?.blessures, data.blessures)
             + AbstractCombatFeature.toInt(data?.foeOnGround?.modifier)
             + AbstractCombatFeature.toInt(data?.onGround?.modifier)
             + AbstractCombatFeature.toInt(data?.stunned?.modifier)
