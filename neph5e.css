@@ -7766,12 +7766,12 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
   gap: 12px;
   padding: 8px 4px;
   font-family: 'AJensonPro';
-  color: #191813;
+  color: #e6e4df;
 }
 .nettoyage .aide {
   padding: 10px 14px;
-  border-left: 3px solid #151156;
-  background: rgba(21, 17, 86, 0.06);
+  border-left: 3px solid #6d7690;
+  background: rgba(255, 255, 255, 0.05);
 }
 .nettoyage .aide h1 {
   margin: 0 0 6px 0;
@@ -7791,7 +7791,7 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
   margin: 8px 0 0 0;
   font-family: 'NightjarDemi';
   font-size: 17px;
-  border-bottom: 1px solid #151156;
+  border-bottom: 1px solid #6d7690;
 }
 .nettoyage table.membres select.rattachement {
   width: 100%;
@@ -7815,12 +7815,12 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
 }
 .nettoyage table.orphelins {
   width: 100%;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #6d7690;
+  border-bottom: 1px solid #6d7690;
   background: rgba(0, 0, 0, 0.05);
 }
 .nettoyage table.orphelins thead {
-  background: rgba(200, 200, 200, 0.5);
+  background: rgba(255, 255, 255, 0.12);
   border: none;
   font-family: 'Nightjar';
 }
