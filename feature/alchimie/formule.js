@@ -48,14 +48,60 @@ export class Formule extends AbstractFocus {
 
             // If not critical, spend materiae primae
             if (result.critical === false) {
-                for (let element of this.item.system.elements) {
-                    const quantite = Math.max(0, this.actor.system.alchimie.primae[element].quantite - this.item.system.degre);
+                for (const [element, cout] of Object.entries(this.coutsEnMateriae())) {
+                    const quantite = Math.max(0, this.actor.system.alchimie.primae[element].quantite - cout);
                     await this.actor.update({ ['system.alchimie.primae.' + element + ".quantite"]: quantite });
                 }
             }
 
         }
 
+    }
+
+    /**
+     * Mémorise l'élément choisi au lancement d'une quintuple : c'est lui qui est consommé
+     * (voir coutsEnMateriae).
+     * @Override
+     */
+    async roll(parameters) {
+        this.elementQuintuple = parameters?.elt ?? null;
+        await super.roll(parameters);
+    }
+
+    /**
+     * @returns l'élément d'une quintuple lancée sans choix : le premier dont l'acteur a au
+     *          moins 5 materiae primae, comme la liste du dialogue. Null s'il n'y en a aucun.
+     */
+    elementQuintupleParDefaut() {
+        return Constants.ELEMENTS.find(e => this.actor.system.alchimie.primae[e]?.quantite > 4) ?? null;
+    }
+
+    /**
+     * @returns les materiae primae consommées par une réalisation, par élément :
+     *          - un élément simple : le degré de la formule ;
+     *          - une quintuple : 5 de l'élément choisi au lancement ;
+     *          - une quintessence : 1 de chaque élément.
+     */
+    coutsEnMateriae() {
+        const couts = {};
+        const ajouter = (element, cout) => couts[element] = (couts[element] ?? 0) + cout;
+        for (const element of this.item.system.elements) {
+            switch (element) {
+                case 'quintuple': {
+                    const choisi = this.elementQuintuple ?? this.elementQuintupleParDefaut();
+                    if (choisi != null) {
+                        ajouter(choisi, 5);
+                    }
+                    break;
+                }
+                case 'quintessence':
+                    Constants.ELEMENTS.forEach(e => ajouter(e, 1));
+                    break;
+                default:
+                    ajouter(element, this.item.system.degre);
+            }
+        }
+        return couts;
     }
 
     /**
@@ -66,19 +112,8 @@ export class Formule extends AbstractFocus {
             const substance = this.item.system.substance;
             const construct = this.actor.getConstruct(substance);
             if (parameters == null || parameters.elt == null) {
-                if (this.actor.system.alchimie.primae.air.quantite > 4) {
-                    return construct['air'] * 10;
-                } else if (this.actor.system.alchimie.primae.eau.quantite > 4) {
-                    return construct['eau'] * 10;
-                } else if (this.actor.system.alchimie.primae.feu.quantite > 4) {
-                    return construct['feu'] * 10;
-                } else if (this.actor.system.alchimie.primae.lune.quantite > 4) {
-                    return construct['lune'] * 10;
-                } else if (this.actor.system.alchimie.primae.terre.quantite > 4) {
-                    return construct['terre'] * 10;
-                } else {
-                    return 0;
-                }
+                const element = this.elementQuintupleParDefaut();
+                return element == null ? 0 : construct[element] * 10;
             } else {
                 return construct[parameters.elt] * 10;
             }
