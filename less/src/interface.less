@@ -222,8 +222,9 @@ body.neph5e-interface {
         background-size: cover;
 
         // Boutons : en-têtes des répertoires (« Créer une scène », « Créer un dossier »…),
-        // onglet Paramètres, etc.
-        button:not(.ui-control):not(.plain):not(.icon) {
+        // onglet Paramètres, etc. Le dé d'initiative du suivi de combat (combatant-control) garde
+        // son image : le fond Nephilim la masquerait.
+        button:not(.ui-control):not(.plain):not(.icon):not(.combatant-control) {
             .n-bouton();
         }
     }
@@ -303,7 +304,8 @@ body.neph5e-interface {
             font-family: @n-police, var(--font-body);
         }
 
-        button:not(.ui-control):not(.plain):not(.icon) {
+        // Le dé d'initiative du suivi de combat détaché garde son image (voir #sidebar).
+        button:not(.ui-control):not(.plain):not(.icon):not(.combatant-control) {
             .n-bouton();
         }
 
