@@ -218,10 +218,13 @@ export class Defense extends AbstractCombatFeature {
 
         // Marge du défenseur supérieure à 10 : il répartit ses degrés entre réduction des
         // dommages et malus sur l'attaque, qui est alors recalculée avec le même dé avant
-        // de désigner le vainqueur.
+        // de désigner le vainqueur. Contrôler ne réduit aucun dommage (Se libérer n'en inflige
+        // pas) : tous ses degrés vont au malus, sans fenêtre.
         const points = Excedent.points(result);
         if (points > 0) {
-            this.excedent = await Excedent.repartir(this.actor, points, Excedent.DEFENSE);
+            this.excedent = this.manoeuver?.id === Controler.ID
+                ? { dommages: 0, malus: points }
+                : await Excedent.repartir(this.actor, points, Excedent.DEFENSE);
             this.result = Excedent.penaliser(this.result, this.excedent.malus);
         }
 
