@@ -40,9 +40,16 @@ export class CombatHistory {
         if (combatant == null) return;
 
         // Tenir un adversaire occupe : jouer quoi que ce soit d'autre que Contrôler, c'est
-        // lâcher sa prise, et celui qu'on retenait n'est alors plus immobilisé.
+        // lâcher sa prise, et celui qu'on retenait n'est alors plus immobilisé. Sauf à reprendre
+        // la même cible : l'ancienne prise, encore en tête de la chronologie, désignerait
+        // celui qu'on vient d'immobiliser, et le libérerait aussitôt.
         if (manoeuver.maintainsHold !== true) {
-            await Holds.release(CombatHistory.heldBy(actor));
+            const held = CombatHistory.heldBy(actor);
+            const reprise = manoeuver.holds === true && held != null &&
+                held.id === target?.id;
+            if (!reprise) {
+                await Holds.release(held);
+            }
         }
 
         const entry = {
