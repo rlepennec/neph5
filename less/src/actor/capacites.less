@@ -1,0 +1,107 @@
+.tab.capacites {
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        font-family: 'AJensonPro';
+        font-size: 21px;
+        margin-bottom: -10px;
+
+        // Le cercle du skin, aux dimensions de celui des sciences.
+        .circle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            border: none;
+            width: var(--science-circle-width, 60px);
+            height: var(--science-circle-height, 65px);
+            display: hidden;
+            content: var(--img-circle);
+        }
+
+        .separator {
+            position: absolute;
+            border: none;
+            height: 4px;
+            left: 70px;
+            top: 46px;
+            width: calc(100% - 80px);
+            content: var(--img-separator);
+        }
+
+        // Superposé au cercle, la valeur centrée dans les deux sens, quel que soit le skin.
+        .degre {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: var(--science-circle-width, 60px);
+            height: var(--science-circle-height, 65px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        .folder {
+            display: flex;
+            flex-direction: row;
+            flex: 1 1 auto;
+            position: absolute;
+            left: 100px;
+            top: 15px;
+            width: calc(100% - 80px);
+            font-family: 'NightjarDemi';
+            font-size: 27px;
+        }
+
+    }
+
+    .body {
+        padding-left: 0px;
+        padding-top: 70px;
+
+        .capacite {
+            display: flex;
+            flex-direction: column;
+            font-family: 'AJensonPro';
+            margin-top: 20px;
+
+            .title {
+                display: flex;
+                flex-direction: row;
+
+                .pin {
+                    border: none;
+                    width: 26px;
+                    margin-left: 50px;
+                    display: hidden;
+                    background-color: transparent;
+                    content: var(--img-pin);
+                }
+
+                .name {
+                    flex: 1 1 auto;
+                    text-align: left;
+                    padding-left: 20px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    font-size: 20px;
+                }
+
+            }
+
+            .description {
+                list-style: none;
+                width: calc(100% - 100px);
+                margin-left: 85px;
+                font-size: 15px;
+            }
+
+        }
+
+    }
+
+}
