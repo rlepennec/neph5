@@ -121,11 +121,16 @@ export class Health {
         const detaille = game.settings.get('neph5e', 'combatDetaille') === true;
         const details = [];
 
+        // Un critique double l'impact, avant la défense et la protection : il fait ainsi une
+        // différence même quand le coup normal serait arrêté par l'armure.
+        const impactPorte = Health.impactOf(impact, critical);
+
         if (physical === true) {
             const armor = this.actor.protection("physique");
             const fix = winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : null;
-            const encaisse = Health.damagesOf(impact, armor, perforante, absorption);
-            const damages = (fix ?? encaisse) * (critical === true ? 2 : 1);
+            const encaisse = Health.damagesOf(impactPorte, armor, perforante, absorption);
+            // Les dommages fixes ne passent pas par la protection : le critique les double.
+            const damages = fix != null ? fix * (critical === true ? 2 : 1) : encaisse;
             resultats.push(await new Damages(this.actor, 'physique').apply(damages));
             if (detaille) {
                 details.push(Health.detailOf("Dommages physiques", impact, absorption, armor, perforante, critical, fix));
@@ -134,7 +139,7 @@ export class Health {
 
         if (Version.data(weapon).magique === true) {
             const armor = this.actor.protection("magique");
-            const damages = Health.damagesOf(impact, armor, false, absorption) * (critical === true ? 2 : 1);
+            const damages = Health.damagesOf(impactPorte, armor, false, absorption);
             resultats.push(await new Damages(this.actor, 'magique').apply(damages));
             if (detaille) {
                 details.push(Health.detailOf("Dommages magiques", impact, absorption, armor, false, critical, null));
@@ -225,33 +230,44 @@ export class Health {
      * @param perforante True si le minimum de 1 peut s'appliquer.
      * @param critical   True si l'attaque est un critique.
      * @param fix        Les dommages fixes de la manœuvre d'attaque, null sinon.
-     * @returns le détail du calcul de damagesOf, puis du doublement : par exemple
-     *          « Dommages physiques : impact 4, défense −2, protection −3 = −1 → minimum 1
-     *          → critique ×2 = 2 ».
+     * @returns le détail du calcul de damagesOf, le critique doublant l'impact : par exemple
+     *          « Dommages physiques : impact 2 → critique ×2 = 4, défense −2, protection −3
+     *          = −1 → minimum 1 ».
      */
     static detailOf(titre, impact, absorption, armor, perforante, critical, fix) {
         let texte;
-        let valeur;
         if (fix != null) {
             texte = "dommages fixes " + fix;
-            valeur = fix;
+            if (critical === true) {
+                texte += " → critique ×2 = " + (fix * 2);
+            }
         } else {
             const signe = v => (v < 0 ? "+" : "−") + Math.abs(v);
-            const brut = impact - absorption - armor;
+            const porte = Health.impactOf(impact, critical);
+            const brut = porte - absorption - armor;
             texte = "impact " + impact;
+            if (critical === true) {
+                texte += " → critique ×2 = " + porte;
+            }
             if (absorption !== 0) {
                 texte += ", défense " + signe(absorption);
             }
             texte += ", protection −" + armor + " = " + String(brut).replace("-", "−");
-            valeur = Health.damagesOf(impact, armor, perforante, absorption);
+            const valeur = Health.damagesOf(porte, armor, perforante, absorption);
             if (valeur !== brut) {
                 texte += valeur > 0 ? " → minimum " + valeur : " → 0";
             }
         }
-        if (critical === true) {
-            texte += " → critique ×2 = " + (valeur * 2);
-        }
         return titre + " : " + texte;
+    }
+
+    /**
+     * @param impact   L'impact du coup porté.
+     * @param critical True si l'attaque est un critique.
+     * @returns l'impact doublé par un critique, inchangé sinon.
+     */
+    static impactOf(impact, critical) {
+        return critical === true ? impact * 2 : impact;
     }
 
     /**
@@ -285,7 +301,7 @@ export class Health {
      * Une arme perforante (2 degrés ou plus) dont l'armure ramène les dommages à 0 ou moins
      * inflige tout de même 1 degré, à condition que l'armure en soit la cause : une défense
      * qui absorbe déjà tout ne laisse rien passer.
-     * Le doublement d'un critique s'applique ensuite, au résultat final (voir applyDamages).
+     * Un critique double l'impact avant cet appel (voir impactOf et applyDamages).
      * @param impact     L'impact du coup porté.
      * @param armor      La protection qui lui est opposée.
      * @param perforante True si l'arme inflige au moins 1 degré malgré l'armure.
