@@ -86,6 +86,21 @@ export class Pacte extends AbstractFeature {
             })
             .withRoll(result.roll)
             .create();
+        if (AbstractFeature.winner(this.result, result) === Constants.ACTION) {
+            await this.etablir();
+        }
+    }
+
+    /**
+     * Le pacte est établi : l'invocation de l'invocateur le porte désormais, et les invocations
+     * suivantes de la créature seront des jets simples (voir Invocation.data).
+     */
+    async etablir() {
+        const sid = this.item?.system?.id;
+        const invocation = this.actor.items.find(i => i.type === 'invocation' && i.system.id === sid);
+        if (invocation != null && invocation.system.pacte !== true) {
+            await invocation.update({ ['system.pacte']: true });
+        }
     }
 
     /**
