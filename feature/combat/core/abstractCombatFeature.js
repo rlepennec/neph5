@@ -1,6 +1,7 @@
 import { AbstractFeature } from "../../core/abstractFeature.js";
 import { CombatHistory } from "./combatHistory.js";
 import { Excedent } from "./excedent.js";
+import { Liberer } from "../manoeuver/liberer.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { Version } from "../../../module/common/version.js";
 
@@ -39,13 +40,16 @@ export class AbstractCombatFeature extends AbstractFeature {
      * ses degrés au-delà de 10 entre dommages et malus de défense adverse, avant que le
      * message ne propose la défense. Sa répartition voyage dans le résultat de l'attaque
      * (result.excedent), que la défense reçoit (voir Defense).
+     * Se libérer n'inflige aucun dommage : tous les degrés vont au malus, sans fenêtre.
      * @Override
      */
     async apply(result) {
         if (result?.opposed === true && this.purpose?.type === 'combat' && this.purpose?.target != null) {
             const points = Excedent.points(result);
             if (points > 0) {
-                result.excedent = await Excedent.repartir(this.actor, points, Excedent.ATTAQUE);
+                result.excedent = this.manoeuver?.id === Liberer.ID
+                    ? { dommages: 0, malus: points }
+                    : await Excedent.repartir(this.actor, points, Excedent.ATTAQUE);
             }
         }
         await super.apply(result);

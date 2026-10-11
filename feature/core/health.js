@@ -96,6 +96,12 @@ export class Health {
         // quand aucun dommage n'est traité (esquive totale, dégâts manuels).
         const prise = attack?.id === Immobiliser.ID;
 
+        // Se libérer n'inflige aucun dommage : son issue est la levée de l'immobilisation (voir
+        // applyEffectsOn). Libérer n'a d'ailleurs pas d'impact.
+        if (attack?.id === Liberer.ID) {
+            return;
+        }
+
         // Because dodge all damages
         if (manoeuver != null && manoeuver.hasOwnProperty('fix')) {
             if (prise) {
@@ -127,7 +133,7 @@ export class Health {
 
         if (physical === true) {
             const armor = this.actor.protection("physique");
-            const fix = winner === Constants.ACTION && attack.impact.fix != null ? attack.impact.fix : null;
+            const fix = winner === Constants.ACTION && attack?.impact?.fix != null ? attack.impact.fix : null;
             const encaisse = Health.damagesOf(impactPorte, armor, perforante, absorption);
             // Les dommages fixes ne passent pas par la protection : le critique les double.
             const damages = fix != null ? fix * (critical === true ? 2 : 1) : encaisse;
