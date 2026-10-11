@@ -14,7 +14,7 @@ import { ExcedentDialog } from "./excedentDialog.js";
  * avant que sa défense ne soit proposée à l'adversaire : son malus porte sur le jet de
  * défense à venir. Le défenseur choisit après les deux jets : son malus fait recalculer
  * le résultat de l'attaque avec le même dé, avant que le vainqueur ne soit désigné. Un
- * degré de dommages modifie l'impact, donc avant l'armure et le doublement d'un critique.
+ * degré de dommages modifie l'impact : un critique le double avec lui, avant l'armure.
  */
 export class Excedent {
 
