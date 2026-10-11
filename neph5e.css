@@ -1031,8 +1031,10 @@ form.nephilim.actor section.window-content > section aside .element.soleil {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  align-self: center;
 }
 form.nephilim.actor section.window-content > section aside .element.soleil img.circle {
+  display: block;
   width: var(--nephilim-width-circle);
   height: var(--nephilim-height-circle);
   content: var(--img-circle);
@@ -1048,6 +1050,7 @@ form.nephilim.actor section.window-content > section aside .element.soleil .tool
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2px;
 }
 form.nephilim.actor section.window-content > section aside .element.soleil .tooltip input {
   color: var(--font-color);
@@ -1055,11 +1058,16 @@ form.nephilim.actor section.window-content > section aside .element.soleil .tool
   border: 0px;
   font-size: 23px;
   width: 40px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
   text-align: center;
 }
 form.nephilim.actor section.window-content > section aside .element.soleil .tooltip .dice {
   cursor: pointer;
   z-index: 100;
+  line-height: 1;
 }
 form.nephilim.actor section.window-content > section article {
   display: flex;
@@ -1342,6 +1350,93 @@ form.nephilim.actor section.window-content > section article main.arbre .daath .
 }
 form.nephilim.actor section.window-content > section article main.arbre .daath .degre {
   transform: translate(0px, -158px);
+}
+form.nephilim.actor section.window-content > section article main.capacites .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-bottom: -10px;
+}
+form.nephilim.actor section.window-content > section article main.capacites .header .circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: none;
+  width: var(--science-circle-width, 60px);
+  height: var(--science-circle-height, 65px);
+  display: hidden;
+  content: var(--img-circle);
+}
+form.nephilim.actor section.window-content > section article main.capacites .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 70px;
+  top: 46px;
+  width: calc(100% - 80px);
+  content: var(--img-separator);
+}
+form.nephilim.actor section.window-content > section article main.capacites .header .degre {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--science-circle-width, 60px);
+  height: var(--science-circle-height, 65px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: bold;
+}
+form.nephilim.actor section.window-content > section article main.capacites .header .folder {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  position: absolute;
+  left: 100px;
+  top: 15px;
+  width: calc(100% - 80px);
+  font-family: 'NightjarDemi';
+  font-size: 27px;
+}
+form.nephilim.actor section.window-content > section article main.capacites .body {
+  padding-left: 0px;
+  padding-top: 70px;
+}
+form.nephilim.actor section.window-content > section article main.capacites .body .capacite {
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  margin-top: 20px;
+}
+form.nephilim.actor section.window-content > section article main.capacites .body .capacite .title {
+  display: flex;
+  flex-direction: row;
+}
+form.nephilim.actor section.window-content > section article main.capacites .body .capacite .title .pin {
+  border: none;
+  width: 26px;
+  margin-left: 50px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-pin);
+}
+form.nephilim.actor section.window-content > section article main.capacites .body .capacite .title .name {
+  flex: 1 1 auto;
+  text-align: left;
+  padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 20px;
+}
+form.nephilim.actor section.window-content > section article main.capacites .body .capacite .description {
+  list-style: none;
+  width: calc(100% - 100px);
+  margin-left: 85px;
+  font-size: 15px;
 }
 form.nephilim.actor section.window-content > section article main.combat {
   display: flex;
@@ -3777,6 +3872,93 @@ form.nephilim.actor section.window-content > section article main.vecus .body .v
 }
 .tab.arbre .daath .degre {
   transform: translate(0px, -158px);
+}
+.tab.capacites .header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-family: 'AJensonPro';
+  font-size: 21px;
+  margin-bottom: -10px;
+}
+.tab.capacites .header .circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: none;
+  width: var(--science-circle-width, 60px);
+  height: var(--science-circle-height, 65px);
+  display: hidden;
+  content: var(--img-circle);
+}
+.tab.capacites .header .separator {
+  position: absolute;
+  border: none;
+  height: 4px;
+  left: 70px;
+  top: 46px;
+  width: calc(100% - 80px);
+  content: var(--img-separator);
+}
+.tab.capacites .header .degre {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--science-circle-width, 60px);
+  height: var(--science-circle-height, 65px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: bold;
+}
+.tab.capacites .header .folder {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+  position: absolute;
+  left: 100px;
+  top: 15px;
+  width: calc(100% - 80px);
+  font-family: 'NightjarDemi';
+  font-size: 27px;
+}
+.tab.capacites .body {
+  padding-left: 0px;
+  padding-top: 70px;
+}
+.tab.capacites .body .capacite {
+  display: flex;
+  flex-direction: column;
+  font-family: 'AJensonPro';
+  margin-top: 20px;
+}
+.tab.capacites .body .capacite .title {
+  display: flex;
+  flex-direction: row;
+}
+.tab.capacites .body .capacite .title .pin {
+  border: none;
+  width: 26px;
+  margin-left: 50px;
+  display: hidden;
+  background-color: transparent;
+  content: var(--img-pin);
+}
+.tab.capacites .body .capacite .title .name {
+  flex: 1 1 auto;
+  text-align: left;
+  padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 20px;
+}
+.tab.capacites .body .capacite .description {
+  list-style: none;
+  width: calc(100% - 100px);
+  margin-left: 85px;
+  font-size: 15px;
 }
 .tab.combat {
   display: flex;

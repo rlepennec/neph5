@@ -1,39 +1,46 @@
-{{#with actor.capacites as |all|}}
-<div class="capacites">
+<main
+    class='tab capacites'
+    data-group='primary'
+    data-tab='capacites'>
 
-    {{#each all as |byFolder|}}
-    <div class="header">
+    {{#with actor.capacites as |all|}}
+    <div class="capacites">
 
-        <img class="circle"/>
+        {{#each all as |byFolder|}}
+        <div class="header">
 
-        <img class="separator"/>
+            <img class="circle"/>
 
-        <div class="degre">{{byFolder.capacites.length}}</div>
+            <img class="separator"/>
 
-        <div class="folder">{{byFolder.folder}}</div>
+            <div class="degre">{{byFolder.capacites.length}}</div>
 
-    </div>
+            <div class="folder">{{byFolder.folder}}</div>
 
-    <ol class="body">
+        </div>
 
-        {{#each byFolder.capacites as |capacite|}}
-        <li class="capacite">
+        <ol class="body">
 
-            <div class="title">
+            {{#each byFolder.capacites as |capacite|}}
+            <li class="capacite">
 
-                <img class="pin"/>
+                <div class="title">
 
-                <div class="name">{{capacite.name}}</div>
+                    <img class="pin"/>
 
-            </div>
+                    <div class="name">{{capacite.name}}</div>
 
-            <div class="description">{{html capacite.description}}</div>
+                </div>
 
-        </li>
+                <div class="description">{{html capacite.description}}</div>
+
+            </li>
+            {{/each}}
+
+        </ol>
         {{/each}}
 
-    </ol>
-    {{/each}}
+    </div>
+    {{/with}}
 
-</div>
-{{/with}}
+</main>
