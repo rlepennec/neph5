@@ -65,7 +65,8 @@ export const CombatantMixin = Base => {
         }
 
         /**
-         * @returns the actor damage bonus.
+         * @returns the actor damage bonus. Le Ka Soleil n'augmente pas les dommages : une
+         *          figure ni Nephilim ni Selenim n'a pas de bonus de Ka.
          */
         get dommage() {
             if (this.type === 'figure') {
@@ -73,12 +74,9 @@ export const CombatantMixin = Base => {
                     return Math.floor(this.system.ka.feu / 5);
                 } else if (this.system?.options?.selenim === true) {
                     return Math.floor(this.system.ka.noyau / 10);
-                } else {
-                    return this.system?.ka.soleil ?? 0;
                 }
-            } else {
-                return 0;
             }
+            return 0;
         }
 
         /**
