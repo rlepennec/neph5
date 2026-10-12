@@ -25,12 +25,15 @@ export class Formule extends AbstractFocus {
      * @Override
      */
     get data() {
-        return new ActionDataBuilder(this)
+        const data = new ActionDataBuilder(this)
             .withType(Constants.SIMPLE)
             .withItem(this.item)
             .withBase('Formule', this.degre)
             .withBlessures('magique')
             .export();
+        // Les éléments proposés pour une quintuple : ceux dont l'acteur a assez de materiae.
+        data.elementsQuintuple = this.elementsQuintuple();
+        return data;
     }
 
     /**
@@ -70,18 +73,41 @@ export class Formule extends AbstractFocus {
     }
 
     /**
-     * @returns l'élément d'une quintuple lancée sans choix : le premier dont l'acteur a au
-     *          moins 5 materiae primae, comme la liste du dialogue. Null s'il n'y en a aucun.
+     * @returns les materiae primae d'un seul élément consommées par une quintuple : 5 par
+     *          degré de la formule.
+     */
+    coutQuintuple() {
+        return 5 * Version.data(this.item).degre;
+    }
+
+    /**
+     * @returns les materiae primae de chaque élément consommées par une quintessence : 1 par
+     *          degré de la formule.
+     */
+    coutQuintessence() {
+        return Version.data(this.item).degre;
+    }
+
+    /**
+     * @returns les éléments dont l'acteur a assez de materiae primae pour une quintuple.
+     */
+    elementsQuintuple() {
+        return Constants.ELEMENTS.filter(e => (Version.data(this.actor).alchimie.primae[e]?.quantite ?? 0) >= this.coutQuintuple());
+    }
+
+    /**
+     * @returns l'élément d'une quintuple lancée sans choix : le premier dont l'acteur a assez
+     *          de materiae primae, comme la liste du dialogue. Null s'il n'y en a aucun.
      */
     elementQuintupleParDefaut() {
-        return Constants.ELEMENTS.find(e => Version.data(this.actor).alchimie.primae[e]?.quantite > 4) ?? null;
+        return this.elementsQuintuple()[0] ?? null;
     }
 
     /**
      * @returns les materiae primae consommées par une réalisation, par élément :
      *          - un élément simple : le degré de la formule ;
-     *          - une quintuple : 5 de l'élément choisi au lancement ;
-     *          - une quintessence : 1 de chaque élément.
+     *          - une quintuple : 5 × degré de l'élément choisi au lancement ;
+     *          - une quintessence : degré de chaque élément.
      */
     coutsEnMateriae() {
         const couts = {};
@@ -91,12 +117,12 @@ export class Formule extends AbstractFocus {
                 case 'quintuple': {
                     const choisi = this.elementQuintuple ?? this.elementQuintupleParDefaut();
                     if (choisi != null) {
-                        ajouter(choisi, 5);
+                        ajouter(choisi, this.coutQuintuple());
                     }
                     break;
                 }
                 case 'quintessence':
-                    Constants.ELEMENTS.forEach(e => ajouter(e, 1));
+                    Constants.ELEMENTS.forEach(e => ajouter(e, this.coutQuintessence()));
                     break;
                 default:
                     ajouter(element, Version.data(this.item).degre);
@@ -218,22 +244,16 @@ export class Formule extends AbstractFocus {
                     }
                     break;
 
+                // Au moins un élément pourvu de 5 × degré materiae primae.
                 case 'quintuple':
-                    if (Version.data(this.actor).alchimie.primae['air'].quantite < 5 &&
-                        Version.data(this.actor).alchimie.primae['eau'].quantite < 5 &&
-                        Version.data(this.actor).alchimie.primae['feu'].quantite < 5 &&
-                        Version.data(this.actor).alchimie.primae['lune'].quantite < 5 &&
-                        Version.data(this.actor).alchimie.primae['terre'].quantite < 5) {
+                    if (this.elementsQuintuple().length === 0) {
                         return -110;
                     }
                     break;
 
+                // Degré materiae primae de chaque élément.
                 case 'quintessence':
-                    if (Version.data(this.actor).alchimie.primae['air'].quantite < 1 ||
-                        Version.data(this.actor).alchimie.primae['eau'].quantite < 1 ||
-                        Version.data(this.actor).alchimie.primae['feu'].quantite < 1 ||
-                        Version.data(this.actor).alchimie.primae['lune'].quantite < 1 ||
-                        Version.data(this.actor).alchimie.primae['terre'].quantite < 1) {
+                    if (Constants.ELEMENTS.some(e => Version.data(this.actor).alchimie.primae[e].quantite < this.coutQuintessence())) {
                         return -110;
                     }
                     break;

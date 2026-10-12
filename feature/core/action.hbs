@@ -46,22 +46,11 @@
                 {{/if}}
 
                 {{#if (eq itemElements.[0] 'quintuple')}}
+                {{!-- Les éléments dont l'acteur a 5 × degré materiae primae (voir Formule.elementsQuintuple). --}}
                 <select id="element" name="element">
-                    {{#if (gt actorPrimae.air.quantite 4)}}
-                    <option value='air'>{{translate "air"}}</option>
-                    {{/if}}
-                    {{#if (gt actorPrimae.eau.quantite 4)}}
-                    <option value='eau'>{{translate 'eau'}}</option>
-                    {{/if}}
-                    {{#if (gt actorPrimae.feu.quantite 4)}}
-                    <option value='feu'>{{translate 'feu'}}</option>
-                    {{/if}}
-                    {{#if (gt actorPrimae.lune.quantite 4)}}
-                    <option value='lune'>{{translate 'lune'}}</option>
-                    {{/if}}
-                    {{#if (gt actorPrimae.terre.quantite 4)}}
-                    <option value='terre'>{{translate 'terre'}}</option>
-                    {{/if}}
+                    {{#each elementsQuintuple as |element|}}
+                    <option value='{{element}}'>{{translate element}}</option>
+                    {{/each}}
                 </select>
                 {{/if}}
 
