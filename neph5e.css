@@ -7962,6 +7962,10 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
 .experience table tr:nth-child(2) {
   font-weight: bold;
 }
+.nettoyage .window-content {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
 .nettoyage .nettoyage-root {
   display: flex;
   flex-direction: column;
@@ -7994,6 +7998,36 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
   font-family: 'NightjarDemi';
   font-size: 17px;
   border-bottom: 1px solid #6d7690;
+}
+.nettoyage details.section > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+.nettoyage details.section > summary::-webkit-details-marker {
+  display: none;
+}
+.nettoyage details.section > summary::before {
+  content: "\25B8";
+  flex: 0 0 auto;
+  margin-top: 8px;
+  transition: transform 0.15s;
+}
+.nettoyage details.section > summary h2.section {
+  flex: 1 1 auto;
+}
+.nettoyage details.section > summary .nombre {
+  font-family: 'AJensonPro';
+  font-size: 14px;
+  opacity: 0.8;
+}
+.nettoyage details.section[open] > summary::before {
+  transform: rotate(90deg);
+}
+.nettoyage details.section > :not(summary) {
+  margin-top: 12px;
 }
 .nettoyage table.membres select.rattachement {
   width: 100%;

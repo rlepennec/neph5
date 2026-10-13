@@ -1,7 +1,9 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
 import { ActionDialog } from "../core/actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
+import { Health } from "../core/health.js";
 import { NephilimChat } from "../../module/common/chat.js";
+import { Ordonnance } from "./ordonnance.js";
 
 export class Pacte extends AbstractFeature {
 
@@ -76,26 +78,35 @@ export class Pacte extends AbstractFeature {
      * @Overrides
      */
     async apply(result) {
+        // Une seule phrase conclut l'invocation : celle du résultat, sous le jet de la créature.
         await new NephilimChat(this.actor)
             .withTemplate("systems/neph5e/feature/core/chat.hbs")
             .withData({
                 actor: this.actor,
-                richSentence: this.sentenceOf(result),
+                richSentence: this.sentence,
                 img: this.item.img,
                 total: result.roll._total,
+                result: this.sentenceOf(result)
             })
             .withRoll(result.roll)
             .create();
         if (AbstractFeature.winner(this.result, result) === Constants.ACTION) {
             await this.etablir();
+        } else {
+            await Pacte.subir(this.actor, this.item);
         }
     }
 
     /**
      * Le pacte est établi : l'invocation de l'invocateur le porte désormais, et les invocations
-     * suivantes de la créature seront des jets simples (voir Invocation.data).
+     * suivantes de la créature seront des jets simples (voir Invocation.data). Sauf avec une
+     * créature d'un autre monde de kabbale que celui de l'ordonnance : le pacte ne vaut que
+     * pour cette invocation.
      */
     async etablir() {
+        if (!Ordonnance.pacteDefinitif(this.actor, this.item)) {
+            return;
+        }
         const sid = this.item?.system?.id;
         const invocation = this.actor.items.find(i => i.type === 'invocation' && i.system.id === sid);
         if (invocation != null && invocation.system.pacte !== true) {
@@ -104,16 +115,37 @@ export class Pacte extends AbstractFeature {
     }
 
     /**
+     * Pacte manqué : l'invocateur subit autant de dommages magiques que le degré de la créature.
+     * @param actor L'invocateur.
+     * @param item  L'invocation du monde (ou ses données) : la créature.
+     */
+    static async subir(actor, item) {
+        await Health.subir(actor, 'magique', AbstractFeature.toInt(item?.system?.degre));
+    }
+
+    /**
+     * @param name Le nom de la créature.
+     * @returns la conclusion d'un pacte noué.
+     */
+    static reussite(name) {
+        return "réussit à nouer un pacte avec " + name;
+    }
+
+    /**
+     * @param name Le nom de la créature.
+     * @returns la conclusion d'un pacte manqué.
+     */
+    static echec(name) {
+        return "invoque " + name + " mais échoue à nouer un pacte, occasionnant des dommages magiques";
+    }
+
+    /**
      * @Override
      */
     sentenceOf(result) {
-        switch (AbstractFeature.winner(this.result, result)) {
-            case Constants.ACTION:
-                return " parvient à établir un pacte avec la créature";
-            case Constants.REACTION:
-            case Constants.TIE:
-                return " ne parvient pas à établir un pacte avec la créature";
-        }
+        return AbstractFeature.winner(this.result, result) === Constants.ACTION
+            ? Pacte.reussite(this.item.name)
+            : Pacte.echec(this.item.name);
     }
 
 }

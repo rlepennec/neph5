@@ -97,6 +97,12 @@
 // explication, pas sur une liste brute.
 .nettoyage {
 
+    // La fenêtre ne dépasse pas l'écran : son contenu défile.
+    .window-content {
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+
     .nettoyage-root {
         display: flex;
         flex-direction: column;
@@ -135,6 +141,47 @@
         font-family: 'NightjarDemi';
         font-size: 17px;
         border-bottom: 1px solid #6d7690;
+    }
+
+    // Chaque traitement se plie et se déplie par son titre (accordéon).
+    details.section {
+
+        > summary {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            list-style: none;
+
+            &::-webkit-details-marker {
+                display: none;
+            }
+
+            &::before {
+                content: "\25B8";
+                flex: 0 0 auto;
+                margin-top: 8px;
+                transition: transform 0.15s;
+            }
+
+            h2.section {
+                flex: 1 1 auto;
+            }
+
+            .nombre {
+                font-family: 'AJensonPro';
+                font-size: 14px;
+                opacity: 0.8;
+            }
+        }
+
+        &[open] > summary::before {
+            transform: rotate(90deg);
+        }
+
+        > :not(summary) {
+            margin-top: 12px;
+        }
     }
 
     table.membres select.rattachement {

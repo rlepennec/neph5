@@ -321,6 +321,19 @@ export class Health {
     }
 
     /**
+     * Inflige directement des dommages, sans arme ni protection : par exemple le contrecoup
+     * d'un pacte manqué avec une créature de kabbale.
+     * @param actor  L'acteur qui subit les dommages.
+     * @param type   'physique' ou 'magique'.
+     * @param amount Le nombre de dommages.
+     * @returns les cases cochées, null si rien n'a été traité (dégâts manuels, hors de combat).
+     */
+    static async subir(actor, type, amount) {
+        if (actor == null) return null;
+        return await new Damages(actor, type).apply(amount);
+    }
+
+    /**
      * Dommages reçus = degré de dommages de l'arme +/- modificateurs de combat - degré de
      * protection. L'impact porte déjà les modificateurs de l'attaquant (manœuvre, Ka, bonus,
      * marge) ; le modificateur de la manœuvre de défense s'y ajoute, avant la protection.
