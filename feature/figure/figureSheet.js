@@ -6,6 +6,7 @@ import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";
+import { Ordonnance } from "../kabbale/ordonnance.js";
 import { Science } from "../science/science.js";
 
 
@@ -310,11 +311,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await item.update({ [Version.path(item, 'transporte')]: parseInt(event.target.value) });
     }
 
-    /** Toggle le pacte de l'invocation. */
+    /**
+     * Toggle le pacte de l'invocation. Un joueur ne peut pas nouer de pacte définitif avec une
+     * créature d'un autre monde de kabbale que celui de son ordonnance ; le MJ le peut.
+     */
     static async _onChangePacte(event, target) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
         const item = this.document.items.find(i => i.sid === sid);
+        if (game.user.isGM !== true && Version.data(item).pacte !== true &&
+            !Ordonnance.pacteDefinitif(this.document, game.items.find(i => i.sid === sid))) {
+            ui.notifications.warn("Pas de pacte définitif possible avec une créature d'un autre monde de kabbale que celui de l'ordonnance.");
+            return;
+        }
         await item.update({ [Version.path(item, 'pacte')]: !Version.data(item).pacte });
     }
 
