@@ -148,9 +148,11 @@ export class AbstractFeature {
      * Dépôt d'un focus ou d'une capacité, liés par époque (Incarnations.PAR_EPOQUE), dans
      * l'incarnation this.periode :
      *   - déjà lié à cette incarnation : rien ;
-     *   - connu d'une incarnation antérieure — sinon postérieure — non désactivée : une fenêtre
-     *     nomme la plus proche et demande confirmation ; confirmé, l'incarnation reçoit son
-     *     propre exemplaire, copié de celui de cette incarnation (statut, focus, pacte...) ;
+     *   - connu d'une incarnation antérieure non désactivée : rien — l'acteur le connaît déjà ;
+     *     modifier l'une de ses valeurs lui donnera son exemplaire (Incarnations.ecrire) ;
+     *   - connu seulement d'une incarnation postérieure non désactivée : une fenêtre nomme la
+     *     plus proche et demande confirmation ; confirmé, l'incarnation reçoit son propre
+     *     exemplaire, copié de celui de cette incarnation (statut, focus, pacte...) ;
      *   - connu d'aucune : il reste à le créer comme un nouveau, à la façon de chaque type.
      * @returns true s'il reste à créer l'exemplaire comme un nouveau.
      */
@@ -159,13 +161,17 @@ export class AbstractFeature {
         const incarnations = new Incarnations(this.actor);
         if (incarnations.exemplaireDans(this.sid, this.periode) != null) return false;
 
-        const anterieure = incarnations.voisine(this.sid, this.periode, 'anterieure');
-        const voisine = anterieure ?? incarnations.voisine(this.sid, this.periode, 'posterieure');
+        // Connu d'une incarnation antérieure : l'acteur le connaît déjà à cette époque. Rien à
+        // faire ; c'est la première modification d'une de ses valeurs qui donnera son
+        // exemplaire à l'incarnation (Incarnations.ecrire).
+        if (incarnations.voisine(this.sid, this.periode, 'anterieure') != null) return false;
+
+        const voisine = incarnations.voisine(this.sid, this.periode, 'posterieure');
         if (voisine == null) return true;
 
         const confirme = await foundry.applications.api.DialogV2.confirm({
             window: { title: game.i18n.localize("NEPHILIM.dejaConnu") },
-            content: "<p>" + game.i18n.format(anterieure != null ? "NEPHILIM.dejaConnuAnterieure" : "NEPHILIM.dejaConnuPosterieure", {
+            content: "<p>" + game.i18n.format("NEPHILIM.dejaConnuPosterieure", {
                 nom: this.item?.name ?? "",
                 epoque: incarnations.nomDe(voisine.incarnation.sid)
             }) + "</p>",
