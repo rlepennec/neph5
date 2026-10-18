@@ -20,7 +20,7 @@ import { Version } from "../common/version.js";
  * de la plus ancienne à la plus récente) et ses `apports` :
  * `{ sid, degre }` pour chaque autre item acquis pendant l'incarnation. Chaque vécu garde sa
  * période et son degré. Un item embarqué n'existe plus qu'en un exemplaire — sauf les focus et
- * les capacités, qui en ont un par époque, portant la clé de son incarnation (`incarnation`)
+ * les capacités, qui en ont un par époque, portant la clé de son incarnation (`system.incarnation`)
  * et ses propres valeurs. Voir la façade `Incarnations`.
  *
  * CE QU'ELLE FAIT, acteur par acteur (figures et fraternités) :
@@ -189,7 +189,8 @@ export class _1_0_10 {
         for (const item of actor.items.filter(i => i.type !== 'incarnation' && VersionMigration.CHAMPS[i.type] != null)) {
             const periode = lire(item, 'periode');
             if (Incarnations.PAR_EPOQUE.includes(item.type) && embarquees.has(periode)) {
-                await item.update({ [Version.path(item, 'incarnation')]: periode });
+                // La clé est commune à toutes les versions : à la racine
+                await item.update({ 'system.incarnation': periode });
             }
             await _1_0_9.fixer(item);
         }

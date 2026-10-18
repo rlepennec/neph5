@@ -61,7 +61,8 @@ export class Incarnations {
      * Les types liés PAR ÉPOQUE : un même focus, une même capacité peuvent être liés à plusieurs
      * incarnations, un exemplaire embarqué par incarnation, chacun avec ses propres valeurs
      * (statut, focus, pacte, quantité...). L'exemplaire porte la clé de son incarnation dans
-     * son champ `incarnation` : il est désigné par la paire (clé de l'incarnation, sid).
+     * son champ `system.incarnation`, commun à toutes les versions : il est désigné par la paire
+     * (clé de l'incarnation, sid).
      */
     static PAR_EPOQUE = [...Incarnations.FOCUS, ...Incarnations.CAPACITES];
 
@@ -341,7 +342,7 @@ export class Incarnations {
      */
     epoqueDe(item) {
         if (!Incarnations.PAR_EPOQUE.includes(item?.type)) return null;
-        return Version.data(item).incarnation ?? this.#porteuses(item.sid).at(-1)?.sid ?? null;
+        return item.system?.incarnation ?? this.#porteuses(item.sid).at(-1)?.sid ?? null;
     }
 
     /**
@@ -407,7 +408,8 @@ export class Incarnations {
     async creerExemplaire(source, cle, changements = {}) {
         const data = source.toObject();
         delete data._id;
-        foundry.utils.setProperty(data, Version.path(source, 'incarnation'), cle);
+        // La clé est commune à toutes les versions : à la racine
+        foundry.utils.setProperty(data, 'system.incarnation', cle);
         for (const [champ, valeur] of Object.entries(changements)) {
             foundry.utils.setProperty(data, Version.path(source, champ), valeur);
         }
@@ -876,7 +878,7 @@ export class Incarnations {
         const incarnations = new Incarnations(item.actor);
         if (!incarnations.porte) return;
         // Un exemplaire lié par époque : seule son incarnation le perd, les autres gardent le leur
-        const epoque = Incarnations.PAR_EPOQUE.includes(item.type) ? Version.data(item).incarnation : null;
+        const epoque = Incarnations.PAR_EPOQUE.includes(item.type) ? (item.system?.incarnation ?? null) : null;
         if (epoque != null) {
             if (incarnations.exemplaireDans(item.sid, epoque) == null) {
                 await incarnations.detacher(item.sid, epoque);

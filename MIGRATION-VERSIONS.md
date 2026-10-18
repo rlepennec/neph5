@@ -488,17 +488,20 @@ supprimé puis recréé, l'ancienne incarnation le perdant).
 
 **Après** : un exemplaire embarqué **par incarnation** qui le connaît (`Incarnations.PAR_EPOQUE`
 = les 14 types de focus + la capacité). Chaque exemplaire porte :
-- la clé de son incarnation dans `versions.v5.incarnation` — double clé (incarnation, sid) ;
+- la clé de son incarnation dans `system.incarnation`, à la racine comme `id` car commune à
+  toutes les versions (déplacée de `versions.v5` le 18/10) — double clé (incarnation, sid) ;
   le champ est vide (`null`) pour l'item du monde ;
 - **ses** valeurs propres au personnage : statut, focus, pacte, quantité, transporté.
 Les valeurs ne sont jamais portées par l'incarnation, qui garde seulement l'apport `{ sid }`.
 
 Les règles, toutes confirmées par l'utilisateur :
 1. **Dépôt** (formulaire ou fiche ; `AbstractFeature.deposerParEpoque`) : déjà lié à cette
-   incarnation → rien ; connu d'une incarnation **antérieure** non désactivée → fenêtre qui
-   nomme la plus proche (période — vécus) et demande confirmation ; confirmé, nouvel exemplaire
-   copié de celui de cette époque (quantité comprise) ; refusé, rien ; sinon connu d'une
-   **postérieure** → même chose ; sinon création comme avant. Plus aucun déplacement.
+   incarnation → rien ; connu d'une incarnation **antérieure** non désactivée → **rien** (révisé
+   le 18/10 : l'acteur le connaît déjà à cette époque ; c'est la première modification d'une
+   de ses valeurs qui donne son exemplaire à l'incarnation, règle 3) ; connu seulement d'une
+   **postérieure** non désactivée → fenêtre qui nomme la plus proche (période — vécus) et
+   demande confirmation ; confirmé, nouvel exemplaire copié de celui de cette époque (quantité
+   comprise) ; refusé, rien ; connu d'aucune → création comme avant. Plus aucun déplacement.
 2. **Exemplaire qui fait foi** (`exemplaireEffectif`) : celui de l'incarnation courante, sinon
    de l'antérieure active la plus proche ; les postérieures et les désactivées jamais (la
    courante n'est jamais désactivée). Il alimente les onglets (`AbstractFocus.withOriginalItem`,
@@ -529,5 +532,5 @@ pour tester, repartir d'une copie de monde 1.7.0.
 
 **Vérifié sous node** : 33 cas sur la façade (dépôt, voisines, époque désactivée, copie à
 l'écriture, exemplaire effectif, retrait, suppression, retrait d'incarnation, exemplaire sans
-clé) ; 10 sur le dépôt avec fenêtre simulée et la résolution de `AbstractFocus`. Pas encore
+clé) ; 11 sur le dépôt avec fenêtre simulée et la résolution de `AbstractFocus`. Pas encore
 essayé dans Foundry.

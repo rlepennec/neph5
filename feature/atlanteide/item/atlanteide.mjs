@@ -11,6 +11,18 @@ export class AtlanteideDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // La clé de l'incarnation (l'époque) à laquelle appartient cet exemplaire lié : un même
+            // focus peut être lié à plusieurs époques, un exemplaire par époque, chacun avec ses
+            // propres valeurs. Commune à toutes les versions ; vide pour l'item du monde. Voir
+            // Incarnations.
+            incarnation: new foundry.data.fields.StringField
+            (
+                {
+                    required: false,
+                    nullable: true,
+                    initial: null
+                }
+            ),
             illustration: new foundry.data.fields.FilePathField
             (
                 {
@@ -25,17 +37,6 @@ export class AtlanteideDataModel extends foundry.abstract.TypeDataModel {
                     v5: new ChunkField
                     (
                         {
-                            // La clé de l'incarnation (l'époque) à laquelle appartient cet exemplaire lié : un même
-                            // focus peut être lié à plusieurs époques, un exemplaire par époque, chacun avec ses
-                            // propres valeurs. Vide pour l'item du monde. Voir Incarnations.
-                            incarnation: new foundry.data.fields.StringField
-                            (
-                                {
-                                    required: false,
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
                             description: new foundry.data.fields.StringField(
                                 {
                                     required: false

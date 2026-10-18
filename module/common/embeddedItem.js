@@ -121,7 +121,8 @@ export class EmbeddedItem {
         // porte sa clé. Seul compte celui de CETTE incarnation ; ceux des autres restent.
         const monde = game.items.find(i => i.sid === this.sid);
         if (this.incarnation != null && Incarnations.PAR_EPOQUE.includes(monde?.type)) {
-            this.data.set("incarnation", this.incarnation.periode);
+            // La clé est commune à toutes les versions : posée à la racine (voir #creer)
+            this.cleEpoque = this.incarnation.periode;
             if (!this.deleteExisting) {
                 const exemplaire = new Incarnations(this.actor).exemplaireDans(this.sid, this.incarnation.periode);
                 if (exemplaire != null) {
@@ -179,6 +180,9 @@ export class EmbeddedItem {
         // migrateData ne remplace pas une valeur déjà rangée).
         for (const [name, value] of this.data) {
             foundry.utils.setProperty(data, Version.path(item, name), value);
+        }
+        if (this.cleEpoque != null) {
+            foundry.utils.setProperty(data, 'system.incarnation', this.cleEpoque);
         }
         data = data instanceof Array ? data : [data];
 
