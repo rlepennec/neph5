@@ -295,20 +295,29 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await feature.initializeRoll();
     }
 
+    /**
+     * Les valeurs propres à la figure (statut, focus, pacte, quantité...) se lisent et s'écrivent
+     * sur l'exemplaire qui fait foi : celui de l'incarnation courante, sinon de l'antérieure la
+     * plus proche. Les écrire le porte à l'incarnation courante (Incarnations.ecrire).
+     * @param sid The system identifier of the focus.
+     * @returns the effective embedded item.
+     */
+    _exemplaire(sid) {
+        return new Incarnations(this.document).exemplaireEffectif(sid) ?? this.document.items.find(i => i.sid === sid);
+    }
+
     /** Modifie la quantité totale de vaisseaux alchimiques  */
     async _onChangeQuantite(event) {
         if (this.locked) return;
-        const sid = event.target.closest('.item').dataset.sid;
-        const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ [Version.path(item, 'quantite')]: parseInt(event.target.value) });
+        const item = this._exemplaire(event.target.closest('.item').dataset.sid);
+        await new Incarnations(this.document).ecrire(item, { quantite: parseInt(event.target.value) });
     }
 
     /** Modifie la quantité transportées de vaisseaux alchimiques  */
     async _onChangeTransporte(event) {
         if (this.locked) return;
-        const sid = event.target.closest('.item').dataset.sid;
-        const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ [Version.path(item, 'transporte')]: parseInt(event.target.value) });
+        const item = this._exemplaire(event.target.closest('.item').dataset.sid);
+        await new Incarnations(this.document).ecrire(item, { transporte: parseInt(event.target.value) });
     }
 
     /**
@@ -318,35 +327,34 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     static async _onChangePacte(event, target) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
-        const item = this.document.items.find(i => i.sid === sid);
+        const item = this._exemplaire(sid);
         if (game.user.isGM !== true && Version.data(item).pacte !== true &&
             !Ordonnance.pacteDefinitif(this.document, game.items.find(i => i.sid === sid))) {
             ui.notifications.warn("Pas de pacte définitif possible avec une créature d'un autre monde de kabbale que celui de l'ordonnance.");
             return;
         }
-        await item.update({ [Version.path(item, 'pacte')]: !Version.data(item).pacte });
+        await new Incarnations(this.document).ecrire(item, { pacte: !Version.data(item).pacte });
     }
 
     /** Toggle la possession du focus (icône parchemin). */
     static async _onChangeFocus(event, target) {
         if (this.locked) return;
-        const sid = target.closest('.item').dataset.sid;
-        const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ [Version.path(item, 'focus')]: !Version.data(item).focus });
+        const item = this._exemplaire(target.closest('.item').dataset.sid);
+        await new Incarnations(this.document).ecrire(item, { focus: !Version.data(item).focus });
     }
 
     /** Cycle le statut : connu → déchiffré → appris → tatoué → connu. */
     static async _onChangeStatus(event, target) {
         if (this.locked) return;
-        const sid = target.closest('.item').dataset.sid;
-        const item = this.document.items.find(i => i.sid === sid);
-        switch (Version.data(item).status) {
-            case Constants.CONNU:     await item.update({ [Version.path(item, 'status')]: Constants.DECHIFFRE }); break;
-            case Constants.DECHIFFRE: await item.update({ [Version.path(item, 'status')]: Constants.APPRIS });   break;
-            case Constants.APPRIS:    await item.update({ [Version.path(item, 'status')]: Constants.TATOUE });    break;
-            case Constants.TATOUE:    await item.update({ [Version.path(item, 'status')]: Constants.CONNU });     break;
-            default: throw new Error("Status " + Version.data(item).status + " not implemented");
-        }
+        const item = this._exemplaire(target.closest('.item').dataset.sid);
+        const suivant = {
+            [Constants.CONNU]: Constants.DECHIFFRE,
+            [Constants.DECHIFFRE]: Constants.APPRIS,
+            [Constants.APPRIS]: Constants.TATOUE,
+            [Constants.TATOUE]: Constants.CONNU
+        }[Version.data(item).status];
+        if (suivant == null) throw new Error("Status " + Version.data(item).status + " not implemented");
+        await new Incarnations(this.document).ecrire(item, { status: suivant });
     }
 
     /** Drop d'une voie de science (magie, kabbale, ...) : embarque la voie. */

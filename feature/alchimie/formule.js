@@ -1,4 +1,5 @@
 import { AbstractFocus } from "../core/abstractFocus.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
@@ -47,8 +48,9 @@ export class Formule extends AbstractFocus {
 
         // If success, produce 1 dose
         if (result.success === true) {
+            // La dose va à l'exemplaire de l'incarnation courante, créé au besoin
             const quantite = Version.data(this.embedded).quantite + 1;
-            await this.embedded.update({ [Version.path(this.embedded, 'quantite')]: quantite });
+            this.embedded = await new Incarnations(this.actor).ecrire(this.embedded, { quantite: quantite });
 
             // If not critical, spend materiae primae
             if (result.critical === false) {

@@ -63,11 +63,16 @@ export class Ordonnance extends AbstractFeature {
      * @param monde  Le monde de kabbale de l'ordonnance.
      */
     static async perdrePactes(actor, monde) {
+        // Sur l'exemplaire qui fait foi de chaque invocation : la perte vaut pour l'incarnation
+        // courante, qui reçoit son propre exemplaire au besoin ; les époques passées gardent le leur.
+        const incarnations = new Incarnations(actor);
+        const sids = [...new Set(actor.items.filter(i => i.type === 'invocation').map(i => i.sid))];
         const perdus = [];
-        for (const invocation of actor.items.filter(i => i.type === 'invocation' && Version.data(i).pacte === true)) {
+        for (const invocation of sids.map(sid => incarnations.exemplaireEffectif(sid))) {
+            if (invocation == null || Version.data(invocation).pacte !== true) continue;
             const original = AbstractFeature.original(invocation.sid);
             if (Version.data(original).monde !== monde) {
-                await invocation.update({ [Version.path(invocation, 'pacte')]: false });
+                await incarnations.ecrire(invocation, { pacte: false });
                 perdus.push(original?.name ?? invocation.name);
             }
         }

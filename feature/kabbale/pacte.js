@@ -3,6 +3,7 @@ import { Version } from "../../module/common/version.js";
 import { ActionDialog } from "../core/actionDialog.js";
 import { Constants } from "../../module/common/constants.js";
 import { Health } from "../core/health.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { NephilimChat } from "../../module/common/chat.js";
 import { Ordonnance } from "./ordonnance.js";
 
@@ -108,10 +109,11 @@ export class Pacte extends AbstractFeature {
         if (!Ordonnance.pacteDefinitif(this.actor, this.item)) {
             return;
         }
-        const sid = this.item?.system?.id;
-        const invocation = this.actor.items.find(i => i.type === 'invocation' && i.system.id === sid);
+        // Le pacte va à l'exemplaire de l'incarnation courante, créé au besoin
+        const incarnations = new Incarnations(this.actor);
+        const invocation = incarnations.exemplaireEffectif(this.item?.system?.id);
         if (invocation != null && Version.data(invocation).pacte !== true) {
-            await invocation.update({ [Version.path(invocation, 'pacte')]: true });
+            await incarnations.ecrire(invocation, { pacte: true });
         }
     }
 
