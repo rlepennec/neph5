@@ -221,14 +221,16 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the voie magique of the actor.
      */
     get voieMagique() {
-        return this.items.find(i => i.type === 'magie');
+        // Celle de l'incarnation courante, sinon de l'antérieure la plus proche
+        return new Incarnations(this).voie('magie');
     }
 
     /**
      * @returns the voie alchimique of the actor.
      */
     get voieAlchimique() {
-        return this.items.find(i => i.type === 'alchimie');
+        // Celle de l'incarnation courante, sinon de l'antérieure la plus proche
+        return new Incarnations(this).voie('alchimie');
     }
 
 

@@ -60,10 +60,16 @@ export class Incarnations {
     static CAPACITES = ['capacite'];
 
     /**
+     * Les voies, magique et alchimique : au plus une de chaque par incarnation, indépendamment
+     * l'une de l'autre (voir voie et changerVoie).
+     */
+    static VOIES = ['magie', 'alchimie'];
+
+    /**
      * Tous les types liés à une incarnation : un exemplaire embarqué par incarnation qui les
      * connaît, portant la clé de son incarnation et ses propres valeurs (voir plus haut).
      */
-    static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES];
+    static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES, ...Incarnations.VOIES];
 
     /**
      * Les types qui ont des valeurs propres à l'acteur (statut, focus, pacte...) et dont le
@@ -402,6 +408,50 @@ export class Incarnations {
     rattaches(cle, types = null) {
         if (cle == null) return [];
         return this.actor.items.filter(i => this.epoqueDe(i) === cle && (types == null || types.includes(i.type)));
+    }
+
+    // ------------------------------------------------------------------ les voies
+
+    /**
+     * La voie que l'acteur suit : celle de l'incarnation courante, sinon celle de l'incarnation
+     * antérieure la plus proche qui en a une. Les incarnations désactivées ne comptent pas, les
+     * postérieures jamais. Une incarnation a au plus une voie de chaque type.
+     * @param type 'magie' ou 'alchimie'.
+     * @returns the embedded voie, null if none.
+     */
+    voie(type) {
+        const voies = this.actor.items.filter(i => i.type === type);
+        if (!this.porte) return voies[0] ?? null;
+        const comptent = this.ordonnees({ actif: true, jusqua: this.courante })
+            .filter(i => Version.data(i).actif === true)
+            .reverse();
+        for (const incarnation of comptent) {
+            const voie = voies.find(i => this.epoqueDe(i) === incarnation.sid);
+            if (voie != null) return voie;
+        }
+        return null;
+    }
+
+    /**
+     * Change la voie de l'incarnation courante :
+     *   - c'est déjà la voie suivie (de l'incarnation courante ou d'une antérieure) : rien ;
+     *   - sinon l'incarnation courante reçoit son exemplaire de cette voie, qui remplace celui
+     *     qu'elle avait ; les voies des autres incarnations ne changent pas.
+     * Un acteur sans incarnations n'a qu'une voie de chaque type, remplacée.
+     * @param sid  The system identifier of the world voie.
+     * @param type 'magie' ou 'alchimie'.
+     */
+    async changerVoie(sid, type) {
+        if (this.voie(type)?.sid === sid) return;
+        const cle = this.courante;
+        if (this.porte && cle == null) return;
+        const remplacees = this.porte ? this.rattaches(cle, [type]) : this.actor.items.filter(i => i.type === type);
+        const voie = new EmbeddedItem(this.actor, sid)
+            .withContext("Change of voie " + type)
+            .withoutData('description')
+            .withDeleteAfter(remplacees);
+        if (this.porte) voie.withIncarnation(cle);
+        await voie.create();
     }
 
     // ------------------------------------------------------------------ les degrés

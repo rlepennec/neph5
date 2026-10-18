@@ -1,17 +1,16 @@
 import { SimpleFeature } from "../core/simpleFeature.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 
 export class Magie extends SimpleFeature {
 
     /**
+     * La voie magique se dépose sur la fiche, dans l'onglet magie : elle devient celle de
+     * l'incarnation courante (voir Incarnations.changerVoie). Ailleurs, le dépôt est ignoré.
      * @Override
      */
     async drop() {
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a voie magique")
-            .withoutData('description')
-            .withDeleteAfter(this.actor.items.filter(i => i.type === 'magie'))
-            .create();
+        if (this.actor.sheet?.tabGroups?.primary !== 'magie') return;
+        await new Incarnations(this.actor).changerVoie(this.sid, 'magie');
     }
 
 }

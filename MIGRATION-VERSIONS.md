@@ -576,6 +576,16 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   fiche d'un vécu lié est ignoré ; 1.0.10 la retire des vécus migrés. Aucun autre type lié ne
   porte de champ redondant avec la clé.
 
-**Vérifié sous node** : façade 26 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 14 (acteur 1.7.0
+- **Les voies, magique et alchimique** (`Incarnations.VOIES`, ajoutées à `LIES` le 18/10, décidé
+  par l'utilisateur) : elles peuvent changer d'une incarnation à l'autre ; au plus une de chaque
+  type par incarnation, les deux types étant indépendants. La voie suivie (`voie(type)`, que
+  lisent `actor.voieMagique` / `voieAlchimique`) est celle de l'incarnation courante, sinon de
+  l'antérieure active la plus proche. Elle se dépose sur la fiche, dans l'onglet Magie ou
+  Alchimie selon son type, pour l'incarnation courante (`changerVoie`) : déjà suivie → rien ;
+  sinon l'incarnation courante reçoit son exemplaire, qui remplace le sien s'il y en avait un.
+  En 1.7.0 une voie n'avait pas de période : 1.0.10 la rattache à la plus ancienne incarnation
+  active, d'où elle fait foi pour toutes les suivantes.
+
+**Vérifié sous node** : façade 34 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, voies, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 16 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.
