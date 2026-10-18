@@ -575,7 +575,7 @@ export class AbstractFeature {
      * @returns the optional simulacre actor object.
      */
     static simulacre(actor) {
-        return game.actors.find(a => a.sid === Version.data(actor).simulacre);
+        return new Incarnations(actor).simulacre();
     }
 
     /**

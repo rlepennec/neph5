@@ -410,11 +410,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     }
 
     /**
-     * Drop d'un figurant sur la figure : le définit comme simulacre.
+     * Drop d'un figurant sur la figure : le définit comme simulacre de l'incarnation courante, à
+     * la place de celui qu'elle avait (voir Incarnations.simulacre).
      */
     static async _onDropSimulacre(event, document) {
         if (Version.data(this.document).options?.simulacre !== true) return;
-        await this.document.update({ [Version.path(this.document, 'simulacre')]: document.sid });
+        if (!(await new Incarnations(this.document).definirSimulacre(document.sid))) {
+            ui.notifications.warn(game.i18n.localize("NEPHILIM.simulacreSansIncarnation"));
+        }
     }
 
     /**

@@ -12,6 +12,8 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `predecesseur` : la clé de l'incarnation immédiatement plus ancienne, null pour la tête
  *                 de la chronologie (la plus ancienne) ;
  *   - `successeur` : la clé de l'incarnation immédiatement plus récente, null pour la queue ;
+ *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
+ *                 transmet pas aux autres incarnations ;
  *
  * Elle ne porte pas ce qui lui est lié : chaque objet lié (vécu, savoir, focus...) est un
  * exemplaire qui porte la clé de son incarnation (IncarnationField) et ses propres valeurs,
@@ -56,6 +58,15 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                 }
                             ),
                             successeur: new foundry.data.fields.StringField
+                            (
+                                {
+                                    nullable: true,
+                                    initial: null
+                                }
+                            ),
+                            // Le sid de l'acteur simulacre de cette incarnation : il ne se transmet pas
+                            // aux autres (voir Incarnations.simulacre).
+                            simulacre: new foundry.data.fields.StringField
                             (
                                 {
                                     nullable: true,

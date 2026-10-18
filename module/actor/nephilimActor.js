@@ -111,7 +111,8 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the simulacre as actor object, undefined if not exist.
      */
     get simulacre() {
-        return game.actors.find(a => a.sid === Version.data(this).simulacre);
+        // Celui de l'incarnation courante : il ne se transmet pas
+        return new Incarnations(this).simulacre();
     }
 
 
@@ -847,9 +848,9 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     static async onDeleteEmbeddedActors(actor, sids) {
 
-        // Remove the deleted actor if it is a simulacre of a figure
-        if (sids.includes(Version.data(actor).simulacre)) {
-            await actor.update({ [Version.path(actor, 'simulacre')]: null });
+        // Remove the deleted actors from the incarnations which had them as simulacre
+        if (actor.type === 'figure') {
+            await new Incarnations(actor).oublierSimulacres(sids);
         }
 
         // Remove the deleted actors if they are members of a fraternite

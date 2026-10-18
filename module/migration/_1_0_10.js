@@ -38,6 +38,8 @@ import { Version } from "../common/version.js";
  *      l'incarnation courante (elles ne se transmettent pas d'une incarnation à l'autre) ;
  *      les materiae aussi, leur quantité devenant la variation de cette incarnation, et les
  *      catalyseurs et les aspects, possédés à cette incarnation ;
+ *      le simulacre de la figure devient celui de l'incarnation courante (il ne se transmet
+ *      pas), et l'ancien champ de la figure est vidé ;
  *   4. supprime les périodes embarquées et les copies de trop : une seconde copie du même item
  *      dans la même période ; un vécu présent sur plusieurs périodes, qui reste à la première
  *      rencontrée dans la chaîne (un vécu ne se vit qu'une fois) ; une copie sans période
@@ -181,7 +183,10 @@ export class _1_0_10 {
                 versions: {
                     v5: {
                         periode: p.sid,
-                        actif: lire(p, 'actif') === true
+                        actif: lire(p, 'actif') === true,
+                        // Le simulacre de la figure ne se transmet pas : il devient celui de
+                        // l'incarnation courante seulement
+                        simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null
                     }
                 }
             }
@@ -196,6 +201,9 @@ export class _1_0_10 {
 
         // Les incarnations, puis le ménage
         await actor.createEmbeddedDocuments('Item', incarnations);
+        if (Version.data(actor).simulacre != null) {
+            await actor.update({ [Version.path(actor, 'simulacre')]: null });
+        }
         await actor.deleteEmbeddedDocuments('Item', [...periodes.map(p => p.id), ...doublons], { incarnations: false });
 
         // 3. et 5. Chaque exemplaire reçoit la clé de son incarnation (à la racine, commune à

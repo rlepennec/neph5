@@ -1,5 +1,6 @@
 import { Alchimie } from "../alchimie/alchimie.js";
 import { Version } from "../../module/common/version.js";
+import { Incarnations } from "../incarnation/incarnations.js";
 import { Appel } from "../conjuration/appel.js";
 import { Arcane } from "../arcane/arcane.js";
 import { Aspect } from "../selenim/aspect.js";
@@ -242,7 +243,7 @@ export class FeatureBuilder {
                     case 'actor':
                         return this.actor;
                     case 'simulacre':
-                        return game.actors.find(a => a.sid === Version.data(this.actor).simulacre);
+                        return new Incarnations(this.actor).simulacre();
                 }
             case 'figurant':
             case 'fraternite':

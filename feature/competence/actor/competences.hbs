@@ -13,7 +13,7 @@
     <ol class="body">
 
         <!-- Display the vecus of the simulacre -->
-        {{#if (and (nonNull @root.data.simulacre) (eq @root.data.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
+        {{#if (and (nonNull actor.simulacre) (eq @root.data.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
         {{#each actor.vecusOfSimulacre as |item|}}
         <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}" data-scope="simulacre">
 

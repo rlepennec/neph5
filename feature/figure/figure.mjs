@@ -23,6 +23,9 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                                     initial: ""
                                 }
                             ),
+                            // Ancien lien vers le simulacre, avant qu'il soit porté par l'incarnation courante
+                            // (Incarnations.simulacre) : gardé pour que 1.0.10 le lise, puis vidé. À retirer
+                            // avec les passerelles de migration.
                             simulacre: new foundry.data.fields.StringField(
                                 {
                                     nullable: true,

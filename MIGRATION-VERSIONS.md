@@ -642,6 +642,18 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   se modifient comme avant, sur l'exemplaire ouvert. En 1.7.0 le métamorphe n'avait pas de
   période : 1.0.10 le rattache à la plus ancienne incarnation active, comme les voies.
 
-**Vérifié sous node** : façade 65 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, voies, équipements, materiae, catalyseurs, aspects, retraits, retrait d'une incarnation) ; dépôt 11 ; métamorphe 10 (`test-metamorphe`) ; migration 21 (acteur 1.7.0
+- **Le simulacre** (décidé par l'utilisateur le 18/10) : un acteur, non un item ; le lien est
+  donc porté par l'**incarnation** (`versions.v5.simulacre`, sid de l'acteur), un figurant
+  pouvant servir à plusieurs figures. Un seul simulacre par incarnation, qui **ne se transmet
+  pas** : le simulacre de la figure est celui de l'incarnation courante (`simulacre()`, que
+  lisent `actor.simulacre`, `AbstractFeature.simulacre`, `FeatureBuilder.scopedActor`, le Ka
+  et les compétences). Déposer un figurant le définit pour l'incarnation courante, en
+  remplaçant le sien (`definirSimulacre`) ; sans incarnation courante, refus. Un acteur
+  supprimé du monde est retiré des incarnations qui l'avaient (`oublierSimulacres`). Pas de
+  retrait par la fiche pour l'instant. L'ancien champ `simulacre` de la figure reste au schéma
+  pour que 1.0.10 le lise : il devient celui de l'incarnation courante, puis est vidé (à retirer
+  avec les passerelles).
+
+**Vérifié sous node** : façade 71 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, voies, équipements, materiae, catalyseurs, aspects, simulacre, retraits, retrait d'une incarnation) ; dépôt 11 ; métamorphe 10 (`test-metamorphe`) ; migration 22 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.

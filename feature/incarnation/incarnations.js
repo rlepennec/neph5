@@ -653,6 +653,45 @@ export class Incarnations {
         }
     }
 
+    // ------------------------------------------------------------------ le simulacre
+
+    /**
+     * Le simulacre de l'acteur : celui de l'incarnation courante. Il ne se transmet pas : une
+     * incarnation qui n'en a pas n'a pas de simulacre. C'est un acteur, non un item : le lien est
+     * porté par l'incarnation (`simulacre`), pas par une clé sur l'acteur lié, qui pourrait
+     * servir de simulacre à plusieurs figures.
+     * @returns the simulacre actor, null if none.
+     */
+    simulacre() {
+        const sid = Version.data(this.incarnation(this.courante))?.simulacre ?? null;
+        return sid == null ? null : (game.actors.find(a => a.sid === sid) ?? null);
+    }
+
+    /**
+     * Fait d'un acteur le simulacre de l'incarnation courante, à la place de celui qu'elle avait.
+     * @param sid The system identifier of the actor.
+     * @returns false if the actor has no current incarnation.
+     */
+    async definirSimulacre(sid) {
+        const incarnation = this.incarnation(this.courante);
+        if (incarnation == null) return false;
+        await incarnation.update({ [Version.path(incarnation, 'simulacre')]: sid });
+        return true;
+    }
+
+    /**
+     * Retire des acteurs, supprimés du monde, des incarnations qui les avaient pour simulacre.
+     * @param sids The system identifiers of the deleted actors.
+     */
+    async oublierSimulacres(sids) {
+        const updates = this.toutes()
+            .filter(i => sids.includes(Version.data(i).simulacre))
+            .map(i => ({ _id: i.id, [Version.path(i, 'simulacre')]: null }));
+        if (updates.length > 0) {
+            await this.actor.updateEmbeddedDocuments('Item', updates);
+        }
+    }
+
     // ------------------------------------------------------------------ les degrés
 
     /**
