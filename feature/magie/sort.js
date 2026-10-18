@@ -52,7 +52,6 @@ export class Sort extends AbstractFocus {
 
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
-            .withDeleteExisting()
             .withData("focus", (previous == null ? false : Version.data(previous).focus))
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withIncarnation(this.periode)

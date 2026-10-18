@@ -157,7 +157,6 @@ export class Formule extends AbstractFocus {
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
-            .withDeleteExisting()
             .withData("focus", (previous == null ? false : Version.data(previous).focus))
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withData("quantite", 0)

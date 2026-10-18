@@ -110,7 +110,6 @@ export class Dracomachie extends AbstractFocus {
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a passe")
-            .withDeleteExisting()
             .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'degre')
             .create();

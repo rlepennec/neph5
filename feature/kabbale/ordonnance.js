@@ -39,6 +39,11 @@ export class Ordonnance extends AbstractFeature {
         }
         const premiere = autres.length === 0 && this.actor.items.find(i => i.sid === this.sid) == null;
 
+        // Un exemplaire par incarnation, comme les focus (voir deposerParEpoque)
+        if (!(await this.deposerParEpoque())) {
+            return;
+        }
+
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of an ordonnance")
             .withIncarnation(this.periode)

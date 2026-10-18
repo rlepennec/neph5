@@ -146,6 +146,19 @@ export class Incarnations {
     }
 
     /**
+     * @param cle The key of the incarnation.
+     * @returns {string} son nom pour l'utilisateur : la période, suivie de ses vécus, comme
+     *          l'onglet incarnations l'affiche (ex: « Les Arthuriades — Chevalier Errant »).
+     */
+    nomDe(cle) {
+        const incarnation = this.incarnation(cle);
+        if (incarnation == null) return "";
+        const periode = game.items.find(i => i.type === 'periode' && i.sid === Version.data(incarnation).periode);
+        const vecus = this.vecusDe(cle).map(v => v.name).join(", ");
+        return (periode?.name ?? incarnation.name) + (vecus ? " — " + vecus : "");
+    }
+
+    /**
      * @returns all the incarnations, in no particular order.
      */
     toutes() {

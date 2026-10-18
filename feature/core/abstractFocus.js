@@ -90,27 +90,18 @@ export class AbstractFocus extends AbstractFeature {
      */
     async drop() {
 
-        // A periode must be defined
-        if (this.periode == null) {
-            return;
+        // Un exemplaire par incarnation : déjà lié à celle-ci, rien ; connu d'une autre, une
+        // copie après confirmation (voir deposerParEpoque) ; sinon un nouveau.
+        if (await this.deposerParEpoque()) {
+            await this._createEmbeddedItem(null);
         }
-
-        // The focus must not be defined for the current periode.
-        if (new Incarnations(this.actor).aRattache(this.item.sid, this.periode)) {
-            return;
-        }
-
-        // Retrieve the previous focus item if already defined.
-        const previous = this.actor.items.find(i => i.sid === this.item.sid);
-
-        // Create a new focus or move the focus to the new periode.
-        await this._createEmbeddedItem(previous);
 
     }
 
     /**
-     * Create a new embedded focus item or move it to the new periode.
-     * @param previous The previous periode item.
+     * Crée l'exemplaire de l'incarnation this.periode d'un focus que l'acteur ne connaît encore
+     * dans aucune autre : avec les valeurs initiales propres à l'acteur (statut, focus...).
+     * @param previous Toujours null : un focus déjà connu est copié par deposerParEpoque.
      */
     async _createEmbeddedItem(previous) {
         throw new Error("AbstractFocus._createEmbeddedItem not implemented");

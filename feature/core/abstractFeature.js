@@ -145,6 +145,40 @@ export class AbstractFeature {
     }
 
     /**
+     * Dépôt d'un focus ou d'une capacité, liés par époque (Incarnations.PAR_EPOQUE), dans
+     * l'incarnation this.periode :
+     *   - déjà lié à cette incarnation : rien ;
+     *   - connu d'une incarnation antérieure — sinon postérieure — non désactivée : une fenêtre
+     *     nomme la plus proche et demande confirmation ; confirmé, l'incarnation reçoit son
+     *     propre exemplaire, copié de celui de cette incarnation (statut, focus, pacte...) ;
+     *   - connu d'aucune : il reste à le créer comme un nouveau, à la façon de chaque type.
+     * @returns true s'il reste à créer l'exemplaire comme un nouveau.
+     */
+    async deposerParEpoque() {
+        if (this.periode == null || this.sid == null) return false;
+        const incarnations = new Incarnations(this.actor);
+        if (incarnations.exemplaireDans(this.sid, this.periode) != null) return false;
+
+        const anterieure = incarnations.voisine(this.sid, this.periode, 'anterieure');
+        const voisine = anterieure ?? incarnations.voisine(this.sid, this.periode, 'posterieure');
+        if (voisine == null) return true;
+
+        const confirme = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("NEPHILIM.dejaConnu") },
+            content: "<p>" + game.i18n.format(anterieure != null ? "NEPHILIM.dejaConnuAnterieure" : "NEPHILIM.dejaConnuPosterieure", {
+                nom: this.item?.name ?? "",
+                epoque: incarnations.nomDe(voisine.incarnation.sid)
+            }) + "</p>",
+            rejectClose: false,
+            modal: true
+        });
+        if (confirme === true) {
+            await incarnations.creerExemplaire(voisine.item, this.periode);
+        }
+        return false;
+    }
+
+    /**
      * @returns the image displayed in the action panel and the chat.
      */
     get img() {

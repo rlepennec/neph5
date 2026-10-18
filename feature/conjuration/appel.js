@@ -41,7 +41,6 @@ export class Appel extends AbstractFocus {
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a appel")
-            .withDeleteExisting()
             .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
             .withIncarnation(this.periode)
             .withoutData('description', 'degre', 'appel', 'controle', 'visibilite', 'entropie', 'dommages', 'protection')

@@ -67,7 +67,6 @@ export class Habitus extends AbstractFocus {
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of an habitus")
-            .withDeleteExisting()
             .withIncarnation(this.periode)
             .withoutData('description', 'domaine', 'element', 'voies', 'degre', 'incantation', 'portee', 'duree')
             .create();

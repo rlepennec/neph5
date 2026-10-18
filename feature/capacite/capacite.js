@@ -55,20 +55,13 @@ export class Capacite extends HistoricalFeature {
             return;
         }
 
-        // A periode must be defined
-        if (this.periode == null) {
+        // Un exemplaire par incarnation, comme les focus (voir deposerParEpoque)
+        if (!(await this.deposerParEpoque())) {
             return;
         }
 
-        // The capacite must not be defined for the current periode.
-        if (new Incarnations(this.actor).aRattache(this.item.sid, this.periode)) {
-            return;
-        }
-
-        // Create a new capacite or move the capacite to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a capacite")
-            .withDeleteExisting()
             .withIncarnation(this.periode)
             .withoutData('description')
             .create();

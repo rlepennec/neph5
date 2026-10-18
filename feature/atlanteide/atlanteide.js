@@ -66,7 +66,6 @@ export class Atlanteide extends AbstractFocus {
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a rituel altantéide")
-            .withDeleteExisting()
             .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'degre')
             .create();
