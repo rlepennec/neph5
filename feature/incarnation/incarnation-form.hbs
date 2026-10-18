@@ -22,6 +22,31 @@
             <p class="brouillon">{{translate "incarnationBrouillon"}}</p>
             {{/if}}
 
+            {{!-- La période n'est pas un onglet : toujours affichée, en tête --}}
+            <h3>{{translate "periode"}}</h3>
+            {{#if periode}}
+            <div class="ligne periode" data-sid="{{periode.sid}}">
+                <img src="{{periode.img}}"/>
+                <label data-action="ouvrirPeriode" class="open">{{periode.name}}</label>
+                <span class="precision">{{periode.contexte}}{{#if periode.aube}}, {{periode.aube}}{{/if}}</span>
+            </div>
+            {{/if}}
+
+            {{!-- Ce qui peut être déposé, seulement formulaire déverrouillé. Sans période, c'est
+                  elle qu'il faut déposer d'abord. --}}
+            {{#unless @root.locked}}
+            {{#unless periode}}
+            <div class="vide">{{translate "deposerPeriode"}}</div>
+            {{/unless}}
+            {{#if nouvelle}}
+            {{#unless vecus.length}}
+            <div class="vide">{{translate "deposerVecu"}}</div>
+            {{/unless}}
+            {{else}}
+            <div class="vide">{{translate "deposerAcquis"}}</div>
+            {{/if}}
+            {{/unless}}
+
             {{!-- Un onglet dépliant par catégorie, présent seulement s'il contient quelque chose
                   (voir IncarnationForm.#onglets). --}}
             {{#each onglets as |onglet|}}
@@ -29,20 +54,13 @@
 
                 <summary><h3>{{onglet.titre}}</h3></summary>
 
-                {{#if onglet.periode}}
-                <div class="ligne periode" data-sid="{{@root.periode.sid}}">
-                    <img src="{{@root.periode.img}}"/>
-                    <label data-action="ouvrirPeriode" class="open">{{@root.periode.name}}</label>
-                    <span class="precision">{{@root.periode.contexte}}{{#if @root.periode.aube}}, {{@root.periode.aube}}{{/if}}</span>
-                </div>
-                {{/if}}
-
                 {{#if onglet.vecus}}
                 <ol class="liste">
                     {{#each @root.vecus as |vecu|}}
                     <li class="ligne item" data-id="{{vecu.id}}" data-sid="{{vecu.sid}}">
                         <img src="{{vecu.img}}"/>
                         <label {{#if vecu.id}}data-action="ouvrir" class="open"{{/if}}>{{vecu.name}}</label>
+                        <span class="precision"></span>
                         <input
                             class="degre"
                             type="number"
@@ -50,9 +68,11 @@
                             value="{{vecu.degre}}"
                             data-tooltip="{{translate 'degre'}}"
                             {{#if @root.locked}}disabled{{/if}}/>
-                        {{#unless @root.locked}}
-                        <a data-action="retirer" class="fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
-                        {{/unless}}
+                        {{#if @root.locked}}
+                        <span class="action"></span>
+                        {{else}}
+                        <a data-action="retirer" class="action fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
+                        {{/if}}
                     </li>
                     {{/each}}
                 </ol>
@@ -77,19 +97,8 @@
                 {{/each}}
 
             </details>
+
             {{/each}}
-
-            {{#unless periode}}
-            <div class="vide">{{translate "deposerPeriode"}}</div>
-            {{/unless}}
-
-            {{#unless @root.locked}}
-            {{#if nouvelle}}
-            <div class="vide">{{translate "deposerVecu"}}</div>
-            {{else}}
-            <div class="vide">{{translate "deposerAcquis"}}</div>
-            {{/if}}
-            {{/unless}}
 
         </main>
 

@@ -15,8 +15,8 @@ import { Version } from "../../module/common/version.js";
  *   3. un savoir, une quête, un arcane, une science, une passe d'armes, une chute — acquis
  *      pendant l'incarnation, avec le degré acquis ;
  *   4. un focus (formule, sort, invocation...) ou une capacité — rattachés à l'incarnation.
- * Le formulaire liste ce qui est défini, avec les degrés, en onglets dépliants : la période,
- * les vécus, les savoirs, les quêtes et arcanes, les chutes, les passes d'armes, chaque science
+ * Le formulaire affiche toujours la période en tête, puis liste le reste en onglets dépliants :
+ * les vécus, les savoirs, les quêtes et arcanes, les chutes, les ressources, chaque science
  * occulte (ses cercles du plus petit au plus grand, chacun suivi de ses focus), puis les
  * capacités. Un onglet n'apparaît que s'il contient quelque chose ; un dépôt déplie l'onglet de
  * l'objet déposé et replie les autres.
@@ -47,15 +47,14 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
 
     /**
      * Les onglets dépliants, de haut en bas, avec leur titre. Les sciences occultes s'insèrent
-     * à la place de « sciences ».
+     * à la place de « sciences ». La période n'en est pas un : elle est toujours affichée, en tête.
      */
     static ONGLETS = [
-        ['periode', 'NEPHILIM.periode'],
         ['vecus', 'NEPHILIM.vecus'],
         ['savoirs', 'NEPHILIM.savoirs'],
         ['quetes', 'NEPHILIM.quetesArcanes'],
         ['chutes', 'NEPHILIM.chutes'],
-        ['passes', 'NEPHILIM.passesArmes'],
+        ['ressources', 'NEPHILIM.ressources'],
         ['sciences', null],
         ['autres', 'NEPHILIM.autresAcquis'],
         ['capacites', 'NEPHILIM.capacites']
@@ -73,7 +72,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         this.locked = locked;
         this.brouillon = { periode: null, vecu: null, degre: 0 };
         // Les onglets dépliés, gardés d'un rendu à l'autre
-        this.ouverts = new Set(['periode', 'vecus']);
+        this.ouverts = new Set(['vecus']);
     }
 
     static DEFAULT_OPTIONS = {
@@ -213,7 +212,10 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
                 sid: item.sid,
                 name: item.name,
                 img: item.img,
-                type: game.i18n.localize("TYPES.Item." + item.type),
+                // Un focus rappelle le nom de son cercle (Basse Magie, Malkut...) ; l'onglet dit déjà
+                // de quel type est chaque objet.
+                precision: Incarnations.FOCUS.includes(item.type) && IncarnationForm.cercleOf(item) != null
+                    ? IncarnationForm.nomDuCercle(IncarnationForm.cercleOf(item)) : "",
                 avecDegre: avecDegre,
                 degre: avecDegre ? incarnations.degreDans(item.sid, this.cle) : null,
                 science: item.type === 'science'
@@ -236,9 +238,6 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         const ajouter = (cle, titre, contenu) => onglets.push({ cle, titre, ouvert: this.ouverts.has(cle), ...contenu });
         for (const [cle, titre] of IncarnationForm.ONGLETS) {
             switch (cle) {
-                case 'periode':
-                    if (context.periode != null) ajouter(cle, game.i18n.localize(titre), { periode: true });
-                    break;
                 case 'vecus':
                     if (context.vecus.length > 0) ajouter(cle, game.i18n.localize(titre), { vecus: true });
                     break;
@@ -276,13 +275,12 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
      */
     static ongletOf(item) {
         switch (item?.type) {
-            case 'periode': return 'periode';
             case 'vecu': return 'vecus';
             case 'savoir': return 'savoirs';
             case 'quete':
             case 'arcane': return 'quetes';
             case 'chute': return 'chutes';
-            case 'passe': return 'passes';
+            case 'passe': return 'ressources';
             case 'capacite': return 'capacites';
             // Une ordonnance n'a pas de cercle, seulement un monde de kabbale
             case 'ordonnance': return 'science.kabbale';
@@ -386,7 +384,6 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         } else {
             await new Incarnations(this.actor).changerPeriode(this.cle, document.sid);
         }
-        this.#deplier(document);
         this.#rafraichir();
     }
 

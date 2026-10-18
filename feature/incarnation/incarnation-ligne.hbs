@@ -1,8 +1,9 @@
-{{!-- Une ligne du formulaire d'incarnation : un objet acquis, avec son degré s'il en a un. --}}
+{{!-- Une ligne du formulaire d'incarnation : un objet acquis. Toutes les lignes ont les mêmes
+      colonnes (image, nom, précision, degré, corbeille), vides au besoin, pour rester alignées. --}}
 <li class="ligne item" data-id="{{item.id}}" data-sid="{{item.sid}}">
     <img src="{{item.img}}"/>
     <label data-action="ouvrir" class="open">{{item.name}}</label>
-    <span class="precision">{{item.type}}</span>
+    <span class="precision">{{item.precision}}</span>
     {{#if item.avecDegre}}
     <input
         class="degre"
@@ -11,8 +12,12 @@
         value="{{item.degre}}"
         data-tooltip="{{translate 'degre'}}"
         {{#if @root.locked}}disabled{{/if}}/>
+    {{else}}
+    <span class="degre"></span>
     {{/if}}
-    {{#unless @root.locked}}
-    <a data-action="retirer" class="fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
-    {{/unless}}
+    {{#if @root.locked}}
+    <span class="action"></span>
+    {{else}}
+    <a data-action="retirer" class="action fas fa-trash" data-tooltip="{{translate 'supprimer'}}"></a>
+    {{/if}}
 </li>
