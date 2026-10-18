@@ -117,6 +117,21 @@ export class EmbeddedItem {
             return this;
         }
 
+        // Un focus ou une capacité liés à une incarnation : un exemplaire par incarnation, qui
+        // porte sa clé. Seul compte celui de CETTE incarnation ; ceux des autres restent.
+        const monde = game.items.find(i => i.sid === this.sid);
+        if (this.incarnation != null && Incarnations.PAR_EPOQUE.includes(monde?.type)) {
+            this.data.set("incarnation", this.incarnation.periode);
+            if (!this.deleteExisting) {
+                const exemplaire = new Incarnations(this.actor).exemplaireDans(this.sid, this.incarnation.periode);
+                if (exemplaire != null) {
+                    this.item = exemplaire;
+                    return this;
+                }
+                return await this.#creer(monde);
+            }
+        }
+
         // Check if an item is already embbeded
         const already = this.actor.items.find(i => i.sid === this.sid && i.type !== 'incarnation');
         if (already != null) {
@@ -137,7 +152,18 @@ export class EmbeddedItem {
         }
 
         // Retrieve the word item
-        const item = game.items.find(i => i.sid === this.sid);
+        return await this.#creer(game.items.find(i => i.sid === this.sid));
+
+    }
+
+    /**
+     * Crée l'item embarqué depuis l'item du monde, avec les valeurs enregistrées, et le
+     * rattache à son incarnation.
+     * @param item The world item.
+     * @returns the instance.
+     */
+    async #creer(item) {
+
         if (item == null) {
             this.error("Error occurs during embedded item creation because world item not found");
             return this;

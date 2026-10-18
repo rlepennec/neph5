@@ -30,6 +30,10 @@ import { Version } from "../../module/common/version.js";
  *     doivent rien à une autre incarnation.
  *
  * Un item embarqué n'existe qu'en un exemplaire : ce sont les apports qui portent l'historique.
+ * Sauf les focus et les capacités (PAR_EPOQUE) : un exemplaire par incarnation qui les connaît,
+ * qui porte la clé de son incarnation et ses propres valeurs (statut, focus, pacte...). Celui
+ * qui fait foi est l'exemplaire de l'incarnation courante, sinon de l'antérieure la plus proche
+ * (exemplaireEffectif) ; écrire une valeur la porte à l'incarnation courante (ecrire).
  * L'ordre « de chaîne » est l'ordre chronologique, de la plus ancienne à la plus récente, comme
  * l'ancienne chaîne de `previous` (sa tête, sans prédécesseur, était la plus ancienne). Une
  * incarnation déposée prend la tête : elle devient la plus ancienne, comme une période déposée
@@ -52,6 +56,14 @@ export class Incarnations {
     static FOCUS = ['sort', 'invocation', 'formule', 'rite', 'ordonnance', 'appel', 'habitus', 'pratique',
         'rituel', 'technique', 'tekhne', 'atlanteide', 'dracomachie', 'divination'];
     static CAPACITES = ['capacite'];
+
+    /**
+     * Les types liés PAR ÉPOQUE : un même focus, une même capacité peuvent être liés à plusieurs
+     * incarnations, un exemplaire embarqué par incarnation, chacun avec ses propres valeurs
+     * (statut, focus, pacte, quantité...). L'exemplaire porte la clé de son incarnation dans
+     * son champ `incarnation` : il est désigné par la paire (clé de l'incarnation, sid).
+     */
+    static PAR_EPOQUE = [...Incarnations.FOCUS, ...Incarnations.CAPACITES];
 
     /**
      * Les types d'acteur qui vivent des incarnations.
@@ -278,28 +290,153 @@ export class Incarnations {
 
     /**
      * @param item An embedded item.
-     * @returns {string|null} la clé de l'incarnation à laquelle l'item est rattaché — la plus
-     *          récente s'il a progressé pendant plusieurs.
+     * @returns {string|null} la clé de l'incarnation à laquelle l'item est rattaché — celle de
+     *          son exemplaire pour un type lié par époque, sinon la plus récente s'il a
+     *          progressé pendant plusieurs.
      */
     rattachement(item) {
+        if (Incarnations.PAR_EPOQUE.includes(item?.type)) return this.epoqueDe(item);
         return this.#porteuses(item?.sid).at(-1)?.sid ?? null;
     }
 
     /**
      * @param item An embedded item.
-     * @returns true if the item owes something to an incarnation which counts.
+     * @returns true if the item owes something to an incarnation which counts — pour un type
+     *          lié par époque, si l'incarnation de CET exemplaire compte.
      */
     estActif(item) {
+        if (Incarnations.PAR_EPOQUE.includes(item?.type)) return this.estActive(this.epoqueDe(item));
         return this.#porteuses(item?.sid).some(i => this.estActive(i.sid));
     }
 
     /**
      * @param sid The system identifier of an item.
-     * @returns the embedded items with this sid — one, since an item is embedded once.
+     * @returns the embedded items with this sid — one, except for the types linked per
+     *          incarnation, which have one per incarnation (see PAR_EPOQUE).
      */
     exemplaires(sid) {
         return this.actor.items.filter(i => i.sid === sid && i.type !== 'incarnation');
     }
+
+    // ------------------------------------------------------------------ les liens par époque
+
+    /**
+     * @param item An embedded item of a type linked per incarnation.
+     * @returns {string|null} la clé de l'incarnation de cet exemplaire. Un exemplaire lié avant
+     *          que les focus ne le soient par époque n'a pas de clé : c'est alors l'incarnation
+     *          la plus récente à laquelle il est rattaché.
+     */
+    epoqueDe(item) {
+        if (!Incarnations.PAR_EPOQUE.includes(item?.type)) return null;
+        return Version.data(item).incarnation ?? this.#porteuses(item.sid).at(-1)?.sid ?? null;
+    }
+
+    /**
+     * @param sid The system identifier of an item linked per incarnation.
+     * @param cle The key of an incarnation.
+     * @returns l'exemplaire de cette incarnation, null si elle n'en a pas.
+     */
+    exemplaireDans(sid, cle) {
+        if (cle == null) return null;
+        return this.exemplaires(sid).find(i => this.epoqueDe(i) === cle) ?? null;
+    }
+
+    /**
+     * L'exemplaire qui fait foi pour l'acteur : celui de l'incarnation courante, sinon celui de
+     * l'incarnation antérieure la plus proche. Les incarnations désactivées ne comptent pas,
+     * les postérieures jamais.
+     * @param sid The system identifier of an item linked per incarnation.
+     * @returns the effective embedded item, null if the actor does not know it now.
+     */
+    exemplaireEffectif(sid) {
+        const copies = this.exemplaires(sid);
+        if (copies.length === 0) return null;
+        if (!this.porte) return copies[0];
+        const comptent = this.ordonnees({ actif: true, jusqua: this.courante })
+            .filter(i => Version.data(i).actif === true)
+            .reverse();
+        for (const incarnation of comptent) {
+            const copie = copies.find(i => this.epoqueDe(i) === incarnation.sid);
+            if (copie != null) return copie;
+        }
+        return null;
+    }
+
+    /**
+     * L'incarnation voisine la plus proche, dans un sens, qui connaît un item lié par époque.
+     * Les incarnations désactivées sont ignorées.
+     * @param sid  The system identifier of an item linked per incarnation.
+     * @param cle  The key of the incarnation from which to look.
+     * @param sens 'anterieure' (vers les plus anciennes) ou 'posterieure'.
+     * @returns {{ incarnation, item }|null} l'incarnation et son exemplaire, null si aucune.
+     */
+    voisine(sid, cle, sens) {
+        const chaine = this.#chaine();
+        const index = chaine.findIndex(i => i.sid === cle);
+        if (index === -1) return null;
+        const cote = sens === 'anterieure' ? chaine.slice(0, index).reverse() : chaine.slice(index + 1);
+        for (const incarnation of cote) {
+            if (Version.data(incarnation).actif !== true) continue;
+            const item = this.exemplaireDans(sid, incarnation.sid);
+            if (item != null) return { incarnation, item };
+        }
+        return null;
+    }
+
+    /**
+     * Crée l'exemplaire d'une incarnation à partir d'un autre exemplaire du même item : il en
+     * reprend les valeurs, modulo les changements donnés, et est rattaché à l'incarnation.
+     * @param source       The embedded item to copy.
+     * @param cle          The key of the incarnation of the new item.
+     * @param changements  Les valeurs à changer, par champ de la version (ex: { status: 'connu' }).
+     * @returns the new embedded item.
+     */
+    async creerExemplaire(source, cle, changements = {}) {
+        const data = source.toObject();
+        delete data._id;
+        foundry.utils.setProperty(data, Version.path(source, 'incarnation'), cle);
+        for (const [champ, valeur] of Object.entries(changements)) {
+            foundry.utils.setProperty(data, Version.path(source, champ), valeur);
+        }
+        const [cree] = await this.actor.createEmbeddedDocuments('Item', [data]);
+        await this.rattacher(source.sid, cle);
+        return cree;
+    }
+
+    /**
+     * Écrit des valeurs propres à l'acteur (statut, focus, pacte, quantité...) sur un item lié
+     * par époque. Elles valent pour l'incarnation courante : si l'exemplaire est le sien, il est
+     * modifié ; sinon — c'est celui d'une incarnation antérieure —, l'incarnation courante
+     * reçoit son propre exemplaire, copié de celui-ci avec les nouvelles valeurs. Les autres
+     * items, et un acteur sans incarnation courante, sont simplement modifiés.
+     * @param item         The embedded item to write.
+     * @param changements  Les valeurs, par champ de la version (ex: { pacte: true }).
+     * @returns the embedded item which carries the new values.
+     */
+    async ecrire(item, changements) {
+        const courante = this.courante;
+        if (!this.porte || courante == null || !Incarnations.PAR_EPOQUE.includes(item?.type)) {
+            await item.update(Incarnations.#chemins(item, changements));
+            return item;
+        }
+        const cible = this.epoqueDe(item) === courante ? item : this.exemplaireDans(item.sid, courante);
+        if (cible != null) {
+            await cible.update(Incarnations.#chemins(cible, changements));
+            return cible;
+        }
+        return await this.creerExemplaire(item, courante, changements);
+    }
+
+    /**
+     * @param item        The item to write.
+     * @param changements Les valeurs, par champ de la version.
+     * @returns the update data, at the paths of the item's version.
+     */
+    static #chemins(item, changements) {
+        return Object.fromEntries(Object.entries(changements).map(([champ, valeur]) => [Version.path(item, champ), valeur]));
+    }
+
+    // ------------------------------------------------------------------ les rattachements (suite)
 
     /**
      * @param sid The system identifier of an item.
@@ -308,21 +445,24 @@ export class Incarnations {
      */
     aRattache(sid, cle) {
         const data = Version.data(this.incarnation(cle));
-        return (data?.vecus ?? []).includes(sid) || (data?.apports ?? []).some(a => a.sid === sid);
+        return (data?.vecus ?? []).includes(sid) || (data?.apports ?? []).some(a => a.sid === sid)
+            || this.exemplaireDans(sid, cle) != null;
     }
 
     /**
      * @param cle   The key of an incarnation.
      * @param types The item types to keep, all if omitted.
-     * @returns the embedded items which owe something to the incarnation — its vecus and its
-     *          contributions — in actor order.
+     * @returns the embedded items which owe something to the incarnation — its vecus, its
+     *          contributions, and for the types linked per incarnation, its own exemplars —
+     *          in actor order.
      */
     rattaches(cle, types = null) {
         const data = Version.data(this.incarnation(cle));
         const sids = new Set((data?.apports ?? []).map(a => a.sid));
         for (const vecu of data?.vecus ?? []) sids.add(vecu);
-        return this.actor.items.filter(i => i.type !== 'incarnation' && sids.has(i.sid)
-            && (types == null || types.includes(i.type)));
+        return this.actor.items.filter(i => i.type !== 'incarnation'
+            && (types == null || types.includes(i.type))
+            && (Incarnations.PAR_EPOQUE.includes(i.type) ? this.epoqueDe(i) === cle : sids.has(i.sid)));
     }
 
     /**
@@ -498,9 +638,10 @@ export class Incarnations {
             await this.definirCourante(null);
         }
 
-        // The items which owe nothing to another incarnation go with this one
+        // The items which owe nothing to another incarnation go with this one — and its own
+        // exemplars of the items linked per incarnation, whatever the others have
         const autres = this.toutes().filter(i => i.sid !== cle);
-        const orphelins = this.rattaches(cle).filter(item => !autres.some(i =>
+        const orphelins = this.rattaches(cle).filter(item => Incarnations.PAR_EPOQUE.includes(item.type) || !autres.some(i =>
             (Version.data(i).vecus ?? []).includes(item.sid) || (Version.data(i).apports ?? []).some(a => a.sid === item.sid)));
 
         // Mend the chain around it, then delete it: its vecus no longer hold it, and the other
@@ -621,7 +762,10 @@ export class Incarnations {
      */
     async rattacher(sid, cle, degre = null) {
         const incarnation = this.incarnation(cle);
-        if (incarnation == null || this.aRattache(sid, cle)) return;
+        // Les apports eux-mêmes, et non aRattache : un exemplaire lié par époque qui vient d'être
+        // créé porte déjà la clé de l'incarnation, son apport reste à écrire.
+        const data = Version.data(incarnation);
+        if (incarnation == null || (data.vecus ?? []).includes(sid) || (data.apports ?? []).some(a => a.sid === sid)) return;
         await this.#apports(incarnation, [...(Version.data(incarnation).apports ?? []), { sid: sid, degre: degre }]);
     }
 
@@ -695,7 +839,16 @@ export class Incarnations {
             return;
         }
         const incarnations = new Incarnations(item.actor);
-        if (!incarnations.porte || incarnations.exemplaires(item.sid).length > 0) return;
+        if (!incarnations.porte) return;
+        // Un exemplaire lié par époque : seule son incarnation le perd, les autres gardent le leur
+        const epoque = Incarnations.PAR_EPOQUE.includes(item.type) ? Version.data(item).incarnation : null;
+        if (epoque != null) {
+            if (incarnations.exemplaireDans(item.sid, epoque) == null) {
+                await incarnations.detacher(item.sid, epoque);
+            }
+            return;
+        }
+        if (incarnations.exemplaires(item.sid).length > 0) return;
         const tenue = item.type === 'vecu' ? incarnations.incarnationDe(item) : null;
         if (tenue == null) {
             await incarnations.oublier(item.sid);

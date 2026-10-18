@@ -19,8 +19,9 @@ import { Version } from "../common/version.js";
  * sa place dans la chronologie (`predecesseur`, `successeur` : une liste doublement chaînée,
  * de la plus ancienne à la plus récente) et ses `apports` :
  * `{ sid, degre }` pour chaque autre item acquis pendant l'incarnation. Chaque vécu garde sa
- * période et son degré. Un item embarqué n'existe plus qu'en un exemplaire. Voir la façade
- * `Incarnations`.
+ * période et son degré. Un item embarqué n'existe plus qu'en un exemplaire — sauf les focus et
+ * les capacités, qui en ont un par époque, portant la clé de son incarnation (`incarnation`)
+ * et ses propres valeurs. Voir la façade `Incarnations`.
  *
  * CE QU'ELLE FAIT, acteur par acteur (figures et fraternités) :
  *   1. lit la chaîne des périodes embarquées, de la plus ancienne à la plus récente ; une
@@ -118,8 +119,16 @@ export class _1_0_10 {
             liste.push(item);
             copies.set(item.sid, liste);
         }
+        // Les focus et les capacités gardent un exemplaire par époque : chaque copie rattachée à
+        // une période embarquée reste, et en devient l'exemplaire (voir étape 5).
         const doublons = [];
         for (const liste of copies.values()) {
+            if (Incarnations.PAR_EPOQUE.includes(liste[0].type)) {
+                const rattachees = liste.filter(i => embarquees.has(lire(i, 'periode')));
+                const gardees = rattachees.length > 0 ? rattachees : [liste[0]];
+                doublons.push(...liste.filter(i => !gardees.includes(i)).map(i => i.id));
+                continue;
+            }
             const garde = liste.find(i => embarquees.has(lire(i, 'periode'))) ?? liste[0];
             doublons.push(...liste.filter(i => i !== garde).map(i => i.id));
         }
@@ -175,7 +184,13 @@ export class _1_0_10 {
 
         // 5. Les items restants, que 1.0.9 a laissés pour cette conversion : leur forme nouvelle
         //    est fixée en base, maintenant que ce qu'ils portaient est versé dans les incarnations.
+        //    Un focus ou une capacité reçoit d'abord la clé de son époque : celle de sa période,
+        //    qui est aussi la clé de l'incarnation créée pour elle.
         for (const item of actor.items.filter(i => i.type !== 'incarnation' && VersionMigration.CHAMPS[i.type] != null)) {
+            const periode = lire(item, 'periode');
+            if (Incarnations.PAR_EPOQUE.includes(item.type) && embarquees.has(periode)) {
+                await item.update({ [Version.path(item, 'incarnation')]: periode });
+            }
             await _1_0_9.fixer(item);
         }
 
