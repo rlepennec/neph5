@@ -70,7 +70,7 @@
 
             <div class="periode-header">
 
-                <img class="puce" data-action="displayPeriode"/>
+                <img class="puce"/>
 
                 <img class="separator"/>
 
@@ -91,107 +91,6 @@
                     {{/if}}
 
                 </div>
-
-            </div>
-
-            <div class="periode-body"
-                 {{#unless (or (includes ../elapsedPeriodes periode.cle) (eq ../editedPeriode periode.cle))}}
-                 style="display: none;"
-                 {{/unless}}>
-
-                {{#unless (isEmptyCollection periode.embedded.actors)}}
-                <ol class="members">
-
-                    {{#each periode.embedded.actors as |actor|}}
-                    <li class="member actor" data-id="{{actor.id}}">
-                    <div class="definition">
-
-                        <i class="fa-solid {{#if actor.newer}}fa-user-plus{{else}}fa-user-minus{{/if}}"></i>
-
-                        <label data-action="openItem" class="name open">{{actor.name}}</label>
-
-                        {{#if (eq ../../editedPeriode ../cle)}}
-                        <label class="fas fa-trash delete"></label>
-                        {{/if}}
-
-                    </div>
-                    </li>
-                    {{/each}}
-
-                </ol>
-                {{/unless}}
-
-                {{#unless (isEmptyCollection periode.embedded.vecus)}}
-                <ol class="vecus">
-
-                    {{#each periode.embedded.vecus as |item|}}
-                    <li class="vecu item" data-id="{{item.id}}" data-sid="{{item.sid}}">
-                    <div class="definition">
-
-                        <input
-                            {{#unless (eq ../../editedPeriode ../cle)}}disabled{{/unless}}
-                            class="degre set"
-                            type="number"
-                            value="{{item.degre}}"
-                            data-dtype="Number"/>
-
-                        <label data-action="openItem" class="name open">{{item.name}}</label>
-
-                        {{#if (eq ../../editedPeriode ../cle)}}                
-                        <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
-                        {{/if}}
-
-                    </div>
-                    </li>
-                    {{/each}}
-
-                </ol>
-                {{/unless}}
-
-                {{#unless (isEmptyCollection periode.embedded.focus)}}
-                <ol class="periode-focus">
-
-                    {{#each periode.embedded.focus as |item|}}
-                    <li class="focus item" data-id="{{item.id}}" data-sid="{{item.sid}}">
-                    <div class="focus-definition">
-
-                        <a><i class="fas fa-scroll"></i></a>
-
-                        <label data-action="openItem" class="focus-name open">{{item.name}}</label>
-
-                        {{#if (eq ../../editedPeriode ../cle)}}
-                        <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
-                        {{/if}}
-
-                    </div>
-                    </li>
-                    {{/each}}
-
-                </ol>
-                {{/unless}}
-
-                {{#unless (isEmptyCollection periode.embedded.capacites)}}
-                
-                <ol class="periode-focus">
-
-                    {{#each periode.embedded.capacites as |item|}}
-                    <li class="focus item" data-id="{{item.id}}" data-sid="{{item.sid}}">
-                    <div class="focus-definition">
-
-                        <a><i class="fa-solid fa-pen-fancy"></i></a>
-
-                        <label data-action="openItem" class="focus-name open">{{item.name}}</label>
-
-                        {{#if (eq ../../editedPeriode ../cle)}}
-                        <label data-action="deleteEmbedded" class="fas fa-trash delete"></label>
-                        {{/if}}
-
-                    </div>
-                    </li>
-                    {{/each}}
-
-                </ol>
-                {{/unless}}
 
             </div>
 
