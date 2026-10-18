@@ -534,3 +534,40 @@ pour tester, repartir d'une copie de monde 1.7.0.
 l'écriture, exemplaire effectif, retrait, suppression, retrait d'incarnation, exemplaire sans
 clé) ; 11 sur le dépôt avec fenêtre simulée et la résolution de `AbstractFocus`. Pas encore
 essayé dans Foundry.
+
+## 9. Tous les items liés, un exemplaire par époque (décidé par l'utilisateur le 18 octobre 2026)
+
+La section 8 ne valait que pour les focus et les capacités. Le modèle est désormais **le même
+pour tout ce qui est lié à une incarnation** (`Incarnations.LIES`) : vécu, savoir, quête,
+arcane, chute, science, ressource, les 14 focus, capacité.
+
+- **Un champ partagé** : `IncarnationField` (`module/field/incarnationField.js`), à la racine du
+  schéma après `id` dans les 22 modèles — `system.incarnation`, la clé de l'incarnation de
+  l'exemplaire, vide pour l'item du monde.
+- **Le degré sur l'exemplaire** : le degré acquis pendant une époque est porté par l'exemplaire
+  de cette époque (`versions.v5.degre`, rendu aux savoirs, quêtes, arcanes, chutes et
+  sciences ; le vécu et la ressource l'avaient). Le degré d'un item est la somme sur ses
+  exemplaires dont l'incarnation compte (courante et antérieures actives).
+- **L'incarnation allégée** : elle ne porte plus `vecus` ni `apports` — seulement `periode`,
+  `actif`, `predecesseur`, `successeur`. Ce qui lui est lié se lit sur les exemplaires
+  (`rattaches(cle)`, `vecusDe(cle)`).
+- **Une seule logique** dans la façade : `epoqueDe`, `exemplaireDans`, `exemplaireEffectif`,
+  `voisine`, `aRattache`, `rattaches`, `apports(sid)` (lecture : les exemplaires dans l'ordre
+  de la chaîne), `degreDans`, `degre`, `degreAcquis`, `modifierDegre`, `creerExemplaire`,
+  `ecrire`, `retirerDe`, `retirer`. Disparus : `rattacher`, `detacher`, `oublier`, les
+  écritures d'apports. `apresSuppression` ne recoud plus que la chaîne d'une incarnation
+  supprimée : un exemplaire supprimé n'a rien à défaire ailleurs.
+- **Une seule création** : `EmbeddedItem.withIncarnation(cle, degre)` crée l'exemplaire de
+  l'incarnation (clé à la racine, degré dans la version) s'il n'existe pas, pour tout type lié.
+- **Dépôt d'un savoir (quête, science...) déjà connu d'une autre époque** : nouvel exemplaire,
+  degré 0, sans fenêtre — un savoir progresse à chaque époque. Les focus et capacités gardent
+  leurs règles (section 8, `PAR_EPOQUE`). Un vécu ne se vit qu'une fois (`DEJA_VECU`).
+- **Migration 1.0.10** : en 1.7.0, chaque item lié existait déjà en une copie par période, avec
+  son degré. Chaque copie rattachée à une période embarquée devient l'exemplaire de son
+  incarnation (clé = sa période, degré relevé) ; sont supprimées une seconde copie dans la même
+  période, un vécu présent sur plusieurs périodes (gardé à la première de la chaîne), une copie
+  hors période quand l'item a un exemplaire ailleurs.
+
+**Vérifié sous node** : façade 26 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 13 (acteur 1.7.0
+simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.

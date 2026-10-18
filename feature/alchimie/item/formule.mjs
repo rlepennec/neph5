@@ -3,6 +3,7 @@ import { VersionMigration } from "../../../module/migration/versionMigration.js"
 import { Constants } from "../../../module/common/constants.js";
 import { Illustration } from "../../../module/common/illustration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { IncarnationField } from "../../../module/field/incarnationField.js";
 
 export class FormuleDataModel extends foundry.abstract.TypeDataModel {
 
@@ -31,18 +32,8 @@ export class FormuleDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
-            // La clé de l'incarnation (l'époque) à laquelle appartient cet exemplaire lié : un même
-            // focus peut être lié à plusieurs époques, un exemplaire par époque, chacun avec ses
-            // propres valeurs. Commune à toutes les versions ; vide pour l'item du monde. Voir
-            // Incarnations.
-            incarnation: new foundry.data.fields.StringField
-            (
-                {
-                    required: false,
-                    nullable: true,
-                    initial: null
-                }
-            ),
+            // La clé de l'incarnation de cet exemplaire lié, commune à toutes les versions.
+            incarnation: new IncarnationField(),
             illustration: new foundry.data.fields.FilePathField
             (
                 {

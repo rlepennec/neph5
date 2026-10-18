@@ -1,13 +1,15 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { Constants } from "../../../module/common/constants.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { IncarnationField } from "../../../module/field/incarnationField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 
 /**
  * [V14] Porté aux versions de règles.
  *
  * À la racine, ce qui ne dépend pas des règles : l'identifiant, par lequel passent toutes
- * les références, et l'illustration, que le système pose lui-même. Tout le reste décrit ce
+ * les références, l'illustration, que le système pose lui-même, et la clé de l'incarnation
+ * d'un exemplaire lié. Tout le reste décrit ce
  * que vaut le vécu sous une édition donnée — son élément, son degré, sa période, les
  * compétences qu'il ouvre et ses effets mnémos — et appartient donc à sa version.
  *
@@ -22,6 +24,8 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // La clé de l'incarnation de cet exemplaire lié, commune à toutes les versions.
+            incarnation: new IncarnationField(),
             illustration: new foundry.data.fields.FilePathField
             (
                 {

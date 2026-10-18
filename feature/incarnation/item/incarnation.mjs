@@ -8,15 +8,14 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  * Il porte, par version de règles :
  *
  *   - `periode` : le sid de la période du monde ; plusieurs incarnations peuvent la partager ;
- *   - `vecus`   : les sids de ses vécus embarqués — aucun, un ou plusieurs. Chacun porte la
- *                 période de l'incarnation, et son propre degré ;
  *   - `actif`   : l'incarnation compte-t-elle pour l'acteur ;
  *   - `predecesseur` : la clé de l'incarnation immédiatement plus ancienne, null pour la tête
  *                 de la chronologie (la plus ancienne) ;
  *   - `successeur` : la clé de l'incarnation immédiatement plus récente, null pour la queue ;
- *   - `apports` : les autres items acquis pendant l'incarnation, par sid d'item embarqué, avec
- *                 le degré acquis pour ceux qui en ont un (savoir, quête, arcane, science, passe
- *                 d'armes, chute), null pour les autres (focus, capacité).
+ *
+ * Elle ne porte pas ce qui lui est lié : chaque objet lié (vécu, savoir, focus...) est un
+ * exemplaire qui porte la clé de son incarnation (IncarnationField) et ses propres valeurs,
+ * dont le degré acquis pendant elle.
  *
  * Seule la façade `Incarnations` lit et écrit ces champs.
  */
@@ -43,10 +42,6 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                     initial: null
                                 }
                             ),
-                            vecus: new foundry.data.fields.ArrayField
-                            (
-                                new foundry.data.fields.StringField()
-                            ),
                             actif: new foundry.data.fields.BooleanField
                             (
                                 {
@@ -66,22 +61,6 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                     nullable: true,
                                     initial: null
                                 }
-                            ),
-                            apports: new foundry.data.fields.ArrayField
-                            (
-                                new foundry.data.fields.SchemaField
-                                (
-                                    {
-                                        sid: new foundry.data.fields.StringField(),
-                                        degre: new foundry.data.fields.NumberField
-                                        (
-                                            {
-                                                nullable: true,
-                                                initial: null
-                                            }
-                                        )
-                                    }
-                                )
                             )
                         },
                         { scope: 'v5' }

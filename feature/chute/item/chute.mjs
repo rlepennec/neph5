@@ -1,6 +1,7 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { IncarnationField } from "../../../module/field/incarnationField.js";
 
 export class ChuteDataModel extends foundry.abstract.TypeDataModel {
 
@@ -11,6 +12,8 @@ export class ChuteDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // La clé de l'incarnation de cet exemplaire lié, commune à toutes les versions.
+            incarnation: new IncarnationField(),
             illustration: new foundry.data.fields.FilePathField
             (
                 {
@@ -25,6 +28,13 @@ export class ChuteDataModel extends foundry.abstract.TypeDataModel {
                     v5: new ChunkField
                     (
                         {
+                            // Le degré acquis pendant l'incarnation de cet exemplaire (vide pour l'item du monde).
+                            degre: new foundry.data.fields.NumberField
+                            (
+                                {
+                                    required: false
+                                }
+                            ),
                             key: new foundry.data.fields.StringField
                             (
                                 {

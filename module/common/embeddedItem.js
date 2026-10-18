@@ -42,13 +42,11 @@ export class EmbeddedItem {
     }
 
     /**
-     * Rattache l'item à une incarnation, par la façade des incarnations.
-     *
-     * Un item n'est embarqué qu'une fois : s'il l'est déjà, il n'est pas recréé, il doit
-     * simplement quelque chose de plus à cette incarnation — sauf withDeleteExisting, qui le
-     * « déplace » (focus, capacité : une seule période), en le détachant de toutes les autres.
-     * @param periode The system identifier of the periode.
-     * @param degre   The degre acquired during the periode, omitted if the item has none.
+     * Lie l'item à une incarnation : il y reçoit son propre exemplaire, qui porte la clé de
+     * l'incarnation (IncarnationField) et le degré acquis pendant elle. Si l'incarnation en a
+     * déjà un, il n'est pas recréé ; les exemplaires des autres incarnations restent.
+     * @param periode The key of the incarnation.
+     * @param degre   The degre acquired during the incarnation, omitted if the item has none.
      * @returns the instance.
      */
     withIncarnation(periode, degre = null) {
@@ -117,35 +115,29 @@ export class EmbeddedItem {
             return this;
         }
 
-        // Un focus ou une capacité liés à une incarnation : un exemplaire par incarnation, qui
-        // porte sa clé. Seul compte celui de CETTE incarnation ; ceux des autres restent.
+        // Un item lié à une incarnation : un exemplaire par incarnation, qui porte sa clé et le
+        // degré acquis pendant elle. Seul compte celui de CETTE incarnation ; ceux des autres
+        // restent. Voir la façade Incarnations.
         const monde = game.items.find(i => i.sid === this.sid);
-        if (this.incarnation != null && Incarnations.PAR_EPOQUE.includes(monde?.type)) {
+        if (this.incarnation != null && Incarnations.LIES.includes(monde?.type)) {
+            const exemplaire = new Incarnations(this.actor).exemplaireDans(this.sid, this.incarnation.periode);
+            if (exemplaire != null) {
+                this.item = exemplaire;
+                return this;
+            }
             // La clé est commune à toutes les versions : posée à la racine (voir #creer)
             this.cleEpoque = this.incarnation.periode;
-            if (!this.deleteExisting) {
-                const exemplaire = new Incarnations(this.actor).exemplaireDans(this.sid, this.incarnation.periode);
-                if (exemplaire != null) {
-                    this.item = exemplaire;
-                    return this;
-                }
-                return await this.#creer(monde);
+            if (this.incarnation.degre != null) {
+                this.data.set("degre", this.incarnation.degre);
             }
+            return await this.#creer(monde);
         }
 
         // Check if an item is already embbeded
         const already = this.actor.items.find(i => i.sid === this.sid && i.type !== 'incarnation');
         if (already != null) {
             if (this.deleteExisting === true) {
-                if (this.incarnation != null) {
-                    await new Incarnations(this.actor).oublier(this.sid);
-                }
                 await this.actor.deleteEmbeddedDocuments('Item', [already.id], { incarnations: false });
-            } else if (this.incarnation != null) {
-                // Déjà embarqué : il doit seulement quelque chose de plus à cette incarnation.
-                this.item = already;
-                await new Incarnations(this.actor).rattacher(this.sid, this.incarnation.periode, this.incarnation.degre);
-                return this;
             } else if (this.alreadyEmbeddedError === true) {
                 this.error("Error occurs during embedded item creation because actor item already embedded");
                 return this;
@@ -158,8 +150,8 @@ export class EmbeddedItem {
     }
 
     /**
-     * Crée l'item embarqué depuis l'item du monde, avec les valeurs enregistrées, et le
-     * rattache à son incarnation.
+     * Crée l'item embarqué depuis l'item du monde, avec les valeurs enregistrées, et la clé de
+     * son incarnation s'il est lié.
      * @param item The world item.
      * @returns the instance.
      */
@@ -189,10 +181,6 @@ export class EmbeddedItem {
         // Create the embedded item
         this.item = (await this.actor.createEmbeddedDocuments("Item", data))[0];
 
-        // Attach it to its incarnation
-        if (this.incarnation != null) {
-            await new Incarnations(this.actor).rattacher(this.sid, this.incarnation.periode, this.incarnation.degre);
-        }
 
         // Remove optional data
         if (this.removeData != null) {

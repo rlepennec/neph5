@@ -365,7 +365,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             }
         }
         for (const [sid, valeur] of Object.entries(valeurs.degre ?? {})) {
-            const item = incarnations.exemplaires(sid)[0];
+            const item = incarnations.exemplaireDans(sid, this.cle);
             if (item != null && entier(valeur) !== incarnations.degreDans(sid, this.cle)) {
                 await incarnations.modifierDegre(item, entier(valeur), this.cle);
             }
