@@ -1,6 +1,7 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { IncarnationField } from "../../../module/field/incarnationField.js";
 
 export class AspectDataModel extends foundry.abstract.TypeDataModel {
 
@@ -11,6 +12,8 @@ export class AspectDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // La clé de l'incarnation de cet exemplaire lié, commune à toutes les versions.
+            incarnation: new IncarnationField(),
             illustration: new foundry.data.fields.FilePathField
             (
                 {
@@ -45,9 +48,18 @@ export class AspectDataModel extends foundry.abstract.TypeDataModel {
                                     required: false
                                 }
                             ),
+                            // L'état de l'aspect à l'époque de cet exemplaire, propre au personnage.
                             active: new foundry.data.fields.BooleanField(
                                 {
                                     required: false
+                                }
+                            ),
+                            // La possession à l'époque de cet exemplaire : un aspect se gagne, se perd et se
+                            // regagne d'une incarnation à l'autre (voir Incarnations.possessions).
+                            possede: new foundry.data.fields.BooleanField
+                            (
+                                {
+                                    initial: true
                                 }
                             )
                         },

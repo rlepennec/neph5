@@ -36,7 +36,7 @@ import { Version } from "../common/version.js";
  *      les armes et les armures, qui n'en avaient pas non plus, deviennent celles de
  *      l'incarnation courante (elles ne se transmettent pas d'une incarnation à l'autre) ;
  *      les materiae aussi, leur quantité devenant la variation de cette incarnation, et les
- *      catalyseurs, possédés à cette incarnation ;
+ *      catalyseurs et les aspects, possédés à cette incarnation ;
  *   4. supprime les périodes embarquées et les copies de trop : une seconde copie du même item
  *      dans la même période ; un vécu présent sur plusieurs périodes, qui reste à la première
  *      rencontrée dans la chaîne (un vécu ne se vit qu'une fois) ; une copie sans période
@@ -146,7 +146,8 @@ export class _1_0_10 {
         // (sinon de la plus récente). Plusieurs exemplaires d'une même arme restent possibles.
         // Les materiae non plus : leur quantité est le stock actuel du laboratoire, qui devient
         // la variation de l'incarnation courante, d'où il se transmet aux suivantes. Les
-        // catalyseurs de même : possédés à l'incarnation courante, ils se transmettent ensuite.
+        // catalyseurs et les aspects de même : possédés à l'incarnation courante, ils se
+        // transmettent ensuite.
         const periodeCourante = Version.data(actor).periode;
         const courante = embarquees.has(periodeCourante) ? periodeCourante : chaine.at(-1)?.sid;
         for (const item of lies.filter(i => [...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS, ...Incarnations.POSSESSIONS].includes(i.type) && !exemplaires.has(i.id))) {

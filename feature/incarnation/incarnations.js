@@ -78,11 +78,12 @@ export class Incarnations {
     static STOCKS = ['materiae'];
 
     /**
-     * Les possessions, les catalyseurs : elles se transmettent d'une incarnation à l'autre, et
-     * peuvent se gagner, se perdre et se regagner ; chaque exemplaire marque la possession à son
-     * époque (`possede`). Au plus un exemplaire de chaque par incarnation (voir possessions).
+     * Les possessions, les catalyseurs et les aspects : elles se transmettent d'une incarnation à
+     * l'autre, et peuvent se gagner, se perdre et se regagner ; chaque exemplaire marque la
+     * possession à son époque (`possede`). Au plus un exemplaire de chaque par incarnation (voir
+     * possessions).
      */
-    static POSSESSIONS = ['catalyseur'];
+    static POSSESSIONS = ['catalyseur', 'aspect'];
 
     /**
      * Tous les types liés à une incarnation : un exemplaire embarqué par incarnation qui les
@@ -589,12 +590,19 @@ export class Incarnations {
     /**
      * L'acteur acquiert une possession à l'époque courante : déjà possédée, rien ; sinon
      * l'incarnation courante reçoit son exemplaire, ou le sien est marqué possédé.
-     * @param sid The system identifier of the world item.
+     * @param sid     The system identifier of the world item.
+     * @param valeurs Les valeurs propres à l'acteur d'un nouvel exemplaire (ex: { active: false }).
+     * @param sans    Les champs de l'item du monde que l'exemplaire ne recopie pas.
      */
-    async acquerir(sid) {
+    async acquerir(sid, { valeurs = {}, sans = ['description'] } = {}) {
+        const exemplaire = () => {
+            const item = new EmbeddedItem(this.actor, sid).withContext("Possession").withoutData(...sans);
+            for (const [champ, valeur] of Object.entries(valeurs)) item.withData(champ, valeur);
+            return item;
+        };
         if (!this.porte) {
             if (this.exemplaires(sid).length > 0) return;
-            await new EmbeddedItem(this.actor, sid).withContext("Possession").withoutData('description').create();
+            await exemplaire().create();
             return;
         }
         const cle = this.courante;
@@ -604,12 +612,7 @@ export class Incarnations {
             await propre.update({ [Version.path(propre, 'possede')]: true });
             return;
         }
-        await new EmbeddedItem(this.actor, sid)
-            .withContext("Possession on incarnation " + cle)
-            .withIncarnation(cle)
-            .withData("possede", true)
-            .withoutData('description')
-            .create();
+        await exemplaire().withIncarnation(cle).withData("possede", true).create();
     }
 
     /**

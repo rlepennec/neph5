@@ -620,6 +620,16 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   passe, un exemplaire marqué non possédé, qui le retire à partir de cette époque. En 1.7.0 un
   catalyseur n'avait pas de période : 1.0.10 le donne à l'incarnation courante.
 
-**Vérifié sous node** : façade 59 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, voies, équipements, materiae, catalyseurs, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 19 (acteur 1.7.0
+- **Les aspects** (ajoutés aux `POSSESSIONS` le 18/10, décidé par l'utilisateur) : comme les
+  catalyseurs, ils se transmettent et peuvent se perdre et se regagner (`possede`), un
+  exemplaire au plus par aspect et par incarnation ; le total de l'imago additionne les degrés
+  des aspects possédés. Leur **état actif** est propre à chaque époque, comme les valeurs d'un
+  focus : basculer l'œil l'écrit dans l'incarnation courante (`ecrire`), en y copiant l'aspect
+  s'il vient d'une antérieure. La corbeille des catalyseurs et des aspects est une seule
+  action, `perdrePossession` ; `acquerir` prend les valeurs initiales et les champs à ne pas
+  recopier. En 1.7.0 un aspect n'avait pas de période : 1.0.10 le donne à l'incarnation
+  courante, avec son état (l'utilisateur ajustera à la main).
+
+**Vérifié sous node** : façade 65 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, voies, équipements, materiae, catalyseurs, aspects, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 20 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.

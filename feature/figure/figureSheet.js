@@ -30,7 +30,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             openSimulacre: FigureSheet._onOpenSimulacre,
             openFraternite: FigureSheet._onOpenFraternite,
             openChute: FigureSheet._onOpenChute,
-            perdreCatalyseur: FigureSheet._onPerdreCatalyseur,
+            perdrePossession: FigureSheet._onPerdrePossession,
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
@@ -308,10 +308,10 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     }
 
     /**
-     * La corbeille d'un catalyseur : la figure le perd à l'époque courante ; les époques
-     * antérieures le gardent (voir Incarnations.perdre).
+     * La corbeille d'une possession (catalyseur, aspect) : la figure la perd à l'époque
+     * courante ; les époques antérieures la gardent (voir Incarnations.perdre).
      */
-    static async _onPerdreCatalyseur(event, target) {
+    static async _onPerdrePossession(event, target) {
         if (this.locked) return;
         await new Incarnations(this.document).perdre(target.closest('.item').dataset.sid);
     }
