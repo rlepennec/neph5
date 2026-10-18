@@ -2,6 +2,7 @@ import { DragDropMixin } from "../../module/common/dragDropMixin.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Incarnations } from "./incarnations.js";
 import { LockableMixin } from "../../module/common/lockableMixin.js";
+import { Science } from "../science/science.js";
 import { Version } from "../../module/common/version.js";
 
 /**
@@ -14,7 +15,11 @@ import { Version } from "../../module/common/version.js";
  *   3. un savoir, une quête, un arcane, une science, une passe d'armes, une chute — acquis
  *      pendant l'incarnation, avec le degré acquis ;
  *   4. un focus (formule, sort, invocation...) ou une capacité — rattachés à l'incarnation.
- * Le formulaire liste ce qui est défini, avec les degrés.
+ * Le formulaire liste ce qui est défini, avec les degrés, en onglets dépliants : la période,
+ * les vécus, les savoirs, les quêtes et arcanes, les chutes, les passes d'armes, chaque science
+ * occulte (ses cercles du plus petit au plus grand, chacun suivi de ses focus), puis les
+ * capacités. Un onglet n'apparaît que s'il contient quelque chose ; un dépôt déplie l'onglet de
+ * l'objet déposé et replie les autres.
  *
  * Une incarnation NOUVELLE n'existe d'abord qu'ici, à l'état de brouillon : elle est enregistrée
  * dès que sa période est définie, avec le vécu déjà déposé s'il y en a un. Les acquisitions
@@ -34,6 +39,29 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
     static SANS_DEGRE = [...Incarnations.FOCUS, ...Incarnations.CAPACITES];
 
     /**
+     * Les sciences occultes, dans l'ordre de leurs onglets. Chacune range ses cercles du plus
+     * petit au plus grand (Science.cerclesOf), avec sous chacun les focus qui en relèvent.
+     */
+    static SCIENCES = ['magie', 'kabbale', 'alchimie', 'necromancie', 'conjuration', 'analogie',
+        'atlanteide', 'baton', 'coupe', 'denier', 'bohemien', 'dracomachie', 'epee'];
+
+    /**
+     * Les onglets dépliants, de haut en bas, avec leur titre. Les sciences occultes s'insèrent
+     * à la place de « sciences ».
+     */
+    static ONGLETS = [
+        ['periode', 'NEPHILIM.periode'],
+        ['vecus', 'NEPHILIM.vecus'],
+        ['savoirs', 'NEPHILIM.savoirs'],
+        ['quetes', 'NEPHILIM.quetesArcanes'],
+        ['chutes', 'NEPHILIM.chutes'],
+        ['passes', 'NEPHILIM.passesArmes'],
+        ['sciences', null],
+        ['autres', 'NEPHILIM.autresAcquis'],
+        ['capacites', 'NEPHILIM.capacites']
+    ];
+
+    /**
      * @param actor   The figure.
      * @param cle     The key of the incarnation, null for a new one.
      * @param options ApplicationV2 options, and `locked` to open it locked.
@@ -44,6 +72,8 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         this.cle = cle;
         this.locked = locked;
         this.brouillon = { periode: null, vecu: null, degre: 0 };
+        // Les onglets dépliés, gardés d'un rendu à l'autre
+        this.ouverts = new Set(['periode', 'vecus']);
     }
 
     static DEFAULT_OPTIONS = {
@@ -156,19 +186,162 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         }
 
 
-        // Ce qui a été acquis pendant l'incarnation
-        const ligne = (item, degre) => ({
-            id: item.id,
-            sid: item.sid,
-            name: item.name,
-            img: item.img,
-            type: game.i18n.localize("TYPES.Item." + item.type),
-            degre: degre ? incarnations.degreDans(item.sid, this.cle) : null
-        });
-        context.acquis = this.nouvelle ? [] : incarnations.rattaches(this.cle, IncarnationForm.AVEC_DEGRE).map(i => ligne(i, true));
-        context.focus = this.nouvelle ? [] : incarnations.rattaches(this.cle, IncarnationForm.SANS_DEGRE).map(i => ligne(i, false));
+        // Ce qui a été acquis pendant l'incarnation, classé par onglet
+        context.onglets = this.#onglets(incarnations, context);
 
         return context;
+    }
+
+    /**
+     * Les onglets dépliants du formulaire, de haut en bas. Un onglet n'apparaît que s'il
+     * contient quelque chose ; ceux d'une science occulte rangent leurs lignes par cercle.
+     * @param incarnations La façade des incarnations de la figure.
+     * @param context      Le contexte, qui porte déjà la période et les vécus.
+     * @returns les onglets à afficher.
+     */
+    #onglets(incarnations, context) {
+
+        // Les lignes acquises, réparties par onglet ; celles d'une science, par cercle
+        const lignes = new Map();
+        const cercles = new Map();
+        const acquis = this.nouvelle ? [] :
+            incarnations.rattaches(this.cle, [...IncarnationForm.AVEC_DEGRE, ...IncarnationForm.SANS_DEGRE]);
+        for (const item of acquis) {
+            const avecDegre = IncarnationForm.AVEC_DEGRE.includes(item.type);
+            const ligne = {
+                id: item.id,
+                sid: item.sid,
+                name: item.name,
+                img: item.img,
+                type: game.i18n.localize("TYPES.Item." + item.type),
+                avecDegre: avecDegre,
+                degre: avecDegre ? incarnations.degreDans(item.sid, this.cle) : null,
+                science: item.type === 'science'
+            };
+            const onglet = IncarnationForm.ongletOf(item);
+            const cercle = onglet.startsWith('science.') ? IncarnationForm.cercleOf(item) : null;
+            if (cercle != null) {
+                if (!cercles.has(onglet)) cercles.set(onglet, new Map());
+                const parCercle = cercles.get(onglet);
+                if (!parCercle.has(cercle)) parCercle.set(cercle, []);
+                parCercle.get(cercle).push(ligne);
+            } else {
+                if (!lignes.has(onglet)) lignes.set(onglet, []);
+                lignes.get(onglet).push(ligne);
+            }
+        }
+        const parNom = (a, b) => a.name.localeCompare(b.name);
+
+        const onglets = [];
+        const ajouter = (cle, titre, contenu) => onglets.push({ cle, titre, ouvert: this.ouverts.has(cle), ...contenu });
+        for (const [cle, titre] of IncarnationForm.ONGLETS) {
+            switch (cle) {
+                case 'periode':
+                    if (context.periode != null) ajouter(cle, game.i18n.localize(titre), { periode: true });
+                    break;
+                case 'vecus':
+                    if (context.vecus.length > 0) ajouter(cle, game.i18n.localize(titre), { vecus: true });
+                    break;
+                case 'sciences':
+                    for (const science of IncarnationForm.SCIENCES) {
+                        const parCercle = cercles.get('science.' + science) ?? new Map();
+                        const horsCercle = lignes.get('science.' + science) ?? [];
+                        if (parCercle.size === 0 && horsCercle.length === 0) continue;
+                        // Du plus petit cercle au plus grand ; sous chacun, le cercle puis ses focus
+                        const ordre = Science.cerclesOf(science);
+                        const rang = c => { const r = ordre.indexOf(c); return r < 0 ? ordre.length : r; };
+                        const rubriques = [...parCercle.entries()]
+                            .sort(([a], [b]) => rang(a) - rang(b))
+                            .map(([cercle, items]) => ({
+                                titre: IncarnationForm.nomDuCercle(cercle),
+                                lignes: [...items.filter(i => i.science), ...items.filter(i => !i.science).sort(parNom)]
+                            }));
+                        // Ce qui relève de la science sans cercle (les ordonnances de la kabbale) : en dernier
+                        if (horsCercle.length > 0) {
+                            rubriques.push({ titre: IncarnationForm.titreHorsCercle(science), lignes: horsCercle.sort(parNom) });
+                        }
+                        ajouter('science.' + science, game.i18n.localize('NEPHILIM.' + science), { cercles: rubriques });
+                    }
+                    break;
+                default:
+                    if (lignes.has(cle)) ajouter(cle, game.i18n.localize(titre), { lignes: lignes.get(cle).sort(parNom) });
+            }
+        }
+        return onglets;
+    }
+
+    /**
+     * @param item Un item de la figure, ou du monde.
+     * @returns la clé de l'onglet où il se range.
+     */
+    static ongletOf(item) {
+        switch (item?.type) {
+            case 'periode': return 'periode';
+            case 'vecu': return 'vecus';
+            case 'savoir': return 'savoirs';
+            case 'quete':
+            case 'arcane': return 'quetes';
+            case 'chute': return 'chutes';
+            case 'passe': return 'passes';
+            case 'capacite': return 'capacites';
+            // Une ordonnance n'a pas de cercle, seulement un monde de kabbale
+            case 'ordonnance': return 'science.kabbale';
+        }
+        const cercle = IncarnationForm.cercleOf(item);
+        const science = cercle == null ? null : IncarnationForm.SCIENCES.find(s => Science.cerclesOf(s).includes(cercle));
+        return science == null ? 'autres' : 'science.' + science;
+    }
+
+    /**
+     * @param item Un cercle (science) ou un focus, de la figure ou du monde.
+     * @returns la clé du cercle dont il relève, lue sur l'item du monde, null s'il n'en a pas.
+     *          Un focus désigne son cercle par une propriété propre à son type (voir
+     *          Science.getCercle) : le domaine d'un habitus, la sephirah d'une invocation.
+     */
+    static cercleOf(item) {
+        const original = game.items.find(i => i.sid === item?.sid) ?? item;
+        if (original?.type === 'science') return Version.data(original).key ?? null;
+        if (!Incarnations.FOCUS.includes(original?.type)) return null;
+        const propriete = original.type === 'habitus' ? 'domaine' : original.type === 'invocation' ? 'sephirah' : 'cercle';
+        return Version.data(original)[propriete] ?? null;
+    }
+
+    /**
+     * @param cercle La clé d'un cercle.
+     * @returns son nom, celui de la science du monde qui le porte.
+     */
+    static nomDuCercle(cercle) {
+        return game.items.find(i => i.type === 'science' && Version.data(i).key === cercle)?.name ?? cercle;
+    }
+
+    /**
+     * @param science La clé d'une science occulte.
+     * @returns le titre de la rubrique de ce qui en relève sans cercle.
+     */
+    static titreHorsCercle(science) {
+        return science === 'kabbale' ? game.i18n.localize('NEPHILIM.ordonnances') : game.i18n.localize('NEPHILIM.autresAcquis');
+    }
+
+    /**
+     * Un objet vient d'être déposé : son onglet se déplie, les autres se replient.
+     * @param item L'item déposé.
+     */
+    #deplier(item) {
+        this.ouverts = new Set([IncarnationForm.ongletOf(item)]);
+    }
+
+    /**
+     * Retient les onglets que l'utilisateur déplie ou replie, pour les garder au rendu suivant.
+     * @override
+     */
+    async _onRender(context, options) {
+        await super._onRender(context, options);
+        for (const details of this.element.querySelectorAll('details.onglet')) {
+            details.addEventListener('toggle', () => {
+                if (details.open) this.ouverts.add(details.dataset.onglet);
+                else this.ouverts.delete(details.dataset.onglet);
+            });
+        }
     }
 
     /**
@@ -213,6 +386,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         } else {
             await new Incarnations(this.actor).changerPeriode(this.cle, document.sid);
         }
+        this.#deplier(document);
         this.#rafraichir();
     }
 
@@ -229,9 +403,11 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
         if (this.nouvelle) {
             this.brouillon.vecu = document.sid;
             await this.#enregistrer();
+            if (this.brouillon.vecu != null) this.#deplier(document);
         } else {
             const refus = await incarnations.ajouterVecu(this.cle, document.sid);
             if (refus != null) ui.notifications.warn(refus);
+            else this.#deplier(document);
         }
         this.#rafraichir();
     }
@@ -250,6 +426,10 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             .withPeriode(this.cle)
             .create()
             ?.drop();
+        // L'onglet ne s'ouvre que si l'objet a bien été rattaché (un dépôt peut être refusé)
+        if (new Incarnations(this.actor).rattaches(this.cle).some(i => i.sid === document.sid)) {
+            this.#deplier(document);
+        }
         this.#rafraichir();
     }
 

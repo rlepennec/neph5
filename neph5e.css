@@ -8465,6 +8465,38 @@ form.nephilim.item.incarnation-form section.window-content > section.incarnation
   border-bottom: 1px solid var(--color-font-dark);
   font-family: var(--font-family-title);
 }
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet > summary {
+  list-style: none;
+  cursor: pointer;
+}
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet > summary::-webkit-details-marker {
+  display: none;
+}
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet > summary h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet > summary h3::before {
+  content: "\f054";
+  font-family: var(--font-awesome, "Font Awesome 6 Pro");
+  font-weight: 900;
+  font-size: 12px;
+  transition: transform 0.15s;
+}
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet > summary:hover h3 {
+  text-shadow: 0 0 6px var(--color-font-dark);
+}
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet[open] > summary h3::before {
+  transform: rotate(90deg);
+}
+form.nephilim.item.incarnation-form section.window-content > section.incarnation article main details.onglet h4.cercle {
+  margin: 8px 0 2px 12px;
+  border: none;
+  font-family: var(--font-family-title);
+  font-size: 15px;
+  opacity: 0.85;
+}
 form.nephilim.item.incarnation-form section.window-content > section.incarnation article main .brouillon {
   margin: 0 0 6px 0;
   font-style: italic;

@@ -42,6 +42,51 @@ form.nephilim.item.incarnation-form {
                     font-family: var(--font-family-title);
                 }
 
+                // Un onglet dépliant par catégorie : le titre se clique, un chevron dit s'il est
+                // ouvert.
+                details.onglet {
+
+                    > summary {
+                        list-style: none;
+                        cursor: pointer;
+
+                        &::-webkit-details-marker {
+                            display: none;
+                        }
+
+                        h3 {
+                            display: flex;
+                            align-items: center;
+                            gap: 6px;
+
+                            &::before {
+                                content: "\f054";
+                                font-family: var(--font-awesome, "Font Awesome 6 Pro");
+                                font-weight: 900;
+                                font-size: 12px;
+                                transition: transform 0.15s;
+                            }
+                        }
+
+                        &:hover h3 {
+                            text-shadow: 0 0 6px var(--color-font-dark);
+                        }
+                    }
+
+                    &[open] > summary h3::before {
+                        transform: rotate(90deg);
+                    }
+
+                    // Un cercle d'une science occulte, au-dessus de ses focus
+                    h4.cercle {
+                        margin: 8px 0 2px 12px;
+                        border: none;
+                        font-family: var(--font-family-title);
+                        font-size: 15px;
+                        opacity: 0.85;
+                    }
+                }
+
                 .brouillon {
                     margin: 0 0 6px 0;
                     font-style: italic;
