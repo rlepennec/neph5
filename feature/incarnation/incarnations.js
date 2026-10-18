@@ -66,6 +66,13 @@ export class Incarnations {
     static VOIES = ['magie', 'alchimie'];
 
     /**
+     * Le métamorphe : au plus un par incarnation, comme une voie (voie et changerVoie). Ses
+     * métamorphoses développées se transmettent avec lui ; ses yeux (visible) sont propres à
+     * l'incarnation de l'exemplaire et ne se transmettent pas (voir Metamorphe).
+     */
+    static METAMORPHES = ['metamorphe'];
+
+    /**
      * Les équipements, armes et armures : ils ne se transmettent pas d'une incarnation à
      * l'autre ; seuls comptent ceux de l'incarnation courante (voir equipements).
      */
@@ -90,7 +97,7 @@ export class Incarnations {
      * connaît, portant la clé de son incarnation et ses propres valeurs (voir plus haut).
      */
     static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES, ...Incarnations.VOIES,
-        ...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS, ...Incarnations.POSSESSIONS];
+        ...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS, ...Incarnations.POSSESSIONS, ...Incarnations.METAMORPHES];
 
     /**
      * Les types qui ont des valeurs propres à l'acteur (statut, focus, pacte...) et dont le
@@ -434,10 +441,10 @@ export class Incarnations {
     // ------------------------------------------------------------------ les voies
 
     /**
-     * La voie que l'acteur suit : celle de l'incarnation courante, sinon celle de l'incarnation
-     * antérieure la plus proche qui en a une. Les incarnations désactivées ne comptent pas, les
-     * postérieures jamais. Une incarnation a au plus une voie de chaque type.
-     * @param type 'magie' ou 'alchimie'.
+     * La voie que l'acteur suit — ou son métamorphe : celle de l'incarnation courante, sinon celle
+     * de l'incarnation antérieure la plus proche qui en a une. Les incarnations désactivées ne
+     * comptent pas, les postérieures jamais. Une incarnation a au plus une voie de chaque type.
+     * @param type 'magie', 'alchimie' ou 'metamorphe'.
      * @returns the embedded voie, null if none.
      */
     voie(type) {
@@ -458,19 +465,23 @@ export class Incarnations {
      *   - c'est déjà la voie suivie (de l'incarnation courante ou d'une antérieure) : rien ;
      *   - sinon l'incarnation courante reçoit son exemplaire de cette voie, qui remplace celui
      *     qu'elle avait ; les voies des autres incarnations ne changent pas.
-     * Un acteur sans incarnations n'a qu'une voie de chaque type, remplacée.
-     * @param sid  The system identifier of the world voie.
-     * @param type 'magie' ou 'alchimie'.
+     * Un acteur sans incarnations n'a qu'une voie de chaque type, remplacée. Vaut aussi pour le
+     * métamorphe.
+     * @param sid     The system identifier of the world voie.
+     * @param type    'magie', 'alchimie' ou 'metamorphe'.
+     * @param valeurs Les valeurs propres à l'acteur du nouvel exemplaire.
+     * @param sans    Les champs de l'item du monde que l'exemplaire ne recopie pas.
      */
-    async changerVoie(sid, type) {
+    async changerVoie(sid, type, { valeurs = {}, sans = ['description'] } = {}) {
         if (this.voie(type)?.sid === sid) return;
         const cle = this.courante;
         if (this.porte && cle == null) return;
         const remplacees = this.porte ? this.rattaches(cle, [type]) : this.actor.items.filter(i => i.type === type);
         const voie = new EmbeddedItem(this.actor, sid)
             .withContext("Change of voie " + type)
-            .withoutData('description')
+            .withoutData(...sans)
             .withDeleteAfter(remplacees);
+        for (const [champ, valeur] of Object.entries(valeurs)) voie.withData(champ, valeur);
         if (this.porte) voie.withIncarnation(cle);
         await voie.create();
     }

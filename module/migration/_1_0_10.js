@@ -31,8 +31,9 @@ import { Version } from "../common/version.js";
  *   3. fait de chaque copie rattachée à une période embarquée l'exemplaire de son incarnation :
  *      la clé est celle de sa période, le degré celui qu'elle portait ; un vécu lié perd la
  *      période qu'il recopiait, qui se lit désormais sur son incarnation ;
- *      une voie (magique, alchimique), qui n'avait pas de période, devient celle de la plus
- *      ancienne incarnation active, et fait foi pour toutes les suivantes ;
+ *      une voie (magique, alchimique) ou le métamorphe, qui n'avaient pas de période,
+ *      deviennent ceux de la plus ancienne incarnation active, et font foi pour toutes les
+ *      suivantes ;
  *      les armes et les armures, qui n'en avaient pas non plus, deviennent celles de
  *      l'incarnation courante (elles ne se transmettent pas d'une incarnation à l'autre) ;
  *      les materiae aussi, leur quantité devenant la variation de cette incarnation, et les
@@ -138,9 +139,10 @@ export class _1_0_10 {
                 exemplaires.set(item.id, p.sid);
             }
         }
-        // Les voies (magique, alchimique) n'avaient pas de période : elles valaient pour toute la
-        // vie de la figure. Chacune devient celle de la plus ancienne incarnation active (sinon
-        // de la plus ancienne), et fait ainsi foi pour toutes les suivantes. Une seule par type.
+        // Les voies (magique, alchimique) et le métamorphe n'avaient pas de période : ils valaient
+        // pour toute la vie de la figure. Chacun devient celui de la plus ancienne incarnation
+        // active (sinon de la plus ancienne), et fait ainsi foi pour toutes les suivantes — les
+        // yeux du métamorphe restant propres à cette incarnation. Un seul par type.
         // Les armes et les armures n'avaient pas de période non plus ; elles ne se transmettent
         // pas d'une incarnation à l'autre : toutes deviennent celles de l'incarnation courante
         // (sinon de la plus récente). Plusieurs exemplaires d'une même arme restent possibles.
@@ -155,7 +157,7 @@ export class _1_0_10 {
         }
 
         const premiere = chaine.find(p => lire(p, 'actif') === true) ?? chaine[0];
-        for (const type of Incarnations.VOIES) {
+        for (const type of [...Incarnations.VOIES, ...Incarnations.METAMORPHES]) {
             const [voie, ...autres] = lies.filter(i => i.type === type && !exemplaires.has(i.id) && !doublons.includes(i.id));
             if (voie != null && premiere != null) exemplaires.set(voie.id, premiere.sid);
             doublons.push(...autres.map(i => i.id));

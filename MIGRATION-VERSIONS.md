@@ -630,6 +630,18 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   recopier. En 1.7.0 un aspect n'avait pas de période : 1.0.10 le donne à l'incarnation
   courante, avec son état (l'utilisateur ajustera à la main).
 
+- **Le métamorphe** (`Incarnations.METAMORPHES`, ajouté à `LIES` le 18/10, décidé par
+  l'utilisateur) : au plus un par incarnation, comme une voie (`voie`, `changerVoie`,
+  généralisés : valeurs initiales et champs non recopiés). Celui qui fait foi est celui de
+  l'incarnation courante, sinon de l'antérieure la plus proche ; en déposer un autre le donne à
+  l'incarnation courante, sans métamorphose développée ; redéposer le même ne fait rien. Ses
+  métamorphoses développées (`formed`) **se transmettent** avec lui ; ses yeux (`visible`) sont
+  propres à l'incarnation de l'exemplaire et **ne se transmettent pas** (fermés à une époque
+  sans exemplaire propre). Développer une métamorphose ou ouvrir un œil s'écrit dans
+  l'incarnation courante (`ecrire`), la copie partant les yeux fermés. L'humeur et le portrait
+  se modifient comme avant, sur l'exemplaire ouvert. En 1.7.0 le métamorphe n'avait pas de
+  période : 1.0.10 le rattache à la plus ancienne incarnation active, comme les voies.
+
 **Vérifié sous node** : façade 65 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, voies, équipements, materiae, catalyseurs, aspects, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 20 (acteur 1.7.0
+degrés, focus, voies, équipements, materiae, catalyseurs, aspects, retraits, retrait d'une incarnation) ; dépôt 11 ; métamorphe 10 (`test-metamorphe`) ; migration 21 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.
