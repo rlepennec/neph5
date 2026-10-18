@@ -586,6 +586,16 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   En 1.7.0 une voie n'avait pas de période : 1.0.10 la rattache à la plus ancienne incarnation
   active, d'où elle fait foi pour toutes les suivantes.
 
-**Vérifié sous node** : façade 34 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, voies, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 16 (acteur 1.7.0
+- **Les armes et les armures** (`Incarnations.EQUIPEMENTS`, ajoutées à `LIES` le 18/10, décidé par
+  l'utilisateur) : elles **ne se transmettent pas** d'une incarnation à l'autre. Seules
+  comptent celles de l'incarnation courante (`equipements(type)`) : fiche de combat (`weapons`,
+  `armors`), protection, parade, défense, riposte. Une arme déposée sur la fiche reçoit la clé
+  de l'incarnation courante (`lierEquipement`) ; sans incarnation courante, le dépôt est refusé.
+  Plusieurs exemplaires d'une même arme restent possibles. Supprimer une arme supprime celle
+  affichée, donc celle de l'incarnation courante. Restent sur toutes les époques : la
+  suppression des armes d'une compétence ou d'un vécu supprimé, la remise à zéro de la visée.
+  En 1.7.0 elles n'avaient pas de période : 1.0.10 les donne toutes à l'incarnation courante.
+
+**Vérifié sous node** : façade 41 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, voies, équipements, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 17 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.

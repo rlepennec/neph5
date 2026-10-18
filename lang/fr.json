@@ -266,6 +266,7 @@
         "dejaConnu": "Déjà connu",
         "dejaConnuPosterieure": "« {nom} » est déjà connu du personnage à une époque postérieure : {epoque}. Le lier aussi à cette incarnation, avec les mêmes propriétés que dans cette époque ?",
         "incarnationAvantAcquis": "Définissez d'abord la période de l'incarnation.",
+        "equipementSansIncarnation": "Une arme ou une armure appartient à l'incarnation courante : définissez d'abord une incarnation courante.",
         "deposerPeriode": "Déposez une période",
         "deposerVecu": "Déposez un vécu",
         "deposerAcquis": "Déposez les vécus, savoirs, quêtes, arcanes, sciences, ressources, focus et capacités acquis pendant l'incarnation",

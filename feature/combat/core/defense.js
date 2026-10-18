@@ -1,5 +1,6 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { Version } from "../../../module/common/version.js";
+import { Incarnations } from "../../incarnation/incarnations.js";
 import { ActionDataBuilder } from "../../core/actionDataBuilder.js";
 import { ActiveEffects } from "../../core/effects.js";
 import { Constants } from "../../../module/common/constants.js";
@@ -312,7 +313,7 @@ export class Defense extends AbstractCombatFeature {
      *          attaquer.
      */
     weapon() {
-        const used = this.actor.items.filter(i => i.type === 'arme' && Version.data(i).used === true);
+        const used = new Incarnations(this.actor).equipements('arme').filter(i => Version.data(i).used === true);
         switch (this.attack.manoeuver.family) {
             case Constants.THROW:
             case Constants.FIRE:

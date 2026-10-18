@@ -66,10 +66,17 @@ export class Incarnations {
     static VOIES = ['magie', 'alchimie'];
 
     /**
+     * Les équipements, armes et armures : ils ne se transmettent pas d'une incarnation à
+     * l'autre ; seuls comptent ceux de l'incarnation courante (voir equipements).
+     */
+    static EQUIPEMENTS = ['arme', 'armure'];
+
+    /**
      * Tous les types liés à une incarnation : un exemplaire embarqué par incarnation qui les
      * connaît, portant la clé de son incarnation et ses propres valeurs (voir plus haut).
      */
-    static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES, ...Incarnations.VOIES];
+    static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES, ...Incarnations.VOIES,
+        ...Incarnations.EQUIPEMENTS];
 
     /**
      * Les types qui ont des valeurs propres à l'acteur (statut, focus, pacte...) et dont le
@@ -452,6 +459,35 @@ export class Incarnations {
             .withDeleteAfter(remplacees);
         if (this.porte) voie.withIncarnation(cle);
         await voie.create();
+    }
+
+    // ------------------------------------------------------------------ les équipements
+
+    /**
+     * Les armes ou les armures de l'acteur : celles de l'incarnation courante seulement — elles
+     * ne se transmettent pas d'une incarnation à l'autre. Un acteur sans incarnations (un
+     * figurant) a toutes les siennes. Plusieurs exemplaires d'une même arme sont possibles.
+     * @param type 'arme' ou 'armure'.
+     * @returns the embedded items.
+     */
+    equipements(type) {
+        const tous = this.actor.items.filter(i => i.type === type);
+        if (!this.porte) return tous;
+        const cle = this.courante;
+        return cle == null ? [] : tous.filter(i => this.epoqueDe(i) === cle);
+    }
+
+    /**
+     * Prépare les données d'une arme ou d'une armure déposée sur l'acteur : elle appartient à
+     * l'incarnation courante, dont elle reçoit la clé.
+     * @param data The data of the item to create, modified in place.
+     * @returns false if the item cannot be created: the actor has no current incarnation.
+     */
+    lierEquipement(data) {
+        if (!this.porte || !Incarnations.EQUIPEMENTS.includes(data?.type)) return true;
+        if (this.courante == null) return false;
+        foundry.utils.setProperty(data, 'system.incarnation', this.courante);
+        return true;
     }
 
     // ------------------------------------------------------------------ les degrés

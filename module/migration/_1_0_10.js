@@ -33,6 +33,8 @@ import { Version } from "../common/version.js";
  *      période qu'il recopiait, qui se lit désormais sur son incarnation ;
  *      une voie (magique, alchimique), qui n'avait pas de période, devient celle de la plus
  *      ancienne incarnation active, et fait foi pour toutes les suivantes ;
+ *      les armes et les armures, qui n'en avaient pas non plus, deviennent celles de
+ *      l'incarnation courante (elles ne se transmettent pas d'une incarnation à l'autre) ;
  *   4. supprime les périodes embarquées et les copies de trop : une seconde copie du même item
  *      dans la même période ; un vécu présent sur plusieurs périodes, qui reste à la première
  *      rencontrée dans la chaîne (un vécu ne se vit qu'une fois) ; une copie sans période
@@ -137,6 +139,15 @@ export class _1_0_10 {
         // Les voies (magique, alchimique) n'avaient pas de période : elles valaient pour toute la
         // vie de la figure. Chacune devient celle de la plus ancienne incarnation active (sinon
         // de la plus ancienne), et fait ainsi foi pour toutes les suivantes. Une seule par type.
+        // Les armes et les armures n'avaient pas de période non plus ; elles ne se transmettent
+        // pas d'une incarnation à l'autre : toutes deviennent celles de l'incarnation courante
+        // (sinon de la plus récente). Plusieurs exemplaires d'une même arme restent possibles.
+        const periodeCourante = Version.data(actor).periode;
+        const courante = embarquees.has(periodeCourante) ? periodeCourante : chaine.at(-1)?.sid;
+        for (const item of lies.filter(i => Incarnations.EQUIPEMENTS.includes(i.type) && !exemplaires.has(i.id))) {
+            if (courante != null) exemplaires.set(item.id, courante);
+        }
+
         const premiere = chaine.find(p => lire(p, 'actif') === true) ?? chaine[0];
         for (const type of Incarnations.VOIES) {
             const [voie, ...autres] = lies.filter(i => i.type === type && !exemplaires.has(i.id) && !doublons.includes(i.id));

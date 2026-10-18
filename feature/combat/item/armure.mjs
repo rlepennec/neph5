@@ -1,6 +1,7 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { IncarnationField } from "../../../module/field/incarnationField.js";
 
 export class ArmureDataModel extends foundry.abstract.TypeDataModel {
 
@@ -11,6 +12,8 @@ export class ArmureDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // La clé de l'incarnation de cet exemplaire lié, commune à toutes les versions.
+            incarnation: new IncarnationField(),
             illustration: new foundry.data.fields.FilePathField
             (
                 {

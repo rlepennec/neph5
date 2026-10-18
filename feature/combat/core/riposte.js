@@ -1,5 +1,6 @@
 import { Constants } from "../../../module/common/constants.js";
 import { Version } from "../../../module/common/version.js";
+import { Incarnations } from "../../incarnation/incarnations.js";
 import { Health } from "../../core/health.js";
 import { NephilimChat } from "../../../module/common/chat.js";
 
@@ -41,7 +42,7 @@ export class Riposte {
      *          disponibles (elles n'ont pas d'état « en main »), et ses armes de mêlée en main.
      */
     static armes(actor) {
-        return actor.items.filter(i => i.type === 'arme' &&
+        return new Incarnations(actor).equipements('arme').filter(i =>
             (Version.data(i).type === Constants.NATURELLE ||
             (Version.data(i).type === Constants.MELEE && Version.data(i).used === true)));
     }

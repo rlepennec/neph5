@@ -1,5 +1,6 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Version } from "../../module/common/version.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { CombatHistory } from "../../feature/combat/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/core/distance.js";
@@ -187,7 +188,8 @@ export const CombatantMixin = Base => {
             let protection = Version.data(this).bonus.protection;
 
             // Add the armor if exists
-            const armor = this.items.find(i => i.type === "armure" && Version.data(i).used === true);
+            // Seules comptent les armures de l'incarnation courante
+            const armor = new Incarnations(this).equipements('armure').find(i => Version.data(i).used === true);
             if (armor != null) {
                 protection = protection + Version.data(armor)[type];
             }
@@ -238,7 +240,7 @@ export const CombatantMixin = Base => {
                         // Attack weapon to parade weapon
                         } else if (parade === false) {
                                 await item.update({ [Version.path(item, 'used')]: true });
-                                for (let arme of this.items.filter(i => i.type === 'arme' && i.id !== item.id)) {
+                                for (let arme of new Incarnations(this).equipements('arme').filter(i => i.id !== item.id)) {
                                     await arme.update({ [Version.path(arme, 'parade')]: false });
                                 }
                                 await item.update({ [Version.path(item, 'parade')]: true });
@@ -264,7 +266,8 @@ export const CombatantMixin = Base => {
          */
         get weapons() {
             const equipments = {naturelle: [], melee: [], trait: [], feu: [] };
-            for (let item of this.items.filter(i => i.type === 'arme')) {
+            // Seules les armes de l'incarnation courante : elles ne se transmettent pas
+            for (let item of new Incarnations(this).equipements('arme')) {
                 equipments[Version.data(item).type].push(item);
             }
             return equipments;
@@ -274,7 +277,7 @@ export const CombatantMixin = Base => {
          * @returns all embedded armors .
          */
         get armors() {
-            return this.items.filter(i => i.type === 'armure');
+            return new Incarnations(this).equipements('armure');
         }
 
         /**
