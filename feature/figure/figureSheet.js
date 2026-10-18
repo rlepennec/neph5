@@ -30,6 +30,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             openSimulacre: FigureSheet._onOpenSimulacre,
             openFraternite: FigureSheet._onOpenFraternite,
             openChute: FigureSheet._onOpenChute,
+            perdreCatalyseur: FigureSheet._onPerdreCatalyseur,
         },
         dropHandlers: {
             magie: FigureSheet._onDropScience,
@@ -304,6 +305,15 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      */
     _exemplaire(sid) {
         return new Incarnations(this.document).exemplaireEffectif(sid) ?? this.document.items.find(i => i.sid === sid);
+    }
+
+    /**
+     * La corbeille d'un catalyseur : la figure le perd à l'époque courante ; les époques
+     * antérieures le gardent (voir Incarnations.perdre).
+     */
+    static async _onPerdreCatalyseur(event, target) {
+        if (this.locked) return;
+        await new Incarnations(this.document).perdre(target.closest('.item').dataset.sid);
     }
 
     /** Modifie la quantité totale de vaisseaux alchimiques  */

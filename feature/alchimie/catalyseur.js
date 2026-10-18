@@ -1,6 +1,6 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
 import { SimpleFeature } from "../core/simpleFeature.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 
 export class Catalyseur extends SimpleFeature {
 
@@ -13,13 +13,12 @@ export class Catalyseur extends SimpleFeature {
     }
 
     /**
+     * Le catalyseur déposé est acquis à l'époque courante (voir Incarnations.acquerir) : il se
+     * transmet ensuite aux incarnations suivantes, jusqu'à ce qu'une le perde.
      * @Override
      */
     async drop() {
-        const item = await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a catalyseur")
-            .withoutData('description')
-            .create();
+        await new Incarnations(this.actor).acquerir(this.sid);
     }
 
     /**
@@ -35,15 +34,19 @@ export class Catalyseur extends SimpleFeature {
      * @returns the data used to display the actor item.
      */
     static getAll(actor) {
+        // Les catalyseurs possédés à l'époque courante (voir Incarnations.possessions)
         let items = [];
-        for (let item of AbstractFeature.items(actor,'catalyseur')) {
+        for (let embedded of new Incarnations(actor).possessions('catalyseur')) {
+            const original = AbstractFeature.original(embedded.sid);
+            if (original == null) continue;
             items.push({
                 original: {
-                    id: item.original.id,
-                    name: item.original.name,
+                    id: original.id,
+                    sid: original.sid,
+                    name: original.name,
                 },
                 embedded: {
-                    id: item.embedded.id
+                    id: embedded.id
                 }
             });
         }

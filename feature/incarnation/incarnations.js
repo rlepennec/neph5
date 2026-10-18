@@ -78,11 +78,18 @@ export class Incarnations {
     static STOCKS = ['materiae'];
 
     /**
+     * Les possessions, les catalyseurs : elles se transmettent d'une incarnation à l'autre, et
+     * peuvent se gagner, se perdre et se regagner ; chaque exemplaire marque la possession à son
+     * époque (`possede`). Au plus un exemplaire de chaque par incarnation (voir possessions).
+     */
+    static POSSESSIONS = ['catalyseur'];
+
+    /**
      * Tous les types liés à une incarnation : un exemplaire embarqué par incarnation qui les
      * connaît, portant la clé de son incarnation et ses propres valeurs (voir plus haut).
      */
     static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES, ...Incarnations.VOIES,
-        ...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS];
+        ...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS, ...Incarnations.POSSESSIONS];
 
     /**
      * Les types qui ont des valeurs propres à l'acteur (statut, focus, pacte...) et dont le
@@ -554,6 +561,81 @@ export class Incarnations {
         } else {
             const source = this.exemplaires(sid)[0];
             if (source != null) await this.creerExemplaire(source, cle, { quantite: variation });
+        }
+    }
+
+    // ------------------------------------------------------------------ les possessions
+
+    /**
+     * @param item An exemplar of a possession.
+     * @returns true if the exemplar marks the possession at its incarnation.
+     */
+    static #possede(item) {
+        return item != null && Version.data(item).possede !== false;
+    }
+
+    /**
+     * Les possessions de l'acteur : celles dont l'exemplaire qui fait foi (incarnation courante,
+     * sinon antérieure active la plus proche) marque la possession. Un acteur sans incarnations
+     * a toutes les siennes.
+     * @param type The possession type ('catalyseur').
+     * @returns the effective embedded items.
+     */
+    possessions(type) {
+        const sids = [...new Set(this.actor.items.filter(i => i.type === type).map(i => i.sid))];
+        return sids.map(sid => this.exemplaireEffectif(sid)).filter(i => Incarnations.#possede(i));
+    }
+
+    /**
+     * L'acteur acquiert une possession à l'époque courante : déjà possédée, rien ; sinon
+     * l'incarnation courante reçoit son exemplaire, ou le sien est marqué possédé.
+     * @param sid The system identifier of the world item.
+     */
+    async acquerir(sid) {
+        if (!this.porte) {
+            if (this.exemplaires(sid).length > 0) return;
+            await new EmbeddedItem(this.actor, sid).withContext("Possession").withoutData('description').create();
+            return;
+        }
+        const cle = this.courante;
+        if (cle == null || Incarnations.#possede(this.exemplaireEffectif(sid))) return;
+        const propre = this.exemplaireDans(sid, cle);
+        if (propre != null) {
+            await propre.update({ [Version.path(propre, 'possede')]: true });
+            return;
+        }
+        await new EmbeddedItem(this.actor, sid)
+            .withContext("Possession on incarnation " + cle)
+            .withIncarnation(cle)
+            .withData("possede", true)
+            .withoutData('description')
+            .create();
+    }
+
+    /**
+     * L'acteur perd une possession à l'époque courante ; les époques antérieures la gardent.
+     * Si l'incarnation courante l'avait acquise sans qu'une antérieure la lui transmette, son
+     * exemplaire est supprimé ; sinon l'incarnation courante reçoit, ou passe, un exemplaire
+     * marqué non possédé, qui la retire à partir de cette époque.
+     * @param sid The system identifier of the possession.
+     */
+    async perdre(sid) {
+        if (!this.porte) {
+            const ids = this.exemplaires(sid).map(i => i.id);
+            if (ids.length > 0) await this.actor.deleteEmbeddedDocuments('Item', ids);
+            return;
+        }
+        const cle = this.courante;
+        if (cle == null) return;
+        const propre = this.exemplaireDans(sid, cle);
+        const transmise = Incarnations.#possede(this.voisine(sid, cle, 'anterieure')?.item);
+        if (propre != null && !transmise) {
+            await this.actor.deleteEmbeddedDocuments('Item', [propre.id]);
+        } else if (propre != null) {
+            await propre.update({ [Version.path(propre, 'possede')]: false });
+        } else {
+            const source = this.exemplaireEffectif(sid);
+            if (source != null) await this.creerExemplaire(source, cle, { possede: false });
         }
     }
 

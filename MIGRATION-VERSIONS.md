@@ -608,6 +608,18 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   époques antérieures. En 1.7.0 une materia n'avait pas de période : 1.0.10 donne sa quantité
   comme variation à l'incarnation courante.
 
-**Vérifié sous node** : façade 49 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, voies, équipements, materiae, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 18 (acteur 1.7.0
+- **Les catalyseurs** (`Incarnations.POSSESSIONS`, ajoutés à `LIES` le 18/10, décidé par
+  l'utilisateur) : une possession qui **se transmet** et peut se gagner, se perdre et se
+  regagner. Au plus un exemplaire de chaque catalyseur par incarnation ; chaque exemplaire marque
+  la possession à son époque (`versions.v5.possede`, vrai par défaut). Sont affichés
+  (`possessions(type)`) ceux dont l'exemplaire qui fait foi (courante, sinon antérieure active la
+  plus proche) les marque possédés. Le dépôt (`acquerir`) : déjà possédé, rien ; sinon
+  l'incarnation courante reçoit son exemplaire, ou le sien repasse à possédé. La corbeille
+  (`perdre`, action `perdreCatalyseur`) : si l'incarnation courante l'avait acquis sans
+  qu'une antérieure le lui transmette, son exemplaire est supprimé ; sinon elle reçoit, ou
+  passe, un exemplaire marqué non possédé, qui le retire à partir de cette époque. En 1.7.0 un
+  catalyseur n'avait pas de période : 1.0.10 le donne à l'incarnation courante.
+
+**Vérifié sous node** : façade 59 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, voies, équipements, materiae, catalyseurs, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 19 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.

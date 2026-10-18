@@ -1,6 +1,7 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
+import { IncarnationField } from "../../../module/field/incarnationField.js";
 
 export class CatalyseurDataModel extends foundry.abstract.TypeDataModel {
 
@@ -11,6 +12,8 @@ export class CatalyseurDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // La clé de l'incarnation de cet exemplaire lié, commune à toutes les versions.
+            incarnation: new IncarnationField(),
             illustration: new foundry.data.fields.FilePathField
             (
                 {
@@ -28,6 +31,14 @@ export class CatalyseurDataModel extends foundry.abstract.TypeDataModel {
                             description: new foundry.data.fields.StringField(
                                 {
                                     required: false
+                                }
+                            ),
+                            // La possession à l'époque de cet exemplaire : un catalyseur se gagne, se perd et
+                            // se regagne d'une incarnation à l'autre (voir Incarnations.possessions).
+                            possede: new foundry.data.fields.BooleanField
+                            (
+                                {
+                                    initial: true
                                 }
                             )
                         },

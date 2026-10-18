@@ -200,12 +200,12 @@
             <ol class="body">
 
                 {{#each actor.catalyseurs as |item|}}
-                <li class="catalyseur item" data-id="{{item.embedded.id}}">
+                <li class="catalyseur item" data-id="{{item.embedded.id}}" data-sid="{{item.original.sid}}">
 
                     {{#if @root.locked}}
                     <i class="delete"></i>
                     {{else}}
-                    <i data-action="deleteItem" class="delete fas fa-trash"></i>
+                    <i data-action="perdreCatalyseur" class="delete fas fa-trash"></i>
                     {{/if}}
 
                     <label data-action="openItem" class="name open">{{item.original.name}}</label>
