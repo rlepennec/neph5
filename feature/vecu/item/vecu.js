@@ -57,8 +57,16 @@ export class VecuSheet extends NephilimItemSheet {
         // L'élément, lui, reste stocké et modifiable sur l'embarqué (propre à l'acteur).
         if (this.document.isEmbedded) {
 
-            // Le degré d'un vécu embarqué est celui de son incarnation.
-            context.data = { ...context.data, degre: new Incarnations(this.document.parent).degreAcquis(this.document) };
+            // Le degré d'un vécu embarqué est celui de son incarnation ; sa période aussi : le vécu
+            // lié ne la recopie pas, elle se lit sur son incarnation.
+            const incarnations = new Incarnations(this.document.parent);
+            context.data = {
+                ...context.data,
+                degre: incarnations.degreAcquis(this.document),
+                periode: incarnations.porte
+                    ? incarnations.periodeDe(incarnations.epoqueDe(this.document))
+                    : context.data?.periode
+            };
 
             const original = game.items.find(i => i.type === 'vecu' && i.sid === this.document.sid);
             if (original != null) {
