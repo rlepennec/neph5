@@ -29,7 +29,8 @@ import { Version } from "../common/version.js";
  *      courante de l'acteur, l'effectif d'une fraternité, et les copies qui portaient la
  *      période, qui la désignent ainsi, restent justes ;
  *   3. fait de chaque copie rattachée à une période embarquée l'exemplaire de son incarnation :
- *      la clé est celle de sa période, le degré celui qu'elle portait ;
+ *      la clé est celle de sa période, le degré celui qu'elle portait ; un vécu lié perd la
+ *      période qu'il recopiait, qui se lit désormais sur son incarnation ;
  *   4. supprime les périodes embarquées et les copies de trop : une seconde copie du même item
  *      dans la même période ; un vécu présent sur plusieurs périodes, qui reste à la première
  *      rencontrée dans la chaîne (un vécu ne se vit qu'une fois) ; une copie sans période
@@ -176,6 +177,10 @@ export class _1_0_10 {
                 const update = { 'system.incarnation': cle };
                 if (Incarnations.VECUS.includes(item.type)) {
                     update[Version.path(item, 'degre')] = lire(item, 'degre') ?? 0;
+                }
+                // Un vécu lié ne recopie plus sa période : c'est celle de son incarnation
+                if (item.type === 'vecu') {
+                    update[Version.path(item, 'periode')] = null;
                 }
                 await item.update(update);
             }

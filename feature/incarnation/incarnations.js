@@ -29,8 +29,9 @@ import { Version } from "../../module/common/version.js";
  *
  * Les enchaînements :
  *   - créer une incarnation depuis un vécu : elle prend la période du vécu ;
- *   - ajouter un vécu à une incarnation : le vécu prend la période de l'incarnation ;
- *   - changer la période d'une incarnation : ses vécus la suivent ;
+ *   - ajouter un vécu à une incarnation : le vécu vit la période de l'incarnation ; le vécu lié ne
+ *     la recopie pas, elle se lit sur son incarnation (periodeDe(epoqueDe(vecu))) ;
+ *   - changer la période d'une incarnation : ses vécus en changent du même coup ;
  *   - retirer un vécu, ou le supprimer par un autre chemin : l'incarnation peut rester sans
  *     vécu ; supprimer une incarnation supprime tous ses exemplaires, les autres incarnations
  *     gardant les leurs.
@@ -476,7 +477,7 @@ export class Incarnations {
 
     /**
      * Crée une incarnation à partir d'une période et d'un vécu choisis séparément — par le
-     * formulaire d'incarnation : le vécu est embarqué avec la période de l'incarnation, et le
+     * formulaire d'incarnation : le vécu est embarqué dans l'incarnation, avec le
      * degré donné. Elle prend la tête de la chaîne, et devient la courante si c'est la première.
      * @param periode The system identifier of the world periode.
      * @param sid     The system identifier of the world vecu.
@@ -492,7 +493,7 @@ export class Incarnations {
             return { cle: null, refus: Incarnations.PERIODE_INCONNUE };
         }
         const cle = await this.#creer(periode);
-        await this.#embarquerVecu(monde, cle, periode, degre);
+        await this.#embarquerVecu(monde, cle, degre);
         return { cle: cle, refus: null };
     }
 
@@ -508,7 +509,7 @@ export class Incarnations {
     }
 
     /**
-     * Ajoute un vécu à une incarnation : il prend la période de l'incarnation. Un vécu ne se
+     * Ajoute un vécu à une incarnation : il en vit la période. Un vécu ne se
      * vit qu'une fois : déjà embarqué, il est refusé.
      * @param cle   The key of the incarnation.
      * @param sid   The system identifier of the world vecu.
@@ -521,7 +522,7 @@ export class Incarnations {
         if (this.exemplaires(sid).length > 0) return Incarnations.DEJA_VECU;
         const monde = game.items.find(i => i.type === 'vecu' && i.sid === sid);
         if (monde == null) return Incarnations.VECU_INCONNU;
-        await this.#embarquerVecu(monde, cle, Version.data(incarnation).periode, degre);
+        await this.#embarquerVecu(monde, cle, degre);
         return null;
     }
 
@@ -538,7 +539,8 @@ export class Incarnations {
     }
 
     /**
-     * Change la période d'une incarnation : ses vécus la suivent.
+     * Change la période d'une incarnation : ses vécus, qui ne la recopient pas, en changent du
+     * même coup.
      * @param cle     The key of the incarnation.
      * @param periode The system identifier of the world periode.
      */
@@ -547,9 +549,6 @@ export class Incarnations {
         const monde = game.items.find(i => i.type === 'periode' && i.sid === periode);
         if (incarnation == null || monde == null) return;
         await incarnation.update({ name: monde.name, img: monde.img, [Version.path(incarnation, 'periode')]: periode });
-        for (const vecu of this.vecusDe(cle)) {
-            await vecu.update({ [Version.path(vecu, 'periode')]: periode });
-        }
     }
 
     /**
@@ -618,20 +617,20 @@ export class Incarnations {
     }
 
     /**
-     * Embarque un vécu du monde dans une incarnation, avec sa période.
-     * @param monde   The world vecu.
-     * @param cle     The key of the incarnation.
-     * @param periode The system identifier of the world periode.
-     * @param degre   The degre of the vecu.
+     * Embarque un vécu du monde dans une incarnation. Sa période n'est pas recopiée : c'est
+     * celle de l'incarnation, que porte la clé (la période du vécu du monde ne sert qu'à
+     * créer une incarnation depuis lui, voir creerDepuisVecu).
+     * @param monde The world vecu.
+     * @param cle   The key of the incarnation.
+     * @param degre The degre of the vecu.
      */
-    async #embarquerVecu(monde, cle, periode, degre = 0) {
+    async #embarquerVecu(monde, cle, degre = 0) {
         await new EmbeddedItem(this.actor, monde.sid)
-            .withContext("Drop of a vecu on periode " + periode)
+            .withContext("Drop of a vecu on incarnation " + cle)
             .withIncarnation(cle, degre)
             .withData("mnemos", [])
-            .withData("periode", periode)
             .withData("element", Version.data(monde).element)
-            .withoutData('description')
+            .withoutData('description', 'periode')
             .create();
     }
 

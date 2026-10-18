@@ -11,7 +11,8 @@ import { VersionMigration } from "../../../module/migration/versionMigration.js"
  * les références, l'illustration, que le système pose lui-même, et la clé de l'incarnation
  * d'un exemplaire lié. Tout le reste décrit ce
  * que vaut le vécu sous une édition donnée — son élément, son degré, sa période, les
- * compétences qu'il ouvre et ses effets mnémos — et appartient donc à sa version.
+ * compétences qu'il ouvre et ses effets mnémos — et appartient donc à sa version. La période
+ * n'est renseignée que sur le vécu du monde : celle d'un vécu lié est celle de son incarnation.
  *
  * Le chunk v1 est vide tant que la première édition n'est pas décrite.
  */

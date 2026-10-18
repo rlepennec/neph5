@@ -106,6 +106,9 @@ export class VecuSheet extends NephilimItemSheet {
                     Version.path(this.document, 'competences', this.version));
                 break;
             case "periode":
+                // Seul le vécu du monde porte sa période : celle d'un vécu lié est celle de son
+                // incarnation, qui se change par le formulaire d'incarnation.
+                if (this.document.isEmbedded) break;
                 await this.document.update({
                     [Version.path(this.document, 'periode', this.version)]: document.sid
                 });

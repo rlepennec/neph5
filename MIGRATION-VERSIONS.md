@@ -568,6 +568,14 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   période, un vécu présent sur plusieurs périodes (gardé à la première de la chaîne), une copie
   hors période quand l'item a un exemplaire ailleurs.
 
+- **Plus de période recopiée sur le vécu lié** (relevé par l'utilisateur sur un export) : elle
+  doublait la clé d'incarnation. Le champ `periode` reste au schéma du vécu pour le vécu **du
+  monde** (sa période : vécus d'une période, incarnation créée depuis un vécu) ; le vécu lié
+  ne la porte plus (`null`) et la lit sur son incarnation (`periodeDe(epoqueDe(vecu))`). Changer
+  la période d'une incarnation n'a donc plus de vécus à réécrire ; déposer une période sur la
+  fiche d'un vécu lié est ignoré ; 1.0.10 la retire des vécus migrés. Aucun autre type lié ne
+  porte de champ redondant avec la clé.
+
 **Vérifié sous node** : façade 26 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 13 (acteur 1.7.0
+degrés, focus, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 14 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.

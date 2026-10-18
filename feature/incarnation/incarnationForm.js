@@ -9,8 +9,8 @@ import { Version } from "../../module/common/version.js";
  * Le formulaire d'une incarnation de figure, ouvert depuis l'onglet incarnations.
  *
  * On y définit l'incarnation par glisser-déposer depuis le monde :
- *   1. une période — elle remplace celle de l'incarnation, et ses vécus la suivent ;
- *   2. un vécu — il s'ajoute à ceux de l'incarnation et prend sa période ; son degré se règle
+ *   1. une période — elle remplace celle de l'incarnation, ses vécus avec elle ;
+ *   2. un vécu — il s'ajoute à ceux de l'incarnation et en vit la période ; son degré se règle
  *      dans le formulaire. Une incarnation peut avoir zéro, un ou plusieurs vécus ;
  *   3. un savoir, une quête, un arcane, une science, une passe d'armes, une chute — acquis
  *      pendant l'incarnation, avec le degré acquis ;
