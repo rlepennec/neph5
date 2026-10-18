@@ -479,3 +479,55 @@ fraternité, qui ne vit pas de vécus, a des incarnations sans vécu (hypothèse
 inexistante : le contrôle « déjà rattaché à cette période » ne jouait jamais. Avec des items
 sans période, il aurait joué toujours (un focus n'aurait plus pu changer de période) : corrigés
 à l'étape 3 en `new Incarnations(this.actor).aRattache(this.item.sid, this.periode)`.
+
+## 8. Focus et capacités liés par époque (décidé par l'utilisateur le 18 octobre 2026)
+
+**Avant** : un focus (ou une capacité) n'existait qu'en un exemplaire embarqué, rattaché à une
+seule incarnation ; le redéposer dans une autre le **déplaçait** (`withDeleteExisting` :
+supprimé puis recréé, l'ancienne incarnation le perdant).
+
+**Après** : un exemplaire embarqué **par incarnation** qui le connaît (`Incarnations.PAR_EPOQUE`
+= les 14 types de focus + la capacité). Chaque exemplaire porte :
+- la clé de son incarnation dans `versions.v5.incarnation` — double clé (incarnation, sid) ;
+  le champ est vide (`null`) pour l'item du monde ;
+- **ses** valeurs propres au personnage : statut, focus, pacte, quantité, transporté.
+Les valeurs ne sont jamais portées par l'incarnation, qui garde seulement l'apport `{ sid }`.
+
+Les règles, toutes confirmées par l'utilisateur :
+1. **Dépôt** (formulaire ou fiche ; `AbstractFeature.deposerParEpoque`) : déjà lié à cette
+   incarnation → rien ; connu d'une incarnation **antérieure** non désactivée → fenêtre qui
+   nomme la plus proche (période — vécus) et demande confirmation ; confirmé, nouvel exemplaire
+   copié de celui de cette époque (quantité comprise) ; refusé, rien ; sinon connu d'une
+   **postérieure** → même chose ; sinon création comme avant. Plus aucun déplacement.
+2. **Exemplaire qui fait foi** (`exemplaireEffectif`) : celui de l'incarnation courante, sinon
+   de l'antérieure active la plus proche ; les postérieures et les désactivées jamais (la
+   courante n'est jamais désactivée). Il alimente les onglets (`AbstractFocus.withOriginalItem`,
+   donc `Science.getFocus` ; capacités et ordonnances dédoublonnées par sid) et les jets.
+3. **Modification** (`Incarnations.ecrire`) : sur l'exemplaire de la courante s'il existe ; sinon
+   la courante reçoit son propre exemplaire, copié de l'antérieure la plus proche, avec la
+   valeur modifiée. Vaut pour les modifications manuelles (fiche : statut, focus, pacte,
+   quantité, transporté) comme automatiques (dose produite, pacte noué, perte des pactes à la
+   première ordonnance). Restent directes : la quantité des materiae (pas un focus) et le
+   nettoyage du monde (exemplaire précis).
+4. **Retrait** (`retirerDe`) : retirer un focus d'une incarnation supprime **son** exemplaire ;
+   les autres incarnations gardent le leur. Supprimer une incarnation supprime ses exemplaires.
+5. Les **capacités** suivent les mêmes règles ; les **ordonnances** aussi (ce sont des focus).
+
+**Façade** : `epoqueDe`, `exemplaireDans`, `exemplaireEffectif`, `voisine`, `nomDe`,
+`creerExemplaire`, `ecrire`, `retirerDe` ; `rattaches`, `estActif`, `rattachement`,
+`aRattache`, `retirer` et `apresSuppression` en tiennent compte. `EmbeddedItem` crée
+l'exemplaire de l'incarnation visée même si la figure en a pour d'autres époques.
+
+**Compatibilité** : un exemplaire sans clé (lié avant ce changement) appartient à l'incarnation
+la plus récente qui le rattache par ses apports.
+
+**Migration 1.0.10** : avant elle, chaque focus lié portait déjà la période de son époque ; elle
+garde donc **une copie par époque** (au lieu de fusionner les doublons) et recopie cette
+période dans `incarnation` — c'est aussi la clé de l'incarnation créée pour elle. Un monde déjà
+migré par l'ancienne 1.0.10 n'est pas retouché (il fonctionne par la compatibilité ci-dessus) :
+pour tester, repartir d'une copie de monde 1.7.0.
+
+**Vérifié sous node** : 33 cas sur la façade (dépôt, voisines, époque désactivée, copie à
+l'écriture, exemplaire effectif, retrait, suppression, retrait d'incarnation, exemplaire sans
+clé) ; 10 sur le dépôt avec fenêtre simulée et la résolution de `AbstractFocus`. Pas encore
+essayé dans Foundry.

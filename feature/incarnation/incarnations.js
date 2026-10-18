@@ -798,6 +798,28 @@ export class Incarnations {
     }
 
     /**
+     * Retire un item (autre qu'un vécu) d'une incarnation. Un focus ou une capacité liés par
+     * époque : l'exemplaire de cette incarnation est supprimé, les autres incarnations gardent
+     * le leur. Tout autre item : l'incarnation perd son apport, et l'item ne quitte l'acteur
+     * que s'il ne doit plus rien à aucune.
+     * @param item The embedded item to remove.
+     * @param cle  The key of the incarnation.
+     */
+    async retirerDe(item, cle) {
+        if (item == null) return;
+        if (Incarnations.PAR_EPOQUE.includes(item.type)) {
+            const exemplaire = this.epoqueDe(item) === cle ? item : this.exemplaireDans(item.sid, cle);
+            if (exemplaire == null) return;
+            // Sa suppression détache son incarnation (apresSuppression)
+            await this.actor.deleteEmbeddedDocuments('Item', [exemplaire.id]);
+            return;
+        }
+        if (await this.detacher(item.sid, cle) === 0) {
+            await this.actor.deleteEmbeddedItem(item);
+        }
+    }
+
+    /**
      * Retire à toutes les incarnations l'apport d'un item — l'item a quitté l'acteur.
      * @param sid The system identifier of the embedded item.
      */

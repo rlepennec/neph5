@@ -454,9 +454,9 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             this.#rafraichir();
             return;
         }
-        if (await incarnations.detacher(item.sid, this.cle) === 0) {
-            await this.actor.deleteEmbeddedItem(item);
-        }
+        // Un focus, une capacité : seul l'exemplaire de cette incarnation part ; tout autre
+        // item ne quitte la figure que s'il ne doit plus rien à aucune incarnation
+        await incarnations.retirerDe(item, this.cle);
         this.#rafraichir();
     }
 

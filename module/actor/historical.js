@@ -99,7 +99,8 @@ export class HistoricalSheet extends NephilimActorSheet {
         const item = this.document.items.get(id);
         const periode = target.closest('li.periode')?.dataset.sid;
         if (item == null) return;
-        if (periode != null && await new Incarnations(this.document).detacher(item.sid, periode) > 0) {
+        if (periode != null) {
+            await new Incarnations(this.document).retirerDe(item, periode);
             await this.render(true);
             return;
         }
