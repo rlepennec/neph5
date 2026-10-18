@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
@@ -101,7 +102,8 @@ export class Ordonnance extends AbstractFeature {
      * @returns the number of ordonnances.
      */
     get ordonnances() {
-        return this.actor.items.filter(i => i.type === 'ordonnance').length;
+        // Une par sid : une ordonnance liée à plusieurs incarnations ne compte qu'une fois
+        return new Set(this.actor.items.filter(i => i.type === 'ordonnance').map(i => i.sid)).size;
     }
 
     /**
@@ -130,8 +132,11 @@ export class Ordonnance extends AbstractFeature {
         let monde = null;
         let items = [];
 
-        // For each ordonnance
-        for (let item of actor.items.filter(o => o.type === 'ordonnance' && AbstractFeature.isActive(actor, o))) {
+        // For each ordonnance: one per sid, the exemplar which counts (current incarnation, or
+        // the closest earlier one)
+        const incarnations = new Incarnations(actor);
+        const sids = [...new Set(actor.items.filter(o => o.type === 'ordonnance').map(o => o.sid))];
+        for (let item of sids.map(sid => incarnations.exemplaireEffectif(sid)).filter(o => o != null)) {
             const original = AbstractFeature.original(item.sid);
             size++;
             monde = game.i18n.localize('NEPHILIM.' + Version.data(original).monde);

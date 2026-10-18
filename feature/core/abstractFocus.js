@@ -22,7 +22,9 @@ export class AbstractFocus extends AbstractFeature {
      */
     withOriginalItem(item) {
         this.item = item;
-        this.embedded = this.actor.items.find(i => i.sid === item.sid);
+        // Un exemplaire par incarnation : fait foi celui de l'incarnation courante, sinon de
+        // l'antérieure la plus proche (null si l'acteur ne le connaît que plus tard).
+        this.embedded = new Incarnations(this.actor).exemplaireEffectif(item.sid);
         return this;
     }
 

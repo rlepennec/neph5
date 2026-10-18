@@ -75,8 +75,13 @@ export class Capacite extends HistoricalFeature {
      */
     static getAll(actor) {
 
-        const array = actor.items
-            .filter(i => i.type === 'capacite')
+        // Une capacité par sid : l'exemplaire qui fait foi (incarnation courante, sinon
+        // antérieure la plus proche) ; celles connues seulement plus tard n'apparaissent pas.
+        const incarnations = new Incarnations(actor);
+        const sids = [...new Set(actor.items.filter(i => i.type === 'capacite').map(i => i.sid))];
+        const array = sids
+            .map(sid => incarnations.exemplaireEffectif(sid))
+            .filter(i => i != null)
             .map(i => new Capacite(actor).withItem(i))
             .map(f => ({
                 name: f.name,
