@@ -479,12 +479,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         await this.document.update({ [Version.path(this.document, 'alchimie') + '.courant']: null });
     }
 
-    /** Édite la quantité d'une materia (input .quantite de la liste). */
+    /**
+     * Édite le stock d'une materia (input .quantite de la liste) : l'utilisateur saisit le stock
+     * total ; l'époque courante en reçoit la variation (Incarnations.fixerStock).
+     */
     async _onChangeMateriae(event) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
-        const item = this.document.items.find(i => i.sid === sid);
-        await item.update({ [Version.path(item, 'quantite')]: parseInt(event.target.value) });
+        await new Incarnations(this.document).fixerStock(sid, parseInt(event.target.value));
     }
 
     /**

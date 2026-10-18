@@ -72,11 +72,17 @@ export class Incarnations {
     static EQUIPEMENTS = ['arme', 'armure'];
 
     /**
+     * Les stocks, les materiae : ils se transmettent d'une incarnation à l'autre ; chaque
+     * exemplaire porte la VARIATION de quantité de son époque, positive ou négative (voir stock).
+     */
+    static STOCKS = ['materiae'];
+
+    /**
      * Tous les types liés à une incarnation : un exemplaire embarqué par incarnation qui les
      * connaît, portant la clé de son incarnation et ses propres valeurs (voir plus haut).
      */
     static LIES = [...Incarnations.VECUS, ...Incarnations.FOCUS, ...Incarnations.CAPACITES, ...Incarnations.VOIES,
-        ...Incarnations.EQUIPEMENTS];
+        ...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS];
 
     /**
      * Les types qui ont des valeurs propres à l'acteur (statut, focus, pacte...) et dont le
@@ -488,6 +494,67 @@ export class Incarnations {
         if (this.courante == null) return false;
         foundry.utils.setProperty(data, 'system.incarnation', this.courante);
         return true;
+    }
+
+    // ------------------------------------------------------------------ les stocks
+
+    /**
+     * @param sid The system identifier of a stocked item (materiae).
+     * @returns le stock : la somme des variations de ses exemplaires dont l'incarnation compte
+     *          (la courante et les antérieures actives). Pour un acteur sans incarnations, la
+     *          quantité de son unique exemplaire.
+     */
+    stock(sid) {
+        const quantite = item => Version.data(item)?.quantite ?? 0;
+        if (!this.porte) return quantite(this.exemplaires(sid)[0]);
+        return this.exemplaires(sid)
+            .filter(i => this.estActive(this.epoqueDe(i)))
+            .reduce((total, i) => total + quantite(i), 0);
+    }
+
+    /**
+     * Les stocks à afficher : ceux dont le stock est positif, et ceux que l'incarnation
+     * courante a déposés ou modifiés (son propre exemplaire), même à 0 ou moins.
+     * @param type The stocked type ('materiae').
+     * @returns { sid, stock, propre } for each, propre being the exemplar of the current
+     *          incarnation, null if none.
+     */
+    stocks(type) {
+        const sids = [...new Set(this.actor.items.filter(i => i.type === type).map(i => i.sid))];
+        return sids
+            .map(sid => ({
+                sid: sid,
+                stock: this.stock(sid),
+                propre: this.porte ? this.exemplaireDans(sid, this.courante) : this.exemplaires(sid)[0]
+            }))
+            .filter(s => s.stock > 0 || s.propre != null);
+    }
+
+    /**
+     * Fixe le stock d'un item à l'époque courante : l'exemplaire de l'incarnation courante
+     * reçoit la variation qui mène à ce total, et est créé s'il n'existe pas (copié d'un autre
+     * exemplaire). Les époques antérieures ne changent pas.
+     * @param sid   The system identifier of the stocked item.
+     * @param total The new stock.
+     */
+    async fixerStock(sid, total) {
+        const quantite = isNaN(total) ? 0 : total;
+        if (!this.porte) {
+            const item = this.exemplaires(sid)[0];
+            if (item != null) await item.update({ [Version.path(item, 'quantite')]: quantite });
+            return;
+        }
+        const cle = this.courante;
+        if (cle == null) return;
+        const propre = this.exemplaireDans(sid, cle);
+        const anterieur = this.stock(sid) - (Version.data(propre)?.quantite ?? 0);
+        const variation = quantite - anterieur;
+        if (propre != null) {
+            await propre.update({ [Version.path(propre, 'quantite')]: variation });
+        } else {
+            const source = this.exemplaires(sid)[0];
+            if (source != null) await this.creerExemplaire(source, cle, { quantite: variation });
+        }
     }
 
     // ------------------------------------------------------------------ les degrés

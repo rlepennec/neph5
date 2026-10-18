@@ -596,6 +596,18 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   suppression des armes d'une compétence ou d'un vécu supprimé, la remise à zéro de la visée.
   En 1.7.0 elles n'avaient pas de période : 1.0.10 les donne toutes à l'incarnation courante.
 
-**Vérifié sous node** : façade 41 cas (`test-lies` : vécus, savoir par époque et somme des
-degrés, focus, voies, équipements, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 17 (acteur 1.7.0
+- **Les materiae** (`Incarnations.STOCKS`, ajoutées à `LIES` le 18/10, décidé par l'utilisateur) :
+  le stock du laboratoire **se transmet** d'une incarnation à l'autre. Chaque exemplaire porte la
+  **variation** de quantité de son époque, positive ou négative ; le stock (`stock(sid)`) est la
+  somme des variations de la courante et des antérieures actives. L'onglet Materiae affiche
+  (`stocks(type)`) les materiae de stock positif, et celles que l'incarnation courante a déposées
+  ou modifiées, même à 0 ou moins. L'utilisateur saisit le stock total : l'époque courante en
+  reçoit la variation (`fixerStock`), son exemplaire étant créé au besoin. Déposer une materia
+  crée à l'époque courante une variation de 0 : le stock ne change pas (une nouvelle apparaît à
+  0). La corbeille supprime l'exemplaire de l'époque courante : le stock repart à celui des
+  époques antérieures. En 1.7.0 une materia n'avait pas de période : 1.0.10 donne sa quantité
+  comme variation à l'incarnation courante.
+
+**Vérifié sous node** : façade 49 cas (`test-lies` : vécus, savoir par époque et somme des
+degrés, focus, voies, équipements, materiae, retraits, retrait d'une incarnation) ; dépôt 11 ; migration 18 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.
