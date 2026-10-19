@@ -699,6 +699,43 @@ export class Incarnations {
         return true;
     }
 
+    // ------------------------------------------------------------------ la stase
+
+    /**
+     * @param incarnation An incarnation, null for none.
+     * @returns une copie de sa stase, null si elle n'en a pas.
+     */
+    static #staseDe(incarnation) {
+        const stase = Version.data(incarnation)?.stase ?? null;
+        return stase == null ? null : { description: stase.description ?? "", ka: stase.ka ?? 0 };
+    }
+
+    /**
+     * La stase de la figure : celle de l'incarnation courante, au plus une par époque ; null si
+     * l'incarnation courante n'en a pas, ou s'il n'y a pas d'incarnation courante.
+     * @returns { description, ka } or null.
+     */
+    stase() {
+        return Incarnations.#staseDe(this.incarnation(this.courante));
+    }
+
+    /**
+     * Écrit la stase de l'incarnation courante : saisir une valeur la crée ; une stase dont la
+     * description est vide et le Ka à 0 est retirée.
+     * @param valeurs Les valeurs saisies (description, ka).
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireStase(valeurs) {
+        const incarnation = this.incarnation(this.courante);
+        if (incarnation == null) return false;
+        const stase = { description: "", ka: 0, ...(Incarnations.#staseDe(incarnation) ?? {}) };
+        if ('description' in valeurs) stase.description = String(valeurs.description ?? "").trim();
+        if ('ka' in valeurs) { const n = Number(valeurs.ka); stase.ka = isNaN(n) ? 0 : n; }
+        const vide = stase.description === "" && stase.ka === 0;
+        await incarnation.update({ [Version.path(incarnation, 'stase')]: vide ? null : stase });
+        return true;
+    }
+
     // ------------------------------------------------------------------ le simulacre
 
     /**
@@ -921,7 +958,8 @@ export class Incarnations {
 
     /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
-     * reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en a pas.
+     * reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en a pas ; sa
+     * stase aussi, aucune s'il n'y en a pas.
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
      */
@@ -942,7 +980,8 @@ export class Incarnations {
                         actif: true,
                         predecesseur: derniere?.sid ?? null,
                         successeur: null,
-                        ka: Incarnations.#kaDe(anterieure)
+                        ka: Incarnations.#kaDe(anterieure),
+                        stase: Incarnations.#staseDe(anterieure)
                     }
                 }
             }

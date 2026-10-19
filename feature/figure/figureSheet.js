@@ -144,6 +144,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         context.editedCapacity = this.editedCapacity;
         // Les Ka sont portés par l'incarnation courante : sans elle, ils ne se saisissent pas
         context.incarnationCourante = new Incarnations(this.document).courante != null;
+        // La stase de l'incarnation courante, null si elle n'en a pas : les champs restent vides
+        context.stase = new Incarnations(this.document).stase();
         return context;
     }
 
@@ -524,6 +526,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
         if (Object.keys(ka).length > 0) {
             await new Incarnations(this.document).ecrireKa(ka);
+        }
+
+        // La stase aussi : saisie, elle est créée ; ses champs vidés, elle est retirée
+        const prefixeStase = Version.prefix(this.document) + '.stase.';
+        const stase = {};
+        for (const [key, value] of Object.entries(formData.object)) {
+            if (key.startsWith(prefixeStase)) {
+                stase[key.slice(prefixeStase.length)] = value;
+                delete formData.object[key];
+            }
+        }
+        if (Object.keys(stase).length > 0) {
+            await new Incarnations(this.document).ecrireStase(stase);
         }
 
         for (const elt of ['air', 'eau', 'feu', 'lune', 'terre']) {

@@ -689,12 +689,20 @@ incarnation refusée ; migration (23 cas) — Ka copiés dans chaque incarnation
 deux formes (avant et après 1.0.9) ; schémas (figure sans `ka`, incarnation à 0 par défaut).
 Pas encore essayé dans Foundry.
 
+**La stase** (décidé par l'utilisateur le 19/10) : elle quitte la figure pour l'incarnation
+(`versions.v5.stase` : description et Ka, `null` si aucune), une au plus par époque. La fiche
+affiche celle de l'incarnation courante (`Incarnations.stase`, contexte `@root.stase`) ; ses
+champs, dans l'onglet Nephilim, s'écrivent dans l'incarnation courante (`ecrireStase`) :
+saisir une valeur la crée, une description vide et un Ka à 0 la retirent. Une nouvelle
+incarnation reprend la stase de l'antérieure active la plus proche, aucune s'il n'y en a pas.
+1.0.10 relève la stase de la figure (`__acteur`) et la copie dans chaque incarnation si elle
+existe. Vérifié sous node (façade 83 cas, migration 24, schémas).
+
 **Reste à rendre dépendant des époques** (liste arrêtée par l'utilisateur le 19 octobre 2026) :
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
   champ `simulacre` de l'acteur, avec les passerelles de migration ;
 - la **sapience** (`sapience`, `sapienceDepensee`) et les **points d'incarnation**
   (`pointsIncarnations`) ;
-- la **stase** (`stase`) ;
 - le **laboratoire** (`alchimie` : constructs, materiae primae du pentacle, laboratoires
   accessibles, laboratoire courant) ;
 - les **voyages akashiques** (`akasha` : nef, barge, boussole, compas) ;

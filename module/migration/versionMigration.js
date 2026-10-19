@@ -113,10 +113,14 @@ export class VersionMigration {
             if (Object.keys(champs).length > 0) releve[item._id] = champs;
         }
 
-        // Les Ka de la figure, qui quittent son schéma pour les incarnations : relevés sous une
-        // clé qui ne peut pas être un identifiant d'item
+        // Les Ka et la stase de la figure, qui quittent son schéma pour les incarnations : relevés
+        // sous une clé qui ne peut pas être un identifiant d'item
+        const acteur = {};
         const ka = lire(source, 'ka');
-        if (ka != null && typeof ka === 'object') releve.__acteur = { ka: structuredClone(ka) };
+        if (ka != null && typeof ka === 'object') acteur.ka = structuredClone(ka);
+        const stase = lire(source, 'stase');
+        if (stase != null && typeof stase === 'object') acteur.stase = structuredClone(stase);
+        if (Object.keys(acteur).length > 0) releve.__acteur = acteur;
 
         source.flags ??= {};
         source.flags.neph5e ??= {};

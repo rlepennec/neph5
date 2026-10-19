@@ -74,21 +74,8 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                                     )
                                 }
                             ),
-                            stase: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    description: new foundry.data.fields.StringField(
-                                        {
-                                            required: false
-                                        }
-                                    ),
-                                    ka: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    )
-                                }
-                            ),
+                            // La stase n'est plus portée par la figure mais par chaque incarnation (voir
+                            // Incarnations.stase) : la migration 1.0.10 l'y recopie depuis le relevé.
                             alchimie: new foundry.data.fields.SchemaField
                             (
                                 {
