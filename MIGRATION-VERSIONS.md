@@ -688,3 +688,18 @@ nouvelles en queue reprenant l'antérieure active, indépendance entre époques,
 incarnation refusée ; migration (23 cas) — Ka copiés dans chaque incarnation ; relevé sous ses
 deux formes (avant et après 1.0.9) ; schémas (figure sans `ka`, incarnation à 0 par défaut).
 Pas encore essayé dans Foundry.
+
+**Reste à rendre dépendant des époques** (liste arrêtée par l'utilisateur le 19 octobre 2026) :
+- le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
+  champ `simulacre` de l'acteur, avec les passerelles de migration ;
+- la **sapience** (`sapience`, `sapienceDepensee`) et les **points d'incarnation**
+  (`pointsIncarnations`) ;
+- la **stase** (`stase`) ;
+- le **laboratoire** (`alchimie` : constructs, materiae primae du pentacle, laboratoires
+  accessibles, laboratoire courant) ;
+- les **voyages akashiques** (`akasha` : nef, barge, boussole, compas) ;
+- les **bonus** (`bonus` : mouvement, initiative, dommage, protection).
+
+Restent portés par l'acteur : `description`, `periode` (la clé de l'incarnation courante),
+`manoeuvres`, `dommage`, `options`. La règle de transmission de chaque bloc reste à décider avec
+l'utilisateur, bloc par bloc.
