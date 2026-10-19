@@ -38,7 +38,8 @@ import { Version } from "../common/version.js";
  *      l'incarnation courante (elles ne se transmettent pas d'une incarnation à l'autre) ;
  *      les materiae aussi, leur quantité devenant la variation de cette incarnation, et les
  *      catalyseurs et les aspects, possédés à cette incarnation ;
- *      les Ka et les bonus de la figure sont copiés dans chaque incarnation, qui les porte
+ *      les Ka, les bonus et les compteurs (sapience, sapience dépensée, points d'incarnation) de
+ *      la figure sont copiés dans chaque incarnation, qui les porte
  *      désormais, et sa
  *      stase aussi, si elle existe ;
  *      le simulacre de la figure devient celui de l'incarnation courante (il ne se transmet
@@ -199,6 +200,10 @@ export class _1_0_10 {
                         // Les Ka de la figure : copiés dans chaque incarnation, qui les porte
                         ka: Object.fromEntries(Incarnations.KA.map(k => [k, kaFigure[k] ?? 0])),
                         bonus: Object.fromEntries(Incarnations.BONUS.map(k => [k, bonusFigure[k] ?? 0])),
+                        // Les compteurs de la figure aussi
+                        sapience: releve.__acteur?.sapience ?? 0,
+                        sapienceDepensee: releve.__acteur?.sapienceDepensee ?? 0,
+                        pointsIncarnations: releve.__acteur?.pointsIncarnations ?? 0,
                         // La stase de la figure aussi, si elle existe
                         stase: staseFigure == null ? null : { ...staseFigure },
                         // Le simulacre de la figure ne se transmet pas : il devient celui de

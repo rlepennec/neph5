@@ -707,11 +707,19 @@ fiche via `ecrireBonus`. Les Ka et les bonus partagent un même mécanisme de «
 époque » dans la façade (`#valeursDe`, `#ecrireValeurs`). 1.0.10 relève les bonus et les copie
 dans chaque incarnation. Vérifié sous node (façade 86 cas, migration 25, schémas).
 
+**La sapience et les points d'incarnation** (décidé par l'utilisateur le 19/10) : portés par
+chaque incarnation (`sapience`, `sapienceDepensee`, `pointsIncarnations` dans `versions.v5`).
+La sapience et la sapience dépensée **se transmettent** : une nouvelle incarnation reprend celles
+de l'antérieure active la plus proche, 0 sinon ; ajouter ou retirer N à l'époque courante
+ajoute ou retire aussi N à **toutes** les incarnations postérieures, désactivées comprises
+(`ecrireCompteurs`). Les points d'incarnation sont **propres à chaque époque** et partent de 0.
+La fiche lit `@root.compteurs` (`Incarnations.compteurs`) et ne les affiche qu'avec une
+incarnation courante. 1.0.10 relève les trois compteurs et les copie dans chaque incarnation.
+Vérifié sous node (façade 90 cas, migration 26, schémas).
+
 **Reste à rendre dépendant des époques** (liste arrêtée par l'utilisateur le 19 octobre 2026) :
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
   champ `simulacre` de l'acteur, avec les passerelles de migration ;
-- la **sapience** (`sapience`, `sapienceDepensee`) et les **points d'incarnation**
-  (`pointsIncarnations`) ;
 - le **laboratoire** (`alchimie` : constructs, materiae primae du pentacle, laboratoires
   accessibles, laboratoire courant) ;
 - les **voyages akashiques** (`akasha` : nef, barge, boussole, compas).

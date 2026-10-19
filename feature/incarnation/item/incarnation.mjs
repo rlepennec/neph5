@@ -14,6 +14,9 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `successeur` : la clé de l'incarnation immédiatement plus récente, null pour la queue ;
  *   - `ka`      : les douze Ka de la figure à cette époque (pentacle, Soleil, Selenim) ;
  *   - `stase`   : la stase de la figure à cette époque (description, Ka), null si aucune ;
+ *   - `sapience`, `sapienceDepensee` : la sapience de la figure à cette époque ; elle se
+ *                 transmet, et une modification se reporte sur les incarnations postérieures ;
+ *   - `pointsIncarnations` : les points d'incarnation de cette époque, indépendants ;
  *   - `bonus`   : les bonus de la figure à cette époque (mouvement, initiative, dommage,
  *                 protection) ;
  *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
@@ -87,6 +90,12 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                     reserveCourante: new foundry.data.fields.NumberField({ initial: 0 })
                                 }
                             ),
+                            // La sapience et la sapience dépensée, qui se transmettent et se reportent sur les
+                            // incarnations postérieures ; les points d'incarnation, propres à cette époque (voir
+                            // Incarnations.compteurs).
+                            sapience: new foundry.data.fields.NumberField({ initial: 0 }),
+                            sapienceDepensee: new foundry.data.fields.NumberField({ initial: 0 }),
+                            pointsIncarnations: new foundry.data.fields.NumberField({ initial: 0 }),
                             // Les bonus de la figure à cette époque (voir Incarnations.bonus).
                             bonus: new foundry.data.fields.SchemaField
                             (

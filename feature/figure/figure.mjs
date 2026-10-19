@@ -38,21 +38,9 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                                     initial: null
                                 }
                             ),
-                            sapience: new foundry.data.fields.NumberField(
-                                {
-                                    initial: 0
-                                }
-                            ),
-                            sapienceDepensee: new foundry.data.fields.NumberField(
-                                {
-                                    initial: 0
-                                }
-                            ),
-                            pointsIncarnations: new foundry.data.fields.NumberField(
-                                {
-                                    initial: 0
-                                }
-                            ),
+                            // La sapience, la sapience dépensée et les points d'incarnation ne sont plus portés
+                            // par la figure mais par chaque incarnation (voir Incarnations.compteurs) : la
+                            // migration 1.0.10 les y recopie depuis le relevé.
                             // Les Ka ne sont plus portés par la figure mais par chaque incarnation (voir
                             // Incarnations.kas) : la migration 1.0.10 les y recopie depuis le relevé.
                             manoeuvres: new foundry.data.fields.SchemaField

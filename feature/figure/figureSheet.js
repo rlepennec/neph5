@@ -146,6 +146,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         context.incarnationCourante = new Incarnations(this.document).courante != null;
         // La stase de l'incarnation courante, null si elle n'en a pas : les champs restent vides
         context.stase = new Incarnations(this.document).stase();
+        // La sapience, la sapience dépensée et les points d'incarnation de l'incarnation courante
+        context.compteurs = new Incarnations(this.document).compteurs();
         return context;
     }
 
@@ -539,6 +541,20 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
         if (Object.keys(bonus).length > 0) {
             await new Incarnations(this.document).ecrireBonus(bonus);
+        }
+
+        // Les compteurs de sapience et les points d'incarnation : ceux de l'incarnation courante,
+        // la sapience se reportant sur les incarnations postérieures (Incarnations.ecrireCompteurs)
+        const compteurs = {};
+        for (const champ of ['sapience', 'sapienceDepensee', 'pointsIncarnations']) {
+            const key = Version.prefix(this.document) + '.' + champ;
+            if (key in formData.object) {
+                compteurs[champ] = formData.object[key];
+                delete formData.object[key];
+            }
+        }
+        if (Object.keys(compteurs).length > 0) {
+            await new Incarnations(this.document).ecrireCompteurs(compteurs);
         }
 
         // La stase aussi : saisie, elle est créée ; ses champs vidés, elle est retirée

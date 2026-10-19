@@ -124,6 +124,12 @@ export class Incarnations {
     static BONUS = ['mouvement', 'initiative', 'dommage', 'protection'];
 
     /**
+     * Les compteurs de sapience : ils se transmettent, et une modification à une époque se
+     * reporte sur toutes les incarnations postérieures (voir ecrireCompteurs).
+     */
+    static SAPIENCES = ['sapience', 'sapienceDepensee'];
+
+    /**
      * Les raisons pour lesquelles une incarnation ne peut être créée depuis un vécu.
      */
     static SANS_PERIODE = "Le vécu doit avoir une période pour pouvoir être déposé";
@@ -736,6 +742,58 @@ export class Incarnations {
         return this.#ecrireValeurs('bonus', Incarnations.BONUS, valeurs);
     }
 
+    // ------------------------------------------------------------------ la sapience
+
+    /**
+     * Les compteurs de la figure : ceux de l'incarnation courante ; tous à 0 sans incarnation
+     * courante.
+     * @returns { sapience, sapienceDepensee, pointsIncarnations }.
+     */
+    compteurs() {
+        const data = Version.data(this.incarnation(this.courante));
+        return {
+            sapience: data?.sapience ?? 0,
+            sapienceDepensee: data?.sapienceDepensee ?? 0,
+            pointsIncarnations: data?.pointsIncarnations ?? 0
+        };
+    }
+
+    /**
+     * Écrit les compteurs saisis à l'époque courante. La sapience et la sapience dépensée se
+     * transmettent : ajouter ou retirer N à l'époque courante ajoute ou retire aussi N à toutes
+     * les incarnations postérieures, désactivées comprises. Les points d'incarnation ne valent
+     * que pour l'époque courante.
+     * @param valeurs Les compteurs saisis, par nom.
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireCompteurs(valeurs) {
+        const cle = this.courante;
+        const courante = this.incarnation(cle);
+        if (courante == null) return false;
+        const nombre = v => { const n = Number(v); return isNaN(n) ? 0 : n; };
+        const chaine = this.#chaine();
+        const posterieures = chaine.slice(chaine.findIndex(i => i.sid === cle) + 1);
+        const updates = new Map();
+        const ecrire = (incarnation, champ, valeur) => {
+            const update = updates.get(incarnation.id) ?? { _id: incarnation.id };
+            update[Version.path(incarnation, champ)] = valeur;
+            updates.set(incarnation.id, update);
+        };
+        for (const champ of Incarnations.SAPIENCES) {
+            if (!(champ in valeurs)) continue;
+            const ecart = nombre(valeurs[champ]) - (Version.data(courante)[champ] ?? 0);
+            if (ecart === 0) continue;
+            for (const incarnation of [courante, ...posterieures]) {
+                ecrire(incarnation, champ, (Version.data(incarnation)[champ] ?? 0) + ecart);
+            }
+        }
+        if ('pointsIncarnations' in valeurs) {
+            ecrire(courante, 'pointsIncarnations', nombre(valeurs.pointsIncarnations));
+        }
+        if (updates.size > 0) await this.actor.updateEmbeddedDocuments('Item', [...updates.values()]);
+        return true;
+    }
+
     // ------------------------------------------------------------------ la stase
 
     /**
@@ -996,8 +1054,8 @@ export class Incarnations {
     /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
      * et ses bonus reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en
-     * a pas ; sa
-     * stase aussi, aucune s'il n'y en a pas.
+     * a pas, de même que sa sapience et sa sapience dépensée ; sa stase aussi, aucune s'il n'y en
+     * a pas. Ses points d'incarnation partent de 0.
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
      */
@@ -1020,6 +1078,9 @@ export class Incarnations {
                         successeur: null,
                         ka: Incarnations.#valeursDe(anterieure, 'ka', Incarnations.KA),
                         bonus: Incarnations.#valeursDe(anterieure, 'bonus', Incarnations.BONUS),
+                        sapience: Version.data(anterieure)?.sapience ?? 0,
+                        sapienceDepensee: Version.data(anterieure)?.sapienceDepensee ?? 0,
+                        pointsIncarnations: 0,
                         stase: Incarnations.#staseDe(anterieure)
                     }
                 }
