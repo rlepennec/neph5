@@ -102,8 +102,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         // et vient alors en tête : c'est par là qu'on entre quand on construit.
         { id: "incarnations", option: "incarnations", unlocked: true, template: `feature/figure/incarnations.hbs`, extra: { from: "figure" } },
         { id: "description", template: `feature/figure/description.hbs` },
-        { id: "nephilim", option: "nephilim", ka: true, template: `feature/nephilim/actor/main.hbs` },
-        { id: "selenim", option: "selenim", ka: true, template: `feature/selenim/actor/main.hbs` },
+        { id: "nephilim", option: "nephilim", incarnation: true, template: `feature/nephilim/actor/main.hbs` },
+        { id: "selenim", option: "selenim", incarnation: true, template: `feature/selenim/actor/main.hbs` },
         { id: "combat", option: "combat", template: `feature/figure/combat.hbs` },
         { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
         { id: "magie", option: "magie", science: "magie" },
@@ -111,15 +111,15 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "arbre", option: "kabbale", template: `feature/kabbale/actor/arbre.hbs` },
         { id: "ordonnances", option: "kabbale", template: `feature/kabbale/actor/ordonnances.hbs` },
         { id: "alchimie", option: "alchimie", science: "alchimie" },
-        { id: "laboratoire", option: "alchimie", template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
-        { id: "materiae", option: "alchimie", template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
+        { id: "laboratoire", option: "alchimie", incarnation: true, template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
+        { id: "materiae", option: "alchimie", incarnation: true, template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
         { id: "analogie", option: "analogie", science: "analogie" },
         { id: "dracomachie", option: "dracomachie", science: "dracomachie" },
         { id: "atlanteide", option: "atlanteide", science: "atlanteide" },
         { id: "necromancie", option: "necromancie", science: "necromancie" },
         { id: "conjuration", option: "conjuration", science: "conjuration" },
         { id: "akasha", option: "akasha", template: `feature/akasha/actor/main.hbs` },
-        { id: "bohemien", option: "bohemien", ka: true, science: "bohemien" },
+        { id: "bohemien", option: "bohemien", incarnation: true, science: "bohemien" },
         { id: "baton", option: "baton", science: "baton" },
         { id: "coupe", option: "coupe", science: "coupe" },
         { id: "denier", option: "denier", science: "denier" },
@@ -163,9 +163,10 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         const tabs = FigureSheet.TAB_DEFINITIONS
             .filter(d => d.option == null || o[d.option])
             .filter(d => d.unlocked !== true || this.locked === false)
-            // Les onglets qui définissent des Ka exigent une incarnation courante : c'est elle
+            // Les onglets qui définissent des Ka ou le laboratoire exigent une incarnation courante :
+            // c'est elle
             // qui les porte
-            .filter(d => d.ka !== true || courante)
+            .filter(d => d.incarnation !== true || courante)
             .map(d => {
                 const tab = {
                     id: d.id,
@@ -470,36 +471,33 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /** Active/désactive un construct (seulement sur son propre labo, déverrouillé). */
     static async _onConstruct(event, target) {
-        if (Version.data(this.document).alchimie.courant == null && this.locked === false) {
+        if (this.document.alchimie.courant == null && this.locked === false) {
             const construct = target.closest('.tooltip').dataset.type;
-            const activated = Version.data(this.document).alchimie.constructs[construct].active;
-            await this.document.update({ [Version.path(this.document, 'alchimie') + '.constructs.' + construct + ".active"]: !activated });
+            const activated = this.document.alchimie.constructs[construct].active;
+            await new Incarnations(this.document).ecrireAlchimie({ ['constructs.' + construct + '.active']: !activated });
         }
     }
 
     /** Ajoute un laboratoire en déposant un acteur alchimiste sur l'onglet laboratoire. */
     static async _onDropLaboratory(event, document) {
-        const laboratoires = Version.data(this.document).alchimie.laboratoires;
+        const laboratoires = this.document.alchimie.laboratoires;
         if (!laboratoires.includes(document.sid)) {
-            await this.document.update({
-                [Version.path(this.document, 'alchimie') + '.laboratoires']: [...laboratoires, document.sid]
-            });
+            await new Incarnations(this.document).ecrireAlchimie({ laboratoires: [...laboratoires, document.sid] });
         }
     }
 
     /** Sélectionne un laboratoire (le sien si pas de data-sid). */
     static async _onSelectLaboratory(event, target) {
         const sid = target.dataset.sid;
-        await this.document.update({ [Version.path(this.document, 'alchimie') + '.courant']: sid == null ? null : sid });
+        await new Incarnations(this.document).ecrireAlchimie({ courant: sid == null ? null : sid });
     }
 
     /** Supprime le laboratoire courant. */
     static async _onDeleteLaboratory(event, target) {
         if (this.locked) return;
-        const sid = Version.data(this.document).alchimie.courant;
-        const labs = Version.data(this.document).alchimie.laboratoires.filter(i => i !== sid);
-        await this.document.update({ [Version.path(this.document, 'alchimie') + '.laboratoires']: labs });
-        await this.document.update({ [Version.path(this.document, 'alchimie') + '.courant']: null });
+        const sid = this.document.alchimie.courant;
+        const labs = this.document.alchimie.laboratoires.filter(i => i !== sid);
+        await new Incarnations(this.document).ecrireAlchimie({ laboratoires: labs, courant: null });
     }
 
     /**
@@ -577,6 +575,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 formData.object[key] = input - this.document.getMaxBaseMP(elt);
             }
         }
+        // Le laboratoire saisi va à l'incarnation courante, qui le porte (Incarnations.ecrireAlchimie)
+        const prefixeAlchimie = Version.path(this.document, 'alchimie') + '.';
+        const alchimie = {};
+        for (const [key, value] of Object.entries(formData.object)) {
+            if (key.startsWith(prefixeAlchimie)) {
+                alchimie[key.slice(prefixeAlchimie.length)] = value;
+                delete formData.object[key];
+            }
+        }
+        if (Object.keys(alchimie).length > 0) {
+            await new Incarnations(this.document).ecrireAlchimie(alchimie);
+        }
+
         // Délègue à NephilimActorSheet (system.id, items embarqués, update acteur).
         await super._onSubmit(event, form, formData);
     }

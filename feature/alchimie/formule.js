@@ -55,8 +55,8 @@ export class Formule extends AbstractFocus {
             // If not critical, spend materiae primae
             if (result.critical === false) {
                 for (const [element, cout] of Object.entries(this.coutsEnMateriae())) {
-                    const quantite = Math.max(0, Version.data(this.actor).alchimie.primae[element].quantite - cout);
-                    await this.actor.update({ [Version.path(this.actor, 'alchimie') + '.primae.' + element + ".quantite"]: quantite });
+                    const quantite = Math.max(0, this.actor.alchimie.primae[element].quantite - cout);
+                    await new Incarnations(this.actor).ecrireAlchimie({ ['primae.' + element + '.quantite']: quantite });
                 }
             }
 
@@ -94,7 +94,7 @@ export class Formule extends AbstractFocus {
      * @returns les éléments dont l'acteur a assez de materiae primae pour une quintuple.
      */
     elementsQuintuple() {
-        return Constants.ELEMENTS.filter(e => (Version.data(this.actor).alchimie.primae[e]?.quantite ?? 0) >= this.coutQuintuple());
+        return Constants.ELEMENTS.filter(e => (this.actor.alchimie.primae[e]?.quantite ?? 0) >= this.coutQuintuple());
     }
 
     /**
@@ -183,7 +183,7 @@ export class Formule extends AbstractFocus {
      */
     getOwner() {
         if (this.actor.type === 'figure') {
-            const sid = Version.data(this.actor).alchimie.courant;
+            const sid = this.actor.alchimie.courant;
             return sid == null ? this.actor : game.actors.find(i => i.sid === sid);
         } else {
             return null;
@@ -240,7 +240,7 @@ export class Formule extends AbstractFocus {
                 case 'feu':
                 case 'lune':
                 case 'terre':
-                    if (Version.data(this.actor).alchimie.primae[element].quantite < Version.data(this.item).degre) {
+                    if (this.actor.alchimie.primae[element].quantite < Version.data(this.item).degre) {
                         return -110;
                     }
                     break;
@@ -254,7 +254,7 @@ export class Formule extends AbstractFocus {
 
                 // Degré materiae primae de chaque élément.
                 case 'quintessence':
-                    if (Constants.ELEMENTS.some(e => Version.data(this.actor).alchimie.primae[e].quantite < this.coutQuintessence())) {
+                    if (Constants.ELEMENTS.some(e => this.actor.alchimie.primae[e].quantite < this.coutQuintessence())) {
                         return -110;
                     }
                     break;

@@ -1,6 +1,7 @@
 import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Version } from "../../module/common/version.js";
+import { IncarnationDataModel } from "./item/incarnation.mjs";
 
 /**
  * Les incarnations d'un acteur, vues d'un seul endroit.
@@ -742,6 +743,44 @@ export class Incarnations {
         return this.#ecrireValeurs('bonus', Incarnations.BONUS, valeurs);
     }
 
+    // ------------------------------------------------------------------ le laboratoire
+
+    /**
+     * @param incarnation An incarnation, null for none.
+     * @returns une copie de son laboratoire ; le laboratoire vide du schéma si elle n'en a pas.
+     */
+    static #alchimieDe(incarnation) {
+        const alchimie = Version.data(incarnation)?.alchimie;
+        if (alchimie != null) return foundry.utils.deepClone(alchimie);
+        return foundry.utils.deepClone(new IncarnationDataModel({ id: 'vide' })._source.versions.v5.alchimie);
+    }
+
+    /**
+     * Le laboratoire de la figure : celui de l'incarnation courante, indépendant de ceux des
+     * autres époques ; le laboratoire vide sans incarnation courante.
+     * @returns { constructs, primae, laboratoires, courant }.
+     */
+    alchimie() {
+        return Incarnations.#alchimieDe(this.incarnation(this.courante));
+    }
+
+    /**
+     * Écrit dans le laboratoire de l'incarnation courante.
+     * @param valeurs Les valeurs, par chemin dans le laboratoire (ex: { 'primae.air.quantite': 3,
+     *                'constructs.cornue.active': true, courant: null }).
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireAlchimie(valeurs) {
+        const incarnation = this.incarnation(this.courante);
+        if (incarnation == null) return false;
+        const update = {};
+        for (const [chemin, valeur] of Object.entries(valeurs)) {
+            update[Version.path(incarnation, 'alchimie') + '.' + chemin] = valeur;
+        }
+        if (Object.keys(update).length > 0) await incarnation.update(update);
+        return true;
+    }
+
     // ------------------------------------------------------------------ la sapience
 
     /**
@@ -1054,7 +1093,8 @@ export class Incarnations {
     /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
      * et ses bonus reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en
-     * a pas, de même que sa sapience et sa sapience dépensée ; sa stase aussi, aucune s'il n'y en
+     * a pas, de même que sa sapience et sa sapience dépensée et son laboratoire ; sa stase aussi,
+     * aucune s'il n'y en
      * a pas. Ses points d'incarnation partent de 0.
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
@@ -1078,6 +1118,7 @@ export class Incarnations {
                         successeur: null,
                         ka: Incarnations.#valeursDe(anterieure, 'ka', Incarnations.KA),
                         bonus: Incarnations.#valeursDe(anterieure, 'bonus', Incarnations.BONUS),
+                        alchimie: Incarnations.#alchimieDe(anterieure),
                         sapience: Version.data(anterieure)?.sapience ?? 0,
                         sapienceDepensee: Version.data(anterieure)?.sapienceDepensee ?? 0,
                         pointsIncarnations: 0,

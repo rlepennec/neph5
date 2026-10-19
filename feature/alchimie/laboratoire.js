@@ -34,7 +34,7 @@ export class Laboratoire {
      * @returns true if the construct is active.
      */
     isActive(construct) {
-        return Version.data(this.actor).alchimie.constructs[construct].active;
+        return this.actor.alchimie.constructs[construct].active;
     }
 
     /**
@@ -43,13 +43,13 @@ export class Laboratoire {
      */
     static getAll(actor) {
         const all = [];
-        for (let sid of Version.data(actor).alchimie.laboratoires) {
+        for (let sid of actor.alchimie.laboratoires) {
             const _actor = game.actors.find(i => i.sid === sid);
             if (_actor != null) {
                 all.push({
                     id: _actor.sid,
                     name: _actor.name,
-                    active: Version.data(actor).alchimie.courant === _actor.sid
+                    active: actor.alchimie.courant === _actor.sid
                 });
             }
         }
@@ -64,15 +64,15 @@ export class Laboratoire {
     getConstruct(substance) {
         switch (substance) {
             case Laboratoire.AMBRE:
-                return Version.data(this.actor).alchimie.constructs.cornue;
+                return this.actor.alchimie.constructs.cornue;
             case Laboratoire.LIQUEUR:
-                return Version.data(this.actor).alchimie.constructs.alambic;
+                return this.actor.alchimie.constructs.alambic;
             case Laboratoire.METAL:
-                return Version.data(this.actor).alchimie.constructs.creuset;
+                return this.actor.alchimie.constructs.creuset;
             case Laboratoire.POUDRE:
-                return Version.data(this.actor).alchimie.constructs.athanor;
+                return this.actor.alchimie.constructs.athanor;
             case Laboratoire.VAPEUR:
-                return Version.data(this.actor).alchimie.constructs.aludel;
+                return this.actor.alchimie.constructs.aludel;
         }
     }
 

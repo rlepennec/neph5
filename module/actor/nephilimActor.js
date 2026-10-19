@@ -205,6 +205,17 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }
 
     /**
+     * Le laboratoire de l'acteur (constructs, materiae primae, laboratoires accessibles,
+     * laboratoire courant). Celui d'une figure est porté par son incarnation courante (voir
+     * Incarnations.alchimie). Toutes les lectures du laboratoire passent par ici.
+     * @returns the laboratory object.
+     */
+    get alchimie() {
+        const incarnations = new Incarnations(this);
+        return incarnations.porte ? incarnations.alchimie() : Version.data(this).alchimie;
+    }
+
+    /**
      * Les bonus de l'acteur (mouvement, initiative, dommage, protection). Ceux d'une figure sont
      * portés par son incarnation courante (voir Incarnations.bonus) ; un figurant porte les siens.
      * Toutes les lectures de bonus passent par ici.

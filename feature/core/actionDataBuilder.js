@@ -319,7 +319,7 @@ export class ActionDataBuilder {
             itemElement: Version.data(this.item).element,
             itemElements: Version.data(this.item).elements,
             // Les primae de l'acteur, pour les formules quintuples.
-            actorPrimae: Version.data(this.actor).alchimie?.primae,
+            actorPrimae: this.actor.alchimie?.primae,
             note: this.note
         };
 

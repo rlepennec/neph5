@@ -17,6 +17,8 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `sapience`, `sapienceDepensee` : la sapience de la figure à cette époque ; elle se
  *                 transmet, et une modification se reporte sur les incarnations postérieures ;
  *   - `pointsIncarnations` : les points d'incarnation de cette époque, indépendants ;
+ *   - `alchimie` : le laboratoire de la figure à cette époque (constructs, materiae primae,
+ *                 laboratoires accessibles, laboratoire courant) ;
  *   - `bonus`   : les bonus de la figure à cette époque (mouvement, initiative, dommage,
  *                 protection) ;
  *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
@@ -96,6 +98,318 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                             sapience: new foundry.data.fields.NumberField({ initial: 0 }),
                             sapienceDepensee: new foundry.data.fields.NumberField({ initial: 0 }),
                             pointsIncarnations: new foundry.data.fields.NumberField({ initial: 0 }),
+                            // Le laboratoire de la figure à cette époque : constructs, materiae primae du
+                            // pentacle, laboratoires accessibles, laboratoire courant (voir
+                            // Incarnations.alchimie).
+                            alchimie: new foundry.data.fields.SchemaField
+                            (
+                                {
+                                    courant: new foundry.data.fields.StringField(
+                                        {
+                                            required: false,
+                                            nullable: true,
+                                            initial: null
+                                        }
+                                    ),
+                                    laboratoires: new foundry.data.fields.ArrayField
+                                    (
+                                        new foundry.data.fields.StringField(),
+                                        {
+                                            required: false
+                                        }
+                                    ),
+                                    constructs: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            cornue: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    active: new foundry.data.fields.BooleanField(
+                                                        {
+                                                            initial: false
+                                                        }
+                                                    ),
+                                                    degre: new foundry.data.fields.StringField(
+                                                        {
+                                                            nullable: true,
+                                                            initial: null
+                                                        }
+                                                    ),
+                                                    air: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    eau: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    feu: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    lune: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    terre: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                                 
+                                                }
+                                            ),
+                                            creuset: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    active: new foundry.data.fields.BooleanField(
+                                                        {
+                                                            initial: false
+                                                        }
+                                                    ),
+                                                    degre: new foundry.data.fields.StringField(
+                                                        {
+                                                            nullable: true,
+                                                            initial: null
+                                                        }
+                                                    ),
+                                                    air: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    eau: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    feu: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    lune: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    terre: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                                 
+                                                }
+                                            ),
+                                            athanor: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    active: new foundry.data.fields.BooleanField(
+                                                        {
+                                                            initial: false
+                                                        }
+                                                    ),
+                                                    degre: new foundry.data.fields.StringField(
+                                                        {
+                                                            nullable: true,
+                                                            initial: null
+                                                        }
+                                                    ),
+                                                    air: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    eau: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    feu: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    lune: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    terre: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                                 
+                                                }
+                                            ),
+                                            aludel: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    active: new foundry.data.fields.BooleanField(
+                                                        {
+                                                            initial: false
+                                                        }
+                                                    ),
+                                                    degre: new foundry.data.fields.StringField(
+                                                        {
+                                                            nullable: true,
+                                                            initial: null
+                                                        }
+                                                    ),
+                                                    air: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    eau: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    feu: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    lune: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    terre: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                                 
+                                                }
+                                            ),
+                                            alambic: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    active: new foundry.data.fields.BooleanField(
+                                                        {
+                                                            initial: false
+                                                        }
+                                                    ),
+                                                    degre: new foundry.data.fields.StringField(
+                                                        {
+                                                            nullable: true,
+                                                            initial: null
+                                                        }
+                                                    ),
+                                                    air: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    eau: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    feu: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    lune: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    terre: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                                 
+                                                }
+                                            )
+                                        }
+                                    ),
+                                    primae: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            air: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    quantite: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    max: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                               
+                                                }
+                                            ),
+                                            eau: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    quantite: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    max: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                               
+                                                }
+                                            ),
+                                            feu: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    quantite: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    max: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                               
+                                                }
+                                            ),
+                                            lune: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    quantite: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    max: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                               
+                                                }
+                                            ),
+                                            terre: new foundry.data.fields.SchemaField
+                                            (
+                                                {
+                                                    quantite: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    ),
+                                                    max: new foundry.data.fields.NumberField(
+                                                        {
+                                                            initial: 0
+                                                        }
+                                                    )                               
+                                                }
+                                            )
+                                        }
+                                    )
+                                }
+                            ),
                             // Les bonus de la figure à cette époque (voir Incarnations.bonus).
                             bonus: new foundry.data.fields.SchemaField
                             (

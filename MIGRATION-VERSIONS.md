@@ -717,11 +717,21 @@ La fiche lit `@root.compteurs` (`Incarnations.compteurs`) et ne les affiche qu'a
 incarnation courante. 1.0.10 relève les trois compteurs et les copie dans chaque incarnation.
 Vérifié sous node (façade 90 cas, migration 26, schémas).
 
+**Le laboratoire** (décidé par l'utilisateur le 19/10) : le bloc `alchimie` (constructs, materiae
+primae du pentacle, laboratoires accessibles, laboratoire courant) passe tel quel de la figure à
+l'incarnation (`versions.v5.alchimie`). Il **se transmet** à la création : une nouvelle
+incarnation reçoit une copie du laboratoire de l'antérieure active la plus proche (le laboratoire
+vide du schéma sinon) ; chaque époque garde ensuite le sien, **indépendant**. Lecture unique
+`NephilimActor.alchimie` (formules, constructs, laboratoires, maximum des materiae primae,
+données du jet) ; contexte `@root.alchimie` ; écriture par `Incarnations.ecrireAlchimie` (fiche,
+constructs, laboratoires, consommation des materiae primae par une formule). Les onglets
+Laboratoire et Materiae exigent une incarnation courante, comme ceux des Ka. 1.0.10 relève le
+laboratoire et le copie dans chaque incarnation. Vérifié sous node (façade 94 cas, migration 27,
+schémas).
+
 **Reste à rendre dépendant des époques** (liste arrêtée par l'utilisateur le 19 octobre 2026) :
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
   champ `simulacre` de l'acteur, avec les passerelles de migration ;
-- le **laboratoire** (`alchimie` : constructs, materiae primae du pentacle, laboratoires
-  accessibles, laboratoire courant) ;
 - les **voyages akashiques** (`akasha` : nef, barge, boussole, compas).
 
 Restent portés par l'acteur : `description`, `periode` (la clé de l'incarnation courante),
