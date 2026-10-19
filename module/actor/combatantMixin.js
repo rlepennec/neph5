@@ -185,7 +185,7 @@ export const CombatantMixin = Base => {
         protection(type) {
 
             // Initialization
-            let protection = Version.data(this).bonus.protection;
+            let protection = this.bonus.protection;
 
             // Add the armor if exists
             // Seules comptent les armures de l'incarnation courante

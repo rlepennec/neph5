@@ -570,31 +570,8 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                                     ),
                                 }
                             ),
-                            bonus: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    mouvement: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    initiative: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    dommage: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    protection: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    )
-                                }
-                            ),
+                            // Les bonus ne sont plus portés par la figure mais par chaque incarnation (voir
+                            // Incarnations.bonus) : la migration 1.0.10 les y recopie depuis le relevé.
                             options: new foundry.data.fields.SchemaField
                             (
                                 {

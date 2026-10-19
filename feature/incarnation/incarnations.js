@@ -119,6 +119,11 @@ export class Incarnations {
         'pavane', 'reserve', 'reserveCourante'];
 
     /**
+     * Les bonus de la figure, portés par chaque incarnation (voir bonus).
+     */
+    static BONUS = ['mouvement', 'initiative', 'dommage', 'protection'];
+
+    /**
      * Les raisons pour lesquelles une incarnation ne peut être créée depuis un vécu.
      */
     static SANS_PERIODE = "Le vécu doit avoir une période pour pouvoir être déposé";
@@ -660,43 +665,75 @@ export class Incarnations {
         }
     }
 
-    // ------------------------------------------------------------------ les Ka
+    // ------------------------------------------------------------------ les valeurs par époque
 
     /**
+     * Les Ka et les bonus de la figure sont des valeurs portées par chaque incarnation,
+     * indépendantes d'une époque à l'autre : la fiche lit et écrit celles de l'incarnation
+     * courante ; une nouvelle incarnation reprend celles de l'antérieure active la plus proche
+     * (voir #creer).
      * @param incarnation An incarnation, null for none.
-     * @returns ses douze Ka, 0 pour ceux qu'elle n'a pas.
+     * @param champ       Le bloc de valeurs ('ka', 'bonus').
+     * @param cles        Ses valeurs, par nom.
+     * @returns les valeurs de l'incarnation, 0 pour celles qu'elle n'a pas.
      */
-    static #kaDe(incarnation) {
-        const ka = Version.data(incarnation)?.ka ?? {};
-        return Object.fromEntries(Incarnations.KA.map(k => [k, ka[k] ?? 0]));
+    static #valeursDe(incarnation, champ, cles) {
+        const valeurs = Version.data(incarnation)?.[champ] ?? {};
+        return Object.fromEntries(cles.map(k => [k, valeurs[k] ?? 0]));
     }
 
     /**
-     * Les Ka de la figure : ceux de l'incarnation courante, chacun indépendant des autres
-     * époques ; tous à 0 sans incarnation courante.
-     * @returns { air, eau, feu, lune, terre, soleil, noyau, brume, orichalque, pavane, reserve,
-     *          reserveCourante }.
-     */
-    kas() {
-        return Incarnations.#kaDe(this.incarnation(this.courante));
-    }
-
-    /**
-     * Écrit des Ka dans l'incarnation courante.
-     * @param valeurs Les Ka à écrire, par nom (ex: { air: 3 }).
+     * Écrit des valeurs dans l'incarnation courante ; les noms inconnus sont ignorés.
+     * @param champ   Le bloc de valeurs ('ka', 'bonus').
+     * @param cles    Ses valeurs, par nom.
+     * @param valeurs Les valeurs à écrire, par nom (ex: { air: 3 }).
      * @returns false if the actor has no current incarnation.
      */
-    async ecrireKa(valeurs) {
+    async #ecrireValeurs(champ, cles, valeurs) {
         const incarnation = this.incarnation(this.courante);
         if (incarnation == null) return false;
         const update = {};
         for (const [k, v] of Object.entries(valeurs)) {
-            if (!Incarnations.KA.includes(k)) continue;
+            if (!cles.includes(k)) continue;
             const n = Number(v);
-            update[Version.path(incarnation, 'ka') + '.' + k] = isNaN(n) ? 0 : n;
+            update[Version.path(incarnation, champ) + '.' + k] = isNaN(n) ? 0 : n;
         }
         if (Object.keys(update).length > 0) await incarnation.update(update);
         return true;
+    }
+
+    /**
+     * Les Ka de la figure : ceux de l'incarnation courante ; tous à 0 sans incarnation courante.
+     * @returns { air, eau, feu, lune, terre, soleil, noyau, brume, orichalque, pavane, reserve,
+     *          reserveCourante }.
+     */
+    kas() {
+        return Incarnations.#valeursDe(this.incarnation(this.courante), 'ka', Incarnations.KA);
+    }
+
+    /**
+     * @param valeurs Les Ka à écrire dans l'incarnation courante, par nom (ex: { air: 3 }).
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireKa(valeurs) {
+        return this.#ecrireValeurs('ka', Incarnations.KA, valeurs);
+    }
+
+    /**
+     * Les bonus de la figure : ceux de l'incarnation courante ; tous à 0 sans incarnation
+     * courante.
+     * @returns { mouvement, initiative, dommage, protection }.
+     */
+    bonus() {
+        return Incarnations.#valeursDe(this.incarnation(this.courante), 'bonus', Incarnations.BONUS);
+    }
+
+    /**
+     * @param valeurs Les bonus à écrire dans l'incarnation courante, par nom.
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireBonus(valeurs) {
+        return this.#ecrireValeurs('bonus', Incarnations.BONUS, valeurs);
     }
 
     // ------------------------------------------------------------------ la stase
@@ -958,7 +995,8 @@ export class Incarnations {
 
     /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
-     * reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en a pas ; sa
+     * et ses bonus reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en
+     * a pas ; sa
      * stase aussi, aucune s'il n'y en a pas.
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
@@ -980,7 +1018,8 @@ export class Incarnations {
                         actif: true,
                         predecesseur: derniere?.sid ?? null,
                         successeur: null,
-                        ka: Incarnations.#kaDe(anterieure),
+                        ka: Incarnations.#valeursDe(anterieure, 'ka', Incarnations.KA),
+                        bonus: Incarnations.#valeursDe(anterieure, 'bonus', Incarnations.BONUS),
                         stase: Incarnations.#staseDe(anterieure)
                     }
                 }

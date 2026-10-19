@@ -47,6 +47,8 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         // Les Ka : ceux de l'incarnation courante pour une figure (voir NephilimActor.kas). Les
         // gabarits les lisent ici, et non dans data : ils ne sont plus portés par l'acteur.
         context.ka = this.document.kas;
+        // Les bonus de même : ceux de l'incarnation courante pour une figure
+        context.bonus = this.document.bonus;
         return context;
     }
 

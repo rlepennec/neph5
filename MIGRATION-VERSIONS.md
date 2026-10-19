@@ -698,6 +698,15 @@ incarnation reprend la stase de l'antérieure active la plus proche, aucune s'il
 1.0.10 relève la stase de la figure (`__acteur`) et la copie dans chaque incarnation si elle
 existe. Vérifié sous node (façade 83 cas, migration 24, schémas).
 
+**Les bonus** (décidé par l'utilisateur le 19/10) : mouvement, initiative, dommage et
+protection suivent la règle des Ka. Ils sont portés par chaque incarnation (`versions.v5.bonus`),
+indépendants d'une époque à l'autre ; une nouvelle incarnation reprend ceux de l'antérieure
+active la plus proche, 0 sinon. Lecture unique `NephilimActor.bonus` (ceux de l'incarnation
+courante pour une figure, les siens pour un figurant), contexte `@root.bonus`, écriture par la
+fiche via `ecrireBonus`. Les Ka et les bonus partagent un même mécanisme de « valeurs par
+époque » dans la façade (`#valeursDe`, `#ecrireValeurs`). 1.0.10 relève les bonus et les copie
+dans chaque incarnation. Vérifié sous node (façade 86 cas, migration 25, schémas).
+
 **Reste à rendre dépendant des époques** (liste arrêtée par l'utilisateur le 19 octobre 2026) :
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
   champ `simulacre` de l'acteur, avec les passerelles de migration ;
@@ -705,8 +714,7 @@ existe. Vérifié sous node (façade 83 cas, migration 24, schémas).
   (`pointsIncarnations`) ;
 - le **laboratoire** (`alchimie` : constructs, materiae primae du pentacle, laboratoires
   accessibles, laboratoire courant) ;
-- les **voyages akashiques** (`akasha` : nef, barge, boussole, compas) ;
-- les **bonus** (`bonus` : mouvement, initiative, dommage, protection).
+- les **voyages akashiques** (`akasha` : nef, barge, boussole, compas).
 
 Restent portés par l'acteur : `description`, `periode` (la clé de l'incarnation courante),
 `manoeuvres`, `dommage`, `options`. La règle de transmission de chaque bloc reste à décider avec

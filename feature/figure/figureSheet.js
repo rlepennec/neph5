@@ -528,6 +528,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             await new Incarnations(this.document).ecrireKa(ka);
         }
 
+        // Les bonus aussi, propres à l'incarnation courante
+        const prefixeBonus = Version.prefix(this.document) + '.bonus.';
+        const bonus = {};
+        for (const [key, value] of Object.entries(formData.object)) {
+            if (key.startsWith(prefixeBonus)) {
+                bonus[key.slice(prefixeBonus.length)] = value;
+                delete formData.object[key];
+            }
+        }
+        if (Object.keys(bonus).length > 0) {
+            await new Incarnations(this.document).ecrireBonus(bonus);
+        }
+
         // La stase aussi : saisie, elle est créée ; ses champs vidés, elle est retirée
         const prefixeStase = Version.prefix(this.document) + '.stase.';
         const stase = {};

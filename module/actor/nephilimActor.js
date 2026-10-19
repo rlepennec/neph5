@@ -205,6 +205,17 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }
 
     /**
+     * Les bonus de l'acteur (mouvement, initiative, dommage, protection). Ceux d'une figure sont
+     * portés par son incarnation courante (voir Incarnations.bonus) ; un figurant porte les siens.
+     * Toutes les lectures de bonus passent par ici.
+     * @returns the bonus object.
+     */
+    get bonus() {
+        const incarnations = new Incarnations(this);
+        return incarnations.porte ? incarnations.bonus() : Version.data(this).bonus;
+    }
+
+    /**
      * @returns the actor ka dominant.
      */
     get ka() {

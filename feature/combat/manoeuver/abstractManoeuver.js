@@ -248,7 +248,7 @@ export class AbstractManoeuver {
                 return this.impact.modifier
                     + (Version.data(weapon).damages ?? 0)
                     + actor.dommage
-                    + Version.data(actor).bonus.dommage;
+                    + actor.bonus.dommage;
             }
             if (this.impact.hasOwnProperty('fix')) {
                 return this.impact.fix;
