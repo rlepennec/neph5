@@ -2,7 +2,6 @@ import { AbstractFocus } from "../core/abstractFocus.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Pacte } from "./pacte.js";
 import { Science } from "../science/science.js";
 
@@ -100,18 +99,15 @@ export class Invocation extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem() {
+    get valeursInitiales() {
+        return { focus: false, status: Constants.CONNU, pacte: false };
+    }
 
-        // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a sort")
-            .withData("focus", false)
-            .withData("status", Constants.CONNU)
-            .withData("pacte", false)
-            .withIncarnation(this.periode)
-            .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')
-            .create();
-
+    /**
+     * @Override
+     */
+    get champsDuMonde() {
+        return ['description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite'];
     }
 
     /**

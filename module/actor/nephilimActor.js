@@ -117,79 +117,47 @@ export class NephilimActor extends CombatantMixin(Actor) {
 
 
     /**
+     * Une caractéristique de la figure, tirée de ses Ka selon sa nature : Nephilim, Selenim
+     * ou ni l'un ni l'autre. 0 pour un autre acteur.
+     * @param nephilim Le calcul d'un Nephilim, depuis ses Ka.
+     * @param selenim  Celui d'un Selenim.
+     * @param autre    Celui d'une figure qui n'est ni l'un ni l'autre.
+     * @returns the value.
+     */
+    _selonNature(nephilim, selenim, autre) {
+        if (this.type !== 'figure') return 0;
+        const options = Version.data(this).options;
+        if (options?.nephilim === true) return nephilim(this.kas);
+        if (options?.selenim === true) return selenim(this.kas);
+        return autre(this.kas);
+    }
+
+    /**
      * @returns the actor mouvement.
      */
     get mouvement() {
-        switch (this.type) {
-            case 'figure':
-                if (Version.data(this).options?.nephilim === true) {
-                    return this.kas.eau * 2;
-                }
-                if (Version.data(this).options?.selenim === true) {
-                    return this.kas.noyau;
-                }
-                return this.kas.soleil ?? 0;
-            case 'figurant':
-            default:
-                return 0;
-        }
+        return this._selonNature(kas => kas.eau * 2, kas => kas.noyau, kas => kas.soleil ?? 0);
     }
 
     /**
      * @returns the actor perspicacite.
      */
     get perspicacite() {
-        switch (this.type) {
-            case 'figure':
-                if (Version.data(this).options?.nephilim === true) {
-                    return 11 - this.kas.air;
-                }
-                if (Version.data(this).options?.selenim === true) {
-                    return 11 - this.kas.noyau;
-                }
-                return 11 - (this.kas.soleil ?? 0);
-            case 'figurant':
-            default:
-                return 0;
-        }
+        return this._selonNature(kas => 11 - kas.air, kas => 11 - kas.noyau, kas => 11 - (kas.soleil ?? 0));
     }
 
     /**
      * @returns the actor recuperation.
      */
     get recuperation() {
-        switch (this.type) {
-            case 'figure':
-                if (Version.data(this).options?.nephilim === true) {
-                    return 11 - this.kas.terre;
-                }
-                if (Version.data(this).options?.selenim === true) {
-                    return 11 - this.kas.noyau;
-                }
-                return 11 - this.kas.soleil;
-            case 'figurant':
-            default:
-                return 0;
-        }
+        return this._selonNature(kas => 11 - kas.terre, kas => 11 - kas.noyau, kas => 11 - kas.soleil);
     }
 
     /**
      * @returns the actor voile.
      */
     get voile() {
-        switch (this.type) {
-            case 'figure':
-                if (Version.data(this).options?.nephilim === true) {
-                    return Math.floor(this.kas.lune / 5);
-                }
-                if (Version.data(this).options?.selenim === true) {
-                    return Math.floor(this.kas.noyau / 10);
-                }
-                return Math.floor((this.kas.soleil ?? 0) / 10);
-            case 'figurant':
-            default:
-                return 0;
-        }
+        return this._selonNature(kas => Math.floor(kas.lune / 5), kas => Math.floor(kas.noyau / 10), kas => Math.floor((kas.soleil ?? 0) / 10));
     }
 
 
@@ -248,25 +216,11 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the actor ka dominant.
      */
     get ka() {
-        switch (this.type) {
-            case 'figure':
-                if (Version.data(this).options?.nephilim === true) {
-                    return Math.max(
-                        this.kas.air,
-                        this.kas.eau,
-                        this.kas.feu,
-                        this.kas.lune,
-                        this.kas.terre);
-                }
-                if (Version.data(this).options?.selenim === true) {
-                    return this.kas.noyau;
-                }
-                return 0;
-            case 'figurant':
-                return this.kas;
-            default:
-                return 0;
-        }
+        if (this.type === 'figurant') return this.kas;
+        return this._selonNature(
+            kas => Math.max(kas.air, kas.eau, kas.feu, kas.lune, kas.terre),
+            kas => kas.noyau,
+            () => 0);
     }
 
     /**

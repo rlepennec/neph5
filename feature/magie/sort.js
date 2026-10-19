@@ -2,7 +2,6 @@ import { AbstractFocus } from "../core/abstractFocus.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
 export class Sort extends AbstractFocus {
@@ -48,15 +47,15 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem() {
+    get valeursInitiales() {
+        return { focus: false, status: Constants.CONNU };
+    }
 
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a sort")
-            .withData("focus", false)
-            .withData("status", Constants.CONNU)
-            .withIncarnation(this.periode)
-            .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
-            .create();
+    /**
+     * @Override
+     */
+    get champsDuMonde() {
+        return ['description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree'];
     }
 
     /**

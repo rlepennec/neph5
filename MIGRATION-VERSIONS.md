@@ -739,6 +739,13 @@ l'onglet Akasha exige une incarnation courante. Le laboratoire et l'akasha parta
 façade le même mécanisme de bloc copié (`#blocDe`, `#ecrireBloc`). 1.0.10 relève l'akasha et le
 copie dans chaque incarnation. Vérifié sous node (façade 98 cas, migration 28, schémas).
 
+**L'héritage** (lot C de refactorisation, 19/10) : ce qu'une nouvelle incarnation reçoit (Ka,
+bonus, laboratoire, akasha, sapience, sapience dépensée, stase ; points d'incarnation à 0) est
+défini en un seul endroit, `Incarnations.heritage(donnees, { pointsIncarnations })`. La création
+(`#creer`) l'applique aux données de l'antérieure active la plus proche ; 1.0.10 au relevé de la
+figure, points d'incarnation compris. `#ecrireValeurs` convertit en nombres puis délègue à
+`#ecrireBloc`.
+
 **Reste à faire** (liste arrêtée par l'utilisateur le 19 octobre 2026, tout le reste est fait) :
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
   champ `simulacre` de l'acteur, avec les passerelles de migration.

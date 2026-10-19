@@ -176,13 +176,13 @@ export class _1_0_10 {
             }
         }
 
-        // Les Ka et la stase de la figure, relevés avant que son schéma ne les élague. Une stase
-        // vide (sans description, Ka à 0) n'en est pas une.
-        const kaFigure = releve.__acteur?.ka ?? {};
-        const bonusFigure = releve.__acteur?.bonus ?? {};
-        const staseReleve = releve.__acteur?.stase ?? null;
-        const staseFigure = staseReleve != null && ((staseReleve.description ?? "").trim() !== "" || (staseReleve.ka ?? 0) !== 0)
-            ? { description: staseReleve.description ?? "", ka: staseReleve.ka ?? 0 }
+        // Ce que portait la figure (Ka, bonus, laboratoire, akasha, compteurs, stase), relevé
+        // avant que son schéma ne l'élague. Une stase vide (sans description, Ka à 0) n'en est
+        // pas une.
+        const figure = { ...(releve.__acteur ?? {}) };
+        const staseReleve = figure.stase ?? null;
+        figure.stase = staseReleve != null && ((staseReleve.description ?? "").trim() !== "" || (staseReleve.ka ?? 0) !== 0)
+            ? staseReleve
             : null;
 
         // 2. Une incarnation par période, de même clé que la période
@@ -196,20 +196,9 @@ export class _1_0_10 {
                     v5: {
                         periode: p.sid,
                         actif: lire(p, 'actif') === true,
-                        // Les Ka de la figure : copiés dans chaque incarnation, qui les porte
-                        ka: Object.fromEntries(Incarnations.KA.map(k => [k, kaFigure[k] ?? 0])),
-                        bonus: Object.fromEntries(Incarnations.BONUS.map(k => [k, bonusFigure[k] ?? 0])),
-                        // Le laboratoire de la figure : copié dans chaque incarnation (les champs
-                        // absents prennent la valeur initiale du schéma)
-                        ...(releve.__acteur?.alchimie != null ? { alchimie: structuredClone(releve.__acteur.alchimie) } : {}),
-                        // Les voyages akashiques de même
-                        ...(releve.__acteur?.akasha != null ? { akasha: structuredClone(releve.__acteur.akasha) } : {}),
-                        // Les compteurs de la figure aussi
-                        sapience: releve.__acteur?.sapience ?? 0,
-                        sapienceDepensee: releve.__acteur?.sapienceDepensee ?? 0,
-                        pointsIncarnations: releve.__acteur?.pointsIncarnations ?? 0,
-                        // La stase de la figure aussi, si elle existe
-                        stase: staseFigure == null ? null : { ...staseFigure },
+                        // Ce que portait la figure : copié dans chaque incarnation, comme une
+                        // nouvelle incarnation hérite de l'antérieure, points d'incarnation compris
+                        ...Incarnations.heritage(figure, { pointsIncarnations: true }),
                         // Le simulacre de la figure ne se transmet pas : il devient celui de
                         // l'incarnation courante seulement
                         simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null

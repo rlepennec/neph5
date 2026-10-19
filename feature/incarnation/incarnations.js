@@ -678,15 +678,29 @@ export class Incarnations {
      * Les Ka et les bonus de la figure sont des valeurs portées par chaque incarnation,
      * indépendantes d'une époque à l'autre : la fiche lit et écrit celles de l'incarnation
      * courante ; une nouvelle incarnation reprend celles de l'antérieure active la plus proche
-     * (voir #creer).
-     * @param incarnation An incarnation, null for none.
-     * @param champ       Le bloc de valeurs ('ka', 'bonus').
-     * @param cles        Ses valeurs, par nom.
-     * @returns les valeurs de l'incarnation, 0 pour celles qu'elle n'a pas.
+     * (voir heritage).
+     * @param valeurs Le bloc de valeurs ('ka', 'bonus') d'une incarnation, null pour aucun.
+     * @param cles    Ses valeurs, par nom.
+     * @returns les valeurs du bloc, 0 pour celles qu'il n'a pas.
      */
-    static #valeursDe(incarnation, champ, cles) {
-        const valeurs = Version.data(incarnation)?.[champ] ?? {};
-        return Object.fromEntries(cles.map(k => [k, valeurs[k] ?? 0]));
+    static #valeursDe(valeurs, cles) {
+        return Object.fromEntries(cles.map(k => [k, valeurs?.[k] ?? 0]));
+    }
+
+    /**
+     * @param valeur Une valeur saisie.
+     * @returns la valeur en nombre, 0 si elle n'en est pas un.
+     */
+    static #nombre(valeur) {
+        const n = Number(valeur);
+        return isNaN(n) ? 0 : n;
+    }
+
+    /**
+     * @returns les données de l'incarnation courante, vides s'il n'y en a pas.
+     */
+    #donnees() {
+        return Version.data(this.incarnation(this.courante));
     }
 
     /**
@@ -697,16 +711,11 @@ export class Incarnations {
      * @returns false if the actor has no current incarnation.
      */
     async #ecrireValeurs(champ, cles, valeurs) {
-        const incarnation = this.incarnation(this.courante);
-        if (incarnation == null) return false;
-        const update = {};
+        const nombres = {};
         for (const [k, v] of Object.entries(valeurs)) {
-            if (!cles.includes(k)) continue;
-            const n = Number(v);
-            update[Version.path(incarnation, champ) + '.' + k] = isNaN(n) ? 0 : n;
+            if (cles.includes(k)) nombres[k] = Incarnations.#nombre(v);
         }
-        if (Object.keys(update).length > 0) await incarnation.update(update);
-        return true;
+        return this.#ecrireBloc(champ, nombres);
     }
 
     /**
@@ -715,7 +724,7 @@ export class Incarnations {
      *          reserveCourante }.
      */
     kas() {
-        return Incarnations.#valeursDe(this.incarnation(this.courante), 'ka', Incarnations.KA);
+        return Incarnations.#valeursDe(this.#donnees().ka, Incarnations.KA);
     }
 
     /**
@@ -732,7 +741,7 @@ export class Incarnations {
      * @returns { mouvement, initiative, dommage, protection }.
      */
     bonus() {
-        return Incarnations.#valeursDe(this.incarnation(this.courante), 'bonus', Incarnations.BONUS);
+        return Incarnations.#valeursDe(this.#donnees().bonus, Incarnations.BONUS);
     }
 
     /**
@@ -748,13 +757,12 @@ export class Incarnations {
     /**
      * Le laboratoire (`alchimie`) et les voyages akashiques (`akasha`) sont des blocs portés par
      * chaque incarnation : une nouvelle incarnation reçoit une copie de ceux de l'antérieure
-     * active la plus proche (voir #creer) ; chaque époque garde ensuite les siens.
-     * @param incarnation An incarnation, null for none.
-     * @param champ       'alchimie' ou 'akasha'.
-     * @returns une copie du bloc de l'incarnation ; le bloc vide du schéma si elle n'en a pas.
+     * active la plus proche (voir heritage) ; chaque époque garde ensuite les siens.
+     * @param bloc  Le bloc d'une incarnation, null pour aucun.
+     * @param champ 'alchimie' ou 'akasha'.
+     * @returns une copie du bloc ; le bloc vide du schéma s'il n'y en a pas.
      */
-    static #blocDe(incarnation, champ) {
-        const bloc = Version.data(incarnation)?.[champ];
+    static #blocDe(bloc, champ) {
         if (bloc != null) return foundry.utils.deepClone(bloc);
         return foundry.utils.deepClone(new IncarnationDataModel({ id: 'vide' })._source.versions.v5[champ]);
     }
@@ -782,7 +790,7 @@ export class Incarnations {
      * @returns { constructs, primae, laboratoires, courant }.
      */
     alchimie() {
-        return Incarnations.#blocDe(this.incarnation(this.courante), 'alchimie');
+        return Incarnations.#blocDe(this.#donnees().alchimie, 'alchimie');
     }
 
     /**
@@ -800,7 +808,7 @@ export class Incarnations {
      * @returns { nef, barge, boussole, compas }.
      */
     akasha() {
-        return Incarnations.#blocDe(this.incarnation(this.courante), 'akasha');
+        return Incarnations.#blocDe(this.#donnees().akasha, 'akasha');
     }
 
     /**
@@ -840,7 +848,6 @@ export class Incarnations {
         const cle = this.courante;
         const courante = this.incarnation(cle);
         if (courante == null) return false;
-        const nombre = v => { const n = Number(v); return isNaN(n) ? 0 : n; };
         const chaine = this.#chaine();
         const posterieures = chaine.slice(chaine.findIndex(i => i.sid === cle) + 1);
         const updates = new Map();
@@ -851,14 +858,14 @@ export class Incarnations {
         };
         for (const champ of Incarnations.SAPIENCES) {
             if (!(champ in valeurs)) continue;
-            const ecart = nombre(valeurs[champ]) - (Version.data(courante)[champ] ?? 0);
+            const ecart = Incarnations.#nombre(valeurs[champ]) - (Version.data(courante)[champ] ?? 0);
             if (ecart === 0) continue;
             for (const incarnation of [courante, ...posterieures]) {
                 ecrire(incarnation, champ, (Version.data(incarnation)[champ] ?? 0) + ecart);
             }
         }
         if ('pointsIncarnations' in valeurs) {
-            ecrire(courante, 'pointsIncarnations', nombre(valeurs.pointsIncarnations));
+            ecrire(courante, 'pointsIncarnations', Incarnations.#nombre(valeurs.pointsIncarnations));
         }
         if (updates.size > 0) await this.actor.updateEmbeddedDocuments('Item', [...updates.values()]);
         return true;
@@ -867,11 +874,10 @@ export class Incarnations {
     // ------------------------------------------------------------------ la stase
 
     /**
-     * @param incarnation An incarnation, null for none.
-     * @returns une copie de sa stase, null si elle n'en a pas.
+     * @param stase La stase d'une incarnation, null pour aucune.
+     * @returns une copie de la stase, null s'il n'y en a pas.
      */
-    static #staseDe(incarnation) {
-        const stase = Version.data(incarnation)?.stase ?? null;
+    static #staseDe(stase) {
         return stase == null ? null : { description: stase.description ?? "", ka: stase.ka ?? 0 };
     }
 
@@ -881,7 +887,7 @@ export class Incarnations {
      * @returns { description, ka } or null.
      */
     stase() {
-        return Incarnations.#staseDe(this.incarnation(this.courante));
+        return Incarnations.#staseDe(this.#donnees().stase);
     }
 
     /**
@@ -893,9 +899,9 @@ export class Incarnations {
     async ecrireStase(valeurs) {
         const incarnation = this.incarnation(this.courante);
         if (incarnation == null) return false;
-        const stase = { description: "", ka: 0, ...(Incarnations.#staseDe(incarnation) ?? {}) };
+        const stase = { description: "", ka: 0, ...(Incarnations.#staseDe(Version.data(incarnation).stase) ?? {}) };
         if ('description' in valeurs) stase.description = String(valeurs.description ?? "").trim();
-        if ('ka' in valeurs) { const n = Number(valeurs.ka); stase.ka = isNaN(n) ? 0 : n; }
+        if ('ka' in valeurs) stase.ka = Incarnations.#nombre(valeurs.ka);
         const vide = stase.description === "" && stase.ka === 0;
         await incarnation.update({ [Version.path(incarnation, 'stase')]: vide ? null : stase });
         return true;
@@ -1131,12 +1137,34 @@ export class Incarnations {
     }
 
     /**
-     * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
-     * et ses bonus reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en
-     * a pas, de même que sa sapience et sa sapience dépensée, son laboratoire et ses voyages
-     * akashiques ; sa stase aussi,
-     * aucune s'il n'y en
-     * a pas. Ses points d'incarnation partent de 0.
+     * Ce qu'une nouvelle incarnation reçoit de celle dont elle hérite : ses Ka et ses bonus (0
+     * pour ceux qu'elle n'a pas), sa sapience et sa sapience dépensée, une copie de son
+     * laboratoire et de ses voyages akashiques (vides du schéma si elle n'en a pas), sa stase
+     * (aucune si elle n'en a pas). Les points d'incarnation partent de 0, sauf à les reprendre.
+     * Sert à la création (#creer, depuis l'antérieure active la plus proche) et à la migration
+     * 1.0.10 (depuis ce que portait la figure).
+     * @param donnees            Les données dont hériter : celles d'une incarnation ou le relevé
+     *                           de la figure ; {} pour aucune.
+     * @param pointsIncarnations true pour reprendre aussi les points d'incarnation.
+     * @returns { ka, bonus, alchimie, akasha, sapience, sapienceDepensee, pointsIncarnations,
+     *          stase }.
+     */
+    static heritage(donnees, { pointsIncarnations = false } = {}) {
+        return {
+            ka: Incarnations.#valeursDe(donnees?.ka, Incarnations.KA),
+            bonus: Incarnations.#valeursDe(donnees?.bonus, Incarnations.BONUS),
+            alchimie: Incarnations.#blocDe(donnees?.alchimie, 'alchimie'),
+            akasha: Incarnations.#blocDe(donnees?.akasha, 'akasha'),
+            sapience: donnees?.sapience ?? 0,
+            sapienceDepensee: donnees?.sapienceDepensee ?? 0,
+            pointsIncarnations: pointsIncarnations ? donnees?.pointsIncarnations ?? 0 : 0,
+            stase: Incarnations.#staseDe(donnees?.stase)
+        };
+    }
+
+    /**
+     * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Elle
+     * hérite de l'incarnation antérieure active la plus proche (voir heritage).
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
      */
@@ -1157,14 +1185,7 @@ export class Incarnations {
                         actif: true,
                         predecesseur: derniere?.sid ?? null,
                         successeur: null,
-                        ka: Incarnations.#valeursDe(anterieure, 'ka', Incarnations.KA),
-                        bonus: Incarnations.#valeursDe(anterieure, 'bonus', Incarnations.BONUS),
-                        alchimie: Incarnations.#blocDe(anterieure, 'alchimie'),
-                        akasha: Incarnations.#blocDe(anterieure, 'akasha'),
-                        sapience: Version.data(anterieure)?.sapience ?? 0,
-                        sapienceDepensee: Version.data(anterieure)?.sapienceDepensee ?? 0,
-                        pointsIncarnations: 0,
-                        stase: Incarnations.#staseDe(anterieure)
+                        ...Incarnations.heritage(Version.data(anterieure))
                     }
                 }
             }

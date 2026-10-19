@@ -2,7 +2,6 @@ import { AbstractFocus } from "../core/abstractFocus.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
 export class Rite extends AbstractFocus {
@@ -36,16 +35,15 @@ export class Rite extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem() {
+    get valeursInitiales() {
+        return { status: Constants.CONNU };
+    }
 
-        // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a rite")
-            .withData("status", Constants.CONNU)
-            .withIncarnation(this.periode)
-            .withoutData('description', 'cercle', 'desmos')
-            .create();
-
+    /**
+     * @Override
+     */
+    get champsDuMonde() {
+        return ['description', 'cercle', 'desmos'];
     }
 
     /**

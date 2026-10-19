@@ -3,7 +3,6 @@ import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
 export class Formule extends AbstractFocus {
@@ -154,19 +153,15 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem() {
+    get valeursInitiales() {
+        return { focus: false, status: Constants.CONNU, quantite: 0, transporte: 0 };
+    }
 
-        // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a sort")
-            .withData("focus", false)
-            .withData("status", Constants.CONNU)
-            .withData("quantite", 0)
-            .withData("transporte", 0)
-            .withIncarnation(this.periode)
-            .withoutData('description', 'degre', 'cercle', 'enonce', 'substance', 'aire', 'duree')
-            .create();
-
+    /**
+     * @Override
+     */
+    get champsDuMonde() {
+        return ['description', 'degre', 'cercle', 'enonce', 'substance', 'aire', 'duree'];
     }
 
     /**

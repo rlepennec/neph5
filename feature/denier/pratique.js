@@ -2,7 +2,6 @@ import { AbstractFocus } from "../core/abstractFocus.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 
 export class Pratique extends AbstractFocus {
 
@@ -62,20 +61,6 @@ export class Pratique extends AbstractFocus {
      */
     modifier(parameters) {
         return parameters?.aide == null ? 0 : parameters.aide * 10;
-    }
-
-    /**
-     * @Override
-     */
-    async _createEmbeddedItem() {
-
-        // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of a pratique")
-            .withIncarnation(this.periode)
-            .withoutData('description', 'cercle', 'degre')
-            .create();
-
     }
 
     /**

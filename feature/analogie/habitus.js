@@ -2,7 +2,6 @@ import { AbstractFocus } from "../core/abstractFocus.js";
 import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Science } from "../science/science.js";
 
 export class Habitus extends AbstractFocus {
@@ -62,15 +61,8 @@ export class Habitus extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem() {
-        
-        // Create a new focus or move the focus to the new periode.
-        await new EmbeddedItem(this.actor, this.sid)
-            .withContext("Drop of an habitus")
-            .withIncarnation(this.periode)
-            .withoutData('description', 'domaine', 'element', 'voies', 'degre', 'incantation', 'portee', 'duree')
-            .create();
-
+    get champsDuMonde() {
+        return ['description', 'domaine', 'element', 'voies', 'degre', 'incantation', 'portee', 'duree'];
     }
 
     /**

@@ -1,4 +1,5 @@
 import { AbstractFeature } from "../core/abstractFeature.js";
+import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 
@@ -101,12 +102,36 @@ export class AbstractFocus extends AbstractFeature {
     }
 
     /**
+     * Les valeurs initiales propres à l'acteur d'un nouvel exemplaire (statut, focus...).
+     * @returns les valeurs, par champ.
+     */
+    get valeursInitiales() {
+        return {};
+    }
+
+    /**
+     * Les champs du focus du monde que l'exemplaire ne recopie pas : ils sont lus sur lui.
+     * @returns les noms des champs.
+     */
+    get champsDuMonde() {
+        return ['description', 'cercle', 'degre'];
+    }
+
+    /**
      * Crée l'exemplaire de l'incarnation this.periode d'un focus que l'acteur ne connaît encore
-     * dans aucune autre : avec les valeurs initiales propres à l'acteur (statut, focus...). Un
+     * dans aucune autre, avec ses valeurs initiales (voir valeursInitiales, champsDuMonde). Un
      * focus déjà connu est copié par deposerParEpoque.
      */
     async _createEmbeddedItem() {
-        throw new Error("AbstractFocus._createEmbeddedItem not implemented");
+        const embedded = new EmbeddedItem(this.actor, this.sid)
+            .withContext("Drop of a " + (this.item?.type ?? "focus"));
+        for (const [champ, valeur] of Object.entries(this.valeursInitiales)) {
+            embedded.withData(champ, valeur);
+        }
+        await embedded
+            .withIncarnation(this.periode)
+            .withoutData(...this.champsDuMonde)
+            .create();
     }
 
 }
