@@ -18,7 +18,7 @@
         <div class="directions">
 
             <div class="vaisseau nef tooltip" data-type="nef">
-                <img class="activate {{#unless @root.data.akasha.nef.active}}undeveloped{{/unless}}"/>
+                <img class="activate {{#unless @root.akasha.nef.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "nef"}}</label>
             </div>
 
@@ -28,9 +28,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.boussole.zenith"
                     type="text"
-                    value="{{@root.data.akasha.boussole.zenith}}"
+                    value="{{@root.akasha.boussole.zenith}}"
                     data-dtype="Number"/>
-                <label>Zenith +{{getLevel @root.data.akasha.boussole.zenith}}</label>
+                <label>Zenith +{{getLevel @root.akasha.boussole.zenith}}</label>
             </div>
 
             <div class="orient">
@@ -39,9 +39,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.boussole.orient"
                     type="text"
-                    value="{{@root.data.akasha.boussole.orient}}"
+                    value="{{@root.akasha.boussole.orient}}"
                     data-dtype="Number"/>
-                <label>Orient +{{getLevel @root.data.akasha.boussole.orient}}</label>
+                <label>Orient +{{getLevel @root.akasha.boussole.orient}}</label>
             </div>
 
             <div class="nadir">
@@ -50,9 +50,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.boussole.nadir"
                     type="text"
-                    value="{{@root.data.akasha.boussole.nadir}}"
+                    value="{{@root.akasha.boussole.nadir}}"
                     data-dtype="Number"/>
-                <label>Nadir +{{getLevel @root.data.akasha.boussole.nadir}}</label>
+                <label>Nadir +{{getLevel @root.akasha.boussole.nadir}}</label>
             </div>
 
             <div class="occident">
@@ -61,9 +61,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.boussole.occident"
                     type="text"
-                    value="{{@root.data.akasha.boussole.occident}}"
+                    value="{{@root.akasha.boussole.occident}}"
                     data-dtype="Number"/>
-                <label>Occident +{{getLevel @root.data.akasha.boussole.occident}}</label>
+                <label>Occident +{{getLevel @root.akasha.boussole.occident}}</label>
             </div>
 
             <div class="midi">
@@ -72,9 +72,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.boussole.midi"
                     type="text"
-                    value="{{@root.data.akasha.boussole.midi}}"
+                    value="{{@root.akasha.boussole.midi}}"
                     data-dtype="Number"/>
-                <label>Midi +{{getLevel @root.data.akasha.boussole.midi}}</label>
+                <label>Midi +{{getLevel @root.akasha.boussole.midi}}</label>
             </div>
 
             <div class="septentrion">
@@ -83,9 +83,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.boussole.septentrion"
                     type="text"
-                    value="{{@root.data.akasha.boussole.septentrion}}"
+                    value="{{@root.akasha.boussole.septentrion}}"
                     data-dtype="Number"/>
-                <label>Septentrion +{{getLevel @root.data.akasha.boussole.septentrion}}</label>
+                <label>Septentrion +{{getLevel @root.akasha.boussole.septentrion}}</label>
             </div>
 
         </div>
@@ -107,7 +107,7 @@
         <div class="directions">
 
             <div class="vaisseau barge tooltip" data-type="barge">
-                <img class="activate {{#unless @root.data.akasha.barge.active}}undeveloped{{/unless}}"/>
+                <img class="activate {{#unless @root.akasha.barge.active}}undeveloped{{/unless}}"/>
                 <label class="tooltiptext">{{translate "barge"}}</label>
             </div>
 
@@ -117,9 +117,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.compas.zenith"
                     type="text"
-                    value="{{@root.data.akasha.compas.zenith}}"
+                    value="{{@root.akasha.compas.zenith}}"
                     data-dtype="Number"/>
-                <label>Zenith +{{getLevel @root.data.akasha.compas.zenith}}</label>
+                <label>Zenith +{{getLevel @root.akasha.compas.zenith}}</label>
             </div>
 
             <div class="orient">
@@ -128,9 +128,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.compas.orient"
                     type="text"
-                    value="{{@root.data.akasha.compas.orient}}"
+                    value="{{@root.akasha.compas.orient}}"
                     data-dtype="Number"/>
-                <label>Orient +{{getLevel @root.data.akasha.compas.orient}}</label>
+                <label>Orient +{{getLevel @root.akasha.compas.orient}}</label>
             </div>
 
             <div class="nadir">
@@ -139,9 +139,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.compas.nadir"
                     type="text"
-                    value="{{@root.data.akasha.compas.nadir}}"
+                    value="{{@root.akasha.compas.nadir}}"
                     data-dtype="Number"/>
-                <label>Nadir +{{getLevel @root.data.akasha.compas.nadir}}</label>
+                <label>Nadir +{{getLevel @root.akasha.compas.nadir}}</label>
             </div>
 
             <div class="occident">
@@ -150,9 +150,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.compas.occident"
                     type="text"
-                    value="{{@root.data.akasha.compas.occident}}"
+                    value="{{@root.akasha.compas.occident}}"
                     data-dtype="Number"/>
-                <label>Occident +{{getLevel @root.data.akasha.compas.occident}}</label>
+                <label>Occident +{{getLevel @root.akasha.compas.occident}}</label>
             </div>
 
             <div class="midi">
@@ -161,9 +161,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.compas.midi"
                     type="text"
-                    value="{{@root.data.akasha.compas.midi}}"
+                    value="{{@root.akasha.compas.midi}}"
                     data-dtype="Number"/>
-                <label>Midi +{{getLevel @root.data.akasha.compas.midi}}</label>
+                <label>Midi +{{getLevel @root.akasha.compas.midi}}</label>
             </div>
 
             <div class="septentrion">
@@ -172,9 +172,9 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.akasha.compas.septentrion"
                     type="text"
-                    value="{{@root.data.akasha.compas.septentrion}}"
+                    value="{{@root.akasha.compas.septentrion}}"
                     data-dtype="Number"/>
-                <label>Septentrion +{{getLevel @root.data.akasha.compas.septentrion}}</label>
+                <label>Septentrion +{{getLevel @root.akasha.compas.septentrion}}</label>
             </div>
 
         </div>

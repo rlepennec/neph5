@@ -729,10 +729,18 @@ Laboratoire et Materiae exigent une incarnation courante, comme ceux des Ka. 1.0
 laboratoire et le copie dans chaque incarnation. Vérifié sous node (façade 94 cas, migration 27,
 schémas).
 
-**Reste à rendre dépendant des époques** (liste arrêtée par l'utilisateur le 19 octobre 2026) :
+**Les voyages akashiques** (décidé par l'utilisateur le 19/10) : même règle que le laboratoire. Le
+bloc `akasha` (nef, barge, boussole, compas) passe tel quel dans l'incarnation
+(`versions.v5.akasha`) ; une nouvelle incarnation en reçoit une copie de l'antérieure active la
+plus proche, puis chaque époque garde le sien. Lecture `NephilimActor.akasha`, contexte
+`@root.akasha`, écriture `Incarnations.ecrireAkasha` (bascule nef/barge, boussole, compas) ;
+l'onglet Akasha exige une incarnation courante. Le laboratoire et l'akasha partagent dans la
+façade le même mécanisme de bloc copié (`#blocDe`, `#ecrireBloc`). 1.0.10 relève l'akasha et le
+copie dans chaque incarnation. Vérifié sous node (façade 98 cas, migration 28, schémas).
+
+**Reste à faire** (liste arrêtée par l'utilisateur le 19 octobre 2026, tout le reste est fait) :
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
-  champ `simulacre` de l'acteur, avec les passerelles de migration ;
-- les **voyages akashiques** (`akasha` : nef, barge, boussole, compas).
+  champ `simulacre` de l'acteur, avec les passerelles de migration.
 
 Restent portés par l'acteur : `description`, `periode` (la clé de l'incarnation courante),
 `manoeuvres`, `dommage`, `options`. La règle de transmission de chaque bloc reste à décider avec

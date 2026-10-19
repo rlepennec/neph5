@@ -118,7 +118,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "atlanteide", option: "atlanteide", science: "atlanteide" },
         { id: "necromancie", option: "necromancie", science: "necromancie" },
         { id: "conjuration", option: "conjuration", science: "conjuration" },
-        { id: "akasha", option: "akasha", template: `feature/akasha/actor/main.hbs` },
+        { id: "akasha", option: "akasha", incarnation: true, template: `feature/akasha/actor/main.hbs` },
         { id: "bohemien", option: "bohemien", incarnation: true, science: "bohemien" },
         { id: "baton", option: "baton", science: "baton" },
         { id: "coupe", option: "coupe", science: "coupe" },
@@ -163,9 +163,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         const tabs = FigureSheet.TAB_DEFINITIONS
             .filter(d => d.option == null || o[d.option])
             .filter(d => d.unlocked !== true || this.locked === false)
-            // Les onglets qui définissent des Ka ou le laboratoire exigent une incarnation courante :
-            // c'est elle
-            // qui les porte
+            // Les onglets qui définissent des Ka, le laboratoire ou l'akasha exigent une incarnation
+            // courante : c'est elle qui les porte
             .filter(d => d.incarnation !== true || courante)
             .map(d => {
                 const tab = {
@@ -452,8 +451,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         event.preventDefault();
         if (this.locked) return;
         const vaisseau = event.currentTarget.closest('.vaisseau').dataset.type;
-        const activated = Version.data(this.document).akasha[vaisseau].active;
-        await this.document.update({ [Version.path(this.document, 'akasha') + '.' + vaisseau + '.active']: !activated });
+        const activated = this.document.akasha[vaisseau].active;
+        await new Incarnations(this.document).ecrireAkasha({ [vaisseau + '.active']: !activated });
     }
 
     /**
@@ -586,6 +585,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         }
         if (Object.keys(alchimie).length > 0) {
             await new Incarnations(this.document).ecrireAlchimie(alchimie);
+        }
+
+        // Les voyages akashiques saisis vont à l'incarnation courante (Incarnations.ecrireAkasha)
+        const prefixeAkasha = Version.path(this.document, 'akasha') + '.';
+        const akasha = {};
+        for (const [key, value] of Object.entries(formData.object)) {
+            if (key.startsWith(prefixeAkasha)) {
+                akasha[key.slice(prefixeAkasha.length)] = value;
+                delete formData.object[key];
+            }
+        }
+        if (Object.keys(akasha).length > 0) {
+            await new Incarnations(this.document).ecrireAkasha(akasha);
         }
 
         // Délègue à NephilimActorSheet (system.id, items embarqués, update acteur).

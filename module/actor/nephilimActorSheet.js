@@ -51,6 +51,8 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         context.bonus = this.document.bonus;
         // Le laboratoire de même : celui de l'incarnation courante pour une figure
         context.alchimie = this.document.alchimie;
+        // Les voyages akashiques de même
+        context.akasha = this.document.akasha;
         return context;
     }
 

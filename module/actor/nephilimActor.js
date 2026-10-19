@@ -216,6 +216,16 @@ export class NephilimActor extends CombatantMixin(Actor) {
     }
 
     /**
+     * Les voyages akashiques de l'acteur (nef, barge, boussole, compas). Ceux d'une figure sont
+     * portés par son incarnation courante (voir Incarnations.akasha).
+     * @returns the akasha object.
+     */
+    get akasha() {
+        const incarnations = new Incarnations(this);
+        return incarnations.porte ? incarnations.akasha() : Version.data(this).akasha;
+    }
+
+    /**
      * Les bonus de l'acteur (mouvement, initiative, dommage, protection). Ceux d'une figure sont
      * portés par son incarnation courante (voir Incarnations.bonus) ; un figurant porte les siens.
      * Toutes les lectures de bonus passent par ici.

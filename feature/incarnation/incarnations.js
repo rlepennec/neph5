@@ -743,16 +743,37 @@ export class Incarnations {
         return this.#ecrireValeurs('bonus', Incarnations.BONUS, valeurs);
     }
 
-    // ------------------------------------------------------------------ le laboratoire
+    // ------------------------------------------------------------------ le laboratoire, l'akasha
 
     /**
+     * Le laboratoire (`alchimie`) et les voyages akashiques (`akasha`) sont des blocs portés par
+     * chaque incarnation : une nouvelle incarnation reçoit une copie de ceux de l'antérieure
+     * active la plus proche (voir #creer) ; chaque époque garde ensuite les siens.
      * @param incarnation An incarnation, null for none.
-     * @returns une copie de son laboratoire ; le laboratoire vide du schéma si elle n'en a pas.
+     * @param champ       'alchimie' ou 'akasha'.
+     * @returns une copie du bloc de l'incarnation ; le bloc vide du schéma si elle n'en a pas.
      */
-    static #alchimieDe(incarnation) {
-        const alchimie = Version.data(incarnation)?.alchimie;
-        if (alchimie != null) return foundry.utils.deepClone(alchimie);
-        return foundry.utils.deepClone(new IncarnationDataModel({ id: 'vide' })._source.versions.v5.alchimie);
+    static #blocDe(incarnation, champ) {
+        const bloc = Version.data(incarnation)?.[champ];
+        if (bloc != null) return foundry.utils.deepClone(bloc);
+        return foundry.utils.deepClone(new IncarnationDataModel({ id: 'vide' })._source.versions.v5[champ]);
+    }
+
+    /**
+     * Écrit dans un bloc de l'incarnation courante.
+     * @param champ   'alchimie' ou 'akasha'.
+     * @param valeurs Les valeurs, par chemin dans le bloc.
+     * @returns false if the actor has no current incarnation.
+     */
+    async #ecrireBloc(champ, valeurs) {
+        const incarnation = this.incarnation(this.courante);
+        if (incarnation == null) return false;
+        const update = {};
+        for (const [chemin, valeur] of Object.entries(valeurs)) {
+            update[Version.path(incarnation, champ) + '.' + chemin] = valeur;
+        }
+        if (Object.keys(update).length > 0) await incarnation.update(update);
+        return true;
     }
 
     /**
@@ -761,24 +782,34 @@ export class Incarnations {
      * @returns { constructs, primae, laboratoires, courant }.
      */
     alchimie() {
-        return Incarnations.#alchimieDe(this.incarnation(this.courante));
+        return Incarnations.#blocDe(this.incarnation(this.courante), 'alchimie');
     }
 
     /**
-     * Écrit dans le laboratoire de l'incarnation courante.
      * @param valeurs Les valeurs, par chemin dans le laboratoire (ex: { 'primae.air.quantite': 3,
      *                'constructs.cornue.active': true, courant: null }).
      * @returns false if the actor has no current incarnation.
      */
     async ecrireAlchimie(valeurs) {
-        const incarnation = this.incarnation(this.courante);
-        if (incarnation == null) return false;
-        const update = {};
-        for (const [chemin, valeur] of Object.entries(valeurs)) {
-            update[Version.path(incarnation, 'alchimie') + '.' + chemin] = valeur;
-        }
-        if (Object.keys(update).length > 0) await incarnation.update(update);
-        return true;
+        return this.#ecrireBloc('alchimie', valeurs);
+    }
+
+    /**
+     * Les voyages akashiques de la figure : ceux de l'incarnation courante, indépendants de ceux
+     * des autres époques ; vides sans incarnation courante.
+     * @returns { nef, barge, boussole, compas }.
+     */
+    akasha() {
+        return Incarnations.#blocDe(this.incarnation(this.courante), 'akasha');
+    }
+
+    /**
+     * @param valeurs Les valeurs, par chemin dans les voyages akashiques (ex:
+     *                { 'nef.active': true, 'boussole.zenith': 2 }).
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireAkasha(valeurs) {
+        return this.#ecrireBloc('akasha', valeurs);
     }
 
     // ------------------------------------------------------------------ la sapience
@@ -1093,7 +1124,8 @@ export class Incarnations {
     /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
      * et ses bonus reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en
-     * a pas, de même que sa sapience et sa sapience dépensée et son laboratoire ; sa stase aussi,
+     * a pas, de même que sa sapience et sa sapience dépensée, son laboratoire et ses voyages
+     * akashiques ; sa stase aussi,
      * aucune s'il n'y en
      * a pas. Ses points d'incarnation partent de 0.
      * @param periode The system identifier of the world periode.
@@ -1118,7 +1150,8 @@ export class Incarnations {
                         successeur: null,
                         ka: Incarnations.#valeursDe(anterieure, 'ka', Incarnations.KA),
                         bonus: Incarnations.#valeursDe(anterieure, 'bonus', Incarnations.BONUS),
-                        alchimie: Incarnations.#alchimieDe(anterieure),
+                        alchimie: Incarnations.#blocDe(anterieure, 'alchimie'),
+                        akasha: Incarnations.#blocDe(anterieure, 'akasha'),
                         sapience: Version.data(anterieure)?.sapience ?? 0,
                         sapienceDepensee: Version.data(anterieure)?.sapienceDepensee ?? 0,
                         pointsIncarnations: 0,

@@ -19,6 +19,8 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `pointsIncarnations` : les points d'incarnation de cette époque, indépendants ;
  *   - `alchimie` : le laboratoire de la figure à cette époque (constructs, materiae primae,
  *                 laboratoires accessibles, laboratoire courant) ;
+ *   - `akasha`  : les voyages akashiques de la figure à cette époque (nef, barge, boussole,
+ *                 compas) ;
  *   - `bonus`   : les bonus de la figure à cette époque (mouvement, initiative, dommage,
  *                 protection) ;
  *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
@@ -404,6 +406,98 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                                             initial: 0
                                                         }
                                                     )                               
+                                                }
+                                            )
+                                        }
+                                    )
+                                }
+                            ),
+                            // Les voyages akashiques de la figure à cette époque : nef, barge, boussole,
+                            // compas (voir Incarnations.akasha).
+                            akasha: new foundry.data.fields.SchemaField(
+                                {
+                                    nef: new foundry.data.fields.SchemaField(
+                                        {
+                                            active: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            )
+                                        }
+                                    ),
+                                    boussole: new foundry.data.fields.SchemaField(
+                                        {
+                                            septentrion: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            orient: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            midi: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            occident: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            zenith: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),                                                                                
+                                            nadir: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            )
+                                        }
+                                    ),
+                                    barge: new foundry.data.fields.SchemaField(
+                                        {
+                                            active: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            )
+                                        }
+                                    ),
+                                    compas: new foundry.data.fields.SchemaField(
+                                        {
+                                            septentrion: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            orient: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            midi: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            occident: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),
+                                            zenith: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
+                                                }
+                                            ),                                                                                
+                                            nadir: new foundry.data.fields.NumberField(
+                                                {
+                                                    initial: 0
                                                 }
                                             )
                                         }
