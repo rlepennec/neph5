@@ -106,7 +106,7 @@ export class ActionDataBuilder {
     }
 
     /**
-     * @param mmenos The array of mnemos to register.
+     * @param mnemos The array of mnemos to register.
      * @returns the instance.
      */
     withMnemos(mnemos) {

@@ -83,7 +83,7 @@ export class Vecu extends HistoricalFeature {
             .withBase(this.item.name, this.degre)
             .withBlessures(Constants.PHYSICAL)
             .withApproches(this.approches())
-            .withMnemos(this.mmenos)
+            .withMnemos(this.mnemos)
             .export();
     }
 
@@ -104,7 +104,7 @@ export class Vecu extends HistoricalFeature {
     /**
      * @return the array of mnemos for this vecu.
      */
-    get mmenos() {
+    get mnemos() {
         const mnemos = [];
         for (const m of Version.data(this.embedded).mnemos ?? []) {
             mnemos.push({

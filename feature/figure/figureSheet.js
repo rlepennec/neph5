@@ -144,6 +144,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         context.editedCapacity = this.editedCapacity;
         // Les Ka sont portés par l'incarnation courante : sans elle, ils ne se saisissent pas
         context.incarnationCourante = new Incarnations(this.document).courante != null;
+        // Les bonus non plus : sans incarnation courante, leurs champs sont désactivés (bonus.hbs)
+        context.sansIncarnation = !context.incarnationCourante;
         // La stase de l'incarnation courante, null si elle n'en a pas : les champs restent vides
         context.stase = new Incarnations(this.document).stase();
         // La sapience, la sapience dépensée et les points d'incarnation de l'incarnation courante

@@ -1,3 +1,4 @@
+{{!-- Les bonus d'une figure sont portés par son incarnation courante : sans elle, ils ne se saisissent pas (voir FigureSheet, sansIncarnation). --}}
 <div class="bonus">
 
     <div class="header">
@@ -13,6 +14,7 @@
             {{> "systems/neph5e/templates/input.hbs"
                 name=(concat @root.versionPath ".bonus.mouvement")
                 type="number"
+                disabled=@root.sansIncarnation
                 value=@root.bonus.mouvement
             }}
         </li>
@@ -22,6 +24,7 @@
             {{> "systems/neph5e/templates/input.hbs"
                 name=(concat @root.versionPath ".bonus.initiative")
                 type="number"
+                disabled=@root.sansIncarnation
                 value=@root.bonus.initiative
             }}
         </li>
@@ -32,6 +35,7 @@
             {{> "systems/neph5e/templates/input.hbs"
                 name=(concat @root.versionPath ".bonus.dommage")
                 type="number"
+                disabled=@root.sansIncarnation
                 value=@root.bonus.dommage
             }}
         </li>
@@ -41,6 +45,7 @@
             {{> "systems/neph5e/templates/input.hbs"
                 name=(concat @root.versionPath ".bonus.protection")
                 type="number"
+                disabled=@root.sansIncarnation
                 value=@root.bonus.protection
             }}
         </li>
