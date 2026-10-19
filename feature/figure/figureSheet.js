@@ -527,63 +527,32 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     }
 
     /**
+     * Les champs saisis que porte l'incarnation courante, dans l'ordre de leur écriture : la
+     * méthode d'Incarnations qui les écrit, et soit le préfixe de leur chemin sous la version,
+     * soit la liste des champs seuls.
+     */
+    static #PORTES = [
+        // Les Ka (Incarnations.ecrireKa)
+        { ecrire: 'ecrireKa', prefixe: 'ka.' },
+        // Les bonus
+        { ecrire: 'ecrireBonus', prefixe: 'bonus.' },
+        // Les compteurs de sapience et les points d'incarnation, la sapience se reportant sur
+        // les incarnations postérieures (Incarnations.ecrireCompteurs)
+        { ecrire: 'ecrireCompteurs', champs: ['sapience', 'sapienceDepensee', 'pointsIncarnations'] },
+        // La stase : saisie, elle est créée ; ses champs vidés, elle est retirée
+        { ecrire: 'ecrireStase', prefixe: 'stase.' },
+        // Le laboratoire, après la conversion du maximum des materiae primae (voir _onSubmit)
+        { ecrire: 'ecrireAlchimie', prefixe: 'alchimie.' },
+        // Les voyages akashiques
+        { ecrire: 'ecrireAkasha', prefixe: 'akasha.' }
+    ];
+
+    /**
      * @override
      * Materiae primae : le champ 'max' ne stocke que le delta à ajouter au maximum théorique.
+     * Ce que porte l'incarnation courante lui est écrit (voir #PORTES), le reste va à l'acteur.
      */
     async _onSubmit(event, form, formData) {
-        // Les Ka saisis vont à l'incarnation courante, qui les porte (Incarnations.ecrireKa)
-        const prefixe = Version.prefix(this.document) + '.ka.';
-        const ka = {};
-        for (const [key, value] of Object.entries(formData.object)) {
-            if (key.startsWith(prefixe)) {
-                ka[key.slice(prefixe.length)] = value;
-                delete formData.object[key];
-            }
-        }
-        if (Object.keys(ka).length > 0) {
-            await new Incarnations(this.document).ecrireKa(ka);
-        }
-
-        // Les bonus aussi, propres à l'incarnation courante
-        const prefixeBonus = Version.prefix(this.document) + '.bonus.';
-        const bonus = {};
-        for (const [key, value] of Object.entries(formData.object)) {
-            if (key.startsWith(prefixeBonus)) {
-                bonus[key.slice(prefixeBonus.length)] = value;
-                delete formData.object[key];
-            }
-        }
-        if (Object.keys(bonus).length > 0) {
-            await new Incarnations(this.document).ecrireBonus(bonus);
-        }
-
-        // Les compteurs de sapience et les points d'incarnation : ceux de l'incarnation courante,
-        // la sapience se reportant sur les incarnations postérieures (Incarnations.ecrireCompteurs)
-        const compteurs = {};
-        for (const champ of ['sapience', 'sapienceDepensee', 'pointsIncarnations']) {
-            const key = Version.prefix(this.document) + '.' + champ;
-            if (key in formData.object) {
-                compteurs[champ] = formData.object[key];
-                delete formData.object[key];
-            }
-        }
-        if (Object.keys(compteurs).length > 0) {
-            await new Incarnations(this.document).ecrireCompteurs(compteurs);
-        }
-
-        // La stase aussi : saisie, elle est créée ; ses champs vidés, elle est retirée
-        const prefixeStase = Version.prefix(this.document) + '.stase.';
-        const stase = {};
-        for (const [key, value] of Object.entries(formData.object)) {
-            if (key.startsWith(prefixeStase)) {
-                stase[key.slice(prefixeStase.length)] = value;
-                delete formData.object[key];
-            }
-        }
-        if (Object.keys(stase).length > 0) {
-            await new Incarnations(this.document).ecrireStase(stase);
-        }
-
         for (const elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
             const key = Version.path(this.document, 'alchimie') + '.primae.' + elt + '.max';
             const input = formData.object[key];
@@ -591,30 +560,21 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 formData.object[key] = input - this.document.getMaxBaseMP(elt);
             }
         }
-        // Le laboratoire saisi va à l'incarnation courante, qui le porte (Incarnations.ecrireAlchimie)
-        const prefixeAlchimie = Version.path(this.document, 'alchimie') + '.';
-        const alchimie = {};
-        for (const [key, value] of Object.entries(formData.object)) {
-            if (key.startsWith(prefixeAlchimie)) {
-                alchimie[key.slice(prefixeAlchimie.length)] = value;
-                delete formData.object[key];
-            }
-        }
-        if (Object.keys(alchimie).length > 0) {
-            await new Incarnations(this.document).ecrireAlchimie(alchimie);
-        }
 
-        // Les voyages akashiques saisis vont à l'incarnation courante (Incarnations.ecrireAkasha)
-        const prefixeAkasha = Version.path(this.document, 'akasha') + '.';
-        const akasha = {};
-        for (const [key, value] of Object.entries(formData.object)) {
-            if (key.startsWith(prefixeAkasha)) {
-                akasha[key.slice(prefixeAkasha.length)] = value;
-                delete formData.object[key];
+        const racine = Version.prefix(this.document) + '.';
+        for (const { ecrire, prefixe, champs } of FigureSheet.#PORTES) {
+            const valeurs = {};
+            for (const [key, value] of Object.entries(formData.object)) {
+                if (!key.startsWith(racine)) continue;
+                const chemin = key.slice(racine.length);
+                if (prefixe != null ? chemin.startsWith(prefixe) : champs.includes(chemin)) {
+                    valeurs[prefixe != null ? chemin.slice(prefixe.length) : chemin] = value;
+                    delete formData.object[key];
+                }
             }
-        }
-        if (Object.keys(akasha).length > 0) {
-            await new Incarnations(this.document).ecrireAkasha(akasha);
+            if (Object.keys(valeurs).length > 0) {
+                await new Incarnations(this.document)[ecrire](valeurs);
+            }
         }
 
         // Délègue à NephilimActorSheet (system.id, items embarqués, update acteur).

@@ -22,6 +22,17 @@ export class Laboratoire {
     static SUBSTANCES = [Laboratoire.AMBRE, Laboratoire.LIQUEUR, Laboratoire.METAL, Laboratoire.POUDRE, Laboratoire.VAPEUR];
 
     /**
+     * The construct of each substance.
+     */
+    static CONSTRUCTS = new Map([
+        [Laboratoire.AMBRE, Laboratoire.CORNUE],
+        [Laboratoire.LIQUEUR, Laboratoire.ALAMBIC],
+        [Laboratoire.METAL, Laboratoire.CREUSET],
+        [Laboratoire.POUDRE, Laboratoire.ATHANOR],
+        [Laboratoire.VAPEUR, Laboratoire.ALUDEL]
+    ]);
+
+    /**
      * Constructor.
      * @param actor The actor which owns the laboratory.
      */
@@ -62,18 +73,8 @@ export class Laboratoire {
      * @returns the construct.
      */
     getConstruct(substance) {
-        switch (substance) {
-            case Laboratoire.AMBRE:
-                return this.actor.alchimie.constructs.cornue;
-            case Laboratoire.LIQUEUR:
-                return this.actor.alchimie.constructs.alambic;
-            case Laboratoire.METAL:
-                return this.actor.alchimie.constructs.creuset;
-            case Laboratoire.POUDRE:
-                return this.actor.alchimie.constructs.athanor;
-            case Laboratoire.VAPEUR:
-                return this.actor.alchimie.constructs.aludel;
-        }
+        const construct = Laboratoire.CONSTRUCTS.get(substance);
+        return construct == null ? undefined : this.actor.alchimie.constructs[construct];
     }
 
     /**

@@ -65,150 +65,65 @@ export class Science extends HistoricalFeature {
     }
 
     /**
-     * 
+     * Le type des focus de chaque cercle des sciences du livre de base.
+     */
+    static #TYPES = new Map([
+        // Magie
+        ...['basseMagie', 'hauteMagie', 'grandSecret'].map(c => [c, 'sort']),
+        // Magie analogique
+        ...['comprendre', 'controler', 'creer', 'detruire', 'transformer'].map(c => [c, 'habitus']),
+        // Kabbale
+        ...['malkut', 'yesod', 'hod', 'netzach', 'tiphereth', 'geburah', 'chesed', 'binah', 'chokmah',
+            'kether', 'daath'].map(c => [c, 'invocation']),
+        // Alchimie
+        ...['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'].map(c => [c, 'formule']),
+        // Necromancie
+        ...['fossoyeur', 'embaumeur', 'imputrescible'].map(c => [c, 'rite']),
+        // Conjuration
+        ...['charmeur', 'dresseur', 'demiurge'].map(c => [c, 'appel'])
+    ]);
+
+    /**
+     * Le type des focus des cercles propres à une campagne, par préfixe de leur clé.
+     */
+    static #PREFIXES = [
+        ['atlanteide@', 'atlanteide'],
+        ['dracomachie@', 'dracomachie'],
+        ['analogie@', 'habitus'],
+        ['bohemien@', 'divination'],
+        ['denier@', 'pratique'],
+        ['baton@', 'technique'],
+        ['coupe@', 'tekhne'],
+        ['epee@', 'rituel']
+    ];
+
+    /**
+     * @param type Un type de focus.
+     * @returns la propriété par laquelle un focus de ce type désigne son cercle : le domaine
+     *          d'un habitus, la sephirah d'une invocation, le cercle des autres.
+     */
+    static proprieteCercle(type) {
+        switch (type) {
+            case 'habitus':
+                return 'domaine';
+            case 'invocation':
+                return 'sephirah';
+            default:
+                return 'cercle';
+        }
+    }
+
+    /**
      * @param name The name of the cercle.
+     * @returns { type, property } : le type de ses focus et la propriété par laquelle ils le
+     *          désignent ; undefined pour un cercle inconnu.
      */
     static getCercle(name) {
-
-        switch(name) {
-
-            // Magie
-            case 'basseMagie':
-            case 'hauteMagie':
-            case 'grandSecret':
-                return {
-                    type: 'sort',
-                    property: 'cercle'
-                }
-
-            // Magie analogique
-            case 'comprendre':
-            case 'controler':
-            case 'creer':
-            case 'detruire':
-            case 'transformer':
-                return {
-                    type: 'habitus',
-                    property: 'domaine'
-                }
-
-            // Kabbale
-            case 'malkut':
-            case 'yesod':
-            case 'hod':
-            case 'netzach':
-            case 'tiphereth':
-            case 'geburah':
-            case 'chesed':
-            case 'binah':
-            case 'chokmah':
-            case 'kether':
-            case 'daath':
-                return {
-                    type: 'invocation',
-                    property: 'sephirah'
-                }
-
-            // Alchimie
-            case 'oeuvreAuNoir':
-            case 'oeuvreAuBlanc':
-            case 'oeuvreAuRouge':
-                return {
-                    type: 'formule',
-                    property: 'cercle'
-                }
-
-            // Necromancie
-            case 'fossoyeur':
-            case 'embaumeur':
-            case 'imputrescible':
-                return {
-                    type: 'rite',
-                    property: 'cercle'
-                }
-
-            // Conjuration
-            case 'charmeur':
-            case 'dresseur':
-            case 'demiurge':
-                return {
-                    type: 'appel',
-                    property: 'cercle'
-                }
-
-            // Custom
-            default:
-
-                if (typeof name === 'string') {
-
-                    // Atlanteide
-                    if (name?.substring(0,11) === 'atlanteide@') {
-                        return {
-                            type: 'atlanteide',
-                            property: 'cercle'
-                        }
-                    }
-
-                    // Dracomachie
-                    if (name?.substring(0,12) === 'dracomachie@') {
-                        return {
-                            type: 'dracomachie',
-                            property: 'cercle'
-                        }
-                    }
-
-                    // Magie analogique
-                    if (name?.substring(0,9) === 'analogie@') {
-                        return {
-                            type: 'habitus',
-                            property: 'domaine'
-                        }
-                    }
-
-                    // Divination bohemien
-                    if (name?.substring(0,9) === 'bohemien@') {
-                        return {
-                            type: 'divination',
-                            property: 'cercle'
-                        }
-                    }
-
-                    // Pratique synarche
-                    if (name?.substring(0,7) === 'denier@') {
-                        return {
-                            type: 'pratique',
-                            property: 'cercle'
-                        }
-                    }
-
-                    // Technique templiere
-                    if (name?.substring(0,6) === 'baton@') {
-                        return {
-                            type: 'technique',
-                            property: 'cercle'
-                        }
-                    }
-
-                    // Tekhne rosicrucienne
-                    if (name?.substring(0,6) === 'coupe@') {
-                        return {
-                            type: 'tekhne',
-                            property: 'cercle'
-                        }
-                    }
-
-                    // Rituel myste
-                    if (name?.substring(0,5) === 'epee@') {
-                        return {
-                            type: 'rituel',
-                            property: 'cercle'
-                        }
-                    }
-
-                }
-
+        let type = Science.#TYPES.get(name);
+        if (type == null && typeof name === 'string') {
+            type = Science.#PREFIXES.find(([prefixe]) => name.startsWith(prefixe))?.[1];
         }
-
+        return type == null ? undefined : { type: type, property: Science.proprieteCercle(type) };
     }
 
     /**

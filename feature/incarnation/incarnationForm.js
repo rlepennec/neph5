@@ -294,14 +294,13 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
      * @param item Un cercle (science) ou un focus, de la figure ou du monde.
      * @returns la clé du cercle dont il relève, lue sur l'item du monde, null s'il n'en a pas.
      *          Un focus désigne son cercle par une propriété propre à son type (voir
-     *          Science.getCercle) : le domaine d'un habitus, la sephirah d'une invocation.
+     *          Science.proprieteCercle) : le domaine d'un habitus, la sephirah d'une invocation.
      */
     static cercleOf(item) {
         const original = game.items.find(i => i.sid === item?.sid) ?? item;
         if (original?.type === 'science') return Version.data(original).key ?? null;
         if (!Incarnations.FOCUS.includes(original?.type)) return null;
-        const propriete = original.type === 'habitus' ? 'domaine' : original.type === 'invocation' ? 'sephirah' : 'cercle';
-        return Version.data(original)[propriete] ?? null;
+        return Version.data(original)[Science.proprieteCercle(original.type)] ?? null;
     }
 
     /**

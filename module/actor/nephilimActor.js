@@ -194,14 +194,25 @@ export class NephilimActor extends CombatantMixin(Actor) {
 
 
     /**
+     * Une lecture d'un bloc que porte l'incarnation courante d'une figure ; un autre acteur
+     * porte le sien.
+     * @param lecture La méthode d'Incarnations qui lit le bloc ('kas', 'alchimie'...).
+     * @param champ   Le champ de l'acteur qui le porte sinon ('ka', 'alchimie'...).
+     * @returns the block.
+     */
+    _selonIncarnation(lecture, champ) {
+        const incarnations = new Incarnations(this);
+        return incarnations.porte ? incarnations[lecture]() : Version.data(this)[champ];
+    }
+
+    /**
      * Les Ka de l'acteur. Ceux d'une figure sont portés par son incarnation courante (voir
      * Incarnations.kas), chacun indépendant de ceux des autres époques ; un figurant a son Ka
      * unique. Toutes les lectures de Ka passent par ici.
      * @returns the Ka object of a figure, the single Ka of a figurant.
      */
     get kas() {
-        const incarnations = new Incarnations(this);
-        return incarnations.porte ? incarnations.kas() : Version.data(this).ka;
+        return this._selonIncarnation('kas', 'ka');
     }
 
     /**
@@ -211,8 +222,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the laboratory object.
      */
     get alchimie() {
-        const incarnations = new Incarnations(this);
-        return incarnations.porte ? incarnations.alchimie() : Version.data(this).alchimie;
+        return this._selonIncarnation('alchimie', 'alchimie');
     }
 
     /**
@@ -221,8 +231,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the akasha object.
      */
     get akasha() {
-        const incarnations = new Incarnations(this);
-        return incarnations.porte ? incarnations.akasha() : Version.data(this).akasha;
+        return this._selonIncarnation('akasha', 'akasha');
     }
 
     /**
@@ -232,8 +241,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the bonus object.
      */
     get bonus() {
-        const incarnations = new Incarnations(this);
-        return incarnations.porte ? incarnations.bonus() : Version.data(this).bonus;
+        return this._selonIncarnation('bonus', 'bonus');
     }
 
     /**
