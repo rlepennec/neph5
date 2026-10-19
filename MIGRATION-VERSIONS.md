@@ -650,8 +650,9 @@ arcane, chute, science, ressource, les 14 focus, capacité.
   lisent `actor.simulacre`, `AbstractFeature.simulacre`, `FeatureBuilder.scopedActor`, le Ka
   et les compétences). Déposer un figurant le définit pour l'incarnation courante, en
   remplaçant le sien (`definirSimulacre`) ; sans incarnation courante, refus. Un acteur
-  supprimé du monde est retiré des incarnations qui l'avaient (`oublierSimulacres`). Pas de
-  retrait par la fiche pour l'instant. L'ancien champ `simulacre` de la figure reste au schéma
+  supprimé du monde est retiré des incarnations qui l'avaient (`oublierSimulacres`). Retrait
+  discret (décidé le 19/10) : un **clic droit** sur le portrait ou le nom du simulacre, fiche
+  déverrouillée, le retire de l'incarnation courante (`retirerSimulacre`) ; rien n'est affiché. L'ancien champ `simulacre` de la figure reste au schéma
   pour que 1.0.10 le lise : il devient celui de l'incarnation courante, puis est vidé (à retirer
   avec les passerelles).
 

@@ -928,6 +928,15 @@ export class Incarnations {
     }
 
     /**
+     * Retire le simulacre de l'incarnation courante ; les autres incarnations gardent le leur, et
+     * l'acteur simulacre reste dans le monde.
+     * @returns false if the actor has no current incarnation.
+     */
+    async retirerSimulacre() {
+        return this.definirSimulacre(null);
+    }
+
+    /**
      * Retire des acteurs, supprimés du monde, des incarnations qui les avaient pour simulacre.
      * @param sids The system identifiers of the deleted actors.
      */

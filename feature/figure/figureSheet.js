@@ -204,6 +204,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** @override */
     async _onRender(context, options) {
         await super._onRender(context, options);
+        // Le clic droit sur le simulacre le retire de l'incarnation courante : un geste discret,
+        // sans rien d'affiché (voir _onRetirerSimulacre)
+        for (const el of this.element.querySelectorAll('img.simulacre, .simulacre-name')) {
+            el.addEventListener('contextmenu', this._onRetirerSimulacre.bind(this));
+        }
         for (const el of this.element.querySelectorAll('.focus-quantite')) {
             el.addEventListener('change', this._onChangeQuantite.bind(this));
         }
@@ -428,6 +433,16 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (!(await new Incarnations(this.document).definirSimulacre(document.sid))) {
             ui.notifications.warn(game.i18n.localize("NEPHILIM.simulacreSansIncarnation"));
         }
+    }
+
+    /**
+     * Clic droit sur le simulacre : il est retiré de l'incarnation courante, fiche déverrouillée.
+     * Les autres époques gardent le leur ; l'acteur simulacre n'est pas supprimé du monde.
+     */
+    async _onRetirerSimulacre(event) {
+        event.preventDefault();
+        if (this.locked) return;
+        await new Incarnations(this.document).retirerSimulacre();
     }
 
     /**
