@@ -44,6 +44,9 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.owner = this.document.isOwner;
+        // Les Ka : ceux de l'incarnation courante pour une figure (voir NephilimActor.kas). Les
+        // gabarits les lisent ici, et non dans data : ils ne sont plus portés par l'acteur.
+        context.ka = this.document.kas;
         return context;
     }
 

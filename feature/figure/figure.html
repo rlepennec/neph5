@@ -19,7 +19,7 @@
             {{/each}}
         </nav>
 
-        {{#if (eq @root.data.options.soleil true)}}
+        {{#if (and (eq @root.data.options.soleil true) @root.incarnationCourante)}}
         <div class="element macro soleil" data-macro="ka" data-id="soleil">
             <img class="circle"/>
             <div class="tooltip">
@@ -27,7 +27,7 @@
                     {{#if @root.locked}}disabled{{/if}}
                     name="{{@root.versionPath}}.ka.soleil"
                     type="text"
-                    value="{{@root.data.ka.soleil}}"
+                    value="{{@root.ka.soleil}}"
                     data-dtype="Number"/>
                 <a class="dice roll"><i class="fas fa-dice-d20"></i></a>
             </div>

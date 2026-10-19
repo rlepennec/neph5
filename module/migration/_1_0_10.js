@@ -38,6 +38,7 @@ import { Version } from "../common/version.js";
  *      l'incarnation courante (elles ne se transmettent pas d'une incarnation à l'autre) ;
  *      les materiae aussi, leur quantité devenant la variation de cette incarnation, et les
  *      catalyseurs et les aspects, possédés à cette incarnation ;
+ *      les Ka de la figure sont copiés dans chaque incarnation, qui les porte désormais ;
  *      le simulacre de la figure devient celui de l'incarnation courante (il ne se transmet
  *      pas), et l'ancien champ de la figure est vidé ;
  *   4. supprime les périodes embarquées et les copies de trop : une seconde copie du même item
@@ -173,6 +174,9 @@ export class _1_0_10 {
             }
         }
 
+        // Les Ka de la figure, relevés avant que son schéma ne les élague
+        const kaFigure = releve.__acteur?.ka ?? {};
+
         // 2. Une incarnation par période, de même clé que la période
         const incarnations = chaine.map(p => ({
             name: p.name,
@@ -184,6 +188,8 @@ export class _1_0_10 {
                     v5: {
                         periode: p.sid,
                         actif: lire(p, 'actif') === true,
+                        // Les Ka de la figure : copiés dans chaque incarnation, qui les porte
+                        ka: Object.fromEntries(Incarnations.KA.map(k => [k, kaFigure[k] ?? 0])),
                         // Le simulacre de la figure ne se transmet pas : il devient celui de
                         // l'incarnation courante seulement
                         simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null

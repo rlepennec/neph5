@@ -53,71 +53,8 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                                     initial: 0
                                 }
                             ),
-                            ka: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    air: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    brume: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    eau: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    feu: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    lune: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    noyau: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    orichalque: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    pavane: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    reserve: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    reserveCourante: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    soleil: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    ),
-                                    terre: new foundry.data.fields.NumberField(
-                                        {
-                                            initial: 0
-                                        }
-                                    )
-                                }
-                            ),
+                            // Les Ka ne sont plus portés par la figure mais par chaque incarnation (voir
+                            // Incarnations.kas) : la migration 1.0.10 les y recopie depuis le relevé.
                             manoeuvres: new foundry.data.fields.SchemaField
                             (
                                 {

@@ -38,8 +38,8 @@ import { Version } from "../../module/common/version.js";
  *
  * L'ordre « de chaîne » est l'ordre chronologique, de la plus ancienne à la plus récente, comme
  * l'ancienne chaîne de `previous` (sa tête, sans prédécesseur, était la plus ancienne). Une
- * incarnation déposée prend la tête : elle devient la plus ancienne, comme une période déposée
- * sur v14 — on découvre ses vies passées en remontant le temps.
+ * incarnation créée arrive en QUEUE : elle devient la plus récente (décidé le 19/10 ; elle
+ * arrivait auparavant en tête), et reprend les Ka de l'antérieure active la plus proche.
  *
  * Pour les calculs comptent l'incarnation courante et les incarnations ANTÉRIEURES non
  * désactivées ; les postérieures jamais. L'option chronologieDescendante ne règle que l'ordre
@@ -110,6 +110,13 @@ export class Incarnations {
      * Les types d'acteur qui vivent des incarnations.
      */
     static ACTEURS = ['figure', 'fraternite'];
+
+    /**
+     * Les Ka de la figure, portés par chaque incarnation (voir kas) : le pentacle, le Soleil, et
+     * ceux du Selenim.
+     */
+    static KA = ['air', 'eau', 'feu', 'lune', 'terre', 'soleil', 'noyau', 'brume', 'orichalque',
+        'pavane', 'reserve', 'reserveCourante'];
 
     /**
      * Les raisons pour lesquelles une incarnation ne peut être créée depuis un vécu.
@@ -653,6 +660,45 @@ export class Incarnations {
         }
     }
 
+    // ------------------------------------------------------------------ les Ka
+
+    /**
+     * @param incarnation An incarnation, null for none.
+     * @returns ses douze Ka, 0 pour ceux qu'elle n'a pas.
+     */
+    static #kaDe(incarnation) {
+        const ka = Version.data(incarnation)?.ka ?? {};
+        return Object.fromEntries(Incarnations.KA.map(k => [k, ka[k] ?? 0]));
+    }
+
+    /**
+     * Les Ka de la figure : ceux de l'incarnation courante, chacun indépendant des autres
+     * époques ; tous à 0 sans incarnation courante.
+     * @returns { air, eau, feu, lune, terre, soleil, noyau, brume, orichalque, pavane, reserve,
+     *          reserveCourante }.
+     */
+    kas() {
+        return Incarnations.#kaDe(this.incarnation(this.courante));
+    }
+
+    /**
+     * Écrit des Ka dans l'incarnation courante.
+     * @param valeurs Les Ka à écrire, par nom (ex: { air: 3 }).
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireKa(valeurs) {
+        const incarnation = this.incarnation(this.courante);
+        if (incarnation == null) return false;
+        const update = {};
+        for (const [k, v] of Object.entries(valeurs)) {
+            if (!Incarnations.KA.includes(k)) continue;
+            const n = Number(v);
+            update[Version.path(incarnation, 'ka') + '.' + k] = isNaN(n) ? 0 : n;
+        }
+        if (Object.keys(update).length > 0) await incarnation.update(update);
+        return true;
+    }
+
     // ------------------------------------------------------------------ le simulacre
 
     /**
@@ -750,7 +796,7 @@ export class Incarnations {
 
     /**
      * Crée une incarnation à partir d'un vécu du monde : elle prend la période du vécu, et le
-     * vécu est embarqué avec elle. Elle prend la tête de la chaîne — la plus ancienne —, et
+     * vécu est embarqué avec elle. Elle arrive en queue de la chaîne — la plus récente —, et
      * devient la courante si c'est la première.
      * @param sid The system identifier of the world vecu.
      * @returns {string|null} la raison d'un refus (voir SANS_PERIODE...), null si créée.
@@ -766,7 +812,7 @@ export class Incarnations {
     /**
      * Crée une incarnation à partir d'une période et d'un vécu choisis séparément — par le
      * formulaire d'incarnation : le vécu est embarqué dans l'incarnation, avec le
-     * degré donné. Elle prend la tête de la chaîne, et devient la courante si c'est la première.
+     * degré donné. Elle arrive en queue de la chaîne, et devient la courante si c'est la première.
      * @param periode The system identifier of the world periode.
      * @param sid     The system identifier of the world vecu.
      * @param degre   The degre of the vecu.
@@ -786,7 +832,7 @@ export class Incarnations {
     }
 
     /**
-     * Crée une incarnation sans vécu, à partir de sa seule période. Elle prend la tête de la
+     * Crée une incarnation sans vécu, à partir de sa seule période. Elle arrive en queue de la
      * chaîne, et devient la courante si c'est la première.
      * @param periode The system identifier of the world periode.
      * @returns {string|null} la clé de l'incarnation créée.
@@ -874,12 +920,16 @@ export class Incarnations {
     }
 
     /**
+     * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Ses Ka
+     * reprennent ceux de l'incarnation antérieure active la plus proche, 0 s'il n'y en a pas.
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
      */
     async #creer(periode) {
         const monde = game.items.find(i => i.type === 'periode' && i.sid === periode);
-        const premiere = this.premiere();
+        const chaine = this.#chaine();
+        const derniere = chaine.at(-1) ?? null;
+        const anterieure = [...chaine].reverse().find(i => Version.data(i).actif === true) ?? null;
         // Sans system.id, l'item reçoit un identifiant neuf à sa création (NephilimItem._preCreate).
         const [cree] = await this.actor.createEmbeddedDocuments('Item', [{
             name: monde?.name ?? periode,
@@ -890,16 +940,17 @@ export class Incarnations {
                     v5: {
                         periode: periode,
                         actif: true,
-                        predecesseur: null,
-                        successeur: premiere?.sid ?? null
+                        predecesseur: derniere?.sid ?? null,
+                        successeur: null,
+                        ka: Incarnations.#kaDe(anterieure)
                     }
                 }
             }
         }]);
-        if (premiere == null) {
+        if (derniere == null) {
             await this.definirCourante(cree.sid);
         } else {
-            await premiere.update({ [Version.path(premiere, 'predecesseur')]: cree.sid });
+            await derniere.update({ [Version.path(derniere, 'successeur')]: cree.sid });
         }
         return cree.sid;
     }

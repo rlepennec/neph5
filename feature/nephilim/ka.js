@@ -86,14 +86,14 @@ export class Ka extends AbstractFeature {
             case 'figure':
                 switch (this.scope) {
                     case 'actor':
-                        return Version.data(this.actor).ka[this.ka];
+                        return this.actor.kas[this.ka];
                     case 'simulacre':
                         return Version.data(new Incarnations(this.actor).simulacre()).ka;
                     default:
                         throw new Error("Ka.degre scope " + this.scope + " not implemented");
                 }
             case 'figurant':
-                return Version.data(this.actor).ka;
+                return this.actor.kas;
             default:
                 throw new Error("Ka.degre actor type " + this.actor.type + " not implemented");
         }

@@ -30,7 +30,7 @@
 
             <label class="title">{{translate "dommages"}}</label>
 
-            {{#if (gt @root.data.ka.terre 9)}}
+            {{#if (gt @root.ka.terre 9)}}
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._5")
                 value=@root.data.dommage.physique._5
@@ -38,7 +38,7 @@
             }}
             {{/if}}
 
-            {{#if (gt @root.data.ka.terre 4)}}
+            {{#if (gt @root.ka.terre 4)}}
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._4")
                 value=@root.data.dommage.physique._4

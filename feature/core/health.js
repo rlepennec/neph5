@@ -384,12 +384,12 @@ class Damages {
                 .withSize(1)
                 .withBox('_1'));
         }
-        if (type === 'physique' && Version.data(actor).ka.terre > 4 && Version.data(actor).dommage[type]['_4'] === false) {
+        if (type === 'physique' && actor.kas.terre > 4 && Version.data(actor).dommage[type]['_4'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_4'));
         }
-        if (type === 'physique' && Version.data(actor).ka.terre > 9 && Version.data(actor).dommage[type]['_5'] === false) {
+        if (type === 'physique' && actor.kas.terre > 9 && Version.data(actor).dommage[type]['_5'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_5'));

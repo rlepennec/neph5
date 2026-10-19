@@ -437,7 +437,8 @@ qui peut rester sans vécu. Une période déposée seule sur la fiche crée une 
 définie ; une période déposée seule sur la fiche d'une figure crée une incarnation sans vécu.
 Aussi confirmé : une incarnation **désactivée ne compte pas**, même si c'est la courante ; une
 incarnation créée arrive **en tête** de la chronologie (la plus ancienne), à charge du joueur de
-la déplacer.
+la déplacer. **Révisé le 19/10 : elle arrive désormais en queue (la plus récente)**, voir
+la section 10.
 `changerPeriode` déplace tous les vécus. Un vécu déposé sur la fiche s'ajoute à l'incarnation en
 édition (la courante, fiche déverrouillée), sinon en crée une. **La migration 1.0.10 crée de
 nouveau une incarnation par période**, de même clé que la période, qui reçoit **tous** les
@@ -657,3 +658,33 @@ arcane, chute, science, ressource, les 14 focus, capacité.
 **Vérifié sous node** : façade 71 cas (`test-lies` : vécus, savoir par époque et somme des
 degrés, focus, voies, équipements, materiae, catalyseurs, aspects, simulacre, retraits, retrait d'une incarnation) ; dépôt 11 ; métamorphe 10 (`test-metamorphe`) ; migration 22 (acteur 1.7.0
 simulé, doublons de chaque sorte). Pas encore essayé dans Foundry.
+
+## 10. Les Ka portés par l'incarnation (décidé par l'utilisateur le 19 octobre 2026)
+
+Les douze Ka de la figure — le pentacle (`air`, `eau`, `feu`, `lune`, `terre`), le Soleil, et
+ceux du Selenim (`noyau`, `brume`, `orichalque`, `pavane`, `reserve`, `reserveCourante`) — ne
+sont plus portés par l'acteur mais par **chaque incarnation** (`versions.v5.ka`), chacun
+indépendant de ceux des autres époques. Le Ka unique du figurant ne change pas.
+
+- **Lecture** : `NephilimActor.kas` — les Ka de l'incarnation courante pour une figure
+  (`Incarnations.kas`, tous à 0 sans incarnation courante), le Ka unique pour un figurant.
+  Toutes les lectures y passent (Ka dominant, `getKa`, approches, initiative, bonus aux
+  dommages, valeurs de l'humain, cases de blessure du Ka-Terre, laboratoire, noyau, pavane,
+  jets de Ka). Les gabarits lisent `@root.ka` (contexte de `NephilimActorSheet`).
+- **Écriture** : les champs de la fiche gardent leur nom (`versionPath.ka.<élément>`) ; la
+  fiche de figure les retire de l'enregistrement de l'acteur et les écrit dans l'incarnation
+  courante (`Incarnations.ecrireKa`).
+- **Initialisation** : la première incarnation a ses Ka à 0. **Une nouvelle incarnation arrive
+  désormais en QUEUE** de la chronologie (la plus récente ; elle arrivait en tête jusque-là) et
+  reprend les Ka de l'incarnation antérieure active la plus proche, 0 s'il n'y en a pas.
+- **Accès** : les onglets qui définissent des Ka (Nephilim, Selenim, Bohémien) et la saisie du
+  Ka-Soleil dans l'en-tête n'apparaissent que si la figure a une incarnation courante.
+- **Migration 1.0.10** : le bloc `ka` quitte le schéma de la figure ; il est relevé au
+  chargement, sur les données brutes (`VersionMigration.releveIncarnations`, sous la clé
+  `__acteur`), puis copié dans **chaque** incarnation créée.
+
+**Vérifié sous node** : façade (`test-lies`, 77 cas au total) — Ka à 0 de la première,
+nouvelles en queue reprenant l'antérieure active, indépendance entre époques, écriture sans
+incarnation refusée ; migration (23 cas) — Ka copiés dans chaque incarnation ; relevé sous ses
+deux formes (avant et après 1.0.9) ; schémas (figure sans `ka`, incarnation à 0 par défaut).
+Pas encore essayé dans Foundry.

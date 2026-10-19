@@ -84,7 +84,7 @@ export class Laboratoire {
         return this.actor.science('oeuvreAuNoir') +
             this.actor.science('oeuvreAuBlanc') +
             this.actor.science('oeuvreAuRouge') +
-            Version.data(this.actor).ka[element];
+            this.actor.kas[element];
     }
 
 }

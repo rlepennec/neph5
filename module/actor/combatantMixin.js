@@ -73,9 +73,9 @@ export const CombatantMixin = Base => {
         get dommage() {
             if (this.type === 'figure') {
                 if (Version.data(this).options?.nephilim === true) {
-                    return Math.floor(Version.data(this).ka.feu / 5);
+                    return Math.floor(this.kas.feu / 5);
                 } else if (Version.data(this).options?.selenim === true) {
-                    return Math.floor(Version.data(this).ka.noyau / 10);
+                    return Math.floor(this.kas.noyau / 10);
                 }
             }
             return 0;
@@ -88,13 +88,13 @@ export const CombatantMixin = Base => {
              switch (this.type) {
                  case 'figure':
                     if (Version.data(this).options?.nephilim === true) {
-                        return Version.data(this).ka.eau * 2;
+                        return this.kas.eau * 2;
                     }
                     if (Version.data(this).options?.selenim === true) {
-                        return Version.data(this).ka.noyau;
+                        return this.kas.noyau;
                     }
                     for (let elt of ['soleil', 'orichalque', 'brume', 'air', 'feu', 'lune', 'terre']) {
-                        const val = Version.data(this).ka[elt];
+                        const val = this.kas[elt];
                         if (val !== undefined) {
                             return val;
                         }

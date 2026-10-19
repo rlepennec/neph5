@@ -12,6 +12,7 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `predecesseur` : la clé de l'incarnation immédiatement plus ancienne, null pour la tête
  *                 de la chronologie (la plus ancienne) ;
  *   - `successeur` : la clé de l'incarnation immédiatement plus récente, null pour la queue ;
+ *   - `ka`      : les douze Ka de la figure à cette époque (pentacle, Soleil, Selenim) ;
  *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
  *                 transmet pas aux autres incarnations ;
  *
@@ -62,6 +63,25 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                 {
                                     nullable: true,
                                     initial: null
+                                }
+                            ),
+                            // Les Ka de la figure à cette époque, chacun indépendant de ceux des autres
+                            // incarnations (voir Incarnations.kas).
+                            ka: new foundry.data.fields.SchemaField
+                            (
+                                {
+                                    air: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    eau: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    feu: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    lune: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    terre: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    soleil: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    noyau: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    brume: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    orichalque: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    pavane: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    reserve: new foundry.data.fields.NumberField({ initial: 0 }),
+                                    reserveCourante: new foundry.data.fields.NumberField({ initial: 0 })
                                 }
                             ),
                             // Le sid de l'acteur simulacre de cette incarnation : il ne se transmet pas

@@ -102,8 +102,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         // et vient alors en tête : c'est par là qu'on entre quand on construit.
         { id: "incarnations", option: "incarnations", unlocked: true, template: `feature/figure/incarnations.hbs`, extra: { from: "figure" } },
         { id: "description", template: `feature/figure/description.hbs` },
-        { id: "nephilim", option: "nephilim", template: `feature/nephilim/actor/main.hbs` },
-        { id: "selenim", option: "selenim", template: `feature/selenim/actor/main.hbs` },
+        { id: "nephilim", option: "nephilim", ka: true, template: `feature/nephilim/actor/main.hbs` },
+        { id: "selenim", option: "selenim", ka: true, template: `feature/selenim/actor/main.hbs` },
         { id: "combat", option: "combat", template: `feature/figure/combat.hbs` },
         { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
         { id: "magie", option: "magie", science: "magie" },
@@ -119,7 +119,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "necromancie", option: "necromancie", science: "necromancie" },
         { id: "conjuration", option: "conjuration", science: "conjuration" },
         { id: "akasha", option: "akasha", template: `feature/akasha/actor/main.hbs` },
-        { id: "bohemien", option: "bohemien", science: "bohemien" },
+        { id: "bohemien", option: "bohemien", ka: true, science: "bohemien" },
         { id: "baton", option: "baton", science: "baton" },
         { id: "coupe", option: "coupe", science: "coupe" },
         { id: "denier", option: "denier", science: "denier" },
@@ -142,6 +142,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.editedCapacity = this.editedCapacity;
+        // Les Ka sont portés par l'incarnation courante : sans elle, ils ne se saisissent pas
+        context.incarnationCourante = new Incarnations(this.document).courante != null;
         return context;
     }
 
@@ -153,9 +155,13 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
         const o = Version.data(this.document).options ?? {};
+        const courante = new Incarnations(this.document).courante != null;
         const tabs = FigureSheet.TAB_DEFINITIONS
             .filter(d => d.option == null || o[d.option])
             .filter(d => d.unlocked !== true || this.locked === false)
+            // Les onglets qui définissent des Ka exigent une incarnation courante : c'est elle
+            // qui les porte
+            .filter(d => d.ka !== true || courante)
             .map(d => {
                 const tab = {
                     id: d.id,
@@ -507,6 +513,19 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
      * Materiae primae : le champ 'max' ne stocke que le delta à ajouter au maximum théorique.
      */
     async _onSubmit(event, form, formData) {
+        // Les Ka saisis vont à l'incarnation courante, qui les porte (Incarnations.ecrireKa)
+        const prefixe = Version.prefix(this.document) + '.ka.';
+        const ka = {};
+        for (const [key, value] of Object.entries(formData.object)) {
+            if (key.startsWith(prefixe)) {
+                ka[key.slice(prefixe.length)] = value;
+                delete formData.object[key];
+            }
+        }
+        if (Object.keys(ka).length > 0) {
+            await new Incarnations(this.document).ecrireKa(ka);
+        }
+
         for (const elt of ['air', 'eau', 'feu', 'lune', 'terre']) {
             const key = Version.path(this.document, 'alchimie') + '.primae.' + elt + '.max';
             const input = formData.object[key];

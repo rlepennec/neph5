@@ -123,12 +123,12 @@ export class NephilimActor extends CombatantMixin(Actor) {
         switch (this.type) {
             case 'figure':
                 if (Version.data(this).options?.nephilim === true) {
-                    return Version.data(this).ka.eau * 2;
+                    return this.kas.eau * 2;
                 }
                 if (Version.data(this).options?.selenim === true) {
-                    return Version.data(this).ka.noyau;
+                    return this.kas.noyau;
                 }
-                return Version.data(this).ka.soleil ?? 0;
+                return this.kas.soleil ?? 0;
             case 'figurant':
             default:
                 return 0;
@@ -142,12 +142,12 @@ export class NephilimActor extends CombatantMixin(Actor) {
         switch (this.type) {
             case 'figure':
                 if (Version.data(this).options?.nephilim === true) {
-                    return 11 - Version.data(this).ka.air;
+                    return 11 - this.kas.air;
                 }
                 if (Version.data(this).options?.selenim === true) {
-                    return 11 - Version.data(this).ka.noyau;
+                    return 11 - this.kas.noyau;
                 }
-                return 11 - (Version.data(this).ka.soleil ?? 0);
+                return 11 - (this.kas.soleil ?? 0);
             case 'figurant':
             default:
                 return 0;
@@ -161,12 +161,12 @@ export class NephilimActor extends CombatantMixin(Actor) {
         switch (this.type) {
             case 'figure':
                 if (Version.data(this).options?.nephilim === true) {
-                    return 11 - Version.data(this).ka.terre;
+                    return 11 - this.kas.terre;
                 }
                 if (Version.data(this).options?.selenim === true) {
-                    return 11 - Version.data(this).ka.noyau;
+                    return 11 - this.kas.noyau;
                 }
-                return 11 - Version.data(this).ka.soleil;
+                return 11 - this.kas.soleil;
             case 'figurant':
             default:
                 return 0;
@@ -180,18 +180,29 @@ export class NephilimActor extends CombatantMixin(Actor) {
         switch (this.type) {
             case 'figure':
                 if (Version.data(this).options?.nephilim === true) {
-                    return Math.floor(Version.data(this).ka.lune / 5);
+                    return Math.floor(this.kas.lune / 5);
                 }
                 if (Version.data(this).options?.selenim === true) {
-                    return Math.floor(Version.data(this).ka.noyau / 10);
+                    return Math.floor(this.kas.noyau / 10);
                 }
-                return Math.floor((Version.data(this).ka.soleil ?? 0) / 10);
+                return Math.floor((this.kas.soleil ?? 0) / 10);
             case 'figurant':
             default:
                 return 0;
         }
     }
 
+
+    /**
+     * Les Ka de l'acteur. Ceux d'une figure sont portés par son incarnation courante (voir
+     * Incarnations.kas), chacun indépendant de ceux des autres époques ; un figurant a son Ka
+     * unique. Toutes les lectures de Ka passent par ici.
+     * @returns the Ka object of a figure, the single Ka of a figurant.
+     */
+    get kas() {
+        const incarnations = new Incarnations(this);
+        return incarnations.porte ? incarnations.kas() : Version.data(this).ka;
+    }
 
     /**
      * @returns the actor ka dominant.
@@ -201,18 +212,18 @@ export class NephilimActor extends CombatantMixin(Actor) {
             case 'figure':
                 if (Version.data(this).options?.nephilim === true) {
                     return Math.max(
-                        Version.data(this).ka.air,
-                        Version.data(this).ka.eau,
-                        Version.data(this).ka.feu,
-                        Version.data(this).ka.lune,
-                        Version.data(this).ka.terre);
+                        this.kas.air,
+                        this.kas.eau,
+                        this.kas.feu,
+                        this.kas.lune,
+                        this.kas.terre);
                 }
                 if (Version.data(this).options?.selenim === true) {
-                    return Version.data(this).ka.noyau;
+                    return this.kas.noyau;
                 }
                 return 0;
             case 'figurant':
-                return Version.data(this).ka;
+                return this.kas;
             default:
                 return 0;
         }
@@ -645,7 +656,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
         switch (this.type) {
             case 'figure':
                 if (Version.data(this).options.selenim === true) {
-                    if (Version.data(this).ka.noyau > 0) {
+                    if (this.kas.noyau > 0) {
                         approches['noyau'] = {
                             label: NephilimActor.libelleApproche('luneNoire')
                         };
@@ -655,7 +666,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                     // NEPHILIM porte déjà les mêmes libellés d'élément que
                     // l'ancien bloc NEPH5E.pentacle.elements, à l'identique.
                     for (let elt of Constants.ELEMENTS) {
-                        if (Version.data(this).ka[elt] > 0) {
+                        if (this.kas[elt] > 0) {
                             approches[elt] = {
                                 label: NephilimActor.libelleApproche(elt)
                             };
@@ -703,9 +714,9 @@ export class NephilimActor extends CombatantMixin(Actor) {
     getKa(element) {
         switch (this.type) {
             case 'figure':
-                return Version.data(this).ka[element] ?? 0;
+                return this.kas[element] ?? 0;
             case 'figurant':
-                return Version.data(this).ka;
+                return this.kas;
         }
     }
 
