@@ -95,17 +95,17 @@ export class AbstractFocus extends AbstractFeature {
         // Un exemplaire par incarnation : déjà lié à celle-ci, rien ; connu d'une autre, une
         // copie après confirmation (voir deposerParEpoque) ; sinon un nouveau.
         if (await this.deposerParEpoque()) {
-            await this._createEmbeddedItem(null);
+            await this._createEmbeddedItem();
         }
 
     }
 
     /**
      * Crée l'exemplaire de l'incarnation this.periode d'un focus que l'acteur ne connaît encore
-     * dans aucune autre : avec les valeurs initiales propres à l'acteur (statut, focus...).
-     * @param previous Toujours null : un focus déjà connu est copié par deposerParEpoque.
+     * dans aucune autre : avec les valeurs initiales propres à l'acteur (statut, focus...). Un
+     * focus déjà connu est copié par deposerParEpoque.
      */
-    async _createEmbeddedItem(previous) {
+    async _createEmbeddedItem() {
         throw new Error("AbstractFocus._createEmbeddedItem not implemented");
     }
 

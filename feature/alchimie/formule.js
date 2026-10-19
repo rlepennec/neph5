@@ -154,13 +154,13 @@ export class Formule extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem(previous) {
+    async _createEmbeddedItem() {
 
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
-            .withData("focus", (previous == null ? false : Version.data(previous).focus))
-            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
+            .withData("focus", false)
+            .withData("status", Constants.CONNU)
             .withData("quantite", 0)
             .withData("transporte", 0)
             .withIncarnation(this.periode)

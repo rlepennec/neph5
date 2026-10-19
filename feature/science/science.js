@@ -335,7 +335,7 @@ export class Science extends HistoricalFeature {
             if (item != null) {
                 const feature = new Science(actor).withItem(item);
                 const degre = feature.degre;
-                const focus = Science._getFocus(actor, cercle);
+                const focus = Science.getFocus(actor, cercle);
                 if (degre > 0 || focus.length > 0) {
                     data.push({
                         name: item.name,
@@ -411,53 +411,6 @@ export class Science extends HistoricalFeature {
             default:
                 return [];
         }
-    }
-
-    /**
-     * @param actor  The actor object for which to retrieve the focus.
-     * @param cercle The key of the cercle for which to get the focus.
-     * @returns the focus related to the specified cercle of the actor. 
-     */
-    static _getFocus(actor, science) {
-
-        let items = [];
-        const cercle = Science.getCercle(science);
-        const incarnations = new Incarnations(actor);
-        const sids = actor.items.filter(i => i.type === cercle?.type && incarnations.estActif(i)).map(i => i.sid);
-        
-        for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {
-
-            const feature = new FeatureBuilder(actor).withPeriode(incarnations.courante).withOriginalItem(item.sid).create();
-            const embedded = feature.embedded;
-            const degre = feature.degre;
-            const uncastable = feature.uncastable;
-            const limitation = feature.limitation;
-
-            if (degre != null) {
-                embedded.degre = degre * 10;
-            } else if (item.type === 'formule') {
-                embedded.degre = null;
-            }
-
-            items.push({
-                original: item,
-                embedded: embedded,
-                // La quantité peut appartenir à une version : on la résout ici, car le
-                // gabarit est générique et ne sait pas de quel type est l'item listé.
-                quantite: Version.data(embedded).quantite,
-                transporte: Version.data(embedded).transporte,
-                element: Version.data(item).element,
-                elements: Version.data(item).elements,
-                cercle: Version.data(item).cercle,
-                focus: Version.data(embedded).focus,
-                pacte: Version.data(embedded).pacte,
-                uncastable: uncastable,
-                limitation: limitation
-            });
-
-        }
-        return items;
-
     }
 
     /**

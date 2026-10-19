@@ -140,7 +140,7 @@ Les gabarits de fiche lisent `@root.data.<champ>` et écrivent
 `name=(concat @root.versionPath ".<champ>")` dans une moustache, `name="{{@root.versionPath}}.<champ>"`
 en HTML nu : `@root`, parce que les partiels reçoivent l'acteur par `actor`, `../actor`,
 `document` ou `system` selon l'endroit. Le dialogue de jet (`action.hbs`) n'est pas une
-fiche : il reçoit `actorPrimae` résolu par `ActionDataBuilder.export()`. Une version vide
+fiche : il reçoit `itemElement` et `itemElements` résolus par `ActionDataBuilder.export()`. Une version vide
 rend `templates/version-vide-acteur.html` (image et nom), via
 `NephilimActorSheet._configureRenderParts`.
 

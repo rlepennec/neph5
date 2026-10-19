@@ -67,7 +67,7 @@ export class Pratique extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem(previous) {
+    async _createEmbeddedItem() {
 
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)

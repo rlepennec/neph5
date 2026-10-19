@@ -15,7 +15,6 @@ export class EmbeddedItem {
         this.deleteAfter = null;
         this.item = null;
         this.context = null;
-        this.deleteExisting = false;
         this.notCreatedError = true;
         this.alreadyEmbeddedError = true;
         this.incarnation = null;
@@ -63,15 +62,6 @@ export class EmbeddedItem {
         if (arguments != null) {
             this.removeData = arguments;
         }
-        return this;
-    }
-
-    /**
-     * Delete existing item before creation if necessary.
-     * @returns the instance.
-     */
-    withDeleteExisting() {
-        this.deleteExisting = true;
         return this;
     }
 
@@ -135,13 +125,9 @@ export class EmbeddedItem {
 
         // Check if an item is already embbeded
         const already = this.actor.items.find(i => i.sid === this.sid && i.type !== 'incarnation');
-        if (already != null) {
-            if (this.deleteExisting === true) {
-                await this.actor.deleteEmbeddedDocuments('Item', [already.id], { incarnations: false });
-            } else if (this.alreadyEmbeddedError === true) {
-                this.error("Error occurs during embedded item creation because actor item already embedded");
-                return this;
-            }
+        if (already != null && this.alreadyEmbeddedError === true) {
+            this.error("Error occurs during embedded item creation because actor item already embedded");
+            return this;
         }
 
         // Retrieve the word item

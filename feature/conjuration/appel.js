@@ -36,12 +36,12 @@ export class Appel extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem(previous) {
+    async _createEmbeddedItem() {
 
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a appel")
-            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
+            .withData("status", Constants.CONNU)
             .withIncarnation(this.periode)
             .withoutData('description', 'degre', 'appel', 'controle', 'visibilite', 'entropie', 'dommages', 'protection')
             .create();

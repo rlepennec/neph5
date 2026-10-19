@@ -48,12 +48,12 @@ export class Sort extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem(previous) {
+    async _createEmbeddedItem() {
 
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
-            .withData("focus", (previous == null ? false : Version.data(previous).focus))
-            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
+            .withData("focus", false)
+            .withData("status", Constants.CONNU)
             .withIncarnation(this.periode)
             .withoutData('description', 'cercle', 'element', 'voies', 'degre', 'portee', 'duree')
             .create();

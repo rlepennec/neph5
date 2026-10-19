@@ -100,14 +100,14 @@ export class Invocation extends AbstractFocus {
     /**
      * @Override
      */
-    async _createEmbeddedItem(previous) {
+    async _createEmbeddedItem() {
 
         // Create a new focus or move the focus to the new periode.
         await new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a sort")
-            .withData("focus", (previous == null ? false : Version.data(previous).focus))
-            .withData("status", (previous == null ? Constants.CONNU : Version.data(previous).status))
-            .withData("pacte", (previous == null ? false : Version.data(previous).pacte))
+            .withData("focus", false)
+            .withData("status", Constants.CONNU)
+            .withData("pacte", false)
             .withIncarnation(this.periode)
             .withoutData('description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite')
             .create();

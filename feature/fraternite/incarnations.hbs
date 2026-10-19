@@ -4,56 +4,9 @@
     data-tab='incarnations'
     data-drop="true">
 
-    {{#if (eq from "figure")}}
-    <div class="incarnations-header">
-
-        <div class="points tooltip">
-            <img class="circle"/>
-            <input
-                {{#if @root.locked}}disabled{{/if}}
-                class="middle"
-                name="{{@root.versionPath}}.pointsIncarnations"
-                placeholder="0"
-                type="text"
-                value="{{@root.compteurs.pointsIncarnations}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{translate "pointsIncarnations"}}</span>
-        </div>
-
-        <div class="points tooltip">
-            <img class="circle"/>
-            <input
-                {{#if @root.locked}}disabled{{/if}}
-                name="{{@root.versionPath}}.sapienceDepensee"
-                placeholder="0"
-                type="text"
-                value="{{@root.compteurs.sapienceDepensee}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{translate "sapienceDepensee"}}</span>
-        </div>
-
-        <div class="points tooltip">
-            <img class="circle"/>
-            <input
-                {{#if @root.locked}}disabled{{/if}}
-                name="{{@root.versionPath}}.sapience"
-                placeholder="0"
-                type="text"
-                value="{{@root.compteurs.sapience}}"
-                data-dtype="Number"/>
-            <span class="tooltiptext">{{translate "sapienceCourante"}}</span>
-        </div>
-        
-    </div>
-    {{/if}}
-
     {{#if (isEmptyCollection actor.periodes)}}
     <div class="helpPeriode">
-        {{#if (eq from "figure")}}
-        <label>{{translate "aideIncarnations"}}</label>
-        {{else}}
         <label>{{translate "aideHistorique"}}</label>
-        {{/if}}
         <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
     </div>
     {{/if}}
