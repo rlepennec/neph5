@@ -966,6 +966,12 @@ form.nephilim.item .item-root.style-ashbury {
         justify-content: space-around;
         align-items: center;
         gap: 10px 20px;
+
+        // Variante aérée (période : kabbale et alchimie autorisées) : deux cases
+        // seules sur leur ligne, plus écartées l'une de l'autre.
+        &.spaced {
+            column-gap: 80px;
+        }
     }
 
     // ── Partial input.hbs, variante pointillée (arme : type de munitions) ──

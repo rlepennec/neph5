@@ -7589,6 +7589,9 @@ form.nephilim.item .item-root.style-ashbury .checkboxes {
   align-items: center;
   gap: 10px 20px;
 }
+form.nephilim.item .item-root.style-ashbury .checkboxes.spaced {
+  column-gap: 80px;
+}
 form.nephilim.item .item-root.style-ashbury .input.dot {
   display: flex;
   flex-direction: row;

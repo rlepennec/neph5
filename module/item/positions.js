@@ -48,7 +48,7 @@ const POSITIONS = {
     metamorphe:   { classique: [  970, 750 ], ashbury: [ 1400, 820 ] },
     ordonnance:   { classique: [  550, 500 ], ashbury: [  600, 235 ] },
     passe:        { classique: [  550, 500 ], ashbury: [  850, 700 ] },
-    periode:      { classique: [  750, 750 ], ashbury: [  900, 720 ] },
+    periode:      { classique: [  750, 795 ], ashbury: [  900, 780 ] },
     pratique:     { classique: [  550, 500 ], ashbury: [  960, 670 ] },
     quete:        { classique: [  550, 500 ], ashbury: [  900, 750 ] },
     rite:         { classique: [  750, 550 ], ashbury: [  960, 670 ] },
