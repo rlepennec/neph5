@@ -107,12 +107,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "combat", option: "combat", template: `feature/figure/combat.hbs` },
         { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
         { id: "magie", option: "magie", science: "magie" },
-        { id: "kabbale", option: "kabbale", science: "kabbale" },
-        { id: "arbre", option: "kabbale", template: `feature/kabbale/actor/arbre.hbs` },
-        { id: "ordonnances", option: "kabbale", template: `feature/kabbale/actor/ordonnances.hbs` },
-        { id: "alchimie", option: "alchimie", science: "alchimie" },
-        { id: "laboratoire", option: "alchimie", incarnation: true, template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
-        { id: "materiae", option: "alchimie", incarnation: true, template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
+        { id: "kabbale", option: "kabbale", autorise: "kabbale", science: "kabbale" },
+        { id: "arbre", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/actor/arbre.hbs` },
+        { id: "ordonnances", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/actor/ordonnances.hbs` },
+        { id: "alchimie", option: "alchimie", autorise: "alchimie", science: "alchimie" },
+        { id: "laboratoire", option: "alchimie", autorise: "alchimie", incarnation: true, template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
+        { id: "materiae", option: "alchimie", autorise: "alchimie", incarnation: true, template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
         { id: "analogie", option: "analogie", science: "analogie" },
         { id: "dracomachie", option: "dracomachie", science: "dracomachie" },
         { id: "atlanteide", option: "atlanteide", science: "atlanteide" },
@@ -161,13 +161,22 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
         const o = Version.data(this.document).options ?? {};
-        const courante = new Incarnations(this.document).courante != null;
+        const incarnations = new Incarnations(this.document);
+        const courante = incarnations.courante != null;
+        // La période du monde de l'incarnation courante : elle autorise ou non la kabbale et
+        // l'alchimie. Sans elle, rien n'est interdit.
+        const sid = incarnations.periodeDe(incarnations.courante);
+        const periode = sid == null ? null : game.items.find(i => i.type === 'periode' && i.sid === sid);
+        const autorise = discipline => Version.data(periode)[discipline + 'Autorisee'] !== false;
         const tabs = FigureSheet.TAB_DEFINITIONS
             .filter(d => d.option == null || o[d.option])
             .filter(d => d.unlocked !== true || this.locked === false)
             // Les onglets qui définissent des Ka, le laboratoire ou l'akasha exigent une incarnation
             // courante : c'est elle qui les porte
             .filter(d => d.incarnation !== true || courante)
+            // Les onglets de la kabbale et de l'alchimie exigent en plus que la période courante
+            // les autorise
+            .filter(d => d.autorise == null || autorise(d.autorise))
             .map(d => {
                 const tab = {
                     id: d.id,

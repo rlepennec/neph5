@@ -42,6 +42,21 @@ export class PeriodeDataModel extends foundry.abstract.TypeDataModel {
                                 {
                                     required: false
                                 }
+                            ),
+                            // La kabbale et l'alchimie sont-elles possibles à cette période ? Sinon, les
+                            // onglets correspondants des figures qui l'incarnent sont masqués (voir
+                            // FigureSheet). Possibles par défaut, et donc pour les périodes existantes.
+                            kabbaleAutorisee: new foundry.data.fields.BooleanField
+                            (
+                                {
+                                    initial: true
+                                }
+                            ),
+                            alchimieAutorisee: new foundry.data.fields.BooleanField
+                            (
+                                {
+                                    initial: true
+                                }
                             )
                         },
                         { scope: 'v5' }

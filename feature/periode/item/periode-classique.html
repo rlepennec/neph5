@@ -23,6 +23,22 @@
 
             </div>
 
+            <div class="banner">
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title="kabbaleAutorisee"
+                    name=(concat versionPath ".kabbaleAutorisee")
+                    value=data.kabbaleAutorisee
+                    wide=true }}
+
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title="alchimieAutorisee"
+                    name=(concat versionPath ".alchimieAutorisee")
+                    value=data.alchimieAutorisee
+                    wide=true }}
+
+            </div>
+
             {{#unless (isEmptyCollection context.vecus)}}
             <div class="banner">
 

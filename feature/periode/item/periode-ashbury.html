@@ -24,6 +24,28 @@
 
             </div>
 
+            <div class="banner">
+
+                <div class="checkboxes">
+
+                    {{> "systems/neph5e/templates/checkbox.hbs"
+                        title="kabbaleAutorisee"
+                        name=(concat versionPath ".kabbaleAutorisee")
+                        value=data.kabbaleAutorisee
+                        square=true
+                    }}
+
+                    {{> "systems/neph5e/templates/checkbox.hbs"
+                        title="alchimieAutorisee"
+                        name=(concat versionPath ".alchimieAutorisee")
+                        value=data.alchimieAutorisee
+                        square=true
+                    }}
+
+                </div>
+
+            </div>
+
             <section>
 
                 <div class="left">
