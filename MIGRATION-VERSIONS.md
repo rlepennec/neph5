@@ -750,6 +750,26 @@ figure, points d'incarnation compris. `#ecrireValeurs` convertit en nombres puis
 - le **simulacre** : le lien vit déjà dans l'incarnation (section 9) ; reste à retirer l'ancien
   champ `simulacre` de l'acteur, avec les passerelles de migration.
 
+**Les blessures, les états, les armes et les armures** (décidé par l'utilisateur le 20/10) :
+chaque incarnation a les siens, **indépendants**, et une nouvelle incarnation part **sans**.
+
+- Les blessures : le bloc `dommage` (cases physiques et magiques) passe de la figure à
+  l'incarnation (`versions.v5.dommage`), hors de l'héritage. Lecture unique
+  `NephilimActor.blessures` (application des dommages, malus de blessure), contexte
+  `@root.blessures`, écriture `NephilimActor.ecrireBlessures` (vers `Incarnations.ecrireBlessures`
+  pour une figure). Sans incarnation courante, les cases ne se cochent pas.
+- Les états (désorienté, immobilisé, à terre, mort...) : des ActiveEffects portés par
+  l'incarnation courante (`ActiveEffects.porteur`), transférés à la figure. Seuls ceux de
+  l'incarnation courante s'appliquent : `NephilimActiveEffect.isSuppressed` suspend les autres.
+  `NephilimActor.toggleStatusEffect` aiguille le HUD du jeton et le suivi de combat vers
+  l'incarnation courante, `NephilimTokenHUD` y lit les états actifs, et les icônes des jetons
+  sont redessinées quand l'incarnation courante change. Sans incarnation courante, aucun état.
+- Les armes et les armures l'étaient déjà : rattachées à l'incarnation courante au dépôt
+  (`lierEquipement`), seules les siennes comptent (`equipements`).
+
+1.0.10 ne reprend ni blessure (le schéma de la figure les élague) ni état (ceux de la figure sont
+retirés, ses autres effets restent). Vérifié sous node (façade 103 cas, migration 30, états 7).
+
 Restent portés par l'acteur : `description`, `periode` (la clé de l'incarnation courante),
-`manoeuvres`, `dommage`, `options`. La règle de transmission de chaque bloc reste à décider avec
+`manoeuvres`, `options`. La règle de transmission de chaque bloc reste à décider avec
 l'utilisateur, bloc par bloc.

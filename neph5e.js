@@ -9,6 +9,8 @@ import { NephilimChat } from "./module/common/chat.js";
 import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimItemDirectory } from "./module/item/nephilimItemDirectory.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
+import { NephilimActiveEffect } from "./module/common/nephilimActiveEffect.js";
+import { NephilimTokenHUD } from "./module/common/nephilimTokenHUD.js";
 import { FigureSheet } from "./feature/figure/figureSheet.js";
 import { FigurantSheet } from "./feature/figurant/figurantSheet.js";
 import { FraterniteSheet } from "./feature/fraternite/fraterniteSheet.js";
@@ -101,6 +103,9 @@ Hooks.once("init", function () {
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
+    // Les états d'une figure sont portés par son incarnation courante
+    CONFIG.ActiveEffect.documentClass = NephilimActiveEffect;
+    CONFIG.Token.hudClass = NephilimTokenHUD;
 
     // Le répertoire des items de la barre latérale. Tant que NephilimItemDirectory.TYPES
     // vaut null, il se comporte comme celui de Foundry ; lui donner une liste de types

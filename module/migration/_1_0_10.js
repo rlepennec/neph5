@@ -1,6 +1,7 @@
 import { MigrationTools } from "./migration.js";
 import { VersionMigration } from "./versionMigration.js";
 import { _1_0_9 } from "./_1_0_9.js";
+import { ActiveEffects } from "../../feature/core/effects.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../common/version.js";
 
@@ -238,6 +239,13 @@ export class _1_0_10 {
                 await item.update(update);
             }
             await _1_0_9.fixer(item);
+        }
+
+        // Ni blessure ni état ne se transmettent : le schéma élague les blessures de la figure,
+        // et ses états sont retirés. Chaque incarnation part sans.
+        const etats = actor.effects.filter(e => ActiveEffects.estEtat(e)).map(e => e.id);
+        if (etats.length > 0) {
+            await actor.deleteEmbeddedDocuments('ActiveEffect', etats);
         }
 
         return true;

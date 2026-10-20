@@ -1,3 +1,4 @@
+{{!-- Les blessures d'une figure sont portées par son incarnation courante : sans elle, elles ne se cochent pas (voir FigureSheet, sansIncarnation). --}}
 <div class="sante">
 
     <div class="header">
@@ -33,7 +34,8 @@
             {{#if (gt @root.ka.terre 9)}}
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._5")
-                value=@root.data.dommage.physique._5
+                value=@root.blessures.physique._5
+                disabled=@root.sansIncarnation
                 class="physique-5"
             }}
             {{/if}}
@@ -41,44 +43,51 @@
             {{#if (gt @root.ka.terre 4)}}
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._4")
-                value=@root.data.dommage.physique._4
+                value=@root.blessures.physique._4
+                disabled=@root.sansIncarnation
                 class="physique-4"
             }}
             {{/if}}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._3")
-                value=@root.data.dommage.physique._3
+                value=@root.blessures.physique._3
+                disabled=@root.sansIncarnation
                 class="physique-3"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._2")
-                value=@root.data.dommage.physique._2
+                value=@root.blessures.physique._2
+                disabled=@root.sansIncarnation
                 class="physique-2"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique._1")
-                value=@root.data.dommage.physique._1
+                value=@root.blessures.physique._1
+                disabled=@root.sansIncarnation
                 class="physique-1"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique._1")
-                value=@root.data.dommage.magique._1
+                value=@root.blessures.magique._1
+                disabled=@root.sansIncarnation
                 class="magique-1"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique._2")
-                value=@root.data.dommage.magique._2
+                value=@root.blessures.magique._2
+                disabled=@root.sansIncarnation
                 class="magique-2"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique._3")
-                value=@root.data.dommage.magique._3
+                value=@root.blessures.magique._3
+                disabled=@root.sansIncarnation
                 class="magique-3"
             }}
 
@@ -90,13 +99,15 @@
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique.mineure")
-                value=@root.data.dommage.physique.mineure
+                value=@root.blessures.physique.mineure
+                disabled=@root.sansIncarnation
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique.mineure")
-                value=@root.data.dommage.magique.mineure
+                value=@root.blessures.magique.mineure
+                disabled=@root.sansIncarnation
                 class="magique"
             }}
 
@@ -108,13 +119,15 @@
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique.serieuse")
-                value=@root.data.dommage.physique.serieuse
+                value=@root.blessures.physique.serieuse
+                disabled=@root.sansIncarnation
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique.serieuse")
-                value=@root.data.dommage.magique.serieuse
+                value=@root.blessures.magique.serieuse
+                disabled=@root.sansIncarnation
                 class="magique"
             }}
 
@@ -126,13 +139,15 @@
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique.grave")
-                value=@root.data.dommage.physique.grave
+                value=@root.blessures.physique.grave
+                disabled=@root.sansIncarnation
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique.grave")
-                value=@root.data.dommage.magique.grave
+                value=@root.blessures.magique.grave
+                disabled=@root.sansIncarnation
                 class="magique"
             }}
 
@@ -144,13 +159,15 @@
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.physique.mortelle")
-                value=@root.data.dommage.physique.mortelle
+                value=@root.blessures.physique.mortelle
+                disabled=@root.sansIncarnation
                 class="physique"
             }}
 
             {{> "systems/neph5e/templates/checkbox.hbs"
                 name=(concat @root.versionPath ".dommage.magique.mortelle")
-                value=@root.data.dommage.magique.mortelle
+                value=@root.blessures.magique.mortelle
+                disabled=@root.sansIncarnation
                 class="magique"
             }}
 

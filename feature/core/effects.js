@@ -1,3 +1,5 @@
+import { Incarnations } from "../incarnation/incarnations.js";
+
 export class ActiveEffects {
 
     static get DESORIENTE() {
@@ -72,6 +74,14 @@ export class ActiveEffects {
     }
 
     /**
+     * @param effect An ActiveEffect document.
+     * @returns true if it is a state: one of the system's, or a status effect.
+     */
+    static estEtat(effect) {
+        return effect.statuses.size > 0 || ActiveEffects.effects().some(e => e.name === effect.name);
+    }
+
+    /**
      * @param name The name of the active effect.
      * @returns the active effect.
      */
@@ -98,14 +108,32 @@ export class ActiveEffects {
     }
 
     /**
+     * Le document qui porte les états d'un acteur : l'incarnation courante d'une figure (ses
+     * effets s'appliquent à la figure, ceux des autres incarnations non, voir
+     * NephilimActiveEffect), l'acteur lui-même sinon.
+     * @param actor The actor object.
+     * @returns the current incarnation of a figure, null if it has none; the actor otherwise.
+     */
+    static porteur(actor) {
+        if (actor == null) return null;
+        const incarnations = new Incarnations(actor);
+        return incarnations.porte ? incarnations.incarnation(incarnations.courante) : actor;
+    }
+
+    /**
+     * Pose un état. Celui d'une figure va à son incarnation courante ; sans elle, aucun.
      * @param actor  The actor object to which to add the effect.
      * @param effect The effect to add.
      */
     static async add(actor, effect) {
+        const porteur = ActiveEffects.porteur(actor);
+        if (porteur == null) return;
         const object = foundry.utils.mergeObject(effect, {
             origin: actor.uuid,
             disabled: false});
-        await actor.createEmbeddedDocuments("ActiveEffect", [object]);
+        // L'effet d'un item ne s'applique à son acteur que s'il est transféré
+        if (porteur !== actor) object.transfer = true;
+        await porteur.createEmbeddedDocuments("ActiveEffect", [object]);
     }
 
     /**

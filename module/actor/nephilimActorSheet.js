@@ -49,6 +49,8 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         context.ka = this.document.kas;
         // Les bonus de même : ceux de l'incarnation courante pour une figure
         context.bonus = this.document.bonus;
+        // Les blessures de même : celles de l'incarnation courante pour une figure
+        context.blessures = this.document.blessures;
         // Le laboratoire de même : celui de l'incarnation courante pour une figure
         context.alchimie = this.document.alchimie;
         // Les voyages akashiques de même

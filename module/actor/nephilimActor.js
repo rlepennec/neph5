@@ -1,4 +1,5 @@
 import { Arcane } from "../../feature/arcane/arcane.js";
+import { ActiveEffects } from "../../feature/core/effects.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { VersionMigration } from "../migration/versionMigration.js";
@@ -200,6 +201,75 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     get akasha() {
         return this._selonIncarnation('akasha', 'akasha');
+    }
+
+    /**
+     * Les blessures de l'acteur (cases physiques et magiques). Celles d'une figure sont portées
+     * par son incarnation courante (voir Incarnations.blessures) ; un figurant porte les
+     * siennes. Toutes les lectures de blessures passent par ici.
+     * @returns { physique, magique }.
+     */
+    get blessures() {
+        return this._selonIncarnation('blessures', 'dommage');
+    }
+
+    /**
+     * Écrit des blessures : dans l'incarnation courante d'une figure, sur un figurant sinon.
+     * @param valeurs Les valeurs, par chemin dans les blessures (ex: { 'physique._1': true }).
+     * @returns false if a figure has no current incarnation.
+     */
+    async ecrireBlessures(valeurs) {
+        const incarnations = new Incarnations(this);
+        if (incarnations.porte) return incarnations.ecrireBlessures(valeurs);
+        const update = {};
+        for (const [chemin, valeur] of Object.entries(valeurs)) {
+            update[Version.path(this, 'dommage') + '.' + chemin] = valeur;
+        }
+        await this.update(update);
+        return true;
+    }
+
+    /**
+     * Bascule un état depuis le HUD du jeton ou le suivi de combat. Ceux d'une figure sont
+     * portés par son incarnation courante (voir ActiveEffects.porteur) : sans elle, aucun.
+     * Même logique que celle de Foundry, sur l'incarnation au lieu de l'acteur.
+     * @override
+     */
+    async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
+        const porteur = ActiveEffects.porteur(this);
+        if (porteur === this) return super.toggleStatusEffect(statusId, { active, overlay });
+        if (porteur == null) return;
+        const status = CONFIG.statusEffects[statusId];
+        if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
+
+        // Les effets de cet état déjà portés par l'incarnation courante
+        const existing = status._id
+            ? [porteur.effects.get(status._id)?.id].filter(id => id != null)
+            : porteur.effects.filter(e => e.statuses.size === 1 && e.statuses.has(status.id)).map(e => e.id);
+        if (existing.length > 0) {
+            if (active) return true;
+            await porteur.deleteEmbeddedDocuments("ActiveEffect", existing);
+            return false;
+        }
+
+        if (!active && active !== undefined) return;
+        const ActiveEffect = CONFIG.ActiveEffect.documentClass;
+        const effect = await ActiveEffect.fromStatusEffect(statusId, { parent: porteur });
+        if (overlay) effect.updateSource({ "flags.core.overlay": true });
+        effect.updateSource({ transfer: true });
+        return ActiveEffect.create(effect.toObject(), { parent: porteur, keepId: true });
+    }
+
+    /**
+     * Les états d'une figure suivent son incarnation courante : quand elle change, les icônes
+     * de ses jetons sont redessinées, sur tous les clients.
+     * @override
+     */
+    _onUpdate(changed, options, userId) {
+        super._onUpdate(changed, options, userId);
+        if (foundry.utils.getProperty(changed, Version.path(this, 'periode')) !== undefined) {
+            for (const token of this.getActiveTokens()) token.drawEffects();
+        }
     }
 
     /**

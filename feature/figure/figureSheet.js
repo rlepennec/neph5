@@ -536,6 +536,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { ecrire: 'ecrireKa', prefixe: 'ka.' },
         // Les bonus
         { ecrire: 'ecrireBonus', prefixe: 'bonus.' },
+        // Les blessures
+        { ecrire: 'ecrireBlessures', prefixe: 'dommage.' },
         // Les compteurs de sapience et les points d'incarnation, la sapience se reportant sur
         // les incarnations postérieures (Incarnations.ecrireCompteurs)
         { ecrire: 'ecrireCompteurs', champs: ['sapience', 'sapienceDepensee', 'pointsIncarnations'] },

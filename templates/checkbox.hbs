@@ -10,7 +10,7 @@
         class="locked"
         {{/if}}
 
-        {{#if (or (nonNull difficulty) @root.locked)}}
+        {{#if (or (or (nonNull difficulty) @root.locked) disabled)}}
             disabled
         {{/if}}
 

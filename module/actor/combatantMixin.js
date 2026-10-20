@@ -286,7 +286,7 @@ export const CombatantMixin = Base => {
          */
         getWoundsModifier(type) {
             let modifier = 0;
-            const baseDommage = type === Constants.PHYSICAL ? Version.data(this).dommage.physique : Version.data(this).dommage.magique;
+            const baseDommage = type === Constants.PHYSICAL ? this.blessures.physique : this.blessures.magique;
             for (const w in Game.wounds) {
                 const wound = Game.wounds[w];
                 if (baseDommage[wound.id]) {

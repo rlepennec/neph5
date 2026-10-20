@@ -820,6 +820,27 @@ export class Incarnations {
         return this.#ecrireBloc('akasha', valeurs);
     }
 
+    // ------------------------------------------------------------------ les blessures
+
+    /**
+     * Les blessures de la figure (bloc `dommage` : cases physiques et magiques) : celles de
+     * l'incarnation courante, indépendantes de celles des autres époques. Elles ne se
+     * transmettent pas : une nouvelle incarnation part sans blessure. Aucune sans incarnation
+     * courante.
+     * @returns { physique, magique }.
+     */
+    blessures() {
+        return Incarnations.#blocDe(this.#donnees().dommage, 'dommage');
+    }
+
+    /**
+     * @param valeurs Les valeurs, par chemin dans les blessures (ex: { 'physique._1': true }).
+     * @returns false if the actor has no current incarnation.
+     */
+    async ecrireBlessures(valeurs) {
+        return this.#ecrireBloc('dommage', valeurs);
+    }
+
     // ------------------------------------------------------------------ la sapience
 
     /**
@@ -1141,6 +1162,7 @@ export class Incarnations {
      * pour ceux qu'elle n'a pas), sa sapience et sa sapience dépensée, une copie de son
      * laboratoire et de ses voyages akashiques (vides du schéma si elle n'en a pas), sa stase
      * (aucune si elle n'en a pas). Les points d'incarnation partent de 0, sauf à les reprendre.
+     * Les blessures, les états, les armes et les armures ne se transmettent pas : elle part sans.
      * Sert à la création (#creer, depuis l'antérieure active la plus proche) et à la migration
      * 1.0.10 (depuis ce que portait la figure).
      * @param donnees            Les données dont hériter : celles d'une incarnation ou le relevé

@@ -379,70 +379,71 @@ class Damages {
         this.actor = actor;
         this.type = type;
         this.damages = [];
-        if (Version.data(actor).dommage[type]['_1'] === false) {
+        const blessures = actor.blessures[type];
+        if (blessures['_1'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_1'));
         }
-        if (type === 'physique' && actor.kas.terre > 4 && Version.data(actor).dommage[type]['_4'] === false) {
+        if (type === 'physique' && actor.kas.terre > 4 && blessures['_4'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_4'));
         }
-        if (type === 'physique' && actor.kas.terre > 9 && Version.data(actor).dommage[type]['_5'] === false) {
+        if (type === 'physique' && actor.kas.terre > 9 && blessures['_5'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_5'));
         }
-        if (Version.data(actor).dommage[type]['_2'] === false) {
+        if (blessures['_2'] === false) {
             this.damages.push(new Damage()
                 .withSize(2)
                 .withBox('_2'));
         }
-        if (Version.data(actor).dommage[type]['_3'] === false) {
+        if (blessures['_3'] === false) {
             this.damages.push(new Damage()
                 .withSize(3)
                 .withBox('_3'));
         }
-        if (Version.data(actor).dommage[type]['mineure'] === false) {
+        if (blessures['mineure'] === false) {
             this.damages.push(new Damage()
                 .withSize(2)
                 .withBox('mineure'));
         }
-        if (Version.data(actor).dommage[type]['serieuse'] === false) {
+        if (blessures['serieuse'] === false) {
             this.damages.push(new Damage()
                 .withSize(4)
                 .withBox('serieuse'));
         }
-        if (Version.data(actor).dommage[type]['mineure'] === false &&
-            Version.data(actor).dommage[type]['serieuse'] === false) {
+        if (blessures['mineure'] === false &&
+            blessures['serieuse'] === false) {
             this.damages.push(new Damage()
                 .withSize(6)
                 .withBox('mineure')
                 .withBox('serieuse'));
         }
-        if (Version.data(actor).dommage[type]['grave'] === false) {
+        if (blessures['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(6)
                 .withBox('grave'));
         }
-        if (Version.data(actor).dommage[type]['mineure'] === false &&
-            Version.data(actor).dommage[type]['grave'] === false) {
+        if (blessures['mineure'] === false &&
+            blessures['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(8)
                 .withBox('mineure')
                 .withBox('grave'));
         }
-        if (Version.data(actor).dommage[type]['serieuse'] === false &&
-            Version.data(actor).dommage[type]['grave'] === false) {
+        if (blessures['serieuse'] === false &&
+            blessures['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(10)
                 .withBox('serieuse')
                 .withBox('grave'));
         }
-        if (Version.data(actor).dommage[type]['mineure'] === false &&
-            Version.data(actor).dommage[type]['serieuse'] === false &&
-            Version.data(actor).dommage[type]['grave'] === false) {
+        if (blessures['mineure'] === false &&
+            blessures['serieuse'] === false &&
+            blessures['grave'] === false) {
             this.damages.push(new Damage()
                 .withSize(12)
                 .withBox('mineure')
@@ -464,7 +465,7 @@ class Damages {
         }
 
         // Exit if the actor is already out
-        if (Version.data(this.actor).dommage[this.type]['mortelle'] === true) {
+        if (this.actor.blessures[this.type]['mortelle'] === true) {
             return null;
         }
 
@@ -489,7 +490,7 @@ class Damages {
 
         // To much damage
         } else {
-            await this.actor.update({ [Version.path(this.actor, 'dommage') + "." + this.type + ".mortelle"]: true });
+            await this.actor.ecrireBlessures({ [this.type + '.mortelle']: true });
             return new Set(['mortelle']);
         }
 
@@ -528,9 +529,9 @@ class Damage {
      * @param type  The type of damage to apply.
      */
     async apply(actor, type) {
-        const data = foundry.utils.duplicate(Version.data(actor).dommage[type]);
+        const data = foundry.utils.duplicate(actor.blessures[type]);
         this.boxes.forEach(box => data[box] = true);
-        await actor.update({ [Version.path(actor, 'dommage') + "." + type]: data });
+        await actor.ecrireBlessures({ [type]: data });
     }
 
 }

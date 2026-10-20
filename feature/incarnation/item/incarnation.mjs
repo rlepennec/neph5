@@ -21,10 +21,16 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *                 laboratoires accessibles, laboratoire courant) ;
  *   - `akasha`  : les voyages akashiques de la figure à cette époque (nef, barge, boussole,
  *                 compas) ;
+ *   - `dommage` : les blessures de la figure à cette époque (cases physiques et magiques) ;
+ *                 elles ne se transmettent pas ;
  *   - `bonus`   : les bonus de la figure à cette époque (mouvement, initiative, dommage,
  *                 protection) ;
  *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
  *                 transmet pas aux autres incarnations ;
+ *
+ * Elle porte aussi, comme effets (ActiveEffect), les états de la figure à cette époque
+ * (désorienté, immobilisé, à terre, mort...) : seuls ceux de l'incarnation courante
+ * s'appliquent (voir NephilimActiveEffect) ; ils ne se transmettent pas.
  *
  * Elle ne porte pas ce qui lui est lié : chaque objet lié (vécu, savoir, focus...) est un
  * exemplaire qui porte la clé de son incarnation (IncarnationField) et ses propres valeurs,
@@ -502,6 +508,103 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                             )
                                         }
                                     )
+                                }
+                            ),
+                            // Les blessures de la figure à cette époque, cases physiques et magiques (voir
+                            // Incarnations.blessures) : elles ne se transmettent pas.
+                            dommage: new foundry.data.fields.SchemaField
+                            (
+                                {
+                                    physique: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            _1: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            _2: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            _3: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            _4: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),                            
+                                            _5: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            mineure: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            serieuse: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            grave: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            mortelle: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            )   
+                                        }
+                                    ),
+                                    magique: new foundry.data.fields.SchemaField
+                                    (
+                                        {
+                                            _1: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            _2: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            _3: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            mineure: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            serieuse: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            grave: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ),
+                                            mortelle: new foundry.data.fields.BooleanField(
+                                                {
+                                                    initial: false
+                                                }
+                                            ) 
+                                        }
+                                    ),
                                 }
                             ),
                             // Les bonus de la figure à cette époque (voir Incarnations.bonus).
