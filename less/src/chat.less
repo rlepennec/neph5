@@ -4,6 +4,14 @@
     font-size: 15px;
     overflow: visible;
 
+    // Un message du système ne déborde jamais de sa carte : la colonne de gauche
+    // (.side-background) remonte de 55px pour couvrir l'en-tête, et dépassait sur le
+    // message précédent quand l'en-tête était plus haut au premier rendu (corrigé par
+    // un rafraîchissement).
+    &:has(> .message-content > form.chat) {
+        overflow: clip;
+    }
+
     .message-header {
         position: relative;
         font-family: 'AJensonPro';
