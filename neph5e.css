@@ -8101,6 +8101,9 @@ form.nephilim.item .item-root.style-ashbury main:has(> div.portraits) > span *:n
   font-size: 15px;
   overflow: visible;
 }
+.chat-message:has(> .message-content > form.chat) {
+  overflow: clip;
+}
 .chat-message .message-header {
   position: relative;
   font-family: 'AJensonPro';
