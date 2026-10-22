@@ -796,8 +796,8 @@ Un nouveau type d'item du monde, `groupe` (« Groupe de compétences »), réuni
   soit la version affichée (pas de fiche « version vide »). Supprimer un groupe ne supprime pas
   ses compétences ; supprimer une compétence du monde la retire de tous les groupes. Une
   compétence créée ensuite n'entre dans aucun groupe d'office.
-- **Migration 1.0.11** (`module/migration/_1_0_11.js`) : le monde reçoit un groupe
-  « Compétences V5 », compatible v5, avec toutes ses compétences ; rien si un groupe existe
-  déjà. Pas de compendium.
+- **Migration** : à la fin de la 1.0.10 (`_1_0_10.creerGroupe`, ex-1.0.11, fusionnée le
+  22/10 puisque la 1.8.0 n'a jamais été livrée), le monde reçoit un groupe « Compétences V5 »,
+  compatible v5, avec toutes ses compétences ; rien si un groupe existe déjà. Pas de compendium.
 
 Vérifié sous node (règle, éditeur, vécu, migration : 15 cas ; modèle).

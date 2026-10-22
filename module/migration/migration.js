@@ -8,7 +8,6 @@ import { _1_0_7 } from "./_1_0_7.js";
 import { _1_0_8 } from "./_1_0_8.js";
 import { _1_0_9 } from "./_1_0_9.js";
 import { _1_0_10 } from "./_1_0_10.js";
-import { _1_0_11 } from "./_1_0_11.js";
 
 export class MigrationTools {
 
@@ -177,9 +176,6 @@ export class MigrationTools {
             await _1_0_10.migrate('1.0.10');
         }
 
-        if (foundry.utils.isNewerVersion('1.0.11', worldTemplateVersion)) {
-            await _1_0_11.migrate('1.0.11');
-        }
 
         if (game.settings.get('neph5e', 'note')) {
             await MigrationTools.important();

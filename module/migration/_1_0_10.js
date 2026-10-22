@@ -52,6 +52,11 @@ import { Version } from "../common/version.js";
  *      conversion (voir _1_0_9.aConvertir) : ils ne sont réécrits sans leurs anciens champs
  *      qu'une fois ces champs lus.
  *
+ * PUIS, une fois pour le monde : les groupes de compétences. Seules les compétences d'un
+ * groupe compatible avec la version de règles du monde sont actives (voir Groupe) : le monde
+ * reçoit un groupe « Compétences V5 », compatible v5, qui contient toutes ses compétences.
+ * Un monde qui a déjà un groupe n'en reçoit pas d'autre.
+ *
  * Une copie dont la période n'est pas embarquée ne comptait pas : elle reste sur l'acteur, sans
  * incarnation, si c'est le seul exemplaire de son item.
  *
@@ -67,6 +72,11 @@ import { Version } from "../common/version.js";
  * relancée sans danger.
  */
 export class _1_0_10 {
+
+    /**
+     * Le nom du groupe de compétences créé (voir creerGroupe).
+     */
+    static GROUPE = "Compétences V5";
 
     static async migrate(target) {
 
@@ -85,10 +95,31 @@ export class _1_0_10 {
             MigrationTools.progress(msg, ++etape, size);
         }
 
+        await _1_0_10.creerGroupe();
+
         await game.settings.set("neph5e", "worldTemplateVersion", target);
 
         ui.notifications.info("Update to " + target + " done"
             + (convertis > 0 ? " (" + convertis + " acteur(s) converti(s))" : ""));
+    }
+
+    /**
+     * Crée le groupe « Compétences V5 », compatible v5, avec toutes les compétences du monde ;
+     * rien si le monde a déjà un groupe.
+     */
+    static async creerGroupe() {
+        if (game.items.some(i => i.type === 'groupe')) return;
+        const competences = game.items.filter(i => i.type === 'competence')
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(i => i.sid);
+        await CONFIG.Item.documentClass.create({
+            name: _1_0_10.GROUPE,
+            type: 'groupe',
+            system: {
+                compatibilites: ['v5'],
+                competences: competences
+            }
+        });
     }
 
     /**
