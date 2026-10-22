@@ -1,3 +1,5 @@
+import { Version } from "../../../module/common/version.js";
+import { Groupe } from "../../groupe/groupe.js";
 import { Constants } from "../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 
@@ -21,7 +23,9 @@ export class ArmeSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                types: Constants.ARMES
+                types: Constants.ARMES,
+                // Une compétence inactive n'apparaît pas (voir Groupe)
+                competence: Groupe.reference(Version.data(this.document, this.version).competence)
             }
         }
     }

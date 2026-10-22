@@ -1,0 +1,44 @@
+<section class="item-root style-classique" data-drop="true">
+
+    <aside></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main>
+
+            <div class="banner">
+
+                {{#if (nonNull data.base)}}
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="base"
+                    name=(concat versionPath ".base")
+                    value=data.base }}
+                {{/if}}
+
+                {{#each context.compatibilites as |compatibilite|}}
+                {{> "systems/neph5e/templates/checkbox.hbs"
+                    title=compatibilite.version
+                    name=(concat "compatibilites." compatibilite.version)
+                    value=compatibilite.active
+                    wide=true }}
+                {{/each}}
+
+            </div>
+
+            <div class="banner">
+
+                {{> "systems/neph5e/templates/list.hbs"
+                    title="competences"
+                    class="column-2"
+                    values=system.competences
+                    names="system.competences" }}
+
+            </div>
+
+        </main>
+
+    </article>
+
+</section>

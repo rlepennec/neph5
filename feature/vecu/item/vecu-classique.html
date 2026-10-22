@@ -25,12 +25,12 @@
 
             </div>
 
-            {{#unless (isEmptyCollection data.competences)}}
+            {{#unless (isEmptyCollection context.competences)}}
             <div class="banner">
 
                 {{> "systems/neph5e/templates/list.hbs"
                     class="column-2"
-                    values=data.competences
+                    values=context.competences
                     names=(concat versionPath ".competences") }}
 
             </div>

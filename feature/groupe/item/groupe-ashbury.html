@@ -1,0 +1,66 @@
+<section class="item-root style-ashbury" data-drop="true">
+
+    <aside></aside>
+
+    <article>
+
+        {{> "systems/neph5e/templates/header.hbs"}}
+
+        <main>
+
+            <div class="banner">
+
+                {{#if (nonNull data.base)}}
+                {{> "systems/neph5e/templates/input.hbs"
+                    title="base"
+                    name=(concat versionPath ".base")
+                    value=data.base
+                }}
+                {{/if}}
+
+                <div class="checkboxes spaced">
+
+                    {{#each context.compatibilites as |compatibilite|}}
+                    {{> "systems/neph5e/templates/checkbox.hbs"
+                        title=compatibilite.version
+                        name=(concat "compatibilites." compatibilite.version)
+                        value=compatibilite.active
+                        square=true
+                    }}
+                    {{/each}}
+
+                </div>
+
+            </div>
+
+            <section>
+
+                <div class="left">
+
+                    {{!-- La place de l'illustration, à définir plus tard --}}
+                    {{> "systems/neph5e/templates/image.hbs"
+                        src=document.system.illustration
+                        title="illustration"
+                        editPath="system.illustration"
+                        wrap=true
+                    }}
+
+                </div>
+
+                <div class="right">
+
+                    {{> "systems/neph5e/templates/list.hbs"
+                        title="competences"
+                        values=system.competences
+                        names="system.competences"
+                    }}
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </article>
+
+</section>

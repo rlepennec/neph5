@@ -305,7 +305,8 @@ export class AbstractManoeuver {
                         ? ActionDataBuilder.competenceOf(actor, weapon)
                         : null;
                 }
-                const sid = Version.data(actor).manoeuvres[field];
+                // Une compétence inactive vaut une manœuvre non définie (voir Groupe)
+                const sid = actor.manoeuvre(field);
                 const item = game.items.find(i => i.sid === sid);
                 return item == null ? none : item.type === 'competence' ? item : actor.items.find(i => i.sid === sid);
             }

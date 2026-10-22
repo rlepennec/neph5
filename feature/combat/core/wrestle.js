@@ -19,7 +19,7 @@ export class Wrestle extends AbstractCombatFeature {
      */
     constructor(actor) {
         super(actor);
-        this.item = actor.type === 'figure' ? game.items.find(i => i.sid === Version.data(actor).manoeuvres.lutte) : null;
+        this.item = actor.type === 'figure' ? game.items.find(i => i.sid === actor.manoeuvre('lutte')) : null;
         // Immobilisé, on ne lutte que pour se libérer : contre celui qui tient la prise, sans
         // avoir à le cibler. Sans cible, Libérer tomberait dans un jet d'opposition générique,
         // qui ne lève jamais l'immobilisation.

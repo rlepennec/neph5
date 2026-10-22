@@ -70,6 +70,8 @@ import { CatalyseurDataModel } from "./feature/alchimie/item/catalyseur.mjs";
 import { CapaciteDataModel } from "./feature/capacite/item/capacite.mjs";
 import { ChuteDataModel } from "./feature/chute/item/chute.mjs";
 import { CompetenceDataModel } from "./feature/competence/item/competence.mjs";
+import { GroupeDataModel } from "./feature/groupe/item/groupe.mjs";
+import { GroupeSheet } from "./feature/groupe/item/groupe.js";
 import { DivinationDataModel } from "./feature/bohemien/item/divination.mjs";
 import { DracomachieDataModel } from "./feature/dracomachie/item/dracomachie.mjs";
 import { FormuleDataModel } from "./feature/alchimie/item/formule.mjs";
@@ -153,6 +155,7 @@ Hooks.once("init", function () {
         divination: { model: DivinationDataModel, sheet: DivinationSheet },
         dracomachie: { model: DracomachieDataModel, sheet: DracomachieSheet },
         formule: { model: FormuleDataModel, sheet: FormuleSheet },
+        groupe: { model: GroupeDataModel, sheet: GroupeSheet },
         habitus: { model: HabitusDataModel, sheet: HabitusSheet },
         invocation: { model: InvocationDataModel, sheet: InvocationSheet },
         magie: { model: MagieDataModel, sheet: MagieSheet },

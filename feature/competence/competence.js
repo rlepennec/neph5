@@ -4,6 +4,7 @@ import { Version } from "../../module/common/version.js";
 import { ActionDataBuilder } from "../core/actionDataBuilder.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
+import { Groupe } from "../groupe/groupe.js";
 
 export class Competence extends AbstractFeature {
 
@@ -70,6 +71,8 @@ export class Competence extends AbstractFeature {
      * @Override
      */
     get sapiences() {
+        // Une compétence inactive ne compte pas (voir Groupe)
+        if (!Groupe.estActive(this.sid)) return 0;
         let total = 0;
         for (let vecu of new Incarnations(this.actor).vecusActifs().filter(v =>
             Version.data(v).competences.find(c => c === this.sid) != null)) {
@@ -148,14 +151,17 @@ export class Competence extends AbstractFeature {
     }
 
     /**
-     * Gets the competences according to the specified character and the active periodes.
+     * Gets the competences according to the specified character and the active periodes. Only
+     * the active ones are displayed: those of a group compatible with the rules version of the
+     * world (voir Groupe).
      * @param actor The actor object. 
      * @returns the competences to display in the character sheet.
      */
     static getAll(actor) {
         const competences = [];
+        const actives = Groupe.competencesActives();
         for (let c of Array.from(game.items.values())
-            .filter(i => i.type === 'competence')
+            .filter(i => i.type === 'competence' && actives.has(i.sid))
             .sort((a, b) => (a.name > b.name ? 1 : -1))) {
             const feature = new Competence(actor, c);
             competences.push({

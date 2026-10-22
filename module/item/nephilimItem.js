@@ -256,6 +256,11 @@ export class NephilimItem extends Item {
                     await item.update({ [Version.path(item, 'competence')]: null });
                 }
 
+                // Remove from all groups of the world
+                for (let item of game.items.filter(i => i.type === 'groupe' && i.system.competences.includes(this.sid))) {
+                    await item.update({ 'system.competences': item.system.competences.filter(sid => sid !== this.sid) });
+                }
+
                 break;
 
             case 'formule':

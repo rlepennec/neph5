@@ -1,4 +1,5 @@
 import { Constants } from "../../module/common/constants.js";
+import { Groupe } from "../groupe/groupe.js";
 import { Version } from "../../module/common/version.js";
 
 export class ActionDataBuilder {
@@ -462,7 +463,7 @@ export class ActionDataBuilder {
     static competenceOf(actor, weapon) {
         switch (actor.type) {
             case 'figure':
-                return game.items.find(i => i.sid === Version.data(weapon).competence);
+                return game.items.find(i => i.sid === Groupe.reference(Version.data(weapon).competence));
             case 'figurant':
                 return {
                     name: game.i18n.localize('NEPHILIM.menace')

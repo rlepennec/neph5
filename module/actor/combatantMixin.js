@@ -1,5 +1,6 @@
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Version } from "../../module/common/version.js";
+import { Groupe } from "../../feature/groupe/groupe.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { CombatHistory } from "../../feature/combat/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
@@ -107,10 +108,19 @@ export const CombatantMixin = Base => {
         }
 
         /**
+         * @param field 'esquive' ou 'lutte'.
+         * @returns le sid de la compétence ou du vécu de la manœuvre ; null si elle n'est pas
+         *          définie, ou si sa compétence est inactive (voir Groupe).
+         */
+        manoeuvre(field) {
+            return Groupe.reference(Version.data(this).manoeuvres?.[field] ?? null);
+        }
+
+        /**
          * @returns true if lutte manoeuver is available for the actor. 
          */
         get isLutteAvailable() {
-            return this.type !== 'figure' || Version.data(this).manoeuvres.lutte != null;
+            return this.type !== 'figure' || this.manoeuvre('lutte') != null;
         }
 
         /**
@@ -120,7 +130,7 @@ export const CombatantMixin = Base => {
             if (this.type !== 'figure') {
                 return "";
             }
-            const sid = Version.data(this).manoeuvres.lutte;
+            const sid = this.manoeuvre('lutte');
             if (sid == null) {
                 return "";
             } else {
@@ -133,7 +143,7 @@ export const CombatantMixin = Base => {
          * @returns true if esquive manoeuver is available for the actor. 
          */
         get isEsquiveAvailable() {
-            return this.type !== 'figure' || Version.data(this).manoeuvres.esquive != null;
+            return this.type !== 'figure' || this.manoeuvre('esquive') != null;
         }
 
         /**
@@ -143,7 +153,7 @@ export const CombatantMixin = Base => {
             if (this.type !== 'figure') {
                 return "";
             }
-            const sid = Version.data(this).manoeuvres.esquive;
+            const sid = this.manoeuvre('esquive');
             if (sid == null) {
                 return "";
             } else {
@@ -324,7 +334,7 @@ export const CombatantMixin = Base => {
             if (combatant == null) {
                 const feature = new FeatureBuilder(this)
                     .withScope("actor")
-                    .withOriginalItem(Version.data(weapon).competence)
+                    .withOriginalItem(Groupe.reference(Version.data(weapon).competence))
                     .create();
                 if (feature == null) {
                     ui.notifications.error("Aucune compétence n'est associée à cette arme");
@@ -425,7 +435,7 @@ export const CombatantMixin = Base => {
 
                     const feature = new FeatureBuilder(this)
                         .withScope("actor")
-                        .withOriginalItem(Version.data(this).manoeuvres.lutte)
+                        .withOriginalItem(this.manoeuvre('lutte'))
                         .create();
                     if (feature == null) {
                         ui.notifications.error("La compétence de lutte est introuvable");

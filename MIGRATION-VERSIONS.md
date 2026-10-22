@@ -773,3 +773,31 @@ retirés, ses autres effets restent). Vérifié sous node (façade 103 cas, migr
 Restent portés par l'acteur : `description`, `periode` (la clé de l'incarnation courante),
 `manoeuvres`, `options`. La règle de transmission de chaque bloc reste à décider avec
 l'utilisateur, bloc par bloc.
+
+## 11. Les groupes de compétences (décidé par l'utilisateur le 22 octobre 2026)
+
+Un nouveau type d'item du monde, `groupe` (« Groupe de compétences »), réunit des compétences.
+
+- **Modèle** (`feature/groupe/item/groupe.mjs`) : à la racine, l'identifiant, l'illustration
+  (place réservée, image à définir), `compatibilites` (les versions de règles, `Version.ALL`) et
+  `competences` (les sid, partagés par toutes les versions) ; en version, `v5.base` (une
+  caractéristique ou un calcul sur les caractéristiques, seulement enregistrée pour l'instant).
+  Une compétence peut appartenir à plusieurs groupes.
+- **Règle** (`feature/groupe/groupe.js`) : une compétence est **active** si au moins un de ses
+  groupes est compatible avec la version de règles du monde (`Version.world`). Une compétence
+  inactive disparaît de la liste de la figure (`Competence.getAll`), des vécus (fiche), des
+  armes (fiche, jet hors combat, compétence en combat : comme sans compétence), de l'esquive et
+  de la lutte (`actor.manoeuvre(field)` : manœuvre non définie) et des décomptes
+  (`Competence.sapiences` = 0). **Rien n'est supprimé** : les références restent et reviennent
+  si la compétence redevient active ; la fiche du vécu ne réécrit plus sa liste à
+  l'enregistrement, pour ne pas effacer les compétences masquées.
+- **Éditeur** (`feature/groupe/item/groupe.js`, deux styles) : nom dans l'en-tête, une case par
+  version de règles, base, liste des compétences (dépôt, corbeille). Il s'affiche quelle que
+  soit la version affichée (pas de fiche « version vide »). Supprimer un groupe ne supprime pas
+  ses compétences ; supprimer une compétence du monde la retire de tous les groupes. Une
+  compétence créée ensuite n'entre dans aucun groupe d'office.
+- **Migration 1.0.11** (`module/migration/_1_0_11.js`) : le monde reçoit un groupe
+  « Compétences V5 », compatible v5, avec toutes ses compétences ; rien si un groupe existe
+  déjà. Pas de compendium.
+
+Vérifié sous node (règle, éditeur, vécu, migration : 15 cas ; modèle).

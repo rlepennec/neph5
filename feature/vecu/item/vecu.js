@@ -4,6 +4,7 @@ import { Version } from "../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
 import { Mnemos } from "./mnemos.js";
+import { Groupe } from "../../groupe/groupe.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -49,6 +50,11 @@ export class VecuSheet extends NephilimItemSheet {
                 elements: Constants.ELEMENTS
             }
         };
+
+        // Les compétences affichées : les inactives sont masquées (voir Groupe), mais restent
+        // dans le vécu
+        const competences = Version.data(this.document, this.version).competences ?? [];
+        context.context.competences = competences.filter(sid => Groupe.reference(sid) != null);
 
         // Ouvert depuis un acteur (item embarqué) : le vécu embarqué ne stocke pas de
         // description propre. Elle est héritée de l'objet original et affichée en
@@ -161,18 +167,14 @@ export class VecuSheet extends NephilimItemSheet {
 
         // Les champs du vécu appartiennent à la version affichée : les clefs du
         // formulaire portent donc son préfixe, celui-là même que les gabarits ont posé.
-        const data = Version.data(this.document, this.version);
         const prefixe = Version.prefix(this.document, this.version);
 
-        // Update competences
-        let size = data.competences.length;
-        const competences = [];
-        for (let index = 0; index < size; index++) {
-            const name = prefixe + ".competences.[" + index + "]";
-            competences.push(formData.object[name]);
+        // Les compétences se changent par dépôt et par la corbeille : les champs cachés de leur
+        // liste ne sont pas enregistrés. Réécrire la liste depuis eux effacerait les compétences
+        // inactives, masquées de la fiche (voir Groupe).
+        for (const name of Object.keys(formData.object).filter(k => k.startsWith(prefixe + ".competences."))) {
             delete formData.object[name];
         }
-        formData.object[prefixe + ".competences"] = competences;
 
         // Les mnémos ne sont plus saisis dans la fiche mais dans leur propre dialogue :
         // aucun champ du formulaire ne les porte. La boucle qui les relisait ici les
