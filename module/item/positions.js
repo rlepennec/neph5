@@ -41,7 +41,7 @@ const POSITIONS = {
     divination:   { classique: [  550, 500 ], ashbury: [  960, 670 ] },
     dracomachie:  { classique: [  960, 670 ], ashbury: [  960, 670 ] },
     formule:      { classique: [ 1340, 730 ], ashbury: [ 1385, 780 ] },
-    groupe:       { classique: [  650, 550 ], ashbury: [  900, 650 ] },
+    groupe:       { classique: [  650, 550 ], ashbury: [  900, 550 ] },
     habitus:      { classique: [  850, 550 ], ashbury: [ 1220, 720 ] },
     invocation:   { classique: [ 1040, 730 ], ashbury: [ 1220, 700 ] },
     magie:        { classique: [  550, 500 ], ashbury: [  850, 650 ] },

@@ -43,9 +43,24 @@ export class GroupeSheet extends NephilimItemSheet {
                 compatibilites: Version.ALL.map(version => ({
                     version: version,
                     active: this.document.system.compatibilites.includes(version)
-                }))
+                })),
+                // Les compétences, par ordre alphabétique ; celles qui n'existent plus à la fin
+                competences: GroupeSheet.parNom(this.document.system.competences)
             }
         }
+    }
+
+    /**
+     * @param sids The system identifiers of competences.
+     * @returns them sorted by the name of their world item; unknown ones last.
+     */
+    static parNom(sids) {
+        const nom = sid => game.items.find(i => i.sid === sid)?.name;
+        return [...sids].sort((a, b) => {
+            const na = nom(a), nb = nom(b);
+            if (na == null || nb == null) return (na == null) - (nb == null);
+            return na.localeCompare(nb);
+        });
     }
 
     /**
