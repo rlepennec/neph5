@@ -8,6 +8,8 @@ import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimItemDirectory } from "./module/item/nephilimItemDirectory.js";
+import { NephilimCompendium } from "./module/item/nephilimCompendium.js";
+import { Repertoire } from "./module/item/repertoire.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { NephilimActiveEffect } from "./module/common/nephilimActiveEffect.js";
 import { NephilimTokenHUD } from "./module/common/nephilimTokenHUD.js";
@@ -109,9 +111,8 @@ Hooks.once("init", function () {
     CONFIG.ActiveEffect.documentClass = NephilimActiveEffect;
     CONFIG.Token.hudClass = NephilimTokenHUD;
 
-    // Le répertoire des items de la barre latérale. Tant que NephilimItemDirectory.TYPES
-    // vaut null, il se comporte comme celui de Foundry ; lui donner une liste de types
-    // restreint la boîte de création sans toucher au manifeste.
+    // Le répertoire des items de la barre latérale : il n'affiche et ne propose à la création
+    // que les types compatibles avec la version de règles du monde, parmi Repertoire.TYPES.
     CONFIG.ui.items = NephilimItemDirectory;
 
     CONFIG.Canvas.layers.nephilim = { layerClass: foundry.canvas.layers.ControlsLayer, group: "primary" };
@@ -183,7 +184,16 @@ Hooks.once("init", function () {
     // L'incarnation n'existe qu'embarquée, et seule la façade Incarnations la crée : pas de
     // fiche, et elle n'est pas proposée à la création dans la barre latérale.
     CONFIG.Item.dataModels.incarnation = IncarnationDataModel;
-    NephilimItemDirectory.TYPES = Object.keys(ITEM_TYPES);
+    Repertoire.TYPES = Object.keys(ITEM_TYPES);
+
+    // Les compendiums d'items n'affichent que les types compatibles avec la version de règles
+    // du monde, comme le répertoire des items : leur fenêtre est posée avant d'être créée
+    // (Game.initializeUI, après le hook setup).
+    Hooks.once("setup", () => {
+        for (const pack of game.packs) {
+            if (pack.documentName === 'Item') pack.applicationClass = NephilimCompendium;
+        }
+    });
 
     for (const [type, { sheet }] of Object.entries(ITEM_TYPES)) {
         foundry.documents.collections.Items.registerSheet('nephilim', sheet, { types: [type], makeDefault: true });

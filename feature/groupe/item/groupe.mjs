@@ -10,7 +10,9 @@ import { Version } from "../../../module/common/version.js";
  * sid), partagées par toutes les versions.
  *
  * CE QUI PASSE EN VERSION : la base du groupe, une caractéristique ou un calcul sur les
- * caractéristiques, propre à chaque version de règles. Elle n'est encore qu'enregistrée.
+ * caractéristiques, propre à chaque version de règles. Elle n'est encore qu'enregistrée. Les
+ * chunks v2, v3 et eidolon sont vides : ils rendent le groupe visible dans ces versions (voir
+ * Version.compatible).
  */
 export class GroupeDataModel extends foundry.abstract.TypeDataModel {
 
@@ -50,6 +52,8 @@ export class GroupeDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
+                    v2: new ChunkField({}, { scope: 'v2' }),
+                    v3: new ChunkField({}, { scope: 'v3' }),
                     v5: new ChunkField
                     (
                         {
@@ -61,7 +65,8 @@ export class GroupeDataModel extends foundry.abstract.TypeDataModel {
                             )
                         },
                         { scope: 'v5' }
-                    )
+                    ),
+                    eidolon: new ChunkField({}, { scope: 'eidolon' })
                 },
                 { scope: 'versions' }
             )

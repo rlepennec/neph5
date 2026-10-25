@@ -1,5 +1,6 @@
 import { NettoyageDialog } from "./nettoyage.js";
 import { positionOf } from "../item/positions.js";
+import { Repertoire } from "../item/repertoire.js";
 import { Version } from "./version.js";
 
 export const registerSystemSettings = function () {
@@ -46,7 +47,12 @@ export const registerSystemSettings = function () {
     // changer le réglage ne défait pas sous les yeux du MJ une version qu'il a choisie dans
     // une fiche. onChange ne fait qu'oublier la valeur que Version garde en cache.
     game.settings.register('neph5e', 'version', {
-        onChange: () => Version.oublierMonde(),
+        // Les objets affichés suivent la version : le répertoire des items et les compendiums
+        // d'items sont réaffichés (voir Repertoire)
+        onChange: () => {
+            Version.oublierMonde();
+            Repertoire.rafraichir();
+        },
         config: true,
         scope: 'world',
         name: game.i18n.localize('SETTINGS.version'),

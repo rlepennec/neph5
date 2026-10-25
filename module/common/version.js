@@ -28,6 +28,20 @@ export class Version {
     static ALL = ['v2', 'v3', 'v5', 'eidolon', 'litorien'];
 
     /**
+     * Un type d'item est compatible avec une version de règles si son modèle la déclare (un
+     * chunk de ce nom sous `versions`, même vide). Seuls les items de types compatibles avec la
+     * version du monde sont affichés : répertoire des items, compendiums, création (voir
+     * Repertoire).
+     * @param type    Le type d'item.
+     * @param version La version de règles, celle du monde par défaut.
+     * @returns true if compatible; a type whose model carries no versions always is.
+     */
+    static compatible(type, version = Version.world) {
+        const versions = CONFIG.Item.dataModels?.[type]?.schema?.fields?.versions;
+        return versions?.fields == null || version in versions.fields;
+    }
+
+    /**
      * La version du monde, lue une fois puis gardée : voir world.
      */
     static #monde = null;

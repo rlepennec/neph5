@@ -815,3 +815,23 @@ par les compatibilités des groupes de compétences, mais **aucun modèle ne les
 réglé sur l'un d'eux voit des données vides (fiches « version vide »). Les modèles ne portant
 plus que `v5`, le bouton de version des fiches n'apparaît plus ; il reviendra avec le premier
 système implémenté. La fiche de groupe affiche une case par système (classique : une par ligne).
+
+## 13. N'afficher que les objets compatibles avec la version du monde (25 octobre 2026)
+
+Un type d'item est **compatible** avec une version de règles si son modèle la déclare : un chunk
+de ce nom sous `versions`, même vide (`Version.compatible(type)`). Compétences : v2, v3, v5,
+Eidolon ; groupes de compétences : v2, v3, v5, Eidolon (chunks vides ajoutés pour les rendre
+visibles) ; les autres types : v5.
+
+- **Répertoire des items** (`NephilimItemDirectory`) et **compendiums d'items**
+  (`NephilimCompendium`, posé sur les packs d'items au hook `setup`) : l'arbre affiché est
+  filtré (`Repertoire.filtrer`), les dossiers vidés par le filtre disparaissent, un dossier déjà
+  vide reste. La création ne propose que les types compatibles (`Repertoire.creer`).
+- **Changement de version** : le réglage du monde (MJ seul) réaffiche le répertoire et les
+  compendiums d'items ouverts, sur tous les clients (`Repertoire.rafraichir`). Rien n'est
+  supprimé ; le MJ ne voit, lui aussi, que les objets compatibles.
+- **Objets embarqués** : hors v5, les fiches d'acteur affichent « version vide » (aucun modèle
+  d'acteur ne porte d'autre version), donc aucun objet ; en v5, tous les types sont compatibles.
+  Il n'y a donc rien à filtrer aujourd'hui : il faudra filtrer les listes des fiches quand un
+  type d'acteur portera une autre version.
+- Le glisser-déposer sera traité plus tard (proposition de l'utilisateur à venir).
