@@ -11,9 +11,6 @@ import { VersionMigration } from "../../../module/migration/versionMigration.js"
  * d'un exemplaire lié. Le reste — la
  * description, le degré et la période — décrit ce que vaut l'objet sous une édition donnée,
  * et appartient donc à sa version.
- *
- * Le chunk v1 est vide tant que la première édition n'est pas décrite : une fiche ouverte
- * dessus n'affiche que son en-tête et son image.
  */
 export class ArcaneDataModel extends foundry.abstract.TypeDataModel {
 
@@ -37,7 +34,6 @@ export class ArcaneDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v1: new ChunkField({}, { scope: 'v1' }),
                     v5: new ChunkField
                     (
                         {

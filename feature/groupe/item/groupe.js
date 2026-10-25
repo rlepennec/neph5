@@ -21,7 +21,7 @@ export class GroupeSheet extends NephilimItemSheet {
 
     /**
      * Le nom, les compatibilités et les compétences ne dépendent pas des règles : la fiche
-     * s'affiche même pour une version où le groupe ne définit rien (v1), au lieu de la fiche
+     * s'affiche même pour une version où le groupe ne définit rien (v2...), au lieu de la fiche
      * « version vide ».
      * @override
      */

@@ -23,7 +23,9 @@ export class Version {
     /**
      * Les versions connues, dans l'ordre où on les propose.
      */
-    static ALL = ['v1', 'v5'];
+    // v2, v3, Eidolon et Litorien ne sont pas encore implémentées : déclarées seulement, aucun
+    // modèle ne les porte (leurs données sont vides, les fiches affichent « version vide »).
+    static ALL = ['v2', 'v3', 'v5', 'eidolon', 'litorien'];
 
     /**
      * La version du monde, lue une fois puis gardée : voir world.

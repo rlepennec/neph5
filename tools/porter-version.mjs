@@ -73,7 +73,6 @@ export function porter(fichier, type) {
         + "            versions: new ChunkField\n"
         + "            (\n"
         + "                {\n"
-        + "                    v1: new ChunkField({}, { scope: 'v1' }),\n"
         + "                    v5: new ChunkField\n"
         + "                    (\n"
         + "                        {\n"

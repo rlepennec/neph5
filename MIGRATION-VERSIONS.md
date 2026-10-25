@@ -801,3 +801,17 @@ Un nouveau type d'item du monde, `groupe` (« Groupe de compétences »), réuni
   compatible v5, avec toutes ses compétences ; rien si un groupe existe déjà. Pas de compendium.
 
 Vérifié sous node (règle, éditeur, vécu, migration : 15 cas ; modèle).
+
+## 12. Les systèmes de règles proposés (décidé par l'utilisateur le 25 octobre 2026)
+
+`v1` disparaît, **comme si elle n'avait jamais existé** : plus de chunk `v1` dans les 37 modèles
+(ni dans le générateur `tools/porter-version.mjs`), plus de libellé. Les migrations n'en
+faisaient rien d'explicite : un monde migré depuis une copie 1.7.0 n'en porte plus aucune trace.
+
+`Version.ALL` = `v2`, `v3`, `v5`, `eidolon`, `litorien` (libellés « Deuxième édition »,
+« Troisième édition », « Cinquième édition », « Eidolon », « Litorien »). Les quatre nouveaux
+systèmes ne sont **pas implémentés** : ils sont proposés par le réglage de version du monde et
+par les compatibilités des groupes de compétences, mais **aucun modèle ne les porte**. Un monde
+réglé sur l'un d'eux voit des données vides (fiches « version vide »). Les modèles ne portant
+plus que `v5`, le bouton de version des fiches n'apparaît plus ; il reviendra avec le premier
+système implémenté. La fiche de groupe affiche une case par système (classique : une par ligne).

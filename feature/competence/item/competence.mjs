@@ -14,9 +14,6 @@ import { VersionMigration } from "../../../module/migration/versionMigration.js"
  *
  * CE QUI PASSE EN VERSION : la description, qui peut être réécrite d'une édition à l'autre,
  * et l'élément, qui est une notion de règles.
- *
- * LE CHUNK v1 EST VIDE, volontairement : la première édition sera décrite plus tard. Une
- * fiche ouverte dessus n'affichera donc rien d'autre que son en-tête et son image.
  */
 export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
 
@@ -37,7 +34,6 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v1: new ChunkField({}, { scope: 'v1' }),
                     v5: new ChunkField
                     (
                         {

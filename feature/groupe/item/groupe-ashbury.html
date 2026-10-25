@@ -8,17 +8,21 @@
 
         <main>
 
+            {{#if (nonNull data.base)}}
             <div class="banner">
 
-                {{#if (nonNull data.base)}}
                 {{> "systems/neph5e/templates/input.hbs"
                     title="base"
                     name=(concat versionPath ".base")
                     value=data.base
                 }}
-                {{/if}}
 
-                <div class="checkboxes spaced">
+            </div>
+            {{/if}}
+
+            <div class="banner">
+
+                <div class="checkboxes">
 
                     {{#each context.compatibilites as |compatibilite|}}
                     {{> "systems/neph5e/templates/checkbox.hbs"

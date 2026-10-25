@@ -13,8 +13,6 @@ import { VersionMigration } from "../../../module/migration/versionMigration.js"
  * que vaut le vécu sous une édition donnée — son élément, son degré, sa période, les
  * compétences qu'il ouvre et ses effets mnémos — et appartient donc à sa version. La période
  * n'est renseignée que sur le vécu du monde : celle d'un vécu lié est celle de son incarnation.
- *
- * Le chunk v1 est vide tant que la première édition n'est pas décrite.
  */
 export class VecuDataModel extends foundry.abstract.TypeDataModel {
 
@@ -37,7 +35,6 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v1: new ChunkField({}, { scope: 'v1' }),
                     v5: new ChunkField
                     (
                         {

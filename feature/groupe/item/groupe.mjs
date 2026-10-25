@@ -10,8 +10,7 @@ import { Version } from "../../../module/common/version.js";
  * sid), partagées par toutes les versions.
  *
  * CE QUI PASSE EN VERSION : la base du groupe, une caractéristique ou un calcul sur les
- * caractéristiques, propre à chaque version de règles. Elle n'est encore qu'enregistrée. Le
- * chunk v1 est vide, comme pour les autres types.
+ * caractéristiques, propre à chaque version de règles. Elle n'est encore qu'enregistrée.
  */
 export class GroupeDataModel extends foundry.abstract.TypeDataModel {
 
@@ -51,7 +50,6 @@ export class GroupeDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v1: new ChunkField({}, { scope: 'v1' }),
                     v5: new ChunkField
                     (
                         {

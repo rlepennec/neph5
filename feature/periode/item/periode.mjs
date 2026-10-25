@@ -21,7 +21,6 @@ export class PeriodeDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v1: new ChunkField({}, { scope: 'v1' }),
                     v5: new ChunkField
                     (
                         {
