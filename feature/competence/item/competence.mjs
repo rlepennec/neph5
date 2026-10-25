@@ -14,6 +14,9 @@ import { VersionMigration } from "../../../module/migration/versionMigration.js"
  *
  * CE QUI PASSE EN VERSION : la description, qui peut être réécrite d'une édition à l'autre,
  * et l'élément, qui est une notion de règles.
+ *
+ * LES CHUNKS v2, v3 ET eidolon SONT VIDES, en attendant que ces systèmes soient décrits : une
+ * fiche ouverte dessus n'affiche que son en-tête et son image.
  */
 export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
 
@@ -34,6 +37,8 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
+                    v2: new ChunkField({}, { scope: 'v2' }),
+                    v3: new ChunkField({}, { scope: 'v3' }),
                     v5: new ChunkField
                     (
                         {
@@ -52,7 +57,8 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
                             )
                         },
                         { scope: 'v5' }
-                    )
+                    ),
+                    eidolon: new ChunkField({}, { scope: 'eidolon' })
                 },
                 { scope: 'versions' }
             )
