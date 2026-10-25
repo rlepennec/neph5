@@ -62,6 +62,23 @@ export const registerSystemSettings = function () {
         default: 'v5'
     });
 
+    // Le filtre des objets affichés, qui s'ajoute à celui des types (voir Version.visible) :
+    // tous les objets des types compatibles avec la version de règles du monde, ou seulement
+    // ceux qui y sont activés. Une compétence non activée est alors inactive en jeu (voir Groupe).
+    game.settings.register('neph5e', 'filtreObjets', {
+        onChange: () => Repertoire.rafraichir(),
+        config: true,
+        scope: 'world',
+        name: game.i18n.localize('SETTINGS.filtreObjets'),
+        hint: game.i18n.localize('SETTINGS.filtreObjetsDesc'),
+        type: String,
+        choices: {
+            types: game.i18n.localize('SETTINGS.filtreObjetsTypes'),
+            objets: game.i18n.localize('SETTINGS.filtreObjetsObjets')
+        },
+        default: 'types'
+    });
+
     game.settings.register('neph5e', 'note', {
         config: true,
         scope: 'world',

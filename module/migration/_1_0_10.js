@@ -116,8 +116,9 @@ export class _1_0_10 {
             name: _1_0_10.GROUPE,
             type: 'groupe',
             system: {
-                compatibilites: ['v5'],
-                competences: competences
+                competences: competences,
+                // Activé pour la v5 seulement
+                versions: Object.fromEntries(Version.ALL.map(version => [version, { enabled: version === 'v5' }]))
             }
         });
     }

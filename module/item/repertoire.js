@@ -17,12 +17,14 @@ export class Repertoire {
      * @param noeud Un nœud de l'arbre d'un répertoire (dossiers et entrées, voir
      *              DirectoryCollectionMixin) : documents du monde, ou entrées d'index d'un
      *              compendium, qui portent aussi leur type.
-     * @returns une copie du nœud sans les entrées de types incompatibles ; null pour un dossier
-     *          que ce filtre a vidé (un dossier déjà vide reste, pour qu'on puisse y déposer).
+     * @param strict Le filtre du monde (voir Version.visible), lu une fois pour tout l'arbre.
+     * @returns une copie du nœud sans les entrées masquées (types incompatibles, et objets non
+     *          activés si le réglage le demande) ; null pour un dossier que ce filtre a vidé (un
+     *          dossier déjà vide reste, pour qu'on puisse y déposer).
      */
-    static filtrer(noeud) {
-        const children = noeud.children.map(c => Repertoire.filtrer(c)).filter(c => c != null);
-        const entries = noeud.entries.filter(e => Version.compatible(e.type));
+    static filtrer(noeud, strict = Version.filtreStrict) {
+        const children = noeud.children.map(c => Repertoire.filtrer(c, strict)).filter(c => c != null);
+        const entries = noeud.entries.filter(e => Version.visible(e, strict));
         const vide = children.length === 0 && entries.length === 0;
         const avait = noeud.children.length > 0 || noeud.entries.length > 0;
         if (!noeud.root && vide && avait) return null;
@@ -62,6 +64,10 @@ export class Repertoire {
      */
     static rafraichir() {
         ui.items?.render();
+        // Les fiches d'acteur aussi : les compétences actives en dépendent (voir Groupe)
+        for (const app of foundry.applications.instances.values()) {
+            if (app.rendered && app.document instanceof foundry.documents.Actor) app.render();
+        }
         for (const pack of game.packs ?? []) {
             if (pack.documentName !== 'Item') continue;
             for (const app of pack.apps) if (app.rendered) app.render();

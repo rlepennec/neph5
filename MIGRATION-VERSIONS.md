@@ -835,3 +835,28 @@ visibles) ; les autres types : v5.
   Il n'y a donc rien à filtrer aujourd'hui : il faudra filtrer les listes des fiches quand un
   type d'acteur portera une autre version.
 - Le glisser-déposer sera traité plus tard (proposition de l'utilisateur à venir).
+
+## 14. Un objet activé ou non pour chaque version (décidé par l'utilisateur le 25 octobre 2026)
+
+Un type peut être compatible avec une version (§13) sans que chaque objet de ce type le soit :
+le MJ peut vouloir la compétence Musique en v5 et pas en v2.
+
+- **`VersionField`** (`module/field/versionField.js`) remplace le `ChunkField` de chaque version
+  dans les 34 modèles d'**objets** (les trois modèles d'acteurs gardent `ChunkField`) : il ajoute
+  `enabled` (vrai par défaut), à plat avec les autres champs (compétence v5 : `enabled`,
+  `description`, `element`). Pas de migration : les données existantes le reçoivent du schéma.
+  Une version qui ne porte que `enabled` reste « vide » pour la fiche (`Version.decrite`).
+- **Configuration de l'objet** (l'engrenage, `ItemOptionsSelector`), sous le style, pour le MJ
+  et sur un objet du monde ou d'un compendium : une case par version déclarée par le type.
+- **Réglage du monde `filtreObjets`** (MJ) : « Types compatibles » (défaut, le filtre du §13) ou
+  « Types compatibles et objets activés » (`Version.visible`, `Version.active`). Il s'ajoute au
+  filtre des types dans le répertoire et les compendiums ; les index des compendiums d'items
+  portent `system.versions.<v>.enabled`. En mode strict, une compétence non activée est aussi
+  **inactive en jeu** (voir `Groupe`), comme une compétence hors groupe. Changer le réglage
+  réaffiche le répertoire, les compendiums et les fiches d'acteur.
+- **Groupe de compétences** : ses compatibilités sont devenues son `enabled` par version (une
+  seule notion) ; les cases de sa fiche sont retirées, il se règle dans sa configuration. Un
+  groupe d'avant est converti par `GroupeDataModel.migrateData` ; la 1.0.10 crée « Compétences
+  V5 » activé pour la v5 seule. Une compétence est active si un de ses groupes l'est pour la
+  version du monde (`Version.active` : type compatible et `enabled`).
+- Le bouton de version des fiches fait toujours défiler toutes les versions du type.

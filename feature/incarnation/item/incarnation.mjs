@@ -1,4 +1,5 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
+import { VersionField } from "../../../module/field/versionField.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 
 /**
@@ -50,7 +51,7 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v5: new ChunkField
+                    v5: new VersionField
                     (
                         {
                             periode: new foundry.data.fields.StringField

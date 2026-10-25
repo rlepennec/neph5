@@ -20,23 +20,6 @@
             </div>
             {{/if}}
 
-            <div class="banner">
-
-                <div class="checkboxes">
-
-                    {{#each context.compatibilites as |compatibilite|}}
-                    {{> "systems/neph5e/templates/checkbox.hbs"
-                        title=compatibilite.version
-                        name=(concat "compatibilites." compatibilite.version)
-                        value=compatibilite.active
-                        square=true
-                    }}
-                    {{/each}}
-
-                </div>
-
-            </div>
-
             <section>
 
                 <div class="left">

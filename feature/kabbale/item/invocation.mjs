@@ -1,4 +1,5 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
+import { VersionField } from "../../../module/field/versionField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 import { Constants } from "../../../module/common/constants.js";
 import { Illustration } from "../../../module/common/illustration.js";
@@ -52,7 +53,7 @@ export class InvocationDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v5: new ChunkField
+                    v5: new VersionField
                     (
                         {
                             description: new foundry.data.fields.StringField(

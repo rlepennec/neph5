@@ -1,9 +1,9 @@
 import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { Version } from "../../../module/common/version.js";
 
 /**
- * L'éditeur d'un groupe de compétences : son nom (l'en-tête), ses compatibilités avec les
- * versions de règles, sa base, et ses compétences, qu'on y dépose et qu'on en retire.
+ * L'éditeur d'un groupe de compétences : son nom (l'en-tête), sa base, et ses compétences,
+ * qu'on y dépose et qu'on en retire. Les versions de règles pour lesquelles il vaut se règlent
+ * dans sa configuration, comme pour tout objet (voir ItemOptionsSelector).
  * Supprimer le groupe ne supprime pas ses compétences.
  */
 export class GroupeSheet extends NephilimItemSheet {
@@ -39,11 +39,6 @@ export class GroupeSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                // Une case par version de règles
-                compatibilites: Version.ALL.map(version => ({
-                    version: version,
-                    active: this.document.system.compatibilites.includes(version)
-                })),
                 // Les compétences, par ordre alphabétique ; celles qui n'existent plus à la fin
                 competences: GroupeSheet.parNom(this.document.system.competences)
             }
@@ -96,16 +91,6 @@ export class GroupeSheet extends NephilimItemSheet {
         // Les compétences se changent par dépôt et par la corbeille : les champs cachés de leur
         // liste ne sont pas enregistrés
         for (const key of Object.keys(objet).filter(k => k.startsWith('system.competences.'))) {
-            delete objet[key];
-        }
-
-        // Une case par version de règles : la liste des compatibilités. Fiche verrouillée, les
-        // cases ne sont pas envoyées et la liste reste telle quelle.
-        const cases = Version.ALL.map(version => 'compatibilites.' + version);
-        if (cases.some(key => key in objet)) {
-            objet['system.compatibilites'] = Version.ALL.filter(version => objet['compatibilites.' + version] === true);
-        }
-        for (const key of cases) {
             delete objet[key];
         }
 

@@ -19,18 +19,6 @@
             </div>
             {{/if}}
 
-            <div class="banner stacked">
-
-                {{#each context.compatibilites as |compatibilite|}}
-                {{> "systems/neph5e/templates/checkbox.hbs"
-                    title=compatibilite.version
-                    name=(concat "compatibilites." compatibilite.version)
-                    value=compatibilite.active
-                    wide=true }}
-                {{/each}}
-
-            </div>
-
             <div class="banner">
 
                 {{> "systems/neph5e/templates/list.hbs"

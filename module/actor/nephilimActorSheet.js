@@ -32,7 +32,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      */
     _configureRenderParts(options) {
         const parts = super._configureRenderParts(options);
-        if (Object.keys(Version.data(this.document, this.version) ?? {}).length === 0) {
+        if (!Version.decrite(this.document, this.version)) {
             parts.main.template = `systems/neph5e/templates/version-vide-acteur.html`;
         }
         return parts;

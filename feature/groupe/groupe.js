@@ -2,11 +2,12 @@ import { Version } from "../../module/common/version.js";
 
 /**
  * Les groupes de compétences. Un groupe (item du monde de type `groupe`) réunit des
- * compétences et dit avec quelles versions de règles il est compatible. Une compétence peut
+ * compétences et dit pour quelles versions de règles il vaut. Une compétence peut
  * appartenir à plusieurs groupes.
  *
- * Une compétence est ACTIVE si au moins un de ses groupes est compatible avec la version de
- * règles du monde. Une compétence inactive disparaît de la liste des compétences de la figure,
+ * Une compétence est ACTIVE si au moins un de ses groupes est activé pour la version de règles
+ * du monde (son `enabled`, voir VersionField) et, si le réglage `filtreObjets` ne montre que les
+ * objets activés, si elle-même l'est. Une compétence inactive disparaît de la liste des compétences de la figure,
  * des vécus, des armes, de l'esquive, de la lutte et des décomptes de degrés ; rien n'est
  * supprimé : les références restent, et reviennent si la compétence redevient active.
  */
@@ -19,8 +20,16 @@ export class Groupe {
     static competencesActives(version = Version.world) {
         const actives = new Set();
         for (const groupe of game.items) {
-            if (groupe.type !== 'groupe' || !groupe.system.compatibilites.includes(version)) continue;
+            if (groupe.type !== 'groupe' || !Version.active(groupe, version)) continue;
             for (const sid of groupe.system.competences) actives.add(sid);
+        }
+        // Si le réglage du monde ne montre que les objets activés, une compétence non activée
+        // pour la version est inactive
+        if (Version.filtreStrict) {
+            for (const sid of actives) {
+                const competence = game.items.find(i => i.sid === sid && i.type === 'competence');
+                if (competence != null && !Version.active(competence, version)) actives.delete(sid);
+            }
         }
         return actives;
     }

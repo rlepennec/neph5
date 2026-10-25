@@ -138,7 +138,7 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         // laisser chaque fiche masquer ses blocs un à un, on en rend une autre, qui garde
         // l'en-tête et annonce qu'il n'y a rien à montrer. Un seul endroit pour trente-cinq
         // types, et rien à défaire le jour où la version sera décrite.
-        if (Object.keys(Version.data(this.document, this.version) ?? {}).length === 0) {
+        if (!Version.decrite(this.document, this.version)) {
             parts.main.template = `systems/neph5e/templates/version-vide.html`;
             return parts;
         }

@@ -10,6 +10,7 @@ import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimItemDirectory } from "./module/item/nephilimItemDirectory.js";
 import { NephilimCompendium } from "./module/item/nephilimCompendium.js";
 import { Repertoire } from "./module/item/repertoire.js";
+import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { NephilimActiveEffect } from "./module/common/nephilimActiveEffect.js";
 import { NephilimTokenHUD } from "./module/common/nephilimTokenHUD.js";
@@ -185,6 +186,13 @@ Hooks.once("init", function () {
     // fiche, et elle n'est pas proposée à la création dans la barre latérale.
     CONFIG.Item.dataModels.incarnation = IncarnationDataModel;
     Repertoire.TYPES = Object.keys(ITEM_TYPES);
+
+    // Les index des compendiums d'items portent l'activation de chaque version : le filtre
+    // des objets activés en a besoin sans charger les documents (voir Version.visible).
+    CONFIG.Item.compendiumIndexFields = [
+        ...(CONFIG.Item.compendiumIndexFields ?? []),
+        ...Version.ALL.map(version => `system.versions.${version}.enabled`)
+    ];
 
     // Les compendiums d'items n'affichent que les types compatibles avec la version de règles
     // du monde, comme le répertoire des items : leur fenêtre est posée avant d'être créée

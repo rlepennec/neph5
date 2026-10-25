@@ -1,4 +1,5 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
+import { VersionField } from "../../../module/field/versionField.js";
 import { Constants } from "../../../module/common/constants.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 import { IncarnationField } from "../../../module/field/incarnationField.js";
@@ -35,7 +36,7 @@ export class VecuDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v5: new ChunkField
+                    v5: new VersionField
                     (
                         {
                             element: new foundry.data.fields.StringField

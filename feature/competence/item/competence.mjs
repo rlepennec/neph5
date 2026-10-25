@@ -1,4 +1,5 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
+import { VersionField } from "../../../module/field/versionField.js";
 import { Constants } from "../../../module/common/constants.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
@@ -37,9 +38,9 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v2: new ChunkField({}, { scope: 'v2' }),
-                    v3: new ChunkField({}, { scope: 'v3' }),
-                    v5: new ChunkField
+                    v2: new VersionField({}, { scope: 'v2' }),
+                    v3: new VersionField({}, { scope: 'v3' }),
+                    v5: new VersionField
                     (
                         {
                             description: new foundry.data.fields.StringField
@@ -58,7 +59,7 @@ export class CompetenceDataModel extends foundry.abstract.TypeDataModel {
                         },
                         { scope: 'v5' }
                     ),
-                    eidolon: new ChunkField({}, { scope: 'eidolon' })
+                    eidolon: new VersionField({}, { scope: 'eidolon' })
                 },
                 { scope: 'versions' }
             )

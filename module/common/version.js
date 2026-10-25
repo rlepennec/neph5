@@ -42,6 +42,50 @@ export class Version {
     }
 
     /**
+     * @param document Un objet du monde, embarqué, ou une entrée d'index de compendium.
+     * @param version  La version de règles, celle du monde par défaut.
+     * @returns true si l'objet est défini pour cette version : son type la déclare et l'objet
+     *          n'y est pas désactivé (`enabled`, vrai par défaut, voir VersionField).
+     */
+    static active(document, version = Version.world) {
+        return Version.compatible(document?.type, version)
+            && document?.system?.versions?.[version]?.enabled !== false;
+    }
+
+    /**
+     * @returns true si le réglage du monde ne montre que les objets activés pour la version
+     *          (`filtreObjets` vaut 'objets') ; false s'il montre tous ceux des types
+     *          compatibles.
+     */
+    static get filtreStrict() {
+        try {
+            return game.settings.get('neph5e', 'filtreObjets') === 'objets';
+        } catch {
+            return false;
+        }
+    }
+
+    /**
+     * @param document Un objet du monde, embarqué, ou une entrée d'index de compendium.
+     * @param strict   Le filtre du monde, lu une fois par l'appelant qui en traite plusieurs.
+     * @returns true si l'objet s'affiche : son type est compatible avec la version du monde,
+     *          et, si le réglage le demande, il y est activé.
+     */
+    static visible(document, strict = Version.filtreStrict) {
+        return strict ? Version.active(document) : Version.compatible(document?.type);
+    }
+
+    /**
+     * @param document The document.
+     * @param version  The version, the world one by default.
+     * @returns true si le document décrit cette version : il y porte autre chose que
+     *          `enabled`. Sinon, sa fiche affiche « version vide ».
+     */
+    static decrite(document, version = null) {
+        return Object.keys(Version.data(document, version) ?? {}).some(k => k !== 'enabled');
+    }
+
+    /**
      * La version du monde, lue une fois puis gardée : voir world.
      */
     static #monde = null;

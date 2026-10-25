@@ -66,6 +66,10 @@
     "SETTINGS.styleItemSheetDesc": "Permet de définir le style des feuilles",
     "SETTINGS.version": "Version des règles",
     "SETTINGS.versionDesc": "Version affichée à l'ouverture d'une fiche, et retenue partout où aucune fiche ne permet de choisir",
+    "SETTINGS.filtreObjets": "Objets affichés",
+    "SETTINGS.filtreObjetsDesc": "Tous les objets des types compatibles avec la version des règles, ou seulement ceux qui y sont activés (une compétence non activée est alors inactive en jeu)",
+    "SETTINGS.filtreObjetsTypes": "Types compatibles",
+    "SETTINGS.filtreObjetsObjets": "Types compatibles et objets activés",
 
     "NEPHILIM": {
         "activation": "Activation",
@@ -148,7 +152,7 @@
         "combat": "Combat",
         "competences": "Compétences",
         "competencesEtVecus": "Compétences et Vécus",
-        "compatibilites": "Compatibilités",
+        "versionsRegles": "Versions de règles",
         "comprendre": "Comprendre",
         "conjuration": "Conjuration",
         "connaissances": "Connaissances",

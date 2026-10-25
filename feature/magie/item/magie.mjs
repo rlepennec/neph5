@@ -1,4 +1,5 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
+import { VersionField } from "../../../module/field/versionField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 import { IncarnationField } from "../../../module/field/incarnationField.js";
@@ -24,7 +25,7 @@ export class MagieDataModel extends foundry.abstract.TypeDataModel {
             versions: new ChunkField
             (
                 {
-                    v5: new ChunkField
+                    v5: new VersionField
                     (
                         {
                             description: new foundry.data.fields.StringField

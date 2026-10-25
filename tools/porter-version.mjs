@@ -73,7 +73,7 @@ export function porter(fichier, type) {
         + "            versions: new ChunkField\n"
         + "            (\n"
         + "                {\n"
-        + "                    v5: new ChunkField\n"
+        + "                    v5: new VersionField\n"
         + "                    (\n"
         + "                        {\n"
         + version.map(e => indente(e, 28)).join(",\n") + "\n"
@@ -91,6 +91,7 @@ export function porter(fichier, type) {
     const profond = fichier.split("/").length - 1;
     const prefixe = "../".repeat(profond);
     const imports = `import { ChunkField } from "${prefixe}module/field/chunkField.js";\n`
+        + `import { VersionField } from "${prefixe}module/field/versionField.js";\n`
         + `import { VersionMigration } from "${prefixe}module/migration/versionMigration.js";\n`;
     sortie = imports + sortie;
 
