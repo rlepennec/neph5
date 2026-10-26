@@ -860,3 +860,22 @@ le MJ peut vouloir la compétence Musique en v5 et pas en v2.
   V5 » activé pour la v5 seule. Une compétence est active si un de ses groupes l'est pour la
   version du monde (`Version.active` : type compatible et `enabled`).
 - Le bouton de version des fiches fait toujours défiler toutes les versions du type.
+
+## 15. La période, commune à toutes les versions (décidé par l'utilisateur le 26 octobre 2026)
+
+Premier pas de la préparation des autres règles. Les périodes et les incarnations sont communes à
+toutes les versions ; seule la définition de certains de leurs champs peut changer.
+
+La **période** n'a plus de champs propres aux règles : `description`, `aube`, `contexte`,
+`kabbaleAutorisee` et `alchimieAutorisee` sont à la racine de `system`, et le modèle n'a plus de
+`versions`. Elle est retirée de `VersionMigration.CHAMPS` : la 1.0.9 ne la touche plus, et les
+champs d'un monde 1.7.0, déjà à la racine, y restent (la 1.0.10 lit toujours `actif` et
+`previous` des périodes embarquées par son relevé). Aucun code de lecture ne change :
+`Version.data` rend `system` et `Version.path` écrit `system.<champ>` pour un document sans
+`versions`. Une période est compatible et visible dans toutes les versions ; elle n'a ni bouton
+de version ni cases d'activation. Pas de passerelle pour les mondes de test déjà migrés : la
+1.8.0 n'est pas livrée, ils se remigrent depuis une copie 1.7.0. Vérifié sous node (7 cas).
+
+À venir : l'**incarnation** (champs communs `periode`, `actif`, `predecesseur`, `successeur`,
+`simulacre` et `stase` ; les autres, dont la sapience et les points d'incarnation, propres aux
+règles), selon les instructions de l'utilisateur.

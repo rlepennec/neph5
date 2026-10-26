@@ -57,7 +57,6 @@ export class VersionMigration {
         metamorphe:  { v5: ['element', 'description', 'metamorphoses', 'formed', 'visible', 'humeur', 'portrait'] },
         ordonnance:  { v5: ['description', 'monde', 'periode'] },
         passe:       { v5: ['description', 'degre', 'periode'] },
-        periode:     { v5: ['description', 'aube', 'contexte', 'actif', 'previous'] },
         pratique:    { v5: ['description', 'cercle', 'degre', 'periode'] },
         quete:       { v5: ['description', 'degre', 'periode'] },
         rite:        { v5: ['description', 'cercle', 'desmos', 'status', 'periode', 'focus'] },
