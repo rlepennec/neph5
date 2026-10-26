@@ -949,14 +949,10 @@ export class NephilimActor extends CombatantMixin(Actor) {
         return super._onClickDocumentLink(event);
     }
 
-    /**
-     * Render the sheet if opened.
-     */
-    async render() {
-        if (this?.sheet?.rendered === true) {
-            await this.sheet.render(true);
-        }
-    }
+    // Pas de surcharge de render() : celle de Foundry réaffiche les fenêtres ouvertes de l'acteur
+    // sans les forcer. Foundry l'appelle lui-même à chaque modification de l'acteur ou de ses
+    // items ; une surcharge qui forçait sheet.render(true) ramenait la fiche au premier plan, par
+    // exemple devant le formulaire d'incarnation après un dépôt.
 
     /**
      * Le jet d'un passé.
