@@ -89,7 +89,7 @@ import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
 import { IncarnationDataModel } from "./feature/incarnation/item/incarnation.mjs";
 import { LaboratoireDataModel } from "./feature/alchimie/item/laboratoire.mjs";
 import { AkashaDataModel } from "./feature/akasha/item/akasha.mjs";
-import { KaDataModel } from "./feature/nephilim/item/ka.mjs";
+import { KaDataModel } from "./feature/figure/ka.mjs";
 import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
 import { RiteDataModel } from "./feature/necromancie/item/rite.mjs";
 import { RituelDataModel } from "./feature/epee/item/rituel.mjs";

@@ -2,7 +2,7 @@ import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Version } from "../../module/common/version.js";
 import { AkashaDataModel } from "../akasha/item/akasha.mjs";
-import { KaDataModel } from "../nephilim/item/ka.mjs";
+import { KaDataModel } from "../figure/ka.mjs";
 import { LaboratoireDataModel } from "../alchimie/item/laboratoire.mjs";
 
 /**

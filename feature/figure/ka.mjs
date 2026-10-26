@@ -1,7 +1,7 @@
-import { ChunkField } from "../../../module/field/chunkField.js";
-import { IncarnationField } from "../../../module/field/incarnationField.js";
-import { UUIDField } from "../../../module/field/UUIDField.js";
-import { VersionField } from "../../../module/field/versionField.js";
+import { ChunkField } from "../../module/field/chunkField.js";
+import { IncarnationField } from "../../module/field/incarnationField.js";
+import { UUIDField } from "../../module/field/UUIDField.js";
+import { VersionField } from "../../module/field/versionField.js";
 
 /**
  * Les Ka d'une figure à une époque, et ce qui s'y rattache : les douze Ka (`ka`), la

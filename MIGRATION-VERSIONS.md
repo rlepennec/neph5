@@ -905,7 +905,7 @@ incarnation de **figure** (pas de fraternité) :
 |---|---|---|
 | `laboratoire` | `feature/alchimie/item/laboratoire.mjs` | `alchimie` |
 | `akasha` | `feature/akasha/item/akasha.mjs` | `akasha` |
-| `ka` | `feature/nephilim/item/ka.mjs` | `ka`, `sapience`, `sapienceDepensee`, `pointsIncarnations`, `dommage`, `bonus` |
+| `ka` | `feature/figure/ka.mjs` | `ka`, `sapience`, `sapienceDepensee`, `pointsIncarnations`, `dommage`, `bonus` |
 
 Chacun porte à la racine son `id` et la clé de son incarnation (`incarnation`, IncarnationField).
 Les définitions sont reprises à l'identique de l'incarnation (vérifié : mêmes valeurs par défaut),
