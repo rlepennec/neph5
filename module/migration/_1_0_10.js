@@ -225,17 +225,18 @@ export class _1_0_10 {
             img: p.img,
             system: {
                 id: p.sid,
+                // Commun à toutes les versions de règles
+                periode: p.sid,
+                actif: lire(p, 'actif') === true,
+                // La stase de la figure : copiée dans chaque incarnation
+                ...Incarnations.heritageCommun(figure),
+                // Le simulacre de la figure ne se transmet pas : il devient celui de
+                // l'incarnation courante seulement
+                simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null,
                 versions: {
-                    v5: {
-                        periode: p.sid,
-                        actif: lire(p, 'actif') === true,
-                        // Ce que portait la figure : copié dans chaque incarnation, comme une
-                        // nouvelle incarnation hérite de l'antérieure, points d'incarnation compris
-                        ...Incarnations.heritage(figure, { pointsIncarnations: true }),
-                        // Le simulacre de la figure ne se transmet pas : il devient celui de
-                        // l'incarnation courante seulement
-                        simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null
-                    }
+                    // Ce que portait la figure : copié dans chaque incarnation, comme une
+                    // nouvelle incarnation hérite de l'antérieure, points d'incarnation compris
+                    v5: Incarnations.heritage(figure, { pointsIncarnations: true })
                 }
             }
         }));
@@ -243,8 +244,8 @@ export class _1_0_10 {
         // Le chaînage suit la chronologie : la tête, la plus ancienne, n'a pas de prédécesseur.
         // Chaque incarnation garde la clé de sa période : les liens se posent dès la création.
         incarnations.forEach((data, i) => {
-            data.system.versions.v5.predecesseur = incarnations[i - 1]?.system.id ?? null;
-            data.system.versions.v5.successeur = incarnations[i + 1]?.system.id ?? null;
+            data.system.predecesseur = incarnations[i - 1]?.system.id ?? null;
+            data.system.successeur = incarnations[i + 1]?.system.id ?? null;
         });
 
         // Les incarnations, puis le ménage

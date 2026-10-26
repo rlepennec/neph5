@@ -879,3 +879,19 @@ de version ni cases d'activation. Pas de passerelle pour les mondes de test déj
 À venir : l'**incarnation** (champs communs `periode`, `actif`, `predecesseur`, `successeur`,
 `simulacre` et `stase` ; les autres, dont la sapience et les points d'incarnation, propres aux
 règles), selon les instructions de l'utilisateur.
+
+## 16. Incarnation : les champs communs à toutes les versions (26 octobre 2026)
+
+Première modification de l'incarnation, sur instruction de l'utilisateur : `periode`, `actif`,
+`predecesseur`, `successeur`, `stase` et `simulacre` passent à la racine de `system` ; ils ne
+dépendent plus des règles. Restent dans `versions.v5` : `ka`, `sapience`, `sapienceDepensee`,
+`pointsIncarnations`, `alchimie`, `akasha`, `dommage`, `bonus`.
+
+- **Façade** (`Incarnations`) : ces champs se lisent `incarnation.system.<champ>` et s'écrivent
+  `'system.<champ>'` (chaînage, activation, stase, simulacre, période). `Version.data` et
+  `Version.path` ne servent plus qu'aux champs propres aux règles. L'héritage est séparé :
+  `heritageCommun(system)` (la stase) et `heritage(version)` (Ka, bonus, laboratoire, akasha,
+  sapience, points d'incarnation).
+- **Migration 1.0.10** : elle écrit ces champs à la racine, le reste dans `versions.v5`.
+- Pas de passerelle : la 1.8.0 n'est pas livrée. Vérifié sous node (façade 103, migration 30,
+  dépôt 11, métamorphe 10, états 7).

@@ -176,7 +176,7 @@ export class Incarnations {
      * @returns {string|null} le sid de la période du monde que l'incarnation incarne.
      */
     periodeDe(cle) {
-        return Version.data(this.incarnation(cle))?.periode ?? null;
+        return this.incarnation(cle)?.system.periode ?? null;
     }
 
     /**
@@ -203,7 +203,7 @@ export class Incarnations {
     nomDe(cle) {
         const incarnation = this.incarnation(cle);
         if (incarnation == null) return "";
-        const periode = game.items.find(i => i.type === 'periode' && i.sid === Version.data(incarnation).periode);
+        const periode = game.items.find(i => i.type === 'periode' && i.sid === incarnation.system.periode);
         const vecus = this.vecusDe(cle).map(v => v.name).join(", ");
         return (periode?.name ?? incarnation.name) + (vecus ? " — " + vecus : "");
     }
@@ -228,13 +228,13 @@ export class Incarnations {
         const chaine = [];
         const vus = new Set();
         let courante = toutes.find(i => {
-            const predecesseur = Version.data(i).predecesseur;
+            const predecesseur = i.system.predecesseur;
             return predecesseur == null || !parCle.has(predecesseur);
         });
         while (courante != null && !vus.has(courante.sid)) {
             chaine.push(courante);
             vus.add(courante.sid);
-            const successeur = Version.data(courante).successeur;
+            const successeur = courante.system.successeur;
             courante = successeur == null ? null : parCle.get(successeur);
         }
         for (const incarnation of toutes) {
@@ -253,12 +253,12 @@ export class Incarnations {
         ordre.forEach((incarnation, i) => {
             const predecesseur = ordre[i - 1]?.sid ?? null;
             const successeur = ordre[i + 1]?.sid ?? null;
-            const data = Version.data(incarnation);
+            const data = incarnation.system;
             if ((data.predecesseur ?? null) !== predecesseur || (data.successeur ?? null) !== successeur) {
                 updates.push({
                     _id: incarnation.id,
-                    [Version.path(incarnation, 'predecesseur')]: predecesseur,
-                    [Version.path(incarnation, 'successeur')]: successeur
+                    'system.predecesseur': predecesseur,
+                    'system.successeur': successeur
                 });
             }
         });
@@ -310,7 +310,7 @@ export class Incarnations {
         for (const p of this.#chaine()) {
 
             // Add periode if required
-            if (actif == null || jusqua === p.sid || Version.data(p).actif === actif) {
+            if (actif == null || jusqua === p.sid || p.system.actif === actif) {
                 periodes.push(p);
             }
 
@@ -336,7 +336,7 @@ export class Incarnations {
     estActive(cle) {
         if (cle == null) return false;
         const p = this.ordonnees({ actif: true, jusqua: this.courante }).find(i => i.sid === cle);
-        return p != null && Version.data(p).actif === true;
+        return p != null && p.system.actif === true;
     }
 
     // ------------------------------------------------------------------ les exemplaires liés
@@ -407,7 +407,7 @@ export class Incarnations {
         if (copies.length === 0) return null;
         if (!this.porte) return copies[0];
         const comptent = this.ordonnees({ actif: true, jusqua: this.courante })
-            .filter(i => Version.data(i).actif === true)
+            .filter(i => i.system.actif === true)
             .reverse();
         for (const incarnation of comptent) {
             const copie = copies.find(i => this.epoqueDe(i) === incarnation.sid);
@@ -430,7 +430,7 @@ export class Incarnations {
         if (index === -1) return null;
         const cote = sens === 'anterieure' ? chaine.slice(0, index).reverse() : chaine.slice(index + 1);
         for (const incarnation of cote) {
-            if (Version.data(incarnation).actif !== true) continue;
+            if (incarnation.system.actif !== true) continue;
             const item = this.exemplaireDans(sid, incarnation.sid);
             if (item != null) return { incarnation, item };
         }
@@ -470,7 +470,7 @@ export class Incarnations {
         const voies = this.actor.items.filter(i => i.type === type);
         if (!this.porte) return voies[0] ?? null;
         const comptent = this.ordonnees({ actif: true, jusqua: this.courante })
-            .filter(i => Version.data(i).actif === true)
+            .filter(i => i.system.actif === true)
             .reverse();
         for (const incarnation of comptent) {
             const voie = voies.find(i => this.epoqueDe(i) === incarnation.sid);
@@ -908,7 +908,7 @@ export class Incarnations {
      * @returns { description, ka } or null.
      */
     stase() {
-        return Incarnations.#staseDe(this.#donnees().stase);
+        return Incarnations.#staseDe(this.incarnation(this.courante)?.system.stase);
     }
 
     /**
@@ -920,11 +920,11 @@ export class Incarnations {
     async ecrireStase(valeurs) {
         const incarnation = this.incarnation(this.courante);
         if (incarnation == null) return false;
-        const stase = { description: "", ka: 0, ...(Incarnations.#staseDe(Version.data(incarnation).stase) ?? {}) };
+        const stase = { description: "", ka: 0, ...(Incarnations.#staseDe(incarnation.system.stase) ?? {}) };
         if ('description' in valeurs) stase.description = String(valeurs.description ?? "").trim();
         if ('ka' in valeurs) stase.ka = Incarnations.#nombre(valeurs.ka);
         const vide = stase.description === "" && stase.ka === 0;
-        await incarnation.update({ [Version.path(incarnation, 'stase')]: vide ? null : stase });
+        await incarnation.update({ 'system.stase': vide ? null : stase });
         return true;
     }
 
@@ -938,7 +938,7 @@ export class Incarnations {
      * @returns the simulacre actor, null if none.
      */
     simulacre() {
-        const sid = Version.data(this.incarnation(this.courante))?.simulacre ?? null;
+        const sid = this.incarnation(this.courante)?.system.simulacre ?? null;
         return sid == null ? null : (game.actors.find(a => a.sid === sid) ?? null);
     }
 
@@ -950,7 +950,7 @@ export class Incarnations {
     async definirSimulacre(sid) {
         const incarnation = this.incarnation(this.courante);
         if (incarnation == null) return false;
-        await incarnation.update({ [Version.path(incarnation, 'simulacre')]: sid });
+        await incarnation.update({ 'system.simulacre': sid });
         return true;
     }
 
@@ -969,8 +969,8 @@ export class Incarnations {
      */
     async oublierSimulacres(sids) {
         const updates = this.toutes()
-            .filter(i => sids.includes(Version.data(i).simulacre))
-            .map(i => ({ _id: i.id, [Version.path(i, 'simulacre')]: null }));
+            .filter(i => sids.includes(i.system.simulacre))
+            .map(i => ({ _id: i.id, 'system.simulacre': null }));
         if (updates.length > 0) {
             await this.actor.updateEmbeddedDocuments('Item', updates);
         }
@@ -1120,7 +1120,7 @@ export class Incarnations {
         const incarnation = this.incarnation(cle);
         const monde = game.items.find(i => i.type === 'periode' && i.sid === periode);
         if (incarnation == null || monde == null) return;
-        await incarnation.update({ name: monde.name, img: monde.img, [Version.path(incarnation, 'periode')]: periode });
+        await incarnation.update({ name: monde.name, img: monde.img, 'system.periode': periode });
     }
 
     /**
@@ -1158,18 +1158,18 @@ export class Incarnations {
     }
 
     /**
-     * Ce qu'une nouvelle incarnation reçoit de celle dont elle hérite : ses Ka et ses bonus (0
-     * pour ceux qu'elle n'a pas), sa sapience et sa sapience dépensée, une copie de son
-     * laboratoire et de ses voyages akashiques (vides du schéma si elle n'en a pas), sa stase
-     * (aucune si elle n'en a pas). Les points d'incarnation partent de 0, sauf à les reprendre.
+     * Ce qu'une nouvelle incarnation reçoit de celle dont elle hérite, pour les règles v5 : ses
+     * Ka et ses bonus (0 pour ceux qu'elle n'a pas), sa sapience et sa sapience dépensée, une
+     * copie de son laboratoire et de ses voyages akashiques (vides du schéma si elle n'en a pas).
+     * Les points d'incarnation partent de 0, sauf à les reprendre. Ce qui est commun à toutes
+     * les versions (la stase) est hérité à part (voir heritageCommun).
      * Les blessures, les états, les armes et les armures ne se transmettent pas : elle part sans.
      * Sert à la création (#creer, depuis l'antérieure active la plus proche) et à la migration
      * 1.0.10 (depuis ce que portait la figure).
-     * @param donnees            Les données dont hériter : celles d'une incarnation ou le relevé
-     *                           de la figure ; {} pour aucune.
+     * @param donnees            Les données dont hériter : la version d'une incarnation ou le
+     *                           relevé de la figure ; {} pour aucune.
      * @param pointsIncarnations true pour reprendre aussi les points d'incarnation.
-     * @returns { ka, bonus, alchimie, akasha, sapience, sapienceDepensee, pointsIncarnations,
-     *          stase }.
+     * @returns { ka, bonus, alchimie, akasha, sapience, sapienceDepensee, pointsIncarnations }.
      */
     static heritage(donnees, { pointsIncarnations = false } = {}) {
         return {
@@ -1179,14 +1179,27 @@ export class Incarnations {
             akasha: Incarnations.#blocDe(donnees?.akasha, 'akasha'),
             sapience: donnees?.sapience ?? 0,
             sapienceDepensee: donnees?.sapienceDepensee ?? 0,
-            pointsIncarnations: pointsIncarnations ? donnees?.pointsIncarnations ?? 0 : 0,
+            pointsIncarnations: pointsIncarnations ? donnees?.pointsIncarnations ?? 0 : 0
+        };
+    }
+
+    /**
+     * Ce qu'une nouvelle incarnation reçoit de celle dont elle hérite, commun à toutes les
+     * versions de règles : sa stase (aucune si elle n'en a pas). Sa place dans la chronologie
+     * et son simulacre, eux, ne se transmettent pas.
+     * @param donnees Les données communes dont hériter : `system` d'une incarnation ou le relevé
+     *                de la figure ; {} pour aucune.
+     * @returns { stase }.
+     */
+    static heritageCommun(donnees) {
+        return {
             stase: Incarnations.#staseDe(donnees?.stase)
         };
     }
 
     /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Elle
-     * hérite de l'incarnation antérieure active la plus proche (voir heritage).
+     * hérite de l'incarnation antérieure active la plus proche (voir heritage, heritageCommun).
      * @param periode The system identifier of the world periode.
      * @returns {string} la clé de l'incarnation créée.
      */
@@ -1194,28 +1207,27 @@ export class Incarnations {
         const monde = game.items.find(i => i.type === 'periode' && i.sid === periode);
         const chaine = this.#chaine();
         const derniere = chaine.at(-1) ?? null;
-        const anterieure = [...chaine].reverse().find(i => Version.data(i).actif === true) ?? null;
+        const anterieure = [...chaine].reverse().find(i => i.system.actif === true) ?? null;
         // Sans system.id, l'item reçoit un identifiant neuf à sa création (NephilimItem._preCreate).
         const [cree] = await this.actor.createEmbeddedDocuments('Item', [{
             name: monde?.name ?? periode,
             type: 'incarnation',
             img: monde?.img,
             system: {
+                periode: periode,
+                actif: true,
+                predecesseur: derniere?.sid ?? null,
+                successeur: null,
+                ...Incarnations.heritageCommun(anterieure?.system),
                 versions: {
-                    v5: {
-                        periode: periode,
-                        actif: true,
-                        predecesseur: derniere?.sid ?? null,
-                        successeur: null,
-                        ...Incarnations.heritage(Version.data(anterieure))
-                    }
+                    v5: Incarnations.heritage(Version.data(anterieure))
                 }
             }
         }]);
         if (derniere == null) {
             await this.definirCourante(cree.sid);
         } else {
-            await derniere.update({ [Version.path(derniere, 'successeur')]: cree.sid });
+            await derniere.update({ 'system.successeur': cree.sid });
         }
         return cree.sid;
     }
@@ -1276,7 +1288,7 @@ export class Incarnations {
     async basculer(cle) {
         const incarnation = this.incarnation(cle);
         if (incarnation == null) return;
-        await incarnation.update({ [Version.path(incarnation, 'actif')]: !Version.data(incarnation).actif });
+        await incarnation.update({ 'system.actif': !incarnation.system.actif });
     }
 
     /**
@@ -1382,14 +1394,14 @@ export class Incarnations {
      * @param supprimee The deleted incarnation.
      */
     async #raccrocher(supprimee) {
-        const predecesseur = this.incarnation(Version.data(supprimee).predecesseur);
-        const successeur = this.incarnation(Version.data(supprimee).successeur);
+        const predecesseur = this.incarnation(supprimee.system.predecesseur);
+        const successeur = this.incarnation(supprimee.system.successeur);
         const updates = [];
-        if (predecesseur != null && Version.data(predecesseur).successeur === supprimee.sid) {
-            updates.push({ _id: predecesseur.id, [Version.path(predecesseur, 'successeur')]: successeur?.sid ?? null });
+        if (predecesseur != null && predecesseur.system.successeur === supprimee.sid) {
+            updates.push({ _id: predecesseur.id, 'system.successeur': successeur?.sid ?? null });
         }
-        if (successeur != null && Version.data(successeur).predecesseur === supprimee.sid) {
-            updates.push({ _id: successeur.id, [Version.path(successeur, 'predecesseur')]: predecesseur?.sid ?? null });
+        if (successeur != null && successeur.system.predecesseur === supprimee.sid) {
+            updates.push({ _id: successeur.id, 'system.predecesseur': predecesseur?.sid ?? null });
         }
         if (updates.length > 0) {
             await this.actor.updateEmbeddedDocuments('Item', updates);
@@ -1407,7 +1419,7 @@ export class Incarnations {
         for (const p of this.ordonnees({ chrono: null })) {
 
             // Retrieve the periode of the world
-            const periode = game.items.find(i => i.sid === Version.data(p).periode);
+            const periode = game.items.find(i => i.sid === p.system.periode);
             if (periode == null) {
                 continue;
             }
@@ -1446,7 +1458,7 @@ export class Incarnations {
                 embedded: {
                     id: p.id,
                     fsid: new DocumentIdentifier(p).fsid,
-                    actif: Version.data(p).actif,
+                    actif: p.system.actif,
                     courante: this.courante === p.sid,
                     vecu: this.vecusDe(p.sid).map(v => v.name).join(", ") || null,
                     vecus: vecus,

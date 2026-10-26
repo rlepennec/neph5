@@ -6,15 +6,20 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  * Une incarnation : une vie d'un acteur — figure ou fraternité — pendant une période.
  *
  * L'item n'existe qu'embarqué. Son `id` est sa clé, par laquelle tout le reste le désigne.
- * Il porte, par version de règles :
+ * Il porte, communs à toutes les versions de règles (à la racine de `system`) :
  *
  *   - `periode` : le sid de la période du monde ; plusieurs incarnations peuvent la partager ;
  *   - `actif`   : l'incarnation compte-t-elle pour l'acteur ;
  *   - `predecesseur` : la clé de l'incarnation immédiatement plus ancienne, null pour la tête
  *                 de la chronologie (la plus ancienne) ;
  *   - `successeur` : la clé de l'incarnation immédiatement plus récente, null pour la queue ;
- *   - `ka`      : les douze Ka de la figure à cette époque (pentacle, Soleil, Selenim) ;
  *   - `stase`   : la stase de la figure à cette époque (description, Ka), null si aucune ;
+ *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
+ *                 transmet pas aux autres incarnations ;
+ *
+ * et, propres à chaque version de règles (`versions.<version>`) :
+ *
+ *   - `ka`      : les douze Ka de la figure à cette époque (pentacle, Soleil, Selenim) ;
  *   - `sapience`, `sapienceDepensee` : la sapience de la figure à cette époque ; elle se
  *                 transmet, et une modification se reporte sur les incarnations postérieures ;
  *   - `pointsIncarnations` : les points d'incarnation de cette époque, indépendants ;
@@ -25,9 +30,7 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *   - `dommage` : les blessures de la figure à cette époque (cases physiques et magiques) ;
  *                 elles ne se transmettent pas ;
  *   - `bonus`   : les bonus de la figure à cette époque (mouvement, initiative, dommage,
- *                 protection) ;
- *   - `simulacre` : le sid de l'acteur simulacre de cette incarnation, null si aucun ; il ne se
- *                 transmet pas aux autres incarnations ;
+ *                 protection).
  *
  * Elle porte aussi, comme effets (ActiveEffect), les états de la figure à cette époque
  * (désorienté, immobilisé, à terre, mort...) : seuls ceux de l'incarnation courante
@@ -48,39 +51,63 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // Ce qui est commun à toutes les versions de règles : la place de l'incarnation dans
+            // la chronologie, sa stase et son simulacre.
+            periode: new foundry.data.fields.StringField
+            (
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
+            actif: new foundry.data.fields.BooleanField
+            (
+                {
+                    initial: true
+                }
+            ),
+            predecesseur: new foundry.data.fields.StringField
+            (
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
+            successeur: new foundry.data.fields.StringField
+            (
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
+            // La stase de la figure à cette époque, null si elle n'en a pas (voir
+            // Incarnations.stase).
+            stase: new foundry.data.fields.SchemaField
+            (
+                {
+                    description: new foundry.data.fields.StringField({ initial: "" }),
+                    ka: new foundry.data.fields.NumberField({ initial: 0 })
+                },
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
+            // Le sid de l'acteur simulacre de cette incarnation : il ne se transmet pas
+            // aux autres (voir Incarnations.simulacre).
+            simulacre: new foundry.data.fields.StringField
+            (
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
             versions: new ChunkField
             (
                 {
                     v5: new VersionField
                     (
                         {
-                            periode: new foundry.data.fields.StringField
-                            (
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
-                            actif: new foundry.data.fields.BooleanField
-                            (
-                                {
-                                    initial: true
-                                }
-                            ),
-                            predecesseur: new foundry.data.fields.StringField
-                            (
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
-                            successeur: new foundry.data.fields.StringField
-                            (
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
                             // Les Ka de la figure à cette époque, chacun indépendant de ceux des autres
                             // incarnations (voir Incarnations.kas).
                             ka: new foundry.data.fields.SchemaField
@@ -615,28 +642,6 @@ export class IncarnationDataModel extends foundry.abstract.TypeDataModel {
                                     initiative: new foundry.data.fields.NumberField({ initial: 0 }),
                                     dommage: new foundry.data.fields.NumberField({ initial: 0 }),
                                     protection: new foundry.data.fields.NumberField({ initial: 0 })
-                                }
-                            ),
-                            // La stase de la figure à cette époque, null si elle n'en a pas (voir
-                            // Incarnations.stase).
-                            stase: new foundry.data.fields.SchemaField
-                            (
-                                {
-                                    description: new foundry.data.fields.StringField({ initial: "" }),
-                                    ka: new foundry.data.fields.NumberField({ initial: 0 })
-                                },
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
-                            // Le sid de l'acteur simulacre de cette incarnation : il ne se transmet pas
-                            // aux autres (voir Incarnations.simulacre).
-                            simulacre: new foundry.data.fields.StringField
-                            (
-                                {
-                                    nullable: true,
-                                    initial: null
                                 }
                             )
                         },
