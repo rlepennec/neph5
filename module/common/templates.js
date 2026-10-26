@@ -25,7 +25,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/savoir/actor/savoirs.hbs",
         "systems/neph5e/feature/quete/actor/quetes.hbs",
         "systems/neph5e/feature/chute/actor/chutes.hbs",
-        "systems/neph5e/feature/competence/actor/competences.hbs",
+        "systems/neph5e/feature/competence/regles/v5/actor/competences.hbs",
         "systems/neph5e/feature/capacite/actor/capacites.hbs",
         
         // Selenim

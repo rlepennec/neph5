@@ -8,7 +8,7 @@ import { Atlanteide } from "../atlanteide/atlanteide.js";
 import { Capacite } from "../capacite/capacite.js";
 import { Catalyseur } from "../alchimie/catalyseur.js";
 import { Chute } from "../chute/chute.js";
-import { Competence } from "../competence/competence.js";
+import { Competence } from "../competence/regles/v5/competence.js";
 import { Divination } from "../bohemien/divination.js";
 import { Dracomachie } from "../dracomachie/dracomachie.js";
 import { Formule } from "../alchimie/formule.js";

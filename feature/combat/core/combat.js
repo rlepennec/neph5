@@ -1,4 +1,4 @@
-import { Competence } from "../../competence/competence.js";
+import { Competence } from "../../competence/regles/v5/competence.js";
 import { Version } from "../../../module/common/version.js";
 import { Vecu } from "../../vecu/vecu.js";
 

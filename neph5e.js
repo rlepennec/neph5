@@ -32,7 +32,7 @@ import { CombatHistory } from "./feature/combat/core/combatHistory.js";
 import { Combatants } from "./feature/combat/core/combatants.js";
 import { Equipment } from "./feature/combat/core/equipment.js";
 import { Holds } from "./feature/combat/core/holds.js";
-import { CompetenceSheet } from "./feature/competence/item/competence.js";
+import { CompetenceSheet } from "./feature/competence/regles/v5/item/competence.js";
 import { DivinationSheet } from "./feature/bohemien/item/divination.js";
 import { DracomachieSheet } from "./feature/dracomachie/item/dracomachie.js";
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";

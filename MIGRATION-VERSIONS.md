@@ -927,3 +927,34 @@ dont la `v5` ne porte plus que `enabled`.
   après la migration, à clé neuve, était signalée comme orpheline.
 
 Vérifié sous node : modèles identiques (8 cas), comportements (10 cas), façade 103, migration 30.
+
+## 18. Réorganisation des features par version de règles (à partir du 26 octobre 2026)
+
+Préparer les autres règles sans rien changer au comportement (« iso ») : seuls des fichiers
+**entiers** sont déplacés, et leur contenu ne change que par les chemins.
+
+- **Règle de classement** : dans chaque `feature/<x>/`, ce qui est commun reste en place (les
+  modèles `*.mjs`, et les features communes comme `incarnation` et `groupe`) ; ce qui suppose les
+  règles v5 (fiches, gabarits, jets, onglets d'acteur) va dans `feature/<x>/regles/v5/`, avec la
+  même sous-arborescence (`item/`, `actor/`...). `module/` sera traité plus tard.
+- **Outils** (hors dépôt, scratchpad `reorg/`) : `deplacer.cjs` (table ancien → nouveau ; recalcule
+  les imports relatifs des fichiers déplacés et de leurs importeurs, réécrit les chemins de
+  gabarits, y compris la forme sans style d'une fiche ; sauvegarde tout avant), `restaurer.cjs`,
+  `verifier.cjs` (imports résolus, gabarits existants, **différence normalisée** : chaque fichier
+  touché ne diffère de sa version commitée que par des chemins désignant les mêmes fichiers).
+- **Lot pilote : `competence`** (5 fichiers, 6 importeurs corrigés, 0 erreur) :
+
+| Avant | Après |
+|---|---|
+| `competence.js` | `regles/v5/competence.js` |
+| `actor/competences.hbs` | `regles/v5/actor/competences.hbs` |
+| `item/competence.js` | `regles/v5/item/competence.js` |
+| `item/competence-classique.html`, `-ashbury.html` | `regles/v5/item/…` |
+| `item/competence.mjs` | reste |
+
+- **À reprendre à la main dans les lots concernés** (chemins construits) :
+  `figureSheet.js` (`feature/science/actor/science.hbs` et `d.template`), `groupe.js`
+  (`groupe-${style}.html`, commun : ne bouge pas), `handlebars.js`
+  (`feature/${science}/actor/header.hbs`, en-têtes des sciences).
+- **Défaut antérieur connu** : `feature/dracomachie/passe.js` est du code mort (importé par
+  personne) dont l'import `./actionDialog.js` est cassé.

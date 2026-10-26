@@ -8,7 +8,7 @@ import { Capacite } from "../../feature/capacite/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
 import { Chute } from "../../feature/chute/chute.js";
 import { CombatantMixin } from "./combatantMixin.js";
-import { Competence } from "../../feature/competence/competence.js";
+import { Competence } from "../../feature/competence/regles/v5/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";

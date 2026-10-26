@@ -1,6 +1,6 @@
-import { CompetenceDataModel } from "./competence.mjs";
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
-import { Version } from "../../../module/common/version.js";
+import { CompetenceDataModel } from "../../../item/competence.mjs";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
+import { Version } from "../../../../../module/common/version.js";
 
 export class CompetenceSheet extends NephilimItemSheet {
 
@@ -17,7 +17,7 @@ export class CompetenceSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/competence/item/competence.html`,
+            template: `systems/neph5e/feature/competence/regles/v5/item/competence.html`,
         }
     }
 
