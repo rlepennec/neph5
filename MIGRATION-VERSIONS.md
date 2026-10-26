@@ -962,3 +962,8 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   `chute`, `passe`, `quete`, `savoir`, `vecu` (dont le dialogue des mnémos et ses gabarits). Pour
   chacun, tout sauf `item/<type>.mjs` passe dans `regles/v5/`. La **période** reste entièrement en
   place : ses champs sont tous communs (§15), et `periode.js` gère la chronologie, commune.
+- **Lot 2 : sciences et focus** (90 fichiers, 8 importeurs corrigés) : `science`, `magie`,
+  `kabbale`, `alchimie`, `analogie`, `conjuration`, `necromancie`, `atlanteide`, `dracomachie`,
+  `baton`, `coupe`, `denier`, `epee`, `bohemien` ; leurs modèles restent. Correction à la main :
+  `CustomHandlebarsHelpers.scienceHeader` construit désormais
+  `feature/${science}/regles/v5/actor/header.hbs` (les cinq en-têtes ont bougé ensemble).

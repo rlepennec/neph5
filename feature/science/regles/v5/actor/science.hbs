@@ -1,0 +1,220 @@
+<main 
+    class='tab science'
+    data-group='primary'
+    data-tab='science'
+    data-drop="true">
+
+    {{#if (scienceHeader science)}}
+    {{> (scienceHeader science)}}
+    {{/if}}
+
+    {{#with (cercles actor science false) as |data|}}
+    {{#if (gt data.cercles.length 0)}} 
+    <ol class="cercles">
+
+        {{#each data.cercles as |cercle|}}
+        <div class="cercle {{#if (eq cercle.degre 0)}}undeveloped{{/if}}">
+
+            <!-- Display the voie related to the specified cercle if necessary. -->
+            {{#if (nonNull cercle.voie)}}
+            <label class="voie">{{cercle.voie.name}}</label>
+            {{/if}}
+
+            <!-- Display the header above all focus of the cercle. Each science displays specific parameters. -->
+            <div class="header item" data-sid="{{cercle.sid}}">
+
+                <img class="circle"/>
+
+                <img class="separator"/>
+
+                <div class="cercle-degre">{{cercle.degre}}</div>
+
+                <div class="cercle-menu">
+
+                    <span class="cercle-name">{{cercle.name}}</span>
+
+                    {{#if (includes ../header 'possede')}}
+                    <span class="cercle-possede">{{translate "focus"}}</span>
+                    {{/if}}
+
+                    {{!-- Les intitulés de colonnes sont rendus quel que soit le degré du
+                         cercle : ils décrivent les colonnes des focus, qui sont là même
+                         quand le cercle n'est pas développé. Les enfermer dans un
+                         {{#unless (eq cercle.degre 0)}} les faisait disparaître, et
+                         .cercle-name (flex: 1 1 auto) absorbait la place libérée, ce qui
+                         renvoyait « Focus » 230 px trop à droite. --}}
+                    {{#if (includes ../header 'quantite')}}
+                    <span class="cercle-quantite">{{translate "quantite"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'transporte')}}
+                    <span class="cercle-transporte">{{translate "soi"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'pacte')}}
+                    <span class="cercle-pacte">{{translate "pacte"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'status')}}
+                    <span class="cercle-status">{{translate "status"}}</span>
+                    {{/if}}
+
+                    {{#if (includes ../header 'percentage')}}
+                    <span class="cercle-percentage">{{localize "%"}}</span>
+                    {{/if}}
+
+                    {{!-- Le dé, lui, reste conditionnel : on ne lance pas un cercle non
+                         développé. Mais sa colonne doit rester RÉSERVÉE, sinon
+                         .cercle-name s'y étend et décale les cinq intitulés de 50 px.
+                         Même procédé que le <a><i></i></a> vide des armures. --}}
+                    {{#unless (eq cercle.degre 0)}}
+                    <a class="cercle-dice roll" data-action="roll"><i class="fas fa-dice-d20"></i></a>
+                    {{else}}
+                    <a class="cercle-dice"></a>
+                    {{/unless}}
+
+                </div>
+
+            </div>
+
+            <!-- Display all focus related to the cercle. -->
+            <ol class="all-focus">
+
+                {{#each cercle.focus as |item|}}
+                <li class="focus item macro {{#if item.uncastable}}undeveloped{{/if}}" data-macro="item" data-sid="{{item.original.sid}}">
+
+                    <!-- The only element of the focus. -->
+                    {{#if (includes ../../header 'element')}}
+                    <label class="focus-element tooltip">
+                        {{#switch item.element}}
+                            {{> "systems/neph5e/feature/science/regles/v5/actor/elements.hbs"}}
+                        {{/switch}}
+                    </label>
+                    {{/if}}
+
+                    <!-- The both elements of the focus. -->
+                    {{#if (includes ../../header 'elements')}}
+                    <label class="focus-elements">
+                        <div class="tooltip">
+                        {{#switch item.elements.[0]}}
+                            {{> "systems/neph5e/feature/science/regles/v5/actor/elements.hbs"}}
+                        {{/switch}}
+                        </div>
+                        <div class="tooltip">
+                        {{#switch item.elements.[1]}}
+                            {{> "systems/neph5e/feature/science/regles/v5/actor/elements.hbs"}}
+                        {{/switch}}
+                        </div>
+                    </label>
+                    {{/if}}
+
+                    <!-- The ka element. -->
+                    {{#if (includes ../../header 'ka')}}
+                    <label class="focus-element tooltip">
+                        {{#switch 'ka'}}
+                            {{> "systems/neph5e/feature/science/regles/v5/actor/elements.hbs"}}
+                        {{/switch}}
+                    </label>
+                    {{/if}}
+
+                    <!-- The lune noire element. -->
+                    {{#if (includes ../../header 'luneNoire')}}
+                    <label class="focus-element tooltip">
+                        {{#switch 'luneNoire'}}
+                            {{> "systems/neph5e/feature/science/regles/v5/actor/elements.hbs"}}
+                        {{/switch}}
+                    </label>
+                    {{/if}}
+
+                    <!-- The name of the focus. -->
+                    <label class="focus-name open" data-action="openItem">{{item.original.name}}</label>
+
+                    <!-- Indicates id the character has the focus. -->
+                    {{#if (includes ../../header 'possede')}}
+                    <label class="focus-possede" data-action="changeFocus">
+                        {{#if item.focus}}
+                        <i class="fa-solid fa-scroll"></i>
+                        {{else}}
+                        <i class="fa-regular fa-scroll"></i>
+                        {{/if}}
+                    </label>
+                    {{/if}}
+
+                    <!-- The quantity produced by the laboratory. -->
+                    {{#if (includes ../../header 'quantite')}}
+                    <input
+                        {{#if @root.locked}}disabled{{/if}}
+                        class="focus-quantite change"
+                        type="number"
+                        value="{{item.quantite}}"
+                        data-dtype="Number"/>
+                    {{/if}}
+
+                    <!-- The quantity carried by the character. -->
+                    {{#if (includes ../../header 'transporte')}}
+                    <input
+                        {{#if @root.locked}}disabled{{/if}}
+                        class="focus-transporte change"
+                        type="number"
+                        value="{{item.transporte}}"
+                        data-dtype="Number"/>
+                    {{/if}}
+
+                    <!-- The status of the pacte with the kabbale creature. -->
+                    {{#if (includes ../../header 'pacte')}}
+                    <label data-action="changePacte" class="focus-pacte change">
+                        {{#if item.pacte}}
+                        <i class="fa-solid fa-feather-pointed"></i>
+                        {{else}}
+                        <i class="fa-regular fa-feather-pointed"></i>
+                        {{/if}}
+                    </label>
+                    {{/if}}
+
+                    <!-- The status of the focus: connu, dechiffre, appris, tatoue. -->
+                    {{#if (includes ../../header 'status')}}
+                    <label class="focus-status" data-action="changeStatus">{{item.embedded.getStatus}}</label>
+                    {{/if}} 
+
+                    {{#if (includes ../../header 'percentage')}}
+                    {{#if item.uncastable}}
+                    <label class="focus-difficulty">0</label>
+                    {{else}}
+                    <label class="focus-difficulty">{{item.embedded.degre}}{{#if (or (eq item.element 'choix') (eq item.elements.[0] 'quintuple') (eq item.cercle 'dracomachie@passes'))}}+{{/if}}</label>
+                    {{/if}}
+                    {{/if}}
+
+                    <!-- The percentage to succeed to use the focus. -->
+                    {{#if item.uncastable}}
+                    <a class="focus-dice">
+                        <div class="tooltip">
+                            <i class="fa-solid fa-ban"></i>
+                            <span class="tooltiptext">{{localize item.limitation}}</span>
+                        </div>
+                    </a>
+                    {{else}}
+                    <a class="focus-dice roll" data-action="roll">
+                        <i class="fas fa-dice-d20"></i>
+                    </a>
+                    {{/if}}
+
+                </li>
+                {{/each}}
+
+            </ol>
+
+        </div>
+        {{/each}}
+
+    </ol>
+    {{else}}
+
+    <div class="nofocus">
+        <label>{{translate "aideFocus"}}</label>
+        <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
+    </div>
+
+    {{/if}}
+    {{/with}}
+
+</div>

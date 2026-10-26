@@ -70,7 +70,7 @@ export class CustomHandlebarsHelpers {
     }
 
     static scienceHeader(science) {
-        const path = `systems/neph5e/feature/${science}/actor/header.hbs`;
+        const path = `systems/neph5e/feature/${science}/regles/v5/actor/header.hbs`;
         return Handlebars.partials[path] != null ? path : null;
     }
 

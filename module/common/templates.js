@@ -11,12 +11,12 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/akasha/actor/main.hbs",
     
         // Kabbale
-        "systems/neph5e/feature/kabbale/actor/arbre.hbs",
-        "systems/neph5e/feature/kabbale/actor/ordonnances.hbs",
+        "systems/neph5e/feature/kabbale/regles/v5/actor/arbre.hbs",
+        "systems/neph5e/feature/kabbale/regles/v5/actor/ordonnances.hbs",
 
         // Laboratoire
-        "systems/neph5e/feature/alchimie/actor/laboratoire.hbs",
-        "systems/neph5e/feature/alchimie/actor/materiae.hbs",
+        "systems/neph5e/feature/alchimie/regles/v5/actor/laboratoire.hbs",
+        "systems/neph5e/feature/alchimie/regles/v5/actor/materiae.hbs",
 
         // Nephilim
         "systems/neph5e/feature/nephilim/actor/main.hbs",
@@ -32,9 +32,9 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/selenim/actor/main.hbs",
 
         // Science
-        "systems/neph5e/feature/science/actor/elements.hbs",
-        "systems/neph5e/feature/science/actor/sciences.hbs",
-        "systems/neph5e/feature/science/actor/science.hbs",
+        "systems/neph5e/feature/science/regles/v5/actor/elements.hbs",
+        "systems/neph5e/feature/science/regles/v5/actor/sciences.hbs",
+        "systems/neph5e/feature/science/regles/v5/actor/science.hbs",
     
         // Actor parts
 
@@ -79,11 +79,11 @@ export const preloadTemplates = async function () {
         // Formulaire d'incarnation : une ligne d'objet acquis
         "systems/neph5e/feature/incarnation/incarnation-ligne.hbs",
 
-        "systems/neph5e/feature/baton/actor/header.hbs",
-        "systems/neph5e/feature/bohemien/actor/header.hbs",
-        "systems/neph5e/feature/coupe/actor/header.hbs",
-        "systems/neph5e/feature/denier/actor/header.hbs",
-        "systems/neph5e/feature/epee/actor/header.hbs",
+        "systems/neph5e/feature/baton/regles/v5/actor/header.hbs",
+        "systems/neph5e/feature/bohemien/regles/v5/actor/header.hbs",
+        "systems/neph5e/feature/coupe/regles/v5/actor/header.hbs",
+        "systems/neph5e/feature/denier/regles/v5/actor/header.hbs",
+        "systems/neph5e/feature/epee/regles/v5/actor/header.hbs",
 
         // Fraternite
         "systems/neph5e/feature/fraternite/description.hbs",

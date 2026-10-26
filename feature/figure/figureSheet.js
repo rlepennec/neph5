@@ -6,8 +6,8 @@ import { Constants } from "../../module/common/constants.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalSheet } from "../../module/actor/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";
-import { Ordonnance } from "../kabbale/ordonnance.js";
-import { Science } from "../science/science.js";
+import { Ordonnance } from "../kabbale/regles/v5/ordonnance.js";
+import { Science } from "../science/regles/v5/science.js";
 
 
 export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
@@ -108,11 +108,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
         { id: "magie", option: "magie", science: "magie" },
         { id: "kabbale", option: "kabbale", autorise: "kabbale", science: "kabbale" },
-        { id: "arbre", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/actor/arbre.hbs` },
-        { id: "ordonnances", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/actor/ordonnances.hbs` },
+        { id: "arbre", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/regles/v5/actor/arbre.hbs` },
+        { id: "ordonnances", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/regles/v5/actor/ordonnances.hbs` },
         { id: "alchimie", option: "alchimie", autorise: "alchimie", science: "alchimie" },
-        { id: "laboratoire", option: "alchimie", autorise: "alchimie", incarnation: true, template: `feature/alchimie/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
-        { id: "materiae", option: "alchimie", autorise: "alchimie", incarnation: true, template: `feature/alchimie/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
+        { id: "laboratoire", option: "alchimie", autorise: "alchimie", incarnation: true, template: `feature/alchimie/regles/v5/actor/laboratoire.hbs`, extra: () => ({ cercles: Constants.CERCLES_ALCHIMIE }) },
+        { id: "materiae", option: "alchimie", autorise: "alchimie", incarnation: true, template: `feature/alchimie/regles/v5/actor/materiae.hbs`, extra: () => ({ catalyseurs: game.settings.get('neph5e', 'catalyseurs') }) },
         { id: "analogie", option: "analogie", science: "analogie" },
         { id: "dracomachie", option: "dracomachie", science: "dracomachie" },
         { id: "atlanteide", option: "atlanteide", science: "atlanteide" },
@@ -180,7 +180,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             .map(d => {
                 const tab = {
                     id: d.id,
-                    template: `systems/neph5e/${d.science == null ? d.template : 'feature/science/actor/science.hbs'}`
+                    template: `systems/neph5e/${d.science == null ? d.template : 'feature/science/regles/v5/actor/science.hbs'}`
                 };
                 if (d.science != null) {
                     tab.science = d.science;

@@ -5,7 +5,7 @@ import { Version } from "../../module/common/version.js";
 import { VersionMigration } from "../migration/versionMigration.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
 import { Capacite } from "../../feature/capacite/regles/v5/capacite.js";
-import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
+import { Catalyseur } from "../../feature/alchimie/regles/v5/catalyseur.js";
 import { Chute } from "../../feature/chute/regles/v5/chute.js";
 import { CombatantMixin } from "./combatantMixin.js";
 import { Competence } from "../../feature/competence/regles/v5/competence.js";
@@ -13,13 +13,13 @@ import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/fraternite.js";
-import { Laboratoire } from "../../feature/alchimie/laboratoire.js";
-import { Materiae } from "../../feature/alchimie/materiae.js";
+import { Laboratoire } from "../../feature/alchimie/regles/v5/laboratoire.js";
+import { Materiae } from "../../feature/alchimie/regles/v5/materiae.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
-import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
+import { Ordonnance } from "../../feature/kabbale/regles/v5/ordonnance.js";
 import { Periode } from "../../feature/periode/periode.js";
 import { Savoir } from "../../feature/savoir/regles/v5/savoir.js";
-import { Science } from "../../feature/science/science.js";
+import { Science } from "../../feature/science/regles/v5/science.js";
 import { Vecu } from "../../feature/vecu/regles/v5/vecu.js";
 
 /**

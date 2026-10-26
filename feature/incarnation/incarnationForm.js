@@ -2,7 +2,7 @@ import { DragDropMixin } from "../../module/common/dragDropMixin.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Incarnations } from "./incarnations.js";
 import { LockableMixin } from "../../module/common/lockableMixin.js";
-import { Science } from "../science/science.js";
+import { Science } from "../science/regles/v5/science.js";
 import { Version } from "../../module/common/version.js";
 
 /**

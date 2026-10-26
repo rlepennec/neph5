@@ -6,7 +6,7 @@ import { Distance } from "../combat/core/distance.js";
 import { ManoeuverBuilder } from "../combat/manoeuver/manoeuverBuilder.js";
 import { Melee } from "../combat/core/melee.js";
 import { Naturelle } from "../combat/core/naturelle.js";
-import { Pacte } from "../kabbale/pacte.js";
+import { Pacte } from "../kabbale/regles/v5/pacte.js";
 import { ReactionRoll } from "./reactionRoll.js";
 import { Wrestle } from "../combat/core/wrestle.js";
 

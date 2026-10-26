@@ -1,0 +1,85 @@
+import { AbstractFocus } from "../../../core/abstractFocus.js";
+import { Version } from "../../../../module/common/version.js";
+import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { Science } from "../../../science/regles/v5/science.js";
+
+export class Rite extends AbstractFocus {
+
+    /**
+     * @Override
+     */
+    get title() {
+        return "Jet de Nécromancie";
+    }
+
+    /**
+     * @Override
+     */
+    get sentence() {
+        return 'NEPHILIM.tenteSelfRite';
+    }
+
+    /**
+     * @Override
+     */
+    get data() {
+        return new ActionDataBuilder(this)
+            .withType(Constants.SIMPLE)
+            .withItem(this.item)
+            .withBase('Rite', this.degre)
+            .withBlessures('magique')
+            .export();
+    }
+
+    /**
+     * @Override
+     */
+    get valeursInitiales() {
+        return { status: Constants.CONNU };
+    }
+
+    /**
+     * @Override
+     */
+    get champsDuMonde() {
+        return ['description', 'cercle', 'desmos'];
+    }
+
+    /**
+     * @Override
+     */
+    getEmbeddedData() {
+        return {
+            difficulty: this.degre
+        }
+    }
+
+    /**
+     * @return -100 if uncastable, the value otherwise
+     */
+    get rawDegre() {
+
+        if (this.embedded == null) {
+            return -100;
+        }
+
+        if (Version.data(this.embedded).status === 'connu') {
+            return -101;
+        }
+
+        if (Version.data(this.embedded).focus !== true && Version.data(this.embedded).status === 'dechiffre') {
+            return -102;
+        }
+
+        // Retrieve the degre of the cercle used to cast the focus
+        const science = Science.scienceOf(this.actor, Version.data(this.item).cercle).degre;
+        if (science === 0) {
+            return -103;
+        }
+
+        return science;
+
+    }
+
+}

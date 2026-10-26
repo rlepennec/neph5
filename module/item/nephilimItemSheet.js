@@ -4,7 +4,7 @@ import { ItemOptionsSelector } from "../../feature/core/itemOptionsSelector.js";
 import { positionOf } from "./positions.js";
 import { Version } from "../common/version.js";
 
-import { Science } from "../../feature/science/science.js";
+import { Science } from "../../feature/science/regles/v5/science.js";
 
 export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 

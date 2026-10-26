@@ -1,0 +1,66 @@
+import { AbstractFocus } from "../../../core/abstractFocus.js";
+import { Version } from "../../../../module/common/version.js";
+import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { Constants } from "../../../../module/common/constants.js";
+
+export class Divination extends AbstractFocus {
+
+    /**
+     * @Override
+     */
+    get title() {
+        return "Jet de Divination bohémienne";
+    }
+
+    /**
+     * @Override
+     */
+    get sentence() {
+        return 'NEPHILIM.tenteSelfDivination';
+    }
+
+    /**
+     * @Override
+     */
+    get data() {
+        return new ActionDataBuilder(this)
+            .withType(Constants.SIMPLE)
+            .withItem(this.item)
+            .withBase('Divination', this.degre)
+            .withBlessures('magique')
+            .export();
+    }
+
+    /**
+     * @Override
+     */
+    get rawDegre() {
+
+        // Retrieve the degre of the ka used to cast the focus
+        const ka = this.actor.getKa('brume');
+        if (ka < 1) {
+            return -113;
+        }
+
+        const savoir = this.actor.savoir("bohemien").degre;
+        if (savoir < 1) {
+            return -114;
+        }
+
+        // Retrieve the degre of the focus to cast
+        const focus = Version.data(this.item).degre;
+
+        return savoir + ka - focus;
+
+    }
+
+    /**
+     * @Override
+     */
+    getEmbeddedData() {
+        return {
+            difficulty: this.degre
+        }
+    }
+
+}
