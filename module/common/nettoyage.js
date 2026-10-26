@@ -47,6 +47,12 @@ export class NettoyageDialog extends AbstractDialog {
      */
     static AUTONOMES = ['arme', 'armure'];
 
+    /**
+     * Les types internes à l'acteur, sans item du monde par construction : l'incarnation et ses
+     * objets de règles (voir Incarnations.REGLES). Ils ne sont jamais des orphelins.
+     */
+    static INTERNES = ['incarnation', 'laboratoire', 'akasha', 'ka'];
+
     static DEFAULT_OPTIONS = {
         id: "nephilim-nettoyage",
         classes: ["nephilim", "sheet", "nettoyage"],
@@ -265,7 +271,7 @@ export class NettoyageDialog extends AbstractDialog {
             if (acteur == null || vus.has(acteur.uuid)) return;
             vus.add(acteur.uuid);
             for (const item of acteur.items) {
-                if (NettoyageDialog.AUTONOMES.includes(item.type)) continue;
+                if (NettoyageDialog.AUTONOMES.includes(item.type) || NettoyageDialog.INTERNES.includes(item.type)) continue;
                 const sid = item.system?.id;
                 if (sid == null || sid === "" || sources.has(sid)) continue;
                 orphelins.push({

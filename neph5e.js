@@ -87,6 +87,9 @@ import { OrdonnanceDataModel } from "./feature/kabbale/item/ordonnance.mjs";
 import { PasseDataModel } from "./feature/passe/item/passe.mjs";
 import { PeriodeDataModel } from "./feature/periode/item/periode.mjs";
 import { IncarnationDataModel } from "./feature/incarnation/item/incarnation.mjs";
+import { LaboratoireDataModel } from "./feature/alchimie/item/laboratoire.mjs";
+import { AkashaDataModel } from "./feature/akasha/item/akasha.mjs";
+import { KaDataModel } from "./feature/nephilim/item/ka.mjs";
 import { PratiqueDataModel } from "./feature/denier/item/pratique.mjs";
 import { RiteDataModel } from "./feature/necromancie/item/rite.mjs";
 import { RituelDataModel } from "./feature/epee/item/rituel.mjs";
@@ -185,6 +188,11 @@ Hooks.once("init", function () {
     // L'incarnation n'existe qu'embarquée, et seule la façade Incarnations la crée : pas de
     // fiche, et elle n'est pas proposée à la création dans la barre latérale.
     CONFIG.Item.dataModels.incarnation = IncarnationDataModel;
+    // Les objets de règles d'une incarnation de figure (voir Incarnations.REGLES) : embarqués
+    // seulement, créés par la façade, sans fiche ni création dans la barre latérale.
+    CONFIG.Item.dataModels.laboratoire = LaboratoireDataModel;
+    CONFIG.Item.dataModels.akasha = AkashaDataModel;
+    CONFIG.Item.dataModels.ka = KaDataModel;
     Repertoire.TYPES = Object.keys(ITEM_TYPES);
 
     // Les index des compendiums d'items portent l'activation de chaque version : le filtre

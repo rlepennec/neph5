@@ -895,3 +895,35 @@ dépendent plus des règles. Restent dans `versions.v5` : `ka`, `sapience`, `sap
 - **Migration 1.0.10** : elle écrit ces champs à la racine, le reste dans `versions.v5`.
 - Pas de passerelle : la 1.8.0 n'est pas livrée. Vérifié sous node (façade 103, migration 30,
   dépôt 11, métamorphe 10, états 7).
+
+## 17. Les objets de règles d'une incarnation (décidé par l'utilisateur le 26 octobre 2026)
+
+Ce qui est propre aux règles quitte l'incarnation pour trois **objets embarqués**, un de chaque par
+incarnation de **figure** (pas de fraternité) :
+
+| Type | Modèle | Propriétés (`versions.v5`) |
+|---|---|---|
+| `laboratoire` | `feature/alchimie/item/laboratoire.mjs` | `alchimie` |
+| `akasha` | `feature/akasha/item/akasha.mjs` | `akasha` |
+| `ka` | `feature/nephilim/item/ka.mjs` | `ka`, `sapience`, `sapienceDepensee`, `pointsIncarnations`, `dommage`, `bonus` |
+
+Chacun porte à la racine son `id` et la clé de son incarnation (`incarnation`, IncarnationField).
+Les définitions sont reprises à l'identique de l'incarnation (vérifié : mêmes valeurs par défaut),
+dont la `v5` ne porte plus que `enabled`.
+
+- **Création** : avec l'incarnation (`Incarnations.#creer`), par héritage des objets de
+  l'antérieure active la plus proche (mêmes règles qu'avant : laboratoire, akasha, Ka et bonus
+  copiés, sapience reprise, points d'incarnation à 0, aucune blessure) ; un objet manquant est créé
+  à la première écriture. Pas de création depuis Foundry (hors du bouton « Créer »), pas de fiche.
+- **Suppression** : avec l'incarnation (`retirer`). Ils n'apparaissent dans aucune liste d'époque
+  (`epoqueDe` ne connaît que `LIES`).
+- **Façade** : interface inchangée (`kas`, `bonus`, `alchimie`, `akasha`, `blessures`, `compteurs`
+  et leurs écritures) ; elle lit et écrit dans l'objet porteur (`Incarnations.REGLES`, `objet`,
+  `typeDe`). Fiches, jets, combat et gabarits ne changent pas.
+- **Migration 1.0.10** : les objets de chaque incarnation de figure reçoivent le relevé de la figure
+  (`Incarnations.objetsDeRegles`).
+- **Nettoyage du monde** : l'incarnation et ces trois types sont internes à l'acteur, jamais
+  orphelins (`NettoyageDialog.INTERNES`). Corrige au passage un défaut : une incarnation créée
+  après la migration, à clé neuve, était signalée comme orpheline.
+
+Vérifié sous node : modèles identiques (8 cas), comportements (10 cas), façade 103, migration 30.

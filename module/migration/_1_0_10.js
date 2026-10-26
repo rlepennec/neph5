@@ -232,12 +232,7 @@ export class _1_0_10 {
                 ...Incarnations.heritageCommun(figure),
                 // Le simulacre de la figure ne se transmet pas : il devient celui de
                 // l'incarnation courante seulement
-                simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null,
-                versions: {
-                    // Ce que portait la figure : copié dans chaque incarnation, comme une
-                    // nouvelle incarnation hérite de l'antérieure, points d'incarnation compris
-                    v5: Incarnations.heritage(figure, { pointsIncarnations: true })
-                }
+                simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null
             }
         }));
 
@@ -250,6 +245,15 @@ export class _1_0_10 {
 
         // Les incarnations, puis le ménage
         await actor.createEmbeddedDocuments('Item', incarnations);
+
+        // Ce que portait la figure (laboratoire, akasha, Ka, compteurs, bonus) : copié dans les
+        // objets de règles de chaque incarnation, comme une nouvelle incarnation hérite de
+        // l'antérieure, points d'incarnation compris ; aucune blessure
+        if (actor.type === 'figure') {
+            const heritage = Incarnations.heritage(figure, { pointsIncarnations: true });
+            await actor.createEmbeddedDocuments('Item',
+                incarnations.flatMap(data => Incarnations.objetsDeRegles(data.system.id, heritage)));
+        }
         if (Version.data(actor).simulacre != null) {
             await actor.update({ [Version.path(actor, 'simulacre')]: null });
         }

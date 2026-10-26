@@ -1,7 +1,9 @@
 import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { EmbeddedItem } from "../../module/common/embeddedItem.js";
 import { Version } from "../../module/common/version.js";
-import { IncarnationDataModel } from "./item/incarnation.mjs";
+import { AkashaDataModel } from "../akasha/item/akasha.mjs";
+import { KaDataModel } from "../nephilim/item/ka.mjs";
+import { LaboratoireDataModel } from "../alchimie/item/laboratoire.mjs";
 
 /**
  * Les incarnations d'un acteur, vues d'un seul endroit.
@@ -129,6 +131,25 @@ export class Incarnations {
      * reporte sur toutes les incarnations postérieures (voir ecrireCompteurs).
      */
     static SAPIENCES = ['sapience', 'sapienceDepensee'];
+
+    /**
+     * Les objets embarqués qui portent, pour chaque incarnation d'une figure, ce qui est propre
+     * aux règles : par type, son modèle et ses champs (dans sa version). Un de chaque par
+     * incarnation, créé avec elle (voir #creer), supprimé avec elle (voir retirer).
+     */
+    static REGLES = {
+        laboratoire: { modele: LaboratoireDataModel, champs: ['alchimie'] },
+        akasha: { modele: AkashaDataModel, champs: ['akasha'] },
+        ka: { modele: KaDataModel, champs: ['ka', 'sapience', 'sapienceDepensee', 'pointsIncarnations', 'dommage', 'bonus'] }
+    };
+
+    /**
+     * @param champ Un champ propre aux règles ('ka', 'alchimie', 'dommage'...).
+     * @returns le type de l'objet qui le porte.
+     */
+    static typeDe(champ) {
+        return Object.keys(Incarnations.REGLES).find(type => Incarnations.REGLES[type].champs.includes(champ));
+    }
 
     /**
      * Les raisons pour lesquelles une incarnation ne peut être créée depuis un vécu.
@@ -697,10 +718,49 @@ export class Incarnations {
     }
 
     /**
-     * @returns les données de l'incarnation courante, vides s'il n'y en a pas.
+     * @param type The type of a rules object ('laboratoire', 'akasha', 'ka').
+     * @param cle  The key of an incarnation.
+     * @returns l'objet de ce type de l'incarnation, null si elle n'en a pas.
      */
-    #donnees() {
-        return Version.data(this.incarnation(this.courante));
+    objet(type, cle) {
+        if (cle == null) return null;
+        return this.actor.items.find(i => i.type === type && i.system?.incarnation === cle) ?? null;
+    }
+
+    /**
+     * L'objet de ce type de l'incarnation, créé vide (valeurs du schéma) s'il manque.
+     * @param type        The type of a rules object.
+     * @param incarnation The incarnation.
+     * @returns the rules object.
+     */
+    async #objetDe(type, incarnation) {
+        const objet = this.objet(type, incarnation.sid);
+        if (objet != null) return objet;
+        const [cree] = await this.actor.createEmbeddedDocuments('Item', [Incarnations.#donneesObjet(type, incarnation.sid, {})]);
+        return cree;
+    }
+
+    /**
+     * @param type The type of a rules object.
+     * @param cle  The key of its incarnation.
+     * @param v5   Its properties, by field.
+     * @returns the data to create it.
+     */
+    static #donneesObjet(type, cle, v5) {
+        return {
+            name: type,
+            type: type,
+            system: { incarnation: cle, versions: { v5: v5 } }
+        };
+    }
+
+    /**
+     * @param champ Un champ propre aux règles.
+     * @returns les données de l'objet qui le porte pour l'incarnation courante, vides s'il n'y
+     *          en a pas.
+     */
+    #donneesDe(champ) {
+        return Version.data(this.objet(Incarnations.typeDe(champ), this.courante));
     }
 
     /**
@@ -724,7 +784,7 @@ export class Incarnations {
      *          reserveCourante }.
      */
     kas() {
-        return Incarnations.#valeursDe(this.#donnees().ka, Incarnations.KA);
+        return Incarnations.#valeursDe(this.#donneesDe('ka').ka, Incarnations.KA);
     }
 
     /**
@@ -741,7 +801,7 @@ export class Incarnations {
      * @returns { mouvement, initiative, dommage, protection }.
      */
     bonus() {
-        return Incarnations.#valeursDe(this.#donnees().bonus, Incarnations.BONUS);
+        return Incarnations.#valeursDe(this.#donneesDe('bonus').bonus, Incarnations.BONUS);
     }
 
     /**
@@ -764,7 +824,8 @@ export class Incarnations {
      */
     static #blocDe(bloc, champ) {
         if (bloc != null) return foundry.utils.deepClone(bloc);
-        return foundry.utils.deepClone(new IncarnationDataModel({ id: 'vide' })._source.versions.v5[champ]);
+        const modele = Incarnations.REGLES[Incarnations.typeDe(champ)].modele;
+        return foundry.utils.deepClone(new modele({ id: 'vide' })._source.versions.v5[champ]);
     }
 
     /**
@@ -776,11 +837,14 @@ export class Incarnations {
     async #ecrireBloc(champ, valeurs) {
         const incarnation = this.incarnation(this.courante);
         if (incarnation == null) return false;
+        if (Object.keys(valeurs).length === 0) return true;
+        // Dans l'objet qui porte le champ, créé s'il manque
+        const objet = await this.#objetDe(Incarnations.typeDe(champ), incarnation);
         const update = {};
         for (const [chemin, valeur] of Object.entries(valeurs)) {
-            update[Version.path(incarnation, champ) + '.' + chemin] = valeur;
+            update[Version.path(objet, champ) + '.' + chemin] = valeur;
         }
-        if (Object.keys(update).length > 0) await incarnation.update(update);
+        await objet.update(update);
         return true;
     }
 
@@ -790,7 +854,7 @@ export class Incarnations {
      * @returns { constructs, primae, laboratoires, courant }.
      */
     alchimie() {
-        return Incarnations.#blocDe(this.#donnees().alchimie, 'alchimie');
+        return Incarnations.#blocDe(this.#donneesDe('alchimie').alchimie, 'alchimie');
     }
 
     /**
@@ -808,7 +872,7 @@ export class Incarnations {
      * @returns { nef, barge, boussole, compas }.
      */
     akasha() {
-        return Incarnations.#blocDe(this.#donnees().akasha, 'akasha');
+        return Incarnations.#blocDe(this.#donneesDe('akasha').akasha, 'akasha');
     }
 
     /**
@@ -830,7 +894,7 @@ export class Incarnations {
      * @returns { physique, magique }.
      */
     blessures() {
-        return Incarnations.#blocDe(this.#donnees().dommage, 'dommage');
+        return Incarnations.#blocDe(this.#donneesDe('dommage').dommage, 'dommage');
     }
 
     /**
@@ -849,7 +913,7 @@ export class Incarnations {
      * @returns { sapience, sapienceDepensee, pointsIncarnations }.
      */
     compteurs() {
-        const data = Version.data(this.incarnation(this.courante));
+        const data = this.#donneesDe('sapience');
         return {
             sapience: data?.sapience ?? 0,
             sapienceDepensee: data?.sapienceDepensee ?? 0,
@@ -871,18 +935,24 @@ export class Incarnations {
         if (courante == null) return false;
         const chaine = this.#chaine();
         const posterieures = chaine.slice(chaine.findIndex(i => i.sid === cle) + 1);
+        // Les compteurs sont portés par le ka de chaque incarnation, créé s'il manque
+        const objets = new Map();
+        for (const incarnation of [courante, ...posterieures]) {
+            objets.set(incarnation.sid, await this.#objetDe('ka', incarnation));
+        }
         const updates = new Map();
         const ecrire = (incarnation, champ, valeur) => {
-            const update = updates.get(incarnation.id) ?? { _id: incarnation.id };
-            update[Version.path(incarnation, champ)] = valeur;
-            updates.set(incarnation.id, update);
+            const objet = objets.get(incarnation.sid);
+            const update = updates.get(objet.id) ?? { _id: objet.id };
+            update[Version.path(objet, champ)] = valeur;
+            updates.set(objet.id, update);
         };
         for (const champ of Incarnations.SAPIENCES) {
             if (!(champ in valeurs)) continue;
-            const ecart = Incarnations.#nombre(valeurs[champ]) - (Version.data(courante)[champ] ?? 0);
+            const ecart = Incarnations.#nombre(valeurs[champ]) - (Version.data(objets.get(cle))[champ] ?? 0);
             if (ecart === 0) continue;
             for (const incarnation of [courante, ...posterieures]) {
-                ecrire(incarnation, champ, (Version.data(incarnation)[champ] ?? 0) + ecart);
+                ecrire(incarnation, champ, (Version.data(objets.get(incarnation.sid))[champ] ?? 0) + ecart);
             }
         }
         if ('pointsIncarnations' in valeurs) {
@@ -1138,8 +1208,9 @@ export class Incarnations {
             await this.definirCourante(null);
         }
 
-        // Its exemplars go with it
+        // Its exemplars go with it, and its rules objects
         const siens = this.rattaches(cle);
+        siens.push(...Object.keys(Incarnations.REGLES).map(type => this.objet(type, cle)).filter(o => o != null));
 
         // Mend the chain around it, then delete it
         await this.#chainer(this.#chaine().filter(i => i.sid !== cle));
@@ -1198,6 +1269,17 @@ export class Incarnations {
     }
 
     /**
+     * @param cle      The key of an incarnation of a figure.
+     * @param heritage Ce que l'incarnation reçoit pour les règles (voir heritage).
+     * @returns les données des objets de règles à créer pour elle : laboratoire, akasha, ka
+     *          (les blessures, non transmises, y prennent les valeurs du schéma).
+     */
+    static objetsDeRegles(cle, heritage) {
+        return Object.entries(Incarnations.REGLES).map(([type, { champs }]) => Incarnations.#donneesObjet(type, cle,
+            Object.fromEntries(champs.filter(champ => champ in heritage).map(champ => [champ, heritage[champ]]))));
+    }
+
+    /**
      * Crée une incarnation EN QUEUE de la chronologie : elle devient la plus récente. Elle
      * hérite de l'incarnation antérieure active la plus proche (voir heritage, heritageCommun).
      * @param periode The system identifier of the world periode.
@@ -1218,12 +1300,15 @@ export class Incarnations {
                 actif: true,
                 predecesseur: derniere?.sid ?? null,
                 successeur: null,
-                ...Incarnations.heritageCommun(anterieure?.system),
-                versions: {
-                    v5: Incarnations.heritage(Version.data(anterieure))
-                }
+                ...Incarnations.heritageCommun(anterieure?.system)
             }
         }]);
+        // Ce qui est propre aux règles : les objets d'une figure, hérités de ceux de l'antérieure
+        if (this.actor.type === 'figure') {
+            const donnees = Object.assign({}, ...Object.keys(Incarnations.REGLES)
+                .map(type => Version.data(this.objet(type, anterieure?.sid))));
+            await this.actor.createEmbeddedDocuments('Item', Incarnations.objetsDeRegles(cree.sid, Incarnations.heritage(donnees)));
+        }
         if (derniere == null) {
             await this.definirCourante(cree.sid);
         } else {
