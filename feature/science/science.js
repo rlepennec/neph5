@@ -3,7 +3,7 @@ import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { HistoricalFeature } from "../core/historicalFeature.js";
-import { Savoir } from "../savoir/savoir.js";
+import { Savoir } from "../savoir/regles/v5/savoir.js";
 
 export class Science extends HistoricalFeature {
 

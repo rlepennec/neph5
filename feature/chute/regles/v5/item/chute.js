@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class ChuteSheet extends NephilimItemSheet {
 
@@ -9,7 +9,7 @@ export class ChuteSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/chute/item/chute.html`,
+            template: `systems/neph5e/feature/chute/regles/v5/item/chute.html`,
         }
     }
 

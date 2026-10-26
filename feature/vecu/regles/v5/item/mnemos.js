@@ -1,5 +1,5 @@
-import { LockableMixin } from "../../../module/common/lockableMixin.js";
-import { Version } from "../../../module/common/version.js";
+import { LockableMixin } from "../../../../../module/common/lockableMixin.js";
+import { Version } from "../../../../../module/common/version.js";
 
 export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2)) {
 
@@ -40,7 +40,7 @@ export class Mnemos extends LockableMixin(foundry.applications.api.HandlebarsApp
 
     static PARTS = {
         form: {
-            template: "systems/neph5e/feature/vecu/actor/mnemos.html"
+            template: "systems/neph5e/feature/vecu/regles/v5/actor/mnemos.html"
         }
     }
 

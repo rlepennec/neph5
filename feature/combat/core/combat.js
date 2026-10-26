@@ -1,6 +1,6 @@
 import { Competence } from "../../competence/regles/v5/competence.js";
 import { Version } from "../../../module/common/version.js";
-import { Vecu } from "../../vecu/vecu.js";
+import { Vecu } from "../../vecu/regles/v5/vecu.js";
 
 export class Combat {
 

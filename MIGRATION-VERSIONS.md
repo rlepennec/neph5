@@ -958,3 +958,7 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   (`feature/${science}/actor/header.hbs`, en-têtes des sciences).
 - **Défaut antérieur connu** : `feature/dracomachie/passe.js` est du code mort (importé par
   personne) dont l'import `./actionDialog.js` est cassé.
+- **Lot 1 : objets simples** (35 fichiers, 9 importeurs corrigés, 0 erreur) : `arcane`, `capacite`,
+  `chute`, `passe`, `quete`, `savoir`, `vecu` (dont le dialogue des mnémos et ses gabarits). Pour
+  chacun, tout sauf `item/<type>.mjs` passe dans `regles/v5/`. La **période** reste entièrement en
+  place : ses champs sont tous communs (§15), et `periode.js` gère la chronologie, commune.

@@ -1,9 +1,9 @@
-import { ActionDataBuilder } from "../core/actionDataBuilder.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { Version } from "../../module/common/version.js";
-import { Constants } from "../../module/common/constants.js";
-import { EmbeddedItem } from "../../module/common/embeddedItem.js";
-import { HistoricalFeature } from "../core/historicalFeature.js";
+import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
+import { Version } from "../../../../module/common/version.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
+import { HistoricalFeature } from "../../../core/historicalFeature.js";
 
 export class Chute extends HistoricalFeature {
 

@@ -1,4 +1,4 @@
-import { Chute } from "../chute/chute.js";
+import { Chute } from "../chute/regles/v5/chute.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
@@ -124,7 +124,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         { id: "coupe", option: "coupe", science: "coupe" },
         { id: "denier", option: "denier", science: "denier" },
         { id: "epee", option: "epee", science: "epee" },
-        { id: "capacites", option: "capacites", template: `feature/capacite/actor/capacites.hbs`, extra: { from: "figure" } }
+        { id: "capacites", option: "capacites", template: `feature/capacite/regles/v5/actor/capacites.hbs`, extra: { from: "figure" } }
     ];
 
     /**

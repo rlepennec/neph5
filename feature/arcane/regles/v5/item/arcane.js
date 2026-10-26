@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class ArcaneSheet extends NephilimItemSheet {
 
@@ -9,7 +9,7 @@ export class ArcaneSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/arcane/item/arcane.html`,
+            template: `systems/neph5e/feature/arcane/regles/v5/item/arcane.html`,
         }
     }
 

@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class QueteSheet extends NephilimItemSheet {
 
@@ -9,7 +9,7 @@ export class QueteSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/quete/item/quete.html`,
+            template: `systems/neph5e/feature/quete/regles/v5/item/quete.html`,
         }
     }
 

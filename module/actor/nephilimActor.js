@@ -1,12 +1,12 @@
-import { Arcane } from "../../feature/arcane/arcane.js";
+import { Arcane } from "../../feature/arcane/regles/v5/arcane.js";
 import { ActiveEffects } from "../../feature/core/effects.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { VersionMigration } from "../migration/versionMigration.js";
 import { Aspect } from "../../feature/selenim/aspect.js";
-import { Capacite } from "../../feature/capacite/capacite.js";
+import { Capacite } from "../../feature/capacite/regles/v5/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/catalyseur.js";
-import { Chute } from "../../feature/chute/chute.js";
+import { Chute } from "../../feature/chute/regles/v5/chute.js";
 import { CombatantMixin } from "./combatantMixin.js";
 import { Competence } from "../../feature/competence/regles/v5/competence.js";
 import { Constants } from "../common/constants.js";
@@ -18,9 +18,9 @@ import { Materiae } from "../../feature/alchimie/materiae.js";
 import { Metamorphe } from "../../feature/nephilim/metamorphe.js";
 import { Ordonnance } from "../../feature/kabbale/ordonnance.js";
 import { Periode } from "../../feature/periode/periode.js";
-import { Savoir } from "../../feature/savoir/savoir.js";
+import { Savoir } from "../../feature/savoir/regles/v5/savoir.js";
 import { Science } from "../../feature/science/science.js";
-import { Vecu } from "../../feature/vecu/vecu.js";
+import { Vecu } from "../../feature/vecu/regles/v5/vecu.js";
 
 /**
  * [V14] Le combat a ete extrait dans CombatantMixin (combatantMixin.js) :

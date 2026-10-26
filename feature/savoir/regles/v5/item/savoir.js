@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class SavoirSheet extends NephilimItemSheet {
 
@@ -9,7 +9,7 @@ export class SavoirSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/savoir/item/savoir.html`,
+            template: `systems/neph5e/feature/savoir/regles/v5/item/savoir.html`,
         }
     }
 

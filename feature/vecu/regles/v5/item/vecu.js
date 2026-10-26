@@ -1,10 +1,10 @@
-import { Constants } from "../../../module/common/constants.js";
-import { Incarnations } from "../../../feature/incarnation/incarnations.js";
-import { Version } from "../../../module/common/version.js";
-import { DocumentIdentifier } from "../../../module/common/documentIdentifier.js";
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { Constants } from "../../../../../module/common/constants.js";
+import { Incarnations } from "../../../../incarnation/incarnations.js";
+import { Version } from "../../../../../module/common/version.js";
+import { DocumentIdentifier } from "../../../../../module/common/documentIdentifier.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 import { Mnemos } from "./mnemos.js";
-import { Groupe } from "../../groupe/groupe.js";
+import { Groupe } from "../../../../groupe/groupe.js";
 
 export class VecuSheet extends NephilimItemSheet {
 
@@ -28,7 +28,7 @@ export class VecuSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/vecu/item/vecu.html`,
+            template: `systems/neph5e/feature/vecu/regles/v5/item/vecu.html`,
         }
     }
 

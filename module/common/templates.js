@@ -22,11 +22,11 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/nephilim/actor/main.hbs",
 
         // Periode
-        "systems/neph5e/feature/savoir/actor/savoirs.hbs",
-        "systems/neph5e/feature/quete/actor/quetes.hbs",
-        "systems/neph5e/feature/chute/actor/chutes.hbs",
+        "systems/neph5e/feature/savoir/regles/v5/actor/savoirs.hbs",
+        "systems/neph5e/feature/quete/regles/v5/actor/quetes.hbs",
+        "systems/neph5e/feature/chute/regles/v5/actor/chutes.hbs",
         "systems/neph5e/feature/competence/regles/v5/actor/competences.hbs",
-        "systems/neph5e/feature/capacite/actor/capacites.hbs",
+        "systems/neph5e/feature/capacite/regles/v5/actor/capacites.hbs",
         
         // Selenim
         "systems/neph5e/feature/selenim/actor/main.hbs",
