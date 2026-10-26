@@ -956,8 +956,8 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   `figureSheet.js` (`feature/science/actor/science.hbs` et `d.template`), `groupe.js`
   (`groupe-${style}.html`, commun : ne bouge pas), `handlebars.js`
   (`feature/${science}/actor/header.hbs`, en-têtes des sciences).
-- **Défaut antérieur connu** : `feature/dracomachie/passe.js` est du code mort (importé par
-  personne) dont l'import `./actionDialog.js` est cassé.
+- **Code mort supprimé** : `feature/dracomachie/passe.js`, importé par personne, dont l'import
+  `./actionDialog.js` était cassé (26 octobre 2026).
 - **Lot 1 : objets simples** (35 fichiers, 9 importeurs corrigés, 0 erreur) : `arcane`, `capacite`,
   `chute`, `passe`, `quete`, `savoir`, `vecu` (dont le dialogue des mnémos et ses gabarits). Pour
   chacun, tout sauf `item/<type>.mjs` passe dans `regles/v5/`. La **période** reste entièrement en
