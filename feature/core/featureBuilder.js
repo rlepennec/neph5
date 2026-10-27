@@ -14,7 +14,7 @@ import { Dracomachie } from "../dracomachie/regles/v5/dracomachie.js";
 import { Formule } from "../alchimie/regles/v5/formule.js";
 import { Habitus } from "../analogie/regles/v5/habitus.js";
 import { Invocation } from "../kabbale/regles/v5/invocation.js";
-import { Ka } from "../nephilim/ka.js";
+import { Ka } from "../nephilim/pentacle.js";
 import { Magie } from "../magie/regles/v5/magie.js";
 import { Materiae } from "../alchimie/regles/v5/materiae.js";
 import { Metamorphe } from "../nephilim/metamorphe.js";
