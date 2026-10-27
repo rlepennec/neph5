@@ -1,6 +1,6 @@
-import { AbstractDialog } from "../core/abstractDialog.js";
+import { AbstractDialog } from "../../../core/abstractDialog.js";
 
-export class RechercheDialog extends AbstractDialog {
+export class ExperienceDialog extends AbstractDialog {
 
     static DEFAULT_OPTIONS = {
         classes: ["nephilim", "sheet"],
@@ -9,13 +9,13 @@ export class RechercheDialog extends AbstractDialog {
             height: "auto"
         },
         window: {
-            title: "Recherche occulte"
+            title: "Expérience"
         }
     };
 
     static PARTS = {
         main: {
-            template: "systems/neph5e/feature/recherche/recherche.hbs"
+            template: "systems/neph5e/feature/experience/regles/v5/experience.hbs"
         }
     };
 

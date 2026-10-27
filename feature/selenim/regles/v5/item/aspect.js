@@ -1,4 +1,4 @@
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class AspectSheet extends NephilimItemSheet {
 
@@ -9,7 +9,7 @@ export class AspectSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/selenim/item/aspect.html`,
+            template: `systems/neph5e/feature/selenim/regles/v5/item/aspect.html`,
         }
     }
 

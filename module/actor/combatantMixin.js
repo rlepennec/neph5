@@ -24,7 +24,7 @@ import { Wrestle } from "../../feature/combat/core/wrestle.js";
  *   feature/figure/combat.hbs, feature/figurant/combat.hbs
  *     {{document.weapons}}, {{document.armors}}, {{document.physicalModifier}},
  *     {{document.esquive}}, {{#unless document.isLutteAvailable}}
- *   feature/nephilim/actor/main.hbs, feature/selenim/actor/main.hbs
+ *   feature/nephilim/regles/v5/actor/main.hbs, feature/selenim/regles/v5/actor/main.hbs
  *     {{actor.initiative}}, {{actor.dommage}}
  * Un objet `actor.combat` aurait impose de reecrire ces expressions. Le mixin
  * laisse `actor.rollWeapon(...)` et `{{document.weapons}}` inchanges : aucun site

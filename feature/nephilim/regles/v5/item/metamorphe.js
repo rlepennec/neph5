@@ -1,6 +1,6 @@
-import { Constants } from "../../../module/common/constants.js";
-import { Version } from "../../../module/common/version.js";
-import { NephilimItemSheet } from "../../../module/item/nephilimItemSheet.js";
+import { Constants } from "../../../../../module/common/constants.js";
+import { Version } from "../../../../../module/common/version.js";
+import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class MetamorpheSheet extends NephilimItemSheet {
 
@@ -8,7 +8,7 @@ export class MetamorpheSheet extends NephilimItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/nephilim/item/metamorphe.html`,
+            template: `systems/neph5e/feature/nephilim/regles/v5/item/metamorphe.html`,
         }
     }
 

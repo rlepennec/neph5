@@ -8,7 +8,7 @@ export const preloadTemplates = async function () {
     return foundry.applications.handlebars.loadTemplates([
 
         // Akasha
-        "systems/neph5e/feature/akasha/actor/main.hbs",
+        "systems/neph5e/feature/akasha/regles/v5/actor/main.hbs",
     
         // Kabbale
         "systems/neph5e/feature/kabbale/regles/v5/actor/arbre.hbs",
@@ -19,7 +19,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/alchimie/regles/v5/actor/materiae.hbs",
 
         // Nephilim
-        "systems/neph5e/feature/nephilim/actor/main.hbs",
+        "systems/neph5e/feature/nephilim/regles/v5/actor/main.hbs",
 
         // Periode
         "systems/neph5e/feature/savoir/regles/v5/actor/savoirs.hbs",
@@ -29,7 +29,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/capacite/regles/v5/actor/capacites.hbs",
         
         // Selenim
-        "systems/neph5e/feature/selenim/actor/main.hbs",
+        "systems/neph5e/feature/selenim/regles/v5/actor/main.hbs",
 
         // Science
         "systems/neph5e/feature/science/regles/v5/actor/elements.hbs",

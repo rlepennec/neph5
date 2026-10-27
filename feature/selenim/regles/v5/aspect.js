@@ -1,7 +1,7 @@
-import { AbstractFeature } from "../core/abstractFeature.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { Version } from "../../module/common/version.js";
-import { SimpleFeature } from "../core/simpleFeature.js";
+import { AbstractFeature } from "../../../core/abstractFeature.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
+import { Version } from "../../../../module/common/version.js";
+import { SimpleFeature } from "../../../core/simpleFeature.js";
 
 /**
  * Un aspect de l'imago d'un Selenim.

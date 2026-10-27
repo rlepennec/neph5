@@ -967,3 +967,7 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   `baton`, `coupe`, `denier`, `epee`, `bohemien` ; leurs modèles restent. Correction à la main :
   `CustomHandlebarsHelpers.scienceHeader` construit désormais
   `feature/${science}/regles/v5/actor/header.hbs` (les cinq en-têtes ont bougé ensemble).
+- **Lot 3 : natures et outils** (18 fichiers, 7 importeurs corrigés, 0 erreur) : `nephilim`
+  (`ka.js` renommé auparavant `pentacle.js`), `selenim`, `akasha` (l'onglet ; le modèle reste),
+  `experience`, `recherche`. L'**éphéméride** reste en place : commune à toutes les règles
+  (décision de l'utilisateur).

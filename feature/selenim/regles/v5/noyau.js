@@ -1,6 +1,6 @@
-import { AbstractFeature } from "../core/abstractFeature.js";
-import { Version } from "../../module/common/version.js";
-import { ActionDataBuilder } from "../core/actionDataBuilder.js";
+import { AbstractFeature } from "../../../core/abstractFeature.js";
+import { Version } from "../../../../module/common/version.js";
+import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
 
 export class Noyau extends AbstractFeature {
 
