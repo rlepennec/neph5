@@ -21,7 +21,7 @@ import { Wrestle } from "../../feature/combat/regles/v5/core/wrestle.js";
  *
  * POURQUOI UN MIXIN, ET PAS UN OBJET DELEGUE.
  * Les fiches lisent ces membres DIRECTEMENT sur le document :
- *   feature/figure/combat.hbs, feature/figurant/combat.hbs
+ *   feature/figure/regles/v5/combat.hbs, feature/figurant/regles/v5/combat.hbs
  *     {{document.weapons}}, {{document.armors}}, {{document.physicalModifier}},
  *     {{document.esquive}}, {{#unless document.isLutteAvailable}}
  *   feature/nephilim/regles/v5/actor/main.hbs, feature/selenim/regles/v5/actor/main.hbs

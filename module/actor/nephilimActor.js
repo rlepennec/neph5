@@ -12,7 +12,7 @@ import { Competence } from "../../feature/competence/regles/v5/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { Fraternite } from "../../feature/fraternite/fraternite.js";
+import { Fraternite } from "../../feature/fraternite/regles/v5/fraternite.js";
 import { Laboratoire } from "../../feature/alchimie/regles/v5/laboratoire.js";
 import { Materiae } from "../../feature/alchimie/regles/v5/materiae.js";
 import { Metamorphe } from "../../feature/nephilim/regles/v5/metamorphe.js";

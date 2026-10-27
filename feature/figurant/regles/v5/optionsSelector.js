@@ -1,4 +1,4 @@
-import { ActorOptionsSelector } from "../core/actorOptionsSelector.js";
+import { ActorOptionsSelector } from "../../../core/actorOptionsSelector.js";
 
 export class OptionsSelector extends ActorOptionsSelector {
 
@@ -11,7 +11,7 @@ export class OptionsSelector extends ActorOptionsSelector {
 
     static PARTS = {
         form: {
-            template: `systems/neph5e/feature/figurant/options.hbs`,
+            template: `systems/neph5e/feature/figurant/regles/v5/options.hbs`,
         }
     }
 

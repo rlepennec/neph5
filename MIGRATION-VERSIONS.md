@@ -975,3 +975,7 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   (`core/`, `manoeuver/`, onglets d'acteur, fiches d'arme et d'armure) passe dans `regles/v5/`.
   Restent les modèles `item/arme.mjs` et `item/armure.mjs`, communs à toutes les versions
   (décision de l'utilisateur).
+- **Lot 5 : les acteurs** (24 fichiers, 3 importeurs corrigés, 0 erreur) : `figure`, `figurant`,
+  `fraternite` — fiches, gabarits principaux, onglets (dont **Incarnations**, propre à la v5 selon
+  l'utilisateur), options, `fraternite.js`. Restent les modèles `figure.mjs`, `ka.mjs`,
+  `figurant.mjs`, `fraternite.mjs`.

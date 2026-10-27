@@ -1,5 +1,5 @@
 import { Fraternite } from "./fraternite.js";
-import { HistoricalSheet } from "../../module/actor/historical.js";
+import { HistoricalSheet } from "../../../../module/actor/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
 export class FraterniteSheet extends HistoricalSheet {
@@ -23,7 +23,7 @@ export class FraterniteSheet extends HistoricalSheet {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/fraternite/fraternite.html`,
+            template: `systems/neph5e/feature/fraternite/regles/v5/fraternite.html`,
         }
     }
 
@@ -32,23 +32,23 @@ export class FraterniteSheet extends HistoricalSheet {
             tabs: [
                 { 
                     id: "description",
-                    template: `systems/neph5e/feature/fraternite/description.hbs`
+                    template: `systems/neph5e/feature/fraternite/regles/v5/description.hbs`
                 },
                 { 
                     id: "effectif",
-                    template: `systems/neph5e/feature/fraternite/effectif.hbs`
+                    template: `systems/neph5e/feature/fraternite/regles/v5/effectif.hbs`
                 },
                 { 
                     id: "connaissances",
-                    template: `systems/neph5e/feature/fraternite/connaissances.hbs`
+                    template: `systems/neph5e/feature/fraternite/regles/v5/connaissances.hbs`
                 },
                 { 
                     id: "ressources",
-                    template: `systems/neph5e/feature/fraternite/ressources.hbs`
+                    template: `systems/neph5e/feature/fraternite/regles/v5/ressources.hbs`
                 },
                 { 
                     id: "incarnations",
-                    template: `systems/neph5e/feature/fraternite/incarnations.hbs`
+                    template: `systems/neph5e/feature/fraternite/regles/v5/incarnations.hbs`
                 },
             ],
             initial: "general"

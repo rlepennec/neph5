@@ -1,5 +1,5 @@
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { Version } from "../../module/common/version.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
+import { Version } from "../../../../module/common/version.js";
 
 export class Fraternite {
 

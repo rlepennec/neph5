@@ -1,9 +1,9 @@
-import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
-import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
-import { FeatureBuilder } from "../core/featureBuilder.js";
-import { Ka } from "../nephilim/regles/v5/pentacle.js";
-import { Menace } from "../combat/regles/v5/core/menace.js";
-import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
+import { CombatantMixinSheet } from "../../../../module/common/combatantSheetMixin.js";
+import { DocumentIdentifier } from "../../../../module/common/documentIdentifier.js";
+import { FeatureBuilder } from "../../../core/featureBuilder.js";
+import { Ka } from "../../../nephilim/regles/v5/pentacle.js";
+import { Menace } from "../../../combat/regles/v5/core/menace.js";
+import { NephilimActorSheet } from "../../../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
 export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
@@ -26,7 +26,7 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/figurant/figurant.html`,
+            template: `systems/neph5e/feature/figurant/regles/v5/figurant.html`,
         }
     }
 
@@ -35,11 +35,11 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             tabs: [
                 {
                     id: "general",
-                    template: `systems/neph5e/feature/figurant/combat.hbs`
+                    template: `systems/neph5e/feature/figurant/regles/v5/combat.hbs`
                 },
                 { 
                     id: "description",
-                    template: `systems/neph5e/feature/figurant/description.hbs`
+                    template: `systems/neph5e/feature/figurant/regles/v5/description.hbs`
                 }
             ],
             initial: "general"

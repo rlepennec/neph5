@@ -1,13 +1,13 @@
-import { Chute } from "../chute/regles/v5/chute.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { Version } from "../../module/common/version.js";
-import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js";
-import { Constants } from "../../module/common/constants.js";
-import { FeatureBuilder } from "../core/featureBuilder.js";
-import { HistoricalSheet } from "../../module/actor/historical.js";
+import { Chute } from "../../../chute/regles/v5/chute.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
+import { Version } from "../../../../module/common/version.js";
+import { CombatantMixinSheet } from "../../../../module/common/combatantSheetMixin.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { FeatureBuilder } from "../../../core/featureBuilder.js";
+import { HistoricalSheet } from "../../../../module/actor/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";
-import { Ordonnance } from "../kabbale/regles/v5/ordonnance.js";
-import { Science } from "../science/regles/v5/science.js";
+import { Ordonnance } from "../../../kabbale/regles/v5/ordonnance.js";
+import { Science } from "../../../science/regles/v5/science.js";
 
 
 export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
@@ -76,14 +76,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     static PARTS = {
         main: {
-            template: `systems/neph5e/feature/figure/figure.html`,
+            template: `systems/neph5e/feature/figure/regles/v5/figure.html`,
         }
     }
 
     static TABS = {
         primary: {
             tabs: [
-                { id: "description", template: `systems/neph5e/feature/figure/description.hbs` }
+                { id: "description", template: `systems/neph5e/feature/figure/regles/v5/description.hbs` }
             ],
             initial: "description"
         }
@@ -100,12 +100,12 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         // L'onglet des incarnations ne sert qu'à bâtir le personnage — y déposer des
         // périodes, des vécus, des focus. Il n'a donc de sens que la fiche déverrouillée,
         // et vient alors en tête : c'est par là qu'on entre quand on construit.
-        { id: "incarnations", option: "incarnations", unlocked: true, template: `feature/figure/incarnations.hbs`, extra: { from: "figure" } },
-        { id: "description", template: `feature/figure/description.hbs` },
+        { id: "incarnations", option: "incarnations", unlocked: true, template: `feature/figure/regles/v5/incarnations.hbs`, extra: { from: "figure" } },
+        { id: "description", template: `feature/figure/regles/v5/description.hbs` },
         { id: "nephilim", option: "nephilim", incarnation: true, template: `feature/nephilim/regles/v5/actor/main.hbs` },
         { id: "selenim", option: "selenim", incarnation: true, template: `feature/selenim/regles/v5/actor/main.hbs` },
-        { id: "combat", option: "combat", template: `feature/figure/combat.hbs` },
-        { id: "vecus", option: "vecus", template: `feature/figure/vecus.hbs`, extra: { from: "figure" } },
+        { id: "combat", option: "combat", template: `feature/figure/regles/v5/combat.hbs` },
+        { id: "vecus", option: "vecus", template: `feature/figure/regles/v5/vecus.hbs`, extra: { from: "figure" } },
         { id: "magie", option: "magie", science: "magie" },
         { id: "kabbale", option: "kabbale", autorise: "kabbale", science: "kabbale" },
         { id: "arbre", option: "kabbale", autorise: "kabbale", template: `feature/kabbale/regles/v5/actor/arbre.hbs` },

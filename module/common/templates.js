@@ -67,14 +67,14 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/combat/regles/v5/actor/etats.hbs",
         "systems/neph5e/feature/combat/regles/v5/actor/bonus.hbs",
 
-        "systems/neph5e/feature/figurant/description.hbs",
-        "systems/neph5e/feature/figurant/combat.hbs",
+        "systems/neph5e/feature/figurant/regles/v5/description.hbs",
+        "systems/neph5e/feature/figurant/regles/v5/combat.hbs",
 
         // Figure
-        "systems/neph5e/feature/figure/combat.hbs",
-        "systems/neph5e/feature/figure/description.hbs",
-        "systems/neph5e/feature/figure/incarnations.hbs",
-        "systems/neph5e/feature/figure/vecus.hbs",
+        "systems/neph5e/feature/figure/regles/v5/combat.hbs",
+        "systems/neph5e/feature/figure/regles/v5/description.hbs",
+        "systems/neph5e/feature/figure/regles/v5/incarnations.hbs",
+        "systems/neph5e/feature/figure/regles/v5/vecus.hbs",
 
         // Formulaire d'incarnation : une ligne d'objet acquis
         "systems/neph5e/feature/incarnation/incarnation-ligne.hbs",
@@ -86,13 +86,13 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/epee/regles/v5/actor/header.hbs",
 
         // Fraternite
-        "systems/neph5e/feature/fraternite/description.hbs",
-        "systems/neph5e/feature/fraternite/effectif.hbs",
-        "systems/neph5e/feature/fraternite/incarnations.hbs",
-        "systems/neph5e/feature/fraternite/ressources.hbs",
-        "systems/neph5e/feature/fraternite/connaissances.hbs",
+        "systems/neph5e/feature/fraternite/regles/v5/description.hbs",
+        "systems/neph5e/feature/fraternite/regles/v5/effectif.hbs",
+        "systems/neph5e/feature/fraternite/regles/v5/incarnations.hbs",
+        "systems/neph5e/feature/fraternite/regles/v5/ressources.hbs",
+        "systems/neph5e/feature/fraternite/regles/v5/connaissances.hbs",
 
-        "systems/neph5e/feature/fraternite/options.hbs",
+        "systems/neph5e/feature/fraternite/regles/v5/options.hbs",
     ]);
 
 };

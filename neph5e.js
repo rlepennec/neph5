@@ -14,9 +14,9 @@ import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { NephilimActiveEffect } from "./module/common/nephilimActiveEffect.js";
 import { NephilimTokenHUD } from "./module/common/nephilimTokenHUD.js";
-import { FigureSheet } from "./feature/figure/figureSheet.js";
-import { FigurantSheet } from "./feature/figurant/figurantSheet.js";
-import { FraterniteSheet } from "./feature/fraternite/fraterniteSheet.js";
+import { FigureSheet } from "./feature/figure/regles/v5/figureSheet.js";
+import { FigurantSheet } from "./feature/figurant/regles/v5/figurantSheet.js";
+import { FraterniteSheet } from "./feature/fraternite/regles/v5/fraterniteSheet.js";
 
 import { AlchimieSheet } from "./feature/alchimie/regles/v5/item/alchimie.js";
 import { AppelSheet } from "./feature/conjuration/regles/v5/item/appel.js";
