@@ -1,5 +1,5 @@
 import { Arcane } from "../../feature/arcane/regles/v5/arcane.js";
-import { ActiveEffects } from "../../feature/core/effects.js";
+import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { VersionMigration } from "../migration/versionMigration.js";
@@ -11,7 +11,7 @@ import { CombatantMixin } from "./combatantMixin.js";
 import { Competence } from "../../feature/competence/regles/v5/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
+import { FeatureBuilder } from "../../feature/core/regles/v5/featureBuilder.js";
 import { Fraternite } from "../../feature/fraternite/regles/v5/fraternite.js";
 import { Laboratoire } from "../../feature/alchimie/regles/v5/laboratoire.js";
 import { Materiae } from "../../feature/alchimie/regles/v5/materiae.js";

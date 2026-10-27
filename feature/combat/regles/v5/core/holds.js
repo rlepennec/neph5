@@ -1,4 +1,4 @@
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Constants } from "../../../../../module/common/constants.js";
 
 /**

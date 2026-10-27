@@ -1,9 +1,9 @@
-import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { Constants } from "../../../../module/common/constants.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
-import { HistoricalFeature } from "../../../core/historicalFeature.js";
+import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
 
 export class Chute extends HistoricalFeature {
 

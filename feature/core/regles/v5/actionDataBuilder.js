@@ -1,6 +1,6 @@
-import { Constants } from "../../module/common/constants.js";
-import { Groupe } from "../groupe/groupe.js";
-import { Version } from "../../module/common/version.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { Groupe } from "../../../groupe/groupe.js";
+import { Version } from "../../../../module/common/version.js";
 
 export class ActionDataBuilder {
 

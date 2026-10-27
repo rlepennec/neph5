@@ -1,7 +1,7 @@
 import { Constants } from "../../../../../module/common/constants.js";
 import { Version } from "../../../../../module/common/version.js";
 import { Incarnations } from "../../../../incarnation/incarnations.js";
-import { Health } from "../../../../core/health.js";
+import { Health } from "../../../../core/regles/v5/health.js";
 import { NephilimChat } from "../../../../../module/common/chat.js";
 
 /**
@@ -74,7 +74,7 @@ export class Riposte {
         const sentence = defense.actor.name + " peut contre-attaquer " + defense.attack.actor.name + " avec une de ses armes";
         ui.notifications.info(sentence + " : cliquer sur l'attaque d'une arme naturelle ou d'une arme de mêlée en main.");
         await new NephilimChat(defense.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: defense.actor,
                 richSentence: sentence,

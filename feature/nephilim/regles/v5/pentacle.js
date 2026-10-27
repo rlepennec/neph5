@@ -1,7 +1,7 @@
-import { AbstractFeature } from "../../../core/abstractFeature.js";
+import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { Version } from "../../../../module/common/version.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
-import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 
 export class Ka extends AbstractFeature {
 

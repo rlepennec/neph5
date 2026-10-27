@@ -1,6 +1,6 @@
-import { AbstractFocus } from "../../../core/abstractFocus.js";
+import { AbstractFocus } from "../../../core/regles/v5/abstractFocus.js";
 import { Version } from "../../../../module/common/version.js";
-import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { Constants } from "../../../../module/common/constants.js";
 import { Pacte } from "./pacte.js";
 import { Science } from "../../../science/regles/v5/science.js";

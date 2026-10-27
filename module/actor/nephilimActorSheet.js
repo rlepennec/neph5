@@ -1,7 +1,7 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Version } from "../../module/common/version.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
+import { FeatureBuilder } from "../../feature/core/regles/v5/featureBuilder.js";
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimItem } from "../item/nephilimItem.js"
 import { Incarnations } from "../../feature/incarnation/incarnations.js";

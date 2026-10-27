@@ -979,3 +979,14 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   `fraternite` — fiches, gabarits principaux, onglets (dont **Incarnations**, propre à la v5 selon
   l'utilisateur), options, `fraternite.js`. Restent les modèles `figure.mjs`, `ka.mjs`,
   `figurant.mjs`, `fraternite.mjs`.
+- **Lot 6 : `core`** (13 fichiers, 65 importeurs corrigés, 0 erreur) : les jets (`abstractFeature`,
+  `abstractFocus`, `simpleFeature`, `historicalFeature`, `actionDataBuilder`, `actionDialog`,
+  `featureBuilder`, `opposedRollBuilder`, `reactionRoll`), `health.js`, `effects.js` (v5 selon
+  l'utilisateur), `action.hbs`, `chat.hbs`. Restent communs : `abstractDialog`,
+  `abstractOptionsSelector`, `itemOptionsSelector`, `actorOptionsSelector`.
+
+Fin de la réorganisation des features. **Dépendances du commun vers la v5**, révélées par le
+lot 6 et à traiter avec le registre des jeux de règles : `periode.js` (hérite d'`AbstractFeature`),
+`incarnationForm.js` (`FeatureBuilder`), la migration 1.0.10 (`ActiveEffects`),
+`nephilimTokenHUD.js` et `nephilimActiveEffect.js` (états), `nephilimItem.js`, `historical.js`,
+`nephilimActorSheet.js`, `nephilimActor.js`.

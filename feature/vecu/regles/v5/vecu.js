@@ -1,10 +1,10 @@
-import { AbstractFeature } from "../../../core/abstractFeature.js";
+import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
-import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
 import { Constants } from "../../../../module/common/constants.js";
-import { HistoricalFeature } from "../../../core/historicalFeature.js";
+import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
 
 export class Vecu extends HistoricalFeature {
 

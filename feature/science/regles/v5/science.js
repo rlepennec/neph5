@@ -1,8 +1,8 @@
-import { ActionDataBuilder } from "../../../core/actionDataBuilder.js";
+import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
-import { FeatureBuilder } from "../../../core/featureBuilder.js";
-import { HistoricalFeature } from "../../../core/historicalFeature.js";
+import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
+import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
 import { Savoir } from "../../../savoir/regles/v5/savoir.js";
 
 export class Science extends HistoricalFeature {

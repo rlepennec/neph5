@@ -1,12 +1,12 @@
 import { ActionDialog } from "./actionDialog.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { Version } from "../../module/common/version.js";
-import { AbstractManoeuver } from "../combat/regles/v5/manoeuver/abstractManoeuver.js";
-import { Constants } from "../../module/common/constants.js";
-import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
-import { Liberer } from "../combat/regles/v5/manoeuver/liberer.js";
-import { ManoeuverBuilder } from "../combat/regles/v5/manoeuver/manoeuverBuilder.js";
-import { NephilimChat } from "../../module/common/chat.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
+import { Version } from "../../../../module/common/version.js";
+import { AbstractManoeuver } from "../../../combat/regles/v5/manoeuver/abstractManoeuver.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { CustomHandlebarsHelpers } from "../../../../module/common/handlebars.js";
+import { Liberer } from "../../../combat/regles/v5/manoeuver/liberer.js";
+import { ManoeuverBuilder } from "../../../combat/regles/v5/manoeuver/manoeuverBuilder.js";
+import { NephilimChat } from "../../../../module/common/chat.js";
 
 export class AbstractFeature {
 
@@ -311,7 +311,7 @@ export class AbstractFeature {
             data.sentence = "tente de" + data.sentence;
         }
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: this.actor,
                 sentence: data.sentence,

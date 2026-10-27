@@ -1,11 +1,11 @@
-import { ActiveEffects } from "../../feature/core/effects.js";
+import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
 import { Version } from "../../module/common/version.js";
 import { Groupe } from "../../feature/groupe/groupe.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { CombatHistory } from "../../feature/combat/regles/v5/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
 import { Distance } from "../../feature/combat/regles/v5/core/distance.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
+import { FeatureBuilder } from "../../feature/core/regles/v5/featureBuilder.js";
 import { Getup } from "../../feature/combat/regles/v5/manoeuver/getup.js";
 import { Game } from "../common/game.js";
 import { Melee } from "../../feature/combat/regles/v5/core/melee.js";

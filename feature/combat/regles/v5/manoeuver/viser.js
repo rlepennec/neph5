@@ -87,7 +87,7 @@ export class Viser extends AbstractManoeuver {
 
         // Chat
         await new NephilimChat(action.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: action.actor,
                 sentence: game.i18n.localize('NEPHILIM.manoeuvreViserSentence').replaceAll("${arme}", action.weapon.name),

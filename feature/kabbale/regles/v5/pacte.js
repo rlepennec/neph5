@@ -1,8 +1,8 @@
-import { AbstractFeature } from "../../../core/abstractFeature.js";
+import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { Version } from "../../../../module/common/version.js";
-import { ActionDialog } from "../../../core/actionDialog.js";
+import { ActionDialog } from "../../../core/regles/v5/actionDialog.js";
 import { Constants } from "../../../../module/common/constants.js";
-import { Health } from "../../../core/health.js";
+import { Health } from "../../../core/regles/v5/health.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { NephilimChat } from "../../../../module/common/chat.js";
 import { Ordonnance } from "./ordonnance.js";
@@ -71,7 +71,7 @@ export class Pacte extends AbstractFeature {
         // retrait du drapeau pendant que le rendu courait encore.
         await new ActionDialog(this.actor, this)
             .withTitle(this.title)
-            .withTemplate("systems/neph5e/feature/core/action.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/action.hbs")
             .withData(this.data)
             .render(true);
     }
@@ -82,7 +82,7 @@ export class Pacte extends AbstractFeature {
     async apply(result) {
         // Une seule phrase conclut l'invocation : celle du résultat, sous le jet de la créature.
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: this.actor,
                 richSentence: this.sentence,

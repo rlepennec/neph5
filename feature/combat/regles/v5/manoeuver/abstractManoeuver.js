@@ -1,4 +1,4 @@
-import { ActionDataBuilder } from "../../../../core/actionDataBuilder.js";
+import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
 import { Version } from "../../../../../module/common/version.js";
 import { Constants } from "../../../../../module/common/constants.js";
 

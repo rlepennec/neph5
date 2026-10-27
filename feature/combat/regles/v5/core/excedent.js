@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../../../../core/abstractFeature.js";
+import { AbstractFeature } from "../../../../core/regles/v5/abstractFeature.js";
 import { ExcedentDialog } from "./excedentDialog.js";
 
 /**

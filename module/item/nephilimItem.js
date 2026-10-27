@@ -519,7 +519,7 @@ export class NephilimItem extends Item {
      */
     async openAsFromActor(event) {
         // Import dynamique : FeatureBuilder importe les fonctionnalités, qui importent ce module.
-        const { FeatureBuilder } = await import("../../feature/core/featureBuilder.js");
+        const { FeatureBuilder } = await import("../../feature/core/regles/v5/featureBuilder.js");
         const feature = new FeatureBuilder(this.actor)
             .withScope("actor")
             .withEmbeddedItem(this.id)

@@ -1,12 +1,12 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { Version } from "../../../../../module/common/version.js";
-import { ActionDataBuilder } from "../../../../core/actionDataBuilder.js";
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
 import { Constants } from "../../../../../module/common/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
-import { Health } from "../../../../core/health.js";
+import { Health } from "../../../../core/regles/v5/health.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { Multiple } from "../manoeuver/multiple.js";

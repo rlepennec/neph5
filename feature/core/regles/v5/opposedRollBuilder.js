@@ -1,14 +1,14 @@
-import { Attack } from "../combat/regles/v5/core/attack.js";
-import { Version } from "../../module/common/version.js";
-import { Constants } from "../../module/common/constants.js";
-import { Defense } from "../combat/regles/v5/core/defense.js";
-import { Distance } from "../combat/regles/v5/core/distance.js";
-import { ManoeuverBuilder } from "../combat/regles/v5/manoeuver/manoeuverBuilder.js";
-import { Melee } from "../combat/regles/v5/core/melee.js";
-import { Naturelle } from "../combat/regles/v5/core/naturelle.js";
-import { Pacte } from "../kabbale/regles/v5/pacte.js";
+import { Attack } from "../../../combat/regles/v5/core/attack.js";
+import { Version } from "../../../../module/common/version.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { Defense } from "../../../combat/regles/v5/core/defense.js";
+import { Distance } from "../../../combat/regles/v5/core/distance.js";
+import { ManoeuverBuilder } from "../../../combat/regles/v5/manoeuver/manoeuverBuilder.js";
+import { Melee } from "../../../combat/regles/v5/core/melee.js";
+import { Naturelle } from "../../../combat/regles/v5/core/naturelle.js";
+import { Pacte } from "../../../kabbale/regles/v5/pacte.js";
 import { ReactionRoll } from "./reactionRoll.js";
-import { Wrestle } from "../combat/regles/v5/core/wrestle.js";
+import { Wrestle } from "../../../combat/regles/v5/core/wrestle.js";
 
 export class OpposedRollBuilder {
 

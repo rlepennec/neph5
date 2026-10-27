@@ -2,7 +2,7 @@ import { NephilimActorSheet } from "./nephilimActorSheet.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { IncarnationForm } from "../../feature/incarnation/incarnationForm.js";
 import { Version } from "../common/version.js";
-import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
+import { FeatureBuilder } from "../../feature/core/regles/v5/featureBuilder.js";
 
 export class HistoricalSheet extends NephilimActorSheet {
 

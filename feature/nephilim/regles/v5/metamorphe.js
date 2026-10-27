@@ -1,7 +1,7 @@
 
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
-import { SimpleFeature } from "../../../core/simpleFeature.js";
+import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
 
 /**
  * Le métamorphe d'un Nephilim.

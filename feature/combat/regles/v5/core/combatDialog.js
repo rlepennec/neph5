@@ -1,5 +1,5 @@
-import { ActionDataBuilder } from "../../../../core/actionDataBuilder.js";
-import { ActionDialog } from "../../../../core/actionDialog.js";
+import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
+import { ActionDialog } from "../../../../core/regles/v5/actionDialog.js";
 import { CustomHandlebarsHelpers } from "../../../../../module/common/handlebars.js";
 import { Constants } from "../../../../../module/common/constants.js";
 import { Eviter } from "../manoeuver/eviter.js";

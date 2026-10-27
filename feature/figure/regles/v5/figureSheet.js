@@ -3,7 +3,7 @@ import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { CombatantMixinSheet } from "../../../../module/common/combatantSheetMixin.js";
 import { Constants } from "../../../../module/common/constants.js";
-import { FeatureBuilder } from "../../../core/featureBuilder.js";
+import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
 import { HistoricalSheet } from "../../../../module/actor/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";
 import { Ordonnance } from "../../../kabbale/regles/v5/ordonnance.js";

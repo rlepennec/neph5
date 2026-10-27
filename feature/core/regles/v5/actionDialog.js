@@ -1,5 +1,5 @@
-import { AbstractDialog } from "./abstractDialog.js";
-import { Constants } from "../../module/common/constants.js";
+import { AbstractDialog } from "../../abstractDialog.js";
+import { Constants } from "../../../../module/common/constants.js";
 
 export class ActionDialog extends AbstractDialog {
 
@@ -45,7 +45,7 @@ export class ActionDialog extends AbstractDialog {
     static PARTS = {
         main: {
             // Template par défaut ; peut être surchargé via withTemplate().
-            template: "systems/neph5e/feature/core/action.hbs"
+            template: "systems/neph5e/feature/core/regles/v5/action.hbs"
         }
     };
 

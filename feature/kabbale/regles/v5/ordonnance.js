@@ -1,4 +1,4 @@
-import { AbstractFeature } from "../../../core/abstractFeature.js";
+import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";

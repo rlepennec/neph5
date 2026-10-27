@@ -1,7 +1,7 @@
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
-import { HistoricalFeature } from "../../../core/historicalFeature.js";
+import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
 
 export class Capacite extends HistoricalFeature {
 

@@ -1,5 +1,5 @@
-import { AbstractFeature } from "../../../core/abstractFeature.js";
-import { SimpleFeature } from "../../../core/simpleFeature.js";
+import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
+import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
 import { Incarnations } from "../../../incarnation/incarnations.js";
 
 export class Catalyseur extends SimpleFeature {

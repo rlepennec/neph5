@@ -1,4 +1,4 @@
-import { Incarnations } from "../incarnation/incarnations.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
 
 export class ActiveEffects {
 

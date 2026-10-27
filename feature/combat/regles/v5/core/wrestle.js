@@ -1,7 +1,7 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { Version } from "../../../../../module/common/version.js";
-import { ActionDataBuilder } from "../../../../core/actionDataBuilder.js";
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
 import { CombatDialog } from "./combatDialog.js";

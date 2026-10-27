@@ -1,8 +1,8 @@
 import { AbstractCombatFeature } from "./abstractCombatFeature.js";
 import { Version } from "../../../../../module/common/version.js";
 import { Incarnations } from "../../../../incarnation/incarnations.js";
-import { ActionDataBuilder } from "../../../../core/actionDataBuilder.js";
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Constants } from "../../../../../module/common/constants.js";
 import { Bloquer } from "../manoeuver/bloquer.js";
 import { Combat } from "./combat.js";
@@ -18,7 +18,7 @@ import { Excedent } from "./excedent.js";
 import { Eviter } from "../manoeuver/eviter.js";
 import { Fuir } from "../manoeuver/fuir.js";
 import { Immobiliser } from "../manoeuver/immobiliser.js";
-import { Health } from "../../../../core/health.js";
+import { Health } from "../../../../core/regles/v5/health.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
 import { NephilimChat } from "../../../../../module/common/chat.js";
@@ -240,7 +240,7 @@ export class Defense extends AbstractCombatFeature {
 
         // Display result in chat
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: this.actor,
                 richSentence: this.sentenceOf(this.winner),

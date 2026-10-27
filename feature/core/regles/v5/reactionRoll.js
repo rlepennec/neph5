@@ -1,7 +1,7 @@
-import { AbstractFeature } from "../core/abstractFeature.js";
+import { AbstractFeature } from "./abstractFeature.js";
 import { ActionDialog } from "./actionDialog.js";
-import { Constants } from "../../module/common/constants.js";
-import { NephilimChat } from "../../module/common/chat.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { NephilimChat } from "../../../../module/common/chat.js";
 
 export class ReactionRoll extends AbstractFeature {
 
@@ -83,7 +83,7 @@ export class ReactionRoll extends AbstractFeature {
         // retrait du drapeau pendant que le rendu courait encore.
         await new ActionDialog(this.actor, this)
             .withTitle(this.title)
-            .withTemplate("systems/neph5e/feature/core/action.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/action.hbs")
             .withData(this.data)
             .render(true);
     }
@@ -93,7 +93,7 @@ export class ReactionRoll extends AbstractFeature {
      */
     async apply(result) {
         await new NephilimChat(this.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: this.actor,
                 richSentence: this.sentenceOf(result),

@@ -1,5 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Constants } from "../../../../../module/common/constants.js";
 
 export class Etrange extends AbstractManoeuver {

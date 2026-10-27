@@ -1,7 +1,7 @@
 import { MigrationTools } from "./migration.js";
 import { VersionMigration } from "./versionMigration.js";
 import { _1_0_9 } from "./_1_0_9.js";
-import { ActiveEffects } from "../../feature/core/effects.js";
+import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../common/version.js";
 

@@ -1,7 +1,7 @@
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { CombatHistory } from "./combatHistory.js";
 import { Constants } from "../../../../../module/common/constants.js";
-import { Health } from "../../../../core/health.js";
+import { Health } from "../../../../core/regles/v5/health.js";
 import { Etrange } from "../manoeuver/etrange.js";
 import { Riposte } from "./riposte.js";
 

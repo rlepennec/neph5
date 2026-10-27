@@ -1,5 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { ActiveEffects } from "../../../../core/effects.js";
+import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Constants } from "../../../../../module/common/constants.js";
 import { NephilimChat } from "../../../../../module/common/chat.js";
 
@@ -42,7 +42,7 @@ export class Getup extends AbstractManoeuver {
 
         const sentence = game.i18n.localize(AbstractManoeuver.clef(Getup.ID, "Sentence"));
         await new NephilimChat(action.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: action.actor,
                 sentence: sentence,

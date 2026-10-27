@@ -1,9 +1,9 @@
-import { ActiveEffects } from "../core/effects.js";
-import { Version } from "../../module/common/version.js";
-import { Constants } from "../../module/common/constants.js";
-import { Immobiliser } from "../combat/regles/v5/manoeuver/immobiliser.js";
-import { Liberer } from "../combat/regles/v5/manoeuver/liberer.js";
-import { NephilimChat } from "../../module/common/chat.js";
+import { ActiveEffects } from "./effects.js";
+import { Version } from "../../../../module/common/version.js";
+import { Constants } from "../../../../module/common/constants.js";
+import { Immobiliser } from "../../../combat/regles/v5/manoeuver/immobiliser.js";
+import { Liberer } from "../../../combat/regles/v5/manoeuver/liberer.js";
+import { NephilimChat } from "../../../../module/common/chat.js";
 
 export class Health {
 
@@ -173,7 +173,7 @@ export class Health {
             + (winner === Constants.ACTION ? " parvient à immobiliser " : " ne parvient pas à immobiliser ")
             + this.actor.name;
         await new NephilimChat(sender ?? this.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: sender ?? this.actor,
                 richSentence: sentence,
@@ -218,7 +218,7 @@ export class Health {
                 : this.actor.name + " est blessé " + gravite;
         }
         await new NephilimChat(sender ?? this.actor)
-            .withTemplate("systems/neph5e/feature/core/chat.hbs")
+            .withTemplate("systems/neph5e/feature/core/regles/v5/chat.hbs")
             .withData({
                 actor: sender ?? this.actor,
                 richSentence: sentence,
