@@ -971,3 +971,7 @@ Préparer les autres règles sans rien changer au comportement (« iso ») : seu
   (`ka.js` renommé auparavant `pentacle.js`), `selenim`, `akasha` (l'onglet ; le modèle reste),
   `experience`, `recherche`. L'**éphéméride** reste en place : commune à toutes les règles
   (décision de l'utilisateur).
+- **Lot 4 : le combat** (69 fichiers, 10 importeurs corrigés, 0 erreur) : tout `feature/combat`
+  (`core/`, `manoeuver/`, onglets d'acteur, fiches d'arme et d'armure) passe dans `regles/v5/`.
+  Restent les modèles `item/arme.mjs` et `item/armure.mjs`, communs à toutes les versions
+  (décision de l'utilisateur).

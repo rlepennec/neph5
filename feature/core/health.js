@@ -1,8 +1,8 @@
 import { ActiveEffects } from "../core/effects.js";
 import { Version } from "../../module/common/version.js";
 import { Constants } from "../../module/common/constants.js";
-import { Immobiliser } from "../combat/manoeuver/immobiliser.js";
-import { Liberer } from "../combat/manoeuver/liberer.js";
+import { Immobiliser } from "../combat/regles/v5/manoeuver/immobiliser.js";
+import { Liberer } from "../combat/regles/v5/manoeuver/liberer.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
 export class Health {

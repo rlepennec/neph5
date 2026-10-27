@@ -1,5 +1,5 @@
 import { DocumentIdentifier } from "./documentIdentifier.js";
-import { Riposte } from "../../feature/combat/core/riposte.js";
+import { Riposte } from "../../feature/combat/regles/v5/core/riposte.js";
 import { NephilimActorSheet } from "../actor/nephilimActorSheet.js";
 
 export const CombatantMixinSheet = Base => {

@@ -1,11 +1,11 @@
 import { ActionDialog } from "./actionDialog.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
-import { AbstractManoeuver } from "../combat/manoeuver/abstractManoeuver.js";
+import { AbstractManoeuver } from "../combat/regles/v5/manoeuver/abstractManoeuver.js";
 import { Constants } from "../../module/common/constants.js";
 import { CustomHandlebarsHelpers } from "../../module/common/handlebars.js";
-import { Liberer } from "../combat/manoeuver/liberer.js";
-import { ManoeuverBuilder } from "../combat/manoeuver/manoeuverBuilder.js";
+import { Liberer } from "../combat/regles/v5/manoeuver/liberer.js";
+import { ManoeuverBuilder } from "../combat/regles/v5/manoeuver/manoeuverBuilder.js";
 import { NephilimChat } from "../../module/common/chat.js";
 
 export class AbstractFeature {

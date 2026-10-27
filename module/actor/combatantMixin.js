@@ -2,19 +2,19 @@ import { ActiveEffects } from "../../feature/core/effects.js";
 import { Version } from "../../module/common/version.js";
 import { Groupe } from "../../feature/groupe/groupe.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
-import { CombatHistory } from "../../feature/combat/core/combatHistory.js";
+import { CombatHistory } from "../../feature/combat/regles/v5/core/combatHistory.js";
 import { Constants } from "../common/constants.js";
-import { Distance } from "../../feature/combat/core/distance.js";
+import { Distance } from "../../feature/combat/regles/v5/core/distance.js";
 import { FeatureBuilder } from "../../feature/core/featureBuilder.js";
-import { Getup } from "../../feature/combat/manoeuver/getup.js";
+import { Getup } from "../../feature/combat/regles/v5/manoeuver/getup.js";
 import { Game } from "../common/game.js";
-import { Melee } from "../../feature/combat/core/melee.js";
-import { Menace } from "../../feature/combat/core/menace.js";
-import { Naturelle } from "../../feature/combat/core/naturelle.js";
-import { Recharger } from "../../feature/combat/manoeuver/recharger.js";
-import { Riposte } from "../../feature/combat/core/riposte.js";
-import { Viser } from "../../feature/combat/manoeuver/viser.js";
-import { Wrestle } from "../../feature/combat/core/wrestle.js";
+import { Melee } from "../../feature/combat/regles/v5/core/melee.js";
+import { Menace } from "../../feature/combat/regles/v5/core/menace.js";
+import { Naturelle } from "../../feature/combat/regles/v5/core/naturelle.js";
+import { Recharger } from "../../feature/combat/regles/v5/manoeuver/recharger.js";
+import { Riposte } from "../../feature/combat/regles/v5/core/riposte.js";
+import { Viser } from "../../feature/combat/regles/v5/manoeuver/viser.js";
+import { Wrestle } from "../../feature/combat/regles/v5/core/wrestle.js";
 
 /**
  * [V14] Tout ce que NephilimActor savait du combat vit desormais ici.

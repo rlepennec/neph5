@@ -2,7 +2,7 @@ import { CombatantMixinSheet } from "../../module/common/combatantSheetMixin.js"
 import { DocumentIdentifier } from "../../module/common/documentIdentifier.js";
 import { FeatureBuilder } from "../core/featureBuilder.js";
 import { Ka } from "../nephilim/regles/v5/pentacle.js";
-import { Menace } from "../combat/core/menace.js";
+import { Menace } from "../combat/regles/v5/core/menace.js";
 import { NephilimActorSheet } from "../../module/actor/nephilimActorSheet.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
