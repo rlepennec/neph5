@@ -1,4 +1,4 @@
-import { CombatantMixinSheet } from "../../../../module/common/combatantSheetMixin.js";
+import { CombatantMixinSheet } from "../../../../module/common/regles/v5/combatantSheetMixin.js";
 import { DocumentIdentifier } from "../../../../module/common/documentIdentifier.js";
 import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
 import { Ka } from "../../../nephilim/regles/v5/pentacle.js";

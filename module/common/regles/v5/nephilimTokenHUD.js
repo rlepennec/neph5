@@ -1,4 +1,4 @@
-import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
+import { ActiveEffects } from "../../../../feature/core/regles/v5/effects.js";
 
 /**
  * Le HUD des jetons. Celui de Foundry ne voit actifs que les états posés sur l'acteur ; ceux

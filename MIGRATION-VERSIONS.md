@@ -990,3 +990,11 @@ lot 6 et à traiter avec le registre des jeux de règles : `periode.js` (hérite
 `incarnationForm.js` (`FeatureBuilder`), la migration 1.0.10 (`ActiveEffects`),
 `nephilimTokenHUD.js` et `nephilimActiveEffect.js` (états), `nephilimItem.js`, `historical.js`,
 `nephilimActorSheet.js`, `nephilimActor.js`.
+- **Lot 7 : `module/`** (6 fichiers, 5 importeurs corrigés, 0 erreur) : `actor/combatantMixin.js`,
+  `actor/historical.js` (base des fiches v5 de figure et de fraternité), `common/combatantSheetMixin.js`,
+  `common/game.js` (tables des états et des blessures), `common/nephilimActiveEffect.js` et
+  `common/nephilimTokenHUD.js` (les états, v5) passent dans `module/<dossier>/regles/v5/`. Restent
+  communs : `version`, `settings`, `chat`, `macros`, `documentIdentifier`, `embeddedItem`,
+  `illustration`, les mixins de fiche, `field/`, `item/` et les migrations. Restent en place,
+  **mixtes**, à découper ensuite : `nephilimActor.js`, `nephilimActorSheet.js`, `constants.js`,
+  `handlebars.js`, `templates.js`, `nettoyage.js`, `nephilimItem.js`.

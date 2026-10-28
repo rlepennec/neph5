@@ -1,4 +1,4 @@
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { Incarnations } from "../../../../feature/incarnation/incarnations.js";
 
 /**
  * Les effets du système. Les états d'une figure (désorienté, immobilisé, à terre, mort...)

@@ -7,7 +7,7 @@ import { Aspect } from "../../feature/selenim/regles/v5/aspect.js";
 import { Capacite } from "../../feature/capacite/regles/v5/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/regles/v5/catalyseur.js";
 import { Chute } from "../../feature/chute/regles/v5/chute.js";
-import { CombatantMixin } from "./combatantMixin.js";
+import { CombatantMixin } from "./regles/v5/combatantMixin.js";
 import { Competence } from "../../feature/competence/regles/v5/competence.js";
 import { Constants } from "../common/constants.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";

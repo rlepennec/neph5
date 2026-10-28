@@ -1,5 +1,5 @@
 import { Fraternite } from "./fraternite.js";
-import { HistoricalSheet } from "../../../../module/actor/historical.js";
+import { HistoricalSheet } from "../../../../module/actor/regles/v5/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
 export class FraterniteSheet extends HistoricalSheet {
