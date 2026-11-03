@@ -3,6 +3,7 @@ import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { VersionMigration } from "../migration/versionMigration.js";
+import { Regles } from "../regles/regles.js";
 import { Aspect } from "../../feature/selenim/regles/v5/aspect.js";
 import { Capacite } from "../../feature/capacite/regles/v5/capacite.js";
 import { Catalyseur } from "../../feature/alchimie/regles/v5/catalyseur.js";
@@ -45,6 +46,14 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     get sid() {
         return this?.system?.id;
+    }
+
+    /**
+     * @returns l'objet des règles de cet acteur pour la version du monde (voir Regles) ; un objet
+     *          vide si elle ne fournit rien pour les acteurs.
+     */
+    get regles() {
+        return Regles.acteur(this);
     }
 
     /**

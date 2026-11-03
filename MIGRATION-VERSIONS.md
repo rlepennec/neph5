@@ -998,3 +998,31 @@ lot 6 et à traiter avec le registre des jeux de règles : `periode.js` (hérite
   `illustration`, les mixins de fiche, `field/`, `item/` et les migrations. Restent en place,
   **mixtes**, à découper ensuite : `nephilimActor.js`, `nephilimActorSheet.js`, `constants.js`,
   `handlebars.js`, `templates.js`, `nettoyage.js`, `nephilimItem.js`.
+
+## 19. Le commun ne connaît aucune notion de règles (décidé par l'utilisateur en novembre 2026)
+
+Une autre version peut n'avoir ni jets de compétence, ni quêtes, ni combat : on ne peut pas se
+baser sur les façons de faire de la v5. **Le code commun ne connaît aucune notion de règles.** Le
+tronc commun évoluera au fil de l'intégration des règles.
+
+- **Périmètre commun** : les documents et leur identifiant, les versions et le filtre, la période,
+  la chronologie des incarnations et le lien entre un objet et son incarnation
+  (`system.incarnation`), l'éphéméride, les trois types d'acteurs (leurs données et leurs fiches
+  dépendent des règles).
+- **Propre aux règles** : tout le reste, dont les copies d'un objet par époque et leur sens
+  (degrés additionnés, stocks, possessions, voies), les Ka, les bonus, la sapience, le laboratoire,
+  l'akasha, l'héritage à la création, le formulaire d'incarnation, le contenu des messages de chat.
+  Le type « groupe de compétences » est un objet qu'une règle utilise ou non ; la règle « compétence
+  active » est propre à la v5.
+- **Étape 1, faite : le registre** (`module/regles/regles.js`). `Regles.enregistrer(jeu)`,
+  `Regles.get(version)`, `Regles.courantes` (suit la version du monde à chaque lecture : bascule à
+  chaud). Un jeu de règles porte `version` et, tous facultatifs, `fiches`, `acteur(actor)`,
+  `incarnationCreee(actor, cle)`, `evenements`, `outils`, `gabarits`. Une version sans jeu reçoit le
+  jeu vide. `actor.regles` rend l'objet de la version courante, vide si elle ne fournit rien. Le jeu
+  v5 (`module/regles/v5/jeu.js`) ne déclare encore que sa version : aucun comportement ne change.
+- **Étape 2, à venir, un lot à la fois** : couper la façade des incarnations ; passer les membres de
+  règles de l'acteur dans `actor.regles` ; faire passer par le jeu v5 les hooks de combat, de chat et
+  de macros et les outils du MJ ; défaire les autres dépendances (`periode.js`,
+  `nephilimActorSheet.js`, `nephilimItemSheet.js`, constantes, helpers).
+- **Étape 3** : la bascule à chaud des fiches. **Étape 4** : un squelette de version volontairement
+  pauvre (sans jets, sans quêtes, sans combat), pour prouver que le commun ne dépend plus de la v5.

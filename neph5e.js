@@ -10,6 +10,8 @@ import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimItemDirectory } from "./module/item/nephilimItemDirectory.js";
 import { NephilimCompendium } from "./module/item/nephilimCompendium.js";
 import { Repertoire } from "./module/item/repertoire.js";
+import { Regles } from "./module/regles/regles.js";
+import { JeuV5 } from "./module/regles/v5/jeu.js";
 import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { NephilimActiveEffect } from "./module/common/regles/v5/nephilimActiveEffect.js";
@@ -107,6 +109,9 @@ import { FraterniteDataModel } from "./feature/fraternite/fraternite.mjs";
 
 Hooks.once("init", function () {
     console.log("Nephilim | Initializing Nephilim System");
+
+    // Les jeux de règles disponibles (voir Regles)
+    Regles.enregistrer(JeuV5);
 
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;
