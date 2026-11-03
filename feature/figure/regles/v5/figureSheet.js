@@ -1,5 +1,5 @@
 import { Chute } from "../../../chute/regles/v5/chute.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { CombatantMixinSheet } from "../../../../module/common/regles/v5/combatantSheetMixin.js";
 import { Constants } from "../../../../module/common/constants.js";
@@ -143,13 +143,13 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         const context = await super._prepareContext(options);
         context.editedCapacity = this.editedCapacity;
         // Les Ka sont portés par l'incarnation courante : sans elle, ils ne se saisissent pas
-        context.incarnationCourante = new Incarnations(this.document).courante != null;
+        context.incarnationCourante = new IncarnationsV5(this.document).courante != null;
         // Les bonus non plus : sans incarnation courante, leurs champs sont désactivés (bonus.hbs)
         context.sansIncarnation = !context.incarnationCourante;
         // La stase de l'incarnation courante, null si elle n'en a pas : les champs restent vides
-        context.stase = new Incarnations(this.document).stase();
+        context.stase = new IncarnationsV5(this.document).stase();
         // La sapience, la sapience dépensée et les points d'incarnation de l'incarnation courante
-        context.compteurs = new Incarnations(this.document).compteurs();
+        context.compteurs = new IncarnationsV5(this.document).compteurs();
         return context;
     }
 
@@ -161,7 +161,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     _getTabsConfig(group) {
         if (group !== "primary") return super._getTabsConfig(group);
         const o = Version.data(this.document).options ?? {};
-        const incarnations = new Incarnations(this.document);
+        const incarnations = new IncarnationsV5(this.document);
         const courante = incarnations.courante != null;
         // La période du monde de l'incarnation courante : elle autorise ou non la kabbale et
         // l'alchimie. Sans elle, rien n'est interdit.
@@ -263,7 +263,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** Fixe le degré d'une chute (clic sur un cercle). */
     async _onChute(event) {
         if (this.locked) return;
-        if (new Incarnations(this.document).courante == null) return;
+        if (new IncarnationsV5(this.document).courante == null) return;
         const target = event.currentTarget;
         const type = ['khaiba', 'narcose', 'ombre', 'luneNoire'].find(t => target.classList.contains(t));
         await new Chute(this.document).set(type, parseInt(target.dataset.id));
@@ -325,35 +325,35 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /**
      * Les valeurs propres à la figure (statut, focus, pacte, quantité...) se lisent et s'écrivent
      * sur l'exemplaire qui fait foi : celui de l'incarnation courante, sinon de l'antérieure la
-     * plus proche. Les écrire le porte à l'incarnation courante (Incarnations.ecrire).
+     * plus proche. Les écrire le porte à l'incarnation courante (IncarnationsV5.ecrire).
      * @param sid The system identifier of the focus.
      * @returns the effective embedded item.
      */
     _exemplaire(sid) {
-        return new Incarnations(this.document).exemplaireEffectif(sid) ?? this.document.items.find(i => i.sid === sid);
+        return new IncarnationsV5(this.document).exemplaireEffectif(sid) ?? this.document.items.find(i => i.sid === sid);
     }
 
     /**
      * La corbeille d'une possession (catalyseur, aspect) : la figure la perd à l'époque
-     * courante ; les époques antérieures la gardent (voir Incarnations.perdre).
+     * courante ; les époques antérieures la gardent (voir IncarnationsV5.perdre).
      */
     static async _onPerdrePossession(event, target) {
         if (this.locked) return;
-        await new Incarnations(this.document).perdre(target.closest('.item').dataset.sid);
+        await new IncarnationsV5(this.document).perdre(target.closest('.item').dataset.sid);
     }
 
     /** Modifie la quantité totale de vaisseaux alchimiques  */
     async _onChangeQuantite(event) {
         if (this.locked) return;
         const item = this._exemplaire(event.target.closest('.item').dataset.sid);
-        await new Incarnations(this.document).ecrire(item, { quantite: parseInt(event.target.value) });
+        await new IncarnationsV5(this.document).ecrire(item, { quantite: parseInt(event.target.value) });
     }
 
     /** Modifie la quantité transportées de vaisseaux alchimiques  */
     async _onChangeTransporte(event) {
         if (this.locked) return;
         const item = this._exemplaire(event.target.closest('.item').dataset.sid);
-        await new Incarnations(this.document).ecrire(item, { transporte: parseInt(event.target.value) });
+        await new IncarnationsV5(this.document).ecrire(item, { transporte: parseInt(event.target.value) });
     }
 
     /**
@@ -369,14 +369,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             ui.notifications.warn("Pas de pacte définitif possible avec une créature d'un autre monde de kabbale que celui de l'ordonnance.");
             return;
         }
-        await new Incarnations(this.document).ecrire(item, { pacte: !Version.data(item).pacte });
+        await new IncarnationsV5(this.document).ecrire(item, { pacte: !Version.data(item).pacte });
     }
 
     /** Toggle la possession du focus (icône parchemin). */
     static async _onChangeFocus(event, target) {
         if (this.locked) return;
         const item = this._exemplaire(target.closest('.item').dataset.sid);
-        await new Incarnations(this.document).ecrire(item, { focus: !Version.data(item).focus });
+        await new IncarnationsV5(this.document).ecrire(item, { focus: !Version.data(item).focus });
     }
 
     /** Cycle le statut : connu → déchiffré → appris → tatoué → connu. */
@@ -390,7 +390,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             [Constants.TATOUE]: Constants.CONNU
         }[Version.data(item).status];
         if (suivant == null) throw new Error("Status " + Version.data(item).status + " not implemented");
-        await new Incarnations(this.document).ecrire(item, { status: suivant });
+        await new IncarnationsV5(this.document).ecrire(item, { status: suivant });
     }
 
     /** Drop d'une voie de science (magie, kabbale, ...) : embarque la voie. */
@@ -407,7 +407,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     static async _onDropFocus(event, document) {
         await new FeatureBuilder(this.document)
             .withOriginalItem(document.sid)
-            .withPeriode(new Incarnations(this.document).courante)
+            .withPeriode(new IncarnationsV5(this.document).courante)
             .create()
             .drop();
         await this.render(true);
@@ -437,11 +437,11 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /**
      * Drop d'un figurant sur la figure : le définit comme simulacre de l'incarnation courante, à
-     * la place de celui qu'elle avait (voir Incarnations.simulacre).
+     * la place de celui qu'elle avait (voir IncarnationsV5.simulacre).
      */
     static async _onDropSimulacre(event, document) {
         if (Version.data(this.document).options?.simulacre !== true) return;
-        if (!(await new Incarnations(this.document).definirSimulacre(document.sid))) {
+        if (!(await new IncarnationsV5(this.document).definirSimulacre(document.sid))) {
             ui.notifications.warn(game.i18n.localize("NEPHILIM.simulacreSansIncarnation"));
         }
     }
@@ -453,7 +453,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     async _onRetirerSimulacre(event) {
         event.preventDefault();
         if (this.locked) return;
-        await new Incarnations(this.document).retirerSimulacre();
+        await new IncarnationsV5(this.document).retirerSimulacre();
     }
 
     /**
@@ -478,7 +478,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const vaisseau = event.currentTarget.closest('.vaisseau').dataset.type;
         const activated = this.document.akasha[vaisseau].active;
-        await new Incarnations(this.document).ecrireAkasha({ [vaisseau + '.active']: !activated });
+        await new IncarnationsV5(this.document).ecrireAkasha({ [vaisseau + '.active']: !activated });
     }
 
     /**
@@ -499,7 +499,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.document.alchimie.courant == null && this.locked === false) {
             const construct = target.closest('.tooltip').dataset.type;
             const activated = this.document.alchimie.constructs[construct].active;
-            await new Incarnations(this.document).ecrireAlchimie({ ['constructs.' + construct + '.active']: !activated });
+            await new IncarnationsV5(this.document).ecrireAlchimie({ ['constructs.' + construct + '.active']: !activated });
         }
     }
 
@@ -507,14 +507,14 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     static async _onDropLaboratory(event, document) {
         const laboratoires = this.document.alchimie.laboratoires;
         if (!laboratoires.includes(document.sid)) {
-            await new Incarnations(this.document).ecrireAlchimie({ laboratoires: [...laboratoires, document.sid] });
+            await new IncarnationsV5(this.document).ecrireAlchimie({ laboratoires: [...laboratoires, document.sid] });
         }
     }
 
     /** Sélectionne un laboratoire (le sien si pas de data-sid). */
     static async _onSelectLaboratory(event, target) {
         const sid = target.dataset.sid;
-        await new Incarnations(this.document).ecrireAlchimie({ courant: sid == null ? null : sid });
+        await new IncarnationsV5(this.document).ecrireAlchimie({ courant: sid == null ? null : sid });
     }
 
     /** Supprime le laboratoire courant. */
@@ -522,33 +522,33 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         if (this.locked) return;
         const sid = this.document.alchimie.courant;
         const labs = this.document.alchimie.laboratoires.filter(i => i !== sid);
-        await new Incarnations(this.document).ecrireAlchimie({ laboratoires: labs, courant: null });
+        await new IncarnationsV5(this.document).ecrireAlchimie({ laboratoires: labs, courant: null });
     }
 
     /**
      * Édite le stock d'une materia (input .quantite de la liste) : l'utilisateur saisit le stock
-     * total ; l'époque courante en reçoit la variation (Incarnations.fixerStock).
+     * total ; l'époque courante en reçoit la variation (IncarnationsV5.fixerStock).
      */
     async _onChangeMateriae(event) {
         if (this.locked) return;
         const sid = event.target.closest('.item').dataset.sid;
-        await new Incarnations(this.document).fixerStock(sid, parseInt(event.target.value));
+        await new IncarnationsV5(this.document).fixerStock(sid, parseInt(event.target.value));
     }
 
     /**
      * Les champs saisis que porte l'incarnation courante, dans l'ordre de leur écriture : la
-     * méthode d'Incarnations qui les écrit, et soit le préfixe de leur chemin sous la version,
+     * méthode d'IncarnationsV5 qui les écrit, et soit le préfixe de leur chemin sous la version,
      * soit la liste des champs seuls.
      */
     static #PORTES = [
-        // Les Ka (Incarnations.ecrireKa)
+        // Les Ka (IncarnationsV5.ecrireKa)
         { ecrire: 'ecrireKa', prefixe: 'ka.' },
         // Les bonus
         { ecrire: 'ecrireBonus', prefixe: 'bonus.' },
         // Les blessures
         { ecrire: 'ecrireBlessures', prefixe: 'dommage.' },
         // Les compteurs de sapience et les points d'incarnation, la sapience se reportant sur
-        // les incarnations postérieures (Incarnations.ecrireCompteurs)
+        // les incarnations postérieures (IncarnationsV5.ecrireCompteurs)
         { ecrire: 'ecrireCompteurs', champs: ['sapience', 'sapienceDepensee', 'pointsIncarnations'] },
         // La stase : saisie, elle est créée ; ses champs vidés, elle est retirée
         { ecrire: 'ecrireStase', prefixe: 'stase.' },
@@ -584,7 +584,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
                 }
             }
             if (Object.keys(valeurs).length > 0) {
-                await new Incarnations(this.document)[ecrire](valeurs);
+                await new IncarnationsV5(this.document)[ecrire](valeurs);
             }
         }
 

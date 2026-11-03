@@ -18,7 +18,7 @@ import { UUIDField } from "../../../module/field/UUIDField.js";
  *                 transmet pas aux autres incarnations ;
  *
  * Ce qui est propre aux règles n'est plus porté par l'incarnation mais par des objets embarqués
- * dans la figure, un de chaque par incarnation, qui portent sa clé (voir Incarnations.REGLES) :
+ * dans la figure, un de chaque par incarnation, qui portent sa clé (voir IncarnationsV5.REGLES) :
  * le laboratoire (LaboratoireDataModel), l'akasha (AkashaDataModel) et le ka (KaDataModel).
  * Ils portaient, dans l'incarnation (`versions.<version>`) :
  *

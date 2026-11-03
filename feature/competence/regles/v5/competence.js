@@ -1,5 +1,5 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { Constants } from "../../../../module/common/constants.js";
@@ -74,9 +74,9 @@ export class Competence extends AbstractFeature {
         // Une compétence inactive ne compte pas (voir Groupe)
         if (!Groupe.estActive(this.sid)) return 0;
         let total = 0;
-        for (let vecu of new Incarnations(this.actor).vecusActifs().filter(v =>
+        for (let vecu of new IncarnationsV5(this.actor).vecusActifs().filter(v =>
             Version.data(v).competences.find(c => c === this.sid) != null)) {
-            total = total + CustomHandlebarsHelpers.getSapiences(new Incarnations(this.actor).degreAcquis(vecu));
+            total = total + CustomHandlebarsHelpers.getSapiences(new IncarnationsV5(this.actor).degreAcquis(vecu));
         }
         return total;
     }

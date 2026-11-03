@@ -1,4 +1,4 @@
-import { Incarnations } from "../../../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
 
 /**
  * Les effets du système. Les états d'une figure (désorienté, immobilisé, à terre, mort...)
@@ -13,7 +13,7 @@ export class NephilimActiveEffect extends foundry.documents.ActiveEffect {
     get isSuppressed() {
         const item = this.parent;
         if (item instanceof foundry.documents.Item && item.type === 'incarnation' && item.parent != null) {
-            if (item.sid !== new Incarnations(item.parent).courante) return true;
+            if (item.sid !== new IncarnationsV5(item.parent).courante) return true;
         }
         return super.isSuppressed;
     }

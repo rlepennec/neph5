@@ -1,4 +1,4 @@
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 
 export class ActiveEffects {
 
@@ -116,7 +116,7 @@ export class ActiveEffects {
      */
     static porteur(actor) {
         if (actor == null) return null;
-        const incarnations = new Incarnations(actor);
+        const incarnations = new IncarnationsV5(actor);
         return incarnations.porte ? incarnations.incarnation(incarnations.courante) : actor;
     }
 

@@ -193,7 +193,7 @@ Hooks.once("init", function () {
     // L'incarnation n'existe qu'embarquée, et seule la façade Incarnations la crée : pas de
     // fiche, et elle n'est pas proposée à la création dans la barre latérale.
     CONFIG.Item.dataModels.incarnation = IncarnationDataModel;
-    // Les objets de règles d'une incarnation de figure (voir Incarnations.REGLES) : embarqués
+    // Les objets de règles d'une incarnation de figure (voir IncarnationsV5.REGLES) : embarqués
     // seulement, créés par la façade, sans fiche ni création dans la barre latérale.
     CONFIG.Item.dataModels.laboratoire = LaboratoireDataModel;
     CONFIG.Item.dataModels.akasha = AkashaDataModel;

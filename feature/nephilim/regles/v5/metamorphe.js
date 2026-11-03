@@ -1,17 +1,17 @@
 
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
 
 /**
  * Le métamorphe d'un Nephilim.
  *
- * Il est lié par époque, comme une voie (voir Incarnations.voie et changerVoie) : au plus un
+ * Il est lié par époque, comme une voie (voir IncarnationsV5.voie et changerVoie) : au plus un
  * par incarnation ; celui qui fait foi est celui de l'incarnation courante, sinon de
  * l'antérieure la plus proche. Ses métamorphoses développées (`formed`) se transmettent avec
  * lui ; ses yeux (`visible`) sont propres à l'incarnation de l'exemplaire et ne se transmettent
  * pas : à une époque qui n'a pas son propre exemplaire, tous sont fermés. Développer une
- * métamorphose ou ouvrir un œil s'écrit dans l'incarnation courante (Incarnations.ecrire) ;
+ * métamorphose ou ouvrir un œil s'écrit dans l'incarnation courante (IncarnationsV5.ecrire) ;
  * l'exemplaire qu'elle reçoit alors part les yeux fermés.
  */
 export class Metamorphe extends SimpleFeature {
@@ -29,7 +29,7 @@ export class Metamorphe extends SimpleFeature {
      * @Override
      */
     async drop() {
-        await new Incarnations(this.actor).changerVoie(this.sid, 'metamorphe', {
+        await new IncarnationsV5(this.actor).changerVoie(this.sid, 'metamorphe', {
             valeurs: { formed: Metamorphe.#aucun(), visible: Metamorphe.#aucun() },
             sans: ['description', 'element', 'metamorphoses']
         });
@@ -41,7 +41,7 @@ export class Metamorphe extends SimpleFeature {
      *          l'incarnation courante, tous fermés sinon (ils ne se transmettent pas).
      */
     static #yeux(actor, embedded) {
-        const incarnations = new Incarnations(actor);
+        const incarnations = new IncarnationsV5(actor);
         const propres = !incarnations.porte || incarnations.epoqueDe(embedded) === incarnations.courante;
         return propres ? (Version.data(embedded).visible ?? Metamorphe.#aucun()) : Metamorphe.#aucun();
     }
@@ -67,7 +67,7 @@ export class Metamorphe extends SimpleFeature {
         }
 
         // Retrieve data: the metamorphe which counts at the current incarnation
-        const embedded = new Incarnations(actor).voie('metamorphe');
+        const embedded = new IncarnationsV5(actor).voie('metamorphe');
         if (embedded != null) {
             const original = game.items.find(i => i.sid === embedded.sid);
             if (original != null) {
@@ -117,7 +117,7 @@ export class Metamorphe extends SimpleFeature {
      * @returns the instance.
      */
     async #ecrire(changer) {
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         const embedded = incarnations.voie('metamorphe');
         if (embedded == null) return this;
         const formed = foundry.utils.duplicate(Version.data(embedded).formed ?? Metamorphe.#aucun());

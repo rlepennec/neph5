@@ -1,5 +1,5 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
@@ -98,7 +98,7 @@ export class Vecu extends HistoricalFeature {
      * @Override
      */
     get degre() {
-        return new Incarnations(this.embedded?.parent).degreAcquis(this.embedded);
+        return new IncarnationsV5(this.embedded?.parent).degreAcquis(this.embedded);
     }
 
     /**
@@ -141,7 +141,7 @@ export class Vecu extends HistoricalFeature {
             
             // For figurant only, attach a new vecu if not in combat option edition
             else if (this.actor.type === 'figurant' &&
-                !new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
+                !new IncarnationsV5(this.actor).aRattache(this.sid, this.periode)) {
 
                 await new EmbeddedItem(this.actor, this.sid)
                     .withContext("Drop a vecu")
@@ -169,7 +169,7 @@ export class Vecu extends HistoricalFeature {
             // Le vécu s'ajoute à l'incarnation en édition (la courante, fiche déverrouillée) et
             // en prend la période ; sans incarnation en édition, il en crée une, qui prend la
             // période du vécu.
-            const incarnations = new Incarnations(this.actor);
+            const incarnations = new IncarnationsV5(this.actor);
             const refus = incarnations.incarnation(this.periode) != null
                 ? await incarnations.ajouterVecu(this.periode, this.sid)
                 : await incarnations.creerDepuisVecu(this.sid);
@@ -220,7 +220,7 @@ export class Vecu extends HistoricalFeature {
             for (let v of a.items.filter(v => v.type === 'vecu' && (scope === 'simulacre' || AbstractFeature.isActive(actor, v)))) {
                 const original = AbstractFeature.original(v.sid);
                 if (original != null) {
-                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(new Incarnations(a).rattachement(v));
+                    const feature = new Vecu(actor, scope).withItem(v).withPeriode(new IncarnationsV5(a).rattachement(v));
                     vecus.push({
                         name: original.name,
                         id: v.id,

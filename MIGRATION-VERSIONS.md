@@ -1026,3 +1026,15 @@ tronc commun évoluera au fil de l'intégration des règles.
   `nephilimActorSheet.js`, `nephilimItemSheet.js`, constantes, helpers).
 - **Étape 3** : la bascule à chaud des fiches. **Étape 4** : un squelette de version volontairement
   pauvre (sans jets, sans quêtes, sans combat), pour prouver que le commun ne dépend plus de la v5.
+- **Étape 2, lot 1, fait : la façade coupée.** `feature/incarnation/incarnations.js` (`Incarnations`,
+  commun) : chronologie, écritures de la chaîne, champs communs (période, stase, simulacre), lien
+  objet-incarnation (`epoqueDe`, `rattaches`). `feature/incarnation/regles/v5/incarnations.js`
+  (`IncarnationsV5 extends Incarnations`) : tout le reste, méthodes déplacées telles quelles. Le
+  formulaire d'incarnation et ses gabarits passent dans `feature/incarnation/regles/v5/`. Changements
+  autres qu'un déplacement : `#creer` appelle `incarnationCreee` du jeu de règles ; `retirer` appelle
+  `supprimerLies` s'il existe, sinon supprime les objets liés ; `epoqueDe` lit `system.incarnation` sur
+  tout objet ; `#chaine` et `#nombre` deviennent publics (`chaine`, `Incarnations.nombre`). Dépendances
+  temporaires du commun vers `IncarnationsV5` : `nephilimActor.js`, `nephilimActorSheet.js`,
+  `embeddedItem.js`, `handlebars.js` ; la migration 1.0.10 y reste, ses données étant v5. Limite acceptée
+  par l'utilisateur : une incarnation créée dans un monde réglé sur une autre version n'a pas les objets
+  v5 ; de retour en v5, ils se lisent à 0 et sont créés à la première écriture, sans héritage.

@@ -1,6 +1,6 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { Version } from "../../../../module/common/version.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 
 export class Ka extends AbstractFeature {
@@ -88,7 +88,7 @@ export class Ka extends AbstractFeature {
                     case 'actor':
                         return this.actor.kas[this.ka];
                     case 'simulacre':
-                        return Version.data(new Incarnations(this.actor).simulacre()).ka;
+                        return Version.data(new IncarnationsV5(this.actor).simulacre()).ka;
                     default:
                         throw new Error("Ka.degre scope " + this.scope + " not implemented");
                 }

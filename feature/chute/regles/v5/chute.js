@@ -1,5 +1,5 @@
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { Constants } from "../../../../module/common/constants.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
@@ -86,7 +86,7 @@ export class Chute extends HistoricalFeature {
 
         let _chute = { degre: 0, name: null, sid: null, id: null };
 
-        const incarnations = new Incarnations(actor);
+        const incarnations = new IncarnationsV5(actor);
         for (let periode of incarnations.ordonnees({ actif: true, jusqua: incarnations.courante })) {
             const chute = incarnations.rattaches(periode.sid, ['chute']).find(i => Version.data(i).key === type);
             if (chute != null) {
@@ -122,7 +122,7 @@ export class Chute extends HistoricalFeature {
         const previousChute = Chute.getChute(this.actor, type);
 
         // Create or update current chute according to the current periode, first chute by default
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         const chute = incarnations.rattaches(incarnations.courante, ['chute']).find(i => Version.data(i).key === type);
 
         // Create a new chute

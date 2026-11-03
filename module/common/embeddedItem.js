@@ -1,4 +1,4 @@
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
 import { Version } from "./version.js";
 export class EmbeddedItem {
 
@@ -107,10 +107,10 @@ export class EmbeddedItem {
 
         // Un item lié à une incarnation : un exemplaire par incarnation, qui porte sa clé et le
         // degré acquis pendant elle. Seul compte celui de CETTE incarnation ; ceux des autres
-        // restent. Voir la façade Incarnations.
+        // restent. Voir la façade IncarnationsV5.
         const monde = game.items.find(i => i.sid === this.sid);
-        if (this.incarnation != null && Incarnations.LIES.includes(monde?.type)) {
-            const exemplaire = new Incarnations(this.actor).exemplaireDans(this.sid, this.incarnation.periode);
+        if (this.incarnation != null && IncarnationsV5.LIES.includes(monde?.type)) {
+            const exemplaire = new IncarnationsV5(this.actor).exemplaireDans(this.sid, this.incarnation.periode);
             if (exemplaire != null) {
                 this.item = exemplaire;
                 return this;

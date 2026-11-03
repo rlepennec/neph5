@@ -1,5 +1,5 @@
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Constants } from "../../../../module/common/constants.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
 import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
@@ -62,7 +62,7 @@ export class Passe extends HistoricalFeature {
     async drop() {
         switch (this.actor.type) {
             case 'figure':
-                if (this.periode != null && !new Incarnations(this.actor).aRattache(this.sid, this.periode)) {
+                if (this.periode != null && !new IncarnationsV5(this.actor).aRattache(this.sid, this.periode)) {
                     await new EmbeddedItem(this.actor, this.sid)
                         .withContext("Drop of the item " + this.sid + " on periode " + this.periode)
                         .withIncarnation(this.periode, 0)

@@ -1,5 +1,5 @@
 import { ActionDialog } from "./actionDialog.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { AbstractManoeuver } from "../../../combat/regles/v5/manoeuver/abstractManoeuver.js";
 import { Constants } from "../../../../module/common/constants.js";
@@ -145,11 +145,11 @@ export class AbstractFeature {
     }
 
     /**
-     * Dépôt d'un focus ou d'une capacité, liés par époque (Incarnations.PAR_EPOQUE), dans
+     * Dépôt d'un focus ou d'une capacité, liés par époque (IncarnationsV5.PAR_EPOQUE), dans
      * l'incarnation this.periode :
      *   - déjà lié à cette incarnation : rien ;
      *   - connu d'une incarnation antérieure non désactivée : rien — l'acteur le connaît déjà ;
-     *     modifier l'une de ses valeurs lui donnera son exemplaire (Incarnations.ecrire) ;
+     *     modifier l'une de ses valeurs lui donnera son exemplaire (IncarnationsV5.ecrire) ;
      *   - connu seulement d'une incarnation postérieure non désactivée : une fenêtre nomme la
      *     plus proche et demande confirmation ; confirmé, l'incarnation reçoit son propre
      *     exemplaire, copié de celui de cette incarnation (statut, focus, pacte...) ;
@@ -158,12 +158,12 @@ export class AbstractFeature {
      */
     async deposerParEpoque() {
         if (this.periode == null || this.sid == null) return false;
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         if (incarnations.exemplaireDans(this.sid, this.periode) != null) return false;
 
         // Connu d'une incarnation antérieure : l'acteur le connaît déjà à cette époque. Rien à
         // faire ; c'est la première modification d'une de ses valeurs qui donnera son
-        // exemplaire à l'incarnation (Incarnations.ecrire).
+        // exemplaire à l'incarnation (IncarnationsV5.ecrire).
         if (incarnations.voisine(this.sid, this.periode, 'anterieure') != null) return false;
 
         const voisine = incarnations.voisine(this.sid, this.periode, 'posterieure');
@@ -453,7 +453,7 @@ export class AbstractFeature {
      * @returns the degre from the periodes.
      */
     degreFromPeriodes(sid) {
-        return new Incarnations(this.actor).degre(sid);
+        return new IncarnationsV5(this.actor).degre(sid);
     }
     
     /**
@@ -463,7 +463,7 @@ export class AbstractFeature {
     detailsFromPeriodes(sid) {
         const details = [];
         const original = AbstractFeature.original(sid);
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         if (original.type === 'competence') {
             for (let v of incarnations.vecusActifs()) {
                 const item = game.items.find(i => i.sid === v.sid);
@@ -575,7 +575,7 @@ export class AbstractFeature {
      * @returns the optional simulacre actor object.
      */
     static simulacre(actor) {
-        return new Incarnations(actor).simulacre();
+        return new IncarnationsV5(actor).simulacre();
     }
 
     /**
@@ -601,7 +601,7 @@ export class AbstractFeature {
      * @return true if the linked periode is active.
      */
     static isActive(actor, item) {
-        return new Incarnations(actor).estActif(item);
+        return new IncarnationsV5(actor).estActif(item);
     }
 
     /**

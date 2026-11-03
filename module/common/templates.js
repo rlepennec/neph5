@@ -77,7 +77,7 @@ export const preloadTemplates = async function () {
         "systems/neph5e/feature/figure/regles/v5/vecus.hbs",
 
         // Formulaire d'incarnation : une ligne d'objet acquis
-        "systems/neph5e/feature/incarnation/incarnation-ligne.hbs",
+        "systems/neph5e/feature/incarnation/regles/v5/incarnation-ligne.hbs",
 
         "systems/neph5e/feature/baton/regles/v5/actor/header.hbs",
         "systems/neph5e/feature/bohemien/regles/v5/actor/header.hbs",

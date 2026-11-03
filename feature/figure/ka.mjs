@@ -12,7 +12,7 @@ import { VersionField } from "../../module/field/versionField.js";
  * Un objet embarqué dans une figure, un par incarnation : il porte la clé de son incarnation
  * (`incarnation`, à la racine comme `id`) et ses propriétés propres aux règles. Il n'est pas
  * proposé à la création par Foundry et n'a pas de fiche : la façade Incarnations le crée avec
- * l'incarnation, le lit et l'écrit (voir Incarnations.REGLES).
+ * l'incarnation, le lit et l'écrit (voir IncarnationsV5.REGLES).
  */
 export class KaDataModel extends foundry.abstract.TypeDataModel {
 
@@ -31,7 +31,7 @@ export class KaDataModel extends foundry.abstract.TypeDataModel {
                     (
                         {
                             // Les Ka de la figure à cette époque, chacun indépendant de ceux des autres
-                            // incarnations (voir Incarnations.kas).
+                            // incarnations (voir IncarnationsV5.kas).
                             ka: new foundry.data.fields.SchemaField
                             (
                                 {
@@ -51,12 +51,12 @@ export class KaDataModel extends foundry.abstract.TypeDataModel {
                             ),
                             // La sapience et la sapience dépensée, qui se transmettent et se reportent sur les
                             // incarnations postérieures ; les points d'incarnation, propres à cette époque (voir
-                            // Incarnations.compteurs).
+                            // IncarnationsV5.compteurs).
                             sapience: new foundry.data.fields.NumberField({ initial: 0 }),
                             sapienceDepensee: new foundry.data.fields.NumberField({ initial: 0 }),
                             pointsIncarnations: new foundry.data.fields.NumberField({ initial: 0 }),
                             // Les blessures de la figure à cette époque, cases physiques et magiques (voir
-                            // Incarnations.blessures) : elles ne se transmettent pas.
+                            // IncarnationsV5.blessures) : elles ne se transmettent pas.
                             dommage: new foundry.data.fields.SchemaField
                             (
                                 {
@@ -152,7 +152,7 @@ export class KaDataModel extends foundry.abstract.TypeDataModel {
                                     ),
                                 }
                             ),
-                            // Les bonus de la figure à cette époque (voir Incarnations.bonus).
+                            // Les bonus de la figure à cette époque (voir IncarnationsV5.bonus).
                             bonus: new foundry.data.fields.SchemaField
                             (
                                 {

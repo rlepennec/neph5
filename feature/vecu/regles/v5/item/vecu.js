@@ -1,5 +1,5 @@
 import { Constants } from "../../../../../module/common/constants.js";
-import { Incarnations } from "../../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../../../module/common/documentIdentifier.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
@@ -65,7 +65,7 @@ export class VecuSheet extends NephilimItemSheet {
 
             // Le degré d'un vécu embarqué est celui de son incarnation ; sa période aussi : le vécu
             // lié ne la recopie pas, elle se lit sur son incarnation.
-            const incarnations = new Incarnations(this.document.parent);
+            const incarnations = new IncarnationsV5(this.document.parent);
             context.data = {
                 ...context.data,
                 degre: incarnations.degreAcquis(this.document),

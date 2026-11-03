@@ -1,6 +1,6 @@
 import { NephilimActorSheet } from "../../nephilimActorSheet.js";
-import { Incarnations } from "../../../../feature/incarnation/incarnations.js";
-import { IncarnationForm } from "../../../../feature/incarnation/incarnationForm.js";
+import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
+import { IncarnationForm } from "../../../../feature/incarnation/regles/v5/incarnationForm.js";
 import { Version } from "../../../common/version.js";
 import { FeatureBuilder } from "../../../../feature/core/regles/v5/featureBuilder.js";
 
@@ -45,7 +45,7 @@ export class HistoricalSheet extends NephilimActorSheet {
      * @returns {string|null} le sid de la période éditée, null si la fiche est verrouillée.
      */
     get editedPeriode() {
-        return this.locked ? null : new Incarnations(this.document).courante;
+        return this.locked ? null : new IncarnationsV5(this.document).courante;
     }
 
     /**
@@ -86,7 +86,7 @@ export class HistoricalSheet extends NephilimActorSheet {
      * @return the system identifiers of all periodes if option has been set.
      */
     _elapsedPeriodes() {
-        return Version.data(this.document).options.incarnationsOuvertes === true ? new Incarnations(this.document).toutes().map(i => i.sid) : [];
+        return Version.data(this.document).options.incarnationsOuvertes === true ? new IncarnationsV5(this.document).toutes().map(i => i.sid) : [];
     }
 
     /**
@@ -100,7 +100,7 @@ export class HistoricalSheet extends NephilimActorSheet {
         const periode = target.closest('li.periode')?.dataset.sid;
         if (item == null) return;
         if (periode != null) {
-            await new Incarnations(this.document).retirerDe(item, periode);
+            await new IncarnationsV5(this.document).retirerDe(item, periode);
             await this.render(true);
             return;
         }
@@ -132,7 +132,7 @@ export class HistoricalSheet extends NephilimActorSheet {
     static async _onActivatePeriode(event, target) {
         if (this.locked) return;
         const sid = target.closest('.item').dataset.sid;
-        await new Incarnations(this.document).basculer(sid);
+        await new IncarnationsV5(this.document).basculer(sid);
         await this.render(true);
     }
 
@@ -179,7 +179,7 @@ export class HistoricalSheet extends NephilimActorSheet {
         }
         const parent = target?.dataset?.sid;
         if (parent != null) {
-            await new Incarnations(this.document).deplacer(document.sid, parent);
+            await new IncarnationsV5(this.document).deplacer(document.sid, parent);
         }
         await this.render(true);
     }
@@ -203,7 +203,7 @@ export class HistoricalSheet extends NephilimActorSheet {
         const item = this.document.items.get(id);
         const converted = parseInt(el.value);
         const periode = el.closest('li.periode')?.dataset.sid;
-        await new Incarnations(this.document).modifierDegre(item, isNaN(converted) ? 0 : converted, periode);
+        await new IncarnationsV5(this.document).modifierDegre(item, isNaN(converted) ? 0 : converted, periode);
     }
 
     /**

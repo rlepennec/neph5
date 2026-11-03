@@ -1,6 +1,6 @@
 import { AbstractFeature } from "./abstractFeature.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 
 export class AbstractFocus extends AbstractFeature {
@@ -25,7 +25,7 @@ export class AbstractFocus extends AbstractFeature {
         this.item = item;
         // Un exemplaire par incarnation : fait foi celui de l'incarnation courante, sinon de
         // l'antérieure la plus proche (null si l'acteur ne le connaît que plus tard).
-        this.embedded = new Incarnations(this.actor).exemplaireEffectif(item.sid);
+        this.embedded = new IncarnationsV5(this.actor).exemplaireEffectif(item.sid);
         return this;
     }
 

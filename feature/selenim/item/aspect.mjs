@@ -55,7 +55,7 @@ export class AspectDataModel extends foundry.abstract.TypeDataModel {
                                 }
                             ),
                             // La possession à l'époque de cet exemplaire : un aspect se gagne, se perd et se
-                            // regagne d'une incarnation à l'autre (voir Incarnations.possessions).
+                            // regagne d'une incarnation à l'autre (voir IncarnationsV5.possessions).
                             possede: new foundry.data.fields.BooleanField
                             (
                                 {

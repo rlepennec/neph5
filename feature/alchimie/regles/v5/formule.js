@@ -1,5 +1,5 @@
 import { AbstractFocus } from "../../../core/regles/v5/abstractFocus.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { Constants } from "../../../../module/common/constants.js";
@@ -49,13 +49,13 @@ export class Formule extends AbstractFocus {
         if (result.success === true) {
             // La dose va à l'exemplaire de l'incarnation courante, créé au besoin
             const quantite = Version.data(this.embedded).quantite + 1;
-            this.embedded = await new Incarnations(this.actor).ecrire(this.embedded, { quantite: quantite });
+            this.embedded = await new IncarnationsV5(this.actor).ecrire(this.embedded, { quantite: quantite });
 
             // If not critical, spend materiae primae
             if (result.critical === false) {
                 for (const [element, cout] of Object.entries(this.coutsEnMateriae())) {
                     const quantite = Math.max(0, this.actor.alchimie.primae[element].quantite - cout);
-                    await new Incarnations(this.actor).ecrireAlchimie({ ['primae.' + element + '.quantite']: quantite });
+                    await new IncarnationsV5(this.actor).ecrireAlchimie({ ['primae.' + element + '.quantite']: quantite });
                 }
             }
 

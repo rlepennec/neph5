@@ -38,10 +38,10 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                                 }
                             ),
                             // La sapience, la sapience dépensée et les points d'incarnation ne sont plus portés
-                            // par la figure mais par chaque incarnation (voir Incarnations.compteurs) : la
+                            // par la figure mais par chaque incarnation (voir IncarnationsV5.compteurs) : la
                             // migration 1.0.10 les y recopie depuis le relevé.
                             // Les Ka ne sont plus portés par la figure mais par chaque incarnation (voir
-                            // Incarnations.kas) : la migration 1.0.10 les y recopie depuis le relevé.
+                            // IncarnationsV5.kas) : la migration 1.0.10 les y recopie depuis le relevé.
                             manoeuvres: new foundry.data.fields.SchemaField
                             (
                                 {
@@ -64,13 +64,13 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                             // La stase n'est plus portée par la figure mais par chaque incarnation (voir
                             // Incarnations.stase) : la migration 1.0.10 l'y recopie depuis le relevé.
                             // Le laboratoire n'est plus porté par la figure mais par chaque incarnation (voir
-                            // Incarnations.alchimie) : la migration 1.0.10 l'y recopie depuis le relevé.
+                            // IncarnationsV5.alchimie) : la migration 1.0.10 l'y recopie depuis le relevé.
                             // Les voyages akashiques ne sont plus portés par la figure mais par chaque
-                            // incarnation (voir Incarnations.akasha) : la migration 1.0.10 les y recopie.
+                            // incarnation (voir IncarnationsV5.akasha) : la migration 1.0.10 les y recopie.
                             // Les blessures ne sont plus portées par la figure mais par chaque incarnation
-                            // (voir Incarnations.blessures) : la migration 1.0.10 n'en reprend aucune.
+                            // (voir IncarnationsV5.blessures) : la migration 1.0.10 n'en reprend aucune.
                             // Les bonus ne sont plus portés par la figure mais par chaque incarnation (voir
-                            // Incarnations.bonus) : la migration 1.0.10 les y recopie depuis le relevé.
+                            // IncarnationsV5.bonus) : la migration 1.0.10 les y recopie depuis le relevé.
                             options: new foundry.data.fields.SchemaField
                             (
                                 {

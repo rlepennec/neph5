@@ -11,7 +11,7 @@ import { VersionField } from "../../../module/field/versionField.js";
  * Un objet embarqué dans une figure, un par incarnation : il porte la clé de son incarnation
  * (`incarnation`, à la racine comme `id`) et ses propriétés propres aux règles. Il n'est pas
  * proposé à la création par Foundry et n'a pas de fiche : la façade Incarnations le crée avec
- * l'incarnation, le lit et l'écrit (voir Incarnations.REGLES).
+ * l'incarnation, le lit et l'écrit (voir IncarnationsV5.REGLES).
  */
 export class LaboratoireDataModel extends foundry.abstract.TypeDataModel {
 
@@ -31,7 +31,7 @@ export class LaboratoireDataModel extends foundry.abstract.TypeDataModel {
                         {
                             // Le laboratoire de la figure à cette époque : constructs, materiae primae du
                             // pentacle, laboratoires accessibles, laboratoire courant (voir
-                            // Incarnations.alchimie).
+                            // IncarnationsV5.alchimie).
                             alchimie: new foundry.data.fields.SchemaField
                             (
                                 {

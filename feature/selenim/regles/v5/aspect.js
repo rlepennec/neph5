@@ -1,15 +1,15 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
 
 /**
  * Un aspect de l'imago d'un Selenim.
  *
- * C'est une possession (voir Incarnations.POSSESSIONS) : il se transmet d'une incarnation à
+ * C'est une possession (voir IncarnationsV5.POSSESSIONS) : il se transmet d'une incarnation à
  * l'autre, et peut se gagner, se perdre et se regagner ; une incarnation en a au plus un
  * exemplaire. Son état actif est propre à chaque époque, comme les valeurs d'un focus : le
- * changer l'écrit dans l'incarnation courante (Incarnations.ecrire).
+ * changer l'écrit dans l'incarnation courante (IncarnationsV5.ecrire).
  */
 export class Aspect extends SimpleFeature {
 
@@ -22,11 +22,11 @@ export class Aspect extends SimpleFeature {
     }
 
     /**
-     * L'aspect déposé est acquis à l'époque courante, inactif (voir Incarnations.acquerir).
+     * L'aspect déposé est acquis à l'époque courante, inactif (voir IncarnationsV5.acquerir).
      * @Override
      */
     async drop() {
-        await new Incarnations(this.actor).acquerir(this.sid, {
+        await new IncarnationsV5(this.actor).acquerir(this.sid, {
             valeurs: { active: false },
             sans: ['description', 'degre', 'activation', 'duree']
         });
@@ -42,7 +42,7 @@ export class Aspect extends SimpleFeature {
     }
 
     /**
-     * Les aspects possédés à l'époque courante (voir Incarnations.possessions), et le total de
+     * Les aspects possédés à l'époque courante (voir IncarnationsV5.possessions), et le total de
      * l'imago : la somme de leurs degrés.
      * @returns the data used to display the actor item.
      */
@@ -53,7 +53,7 @@ export class Aspect extends SimpleFeature {
         let aspects = [];
 
         // For each aspect possessed at the current incarnation
-        for (let embedded of new Incarnations(actor).possessions('aspect')) {
+        for (let embedded of new IncarnationsV5(actor).possessions('aspect')) {
 
             const original = AbstractFeature.original(embedded.sid);
             if (original == null) continue;
@@ -90,7 +90,7 @@ export class Aspect extends SimpleFeature {
      * @returns the instance.
      */
     async toggleActive() {
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         const embedded = incarnations.exemplaireEffectif(this.sid);
         if (embedded == null) return this;
         await incarnations.ecrire(embedded, { active: !Version.data(embedded).active });

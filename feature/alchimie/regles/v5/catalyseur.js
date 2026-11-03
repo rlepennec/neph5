@@ -1,6 +1,6 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 
 export class Catalyseur extends SimpleFeature {
 
@@ -13,12 +13,12 @@ export class Catalyseur extends SimpleFeature {
     }
 
     /**
-     * Le catalyseur déposé est acquis à l'époque courante (voir Incarnations.acquerir) : il se
+     * Le catalyseur déposé est acquis à l'époque courante (voir IncarnationsV5.acquerir) : il se
      * transmet ensuite aux incarnations suivantes, jusqu'à ce qu'une le perde.
      * @Override
      */
     async drop() {
-        await new Incarnations(this.actor).acquerir(this.sid);
+        await new IncarnationsV5(this.actor).acquerir(this.sid);
     }
 
     /**
@@ -34,9 +34,9 @@ export class Catalyseur extends SimpleFeature {
      * @returns the data used to display the actor item.
      */
     static getAll(actor) {
-        // Les catalyseurs possédés à l'époque courante (voir Incarnations.possessions)
+        // Les catalyseurs possédés à l'époque courante (voir IncarnationsV5.possessions)
         let items = [];
-        for (let embedded of new Incarnations(actor).possessions('catalyseur')) {
+        for (let embedded of new IncarnationsV5(actor).possessions('catalyseur')) {
             const original = AbstractFeature.original(embedded.sid);
             if (original == null) continue;
             items.push({

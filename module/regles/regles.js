@@ -13,7 +13,10 @@ import { Version } from "../common/version.js";
  * LE CONTRAT. Un jeu de règles est un objet qui porte `version`, et s'il y a lieu :
  *   - `fiches` : les fiches, par type de document ;
  *   - `acteur(actor)` : l'objet des règles de cet acteur, exposé par `actor.regles` ;
- *   - `incarnationCreee(actor, cle)` : ce qui se passe à la création d'une incarnation ;
+ *   - `incarnationCreee(actor, cle, anterieure)` : ce qui se passe à la création d'une incarnation
+ *     (`anterieure` : l'incarnation active la plus proche, null si aucune) ;
+ *   - `supprimerLies(actor, items)` : supprime ce qui était lié à une incarnation retirée ; sans
+ *     lui, le commun supprime simplement les objets ;
  *   - `evenements` : les réactions aux événements (combat, chat, macros) ;
  *   - `outils` : les outils du MJ ;
  *   - `gabarits` : les gabarits à pré-charger.

@@ -1,5 +1,5 @@
 import { Constants } from "./constants.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
 import { DocumentIdentifier } from "./documentIdentifier.js";
 import { Version } from "./version.js";
 
@@ -263,7 +263,7 @@ export class CustomHandlebarsHelpers {
      *          itself, for an actor without incarnations.
      */
     static degreIncarne(item) {
-        const incarnations = new Incarnations(item?.parent);
+        const incarnations = new IncarnationsV5(item?.parent);
         return incarnations.porte ? incarnations.degre(item.sid) : Version.data(item).degre;
     }
 

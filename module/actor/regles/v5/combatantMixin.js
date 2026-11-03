@@ -1,7 +1,7 @@
 import { ActiveEffects } from "../../../../feature/core/regles/v5/effects.js";
 import { Version } from "../../../common/version.js";
 import { Groupe } from "../../../../feature/groupe/groupe.js";
-import { Incarnations } from "../../../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
 import { CombatHistory } from "../../../../feature/combat/regles/v5/core/combatHistory.js";
 import { Constants } from "../../../common/constants.js";
 import { Distance } from "../../../../feature/combat/regles/v5/core/distance.js";
@@ -199,7 +199,7 @@ export const CombatantMixin = Base => {
 
             // Add the armor if exists
             // Seules comptent les armures de l'incarnation courante
-            const armor = new Incarnations(this).equipements('armure').find(i => Version.data(i).used === true);
+            const armor = new IncarnationsV5(this).equipements('armure').find(i => Version.data(i).used === true);
             if (armor != null) {
                 protection = protection + Version.data(armor)[type];
             }
@@ -250,7 +250,7 @@ export const CombatantMixin = Base => {
                         // Attack weapon to parade weapon
                         } else if (parade === false) {
                                 await item.update({ [Version.path(item, 'used')]: true });
-                                for (let arme of new Incarnations(this).equipements('arme').filter(i => i.id !== item.id)) {
+                                for (let arme of new IncarnationsV5(this).equipements('arme').filter(i => i.id !== item.id)) {
                                     await arme.update({ [Version.path(arme, 'parade')]: false });
                                 }
                                 await item.update({ [Version.path(item, 'parade')]: true });
@@ -277,7 +277,7 @@ export const CombatantMixin = Base => {
         get weapons() {
             const equipments = {naturelle: [], melee: [], trait: [], feu: [] };
             // Seules les armes de l'incarnation courante : elles ne se transmettent pas
-            for (let item of new Incarnations(this).equipements('arme')) {
+            for (let item of new IncarnationsV5(this).equipements('arme')) {
                 equipments[Version.data(item).type].push(item);
             }
             return equipments;
@@ -287,7 +287,7 @@ export const CombatantMixin = Base => {
          * @returns all embedded armors .
          */
         get armors() {
-            return new Incarnations(this).equipements('armure');
+            return new IncarnationsV5(this).equipements('armure');
         }
 
         /**

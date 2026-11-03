@@ -4,7 +4,7 @@ import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { FeatureBuilder } from "../../feature/core/regles/v5/featureBuilder.js";
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimItem } from "../item/nephilimItem.js"
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 
 export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
@@ -127,8 +127,8 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         event.preventDefault();
         const data = document.toObject();
         NephilimItem.initializeEmbedded(data);
-        // Une arme, une armure appartiennent à l'incarnation courante (voir Incarnations)
-        if (!new Incarnations(this.document).lierEquipement(data)) {
+        // Une arme, une armure appartiennent à l'incarnation courante (voir IncarnationsV5)
+        if (!new IncarnationsV5(this.document).lierEquipement(data)) {
             ui.notifications.warn(game.i18n.localize("NEPHILIM.equipementSansIncarnation"));
             return;
         }

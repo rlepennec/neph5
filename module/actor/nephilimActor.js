@@ -1,6 +1,6 @@
 import { Arcane } from "../../feature/arcane/regles/v5/arcane.js";
 import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
 import { Version } from "../../module/common/version.js";
 import { VersionMigration } from "../migration/versionMigration.js";
 import { Regles } from "../regles/regles.js";
@@ -122,7 +122,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     get simulacre() {
         // Celui de l'incarnation courante : il ne se transmet pas
-        return new Incarnations(this).simulacre();
+        return new IncarnationsV5(this).simulacre();
     }
 
 
@@ -174,18 +174,18 @@ export class NephilimActor extends CombatantMixin(Actor) {
     /**
      * Une lecture d'un bloc que porte l'incarnation courante d'une figure ; un autre acteur
      * porte le sien.
-     * @param lecture La méthode d'Incarnations qui lit le bloc ('kas', 'alchimie'...).
+     * @param lecture La méthode d'IncarnationsV5 qui lit le bloc ('kas', 'alchimie'...).
      * @param champ   Le champ de l'acteur qui le porte sinon ('ka', 'alchimie'...).
      * @returns the block.
      */
     _selonIncarnation(lecture, champ) {
-        const incarnations = new Incarnations(this);
+        const incarnations = new IncarnationsV5(this);
         return incarnations.porte ? incarnations[lecture]() : Version.data(this)[champ];
     }
 
     /**
      * Les Ka de l'acteur. Ceux d'une figure sont portés par son incarnation courante (voir
-     * Incarnations.kas), chacun indépendant de ceux des autres époques ; un figurant a son Ka
+     * IncarnationsV5.kas), chacun indépendant de ceux des autres époques ; un figurant a son Ka
      * unique. Toutes les lectures de Ka passent par ici.
      * @returns the Ka object of a figure, the single Ka of a figurant.
      */
@@ -196,7 +196,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
     /**
      * Le laboratoire de l'acteur (constructs, materiae primae, laboratoires accessibles,
      * laboratoire courant). Celui d'une figure est porté par son incarnation courante (voir
-     * Incarnations.alchimie). Toutes les lectures du laboratoire passent par ici.
+     * IncarnationsV5.alchimie). Toutes les lectures du laboratoire passent par ici.
      * @returns the laboratory object.
      */
     get alchimie() {
@@ -205,7 +205,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
 
     /**
      * Les voyages akashiques de l'acteur (nef, barge, boussole, compas). Ceux d'une figure sont
-     * portés par son incarnation courante (voir Incarnations.akasha).
+     * portés par son incarnation courante (voir IncarnationsV5.akasha).
      * @returns the akasha object.
      */
     get akasha() {
@@ -214,7 +214,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
 
     /**
      * Les blessures de l'acteur (cases physiques et magiques). Celles d'une figure sont portées
-     * par son incarnation courante (voir Incarnations.blessures) ; un figurant porte les
+     * par son incarnation courante (voir IncarnationsV5.blessures) ; un figurant porte les
      * siennes. Toutes les lectures de blessures passent par ici.
      * @returns { physique, magique }.
      */
@@ -228,7 +228,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns false if a figure has no current incarnation.
      */
     async ecrireBlessures(valeurs) {
-        const incarnations = new Incarnations(this);
+        const incarnations = new IncarnationsV5(this);
         if (incarnations.porte) return incarnations.ecrireBlessures(valeurs);
         const update = {};
         for (const [chemin, valeur] of Object.entries(valeurs)) {
@@ -283,7 +283,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
 
     /**
      * Les bonus de l'acteur (mouvement, initiative, dommage, protection). Ceux d'une figure sont
-     * portés par son incarnation courante (voir Incarnations.bonus) ; un figurant porte les siens.
+     * portés par son incarnation courante (voir IncarnationsV5.bonus) ; un figurant porte les siens.
      * Toutes les lectures de bonus passent par ici.
      * @returns the bonus object.
      */
@@ -307,7 +307,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     get voieMagique() {
         // Celle de l'incarnation courante, sinon de l'antérieure la plus proche
-        return new Incarnations(this).voie('magie');
+        return new IncarnationsV5(this).voie('magie');
     }
 
     /**
@@ -315,7 +315,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      */
     get voieAlchimique() {
         // Celle de l'incarnation courante, sinon de l'antérieure la plus proche
-        return new Incarnations(this).voie('alchimie');
+        return new IncarnationsV5(this).voie('alchimie');
     }
 
 
@@ -421,14 +421,14 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @returns the data to display. 
      */
     get periodes() {
-        return new Incarnations(this).chronologie();
+        return new IncarnationsV5(this).chronologie();
     }
 
     /**
      * @returns the name of the current periode.
      */
     get currentPeriode() {
-        const incarnations = new Incarnations(this);
+        const incarnations = new IncarnationsV5(this);
         if (incarnations.courante == null) {
             return "Aucune periode courante";
         }
@@ -625,7 +625,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 builder = new FeatureBuilder(this)
                     .withOriginalItem(sid)
                     .withScope('actor')
-                    .withPeriode(new Incarnations(this).courante);
+                    .withPeriode(new IncarnationsV5(this).courante);
                 break;
             }
 
@@ -633,7 +633,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
                 builder = new FeatureBuilder(this)
                     .withEmbeddedItem(id)
                     .withScope(this.items.get(id) != null ? 'actor' : 'simulacre')
-                    .withPeriode(new Incarnations(this).courante);
+                    .withPeriode(new IncarnationsV5(this).courante);
                 break;
             }
 
@@ -844,7 +844,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @param sid The system identifier of the world periode.
      */
     async deletePeriode(sid) {
-        const incarnations = new Incarnations(this);
+        const incarnations = new IncarnationsV5(this);
         for (const incarnation of incarnations.toutes().filter(i => incarnations.periodeDe(i.sid) === sid)) {
             await this.#retirerIncarnation(incarnations, incarnation.sid);
         }
@@ -856,7 +856,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @param cle The key of the incarnation.
      */
     async deleteIncarnation(cle) {
-        await this.#retirerIncarnation(new Incarnations(this), cle);
+        await this.#retirerIncarnation(new IncarnationsV5(this), cle);
         await this.render();
     }
 
@@ -875,7 +875,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
      * @param sid The system identifier of current periode to set.
      */
     async setCurrentPeriode(sid) {
-        await new Incarnations(this).definirCourante(sid);
+        await new IncarnationsV5(this).definirCourante(sid);
     }
 
     /**
@@ -934,7 +934,7 @@ export class NephilimActor extends CombatantMixin(Actor) {
 
         // Remove the deleted actors from the incarnations which had them as simulacre
         if (actor.type === 'figure') {
-            await new Incarnations(actor).oublierSimulacres(sids);
+            await new IncarnationsV5(actor).oublierSimulacres(sids);
         }
 
         // Remove the deleted actors if they are members of a fraternite

@@ -34,7 +34,7 @@ export class CatalyseurDataModel extends foundry.abstract.TypeDataModel {
                                 }
                             ),
                             // La possession à l'époque de cet exemplaire : un catalyseur se gagne, se perd et
-                            // se regagne d'une incarnation à l'autre (voir Incarnations.possessions).
+                            // se regagne d'une incarnation à l'autre (voir IncarnationsV5.possessions).
                             possede: new foundry.data.fields.BooleanField
                             (
                                 {

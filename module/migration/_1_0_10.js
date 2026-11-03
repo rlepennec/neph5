@@ -2,7 +2,7 @@ import { MigrationTools } from "./migration.js";
 import { VersionMigration } from "./versionMigration.js";
 import { _1_0_9 } from "./_1_0_9.js";
 import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
 import { Version } from "../common/version.js";
 
 /**
@@ -21,7 +21,7 @@ import { Version } from "../common/version.js";
  * savoirs, quêtes, arcanes, chutes, sciences, ressources, focus, capacités — garde UN
  * EXEMPLAIRE PAR ÉPOQUE, comme avant : chaque exemplaire porte la clé de son incarnation
  * (`system.incarnation`, commune à toutes les versions) et le degré acquis pendant elle. Voir
- * la façade `Incarnations`.
+ * la façade `IncarnationsV5`.
  *
  * CE QU'ELLE FAIT, acteur par acteur (figures et fraternités) :
  *   1. lit la chaîne des périodes embarquées, de la plus ancienne à la plus récente ; une
@@ -81,7 +81,7 @@ export class _1_0_10 {
     static async migrate(target) {
 
         const msg = "Updating to " + target;
-        const acteurs = game.actors.filter(a => Incarnations.ACTEURS.includes(a.type));
+        const acteurs = game.actors.filter(a => IncarnationsV5.ACTEURS.includes(a.type));
         const size = acteurs.length;
         let etape = 0;
         let convertis = 0;
@@ -160,7 +160,7 @@ export class _1_0_10 {
 
         // 3. et 4. Les exemplaires gardés, période par période dans l'ordre de la chaîne, et les
         //    copies de trop
-        const lies = actor.items.filter(i => Incarnations.LIES.includes(i.type));
+        const lies = actor.items.filter(i => IncarnationsV5.LIES.includes(i.type));
         const exemplaires = new Map();      // id de l'item gardé -> clé de son incarnation
         const doublons = [];
         const vecusPris = new Set();
@@ -190,12 +190,12 @@ export class _1_0_10 {
         // transmettent ensuite.
         const periodeCourante = Version.data(actor).periode;
         const courante = embarquees.has(periodeCourante) ? periodeCourante : chaine.at(-1)?.sid;
-        for (const item of lies.filter(i => [...Incarnations.EQUIPEMENTS, ...Incarnations.STOCKS, ...Incarnations.POSSESSIONS].includes(i.type) && !exemplaires.has(i.id))) {
+        for (const item of lies.filter(i => [...IncarnationsV5.EQUIPEMENTS, ...IncarnationsV5.STOCKS, ...IncarnationsV5.POSSESSIONS].includes(i.type) && !exemplaires.has(i.id))) {
             if (courante != null) exemplaires.set(item.id, courante);
         }
 
         const premiere = chaine.find(p => lire(p, 'actif') === true) ?? chaine[0];
-        for (const type of [...Incarnations.VOIES, ...Incarnations.METAMORPHES]) {
+        for (const type of [...IncarnationsV5.VOIES, ...IncarnationsV5.METAMORPHES]) {
             const [voie, ...autres] = lies.filter(i => i.type === type && !exemplaires.has(i.id) && !doublons.includes(i.id));
             if (voie != null && premiere != null) exemplaires.set(voie.id, premiere.sid);
             doublons.push(...autres.map(i => i.id));
@@ -229,7 +229,7 @@ export class _1_0_10 {
                 periode: p.sid,
                 actif: lire(p, 'actif') === true,
                 // La stase de la figure : copiée dans chaque incarnation
-                ...Incarnations.heritageCommun(figure),
+                ...IncarnationsV5.heritageCommun(figure),
                 // Le simulacre de la figure ne se transmet pas : il devient celui de
                 // l'incarnation courante seulement
                 simulacre: p.sid === courante ? (Version.data(actor).simulacre ?? null) : null
@@ -250,9 +250,9 @@ export class _1_0_10 {
         // objets de règles de chaque incarnation, comme une nouvelle incarnation hérite de
         // l'antérieure, points d'incarnation compris ; aucune blessure
         if (actor.type === 'figure') {
-            const heritage = Incarnations.heritage(figure, { pointsIncarnations: true });
+            const heritage = IncarnationsV5.heritage(figure, { pointsIncarnations: true });
             await actor.createEmbeddedDocuments('Item',
-                incarnations.flatMap(data => Incarnations.objetsDeRegles(data.system.id, heritage)));
+                incarnations.flatMap(data => IncarnationsV5.objetsDeRegles(data.system.id, heritage)));
         }
         if (Version.data(actor).simulacre != null) {
             await actor.update({ [Version.path(actor, 'simulacre')]: null });
@@ -266,7 +266,7 @@ export class _1_0_10 {
             const cle = exemplaires.get(item.id);
             if (cle != null) {
                 const update = { 'system.incarnation': cle };
-                if (Incarnations.VECUS.includes(item.type)) {
+                if (IncarnationsV5.VECUS.includes(item.type)) {
                     update[Version.path(item, 'degre')] = lire(item, 'degre') ?? 0;
                 }
                 // Un vécu lié ne recopie plus sa période : c'est celle de son incarnation

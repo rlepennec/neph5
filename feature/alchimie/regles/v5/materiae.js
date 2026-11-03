@@ -1,5 +1,5 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
 import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
@@ -10,7 +10,7 @@ import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
  * Le stock se transmet d'une incarnation à l'autre. Chaque incarnation qui l'a déposé ou
  * modifié en a son exemplaire, qui porte la VARIATION de quantité de son époque, positive ou
  * négative ; le stock affiché est la somme des variations de l'incarnation courante et des
- * antérieures actives (voir Incarnations.stock).
+ * antérieures actives (voir IncarnationsV5.stock).
  */
 export class Materiae extends SimpleFeature {
 
@@ -21,7 +21,7 @@ export class Materiae extends SimpleFeature {
      * @Override
      */
     async drop() {
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         const materia = new EmbeddedItem(this.actor, this.sid)
             .withContext("Drop of a materiae")
             .withData("quantite", 0)
@@ -44,13 +44,13 @@ export class Materiae extends SimpleFeature {
 
     /**
      * Les materiae à afficher : celles dont le stock est positif, et celles déposées ou
-     * modifiées à l'époque courante (voir Incarnations.stocks). La quantité affichée est le
+     * modifiées à l'époque courante (voir IncarnationsV5.stocks). La quantité affichée est le
      * stock ; l'exemplaire est celui de l'époque courante, que la corbeille supprime.
      * @returns the data used to display the actor item.
      */
     static getAll(actor) {
         const items = [];
-        for (const { sid, stock, propre } of new Incarnations(actor).stocks('materiae')) {
+        for (const { sid, stock, propre } of new IncarnationsV5(actor).stocks('materiae')) {
             const original = AbstractFeature.original(sid);
             if (original == null) continue;
             items.push({

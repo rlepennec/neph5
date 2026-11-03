@@ -1,5 +1,5 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
 
@@ -65,7 +65,7 @@ export class Ordonnance extends AbstractFeature {
     static async perdrePactes(actor, monde) {
         // Sur l'exemplaire qui fait foi de chaque invocation : la perte vaut pour l'incarnation
         // courante, qui reçoit son propre exemplaire au besoin ; les époques passées gardent le leur.
-        const incarnations = new Incarnations(actor);
+        const incarnations = new IncarnationsV5(actor);
         const sids = [...new Set(actor.items.filter(i => i.type === 'invocation').map(i => i.sid))];
         const perdus = [];
         for (const invocation of sids.map(sid => incarnations.exemplaireEffectif(sid))) {
@@ -139,7 +139,7 @@ export class Ordonnance extends AbstractFeature {
 
         // For each ordonnance: one per sid, the exemplar which counts (current incarnation, or
         // the closest earlier one)
-        const incarnations = new Incarnations(actor);
+        const incarnations = new IncarnationsV5(actor);
         const sids = [...new Set(actor.items.filter(o => o.type === 'ordonnance').map(o => o.sid))];
         for (let item of sids.map(sid => incarnations.exemplaireEffectif(sid)).filter(o => o != null)) {
             const original = AbstractFeature.original(item.sid);

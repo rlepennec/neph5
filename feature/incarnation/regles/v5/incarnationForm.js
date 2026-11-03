@@ -1,9 +1,9 @@
-import { DragDropMixin } from "../../module/common/dragDropMixin.js";
-import { FeatureBuilder } from "../core/regles/v5/featureBuilder.js";
-import { Incarnations } from "./incarnations.js";
-import { LockableMixin } from "../../module/common/lockableMixin.js";
-import { Science } from "../science/regles/v5/science.js";
-import { Version } from "../../module/common/version.js";
+import { DragDropMixin } from "../../../../module/common/dragDropMixin.js";
+import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
+import { IncarnationsV5 } from "./incarnations.js";
+import { LockableMixin } from "../../../../module/common/lockableMixin.js";
+import { Science } from "../../../science/regles/v5/science.js";
+import { Version } from "../../../../module/common/version.js";
 
 /**
  * Le formulaire d'une incarnation de figure, ouvert depuis l'onglet incarnations.
@@ -27,7 +27,7 @@ import { Version } from "../../module/common/version.js";
  *
  * La barre du haut supprime l'incarnation ouverte, après confirmation, et ramène à la fiche.
  *
- * Toutes les écritures passent par la façade Incarnations, ou par la feature de l'item déposé
+ * Toutes les écritures passent par la façade IncarnationsV5, ou par la feature de l'item déposé
  * (qui rattache par la façade). Les modifications demandent le formulaire déverrouillé.
  */
 export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2))) {
@@ -35,8 +35,8 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
     /**
      * Les types déposés comme acquisitions avec un degré, et comme simples rattachements.
      */
-    static AVEC_DEGRE = Incarnations.VECUS.filter(t => t !== 'vecu');
-    static SANS_DEGRE = [...Incarnations.FOCUS, ...Incarnations.CAPACITES];
+    static AVEC_DEGRE = IncarnationsV5.VECUS.filter(t => t !== 'vecu');
+    static SANS_DEGRE = [...IncarnationsV5.FOCUS, ...IncarnationsV5.CAPACITES];
 
     /**
      * Les sciences occultes, dans l'ordre de leurs onglets. Chacune range ses cercles du plus
@@ -107,7 +107,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
 
     static PARTS = {
         form: {
-            template: "systems/neph5e/feature/incarnation/incarnation-form.hbs"
+            template: "systems/neph5e/feature/incarnation/regles/v5/incarnation-form.hbs"
         }
     }
 
@@ -154,7 +154,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
      */
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
 
         // Une incarnation retirée entre-temps : le formulaire n'a plus rien à montrer
         if (!this.nouvelle && incarnations.incarnation(this.cle) == null) {
@@ -214,7 +214,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
                 img: item.img,
                 // Un focus rappelle le nom de son cercle (Basse Magie, Malkut...) ; l'onglet dit déjà
                 // de quel type est chaque objet.
-                precision: Incarnations.FOCUS.includes(item.type) && IncarnationForm.cercleOf(item) != null
+                precision: IncarnationsV5.FOCUS.includes(item.type) && IncarnationForm.cercleOf(item) != null
                     ? IncarnationForm.nomDuCercle(IncarnationForm.cercleOf(item)) : "",
                 avecDegre: avecDegre,
                 degre: avecDegre ? incarnations.degreDans(item.sid, this.cle) : null,
@@ -299,7 +299,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
     static cercleOf(item) {
         const original = game.items.find(i => i.sid === item?.sid) ?? item;
         if (original?.type === 'science') return Version.data(original).key ?? null;
-        if (!Incarnations.FOCUS.includes(original?.type)) return null;
+        if (!IncarnationsV5.FOCUS.includes(original?.type)) return null;
         return Version.data(original)[Science.proprieteCercle(original.type)] ?? null;
     }
 
@@ -356,7 +356,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             return;
         }
 
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         for (const vecu of incarnations.vecusDe(this.cle)) {
             const saisi = valeurs.vecus?.[vecu.sid];
             if (saisi !== undefined && entier(saisi) !== (Version.data(vecu).degre ?? 0)) {
@@ -381,7 +381,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             this.brouillon.periode = document.sid;
             await this.#enregistrer();
         } else {
-            await new Incarnations(this.actor).changerPeriode(this.cle, document.sid);
+            await new IncarnationsV5(this.actor).changerPeriode(this.cle, document.sid);
         }
         this.#rafraichir();
     }
@@ -391,9 +391,9 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
      */
     static async #onDropVecu(event, document) {
         if (document.parent != null) return;
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         if (incarnations.exemplaires(document.sid).length > 0) {
-            ui.notifications.warn(Incarnations.DEJA_VECU);
+            ui.notifications.warn(IncarnationsV5.DEJA_VECU);
             return;
         }
         if (this.nouvelle) {
@@ -423,7 +423,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             .create()
             ?.drop();
         // L'onglet ne s'ouvre que si l'objet a bien été rattaché (un dépôt peut être refusé)
-        if (new Incarnations(this.actor).rattaches(this.cle).some(i => i.sid === document.sid)) {
+        if (new IncarnationsV5(this.actor).rattaches(this.cle).some(i => i.sid === document.sid)) {
             this.#deplier(document);
         }
         this.#rafraichir();
@@ -447,7 +447,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
 
         const item = this.actor.items.get(target.closest('.item').dataset.id);
         if (item == null) return;
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         if (item.type === 'vecu') {
             await incarnations.retirerVecu(this.cle, item.sid);
             this.#rafraichir();
@@ -491,7 +491,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
             await this.close();
             return;
         }
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         const periode = game.items.find(i => i.type === 'periode' && i.sid === incarnations.periodeDe(this.cle));
         const confirme = await foundry.applications.api.DialogV2.confirm({
             window: { title: game.i18n.localize("NEPHILIM.supprimerIncarnation") },
@@ -514,7 +514,7 @@ export class IncarnationForm extends DragDropMixin(LockableMixin(foundry.applica
      */
     async #enregistrer() {
         if (this.brouillon.periode == null) return;
-        const incarnations = new Incarnations(this.actor);
+        const incarnations = new IncarnationsV5(this.actor);
         if (this.brouillon.vecu == null) {
             this.cle = await incarnations.ajouter(this.brouillon.periode);
             return;

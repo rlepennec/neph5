@@ -1,9 +1,15 @@
+import { IncarnationsV5 } from "../../../feature/incarnation/regles/v5/incarnations.js";
+
 /**
  * Le jeu de règles de la cinquième édition (voir Regles pour le contrat).
  *
- * Il se remplit au fil du découplage : pour l'instant, le code v5 est encore appelé directement
- * par le commun, et ce jeu ne déclare que sa version.
+ * Il se remplit au fil du découplage : une partie du code v5 est encore appelée directement par
+ * le commun.
  */
 export const JeuV5 = {
-    version: 'v5'
+    version: 'v5',
+
+    incarnationCreee: (actor, cle, anterieure) => new IncarnationsV5(actor).incarnationCreee(cle, anterieure),
+
+    supprimerLies: (actor, items) => new IncarnationsV5(actor).supprimerLies(items)
 };

@@ -1,5 +1,5 @@
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
 import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
@@ -140,7 +140,7 @@ export class Science extends HistoricalFeature {
         const cercle = Science.getCercle(science);
 
         // Retrieve 
-        const incarnations = new Incarnations(actor);
+        const incarnations = new IncarnationsV5(actor);
         const sids = actor.items.filter(i => i.type === cercle?.type && incarnations.estActif(i)).map(i => i.sid);
 
         for (let item of game.items.filter(i => Version.data(i)[cercle?.property] === science && sids.includes(i.sid))) {

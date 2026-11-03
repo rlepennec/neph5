@@ -49,7 +49,7 @@ export class NettoyageDialog extends AbstractDialog {
 
     /**
      * Les types internes à l'acteur, sans item du monde par construction : l'incarnation et ses
-     * objets de règles (voir Incarnations.REGLES). Ils ne sont jamais des orphelins.
+     * objets de règles (voir IncarnationsV5.REGLES). Ils ne sont jamais des orphelins.
      */
     static INTERNES = ['incarnation', 'laboratoire', 'akasha', 'ka'];
 

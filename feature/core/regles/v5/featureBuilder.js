@@ -1,6 +1,6 @@
 import { Alchimie } from "../../../alchimie/regles/v5/alchimie.js";
 import { Version } from "../../../../module/common/version.js";
-import { Incarnations } from "../../../incarnation/incarnations.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Appel } from "../../../conjuration/regles/v5/appel.js";
 import { Arcane } from "../../../arcane/regles/v5/arcane.js";
 import { Aspect } from "../../../selenim/regles/v5/aspect.js";
@@ -243,7 +243,7 @@ export class FeatureBuilder {
                     case 'actor':
                         return this.actor;
                     case 'simulacre':
-                        return new Incarnations(this.actor).simulacre();
+                        return new IncarnationsV5(this.actor).simulacre();
                 }
             case 'figurant':
             case 'fraternite':
