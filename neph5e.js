@@ -316,6 +316,13 @@ Hooks.once("init", function () {
         }
     })
 
+    // Défaut de Foundry : le formulaire du token envoie toujours actorId. Quand on y change le lien
+    // à l'acteur, Foundry croit que le token a changé d'acteur et le retire de son propre acteur
+    // (TokenDocument#_onUpdate). Jusqu'au rechargement, ses icônes ne suivaient plus les états.
+    Hooks.on("updateToken", (token, changed) => {
+        if ("actorId" in changed || "actorLink" in changed) token.baseActor?._registerDependentToken(token);
+    });
+
     // Le combat automatique ne concerne que les figures et les figurants.
     Hooks.on("preCreateCombatant", (combatant, data, options, userId) => {
         if (combatant.actor?.type === 'fraternite') {
