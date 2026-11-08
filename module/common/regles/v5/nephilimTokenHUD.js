@@ -12,10 +12,18 @@ export class NephilimTokenHUD extends foundry.applications.hud.TokenHUD {
     _getStatusEffectChoices() {
         const choices = super._getStatusEffectChoices();
         const porteur = ActiveEffects.porteur(this.actor);
-        if (porteur == null || porteur === this.actor) return choices;
+        if (porteur == null || (porteur === this.actor && !this.actor.isToken)) return choices;
 
-        // Même règle que Foundry, sur les effets de l'incarnation courante
+        // Foundry a compté les états hérités de l'acteur d'un token non lié
+        for (const status of Object.values(choices)) {
+            status.isActive = false;
+            status.isOverlay = false;
+            status.cssClass = "";
+        }
+
+        // Même règle que Foundry, sur les effets du porteur, hors ceux hérités
         for (const effect of porteur.effects) {
+            if (effect.herite) continue;
             for (const statusId of effect.statuses) {
                 const status = choices[statusId];
                 if (!status) continue;

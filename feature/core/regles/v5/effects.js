@@ -5,6 +5,7 @@ export class ActiveEffects {
     static get DESORIENTE() {
         return {
             name: 'Stunned',
+            statuses: ['stun'],
             img: 'systems/neph5e/assets/icons/svg/daze.svg',
             sentence: 'NEPHILIM.estDesoriente',
             duration: {
@@ -16,6 +17,7 @@ export class ActiveEffects {
     static get IMMOBILISE() {
         return {
             name: 'Restrained',
+            statuses: ['restrain'],
             img: 'systems/neph5e/assets/icons/svg/net.svg',
             sentence: 'NEPHILIM.estImmobilise',
             duration: {
@@ -27,6 +29,7 @@ export class ActiveEffects {
     static get PROJETE() {
         return {
             name: 'Prone',
+            statuses: ['prone'],
             img: 'systems/neph5e/assets/icons/svg/falling.svg',
             sentence: 'NEPHILIM.estProjete',
             duration: {
@@ -38,6 +41,7 @@ export class ActiveEffects {
     static get MORT() {
         return {
             name: 'Dead',
+            statuses: ['dead'],
             img: 'systems/neph5e/assets/icons/svg/skull.svg',
             duration: {
                 seconds: 1
@@ -90,21 +94,33 @@ export class ActiveEffects {
     }
 
     /**
+     * Un état est le même qu'il soit posé par la fiche ou par le HUD du jeton : ils partagent son
+     * statut. Le nom ne sert plus que pour les effets posés sans statut.
+     * @param document An ActiveEffect document.
+     * @param effect   The state, one of the effects above.
+     * @returns true if the document is this state.
+     */
+    static correspond(document, effect) {
+        return document.name === effect.name || effect.statuses.some(s => document.statuses.has(s));
+    }
+
+    /**
      * @param actor  The actor object to watch.
      * @param effect The object effect to watch.
      * @returns true if the effect is active for the specified actor.
      */
     static isActive(actor, effect) {
-        return actor != null && actor.appliedEffects.find(e => e.name === effect.name) != null;
+        return actor != null && actor.appliedEffects.some(e => ActiveEffects.correspond(e, effect));
     }
 
     /**
      * @param actor  The actor object from which to delete the effect.
-     * @param effect The effect object to remove.
+     * @param effect The effect object to remove, whoever set it.
      */
     static async delete(actor, effect) {
-        const object = actor.appliedEffects.find(e => e.name === effect.name);
-        if (object) await object.delete();
+        for (const object of actor.appliedEffects.filter(e => ActiveEffects.correspond(e, effect))) {
+            await object.delete();
+        }
     }
 
     /**
@@ -128,7 +144,9 @@ export class ActiveEffects {
     static async add(actor, effect) {
         const porteur = ActiveEffects.porteur(actor);
         if (porteur == null) return;
+        const status = CONFIG.statusEffects[effect.statuses[0]];
         const object = foundry.utils.mergeObject(effect, {
+            name: status ? game.i18n.localize(status.name) : effect.name,
             origin: actor.uuid,
             disabled: false});
         // L'effet d'un item ne s'applique à son acteur que s'il est transféré
