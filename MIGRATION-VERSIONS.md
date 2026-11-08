@@ -1038,3 +1038,11 @@ tronc commun évoluera au fil de l'intégration des règles.
   `embeddedItem.js`, `handlebars.js` ; la migration 1.0.10 y reste, ses données étant v5. Limite acceptée
   par l'utilisateur : une incarnation créée dans un monde réglé sur une autre version n'a pas les objets
   v5 ; de retour en v5, ils se lisent à 0 et sont créés à la première écriture, sans héritage.
+- **Étape 2, lot 2, partie 1, fait : `ActeurV5`.** Les membres de règles de l'acteur et le combat passent
+  dans `module/actor/regles/v5/acteurV5.js` (`ActeurV5 extends CombatantMixin(Acteur)`, objet jetable qui
+  porte `this.actor`). `NephilimActor` n'hérite plus que d'`Actor` et garde des **relais** temporaires :
+  aucun appelant ne change. Restent sur l'acteur : `migrateData`, `sid`, `regles`, `_preCreate`,
+  `identifiantLibre`, `simulacre`, `currentPeriode`, `setCurrentPeriode`, `deletePeriode`,
+  `deleteIncarnation`, `_onClickDocumentLink`, `_onDeleteOperation`, `onDeleteEmbeddedActors` ; et, à faire
+  déléguer à la partie 3, `toggleStatusEffect`, `_onUpdate`, `deleteEmbeddedItem`. **Partie 2** : réécrire
+  les appelants en `actor.regles.x`, les relais avertissant en console. **Partie 3** : retirer les relais.

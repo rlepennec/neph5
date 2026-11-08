@@ -50,21 +50,21 @@ export const CombatantMixin = Base => {
          * @returns true if the actor is desoriente.
          */
         get desoriente() {
-            return ActiveEffects.isActive(this, ActiveEffects.DESORIENTE);
+            return ActiveEffects.isActive(this.actor, ActiveEffects.DESORIENTE);
         }
 
         /**
          * @returns true if the actor is immobilise.
          */
         get immobilise() {
-            return ActiveEffects.isActive(this, ActiveEffects.IMMOBILISE);
+            return ActiveEffects.isActive(this.actor, ActiveEffects.IMMOBILISE);
         }
 
         /**
          * @returns true if the actor is projete.
          */
         get projete() {
-            return ActiveEffects.isActive(this, ActiveEffects.PROJETE);
+            return ActiveEffects.isActive(this.actor, ActiveEffects.PROJETE);
         }
 
         /**
@@ -72,10 +72,10 @@ export const CombatantMixin = Base => {
          *          figure ni Nephilim ni Selenim n'a pas de bonus de Ka.
          */
         get dommage() {
-            if (this.type === 'figure') {
-                if (Version.data(this).options?.nephilim === true) {
+            if (this.actor.type === 'figure') {
+                if (Version.data(this.actor).options?.nephilim === true) {
                     return Math.floor(this.kas.feu / 5);
-                } else if (Version.data(this).options?.selenim === true) {
+                } else if (Version.data(this.actor).options?.selenim === true) {
                     return Math.floor(this.kas.noyau / 10);
                 }
             }
@@ -86,12 +86,12 @@ export const CombatantMixin = Base => {
          * @return the initiative.
          */
         get initiative() {
-             switch (this.type) {
+             switch (this.actor.type) {
                  case 'figure':
-                    if (Version.data(this).options?.nephilim === true) {
+                    if (Version.data(this.actor).options?.nephilim === true) {
                         return this.kas.eau * 2;
                     }
-                    if (Version.data(this).options?.selenim === true) {
+                    if (Version.data(this.actor).options?.selenim === true) {
                         return this.kas.noyau;
                     }
                     for (let elt of ['soleil', 'orichalque', 'brume', 'air', 'feu', 'lune', 'terre']) {
@@ -101,7 +101,7 @@ export const CombatantMixin = Base => {
                         }
                     }
                 case 'figurant':
-                    return Version.data(this).menace;
+                    return Version.data(this.actor).menace;
                 default:
                     return 0;
              }
@@ -113,21 +113,21 @@ export const CombatantMixin = Base => {
          *          définie, ou si sa compétence est inactive (voir Groupe).
          */
         manoeuvre(field) {
-            return Groupe.reference(Version.data(this).manoeuvres?.[field] ?? null);
+            return Groupe.reference(Version.data(this.actor).manoeuvres?.[field] ?? null);
         }
 
         /**
          * @returns true if lutte manoeuver is available for the actor. 
          */
         get isLutteAvailable() {
-            return this.type !== 'figure' || this.manoeuvre('lutte') != null;
+            return this.actor.type !== 'figure' || this.manoeuvre('lutte') != null;
         }
 
         /**
          * @returns the data to display. 
          */
         get lutte() {
-            if (this.type !== 'figure') {
+            if (this.actor.type !== 'figure') {
                 return "";
             }
             const sid = this.manoeuvre('lutte');
@@ -143,14 +143,14 @@ export const CombatantMixin = Base => {
          * @returns true if esquive manoeuver is available for the actor. 
          */
         get isEsquiveAvailable() {
-            return this.type !== 'figure' || this.manoeuvre('esquive') != null;
+            return this.actor.type !== 'figure' || this.manoeuvre('esquive') != null;
         }
 
         /**
          * @returns the data to display. 
          */
         get esquive() {
-            if (this.type !== 'figure') {
+            if (this.actor.type !== 'figure') {
                 return "";
             }
             const sid = this.manoeuvre('esquive');
@@ -181,10 +181,10 @@ export const CombatantMixin = Base => {
          * @returns the token of the actor on the scene, null if none
          */
         get tokenOf() {
-            if (this.token != null) {
-                return this.token;
+            if (this.actor.token != null) {
+                return this.actor.token;
             }
-            return canvas.tokens?.objects?.children.find(t => t.actor.id === this.id);
+            return canvas.tokens?.objects?.children.find(t => t.actor.id === this.actor.id);
         }
 
         /**
@@ -199,7 +199,7 @@ export const CombatantMixin = Base => {
 
             // Add the armor if exists
             // Seules comptent les armures de l'incarnation courante
-            const armor = new IncarnationsV5(this).equipements('armure').find(i => Version.data(i).used === true);
+            const armor = new IncarnationsV5(this.actor).equipements('armure').find(i => Version.data(i).used === true);
             if (armor != null) {
                 protection = protection + Version.data(armor)[type];
             }
@@ -208,15 +208,15 @@ export const CombatantMixin = Base => {
         }
 
         async setActiveEffect(name) {
-            await ActiveEffects.toggle(this, ActiveEffects.get(name));
+            await ActiveEffects.toggle(this.actor, ActiveEffects.get(name));
         }
 
         async activateEffect(name) {
-            await ActiveEffects.activate(this, ActiveEffects.get(name));
+            await ActiveEffects.activate(this.actor, ActiveEffects.get(name));
         }
 
         async deactivateEffect(name) {
-            await ActiveEffects.deactivate(this, ActiveEffects.get(name));
+            await ActiveEffects.deactivate(this.actor, ActiveEffects.get(name));
         }
 
         /**
@@ -250,7 +250,7 @@ export const CombatantMixin = Base => {
                         // Attack weapon to parade weapon
                         } else if (parade === false) {
                                 await item.update({ [Version.path(item, 'used')]: true });
-                                for (let arme of new IncarnationsV5(this).equipements('arme').filter(i => i.id !== item.id)) {
+                                for (let arme of new IncarnationsV5(this.actor).equipements('arme').filter(i => i.id !== item.id)) {
                                     await arme.update({ [Version.path(arme, 'parade')]: false });
                                 }
                                 await item.update({ [Version.path(item, 'parade')]: true });
@@ -277,7 +277,7 @@ export const CombatantMixin = Base => {
         get weapons() {
             const equipments = {naturelle: [], melee: [], trait: [], feu: [] };
             // Seules les armes de l'incarnation courante : elles ne se transmettent pas
-            for (let item of new IncarnationsV5(this).equipements('arme')) {
+            for (let item of new IncarnationsV5(this.actor).equipements('arme')) {
                 equipments[Version.data(item).type].push(item);
             }
             return equipments;
@@ -287,7 +287,7 @@ export const CombatantMixin = Base => {
          * @returns all embedded armors .
          */
         get armors() {
-            return new IncarnationsV5(this).equipements('armure');
+            return new IncarnationsV5(this.actor).equipements('armure');
         }
 
         /**
@@ -332,7 +332,7 @@ export const CombatantMixin = Base => {
         async rollWeapon(weapon, combatant) {
 
             if (combatant == null) {
-                const feature = new FeatureBuilder(this)
+                const feature = new FeatureBuilder(this.actor)
                     .withScope("actor")
                     .withOriginalItem(Groupe.reference(Version.data(weapon).competence))
                     .create();
@@ -350,7 +350,7 @@ export const CombatantMixin = Base => {
             }
             // Contre-attaque d'une riposte en attente : sa cible est l'attaquant initial, pas
             // le token sélectionné (voir Riposte).
-            const riposte = Riposte.of(this) != null && Riposte.armes(this).some(a => a.id === weapon.id);
+            const riposte = Riposte.of(this.actor) != null && Riposte.armes(this.actor).some(a => a.id === weapon.id);
             // Plusieurs cibles : seul le tir en rafale d'une arme à feu le permet (voir Distance).
             const rafale = this.targets.length > 1 && Version.data(weapon).type === Constants.FEU && Version.data(weapon).rafale === true;
             if (this.target == null && !riposte && !rafale) {
@@ -361,12 +361,12 @@ export const CombatantMixin = Base => {
             }
 
             switch (Version.data(weapon).type) {
-                case Constants.NATURELLE: await new Naturelle(this, weapon).initializeRoll(); break;
-                case Constants.MELEE:     await new Melee(this, weapon).initializeRoll();     break;
-                case Constants.TRAIT:     await new Distance(this, weapon).initializeRoll();  break;
+                case Constants.NATURELLE: await new Naturelle(this.actor, weapon).initializeRoll(); break;
+                case Constants.MELEE:     await new Melee(this.actor, weapon).initializeRoll();     break;
+                case Constants.TRAIT:     await new Distance(this.actor, weapon).initializeRoll();  break;
                 case Constants.FEU:
                     if (Version.data(weapon).munitions - Version.data(weapon).tire > 0) {
-                        await new Distance(this, weapon).initializeRoll();
+                        await new Distance(this.actor, weapon).initializeRoll();
                     } else {
                         ui.notifications.info("L'arme du personnage n'a plus de munitions");
                     }
@@ -411,19 +411,19 @@ export const CombatantMixin = Base => {
                     return;
                 }
 
-                await new Wrestle(this).initializeRoll();
+                await new Wrestle(this.actor).initializeRoll();
                 return;
 
             }
 
             // Hors combat : le jet simple dépend du type d'acteur.
-            switch (this.type) {
+            switch (this.actor.type) {
 
                 // Un figurant n'a pas de system.manoeuvres — seul figure.mjs déclare
                 // le champ. Son jet martial est un jet de Menace, comme le fait
                 // Combat.simpleAttack.
                 case 'figurant':
-                    await new Menace(this).initializeRoll();
+                    await new Menace(this.actor).initializeRoll();
                     return;
 
                 case 'figure': {
@@ -433,7 +433,7 @@ export const CombatantMixin = Base => {
                         return;
                     }
 
-                    const feature = new FeatureBuilder(this)
+                    const feature = new FeatureBuilder(this.actor)
                         .withScope("actor")
                         .withOriginalItem(this.manoeuvre('lutte'))
                         .create();
@@ -499,7 +499,7 @@ export const CombatantMixin = Base => {
 
             // Viser.canBePerformed porte la règle propre à la manœuvre : munitions
             // restantes, et trois rounds de visée au maximum sur la même cible.
-            const action = new Distance(this, weapon);
+            const action = new Distance(this.actor, weapon);
             const viser = new Viser(action);
             // Le message dit la vraie raison du refus : la visée n'est pas la seule en cause.
             if (viser.canBePerformed(action) === false) {
@@ -509,15 +509,15 @@ export const CombatantMixin = Base => {
                 } else if (Version.data(weapon).cible === this.target.id && Version.data(weapon).visee >= 3) {
                     ui.notifications.info("La visée est déjà à son maximum sur cette cible");
                 } else if (action.history.some(e => e.manoeuver === Viser.ID)) {
-                    ui.notifications.info(this.name + " a déjà visé ce round");
+                    ui.notifications.info(this.actor.name + " a déjà visé ce round");
                 } else {
-                    ui.notifications.info(this.name + " a déjà effectué une autre action ce round");
+                    ui.notifications.info(this.actor.name + " a déjà effectué une autre action ce round");
                 }
                 return;
             }
 
             await viser.apply(action);
-            await CombatHistory.record(this, viser, this.target?.actor);
+            await CombatHistory.record(this.actor, viser, this.target?.actor);
 
         }
 
@@ -554,7 +554,7 @@ export const CombatantMixin = Base => {
             }
 
             // Recharger.canBePerformed : au moins un coup tiré.
-            const action = new Distance(this, weapon);
+            const action = new Distance(this.actor, weapon);
             const recharger = new Recharger(action);
             if (recharger.canBePerformed(action) === false) {
                 ui.notifications.info("L'arme n'a pas besoin d'être rechargée");
@@ -562,7 +562,7 @@ export const CombatantMixin = Base => {
             }
 
             await recharger.apply(action);
-            await CombatHistory.record(this, recharger, null);
+            await CombatHistory.record(this.actor, recharger, null);
 
         }
 
@@ -584,7 +584,7 @@ export const CombatantMixin = Base => {
             }
 
             // Getup.isAllowed : à terre, et pas tenu par un adversaire.
-            const action = new Wrestle(this);
+            const action = new Wrestle(this.actor);
             const getup = new Getup(action);
             if (getup.canBePerformed(action) === false) {
                 ui.notifications.info(this.immobilise === true
@@ -594,7 +594,7 @@ export const CombatantMixin = Base => {
             }
 
             await getup.apply(action);
-            await CombatHistory.record(this, getup, null);
+            await CombatHistory.record(this.actor, getup, null);
 
         }
 
