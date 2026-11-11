@@ -283,9 +283,9 @@ export class Science extends HistoricalFeature {
     static _getVoie(actor, cercle) {
         switch (cercle) {
             case 'hauteMagie':
-                return actor.voieMagique;
+                return actor.regles.voieMagique;
             case 'oeuvreAuNoir':
-                return actor.voieAlchimique;
+                return actor.regles.voieAlchimique;
             default:
                 return null;
         }

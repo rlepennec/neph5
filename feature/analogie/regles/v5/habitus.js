@@ -29,7 +29,7 @@ export class Habitus extends AbstractFocus {
             .withItem(this.item)
             .withBase('Habitus', this.degre)
             .withBlessures('magique')
-            .withMetamorphe(this.actor.metamorphe.visibles)
+            .withMetamorphe(this.actor.regles.metamorphe.visibles)
             .export();
     }
 
@@ -45,7 +45,7 @@ export class Habitus extends AbstractFocus {
         }
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
+        const ka = this.actor.regles.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
         if (ka < 1) {
             return -105;
         }

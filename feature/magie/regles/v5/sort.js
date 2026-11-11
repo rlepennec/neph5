@@ -29,7 +29,7 @@ export class Sort extends AbstractFocus {
             .withItem(this.item)
             .withBase('Sort', this.degre)
             .withBlessures('magique')
-            .withMetamorphe(this.actor.metamorphe.visibles)
+            .withMetamorphe(this.actor.regles.metamorphe.visibles)
             .export();
     }
 
@@ -38,7 +38,7 @@ export class Sort extends AbstractFocus {
      */
     modifier(parameters) {
         if (Version.data(this.item).element === 'choix') {
-            return parameters == null ? this.actor.getKa('air') : parameters.ka;
+            return parameters == null ? this.actor.regles.getKa('air') : parameters.ka;
         } else {
             return 0;
         }
@@ -108,7 +108,7 @@ export class Sort extends AbstractFocus {
 
         // The sort needs the actor to follow a voie
         if (Version.data(this.item).voies?.length > 0 &&
-            Version.data(this.item).voies.includes(this.actor.voieMagique?.sid) === false) {
+            Version.data(this.item).voies.includes(this.actor.regles.voieMagique?.sid) === false) {
             if ( Math.ceil(focus/2) >= Math.ceil(science/2) ) {
                 return -104;
             }
@@ -117,7 +117,7 @@ export class Sort extends AbstractFocus {
         // Retrieve the degre of the ka used to cast the focus
         let ka = 0;
         if (Version.data(this.item).element !== 'choix') {
-            ka = this.actor.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
+            ka = this.actor.regles.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
             if (ka === 0) {
                 return -105;
             }

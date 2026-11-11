@@ -37,12 +37,12 @@ export class Rituel extends AbstractFocus {
     get rawDegre() {
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa('soleil');
+        const ka = this.actor.regles.getKa('soleil');
         if (ka < 1) {
             return -115;
         }
 
-        const savoir = this.actor.savoir("epee").degre;
+        const savoir = this.actor.regles.savoir("epee").degre;
         if (savoir < 1) {
             return -118;
         }

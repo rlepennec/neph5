@@ -44,7 +44,7 @@ export class Atlanteide extends AbstractFocus {
         }
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.ka;
+        const ka = this.actor.regles.ka;
         if (ka < 1) {
             return -105;
         }

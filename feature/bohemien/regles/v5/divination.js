@@ -37,12 +37,12 @@ export class Divination extends AbstractFocus {
     get rawDegre() {
 
         // Retrieve the degre of the ka used to cast the focus
-        const ka = this.actor.getKa('brume');
+        const ka = this.actor.regles.getKa('brume');
         if (ka < 1) {
             return -113;
         }
 
-        const savoir = this.actor.savoir("bohemien").degre;
+        const savoir = this.actor.regles.savoir("bohemien").degre;
         if (savoir < 1) {
             return -114;
         }

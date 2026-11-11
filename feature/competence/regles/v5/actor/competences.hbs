@@ -13,8 +13,8 @@
     <ol class="body">
 
         <!-- Display the vecus of the simulacre -->
-        {{#if (and (nonNull actor.simulacre) (eq @root.data.options.simulacre true) (gt actor.vecusOfSimulacre.length 0))}}
-        {{#each actor.vecusOfSimulacre as |item|}}
+        {{#if (and (nonNull actor.simulacre) (eq @root.data.options.simulacre true) (gt actor.regles.vecusOfSimulacre.length 0))}}
+        {{#each actor.regles.vecusOfSimulacre as |item|}}
         <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}" data-scope="simulacre">
 
             <div class="vecu-definition">
@@ -45,8 +45,8 @@
         {{/if}}
         
         <!-- Display the vecus of the figure -->
-        {{#if (gt actor.vecusOfActor.length 0)}}
-        {{#each actor.vecusOfActor as |item|}}
+        {{#if (gt actor.regles.vecusOfActor.length 0)}}
+        {{#each actor.regles.vecusOfActor as |item|}}
         <li class="vecu item macro" data-macro="vecu" data-sid="{{item.sid}}" data-id="{{item.id}}">
 
             <div class="vecu-definition">
@@ -77,7 +77,7 @@
         {{/if}}
 
         <!-- Display the competences of the figure -->
-        {{#each actor.competences as |item|}}
+        {{#each actor.regles.competences as |item|}}
         <li class="vecu item macro" data-macro="item" data-sid="{{item.sid}}">
 
             <div class="vecu-definition">

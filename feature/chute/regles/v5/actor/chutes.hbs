@@ -1,4 +1,4 @@
-{{#unless (isEmptyCollection actor.chutes)}}
+{{#unless (isEmptyCollection actor.regles.chutes)}}
 <div class="chutes">
 
     <div class="header">
@@ -13,7 +13,7 @@
 
     <ol class="body">
 
-        {{#each actor.chutes as |item|}}
+        {{#each actor.regles.chutes as |item|}}
         {{#if (ne item.degre 0)}}
         <li class="vecu item macro" data-macro="item" data-sid="{{item.sid}}">
 

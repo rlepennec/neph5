@@ -1046,3 +1046,14 @@ tronc commun évoluera au fil de l'intégration des règles.
   `deleteIncarnation`, `_onClickDocumentLink`, `_onDeleteOperation`, `onDeleteEmbeddedActors` ; et, à faire
   déléguer à la partie 3, `toggleStatusEffect`, `_onUpdate`, `deleteEmbeddedItem`. **Partie 2** : réécrire
   les appelants en `actor.regles.x`, les relais avertissant en console. **Partie 3** : retirer les relais.
+- **Étape 2, lot 2, partie 2, en cours : les appelants passent par `actor.regles`.** Le jeu v5 fournit
+  `acteur: actor => new ActeurV5(actor)`. Un lot par groupe de features ; les relais restent jusqu'à la
+  partie 3. Conséquence assumée : dans un monde réglé sur une autre version, `actor.regles` est vide et
+  le code v5 réécrit ne trouve plus ces membres ; c'est l'étape 3 (fiches selon la version) qui l'évite.
+  Lot 1 fait : les 18 features de 5 appels au plus (45 appels, dont 16 dans les gabarits).
+- **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
+  liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
+  icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD
+  reconnaissent un état par son statut (`stun`, `restrain`, `prone`, `dead`), plus par son seul nom.
+  Un token non lié n'hérite plus des états posés sur son acteur : un état dont l'origine est l'acteur
+  du monde est suspendu sur le token, et les états posés sans origine (HUD) en reçoivent une.

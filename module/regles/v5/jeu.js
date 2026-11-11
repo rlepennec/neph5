@@ -1,4 +1,5 @@
 import { IncarnationsV5 } from "../../../feature/incarnation/regles/v5/incarnations.js";
+import { ActeurV5 } from "../../actor/regles/v5/acteurV5.js";
 
 /**
  * Le jeu de règles de la cinquième édition (voir Regles pour le contrat).
@@ -8,6 +9,8 @@ import { IncarnationsV5 } from "../../../feature/incarnation/regles/v5/incarnati
  */
 export const JeuV5 = {
     version: 'v5',
+
+    acteur: actor => new ActeurV5(actor),
 
     incarnationCreee: (actor, cle, anterieure) => new IncarnationsV5(actor).incarnationCreee(cle, anterieure),
 

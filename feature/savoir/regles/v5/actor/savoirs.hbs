@@ -1,4 +1,4 @@
-{{#unless (isEmptyCollection actor.savoirs)}}
+{{#unless (isEmptyCollection actor.regles.savoirs)}}
 <div class="savoirs">
 
     <div class="header">
@@ -13,7 +13,7 @@
 
     <ol class="body">
 
-        {{#each actor.savoirs as |item|}}
+        {{#each actor.regles.savoirs as |item|}}
         {{#if (ne item.degre 0)}}
         <li class="vecu item macro" data-macro="item" data-sid="{{item.sid}}">
 

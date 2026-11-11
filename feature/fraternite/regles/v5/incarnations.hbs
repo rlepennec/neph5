@@ -4,14 +4,14 @@
     data-tab='incarnations'
     data-drop="true">
 
-    {{#if (isEmptyCollection actor.periodes)}}
+    {{#if (isEmptyCollection actor.regles.periodes)}}
     <div class="helpPeriode">
         <label>{{translate "aideHistorique"}}</label>
         <i class="fas fa-arrow-alt-circle-down fa-2xl"></i>
     </div>
     {{/if}}
 
-    {{#each actor.periodes as |periode|}}
+    {{#each actor.regles.periodes as |periode|}}
     {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
     <ol class="periodes item-list">
 

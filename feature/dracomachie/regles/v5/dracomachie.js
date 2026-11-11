@@ -117,12 +117,12 @@ export class Dracomachie extends AbstractFocus {
         switch (this.domaine) {
             case 'charmes': {
                 const condition = this.condition(parameters);
-                const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
+                const ka = parameters == null ? this.actor.regles.getKa('air') : parameters.ka;
                 const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
                 return ka - menace - condition;
             }
             case 'passes': {
-                const ka = parameters == null ? this.actor.getKa('air') : parameters.ka;
+                const ka = parameters == null ? this.actor.regles.getKa('air') : parameters.ka;
                 const menace = parameters?.opposition == null ? 50 : parameters.opposition * 10;
                 return ka - menace;
             }
@@ -174,7 +174,7 @@ export class Dracomachie extends AbstractFocus {
 
     contraint(menace) {
         const science = Science.scienceOf(this.actor, Version.data(this.item).cercle);
-        const contraint = menace <= this.actor.ka && menace <= science.degre;
+        const contraint = menace <= this.actor.regles.ka && menace <= science.degre;
         return contraint ? "L'effet dragon est contraint automatiquement" : "L'effet dragon n'est pas contraint automatiquement";
     }
 

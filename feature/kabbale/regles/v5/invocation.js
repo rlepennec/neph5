@@ -83,7 +83,7 @@ export class Invocation extends AbstractFocus {
      */
     modifier(parameters) {
         if (Version.data(this.item).element === 'choix') {
-            return parameters == null ? this.actor.getKa('air') : parameters.ka;
+            return parameters == null ? this.actor.regles.getKa('air') : parameters.ka;
         } else {
             return 0;
         }
@@ -145,7 +145,7 @@ export class Invocation extends AbstractFocus {
         // Retrieve the degre of the ka used to cast the focus
         let ka = 0;
         if (Version.data(this.item).element !== 'choix') {
-            ka = this.actor.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
+            ka = this.actor.regles.getKa(Version.data(this.item).element === "luneNoire" ? "noyau" : Version.data(this.item).element);
             if (ka === 0) {
                 return -105;
             }

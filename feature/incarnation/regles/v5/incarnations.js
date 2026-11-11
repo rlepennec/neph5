@@ -879,7 +879,7 @@ export class IncarnationsV5 extends Incarnations {
     async retirerVecu(cle, sid) {
         const vecu = this.exemplaireDans(sid, cle);
         if (vecu?.type === 'vecu') {
-            await this.actor.deleteVecu(vecu);
+            await this.actor.regles.deleteVecu(vecu);
         }
     }
 
@@ -1004,7 +1004,7 @@ export class IncarnationsV5 extends Incarnations {
         const exemplaire = this.epoqueDe(item) === cle ? item : this.exemplaireDans(item.sid, cle);
         if (exemplaire == null) return;
         if (exemplaire.type === 'vecu') {
-            await this.actor.deleteVecu(exemplaire);
+            await this.actor.regles.deleteVecu(exemplaire);
         } else {
             await this.actor.deleteEmbeddedDocuments('Item', [exemplaire.id]);
         }
@@ -1054,7 +1054,7 @@ export class IncarnationsV5 extends Incarnations {
                         sid: original.sid,
                         name: original.name,
                         status: fa.status,
-                        newer: this.actor.isNewMember(original.id, p.sid)
+                        newer: this.actor.regles.isNewMember(original.id, p.sid)
                     });
                 }
             }
@@ -1135,7 +1135,7 @@ export class IncarnationsV5 extends Incarnations {
 
         // Delete the vecus, with their dependencies
         for (const vecu of items.filter(i => i.type === 'vecu')) {
-            await this.actor.deleteVecu(vecu);
+            await this.actor.regles.deleteVecu(vecu);
         }
 
         // Delete the other items

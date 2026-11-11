@@ -1,4 +1,4 @@
-{{#unless (isEmptyCollection actor.quetes)}}
+{{#unless (isEmptyCollection actor.regles.quetes)}}
 <div class="quetes">
 
     <div class="header">
@@ -13,7 +13,7 @@
 
     <ol class="body">
 
-        {{#each actor.quetes as |item|}}
+        {{#each actor.regles.quetes as |item|}}
         {{#if (ne item.degre 0)}}
         <li class="vecu item macro" data-macro="item" data-sid="{{item.sid}}">
 
