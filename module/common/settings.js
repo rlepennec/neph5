@@ -1,4 +1,5 @@
 import { NettoyageDialog } from "./nettoyage.js";
+import { Fiches } from "./fiches.js";
 import { positionOf } from "../item/positions.js";
 import { Repertoire } from "../item/repertoire.js";
 import { Version } from "./version.js";
@@ -52,6 +53,8 @@ export const registerSystemSettings = function () {
         onChange: () => {
             Version.oublierMonde();
             Repertoire.rafraichir();
+            // Les fiches suivent la version du monde (voir Fiches)
+            Fiches.rafraichir();
         },
         config: true,
         scope: 'world',

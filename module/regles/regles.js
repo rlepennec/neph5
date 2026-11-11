@@ -11,7 +11,8 @@ import { Version } from "../common/version.js";
  *     Regles.courantes.incarnationCreee?.(actor, cle);
  *
  * LE CONTRAT. Un jeu de règles est un objet qui porte `version`, et s'il y a lieu :
- *   - `fiches` : les fiches, par type de document ;
+ *   - `fiches` : les fiches, par type de document puis par type ({ Actor: { figure }, Item: {...} }) ;
+ *     un type sans fiche reçoit la fiche commune ou la fiche vide (voir Fiches) ;
  *   - `acteur(actor)` : l'objet des règles de cet acteur, exposé par `actor.regles`. L'acteur commun
  *     le consulte, s'il les fournit, pour `basculerEtat(statusId, options, parDefaut)` (le HUD et
  *     le suivi de combat), `apresModification(changed)`, `supprimerObjet(item)` (un objet

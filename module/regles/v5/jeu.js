@@ -5,6 +5,7 @@ import { EvenementsV5 } from "./evenements.js";
 import { OutilsV5 } from "./outils.js";
 import { AIDES_V5 } from "../../common/regles/v5/aides.js";
 import { GABARITS_V5 } from "./gabarits.js";
+import { FICHES_V5 } from "./fiches.js";
 import { objetSupprimeV5 } from "./objetSupprime.js";
 
 /**
@@ -15,6 +16,8 @@ import { objetSupprimeV5 } from "./objetSupprime.js";
  */
 export const JeuV5 = {
     version: 'v5',
+
+    fiches: FICHES_V5,
 
     evenements: EvenementsV5,
 

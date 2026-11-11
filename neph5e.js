@@ -13,46 +13,15 @@ import { Regles } from "./module/regles/regles.js";
 import { JeuV5 } from "./module/regles/v5/jeu.js";
 import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
+import { Fiches } from "./module/common/fiches.js";
+import { FicheActeurVide } from "./module/actor/ficheActeurVide.js";
+import { FicheObjetVide } from "./module/item/ficheObjetVide.js";
 import { NephilimActiveEffect } from "./module/common/regles/v5/nephilimActiveEffect.js";
 import { NephilimTokenHUD } from "./module/common/regles/v5/nephilimTokenHUD.js";
-import { FigureSheet } from "./feature/figure/regles/v5/figureSheet.js";
-import { FigurantSheet } from "./feature/figurant/regles/v5/figurantSheet.js";
-import { FraterniteSheet } from "./feature/fraternite/regles/v5/fraterniteSheet.js";
 
-import { AlchimieSheet } from "./feature/alchimie/regles/v5/item/alchimie.js";
-import { AppelSheet } from "./feature/conjuration/regles/v5/item/appel.js";
-import { ArcaneSheet } from "./feature/arcane/regles/v5/item/arcane.js";
-import { ArmeSheet } from "./feature/combat/regles/v5/item/arme.js";
-import { ArmureSheet } from "./feature/combat/regles/v5/item/armure.js";
-import { AtlanteideSheet } from "./feature/atlanteide/regles/v5/item/atlanteide.js";
-import { AspectSheet } from "./feature/selenim/regles/v5/item/aspect.js";
-import { CapaciteSheet } from "./feature/capacite/regles/v5/item/capacite.js";
-import { CatalyseurSheet } from "./feature/alchimie/regles/v5/item/catalyseur.js";
-import { ChuteSheet } from "./feature/chute/regles/v5/item/chute.js";
-import { CompetenceSheet } from "./feature/competence/regles/v5/item/competence.js";
-import { DivinationSheet } from "./feature/bohemien/regles/v5/item/divination.js";
-import { DracomachieSheet } from "./feature/dracomachie/regles/v5/item/dracomachie.js";
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
-import { FormuleSheet } from "./feature/alchimie/regles/v5/item/formule.js";
-import { HabitusSheet } from "./feature/analogie/regles/v5/item/habitus.js";
-import { InvocationSheet } from "./feature/kabbale/regles/v5/item/invocation.js";
-import { MagieSheet } from "./feature/magie/regles/v5/item/magie.js";
-import { MateriaeSheet } from "./feature/alchimie/regles/v5/item/materiae.js";
-import { MetamorpheSheet } from "./feature/nephilim/regles/v5/item/metamorphe.js";
 import { NephilimCombatant } from "./feature/combat/regles/v5/core/combatant.js";
-import { OrdonnanceSheet } from "./feature/kabbale/regles/v5/item/ordonnance.js";
-import { PasseSheet } from "./feature/passe/regles/v5/item/passe.js";
 import { PeriodeSheet } from "./feature/periode/item/periode.js";
-import { PratiqueSheet } from "./feature/denier/regles/v5/item/pratique.js";
-import { QueteSheet } from "./feature/quete/regles/v5/item/quete.js";
-import { RiteSheet } from "./feature/necromancie/regles/v5/item/rite.js";
-import { RituelSheet } from "./feature/epee/regles/v5/item/rituel.js";
-import { SavoirSheet } from "./feature/savoir/regles/v5/item/savoir.js";
-import { ScienceSheet } from "./feature/science/regles/v5/item/science.js";
-import { SortSheet } from "./feature/magie/regles/v5/item/sort.js";
-import { TechniqueSheet } from "./feature/baton/regles/v5/item/technique.js";
-import { TekhneSheet } from "./feature/coupe/regles/v5/item/tekhne.js";
-import { VecuSheet } from "./feature/vecu/regles/v5/item/vecu.js";
 
 import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
 import { AppelDataModel } from "./feature/conjuration/item/appel.mjs";
@@ -126,54 +95,58 @@ Hooks.once("init", function () {
     };
 
     const ACTOR_TYPES = {
-        figure: { model: FigureDataModel, sheet: FigureSheet, label: "NEPHILIM.figure"},
-        figurant: { model: FigurantDataModel, sheet: FigurantSheet, label: "NEPHILIM.figurant"},
-        fraternite: { model: FraterniteDataModel, sheet: FraterniteSheet, label: "NEPHILIM.fraternite" }
+        figure: { model: FigureDataModel, label: "NEPHILIM.figure" },
+        figurant: { model: FigurantDataModel, label: "NEPHILIM.figurant" },
+        fraternite: { model: FraterniteDataModel, label: "NEPHILIM.fraternite" }
     }
 
     CONFIG.Actor.dataModels = Object.fromEntries(
         Object.entries(ACTOR_TYPES).map(([type, { model }]) => [type, model])
     );
 
+    // La fiche d'un document suit la version du monde (voir Fiches) : celle du jeu de règles, ou
+    // la fiche commune du type, ou la fiche vide. Foundry ne connaît que la fiche vide, qui lui
+    // donne une fiche par défaut pour chaque type ; NephilimActor et NephilimItem choisissent.
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-    for (const [type, { sheet, label }] of Object.entries(ACTOR_TYPES)) {
-        foundry.documents.collections.Actors.registerSheet('nephilim', sheet, { types: [type], makeDefault: true, label: label });
+    for (const [type, { label }] of Object.entries(ACTOR_TYPES)) {
+        foundry.documents.collections.Actors.registerSheet('nephilim', FicheActeurVide, { types: [type], makeDefault: true, label: label });
+        Fiches.declarer('Actor', type, FicheActeurVide);
     }
 
     const ITEM_TYPES = {
-        alchimie: { model: AlchimieDataModel, sheet: AlchimieSheet },
-        appel: { model: AppelDataModel, sheet: AppelSheet },
-        arcane: { model: ArcaneDataModel, sheet: ArcaneSheet },
-        arme: { model: ArmeDataModel, sheet: ArmeSheet },
-        armure: { model: ArmureDataModel, sheet: ArmureSheet },
-        aspect: { model: AspectDataModel, sheet: AspectSheet },
-        atlanteide: { model: AtlanteideDataModel, sheet: AtlanteideSheet },
-        capacite: { model: CapaciteDataModel, sheet: CapaciteSheet },
-        catalyseur: { model: CatalyseurDataModel, sheet: CatalyseurSheet },
-        chute: { model: ChuteDataModel, sheet: ChuteSheet },
-        competence: { model: CompetenceDataModel, sheet: CompetenceSheet },
-        divination: { model: DivinationDataModel, sheet: DivinationSheet },
-        dracomachie: { model: DracomachieDataModel, sheet: DracomachieSheet },
-        formule: { model: FormuleDataModel, sheet: FormuleSheet },
+        alchimie: { model: AlchimieDataModel },
+        appel: { model: AppelDataModel },
+        arcane: { model: ArcaneDataModel },
+        arme: { model: ArmeDataModel },
+        armure: { model: ArmureDataModel },
+        aspect: { model: AspectDataModel },
+        atlanteide: { model: AtlanteideDataModel },
+        capacite: { model: CapaciteDataModel },
+        catalyseur: { model: CatalyseurDataModel },
+        chute: { model: ChuteDataModel },
+        competence: { model: CompetenceDataModel },
+        divination: { model: DivinationDataModel },
+        dracomachie: { model: DracomachieDataModel },
+        formule: { model: FormuleDataModel },
         groupe: { model: GroupeDataModel, sheet: GroupeSheet },
-        habitus: { model: HabitusDataModel, sheet: HabitusSheet },
-        invocation: { model: InvocationDataModel, sheet: InvocationSheet },
-        magie: { model: MagieDataModel, sheet: MagieSheet },
-        materiae: { model: MateriaeDataModel, sheet: MateriaeSheet },
-        metamorphe: { model: MetamorpheDataModel, sheet: MetamorpheSheet },
-        ordonnance: { model: OrdonnanceDataModel, sheet: OrdonnanceSheet },
-        passe: { model: PasseDataModel, sheet: PasseSheet },
+        habitus: { model: HabitusDataModel },
+        invocation: { model: InvocationDataModel },
+        magie: { model: MagieDataModel },
+        materiae: { model: MateriaeDataModel },
+        metamorphe: { model: MetamorpheDataModel },
+        ordonnance: { model: OrdonnanceDataModel },
+        passe: { model: PasseDataModel },
         periode: { model: PeriodeDataModel, sheet: PeriodeSheet },
-        pratique: { model: PratiqueDataModel, sheet: PratiqueSheet },
-        quete: { model: QueteDataModel, sheet: QueteSheet },
-        rite: { model: RiteDataModel, sheet: RiteSheet },
-        rituel: { model: RituelDataModel, sheet: RituelSheet },
-        savoir: { model: SavoirDataModel, sheet: SavoirSheet },
-        science: { model: ScienceDataModel, sheet: ScienceSheet },
-        sort: { model: SortDataModel, sheet: SortSheet },
-        technique: { model: TechniqueDataModel, sheet: TechniqueSheet },
-        tekhne: { model: TekhneDataModel, sheet: TekhneSheet },
-        vecu: { model: VecuDataModel, sheet: VecuSheet }
+        pratique: { model: PratiqueDataModel },
+        quete: { model: QueteDataModel },
+        rite: { model: RiteDataModel },
+        rituel: { model: RituelDataModel },
+        savoir: { model: SavoirDataModel },
+        science: { model: ScienceDataModel },
+        sort: { model: SortDataModel },
+        technique: { model: TechniqueDataModel },
+        tekhne: { model: TekhneDataModel },
+        vecu: { model: VecuDataModel }
     };
 
     CONFIG.Item.dataModels = Object.fromEntries(
@@ -207,7 +180,8 @@ Hooks.once("init", function () {
     });
 
     for (const [type, { sheet }] of Object.entries(ITEM_TYPES)) {
-        foundry.documents.collections.Items.registerSheet('nephilim', sheet, { types: [type], makeDefault: true });
+        foundry.documents.collections.Items.registerSheet('nephilim', FicheObjetVide, { types: [type], makeDefault: true });
+        Fiches.declarer('Item', type, sheet ?? FicheObjetVide);
     }
 
     Handlebars.registerHelper({

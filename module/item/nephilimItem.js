@@ -6,6 +6,7 @@ import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Version } from "../common/version.js";
 import { Regles } from "../regles/regles.js";
+import { Fiches } from "../common/fiches.js";
 
 export class NephilimItem extends Item {
 
@@ -65,6 +66,14 @@ export class NephilimItem extends Item {
             sid = CustomHandlebarsHelpers.UUID();
         } while (game.items.find(i => i.sid === sid) != null);
         return sid;
+    }
+
+    /**
+     * La fiche suit la version du monde (voir Fiches).
+     * @override
+     */
+    _getSheetClass() {
+        return Fiches.classe(this) ?? super._getSheetClass();
     }
 
     /**

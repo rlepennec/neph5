@@ -1,6 +1,7 @@
 import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { VersionMigration } from "../migration/versionMigration.js";
 import { Regles } from "../regles/regles.js";
+import { Fiches } from "../common/fiches.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 
 export class NephilimActor extends Actor {
@@ -27,6 +28,14 @@ export class NephilimActor extends Actor {
      */
     get regles() {
         return Regles.acteur(this);
+    }
+
+    /**
+     * La fiche suit la version du monde (voir Fiches).
+     * @override
+     */
+    _getSheetClass() {
+        return Fiches.classe(this) ?? super._getSheetClass();
     }
 
     /**

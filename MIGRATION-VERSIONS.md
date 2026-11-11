@@ -1115,6 +1115,18 @@ tronc commun évoluera au fil de l'intégration des règles.
   de `NephilimItem` propres à certains types (`deleteCatalyseur`, `deleteVariante`, `deleteMagie`,
   `deleteCompetence`...), et dans `neph5e.js` les classes de documents, fiches et modèles v5
   (étape 3).
+- **Étape 3, lot 1, fait : la fiche suit la version du monde** (choix de l'utilisateur, 11 novembre
+  2026 : la version du monde décide de la classe de la fiche ; le bouton de version d'une fenêtre
+  reste un affichage des données d'une autre version dans la fiche courante). `Fiches`
+  (`module/common/fiches.js`) : pour chaque type géré, la fiche du jeu de la version du monde
+  (`fiches`, `module/regles/v5/fiches.js` : 34 fiches), sinon la fiche commune du type (période,
+  groupe), sinon la fiche vide (`FicheActeurVide`, `FicheObjetVide` : image, nom, « version non
+  décrite »). `NephilimActor` et `NephilimItem` surchargent `_getSheetClass`. Foundry ne connaît
+  plus que les fiches vides, enregistrées par défaut pour chaque type : le choix de fiche de Foundry
+  (« Configurer la fiche ») n'a plus d'effet. Au changement de version, `Fiches.rafraichir` remplace
+  les fiches déjà créées (`_onSheetChange` : une fiche ouverte se ferme et se rouvre). `neph5e.js`
+  n'importe plus de fiche v5. Restent v5 dans `neph5e.js` : `NephilimCombatant`,
+  `NephilimActiveEffect`, `NephilimTokenHUD` (lot 2).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD
