@@ -1,6 +1,8 @@
 import { IncarnationsV5 } from "../../../feature/incarnation/regles/v5/incarnations.js";
 import { ActeurV5 } from "../../actor/regles/v5/acteurV5.js";
 import { Fraternite } from "../../../feature/fraternite/regles/v5/fraternite.js";
+import { EvenementsV5 } from "./evenements.js";
+import { OutilsV5 } from "./outils.js";
 
 /**
  * Le jeu de règles de la cinquième édition (voir Regles pour le contrat).
@@ -10,6 +12,10 @@ import { Fraternite } from "../../../feature/fraternite/regles/v5/fraternite.js"
  */
 export const JeuV5 = {
     version: 'v5',
+
+    evenements: EvenementsV5,
+
+    outils: OutilsV5,
 
     acteur: actor => new ActeurV5(actor),
 

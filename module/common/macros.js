@@ -1,3 +1,7 @@
+/**
+ * Les macros communes : un objet du monde glissé du répertoire dans la barre ouvre sa fiche. Les
+ * règles ajoutent les leurs (macroDeposee, voir Regles).
+ */
 export class Macros {
 
     /**
@@ -8,88 +12,27 @@ export class Macros {
      * @returns {boolean}
      */
     static handles(data) {
-        if (data?.process === 'macro') return true;
         return data?.type === 'Item'
             && typeof data?.uuid === 'string'
             && data.uuid.startsWith('Item.');
     }
 
+    /**
+     * Objet du monde glissé depuis le répertoire : macro d'affichage de la fiche,
+     * reprenant le nom et l'icône de l'objet (Foundry utiliserait une icône générique).
+     * @param bar  La barre.
+     * @param data Les données du dépôt.
+     * @param slot L'emplacement de la barre.
+     */
     static async create(bar, data, slot) {
-
-        // Objet du monde glissé depuis le répertoire : macro d'affichage de la fiche,
-        // reprenant le nom et l'icône de l'objet (Foundry utiliserait une icône générique).
-        if (data?.process !== 'macro') {
-            if (!Macros.handles(data)) return;
-            const dropped = await fromUuid(data.uuid);
-            if (dropped == null) return;
-            await Macros.assign(
-                dropped.name,
-                dropped.img,
-                `(await fromUuid("${data.uuid}"))?.sheet.render(true);`,
-                slot);
-            return;
-        }
-
-        let name = null;
-        let img = null;
-        switch (data.type) {
-
-            case 'item': {
-                const item = game.items.find(i => i.sid === data.sid);
-                name = item?.name;
-                img = item?.img;
-                break;
-            }
-                
-            case 'vecu': {
-                const item = game.items.find(i => i.sid === data.sid);
-                name = item?.name;
-                img = item?.img;
-                break;
-            }
-
-            case 'wrestle': {
-                name = "Lutte";
-                img = "systems/neph5e/assets/icons/lutte.webp";
-                break;
-            }
-
-            case 'weapon': {
-                const actor = game.actors.get(data.actor);
-                const item = actor.items.find(i => i.id === data.id);
-                name = item?.name;
-                img = item?.img;
-                break;
-            }
-
-            case 'ka': {
-                name = "Ka " + data.id;
-                img = "systems/neph5e/assets/icons/ka.webp";
-                break;
-            }
-
-            case 'noyau':
-                name = "Noyau";
-                img = "systems/neph5e/assets/icons/noyau.webp";
-                break;
-
-            case 'pavane':
-                name = "Pavane";
-                img = "systems/neph5e/assets/icons/pavane.webp";
-                break;
-
-            default:
-                return;
-        }
-
-        let command = `( async () => {
-            if (token?.actor != null) {
-                await token.actor.regles.processMacro('` + data.type + `', '` + data.id + `', '` + data.sid + `');
-            }
-        })()`;
-
-        await Macros.assign(name, img, command, slot);
-
+        if (!Macros.handles(data)) return;
+        const dropped = await fromUuid(data.uuid);
+        if (dropped == null) return;
+        await Macros.assign(
+            dropped.name,
+            dropped.img,
+            `(await fromUuid("${data.uuid}"))?.sheet.render(true);`,
+            slot);
     }
 
     /**
@@ -109,5 +52,5 @@ export class Macros {
         });
         game.user.assignHotbarMacro(macro, slot);
     }
-    
+
 }

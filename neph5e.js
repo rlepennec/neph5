@@ -4,7 +4,6 @@ import { Constants } from "./module/common/constants.js";
 import { CustomHandlebarsHelpers } from "./module/common/handlebars.js";
 import { Macros } from "./module/common/macros.js";
 import { MigrationTools } from "./module/migration/migration.js";
-import { NephilimChat } from "./module/common/chat.js";
 
 import { NephilimItem } from "./module/item/nephilimItem.js";
 import { NephilimItemDirectory } from "./module/item/nephilimItemDirectory.js";
@@ -30,32 +29,23 @@ import { AspectSheet } from "./feature/selenim/regles/v5/item/aspect.js";
 import { CapaciteSheet } from "./feature/capacite/regles/v5/item/capacite.js";
 import { CatalyseurSheet } from "./feature/alchimie/regles/v5/item/catalyseur.js";
 import { ChuteSheet } from "./feature/chute/regles/v5/item/chute.js";
-import { CombatHistory } from "./feature/combat/regles/v5/core/combatHistory.js";
-import { Combatants } from "./feature/combat/regles/v5/core/combatants.js";
-import { Equipment } from "./feature/combat/regles/v5/core/equipment.js";
-import { Holds } from "./feature/combat/regles/v5/core/holds.js";
 import { CompetenceSheet } from "./feature/competence/regles/v5/item/competence.js";
 import { DivinationSheet } from "./feature/bohemien/regles/v5/item/divination.js";
 import { DracomachieSheet } from "./feature/dracomachie/regles/v5/item/dracomachie.js";
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
-import { ExperienceDialog } from "./feature/experience/regles/v5/experience.js";
 import { FormuleSheet } from "./feature/alchimie/regles/v5/item/formule.js";
 import { HabitusSheet } from "./feature/analogie/regles/v5/item/habitus.js";
-import { Health } from "./feature/core/regles/v5/health.js";
 import { InvocationSheet } from "./feature/kabbale/regles/v5/item/invocation.js";
 import { MagieSheet } from "./feature/magie/regles/v5/item/magie.js";
 import { MateriaeSheet } from "./feature/alchimie/regles/v5/item/materiae.js";
 import { MetamorpheSheet } from "./feature/nephilim/regles/v5/item/metamorphe.js";
 import { NephilimCombatant } from "./feature/combat/regles/v5/core/combatant.js";
-import { OpposedRollBuilder } from "./feature/core/regles/v5/opposedRollBuilder.js";
 import { OrdonnanceSheet } from "./feature/kabbale/regles/v5/item/ordonnance.js";
 import { PasseSheet } from "./feature/passe/regles/v5/item/passe.js";
 import { PeriodeSheet } from "./feature/periode/item/periode.js";
 import { PratiqueSheet } from "./feature/denier/regles/v5/item/pratique.js";
 import { QueteSheet } from "./feature/quete/regles/v5/item/quete.js";
-import { RechercheDialog } from "./feature/recherche/regles/v5/recherche.js";
 import { RiteSheet } from "./feature/necromancie/regles/v5/item/rite.js";
-import { RoundUpdate } from "./feature/combat/regles/v5/core/roundUpdate.js";
 import { RituelSheet } from "./feature/epee/regles/v5/item/rituel.js";
 import { SavoirSheet } from "./feature/savoir/regles/v5/item/savoir.js";
 import { ScienceSheet } from "./feature/science/regles/v5/item/science.js";
@@ -284,34 +274,23 @@ Hooks.once("init", function () {
         await MigrationTools.migrate();
     });
 
-    // Add some controls
+    // Add some controls : l'éphéméride, commune, et les outils des règles de la version courante
+    // (voir Regles), relus à chaque affichage des contrôles
     Hooks.on("getSceneControlButtons", controls => {
         controls.nephilim = {
             name: "nephilim",
             title: "Nephilim",
             icon: "fa-solid fa-feather-pointed",
             tools: {
-                recherche: {
-                    name: "recherche",
-                    title: "Recherche occulte",
-                    icon: "fa fa-book-open",
-                    toggle: true,
-                    onChange: (e, t) => { new RechercheDialog().render(true) }
-                },
                 ephemeride: {
                     name: "ephemeride",
                     title: "Ephéméride",
                     icon: "fa-solid fa-eclipse",
+                    order: 2,
                     toggle: true,
                     onChange: (e, t) => { new EphemerideDialog().render(true) }
                 },
-                experience: {
-                    name: "experience",
-                    title: "Expérience",
-                    icon: "fa-solid fa-coins",
-                    toggle: true,
-                    onChange: (e, t) => { new ExperienceDialog().render(true) }
-                }
+                ...Regles.courantes.outils
             }
         }
     })
@@ -323,19 +302,16 @@ Hooks.once("init", function () {
         if ("actorId" in changed || "actorLink" in changed) token.baseActor?._registerDependentToken(token);
     });
 
-    // Le combat automatique ne concerne que les figures et les figurants.
+    // Les événements suivants ne concernent que les règles : ils sont transmis au jeu de la
+    // version courante, s'il y réagit (voir Regles et EvenementsV5).
+    const evenements = () => Regles.courantes.evenements ?? {};
+
     Hooks.on("preCreateCombatant", (combatant, data, options, userId) => {
-        if (combatant.actor?.type === 'fraternite') {
-            ui.notifications.warn("Une fraternité ne peut pas participer à un combat.");
-            return false;
-        }
+        return evenements().combattantCree?.(combatant);
     })
 
-    // Mise à jour de tous les combattants au début de chaque round (ex: désorientation
-    // qui s'estompe faute d'être ré-infligée). Un seul client l'exécute.
     Hooks.on("combatRound", async (combat, updateData, updateOptions) => {
-        if (!game.user.isGM) return;
-        await RoundUpdate.apply(combat);
+        await evenements().nouveauRound?.(combat);
     })
 
     // [V14] Les hooks preCreateActor et preCreateItem ont ete supprimes.
@@ -346,30 +322,17 @@ Hooks.once("init", function () {
     // (marqueur pose par Foundry, independant de la langue), sur l'absence
     // d'identifiant, et sur un controle d'unicite dans le monde.
 
-    // Handle chat message for opposed rolls, especially combat system
-    //
-    // Foundry rend un même message de chat plusieurs fois. Ce handler étant
-    // asynchrone, Foundry ne l'attend pas : quatre rendus rapprochés entraient
-    // tous dans create() avant que le premier n'ait retiré le drapeau, et
-    // ouvraient quatre fenêtres de défense superposées. claim() pose un verrou
-    // SYNCHRONE, avant le premier await ; release() le rend si aucune réaction
-    // n'a finalement été ouverte.
     Hooks.on("renderChatMessageHTML", async (message, html) => {
-        if (!OpposedRollBuilder.claim(message)) return;
-        const reaction = await OpposedRollBuilder.create(message);
-        if (reaction == null) {
-            OpposedRollBuilder.release(message);
-            return;
-        }
-        await reaction.initializeRoll();
-        await NephilimChat.unsetFlags(message.id);
+        await evenements().messageAffiche?.(message, html);
     });
 
     // Handle the macro creation
     // Le hook doit retourner false de façon SYNCHRONE pour annuler le traitement par
     // défaut de Foundry (macro "Display ..." à l'icône générique). Un handler async
     // retournerait une Promise, toujours vraie, et le défaut s'appliquerait quand même.
+    // Les règles prennent d'abord leurs dépôts (les jets d'une fiche), puis le commun.
     Hooks.on("hotbarDrop", (bar, data, slot) => {
+        if (evenements().macroDeposee?.(bar, data, slot) === true) return false;
         if (!Macros.handles(data)) return;
         Macros.create(bar, data, slot);
         return false;
@@ -377,29 +340,7 @@ Hooks.once("init", function () {
 
     // Register socket messages
     game.socket.on(Constants.SYSTEM_SOCKET_ID, async socketMessage => {
-        switch (socketMessage.msg) {
-            case Constants.MSG_UNSET_CHAT_MESSAGE:
-                await NephilimChat.onSocketMessage(socketMessage);
-                break;
-            case Constants.MSG_APPLY_DAMAGES_ON:
-                await Health.onSocketMessage(socketMessage);
-                break;
-            case Constants.MSG_APPLY_EFFECTS_ON:
-                await Health.onSocketMessage(socketMessage);
-                break;
-            case Constants.MSG_RECORD_MANOEUVRE:
-                await CombatHistory.onSocketMessage(socketMessage);
-                break;
-            case Constants.MSG_LEAVE_COMBAT:
-                await Combatants.onSocketMessage(socketMessage);
-                break;
-            case Constants.MSG_DISARM:
-                await Equipment.onSocketMessage(socketMessage);
-                break;
-            case Constants.MSG_RELEASE_HOLD:
-                await Holds.onSocketMessage(socketMessage);
-                break;
-          }
+        await evenements().messageRecu?.(socketMessage);
     });
 
 });

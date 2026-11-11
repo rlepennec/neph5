@@ -1076,6 +1076,17 @@ tronc commun évoluera au fil de l'intégration des règles.
   `acteursSupprimes` (effectif d'une fraternité), sur l'objet d'acteur ; `incarnationRetiree`
   (effectif d'une fraternité), sur le jeu, appelé par `Incarnations.retirer`. Contrat complété dans
   `module/regles/regles.js`.
+- **Étape 2, lot 3, fait : événements et outils du MJ.** Les hooks restent déclarés une seule fois
+  dans `neph5e.js`, et transmettent au jeu de la version courante, relu à chaque appel :
+  `preCreateCombatant`, `combatRound`, `renderChatMessageHTML`, `hotbarDrop` et les messages entre
+  clients (`module/regles/v5/evenements.js`). Les macros sont scindées : le commun garde l'objet du
+  monde glissé du répertoire (`Macros`), les jets glissés d'une fiche passent à
+  `module/common/regles/v5/macros.js` (`MacrosV5`). Le groupe de contrôles Nephilim garde
+  l'Éphéméride, commune, et reçoit les outils des règles (`module/regles/v5/outils.js` : Recherche,
+  Expérience, placés par `order`). Dans une autre version, plus rien du combat, du chat v5 ni de ces
+  outils. Restent v5 dans `neph5e.js` : les classes de documents (`NephilimCombatant`,
+  `NephilimActiveEffect`, `NephilimTokenHUD`), les fiches, les aides Handlebars et les gabarits
+  pré-chargés, qui relèvent de l'étape 3 (fiches selon la version).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD
