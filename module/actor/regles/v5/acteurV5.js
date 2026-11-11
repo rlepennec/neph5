@@ -7,6 +7,7 @@ import { Catalyseur } from "../../../../feature/alchimie/regles/v5/catalyseur.js
 import { Chute } from "../../../../feature/chute/regles/v5/chute.js";
 import { Competence } from "../../../../feature/competence/regles/v5/competence.js";
 import { Constants } from "../../../common/constants.js";
+import { ActiveEffects } from "../../../../feature/core/regles/v5/effects.js";
 import { FeatureBuilder } from "../../../../feature/core/regles/v5/featureBuilder.js";
 import { Fraternite } from "../../../../feature/fraternite/regles/v5/fraternite.js";
 import { Laboratoire } from "../../../../feature/alchimie/regles/v5/laboratoire.js";
@@ -662,7 +663,82 @@ export class ActeurV5 extends CombatantMixin(Acteur) {
      */
     async deleteCompetence(item) {
         await new Competence(this.actor, item).delete();
-    }   
+    }
+
+    /**
+     * Supprime un objet embarqué de la fiche : un vécu ou une compétence emporte ce qui en
+     * dépend, les autres partent seuls.
+     * @param item The embedded item to delete.
+     */
+    async supprimerObjet(item) {
+        switch (item.type) {
+            case 'vecu':
+                await this.deleteVecu(item);
+                break;
+            case 'competence':
+                await this.deleteCompetence(item);
+                break;
+            default:
+                await this.actor.deleteEmbeddedDocuments('Item', [item.id]);
+                break;
+        }
+    }
+
+    /**
+     * Retire des acteurs supprimés du monde de l'effectif de cette fraternité.
+     * @param sids The system identifiers of the deleted actors.
+     */
+    async acteursSupprimes(sids) {
+        if (this.actor.type === 'fraternite') {
+            await new Fraternite(this.actor).onDeleteActors(sids);
+        }
+    }
+
+    /**
+     * Bascule un état depuis le HUD du jeton ou le suivi de combat. Ceux d'une figure sont
+     * portés par son incarnation courante (voir ActiveEffects.porteur) : sans elle, aucun.
+     * Même logique que celle de Foundry, sur l'incarnation au lieu de l'acteur ; un token non lié
+     * ignore en plus les états de son acteur (voir NephilimActiveEffect).
+     * @param statusId  The status identifier.
+     * @param options   { active, overlay }, as Actor#toggleStatusEffect.
+     * @param parDefaut The logic of Foundry, on the actor.
+     */
+    async basculerEtat(statusId, { active, overlay = false } = {}, parDefaut) {
+        const actor = this.actor;
+        const porteur = ActiveEffects.porteur(actor);
+        if (porteur === actor && !actor.isToken) return parDefaut();
+        if (porteur == null) return;
+        const status = CONFIG.statusEffects[statusId];
+        if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
+
+        // Les effets de cet état déjà portés, hors ceux hérités de l'acteur d'un token non lié
+        const existing = status._id
+            ? [porteur.effects.get(status._id)].filter(e => e != null && !e.herite).map(e => e.id)
+            : porteur.effects.filter(e => e.statuses.size === 1 && e.statuses.has(status.id) && !e.herite).map(e => e.id);
+        if (existing.length > 0) {
+            if (active) return true;
+            await porteur.deleteEmbeddedDocuments("ActiveEffect", existing);
+            return false;
+        }
+
+        if (!active && active !== undefined) return;
+        const ActiveEffect = CONFIG.ActiveEffect.documentClass;
+        const effect = await ActiveEffect.fromStatusEffect(statusId, { parent: porteur });
+        if (overlay) effect.updateSource({ "flags.core.overlay": true });
+        effect.updateSource({ transfer: true });
+        return ActiveEffect.create(effect.toObject(), { parent: porteur, keepId: true });
+    }
+
+    /**
+     * Les états d'une figure suivent son incarnation courante : quand elle change, les icônes
+     * de ses jetons sont redessinées.
+     * @param changed The changed data of the actor.
+     */
+    apresModification(changed) {
+        if (foundry.utils.getProperty(changed, Version.path(this.actor, 'periode')) !== undefined) {
+            for (const token of this.actor.getActiveTokens()) token.drawEffects();
+        }
+    }
 
     /**
      * Le jet d'un passé.

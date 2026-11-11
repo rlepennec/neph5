@@ -1,11 +1,7 @@
-import { ActiveEffects } from "../../feature/core/regles/v5/effects.js";
-import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
-import { Version } from "../../module/common/version.js";
+import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { VersionMigration } from "../migration/versionMigration.js";
 import { Regles } from "../regles/regles.js";
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
-import { Fraternite } from "../../feature/fraternite/regles/v5/fraternite.js";
-import { Periode } from "../../feature/periode/periode.js";
 
 export class NephilimActor extends Actor {
 
@@ -99,90 +95,55 @@ export class NephilimActor extends Actor {
      */
     get simulacre() {
         // Celui de l'incarnation courante : il ne se transmet pas
-        return new IncarnationsV5(this).simulacre();
+        return new Incarnations(this).simulacre();
     }
 
 
     /**
-     * Bascule un état depuis le HUD du jeton ou le suivi de combat. Ceux d'une figure sont
-     * portés par son incarnation courante (voir ActiveEffects.porteur) : sans elle, aucun.
-     * Même logique que celle de Foundry, sur l'incarnation au lieu de l'acteur ; un token non lié
-     * ignore en plus les états de son acteur (voir NephilimActiveEffect).
+     * Bascule un état depuis le HUD du jeton ou le suivi de combat. Les règles peuvent le poser
+     * ailleurs que sur l'acteur (basculerEtat, voir Regles) ; sinon, la logique de Foundry.
      * @override
      */
-    async toggleStatusEffect(statusId, { active, overlay = false } = {}) {
-        const porteur = ActiveEffects.porteur(this);
-        if (porteur === this && !this.isToken) return super.toggleStatusEffect(statusId, { active, overlay });
-        if (porteur == null) return;
-        const status = CONFIG.statusEffects[statusId];
-        if (!status) throw new Error(`Invalid status ID "${statusId}" provided to Actor#toggleStatusEffect`);
-
-        // Les effets de cet état déjà portés, hors ceux hérités de l'acteur d'un token non lié
-        const existing = status._id
-            ? [porteur.effects.get(status._id)].filter(e => e != null && !e.herite).map(e => e.id)
-            : porteur.effects.filter(e => e.statuses.size === 1 && e.statuses.has(status.id) && !e.herite).map(e => e.id);
-        if (existing.length > 0) {
-            if (active) return true;
-            await porteur.deleteEmbeddedDocuments("ActiveEffect", existing);
-            return false;
-        }
-
-        if (!active && active !== undefined) return;
-        const ActiveEffect = CONFIG.ActiveEffect.documentClass;
-        const effect = await ActiveEffect.fromStatusEffect(statusId, { parent: porteur });
-        if (overlay) effect.updateSource({ "flags.core.overlay": true });
-        effect.updateSource({ transfer: true });
-        return ActiveEffect.create(effect.toObject(), { parent: porteur, keepId: true });
+    async toggleStatusEffect(statusId, options = {}) {
+        const parDefaut = () => super.toggleStatusEffect(statusId, options);
+        const regles = this.regles;
+        return regles.basculerEtat != null ? regles.basculerEtat(statusId, options, parDefaut) : parDefaut();
     }
 
     /**
-     * Les états d'une figure suivent son incarnation courante : quand elle change, les icônes
-     * de ses jetons sont redessinées, sur tous les clients.
+     * Les règles réagissent aux modifications de l'acteur, sur tous les clients (apresModification,
+     * voir Regles).
      * @override
      */
     _onUpdate(changed, options, userId) {
         super._onUpdate(changed, options, userId);
-        if (foundry.utils.getProperty(changed, Version.path(this, 'periode')) !== undefined) {
-            for (const token of this.getActiveTokens()) token.drawEffects();
-        }
-    }
-
-    /**
-     * @returns the name of the current periode.
-     */
-    get currentPeriode() {
-        const incarnations = new IncarnationsV5(this);
-        if (incarnations.courante == null) {
-            return "Aucune periode courante";
-        }
-        const periode = game.items.find(i => i.sid === incarnations.periodeDe(incarnations.courante));
-        return periode == null ? "Periode non trouvee" : periode.name;
+        this.regles.apresModification?.(changed);
     }
 
     // ----------------------------------------------------------------------------------------------
 
     /**
-     * Deletes the specified embedded item.
+     * Deletes the specified embedded item. Une incarnation part avec ce qui lui est lié ; les
+     * règles suppriment les autres objets à leur façon si elles le veulent (supprimerObjet, voir
+     * Regles).
      * @param item The embedded item to delete.
      */
     async deleteEmbeddedItem(item) {
-        if (item != null) {
-            switch (item.type) {
-                case 'periode':
-                    await this.deletePeriode(item.sid);
-                    break;
-                case 'incarnation':
-                    await this.deleteIncarnation(item.sid);
-                    break;
-                case 'vecu':
-                    await this.regles.deleteVecu(item);
-                    break;
-                case 'competence':
-                    await this.regles.deleteCompetence(item);
-                    break;
-                default:
+        if (item == null) return;
+        switch (item.type) {
+            case 'periode':
+                await this.deletePeriode(item.sid);
+                break;
+            case 'incarnation':
+                await this.deleteIncarnation(item.sid);
+                break;
+            default: {
+                const regles = this.regles;
+                if (regles.supprimerObjet != null) {
+                    await regles.supprimerObjet(item);
+                } else {
                     await this.deleteEmbeddedDocuments('Item', [item.id]);
-                    break;
+                }
             }
         }
     }
@@ -192,38 +153,27 @@ export class NephilimActor extends Actor {
      * @param sid The system identifier of the world periode.
      */
     async deletePeriode(sid) {
-        const incarnations = new IncarnationsV5(this);
+        const incarnations = new Incarnations(this);
         for (const incarnation of incarnations.toutes().filter(i => incarnations.periodeDe(i.sid) === sid)) {
-            await this.#retirerIncarnation(incarnations, incarnation.sid);
+            await incarnations.retirer(incarnation.sid);
         }
         await this.render();
     }
 
     /**
-     * Retire une incarnation, son vécu et ce qui ne doit rien à une autre.
+     * Retire une incarnation et ce qui lui est lié (voir Incarnations.retirer).
      * @param cle The key of the incarnation.
      */
     async deleteIncarnation(cle) {
-        await this.#retirerIncarnation(new IncarnationsV5(this), cle);
+        await new Incarnations(this).retirer(cle);
         await this.render();
     }
 
-    /**
-     * @param incarnations The incarnations of this actor.
-     * @param cle          The key of the incarnation to remove.
-     */
-    async #retirerIncarnation(incarnations, cle) {
-        await incarnations.retirer(cle);
-        if (this.type === 'fraternite') {
-            await new Fraternite(this).onDeletePeriode({ sid: cle });
-        }
-    }
- 
     /**
      * @param sid The system identifier of current periode to set.
      */
     async setCurrentPeriode(sid) {
-        await new IncarnationsV5(this).definirCourante(sid);
+        await new Incarnations(this).definirCourante(sid);
     }
 
     /**
@@ -281,14 +231,10 @@ export class NephilimActor extends Actor {
     static async onDeleteEmbeddedActors(actor, sids) {
 
         // Remove the deleted actors from the incarnations which had them as simulacre
-        if (actor.type === 'figure') {
-            await new IncarnationsV5(actor).oublierSimulacres(sids);
-        }
+        await new Incarnations(actor).oublierSimulacres(sids);
 
-        // Remove the deleted actors if they are members of a fraternite
-        if (actor.type === 'fraternite') {
-            await new Fraternite(actor).onDeleteActors(sids);
-        }
+        // Ce que les règles y rattachent, l'effectif d'une fraternité par exemple (voir Regles)
+        await actor.regles.acteursSupprimes?.(sids);
 
     }
 

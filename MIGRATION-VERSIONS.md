@@ -1067,10 +1067,15 @@ tronc commun évoluera au fil de l'intégration des règles.
   quel que soit le receveur, n'a trouvé que des données, des champs propres et deux appels oubliés :
   `NephilimItem._actors` appelait l'acteur par le nom de la méthode (`deleteCompetence`, `deleteVecu`) ;
   il prend désormais une fonction, et passe par `actor.regles` ; `deleteEmbeddedItem` appelait
-  `this.deleteVecu` et `this.deleteCompetence`. Lot 2 à faire : sortir de l'acteur `simulacre`,
-  `currentPeriode`, `setCurrentPeriode`, `deletePeriode`, `deleteIncarnation`, `deleteEmbeddedItem`,
-  `onDeleteEmbeddedActors`, et déléguer `toggleStatusEffect` et `_onUpdate` ; l'acteur n'importe plus
-  alors ni `Fraternite`, ni `IncarnationsV5`, ni `ActiveEffects`.
+  `this.deleteVecu` et `this.deleteCompetence`.
+  Lot 2 fait : l'acteur n'importe plus rien des règles v5. `simulacre`, `setCurrentPeriode`,
+  `deletePeriode`, `deleteIncarnation` et le nettoyage des simulacres passent par la classe commune
+  `Incarnations` ; `currentPeriode`, que plus rien n'appelait, est retiré. Le reste est demandé aux
+  règles, s'il est fourni : `basculerEtat` (porteur des états, ex-`toggleStatusEffect`),
+  `apresModification` (redessin des icônes, ex-`_onUpdate`), `supprimerObjet` (vécu, compétence),
+  `acteursSupprimes` (effectif d'une fraternité), sur l'objet d'acteur ; `incarnationRetiree`
+  (effectif d'une fraternité), sur le jeu, appelé par `Incarnations.retirer`. Contrat complété dans
+  `module/regles/regles.js`.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

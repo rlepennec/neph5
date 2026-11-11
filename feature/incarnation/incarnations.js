@@ -375,6 +375,9 @@ export class Incarnations {
         } else if (siens.length > 0) {
             await this.actor.deleteEmbeddedDocuments('Item', siens.map(i => i.id));
         }
+
+        // Et ce qu'elle y rattache ailleurs
+        await regles.incarnationRetiree?.(this.actor, cle);
     }
 
     /**
