@@ -1061,6 +1061,16 @@ tronc commun évoluera au fil de l'intégration des règles.
   Lot 5 fait : combat (49 appels, dont 9 dans les gabarits ; 3 repris à la main, sur des acteurs
   nommés `held` et `holder`). La partie 2 est finie : plus aucun appelant connu des relais, hors
   le texte des macros déjà posées.
+- **Étape 2, lot 2, partie 3, en cours : l'acteur ne porte plus de règles.** Lot 1 fait : les relais
+  sont retirés (11 novembre 2026), sauf `processMacro`, qui passe par `this.regles.processMacro?.()`
+  et ne fait rien sans règles qui le fournissent. Une recherche de tous les accès aux noms des relais,
+  quel que soit le receveur, n'a trouvé que des données, des champs propres et deux appels oubliés :
+  `NephilimItem._actors` appelait l'acteur par le nom de la méthode (`deleteCompetence`, `deleteVecu`) ;
+  il prend désormais une fonction, et passe par `actor.regles` ; `deleteEmbeddedItem` appelait
+  `this.deleteVecu` et `this.deleteCompetence`. Lot 2 à faire : sortir de l'acteur `simulacre`,
+  `currentPeriode`, `setCurrentPeriode`, `deletePeriode`, `deleteIncarnation`, `deleteEmbeddedItem`,
+  `onDeleteEmbeddedActors`, et déléguer `toggleStatusEffect` et `_onUpdate` ; l'acteur n'importe plus
+  alors ni `Fraternite`, ni `IncarnationsV5`, ni `ActiveEffects`.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

@@ -244,7 +244,7 @@ export class NephilimItem extends Item {
             case 'competence':
 
                 // Delete the competence from each actor of the world and scenes
-                await this._actors('deleteCompetence');
+                await this._actors(actor => actor.regles.deleteCompetence?.(this));
 
                 // Delete from all vecus of the world
                 for (let item of game.items.filter(i => i.type === 'vecu')) {
@@ -284,7 +284,7 @@ export class NephilimItem extends Item {
             case 'periode':
 
                 // Update each actor of the world and scenes
-                await this._actors('deletePeriode', null, this.sid);
+                await this._actors(actor => actor.deletePeriode(this.sid));
 
                 // Delete from all vecus of the world
                 for (let item of game.items.filter(i => i.type === 'vecu' && Version.data(i).periode === this.sid)) {
@@ -296,7 +296,7 @@ export class NephilimItem extends Item {
             case 'vecu':
 
                 // Update each actor of the world and scenes
-                await this._actors('deleteVecu');
+                await this._actors(actor => actor.regles.deleteVecu?.(this));
 
                 // Delete from all armes of the world
                 for (let item of game.items.filter(i => i.type === 'arme' && Version.data(i).competence === this.sid)) {
@@ -450,25 +450,21 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * @param callback The name of the method of the actor item object to call.
-     * @param type     The optional actor type to match.
-     * @param arg      The argument passed to the callback, the item itself by default.
-     * @returns actors of the world and actors of the scenes.
+     * Applique un traitement à chaque acteur du monde et à chaque acteur de token des scènes.
+     * @param traitement La fonction à appliquer, qui reçoit l'acteur.
      */
-    async _actors(callback, type, arg = this) {
+    async _actors(traitement) {
 
         // Process each actor of the world and scenes
         for (let actor of game.actors) {
-            if (type == null || actor.type === type) {
-                await actor[callback](arg);
-            }
+            await traitement(actor);
         }
 
         // Process each actor of the scenes
         for (let scene of game.scenes) {
             for (let token of scene.tokens) {
-                if (token.actor != null && (type == null || token.actor.type === type)) {
-                    await token.actor[callback](arg);
+                if (token.actor != null) {
+                    await traitement(token.actor);
                 }
             }
         }
