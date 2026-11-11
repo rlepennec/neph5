@@ -287,7 +287,7 @@ export class CustomHandlebarsHelpers {
      * @returns the science .
      */
     static science(actor, science) {
-        return actor.science(science);
+        return actor.regles.science(science);
     }
 
     /**
@@ -296,7 +296,7 @@ export class CustomHandlebarsHelpers {
      * @returns the savoir .
      */
     static savoir(actor, savoir) {
-        return actor.savoir(savoir);
+        return actor.regles.savoir(savoir);
     }
 
     /**
@@ -309,7 +309,7 @@ export class CustomHandlebarsHelpers {
         const options = {
             all: all
         }
-        return actor.cercles(science, options);
+        return actor.regles.cercles(science, options);
     }
 
     /**
@@ -318,7 +318,7 @@ export class CustomHandlebarsHelpers {
      * @returns the owned focus of the actor. 
      */
     static focus(actor, science) {
-        return actor.focus(science);
+        return actor.regles.focus(science);
     }
 
     /**
@@ -327,7 +327,7 @@ export class CustomHandlebarsHelpers {
      * @returns the number of focus owned by the actor.
      */
     static numberOfFocus(actor, science) {
-        return actor.numberOfFocus(science);
+        return actor.regles.numberOfFocus(science);
     }
 
     /**
@@ -378,7 +378,7 @@ export class CustomHandlebarsHelpers {
      * @returns the owner actor of the laboratory.
      */
     static laboratoryOwner(actor) {
-        const sid = actor.alchimie.courant;
+        const sid = actor.regles.alchimie.courant;
         return sid == null ? actor : game.actors.find(i => i.sid === sid);
     }
 
@@ -388,7 +388,7 @@ export class CustomHandlebarsHelpers {
      * @returns the maximum number of materiae primae only based on the construct.
      */
     static getMaxBaseMP(actor, element) {
-        return actor.getMaxBaseMP(element);
+        return actor.regles.getMaxBaseMP(element);
     }
 
     /**
@@ -397,7 +397,7 @@ export class CustomHandlebarsHelpers {
      * @returns the maximum number of materiae primae.
      */
     static getMaxFinalMP(actor, element) {
-        return actor.getMaxBaseMP(element) + actor.alchimie.primae[element].max;
+        return actor.regles.getMaxBaseMP(element) + actor.regles.alchimie.primae[element].max;
     }
 
     /**

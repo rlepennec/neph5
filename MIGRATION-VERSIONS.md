@@ -1055,6 +1055,9 @@ tronc commun évoluera au fil de l'intégration des règles.
   dans les gabarits).
   Lot 3 fait : noyau (jets, dialogues, blessures et dommages) et alchimie (36 appels, dont 5
   dans les gabarits).
+  Lot 4 fait : `module/common` (aides Handlebars, macros, actions de combat de la fiche, 20 appels).
+  Le relais `processMacro` restera après la partie 3 : les macros déjà posées dans la barre des
+  mondes contiennent le texte `token.actor.processMacro(...)` (à migrer, ou relais gardé).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

@@ -46,19 +46,19 @@ export const CombatantMixinSheet = Base => {
 					return;
 				}
 			}
-			await this.document.rollWeapon(weapon, this.combatant);
+			await this.document.regles.rollWeapon(weapon, this.combatant);
 		}
 
 		static async _onRollWrestle(event, target) {
 			event.preventDefault();
 			if (!this.canAct) return;
-			await this.document.rollWrestle(this.combatant);
+			await this.document.regles.rollWrestle(this.combatant);
 		}
 
 		static async _onGetUp(event, target) {
 			event.preventDefault();
 			if (!this.canAct) return;
-			await this.document.getUp(this.combatant);
+			await this.document.regles.getUp(this.combatant);
 		}
 
 		static async _onAim(event, target) {
@@ -69,7 +69,7 @@ export const CombatantMixinSheet = Base => {
 				ui.notifications.error("Arme introuvable");
 				return;
 			}
-			await this.document.aim(weapon, this.combatant);
+			await this.document.regles.aim(weapon, this.combatant);
 		}
 
 		static async _onReload(event, target) {
@@ -80,7 +80,7 @@ export const CombatantMixinSheet = Base => {
 				ui.notifications.error("Arme introuvable");
 				return;
 			}
-			await this.document.reload(weapon, this.combatant);
+			await this.document.regles.reload(weapon, this.combatant);
 		}
 
         static async _onRollPasse(event, target) {
@@ -91,7 +91,7 @@ export const CombatantMixinSheet = Base => {
 				ui.notifications.error("Passé introuvable");
 				return;
 			}
-			await this.document.rollPasse(item);
+			await this.document.regles.rollPasse(item);
 		}
 
 		/**
@@ -107,7 +107,7 @@ export const CombatantMixinSheet = Base => {
 				case 'arme':
 				case 'armure':
 					// Set the usage of the melee or the ranged weapon
-					await this.document.toggleEquipmentUsage(document);
+					await this.document.regles.toggleEquipmentUsage(document);
 					break;
 			}
 		}
@@ -121,7 +121,7 @@ export const CombatantMixinSheet = Base => {
 			event.preventDefault();
 			if (this.locked) return;
 			if (!this.canAct) return;
-			await this.document.setActiveEffect("Stunned");
+			await this.document.regles.setActiveEffect("Stunned");
 		}
 
 		/**
@@ -132,7 +132,7 @@ export const CombatantMixinSheet = Base => {
 			event.preventDefault();
 			if (this.locked) return;
 			if (!this.canAct) return;
-			await this.document.setActiveEffect("Restrained");
+			await this.document.regles.setActiveEffect("Restrained");
 		}
 
 		/**
@@ -143,7 +143,7 @@ export const CombatantMixinSheet = Base => {
 			event.preventDefault();
 			if (this.locked) return;
 			if (!this.canAct) return;
-			await this.document.setActiveEffect("Prone");
+			await this.document.regles.setActiveEffect("Prone");
 		}
 
 		/** @override */

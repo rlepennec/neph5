@@ -84,7 +84,7 @@ export class Macros {
 
         let command = `( async () => {
             if (token?.actor != null) {
-                await token.actor.processMacro('` + data.type + `', '` + data.id + `', '` + data.sid + `');
+                await token.actor.regles.processMacro('` + data.type + `', '` + data.id + `', '` + data.sid + `');
             }
         })()`;
 
