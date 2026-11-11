@@ -22,7 +22,7 @@ export class CombatHistory {
      *          isn't engaged in a combat.
      */
     static combatantOf(actor) {
-        return actor?.combatant ?? null;
+        return actor?.regles.combatant ?? null;
     }
 
     /**
@@ -114,7 +114,7 @@ export class CombatHistory {
         if (prise?.target == null) return null;
         if (history.find(e => e.holds === true && e.target === prise.target).actor !== actor.id) return null;
         const held = combatant.combat.combatants.find(c => c.actor?.id === prise.target)?.actor;
-        return held?.immobilise === true ? held : null;
+        return held?.regles.immobilise === true ? held : null;
     }
 
     /**

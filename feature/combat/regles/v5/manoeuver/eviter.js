@@ -51,7 +51,7 @@ export class Eviter extends AbstractManoeuver {
         if (this.defensePlayed(action)) return false;
         // On n'évite qu'un coup : ni un tir, ni une empoignade (Immobiliser, Projeter...).
         return action.attack.manoeuver.strike === true &&
-               action.actor.isEsquiveAvailable;
+               action.actor.regles.isEsquiveAvailable;
     }
 
 }

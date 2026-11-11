@@ -1058,6 +1058,9 @@ tronc commun évoluera au fil de l'intégration des règles.
   Lot 4 fait : `module/common` (aides Handlebars, macros, actions de combat de la fiche, 20 appels).
   Le relais `processMacro` restera après la partie 3 : les macros déjà posées dans la barre des
   mondes contiennent le texte `token.actor.processMacro(...)` (à migrer, ou relais gardé).
+  Lot 5 fait : combat (49 appels, dont 9 dans les gabarits ; 3 repris à la main, sur des acteurs
+  nommés `held` et `holder`). La partie 2 est finie : plus aucun appelant connu des relais, hors
+  le texte des macros déjà posées.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

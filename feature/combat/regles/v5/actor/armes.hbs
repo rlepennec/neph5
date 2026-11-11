@@ -14,8 +14,8 @@
             {{!-- Se relever : proposé tant que le combattant est au sol, et seulement s'il
                   n'est pas tenu — il lui faudrait alors d'abord se libérer. L'icône occupe
                   la colonne de la visée et disparaît dès qu'il est debout. --}}
-            {{#if document.projete}}
-            {{#unless document.immobilise}}
+            {{#if document.regles.projete}}
+            {{#unless document.regles.immobilise}}
             <a data-action="getUp" class="{{#unless canAct}}disabled{{/unless}}"><i class="fa-solid fa-person-walking"></i></a>
             {{/unless}}
             {{/if}}
@@ -23,7 +23,7 @@
             <a><i class="fa-solid fa-hand-fist"></i></a>
         </li>
 
-        {{#with document.weapons as |weapons|}}
+        {{#with document.regles.weapons as |weapons|}}
 
         {{#each weapons.naturelle as |item|}}
         <li data-fsid="{{fsid item}}" class="hoverable macro" data-macro="weapon">

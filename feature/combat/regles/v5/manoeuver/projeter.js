@@ -20,7 +20,7 @@ export class Projeter extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return !action.actor.immobilise;
+        return !action.actor.regles.immobilise;
     }
 
 }

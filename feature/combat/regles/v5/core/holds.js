@@ -18,7 +18,7 @@ export class Holds {
      * @param actor The held actor, null if none.
      */
     static async release(actor) {
-        if (actor?.immobilise !== true) return;
+        if (actor?.regles.immobilise !== true) return;
         if (game.user.isGM === true) {
             await Holds.free(actor);
         } else {
@@ -44,8 +44,8 @@ export class Holds {
      * @param actor The held actor.
      */
     static async free(actor) {
-        if (actor?.immobilise !== true) return;
-        await actor.deactivateEffect(ActiveEffects.IMMOBILISE.name);
+        if (actor?.regles.immobilise !== true) return;
+        await actor.regles.deactivateEffect(ActiveEffects.IMMOBILISE.name);
     }
 
 }

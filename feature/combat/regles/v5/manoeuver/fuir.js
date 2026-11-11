@@ -33,7 +33,7 @@ export class Fuir extends AbstractManoeuver {
     canBePerformed(action) {
         if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.family !== Constants.FIRE &&
-               action.actor.isEsquiveAvailable;
+               action.actor.regles.isEsquiveAvailable;
     }
 
 }

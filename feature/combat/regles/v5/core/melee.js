@@ -27,7 +27,7 @@ export class Melee extends AbstractCombatFeature {
         super(actor);
         this.item = ActionDataBuilder.competenceOf(actor, weapon);
         this.weapon = weapon;
-        this.target = actor.target;
+        this.target = actor.regles.target;
         this.effects = ActiveEffects.effectsOf(actor, this.target?.actor);
         this.setManoeuver(Standard.ID);
     }

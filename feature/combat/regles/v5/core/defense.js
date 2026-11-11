@@ -256,7 +256,7 @@ export class Defense extends AbstractCombatFeature {
 
         // La manœuvre décide de la suite : dégâts appliqués aussitôt par défaut.
         await this.manoeuver.resolveDefense(this, this.winner);
-        await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, this.winner, this.attack.manoeuver);
+        await Health.applyEffectsOn(this.actor.regles.tokenOf?.id, this.attack.actor.id, this.winner, this.attack.manoeuver);
 
         // Record the maneuvers played by both combatants
         await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
@@ -331,7 +331,7 @@ export class Defense extends AbstractCombatFeature {
      *                   tout dégât, null n'amortit rien.
      */
     async applyDamages(absorption) {
-        await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
+        await Health.applyDamagesOn(this.actor.regles.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, absorption, this.winner, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
     }
 
     /**
@@ -343,8 +343,8 @@ export class Defense extends AbstractCombatFeature {
         const manoeuvers = Object.keys(this.data.manoeuvers);
         if (manoeuvers.length === 0) {
             if (this.result.success) {
-                await Health.applyDamagesOn(this.actor.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
-                await Health.applyEffectsOn(this.actor.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
+                await Health.applyDamagesOn(this.actor.regles.tokenOf?.id, this.impactFinal(), true, this.attack.weapon, null, Constants.ACTION, this.attack.manoeuver, this.result.critical, this.attack.actor?.id);
+                await Health.applyEffectsOn(this.actor.regles.tokenOf?.id, this.attack.actor.id, Constants.ACTION, this.attack.manoeuver);
                 await CombatHistory.record(this.attack.actor, this.attack.manoeuver, this.actor);
             }
             return null;

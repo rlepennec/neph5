@@ -49,7 +49,7 @@ export class Controler extends AbstractManoeuver {
     canBePerformed(action) {
         if (this.exclusiveDefensePlayed(action)) return false;
         return action.attack.manoeuver.onlyDefense === this.id &&
-               action.actor.isLutteAvailable;
+               action.actor.regles.isLutteAvailable;
     }
 
 }

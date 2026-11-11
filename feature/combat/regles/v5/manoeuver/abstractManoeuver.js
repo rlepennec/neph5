@@ -247,8 +247,8 @@ export class AbstractManoeuver {
             if (this.impact.hasOwnProperty('modifier')) {
                 return this.impact.modifier
                     + (Version.data(weapon).damages ?? 0)
-                    + actor.dommage
-                    + actor.bonus.dommage;
+                    + actor.regles.dommage
+                    + actor.regles.bonus.dommage;
             }
             if (this.impact.hasOwnProperty('fix')) {
                 return this.impact.fix;
@@ -269,7 +269,7 @@ export class AbstractManoeuver {
      * @returns the allowed approches only according to the actor and the action.
      */
     approchesOf(actor) {
-        const available = actor.approches();
+        const available = actor.regles.approches();
         const approches = {
             none: available.none
         }
@@ -306,7 +306,7 @@ export class AbstractManoeuver {
                         : null;
                 }
                 // Une compétence inactive vaut une manœuvre non définie (voir Groupe)
-                const sid = actor.manoeuvre(field);
+                const sid = actor.regles.manoeuvre(field);
                 const item = game.items.find(i => i.sid === sid);
                 return item == null ? none : item.type === 'competence' ? item : actor.items.find(i => i.sid === sid);
             }

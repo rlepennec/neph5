@@ -62,7 +62,7 @@ async function proposerDommageDePrise(holder, held) {
     if (accord !== true) return;
     // La prise a pu être lâchée pendant que la question attendait.
     if (CombatHistory.heldBy(holder)?.id !== held.id) return;
-    await Health.applyDamagesOn(held.tokenOf?.id, 0, true, null, null, Constants.ACTION, { impact: { fix: 1 } }, false, holder.id);
+    await Health.applyDamagesOn(held.regles.tokenOf?.id, 0, true, null, null, Constants.ACTION, { impact: { fix: 1 } }, false, holder.id);
 }
 
 export class RoundUpdate {

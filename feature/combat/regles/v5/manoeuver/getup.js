@@ -25,7 +25,7 @@ export class Getup extends AbstractManoeuver {
      * @Override
      */
     isAllowed(action) {
-        return action.actor.projete === true && action.actor.immobilise !== true;
+        return action.actor.regles.projete === true && action.actor.regles.immobilise !== true;
     }
 
     /**
@@ -38,7 +38,7 @@ export class Getup extends AbstractManoeuver {
             return;
         }
 
-        await action.actor.deactivateEffect(ActiveEffects.PROJETE.name);
+        await action.actor.regles.deactivateEffect(ActiveEffects.PROJETE.name);
 
         const sentence = game.i18n.localize(AbstractManoeuver.clef(Getup.ID, "Sentence"));
         await new NephilimChat(action.actor)

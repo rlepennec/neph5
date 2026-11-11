@@ -13,7 +13,7 @@ export class Combatants {
      * @param actor The actor leaving the fight.
      */
     static async leave(actor) {
-        const combatant = actor?.combatant;
+        const combatant = actor?.regles.combatant;
         if (combatant == null) return;
         if (game.user.isGM === true) {
             await combatant.delete();

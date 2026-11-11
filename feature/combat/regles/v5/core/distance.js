@@ -27,8 +27,8 @@ export class Distance extends AbstractCombatFeature {
         super(actor);
         this.item = ActionDataBuilder.competenceOf(actor, weapon);
         this.weapon = weapon;
-        this.target = actor.target;
-        this.cibles = actor.targets ?? [];
+        this.target = actor.regles.target;
+        this.cibles = actor.regles.targets ?? [];
         this.effects = ActiveEffects.effectsOf(actor, this.target?.actor);
         this.setManoeuver(Tirer.ID);
     }

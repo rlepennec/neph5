@@ -19,12 +19,12 @@ export class Wrestle extends AbstractCombatFeature {
      */
     constructor(actor) {
         super(actor);
-        this.item = actor.type === 'figure' ? game.items.find(i => i.sid === actor.manoeuvre('lutte')) : null;
+        this.item = actor.type === 'figure' ? game.items.find(i => i.sid === actor.regles.manoeuvre('lutte')) : null;
         // Immobilisé, on ne lutte que pour se libérer : contre celui qui tient la prise, sans
         // avoir à le cibler. Sans cible, Libérer tomberait dans un jet d'opposition générique,
         // qui ne lève jamais l'immobilisation.
-        const holder = actor.immobilise === true ? CombatHistory.holderOf(actor) : null;
-        this.target = (holder == null ? null : canvas.tokens?.get(holder.tokenOf?.id)) ?? actor.target;
+        const holder = actor.regles.immobilise === true ? CombatHistory.holderOf(actor) : null;
+        this.target = (holder == null ? null : canvas.tokens?.get(holder.regles.tokenOf?.id)) ?? actor.regles.target;
         this.effects = ActiveEffects.effectsOf(this.actor, this.target?.actor);
         this.setManoeuver(Immobiliser.ID);
     }
@@ -105,7 +105,7 @@ export class Wrestle extends AbstractCombatFeature {
      * @Override
      */
     async initializeRoll() {
-        if (this.actor.isLutteAvailable) {
+        if (this.actor.regles.isLutteAvailable) {
 
             let data = this.data;
             const disponibles = Object.keys(data.manoeuvers);

@@ -55,8 +55,8 @@ export class Riposte {
         const weapon = defense.attack.weapon;
         const combat = game.combat;
         await defense.actor.setFlag('neph5e', Riposte.FLAG, {
-            token: defense.actor.tokenOf?.id ?? null,
-            attaquant: defense.attack.actor.tokenOf?.id ?? null,
+            token: defense.actor.regles.tokenOf?.id ?? null,
+            attaquant: defense.attack.actor.regles.tokenOf?.id ?? null,
             attaquantActeur: defense.attack.actor.id,
             impact: defense.impactFinal(),
             arme: weapon == null ? null : {
@@ -122,7 +122,7 @@ export class Riposte {
             return;
         }
         await Health.applyDamagesOn(
-            riposte.token ?? actor.tokenOf?.id,
+            riposte.token ?? actor.regles.tokenOf?.id,
             riposte.impact,
             true,
             riposte.arme,
