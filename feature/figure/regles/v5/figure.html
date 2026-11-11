@@ -40,7 +40,7 @@
         {{/if}}
 
         {{#if (eq @root.data.options.fraternites true)}}
-        {{#each actor.fraternites as |fraternite|}}
+        {{#each actor.regles.fraternites as |fraternite|}}
         <img class="fraternite-image" src="{{fraternite.img}}"/>
         <a class="fraternite-name" data-action="openFraternite" data-id="{{fraternite.id}}">{{fraternite.name}}</a>
         {{/each}}

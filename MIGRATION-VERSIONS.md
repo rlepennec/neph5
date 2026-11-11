@@ -1051,6 +1051,8 @@ tronc commun évoluera au fil de l'intégration des règles.
   partie 3. Conséquence assumée : dans un monde réglé sur une autre version, `actor.regles` est vide et
   le code v5 réécrit ne trouve plus ces membres ; c'est l'étape 3 (fiches selon la version) qui l'évite.
   Lot 1 fait : les 18 features de 5 appels au plus (45 appels, dont 16 dans les gabarits).
+  Lot 2 fait : `module/actor` (contexte de la fiche), figure, nephilim, selenim (43 appels, dont 29
+  dans les gabarits).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

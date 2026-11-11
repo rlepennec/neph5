@@ -40,7 +40,7 @@ export class Pavane extends AbstractFeature {
      * @Override
      */
     get degre() {
-        return this.actor.kas.pavane;
+        return this.actor.regles.kas.pavane;
     }
 
 }

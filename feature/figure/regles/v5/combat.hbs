@@ -33,16 +33,16 @@
 
                 <li class="capacite esquive" data-id="esquive">
                     <i data-action="editCapacity" class="fa-edit {{#if (eq editedCapacity 'esquive')}}fas{{else}}far{{/if}}"></i>
-                    <label {{#unless document.isEsquiveAvailable}}class="undefined"{{/unless}}>{{translate "esquive"}}</label>
+                    <label {{#unless document.regles.isEsquiveAvailable}}class="undefined"{{/unless}}>{{translate "esquive"}}</label>
                     <i class="fas fa-caret-right"></i>
-                    <label>{{document.esquive}}</label>
+                    <label>{{document.regles.esquive}}</label>
                 </li>
 
                 <li class="capacite lutte" data-id="lutte">
                     <i data-action="editCapacity" class="fa-edit {{#if (eq editedCapacity 'lutte')}}fas{{else}}far{{/if}}"></i>
-                    <label {{#unless document.isLutteAvailable}}class="undefined"{{/unless}}>{{translate "lutte"}}</label>
+                    <label {{#unless document.regles.isLutteAvailable}}class="undefined"{{/unless}}>{{translate "lutte"}}</label>
                     <i class="fas fa-caret-right"></i>
-                    <label>{{document.lutte}}</label>
+                    <label>{{document.regles.lutte}}</label>
                 </li>
 
             </ol>

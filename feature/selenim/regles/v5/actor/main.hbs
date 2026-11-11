@@ -100,42 +100,42 @@
             <ol class="body">
 
                 <li class="attribut">
-                    <label class="value">{{actor.initiative}}</label>
+                    <label class="value">{{actor.regles.initiative}}</label>
                     <div class="name">
                         <label>{{translate "initiative"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.mouvement}}</label>
+                    <label class="value">{{actor.regles.mouvement}}</label>
                     <div class="name">
                         <label>{{translate "mouvement"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.dommage}}</label>
+                    <label class="value">{{actor.regles.dommage}}</label>
                     <div class="name">
                         <label>{{translate "bonusDommage"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.perspicacite}}</label>
+                    <label class="value">{{actor.regles.perspicacite}}</label>
                     <div class="name">
                         <label>{{translate "perspicacite"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.recuperation}}</label>
+                    <label class="value">{{actor.regles.recuperation}}</label>
                     <div class="name">
                         <label>{{translate "recuperation"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.voile}}</label>
+                    <label class="value">{{actor.regles.voile}}</label>
                     <div class="name">
                         <label>{{translate "voile"}}</label>
                     </div>
@@ -145,7 +145,7 @@
 
         </div>
 
-        {{#with actor.imago as |item|}}
+        {{#with actor.regles.imago as |item|}}
         <div class="imago">
 
             <div class="header-with-value">

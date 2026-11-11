@@ -41,7 +41,7 @@ export class Noyau extends AbstractFeature {
      * @Override
      */
     get degre() {
-        return this.actor.kas.noyau;
+        return this.actor.regles.kas.noyau;
     }
 
 }

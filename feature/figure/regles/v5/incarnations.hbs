@@ -54,7 +54,7 @@
     </div>
     {{/if}}
 
-    {{#if (isEmptyCollection actor.periodes)}}
+    {{#if (isEmptyCollection actor.regles.periodes)}}
     <div class="helpPeriode">
         {{#if (eq from "figure")}}
         <label>{{translate "aideIncarnations"}}</label>
@@ -65,7 +65,7 @@
     </div>
     {{/if}}
 
-    {{#each actor.periodes as |periode|}}
+    {{#each actor.regles.periodes as |periode|}}
     {{#unless (and (not ../isGM) (not periode.embedded.actif))}}
     <ol class="periodes item-list">
 

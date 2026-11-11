@@ -477,7 +477,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
         event.preventDefault();
         if (this.locked) return;
         const vaisseau = event.currentTarget.closest('.vaisseau').dataset.type;
-        const activated = this.document.akasha[vaisseau].active;
+        const activated = this.document.regles.akasha[vaisseau].active;
         await new IncarnationsV5(this.document).ecrireAkasha({ [vaisseau + '.active']: !activated });
     }
 
@@ -496,16 +496,16 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
 
     /** Active/désactive un construct (seulement sur son propre labo, déverrouillé). */
     static async _onConstruct(event, target) {
-        if (this.document.alchimie.courant == null && this.locked === false) {
+        if (this.document.regles.alchimie.courant == null && this.locked === false) {
             const construct = target.closest('.tooltip').dataset.type;
-            const activated = this.document.alchimie.constructs[construct].active;
+            const activated = this.document.regles.alchimie.constructs[construct].active;
             await new IncarnationsV5(this.document).ecrireAlchimie({ ['constructs.' + construct + '.active']: !activated });
         }
     }
 
     /** Ajoute un laboratoire en déposant un acteur alchimiste sur l'onglet laboratoire. */
     static async _onDropLaboratory(event, document) {
-        const laboratoires = this.document.alchimie.laboratoires;
+        const laboratoires = this.document.regles.alchimie.laboratoires;
         if (!laboratoires.includes(document.sid)) {
             await new IncarnationsV5(this.document).ecrireAlchimie({ laboratoires: [...laboratoires, document.sid] });
         }
@@ -520,8 +520,8 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
     /** Supprime le laboratoire courant. */
     static async _onDeleteLaboratory(event, target) {
         if (this.locked) return;
-        const sid = this.document.alchimie.courant;
-        const labs = this.document.alchimie.laboratoires.filter(i => i !== sid);
+        const sid = this.document.regles.alchimie.courant;
+        const labs = this.document.regles.alchimie.laboratoires.filter(i => i !== sid);
         await new IncarnationsV5(this.document).ecrireAlchimie({ laboratoires: labs, courant: null });
     }
 
@@ -568,7 +568,7 @@ export class FigureSheet extends CombatantMixinSheet(HistoricalSheet) {
             const key = Version.path(this.document, 'alchimie') + '.primae.' + elt + '.max';
             const input = formData.object[key];
             if (input !== undefined) {
-                formData.object[key] = input - this.document.getMaxBaseMP(elt);
+                formData.object[key] = input - this.document.regles.getMaxBaseMP(elt);
             }
         }
 

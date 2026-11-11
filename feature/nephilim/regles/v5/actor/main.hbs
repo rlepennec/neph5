@@ -109,7 +109,7 @@
 
             <ol class="body">
 
-                {{#with actor.khaiba as |chute|}}
+                {{#with actor.regles.khaiba as |chute|}}
                 <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
                     <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "khaiba"}}{{#if (gt chute.degre 0)}} ({{chute.name}}){{/if}}</label>
@@ -139,7 +139,7 @@
                 </li>
                 {{/with}}
 
-                {{#with actor.narcose as |chute|}}
+                {{#with actor.regles.narcose as |chute|}}
                 <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
                     <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "narcose"}}</label>
@@ -207,7 +207,7 @@
                 </li>
                 {{/with}}
 
-                {{#with actor.ombre as |chute|}}
+                {{#with actor.regles.ombre as |chute|}}
                 <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
                     <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "ombre"}}</label>
@@ -280,7 +280,7 @@
                 {{/with}}
 
                 {{#if @root.data.options.luneNoire}}
-                {{#with actor.luneNoire as |chute|}}
+                {{#with actor.regles.luneNoire as |chute|}}
                 <li class="chute" data-id="{{chute.id}}" data-sid="{{chute.sid}}">
 
                     <label class="name {{#if chute.sid}}open{{/if}}" {{#if chute.sid}}data-action="openChute"{{/if}}>{{translate "entropieLunaire"}}</label>
@@ -361,7 +361,7 @@
 
     <div class="right">
 
-        {{#with actor.arcanes as |items|}}
+        {{#with actor.regles.arcanes as |items|}}
         {{#unless (isEmptyCollection items)}}
         <div class="arcanes">
 
@@ -412,42 +412,42 @@
             <ol class="body">
 
                 <li class="attribut">
-                    <label class="value">{{actor.initiative}}</label>
+                    <label class="value">{{actor.regles.initiative}}</label>
                     <div class="name">
                         <label>{{translate "initiative"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.mouvement}}</label>
+                    <label class="value">{{actor.regles.mouvement}}</label>
                     <div class="name">
                         <label>{{translate "mouvement"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.dommage}}</label>
+                    <label class="value">{{actor.regles.dommage}}</label>
                     <div class="name">
                         <label>{{translate "bonusDommage"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.perspicacite}}</label>
+                    <label class="value">{{actor.regles.perspicacite}}</label>
                     <div class="name">
                         <label>{{translate "perspicacite"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.recuperation}}</label>
+                    <label class="value">{{actor.regles.recuperation}}</label>
                     <div class="name">
                         <label>{{translate "recuperation"}}</label>
                     </div>
                 </li>
 
                 <li class="attribut">
-                    <label class="value">{{actor.voile}}</label>
+                    <label class="value">{{actor.regles.voile}}</label>
                     <div class="name">
                         <label>{{translate "voile"}}</label>
                     </div>
@@ -486,9 +486,9 @@
 
         </div>
 
-        <div class="metamorphe item" data-sid="{{actor.metamorphe.sid}}">
+        <div class="metamorphe item" data-sid="{{actor.regles.metamorphe.sid}}">
 
-            {{#with actor.metamorphe as |item|}}
+            {{#with actor.regles.metamorphe as |item|}}
             <div class="header-with-value">
 
                 <img class="circle"/>

@@ -46,15 +46,15 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         context.owner = this.document.isOwner;
         // Les Ka : ceux de l'incarnation courante pour une figure (voir NephilimActor.kas). Les
         // gabarits les lisent ici, et non dans data : ils ne sont plus portés par l'acteur.
-        context.ka = this.document.kas;
+        context.ka = this.document.regles.kas;
         // Les bonus de même : ceux de l'incarnation courante pour une figure
-        context.bonus = this.document.bonus;
+        context.bonus = this.document.regles.bonus;
         // Les blessures de même : celles de l'incarnation courante pour une figure
-        context.blessures = this.document.blessures;
+        context.blessures = this.document.regles.blessures;
         // Le laboratoire de même : celui de l'incarnation courante pour une figure
-        context.alchimie = this.document.alchimie;
+        context.alchimie = this.document.regles.alchimie;
         // Les voyages akashiques de même
-        context.akasha = this.document.akasha;
+        context.akasha = this.document.regles.akasha;
         return context;
     }
 
