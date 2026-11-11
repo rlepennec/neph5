@@ -1125,8 +1125,14 @@ tronc commun évoluera au fil de l'intégration des règles.
   plus que les fiches vides, enregistrées par défaut pour chaque type : le choix de fiche de Foundry
   (« Configurer la fiche ») n'a plus d'effet. Au changement de version, `Fiches.rafraichir` remplace
   les fiches déjà créées (`_onSheetChange` : une fiche ouverte se ferme et se rouvre). `neph5e.js`
-  n'importe plus de fiche v5. Restent v5 dans `neph5e.js` : `NephilimCombatant`,
-  `NephilimActiveEffect`, `NephilimTokenHUD` (lot 2).
+  n'importe plus de fiche v5.
+  Lot 2 fait : `NephilimCombatant`, `NephilimActiveEffect` et `NephilimTokenHUD` deviennent communs
+  (`module/common/`) et demandent au jeu, sinon font comme Foundry : `initiative(combatant)`
+  (`initiativeV5`), `effets.suspendu`, `effets.preparer` et `effets.hud` (`EffetsV5`,
+  `module/regles/v5/effets.js`). L'héritage des états par un token non lié devient
+  `ActiveEffects.herite(effect)` (plus de getter `herite` sur l'effet). `neph5e.js` n'importe plus
+  du v5 que le jeu, pour l'enregistrer. Dans un monde d'une autre version, l'initiative, les
+  effets et le HUD sont ceux de Foundry.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

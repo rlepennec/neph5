@@ -6,6 +6,8 @@ import { OutilsV5 } from "./outils.js";
 import { AIDES_V5 } from "../../common/regles/v5/aides.js";
 import { GABARITS_V5 } from "./gabarits.js";
 import { FICHES_V5 } from "./fiches.js";
+import { EffetsV5 } from "./effets.js";
+import { initiativeV5 } from "../../../feature/combat/regles/v5/core/combatant.js";
 import { objetSupprimeV5 } from "./objetSupprime.js";
 
 /**
@@ -18,6 +20,10 @@ export const JeuV5 = {
     version: 'v5',
 
     fiches: FICHES_V5,
+
+    effets: EffetsV5,
+
+    initiative: initiativeV5,
 
     evenements: EvenementsV5,
 

@@ -16,11 +16,11 @@ import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { Fiches } from "./module/common/fiches.js";
 import { FicheActeurVide } from "./module/actor/ficheActeurVide.js";
 import { FicheObjetVide } from "./module/item/ficheObjetVide.js";
-import { NephilimActiveEffect } from "./module/common/regles/v5/nephilimActiveEffect.js";
-import { NephilimTokenHUD } from "./module/common/regles/v5/nephilimTokenHUD.js";
+import { NephilimActiveEffect } from "./module/common/nephilimActiveEffect.js";
+import { NephilimTokenHUD } from "./module/common/nephilimTokenHUD.js";
 
 import { EphemerideDialog } from "./feature/ephemeride/ephemeride.js";
-import { NephilimCombatant } from "./feature/combat/regles/v5/core/combatant.js";
+import { NephilimCombatant } from "./module/common/nephilimCombatant.js";
 import { PeriodeSheet } from "./feature/periode/item/periode.js";
 
 import { AlchimieDataModel } from "./feature/alchimie/item/alchimie.mjs";
@@ -75,7 +75,7 @@ Hooks.once("init", function () {
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;
     CONFIG.Combatant.documentClass = NephilimCombatant;
-    // Les états d'une figure sont portés par son incarnation courante
+    // Les combattants, les effets et le HUD des jetons demandent aux règles (voir Regles)
     CONFIG.ActiveEffect.documentClass = NephilimActiveEffect;
     CONFIG.Token.hudClass = NephilimTokenHUD;
 

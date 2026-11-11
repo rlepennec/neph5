@@ -30,6 +30,9 @@ import { Version } from "../common/version.js";
  *     `combattantCree(combatant)` (false l'annule), `nouveauRound(combat)`,
  *     `messageAffiche(message, html)` (chat), `macroDeposee(bar, data, slot)` (synchrone, true
  *     si le dépôt est pris), `messageRecu(socketMessage)` (messages entre clients) ;
+ *   - `effets` : `suspendu(effect)` (true le suspend), `preparer(effect)` (avant sa création) et
+ *     `hud(hud, choices)` (les états actifs du HUD des jetons) ;
+ *   - `initiative(combatant)` : la formule d'initiative ;
  *   - `outils` : les outils du MJ, ajoutés au groupe de contrôles Nephilim (`order` les place) ;
  *   - `gabarits` : les gabarits à pré-charger ; ceux de tous les jeux le sont au démarrage ;
  *   - `aides` : ses aides Handlebars, par nom ; celles de tous les jeux sont enregistrées au

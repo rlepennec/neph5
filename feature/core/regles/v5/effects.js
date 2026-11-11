@@ -86,6 +86,16 @@ export class ActiveEffects {
     }
 
     /**
+     * L'origine le dit, même quand Foundry recopie l'incarnation dans le token.
+     * @param effect An ActiveEffect document.
+     * @returns true if this state was set on the actor of an unlinked token, not on the token.
+     */
+    static herite(effect) {
+        const modele = effect.acteur?.token?.baseActor;
+        return modele != null && effect.origin === modele.uuid && ActiveEffects.estEtat(effect);
+    }
+
+    /**
      * @param name The name of the active effect.
      * @returns the active effect.
      */
@@ -126,7 +136,7 @@ export class ActiveEffects {
     /**
      * Le document qui porte les états d'un acteur : l'incarnation courante d'une figure (ses
      * effets s'appliquent à la figure, ceux des autres incarnations non, voir
-     * NephilimActiveEffect), l'acteur lui-même sinon.
+     * EffetsV5), l'acteur lui-même sinon.
      * @param actor The actor object.
      * @returns the current incarnation of a figure, null if it has none; the actor otherwise.
      */

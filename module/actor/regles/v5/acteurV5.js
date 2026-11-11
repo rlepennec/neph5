@@ -716,7 +716,7 @@ export class ActeurV5 extends CombatantMixin(Acteur) {
      * Bascule un état depuis le HUD du jeton ou le suivi de combat. Ceux d'une figure sont
      * portés par son incarnation courante (voir ActiveEffects.porteur) : sans elle, aucun.
      * Même logique que celle de Foundry, sur l'incarnation au lieu de l'acteur ; un token non lié
-     * ignore en plus les états de son acteur (voir NephilimActiveEffect).
+     * ignore en plus les états de son acteur (voir EffetsV5).
      * @param statusId  The status identifier.
      * @param options   { active, overlay }, as Actor#toggleStatusEffect.
      * @param parDefaut The logic of Foundry, on the actor.
@@ -731,8 +731,8 @@ export class ActeurV5 extends CombatantMixin(Acteur) {
 
         // Les effets de cet état déjà portés, hors ceux hérités de l'acteur d'un token non lié
         const existing = status._id
-            ? [porteur.effects.get(status._id)].filter(e => e != null && !e.herite).map(e => e.id)
-            : porteur.effects.filter(e => e.statuses.size === 1 && e.statuses.has(status.id) && !e.herite).map(e => e.id);
+            ? [porteur.effects.get(status._id)].filter(e => e != null && !ActiveEffects.herite(e)).map(e => e.id)
+            : porteur.effects.filter(e => e.statuses.size === 1 && e.statuses.has(status.id) && !ActiveEffects.herite(e)).map(e => e.id);
         if (existing.length > 0) {
             if (active) return true;
             await porteur.deleteEmbeddedDocuments("ActiveEffect", existing);
