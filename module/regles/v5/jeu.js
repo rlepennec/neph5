@@ -3,6 +3,7 @@ import { ActeurV5 } from "../../actor/regles/v5/acteurV5.js";
 import { Fraternite } from "../../../feature/fraternite/regles/v5/fraternite.js";
 import { EvenementsV5 } from "./evenements.js";
 import { OutilsV5 } from "./outils.js";
+import { AIDES_V5 } from "../../common/regles/v5/aides.js";
 
 /**
  * Le jeu de règles de la cinquième édition (voir Regles pour le contrat).
@@ -16,6 +17,8 @@ export const JeuV5 = {
     evenements: EvenementsV5,
 
     outils: OutilsV5,
+
+    aides: AIDES_V5,
 
     acteur: actor => new ActeurV5(actor),
 

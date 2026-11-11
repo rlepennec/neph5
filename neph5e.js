@@ -218,7 +218,6 @@ Hooks.once("init", function () {
         concat: CustomHandlebarsHelpers.concat,
         versionValue: CustomHandlebarsHelpers.versionValue,
         versionPrefix: CustomHandlebarsHelpers.versionPrefix,
-        degreIncarne: CustomHandlebarsHelpers.degreIncarne,
         isNull: CustomHandlebarsHelpers.isNull,
         nonNull: CustomHandlebarsHelpers.nonNull,
         select: CustomHandlebarsHelpers.select,
@@ -226,26 +225,18 @@ Hooks.once("init", function () {
         log: CustomHandlebarsHelpers.log,
         html: CustomHandlebarsHelpers.html,
         includes: CustomHandlebarsHelpers.includes,
-        getLevel: CustomHandlebarsHelpers.getLevel,
-        getNextCost: CustomHandlebarsHelpers.getNextCost,
         isEmptyCollection: CustomHandlebarsHelpers.isEmptyCollection,
         isEmptyHtml: CustomHandlebarsHelpers.isEmptyHtml,
-        isContact: CustomHandlebarsHelpers.isContact,
-        cercles: CustomHandlebarsHelpers.cercles,
-        focus: CustomHandlebarsHelpers.focus,
-        numberOfFocus: CustomHandlebarsHelpers.numberOfFocus,
-        sciences: CustomHandlebarsHelpers.sciences,
-        savoir: CustomHandlebarsHelpers.savoir,
-        laboratoryOwner: CustomHandlebarsHelpers.laboratoryOwner,
-        getMaxBaseMP: CustomHandlebarsHelpers.getMaxBaseMP,
-        getMaxFinalMP: CustomHandlebarsHelpers.getMaxFinalMP,
-        science: CustomHandlebarsHelpers.science,
-        fraterniteBonus: CustomHandlebarsHelpers.fraterniteBonus,
         getSystemOption: CustomHandlebarsHelpers.getSystemOption,
         selectChoices: CustomHandlebarsHelpers.selectChoices,
-        scienceHeader: CustomHandlebarsHelpers.scienceHeader,
         minus: (v1, v2) => v1 - v2,
     });
+
+    // Les aides des gabarits de chaque jeu de règles : toutes à la fois, la version du monde
+    // pouvant changer à chaud (voir Regles)
+    for (const jeu of Regles.tous()) {
+        if (jeu.aides != null) Handlebars.registerHelper(jeu.aides);
+    }
 
     Handlebars.registerHelper('switch', function (value, options) {
         this.switch_value = value;

@@ -3,7 +3,7 @@ import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { AbstractManoeuver } from "../../../combat/regles/v5/manoeuver/abstractManoeuver.js";
 import { Constants } from "../../../../module/common/constants.js";
-import { CustomHandlebarsHelpers } from "../../../../module/common/handlebars.js";
+import { AidesV5 } from "../../../../module/common/regles/v5/aides.js";
 import { Liberer } from "../../../combat/regles/v5/manoeuver/liberer.js";
 import { ManoeuverBuilder } from "../../../combat/regles/v5/manoeuver/manoeuverBuilder.js";
 import { NephilimChat } from "../../../../module/common/chat.js";
@@ -119,14 +119,14 @@ export class AbstractFeature {
      * @returns the total number of sapiences used to develop the capacity.
      */
     get sapiences() {
-        return CustomHandlebarsHelpers.getSapiences(this.degre);
+        return AidesV5.getSapiences(this.degre);
     }
 
     /**
      * @returns the number of sapiences points necessary to reach the next degre of the capacity.
      */
     get next() {
-        const sapiences = CustomHandlebarsHelpers.getSapiences(this.degre + 1);
+        const sapiences = AidesV5.getSapiences(this.degre + 1);
         return sapiences == null ? null : sapiences - this.sapiences;
     }
 
@@ -212,14 +212,14 @@ export class AbstractFeature {
         let base = null;
         switch (game.settings.get('neph5e', 'fraternitePolicy')) {
             case 'bonus':
-                const ps = CustomHandlebarsHelpers.getSapiences(b/10) + CustomHandlebarsHelpers.getSapiences(f/10);
-                base = CustomHandlebarsHelpers.getLevel(ps) * 10;
+                const ps = AidesV5.getSapiences(b/10) + AidesV5.getSapiences(f/10);
+                base = AidesV5.getLevel(ps) * 10;
                 break;
             case 'maximum':
                 base = Math.max(b, f);
                 break;
             case 'standard':
-                base = b + CustomHandlebarsHelpers.fraterniteBonus(f/10) * 10;
+                base = b + AidesV5.fraterniteBonus(f/10) * 10;
                 break;
         }
 

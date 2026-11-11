@@ -3,7 +3,7 @@ import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { Constants } from "../../../../module/common/constants.js";
-import { CustomHandlebarsHelpers } from "../../../../module/common/handlebars.js";
+import { AidesV5 } from "../../../../module/common/regles/v5/aides.js";
 import { Groupe } from "../../../groupe/groupe.js";
 
 export class Competence extends AbstractFeature {
@@ -76,7 +76,7 @@ export class Competence extends AbstractFeature {
         let total = 0;
         for (let vecu of new IncarnationsV5(this.actor).vecusActifs().filter(v =>
             Version.data(v).competences.find(c => c === this.sid) != null)) {
-            total = total + CustomHandlebarsHelpers.getSapiences(new IncarnationsV5(this.actor).degreAcquis(vecu));
+            total = total + AidesV5.getSapiences(new IncarnationsV5(this.actor).degreAcquis(vecu));
         }
         return total;
     }

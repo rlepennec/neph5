@@ -1092,8 +1092,13 @@ tronc commun évoluera au fil de l'intégration des règles.
   `feature/periode/periode.js` → `feature/periode/regles/v5/periode.js` (la feature Période, lue
   par `FeatureBuilder`), `module/common/embeddedItem.js` → `feature/core/regles/v5/embeddedItem.js`.
   `cerclesOf` quitte la fiche d'objet commune (`NephilimItemSheet`) pour `Science.cerclesNommes`,
-  appelé par les 13 fiches d'objets v5 à cercles. Restent : les aides Handlebars v5 de
-  `module/common/handlebars.js` (lot B) et la fiche d'acteur de base `nephilimActorSheet.js` (lot C).
+  appelé par les 13 fiches d'objets v5 à cercles.
+  Lot B fait : les 16 aides Handlebars v5 (sciences, focus, cercles, sapience, laboratoire, combat,
+  `degreIncarne`, `fraterniteBonus`, `scienceHeader`) quittent `CustomHandlebarsHelpers` pour
+  `AidesV5` (`module/common/regles/v5/aides.js`). Le jeu les fournit (`aides`, au contrat) ;
+  `neph5e.js` enregistre au démarrage celles de tous les jeux (`Regles.tous()`), la version pouvant
+  changer à chaud. `handlebars.js` n'importe plus rien du v5. Reste la fiche d'acteur de base
+  `nephilimActorSheet.js` (lot C).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

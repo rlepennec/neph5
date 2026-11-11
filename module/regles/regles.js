@@ -27,7 +27,9 @@ import { Version } from "../common/version.js";
  *     `messageAffiche(message, html)` (chat), `macroDeposee(bar, data, slot)` (synchrone, true
  *     si le dépôt est pris), `messageRecu(socketMessage)` (messages entre clients) ;
  *   - `outils` : les outils du MJ, ajoutés au groupe de contrôles Nephilim (`order` les place) ;
- *   - `gabarits` : les gabarits à pré-charger.
+ *   - `gabarits` : les gabarits à pré-charger ;
+ *   - `aides` : ses aides Handlebars, par nom ; celles de tous les jeux sont enregistrées au
+ *     démarrage.
  *
  * LA BASCULE À CHAUD. `Regles.courantes` suit la version du monde à chaque lecture : rien n'est à
  * garder d'une lecture à l'autre, et changer de version ne demande pas de recharger le monde.
@@ -65,6 +67,13 @@ export class Regles {
      */
     static get(version) {
         return Regles.#jeux.get(version) ?? Regles.VIDE;
+    }
+
+    /**
+     * @returns les jeux de règles enregistrés.
+     */
+    static tous() {
+        return [...Regles.#jeux.values()];
     }
 
     /**
