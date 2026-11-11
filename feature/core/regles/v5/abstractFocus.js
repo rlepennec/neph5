@@ -1,5 +1,5 @@
 import { AbstractFeature } from "./abstractFeature.js";
-import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
+import { EmbeddedItem } from "./embeddedItem.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 

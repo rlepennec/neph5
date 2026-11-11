@@ -1,5 +1,5 @@
 import { DocumentIdentifier } from "../../../../module/common/documentIdentifier.js";
-import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
+import { EmbeddedItem } from "../../../core/regles/v5/embeddedItem.js";
 import { Version } from "../../../../module/common/version.js";
 import { AkashaDataModel } from "../../../akasha/item/akasha.mjs";
 import { KaDataModel } from "../../../figure/ka.mjs";

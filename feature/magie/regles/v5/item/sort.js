@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { DocumentIdentifier } from "../../../../../module/common/documentIdentifier.js";
 import { Version } from "../../../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
@@ -30,7 +31,7 @@ export class SortSheet extends NephilimItemSheet {
             context: {
                 elements: SortDataModel.defineSchema().versions.fields.v5.fields.element.choices,
                 cercle: Version.data(this.document, this.version).cercle,
-                cercles: super.cerclesOf('magie')
+                cercles: Science.cerclesNommes('magie')
             }
         }
     }

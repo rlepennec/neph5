@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { DocumentIdentifier } from "../../../../../module/common/documentIdentifier.js";
 import { Version } from "../../../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
@@ -32,7 +33,7 @@ export class HabitusSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf('analogie'),
+                cercles: Science.cerclesNommes('analogie'),
                 elements: HabitusDataModel.defineSchema().versions.fields.v5.fields.element.choices
             }
         }

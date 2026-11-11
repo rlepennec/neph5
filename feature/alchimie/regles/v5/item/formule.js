@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { Constants } from "../../../../../module/common/constants.js";
 import { Version } from "../../../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../../../module/common/documentIdentifier.js";
@@ -26,7 +27,7 @@ export class FormuleSheet extends NephilimItemSheet {
             context: {
                 elements: Constants.ELEMENTS,
                 elementsGS: Constants.ELEMENTS_GRAND_OEUVRE,
-                cercles: super.cerclesOf('alchimie'),
+                cercles: Science.cerclesNommes('alchimie'),
                 substances: FormuleDataModel.defineSchema().versions.fields.v5.fields.substance.choices,
                 catalyseurs: game.settings.get('neph5e', 'catalyseurs')
             }

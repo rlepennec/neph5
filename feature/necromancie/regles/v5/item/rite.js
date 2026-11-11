@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { Constants } from "../../../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
@@ -21,7 +22,7 @@ export class RiteSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf('necromancie'),
+                cercles: Science.cerclesNommes('necromancie'),
                 desmos: Constants.DESMOS,
             }
         }

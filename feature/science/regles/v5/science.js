@@ -330,6 +330,24 @@ export class Science extends HistoricalFeature {
 
     /**
      * @param science The name of the science for which to get the cercles.
+     * @returns les cercles de la science, clé → libellé : le nom de l'item du monde pour un
+     *          cercle qui en a un (clé@...), la clé sinon. Pour les listes des fiches d'objet.
+     */
+    static cerclesNommes(science) {
+        const cercles = {}
+        for (let cercle of Science.cerclesOf(science)) {
+            if (cercle.includes('@')) {
+                const item = game.items.find(i => Version.data(i).key === cercle);
+                cercles[cercle] = item != null ? item.name : cercle.split('@')[1];
+            } else {
+                cercles[cercle] = cercle;
+            }
+        };
+        return cercles;
+    }
+
+    /**
+     * @param science The name of the science for which to get the cercles.
      * @returns the sorted keys of the cercles.
      */
     static cerclesOf(science) {

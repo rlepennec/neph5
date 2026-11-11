@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 
 export class TechniqueSheet extends NephilimItemSheet {
@@ -20,7 +21,7 @@ export class TechniqueSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf('baton')
+                cercles: Science.cerclesNommes('baton')
             }
         }
     }

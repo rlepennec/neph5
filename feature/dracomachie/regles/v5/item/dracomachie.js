@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
 import { Version } from "../../../../../module/common/version.js";
 
@@ -21,7 +22,7 @@ export class DracomachieSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf('dracomachie')
+                cercles: Science.cerclesNommes('dracomachie')
             }
         }
     }

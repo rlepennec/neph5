@@ -22,7 +22,7 @@ import { Noyau } from "../../../selenim/regles/v5/noyau.js";
 import { Ordonnance } from "../../../kabbale/regles/v5/ordonnance.js";
 import { Passe } from "../../../passe/regles/v5/passe.js";
 import { Pavane } from "../../../selenim/regles/v5/pavane.js";
-import { Periode } from "../../../periode/periode.js";
+import { Periode } from "../../../periode/regles/v5/periode.js";
 import { Pratique } from "../../../denier/regles/v5/pratique.js";
 import { Quete } from "../../../quete/regles/v5/quete.js";
 import { Rite } from "../../../necromancie/regles/v5/rite.js";

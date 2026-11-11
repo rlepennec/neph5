@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 import { InvocationDataModel } from "../../../item/invocation.mjs";
 import { Version } from "../../../../../module/common/version.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
@@ -28,7 +29,7 @@ export class InvocationSheet extends NephilimItemSheet {
             ...await super._prepareContext(options),
             context: {
                 elements: InvocationDataModel.defineSchema().versions.fields.v5.fields.element.choices,
-                cercles: super.cerclesOf('kabbale'),
+                cercles: Science.cerclesNommes('kabbale'),
                 mondes: InvocationDataModel.defineSchema().versions.fields.v5.fields.monde.choices,
                 sephiroth: InvocationDataModel.defineSchema().versions.fields.v5.fields.sephirah.choices
             }

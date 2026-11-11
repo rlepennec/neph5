@@ -1,6 +1,6 @@
 import { AbstractFeature } from "./abstractFeature.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
-import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
+import { EmbeddedItem } from "./embeddedItem.js";
 
 export class HistoricalFeature extends AbstractFeature {
 

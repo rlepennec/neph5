@@ -4,7 +4,6 @@ import { ItemOptionsSelector } from "../../feature/core/itemOptionsSelector.js";
 import { positionOf } from "./positions.js";
 import { Version } from "../common/version.js";
 
-import { Science } from "../../feature/science/regles/v5/science.js";
 
 export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
@@ -170,19 +169,6 @@ export class NephilimItemSheet extends NephilimMixinSheet(foundry.applications.a
         this.element.classList.remove(
             ...[...this.element.classList].filter(c => c.startsWith('skin-')));
         if (element) this.element.classList.add(`skin-${element}`);
-    }
-
-    cerclesOf(science) {
-        const cercles = {}
-        for (let cercle of Science.cerclesOf(science)) {
-            if (cercle.includes('@')) {
-                const item = game.items.find(i => Version.data(i).key === cercle);
-                cercles[cercle] = item != null ? item.name : cercle.split('@')[1];
-            } else {
-                cercles[cercle] = cercle;
-            }
-        };
-        return cercles;
     }
 
     /**

@@ -1,5 +1,5 @@
-import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
-import { Version } from "./version.js";
+import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
+import { Version } from "../../../../module/common/version.js";
 export class EmbeddedItem {
 
     /**

@@ -1,5 +1,5 @@
 import { Constants } from "../common/constants.js";
-import { EmbeddedItem } from "../common/embeddedItem.js";
+import { EmbeddedItem } from "../../feature/core/regles/v5/embeddedItem.js";
 import { MigrationTools } from "./migration.js";
 
 export class _1_0_3 {

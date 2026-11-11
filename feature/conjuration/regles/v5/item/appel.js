@@ -1,3 +1,4 @@
+import { Science } from "../../../../science/regles/v5/science.js";
 
 import { Constants } from "../../../../../module/common/constants.js";
 import { NephilimItemSheet } from "../../../../../module/item/nephilimItemSheet.js";
@@ -22,7 +23,7 @@ export class AppelSheet extends NephilimItemSheet {
         return {
             ...await super._prepareContext(options),
             context: {
-                cercles: super.cerclesOf('conjuration'),
+                cercles: Science.cerclesNommes('conjuration'),
                 appels: Constants.APPELS,
             }
         }

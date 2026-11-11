@@ -1087,6 +1087,13 @@ tronc commun évoluera au fil de l'intégration des règles.
   outils. Restent v5 dans `neph5e.js` : les classes de documents (`NephilimCombatant`,
   `NephilimActiveEffect`, `NephilimTokenHUD`), les fiches, les aides Handlebars et les gabarits
   pré-chargés, qui relèvent de l'étape 3 (fiches selon la version).
+- **Étape 2, lot 4, en cours : le commun ne connaît plus le v5.** Lot A fait : deux modules
+  rangés dans le commun ne servaient qu'au v5 et passent de son côté, sans changement de contenu :
+  `feature/periode/periode.js` → `feature/periode/regles/v5/periode.js` (la feature Période, lue
+  par `FeatureBuilder`), `module/common/embeddedItem.js` → `feature/core/regles/v5/embeddedItem.js`.
+  `cerclesOf` quitte la fiche d'objet commune (`NephilimItemSheet`) pour `Science.cerclesNommes`,
+  appelé par les 13 fiches d'objets v5 à cercles. Restent : les aides Handlebars v5 de
+  `module/common/handlebars.js` (lot B) et la fiche d'acteur de base `nephilimActorSheet.js` (lot C).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

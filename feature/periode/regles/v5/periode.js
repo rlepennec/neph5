@@ -1,5 +1,5 @@
-import { AbstractFeature } from "../core/regles/v5/abstractFeature.js";
-import { Incarnations } from "../../feature/incarnation/incarnations.js";
+import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
+import { Incarnations } from "../../../incarnation/incarnations.js";
 
 export class Periode extends AbstractFeature {
 

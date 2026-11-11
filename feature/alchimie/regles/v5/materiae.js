@@ -1,7 +1,7 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
-import { EmbeddedItem } from "../../../../module/common/embeddedItem.js";
+import { EmbeddedItem } from "../../../core/regles/v5/embeddedItem.js";
 import { SimpleFeature } from "../../../core/regles/v5/simpleFeature.js";
 
 /**
