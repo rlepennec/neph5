@@ -5,6 +5,7 @@ import { FormuleDataModel } from "../../feature/alchimie/item/formule.mjs";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
 import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Version } from "../common/version.js";
+import { Regles } from "../regles/regles.js";
 
 export class NephilimItem extends Item {
 
@@ -225,115 +226,26 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * Removes the references to the current deleted world item.
+     * Removes the references to the current deleted world item. Une période emporte les
+     * incarnations qui la portent ; les règles retirent leurs propres références (objetSupprime,
+     * voir Regles) ; enfin, les copies embarquées dans les acteurs partent.
      */
     async _onDeleteWorldItem() {
 
-        // Specific processing
-        switch (this.type) {
-
-            case 'catalyseur':
-
-                // Remove the catalyseur reference from formule items
-                for (let item of game.items.filter(i => i.type === 'formule')) {
-                    await item.deleteCatalyseur(this);
-                }
-
-                break;
-
-            case 'competence':
-
-                // Delete the competence from each actor of the world and scenes
-                await this._actors(actor => actor.regles.deleteCompetence?.(this));
-
-                // Delete from all vecus of the world
-                for (let item of game.items.filter(i => i.type === 'vecu')) {
-                    await item.deleteCompetence(this);
-                }
-
-                // Delete from all armes of the world
-                for (let item of game.items.filter(i => i.type === 'arme' && Version.data(i).competence === this.sid)) {
-                    await item.update({ [Version.path(item, 'competence')]: null });
-                }
-
-                // Remove from all groups of the world
-                for (let item of game.items.filter(i => i.type === 'groupe' && i.system.competences.includes(this.sid))) {
-                    await item.update({ 'system.competences': item.system.competences.filter(sid => sid !== this.sid) });
-                }
-
-                break;
-
-            case 'formule':
-
-                // Delete from all formules of the world
-                for (let item of game.items.filter(i => i.type === "formule")) {
-                    await item.deleteVariante(this);
-                }
-
-                break;
-
-            case 'magie':
-
-                // Delete from all sorts of the world
-                for (let item of game.items.filter(i => i.type === "sort" || i.type === "habitus")) {
-                    await item.deleteMagie(this);
-                }
-
-                break;
-
-            case 'periode':
-
-                // Update each actor of the world and scenes
-                await this._actors(actor => actor.deletePeriode(this.sid));
-
-                // Delete from all vecus of the world
-                for (let item of game.items.filter(i => i.type === 'vecu' && Version.data(i).periode === this.sid)) {
-                    await item.update({ [Version.path(item, 'periode')]: null });
-                }
-
-                break;
-
-            case 'vecu':
-
-                // Update each actor of the world and scenes
-                await this._actors(actor => actor.regles.deleteVecu?.(this));
-
-                // Delete from all armes of the world
-                for (let item of game.items.filter(i => i.type === 'arme' && Version.data(i).competence === this.sid)) {
-                    await item.update({ [Version.path(item, 'competence')]: null });
-                }
-
-                break;
-
+        // Update each actor of the world and scenes
+        if (this.type === 'periode') {
+            await this._actors(actor => actor.deletePeriode(this.sid));
         }
 
+        // Les références propres aux règles de la version courante
+        await Regles.courantes.objetSupprime?.(this);
+
         // Delete embedded actor items according to the system identifier
-        for (let actor of game.actors) {
+        await this._actors(async actor => {
             for (let item of actor.items.filter(i => i.sid === this.sid)) {
                 await actor.deleteEmbeddedDocuments('Item', [item.id]);
             }
-            if (Version.data(actor).manoeuvres?.esquive === this.sid) {
-                await actor.update({ [Version.path(actor, 'manoeuvres') + '.esquive']: null });
-            }
-            if (Version.data(actor).manoeuvres?.lutte === this.sid) {
-                await actor.update({ [Version.path(actor, 'manoeuvres') + '.lutte']: null });
-            }
-        }
-        for (let scene of game.scenes) {
-            for (let token of scene.tokens) {
-                if (token.actor != null) {
-                    for (let item of token.actor.items.filter(i => i.sid === this.sid)) {
-                        await token.actor.deleteEmbeddedDocuments('Item', [item.id]);
-                    }
-                    if (Version.data(token.actor).manoeuvres?.esquive === this.sid) {
-                        await token.actor.update({ [Version.path(token.actor, 'manoeuvres') + '.esquive']: null });
-                    }
-                    if (Version.data(token.actor).manoeuvres?.lutte === this.sid) {
-                        await token.actor.update({ [Version.path(token.actor, 'manoeuvres') + '.lutte']: null });
-                    }
-                }
-            }
-        }
+        });
 
     }
 
@@ -507,23 +419,12 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * Ouvre cette copie embarquée comme la fiche du personnage l'ouvre (voir
-     * FicheActeurV5._onOpenLink) : selon la fonctionnalité, la fiche de l'item du monde
-     * avec les données du personnage, ou celle de la copie. Si l'item à ouvrir n'est pas
-     * lisible par l'utilisateur, la fiche de la copie s'ouvre, comme avant.
+     * Ouvre cette copie embarquée comme la fiche du personnage l'ouvre, si les règles le
+     * proposent (ouvrirObjet, voir Regles) ; sinon, la fiche de la copie.
      * @param event The triggering click event.
      */
     async openAsFromActor(event) {
-        // Import dynamique : FeatureBuilder importe les fonctionnalités, qui importent ce module.
-        const { FeatureBuilder } = await import("../../feature/core/regles/v5/featureBuilder.js");
-        const feature = new FeatureBuilder(this.actor)
-            .withScope("actor")
-            .withEmbeddedItem(this.id)
-            .withOriginalItem(this.sid)
-            .create();
-        if (feature != null && feature.openingItem()?.sheet?.isVisible !== false) {
-            return await feature.editEmbeddedItem();
-        }
+        if (await this.actor.regles.ouvrirObjet?.(this) === true) return;
         return super._onClickDocumentLink(event);
     }
 

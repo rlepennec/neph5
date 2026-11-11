@@ -666,6 +666,24 @@ export class ActeurV5 extends CombatantMixin(Acteur) {
     }
 
     /**
+     * Ouvre une copie embarquée comme la fiche du personnage l'ouvre (voir
+     * FicheActeurV5._onOpenLink) : selon la fonctionnalité, la fiche de l'item du monde avec les
+     * données du personnage. Si l'item à ouvrir n'est pas lisible par l'utilisateur, rien.
+     * @param item The embedded item.
+     * @returns true if opened.
+     */
+    async ouvrirObjet(item) {
+        const feature = new FeatureBuilder(this.actor)
+            .withScope("actor")
+            .withEmbeddedItem(item.id)
+            .withOriginalItem(item.sid)
+            .create();
+        if (feature == null || feature.openingItem()?.sheet?.isVisible === false) return false;
+        await feature.editEmbeddedItem();
+        return true;
+    }
+
+    /**
      * Supprime un objet embarqué de la fiche : un vécu ou une compétence emporte ce qui en
      * dépend, les autres partent seuls.
      * @param item The embedded item to delete.

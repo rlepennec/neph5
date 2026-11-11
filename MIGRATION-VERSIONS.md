@@ -1104,10 +1104,17 @@ tronc commun évoluera au fil de l'intégration des règles.
   contexte v5 (Ka, bonus, blessures, laboratoire, Akasha), l'ouverture d'un objet par sa feature
   et le rattachement de l'équipement à l'incarnation courante ; `HistoricalSheet` (figure,
   fraternité), `FigurantSheet` et `CombatantMixinSheet` en héritent ou s'y réfèrent.
-  Restent dans le commun, hors migrations : la liste des gabarits pré-chargés
-  (`module/common/templates.js`, contrat `gabarits`), et dans `NephilimItem` l'ouverture d'une
-  copie embarquée par `FeatureBuilder` (import dynamique) et le nettoyage des références à un
-  item du monde supprimé (catalyseurs, variantes, magies, compétences des vécus et des armes).
+  Lot D fait : les 39 gabarits v5 à pré-charger passent au jeu (`gabarits`,
+  `module/regles/v5/gabarits.js`) ; `preloadTemplates` charge les communs et ceux de tous les jeux.
+  L'ouverture d'une copie embarquée depuis un lien passe par `actor.regles.ouvrirObjet`. Le
+  nettoyage après suppression d'un item du monde : le commun retire les incarnations d'une
+  période puis les copies embarquées ; le jeu retire ses références (`objetSupprime`,
+  `module/regles/v5/objetSupprime.js` : catalyseurs, variantes, magies, compétences des acteurs,
+  vécus, armes et groupes, période des vécus, manœuvres d'esquive et de lutte). Plus aucun module
+  commun n'importe le v5, hors migrations. Restent du v5 sans import dans le commun : les méthodes
+  de `NephilimItem` propres à certains types (`deleteCatalyseur`, `deleteVariante`, `deleteMagie`,
+  `deleteCompetence`...), et dans `neph5e.js` les classes de documents, fiches et modèles v5
+  (étape 3).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

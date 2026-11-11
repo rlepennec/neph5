@@ -16,18 +16,21 @@ import { Version } from "../common/version.js";
  *     le consulte, s'il les fournit, pour `basculerEtat(statusId, options, parDefaut)` (le HUD et
  *     le suivi de combat), `apresModification(changed)`, `supprimerObjet(item)` (un objet
  *     supprimé de la fiche, hors incarnation), `acteursSupprimes(sids)` (des acteurs supprimés du
- *     monde) et `processMacro` (les macros de la barre) ;
+ *     monde), `ouvrirObjet(item)` (une copie embarquée ouverte depuis un lien ; true si ouverte)
+ *     et `processMacro` (les macros de la barre) ;
  *   - `incarnationCreee(actor, cle, anterieure)` : ce qui se passe à la création d'une incarnation
  *     (`anterieure` : l'incarnation active la plus proche, null si aucune) ;
  *   - `supprimerLies(actor, items)` : supprime ce qui était lié à une incarnation retirée ; sans
  *     lui, le commun supprime simplement les objets ;
  *   - `incarnationRetiree(actor, cle)` : ce qui se passe ensuite, hors des objets de l'acteur ;
+ *   - `objetSupprime(item)` : retire des autres documents ses références à un item du monde
+ *     supprimé ;
  *   - `evenements` : les réactions aux événements de Foundry, chacune facultative :
  *     `combattantCree(combatant)` (false l'annule), `nouveauRound(combat)`,
  *     `messageAffiche(message, html)` (chat), `macroDeposee(bar, data, slot)` (synchrone, true
  *     si le dépôt est pris), `messageRecu(socketMessage)` (messages entre clients) ;
  *   - `outils` : les outils du MJ, ajoutés au groupe de contrôles Nephilim (`order` les place) ;
- *   - `gabarits` : les gabarits à pré-charger ;
+ *   - `gabarits` : les gabarits à pré-charger ; ceux de tous les jeux le sont au démarrage ;
  *   - `aides` : ses aides Handlebars, par nom ; celles de tous les jeux sont enregistrées au
  *     démarrage.
  *
