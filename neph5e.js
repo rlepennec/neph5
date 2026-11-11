@@ -11,6 +11,7 @@ import { NephilimCompendium } from "./module/item/nephilimCompendium.js";
 import { Repertoire } from "./module/item/repertoire.js";
 import { Regles } from "./module/regles/regles.js";
 import { JeuV5 } from "./module/regles/v5/jeu.js";
+import { JeuEidolon } from "./module/regles/eidolon/jeu.js";
 import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { Fiches } from "./module/common/fiches.js";
@@ -71,6 +72,7 @@ Hooks.once("init", function () {
 
     // Les jeux de règles disponibles (voir Regles)
     Regles.enregistrer(JeuV5);
+    Regles.enregistrer(JeuEidolon);
 
     CONFIG.Item.documentClass = NephilimItem;
     CONFIG.Actor.documentClass = NephilimActor;

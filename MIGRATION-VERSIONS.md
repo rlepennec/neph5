@@ -1141,6 +1141,15 @@ tronc commun évoluera au fil de l'intégration des règles.
   `CHAMPS` pour ces deux types. `Incarnations.courante` et `definirCourante` lisent et écrivent
   `system.periode` ; `ActeurV5.apresModification` et la migration 1.0.10 de même. Risque à
   vérifier : un token non lié dont le delta portait sa propre courante dans `versions.v5`.
+  Lot 1 fait : **le jeu eidolon** (`module/regles/eidolon/jeu.js`, enregistré par `neph5e.js`) ne
+  fournit que `fiches` : `FicheActeurEidolon` (`module/actor/regles/eidolon/`) pour les trois
+  acteurs — image, nom, description et, pour une figure ou une fraternité, la chronologie des
+  incarnations (déposer une période crée une incarnation, la punaise la rend courante), par le
+  seul commun (`Incarnations`). Les modèles des trois acteurs reçoivent une partie `eidolon` (la
+  description). Les objets reçoivent la fiche vide. Une fiche propre à des règles déclare sa
+  version (`VERSION` : `FicheActeurV5` v5, `FicheActeurEidolon` eidolon) et affiche « version non
+  décrite » pour les autres, le bouton de version apparaissant désormais sur les fiches d'acteurs.
+  Les règles d'eidolon seront fournies plus tard par l'utilisateur.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

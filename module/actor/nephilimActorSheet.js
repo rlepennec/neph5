@@ -15,6 +15,12 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         return NephilimActor;
     }
 
+    /**
+     * La version que montre une fiche propre à des règles, null pour une fiche commune : le
+     * bouton de version y affiche alors « version non décrite » pour les autres.
+     */
+    static VERSION = null;
+
     static DEFAULT_OPTIONS = {
         classes: ["actor"],
         position: {
@@ -30,11 +36,13 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
      * @override
      * Une version que le modèle ne décrit pas encore n'a aucun champ : la fiche rend alors
      * une page qui garde l'image et le nom, et annonce qu'il n'y a rien à montrer — comme
-     * la fiche d'item, pour les trois types d'acteur à la fois.
+     * la fiche d'item, pour les trois types d'acteur à la fois. De même pour une version
+     * qu'une fiche propre à d'autres règles ne sait pas montrer (VERSION).
      */
     _configureRenderParts(options) {
         const parts = super._configureRenderParts(options);
-        if (!Version.decrite(this.document, this.version)) {
+        const propre = this.constructor.VERSION;
+        if (!Version.decrite(this.document, this.version) || (propre != null && this.version !== propre)) {
             parts.main.template = `systems/neph5e/templates/version-vide-acteur.html`;
         }
         return parts;

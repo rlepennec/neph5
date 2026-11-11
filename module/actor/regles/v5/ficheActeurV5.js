@@ -10,6 +10,8 @@ import { NephilimItem } from "../../../item/nephilimItem.js";
  */
 export class FicheActeurV5 extends NephilimActorSheet {
 
+    static VERSION = 'v5';
+
     /**
      * @override
      */

@@ -1,0 +1,52 @@
+<section class="actor-root">
+
+    <aside>
+
+        <img src="{{document.img}}"/>
+
+    </aside>
+
+    <article>
+
+        <header>
+
+            <input
+                name="name"
+                type="text"
+                value="{{document.name}}"
+                spellcheck="false"
+                {{#if @root.locked}} disabled{{/if}}/>
+
+        </header>
+
+        <main>
+
+            {{> "systems/neph5e/templates/description.hbs"}}
+
+            {{#if porte}}
+            <div class="incarnations" data-drop="true">
+                <h3>{{translate "incarnations"}}</h3>
+                <ol>
+                    {{#each incarnations as |incarnation|}}
+                    <li class="item periode" data-sid="{{incarnation.sid}}">
+                        <span>{{incarnation.name}}</span>
+                        {{#if incarnation.courante}}
+                        <i class="fa-solid fa-thumbtack" data-tooltip="{{translate 'periodeCourante'}}"></i>
+                        {{else}}
+                        {{#unless @root.locked}}
+                        <a data-action="currentPeriode" class="fa-solid fa-thumbtack-angle" data-tooltip="{{translate 'periodeCourante'}}"></a>
+                        {{/unless}}
+                        {{/if}}
+                    </li>
+                    {{else}}
+                    <li class="vide">{{translate "deposerPeriode"}}</li>
+                    {{/each}}
+                </ol>
+            </div>
+            {{/if}}
+
+        </main>
+
+    </article>
+
+</section>

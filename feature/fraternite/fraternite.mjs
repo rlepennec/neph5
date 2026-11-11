@@ -67,6 +67,18 @@ export class FraterniteDataModel extends foundry.abstract.TypeDataModel {
                             )
                         },
                         { scope: 'v5' }
+                    ),
+                    // Eidolon, en attendant ses règles : la description seulement
+                    eidolon: new ChunkField
+                    (
+                        {
+                            description: new foundry.data.fields.StringField(
+                                {
+                                    initial: ""
+                                }
+                            )
+                        },
+                        { scope: 'eidolon' }
                     )
                 },
                 { scope: 'versions' }
