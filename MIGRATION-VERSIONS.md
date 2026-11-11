@@ -1097,8 +1097,17 @@ tronc commun évoluera au fil de l'intégration des règles.
   `degreIncarne`, `fraterniteBonus`, `scienceHeader`) quittent `CustomHandlebarsHelpers` pour
   `AidesV5` (`module/common/regles/v5/aides.js`). Le jeu les fournit (`aides`, au contrat) ;
   `neph5e.js` enregistre au démarrage celles de tous les jeux (`Regles.tous()`), la version pouvant
-  changer à chaud. `handlebars.js` n'importe plus rien du v5. Reste la fiche d'acteur de base
-  `nephilimActorSheet.js` (lot C).
+  changer à chaud. `handlebars.js` n'importe plus rien du v5.
+  Lot C fait : la fiche d'acteur commune (`NephilimActorSheet`) ne garde que ce qui ne dépend
+  d'aucune règle (page « version vide », envoi du formulaire, options, suppression et dépôt
+  simple d'objets). `FicheActeurV5` (`module/actor/regles/v5/ficheActeurV5.js`) reprend le
+  contexte v5 (Ka, bonus, blessures, laboratoire, Akasha), l'ouverture d'un objet par sa feature
+  et le rattachement de l'équipement à l'incarnation courante ; `HistoricalSheet` (figure,
+  fraternité), `FigurantSheet` et `CombatantMixinSheet` en héritent ou s'y réfèrent.
+  Restent dans le commun, hors migrations : la liste des gabarits pré-chargés
+  (`module/common/templates.js`, contrat `gabarits`), et dans `NephilimItem` l'ouverture d'une
+  copie embarquée par `FeatureBuilder` (import dynamique) et le nettoyage des références à un
+  item du monde supprimé (catalyseurs, variantes, magies, compétences des vécus et des armes).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

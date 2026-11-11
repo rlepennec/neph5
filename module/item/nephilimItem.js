@@ -508,7 +508,7 @@ export class NephilimItem extends Item {
 
     /**
      * Ouvre cette copie embarquée comme la fiche du personnage l'ouvre (voir
-     * NephilimActorSheet._onOpenLink) : selon la fonctionnalité, la fiche de l'item du monde
+     * FicheActeurV5._onOpenLink) : selon la fonctionnalité, la fiche de l'item du monde
      * avec les données du personnage, ou celle de la copie. Si l'item à ouvrir n'est pas
      * lisible par l'utilisateur, la fiche de la copie s'ouvre, comme avant.
      * @param event The triggering click event.

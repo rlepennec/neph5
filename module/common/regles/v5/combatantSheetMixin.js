@@ -1,6 +1,6 @@
 import { DocumentIdentifier } from "../../documentIdentifier.js";
 import { Riposte } from "../../../../feature/combat/regles/v5/core/riposte.js";
-import { NephilimActorSheet } from "../../../actor/nephilimActorSheet.js";
+import { FicheActeurV5 } from "../../../actor/regles/v5/ficheActeurV5.js";
 
 export const CombatantMixinSheet = Base => {
 
@@ -21,12 +21,12 @@ export const CombatantMixinSheet = Base => {
 				getUp: CombatantSheet._onGetUp
 			},
 			deleteHandlers: {
-				"arme": NephilimActorSheet._onDeleteItem,
-				"armure": NephilimActorSheet._onDeleteItem
+				"arme": FicheActeurV5._onDeleteItem,
+				"armure": FicheActeurV5._onDeleteItem
 			},
 			dropHandlers: {
-				"arme": NephilimActorSheet._onDropItem,
-				"armure": NephilimActorSheet._onDropItem
+				"arme": FicheActeurV5._onDropItem,
+				"armure": FicheActeurV5._onDropItem
 			}
 		}
 

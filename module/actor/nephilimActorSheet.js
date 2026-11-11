@@ -1,12 +1,14 @@
 import { CustomHandlebarsHelpers } from "../common/handlebars.js";
 import { Version } from "../../module/common/version.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
-import { FeatureBuilder } from "../../feature/core/regles/v5/featureBuilder.js";
 import { NephilimActor } from "./nephilimActor.js"
 import { NephilimItem } from "../item/nephilimItem.js"
-import { IncarnationsV5 } from "../../feature/incarnation/regles/v5/incarnations.js";
 import { NephilimMixinSheet } from "../common/nephilimSheetMixin.js";
 
+/**
+ * La fiche d'acteur commune : ce qui ne dépend d'aucune règle. Les fiches d'une version en
+ * héritent (pour la v5, par FicheActeurV5).
+ */
 export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.api.DocumentSheetV2) {
 
     static get documentClass() {
@@ -44,17 +46,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.owner = this.document.isOwner;
-        // Les Ka : ceux de l'incarnation courante pour une figure (voir NephilimActor.kas). Les
-        // gabarits les lisent ici, et non dans data : ils ne sont plus portés par l'acteur.
-        context.ka = this.document.regles.kas;
-        // Les bonus de même : ceux de l'incarnation courante pour une figure
-        context.bonus = this.document.regles.bonus;
-        // Les blessures de même : celles de l'incarnation courante pour une figure
-        context.blessures = this.document.regles.blessures;
-        // Le laboratoire de même : celui de l'incarnation courante pour une figure
-        context.alchimie = this.document.regles.alchimie;
-        // Les voyages akashiques de même
-        context.akasha = this.document.regles.akasha;
         return context;
     }
 
@@ -83,33 +74,6 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
 
     }
 
-    /**
-     * @override
-     * Ouvre la fiche d'un document référencé. Pour un item embarqué dans cet acteur,
-     * on passe par sa feature plutôt que par sheet.render() : c'est elle qui fournit
-     * les données du contexte acteur (chronologie des périodes, degré, readOnly).
-     * Sans cela, la fiche s'ouvre sans ces informations.
-     *
-     * Tous les items n'ont pas de feature : une arme, une armure n'en ont pas, rien ne vient
-     * donc enrichir leur fiche, et elle s'ouvre telle quelle comme n'importe quel document
-     * référencé.
-     */
-    async _onOpenLink(event, target) {
-        const identifier = new DocumentIdentifier(target);
-        const document = identifier.toDocument();
-        if (document?.isEmbedded === true && document.parent === this.document) {
-            const feature = new FeatureBuilder(this.document)
-                .withScope("actor")
-                .withEmbeddedItem(identifier.id)
-                .withOriginalItem(identifier.sid)
-                .create();
-            if (feature != null) {
-                return await feature.editEmbeddedItem();
-            }
-        }
-        await super._onOpenLink(event, target);
-    }
-
     async setOptions(options) {
         const update = {};
         for (const [key, value] of Object.entries(options)) {
@@ -127,12 +91,7 @@ export class NephilimActorSheet extends NephilimMixinSheet(foundry.applications.
         event.preventDefault();
         const data = document.toObject();
         NephilimItem.initializeEmbedded(data);
-        // Une arme, une armure appartiennent à l'incarnation courante (voir IncarnationsV5)
-        if (!new IncarnationsV5(this.document).lierEquipement(data)) {
-            ui.notifications.warn(game.i18n.localize("NEPHILIM.equipementSansIncarnation"));
-            return;
-        }
-        const created = await this.document.createEmbeddedDocuments("Item", [data]);
+        await this.document.createEmbeddedDocuments("Item", [data]);
     }
 
     /** Supprime un item embarqué (materia, catalyseur, vécu, ...) via son id Foundry. */

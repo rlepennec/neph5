@@ -3,10 +3,10 @@ import { DocumentIdentifier } from "../../../../module/common/documentIdentifier
 import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
 import { Ka } from "../../../nephilim/regles/v5/pentacle.js";
 import { Menace } from "../../../combat/regles/v5/core/menace.js";
-import { NephilimActorSheet } from "../../../../module/actor/nephilimActorSheet.js";
+import { FicheActeurV5 } from "../../../../module/actor/regles/v5/ficheActeurV5.js";
 import { OptionsSelector } from "./optionsSelector.js";
 
-export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
+export class FigurantSheet extends CombatantMixinSheet(FicheActeurV5) {
 
     static DEFAULT_OPTIONS = {
         actions: {
@@ -15,12 +15,12 @@ export class FigurantSheet extends CombatantMixinSheet(NephilimActorSheet) {
             rollVecu: FigurantSheet._onRollVecu
         },
         deleteHandlers: {
-            "passe": NephilimActorSheet._onDeleteItem,
-            "vecu": NephilimActorSheet._onDeleteItem
+            "passe": FicheActeurV5._onDeleteItem,
+            "vecu": FicheActeurV5._onDeleteItem
         },
         dropHandlers: {
-            "passe": NephilimActorSheet._onDropItem,
-            "vecu": NephilimActorSheet._onDropItem
+            "passe": FicheActeurV5._onDropItem,
+            "vecu": FicheActeurV5._onDropItem
         }
     }
 

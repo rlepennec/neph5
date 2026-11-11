@@ -1,10 +1,10 @@
-import { NephilimActorSheet } from "../../nephilimActorSheet.js";
+import { FicheActeurV5 } from "./ficheActeurV5.js";
 import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
 import { IncarnationForm } from "../../../../feature/incarnation/regles/v5/incarnationForm.js";
 import { Version } from "../../../common/version.js";
 import { FeatureBuilder } from "../../../../feature/core/regles/v5/featureBuilder.js";
 
-export class HistoricalSheet extends NephilimActorSheet {
+export class HistoricalSheet extends FicheActeurV5 {
 
     static DEFAULT_OPTIONS = {
         actions: {
