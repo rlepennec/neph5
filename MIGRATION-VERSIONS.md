@@ -1133,6 +1133,14 @@ tronc commun évoluera au fil de l'intégration des règles.
   `ActiveEffects.herite(effect)` (plus de getter `herite` sur l'effet). `neph5e.js` n'importe plus
   du v5 que le jeu, pour l'enregistrer. Dans un monde d'une autre version, l'initiative, les
   effets et le HUD sont ceux de Foundry.
+- **Étape 4, en cours : un jeu eidolon volontairement pauvre** (choix de l'utilisateur, 11 novembre
+  2026 : un vrai jeu livré, point de départ d'eidolon). Prérequis fait : **l'incarnation courante
+  est commune**, rangée à la racine (`system.periode` de la figure et de la fraternité) et non plus
+  dans `versions.v5` (choix de l'utilisateur). Passerelle : `VersionMigration.remonter` (table
+  `COMMUNS`), appelée par `migrateData` des deux modèles après `apply` ; `periode` quitte
+  `CHAMPS` pour ces deux types. `Incarnations.courante` et `definirCourante` lisent et écrivent
+  `system.periode` ; `ActeurV5.apresModification` et la migration 1.0.10 de même. Risque à
+  vérifier : un token non lié dont le delta portait sa propre courante dans `versions.v5`.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

@@ -188,7 +188,7 @@ export class _1_0_10 {
         // la variation de l'incarnation courante, d'où il se transmet aux suivantes. Les
         // catalyseurs et les aspects de même : possédés à l'incarnation courante, ils se
         // transmettent ensuite.
-        const periodeCourante = Version.data(actor).periode;
+        const periodeCourante = actor.system.periode;
         const courante = embarquees.has(periodeCourante) ? periodeCourante : chaine.at(-1)?.sid;
         for (const item of lies.filter(i => [...IncarnationsV5.EQUIPEMENTS, ...IncarnationsV5.STOCKS, ...IncarnationsV5.POSSESSIONS].includes(i.type) && !exemplaires.has(i.id))) {
             if (courante != null) exemplaires.set(item.id, courante);

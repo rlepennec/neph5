@@ -11,18 +11,19 @@ export class FraterniteDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // L'incarnation courante, commune à toutes les versions de règles (voir Incarnations)
+            periode: new foundry.data.fields.StringField(
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
             versions: new ChunkField
             (
                 {
                     v5: new ChunkField
                     (
                         {
-                            periode: new foundry.data.fields.StringField(
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
                             effectif: new foundry.data.fields.ArrayField
                             (
                                 new foundry.data.fields.SchemaField
@@ -81,7 +82,7 @@ export class FraterniteDataModel extends foundry.abstract.TypeDataModel {
      * @returns the migrated source data.
      */
     static migrateData(source) {
-        return VersionMigration.apply('fraternite', source);
+        return VersionMigration.remonter('fraternite', VersionMigration.apply('fraternite', source));
     }
 
 }

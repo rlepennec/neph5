@@ -11,6 +11,13 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                     required: true
                 }
             ),
+            // L'incarnation courante, commune à toutes les versions de règles (voir Incarnations)
+            periode: new foundry.data.fields.StringField(
+                {
+                    nullable: true,
+                    initial: null
+                }
+            ),
             versions: new ChunkField
             (
                 {
@@ -26,12 +33,6 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
                             // (Incarnations.simulacre) : gardé pour que 1.0.10 le lise, puis vidé. À retirer
                             // avec les passerelles de migration.
                             simulacre: new foundry.data.fields.StringField(
-                                {
-                                    nullable: true,
-                                    initial: null
-                                }
-                            ),
-                            periode: new foundry.data.fields.StringField(
                                 {
                                     nullable: true,
                                     initial: null
@@ -273,7 +274,7 @@ export class FigureDataModel extends foundry.abstract.TypeDataModel {
      * @returns the migrated source data.
      */
     static migrateData(source) {
-        return VersionMigration.apply('figure', source);
+        return VersionMigration.remonter('figure', VersionMigration.apply('figure', source));
     }
 
 }

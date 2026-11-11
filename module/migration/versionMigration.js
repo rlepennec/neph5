@@ -47,9 +47,9 @@ export class VersionMigration {
         divination:  { v5: ['description', 'cercle', 'degre', 'periode'] },
         dracomachie: { v5: ['description', 'cercle', 'degre', 'periode'] },
         figurant:    { v5: ['menace', 'ka', 'description', 'dommage', 'bonus', 'options'] },
-        figure:      { v5: ['description', 'simulacre', 'periode', 'sapience', 'sapienceDepensee', 'pointsIncarnations', 'ka', 'manoeuvres', 'stase', 'alchimie', 'akasha', 'dommage', 'bonus', 'options'] },
+        figure:      { v5: ['description', 'simulacre', 'sapience', 'sapienceDepensee', 'pointsIncarnations', 'ka', 'manoeuvres', 'stase', 'alchimie', 'akasha', 'dommage', 'bonus', 'options'] },
         formule:     { v5: ['description', 'degre', 'cercle', 'substance', 'enonce', 'aire', 'duree', 'elements', 'catalyseurs', 'variantes', 'echec', 'maladresse', 'focus', 'status', 'quantite', 'transporte', 'periode'] },
-        fraternite:  { v5: ['periode', 'effectif', 'description', 'options'] },
+        fraternite:  { v5: ['effectif', 'description', 'options'] },
         habitus:     { v5: ['description', 'domaine', 'element', 'voies', 'incantation', 'degre', 'portee', 'duree', 'periode'] },
         invocation:  { v5: ['description', 'sephirah', 'monde', 'element', 'degre', 'portee', 'duree', 'visibilite', 'focus', 'status', 'pacte', 'periode'] },
         magie:       { v5: ['description'] },
@@ -67,6 +67,15 @@ export class VersionMigration {
         technique:   { v5: ['description', 'cercle', 'degre', 'periode'] },
         tekhne:      { v5: ['description', 'cercle', 'degre', 'periode'] },
         vecu:        { v5: ['description', 'degre', 'periode', 'element', 'competences', 'mnemos'] }
+    };
+
+    /**
+     * Les champs revenus des versions à la racine, communs à toutes les règles, par type de
+     * document : l'incarnation courante (1.8.0).
+     */
+    static COMMUNS = {
+        figure: ['periode'],
+        fraternite: ['periode']
     };
 
     /**
@@ -135,6 +144,26 @@ export class VersionMigration {
         source.flags ??= {};
         source.flags.neph5e ??= {};
         source.flags.neph5e.releveIncarnations = releve;
+        return source;
+    }
+
+    /**
+     * Remonte à la racine les champs devenus communs (COMMUNS), depuis la version v5 où ils
+     * étaient rangés. Comme apply : seules les clés présentes, et une valeur déjà à la racine
+     * l'emporte.
+     * @param type   The document type, as declared by the manifest.
+     * @param source The raw source data, possibly partial.
+     * @returns the migrated source data.
+     */
+    static remonter(type, source) {
+        const champs = VersionMigration.COMMUNS[type];
+        const v5 = source?.versions?.v5;
+        if (champs == null || v5 == null) return source;
+        for (const champ of champs) {
+            if (v5[champ] === undefined) continue;
+            if (source[champ] === undefined) source[champ] = v5[champ];
+            delete v5[champ];
+        }
         return source;
     }
 

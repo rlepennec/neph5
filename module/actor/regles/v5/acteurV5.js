@@ -753,7 +753,7 @@ export class ActeurV5 extends CombatantMixin(Acteur) {
      * @param changed The changed data of the actor.
      */
     apresModification(changed) {
-        if (foundry.utils.getProperty(changed, Version.path(this.actor, 'periode')) !== undefined) {
+        if (foundry.utils.getProperty(changed, 'system.periode') !== undefined) {
             for (const token of this.actor.getActiveTokens()) token.drawEffects();
         }
     }

@@ -55,7 +55,7 @@ export class Incarnations {
      * @returns {string|null} la clé de l'incarnation courante, null si aucune.
      */
     get courante() {
-        return Version.data(this.actor).periode ?? null;
+        return this.actor?.system?.periode ?? null;
     }
 
     /**
@@ -435,7 +435,7 @@ export class Incarnations {
      * @param cle The key of the incarnation to make current, null for none.
      */
     async definirCourante(cle) {
-        await this.actor.update({ [Version.path(this.actor, 'periode')]: cle });
+        await this.actor.update({ 'system.periode': cle });
     }
 
     /**
