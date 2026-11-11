@@ -45,7 +45,7 @@ export class Laboratoire {
      * @returns true if the construct is active.
      */
     isActive(construct) {
-        return this.actor.alchimie.constructs[construct].active;
+        return this.actor.regles.alchimie.constructs[construct].active;
     }
 
     /**
@@ -54,13 +54,13 @@ export class Laboratoire {
      */
     static getAll(actor) {
         const all = [];
-        for (let sid of actor.alchimie.laboratoires) {
+        for (let sid of actor.regles.alchimie.laboratoires) {
             const _actor = game.actors.find(i => i.sid === sid);
             if (_actor != null) {
                 all.push({
                     id: _actor.sid,
                     name: _actor.name,
-                    active: actor.alchimie.courant === _actor.sid
+                    active: actor.regles.alchimie.courant === _actor.sid
                 });
             }
         }
@@ -74,7 +74,7 @@ export class Laboratoire {
      */
     getConstruct(substance) {
         const construct = Laboratoire.CONSTRUCTS.get(substance);
-        return construct == null ? undefined : this.actor.alchimie.constructs[construct];
+        return construct == null ? undefined : this.actor.regles.alchimie.constructs[construct];
     }
 
     /**
@@ -82,10 +82,10 @@ export class Laboratoire {
      * @returns the maximum number of materiae primae.
      */
     getMaxBaseMP(element) {
-        return this.actor.science('oeuvreAuNoir') +
-            this.actor.science('oeuvreAuBlanc') +
-            this.actor.science('oeuvreAuRouge') +
-            this.actor.kas[element];
+        return this.actor.regles.science('oeuvreAuNoir') +
+            this.actor.regles.science('oeuvreAuBlanc') +
+            this.actor.regles.science('oeuvreAuRouge') +
+            this.actor.regles.kas[element];
     }
 
 }

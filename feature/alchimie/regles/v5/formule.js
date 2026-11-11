@@ -54,7 +54,7 @@ export class Formule extends AbstractFocus {
             // If not critical, spend materiae primae
             if (result.critical === false) {
                 for (const [element, cout] of Object.entries(this.coutsEnMateriae())) {
-                    const quantite = Math.max(0, this.actor.alchimie.primae[element].quantite - cout);
+                    const quantite = Math.max(0, this.actor.regles.alchimie.primae[element].quantite - cout);
                     await new IncarnationsV5(this.actor).ecrireAlchimie({ ['primae.' + element + '.quantite']: quantite });
                 }
             }
@@ -93,7 +93,7 @@ export class Formule extends AbstractFocus {
      * @returns les éléments dont l'acteur a assez de materiae primae pour une quintuple.
      */
     elementsQuintuple() {
-        return Constants.ELEMENTS.filter(e => (this.actor.alchimie.primae[e]?.quantite ?? 0) >= this.coutQuintuple());
+        return Constants.ELEMENTS.filter(e => (this.actor.regles.alchimie.primae[e]?.quantite ?? 0) >= this.coutQuintuple());
     }
 
     /**
@@ -138,7 +138,7 @@ export class Formule extends AbstractFocus {
     modifier(parameters) {
         if (Version.data(this.item).elements[0] === 'quintuple') {
             const substance = Version.data(this.item).substance;
-            const construct = this.actor.getConstruct(substance);
+            const construct = this.actor.regles.getConstruct(substance);
             if (parameters == null || parameters.elt == null) {
                 const element = this.elementQuintupleParDefaut();
                 return element == null ? 0 : construct[element] * 10;
@@ -178,7 +178,7 @@ export class Formule extends AbstractFocus {
      */
     getOwner() {
         if (this.actor.type === 'figure') {
-            const sid = this.actor.alchimie.courant;
+            const sid = this.actor.regles.alchimie.courant;
             return sid == null ? this.actor : game.actors.find(i => i.sid === sid);
         } else {
             return null;
@@ -209,7 +209,7 @@ export class Formule extends AbstractFocus {
         }
 
         const owner = this.getOwner();
-        const construct = owner == null ? null : owner.getConstruct(Version.data(this.item).substance);
+        const construct = owner == null ? null : owner.regles.getConstruct(Version.data(this.item).substance);
 
         // Construct inactif
         if (construct?.active !== true) {
@@ -235,7 +235,7 @@ export class Formule extends AbstractFocus {
                 case 'feu':
                 case 'lune':
                 case 'terre':
-                    if (this.actor.alchimie.primae[element].quantite < Version.data(this.item).degre) {
+                    if (this.actor.regles.alchimie.primae[element].quantite < Version.data(this.item).degre) {
                         return -110;
                     }
                     break;
@@ -249,7 +249,7 @@ export class Formule extends AbstractFocus {
 
                 // Degré materiae primae de chaque élément.
                 case 'quintessence':
-                    if (Constants.ELEMENTS.some(e => this.actor.alchimie.primae[e].quantite < this.coutQuintessence())) {
+                    if (Constants.ELEMENTS.some(e => this.actor.regles.alchimie.primae[e].quantite < this.coutQuintessence())) {
                         return -110;
                     }
                     break;

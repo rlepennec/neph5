@@ -10,10 +10,10 @@
         <label class="zone">Laboratoire de {{actor.name}}</label>
         {{/with}}
 
-        {{#unless (isEmptyCollection actor.laboratoires)}}
+        {{#unless (isEmptyCollection actor.regles.laboratoires)}}
         <ol class="menu">
 
-            {{#each actor.laboratoires as |item|}}
+            {{#each actor.regles.laboratoires as |item|}}
             {{#if (ne @root.alchimie.courant item.id)}}    
             <li data-action="selectLaboratory" class="name select"data-sid="{{item.id}}">{{item.name}}</li>
             {{/if}}
@@ -23,7 +23,7 @@
             <li data-action="selectLaboratory" class="name select">{{actor.name}}</li>
             {{/if}}
 
-            {{#each actor.laboratoires as |item|}}
+            {{#each actor.regles.laboratoires as |item|}}
             {{#if (eq @root.alchimie.courant item.id)}} 
             <li data-action="deleteLaboratory" class="name delete">
                 <label>{{item.name}}</label>

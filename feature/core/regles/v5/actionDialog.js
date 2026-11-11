@@ -317,7 +317,7 @@ export class ActionDialog extends AbstractDialog {
         // que 'NEPHILIM.luneNoire' ne redonnait pas la clef 'noyau'.
         const approche = selector?.value;
         if (approche == null) return 0;
-        return approche === "none" ? 0 : this.actor.getKa(approche) * 10;
+        return approche === "none" ? 0 : this.actor.regles.getKa(approche) * 10;
     }
 
     /**
@@ -349,7 +349,7 @@ export class ActionDialog extends AbstractDialog {
         // [V14] this.form → this.element (voir _manoeuver).
         // [V14] this.actor remplace this.actor (déjà correct en v12 ici, pas de changement).
         const selector = this.element?.querySelector("#element");
-        return this.actor.getKa(selector == null ? "air" : selector.value) * 10;
+        return this.actor.regles.getKa(selector == null ? "air" : selector.value) * 10;
     }
 
     /**

@@ -145,7 +145,7 @@
 
             <ol class="body">
 
-                {{#each actor.materiae as |item|}}
+                {{#each actor.regles.materiae as |item|}}
                 <li class="materiae item" data-id="{{item.embedded.id}}" data-sid="{{item.original.sid}}">
 
                     {{!-- Supprimer est une modification : la corbeille ne s'affiche que
@@ -199,7 +199,7 @@
 
             <ol class="body">
 
-                {{#each actor.catalyseurs as |item|}}
+                {{#each actor.regles.catalyseurs as |item|}}
                 <li class="catalyseur item" data-id="{{item.embedded.id}}" data-sid="{{item.original.sid}}">
 
                     {{#if @root.locked}}

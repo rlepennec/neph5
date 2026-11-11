@@ -132,7 +132,7 @@ export class Health {
         const impactPorte = Health.impactOf(impact, critical);
 
         if (physical === true) {
-            const armor = this.actor.protection("physique");
+            const armor = this.actor.regles.protection("physique");
             const fix = winner === Constants.ACTION && attack?.impact?.fix != null ? attack.impact.fix : null;
             const encaisse = Health.damagesOf(impactPorte, armor, perforante, absorption);
             // Les dommages fixes ne passent pas par la protection : le critique les double.
@@ -144,7 +144,7 @@ export class Health {
         }
 
         if (Version.data(weapon).magique === true) {
-            const armor = this.actor.protection("magique");
+            const armor = this.actor.regles.protection("magique");
             const damages = Health.damagesOf(impactPorte, armor, false, absorption);
             resultats.push(await new Damages(this.actor, 'magique').apply(damages));
             if (detaille) {
@@ -348,12 +348,12 @@ export class Health {
                 if (manoeuver.effect != null) {
                     const actor = canvas.tokens?.objects?.children.find(t => t.id === token)?.actor;
                     if (actor != null) {
-                        await actor.activateEffect(manoeuver.effect.name);
+                        await actor.regles.activateEffect(manoeuver.effect.name);
                     }
                 } else if (manoeuver.id === Liberer.ID) {
                     const actor = canvas.tokens?.objects?.children.find(t => t.actor.id === attacker)?.actor;
                     if (actor != null) {
-                        await actor.deactivateEffect(ActiveEffects.IMMOBILISE.name);
+                        await actor.regles.deactivateEffect(ActiveEffects.IMMOBILISE.name);
                     }
                 }
             }
@@ -379,18 +379,18 @@ class Damages {
         this.actor = actor;
         this.type = type;
         this.damages = [];
-        const blessures = actor.blessures[type];
+        const blessures = actor.regles.blessures[type];
         if (blessures['_1'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_1'));
         }
-        if (type === 'physique' && actor.kas.terre > 4 && blessures['_4'] === false) {
+        if (type === 'physique' && actor.regles.kas.terre > 4 && blessures['_4'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_4'));
         }
-        if (type === 'physique' && actor.kas.terre > 9 && blessures['_5'] === false) {
+        if (type === 'physique' && actor.regles.kas.terre > 9 && blessures['_5'] === false) {
             this.damages.push(new Damage()
                 .withSize(1)
                 .withBox('_5'));
@@ -465,7 +465,7 @@ class Damages {
         }
 
         // Exit if the actor is already out
-        if (this.actor.blessures[this.type]['mortelle'] === true) {
+        if (this.actor.regles.blessures[this.type]['mortelle'] === true) {
             return null;
         }
 
@@ -490,7 +490,7 @@ class Damages {
 
         // To much damage
         } else {
-            await this.actor.ecrireBlessures({ [this.type + '.mortelle']: true });
+            await this.actor.regles.ecrireBlessures({ [this.type + '.mortelle']: true });
             return new Set(['mortelle']);
         }
 
@@ -529,9 +529,9 @@ class Damage {
      * @param type  The type of damage to apply.
      */
     async apply(actor, type) {
-        const data = foundry.utils.duplicate(actor.blessures[type]);
+        const data = foundry.utils.duplicate(actor.regles.blessures[type]);
         this.boxes.forEach(box => data[box] = true);
-        await actor.ecrireBlessures({ [type]: data });
+        await actor.regles.ecrireBlessures({ [type]: data });
     }
 
 }

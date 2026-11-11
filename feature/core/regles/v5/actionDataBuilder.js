@@ -372,7 +372,7 @@ export class ActionDataBuilder {
         }
 
         if (this.blessures != null) {
-            data.blessures = this.actor.getWoundsModifier(this.blessures);
+            data.blessures = this.actor.regles.getWoundsModifier(this.blessures);
         }
 
         if (this.manoeuvers != null) {

@@ -112,7 +112,7 @@ export class AbstractFeature {
      * @returns the fraternite degre.
      */
     get fraternite() {
-        return this.actor.fraternite(this.item.sid);
+        return this.actor.regles.fraternite(this.item.sid);
     }
 
     /**
@@ -402,7 +402,7 @@ export class AbstractFeature {
     approches(manoeuver) {
         // La manœuvre est créée pour cette action : ses approches peuvent en dépendre (ex:
         // Tirer, selon que la cible est visée ou non), elles sont donc déjà à jour ici.
-        return manoeuver == null ? this.actor.approches() : ManoeuverBuilder.create(manoeuver, this).approchesOf(this.actor);
+        return manoeuver == null ? this.actor.regles.approches() : ManoeuverBuilder.create(manoeuver, this).approchesOf(this.actor);
     }
 
     /**
