@@ -1191,7 +1191,14 @@ tronc commun évoluera au fil de l'intégration des règles.
   du groupe Nephilim (`Preparation`, `module/common/preparation.js`), visible en mode création ;
   changer de version de préparation ou de mode remplace ses fiches et réaffiche répertoires et
   outils. Le bouton « livre » des fiches est retiré : une fenêtre affiche la version de travail.
-  Reste : lot 4 (cases de version des acteurs : champ `enabled` et fenêtre de configuration).
+  Lot 4 fait : les acteurs portent `enabled` (partie v5 en `VersionField`). Les cases de version
+  sont communes aux fenêtres de configuration (`AbstractOptionsSelector` : `versions`,
+  `versionsModifiables`, `enregistrerVersions`, gabarit `templates/versions.hbs`), ajoutées aux
+  options de la figure, du figurant et de la fraternité. Répertoire des acteurs
+  (`NephilimActorDirectory`) et compendiums d'acteurs filtrés comme ceux des objets
+  (`Repertoire.filtrer(noeud, strict, documentName)`, `Version.visible(…, documentName)` pour les
+  entrées d'index, `Actor.compendiumIndexFields`) ; création limitée aux types compatibles. Le
+  chantier de la compatibilité est fini.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

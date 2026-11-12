@@ -1,0 +1,11 @@
+{{!-- Les cases de version d'un document : une par version compatible avec son type, pour le MJ
+      (voir AbstractOptionsSelector). --}}
+{{#if versions.length}}
+<fieldset>
+    <legend>{{translate "versionsRegles"}}</legend>
+    {{#each versions as |v|}}
+    <label>{{translate v.version}}</label>
+    <input type="checkbox" name="enabled.{{v.version}}" {{checked v.enabled}}/>
+    {{/each}}
+</fieldset>
+{{/if}}

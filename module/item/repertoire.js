@@ -18,13 +18,14 @@ export class Repertoire {
      *              DirectoryCollectionMixin) : documents du monde, ou entrées d'index d'un
      *              compendium, qui portent aussi leur type.
      * @param strict La vue de l'utilisateur (voir Version.vueStricte), lue une fois pour tout l'arbre.
+     * @param documentName 'Item' (par défaut) ou 'Actor' : les entrées d'index n'en disent rien.
      * @returns une copie du nœud sans les entrées masquées (types incompatibles, et objets non
      *          activés si le réglage le demande) ; null pour un dossier que ce filtre a vidé (un
      *          dossier déjà vide reste, pour qu'on puisse y déposer).
      */
-    static filtrer(noeud, strict = Version.vueStricte) {
-        const children = noeud.children.map(c => Repertoire.filtrer(c, strict)).filter(c => c != null);
-        const entries = noeud.entries.filter(e => Version.visible(e, strict));
+    static filtrer(noeud, strict = Version.vueStricte, documentName = 'Item') {
+        const children = noeud.children.map(c => Repertoire.filtrer(c, strict, documentName)).filter(c => c != null);
+        const entries = noeud.entries.filter(e => Version.visible(e, strict, documentName));
         const vide = children.length === 0 && entries.length === 0;
         const avait = noeud.children.length > 0 || noeud.entries.length > 0;
         if (!noeud.root && vide && avait) return null;
@@ -43,7 +44,9 @@ export class Repertoire {
 
         // La position est celle que pose Foundry lui-même : la boîte s'ouvre contre la barre
         // latérale, à la hauteur du bouton cliqué.
-        const types = (Repertoire.TYPES ?? Object.keys(CONFIG.Item.dataModels)).filter(t => Version.compatible(t));
+        const documentName = app.documentName ?? 'Item';
+        const proposes = documentName === 'Item' ? Repertoire.TYPES : null;
+        const types = (proposes ?? Object.keys(CONFIG[documentName].dataModels)).filter(t => Version.compatible(t, Version.world, documentName));
         const options = {
             position: { width: 320, left: window.innerWidth - 630, top: target.offsetTop },
             types: types
@@ -64,12 +67,13 @@ export class Repertoire {
      */
     static rafraichir() {
         ui.items?.render();
+        ui.actors?.render();
         // Les fiches d'acteur aussi : les compétences actives en dépendent (voir Groupe)
         for (const app of foundry.applications.instances.values()) {
             if (app.rendered && app.document instanceof foundry.documents.Actor) app.render();
         }
         for (const pack of game.packs ?? []) {
-            if (pack.documentName !== 'Item') continue;
+            if (pack.documentName !== 'Item' && pack.documentName !== 'Actor') continue;
             for (const app of pack.apps) if (app.rendered) app.render();
         }
     }

@@ -135,13 +135,17 @@ export class Version {
     /**
      * @param document Un document du monde, ou une entrée d'index de compendium.
      * @param strict   La vue de l'utilisateur, lue une fois par l'appelant qui en traite plusieurs.
+     * @param documentName 'Item' ou 'Actor', pour une entrée d'index qui ne le dit pas.
      * @returns true si le document s'affiche dans les répertoires et les compendiums : son type est
      *          compatible avec la version du monde et, en vue stricte, il y appartient.
      */
-    static visible(document, strict = Version.vueStricte) {
+    static visible(document, strict = Version.vueStricte, documentName = document?.documentName ?? 'Item') {
+        if (document == null) return false;
+        // Une entrée d'index de compendium ne dit pas son type de document
+        const doc = document.documentName === documentName ? document : { ...document, documentName };
         return strict
-            ? Version.appartient(document)
-            : Version.compatible(document?.type, Version.world, document?.documentName);
+            ? Version.appartient(doc)
+            : Version.compatible(doc.type, Version.world, documentName);
     }
 
     /**

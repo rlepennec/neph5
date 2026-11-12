@@ -14,6 +14,7 @@ import { JeuV5 } from "./module/regles/v5/jeu.js";
 import { JeuEidolon } from "./module/regles/eidolon/jeu.js";
 import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
+import { NephilimActorDirectory } from "./module/actor/nephilimActorDirectory.js";
 import { Fiches } from "./module/common/fiches.js";
 import { Preparation } from "./module/common/preparation.js";
 import { FicheActeurVide } from "./module/actor/ficheActeurVide.js";
@@ -85,6 +86,8 @@ Hooks.once("init", function () {
     // Le répertoire des items de la barre latérale : il n'affiche et ne propose à la création
     // que les types compatibles avec la version de règles du monde, parmi Repertoire.TYPES.
     CONFIG.ui.items = NephilimItemDirectory;
+    // De même pour les acteurs
+    CONFIG.ui.actors = NephilimActorDirectory;
 
     CONFIG.Canvas.layers.nephilim = { layerClass: foundry.canvas.layers.ControlsLayer, group: "primary" };
     CONFIG.TinyMCE = {
@@ -172,13 +175,17 @@ Hooks.once("init", function () {
         ...(CONFIG.Item.compendiumIndexFields ?? []),
         ...Version.ALL.map(version => `system.versions.${version}.enabled`)
     ];
+    CONFIG.Actor.compendiumIndexFields = [
+        ...(CONFIG.Actor.compendiumIndexFields ?? []),
+        ...Version.ALL.map(version => `system.versions.${version}.enabled`)
+    ];
 
     // Les compendiums d'items n'affichent que les types compatibles avec la version de règles
     // du monde, comme le répertoire des items : leur fenêtre est posée avant d'être créée
     // (Game.initializeUI, après le hook setup).
     Hooks.once("setup", () => {
         for (const pack of game.packs) {
-            if (pack.documentName === 'Item') pack.applicationClass = NephilimCompendium;
+            if (pack.documentName === 'Item' || pack.documentName === 'Actor') pack.applicationClass = NephilimCompendium;
         }
     });
 

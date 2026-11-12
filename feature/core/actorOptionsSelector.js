@@ -10,6 +10,8 @@ export class ActorOptionsSelector extends AbstractOptionsSelector {
 
     static async #onSubmit(event, form, formData) {
         event.preventDefault();
+        // Les cases de version d'abord : elles ne sont pas des options de la fiche
+        await this.enregistrerVersions(formData.object);
         await this.sheet.setOptions(formData.object);
     }
 
