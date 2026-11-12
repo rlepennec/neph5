@@ -155,12 +155,15 @@ export class Version {
     }
 
     /**
-     * La version du monde, lue une fois puis gardée : voir world.
+     * La version de travail et celle de la table, lues une fois puis gardées : voir world et table.
      */
     static #monde = null;
+    static #table = null;
 
     /**
-     * La version retenue quand personne n'en a choisi : celle du monde.
+     * La version de travail : celle du monde, ou pour le MJ en mode création sa version de
+     * préparation (voir Preparation). C'est celle que lisent les fiches, les répertoires et les
+     * données ; les traitements communs à la table lisent table.
      *
      * Elle est lue à chaque lecture d'un champ de règles (Version.data, Version.path) : des
      * milliers de fois par rendu de fiche. Or game.settings.get parcourt tous les réglages du
@@ -173,22 +176,49 @@ export class Version {
         if (Version.#monde != null) {
             return Version.#monde;
         }
+        const table = Version.table;
+        // L'utilisateur n'est connu qu'après l'initialisation : jusque-là, rien n'est gardé
+        if (game.user == null) return table;
+        // Le MJ en mode création travaille dans sa version de préparation (voir Preparation)
+        let preparation = null;
+        if (game.user.isGM === true && !Version.filtreStrict) {
+            try {
+                preparation = game.settings.get('neph5e', 'versionPreparation') || null;
+            } catch {
+                preparation = null;
+            }
+        }
+        Version.#monde = Version.ALL.includes(preparation) ? preparation : table;
+        return Version.#monde;
+    }
+
+    /**
+     * La version du monde, celle de la table : le réglage, sans la version de préparation du MJ.
+     * Les traitements communs à toute la table s'y tiennent, même lancés par le client du MJ en
+     * préparation (événements de combat, de chat, messages entre clients, initiative...).
+     * @returns {string} l'identifiant de la version.
+     */
+    static get table() {
+        if (Version.#table != null) {
+            return Version.#table;
+        }
         // Le réglage n'existe pas encore pendant l'initialisation, et game.settings.get
         // lève plutôt que de rendre undefined : on retombe alors sur l'édition courante,
         // sans la garder.
         try {
-            Version.#monde = game.settings.get('neph5e', 'version') ?? 'v5';
-            return Version.#monde;
+            Version.#table = game.settings.get('neph5e', 'version') ?? 'v5';
+            return Version.#table;
         } catch {
             return 'v5';
         }
     }
 
     /**
-     * Oublie la version du monde gardée : la prochaine lecture relira le réglage.
+     * Oublie les versions gardées : la prochaine lecture relira les réglages.
      */
     static oublierMonde() {
         Version.#monde = null;
+        Version.#table = null;
     }
 
     /**

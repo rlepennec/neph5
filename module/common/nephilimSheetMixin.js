@@ -20,8 +20,7 @@ export const NephilimMixinSheet = Base => {
 			tag: "form",
 			actions: {
 				delete: NephilimSheet._onDelete,
-				open: NephilimSheet._onOpenLink,
-				version: NephilimSheet._onVersion
+				open: NephilimSheet._onOpenLink
 			},
 			window: {
 				resizable: true,
@@ -33,63 +32,16 @@ export const NephilimMixinSheet = Base => {
 		}
 
 		/**
-		 * La version des règles affichée par cette fenêtre.
-		 *
-		 * C'est un état de la FICHE, comme le cadenas : deux fenêtres ouvertes sur le même
-		 * document peuvent montrer deux éditions, et rien n'est écrit dans le document.
-		 * La valeur est résolue au premier accès et non à la construction, car le réglage
-		 * du monde n'existe pas encore quand les classes sont chargées.
+		 * La version des règles affichée par cette fenêtre : la version de travail (voir
+		 * Version.world), la même pour toutes les fenêtres du client. Quand elle change, les
+		 * fiches sont remplacées (voir Fiches.rafraichir). La valeur est résolue au premier
+		 * accès et non à la construction, car le réglage du monde n'existe pas encore quand les
+		 * classes sont chargées.
 		 */
 		#version = null;
 
 		get version() {
 			return this.#version ??= Version.world;
-		}
-
-		/**
-		 * @override
-		 * Le bouton de version, à côté du cadenas. Il n'apparaît que sur les documents qui
-		 * portent réellement plusieurs versions : les types pas encore portés n'en ont pas,
-		 * et rien ne change pour eux.
-		 */
-		async _renderFrame(options) {
-			const frame = await super._renderFrame(options);
-			const versions = Version.of(this.document);
-			if (versions.length > 1) {
-				const label = game.i18n.localize('NEPHILIM.' + this.version);
-				this.window.controls.insertAdjacentHTML("beforebegin",
-					`<button type="button" class="header-control fa-solid fa-book icon" data-action="version"`
-					+ ` data-tooltip="${label}" aria-label="${label}"></button>`);
-				this.window.version = frame.querySelector("button[data-action=version]");
-			}
-			return frame;
-		}
-
-		/**
-		 * Passe à la version suivante, et revient à la première après la dernière.
-		 */
-		static async _onVersion(event, target) {
-			const versions = Version.of(this.document);
-			if (versions.length < 2) return;
-			const suivante = versions[(versions.indexOf(this.version) + 1) % versions.length];
-			const label = game.i18n.localize('NEPHILIM.' + suivante);
-
-			// Le cadre n'est pas reconstruit par un rendu : l'infobulle est mise à jour ici.
-			if (this.window.version != null) {
-				this.window.version.dataset.tooltip = label;
-				this.window.version.setAttribute("aria-label", label);
-			}
-			this.setVersion(suivante);
-		}
-
-		/**
-		 * @param value The version to display.
-		 */
-		setVersion(value) {
-			if (this.version !== value) {
-				this.#version = value;
-				this.render(true);
-			}
 		}
 
 		/**

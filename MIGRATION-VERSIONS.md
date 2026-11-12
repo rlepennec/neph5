@@ -1180,9 +1180,18 @@ tronc commun évoluera au fil de l'intégration des règles.
   Objets embarqués masqués s'ils n'appartiennent pas à la version du monde, pour tous :
   `IncarnationsV5.estActif`, `AbstractFeature.items`, `voie`, `equipements`, `stocks`,
   `possessions` ; les listes qui ne passent par aucun de ces points ne sont pas filtrées. Les fiches
-  d'acteurs ouvertes sont réaffichées quand le MJ coche ou décoche un objet du monde. Restent : lot 3 (liste de version sur la fiche pour le MJ en
-  création, à la place du bouton livre), lot 4 (cases de version des acteurs : champ `enabled` et
-  fenêtre de configuration).
+  d'acteurs ouvertes sont réaffichées quand le MJ coche ou décoche un objet du monde.
+  Lot 3 fait (choix de l'utilisateur, 12 novembre 2026 : une **version de préparation** pour tout le
+  client du MJ, et non une version par fenêtre, qui aurait demandé de reprendre ~370 lectures
+  implicites de la version du monde) : réglage client `versionPreparation` ; `Version.world` est la
+  **version de travail** (pour le MJ en mode création, sa version de préparation, sinon celle du
+  monde) ; `Version.table` et `Regles.table` sont la version du monde, pour les traitements communs
+  à la table lancés par le client du MJ (événements de combat, de chat, de macros, messages entre
+  clients, initiative, nettoyage après suppression d'un objet du monde). Le MJ la choisit par un outil
+  du groupe Nephilim (`Preparation`, `module/common/preparation.js`), visible en mode création ;
+  changer de version de préparation ou de mode remplace ses fiches et réaffiche répertoires et
+  outils. Le bouton « livre » des fiches est retiré : une fenêtre affiche la version de travail.
+  Reste : lot 4 (cases de version des acteurs : champ `enabled` et fenêtre de configuration).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

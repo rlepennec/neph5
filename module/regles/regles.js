@@ -93,6 +93,14 @@ export class Regles {
     }
 
     /**
+     * @returns le jeu de règles de la table (voir Version.table) : pour les traitements communs à
+     *          toute la table, même lancés par le client du MJ en préparation.
+     */
+    static get table() {
+        return Regles.get(Version.table);
+    }
+
+    /**
      * @param actor L'acteur.
      * @returns l'objet des règles de cet acteur pour la version du monde ; un objet vide si elle
      *          ne fournit rien pour les acteurs.

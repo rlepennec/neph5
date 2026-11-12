@@ -15,6 +15,7 @@ import { JeuEidolon } from "./module/regles/eidolon/jeu.js";
 import { Version } from "./module/common/version.js";
 import { NephilimActor } from "./module/actor/nephilimActor.js";
 import { Fiches } from "./module/common/fiches.js";
+import { Preparation } from "./module/common/preparation.js";
 import { FicheActeurVide } from "./module/actor/ficheActeurVide.js";
 import { FicheObjetVide } from "./module/item/ficheObjetVide.js";
 import { NephilimActiveEffect } from "./module/common/nephilimActiveEffect.js";
@@ -257,26 +258,28 @@ Hooks.once("init", function () {
                     toggle: true,
                     onChange: (e, t) => { new EphemerideDialog().render(true) }
                 },
-                ...Regles.courantes.outils
+                ...Regles.courantes.outils,
+                // La version de préparation, pour le MJ en mode création (voir Preparation)
+                ...(Preparation.outil() != null ? { preparation: Preparation.outil() } : {})
             }
         }
     })
 
-    // Défaut de Foundry : le formulaire du token envoie toujours actorId. Quand on y change le lien
-    // à l'acteur, Foundry croit que le token a changé d'acteur et le retire de son propre acteur
-    // (TokenDocument#_onUpdate). Jusqu'au rechargement, ses icônes ne suivaient plus les états.
     // L'index des objets du monde par identifiant (voir Version.appartient)
     for (const evenement of ["createItem", "updateItem", "deleteItem"]) {
         Hooks.on(evenement, item => { if (item.parent == null) Version.oublierObjets(); });
     }
 
+    // Défaut de Foundry : le formulaire du token envoie toujours actorId. Quand on y change le lien
+    // à l'acteur, Foundry croit que le token a changé d'acteur et le retire de son propre acteur
+    // (TokenDocument#_onUpdate). Jusqu'au rechargement, ses icônes ne suivaient plus les états.
     Hooks.on("updateToken", (token, changed) => {
         if ("actorId" in changed || "actorLink" in changed) token.baseActor?._registerDependentToken(token);
     });
 
     // Les événements suivants ne concernent que les règles : ils sont transmis au jeu de la
     // version courante, s'il y réagit (voir Regles et EvenementsV5).
-    const evenements = () => Regles.courantes.evenements ?? {};
+    const evenements = () => Regles.table.evenements ?? {};
 
     Hooks.on("preCreateCombatant", (combatant, data, options, userId) => {
         return evenements().combattantCree?.(combatant);

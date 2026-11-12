@@ -42,11 +42,8 @@ export const registerSystemSettings = function () {
         }
     });
 
-    // La version des règles retenue quand personne n'en a choisi : celle qu'une fiche
-    // affiche à son ouverture, et celle que lisent le chat et les listes, qui n'ont pas
-    // de fiche pour trancher. Le choix reste ensuite propre à chaque fenêtre ouverte :
-    // changer le réglage ne défait pas sous les yeux du MJ une version qu'il a choisie dans
-    // une fiche. onChange ne fait qu'oublier la valeur que Version garde en cache.
+    // La version des règles du monde. Le MJ en mode création peut travailler dans une autre, sa
+    // version de préparation (voir Preparation et Version.world).
     game.settings.register('neph5e', 'version', {
         // Les objets affichés suivent la version : le répertoire des items et les compendiums
         // d'items sont réaffichés (voir Repertoire)
@@ -69,7 +66,13 @@ export const registerSystemSettings = function () {
     // types compatibles avec la version de règles du monde et prépare les autres versions ; en
     // jeu ('objets'), il voit comme les joueurs, les seuls objets activés pour la version.
     game.settings.register('neph5e', 'filtreObjets', {
-        onChange: () => Repertoire.rafraichir(),
+        // Le mode décide aussi de la version de travail du MJ (voir Version.world)
+        onChange: () => {
+            Version.oublierMonde();
+            Repertoire.rafraichir();
+            Fiches.rafraichir();
+            ui.controls?.render();
+        },
         config: true,
         scope: 'world',
         name: game.i18n.localize('SETTINGS.filtreObjets'),
@@ -80,6 +83,21 @@ export const registerSystemSettings = function () {
             objets: game.i18n.localize('SETTINGS.filtreObjetsObjets')
         },
         default: 'types'
+    });
+
+    // La version de préparation du MJ, propre à son client (voir Preparation) : vide pour la
+    // version du monde
+    game.settings.register('neph5e', 'versionPreparation', {
+        onChange: () => {
+            Version.oublierMonde();
+            Repertoire.rafraichir();
+            Fiches.rafraichir();
+            ui.controls?.render();
+        },
+        config: false,
+        scope: 'client',
+        type: String,
+        default: ''
     });
 
     game.settings.register('neph5e', 'note', {

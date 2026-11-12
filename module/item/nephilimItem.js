@@ -247,7 +247,7 @@ export class NephilimItem extends Item {
         }
 
         // Les références propres aux règles de la version courante
-        await Regles.courantes.objetSupprime?.(this);
+        await Regles.table.objetSupprime?.(this);
 
         // Delete embedded actor items according to the system identifier
         await this._actors(async actor => {
