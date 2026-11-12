@@ -1150,6 +1150,30 @@ tronc commun évoluera au fil de l'intégration des règles.
   version (`VERSION` : `FicheActeurV5` v5, `FicheActeurEidolon` eidolon) et affiche « version non
   décrite » pour les autres, le bouton de version apparaissant désormais sur les fiches d'acteurs.
   Les règles d'eidolon seront fournies plus tard par l'utilisateur.
+- **Compatibilité et appartenance (décisions de l'utilisateur, 12 novembre 2026).** Trois notions : la
+  **compatibilité d'un type** avec une version, fixée dans le code ; l'**appartenance d'un document**
+  aux versions, par les cases de sa fenêtre de configuration (objets et acteurs), qui ne proposent que
+  les versions compatibles du type ; le **mode du MJ** (réglage `filtreObjets`) : jeu (il voit comme
+  les joueurs : type compatible et document coché pour la version du monde, fiche dans la version du
+  monde) ou création (il voit tous les documents des types compatibles et peut ouvrir la feuille de
+  toute version compatible du type, le temps de la fenêtre). Les joueurs voient toujours type
+  compatible et document coché. Sur une fiche d'acteur, les objets embarqués affichés sont ceux dont
+  le type est compatible avec la version affichée et qui y sont cochés, pour tous. Le groupe de
+  compétences compte dans les versions qu'il coche.
+  Lot 1 fait : **un type est compatible avec une version si le jeu de cette version lui fournit une
+  fiche** (`fiches`) ou le déclare (`types` : le jeu v5 déclare le groupe, le Ka, l'Akasha et le
+  laboratoire) ; un type sans versions dans son modèle (la période) ou listé dans
+  `Version.COMMUNS` (l'incarnation) est compatible avec toutes (`Version.compatible`,
+  `Version.compatibles`). Les parties v2, v3 et eidolon déjà déclarées dans certains modèles ne
+  rendent plus un type compatible. Par défaut, tous les types actuels, acteurs compris, sont donc
+  v5 seulement ; l'utilisateur ajoutera les compatibilités type par type. Le jeu eidolon ne fournit
+  plus aucune fiche (fiche d'acteur eidolon et parties eidolon des acteurs retirées). Les cases de
+  version d'un objet ne montrent que les versions compatibles. Le réglage `filtreObjets` est
+  renommé « Mode du MJ » (Création / Jeu), valeurs inchangées (`types` / `objets`) ; la vue des
+  joueurs suit au lot 2. Restent : lot 2 (vues selon le mode et le rôle : répertoires, compendiums,
+  objets embarqués, compétence active), lot 3 (liste de version sur la fiche pour le MJ en
+  création, à la place du bouton livre), lot 4 (cases de version des acteurs : champ `enabled` et
+  fenêtre de configuration).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

@@ -21,6 +21,10 @@ export const JeuV5 = {
 
     fiches: FICHES_V5,
 
+    // Compatibles sans fiche propre : le groupe garde sa fiche commune ; le Ka, l'Akasha et le
+    // laboratoire sont des objets internes des incarnations, sans fiche
+    types: { Item: ['groupe', 'ka', 'akasha', 'laboratoire'] },
+
     effets: EffetsV5,
 
     initiative: initiativeV5,

@@ -18,27 +18,53 @@
  * qu'un basculement en bloc — et c'est lui qu'il faudra retirer quand le dernier type sera
  * passé.
  */
+import { Regles } from "../regles/regles.js";
+
 export class Version {
 
     /**
      * Les versions connues, dans l'ordre où on les propose.
      */
-    // v2, v3, Eidolon et Litorien ne sont pas encore implémentées : déclarées seulement, aucun
-    // modèle ne les porte (leurs données sont vides, les fiches affichent « version vide »).
+    // v2, v3, Eidolon et Litorien ne sont pas encore implémentées : leurs jeux ne fournissent
+    // aucune fiche, aucun type ne leur est donc compatible.
     static ALL = ['v2', 'v3', 'v5', 'eidolon', 'litorien'];
 
     /**
-     * Un type d'item est compatible avec une version de règles si son modèle la déclare (un
-     * chunk de ce nom sous `versions`, même vide). Seuls les items de types compatibles avec la
-     * version du monde sont affichés : répertoire des items, compendiums, création (voir
-     * Repertoire).
-     * @param type    Le type d'item.
-     * @param version La version de règles, celle du monde par défaut.
-     * @returns true if compatible; a type whose model carries no versions always is.
+     * La compatibilité d'un type avec une version de règles est fixée dans le code, par le jeu de
+     * cette version (voir Regles) : il fournit une fiche pour ce type (`fiches`), ou le déclare
+     * compatible en gardant sa fiche commune (`types`, le groupe de compétences en v5). Un type
+     * dont le modèle ne porte pas de versions est commun à toutes (la période), comme ceux de
+     * COMMUNS (l'incarnation). Les objets internes propres à des règles (Ka, Akasha, laboratoire)
+     * sont déclarés par leur jeu.
+     *
+     * Seuls les documents de types compatibles avec la version du monde sont affichés :
+     * répertoire des items, compendiums, création (voir Repertoire) ; les cases de version d'un
+     * document ne proposent que les versions compatibles avec son type.
+     * @param type         Le type du document.
+     * @param version      La version de règles, celle du monde par défaut.
+     * @param documentName 'Item' (par défaut) ou 'Actor'.
+     * @returns true if compatible.
      */
-    static compatible(type, version = Version.world) {
-        const versions = CONFIG.Item.dataModels?.[type]?.schema?.fields?.versions;
-        return versions?.fields == null || version in versions.fields;
+    static compatible(type, version = Version.world, documentName = 'Item') {
+        if (Version.COMMUNS[documentName]?.includes(type)) return true;
+        if (CONFIG[documentName]?.dataModels?.[type]?.schema?.fields?.versions == null) return true;
+        const jeu = Regles.get(version);
+        return jeu.fiches?.[documentName]?.[type] != null || jeu.types?.[documentName]?.includes(type) === true;
+    }
+
+    /**
+     * Les types communs à toutes les versions bien que leur modèle porte des versions :
+     * l'incarnation (ses champs de règles sont rangés par version, voir Incarnations).
+     */
+    static COMMUNS = { Item: ['incarnation'], Actor: [] };
+
+    /**
+     * @param type         Le type du document.
+     * @param documentName 'Item' (par défaut) ou 'Actor'.
+     * @returns {string[]} les versions de règles compatibles avec ce type, dans l'ordre de ALL.
+     */
+    static compatibles(type, documentName = 'Item') {
+        return Version.ALL.filter(version => Version.compatible(type, version, documentName));
     }
 
     /**

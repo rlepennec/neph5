@@ -69,10 +69,10 @@
     "SETTINGS.styleItemSheetDesc": "Permet de définir le style des feuilles",
     "SETTINGS.version": "Version des règles",
     "SETTINGS.versionDesc": "Version affichée à l'ouverture d'une fiche, et retenue partout où aucune fiche ne permet de choisir",
-    "SETTINGS.filtreObjets": "Objets affichés",
-    "SETTINGS.filtreObjetsDesc": "Tous les objets des types compatibles avec la version des règles, ou seulement ceux qui y sont activés (une compétence non activée est alors inactive en jeu)",
-    "SETTINGS.filtreObjetsTypes": "Types compatibles",
-    "SETTINGS.filtreObjetsObjets": "Types compatibles et objets activés",
+    "SETTINGS.filtreObjets": "Mode du MJ",
+    "SETTINGS.filtreObjetsDesc": "Création : le MJ voit tous les objets des types compatibles avec la version des règles et peut préparer d'autres versions. Jeu : il voit comme les joueurs, les seuls objets activés pour la version (une compétence non activée est alors inactive en jeu)",
+    "SETTINGS.filtreObjetsTypes": "Création",
+    "SETTINGS.filtreObjetsObjets": "Jeu",
 
     "NEPHILIM": {
         "activation": "Activation",

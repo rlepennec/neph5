@@ -65,9 +65,9 @@ export const registerSystemSettings = function () {
         default: 'v5'
     });
 
-    // Le filtre des objets affichés, qui s'ajoute à celui des types (voir Version.visible) :
-    // tous les objets des types compatibles avec la version de règles du monde, ou seulement
-    // ceux qui y sont activés. Une compétence non activée est alors inactive en jeu (voir Groupe).
+    // Le mode du MJ (voir Version.visible) : en création ('types'), il voit tous les objets des
+    // types compatibles avec la version de règles du monde et prépare les autres versions ; en
+    // jeu ('objets'), il voit comme les joueurs, les seuls objets activés pour la version.
     game.settings.register('neph5e', 'filtreObjets', {
         onChange: () => Repertoire.rafraichir(),
         config: true,

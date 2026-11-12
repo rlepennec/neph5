@@ -12,7 +12,9 @@ import { Version } from "../common/version.js";
  *
  * LE CONTRAT. Un jeu de règles est un objet qui porte `version`, et s'il y a lieu :
  *   - `fiches` : les fiches, par type de document puis par type ({ Actor: { figure }, Item: {...} }) ;
- *     un type sans fiche reçoit la fiche commune ou la fiche vide (voir Fiches) ;
+ *     un type sans fiche reçoit la fiche commune ou la fiche vide (voir Fiches). Fournir une fiche
+ *     rend le type compatible avec la version (voir Version.compatible) ;
+ *   - `types` : les types compatibles qui gardent leur fiche commune ({ Item: ['groupe'] }) ;
  *   - `acteur(actor)` : l'objet des règles de cet acteur, exposé par `actor.regles`. L'acteur commun
  *     le consulte, s'il les fournit, pour `basculerEtat(statusId, options, parDefaut)` (le HUD et
  *     le suivi de combat), `apresModification(changed)`, `supprimerObjet(item)` (un objet
