@@ -228,10 +228,12 @@ export class IncarnationsV5 extends Incarnations {
 
     /**
      * @param item An embedded item.
-     * @returns true if the incarnation of this exemplar counts for the actor.
+     * @returns true if the incarnation of this exemplar counts for the actor, and if the item
+     *          belongs to the rules version of the world (voir Version.appartient) : sinon, il est
+     *          masqué et ne compte pas.
      */
     estActif(item) {
-        return this.estActive(this.epoqueDe(item));
+        return this.estActive(this.epoqueDe(item)) && Version.appartient(item);
     }
 
     /**
@@ -295,7 +297,8 @@ export class IncarnationsV5 extends Incarnations {
      * @returns the embedded voie, null if none.
      */
     voie(type) {
-        const voies = this.actor.items.filter(i => i.type === type);
+        // Masquées si elles n'appartiennent pas à la version du monde (voir Version.appartient)
+        const voies = this.actor.items.filter(i => i.type === type && Version.appartient(i));
         if (!this.porte) return voies[0] ?? null;
         const comptent = this.ordonnees({ actif: true, jusqua: this.courante })
             .filter(i => i.system.actif === true)
@@ -343,7 +346,7 @@ export class IncarnationsV5 extends Incarnations {
      * @returns the embedded items.
      */
     equipements(type) {
-        const tous = this.actor.items.filter(i => i.type === type);
+        const tous = this.actor.items.filter(i => i.type === type && Version.appartient(i));
         if (!this.porte) return tous;
         const cle = this.courante;
         return cle == null ? [] : tous.filter(i => this.epoqueDe(i) === cle);
@@ -386,7 +389,7 @@ export class IncarnationsV5 extends Incarnations {
      *          incarnation, null if none.
      */
     stocks(type) {
-        const sids = [...new Set(this.actor.items.filter(i => i.type === type).map(i => i.sid))];
+        const sids = [...new Set(this.actor.items.filter(i => i.type === type && Version.appartient(i)).map(i => i.sid))];
         return sids
             .map(sid => ({
                 sid: sid,
@@ -441,7 +444,7 @@ export class IncarnationsV5 extends Incarnations {
      * @returns the effective embedded items.
      */
     possessions(type) {
-        const sids = [...new Set(this.actor.items.filter(i => i.type === type).map(i => i.sid))];
+        const sids = [...new Set(this.actor.items.filter(i => i.type === type && Version.appartient(i)).map(i => i.sid))];
         return sids.map(sid => this.exemplaireEffectif(sid)).filter(i => IncarnationsV5.#possede(i));
     }
 

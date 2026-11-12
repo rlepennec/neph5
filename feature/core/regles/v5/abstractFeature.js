@@ -585,7 +585,8 @@ export class AbstractFeature {
      */
     static items(actor, type) {
         const items = [];
-        for (let e of actor.items.filter(i => i.type === type)) {
+        // Les objets qui n'appartiennent pas à la version du monde sont masqués (voir Version.appartient)
+        for (let e of actor.items.filter(i => i.type === type && Version.appartient(i))) {
             const o = game.items.find(i => i.sid === e.sid);
             if (o != null) {
                 items.push({embedded: e, original: o});

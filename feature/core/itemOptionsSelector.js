@@ -24,7 +24,14 @@ export class ItemOptionsSelector extends AbstractOptionsSelector {
                 const valeur = formData.object['enabled.' + version];
                 if (typeof valeur === 'boolean') update[Version.path(document, 'enabled', version)] = valeur;
             }
-            if (Object.keys(update).length > 0) await document.update(update);
+            if (Object.keys(update).length > 0) {
+                await document.update(update);
+                // Ses copies embarquées suivent ses cases (voir Version.appartient) : les fiches
+                // d'acteurs ouvertes sont réaffichées
+                for (const app of foundry.applications.instances.values()) {
+                    if (app.document?.documentName === 'Actor' && app.rendered) app.render();
+                }
+            }
         }
     }
 

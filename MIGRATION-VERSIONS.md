@@ -1170,8 +1170,17 @@ tronc commun évoluera au fil de l'intégration des règles.
   plus aucune fiche (fiche d'acteur eidolon et parties eidolon des acteurs retirées). Les cases de
   version d'un objet ne montrent que les versions compatibles. Le réglage `filtreObjets` est
   renommé « Mode du MJ » (Création / Jeu), valeurs inchangées (`types` / `objets`) ; la vue des
-  joueurs suit au lot 2. Restent : lot 2 (vues selon le mode et le rôle : répertoires, compendiums,
-  objets embarqués, compétence active), lot 3 (liste de version sur la fiche pour le MJ en
+  joueurs suit au lot 2.
+  Lot 2 fait : `Version.appartient(document, version)` (type compatible et document coché ; pour une
+  copie embarquée, la case de l'objet du monde fait foi, par un index `objetDuMonde` oublié aux
+  hooks create/update/deleteItem) ; `Version.vueStricte` (joueur toujours, MJ en mode jeu) ;
+  `Version.visible` et `Repertoire.filtrer` (répertoire et compendiums d'objets) suivent la vue de
+  l'utilisateur. Compétence active : un groupe compte s'il appartient à la version, et une
+  compétence qui n'y appartient pas est inactive, dans les deux modes (hypothèse à confirmer).
+  Objets embarqués masqués s'ils n'appartiennent pas à la version du monde, pour tous :
+  `IncarnationsV5.estActif`, `AbstractFeature.items`, `voie`, `equipements`, `stocks`,
+  `possessions` ; les listes qui ne passent par aucun de ces points ne sont pas filtrées. Les fiches
+  d'acteurs ouvertes sont réaffichées quand le MJ coche ou décoche un objet du monde. Restent : lot 3 (liste de version sur la fiche pour le MJ en
   création, à la place du bouton livre), lot 4 (cases de version des acteurs : champ `enabled` et
   fenêtre de configuration).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la

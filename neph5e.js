@@ -265,6 +265,11 @@ Hooks.once("init", function () {
     // Défaut de Foundry : le formulaire du token envoie toujours actorId. Quand on y change le lien
     // à l'acteur, Foundry croit que le token a changé d'acteur et le retire de son propre acteur
     // (TokenDocument#_onUpdate). Jusqu'au rechargement, ses icônes ne suivaient plus les états.
+    // L'index des objets du monde par identifiant (voir Version.appartient)
+    for (const evenement of ["createItem", "updateItem", "deleteItem"]) {
+        Hooks.on(evenement, item => { if (item.parent == null) Version.oublierObjets(); });
+    }
+
     Hooks.on("updateToken", (token, changed) => {
         if ("actorId" in changed || "actorLink" in changed) token.baseActor?._registerDependentToken(token);
     });

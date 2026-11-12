@@ -47,7 +47,7 @@ export class Version {
      */
     static compatible(type, version = Version.world, documentName = 'Item') {
         if (Version.COMMUNS[documentName]?.includes(type)) return true;
-        if (CONFIG[documentName]?.dataModels?.[type]?.schema?.fields?.versions == null) return true;
+        if (globalThis.CONFIG?.[documentName]?.dataModels?.[type]?.schema?.fields?.versions == null) return true;
         const jeu = Regles.get(version);
         return jeu.fiches?.[documentName]?.[type] != null || jeu.types?.[documentName]?.includes(type) === true;
     }
@@ -68,20 +68,52 @@ export class Version {
     }
 
     /**
-     * @param document Un objet du monde, embarqué, ou une entrée d'index de compendium.
+     * Un document appartient à une version de règles si son type y est compatible (fixé dans le
+     * code, voir compatible) et s'il y est coché (`enabled`, vrai par défaut, voir VersionField).
+     * Pour un objet embarqué, c'est la case de l'objet du monde dont il est la copie qui fait foi :
+     * celle de la copie ne se règle pas (voir ItemOptionsSelector).
+     * @param document Un document du monde, embarqué, ou une entrée d'index de compendium.
      * @param version  La version de règles, celle du monde par défaut.
-     * @returns true si l'objet est défini pour cette version : son type la déclare et l'objet
-     *          n'y est pas désactivé (`enabled`, vrai par défaut, voir VersionField).
+     * @returns true si le document appartient à cette version.
      */
-    static active(document, version = Version.world) {
-        return Version.compatible(document?.type, version)
-            && document?.system?.versions?.[version]?.enabled !== false;
+    static appartient(document, version = Version.world) {
+        if (document == null) return false;
+        if (!Version.compatible(document.type, version, document.documentName)) return false;
+        const source = document.isEmbedded === true ? (Version.objetDuMonde(document.sid) ?? document) : document;
+        return source.system?.versions?.[version]?.enabled !== false;
     }
 
     /**
-     * @returns true si le réglage du monde ne montre que les objets activés pour la version
-     *          (`filtreObjets` vaut 'objets') ; false s'il montre tous ceux des types
-     *          compatibles.
+     * Les objets du monde par identifiant métier, construit à la demande et oublié dès qu'un
+     * objet du monde est créé, modifié ou supprimé (voir oublierObjets, neph5e.js).
+     */
+    static #objets = null;
+
+    /**
+     * @param sid The system identifier.
+     * @returns the world item, null if none.
+     */
+    static objetDuMonde(sid) {
+        if (sid == null) return null;
+        if (Version.#objets == null) {
+            Version.#objets = new Map();
+            for (const item of game.items ?? []) {
+                if (item.sid != null && !Version.#objets.has(item.sid)) Version.#objets.set(item.sid, item);
+            }
+        }
+        return Version.#objets.get(sid) ?? null;
+    }
+
+    /**
+     * Oublie l'index des objets du monde : la prochaine lecture le reconstruira.
+     */
+    static oublierObjets() {
+        Version.#objets = null;
+    }
+
+    /**
+     * @returns true si le réglage du monde, le mode du MJ, est sur jeu (`filtreObjets` vaut
+     *          'objets') ; false en création ('types').
      */
     static get filtreStrict() {
         try {
@@ -92,13 +124,24 @@ export class Version {
     }
 
     /**
-     * @param document Un objet du monde, embarqué, ou une entrée d'index de compendium.
-     * @param strict   Le filtre du monde, lu une fois par l'appelant qui en traite plusieurs.
-     * @returns true si l'objet s'affiche : son type est compatible avec la version du monde,
-     *          et, si le réglage le demande, il y est activé.
+     * @returns true si l'utilisateur ne voit que les documents appartenant à la version du
+     *          monde : un joueur toujours, le MJ en mode jeu ; false pour le MJ en mode création,
+     *          qui voit tous ceux des types compatibles.
      */
-    static visible(document, strict = Version.filtreStrict) {
-        return strict ? Version.active(document) : Version.compatible(document?.type);
+    static get vueStricte() {
+        return game.user?.isGM !== true || Version.filtreStrict;
+    }
+
+    /**
+     * @param document Un document du monde, ou une entrée d'index de compendium.
+     * @param strict   La vue de l'utilisateur, lue une fois par l'appelant qui en traite plusieurs.
+     * @returns true si le document s'affiche dans les répertoires et les compendiums : son type est
+     *          compatible avec la version du monde et, en vue stricte, il y appartient.
+     */
+    static visible(document, strict = Version.vueStricte) {
+        return strict
+            ? Version.appartient(document)
+            : Version.compatible(document?.type, Version.world, document?.documentName);
     }
 
     /**
