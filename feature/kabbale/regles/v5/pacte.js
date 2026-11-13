@@ -1,10 +1,10 @@
 import { AbstractFeature } from "../../../core/regles/v5/abstractFeature.js";
 import { Version } from "../../../../module/common/version.js";
 import { ActionDialog } from "../../../core/regles/v5/actionDialog.js";
-import { Constants } from "../../../../module/common/constants.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 import { Health } from "../../../core/regles/v5/health.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
-import { NephilimChat } from "../../../../module/common/chat.js";
+import { NephilimChat } from "../../../../module/common/regles/v5/chat.js";
 import { Ordonnance } from "./ordonnance.js";
 
 export class Pacte extends AbstractFeature {

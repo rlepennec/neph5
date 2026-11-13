@@ -1,8 +1,8 @@
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Version } from "../../../../../module/common/version.js";
 import { IncarnationsV5 } from "../../../../incarnation/regles/v5/incarnations.js";
 import { Health } from "../../../../core/regles/v5/health.js";
-import { NephilimChat } from "../../../../../module/common/chat.js";
+import { NephilimChat } from "../../../../../module/common/regles/v5/chat.js";
 
 /**
  * Riposte en attente après une défense Contrer réussie.

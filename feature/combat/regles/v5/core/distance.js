@@ -4,7 +4,7 @@ import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.
 import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { DistanceDialog } from "./distanceDialog.js";
 import { Health } from "../../../../core/regles/v5/health.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";

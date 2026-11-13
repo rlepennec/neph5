@@ -1,5 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 
 /**
  * Esquiver : se dérober entièrement à l'attaque. Elle couvre aussi les armes lancées, à ceci

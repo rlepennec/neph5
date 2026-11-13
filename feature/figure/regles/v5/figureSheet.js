@@ -2,7 +2,7 @@ import { Chute } from "../../../chute/regles/v5/chute.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { CombatantMixinSheet } from "../../../../module/common/regles/v5/combatantSheetMixin.js";
-import { Constants } from "../../../../module/common/constants.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 import { FeatureBuilder } from "../../../core/regles/v5/featureBuilder.js";
 import { HistoricalSheet } from "../../../../module/actor/regles/v5/historical.js";
 import { OptionsSelector } from "./optionsSelector.js";

@@ -1,5 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 
 /**
  * Fuir : quitter le combat. Réussie, elle ne protège de rien — le combattant encaisse tous

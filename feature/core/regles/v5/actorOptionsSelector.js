@@ -1,6 +1,6 @@
-import { AbstractOptionsSelector } from "./abstractOptionsSelector.js";
-import { Version } from "../../module/common/version.js";
-import { Constants } from "../../module/common/constants.js";
+import { AbstractOptionsSelector } from "../../abstractOptionsSelector.js";
+import { Version } from "../../../../module/common/version.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 
 export class ActorOptionsSelector extends AbstractOptionsSelector {
 

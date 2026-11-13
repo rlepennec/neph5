@@ -3,7 +3,7 @@ import { Version } from "../../../common/version.js";
 import { Groupe } from "../../../../feature/groupe/groupe.js";
 import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
 import { CombatHistory } from "../../../../feature/combat/regles/v5/core/combatHistory.js";
-import { Constants } from "../../../common/constants.js";
+import { Constants } from "../../../common/regles/v5/constants.js";
 import { Distance } from "../../../../feature/combat/regles/v5/core/distance.js";
 import { FeatureBuilder } from "../../../../feature/core/regles/v5/featureBuilder.js";
 import { Getup } from "../../../../feature/combat/regles/v5/manoeuver/getup.js";

@@ -1,4 +1,4 @@
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 
 /**
  * La formule d'initiative des règles v5 (voir Regles, initiative) : 1d6, le malus de blessures

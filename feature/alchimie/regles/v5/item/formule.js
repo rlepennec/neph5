@@ -1,5 +1,5 @@
 import { Science } from "../../../../science/regles/v5/science.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Version } from "../../../../../module/common/version.js";
 import { DocumentIdentifier } from "../../../../../module/common/documentIdentifier.js";
 import { FormuleDataModel } from "../../../item/formule.mjs";

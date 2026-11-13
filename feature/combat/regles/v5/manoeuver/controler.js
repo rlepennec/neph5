@@ -1,5 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 
 /**
  * Contrôler : resserrer sa prise sur qui tente de s'en défaire. C'est la seule réponse à

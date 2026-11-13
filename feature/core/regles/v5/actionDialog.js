@@ -1,5 +1,5 @@
 import { AbstractDialog } from "../../abstractDialog.js";
-import { Constants } from "../../../../module/common/constants.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 
 export class ActionDialog extends AbstractDialog {
 

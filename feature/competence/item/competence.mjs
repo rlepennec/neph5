@@ -1,6 +1,6 @@
 import { ChunkField } from "../../../module/field/chunkField.js";
 import { VersionField } from "../../../module/field/versionField.js";
-import { Constants } from "../../../module/common/constants.js";
+import { Constants } from "../../../module/common/regles/v5/constants.js";
 import { UUIDField } from "../../../module/field/UUIDField.js";
 import { VersionMigration } from "../../../module/migration/versionMigration.js";
 

@@ -2,11 +2,11 @@ import { ActionDialog } from "./actionDialog.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
 import { AbstractManoeuver } from "../../../combat/regles/v5/manoeuver/abstractManoeuver.js";
-import { Constants } from "../../../../module/common/constants.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 import { AidesV5 } from "../../../../module/common/regles/v5/aides.js";
 import { Liberer } from "../../../combat/regles/v5/manoeuver/liberer.js";
 import { ManoeuverBuilder } from "../../../combat/regles/v5/manoeuver/manoeuverBuilder.js";
-import { NephilimChat } from "../../../../module/common/chat.js";
+import { NephilimChat } from "../../../../module/common/regles/v5/chat.js";
 
 export class AbstractFeature {
 

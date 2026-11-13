@@ -1216,7 +1216,14 @@ tronc commun évoluera au fil de l'intégration des règles.
   propres aux règles viennent du jeu (`nettoyage` : `autonomes`, `internes`, `sections` avec
   gabarit et contexte, `actions`) ; la v5 fournit les membres de fraternité introuvables et les
   pactes hors du monde de l'ordonnance (`module/regles/v5/nettoyage.js` et ses deux gabarits).
-  Reste : `constants.js` (lot C).
+  Lot C fait : `module/common/constants.js` ne garde que le canal des messages entre clients
+  (`SYSTEM_SOCKET_ID`) ; toutes les autres constantes passent dans
+  `module/common/regles/v5/constants.js` (même nom de classe, `Constants`, pour ne changer que
+  les chemins d'import). `chat.js` (messages de jet, drapeau de jet opposé) et
+  `actorOptionsSelector.js` (options v5 des fiches d'acteurs), qui ne servaient qu'à la v5,
+  passent dans `module/common/regles/v5/` et `feature/core/regles/v5/`. Hors du code v5, n'importent
+  plus de v5 que : les modèles de données (listes de choix de leur partie v5), les migrations
+  (à retirer), et `neph5e.js` pour enregistrer le jeu. **La neutralisation du commun est finie.**
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

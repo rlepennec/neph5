@@ -1,5 +1,5 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 
 /**
  * Éviter : le réflexe de se dérober à un coup. Elle ne se joue pas aux dés — aucun jet, le

@@ -1,4 +1,4 @@
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Version } from "../../../../../module/common/version.js";
 
 /**

@@ -1,7 +1,7 @@
 import { AbstractFeature } from "./abstractFeature.js";
 import { ActionDialog } from "./actionDialog.js";
-import { Constants } from "../../../../module/common/constants.js";
-import { NephilimChat } from "../../../../module/common/chat.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
+import { NephilimChat } from "../../../../module/common/regles/v5/chat.js";
 
 export class ReactionRoll extends AbstractFeature {
 

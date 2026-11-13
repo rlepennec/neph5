@@ -3,7 +3,7 @@ import { Version } from "../../../../../module/common/version.js";
 import { IncarnationsV5 } from "../../../../incarnation/regles/v5/incarnations.js";
 import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
 import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Bloquer } from "../manoeuver/bloquer.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
@@ -21,7 +21,7 @@ import { Immobiliser } from "../manoeuver/immobiliser.js";
 import { Health } from "../../../../core/regles/v5/health.js";
 import { ManoeuverBuilder } from "../manoeuver/manoeuverBuilder.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";
-import { NephilimChat } from "../../../../../module/common/chat.js";
+import { NephilimChat } from "../../../../../module/common/regles/v5/chat.js";
 import { Parer } from "../manoeuver/parer.js";
 
 export class Defense extends AbstractCombatFeature {

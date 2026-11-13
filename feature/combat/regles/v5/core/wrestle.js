@@ -5,7 +5,7 @@ import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Combat } from "./combat.js";
 import { CombatHistory } from "./combatHistory.js";
 import { CombatDialog } from "./combatDialog.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Immobiliser } from "../manoeuver/immobiliser.js";
 import { Liberer } from "../manoeuver/liberer.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";

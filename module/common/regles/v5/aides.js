@@ -1,4 +1,4 @@
-import { Constants } from "../../constants.js";
+import { Constants } from "./constants.js";
 import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
 import { Version } from "../../version.js";
 

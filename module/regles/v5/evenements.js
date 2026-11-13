@@ -1,11 +1,11 @@
 import { CombatHistory } from "../../../feature/combat/regles/v5/core/combatHistory.js";
 import { Combatants } from "../../../feature/combat/regles/v5/core/combatants.js";
-import { Constants } from "../../common/constants.js";
+import { Constants } from "../../common/regles/v5/constants.js";
 import { Equipment } from "../../../feature/combat/regles/v5/core/equipment.js";
 import { Health } from "../../../feature/core/regles/v5/health.js";
 import { Holds } from "../../../feature/combat/regles/v5/core/holds.js";
 import { MacrosV5 } from "../../common/regles/v5/macros.js";
-import { NephilimChat } from "../../common/chat.js";
+import { NephilimChat } from "../../common/regles/v5/chat.js";
 import { OpposedRollBuilder } from "../../../feature/core/regles/v5/opposedRollBuilder.js";
 import { RoundUpdate } from "../../../feature/combat/regles/v5/core/roundUpdate.js";
 

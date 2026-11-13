@@ -5,7 +5,7 @@ import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
 import { Combat } from "./combat.js";
 import { CombatDialog } from "./combatDialog.js";
 import { CombatHistory } from "./combatHistory.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Etrange } from "../manoeuver/etrange.js";
 import { Force } from "../manoeuver/force.js";
 import { Lancer } from "../manoeuver/lancer.js";

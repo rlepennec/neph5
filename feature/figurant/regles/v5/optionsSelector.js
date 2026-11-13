@@ -1,4 +1,4 @@
-import { ActorOptionsSelector } from "../../../core/actorOptionsSelector.js";
+import { ActorOptionsSelector } from "../../../core/regles/v5/actorOptionsSelector.js";
 
 export class OptionsSelector extends ActorOptionsSelector {
 

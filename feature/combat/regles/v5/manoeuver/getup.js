@@ -1,7 +1,7 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
 import { ActiveEffects } from "../../../../core/regles/v5/effects.js";
-import { Constants } from "../../../../../module/common/constants.js";
-import { NephilimChat } from "../../../../../module/common/chat.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
+import { NephilimChat } from "../../../../../module/common/regles/v5/chat.js";
 
 /**
  * Se relever : quitter le sol. Elle se joue d'office, sans dé et sans cible, mais elle occupe

@@ -1,68 +1,12 @@
+/**
+ * Les constantes communes à toutes les versions de règles. Celles des règles v5 sont dans
+ * module/common/regles/v5/constants.js.
+ */
 export class Constants {
 
-    static APPELS = ['pacifiste', 'savant', 'tortionnaire', 'familier', 'voyageur', 'drogué', 'soldat', 'fou', 'annihilateur', 'guide', 'malfaisant', 'chasseur'];
-
-    static ARMES = ['naturelle', 'melee', 'trait', 'feu'];
-
-    // Les cercles alchimiques étaient déclarés dans game.js sous forme de table
-    // clef → chemin i18n. Ils rejoignent les autres énumérations : la liste vit
-    // ici, le libellé de chaque valeur vit dans fr.json (NEPHILIM.oeuvreAuNoir…).
-    static CERCLES_ALCHIMIE = ['oeuvreAuNoir', 'oeuvreAuBlanc', 'oeuvreAuRouge'];
-
-    static DESMOS = ['spiritisme', 'apaisement', 'claivoyance', 'animation', 'possession', 'audela', 'corruption'];
-
-    static ELEMENTS = ['air', 'eau', 'feu', 'lune', 'terre'];
-
-    static ELEMENTS_CHOIX = ['air', 'eau', 'feu', 'lune', 'terre', 'choix'];
-
-    static ELEMENTS_GRAND_OEUVRE = ['quintessence', 'quintuple'];
-
-    static ELEMENTS_MAGIE = ['air', 'eau', 'feu', 'lune', 'luneNoire', 'terre', 'choix'];
-
-    static HUMEURS = ['chaud', 'froid', 'humide', 'sec'];
-
-    static MONDES = ['aresh', 'meborack', 'pachad', 'sohar', 'zakai', 'tous'];
-
-    static SEPHIRAH = ['binah', 'chesed', 'hod', 'kether', 'chokmah', 'geburah', 'malkut', 'netzach', 'tiphereth', 'yesod', 'daath'];
-
-    static SUBSTANCES = ['ambre', 'liqueur', 'metal', 'poudre', 'vapeur'];
-
-    static THEMES = ['air', 'eau', 'feu', 'lune', 'luneNoire', 'soleil', 'terre'];
-
-    
-    // OLD
-    
-    static ACTION = 'action';
-    static APPRIS = 'appris';
-    static BRAWL = 'brawl';
-    static DECHIFFRE = 'dechiffre';
-    static CONNU = 'connu';
-    static DODGE = 'dodge';
-    static FEU = 'feu';
-    static FIRE = 'fire';
-    static LOURDE = 'lourde';
-    static MAGICAL = 'magique';
-    static MELEE = 'melee';
-    static MSG_UNSET_CHAT_MESSAGE = 'unsetChatMessage';
-    static MSG_APPLY_DAMAGES_ON = 'applyDamagesOn';
-    static MSG_APPLY_EFFECTS_ON = 'applyEffectsOn';
-    static MSG_DISARM = 'disarm';
-    static MSG_RELEASE_HOLD = 'releaseHold';
-    static MSG_LEAVE_COMBAT = 'leaveCombat';
-    static MSG_RECORD_MANOEUVRE = 'recordManoeuvre';
-    static NATURELLE = 'naturelle';
-    static NONE = 'none';
-    static OPPOSED = 'opposed';
-    static PARADE = 'parade';
-    static PHYSICAL = 'physique';
-    static REACTION = 'reaction';
-    static SIMPLE ='simple';
-    static STRIKE = 'strike';
+    /**
+     * Le canal des messages échangés entre clients par le système.
+     */
     static SYSTEM_SOCKET_ID = 'system.neph5e';
-    static TACTIC = 'tactic';
-    static TATOUE = 'tatoue';
-    static THROW = 'throw';
-    static TIE = 'tie';
-    static TRAIT = 'trait';
 
 }

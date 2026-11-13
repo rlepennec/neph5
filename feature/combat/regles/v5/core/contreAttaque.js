@@ -1,6 +1,6 @@
 import { ActionDataBuilder } from "../../../../core/regles/v5/actionDataBuilder.js";
 import { CombatDialog } from "./combatDialog.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 import { Version } from "../../../../../module/common/version.js";
 import { Health } from "../../../../core/regles/v5/health.js";
 import { ManoeuverPool } from "../manoeuver/manoeuverPool.js";

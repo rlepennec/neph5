@@ -1,6 +1,6 @@
 import { Attack } from "../../../combat/regles/v5/core/attack.js";
 import { Version } from "../../../../module/common/version.js";
-import { Constants } from "../../../../module/common/constants.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 import { Defense } from "../../../combat/regles/v5/core/defense.js";
 import { Distance } from "../../../combat/regles/v5/core/distance.js";
 import { ManoeuverBuilder } from "../../../combat/regles/v5/manoeuver/manoeuverBuilder.js";

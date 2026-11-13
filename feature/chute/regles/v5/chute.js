@@ -1,7 +1,7 @@
 import { ActionDataBuilder } from "../../../core/regles/v5/actionDataBuilder.js";
 import { IncarnationsV5 } from "../../../incarnation/regles/v5/incarnations.js";
 import { Version } from "../../../../module/common/version.js";
-import { Constants } from "../../../../module/common/constants.js";
+import { Constants } from "../../../../module/common/regles/v5/constants.js";
 import { EmbeddedItem } from "../../../core/regles/v5/embeddedItem.js";
 import { HistoricalFeature } from "../../../core/regles/v5/historicalFeature.js";
 

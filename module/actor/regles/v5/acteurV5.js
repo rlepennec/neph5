@@ -6,7 +6,7 @@ import { Capacite } from "../../../../feature/capacite/regles/v5/capacite.js";
 import { Catalyseur } from "../../../../feature/alchimie/regles/v5/catalyseur.js";
 import { Chute } from "../../../../feature/chute/regles/v5/chute.js";
 import { Competence } from "../../../../feature/competence/regles/v5/competence.js";
-import { Constants } from "../../../common/constants.js";
+import { Constants } from "../../../common/regles/v5/constants.js";
 import { ActiveEffects } from "../../../../feature/core/regles/v5/effects.js";
 import { FeatureBuilder } from "../../../../feature/core/regles/v5/featureBuilder.js";
 import { Fraternite } from "../../../../feature/fraternite/regles/v5/fraternite.js";

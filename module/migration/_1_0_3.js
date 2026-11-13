@@ -1,4 +1,4 @@
-import { Constants } from "../common/constants.js";
+import { Constants } from "../common/regles/v5/constants.js";
 import { EmbeddedItem } from "../../feature/core/regles/v5/embeddedItem.js";
 import { MigrationTools } from "./migration.js";
 

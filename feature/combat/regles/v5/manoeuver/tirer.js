@@ -1,6 +1,6 @@
 import { AbstractManoeuver } from "./abstractManoeuver.js";
 import { Version } from "../../../../../module/common/version.js";
-import { Constants } from "../../../../../module/common/constants.js";
+import { Constants } from "../../../../../module/common/regles/v5/constants.js";
 
 export class Tirer extends AbstractManoeuver {
 
