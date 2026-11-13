@@ -1,0 +1,58 @@
+{{!-- Nettoyage : pactes hors du monde de l'ordonnance (règles v5, voir NettoyageV5). Le contexte est celui de la section. --}}
+{{!-- Pactes hors du monde de l'ordonnance --}}
+<details class="section" {{#if (or nombrePactes conflitsMondes.length)}}open{{/if}}>
+<summary><h2 class="section">{{localize "NEPHILIM.nettoyageSectionPactes"}} <span class="nombre">({{nombrePactes}})</span></h2></summary>
+
+<div class="aide">
+    <p>{{localize "NEPHILIM.nettoyagePactesAide"}}</p>
+</div>
+
+{{#each conflitsMondes as |conflit|}}
+<p class="conflit">{{conflit.figure}} : {{localize "NEPHILIM.nettoyagePactesConflit"}} ({{conflit.mondes}})</p>
+{{/each}}
+
+{{#if nombrePactes}}
+
+<div class="barre">
+    <span class="compte">{{localize "NEPHILIM.nettoyagePactesTrouves"}} {{nombrePactes}}</span>
+</div>
+
+<table class="orphelins pactes">
+    <thead>
+        <tr>
+            <th class="case"></th>
+            <th>{{localize "NEPHILIM.nettoyageActeur"}}</th>
+            <th>{{localize "NEPHILIM.nettoyageCreature"}}</th>
+            <th>{{localize "NEPHILIM.nettoyageMondeCreature"}}</th>
+            <th>{{localize "NEPHILIM.nettoyageMondeOrdonnance"}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each pactes as |pacte|}}
+        <tr>
+            <td class="case">
+                <input class="pacte" type="checkbox" data-uuid="{{pacte.uuid}}" checked/>
+            </td>
+            <td>{{pacte.figure}}</td>
+            <td>{{pacte.creature}}</td>
+            <td>{{pacte.mondeCreature}}</td>
+            <td>{{pacte.mondeOrdonnance}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div class="actions">
+    <button type="button" data-action="retirerPactes">
+        <i class="fas fa-check"></i>
+        {{localize "NEPHILIM.nettoyagePactesRetirer"}}
+    </button>
+</div>
+
+{{else}}
+
+<p class="aucun">{{localize "NEPHILIM.nettoyagePactesAucun"}}</p>
+
+{{/if}}
+
+</details>

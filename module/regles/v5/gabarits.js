@@ -3,6 +3,8 @@
  * (voir Regles, gabarits).
  */
 export const GABARITS_V5 = [
+    "systems/neph5e/module/regles/v5/nettoyage-membres.hbs",
+    "systems/neph5e/module/regles/v5/nettoyage-pactes.hbs",
     "systems/neph5e/feature/akasha/regles/v5/actor/main.hbs",
     "systems/neph5e/feature/kabbale/regles/v5/actor/arbre.hbs",
     "systems/neph5e/feature/kabbale/regles/v5/actor/ordonnances.hbs",

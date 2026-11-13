@@ -28,6 +28,8 @@ import { Version } from "../common/version.js";
  *   - `incarnationRetiree(actor, cle)` : ce qui se passe ensuite, hors des objets de l'acteur ;
  *   - `objetSupprime(item)` : retire des autres documents ses références à un item du monde
  *     supprimé ;
+ *   - `nettoyage` : ce que le nettoyage du monde doit aux règles : `autonomes` et `internes`
+ *     (types jamais orphelins), `sections` ({ template, contexte() }) et leurs `actions` ;
  *   - `evenements` : les réactions aux événements de Foundry, chacune facultative :
  *     `combattantCree(combatant)` (false l'annule), `nouveauRound(combat)`,
  *     `messageAffiche(message, html)` (chat), `macroDeposee(bar, data, slot)` (synchrone, true

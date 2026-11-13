@@ -1032,7 +1032,10 @@ export class IncarnationsV5 extends Incarnations {
     chronologie() {
 
         const all = [];
-        for (const p of this.ordonnees({ chrono: null })) {
+        // L'ordre d'affichage suit l'option de l'acteur : cochée, de la plus ancienne à la plus
+        // récente ; sinon, de la plus récente à la plus ancienne
+        const descendante = Version.data(this.actor).options?.chronologieDescendante === true;
+        for (const p of this.ordonnees({ chrono: descendante })) {
 
             // Retrieve the periode of the world
             const periode = game.items.find(i => i.sid === p.system.periode);

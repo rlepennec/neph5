@@ -9,6 +9,7 @@ import { FICHES_V5 } from "./fiches.js";
 import { EffetsV5 } from "./effets.js";
 import { initiativeV5 } from "../../../feature/combat/regles/v5/core/combatant.js";
 import { objetSupprimeV5 } from "./objetSupprime.js";
+import { NETTOYAGE_V5 } from "./nettoyage.js";
 
 /**
  * Le jeu de règles de la cinquième édition (voir Regles pour le contrat).
@@ -38,6 +39,8 @@ export const JeuV5 = {
     gabarits: GABARITS_V5,
 
     objetSupprime: objetSupprimeV5,
+
+    nettoyage: NETTOYAGE_V5,
 
     acteur: actor => new ActeurV5(actor),
 

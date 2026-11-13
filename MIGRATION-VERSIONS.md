@@ -1208,8 +1208,15 @@ tronc commun évoluera au fil de l'intégration des règles.
   d'un vécu déposé passe dans `FicheActeurV5._onDropItem` (`NephilimItem.initializeEmbedded` ne fait
   plus que retirer l'identifiant). Restent communs, car génériques : `updateItemRefs`,
   `updateItemRef`, `deleteReference` (listes de références), la table des illustrations et les icônes
-  par défaut (cosmétiques). Restent à faire : l'option `chronologieDescendante`, le nettoyage des
-  fraternités (`nettoyage.js`), `constants.js`.
+  par défaut (cosmétiques).
+  Lot B fait : `Incarnations.ordonnees` ne lit plus l'option d'affichage (plus de mode
+  `chrono: null`) ; `IncarnationsV5.chronologie` passe l'ordre tiré de `chronologieDescendante`
+  (comportement inchangé : cochée, de la plus ancienne à la plus récente). Le nettoyage du monde
+  (`NettoyageDialog`) garde les orphelins ; les types autonomes et internes et les sections
+  propres aux règles viennent du jeu (`nettoyage` : `autonomes`, `internes`, `sections` avec
+  gabarit et contexte, `actions`) ; la v5 fournit les membres de fraternité introuvables et les
+  pactes hors du monde de l'ordonnance (`module/regles/v5/nettoyage.js` et ses deux gabarits).
+  Reste : `constants.js` (lot C).
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

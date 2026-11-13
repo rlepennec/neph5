@@ -1,5 +1,4 @@
 import { Regles } from "../../module/regles/regles.js";
-import { Version } from "../../module/common/version.js";
 
 /**
  * Les incarnations d'un acteur, vues d'un seul endroit : la part commune à toutes les versions
@@ -23,8 +22,8 @@ import { Version } from "../../module/common/version.js";
  *
  * L'ordre « de chaîne » est l'ordre chronologique, de la plus ancienne à la plus récente. Une
  * incarnation créée arrive en QUEUE : elle devient la plus récente, et reçoit la stase de
- * l'antérieure active la plus proche. L'option chronologieDescendante ne règle que l'ordre
- * d'affichage.
+ * l'antérieure active la plus proche. L'ordre d'affichage est l'affaire des règles (pour la v5,
+ * l'option chronologieDescendante, voir IncarnationsV5.chronologie).
  *
  * Une instance est faite pour être utilisée sur le champ, puis jetée : elle ne met rien en cache.
  */
@@ -157,8 +156,7 @@ export class Incarnations {
      * Les incarnations dans l'ordre, filtrées et bornées.
      *
      * @param chrono True for chronological order (from the oldest to the bound), false for the
-     *               reverse, null for the display order, which follows the option
-     *               chronologieDescendante — the only use of that option.
+     *               reverse.
      * @param actif  True for active incarnations only, false for passive ones, null for all.
      *               The bounding one is always included, whatever its activation.
      * @param jusqua The key of the last incarnation included, null for no bound: the
@@ -167,9 +165,8 @@ export class Incarnations {
      */
     ordonnees({ chrono = true, actif = null, jusqua = null } = {}) {
 
-        // Retrieve if the most recent incarnation comes first
-        const descendante = Version.data(this.actor).options?.chronologieDescendante === true;
-        const inverse = (chrono === null) ? !descendante : (chrono === false);
+        // The most recent incarnation comes first
+        const inverse = (chrono === false);
 
         // Retrieve incarnations from the oldest to the last one
         let periodes = [];
