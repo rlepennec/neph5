@@ -3,7 +3,6 @@ import { Incarnations } from "../../feature/incarnation/incarnations.js";
 import { DocumentIdentifier } from "../common/documentIdentifier.js";
 import { FormuleDataModel } from "../../feature/alchimie/item/formule.mjs";
 import { InvocationDataModel } from "../../feature/kabbale/item/invocation.mjs";
-import { VecuDataModel } from "../../feature/vecu/item/vecu.mjs";
 import { Version } from "../common/version.js";
 import { Regles } from "../regles/regles.js";
 import { Fiches } from "../common/fiches.js";
@@ -259,58 +258,6 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * Deletes the specified competence from the current vecu item.
-     * @param item The competence item to remove from the vecu item.
-     */
-    async deleteCompetence(item) {
-        const competences = foundry.utils.duplicate(Version.data(this).competences);
-        const i = competences.findIndex(o => item.sid === o);
-        if (i !== -1) {
-            competences.splice(i, 1);
-            await this.update({ [Version.path(this, 'competences')]: competences });
-        }
-    }
-
-    /**
-     * Deletes the specified magie.
-     * @param {*} item The item to delete.
-     */
-    async deleteMagie(item) {
-        const voies = foundry.utils.duplicate(Version.data(this).voies);
-        const i = voies.findIndex(o => item.sid === o);
-        if (i !== -1) {
-            voies.splice(i, 1);
-            await this.update({ [Version.path(this, 'voies')]: voies });
-        }
-    }
-
-    /**
-     * Delete the specified variante.
-     * @param {*} item The system item of the item to delete.
-     */
-    async deleteVariante(item) {
-        const variantes = foundry.utils.duplicate(Version.data(this).variantes);
-        const i = variantes.findIndex(o => item.sid === o);
-        if (i !== -1) {
-            variantes.splice(i, 1);
-            await this.update({ [Version.path(this, 'variantes')]: variantes });
-        }
-    }
-
-    /**
-     * Delete the specified catalyseur.
-     * @param item The system item of the catalyseur to delete from the formule.
-     */
-    async deleteCatalyseur(item) {
-        const catalyseurs = foundry.utils.duplicate(Version.data(this).catalyseurs);
-        const i = catalyseurs.findIndex(o => item.sid === o);
-        if (i !== -1) {
-            catalyseurs.splice(i, 1);
-            await this.update({ [Version.path(this, 'catalyseurs')]: catalyseurs });
-        }
-    }
-
-    /**
      * Updates the list of referenced items by adding the specified item.
      * Reset the degre to 0 if dropped again.
      * @param {*} item The item to drop.
@@ -393,13 +340,6 @@ export class NephilimItem extends Item {
     }
 
     /**
-     * @return the status of the item, which can be connu, dechiffre, appris or tatoue.
-     */
-    get getStatus() {
-        return game.i18n.localize('NEPHILIM.' + Version.data(this).status)
-    }
-
-    /**
      * @returns true if the periode is active according to his activation and the current one.
      */
     get actif() {
@@ -437,13 +377,13 @@ export class NephilimItem extends Item {
         return super._onClickDocumentLink(event);
     }
 
+    /**
+     * Prépare les données d'un item déposé sur un acteur : une copie, sans l'identifiant de
+     * l'item du monde. Les règles y ajoutent ce qui leur est propre (voir FicheActeurV5).
+     * @param data The data of the item to create, modified in place.
+     */
     static initializeEmbedded(data) {
         delete data._id;
-        switch (data.type) {
-            case 'vecu':
-                VecuDataModel.initializeEmbedded(data);
-                break;
-        }
     }
 
 }

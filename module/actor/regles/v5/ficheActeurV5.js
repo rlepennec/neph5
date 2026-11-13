@@ -3,6 +3,7 @@ import { FeatureBuilder } from "../../../../feature/core/regles/v5/featureBuilde
 import { IncarnationsV5 } from "../../../../feature/incarnation/regles/v5/incarnations.js";
 import { NephilimActorSheet } from "../../nephilimActorSheet.js";
 import { NephilimItem } from "../../../item/nephilimItem.js";
+import { VecuDataModel } from "../../../../feature/vecu/item/vecu.mjs";
 
 /**
  * La fiche d'acteur des règles v5, base des fiches de figure, de figurant et de fraternité : ce
@@ -67,6 +68,8 @@ export class FicheActeurV5 extends NephilimActorSheet {
         event.preventDefault();
         const data = document.toObject();
         NephilimItem.initializeEmbedded(data);
+        // Un vécu déposé repart du degré 0
+        if (data.type === 'vecu') VecuDataModel.initializeEmbedded(data);
         if (!new IncarnationsV5(this.document).lierEquipement(data)) {
             ui.notifications.warn(game.i18n.localize("NEPHILIM.equipementSansIncarnation"));
             return;

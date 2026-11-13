@@ -9,6 +9,14 @@ import { Version } from "../../version.js";
 export class AidesV5 {
 
     /**
+     * @param item Un focus (sort, formule, invocation...).
+     * @returns son statut, traduit : connu, déchiffré, appris ou tatoué.
+     */
+    static statut(item) {
+        return game.i18n.localize('NEPHILIM.' + Version.data(item).status);
+    }
+
+    /**
      * @param science The key of the science.
      * @returns l'en-tête propre à la science dans la fiche, null si elle n'en a pas.
      */
@@ -215,6 +223,7 @@ export class AidesV5 {
  * Les aides enregistrées, par nom de gabarit.
  */
 export const AIDES_V5 = {
+    statut: AidesV5.statut,
     scienceHeader: AidesV5.scienceHeader,
     getLevel: AidesV5.getLevel,
     getNextCost: AidesV5.getNextCost,

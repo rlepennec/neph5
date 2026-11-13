@@ -1201,6 +1201,15 @@ tronc commun évoluera au fil de l'intégration des règles.
   (`Repertoire.filtrer(noeud, strict, documentName)`, `Version.visible(…, documentName)` pour les
   entrées d'index, `Actor.compendiumIndexFields`) ; création limitée aux types compatibles. Le
   chantier de la compatibilité est fini.
+- **Neutraliser ce que le commun sait encore de la v5 (13 novembre 2026).** Lot A fait : `NephilimItem` perd
+  les retraits propres à des types (`deleteCompetence` d'un vécu, `deleteMagie`, `deleteVariante`,
+  `deleteCatalyseur`), repris par le nettoyage v5 (`retirer`, `module/regles/v5/objetSupprime.js`) ;
+  le statut d'un focus (`getStatus`) devient l'aide de gabarit v5 `statut` ; la remise à 0 du degré
+  d'un vécu déposé passe dans `FicheActeurV5._onDropItem` (`NephilimItem.initializeEmbedded` ne fait
+  plus que retirer l'identifiant). Restent communs, car génériques : `updateItemRefs`,
+  `updateItemRef`, `deleteReference` (listes de références), la table des illustrations et les icônes
+  par défaut (cosmétiques). Restent à faire : l'option `chronologieDescendante`, le nettoyage des
+  fraternités (`nettoyage.js`), `constants.js`.
 - **Corrections relevées en chemin (8 novembre 2026).** Un token lié après coup restait retiré de la
   liste des tokens de son acteur (défaut de Foundry : le formulaire envoie toujours `actorId`) : ses
   icônes ne suivaient plus les états ; un hook `updateToken` le réinscrit. La fiche et le HUD

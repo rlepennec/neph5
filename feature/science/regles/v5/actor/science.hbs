@@ -173,7 +173,7 @@
 
                     <!-- The status of the focus: connu, dechiffre, appris, tatoue. -->
                     {{#if (includes ../../header 'status')}}
-                    <label class="focus-status" data-action="changeStatus">{{item.embedded.getStatus}}</label>
+                    <label class="focus-status" data-action="changeStatus">{{statut item.embedded}}</label>
                     {{/if}} 
 
                     {{#if (includes ../../header 'percentage')}}

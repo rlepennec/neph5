@@ -1,6 +1,22 @@
 import { Version } from "../../common/version.js";
 
 /**
+ * Retire une référence d'une liste de références d'un item (compétences d'un vécu, voies d'un
+ * sort, variantes et catalyseurs d'une formule).
+ * @param item  The item which holds the list.
+ * @param champ The name of the list field, in the version data.
+ * @param sid   The system identifier to remove.
+ */
+async function retirer(item, champ, sid) {
+    const liste = foundry.utils.duplicate(Version.data(item)[champ] ?? []);
+    const i = liste.findIndex(o => o === sid);
+    if (i !== -1) {
+        liste.splice(i, 1);
+        await item.update({ [Version.path(item, champ)]: liste });
+    }
+}
+
+/**
  * Retire des autres documents du monde les références des règles v5 à un item du monde supprimé
  * (voir Regles, objetSupprime). Le commun a déjà retiré ses incarnations s'il s'agit d'une période,
  * et retire ensuite ses copies embarquées.
@@ -22,7 +38,7 @@ export async function objetSupprimeV5(item) {
 
             // Remove the catalyseur reference from formule items
             for (let formule of game.items.filter(i => i.type === 'formule')) {
-                await formule.deleteCatalyseur(item);
+                await retirer(formule, 'catalyseurs', item.sid);
             }
 
             break;
@@ -36,7 +52,7 @@ export async function objetSupprimeV5(item) {
 
             // Delete from all vecus of the world
             for (let vecu of game.items.filter(i => i.type === 'vecu')) {
-                await vecu.deleteCompetence(item);
+                await retirer(vecu, 'competences', item.sid);
             }
 
             // Delete from all armes of the world
@@ -55,7 +71,7 @@ export async function objetSupprimeV5(item) {
 
             // Delete from all formules of the world
             for (let formule of game.items.filter(i => i.type === "formule")) {
-                await formule.deleteVariante(item);
+                await retirer(formule, 'variantes', item.sid);
             }
 
             break;
@@ -64,7 +80,7 @@ export async function objetSupprimeV5(item) {
 
             // Delete from all sorts of the world
             for (let sort of game.items.filter(i => i.type === "sort" || i.type === "habitus")) {
-                await sort.deleteMagie(item);
+                await retirer(sort, 'voies', item.sid);
             }
 
             break;
