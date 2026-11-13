@@ -1176,7 +1176,9 @@ tronc commun évoluera au fil de l'intégration des règles.
   hooks create/update/deleteItem) ; `Version.vueStricte` (joueur toujours, MJ en mode jeu) ;
   `Version.visible` et `Repertoire.filtrer` (répertoire et compendiums d'objets) suivent la vue de
   l'utilisateur. Compétence active : un groupe compte s'il appartient à la version, et une
-  compétence qui n'y appartient pas est inactive, dans les deux modes (hypothèse à confirmer).
+  compétence qui n'y appartient pas est inactive, dans les deux modes. Décision de l'utilisateur
+  (13 novembre 2026), généralisée : **tout objet non coché pour la version, de type compatible, est
+  inactif dans les deux modes**.
   Objets embarqués masqués s'ils n'appartiennent pas à la version du monde, pour tous :
   `IncarnationsV5.estActif`, `AbstractFeature.items`, `voie`, `equipements`, `stocks`,
   `possessions` ; les listes qui ne passent par aucun de ces points ne sont pas filtrées. Les fiches
